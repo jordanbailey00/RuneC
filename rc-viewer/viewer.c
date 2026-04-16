@@ -4,6 +4,7 @@
 #include "../rc-core/api.h"
 #include "../rc-core/pathfinding.h"
 #include "raylib.h"
+#include "raymath.h"
 #include "rlgl.h"
 #include "terrain.h"
 #include "objects.h"
@@ -27,10 +28,10 @@
 #define WINDOW_H 720
 #define TPS 1.667f
 
-// Player animation sequence IDs (from FC)
-#define ANIM_IDLE 808
-#define ANIM_WALK 819
-#define ANIM_RUN  824
+// Player animation sequence IDs (from FC — xbows_human variants)
+#define ANIM_IDLE 4591
+#define ANIM_WALK 4226
+#define ANIM_RUN  4228
 
 typedef struct {
     RcWorld *world;
@@ -167,7 +168,8 @@ static void process_movement(RcWorld *world, int *moved) {
         int can = rc_can_move(&world->map, p->x, p->y, dx, dy, 0);
         if (can) {
             p->x += dx; p->y += dy;
-            p->facing_angle = atan2f((float)dx, (float)dy) * (180.0f / 3.14159f);
+            // atan2(dx, dy) gives world-space angle. Negate because Z is flipped in rendering.
+            p->facing_angle = atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
             *moved = 1;
         } else {
             uint32_t dest_f = rc_get_flags(&world->map, p->x + dx, p->y + dy, 0);
@@ -216,8 +218,15 @@ static void update_player_anim(ViewerState *v) {
         anim_apply_frame(v->anim_state, pe->base_verts, &sf->frame, fb);
         anim_update_mesh(pe->model.meshes[0].vertices, v->anim_state,
                          pe->face_indices, pe->face_count);
-        UpdateMeshBuffer(pe->model.meshes[0], 0, pe->model.meshes[0].vertices,
-                         pe->model.meshes[0].vertexCount * 3 * sizeof(float), 0);
+        // anim_update_mesh writes raw OSRS int16 units — scale to tile units
+        float *mv = pe->model.meshes[0].vertices;
+        int vc = pe->model.meshes[0].vertexCount;
+        for (int i = 0; i < vc; i++) {
+            mv[i*3]   /=  128.0f;
+            mv[i*3+1] /=  128.0f;
+            mv[i*3+2] /= -128.0f;
+        }
+        UpdateMeshBuffer(pe->model.meshes[0], 0, mv, vc * 3 * sizeof(float), 0);
     }
 }
 
@@ -335,6 +344,9 @@ int main(void) {
     v.camera.fovy = 45;
     v.camera.projection = CAMERA_PERSPECTIVE;
 
+    // No custom lighting shader — the export scripts already bake directional
+    // lighting into vertex colors. Adding another pass just darkens everything.
+
     // Load world
     v.terrain = terrain_load("data/regions/varrock.terrain");
     if (v.terrain) terrain_offset(v.terrain, WORLD_ORIGIN_X, WORLD_ORIGIN_Y);
@@ -352,6 +364,9 @@ int main(void) {
 
     if (v.player_model && v.player_model->loaded && v.player_model->entries[0].loaded) {
         ModelEntry *pe = &v.player_model->entries[0];
+        // Don't apply lighting shader to player — the animation system rewrites
+        // mesh vertices each frame in OSRS units, then the shader's mvp transforms
+        // them. The default shader handles this correctly.
         v.anim_state = anim_model_state_create(pe->vertex_skins, pe->base_vert_count);
         v.cur_anim_id = ANIM_IDLE;
     }
