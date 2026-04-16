@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
-"""Patch export_objects.py at runtime to include plane 1 LINK_BELOW objects (bridges).
+"""Export objects with RSMod's visual level resolution (LINK_BELOW + plane filtering).
 
-Monkey-patches parse_object_placements_modern to include plane 1 objects
-only when the terrain tile has LINK_BELOW (setting & 2), then adjusts
-their height to 0 so they render at ground level.
+Implements GameMapDecoder.kt's algorithm:
+  1. For each object at (x, y, level):
+     - Check tile at (x, y, level+1) for LINK_BELOW flag (setting & 2)
+     - If set, resolved flags = tile above flags; else = current tile flags
+     - If resolved flags have LINK_BELOW, visualLevel = level - 1
+     - Otherwise visualLevel = level
+  2. Only include objects where visualLevel == 0 (ground-level rendering)
+  3. Objects keep their ORIGINAL height for heightmap sampling (so bridges
+     use plane 1 heightmap and render above water)
+
+Terrain opcodes are read as 2-byte unsigned shorts matching RSMod's
+MapTileDecoder.kt (not 1-byte as older formats).
 """
 import sys, struct, io
 from pathlib import Path
@@ -15,12 +24,16 @@ import export_objects as eo
 from modern_cache_reader import ModernCacheReader, read_smart
 from export_collision_map_modern import find_map_groups, _read_extended_smart
 
-# Parse terrain settings for LINK_BELOW tiles across all regions
-_link_below_tiles = {}  # (world_x, world_y) -> True
+# Per-region terrain tile settings [4][64][64]
+_terrain_settings = {}  # (rx, ry) -> settings[4][64][64]
 
 
-def load_link_below(reader, map_groups, regions):
-    """Parse terrain for all regions and record LINK_BELOW tiles."""
+def load_terrain_settings(reader, map_groups, regions):
+    """Parse terrain tile settings for all regions.
+
+    RSMod MapTileDecoder reads opcodes as unsigned SHORT (2 bytes), not byte.
+    Overlays (opcode 2-49) also read a 2-byte ID.
+    """
     for rx, ry in regions:
         ms = (rx << 8) | ry
         info = map_groups.get(ms)
@@ -40,22 +53,66 @@ def load_link_below(reader, map_groups, regions):
         for h in range(4):
             for x in range(64):
                 for y in range(64):
-                    while pos < len(terr):
-                        v = terr[pos]; pos += 1
-                        if v == 0: break
-                        elif v == 1: pos += 1; break
-                        elif 2 <= v <= 49: pos += 1
-                        elif 50 <= v <= 81: settings[h][x][y] = v - 49
+                    while pos + 1 < len(terr):
+                        # RSMod reads opcode as unsigned short (2 bytes, big-endian)
+                        opcode = (terr[pos] << 8) | terr[pos + 1]; pos += 2
+                        if opcode == 0:
+                            break
+                        elif opcode == 1:
+                            pos += 1  # height byte
+                            break
+                        elif opcode <= 49:
+                            pos += 2  # overlay ID (short)
+                        elif opcode <= 81:
+                            rule = opcode - 49
+                            settings[h][x][y] |= rule
+                        # else: underlay ID encoded in opcode
 
-        # Record LINK_BELOW tiles: plane 1 setting & 2
-        for x in range(64):
-            for y in range(64):
-                if settings[1][x][y] & 2:
-                    wx = rx * 64 + x
-                    wy = ry * 64 + y
-                    _link_below_tiles[(wx, wy)] = True
+        _terrain_settings[(rx, ry)] = settings
 
-    print(f"  {len(_link_below_tiles)} LINK_BELOW tiles found")
+    # Count LINK_BELOW tiles for diagnostic
+    lb_count = 0
+    for settings in _terrain_settings.values():
+        for h in range(4):
+            for x in range(64):
+                for y in range(64):
+                    if settings[h][x][y] & 0x2:
+                        lb_count += 1
+    print(f"  Loaded terrain settings for {len(_terrain_settings)} regions, {lb_count} LINK_BELOW tiles")
+
+
+def get_tile_setting(world_x, world_y, level):
+    """Get terrain tile setting at world coords and level."""
+    rx, ry = world_x // 64, world_y // 64
+    lx, ly = world_x % 64, world_y % 64
+    settings = _terrain_settings.get((rx, ry))
+    if not settings:
+        return 0
+    if level < 0 or level > 3:
+        return 0
+    return settings[level][lx][ly]
+
+
+def resolve_visual_level(world_x, world_y, level):
+    """RSMod GameMapDecoder.kt visual level resolution."""
+    LINK_BELOW = 0x2
+
+    tile_flags = get_tile_setting(world_x, world_y, level)
+
+    if level < 3:
+        tile_above_flags = get_tile_setting(world_x, world_y, level + 1)
+    else:
+        tile_above_flags = tile_flags
+
+    if tile_above_flags & LINK_BELOW:
+        resolved_flags = tile_above_flags
+    else:
+        resolved_flags = tile_flags
+
+    if resolved_flags & LINK_BELOW:
+        return level - 1
+    else:
+        return level
 
 
 # Monkey-patch the placement parser
@@ -63,7 +120,7 @@ _orig_parse = eo.parse_object_placements_modern
 
 
 def patched_parse(data, base_x, base_y):
-    """Include plane 1 objects at LINK_BELOW tiles, adjusted to plane 0."""
+    """Include objects whose resolved visual level == 0."""
     buf = io.BytesIO(data)
     obj_id = -1
     placements = []
@@ -94,26 +151,21 @@ def patched_parse(data, base_x, base_y):
             if obj_type not in eo.EXPORTED_TYPES:
                 continue
 
-            # Plane 0: always include
-            # Plane 1: include non-roof objects (types 0-11, 22). Skip roof
-            #          types 12-21 which are upper floor geometry.
-            #          Keep height=1 so the exporter uses the plane 1 heightmap
-            #          for vertical positioning (bridges render above water).
-            # Plane 2+: always skip
-            if height == 0:
-                pass
-            elif height == 1:
-                if 12 <= obj_type <= 21:
-                    continue  # skip roofing
-                # Keep height=1 — the exporter samples heightmaps[1] which
-                # positions the object at the correct elevation above ground
-            else:
+            # RSMod visual level resolution
+            world_x = base_x + local_x
+            world_y = base_y + local_y
+            visual_level = resolve_visual_level(world_x, world_y, height)
+
+            # Only render objects whose visual level is 0 (ground floor)
+            if visual_level != 0:
                 continue
 
+            # Keep original height for heightmap sampling —
+            # bridges on data plane 1 use plane 1 heightmap (above water)
             placements.append(eo.PlacedObject(
                 obj_id=obj_id,
-                world_x=base_x + local_x,
-                world_y=base_y + local_y,
+                world_x=world_x,
+                world_y=world_y,
                 height=height,
                 obj_type=obj_type,
                 rotation=rotation,
@@ -123,7 +175,6 @@ def patched_parse(data, base_x, base_y):
 
 
 if __name__ == "__main__":
-    # Pre-load LINK_BELOW data before patching
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--modern-cache", type=Path)
@@ -139,13 +190,13 @@ if __name__ == "__main__":
         for r in args.regions.split():
             rx, ry = r.split(",")
             regions.append((int(rx), int(ry)))
-        print("Loading LINK_BELOW tiles for bridge support...")
-        load_link_below(reader, map_groups, regions)
+        print("Loading terrain settings for visual level resolution...")
+        load_terrain_settings(reader, map_groups, regions)
 
     # Apply patch
     eo.parse_object_placements_modern = patched_parse
 
-    # Re-build sys.argv and call the original main
+    # Call original main
     sys.argv = [str(SCRIPTS / "export_objects.py")]
     if args.modern_cache:
         sys.argv += ["--modern-cache", str(args.modern_cache)]
