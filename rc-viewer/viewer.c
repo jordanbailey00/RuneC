@@ -40,8 +40,21 @@ typedef struct {
     ObjectMesh *objects;
     ModelSet *player_model;
     ModelSet *npc_models;
-    AnimCache *anims;
-    AnimModelState *anim_state;
+    AnimCache *anims;           // player animations
+    AnimCache *npc_anims;       // NPC animations (separate cache; IDs don't overlap)
+    AnimModelState *anim_state; // player
+    // Per-NPC-def animation scratch state (one per def index into g_npc_defs).
+    // We share across all instances of the same NPC type — each instance
+    // re-applies its own frame from base_verts before its draw call, so
+    // cross-instance clobber is fine.
+    AnimModelState *npc_anim_state[RC_MAX_NPC_DEFS];
+
+    // Per-NPC-instance animation progress (parallel to world->npcs[]).
+    struct {
+        int cur_anim_id;       // 0 = none, otherwise the seq id currently playing
+        int frame_idx;
+        float frame_timer;
+    } npc_render[RC_MAX_NPCS];
 
     // Camera
     Camera3D camera;
@@ -232,6 +245,69 @@ static void update_player_anim(ViewerState *v) {
     }
 }
 
+// Apply the correct animation frame to one NPC's shared mesh just before it
+// draws. NPCs of the same def share the mesh buffer + AnimModelState, so the
+// caller must animate and draw each instance sequentially (no batching across
+// instances of the same type).
+//
+// Returns 1 if the mesh was updated (so caller knows it should draw), 0 if the
+// NPC has no animation data and the caller should draw the rest pose.
+static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
+    if (!v->npc_anims || !me || !me->loaded) return 0;
+    const RcNpc *n = &v->world->npcs[npc_idx];
+    const RcNpcDef *def = &g_npc_defs[n->def_id];
+    AnimModelState *state = v->npc_anim_state[n->def_id];
+    if (!state) return 0;
+
+    // Pick target anim from NPC state. stand/walk are always present; run,
+    // attack, death are -1 on most non-combat NPCs, so fall back to walk/stand.
+    int moved_last_tick = (n->x != n->prev_x) || (n->y != n->prev_y);
+    int target = def->stand_anim;
+    if (n->is_dead && def->death_anim >= 0)       target = def->death_anim;
+    else if (moved_last_tick && def->walk_anim >= 0) target = def->walk_anim;
+    if (target < 0) return 0;
+
+    // Detect anim change → reset frame / timer.
+    if (v->npc_render[npc_idx].cur_anim_id != target) {
+        v->npc_render[npc_idx].cur_anim_id = target;
+        v->npc_render[npc_idx].frame_idx   = 0;
+        v->npc_render[npc_idx].frame_timer = 0.0f;
+    }
+
+    AnimSequence *seq = anim_get_sequence(v->npc_anims, (uint16_t)target);
+    if (!seq || seq->frame_count == 0) return 0;
+
+    // Advance frame timer (20ms per client tick = GetFrameTime() * 50).
+    v->npc_render[npc_idx].frame_timer += GetFrameTime() * 50.0f;
+    AnimSequenceFrame *sf = &seq->frames[v->npc_render[npc_idx].frame_idx % seq->frame_count];
+    float delay = (float)(sf->delay > 0 ? sf->delay : 1);
+    while (v->npc_render[npc_idx].frame_timer >= delay) {
+        v->npc_render[npc_idx].frame_timer -= delay;
+        v->npc_render[npc_idx].frame_idx = (v->npc_render[npc_idx].frame_idx + 1) % seq->frame_count;
+        sf = &seq->frames[v->npc_render[npc_idx].frame_idx];
+        delay = (float)(sf->delay > 0 ? sf->delay : 1);
+    }
+
+    AnimFrameBase *fb = anim_get_framebase(v->npc_anims, sf->frame.framebase_id);
+    if (!fb) return 0;
+
+    // Apply frame transforms to the shared per-def AnimModelState → base-pose
+    // verts in OSRS int16 units. Then expand to face-unrolled float mesh verts
+    // (applying raylib Y-flip), scale OSRS→tile units, re-upload.
+    anim_apply_frame(state, me->base_verts, &sf->frame, fb);
+    anim_update_mesh(me->model.meshes[0].vertices, state,
+                     me->face_indices, me->face_count);
+    float *mv = me->model.meshes[0].vertices;
+    int vc   = me->model.meshes[0].vertexCount;
+    for (int i = 0; i < vc; i++) {
+        mv[i*3]   /=  128.0f;
+        mv[i*3+1] /=  128.0f;
+        mv[i*3+2] /= -128.0f;
+    }
+    UpdateMeshBuffer(me->model.meshes[0], 0, mv, vc * 3 * sizeof(float), 0);
+    return 1;
+}
+
 static void draw_scene(ViewerState *v) {
     RcPlayer *p = &v->world->player;
     float t = v->tick_frac;
@@ -298,6 +374,10 @@ static void draw_scene(ViewerState *v) {
             if (dx || dy) {
                 face_angle = atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
             }
+            // Animate into the shared mesh buffer just before drawing this
+            // instance — two NPCs with the same model can play different anims
+            // or frames because each draw re-applies from base_verts.
+            update_npc_anim(v, i, ne);
             DrawModelEx(ne->model, (Vector3){nx_r, ny_r, nz_r},
                         (Vector3){0, 1, 0}, face_angle, (Vector3){1, 1, 1}, WHITE);
         } else {
@@ -408,6 +488,24 @@ int main(void) {
     // Load NPC models (combined body parts per NPC, one MDL2 entry per NPC def)
     v.npc_models = models_load("data/models/npcs.models");
 
+    // NPC animations (separate cache — player.anims has combat/player anims,
+    // npcs.anims has the subset referenced by our loaded NPC defs). Each
+    // unique NPC def gets its own AnimModelState built from its base model's
+    // per-vertex skin labels.
+    v.npc_anims = anim_cache_load("data/anims/npcs.anims");
+    if (v.npc_anims && v.npc_models && v.npc_models->loaded) {
+        int created = 0;
+        for (int i = 0; i < g_npc_def_count; i++) {
+            ModelEntry *me = model_find(v.npc_models, (uint32_t)g_npc_defs[i].id);
+            if (me && me->loaded && me->vertex_skins && me->base_vert_count > 0) {
+                v.npc_anim_state[i] = anim_model_state_create(
+                    me->vertex_skins, me->base_vert_count);
+                created++;
+            }
+        }
+        fprintf(stderr, "npc_anim: created %d per-def anim states\n", created);
+    }
+
     // Load player model + animations
     v.player_model = models_load("data/models/player.models");
     v.anims = anim_cache_load("data/anims/player.anims");
@@ -484,7 +582,10 @@ int main(void) {
     models_free(v.player_model);
     models_free(v.npc_models);
     anim_model_state_free(v.anim_state);
+    for (int i = 0; i < RC_MAX_NPC_DEFS; i++)
+        anim_model_state_free(v.npc_anim_state[i]);
     anim_cache_free(v.anims);
+    anim_cache_free(v.npc_anims);
     rc_world_destroy(v.world);
     return 0;
 }
