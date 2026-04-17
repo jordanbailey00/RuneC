@@ -3,6 +3,7 @@
 
 #include "../rc-core/api.h"
 #include "../rc-core/pathfinding.h"
+#include "../rc-core/npc.h"
 #include "raylib.h"
 #include "raymath.h"
 #include "rlgl.h"
@@ -38,6 +39,7 @@ typedef struct {
     TerrainMesh *terrain;
     ObjectMesh *objects;
     ModelSet *player_model;
+    ModelSet *npc_models;
     AnimCache *anims;
     AnimModelState *anim_state;
 
@@ -265,6 +267,47 @@ static void draw_scene(ViewerState *v) {
         DrawCube((Vector3){px, py + 1.0f, pz}, 0.8f, 2.0f, 0.8f, BLUE);
     }
 
+    // NPC rendering — one entry per def. Each live NPC's def_id indexes into
+    // g_npc_defs, and we look up the model by NPC cache ID in the model set.
+    int npc_count = 0;
+    const RcNpc *npcs = rc_get_npcs(v->world, &npc_count);
+    for (int i = 0; i < npc_count; i++) {
+        const RcNpc *n = &npcs[i];
+        if (!n->active || n->is_dead) continue;
+
+        RcNpcDef *def = &g_npc_defs[n->def_id];
+
+        // Interpolate position between prev and current
+        float nwx = (float)n->prev_x + ((float)n->x - (float)n->prev_x) * v->tick_frac;
+        float nwy = (float)n->prev_y + ((float)n->y - (float)n->prev_y) * v->tick_frac;
+        float nx_r = (nwx - WORLD_ORIGIN_X) + 0.5f * (float)def->size;
+        float nz_r = -((nwy - WORLD_ORIGIN_Y) + 0.5f * (float)def->size);
+        float ny_r = ground_y(v, n->x, n->y);
+
+        // Find the NPC's model by its cache ID
+        ModelEntry *ne = NULL;
+        if (v->npc_models && v->npc_models->loaded) {
+            ne = model_find(v->npc_models, (uint32_t)def->id);
+        }
+
+        if (ne && ne->loaded) {
+            // Face angle: if moving, face direction of movement; else face south
+            float face_angle = 0.0f;
+            int dx = n->x - n->prev_x;
+            int dy = n->y - n->prev_y;
+            if (dx || dy) {
+                face_angle = atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
+            }
+            DrawModelEx(ne->model, (Vector3){nx_r, ny_r, nz_r},
+                        (Vector3){0, 1, 0}, face_angle, (Vector3){1, 1, 1}, WHITE);
+        } else {
+            // Fallback cube for NPCs without a model
+            DrawCube((Vector3){nx_r, ny_r + 1.0f, nz_r},
+                     0.6f * (float)def->size, 2.0f, 0.6f * (float)def->size,
+                     (Color){200, 100, 100, 255});
+        }
+    }
+
     rlEnableBackfaceCulling();
 
     // Route markers (convert world→local for rendering)
@@ -357,6 +400,14 @@ int main(void) {
     // Load collision
     collision_load(&v.world->map, "data/regions/varrock.cmap");
 
+    // Load NPC definitions + spawns (must be before model loading since spawns
+    // tell us which NPCs exist in the world)
+    rc_load_npc_defs("data/defs/npc_defs.bin");
+    rc_load_npc_spawns(v.world, "data/regions/varrock.npc-spawns.bin");
+
+    // Load NPC models (combined body parts per NPC, one MDL2 entry per NPC def)
+    v.npc_models = models_load("data/models/npcs.models");
+
     // Load player model + animations
     v.player_model = models_load("data/models/player.models");
     v.anims = anim_cache_load("data/anims/player.anims");
@@ -406,6 +457,14 @@ int main(void) {
                 int moved = 0;
                 process_movement(v.world, &moved);
                 v.player_moving = moved;
+
+                // Tick all active NPCs (wander AI, respawn, movement)
+                for (int i = 0; i < v.world->npc_count; i++) {
+                    if (v.world->npcs[i].active) {
+                        rc_npc_tick(v.world, &v.world->npcs[i]);
+                    }
+                }
+
                 v.world->tick++;
                 v.tick_frac = 0.0f;
             }
@@ -423,6 +482,7 @@ int main(void) {
     terrain_free(v.terrain);
     objects_free(v.objects);
     models_free(v.player_model);
+    models_free(v.npc_models);
     anim_model_state_free(v.anim_state);
     anim_cache_free(v.anims);
     rc_world_destroy(v.world);

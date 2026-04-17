@@ -3,42 +3,44 @@
 
 #include "types.h"
 
-// NPC definition (loaded from cache/data at startup)
+// NPC definition loaded from npc_defs.bin (NDEF format).
+// Fully data-driven — no hardcoded NPC logic.
 typedef struct {
-    int id;
+    int id;                 // b237 cache NPC ID (sparse)
     char name[64];
-    int combat_level;
-    int size;
-    int hitpoints;
-    int stats[6];           // atk, def, str, hp, rng, mag
-    int attack_speed;
-    int attack_style;
-    int attack_range;
-    int max_hit;
+    int size;               // tile footprint (1-5)
+    int combat_level;       // -1 = no combat level
+    int hitpoints;          // max HP
+    int stats[6];           // att, def, str, hp, rng, mag
+    int stand_anim;         // idle animation
+    int walk_anim;
+    int run_anim;
     int attack_anim;
     int death_anim;
-    int walk_anim;
-    int idle_anim;
-    int model_ids[8];
-    int model_count;
-    char options[5][32];
+    // Per-NPC AI parameters (set from def + Void data)
+    int wander_range;       // max tiles from spawn (default 5)
+    int respawn_ticks;      // ticks before respawn after death (default 25)
     bool aggressive;
     int aggro_range;
-    int wander_range;
-    int respawn_ticks;
 } RcNpcDef;
 
-// Global NPC definitions table
+// Global NPC definitions table — loaded once at startup
 extern RcNpcDef g_npc_defs[RC_MAX_NPC_DEFS];
 extern int g_npc_def_count;
 
-// Load NPC definitions from binary file
+// Load NPC definitions from binary NDEF file
 int rc_load_npc_defs(const char *path);
 
-// Per-tick NPC processing
-void rc_npc_tick(RcWorld *world, RcNpc *npc);
+// Find a def by NPC ID (b237 cache ID). Returns -1 if not found.
+int rc_npc_def_find(int npc_id);
 
-// Spawn an NPC at a location
-int rc_npc_spawn(RcWorld *world, int def_id, int x, int y, int plane);
+// Load and spawn all NPCs from binary NSPN file
+int rc_load_npc_spawns(RcWorld *world, const char *path);
+
+// Spawn a single NPC. Returns NPC array index or -1.
+int rc_npc_spawn(RcWorld *world, int def_idx, int world_x, int world_y, int plane);
+
+// Per-tick NPC processing (wander AI, respawn, movement)
+void rc_npc_tick(RcWorld *world, RcNpc *npc);
 
 #endif

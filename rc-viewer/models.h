@@ -11,7 +11,7 @@
 #include <stdlib.h>
 
 #define MDL2_MAGIC 0x4D444C32
-#define MODEL_SET_MAX 32
+#define MODEL_SET_MAX 512
 
 typedef struct {
     uint32_t model_id;
