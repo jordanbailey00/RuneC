@@ -5,6 +5,7 @@
 #ifndef RC_TERRAIN_H
 #define RC_TERRAIN_H
 
+#include "../rc-core/io.h"
 #include "raylib.h"
 #include <math.h>
 #include <stdio.h>
@@ -21,26 +22,46 @@ typedef struct {
     int hm_min_x, hm_min_y, hm_width, hm_height;
 } TerrainMesh;
 
+static void terrain_free(TerrainMesh *tm);
+
 static TerrainMesh *terrain_load(const char *path) {
     FILE *f = fopen(path, "rb");
     if (!f) { fprintf(stderr, "terrain_load: can't open %s\n", path); return NULL; }
 
     uint32_t magic, vert_count, region_count;
     int32_t min_wx, min_wy;
-    fread(&magic, 4, 1, f);
-    if (magic != TERR_MAGIC) { fprintf(stderr, "terrain: bad magic\n"); fclose(f); return NULL; }
-    fread(&vert_count, 4, 1, f);
-    fread(&region_count, 4, 1, f);
-    fread(&min_wx, 4, 1, f);
-    fread(&min_wy, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "terrain magic")
+            || magic != TERR_MAGIC) {
+        fprintf(stderr, "terrain: bad magic\n");
+        fclose(f);
+        return NULL;
+    }
+    if (!rc_read_exact(f, &vert_count, sizeof(vert_count), 1, path, "terrain vertex count")
+            || !rc_read_exact(f, &region_count, sizeof(region_count), 1, path, "terrain region count")
+            || !rc_read_exact(f, &min_wx, sizeof(min_wx), 1, path, "terrain min world x")
+            || !rc_read_exact(f, &min_wy, sizeof(min_wy), 1, path, "terrain min world y")) {
+        fclose(f);
+        return NULL;
+    }
     fprintf(stderr, "terrain: %u verts, %u regions, origin (%d,%d)\n",
             vert_count, region_count, min_wx, min_wy);
 
     float *raw_verts = malloc(vert_count * 3 * sizeof(float));
-    fread(raw_verts, sizeof(float), vert_count * 3, f);
+    if (!raw_verts
+            || !rc_read_exact(f, raw_verts, sizeof(float), vert_count * 3, path, "terrain vertices")) {
+        free(raw_verts);
+        fclose(f);
+        return NULL;
+    }
 
     unsigned char *raw_colors = malloc(vert_count * 4);
-    fread(raw_colors, 1, vert_count * 4, f);
+    if (!raw_colors
+            || !rc_read_exact(f, raw_colors, sizeof(unsigned char), vert_count * 4, path, "terrain colors")) {
+        free(raw_verts);
+        free(raw_colors);
+        fclose(f);
+        return NULL;
+    }
 
     Mesh mesh = {0};
     mesh.vertexCount = (int)vert_count;
@@ -71,13 +92,21 @@ static TerrainMesh *terrain_load(const char *path) {
 
     // Heightmap (appended after colors)
     int32_t hx, hy; uint32_t hw, hh;
-    if (fread(&hx, 4, 1, f) == 1 && fread(&hy, 4, 1, f) == 1 &&
-        fread(&hw, 4, 1, f) == 1 && fread(&hh, 4, 1, f) == 1 &&
-        hw > 0 && hh > 0 && hw <= 8192 && hh <= 8192) {
+    if (rc_read_exact(f, &hx, sizeof(hx), 1, path, "terrain heightmap min x")
+            && rc_read_exact(f, &hy, sizeof(hy), 1, path, "terrain heightmap min y")
+            && rc_read_exact(f, &hw, sizeof(hw), 1, path, "terrain heightmap width")
+            && rc_read_exact(f, &hh, sizeof(hh), 1, path, "terrain heightmap height")
+            && hw > 0 && hh > 0 && hw <= 8192 && hh <= 8192) {
         tm->hm_min_x = hx; tm->hm_min_y = hy;
         tm->hm_width = (int)hw; tm->hm_height = (int)hh;
         tm->heightmap = malloc(hw * hh * sizeof(float));
-        fread(tm->heightmap, sizeof(float), hw * hh, f);
+        if (!tm->heightmap
+                || !rc_read_exact(f, tm->heightmap, sizeof(float), hw * hh,
+                                  path, "terrain heightmap values")) {
+            fclose(f);
+            terrain_free(tm);
+            return NULL;
+        }
         fprintf(stderr, "terrain heightmap: %dx%d origin (%d,%d)\n", hw, hh, hx, hy);
     }
     fclose(f);

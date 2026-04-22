@@ -1,0 +1,5308 @@
+title = "Transcript:Monkey Madness II"
+npcs = ["King Narnode Shareen", "Anita", "Assistant Lori", "Auguste", "Garkor", "Awowogei", "Uwogo", "Monkey Archer", "Kruk", "Kob", "Keef", "Assistant Le Smith", "Monkey guard", "Glough", "Nieve", "Lumo", "Zooknock"]
+node_count = 668
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, King Narnode."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Good of you to stop by, human."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How fares the kingdom today?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "cond"
+text = "If the player does not have the requirements to start the quest:"
+parent = -1
+children = [4, 5]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Everything seems fine, as far as I can tell... I will let you know if there is any trouble."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "end"
+parent = 3
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "cond"
+text = "If the player has the requirements to start the quest:"
+parent = -1
+children = [7, 8, 9, 15]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "All is not well, [player name]. Despite having had Glough under close surveillance since the events on Ape Atoll, he has managed to escape the Stronghold."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "I know you have already done so much for our kingdom, but could you look into Glough's disappearance?"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "option"
+text = "I'll help you look for Glough."
+parent = 6
+children = [10, 11, 12, 13, 14]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll help you look for Glough."
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any idea on where to start?"
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "You should look anywhere Glough may have left behind clues of his whereabouts. I've already had my men search his home, but perhaps you can find something they missed."
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right to it."
+parent = 9
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "I'm busy at the moment."
+parent = 6
+children = [16, 17, 18]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm busy at the moment."
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Perhaps some other time, then."
+parent = 15
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "act"
+text = "end"
+parent = 15
+is_terminal = true
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "How are you getting on, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What should I be looking for again?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "You should look anywhere Glough may have left behind clues of his whereabouts. I've already had my men search his home, but perhaps you can find something they missed."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wonder who could have left this in Glough's home? The initials A.A. are embroidered into it."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is this your handkerchief?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Anita"
+text = "Why, yes, it is. I must have left it behind somewhere..."
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "box"
+text = "You return Anita's handkerchief - she looks as if she could use it."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi Anita."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Anita"
+text = "*sob* W-what do you want? *sob*"
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "option"
+text = "What's wrong?"
+parent = -1
+children = [31, 32, 33, 34, 35, 36, 37, 40]
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Anita"
+text = "*sob* It's Glough... I fear for the worst!"
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Anita"
+text = "I think he might be seeing someone else! *sob* I hadn't heard from him in a while, and so decided to give him a visit."
+parent = 30
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Anita"
+text = "At first, I thought there was nobody home... *sob* But then I heard... *sob*"
+parent = 30
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Heard what?"
+parent = 30
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Anita"
+text = "I've already said too much. *sob* The last time I helped you, Glough lost his job!"
+parent = 30
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "What do you care? He's seeing someone else!"
+parent = 30
+children = [38, 39]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do you care? He's seeing someone else!"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "option"
+text = "He might be in trouble, I could help."
+parent = 30
+children = [41, 42, 43, 44, 45, 46]
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "He might be in trouble, I could help."
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Anita"
+text = "I heard whispering coming from higher up in his tree! I managed to climb the first branch... *sob* But I'm not agile enough to get up to the highest level..."
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Anita"
+text = "Do you really think he might have gotten into trouble? *sob*"
+parent = 40
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "There's another level to his home?"
+parent = 40
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Anita"
+text = "*sob* There's nowhere else the voices could have been coming from... *sob* Please, climb up there and let me know what you find!"
+parent = 40
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "act"
+text = "end"
+parent = 40
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "option"
+text = "Any idea where Glough is?"
+parent = -1
+children = [48, 49, 50]
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any idea where Glough is?"
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Anita"
+text = "The last time I helped you... *sob* Glough lost his job!"
+parent = 47
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "act"
+text = "end"
+parent = 47
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "option"
+text = "Nothing, goodbye."
+parent = -1
+children = [52, 53]
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing, goodbye."
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "act"
+text = "end"
+parent = 51
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "box"
+text = "The fire has been recently extinguished, you find a half burned note in the ashes."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The note is blank... I'm not sure what I'm meant to be reading right now."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "box"
+text = "The rest of the note has been destroyed by the fire."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to translate this before it's going to be of any use... Maybe the King can help."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What could the note mean? I should show it to the King, he might be able to make some sense of it."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "How are you getting on, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found a note in Glough's home which might be of use."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Excellent, do you have it with you?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have it right here."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "box"
+text = "You show the note to King Narnode."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Ah, I see that it is written in the ancient gnome language... Perhaps you could translate it with that translation book you've used before?"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "cond"
+text = "If the player doesn't have a translation book:"
+parent = -1
+children = [70, 71, 72, 73, 74]
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have a copy of the translation book any more."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Here's a spare copy."
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "box"
+text = "King Narnode hands you a replacement copy of the translation book."
+parent = 69
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll give it a go."
+parent = 69
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "end"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "cond"
+text = "If the player has a translation book:"
+parent = -1
+children = [76, 77]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll give it a go."
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "act"
+text = "end"
+parent = 75
+is_terminal = true
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "box"
+text = "Some of the ancient Gnome phrases found on the note are missing from the translation book. I should tell the King."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "How are you getting on, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There's too much missing from this translation book to make much sense of the note."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "It is true that the translation guide is incomplete... Perhaps it would be of more use to go to the author directly?"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll see if the author can help translate the note for me, then."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi Anita."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "option"
+text = "What's wrong?"
+parent = -1
+children = [87]
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "act"
+text = "above"
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "option"
+text = "Any idea where Glough is?"
+parent = -1
+children = [89]
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "act"
+text = "above"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "option"
+text = "Could you translate these notes?"
+parent = -1
+children = [91, 92, 93, 94, 95, 96, 97]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you translate these notes? I found them in Glough's home, half of it is missing."
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "box"
+text = "You show Anita the notes you found."
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Anita"
+text = "Hmm... This certainly isn't Glough's handwriting..."
+parent = 90
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "box"
+text = "Anita takes a moment to translate the notes."
+parent = 90
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "box"
+text = "Anita hands you a translation of the notes."
+parent = 90
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Anita"
+text = "Here you go, hopefully it helps you find Glough."
+parent = 90
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "end"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "Nothing, goodbye."
+parent = -1
+children = [99]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "above"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "box"
+text = "The rest of the note has been destroyed by the fire."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What could the note mean? I should show it to the King, he might be able to make some sense of it."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "King Narnode! With Anita's help I was able to translate the note... It appears Glough had help leaving the stronghold!"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "What!? Who could have committed such a crime? Show me the note."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "box"
+text = "King Narnode reads the translated note."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "The note refers to a replacement pilot, we've only had one pilot reassigned recently and that's Lori taking over Le Smith's post as a balloon pilot."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "[player name], you must find out where Glough might have travelled to. Assistant Lori may be able to help."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right to it."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Have you been able to find out where Glough has gone, [player name]"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet, King Narnode."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Please hurry, [player name]. Glough is very dangerous and must be stopped!"
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Assistant Lori"
+text = "Do you want to use the balloon? Just so you know, some locations require special logs and high Firemaking skills."
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "quest=No|Yes."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "quest=No|No."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [118, 119, 120, 121, 122, 123, 124]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Assistant Lori"
+text = "I am Assistant Lori. I've been assigned to the stronghold by Auguste."
+parent = 117
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happened to Assistant Le Smith?"
+parent = 117
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Assistant Lori"
+text = "I'm not sure, you would have to speak to Auguste about that."
+parent = 117
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Assistant Lori"
+text = "Do you want to use the balloon?"
+parent = 117
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "option"
+text = "quest=No|Yes."
+parent = 117
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "option"
+text = "quest=No|No."
+parent = 117
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Auguste"
+text = "Hello, [player name]. It is good to see you again. My enterprise has grown since we last met. I've expanded all over Gielinor!"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Auguste"
+text = "If you'd like to go to a new location, you will have to help fly the balloon again. Some of the routes are very dangerous!"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Auguste"
+text = "But each route you complete will earn you Firemaking experience."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Auguste"
+text = "Once you've opened a route, it only costs 1 log of the corresponding type to travel there again, from any location you've already opened!"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Auguste"
+text = "I have also hired assistants to watch over the balloons at each new location we go to. They will help you get where you want to go."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Auguste"
+text = "Do you want to use the balloon? Just so you know, some locations require special logs and high Firemaking skills."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "option"
+text = "Talk about Assistant Le Smith."
+parent = -1
+children = [132, 133, 134, 135, 136, 137, 138, 141]
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like to talk about Assistant Le Smith."
+parent = 131
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Auguste"
+text = "What a coincidence, he just so happened to visit recently. What's this about?"
+parent = 131
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to know about the route you taught him."
+parent = 131
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Auguste"
+text = "Ah... I insisted it was far too dangerous, nobody has attempted to make that journey before!"
+parent = 131
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where?"
+parent = 131
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Auguste"
+text = "Ape Atoll..."
+parent = 131
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "option"
+text = "Thanks for the information."
+parent = 131
+children = [139, 140]
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the information."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "option"
+text = "Can you teach me the route?"
+parent = 131
+children = [142, 143, 144]
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you teach me the route?"
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "speaker"
+speaker = "Auguste"
+text = "Most certainly not! For all I know, I've already sent one of my finest pilots to his peril!"
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 3
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "How are you getting on, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've found evidence that Glough may have headed to Ape Atoll."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "How could this be?"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Assistant Le Smith is involved, it appears he has flown them there."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Agh! We were foolish to allow him to stay here after dismissing him from the glider regiment."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, what should we do now?"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Glough must be working with the monkeys once again. Fortunately, the rest of the 10th squad remained on Ape Atoll after your previous mission, they have been keeping a close eye on Awowogei."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Perhaps they will have spotted something out of the ordinary that could help indicate what Glough is doing."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Glough is a threat to us all... I must hereby re-assign you to Ape Atoll, [player name]. Report to Sergeant Garkor on Ape Atoll for further orders."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "I have given you orders, [player name]. Report to Sergeant Garkor on Ape Atoll for further instruction."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Welcome back, [player name]."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "King Narnode has sent me."
+parent = -1
+children = [160, 161, 162, 163, 164, 165, 166, 170]
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "King Narnode has sent me. I'm investigating the disappearance of Glough."
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Garkor"
+text = "Glough... really? We've not had any indication that he has returned to Ape Atoll."
+parent = 159
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Garkor"
+text = "But we have been seeing a lot of activity from Awowogei and his commanders - I assumed the king would send someone soon enough."
+parent = 159
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any idea what they're up to?"
+parent = 159
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Garkor"
+text = "We're not entirely sure, he has been keeping a tight lid on his plans. I guess it could be tied to Glough's disappearance? Perhaps you could get more information from Awowogei directly..."
+parent = 159
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Garkor"
+text = "He may be willing to share his plans with you, assuming you are disguised with a greegree, that is."
+parent = 159
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "option"
+text = "That sounds far too dangerous."
+parent = 159
+children = [167, 168, 169]
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That sounds far too dangerous."
+parent = 166
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "speaker"
+speaker = "Garkor"
+text = "A member of the 10th squad should never back down in the face of adversity, come back when you're feeling up to the task."
+parent = 166
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "act"
+text = "end"
+parent = 166
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "option"
+text = "It's worth a shot."
+parent = 159
+children = [171, 172, 173]
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It's worth a shot."
+parent = 170
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "speaker"
+speaker = "Garkor"
+text = "Good luck, [player name]."
+parent = 170
+
+[[nodes]]
+id = 173
+depth = 3
+kind = "act"
+text = "end"
+parent = 170
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "What are you still doing here?"
+parent = -1
+children = [175, 176, 177, 180]
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you still doing here?"
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Garkor"
+text = "My squad and I are still carrying out reconnaissance. Awowogei has been very occupied as of lately, could this have something to do with why you're here?"
+parent = 174
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "option"
+text = "I'm only passing through."
+parent = 174
+children = [178, 179]
+
+[[nodes]]
+id = 178
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm only passing through."
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 3
+kind = "act"
+text = "end"
+parent = 177
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "option"
+text = "King Narnode has sent me."
+parent = 174
+children = [181]
+
+[[nodes]]
+id = 181
+depth = 3
+kind = "act"
+text = "above"
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "option"
+text = "I'm only passing through."
+parent = -1
+children = [183, 184]
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm only passing through."
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "act"
+text = "end"
+parent = 182
+is_terminal = true
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Have you learned anything from Awowogei yet?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet..."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "We can't give up, [player name], come back when you've got more information."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get to it right away."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "What do you want? I'm very busy right now."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "option"
+text = "How are things going, Awowogei?"
+parent = -1
+children = [192, 193, 194]
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How are things going, Awowogei?"
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Awowogei"
+text = "I don't have time for idle chat! What do you want?"
+parent = 191
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "act"
+text = "other"
+parent = 191
+is_terminal = true
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "I'm here to discuss military strategies."
+parent = -1
+children = [196, 197, 198, 199, 200, 201, 209]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to discuss military strategies."
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Awowogei"
+text = "I only discuss such matters with my highest ranking military officials. In fact, I am supposed to be in a meeting with my commander right now. Kruk has been consistently late to our meetings recently."
+parent = 195
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Awowogei"
+text = "Uwogo, have a messenger fetch him from his post."
+parent = 195
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Uwogo"
+text = "I'm afraid all of our messengers are busy."
+parent = 195
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Awowogei"
+text = "Hmmm, perhaps you could make yourself useful after all, visitor. Why don't you run along to the gate and remind Kruk of our meeting."
+parent = 195
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "option"
+text = "Of course, my king."
+parent = 195
+children = [202, 203, 204, 205, 206, 207, 208]
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Of course, my king."
+parent = 201
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Garkor isn't going to be happy when I tell him about this..."
+parent = 201
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "speaker"
+speaker = "Awowogei"
+text = "What was that? Is there a problem?"
+parent = 201
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "None at all."
+parent = 201
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "speaker"
+speaker = "Awowogei"
+text = "Excellent. I must prepare for my meeting, Uwogo."
+parent = 201
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "speaker"
+speaker = "Uwogo"
+text = "I'm afraid your time with the king is up, you should fetch Kruk from his post on the gate."
+parent = 201
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "act"
+text = "end"
+parent = 201
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "option"
+text = "I don't take orders from you!"
+parent = 195
+children = [210, 211]
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't take orders from you!"
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 3
+kind = "act"
+text = "end"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "option"
+text = "Any idea where I can find Glough?"
+parent = -1
+children = [213, 214, 215]
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any idea where I can find Glough?"
+parent = 212
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Awowogei"
+text = "I don't know what you're talking about. We haven't been involved with Glough since he failed us."
+parent = 212
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "act"
+text = "end"
+parent = 212
+is_terminal = true
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Have you learned anything from Awowogei yet?"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He won't discuss his plans with anyone but his military commanders."
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Ah, the monkey has more sense than we give him credit for... Perhaps you could go back in there as one of his commanders?"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Zooknock could get you disguised as one of Awowogei's commanders if you retrieved the necessary items for him to make a greegree. We just need to choose which commander to go after..."
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well Awowogei mentioned something about a meeting with Kruk. He wanted me to go to find him."
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = """
+Kruk eh... Captain of the monkey guard would certainly be a useful disguise to have at our disposal. Hopefully you can find him somewhere isolated from the rest of the guards... Once you have defeated him, take his
+"""
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "corpse to Zooknock along with an uncharged monkey talisman, well, you know the routine."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get to it right away."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Have you learned anything from Awowogei yet?"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on getting that greegree."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Please hurry [player name], we need this information from Awowogei before it's too late."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get to it right away."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Monkey Archer"
+text = "What is it?"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The king has sent me with a message for Kruk, any idea where I can find him?"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Monkey Archer"
+text = "Your guess is as good as mine, you didn't hear it from me, but he's been disappearing from his post a lot lately..."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Monkey Archer"
+text = "You might be able to track him down if you've got what it takes, although I wouldn't want to be the one caught sneaking up on Kruk!"
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any idea where to start looking?"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Monkey Archer"
+text = "There's only one way off the wall, and that's down the Western ramp to the shore. I know that's where I'd start looking."
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Monkey Archer"
+text = "Any luck finding Kruk?"
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Monkey Archer"
+text = "You'd best not keep the king waiting, try tracking down Kruk's movements."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Monkey Archer"
+text = "There's only one way off the wall, and that's down the Western ramp to the shore. I know that's where I'd start looking."
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Stop right there, Kruk!"
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Kruk"
+text = "I'm impressed you made it so far, human."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Kruk"
+text = "However, I'm afraid that this is the end of the line for you."
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Kruk"
+text = "{{overhead|?}}"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "Ah finally, Kruk! I was beginning to think you had run into trouble..."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh... No, everything is fine."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "Excellent. Have you had any further considerations for our plans?"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And which plans would we be talking about here?"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "Are you sure everything is okay Kruk? You seem very distracted lately."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm fine, just been very busy thinking over those plans. Could you remind me where we left off last time?"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "We decided to move forward with our three-way assault."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "You were negotiating an alliance with the ogres and trolls, working on a new fleet of battleships and then developing that secret weapon of yours."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "So, how is progress of our plans coming along?"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "Don't let me down Kruk, we all know what is at stake here."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Have you learned anything from Awowogei yet?"
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The monkeys are planning another attack!"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Ah, this comes as little surprise. Did you uncover any details of the plans?"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The assault is coming in three stages..."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "First, the monkeys wish to join into an alliance with the trolls and ogres..."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "That makes sense, it's no secret that those races are no fans of humans, other than perhaps as ingredients in a soup... What else did you learn?"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The monkeys have been building a fleet of battleships."
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "That is odd, we have spies posted at the shipyard who haven't reported any news of this to us. I'll get a few scouts to look into it further. What's the final element to this attack?"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Apparently Kruk has been working on a secret weapon, I've got no idea what it is."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Well then, that sounds ominous. I'll have some men look into it. For now, let's deal with the problems we can solve."
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "You must convince the trolls and ogres not to ally with the monkeys."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on how?"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = """
+You should pay a visit to the military officials of each race. I believe a troll general by the name of Kob is still filling that role in the Troll Stronghold. As for the ogres, I would recommend finding the head of the city
+"""
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "guard in Gu'Tanoth."
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right to it."
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "You must convince the trolls and ogres not to ally with the monkeys."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on how?"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = """
+You should pay a visit to the military officials of each race. I believe a troll general by the name of Kob is still filling that role in the Troll Stronghold. As for the ogres, I would recommend finding the head of the city
+"""
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "guard in Gu'Tanoth."
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right to it."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Kob"
+text = "What you do here, human?"
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "option"
+text = "I know about your deal with the monkeys."
+parent = -1
+children = [286, 287, 288, 299, 303]
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know about your deal with the monkeys. I'm here to persuade you not to join their alliance."
+parent = 285
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Kob"
+text = "Alliance? We plan to crush the hairy little men as soon as the humans are gone!"
+parent = 285
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "option"
+text = "You won't be around to crush anyone when I'm done with you."
+parent = 285
+children = [289, 290, 291, 292, 295]
+
+[[nodes]]
+id = 289
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You won't be around to crush anyone when I'm done with you."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 3
+kind = "speaker"
+speaker = "Kob"
+text = "Ah, this food thinks it's a brave one, this will be fun!"
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 3
+kind = "speaker"
+speaker = "Kob"
+text = "Here's the game, I kill you, we help little hairy men kill all the humans. You kill me, we call off the attack."
+parent = 288
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "option"
+text = "I accept your challenge."
+parent = 288
+children = [293, 294]
+
+[[nodes]]
+id = 293
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I accept your challenge."
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 4
+kind = "act"
+text = "end"
+parent = 292
+is_terminal = true
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "option"
+text = "Not right now."
+parent = 288
+children = [296, 297, 298]
+
+[[nodes]]
+id = 296
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Not right now."
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 4
+kind = "speaker"
+speaker = "Kob"
+text = "Maybe human not as brave as Kob thinks!"
+parent = 295
+
+[[nodes]]
+id = 298
+depth = 4
+kind = "act"
+text = "end"
+parent = 295
+is_terminal = true
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "option"
+text = "What would it take to persuade you not to attack the humans?"
+parent = 285
+children = [300, 301, 302]
+
+[[nodes]]
+id = 300
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What would it take to persuade you not to attack the humans?"
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 3
+kind = "speaker"
+speaker = "Kob"
+text = "Humans are all so weak! There is nothing you can offer us to stop the attack!"
+parent = 299
+
+[[nodes]]
+id = 302
+depth = 3
+kind = "act"
+text = "end"
+parent = 299
+is_terminal = true
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "option"
+text = "I'll just be on my way."
+parent = 285
+children = [304]
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "act"
+text = "below"
+parent = 303
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [306, 307, 308]
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Kob"
+text = "I am Kob, mightiest of the troll generals!"
+parent = 305
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "other"
+parent = 305
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "option"
+text = "I'll just be on my way."
+parent = -1
+children = [310, 311, 312]
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll just be on my way."
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Kob"
+text = "Hurry before I get hungry!"
+parent = 309
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "act"
+text = "end"
+parent = 309
+is_terminal = true
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Kob"
+text = "Wait! Maybe battle to death is too much..."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What about our deal?"
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Kob"
+text = "You win, I will call off the attack."
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for the head of the city guard..."
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Keef"
+text = "You found him! What do you want, little human?"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "option"
+text = "I know about your deal with the monkeys."
+parent = -1
+children = [320, 321, 322, 326, 336]
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know about your deal with the monkeys. I'm here to persuade you not to join their alliance."
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Keef"
+text = "Hahaha! Monkeys offer us treasure, land and all the humans we can eat! What do you offer us?"
+parent = 319
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "option"
+text = "Perhaps I could offer you more?"
+parent = 319
+children = [323, 324, 325]
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps I could offer you more?"
+parent = 322
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "speaker"
+speaker = "Keef"
+text = "I don't think human can offer me cities like the monkey king can!"
+parent = 322
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Um... that's not going to work."
+parent = 322
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "option"
+text = "I offer to spare your life."
+parent = 319
+children = [327, 328, 329, 330, 333]
+
+[[nodes]]
+id = 327
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I offer to spare your life."
+parent = 326
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Keef"
+text = "Little human is brave! I think I can offer you a deal..."
+parent = 326
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "speaker"
+speaker = "Keef"
+text = "If you can defeat me in battle, I will tell my men not to help the monkeys."
+parent = 326
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "option"
+text = "I accept your challenge."
+parent = 326
+children = [331, 332]
+
+[[nodes]]
+id = 331
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I accept your challenge."
+parent = 330
+
+[[nodes]]
+id = 332
+depth = 4
+kind = "act"
+text = "end"
+parent = 330
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "option"
+text = "Not right now."
+parent = 326
+children = [334, 335]
+
+[[nodes]]
+id = 334
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Not right now."
+parent = 333
+
+[[nodes]]
+id = 335
+depth = 4
+kind = "act"
+text = "end"
+parent = 333
+is_terminal = true
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "option"
+text = "Nevermind."
+parent = 319
+children = [337]
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "act"
+text = "below"
+parent = 336
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "option"
+text = "I'm looking for a fight!"
+parent = -1
+children = [339, 340, 341]
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for a fight!"
+parent = 338
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "speaker"
+speaker = "Keef"
+text = "Hahaha, human is funny! You will barely fill my stomach, stop wasting my time!"
+parent = 338
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "act"
+text = "end"
+parent = 338
+is_terminal = true
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "option"
+text = "Nevermind."
+parent = -1
+children = [343, 344]
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nevermind."
+parent = 342
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "act"
+text = "end"
+parent = 342
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Keef"
+text = "Stop! Stop! You prove you are very strong, little human!"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What about our deal?"
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Keef"
+text = "A deal is a deal. We will not be allies with the monkeys."
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have convinced the ogres and trolls not to form an alliance with the monkeys."
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Excellent work, [player name]."
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "I have had my men look into this supposed fleet of battleships. The shipyard has turned up nothing, although, someone did say they saw a familiar face sneaking around town."
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who?"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "An old pilot from the stronghold, he went by the name of Le Smith. I hadn't heard of him since he was dismissed from the glider regiment."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right. He's the one who flew Glough here..."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "If that's the case then he's likely to have information we could use. You should track him down and see what you can learn."
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any idea where I should start looking?"
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Your guess is as good as mine - he must be somewhere on Ape Atoll."
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Sorry, I don't have an amulet of monkey speak."
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's okay, I am wearing my... uh... amulet of human speak."
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Oh, right... What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "option"
+text = "I was going to ask you the same question."
+parent = -1
+children = [363, 364, 365, 369]
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was going to ask you the same question."
+parent = 362
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Glough told me not to talk to anyone while I'm here."
+parent = 362
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "option"
+text = "So you're here with Glough?"
+parent = 362
+children = [366, 367, 368]
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you're here with Glough?"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 3
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "I've already said too much. Please, leave me be."
+parent = 365
+
+[[nodes]]
+id = 368
+depth = 3
+kind = "act"
+text = "end"
+parent = 365
+is_terminal = true
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "option"
+text = "Why is that?"
+parent = 362
+children = [370, 371, 372, 387]
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why is that?"
+parent = 369
+
+[[nodes]]
+id = 371
+depth = 3
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "The fleet must be kept top secret... Agh! Forget I said anything."
+parent = 369
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "option"
+text = "Awowogei has already informed me about the battleships."
+parent = 369
+children = [373, 374, 375, 384]
+
+[[nodes]]
+id = 373
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Awowogei has already informed me about the battleships. In fact, he sent me here to check up on your progress."
+parent = 372
+
+[[nodes]]
+id = 374
+depth = 4
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "So what is it you want to know?"
+parent = 372
+
+[[nodes]]
+id = 375
+depth = 4
+kind = "option"
+text = "Where is the fleet, currently?"
+parent = 372
+children = [376, 377, 378, 379, 380, 381, 382, 383]
+
+[[nodes]]
+id = 376
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Where is the fleet? The shipyard still seems pretty bare."
+parent = 375
+
+[[nodes]]
+id = 377
+depth = 5
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Aha! The shipyard? Of course you aren't going to find anything there!"
+parent = 375
+
+[[nodes]]
+id = 378
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 375
+
+[[nodes]]
+id = 379
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Aha... right... Of course?"
+parent = 375
+
+[[nodes]]
+id = 380
+depth = 5
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "The airships are being built just off the coast of Ape Atoll."
+parent = 375
+
+[[nodes]]
+id = 381
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Airships!? I mean... Right."
+parent = 375
+
+[[nodes]]
+id = 382
+depth = 5
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Anyway, I have to get back to work. Let Awowogei know everything is on schedule."
+parent = 375
+
+[[nodes]]
+id = 383
+depth = 5
+kind = "act"
+text = "end"
+parent = 375
+is_terminal = true
+
+[[nodes]]
+id = 384
+depth = 4
+kind = "option"
+text = "Actually, I know enough already."
+parent = 372
+children = [385, 386]
+
+[[nodes]]
+id = 385
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I know enough already."
+parent = 384
+
+[[nodes]]
+id = 386
+depth = 5
+kind = "act"
+text = "end"
+parent = 384
+is_terminal = true
+
+[[nodes]]
+id = 387
+depth = 3
+kind = "option"
+text = "What fleet are you talking about?"
+parent = 369
+children = [388, 389, 390]
+
+[[nodes]]
+id = 388
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What fleet are you talking about?"
+parent = 387
+
+[[nodes]]
+id = 389
+depth = 4
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "I've already said too much. Please, leave me be."
+parent = 387
+
+[[nodes]]
+id = 390
+depth = 4
+kind = "act"
+text = "end"
+parent = 387
+is_terminal = true
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "option"
+text = "King Awowogei has sent me to find Glough."
+parent = -1
+children = [392, 393, 394]
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "King Awowogei has sent me to find Glough."
+parent = 391
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Well you're not going to find him up here. I'm afraid I'm too busy to chat right now."
+parent = 391
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "act"
+text = "end"
+parent = 391
+is_terminal = true
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "option"
+text = "I was just admiring the view."
+parent = -1
+children = [396, 397, 398, 401]
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just admiring the view."
+parent = 395
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Me too, it's perfect conditions for my test flight."
+parent = 395
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "option"
+text = "Good for you, I'll just be on my way."
+parent = 395
+children = [399, 400]
+
+[[nodes]]
+id = 399
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Good for you, I'll just be on my way."
+parent = 398
+
+[[nodes]]
+id = 400
+depth = 3
+kind = "act"
+text = "end"
+parent = 398
+is_terminal = true
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "option"
+text = "Test flight?"
+parent = 395
+children = [402, 403, 404]
+
+[[nodes]]
+id = 402
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Test flight?"
+parent = 401
+
+[[nodes]]
+id = 403
+depth = 3
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Oh sorry, ignore that. I just meant it's a lovely day."
+parent = 401
+
+[[nodes]]
+id = 404
+depth = 3
+kind = "act"
+text = "end"
+parent = 401
+is_terminal = true
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "option"
+text = "I was just leaving."
+parent = -1
+children = [406, 407]
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just leaving."
+parent = 405
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "act"
+text = "end"
+parent = 405
+is_terminal = true
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Assistant Le Smith?"
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Yes? Wait... what are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "option"
+text = "I was going to ask you the same question."
+parent = -1
+children = [411, 412, 413, 417]
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was going to ask you the same question."
+parent = 410
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Glough told me not to talk to anyone while I'm here."
+parent = 410
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "option"
+text = "So you're here with Glough?"
+parent = 410
+children = [414, 415, 416]
+
+[[nodes]]
+id = 414
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you're here with Glough?"
+parent = 413
+
+[[nodes]]
+id = 415
+depth = 3
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "I've already said too much, human. Please, leave me be."
+parent = 413
+
+[[nodes]]
+id = 416
+depth = 3
+kind = "act"
+text = "end"
+parent = 413
+is_terminal = true
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "option"
+text = "Why is that?"
+parent = 410
+children = [418, 419, 420, 429]
+
+[[nodes]]
+id = 418
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why is that?"
+parent = 417
+
+[[nodes]]
+id = 419
+depth = 3
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "The fleet must be kept top secret... Agh! Forget I said anything."
+parent = 417
+
+[[nodes]]
+id = 420
+depth = 3
+kind = "option"
+text = "Awowogei has already informed me about the battleships."
+parent = 417
+children = [421, 422, 423, 424, 425, 427]
+
+[[nodes]]
+id = 421
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Awowogei has already informed me about the battleships. In fact, he sent me here to check up on your progress."
+parent = 420
+
+[[nodes]]
+id = 422
+depth = 4
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Odd, I didn't think Awowogei was the type to work with humans..."
+parent = 420
+
+[[nodes]]
+id = 423
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Um.. I am a prisoner of war here, Awowogei gets me to run errands."
+parent = 420
+
+[[nodes]]
+id = 424
+depth = 4
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "So what is it you want to know?"
+parent = 420
+
+[[nodes]]
+id = 425
+depth = 4
+kind = "option"
+text = "Where is the fleet, currently?"
+parent = 420
+children = [426]
+
+[[nodes]]
+id = 426
+depth = 5
+kind = "act"
+text = "above"
+parent = 425
+
+[[nodes]]
+id = 427
+depth = 4
+kind = "option"
+text = "Actually, I know enough already."
+parent = 420
+children = [428]
+
+[[nodes]]
+id = 428
+depth = 5
+kind = "act"
+text = "above"
+parent = 427
+
+[[nodes]]
+id = 429
+depth = 3
+kind = "option"
+text = "What fleet are you talking about?"
+parent = 417
+children = [430, 431, 432]
+
+[[nodes]]
+id = 430
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What fleet are you talking about?"
+parent = 429
+
+[[nodes]]
+id = 431
+depth = 4
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "I've already said too much, human. Please, leave me be."
+parent = 429
+
+[[nodes]]
+id = 432
+depth = 4
+kind = "act"
+text = "end"
+parent = 429
+is_terminal = true
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "option"
+text = "King Narnode has sent me to find Glough."
+parent = -1
+children = [434, 435, 436]
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "King Narnode has sent me to find Glough."
+parent = 433
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "I'm afraid I have no idea what you're talking about... I'm just here on vacation!"
+parent = 433
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "act"
+text = "end"
+parent = 433
+is_terminal = true
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "option"
+text = "I was just admiring the view."
+parent = -1
+children = [438]
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "act"
+text = "above"
+parent = 437
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "option"
+text = "I was just leaving."
+parent = -1
+children = [440]
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "act"
+text = "above"
+parent = 439
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've spoken to Assistant Le Smith."
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "What have you learned?"
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He mentioned something about airships being built off the coast of Ape Atoll."
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Airships? No wonder we didn't find anything at the shipyard... You'll have to do something about them."
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can I do?"
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Firstly, you have to find out where they're constructing these airships..."
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Once you've found the location, you'll have to find a way to sabotage the airships."
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll see what I can do."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "speaker"
+speaker = "Monkey guard"
+text = "Yes?"
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "option"
+text = "What's going on here?"
+parent = -1
+children = [452, 453, 454, 473]
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's going on here?"
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "speaker"
+speaker = "Monkey guard"
+text = "I'm keeping watch on who comes and goes from the construction platform."
+parent = 451
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "option"
+text = "Construction platform?"
+parent = 451
+children = [455]
+
+[[nodes]]
+id = 455
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Construction platform?"
+parent = 454
+children = [456, 464]
+
+[[nodes]]
+id = 456
+depth = 4
+kind = "cond"
+text = "If the player is not disguised:"
+parent = 455
+children = [457, 458, 460]
+
+[[nodes]]
+id = 457
+depth = 5
+kind = "speaker"
+speaker = "Monkey guard"
+text = "There's a large scale construction project taking place offshore."
+parent = 456
+
+[[nodes]]
+id = 458
+depth = 5
+kind = "option"
+text = "Thanks for the information."
+parent = 456
+children = [459]
+
+[[nodes]]
+id = 459
+depth = 6
+kind = "act"
+text = "below"
+parent = 458
+
+[[nodes]]
+id = 460
+depth = 5
+kind = "option"
+text = "Can I visit the platform?"
+parent = 456
+children = [461, 462, 463]
+
+[[nodes]]
+id = 461
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Can I visit the platform?"
+parent = 460
+
+[[nodes]]
+id = 462
+depth = 6
+kind = "speaker"
+speaker = "Monkey guard"
+text = "I'm afraid only authorised personnel are allowed to visit the platform."
+parent = 460
+
+[[nodes]]
+id = 463
+depth = 6
+kind = "act"
+text = "end"
+parent = 460
+is_terminal = true
+
+[[nodes]]
+id = 464
+depth = 4
+kind = "cond"
+text = "If the player is disguised as Kruk:"
+parent = 455
+children = [465, 466, 469]
+
+[[nodes]]
+id = 465
+depth = 5
+kind = "speaker"
+speaker = "Monkey guard"
+text = "Yes, sir. The engineers needed a large open space to construct the fleet, an offshore platform was the obvious solution."
+parent = 464
+
+[[nodes]]
+id = 466
+depth = 5
+kind = "option"
+text = "Thanks for the information."
+parent = 464
+children = [467, 468]
+
+[[nodes]]
+id = 467
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the information."
+parent = 466
+
+[[nodes]]
+id = 468
+depth = 6
+kind = "act"
+text = "end"
+parent = 466
+is_terminal = true
+
+[[nodes]]
+id = 469
+depth = 5
+kind = "option"
+text = "Can I visit the platform?"
+parent = 464
+children = [470, 471, 472]
+
+[[nodes]]
+id = 470
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Can I visit the platform?"
+parent = 469
+
+[[nodes]]
+id = 471
+depth = 6
+kind = "speaker"
+speaker = "Monkey guard"
+text = "Of course, sir."
+parent = 469
+
+[[nodes]]
+id = 472
+depth = 6
+kind = "act"
+text = "end"
+parent = 469
+is_terminal = true
+
+[[nodes]]
+id = 473
+depth = 2
+kind = "option"
+text = "Okay. See you around."
+parent = 451
+children = [474, 475]
+
+[[nodes]]
+id = 474
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay. See you around."
+parent = 473
+
+[[nodes]]
+id = 475
+depth = 3
+kind = "act"
+text = "end"
+parent = 473
+is_terminal = true
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "option"
+text = "I was just passing through."
+parent = -1
+children = [477, 478]
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just passing through. Goodbye."
+parent = 476
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "act"
+text = "end"
+parent = 476
+is_terminal = true
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There must be some kind of explosive somewhere on this platform that I can use..."
+parent = -1
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That should be enough, now I just have to get back to the boat..."
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've destroyed the airships!"
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Excellent, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "While you were away, we managed to uncover something quite unsettling."
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "We were investigating the tunnels where you found Kruk, and discovered an entrance to a much deeper cavern."
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Unfortunately, we were unable to access the entrance ourselves, there was some magical force stopping us from getting through."
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "We are fairly confident this is where the 'secret weapon' Kruk was working on is being developed, you'll have to find a way into the area."
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do you expect me to find a way through the magical barrier?"
+parent = -1
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "I'm sure you'll find a way, [player name]."
+parent = -1
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Have you found out any more about the 'secret weapon' Kruk was working on?"
+parent = -1
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet..."
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Please hurry, [player name], we need to find out what we're up against here."
+parent = -1
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Kruk! Where have you been? The experiments have broken out of their cages again, get them back under control before they destroy any more of my work!"
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Good work getting them back under control Kruk."
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "{{overhead|Umesc pro ta lauf!}}"
+parent = -1
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Clearly that last strain of the mutagen was too unstable..."
+parent = -1
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Mutagen?"
+parent = -1
+
+[[nodes]]
+id = 502
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Right... I forgot I don't keep you around for your brains."
+parent = -1
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "I've been experimenting on those specimens you've been gathering for me."
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "I've been trying to find a mutagen stable enough to allow me to have control over the creatures, whilst keeping them aggressive enough to tear apart anything that stands in our way."
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "I think I may have finally found the perfect balance, however, I will need time to carry out some final tests."
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How big is this army of creatures?"
+parent = -1
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "I'm only using our test subjects at the moment, however, once I've processed the mutagen into an airborne form, I'll be able to unleash it across all of Ape Atoll!"
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "other"
+text = "{{qact|Glough pulls a nearby lever.}}"
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "All that we have to do now is wait for the mutagen to infuse power from these charged onyx gems."
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "I'm going to find out where Le Smith has disappeared to, I'll let you know when I next require your services. Farewell, Kruk."
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "{{overhead|Umesc pro ta andra!}}"
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "box"
+text = "You carefully remove the gems from the glowing orb."
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "box"
+text = "Using your knowledge of crafting, your carefully reshape the onyx. Any flow of energy through the gem will now be inverted."
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "box"
+text = "You carefully replace the gem, you notice the flow of energy reverse."
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should check what effect this has had on the mutagen."
+parent = -1
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "box"
+text = "Energy appears to have drained from the incubator. The mutagen has been successfully corrupted."
+parent = -1
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 520
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've taken care of Glough's secret weapon, he was working on some kind of mutagen for apes."
+parent = -1
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Good work, [player name]! Now all that's left to do is inform Awowogei of his failed plans. If he has any sense, he will call off his plans for attack."
+parent = -1
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get to it right away."
+parent = -1
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Have you informed Awowogei of his failed plans?"
+parent = -1
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Please hurry, [player name], we are so close to victory!"
+parent = -1
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "So, how is progress of our plans coming along?"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I have bad news."
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "What do you mean?"
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The trolls and ogres have backed out of our alliance..."
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The fleet of battleships will not be ready in time for our attack..."
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "This is a disaster! What about your secret weapon?"
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Unfortunately there have been some complications, the weapon is still too unstable for use on the battlefield."
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "Agh! You have left me no choice but to cancel our assault on the mainland..."
+parent = -1
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "You have failed me for the last time, Kruk, you are hereby stripped of your rank and duties. Uwogo, cancel all of my upcoming meetings, I need some time alone."
+parent = -1
+
+[[nodes]]
+id = 537
+depth = 1
+kind = "speaker"
+speaker = "Uwogo"
+text = "You are not welcome here, Kruk."
+parent = -1
+
+[[nodes]]
+id = 538
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Have you informed Awowogei of his failed plans?"
+parent = -1
+
+[[nodes]]
+id = 540
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and he has called off the attack!"
+parent = -1
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "I knew you could do it, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "It would appear your mission on Ape Atoll is complete. You should inform the king that we've located Glough and thwarted Awowogei's plans. While you're ..."
+parent = -1
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "other"
+text = "{{qact|The player's screen rumbles...}}"
+parent = -1
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Huh? What was that?"
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene plays in which a large looming shadow is spotted to the east.}}"
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "You said you dealt with the airships, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I thought I did!"
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "other"
+text = "{{qact|The camera pans to the looming shadow, and the screen fades to black.}}"
+parent = -1
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Huaarghh! I knew I couldn't rely on these primitive apes, I'll just have to do this myself!"
+parent = -1
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Le Smith, set our course for the Grand Tree, let's end this once and for all!"
+parent = -1
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Yes, sir."
+parent = -1
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "other"
+text = "{{qact|The camera returns to the player and Garkor.}}"
+parent = -1
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "We have to stop Glough! Get back to the Stronghold and warn the king before it's too late! I'll get the rest of the 10th squad together and we'll meet you there."
+parent = -1
+
+[[nodes]]
+id = 554
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "There's no time for chatting, [player name]! You need to get back to the Gnome Stronghold!"
+parent = -1
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "How is the mission going, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found Glough, he's headed for the Stronghold! We need to evacuate!"
+parent = -1
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Evacuate? I think you're overreacting... My troops can handle Glough."
+parent = -1
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You don't understand, he has an airship and army of demonic experiments!"
+parent = -1
+
+[[nodes]]
+id = 561
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "This is bad... I will put the troops on high alert. And... Well, we do have someone else who may be able to help..."
+parent = -1
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Nieve is the most highly skilled warrior we have here, get her assistance and defend the Stronghold."
+parent = -1
+
+[[nodes]]
+id = 563
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 564
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Get Nieve and defend the Stronghold, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 566
+depth = 1
+kind = "option"
+text = "Talk about Monkey Madness II."
+parent = -1
+children = [567, 568, 569, 570, 571, 572, 573, 589]
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "speaker"
+speaker = "Nieve"
+text = "What's wrong?"
+parent = 566
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Glough is leading an attack on the Stronghold with an army of demonic creatures! We need your help!"
+parent = 566
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "speaker"
+speaker = "Nieve"
+text = "What are you talking about?"
+parent = 566
+
+[[nodes]]
+id = 570
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's a long story, the king has requested that you join me in assisting the troops with the Stronghold's defence."
+parent = 566
+
+[[nodes]]
+id = 571
+depth = 2
+kind = "speaker"
+speaker = "Nieve"
+text = "I am unable to leave my post unattended, I'll have to bring in a replacement while I'm helping. Are you sure you want me to join you?"
+parent = 566
+
+[[nodes]]
+id = 572
+depth = 2
+kind = "select"
+text = "Recruit Nieve?"
+parent = 566
+
+[[nodes]]
+id = 573
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 566
+children = [574, 577]
+
+[[nodes]]
+id = 574
+depth = 3
+kind = "cond"
+text = "If the player has a [[pet]] following them:"
+parent = 573
+children = [575, 576]
+
+[[nodes]]
+id = 575
+depth = 4
+kind = "speaker"
+speaker = "Nieve"
+text = "You should pick up your pet first. It would only get in the way."
+parent = 574
+
+[[nodes]]
+id = 576
+depth = 4
+kind = "act"
+text = "end"
+parent = 574
+is_terminal = true
+
+[[nodes]]
+id = 577
+depth = 3
+kind = "cond"
+text = "If the player does not have a [[pet]] following them:"
+parent = 573
+children = [578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588]
+
+[[nodes]]
+id = 578
+depth = 4
+kind = "other"
+text = "{{qact|A cutscene plays in which Glough's airship arrives at the Stronghold.}}"
+parent = 577
+
+[[nodes]]
+id = 579
+depth = 4
+kind = "speaker"
+speaker = "Nieve"
+text = "What in Gielinor is that thing?"
+parent = 577
+
+[[nodes]]
+id = 580
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It's Glough's airship - and it's heading straight for the Grand Tree!"
+parent = 577
+
+[[nodes]]
+id = 581
+depth = 4
+kind = "other"
+text = "{{qact|The screen fades to black.}}"
+parent = 577
+
+[[nodes]]
+id = 582
+depth = 4
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "Sir, those experiments of yours are out of control back there, isn't there something you can do?"
+parent = 577
+
+[[nodes]]
+id = 583
+depth = 4
+kind = "speaker"
+speaker = "Glough"
+text = "Just focus on piloting the ship! Narnode isn't going to know what's hit him!"
+parent = 577
+
+[[nodes]]
+id = 584
+depth = 4
+kind = "speaker"
+speaker = "Assistant Le Smith"
+text = "But sir, it's only a matter of time before they... Agghh!"
+parent = 577
+
+[[nodes]]
+id = 585
+depth = 4
+kind = "other"
+text = "{{qact|The camera returns to the player and Garkor. The screen rumbles...}}"
+parent = 577
+
+[[nodes]]
+id = 586
+depth = 4
+kind = "speaker"
+speaker = "Nieve"
+text = "Huh? It completely missed the Grand Tree! We should head North to the crash site..."
+parent = 577
+
+[[nodes]]
+id = 587
+depth = 4
+kind = "speaker"
+speaker = "Nieve"
+text = "Wait, look! Some of those things have broken into the Stronghold! We have to stop them, let's go!"
+parent = 577
+
+[[nodes]]
+id = 588
+depth = 4
+kind = "act"
+text = "end"
+parent = 577
+is_terminal = true
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "option"
+text = "No."
+parent = 566
+children = [590]
+
+[[nodes]]
+id = 590
+depth = 3
+kind = "act"
+text = "end"
+parent = 589
+is_terminal = true
+
+[[nodes]]
+id = 591
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "speaker"
+speaker = "Nieve"
+text = "Come on, [player name], we've got to defend the Stronghold!"
+parent = -1
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "speaker"
+speaker = "Nieve"
+text = "I'll meet you back at the Grand Tree, [player name]."
+parent = -1
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "speaker"
+speaker = "Nieve"
+text = "I think we've dealt with enough of these things, the troops can handle the rest! Let's join the 10th squad by the breach in the outer wall to the North."
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Good work, [player name], my troops can take it from here. You and Nieve should investigate the crash site."
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We'll head there now."
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "speaker"
+speaker = "Lumo"
+text = "Don't just stand there, [player name], help us deal with these abominations!"
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Lumo"
+text = "Good work dealing with those abominations, [player name], you should talk to the commander."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "Some of those things have made it into the Stronghold, you've got to defeat them, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "speaker"
+speaker = "Garkor"
+text = "We'll keep the breach secure, [player name]. You should head to the crash site to make sure Glough is dealt with, once and for all."
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No problem, I'll finish this once and for all."
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "cond"
+text = "If Nieve is not following the player:"
+parent = -1
+children = [610, 611]
+
+[[nodes]]
+id = 610
+depth = 2
+kind = "speaker"
+speaker = "Garkor"
+text = "I know you're tough, [player name], but it would be unwise to head out there on your own. Get Nieve and then come back."
+parent = 609
+
+[[nodes]]
+id = 611
+depth = 2
+kind = "act"
+text = "end"
+parent = 609
+is_terminal = true
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "You. Always it's you. Have you any idea how sick I am of you? What have you even got against me?"
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "speaker"
+speaker = "Nieve"
+text = "Surrender to us, Glough, or I swear by my shiny blue shield that I will end you right here."
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Oh, will you? The lady talks tough. Let's see how you fare against my best pets!"
+parent = -1
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "other"
+text = "{{qact|Tortured gorillas jump down from high ground.}}"
+parent = -1
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Hahahaha!"
+parent = -1
+
+[[nodes]]
+id = 617
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 618
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "Bah! Never trust a monkey to do a gnome's work."
+parent = -1
+
+[[nodes]]
+id = 619
+depth = 1
+kind = "speaker"
+speaker = "Glough"
+text = "I guess I'll just have to deal with you two meddling buffoons myself!"
+parent = -1
+
+[[nodes]]
+id = 620
+depth = 1
+kind = "speaker"
+speaker = "Nieve"
+text = "He has the mutagen! We have to stop him!"
+parent = -1
+
+[[nodes]]
+id = 621
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nieve, wait!"
+parent = -1
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "other"
+text = """
+{{qact|Glough consumes the mutagen, turning him into a giant abomination. Nieve closes in to attack, but is shoved away to the nearby wall with such force that upon colliding with it, a rock collapses onto her, killing her instantly.}}
+"""
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nooooooooo!"
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You'll pay for this Glough!"
+parent = -1
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "other"
+text = "{{qact|Glough smashes a nearby boulder and retreats further into the caverns.}}"
+parent = -1
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "other"
+text = "{{qact|Glough falls, but the cavern begins to collapse.}}"
+parent = -1
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh oh!"
+parent = -1
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "other"
+text = "{{qact|The screen fades to white, and the player appears by the cavern entrance.}}"
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "Zooknock"
+text = "[player name], are you okay? We detected a very powerful presence in the caverns and decided to pull you out, I couldn't get a lock on Nieve, is she alright?"
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid she didn't make it... It was Glough, he injected himself with the demonic mutagen he had been developing... He was too powerful..."
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "speaker"
+speaker = "Zooknock"
+text = "And what of Glough now?"
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He's not a problem any longer."
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "speaker"
+speaker = "Zooknock"
+text = "I hope you are right, [player name]."
+parent = -1
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "speaker"
+speaker = "Zooknock"
+text = "You should report back to the king, I can teleport you to the Grand Tree if you would like?"
+parent = -1
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [637]
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "act"
+text = "end"
+parent = 636
+is_terminal = true
+
+[[nodes]]
+id = 638
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [639]
+
+[[nodes]]
+id = 639
+depth = 2
+kind = "act"
+text = "end"
+parent = 638
+is_terminal = true
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Zooknock"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Player"
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Carado"
+text = "Report back to the king as soon as possible."
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Glough has been defeated, and his demonic creations are trapped deep within the caverns to the North."
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The monkeys were planning another attack, however, I managed to sabotage their plans."
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "This is excellent news, [player name]. Where is Nieve?"
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid she didn't make it."
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Her sacrifice will not be forgotten."
+parent = -1
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "I have received word from monkey messengers that Awowogei himself wishes to make a visit to the Stronghold..."
+parent = -1
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Apparently he wishes to set up an agreement of peace between Ape Atoll and the mainland."
+parent = -1
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A peace treaty... Do you trust him?"
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "I don't have a choice. It would be foolish to decline such an offer, there may not be many more opportunities for peace between our kingdoms."
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, what now?"
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Rest, [player name], you have earned it. I will have you summoned when the peace agreement is complete, you should be present during a moment of such historic importance."
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "other"
+text = "{{qact|The meeting between King Narnode Shareen and King Awowogei begins.}}"
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "So, I hear you were the one to foil Glough's plans. Thank you, human, he had been setting our kingdoms against one another for far too long."
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = """
+Finally, there can be peace between Ape Atoll and the mainland. [player name], you are welcome to visit Ape Atoll whenever you please, we will be opening our gates to the outside world for the first time.
+"""
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Awowogei has allowed us to set up a Gnome glider route to Marim, you are welcome to use it as you wish."
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "Please, feel free to talk to the new head of the Ape Atoll guard, Duke, about advanced combat training, should you wish to receive it."
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Awowogei"
+text = "I must be heading back now. Farewell, King Narnode, and thank you again, [player name]."
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "On behalf of the Gnomes I can only thank you, [player name]."
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Please accept this gift as a token of our gratitude for your services to our people."
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "This is one of my personal seed pods, handed down through the generations of my family."
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "speaker"
+speaker = "King Narnode Shareen"
+text = "Simply commune with a pod and you'll be teleported right here to the Grand Tree."
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you, King Narnode!"
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

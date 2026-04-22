@@ -1,0 +1,133 @@
+# Vorkath — post-Dragon Slayer II solo boss. Tests: attack-count-gated
+# specials (6 standard → 1 special alternating), acid-pool arena
+# environment, zombified spawn helper (heal-if-alive pattern).
+
+name = "Vorkath"
+slug = "vorkath"
+npc_ids = [8061, 8059, 8058]      # post-quest, quest-variant, cutscene
+source_pages = ["Vorkath", "Vorkath/Strategies"]
+
+# ---- Standard attacks -------------------------------------------------
+
+[[attacks]]
+name = "Melee"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 32
+warning_ticks = 0
+# Used more in melee range.
+
+[[attacks]]
+name = "Magic"
+style = "magic"
+max_hit = 30
+warning_ticks = 2
+# Relative weight: 3 (vs ranged 4).
+
+[[attacks]]
+name = "Ranged"
+style = "ranged"
+max_hit = 32
+warning_ticks = 2
+# Relative weight: 4.
+
+# ---- Dragonfire variants (shared with KBD pattern) -------------------
+
+[[attacks]]
+name = "Standard Dragonfire"
+style = "dragonfire"
+max_hit = 95                      # without any protection
+warning_ticks = 2
+# With antifire potion + protection shield → max 10.
+# With super antifire + shield → 0.
+
+[[attacks]]
+name = "Venomous Dragonfire"
+style = "dragonfire_special"
+max_hit = 95
+warning_ticks = 2
+on_hit.effect = "inflict_venom"
+on_hit.effect_ignores_dragonfire_protection = true
+# Dragonfire protection reduces damage, NOT venom.
+
+[[attacks]]
+name = "Corrupting Dragonfire"
+style = "dragonfire_special"
+max_hit = 95
+warning_ticks = 2
+on_hit.effect = "deactivate_all_prayers"
+on_hit.effect_ignores_dragonfire_protection = true
+
+[[attacks]]
+name = "Deadly Dragonfire"
+# "Vertically launched at the player's position. Will often outright
+# kill. Half damage if adjacent. Cannot be defended against with any
+# dragonfire protection."
+style = "dragonfire_aoe"
+max_hit = 121                     # ballpark — wiki: "outright kill"
+warning_ticks = 3
+targets_tile_not_entity = true
+ignores_all_dragonfire_protection = true
+adjacent_tile_damage_scale = 0.5  # half if adjacent, full on-tile
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = [
+    "Melee", "Magic", "Ranged",
+    "Standard Dragonfire", "Venomous Dragonfire",
+    "Corrupting Dragonfire", "Deadly Dragonfire",
+    "Zombified Spawn", "Acid Pool",
+]
+# Wiki attack pattern: 6 random standard attacks → 1 special → 6
+# standard → OTHER special → repeat. Tracked via attack-counter.
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Special Attack Counter"
+primitive = "attack_counter_alternate_special"
+# Every 7th attack is a special; specials alternate between
+# Zombified Spawn and Acid Pool.
+params.standard_attacks_between = 6
+params.specials = ["Zombified Spawn", "Acid Pool"]
+params.rotation = "strict_alternate"
+
+[[mechanics]]
+name = "Zombified Spawn"
+primitive = "spawn_npcs_once"
+trigger = "attack_counter_special"
+# Spawns a Zombified Spawn that walks toward Vorkath and heals him
+# unless killed / pushed away with Crumble Undead.
+params.npc_name = "Zombified Spawn"
+params.count = 1
+params.spawn_tile = "in_front_of_vorkath"
+params.heals_boss_on_contact = 50   # approximate
+
+[[mechanics]]
+name = "Acid Pool"
+primitive = "covered_arena_environment"
+trigger = "attack_counter_special"
+# Arena floor becomes covered in acid pools; player must run along
+# a safe path while avoiding fireball attacks.
+params.duration_ticks = 24
+params.dot_per_tick = 10
+params.safe_path_navigation = true
+
+[[mechanics]]
+name = "Fireball During Acid"
+primitive = "telegraphed_aoe_tile"
+trigger = "during_mechanic:Acid Pool"
+# During the acid phase Vorkath shoots fireballs at the player's
+# current tile. Player must dodge 2 tiles away.
+period_ticks = 4
+params.target_current_tile = true
+params.warning_ticks = 2
+params.damage_min = 40
+params.damage_max = 60
+
+# ---- Immunity flag ----------------------------------------------------
+# immunevenom = Yes (from infobox_monster); handled via NDEF immunity
+# bits. No override needed here.

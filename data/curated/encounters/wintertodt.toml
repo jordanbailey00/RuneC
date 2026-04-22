@@ -1,0 +1,63 @@
+# Wintertodt — Firemaking skilling boss. Group encounter where
+# players fuel a brazier while the Wintertodt snows damage + spawns
+# pyromancers to heal + breaking braziers.
+
+name = "Wintertodt"
+slug = "wintertodt"
+npc_ids = [7936]
+source_pages = ["Wintertodt", "Wintertodt/Strategies"]
+encounter_type = "skilling_boss"
+# No direct combat — damage comes from environmental snow + brazier
+# explosions. Boss "defeated" when its HP (= brazier integrity)
+# reaches 0.
+
+[[phases]]
+id = "active"
+enter_at_hp_pct = 100
+script = "wintertodt_skilling_loop"
+# Player actions:
+#   - Chop Bruma roots (Woodcutting)
+#   - Light brazier (Firemaking) — gains hp for the boss
+#   - Feed roots to brazier — damages the boss
+#   - Repair broken braziers
+#   - Heal pyromancers who drop to 0 hp
+
+[[mechanics]]
+name = "Snow Damage"
+primitive = "periodic_tile_damage_all_players"
+period_ticks = 10
+params.damage_min = 3
+params.damage_max = 8
+params.room_wide = true
+
+[[mechanics]]
+name = "Brazier Explosions"
+primitive = "periodic_object_damage_event"
+period_ticks = 30
+params.object_name = "Brazier"
+params.damage_radius = 3
+params.damage_on_explosion = 40
+params.breaks_brazier = true
+
+[[mechanics]]
+name = "Pyromancer Spawn"
+primitive = "spawn_ally_npcs"
+# Pyromancers are friendly NPCs that boost the braziers. Player
+# protects them; if they die, fewer braziers stay lit.
+period_ticks = 50
+params.npc_name = "Pyromancer"
+params.count = 1
+params.distribution = "near_brazier"
+params.is_friendly = true
+
+[[mechanics]]
+name = "Cold Attacks"
+primitive = "periodic_telegraphed_snowballs"
+period_ticks = 8
+params.target_current_tile = true
+params.warning_ticks = 2
+params.damage_min = 10
+params.damage_max = 20
+
+[entry_requirement]
+firemaking_level = 50

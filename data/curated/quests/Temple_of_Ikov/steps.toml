@@ -1,0 +1,128 @@
+quest = "Temple of Ikov"
+step_count = 9
+
+[[steps]]
+index = 0
+name = "A mighty hero"
+links = ["Lucien", "Flying Horse Inn", "East Ardougne", "Staff of Armadyl", "Temple of Ikov (dungeon)", "Pendant of lucien", "Edgeville"]
+text = """
+Speak to [[Lucien]] in the [[Flying Horse Inn]] in the north-western corner of [[East Ardougne]]. He wants you to retrieve the [[Staff of Armadyl]] from the deserted [[Temple of Ikov (dungeon)|Temple of Ikov]]. Ask him why he can't get it himself, and he will explain that the guardians of the staff have set up a magical barrier that he is unable to overcome, and give you the [[Pendant of lucien]], which is required to enter the Chamber of Fear within the dungeon. He wants you to bring the staff to him in his house in [[Edgeville]] once you have found it.
+"""
+
+[[steps]]
+index = 1
+name = "The Temple of Ikov"
+links = ["Protect from Magic", "boots of lightness", "weight-reducing clothing", "Ranging Guild", "Sorcerer's Tower", "Temple of Ikov (dungeon)"]
+text = """
+{{Needed|pendant of lucien, 20 limpwurt roots, Yew bow or higher '''or''' throwing weapon, light source and knife (only if collecting the boots of lightness)|recommended=Ava's Accumulator, Ranged Armour and [[Protect from Magic]] for ranged style combat}}
+
+In the following section, you will need to briefly reduce your weight to -1kg or less. The easiest method is to use the [[boots of lightness]] found within the dungeon, but any [[weight-reducing clothing]] will work. You may still bring all of the gear required to complete the quest in one trip even if it is above the weight limit, as you can simply drop it on the ground and pick it back up again after completing the section (only takes a few seconds). Alternatively, leave the limpwurt roots/combat gear in the bank and retrieve them after completing The Unsteady Bridge section.
+
+The temple is located directly south of the [[Ranging Guild]] and west of the [[Sorcerer's Tower]]. Climb down the ladder to enter the [[Temple of Ikov (dungeon)|dungeon]].
+"""
+
+[[steps]]
+index = 2
+name = "The Boots of Lightness"
+links = ["Boots of Lightness"]
+text = """
+[[File:Temple of Ikov - Bridge.png|thumb|220px|The unsteady bridge.]]
+
+If you have not yet collected your boots of lightness and are using it as your weight reducing method, from the entrance run to the west until you come to a set of stairs. You will need your light source with you to descend. Slash the web, pick up '''and equip''' the [[Boots of Lightness]], then return upstairs.
+"""
+
+[[steps]]
+index = 3
+name = "The Unsteady Bridge"
+links = ["Lever (Temple of Ikov)", "Hemenster"]
+text = """
+Head through the northern gate of the room while wearing the pendant. Without wearing the pendant, you will stop and receive the message {{mes|As you reach to open the door a great terror overcomes you!}}
+
+Here you will find an unsteady bridge over lava. To successfully cross this bridge, '''your weight needs to be -1kg or less,''' '''{{Colour|red|or you will fail and take 20 damage!}}'''
+
+If you brought extra items, drop them now until your weight displays -2kg to be safe (you will need to pick up a lever weighing 0.056kg).
+
+Walk across the bridge and take the [[Lever (Temple of Ikov)|lever]] on the other side.
+
+:'''Note''': If you fell, you made a mistake with the weight and must walk to the south and take the ladder. You will appear just south of [[Hemenster]], walk east to return to the Temple of Ikov.
+
+Pick up any dropped items, then head back to the initial room and place the lever on the lever bracket on the wall south-west of the entrance ladder. '''Pull the lever''' to open the southern room. If you forget to pull the lever and leave the area, it will need to be reobtained.
+"""
+
+[[steps]]
+index = 4
+name = "The Ice Chamber"
+links = ["ice spider", "ice arrows", "Fire Warrior of Lesarkus", "Ava's device", "Closed chest (Temple of Ikov)"]
+text = """
+After pulling the lever, the southern gate will be unlocked. Enter it and follow the path to the ice chamber filled with level-61 [[ice spider]]s.
+
+You need to gather enough [[ice arrows]] in this room to battle the [[Fire Warrior of Lesarkus]]. If you've chosen to use throwing weapons, you only need to find at least 1 ice arrow. If using a bow, at least 20 arrows are recommended for low levels, though you can get by with much less if you have a high Ranged level and an [[Ava's device]]. 
+
+To gather [[ice arrows]], you must search the 6 [[Closed chest (Temple of Ikov)|chests]] in this room. Only one will contain arrows at a time. Each time you loot a chest with arrows, you'll obtain 1-5 arrows, and a chest is randomly selected as the next spawn for the arrows. '''After obtaining arrows from a chest, search it again''' as it's possible for it to be randomly selected in succession.
+"""
+
+[[steps]]
+index = 5
+name = "Fire Warrior of Lesarkus"
+links = ["Fire Warrior of Lesarkus", "Pendant of Lucien", "neck slot", "Protect from Magic", "Ava's accumulator", "Winelda", "shiny key", "Lesser demon", "McGrubor's Wood"]
+text = """
+{{Needed|skills={{SCP|Thieving|42}} {{Boostable|yes}} to disable a trap}}
+[[File:Temple of Ikov - Fire Warrior of Lesarkus.png|thumb|right|Duelling the [[Fire Warrior of Lesarkus]].]]
+
+When you have enough ice arrows, return to the entrance and again enter the north door with the [[Pendant of Lucien]] equipped. 
+
+:'''Tip:''' You may choose to unequip the pendant after entering if you want to utilise the [[neck slot]] for the following combat section.
+
+Continue north until you see a small alcove with a lever in it. Right-click the lever to ''Search for traps'' ({{SCP|Thieving|42}}), then pull it. '''{{Color|red|If you don't search the lever first, you will fall into a pit of spikes and take 20 damage.}}'''
+
+The door at the end of the western passage will now be unlocked. Open it to enter a room with a summoning mark in the middle of it. Attempt to open the door to the north, and you'll be stopped by the [[Fire Warrior of Lesarkus]].
+
+To continue you must defeat the Fire Warrior. He is intended to only take damage from ice arrows, however using throwing weapons with at least 1 ice arrow equipped will circumvent this without using up the arrows. After interrupting you, he will not attack until you either attack him first or talk to him. He uses solely magic, so [[Protect from Magic]] comes in handy. Using [[Ava's accumulator]] will assist you in not running out of arrows, though you can also pick up fallen arrows during the fight. If you take too long to defeat him or walk too far from the room, he will disappear and you will need to start the fight over.
+
+:'''Note''': If you use the wrong weapon or run out of ice arrows, he will stop the fight and boast that your weapons do nothing, but will not regenerate health if you resume the fight.
+
+After defeating him, proceed through the north door. You'll find [[Winelda]] the witch standing near a stream of lava. She will teleport you across if you hand her 20 unnoted limpwurt roots, '''all given at once'''.
+
+:'''Note''': In case you have to re-enter the room, you do not need to fight the Fire Warrior again or bring the witch more limpwurt roots.
+
+Pass the skeletons until you reach a room behind a brick wall. ''Push'' the wall to enter it.
+
+:'''Tip:''' Before entering consider picking up the [[shiny key]] found past the level-82 [[Lesser demon]]s further along the corridor, which will allow you to access a shortcut to [[McGrubor's Wood]] through a ladder next to the skeleons. This may be useful if you want to return to fight the monsters in this part of the dungeon after the quest.
+"""
+
+[[steps]]
+index = 6
+name = "Picking a side"
+links = ["Guardian of Armadyl", "Guardians of Armadyl", "Lucien", "While Guthix Sleeps", "Pendant of Armadyl", "God Wars Dungeon"]
+text = """
+At this stage you must decide whether to take the staff for Lucien, resulting in combat with a lvl 43 [[Guardian of Armadyl]], or whether to side with the [[Guardians of Armadyl]], who will ask you to defeat a lvl 14 [[Lucien]]. Your choice will have a minor impact on the [[While Guthix Sleeps]] quest dialogue. If you choose to side with Lucien and want to obtain the [[Pendant of Armadyl]] again after the quest (used as protection for the [[God Wars Dungeon]]), you will need to kill the guardians rather than talk to them. Otherwise, the rewards remain the same for both paths.
+"""
+
+[[steps]]
+index = 7
+name = "Side with the Guardians of Armadyl"
+links = ["Pendant of Lucien", "Staff of armadyl", "Lucien", "Armadyl pendant", "Edgeville", "Grand Exchange"]
+text = """
+[[File:Temple of Ikov - Lucien mind trick.gif|thumb|upright|200px|Lucien will use a mind trick on players who aren't wearing the pendant of Armadyl.]]
+{{Color|red|Warning:}} If you don't unequip your pendant or choose the wrong dialogue option, the guardian will attack you.
+
+Unequip your [[Pendant of Lucien]] and talk to the Guardian. Tell them that you seek the [[Staff of armadyl|Staff of Armadyl]] for [[Lucien]], then explain that Lucien offered a grand reward for it. The Guardian will offer to cleanse you to save your soul as a result of working for that 'spawn of evil'. Tell them it's time for "your yearly bath", and they will cleanse you with holy water. They will explain that Lucien is an undead necromancer that raised an army of the undead against Varrock a generation ago. Offer to help defeat him, and they will give you the [[Armadyl pendant]], which must be worn to defeat him. {{Chat option|1I seek the Staff of Armadyl.|1Lucien will give me a grand reward for it!|3You're right, it's time for my yearly bath.|1Ok! I'll help!}}
+
+Head towards Lucien's house which is between [[Edgeville]] and the [[Grand Exchange]]. Defeat him (level 14) while wearing the Armadyl pendant.
+
+'''Congratulations, quest complete!'''
+"""
+
+[[steps]]
+index = 8
+name = "Side with Lucien"
+links = ["Staff of Armadyl", "Guardian of Armadyl", "Edgeville", "Grand Exchange"]
+text = """
+[[File:Temple of Ikov - Staff of armadyl.png|thumb|left|200px|The [[Staff of Armadyl]] lying on a table.]]
+You may ignore the conversation with the Guardians. Try to take the [[Staff of Armadyl]] on the table in the north-west room. You will be attacked by a [[Guardian of Armadyl]] (Level 43). Defeat them, and take the staff.
+
+Head towards Lucien's house which is between [[Edgeville]] and the [[Grand Exchange]]. Hand him the staff to complete your quest.
+
+'''Congratulations, quest complete!'''
+{{Clear}}
+"""

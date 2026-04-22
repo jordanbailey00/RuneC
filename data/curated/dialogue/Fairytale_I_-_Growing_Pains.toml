@@ -1,0 +1,3235 @@
+title = "Transcript:Fairytale I - Growing Pains"
+npcs = ["Martin the Master Gardener", "Fairy Godfather", "Slim Louie", "Fat Rocco", "Fairy Nuff", "Zandar Horfyre", "Malignius Mortifer", "Filliman Tarlock", "Gatekeeper"]
+node_count = 411
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "quest=No|Ask about the Skillcape of Farming."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Ask about the quest."
+parent = -1
+children = [3, 9, 13, 14, 42, 45]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "cond"
+text = "If the player has pickpocketed Martin before:"
+parent = 2
+children = [4, 5, 6, 7, 8]
+
+[[nodes]]
+id = 4
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Hello, [player name], you look familiar. Didn't I catch you going through my pockets not that long ago?"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Me? No, I'm afraid you must have me confused with somebody else!"
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I could have sworn ..."
+parent = 3
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Oh well, never mind. I have bigger problems to worry about right now."
+parent = 3
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "act"
+text = "continues"
+parent = 3
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "cond"
+text = "If the player hasn't pickpocketed Martin before:"
+parent = 2
+children = [10, 11, 12]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I can't chat now, I have too many things to worry about."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "continues"
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 2
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "option"
+text = "Anything I can help with?"
+parent = 2
+children = [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 28, 31, 32, 33, 39]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I certainly could do with some help."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So tell me about your problems."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "It all seemed to start about a month ago. I grow roses, you know?"
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Um, you seem to be getting side-tracked already."
+parent = 14
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "What? Oh sorry."
+parent = 14
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "As I was saying about a month ago I noticed that the yield on my prize rose bushes had dropped slightly. I immediately suspected Crown Gall, a disease that can be fatal to a Mister Lincoln."
+parent = 14
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're not making much sense. Who's Mister Lincoln?"
+parent = 14
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = """
+Sorry, Mister Lincoln's are the variety of roses that I specialise in. None of the plants showed any other symptoms of disease though. Then I noticed a reduced yield occurring in most of my other crops too.
+"""
+parent = 14
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I spoke to other gardeners that I know, and they had all noticed similar problems."
+parent = 14
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Vegetable patches are growing fewer vegetables, bushes are producing fewer berries and everything that is planted seems to be more prone to disease!"
+parent = 14
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "cond"
+text = "If the player hasn't trained their Farming:"
+parent = 14
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "If you were more interested in turning your hand to farming, you would have noticed it too."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "act"
+text = "continues"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "cond"
+text = "If the player has trained some Farming:"
+parent = 14
+children = [29, 30]
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "You've done some farming, haven't you noticed a decrease in the amount of produce you are getting lately?"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "continues"
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "box"
+text = "Before starting this quest, be aware that your combat level is lower than the recommended level of 50. One or more of your skill levels are also lower than recommended."
+parent = 14
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "select"
+text = "Start the Fairytale I - Growing Pains quest?"
+parent = 14
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "option"
+text = "Yes."
+parent = 14
+children = [34, 35, 36, 37, 38]
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what do you want me to do?"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I'd like you to find out what is causing this terrible problem and to try and rectify whatever the problem is."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any ideas where I should start?"
+parent = 33
+
+[[nodes]]
+id = 37
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "If I were you I would start by speaking to some of the other gardeners."
+parent = 33
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "option"
+text = "No."
+parent = 14
+children = [40, 41]
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "This doesn't sound like something I can help with. Good luck."
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "option"
+text = "Oh dear. I hope you can sort them out by yourself."
+parent = 2
+children = [43, 44]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I'm not sure I can, but I guess I have to try."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "option"
+text = "What is the banner for?"
+parent = 2
+children = [46, 47, 48, 49, 50, 51, 59, 65]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What is the banner for?"
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "That banner is the emblem of the Group of Advanced Gardeners. We're a loosely affiliated group of gardeners that are united in our concern for declining vegetable production."
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Err, of course you are."
+parent = 45
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Say, you're a brave adventurer, would you be interested in trying to get to the root of our woes? There would be a cash reward if you could help us."
+parent = 45
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 45
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "option"
+text = "Of course I'll help."
+parent = 45
+children = [52, 53, 54, 55, 56, 57, 58]
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Of course I'll help."
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I'm so glad to hear that."
+parent = 51
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You don't look it."
+parent = 51
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Sorry, what was that?"
+parent = 51
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Oh, nothing. Don't worry about it."
+parent = 51
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So tell me about your problems."
+parent = 51
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "act"
+text = "above"
+parent = 51
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "option"
+text = "Sorry, I have better things to do."
+parent = 45
+children = [60, 61, 62, 63, 64]
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I have better things to do."
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Oh. Oh dear. Oh well, if there's nothing I can do to make you change your mind..."
+parent = 59
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No, nothing. My mind is made up."
+parent = 59
+
+[[nodes]]
+id = 63
+depth = 4
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Well come back and chat to me if you change it."
+parent = 59
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "act"
+text = "end"
+parent = 59
+is_terminal = true
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "act"
+text = "end"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Have you spoken to any other members of the Gardening Group yet?"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I haven't had a chance yet."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Well please hurry, otherwise I won't be able to make enough produce to feed my 13 children soon."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [72, 73, 74, 75, 76]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "[Gardener]"
+text = "Why, yes I am. Why do you ask?"
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Martin has asked me to investigate why all the crops are failing."
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "[Gardener]"
+text = "No, I'm afraid I don't know anything about that."
+parent = 71
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [83, 84, 85, 86, 87, 88, 89, 90]
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #1]"
+text = "Why, yes I am. Why do you ask?"
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Martin has asked me to investigate why all the crops are failing."
+parent = 82
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #1]"
+text = """
+Ah, Martin sent you, why didn't you say so? I personally think that our problems are all down to the fact that we haven't had enough rain of late. It's plain to see - just look at the levels of the rivers.
+"""
+parent = 82
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #1]"
+text = "We need more rain. I don't suppose you can do anything about that?"
+parent = 82
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm afraid not."
+parent = 82
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #1]"
+text = "Well there you go then. Until you find out how to make it rain you're going to have a hard time solving our problems."
+parent = 82
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "end"
+parent = 82
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've spoken to one of your members and they reckon that it's the lack of rain that we've had recently."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "I'm afraid that can't be the problem. It never rains on the farming patches. That's why we have to water the crops."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, yeah. I hadn't thought of that."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Go chat to some other group members. Maybe somebody has a different idea."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [102, 103, 104, 105, 106]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #2]"
+text = "Why, yes I am. Why do you ask?"
+parent = 101
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Martin has asked me to investigate why all the crops are failing."
+parent = 101
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #2]"
+text = "Insects! That's what you can tell him! Insects! Stop the insects from eating so many of our crops and we'd get maximum yield, I tell you!"
+parent = 101
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Insects! You need to get rid of the insects! They're eating the crops."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Good idea, but I spray my crops with insecticide every week. No, that's not the problem."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126]
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #3]"
+text = "Why, yes I am. Why do you ask?"
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Martin has asked me to investigate why all the crops are failing."
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #3]"
+text = """
+How can you ask such a thing? It's obvious! It's all you adventurers. Every time I get a crop planted, some adventurer comes along and digs it up and plants crops of their own, as if they owned my farming patch!
+"""
+parent = 115
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #3]"
+text = "It's really annoying! You should speak to your friends about their rude behaviour!"
+parent = 115
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But...but...they're not my friends! I've never even spoken to most of them!"
+parent = 115
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #3]"
+text = "Don't give me that! You're an adventurer, they're all adventurers. I bet you have some sort of secret guild and you gather there and say things like 'let's annoy the gardeners this week', don't you?"
+parent = 115
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I mean yes. There is a heroes guild, but ...!"
+parent = 115
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #3]"
+text = "Aha, so you admit it then! You should be ashamed of yourselves!"
+parent = 115
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I give up!"
+parent = 115
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = """
+One of your members is implying that the gardeners' problems are all caused by adventurers using the plots. I would like to point out that these plots are communal property and that we have as much right as anyone to
+"""
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "grow plants here!"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = """
+All right! All right! You're absolutely right! I never said there was a problem with anybody using my plots. Besides, we get part of our income from watching crops for adventurers. I'm afraid that our problem is
+"""
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "something totally different."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [138, 139, 140, 141, 142, 143, 144, 145]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #4]"
+text = "Why, yes I am. Why do you ask?"
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Martin has asked me to investigate why all the crops are failing."
+parent = 137
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #4]"
+text = "Well obviously it's the seasons. They all seem to be out-of-wack these days. Summer comes earlier and earlier each year, but then it simply rushes by!"
+parent = 137
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #4]"
+text = "If you find out what is upsetting the seasons you'll find out what is causing the harvest to fail."
+parent = 137
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't suppose you have any ideas about what could cause the seasons to be mixed up?"
+parent = 137
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #4]"
+text = "No, sorry, but find that out and you'll get to the root of our problems."
+parent = 137
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "act"
+text = "end"
+parent = 137
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Apparently, the seasons are all mixed up. Late summers and early winters. I don't know what I can do to solve that problem, though."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = """
+Yes, I've noticed that the seasons seem to be slightly confused, but that hasn't been a big enough change to affect the crops so badly. I'm afraid you should try a different branch of investigation to get to the root
+"""
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "of our problems."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ha ha!"
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "What are you laughing at? These are serious problems!"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're absolutely right. Don't worry, I'll find out what the problem is."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #5]"
+text = "Why, yes I am. Why do you ask?"
+parent = 158
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Martin has asked me to investigate why all the crops are failing."
+parent = 158
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #5]"
+text = "Well I can tell by the look on your face that I'm not the first person you've asked. Why don't you tell me what you've heard from other members of the group so far?"
+parent = 158
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why not? They all seem to be a bunch of loonies anyway."
+parent = 158
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've been told that it's the lack of rain, plagues of insects and recently I was told that the entire order of seasons is confused!"
+parent = 158
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #5]"
+text = "Did you ever consider that all those theories might be correct?"
+parent = 158
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But they're all different, how could they all be correct?"
+parent = 158
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #5]"
+text = "I'll let you into a little secret that'll explain it all to you. In a word - fairies!"
+parent = 158
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh no! Not another crack-pot theory!"
+parent = 158
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #5]"
+text = "I'm serious!"
+parent = 158
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "[Gardener #5]"
+text = "Think it through. There are fairies who control everything natural from the weather to the seasons."
+parent = 158
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right, well thanks for your input. I'll think over what you said."
+parent = 158
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "act"
+text = "end"
+parent = 158
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "[Gardener]"
+text = "I've already told you everything I suspect."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [181, 182, 183, 184, 185]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "[Gardener]"
+text = "Why, yes I am. Why do you ask?"
+parent = 180
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Martin has asked me to investigate why all the crops are failing."
+parent = 180
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "[Gardener]"
+text = "I don't think the crops ARE failing, now leave me alone, I have work to do."
+parent = 180
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "act"
+text = "end"
+parent = 180
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "option"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = -1
+children = [192, 193, 194]
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you a member of the Group of Advanced Gardeners?"
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "[Gardener]"
+text = "I am, but this isn't a good time to talk about that."
+parent = 191
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "act"
+text = "members"
+parent = 191
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "quest=No|Would you look after my crops for me?"
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "option"
+text = "quest=No|Can you give me any farming advice?"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "option"
+text = "quest=No|Can you sell me something?"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "option"
+text = "quest=No|Ask about the Skillcape of Farming."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "option"
+text = "Ask about the quest."
+parent = -1
+children = [202, 203, 204, 205, 206, 207, 208, 209, 210]
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Hello again, [player name]. How are you getting on with solving the Gardening Group's problems?"
+parent = 201
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "To be honest I'm worried about the sort of person you let join your organisation."
+parent = 201
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Why is that?"
+parent = 201
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've heard theories ranging from climate change to fairies from your members."
+parent = 201
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = "Hmm, that's an interesting idea. Now that I think about it that does make some sense. Yes, maybe you should talk to a fairy about it."
+parent = 201
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "O-kay! You're the boss, any idea which flower I should look under to find a fairy?"
+parent = 201
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Martin the Master Gardener"
+text = """
+No, sorry, but I did hear that there were some adventurers with a similar problem in the swamps near Lumbridge. Just don't mention my name if you talk to them, they're trying to keep it a secret, but everybody actually knows what they're up to.
+"""
+parent = 201
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I've spoken to them before."
+parent = 201
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "act"
+text = "end"
+parent = 201
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who are you? Where's the Fairy Queen? What's going on here? Where's the Fairy Queen's throne gone?"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Ciao esploratore! So many questions. Whicha one would you hava me answer first?"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [215, 216, 217, 218, 219]
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Me?! I am-a da Fairy Godfather."
+parent = 214
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "...?"
+parent = 214
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "I see-a by your face dat you have-a not-a heard of-a me. Irrispettoso, eet iz of no eemportance. You weesh-a to know sometheeng else or no?"
+parent = 214
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "act"
+text = "other"
+parent = 214
+is_terminal = true
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "option"
+text = "Where's the Fairy Queen?"
+parent = -1
+children = [221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Ah, eet iz a trageec-a tale. Da Queen Bee she iz-a, how-you-say, seek?"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You mean sick. What happened?"
+parent = 220
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Ah, a tragedy to be-a struck-a down so young."
+parent = 220
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "How-a much do ya know about-a da fairy folk, my beeg friend?"
+parent = 220
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not actually a whole deal, I'm afraid."
+parent = 220
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Well, let-a me enlighten yous. Zanaris iz-a a nexus of-a da worlds. Da Queen Bee, she iz-a da guardian of-a all da folk dat live-a in Zanaris."
+parent = 220
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "So when-a thees Tanglefoot arrives, da Queen Bee she-a goes to da Cosmic Temple area to kill-a eet, but someting goes-a wrong. Da Queen Bee, she gets-a hurt and is-a now inna da magic sleep."
+parent = 220
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, I'll go see her then. Goodbye."
+parent = 220
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Ciao. Oh, and [player name]..."
+parent = 220
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes?"
+parent = 220
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "A word-a of advice. You be-a careful not to cause da trouble for da folk while you are Zanaris. Ciao."
+parent = 220
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "?"
+parent = 220
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "act"
+text = "end"
+parent = 220
+is_terminal = true
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "option"
+text = "What's going on here?"
+parent = -1
+children = [235, 236, 237, 238, 239]
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's going on here?"
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Hmm, an eenteresting question, my friend. I am-a trying to run-a da fairy kingdom, and youz iz-a being da irritating adventurer."
+parent = 234
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's not what I mean!"
+parent = 234
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "No, but-a dat iz da question I answered. Now iz-a dere anything else?"
+parent = 234
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "act"
+text = "other"
+parent = 234
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "option"
+text = "Where's the Fairy Queen's throne gone?"
+parent = -1
+children = [241, 242, 243]
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where's the Fairy Queen's throne gone?"
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "An eenteresting place to start... I am-a here, ze Queen Bee iz not. So my chair - eet iz-a here, her throne - eet iz- a not. Eez there anytheeng else? I ama a bizy fairy."
+parent = 240
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "act"
+text = "other"
+parent = 240
+is_terminal = true
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "option"
+text = "That's all, thanks."
+parent = -1
+children = [245, 246, 247]
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's all, thanks."
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Eef there iz anytheeng I can-a help you weeth whilst you are-a veesiting Zanaris, plsi, do not-a trouble to bother me."
+parent = 244
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "act"
+text = "end"
+parent = 244
+is_terminal = true
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Fat Rocco"
+text = "Da Boss is a busy fairy! He don' have time to talk to yous humans. Vamoose!"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Sorry, I'm very busy and can't chat. If you want to know something go and talk to the Godfather."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I did, he said I should come and talk to you!"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Oh!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Sorry, I didn't realise."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Actually it's more a case of what I can help you with? I told the Fairy Godfather that I would help you find a cure for the Queen."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Oh, thank you! I really need help, I have no idea what ails the Queen. You must be a mighty healer!"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err...no, not me."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "A great druid then?"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Umm...'fraid not."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "A shaman?"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "A surgeon?"
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "A doctor, medic, nurse?"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, no and no."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "So what are you then?"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm a mighty adventurer!"
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "A what?!"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A mighty adventurer!"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Yes, I heard. It's just not what I was expecting to hear."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "But hang on, you might be just the sort of person I need to help me!"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How is that then?"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "I'm sure the Godfather told you that the Queen is in an enchanted sleep?"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well sort of, I couldn't really understand everything he was talking about."
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Shhh, somebody might hear. Look you're a visitor, so I'll tell you this much; it doesn't pay to talk about the Godfather behind his back."
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "But back to the problem at hand - the Fairy Queen. She was brought here after her battle with the Tanglefoot in a terrible state, extremely weak and barely able to fly!"
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "When the Queen got back here, she was clearly weakening fast. It appears as if the magic force that is her life essence is slowly unravelling."
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Now, what I need you to do is find a mage by the name of Zandar Horfyre. He has spent many years studying magical illness. Take the list to him and ask him if he knows what ails the Queen, please."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That doesn't sound too difficult, where will I find him."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "I believe he now resides in the Dark Wizard's tower near Falador, and [player name], please hurry. I fear the Queen doesn't have much time left!"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "You're back soon! Did you find out what ails the Fairy Queen?"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm afraid I've lost the list of symptoms you gave me."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = "Well not to worry, I have a copy of it here."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, I need your help."
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "And why should I help you, fool? You attack my brethren and I, and then you demand my help! I think not!"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But Fairy Nuff said you would help me!"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "Fairy Nuff sent you!"
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Fairy Queen is extremely ill. She was in a battle with a Tanglefoot and her injuries have resulted in her being in a coma."
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "This is grave news indeed!"
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "You think the Tanglefoot is responsible? I don't see how that could be. A Tanglefoot will normally kill its victim outright...unless...hmmmm...I wonder..."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "cond"
+text = "If the player has the symptoms list:"
+parent = -1
+children = [293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308]
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fairy Nuff gave me a list of her symptoms. Here, have a look at it."
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "Hmm...yes...slow discorporation of ethreal body, eh? Hmm...I think I know what the problem might be."
+parent = 292
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You do? That's great! What is it?"
+parent = 292
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "From what I know about fairies, their basic lifeforce is pure magic. Much as we humans would refer to our souls as our life essence, so too does a fairy have a life essence of pure magic."
+parent = 292
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "You could actually refer to fairies as magic embodied and not be wrong."
+parent = 292
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but about the Fairy Queen?"
+parent = 292
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "Patience, I'm getting to that. It appears the Fairy Queen has lost a large part, indeed the majority, of her life essence. Either it was drained from her by the Tanglefoot or she did it voluntarily."
+parent = 292
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "Although why she would do that is beyond me."
+parent = 292
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I guess I need to go and kill this Tanglefoot and get back her magic essence if I am to help her?"
+parent = 292
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "Yes, but if I were you I would seek out a necromancer by the name of Malignus{{sic}} Mortifer. I believe that he once fought a Tanglefoot, many years ago."
+parent = 292
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "You should probably ask him for advice on how to combat it."
+parent = 292
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Malignus{{sic}} Mortifer. Any idea where I can find him?"
+parent = 292
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "He's rumoured to have been seen near Port Sarim with his followers recently. Rumour has it that he's working on a spell that has something to do with fungus!"
+parent = 292
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, thanks very much."
+parent = 292
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "Don't mention it, and give my regards to Nuff, when you see her next."
+parent = 292
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "end"
+parent = 292
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the symptoms list:"
+parent = -1
+children = [310, 311, 312]
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fairy Nuff gave me a list of her symptoms, but I don't have it with me."
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Zandar Horfyre"
+text = "Well, I can't diagnose the problem without knowing the symptoms. You'd better go and find that list, or get Fairy Nuff to give you another one."
+parent = 309
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "act"
+text = "end"
+parent = 309
+is_terminal = true
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "option"
+text = "quest=No|Who are you and what are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "option"
+text = "I need help with fighting a Tanglefoot."
+parent = -1
+children = [316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 339]
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need help with fighting a Tanglefoot. Can you help me?"
+parent = 315
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Almost certainly, I am a great practitioner of the magic arts, after all."
+parent = 315
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great, thanks. I was told by Zandar Horfyre that you fought one once."
+parent = 315
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "That is true and an epic battle it was too."
+parent = 315
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's great! I presume you won as you are here to tell me about it, could you tell me how to defeat one, please?"
+parent = 315
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Of course I won! As I've already stated I am a master of the magic arts."
+parent = 315
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Why do you want to know how to kill a Tanglefoot?"
+parent = 315
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There is a Tanglefoot in the lost city of Zanaris and I have been asked to kill it."
+parent = 315
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I see. Well I could tell you how to defeat your Tanglefoot, however I would need you to perform a little undertaking for me first."
+parent = 315
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly did you have in mind?"
+parent = 315
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "To the north-east of here is a haunted manor. Bring me a skull from a grave you find there and you shall have your answer."
+parent = 315
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "cond"
+text = "If the player already has the skull in their inventory:"
+parent = 315
+children = [328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338]
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually I have it right here."
+parent = 327
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Excellent, hand it over then."
+parent = 327
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Right then, to business. A Tanglefoot can not be harmed by might nor magic. The only weapon that can damage them are a pair of enchanted secateurs!"
+parent = 327
+
+[[nodes]]
+id = 331
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where can I get a pair of these enchanted secateurs?"
+parent = 327
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "You will have to make them... listen carefully and I'll tell you how."
+parent = 327
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Obviously you will need a pair of secateurs, you will also need to gather [item 1], [item 2] and [item 3]."
+parent = 327
+
+[[nodes]]
+id = 334
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Take them to the Nature Spirit and ask him to perform the ceremony of Phasma Phasmatis Natura."
+parent = 327
+
+[[nodes]]
+id = 335
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Phasma Phasmatis Natura. Got it! Is that all?"
+parent = 327
+
+[[nodes]]
+id = 336
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Yes, that's all. You'll be able to use those secateurs to kill the monster."
+parent = 327
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Great, thanks very much."
+parent = 327
+
+[[nodes]]
+id = 338
+depth = 3
+kind = "act"
+text = "end"
+parent = 327
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "cond"
+text = "If the player does not have the skull in their inventory:"
+parent = 315
+children = [340, 341, 342]
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll go and get it then."
+parent = 339
+
+[[nodes]]
+id = 341
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Fine, I'll see you soon."
+parent = 339
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "act"
+text = "end"
+parent = 339
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "quest=No|Where can I get clothes like those?"
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "option"
+text = "quest=No|Who are you and what are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "option"
+text = "I was asking you about fighting a Tanglefoot..."
+parent = -1
+children = [347, 348, 349, 350, 351]
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was asking you about fighting a Tanglefoot..."
+parent = 346
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "So, have you brought me the skull?"
+parent = 346
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = 346
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Well come and talk to me once you have it."
+parent = 346
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "act"
+text = "end"
+parent = 346
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "option"
+text = "quest=No|Where can I get clothes like those?"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "option"
+text = "quest=No|Who are you and what are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "option"
+text = "I was asking you about fighting a Tanglefoot..."
+parent = -1
+children = [356, 357, 358, 359, 363, 368]
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was asking you about fighting a Tanglefoot..."
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I have already told you all I know about fighting a Tanglefoot. What more would you have of me?"
+parent = 355
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 355
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "option"
+text = "Could you tell me how to kill a Tanglefoot again, please?"
+parent = 355
+children = [360, 361, 362]
+
+[[nodes]]
+id = 360
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Could you tell me how to kill a Tanglefoot again, please?"
+parent = 359
+
+[[nodes]]
+id = 361
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I guess so. Forgot to take notes did you? Well, listen carefully this time. You will need to enchant a pair of secateurs. Only these can harm a Tanglefoot."
+parent = 359
+
+[[nodes]]
+id = 362
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Great, thanks very much."
+parent = 359
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "option"
+text = "What did I need to take to the Nature Spirit again?"
+parent = 355
+children = [364, 365, 366, 367]
+
+[[nodes]]
+id = 364
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What did I need to take to the Nature Spirit again?"
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "You will need a pair of secateurs. You will also need to gather [item 1], [item 2] and [item 3]."
+parent = 363
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Take them to the Nature Spirit and ask him to perform the ceremony of Phasma Phasmatis Natura."
+parent = 363
+
+[[nodes]]
+id = 367
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Great, thanks very much."
+parent = 363
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "act"
+text = "end"
+parent = 355
+is_terminal = true
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "option"
+text = "quest=No|Where can I get clothes like those?"
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "Welcome back, my friend. I sensed that you require my help and so I have once more returned."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you! I need your help in enchanting a pair of secateurs."
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "Secateurs? That's a strange thing to enchant. Would you care to inform me why you need them?"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sure. A Tanglefoot has invaded the fairy kingdom of Zanaris and the only way I can fight it is with a pair of enchanted secateurs, apparently."
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "Ah, a Tanglefoot! Your information is correct, secateurs that have been blessed by a Nature Spirit are the only weapons that can harm such a terrible creature."
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "I shall be glad to help you. Do you have all of the required items for the ceremony?"
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "cond"
+text = "If the player has the required items:"
+parent = -1
+children = [377, 378, 379, 380, 381, 382]
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have everything right here."
+parent = 376
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "Then let us begin..."
+parent = 376
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "other"
+text = "{{qact|The Nature Spirit enchants the secateurs.}}"
+parent = 376
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "It is done!"
+parent = 376
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "Farewell, [player name] and good luck with your coming battle."
+parent = 376
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "act"
+text = "end"
+parent = 376
+is_terminal = true
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "cond"
+text = "If the player does not have the required items:"
+parent = -1
+children = [384, 385, 386]
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I still need to collect some things."
+parent = 383
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "Alright, my friend. Return to me when you have all that is required. I shall be waiting."
+parent = 383
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "act"
+text = "end"
+parent = 383
+is_terminal = true
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "Hello, [player name]. Why have you returned so soon after your last visit?"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm glad you're here. I'm afraid I've lost the secateurs you enchanted for me."
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Nature Spirit"
+text = "That's alright; if you bring me the components for the spell, I'll enchant another pair for you. Would you happen to have all of the required items for the ceremony with you now?"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing all the way over here? Shouldn't you be at the market door?"
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Gatekeeper"
+text = "Yes, that's my usual spot, but the Godfather said I should be here, so here I am."
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Gate Keeper"
+text = "I've received orders to let you through if you want. Good luck."
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "other"
+text = "{{Qact|The player appears in the grove.}}"
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "speaker"
+speaker = "Gate Keeper"
+text = "Be careful in there, there are still some of those baby Tanglefootii around."
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "other"
+text = "{{Qact|The player appears in the grove.}}"
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "cond"
+text = "If the Queen's secateurs have been lost:"
+parent = -1
+children = [399, 400]
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "act"
+text = "receives=[[Queen's secateurs]]"
+parent = 398
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "box"
+text = "You find the Fairy Queen's secateurs!"
+parent = 398
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I did it! I've got the Fairy Queens'{{sic}} enchanted secateurs!"
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Fairy Nuff"
+text = """
+That's fantastic! You'd better take them to the Fairy Godfather though; he'd be cross if he knew you brought them to me first. But, come back to me once the queen has had a chance to recover. I'm sure she'll want to thank you personally.
+"""
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Ciao [player name]. I am-a glad to see-a yous back! I was-a worried that the Tanglefoot would-a kill-a you too."
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You needn't have worried I managed to kill it!"
+parent = -1
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Ben fatto, my friend! Da folk-a dey owe yous a great-a deal! So did-a youss getta back da Queen Bee's magic power?"
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I retrieved this pair of Enchanted secateurs, I think they must contain the Queen's missing magic."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "speaker"
+speaker = "Fairy Godfather"
+text = "Grazie infinite! I will give-a dem to da healing fairy. Da Queen Bee, she will-a soon be strong again!"
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

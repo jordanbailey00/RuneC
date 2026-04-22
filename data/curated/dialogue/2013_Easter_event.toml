@@ -1,0 +1,1124 @@
+title = "Transcript:2013 Easter event"
+npcs = ["Easter Bunny"]
+node_count = 143
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh thank goodness you've come, [player name]. I've really made a mess of it this year."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's happened?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Last year I tried to hypnotise the bunnies to deliver the eggs to the children."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, right."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Well, that went horribly wrong. So this year, I thought to myself, Harvey, how are you going to deliver goodies to all the kids?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "And then I hit on it. I ordered a batch of chocolate rabbits from Diango. But these weren't ordinary chocolate rabbits, these were enchanted so they would deliver themselves."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It sounds like a good idea."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "It was! But Diango got befuddled and sent me a crate of enchanted chocolate KEBBITS. I was so shocked when I opened the crate - they all hopped out and got loose in the warren."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh, [player name], won't you help me? I need someone to gather all the chocolate kebbits up and grind them into chunks. Everything is set up to do it, I just need a kind, helpful person to do the job."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "option"
+text = "Sure, I'll help!"
+parent = -1
+children = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I'll help!"
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh, thank goodness!"
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = """
+I need you to go into the warren and catch ten chocolate kebbits. As you catch them, put them into the chute north of where you came into the warren. The chute leads to a pen, which I'll explain in a bit.
+"""
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = """
+Once you've caught all ten, the door next to the chute will unlock and you can go in. Pick up an egg from the pile and roll it into the pen. As the egg rolls, any kebbits it hits will be broken into chunks. Gather the
+"""
+parent = 10
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "chunks and bring them back to me."
+parent = 10
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Wait. If you have the eggs already, why not deliver them?"
+parent = 10
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Those are eggs left over from last year - I can't give them out!"
+parent = 10
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I get in the warren? I can't turn into a rabbit on my own."
+parent = 10
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Just use the hole I made to get to the surface - you can fit through that."
+parent = 10
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll get started."
+parent = 10
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "end"
+parent = 10
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "Hmm, I think I'll pass."
+parent = -1
+children = [23, 24]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, I think I'll pass."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "other"
+text = "{{mes|You should speak to the Easter Bunny before entering.}}"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "option"
+text = "What do I need to do with the chocolate kebbits?"
+parent = -1
+children = [28, 29, 30, 31, 32, 33, 34]
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to do with the chocolate kebbits?"
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Go into the warren and catch ten chocolate kebbits. As you catch them, put them into the chute north of where you came into the warren. The chute leads to a pen, which I'll explain in a bit."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = """
+Once you've caught all ten, the door next to the chute will unlock and you can go in. Pick up an egg from the pile and roll it into the pen. As the egg rolls, any kebbits it hits will be broken into chunks. Gather the
+"""
+parent = 27
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "chunks and bring them back to me."
+parent = 27
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Gather ten kebbits. Dump them in chute. Go through the door. Bowl eggs. Right, I'll hop to it then, shall I?"
+parent = 27
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Very funny. Har, har."
+parent = 27
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "How many more chocolate kebbits do I need to get?"
+parent = -1
+children = [36, 39, 42, 45]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "cond"
+text = "If no kebbits have been put in the chute:"
+parent = 35
+children = [37, 38]
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You haven't put any chocolate kebbits in the chute! Hurry up and get on with it, we've got a holiday to save here!"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "act"
+text = "end"
+parent = 36
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "cond"
+text = "If only 1 kebbit has been put in the chute:"
+parent = 35
+children = [40, 41]
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You've only put 1 chocolate kebbit into the chute. Time is of the essence!"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "cond"
+text = "If 2-8 kebbits have been put in the chute:"
+parent = 35
+children = [43, 44]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You have put [X] chocolate kebbits in the chute; you need to get [X] more."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "cond"
+text = "If 9 kebbits have been put in the chute:"
+parent = 35
+children = [46, 47]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You only need to put 1 more kebbit into the chute!"
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "act"
+text = "end"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [49, 50]
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "other"
+text = "{{mes|The chocolate kebbit slips from your grasp.}}"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "other"
+text = "{{mes|You have enough chocolate kebbits - you just need to put them in the chute.}}"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "other"
+text = "{{mes|You have not collected enough enchanted chocolate kebbits yet.}}"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "other"
+text = "{{mes|You have collected all the chocolate kebbits you need. You can now enter the bowling room.}}"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "option"
+text = "How do I get the chocolate kebbit chunks?"
+parent = -1
+children = [57, 58, 59, 60, 61, 62]
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I get the chocolate kebbit chunks?"
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Go through the door next to the kebbit chute and use the eggs to go bowling for kebbits!"
+parent = 56
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why can't you just use regular chocolate dust instead of making me do all the work?"
+parent = 56
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "These are enchanted chocolate chunks. If I use it to make chocolate rabbits, then my plan to have them deliver themselves will still work!"
+parent = 56
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You are one lazy bunny."
+parent = 56
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "end"
+parent = 56
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [64]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "act"
+text = "above"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "other"
+text = "{{mes|You already have an egg rolling; you can only bowl one egg at a time.}}"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "other"
+text = "{{mes|The eggs roll out of your pack as you leave the room.}}"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "I have some chocolate kebbit chunks to give you."
+parent = -1
+children = [69, 70, 73, 76]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some enchanted chocolate kebbit chunks to give you."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "cond"
+text = "If the Easter Bunny still needs more chunks:"
+parent = 68
+children = [71, 72]
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You have collected [X] chocolate kebbit chunks, you need [X] more."
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "act"
+text = "end"
+parent = 70
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "cond"
+text = "If the Easter Bunny only needs one more chunk:"
+parent = 68
+children = [74, 75]
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You only need to bring me 1 more pile of chocolate kebbit chunks! Hop to it!"
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "act"
+text = "end"
+parent = 73
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "cond"
+text = "Once the player has delivered all 10 chunks:"
+parent = 68
+children = [77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 96]
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Great, you've collected all the chocolate kebbit chunks I'll need."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "box"
+text = "pic=Chicken legs detail.png|The Easter Bunny gives you some chicken legs."
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "box"
+text = "pic=Chicken feet detail.png|The Easter Bunny gives you some chicken feet."
+parent = 76
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Here's a reward for all the help you've given me."
+parent = 76
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Chicken feet and legs? That's an...unusual reward."
+parent = 76
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Yes, well...it's a long story. I'll tell you if you do me another favour."
+parent = 76
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What it is now?"
+parent = 76
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "One of those blasted enchanted chocolate kebbits made off with the chocolate bunny mould. He took it down the small tunnel near where you entered the warren."
+parent = 76
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "If you could fetch it for me, I would be very grateful."
+parent = 76
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 76
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "option"
+text = "Sure, that doesn't sound too hard."
+parent = 76
+children = [88, 89, 90, 91, 92, 93, 94, 95]
+
+[[nodes]]
+id = 88
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sure, that doesn't sound too hard."
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 4
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Here is a magic egg. Take it into the rabbit warren. Near the light shining down from the surface is a small hole in the wall. Eat the egg in front of that and you'll be able to crawl through."
+parent = 87
+
+[[nodes]]
+id = 90
+depth = 4
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Don't eat it until you're in front of the tunnel entrance, or the magic will wear off too quickly."
+parent = 87
+
+[[nodes]]
+id = 91
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why do I need to turn into a rabbit?"
+parent = 87
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "The tunnel is too small for humans, and it will be quicker this way. Besides, it's not every day you get to be a rabbit!"
+parent = 87
+
+[[nodes]]
+id = 93
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Okay, after that?"
+parent = 87
+
+[[nodes]]
+id = 94
+depth = 4
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "That warren is certainly a labyrinth, but you can find the mould by using some lateral thinking when moving through the landscape. The kebbit who stole it moved ludicrously."
+parent = 87
+
+[[nodes]]
+id = 95
+depth = 4
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 3
+kind = "option"
+text = "I think I've helped you enough, already."
+parent = 76
+children = [97]
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I think I've helped you enough, already."
+parent = 96
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "How do I get the chocolate kebbit chunks?"
+parent = -1
+children = [99]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "above"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [101]
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "act"
+text = "above"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "option"
+text = "cond=If the player doesn't have a magic egg:|I need another magic egg."
+parent = -1
+children = [104, 105, 106]
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need another magic egg."
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Here you go. Eat it in front of the tunnel near where you enter the warren."
+parent = 103
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "end"
+parent = 103
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "What do I need to do?"
+parent = -1
+children = [108, 109, 110, 111, 112]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to do?"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Take the magic egg into the rabbit warren. Near the light shining down from the surface is a small hole in the wall. Eat the egg in front of that and you'll be able to crawl through."
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, after that?"
+parent = 107
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "That warren is certainly a labyrinth, but you can find the mould by using some lateral thinking when moving through the landscape. The kebbit who stole it moved ludicrously."
+parent = 107
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "act"
+text = "end"
+parent = 107
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [114]
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "act"
+text = "above"
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "box"
+text = "You can now use the Bunny Hop emote."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "other"
+text = "{{mes|Mmm...yummy.}}"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "other"
+text = "{{mes|You've been stunned!}}"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "box"
+text = "pic=Rabbit mould detail.png|You pick up the chocolate rabbit mould."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "other"
+text = "{{mes|The magic wears off as you climb out of the tunnel and you return to human form.}}"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "option"
+text = "I have the rabbit mould."
+parent = -1
+children = [123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have the rabbit mould!"
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Wonderful! I'll just take that and set this holiday right!"
+parent = 122
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I can't thank you enough for all of your help. I really will get my act together next year, I promise."
+parent = 122
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right, right."
+parent = 122
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "No, I really will. I have some great ideas about optimising the whole process."
+parent = 122
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Here's your reward. I have the usual deal with Diango, so if you lose it, he'll give you another."
+parent = 122
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "box"
+text = "pic=Chicken head detail.png|The Easter Bunny gives you a chicken head."
+parent = 122
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "box"
+text = "pic=Chicken wings detail.png|The Easter Bunny gives you some chicken wings. You can now do the improved Flap Emote, if you have unlocked it from the Stronghold of Security."
+parent = 122
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, why have you got a chicken suit lying around? Doesn't seem like a very bunny thing to have."
+parent = 122
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Well, for Halloween last year, I was invited to a costume party."
+parent = 122
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like fun."
+parent = 122
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Not when you're a BUNNY! They didn't have any costumes that would fit my feet and ears in...except the chicken one."
+parent = 122
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "It was humiliating. I'll never hear the end of it. They kept asking me to cross the road, it was awful!"
+parent = 122
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I never want to see that suit again! So, that's why I'm giving it to you."
+parent = 122
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [139]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "act"
+text = "above"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thanks for all your help. I think I'll stop outsourcing my work and, next year, just deliver everything myself...unless I get a better idea!"
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "other"
+text = "{{mes|You can't seem to squeeze through.}}"
+parent = -1

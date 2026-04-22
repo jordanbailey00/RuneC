@@ -1,0 +1,2355 @@
+title = "Transcript:Prying Times"
+npcs = ["'Squawking' Steve Beanie", "Thurgo", "Drink troll"]
+node_count = 315
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "option"
+text = "Got any work that needs doing here?"
+parent = -1
+children = [5, 6, 7, 8, 12, 13, 16, 17, 45]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Got any work that needs doing here?"
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Well, it just so happens that I'm looking for a rough, tough, piratical type for an adventure on the high seas!"
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' And I'm happy to say..."
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "cond"
+text = "If the player does not meet the requirements for Prying Times:"
+parent = 4
+children = [9, 10, 11]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' ... it isn't you!"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "box"
+text = "You do not meet all of the requirements to start the Prying Times miniquest."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' ... it is you!"
+parent = 4
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "cond"
+text = "If the player's recommended combat is lower than 10:"
+parent = 4
+children = [14, 15]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "box"
+text = "Before starting this miniquest, be aware that your combat level is lower than the recommended level of 10."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "continues"
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "select"
+text = "Start the Prying Times miniquest?"
+parent = 4
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 4
+children = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 37, 41, 42, 43, 44]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Great! So what do you need?"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "other"
+text = """
+''''Squawking' Steve Beanie:''' Hoist your mast, [player name], because there's some pirate looty just begging to be uncovered in a far off land! Thanks to me, you could be one of the privileged few to get your hands on it!
+"""
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Looty? You mean treasure?"
+parent = 17
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr!"
+parent = 17
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I can't say no to a bit of treasure. What do I need to do?"
+parent = 17
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Shiver me timbers! There is a crate full of high value goods just sitting at the port of Sarim!"
+parent = 17
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Port Sarim? I thought you said far off land?"
+parent = 17
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Aye! The far off land of Sarim!"
+parent = 17
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay... but surely if this is pirate treasure, someone would have noticed... Port Sarim is a busy place."
+parent = 17
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Luckily for us, a cunning Jolly Roger of a pirate has disguised it to look like a normal crate of cargo!"
+parent = 17
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hang on... is this actually just a normal cargo delivery? You know there's a notice board on the docks for that sort of thing..."
+parent = 17
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Normal?! Normal?! What kind of scallywag are you? There's nothing normal about a valuable crate of precious plundered pirate looty!"
+parent = 17
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Besides, you've already said you'll do it, and pirates never go back on their word."
+parent = 17
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm fairly certain they do, but fine. I'll go collect this crate for you."
+parent = 17
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Me hearty goes out to you! Once you have the looty, just leave it with the port master here. Now, give me your log and I'll write out the details."
+parent = 17
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "cond"
+text = "If the player doesn't have the log:"
+parent = 17
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I don't have it on me."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Well, go get it sailor! Heave to!"
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "cond"
+text = "If the player has max port tasks taken:"
+parent = 17
+children = [38, 39, 40]
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "box"
+text = "pic=Captain's log  detail.png|You hand your log to Steve and he flicks through the pages. After a moment, he hands it back without writing anything in it."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Bit of a problem, I'm afraid! It seems your log is already full! You should get some of this work done before you take on my critical pirate task!"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "box"
+text = "pic=Captain's log detail.png|You hand your log to Steve and he updates it with details on his request."
+parent = 17
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Now, get to it, sailor! Heave to and ballast your grog!"
+parent = 17
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "other"
+text = "{{mes|You have accepted the {{colour|teal|Pandemonium pirate looty delivery}} port task.}}"
+parent = 17
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "option"
+text = "No."
+parent = 4
+children = [46, 47, 48]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I've changed my mind. Maybe another time."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Shiver me timbers!"
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "act"
+text = "end"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "option"
+text = "About that job you wanted doing..."
+parent = -1
+children = [56, 57, 58, 59, 60, 61, 62]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that job you wanted doing..."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "other"
+text = """
+''''Squawking' Steve Beanie:''' Aye! Hoist your mast, [player name], because there's some pirate looty just begging to be uncovered in a far off land! Thanks to me, you could be one of the privileged few to get your hands on it!
+"""
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Looty? You mean treasure?"
+parent = 55
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr!"
+parent = 55
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I can't say no to a bit of treasure. What do I need to do?"
+parent = 55
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Shiver me timbers! There is a crate full of high value goods just sitting at the port of Sarim!"
+parent = 55
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "above"
+parent = 55
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "About that job you wanted doing..."
+parent = -1
+children = [70, 71, 72, 76, 80, 81, 82, 83]
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that job you wanted doing..."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "other"
+text = """
+''''Squawking' Steve Beanie:''' Aye! You need to collect the pirate looty from the port of Sarim! Once you have it, just leave it with the port master here. Now, give me your log and I'll write out the details.
+"""
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the log:"
+parent = 69
+children = [73, 74, 75]
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I don't have it on me."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Well, go get it sailor! Heave to!"
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "act"
+text = "end"
+parent = 72
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "cond"
+text = "If the player has max port tasks taken:"
+parent = 69
+children = [77, 78, 79]
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "box"
+text = "pic=Captain's log  detail.png|You hand your log to Steve and he flicks through the pages. After a moment, he hands it back without writing anything in it."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Bit of a problem, I'm afraid! It seems your log is already full! You should get some of this work done before you take on my critical pirate task!"
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "act"
+text = "end"
+parent = 76
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "box"
+text = "pic=Captain's log detail.png|You hand your log to Steve and he updates it with details on his request."
+parent = 69
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Now, get to it, sailor! Heave to and ballast your grog!"
+parent = 69
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "other"
+text = "{{mes|You have accepted the {{colour|teal|Pandemonium pirate looty delivery}} port task.}}"
+parent = 69
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "end"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "option"
+text = "About that job you wanted doing..."
+parent = -1
+children = [90, 91, 92]
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that job you wanted doing..."
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Aye! You need to collect the pirate looty from the port of Sarim! Once you have it, just leave it with the port master here. Heave to, sailor!"
+parent = 89
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "end"
+parent = 89
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "box"
+text = "pic=Crate of looty detail.png|You pick up a crate of looty."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "box"
+text = "Are you sure you wish to deposit the crate of looty here? If you obtained this cargo from a different port, you will have to return to that port to re-acquire it."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "select"
+text = "Deposit the cargo?"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [100, 101]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "box"
+text = "pic=Crate of looty detail.png|You deposit the crate of looty."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "act"
+text = "end"
+parent = 99
+is_terminal = true
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "option"
+text = "Yes, and don't ask again."
+parent = -1
+children = [103]
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "above"
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [105]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "box"
+text = "pic=Crate of looty detail.png|You deposit the crate of looty."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "About that job you wanted doing..."
+parent = -1
+children = [113, 114, 115]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that job you wanted doing..."
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Aye! I see you have the pirate looty! You need to leave it with the port master. Heave to, sailor!"
+parent = 112
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "act"
+text = "end"
+parent = 112
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "box"
+text = "pic=Crate of looty detail.png|You deliver the crate of looty and complete your courier task!"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Port master"
+text = "Thanks, sailor. I'll get that all sorted out."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "act"
+text = "(Player receives 180 Sailing experience.)"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "option"
+text = "I delivered that cargo for you."
+parent = -1
+children = [127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I delivered that cargo for you."
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Shiver me timbers! That was fast!"
+parent = 126
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So could I have some 'looty' now?"
+parent = 126
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Blistering barnacles! You thought that was it? You are too funny, fellow sailor!"
+parent = 126
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I get the feeling you're about to ask me to do something else..."
+parent = 126
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Aye! This is no ordinary crate, [player name]. This is a pirate crate! Only a special key can open it for us!"
+parent = 126
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But it is an ordinary crate, Steve. There was even a label on it addressed to you."
+parent = 126
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "other"
+text = """
+''''Squawking' Steve Beanie:''' I hope you're not trying to call Squawking Steve Beanie a liar?! That crate is pirate looty, and anything suggesting otherwise is clearly a plot by my rival pirate captains!
+"""
+parent = 126
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right... So what's this special key then?"
+parent = 126
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' It is something very few can forge! I suspect we will require the help of a master scallywag smith!"
+parent = 126
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is it essential that they be a scallywag as well as a smith? If not, I know of a dwarf near Mudskipper Point who might be able to help us."
+parent = 126
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' A dwarf? Yarr! That's an acceptable compromise! Ready your port side and go see this dwarf!"
+parent = 126
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll grab a redberry pie and go visit Thurgo..."
+parent = 126
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 126
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "option"
+text = "About that crate that needs opening..."
+parent = -1
+children = [148, 149, 150, 151, 152]
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that crate that needs opening..."
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Do you have our special key yet?"
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 147
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Then ready your port side and go see that dwarf!"
+parent = 147
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "act"
+text = "end"
+parent = 147
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "option"
+text = "quest=No|Can you make me another of Sir Vyvin's swords?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "quest=No|What is that cape you're wearing?"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "option"
+text = "I need some help with a 'special key'."
+parent = -1
+children = [159, 160, 161, 162, 163, 164, 165, 169, 170, 176]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need some help with a 'special key'."
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Thurgo"
+text = "A key? What for?"
+parent = 158
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, truth be told, I'm not sure it's really a key that I need. I just need something that can open a crate."
+parent = 158
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Thurgo"
+text = "Ah, well a crowbar should do that. It's a simple tool."
+parent = 158
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me make one?"
+parent = 158
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Thurgo"
+text = "I can indeed. We'll need a hammer, a steel bar, and of course, a redberry pie."
+parent = 158
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "cond"
+text = "If the player does not have all of the materials:"
+parent = 158
+children = [166, 167, 168]
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have all of that I'm afraid..."
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "Well, come back when you do."
+parent = 165
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "act"
+text = "end"
+parent = 165
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "select"
+text = "Make a crowbar with Thurgo?"
+parent = 158
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 158
+children = [171, 172, 173, 174, 175]
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "box"
+text = "pic=Crowbar detail.png|You hammer a crowbar out of your steel bar, while Thurgo directs you with a pie-filled mouth."
+parent = 170
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "act"
+text = "receives=a [[crowbar]]"
+parent = 170
+
+[[nodes]]
+id = 173
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "That should do nicely."
+parent = 170
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks! I should probably see what Steve makes of this."
+parent = 170
+
+[[nodes]]
+id = 175
+depth = 3
+kind = "act"
+text = "end"
+parent = 170
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "option"
+text = "No."
+parent = 158
+children = [177]
+
+[[nodes]]
+id = 177
+depth = 3
+kind = "act"
+text = "end"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "option"
+text = "quest=No|Can you make me another of Sir Vyvin's swords?"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "option"
+text = "quest=No|What is that cape you're wearing?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "So, can you help me make a crowbar?"
+parent = -1
+children = [182, 183, 184]
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, can you help me make a crowbar?"
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "Thurgo"
+text = "I can indeed. We'll need a hammer, a steel bar, and of course, a redberry pie."
+parent = 181
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "act"
+text = "above"
+parent = 181
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "option"
+text = "quest=No|Can you make me another of Sir Vyvin's swords?"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "option"
+text = "quest=No|What is that cape you're wearing?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "option"
+text = "Can you help me make another crowbar?"
+parent = -1
+children = [189, 190, 191]
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me make another crowbar?"
+parent = 188
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Thurgo"
+text = "I can indeed. We'll need a hammer, a steel bar, and of course, a redberry pie."
+parent = 188
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "act"
+text = "above"
+parent = 188
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "box"
+text = "pic=Crowbar detail.png|Steve Beanie on the Pandemonium can tell you more about what to do with this."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Stop! We aren't ready to open that yet!"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "option"
+text = "I made that 'special key' you needed."
+parent = -1
+children = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I made that 'special key' you needed."
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "box"
+text = "pic=Crowbar detail.png|You show Steve the crowbar."
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Aha! There she crows! This is perfect!"
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm glad you approve. Shall I use it to crack this crate open?"
+parent = 200
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "box"
+text = "pic=Crowbar detail.png|You raise the crowbar hopefully."
+parent = 200
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Wait!"
+parent = 200
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "box"
+text = "pic=Crowbar detail.png|You lower the crowbar dejectedly."
+parent = 200
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's wrong?"
+parent = 200
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' An artifact{{sic|British spelling is 'artefact'.}} of this power needs a test before we try it on our precious looty!"
+parent = 200
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 200
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fine. What should I test it on?"
+parent = 200
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' I noticed a crate of grog floating around by the north westmost{{sic}} island of the Pandemonium. Cast off your keel and sail your vessel over there."
+parent = 200
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And then?"
+parent = 200
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Well, you open it with your new key and sample the contents, of course."
+parent = 200
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why would I even want to do that? How do you even know it's drinkable?"
+parent = 200
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' I'm a true pirate, so I know good grog when I see it. As for why, no sailor has truly experienced the sea until they have drunk everything it has to offer."
+parent = 200
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' In fact, you should keep a log of it all. I know I do!"
+parent = 200
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay... this doesn't seem very healthy, but fine."
+parent = 200
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! That's the spirit!"
+parent = 200
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "option"
+text = "About that crate..."
+parent = -1
+children = [228, 229, 230, 231, 232, 233]
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that crate..."
+parent = 227
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Have you sampled that grog yet, sailor?"
+parent = 227
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet. Where can I find it again?"
+parent = 227
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' I saw it floating around by the north westmost{{sic}} island of the Pandemonium. Cast off your keel and sail your vessel over there."
+parent = 227
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll be back soon."
+parent = 227
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "act"
+text = "end"
+parent = 227
+is_terminal = true
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "cond"
+text = "If the player does not have a crowbar:"
+parent = -1
+children = [237, 238]
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "box"
+text = "pic=Crowbar detail.png|You need a crowbar to open this crate."
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "act"
+text = "end"
+parent = 236
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [240, 241]
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "box"
+text = "pic=Bottle of fish bladder stout detail.png|The crate contains a bottle of fish bladder stout, but you don't have enough room to take it."
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "act"
+text = "end"
+parent = 239
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "cond"
+text = "If the player is already holding a bottle of fish bladder stout:"
+parent = -1
+children = [243, 244]
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "box"
+text = "pic=Bottle of fish bladder stout detail.png|The crate contains a bottle of fish bladder stout, but you don't take it as you already have one."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "box"
+text = "pic=Bottle of fish bladder stout detail.png|You pry open the crate and take a bottle of fish bladder stout to sample."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This doesn't look like grog..."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "option"
+text = "About that crate..."
+parent = -1
+children = [253, 254, 255, 256, 257, 258]
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that crate..."
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Have you sampled that grog yet, sailor?"
+parent = 252
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 252
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Well, then get to it, you scallywag! Make sure you do it on your vessel as well. It's important to feel that sea air while trying a new drink."
+parent = 252
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll be back soon."
+parent = 252
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "act"
+text = "end"
+parent = 252
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "cond"
+text = "If the player drinks the \"grog\" whilst on land:"
+parent = -1
+children = [262, 263]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "box"
+text = "The label on the bottle indicates the drink would be best appreciated on deck. You should return to your boat before you drink it."
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "act"
+text = "end"
+parent = 261
+is_terminal = true
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "cond"
+text = "If the player drinks the \"grog\" whilst on a boat:"
+parent = -1
+children = [265, 266, 267, 274, 276]
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "box"
+text = "This drink has been sealed in a crate for an unknown amount of time. It could do anything to you, good or bad. Are you sure you want to drink it?"
+parent = 264
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "select"
+text = "Are you sure you want to drink this?"
+parent = 264
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 264
+children = [268, 269, 270, 271, 272, 273]
+
+[[nodes]]
+id = 268
+depth = 3
+kind = "other"
+text = "{{mes|You drink a bottle of fish bladder stout.}}"
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 3
+kind = "other"
+text = "{{mes|The stout is delightful...}}"
+parent = 267
+
+[[nodes]]
+id = 270
+depth = 3
+kind = "other"
+text = "{{mes|...but as you drink it, something appears to defend it!}}"
+parent = 267
+
+[[nodes]]
+id = 271
+depth = 3
+kind = "speaker"
+speaker = "Drink troll"
+text = "{{overhead|Drinkies be mine! Leave dem drinkies!}}"
+parent = 267
+
+[[nodes]]
+id = 272
+depth = 3
+kind = "other"
+text = "{{mes|Charting complete: Find a sealed crate near the Pandemonium and sample the contents.}}"
+parent = 267
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "act"
+text = "end"
+parent = 267
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "option"
+text = "Yes, and don't ask again."
+parent = 264
+children = [275]
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "act"
+text = "above"
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "option"
+text = "No."
+parent = 264
+children = [277]
+
+[[nodes]]
+id = 277
+depth = 3
+kind = "act"
+text = "end"
+parent = 276
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "option"
+text = "About that crate..."
+parent = -1
+children = [283, 284, 285, 286, 287, 288, 289]
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that crate..."
+parent = 282
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Have you sampled that grog yet, sailor?"
+parent = 282
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have. Did you know that troll was going to jump out and attack me? I had the fright of my life!"
+parent = 282
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Ah, blistering barnacles! I did forget to mention that does sometimes happen."
+parent = 282
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course it does. Right, no more wasting time. I'm assuming that's the crate next to you? I'm opening it."
+parent = 282
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Of course! You are the captain after all, my first mate!"
+parent = 282
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "act"
+text = "end"
+parent = 282
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Yarr! What will it be?"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "option"
+text = "quest=No|Any word from Old Grog?"
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "option"
+text = "Let's get this crate open."
+parent = -1
+children = [297, 298, 299]
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's get this crate open."
+parent = 296
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Go ahead! You are the captain after all, my first mate!"
+parent = 296
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "act"
+text = "end"
+parent = 296
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the Pandemonium's one rule?"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks."
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "cond"
+text = "If the player is not holding the crowbar:"
+parent = -1
+children = [303, 304]
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "box"
+text = "pic=Crowbar detail.png|You need a crowbar to open the crate."
+parent = 302
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "act"
+text = "end"
+parent = 302
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "box"
+text = "pic=Crowbar detail.png|You pry the crate open with the crowbar..."
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "box"
+text = "pic=Crowbar detail.png|pic2=Crowbar detail.png|... and reveal a crate full of crowbars."
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Your looty, sailor! Take as many as you like."
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [309]
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "box"
+text = "pic=Crowbar detail.png|Steve hands you a crowbar."
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "other"
+text = """
+''''Squawking' Steve Beanie:''' Now, with your new looty in hand, you're ready to take on the seas like never before! Soon you'll be as great a sailor as me! Speaking of which, you're not still using that raft, are you?
+"""
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why do you ask?"
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "other"
+text = "''''Squawking' Steve Beanie:''' Well, I think it's about time you sort yourself out with an upgrade! You should check in with Jim. I'm sure he'll have something fitting. Now, avast!"
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

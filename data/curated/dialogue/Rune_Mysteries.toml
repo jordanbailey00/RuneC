@@ -1,0 +1,1946 @@
+title = "Transcript:Rune Mysteries"
+npcs = ["Duke Horacio", "Aubury", "Archmage Sedridor"]
+node_count = 248
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Have you any quests for me?"
+parent = -1
+children = [3, 4, 5, 6, 7, 8, 9, 10, 11, 16]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you any quests for me?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well, I wouldn't describe it as a quest, but there is something I could use some help with."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "We were recently sorting through some of the things stored down in the cellar, and we found this old talisman."
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "box"
+text = "pic=Air talisman detail.png|The Duke shows you a talisman."
+parent = 2
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "The Order of Wizards over at the Wizards' Tower have been on the hunt for magical artefacts recently. I wonder if this might be just the kind of thing they're after."
+parent = 2
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Would you be willing to take it to them for me?"
+parent = 2
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "select"
+text = "Start the Rune Mysteries quest?"
+parent = 2
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 2
+children = [12, 13, 14, 15]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sure, no problem."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Thank you very much. You'll find the Wizards' Tower south west of here, across the bridge from Draynor Village. When you arrive, look for Sedridor. He is the Archmage of the wizards there."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "box"
+text = "pic=Air talisman detail.png|The Duke hands you the talisman."
+parent = 11
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "option"
+text = "No."
+parent = 2
+children = [17, 18, 19]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not right now."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "As you wish. Hopefully I can find someone else to help."
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "option"
+text = "quest=No|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "What did you want me to do again?"
+parent = -1
+children = [24, 25, 33]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What did you want me to do again?"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "cond"
+text = "If the player lost the talisman:"
+parent = 23
+children = [26, 27, 28, 29, 30, 31, 32]
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What did you want me to do again?"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Did you take that talisman to Sedridor?"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I lost it."
+parent = 25
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Ah, well that explains things. One of my servants found it outside, and it seemed too much of a coincidence that another would suddenly show up."
+parent = 25
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Here, take it to the Wizards' Tower, south west of here. Please try not to lose it this time."
+parent = 25
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "box"
+text = "pic=Air talisman detail.png|The Duke hands you the talisman."
+parent = 25
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "cond"
+text = "If the player has the talisman:"
+parent = 23
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Take that talisman I gave you to Sedridor at the Wizards' Tower. You'll find it south west of here, across the bridge from Draynor Village."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, will do."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "option"
+text = "quest=No|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Welcome adventurer, to the world renowned Wizards' Tower, home to the Order of Wizards. We are the oldest and most prestigious group of wizards around. Now, how may I help you?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you Sedridor?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Sedridor? What is it you want with him?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Duke of Lumbridge sent me to find him. I have this talisman he found. He said Sedridor would be interested in it."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Did he now? Well hand it over then, and we'll see what all the hubbub is about."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "Okay, here you are."
+parent = -1
+children = [45, 46, 101]
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, here you are."
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "cond"
+text = "If the player has the talisman:"
+parent = 44
+children = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 91]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "box"
+text = "pic=Air talisman detail.png|You hand the talisman to Sedridor."
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hmm... Doesn't seem to be anything too special. Just a normal air talisman by the looks of things. Still, looks can be deceiving. Let me take a closer look..."
+parent = 46
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "box"
+text = "pic=Air talisman detail.png|Sedridor murmurs some sort of incantation and the talisman glows slightly."
+parent = 46
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "How interesting... It would appear I spoke too soon. There's more to this talisman than meets the eye. In fact, it may well be the last piece of the puzzle."
+parent = 46
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Puzzle?"
+parent = 46
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Indeed! The lost legacy of the first tower. This talisman may in fact be key to finding the forgotten essence mine!"
+parent = 46
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "First tower? Forgotten essence mine? What are you on about?"
+parent = 46
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Ah, my apologies, adventurer. Allow me to fill you in."
+parent = 46
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 46
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "option"
+text = "Go ahead."
+parent = 46
+children = [57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 87]
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Go ahead."
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "As you are likely aware, when we cast spells, we do so using the power of runes."
+parent = 56
+
+[[nodes]]
+id = 59
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "These runes are crafted from a highly unique material, and then imbued with magical power from various runic altars. Different altars create different runes with different magical effects."
+parent = 56
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "The process of imbuing runes is called runecrafting. Legend has it that this was once a common art, but the secrets of how to do it were lost until just under two hundred years ago."
+parent = 56
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = """
+The rediscovery of runecrafting had such a large impact on the world, that it marked the dawn of the Fifth Age. It also resulted in the birth of our order, and the construction of the first Wizards' Tower.
+"""
+parent = 56
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "If it was the first tower, I'm guessing it doesn't exist anymore? What happened?"
+parent = 56
+
+[[nodes]]
+id = 63
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "It was burnt down by traitorous members of our own order. They followed the evil god of chaos, Zamorak, and they wished to claim our magical discoveries in his name."
+parent = 56
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "When the tower burnt down, much was lost, including an important incantation. A spell that could be used to teleport to a hidden essence mine."
+parent = 56
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "The essence mine you mentioned earlier, I assume?"
+parent = 56
+
+[[nodes]]
+id = 66
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Precisely. Rune essence is the material used to make runes, but it is incredibly rare. That essence mine was the only place it could be found that our order knew of."
+parent = 56
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Since the incantation was lost, we have struggled to maintain our stocks of rune essence."
+parent = 56
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "There are seemingly those out there that still know where to find some, but while they have been willing to sell essence to us, they have refused to share knowledge on how to find it ourselves."
+parent = 56
+
+[[nodes]]
+id = 69
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm starting to see why this is so important. So you think this talisman can help you rediscover that incantation?"
+parent = 56
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I do! All magic leaves traces, and from what I can tell, this talisman was used heavily during the time of the first tower."
+parent = 56
+
+[[nodes]]
+id = 71
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "It would have been taken to the essence mine many times, and the magical energies there will have left an imprint on it. To think that it was hidden in Lumbridge all this time!"
+parent = 56
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what happens now?"
+parent = 56
+
+[[nodes]]
+id = 73
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "It is critical I share this discovery with my associate, Aubury, as soon as possible. He's not much of a wizard, but he's an expert on runecrafting, and his insight will be essential."
+parent = 56
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Would you be willing to visit him for me? I would go myself, but I wish to study this talisman some more."
+parent = 56
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 56
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "option"
+text = "Yes, certainly."
+parent = 56
+children = [77, 78, 79, 80, 81, 83]
+
+[[nodes]]
+id = 77
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Yes, certainly."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 5
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "He runs a rune shop in the south east of Varrock. Please, take this package of research notes to him. If all goes well, the secrets of the essence mine may soon be ours once more!"
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 5
+kind = "box"
+text = "pic=Research package detail.png|Sedridor hands you a package."
+parent = 76
+
+[[nodes]]
+id = 80
+depth = 5
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Best of luck, [player name]."
+parent = 76
+
+[[nodes]]
+id = 81
+depth = 5
+kind = "cond"
+text = "If the player gave the talisman to him while doubting his identity:"
+parent = 76
+children = [82]
+
+[[nodes]]
+id = 82
+depth = 6
+kind = "act"
+text = "end"
+parent = 81
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 5
+kind = "cond"
+text = "If the player gave the talisman to him without doubting his identity:"
+parent = 76
+children = [84, 85, 86]
+
+[[nodes]]
+id = 84
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "I don't remember telling you my name... How do you know it?"
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 6
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Really now? I am the Archmage you know."
+parent = 83
+
+[[nodes]]
+id = 86
+depth = 6
+kind = "act"
+text = "end"
+parent = 83
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 4
+kind = "option"
+text = "No, I'm busy."
+parent = 56
+children = [88, 89, 90]
+
+[[nodes]]
+id = 88
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm busy."
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 5
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "As you wish adventurer. I will continue to study this talisman you have brought me. Return here if you find yourself with some spare time to help me."
+parent = 87
+
+[[nodes]]
+id = 90
+depth = 5
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "option"
+text = "Actually, I'm not interested."
+parent = 46
+children = [92, 93, 94, 95, 96, 97, 99]
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I'm not interested."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Oh... Well I guess the short of it is that this talisman could be key to helping us rediscover an important teleportation incantation."
+parent = 91
+
+[[nodes]]
+id = 94
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "With it, we'll be able to access a hidden essence mine, our lost source of rune essence."
+parent = 91
+
+[[nodes]]
+id = 95
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "It is critical I share this discovery with my associate, Aubury, as soon as possible. He's not much of a wizard, but he's an expert on runecrafting, and his insight will be essential."
+parent = 91
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Would you be willing to visit him for me? I would go myself, but I wish to study this talisman some more."
+parent = 91
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "option"
+text = "Yes, certainly."
+parent = 91
+children = [98]
+
+[[nodes]]
+id = 98
+depth = 5
+kind = "act"
+text = "above"
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 4
+kind = "option"
+text = "No, I'm busy."
+parent = 91
+children = [100]
+
+[[nodes]]
+id = 100
+depth = 5
+kind = "act"
+text = "above"
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "cond"
+text = "If the player does not have the talisman:"
+parent = 44
+children = [102, 103, 104, 105, 106, 107, 108]
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, here you are."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "..."
+parent = 101
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 101
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Well?"
+parent = 101
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't seem to have it with me."
+parent = 101
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hmm? You are a very odd person. Come back again when you have it."
+parent = 101
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "No, I'll only give it to Sedridor."
+parent = -1
+children = [110, 111, 112, 114]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'll only give it to Sedridor."
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Well good news, for I am Sedridor! Now, hand it over and let me have a proper look at it, hmm?"
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "option"
+text = "Okay, here you are."
+parent = 109
+children = [113]
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "act"
+text = "above"
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "option"
+text = "No, I don't think you are Sedridor."
+parent = 109
+children = [115, 116, 117, 118, 119, 120, 121, 122]
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't think you are Sedridor."
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hmm... Well, I admire your caution adventurer. Perhaps I can prove myself? I will use my mental powers to discover..."
+parent = 114
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Your name is... [player name]!"
+parent = 114
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're right! How did you know that?"
+parent = 114
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Well I am the Archmage you know! You don't get to my position without learning a few tricks along the way!"
+parent = 114
+
+[[nodes]]
+id = 120
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "So now that I have proved myself to you, why don't you hand over that talisman, hmm?"
+parent = 114
+
+[[nodes]]
+id = 121
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, here you are."
+parent = 114
+
+[[nodes]]
+id = 122
+depth = 3
+kind = "act"
+text = "above"
+parent = 114
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Welcome back, adventurer. Do you have that talisman now?"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the talisman:"
+parent = -1
+children = [125, 126, 127]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Well come back when you have it."
+parent = 124
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "end"
+parent = 124
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "cond"
+text = "If the player does have the talisman:"
+parent = -1
+children = [129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 142]
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Welcome back, adventurer. Do you have that talisman now?"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "box"
+text = "pic=Air talisman detail.png|You hand the talisman to Sedridor."
+parent = 128
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hmm... Doesn't seem to be anything too special. Just a normal air talisman by the looks of things. Still, looks can be deceiving. Let me take a closer look..."
+parent = 128
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "box"
+text = "pic=Air talisman detail.png|Sedridor murmurs some sort of incantation and the talisman glows slightly."
+parent = 128
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "How interesting... It would appear I spoke too soon. There's more to this talisman than meets the eye. In fact, it may well be the last piece of the puzzle."
+parent = 128
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Puzzle?"
+parent = 128
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Indeed! The lost legacy of the first tower. This talisman may in fact be key to finding the forgotten essence mine!"
+parent = 128
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "First tower? Forgotten essence mine? What are you on about?"
+parent = 128
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Ah, my apologies, adventurer. Allow me to fill you in."
+parent = 128
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 128
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "option"
+text = "Go ahead."
+parent = 128
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 3
+kind = "act"
+text = "above"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "option"
+text = "Actually, I'm not interested."
+parent = 128
+children = [143]
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "act"
+text = "above"
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So is that talisman of any use to you?"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "act"
+text = "Continues previous dialogue starting at \"You hand the talisman to Sedridor\""
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, adventurer. Please, take this package of research notes to Aubury in Varrock. He runs a rune shop in the south east of the city."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "act"
+text = "Sedridor hands you a package."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Best of luck, [player name]."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "cond"
+text = "If the player gave the talisman to while doubting his identity:"
+parent = -1
+children = [150]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "act"
+text = "end"
+parent = 149
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "cond"
+text = "If the player gave the talisman to him without doubting his identity:"
+parent = -1
+children = [152, 153, 154]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't remember telling you my name... How do you know it?"
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Really now? I am the Archmage you know."
+parent = 151
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "act"
+text = "end"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, adventurer. Did you take that package to Aubury?"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "cond"
+text = "If the player lost the package:"
+parent = -1
+children = [157, 158, 159, 160, 161, 163]
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost it. Could I have another?"
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Well it's a good job I have copies of everything."
+parent = 156
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "box"
+text = "pic=Research package detail.png|Sedridor hands you a package."
+parent = 156
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Best of luck, [player name]."
+parent = 156
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "cond"
+text = "If the player gave the talisman to while doubting his identity:"
+parent = 156
+children = [162]
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "act"
+text = "end"
+parent = 161
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "cond"
+text = "If the player gave the talisman to him without doubting his identity:"
+parent = 156
+children = [164, 165, 166]
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't remember telling you my name... How do you know it?"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Really now? I am the Archmage you know."
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "cond"
+text = "If the player has the package:"
+parent = -1
+children = [168, 169, 170]
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "He runs a rune shop in the south east of Varrock. Please deliver it to him soon."
+parent = 167
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "act"
+text = "end"
+parent = 167
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Aubury"
+text = "Do you want to buy some runes?"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "option"
+text = "quest=No|Yes please!"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "I've been sent here with a package for you."
+parent = -1
+children = [175, 176, 177, 178, 179, 199]
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've been sent here with a package for you."
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Aubury"
+text = "A package? From who?"
+parent = 174
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "From Sedridor at the Wizards' Tower."
+parent = 174
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Aubury"
+text = "From Sedridor? But... surely, he can't have? Please, let me have it. It must be extremely important for him to have sent a stranger."
+parent = 174
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "cond"
+text = "If the player has the package:"
+parent = 174
+children = [180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 196]
+
+[[nodes]]
+id = 180
+depth = 3
+kind = "box"
+text = "pic=Research package detail.png|You hand the package to Aubury."
+parent = 179
+
+[[nodes]]
+id = 181
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "Now, let's have a look..."
+parent = 179
+
+[[nodes]]
+id = 182
+depth = 3
+kind = "box"
+text = "pic=Research package detail.png|Aubury goes through the package of research notes."
+parent = 179
+
+[[nodes]]
+id = 183
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "This... this is incredible."
+parent = 179
+
+[[nodes]]
+id = 184
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "My gratitude to you adventurer for bringing me these research notes. Thanks to you, I think we finally have it."
+parent = 179
+
+[[nodes]]
+id = 185
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You mean the incantation?"
+parent = 179
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "Well when we combine my own research with this latest discovery, I think we might just..."
+parent = 179
+
+[[nodes]]
+id = 187
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "No, no, I'm getting ahead of myself. The signs are promising, but let's not jump to any conclusions just yet."
+parent = 179
+
+[[nodes]]
+id = 188
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "Here, take these notes back to Sedridor. They should hopefully give him everything he needs."
+parent = 179
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "box"
+text = "pic=Research notes (Rune Mysteries) detail.png|Aubury hands you some research notes."
+parent = 179
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "Before you leave, why not have a cup of tea?"
+parent = 179
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 179
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "option"
+text = "I'd love a cup of tea."
+parent = 179
+children = [193, 194, 195]
+
+[[nodes]]
+id = 193
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'd love a cup of tea."
+parent = 192
+
+[[nodes]]
+id = 194
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Aaah, nothing like a nice cuppa tea!}} <!--run energy fully restored-->"
+parent = 192
+
+[[nodes]]
+id = 195
+depth = 4
+kind = "act"
+text = "end"
+parent = 192
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 3
+kind = "option"
+text = "No, thank you."
+parent = 179
+children = [197, 198]
+
+[[nodes]]
+id = 197
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No, thank you."
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 4
+kind = "act"
+text = "end"
+parent = 196
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "cond"
+text = "If the player does not have the package:"
+parent = 174
+children = [200, 201, 202, 203]
+
+[[nodes]]
+id = 200
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Uh... yeah... about that... I kind of don't have it with me..."
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "What kind of person says they have a delivery for me, but not with them? Honestly."
+parent = 199
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "speaker"
+speaker = "Aubury"
+text = "Come back when you have it."
+parent = 199
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "act"
+text = "end"
+parent = 199
+is_terminal = true
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "quest=No|Oh, it's a rune shop. No thank you, then."
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Aubury"
+text = "Hello. Did you take those notes back to Sedridor?"
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "cond"
+text = "If the player lost the notes:"
+parent = -1
+children = [207, 208, 209, 210]
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, but I lost them."
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Aubury"
+text = "Well, luckily I have duplicates. It's a good thing they are written in code. I wouldn't want the wrong kind of person to get access to the information contained within."
+parent = 206
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "box"
+text = "pic=Research notes (Rune Mysteries) detail.png|Aubury hands you some research notes."
+parent = 206
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "act"
+text = "end"
+parent = 206
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "cond"
+text = "If the player has the notes:"
+parent = -1
+children = [212, 213, 214, 215, 216, 217]
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Aubury"
+text = "Don't take too long. He'll be eager to see if this is indeed the breakthrough we were hoping for."
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Aubury"
+text = "Now, did you want to buy some runes?"
+parent = 211
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 211
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "option"
+text = "quest=No|Yes please!"
+parent = 211
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "option"
+text = "quest=No|No thank you."
+parent = 211
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Ah, [player name]. How goes your quest? Have you delivered my research to Aubury yet?"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have. He gave me some notes to give to you."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Wonderful! Let's have a look then."
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "cond"
+text = "If the player has the notes:"
+parent = -1
+children = [222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239]
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "box"
+text = "pic=Research notes (Rune Mysteries) detail.png|You hand the notes to Sedridor."
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Alright, let's see what Aubury has for us..."
+parent = 221
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Yes, this is it! The lost incantation!"
+parent = 221
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you'll be able to access that essence mine now?"
+parent = 221
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "That's right! Because of you, our order finally has a proper source of rune essence again! Thank you, friend."
+parent = 221
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "If you ever want to access the essence mine yourself, just let me know. It's the least I can do."
+parent = 221
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I will also share the incantation with others, including Aubury. When I do, I'll let them know that you are to be given unlimited access to the mine."
+parent = 221
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Oh, and you can have this air talisman back as well. I have no further need of it, and I'm sure you will find it useful."
+parent = 221
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "In case you didn't know, the talisman can be used to craft air runes. Just take it to the Air Altar south of Falador along with some rune essence."
+parent = 221
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Don't worry if you can't find the altar. The talisman can guide you there. You may find talismans for other altars as well while adventuring. They'll let you craft other types of rune."
+parent = 221
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great! Thanks!"
+parent = 221
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "My pleasure!"
+parent = 221
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = 221
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 221
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "option"
+text = "Can you teleport me to the Rune Essence Mine?|quest=no"
+parent = 221
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "option"
+text = "Who else knows the teleport to the Rune Essence Mine?|quest=no"
+parent = 221
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "option"
+text = "Could you tell me about the old Wizards' Tower?|quest=no"
+parent = 221
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "option"
+text = "I'd better get going."
+parent = 221
+children = [240, 241]
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 3
+kind = "act"
+text = "end"
+parent = 239
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "cond"
+text = "If the player does not have the notes:"
+parent = -1
+children = [243, 244, 245, 246, 247]
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Err, you're not going to believe this..."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "What?"
+parent = 242
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have them."
+parent = 242
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Right... You're rather careless aren't you. I suggest you go and speak to Aubury once more. With luck he will have made copies."
+parent = 242
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true

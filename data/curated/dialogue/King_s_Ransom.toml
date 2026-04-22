@@ -1,0 +1,8325 @@
+title = "Transcript:King's Ransom"
+npcs = ["Gossip", "Pierre", "Stanford", "Guard (Sinclair Mansion)", "Hobbes", "Louisa", "Mary (Murder Mystery)", "Donovan the Family Handyman", "Guard (courthouse)", "Anna", "Court judge", "Prosecutor", "David (Murder Mystery)", "Morgan Le Faye", "King Arthur", "Merlin", "Sir Bedivere", "Sir Gawain", "Sir Kay", "Sir Lancelot", "Sir Lucan", "Sir Palomedes", "Sir Pelleas", "Sir Tristram", "Wizard Cromperty", "Fortress Guard", "Squire (Camelot)"]
+node_count = 1052
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Oh, I remember you. You're the one that discovered Lord Sinclair's murderer. Well, I can tell you, strange things are afoot once again."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really? What's happened?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the requirements to start the quest"
+parent = -1
+children = [3]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, you didn't hear it from me, but I've heard the Sinclair family have vamoosed! Just up and left the mansion."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You mean they let the murderer get away?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Of course not! Anna's safely locked in the Seers' Village jail. She'll be going to trial soon, so I've heard."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Anna? Is that who they arrested? I thought...hmm, never mind."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Yes, the guards received evidence from one of the family members that conclusively proved Anna did it. All other evidence was thrown out, it was that good."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "So they arrested her and soon the case will go to court."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, why is it a big deal that the Sinclairs have left, then? Maybe they wanted to get away from the memory of their father's death."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, it wouldn't be suspicious at all, but King Arthur has also disappeared."
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "No one has seen him or the knights in quite a while. Quite a coincidence, don't you think?"
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "select"
+text = "Start the King's Ransom quest?"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [15, 16, 17]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How curious. Maybe I should investigate it."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "You didn't hear it from me, but I believe that guard in the garden is also investigating it. He might be able to tell you more."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "end"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Very odd coincidence, but I don't really have time to look into it now."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Ah, too bad. I'll have to get news from my other sources."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Have you spoken to the guard by the mansion? He won't tell me much, he called me a gossip - the nerve - but he might be willing to speak to you."
+parent = -1
+children = [23]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "box"
+text = "You can't open the door, it's locked tight."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "box"
+text = "A slightly broken window. Could be easily shattered."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "box"
+text = "You need the guards' permission to do that."
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You know, this has been bugging me for a while: Why do the Sinclairs have a dog handler on the payroll when they only have one dog?"
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "Have you seen that dog? It's a nasty piece of work. Even I don't like going near it."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "'Allo. I don't think you'll be able to visit the mansion today, it's been locked up tight for a while now."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Good day, [player name]. I'm afraid we meet under strange circumstances again."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So I have heard. The town gossip informed me that something was amiss. I've come to offer my assistance."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Finally, that man serves a purpose. I'm glad to have your help. I'm baffled again and my hands are tied."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How so?"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "The Sinclairs have disappeared, though I'm not sorry to see them go, but what worries me is the disappearance of King Arthur and his knights around the same time."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They haven't returned to their other realm have they?"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "No, there's no evidence to suggest that. It never sat well with the Sinclair children when their old man gave the castle to King Arthur and"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "moved the family to this mansion. I suspect the murder of old Sinclair was just the first step in a deeper plot to retake their 'birthright'."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How goes the investigation, then? What evidence have you gathered so far?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "That's the problem. The Seers' Village council has forbidden the guards from breaking into Camelot or the Sinclair Mansion for further investigation."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "They claim it's a breach of privacy or something like that. My suspicions mean nothing without proof to back them up, but I can't get proof without losing my job."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Which is why you're happy to see me, right? A rogue party could break into the mansion and investigate further, without the fear of losing their job. Am I right?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Exactly! I'm sure you'll manage to find a way into the house."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi. I was wondering, do you know why the mansion is all locked up?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "I'm not meant to talk to anyone outside the family. On pain of death."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's a bit harsh. Thanks anyway."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "'Allo, what can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm trying to get into the mansion. Do you know why it's all locked up?"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "I wasn't privy to the reason, but the whole family upped and left not long ago. Since then, I haven't heard a peep from anyone. I was told not to enter the mansion or to speak about their departure."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But you're willing to speak to me?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "Didn't say I was going to obey them, did I?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Soooooo? What did the guard have to say?"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Promise you won't tell?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Of course, of course."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "Tell him."
+parent = -1
+children = [62, 63]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The guard asked me to break into the Sinclair Mansion and search for clues about where they had gone."
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "end"
+parent = 61
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "option"
+text = "Don't tell him."
+parent = -1
+children = [65, 66, 67]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "He said..."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "that you were a gossip and I shouldn't divulge privileged information."
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "What are you doing here? I thought the house was locked up tight."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, it is, except for that broken window... Very convenient."
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where has the Sinclair family gone?"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "I'm under strict orders not to speak to anyone not of the Sinclair family."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "I was told if I left the house that I would be killed!"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think you need to look for a new job. Your employers are a bit scary."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "What are you doing in here? I didn't think anyone could enter or leave this place."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for clues as to where the Sinclair family has gone. Why can't anyone enter or leave?"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "We were told a curse had been placed on us. If we left the mansion we'd be struck down in an instant."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How peculiar."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Who...? Oh, I remember you! You were asking all those questions about Lord Sinclair's murder. You had all sorts of evid-whats-its."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, that was me. Now I'm trying to find out where the Sinclair family has gone."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "I don't know. They got really secretive after Lord Sinclair was killed and then suddenly left. That's all I know."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "You aren't here to murder us in our sleep are you?"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'd not be doing a very good job of it, if I was, considering you're not asleep."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "So, you are here to kill us!"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh, no. I'm just browsing."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "act"
+text = "Scrap paper interface opens."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "box"
+text = "You already have that note."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "act"
+text = "Address form interface opens."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "box"
+text = "You already have that form."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "box"
+text = "You search the bookcase..."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "box"
+text = "You find a piece of Black Knight armour, which seems very out of place in the Sinclair Mansion."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "box"
+text = "You search the bookcase..."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "box"
+text = "You've already searched this bookcase for clues."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Mary/Donovan/Louisa/Hobbes/Pierre/Stanford"
+text = "I don't know anything about that."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Any luck getting into the mansion? Did you get some evidence?"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "option"
+text = "I have proof that the Sinclairs have left."
+parent = -1
+children = [105, 106, 107, 108, 109, 110, 111]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that the Sinclairs have left."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "box"
+text = "File:Address_form.png|You present the guard with the change of address form."
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "A form? What does this prove?"
+parent = 104
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't you see? The Sinclairs have left for good. They premeditated their departure from the mansion."
+parent = 104
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Ah! Of course. Unfortunately, they filled in all of the form except where their new address is."
+parent = 104
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "cond"
+text = "If the player has lost the scrap paper"
+parent = 104
+children = [112, 113, 114]
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Really? Where?"
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Errr, I seem to have left it somewhere."
+parent = 111
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "act"
+text = "end"
+parent = 111
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "I have proof that links the Sinclairs to Camelot."
+parent = -1
+children = [116, 117, 118, 119, 120, 121]
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that links the Sinclairs to Camelot."
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "box"
+text = "pic=Scrap paper detail.png|You present the guard with the scrap of paper."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Aha! They've gone to the desert. They're meeting up with a camel."
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No...It's not camel, like the animal. The note isn't whole, they were writing the word Camelot. They were meeting at Camelot, this is our evidence to connect the Sinclairs to King Arthur."
+parent = 115
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Oh, right. Well, it connects them to King Arthur, but it doesn't prove that they had any bad intent towards him. For all we know they were going to a party."
+parent = 115
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "option"
+text = "I have proof of foul play."
+parent = -1
+children = [123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have proof of foul play."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "box"
+text = "pic=Black knight helm detail.png|You present the guard with the black full helm."
+parent = 122
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Hmm, this armour resembles Black Knight armour. The only Black Knights on this side of White Wolf Mountain are those that work for Morgan Le Faye."
+parent = 122
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Exactly. And we know Morgan Le Faye has a history of harassing Merlin and King Arthur."
+parent = 122
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Since there is no sign of a struggle inside the Sinclair Mansion, we can only assume the knights were there by request."
+parent = 122
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Oh right! With this evidence and the note you brought me, we know they had intentions to do harm to King Arthur."
+parent = 122
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "cond"
+text = "After showing all 3 pieces of evidence to the guard:"
+parent = 122
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Thank you, [player name]. We have all the proof we need to present to the Seers' Village council that something suspicious is going on."
+parent = 122
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "They'll review the evidence and hopefully give me permission to take a team to Camelot. It shouldn't be too difficult to get to the bottom of this."
+parent = 122
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "When do you expect to go to Camelot? Perhaps I could assist you?"
+parent = 122
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Oh the Seers' Village council convenes in a month or so, I'll present it then. No doubt they'll want a few days to review the evidence."
+parent = 122
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "We'll go sometime after that...if none of the other guards are on holiday. There are only four of us, ya know."
+parent = 122
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "WHAT?"
+parent = 122
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A month or more? King Arthur could be in grave danger. Morgan Le Faye is involved and she is not one to be trifled with. One of the Sinclairs has already committed murder, who's to say another won't?"
+parent = 122
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you're going to wait a MONTH?"
+parent = 122
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "I have to follow procedure, my hands are tied."
+parent = 122
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "However, were a rogue adventurer to take the matter in to their own hands..."
+parent = 122
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aye, what then?"
+parent = 122
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Well, if I were them, I would learn as much as I can about the Sinclair family history."
+parent = 122
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's all the advice you can give?"
+parent = 122
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Well, often the best historians are the town gossips. I'd start there. Good luck, brave adventurer!"
+parent = 122
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [145, 146]
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "act"
+text = "end"
+parent = 144
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What should I be doing again?"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Find out all you can about the Sinclair family history. I'm sure there is a clue or two there."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again. Can you tell me about the Sinclair family history?"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Hmph. I don't see why I should tell you anything."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? Why not?"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Perhaps if you had been less rude to me, I would have been willing to tell you."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry I was rude. You are a vital part of this investigation. Unless you tell me about the Sinclairs, I won't be able to continue."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Vital part, you say? So, I'll get credit for assistance? Well...I do know quite a bit about their history. I suppose I can't hold up an investigation as important as this. What do you want to know?"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "Tell me about the family."
+parent = -1
+children = [158, 159, 160, 161, 162, 163, 164]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the family."
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "I've heard plenty about each of them...but I'll try to keep it as short as I can."
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Old Lord Sinclair was a well respected man this side of White Wolf. He was great friends with King Ulthas and did many good works for the kingdom."
+parent = 157
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = """
+His children on the other hand were spoiled and horrid. They cared for no one but themselves and gave themselves such aires. Each had their own vice, but I didn't expect any of them would be driven to murder!
+"""
+parent = 157
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What have they been up to since the arrest of their sibling?"
+parent = 157
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "They've been living very quietly, a nice change from the norm. But almost too quietly. I always thought they'd get into more trouble. No good will come from them, let me tell you!"
+parent = 157
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "act"
+text = "previous"
+parent = 157
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "option"
+text = "Tell me about the mansion."
+parent = -1
+children = [166, 167, 168, 169, 170, 171, 172, 173]
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the mansion."
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "The mansion? The mansion is quite new. Originally, the Sinclair family lived in Camelot, although it went under a different name then."
+parent = 165
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "But when King Arthur and his knights appeared, old Lord Sinclair agreed with King Ulthas that the knights had greater need for the castle than the Sinclair family."
+parent = 165
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "So, Lord Sinclair had the mansion built, packed his family up and vacated. His children were furious with him for doing it."
+parent = 165
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "They felt themselves far better than the knights and felt insulted at having to live in a stuffy mansion."
+parent = 165
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happened next?"
+parent = 165
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, you should know best... Anna killed her father. Poor man."
+parent = 165
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "act"
+text = "previous"
+parent = 165
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "Tell me about Anna Sinclair."
+parent = -1
+children = [175, 176, 177, 178, 179, 180, 181]
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Anna Sinclair."
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Anna? The guards are keeping her in the jail in the courthouse in Seers' Village. I hear she's been acting like a royal pain."
+parent = 174
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But what is she like? Can she be reasoned with?"
+parent = 174
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Reasoned with? She killed her own father!"
+parent = 174
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "I hear she's being so unreasonable that no lawyer in Gielinor will represent her. She's going to get a guilty verdict for sure."
+parent = 174
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Still, I go and visit her at the Seers' Village courthouse sometimes to try and keep her spirits up."
+parent = 174
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "act"
+text = "end"
+parent = 174
+is_terminal = true
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [183, 184]
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "act"
+text = "end"
+parent = 182
+is_terminal = true
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could I ask you about the Sinclair family again?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, I'm not one to gossip, but as it's for your investigation... What would you like to know?"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "other"
+text = "(shows the same options as before)"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where is Anna Sinclair being held?"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "At the Seers' Village courthouse."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Anna Sinclair?"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "Nothing."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nothing?"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "What? I'm no gossip; I've got nothing to say about it."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Anna?"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "Why do you want to know about her?"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I may need her help to get in touch with the rest of the Sinclairs."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "Good luck, mate. She's a right pain in the..."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "In the...?"
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "Sorry, you still here? I started thinking about turnips."
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Anna?"
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "Anna? She was a spoiled brat, that's for sure."
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can't you tell me anything more useful than that?"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "I'm afraid not."
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Anna Sinclair?"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "Anna? Why?"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Because she may be responsible for murder!"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "Oh yes. Well, I can't say I ever liked Anna. She was always chasing after some boy or other."
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Anna?"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Anna? I don't know very much."
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You must have been privy to some of the children's secrets. Anything would be helpful."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "No, I don't know anything like that. I kept my head down and did my work."
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Anna Sinclair?"
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Anna?"
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, Anna."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Well, she's a murderer. What more could you need to know?"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "That Sinclair woman is such a pain! She keeps demanding gourmet meals and ridiculous things like silk sheets."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I speak to her?"
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Go ahead. It means she won't be demanding things from me."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Mother said to join the guards, see the world! What do I end up doing? Guarding some stuck-up brat in a backwater village full of hippies."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "May I speak to the prisoner?"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "I don't see why not."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Do you remember me?"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Hmmm...yes, you were that nosy person asking all those questions about daddy's murder."
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So he's 'daddy' now is he? If he was so dear to you why did you kill him?"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "I didn't! No one will believe me. It was my brother. He set me up."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But there's hard evidence against you."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "It's forged! I swear, I never touched that dagger or poisoned my father."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I didn't come here to just chit-chat. I need to know where your family has disappeared to. I have suspicions they've reclaimed Camelot."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "How should I know? I've been locked up here since you stuck your nose into our family's business."
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'll be off then. Have fun spending the rest of your life in jail."
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Wait!"
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "I... I might know how to find them...but I need a favour from you in return."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Name your price."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "I need a defence lawyer. None of the ones around here will represent me, they all think I'm guilty."
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Maybe it's because you ARE guilty. Your sibling offered hard proof you did it!"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "No he didn't! He just said he saw me in the room. Why does everyone believe him?"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Can't you see he framed me? I was the scapegoat so they could all inherit their fortunes and live the good life."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why should I believe you? As far as I know you did kill your father."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = """
+I don't care if you don't believe me. I know I'm innocent...but I'm also the only one that can show you how to get into Camelot. There's a secret passage that I discovered as a child when we lived there.
+"""
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, if I agree to get you a 'not guilty' verdict at trial, you promise to tell me how to get into this secret passage that will lead me straight into Camelot?"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Yes! Exactly. So, what do you say?"
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "option"
+text = "Okay, I guess I don't have much of a choice."
+parent = -1
+children = [257, 258, 259, 260, 261, 262, 263, 264]
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I guess I don't have much of a choice. I'll go start gathering evidence."
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "Try speaking to the servants at the Mansion. They'll probably be able to give you useful testimony."
+parent = 256
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "Wait, take this."
+parent = 256
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "box"
+text = "pic=Criminal's thread (green).png|She hands you a thread."
+parent = 256
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "You can use it as evidence."
+parent = 256
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of what, your guilt?"
+parent = 256
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "No, show it to the servants. You'll find one of my siblings wears similar colours."
+parent = 256
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "act"
+text = "end"
+parent = 256
+is_terminal = true
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "option"
+text = "No, thank you."
+parent = -1
+children = [266, 267]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, thank you."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Have you made any progress?"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm working on it. It's not exactly easy to unprove something that's true."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Try speaking to the servants at the Mansion. They'll probably be able to give you useful testimony."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Have you made any progress?"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need a piece of thread from the clothes you wore the night of the murder."
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Whatever for?"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I might need to show it to people when I ask them questions about the murder. It's evidence in the case."
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "other"
+text = "(player is given another piece of thread)"
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "I hear you're the defence lawyer for Anna, now."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How can you possibly know that already?"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "I'm the town gossip, I'm supposed to know this stuff. Are you preparing for the trial?"
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'm going to talk to the servants and see if I can learn anything new from them...but other than that, I don't really know what I'm doing."
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = """
+Well, my father was in the guards and he attended many trials. As a defence lawyer you need to disprove any evidence presented by the prosecution. Disproving it gives reasonable doubt as to whether or not your
+"""
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "client actually committed the crime."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But how do I know what evidence will be presented?"
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = """
+Some of it will be the evidence you found: the dagger, the poison and the thread. There was also an eyewitness saying they saw Anna tamper with Lord Sinclair's dinner. Start asking questions about those things and
+"""
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "see where you get."
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm representing Anna Sinclair as a defence lawyer."
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Ha, ha, ha. That's a good one. Whoo, I needed a laugh."
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err, I'm not joking. I have to prove she is innocent."
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "WHAT?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "But the proof against her is conclusive. Someone saw her tamper with Sinclair's dinner!"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "One of her siblings claims to have seen that, but who can say if they're telling the truth?"
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Besides, it's for King Arthur. Anna is the only lead I have on how to find the King and his knights."
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "This is a sad, sad day. I can't stop you from doing it, but I wish with all my heart you wouldn't. You'll be aiding a murderer."
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm representing Anna Sinclair as her defence lawyer. I need to ask you some questions about what happened the night of Lord Sinclair's murder."
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "Dang, that's too bad for you. Isn't it a bit of conflict of interest, considering you were part of the investigation that proved she was guilty?"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh, anyways, I need to ask you some questions."
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "option"
+text = "Tell me about the night of the murder."
+parent = -1
+children = [302, 303, 304]
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the night of the murder?"
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "I fed the dog and went to the inn in town. When I got back the guards were all over the place."
+parent = 301
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "act"
+text = "previous"
+parent = 301
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "option"
+text = "When did you last see Anna Sinclair that night?"
+parent = -1
+children = [306, 307, 308]
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you last see Anna Sinclair on that fateful night?"
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "Didn't see any of the family. I was outdoors most of the evening, tending to things, then went to town."
+parent = 305
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "previous"
+parent = 305
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "option"
+text = "Tell me about the dagger."
+parent = -1
+children = [310, 311, 312, 313, 314]
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever see Anna in possession of the dagger that was found embedded in Lord Sinclair's body?"
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "That dagger? I think Lord Sinclair kept it in the library. It was only decorative, so  never paid much attention to it."
+parent = 309
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, any of the family or servants would have had access to it."
+parent = 309
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "Yes, I suppose they would."
+parent = 309
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "act"
+text = "previous"
+parent = 309
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "option"
+text = "Tell me about the thread."
+parent = -1
+children = [319, 320, 321, 322, 323]
+
+[[nodes]]
+id = 316
+depth = 3
+kind = "cond"
+text = "If the player has lost the thread"
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Err, I seem to have forgotten the thread I was going to show you. I'll need to get it from Anna Sinclair at the jail."
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 3
+kind = "act"
+text = "previous"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me which Sinclair family member this thread belongs to?"
+parent = 315
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "I'm not sure; it could be Anna's or David's."
+parent = 315
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, you can't identify the owner of the thread for certain?"
+parent = 315
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "I can't."
+parent = 315
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "act"
+text = "previous"
+parent = 315
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "option"
+text = "Tell me about the poison."
+parent = -1
+children = [325, 326, 327, 328, 329, 330, 331, 332]
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the poison?"
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "The poison salesman came around the mansion and practically everyone bought some."
+parent = 324
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me exactly who bought poison from him?"
+parent = 324
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = """
+Each of the Sinclair kids did. They all had chores they were meant to do. I had a chat with that salesman. Whoo, you any idea how strong that stuff was? Just a small amount would be enough to kill a cow.
+"""
+parent = 324
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, you're completely certain all of the Sinclair children bought poison? And it would only have needed a small portion to kill Lord Sinclair."
+parent = 324
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "Yup, that's what the poison salesman said. I had a chat with him at the pub."
+parent = 324
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That means someone could have used a small amount to frame Anna and still have done their chore. That's great news."
+parent = 324
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "act"
+text = "previous"
+parent = 324
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm representing Anna Sinclair as her defence lawyer. I need to ask you some questions about what happened the night of Lord Sinclair's murder."
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "Why in Gielinor would you want to do that? That's a lost cause if I ever heard one."
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know, I know, but circumstances... Well, I just need to ask you some questions, alright?"
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "option"
+text = "Tell me about the night of the murder."
+parent = -1
+children = [338, 339, 340]
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the night of the murder?"
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Not all that much. I worked out here 'til late. I was getting ready to come in for dinner when all the commotion started."
+parent = 337
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "previous"
+parent = 337
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "option"
+text = "When did you last see Anna Sinclair that night?"
+parent = -1
+children = [342, 343, 344, 345, 346, 347, 348]
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you last see Anna Sinclair on that fateful night?"
+parent = 341
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "She must have been in the house, since I didn't see her out here."
+parent = 341
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Didn't you hear the glass breaking when the window was smashed by the murderer?"
+parent = 341
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "No, I was on this side of the garden and you can't hear much but the dog from over here."
+parent = 341
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Was the dog barking that night?"
+parent = 341
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "No."
+parent = 341
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "act"
+text = "previous"
+parent = 341
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "option"
+text = "Tell me about the dagger."
+parent = -1
+children = [350, 351, 352, 353, 354]
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever see Anna in possession of the dagger that was found embedded in Lord Sinclair's body?"
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Hmm, not that I can remember. It was kept on display as some sort of replica of a great weapon. I'm not much good at history so I can't remember any details."
+parent = 349
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you see anyone else handle the dagger?"
+parent = 349
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "I think the maid may have dusted it, but I don't really know, I work outside."
+parent = 349
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "act"
+text = "previous"
+parent = 349
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "option"
+text = "Tell me about the thread."
+parent = -1
+children = [356, 357, 358, 359]
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me which Sinclair family member this thread belongs to?"
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "I'm not sure; it could be Anna's or David's."
+parent = 355
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, you can't identify the owner of the thread for certain?"
+parent = 355
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "act"
+text = "previous"
+parent = 355
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "option"
+text = "Tell me about the poison."
+parent = -1
+children = [361, 362, 363, 364, 365, 366, 367, 368]
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the poison?"
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "This salesman came around selling this poison that could fix anything. I think most everyone bought some to use for chores around the mansion."
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you buy any?"
+parent = 360
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "No, but I requested one of the Sinclairs buy some to use on the compost. I can't remember if they did or not."
+parent = 360
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did Anna Sinclair buy any poison?"
+parent = 360
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Yes, she did. I definitely remember seeing her buying some. I'm pretty sure she didn't use it for her chore either."
+parent = 360
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh dear. That's not good."
+parent = 360
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "act"
+text = "previous"
+parent = 360
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm representing Anna Sinclair as her defence lawyer. I need to ask you some questions about what happened the night of Lord Sinclair's murder."
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "Didn't you already ask me questions about this? You were investigating the case and got all that evidence. Besides, Anna was proven guilty - by one of her own siblings."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Errr, well, circumstances have changed. Anyway, I need to ask you some questions."
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "option"
+text = "Tell me about the night of the murder."
+parent = -1
+children = [374, 375, 376]
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the night of the murder?"
+parent = 373
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "I was tidying the bedrooms most of the afternoon and then assisted Louisa in the kitchen, preparing dinner. I gave Lord Sinclair's dinner to Mary, and shortly there after heard her screaming."
+parent = 373
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "act"
+text = "previous"
+parent = 373
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "option"
+text = "When did you last see Anna that night?"
+parent = -1
+children = [378, 379, 380]
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you last see Anna Sinclair on that fateful night?"
+parent = 377
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "I'm afraid I didn't see her. I didn't meet anyone when I walked from the bedrooms to the kitchen."
+parent = 377
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "act"
+text = "previous"
+parent = 377
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "option"
+text = "Tell me about the dagger."
+parent = -1
+children = [382, 383, 384, 385, 386, 387]
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever see Anna in possession of the dagger that was found embedded in Lord Sinclair's body?"
+parent = 381
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "No, I only saw Lord Sinclair handle it."
+parent = 381
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No one else ever touched it?"
+parent = 381
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "Well, now that you have me thinking about it, I believe I saw David handle it once. I'm not really sure what he was doing with it, but I do remember him looking at it."
+parent = 381
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's wonderful? Why didn't you mention it before? It means it could have been planted to make it seem like Anna did it."
+parent = 381
+
+[[nodes]]
+id = 387
+depth = 2
+kind = "act"
+text = "previous"
+parent = 381
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "option"
+text = "Tell me about the thread."
+parent = -1
+children = [389, 390, 391, 392, 393]
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me which Sinclair family member this thread belongs to?"
+parent = 388
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "I'm not sure; it could be Anna's or David's."
+parent = 388
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, you can't identify the owner of the thread, for certain?"
+parent = 388
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "I'm afraid not."
+parent = 388
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "act"
+text = "previous"
+parent = 388
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "option"
+text = "Tell me about the poison."
+parent = -1
+children = [395, 396, 397, 398, 399]
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the poison?"
+parent = 394
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "There were various chores around the house that required poison."
+parent = 394
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you remember who bought poison?"
+parent = 394
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "I personally did not; I do not know about the others."
+parent = 394
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "act"
+text = "previous"
+parent = 394
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm representing Anna Sinclair as her defence lawyer. I need to ask you some questions about what happened the night of Lord Sinclair's murder."
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "About the murder? Well, there's not much to tell, honestly."
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry to trouble you, but I really need some answers."
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "option"
+text = "Tell me about the night of the murder."
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the night of the murder?"
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "I was with Hobbes the butler and Mary the maid in the kitchen. We were preparing dinner. I gave Mary Lord Sinclair's meal and sent her on her way."
+parent = -1
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, you didn't see Mary deliver the food to Lord Sinclair?"
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "Of course not. I was here cooking, she was taking the meal to him. That's when she found the body."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Then someone could have tampered with the meal while she was on the way?"
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "I can't imagine how. Mary carries the meal right in front of her the entire way!"
+parent = -1
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "But now that you mention it, I do remember seeing Anna Sinclair hanging about the kitchen earlier that day. She looked a bit shifty."
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, right. That doesn't bode well."
+parent = -1
+children = [413]
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "act"
+text = "previous"
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "option"
+text = "When did you last see Anna Sinclair that night?"
+parent = -1
+children = [415, 416, 417, 418, 419, 420]
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you last see Anna Sinclair on that fateful night?"
+parent = 414
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "I was in the kitchen almost all day, but I did see her just before I began cooking the evening meal. She was wandering aimlessly. So, I snapped at her to get out of the way."
+parent = 414
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What did she do then?"
+parent = 414
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "Stuck her tongue out at me and wandered away. Useless girl."
+parent = 414
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, that's not very conclusive."
+parent = 414
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "previous"
+parent = 414
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "option"
+text = "Tell me about the dagger."
+parent = -1
+children = [422, 423, 424, 425, 426]
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever see Anna in possession of the dagger that was found embedded in Lord Sinclair's body?"
+parent = 421
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "Not that I can remember. None of the children seemed to pay any attention to it, as it was just a replica and not worth anything."
+parent = 421
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you see anyone else in possession of it?"
+parent = 421
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "I suppose Mary dusted it now and then, but I think it just sat on one of the bookshelves."
+parent = 421
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "act"
+text = "previous"
+parent = 421
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "option"
+text = "Tell me about the thread."
+parent = -1
+children = [428, 429, 430, 431]
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me which Sinclair family member this thread belongs to?"
+parent = 427
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "It could be Anna's or David's."
+parent = 427
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, you can't identify the owner of the thread, for certain?"
+parent = 427
+
+[[nodes]]
+id = 431
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "I'm afraid not."
+parent = 427
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "option"
+text = "Tell me about the poison."
+parent = -1
+children = [433, 434, 435, 436, 437]
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the poison?"
+parent = 432
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "I told Carol to buy some for the drains. I haven't a clue if she actually did or not, she rarely paid me any heed."
+parent = 432
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who else bought poison?"
+parent = 432
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "I don't know. The Sinclairs were so stingy about money that I'm surprised any of them bought some."
+parent = 432
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "act"
+text = "previous"
+parent = 432
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm representing Anna Sinclair as her defence lawyer. I need to ask you some questions about what happened the night of Lord Sinclair's murder."
+parent = -1
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "I don't like talking about that night. I still have nightmares about it."
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry to put you through it again, but I really have to get some answers."
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "option"
+text = "Tell me about the night of the murder."
+parent = -1
+children = [443, 444, 445, 446, 447, 448, 449, 450]
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the night of the murder?"
+parent = 442
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "What an awful night. It started out normally, I was in the kitchen with Hobbes and Louisa, helping with dinner. They gave me Lord Sinclair's meal. I went to deliver it and I found him..."
+parent = 442
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There, there. I don't need you to tell me any more of that. What about on the way to the study? Did you see Anna?"
+parent = 442
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "No, I didn't pass Anna, I'm sure of that. I think I passed one of the other young Sinclairs though. A man."
+parent = 442
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Really? So, you can't place Anna at the murder scene, but there was a man there? David, Bob or Frank?"
+parent = 442
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I can't remember. I just remember it being a man."
+parent = 442
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's great news."
+parent = 442
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "act"
+text = "previous"
+parent = 442
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "option"
+text = "When did you last see Anna Sinclair that night?"
+parent = -1
+children = [452, 453, 454, 455, 456, 457, 458, 459, 460, 461]
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you last see Anna Sinclair on that fateful night?"
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I was cleaning the library. I saw her come into the room."
+parent = 451
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was she doing?"
+parent = 451
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "Nothing really, just wandering."
+parent = 451
+
+[[nodes]]
+id = 456
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "She wasn't acting suspicious?"
+parent = 451
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "No, nothing like that."
+parent = 451
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you see her anywhere near the scene of the murder?"
+parent = 451
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "No, I never did. And I walked from the kitchen to Lord Sinclair's room, so I would have."
+parent = 451
+
+[[nodes]]
+id = 460
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Very interesting. That's very helpful."
+parent = 451
+
+[[nodes]]
+id = 461
+depth = 2
+kind = "act"
+text = "previous"
+parent = 451
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "option"
+text = "Tell me about the dagger."
+parent = -1
+children = [463, 464, 465, 466, 467]
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever see Anna in possession of the dagger that was found embedded in Lord Sinclair's body?"
+parent = 462
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "Not that I can think of."
+parent = 462
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure?"
+parent = 462
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "Not really. I can't remember who handled it, if anyone."
+parent = 462
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "act"
+text = "previous"
+parent = 462
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "option"
+text = "Tell me about the thread."
+parent = -1
+children = [469, 470, 471, 472, 473]
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me which Sinclair family member this thread belongs to?"
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "Hmm, it could be Anna's or David's."
+parent = 468
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, you can't identify the owner of the thread for certain?"
+parent = 468
+
+[[nodes]]
+id = 472
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I can't."
+parent = 468
+
+[[nodes]]
+id = 473
+depth = 2
+kind = "act"
+text = "previous"
+parent = 468
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "option"
+text = "Tell me about the poison."
+parent = -1
+children = [475, 476, 477, 478, 479]
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the poison?"
+parent = 474
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "Nothing, really. I didn't buy any."
+parent = 474
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know who did?"
+parent = 474
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "No, I was upstairs cleaning when the salesman came by, so I didn't know until after he left that he'd been here."
+parent = 474
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "act"
+text = "previous"
+parent = 474
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm representing Anna Sinclair as her defence lawyer. I need to ask you some questions about what happened the night of Lord Sinclair's murder."
+parent = -1
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "But she was proven guilty! There was even evidence."
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have my doubts."
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "option"
+text = "Tell me about the night of the murder."
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the night of the murder?"
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "I went to bed early as I'd been up very early fixing some garden equipment."
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, you didn't see or hear anything unusual?"
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "No, I'm a very heavy sleeper. I didn't even hear the maid scream when she found the body. Louisa, the cook, had to come wake me."
+parent = -1
+children = [489]
+
+[[nodes]]
+id = 489
+depth = 2
+kind = "act"
+text = "previous"
+parent = 488
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "option"
+text = "When did you last see Anna Sinclair that night?"
+parent = -1
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where did you last see Anna Sinclair on that fateful night?"
+parent = -1
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Let's see. I'd finished up early for the day and was heading to bed. I can't remember seeing any one on my way there."
+parent = -1
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you certain?"
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Pretty certain. I usually tried to avoid being near any of the Sinclairs."
+parent = -1
+children = [495]
+
+[[nodes]]
+id = 495
+depth = 2
+kind = "act"
+text = "previous"
+parent = 494
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "option"
+text = "Tell me about the dagger."
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever see Anna in possession of the dagger that was found embedded in Lord Sinclair's body?"
+parent = -1
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Hmm, I seem to remember her looking at it a few days before the murder."
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really? That's not good. Not good at all."
+parent = -1
+children = [500]
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "act"
+text = "previous"
+parent = 499
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "option"
+text = "Tell me about the thread."
+parent = -1
+
+[[nodes]]
+id = 502
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me which Sinclair family member this thread belongs to?"
+parent = -1
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "I'm not sure; it could be Anna's or David's."
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, you can't identify the owner of the thread for certain?"
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "I can't."
+parent = -1
+children = [506]
+
+[[nodes]]
+id = 506
+depth = 2
+kind = "act"
+text = "previous"
+parent = 505
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "option"
+text = "Tell me about the poison."
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the poison?"
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Nothing much. I didn't buy any and I don't remember who did."
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're certain you don't remember anything?"
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Yup, I don't pay heed to salesmen, they're a dodgy lot."
+parent = -1
+children = [512]
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "act"
+text = "previous"
+parent = 511
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "box"
+text = "Are you sure you are prepared for court?"
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "option"
+text = "Yes, I'm ready."
+parent = -1
+children = [516, 517]
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "act"
+text = "The courtroom cutscene begins."
+parent = 515
+
+[[nodes]]
+id = 517
+depth = 2
+kind = "act"
+text = "end"
+parent = 515
+is_terminal = true
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "option"
+text = "No, I should gather more evidence."
+parent = -1
+children = [519, 520]
+
+[[nodes]]
+id = 519
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, I think I'll gather more evidence, first."
+parent = 518
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "act"
+text = "end"
+parent = 518
+is_terminal = true
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "This court is now in session."
+parent = -1
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "This trial is to determine the guilt or innocence of Anna Sinclair for the murder of Lord Sinclair."
+parent = -1
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Is the prosecution ready?"
+parent = -1
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "The prosecution is ready, Your Honour."
+parent = -1
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Is the defence ready?"
+parent = -1
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The defence is ready, Your Honour."
+parent = -1
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Very well. The prosecution may present its case."
+parent = -1
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "Thank you, Your Honour."
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "Members of the jury, I am going to present you with evidence that decisively proves Anna Sinclair is a murderer."
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "First, the dagger. The dagger was found stabbed into Lord Sinclair's body; it has the fingerprints of Anna Sinclair all over it."
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "box"
+text = "pic=Criminal's dagger detail.png|The prosecution presents the dagger as evidence."
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "Second, the thread. This thread was found at the scene of the crime; it matches Anna Sinclair's clothes."
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "box"
+text = "pic=Criminal's thread (green) detail.png|The prosecution presents the thread as evidence."
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "Last, but certainly not least, the poison that actually killed Lord Sinclair; it was found at the scene of the crime and had been bought by the defendant. Members of the jury, this woman is guilty."
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "box"
+text = "pic=Pungent pot detail.png|The prosecution presents the poison as evidence."
+parent = -1
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Thank you, prosecutor."
+parent = -1
+
+[[nodes]]
+id = 537
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Defence, as this is your first time in court, I'm going to explain how we do things around here."
+parent = -1
+
+[[nodes]]
+id = 538
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = """
+You may call for a recess at any time by leaving through the gate behind you. You'll have to start the trial over when you return. You may call witnesses by speaking to me. When you are finished with a witness
+"""
+parent = -1
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "simply speak to me and call the next one."
+parent = -1
+
+[[nodes]]
+id = 540
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Your job is to disprove the evidence presented by the prosecution by having your witnesses testify. If you need to hear the prosecution's case again, just speak to him. Let's begin."
+parent = -1
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Who would you like to call as a witness?"
+parent = -1
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "select"
+text = "Choose your witness:"
+parent = -1
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "option"
+text = "Handyman"
+parent = -1
+children = [544, 545]
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The defence calls the Sinclairs' handyman."
+parent = 543
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "act"
+text = "end"
+parent = 543
+is_terminal = true
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "option"
+text = "Dog handler"
+parent = -1
+children = [547, 548]
+
+[[nodes]]
+id = 547
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The defence calls the Sinclairs' dog handler."
+parent = 546
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "act"
+text = "end"
+parent = 546
+is_terminal = true
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "option"
+text = "Butler"
+parent = -1
+children = [550, 551]
+
+[[nodes]]
+id = 550
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The defence calls the Sinclairs' butler."
+parent = 549
+
+[[nodes]]
+id = 551
+depth = 2
+kind = "act"
+text = "end"
+parent = 549
+is_terminal = true
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "option"
+text = "Next page"
+parent = -1
+children = [553, 554, 555, 556, 557]
+
+[[nodes]]
+id = 553
+depth = 2
+kind = "option"
+text = "Cook"
+parent = 552
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "option"
+text = "Maid"
+parent = 552
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The defence calls the Sinclairs' maid."
+parent = 552
+
+[[nodes]]
+id = 556
+depth = 2
+kind = "option"
+text = "Gardener"
+parent = 552
+
+[[nodes]]
+id = 557
+depth = 2
+kind = "option"
+text = "Previous page"
+parent = 552
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's your name and occupation?"
+parent = -1
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "Hobbes; I am the butler."
+parent = -1
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 561
+depth = 1
+kind = "option"
+text = "Ask about the dagger"
+parent = -1
+children = [562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572]
+
+[[nodes]]
+id = 562
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever see Anna in possession of the dagger that was found embedded in Lord Sinclair's body?"
+parent = 561
+
+[[nodes]]
+id = 563
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "No, I only saw Lord Sinclair handle it. It was on display in the library."
+parent = 561
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No one else ever touched it?"
+parent = 561
+
+[[nodes]]
+id = 565
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "Well, now that you have me thinking about it, I believe I saw Frank handle it once. I'm not really sure what he was doing with it, but I do remember him looking at it."
+parent = 561
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You are saying that you saw someone other than Anna handle the dagger?"
+parent = 561
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "Yes, I am."
+parent = 561
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not only has a person other than my client been identified handling the weapon, but the dagger was within easy access to anyone in the household."
+parent = 561
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "My client's fingerprints could have been planted on it by another party."
+parent = 561
+
+[[nodes]]
+id = 570
+depth = 2
+kind = "other"
+text = "{{qact|The camera pans over to the jury approving the argument.}}"
+parent = 561
+
+[[nodes]]
+id = 571
+depth = 2
+kind = "speaker"
+speaker = "The judge"
+text = "Order! ORDER!"
+parent = 561
+
+[[nodes]]
+id = 572
+depth = 2
+kind = "act"
+text = "previous"
+parent = 561
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "option"
+text = "Ask about the thread"
+parent = -1
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "option"
+text = "Ask about the poison"
+parent = -1
+
+[[nodes]]
+id = 575
+depth = 1
+kind = "option"
+text = "Ask about the night of the murder"
+parent = -1
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's your name and occupation?"
+parent = -1
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "speaker"
+speaker = "Donovan"
+text = "Donovan; I'm the handyman."
+parent = -1
+
+[[nodes]]
+id = 578
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 579
+depth = 1
+kind = "option"
+text = "Ask about the dagger"
+parent = -1
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "option"
+text = "Ask about the thread"
+parent = -1
+children = [581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591]
+
+[[nodes]]
+id = 581
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you tell us who this thread belongs to?"
+parent = 580
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "box"
+text = "pic=Criminal's thread (green) detail.png|You show them the thread."
+parent = 580
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "speaker"
+speaker = "Donovan"
+text = "That thread could be Anna's or David's; they always seemed to be wearing that colour."
+parent = 580
+
+[[nodes]]
+id = 584
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, you can't say for certain who this thread belongs to."
+parent = 580
+
+[[nodes]]
+id = 585
+depth = 2
+kind = "speaker"
+speaker = "Donovan"
+text = "No, sorry, I can't."
+parent = 580
+
+[[nodes]]
+id = 586
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Then this thread could have come from either of Anna or David's clothes, and they had many of this colour. A fact that would be known to anyone of the household."
+parent = 580
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "speaker"
+speaker = "Donovan"
+text = "Sure, anybody would have seen that."
+parent = 580
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Then the thread could have been planted by someone else to throw suspicion on my client. I think we can all see this thread is very questionable evidence."
+parent = 580
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "other"
+text = "{{qact|The camera pans over to the jury approving the argument again.}}"
+parent = 580
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "The judge"
+text = "Order! ORDER!"
+parent = 580
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "act"
+text = "previous"
+parent = 580
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "option"
+text = "Ask about the poison"
+parent = -1
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "option"
+text = "Ask about the night of the murder"
+parent = -1
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's your name and occupation?"
+parent = -1
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "Pierre; I'm the dog handler."
+parent = -1
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "option"
+text = "Ask about the dagger"
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "option"
+text = "Ask about the thread"
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "option"
+text = "Ask about the poison"
+parent = -1
+children = [600, 601, 602, 603, 604, 605, 606, 607, 608, 609]
+
+[[nodes]]
+id = 600
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the poison?"
+parent = 599
+
+[[nodes]]
+id = 601
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "The poison salesman came around the mansion and practically everyone bought some."
+parent = 599
+
+[[nodes]]
+id = 602
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me exactly who bought poison from him?"
+parent = 599
+
+[[nodes]]
+id = 603
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = """
+Each of the Sinclair kids did; they all had chores they were meant to do. I had a chat with that salesman. Whoo-boy, you any idea how strong that stuff was? Just a small amount would be enough to kill a cow.
+"""
+parent = 599
+
+[[nodes]]
+id = 604
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, only a small amount of poison would be enough to kill a man, I suppose?"
+parent = 599
+
+[[nodes]]
+id = 605
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "Yeah, I s'pose it would."
+parent = 599
+
+[[nodes]]
+id = 606
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = """
+Therefore, any one of the Sinclairs who bought poison could have done their chore and poisoned Lord Sinclair as well. Just because my client was too lazy to do her chore doesn't mean she poisoned Lord Sinclair.
+"""
+parent = 599
+
+[[nodes]]
+id = 607
+depth = 2
+kind = "other"
+text = "{{qact|The camera pans over to the jury approving the argument yet again.}}"
+parent = 599
+
+[[nodes]]
+id = 608
+depth = 2
+kind = "speaker"
+speaker = "The judge"
+text = "Order! ORDER!"
+parent = 599
+
+[[nodes]]
+id = 609
+depth = 2
+kind = "act"
+text = "previous"
+parent = 599
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "option"
+text = "Ask about the night of the murder"
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The defence calls the Sinclairs' maid."
+parent = -1
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's your name and occupation?"
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Mary; I'm the maid."
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "option"
+text = "Ask about the dagger"
+parent = -1
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "option"
+text = "Ask about the thread"
+parent = -1
+
+[[nodes]]
+id = 617
+depth = 1
+kind = "option"
+text = "Ask about the poison"
+parent = -1
+
+[[nodes]]
+id = 618
+depth = 1
+kind = "option"
+text = "Ask about the night of the murder"
+parent = -1
+children = [619, 620, 621, 622, 623, 624, 625, 626, 627, 628]
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you last see Anna on that fateful night?"
+parent = 618
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I was in the kitchen with Hobbes and Louisa, helping with dinner. They gave me Lord Sinclair's meal. I went to deliver it and I found him..."
+parent = 618
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What about on the way to the study? Did you see Anna?"
+parent = 618
+
+[[nodes]]
+id = 622
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "No, I didn't pass Anna, I'm sure of that. I think I passed one of the other young Sinclairs, though. A man."
+parent = 618
+
+[[nodes]]
+id = 623
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Really? So, you can't place Anna at the murder scene, but there was a man there? David, Bob or Frank?"
+parent = 618
+
+[[nodes]]
+id = 624
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I can't remember. I just remember it being a man."
+parent = 618
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Indeed. Well, if my client can't be placed at the murder scene, and there is evidence that a man was there, I think it casts a great deal of doubt on the case."
+parent = 618
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "other"
+text = "{{qact|The camera pans over to the jury approving the argument yet again.}}"
+parent = 618
+
+[[nodes]]
+id = 627
+depth = 2
+kind = "speaker"
+speaker = "The judge"
+text = "Order! ORDER!"
+parent = 618
+
+[[nodes]]
+id = 628
+depth = 2
+kind = "act"
+text = "previous"
+parent = 618
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "I believe we've heard enough."
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Would the jury please pronounce their verdict?"
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "box"
+text = "NOT GUILTY"
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Very well. Anna Sinclair, you are hereby declared 'not guilty' by a jury of your peers. You are free to go."
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "other"
+text = "{{qact|Balloons start falling from the ceiling.}}"
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "I can't believe you did it. I'm free!"
+parent = -1
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but what about our deal?"
+parent = -1
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Shhh. Don't talk about that here! The guards are going to take me back to my cell for paperwork. Meet me there and I'll explain how to get into Camelot."
+parent = -1
+
+[[nodes]]
+id = 638
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's with the balloons?"
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "Ah, the court house was built over the Party Room..."
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "Balloons we can handle, it's when those dancing knights show up that it gets troublesome."
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, being an attorney was an interesting experience."
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "Those were some dirty tricks you played. Your so- called 'proof' doesn't hold up under any scrutiny."
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know, but I needed to get a 'not guilty' verdict."
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Prosecutor"
+text = "You've let a cold-blooded murderer go free. I hope the guilt eats away at you."
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's with the balloons?"
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Ah, the court house was built over the Party Room..."
+parent = -1
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Balloons we can handle, it's when those dancing knights show up that it gets troublesome."
+parent = -1
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "That was a well presented case. Court is now over, so you may leave when you like."
+parent = -1
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I speak to my client?"
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "speaker"
+speaker = "The judge"
+text = "Of course. You can speak to them here or back at the jail cell. They'll be released later today after some paperwork gets filled out."
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "I can't believe such an incompetent fool as you managed to prove me innocent."
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You need to hold up your end of the bargain. Tell me how to get into Camelot or I go back to the judge and tell him I have doubts about your innocence."
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = """
+You are demanding for a peasant, aren't you. Walk around the edge of Camelot towards the back of the castle. From the hedges, you should be able to see the garden temple. There's a statue back there, if you pull
+"""
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "the arm a secret entrance will appear. Go inside and it will take you straight into Camelot."
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you going to be doing? Aren't you coming with me?"
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "I have to sign some paper work before I can leave here. Besides, the last thing I want to do is go hang out with my family. I'm sure you can manage this on your own."
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Riiight."
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do I get into Camelot again?"
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = """
+Walk around the edge of Camelot towards the back of the castle. From the hedges, you should be able to see the garden temple. There's a statue back there, if you pull the arm a secret entrance will appear. Go inside
+"""
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "and it will take you straight into Camelot."
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "other"
+text = "(player twists the arm and goes through a trapdoor. Cutscene begins)"
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "You see, I told you that adventurer would turn up. He believed my every word."
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "David"
+text = "Well done, sibling. I knew you'd manage to get a 'not guilty' verdict, but to lure this cretin here as well..."
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "David"
+text = "What can I say, I'm impressed."
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Why thank you. What are we going to do with him now?"
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Enough! I'm sick of having to listen to your drivel."
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Do you think 'she' would want to see him?"
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "speaker"
+speaker = "David"
+text = "Most definitely. Have someone go and fetch her."
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "other"
+text = "(Morgan Le Faye appears in front of the player)"
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "I hear you have something of interest to me."
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Yes, my lady. The meddling adventurer who helped King Arthur in the past."
+parent = -1
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I knew it. I knew Morgan Le Faye had to be involved. Where is King Arthur and his knights? What have you done with them?"
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "Oh, they are quite safe. You'll be seeing them soon, although not Arthur. He's a bit...busy at the moment."
+parent = -1
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll foil your plans Morgan, just like I always do. I won't let you win. Good alwa-"
+parent = -1
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "I'm tired of this."
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "other"
+text = "(Morgan walks up to the player and knocks them out. The player wakes up in the cell with the knights)"
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should speak to Merlin first."
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 685
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How did you let a bunch of Black Knights get the better of you? I thought you guys were the toughest knights around."
+parent = -1
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "We are true knights who fight for honour. Those Black Knights didn't fight fair, so we were unprepared. Most unchivalrous of them."
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = """
+Isn't it terrible what happened to King Arthur? He was turned to stone before my eyes! I have failed him, I am not worthy of being his knight. To allow such lowlifes to take Camelot right from under our noses... It's unforgivable.
+"""
+parent = -1
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Buck up, man. We'll escape from here and set everything to right."
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "I will wreak havoc upon those worthless Sinclairs. Betraying their father's wishes like that, it's despicable."
+parent = -1
+
+[[nodes]]
+id = 692
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "I could have taken all of them on! Those Black Knights wouldn't stand a chance against me, the greatest knight in the land."
+parent = -1
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Then why are you in this jail?"
+parent = -1
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "They attacked while I was in the bath. What was I to do?"
+parent = -1
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "Hey, are you laughing at me, the greatest knight in the land?"
+parent = -1
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Huh, oh no. I wouldn't laugh at the greatest knight in the land."
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "Please, don't ask me any questions. I am still too upset from our defeat at the hands of those treacherous Sinclairs."
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Greetings, brave knight. I believe you should speak to Merlin, he probably has need of your assistance."
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Oh dear, did Morgan capture you too?"
+parent = -1
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err, no. It was all part of my brilliant plan. I allowed her to capture me so I could find out where she was keeping all of you."
+parent = -1
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Eh, is that so? Very clever. Now that you've found us, what is your plan, oh brilliant leader?"
+parent = -1
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, why do I have to do all the thinking here? You're the brilliant wizard."
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Well, all great plans start with knowledge. Let me bring you up to speed with the situation. What do you want to know?"
+parent = -1
+
+[[nodes]]
+id = 708
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "option"
+text = "Tell me where King Arthur is."
+parent = -1
+children = [710, 711, 712]
+
+[[nodes]]
+id = 710
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where is King Arthur now? He's not in the jail cell with us."
+parent = 709
+
+[[nodes]]
+id = 711
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "As the final blow to our morale, Morgan turned Arthur into a granite statue before our very eyes. He was taken away by the Black Knights, for what purposes I know not."
+parent = 709
+
+[[nodes]]
+id = 712
+depth = 2
+kind = "act"
+text = "previous"
+parent = 709
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "option"
+text = "Tell me about Morgan Le Faye and the Sinclairs."
+parent = -1
+children = [714, 715, 716, 717, 718, 719]
+
+[[nodes]]
+id = 714
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is the connection between Morgan Le Faye and the Sinclairs?"
+parent = 713
+
+[[nodes]]
+id = 715
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "Morgan Le Faye has been itching to get revenge upon Arthur and myself for some time. When she heard of the murder of old Sinclair, she learned she was not the only one with a vendetta against Camelot."
+parent = 713
+
+[[nodes]]
+id = 716
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = """
+The Sinclairs have wanted to get their slimy hands on Camelot since their father's death. With Morgan's cunning and their riches, they make a formidable team. They bought the services of the Black Knights from
+"""
+parent = 713
+
+[[nodes]]
+id = 717
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "Lord Daquarius and overran Camelot. We were outnumbered and taken by surprise."
+parent = 713
+
+[[nodes]]
+id = 718
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "The Sinclairs stole our home, but Morgan struck the greater blow by stealing the Holy Grail, Arthur's most prized possession."
+parent = 713
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "act"
+text = "previous"
+parent = 713
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "option"
+text = "What do we do now?"
+parent = -1
+children = [721, 722, 723, 724, 725, 726, 727, 736, 746, 756]
+
+[[nodes]]
+id = 721
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what's the plan of escape? Are you going to teleport us all away? Turn us into fish and swim to sea?"
+parent = 720
+
+[[nodes]]
+id = 722
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = """
+During the battle at Camelot, Morgan cast a spell against me which appears to have stripped me of my powers. I must admit, the loss of my magic has left me befuddled, making it difficult to create a plan.
+"""
+parent = 720
+
+[[nodes]]
+id = 723
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'm sure if we put our heads together we will think of something."
+parent = 720
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's talk about a plan of escape."
+parent = 720
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "Escape is only a short-term plan. We should discuss the long-term goals as well."
+parent = 720
+
+[[nodes]]
+id = 726
+depth = 2
+kind = "select"
+text = "Which would you like to discuss?"
+parent = 720
+
+[[nodes]]
+id = 727
+depth = 2
+kind = "option"
+text = "Reclaim Camelot"
+parent = 720
+children = [728, 729, 730, 731, 732, 733, 734, 735]
+
+[[nodes]]
+id = 728
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How will we go about reclaiming Camelot?"
+parent = 727
+
+[[nodes]]
+id = 729
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "I think I could reclaim Camelot from the Sinclairs on my own."
+parent = 727
+
+[[nodes]]
+id = 730
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How do you plan to do that? You couldn't even defend it from them."
+parent = 727
+
+[[nodes]]
+id = 731
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = """
+They don't know I've lost my magic. Besides, I've got a few tricks up my sleeves. For all their snobberies, they're still just spoiled brats. It shouldn't be difficult, but time is of the essence. I need you to break me out
+"""
+parent = 727
+
+[[nodes]]
+id = 732
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "of here quickly and quietly, so Morgan cannot alert them."
+parent = 727
+
+[[nodes]]
+id = 733
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So to reclaim Camelot, I need to break you out of jail quietly."
+parent = 727
+
+[[nodes]]
+id = 734
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "Precisely."
+parent = 727
+
+[[nodes]]
+id = 735
+depth = 3
+kind = "act"
+text = "previous"
+parent = 727
+
+[[nodes]]
+id = 736
+depth = 2
+kind = "option"
+text = "Retrieve the Holy Grail"
+parent = 720
+children = [737, 738, 739, 740, 741, 742, 743, 744, 745]
+
+[[nodes]]
+id = 737
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How do I retrieve the Holy Grail? Do you know where it is?"
+parent = 736
+
+[[nodes]]
+id = 738
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "Morgan always keeps things of power near her. So the Grail will be somewhere in Keep Le Faye. However, it will most likely be disguised and booby-trapped. Morgan has a thing about transmogrifying."
+parent = 736
+
+[[nodes]]
+id = 739
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The last time I was in Keep Le Faye, it was pretty well guarded. I don't think I'll be able to sneak in quietly."
+parent = 736
+
+[[nodes]]
+id = 740
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "No, that won't work. Better to break out of the jail with all of the Round Table Knights. Let them deal with the guards while you retrieve the Grail."
+parent = 736
+
+[[nodes]]
+id = 741
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So, I need to break eight knights out of jail? That could be troublesome."
+parent = 736
+
+[[nodes]]
+id = 742
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "Often the most complicated things have the simplest answers. Try leaving through the door."
+parent = 736
+
+[[nodes]]
+id = 743
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But it's locked."
+parent = 736
+
+[[nodes]]
+id = 744
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "When has that ever stopped an intrepid adventurer such as yourself?"
+parent = 736
+
+[[nodes]]
+id = 745
+depth = 3
+kind = "act"
+text = "previous"
+parent = 736
+
+[[nodes]]
+id = 746
+depth = 2
+kind = "option"
+text = "Save King Arthur"
+parent = 720
+children = [747, 748, 749, 750, 751, 752, 753, 754, 755]
+
+[[nodes]]
+id = 747
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Assuming I can escape from this jail, how can I save King Arthur?"
+parent = 746
+
+[[nodes]]
+id = 748
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = """
+I believe he's been taken to the headquarters of the Black Knights. I'm afraid I'm not well travelled on that side of the world, so I don't know its exact location. However, it's trickier than just finding Arthur. You'll
+"""
+parent = 746
+
+[[nodes]]
+id = 749
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "need to free him of the spell that turned him into a granite statue."
+parent = 746
+
+[[nodes]]
+id = 750
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And how do I go about doing that?"
+parent = 746
+
+[[nodes]]
+id = 751
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "I have no idea."
+parent = 746
+
+[[nodes]]
+id = 752
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "WHAT?"
+parent = 746
+
+[[nodes]]
+id = 753
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = """
+Let me finish. I may have no idea, but a wizard friend of mine should. His name is Wizard Cromperty, and he's very experienced in freeing people from stone since he keeps teleporting them into it. Speak to him in East
+"""
+parent = 746
+
+[[nodes]]
+id = 754
+depth = 3
+kind = "speaker"
+speaker = "Merlin"
+text = "Ardougne, he'll help you."
+parent = 746
+
+[[nodes]]
+id = 755
+depth = 3
+kind = "act"
+text = "previous"
+parent = 746
+
+[[nodes]]
+id = 756
+depth = 2
+kind = "option"
+text = "Never mind"
+parent = 720
+children = [757, 758]
+
+[[nodes]]
+id = 757
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 756
+
+[[nodes]]
+id = 758
+depth = 3
+kind = "act"
+text = "end"
+parent = 756
+is_terminal = true
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "option"
+text = "Let's talk about our plan."
+parent = -1
+children = [761]
+
+[[nodes]]
+id = 761
+depth = 2
+kind = "act"
+text = "above"
+parent = 760
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "option"
+text = "Remind me where King Arthur is."
+parent = -1
+children = [763]
+
+[[nodes]]
+id = 763
+depth = 2
+kind = "act"
+text = "above"
+parent = 762
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "option"
+text = "Remind me about Morgan Le Faye and the Sinclairs."
+parent = -1
+children = [765]
+
+[[nodes]]
+id = 765
+depth = 2
+kind = "act"
+text = "above"
+parent = 764
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any thoughts on how we could escape?"
+parent = -1
+
+[[nodes]]
+id = 767
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "No, but when we do, I'm going to make those Black Knights black and blue all over."
+parent = -1
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Have you had any brilliant ideas on how to get out of here?"
+parent = -1
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "You usually leave rooms through doors, but this one is locked."
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any thoughts on how we can get out of this cell?"
+parent = -1
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "I saw a grate high up on the wall of the cell. I think someone could slip through that, but I'm not sure how they would reach it."
+parent = -1
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "I have great faith that you will lead us to victory. But first we must win the battle, then worry about the war. If you require my assistance in escaping from this wretched cell, please tell me."
+parent = -1
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you, I will let you know."
+parent = -1
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas..."
+parent = -1
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "Please, no questions. I am in mourning for our King."
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 781
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any thoughts on how we could break out of this cell?"
+parent = -1
+
+[[nodes]]
+id = 782
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Well, I would have thought picking the lock was really the best way, but I don't have the knowledge or tools to do it."
+parent = -1
+
+[[nodes]]
+id = 783
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on how to get out of this cell?"
+parent = -1
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Sir Kay and I noticed a grate high up on the wall that leads to the small docks at the back of the keep, but it's too high up to reach and we couldn't figure out a way to boost our height."
+parent = -1
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We don't have a ladder...but we do have a lot of knights."
+parent = -1
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey guys! I've got an idea..."
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "other"
+text = "{{qact|The knights form a pyramid, allowing Merlin to escape.}}"
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey guys, do you think you could lift me out too? I need to run some errands. I'll come back and free you all as soon as I can!"
+parent = -1
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "other"
+text = "{{qact|The knights form a pyramid, allowing the player to escape, and the player appears outside the fort.}}"
+parent = -1
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "How are you going to get all of us out of here?"
+parent = -1
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure yet. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "box"
+text = "pic=Thread detail.png|pic2=Half an apple pie detail.png|The knight empties his pockets and hands you everything he thinks might be useful."
+parent = -1
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Pie? How very useful to our cause."
+parent = -1
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 800
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "How are you going to get all of us out of here?"
+parent = -1
+
+[[nodes]]
+id = 801
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We need to get through the cell door, but I haven't got anything to open it. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 802
+depth = 1
+kind = "box"
+text = "pic=Jug detail.png|pic2=Logs detail.png|The knight empties his pockets and hands you everything that might be useful."
+parent = -1
+
+[[nodes]]
+id = 803
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great, these will be a huge help."
+parent = -1
+
+[[nodes]]
+id = 804
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 805
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "How are you going to get all of us out of here?"
+parent = -1
+
+[[nodes]]
+id = 806
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure yet. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 807
+depth = 1
+kind = "box"
+text = "pic=Vial detail.png|pic2=Raw cod detail.png|The knight empties his pockets and hands you everything that might be useful."
+parent = -1
+
+[[nodes]]
+id = 808
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Gee, thanks. You've contributed so much to my plan."
+parent = -1
+
+[[nodes]]
+id = 809
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 810
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "How are you going to get all of us out of here?"
+parent = -1
+
+[[nodes]]
+id = 811
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm working on it. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 812
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "I'm sorry, I don't have any pockets."
+parent = -1
+
+[[nodes]]
+id = 813
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 814
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "How are you going to get all of us out of here?"
+parent = -1
+
+[[nodes]]
+id = 815
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure yet. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 816
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "I'm afraid not. I didn't have anything with me when we were captured."
+parent = -1
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 818
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for inspiration. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "box"
+text = "pic=Iron dagger detail.png|pic2=Ball of wool detail.png|The knight empties his pockets and hands you everything that might be useful."
+parent = -1
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks... I think."
+parent = -1
+
+[[nodes]]
+id = 821
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 822
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "How are you going to get all of us out of here?"
+parent = -1
+
+[[nodes]]
+id = 823
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The quickest way is through the cell door, but I don't have anything to pick the lock with. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 824
+depth = 1
+kind = "box"
+text = "pic=Law rune detail.png|pic2=Vodka detail.png|The knight empties his pockets and hands you everything that might be useful."
+parent = -1
+
+[[nodes]]
+id = 825
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err, thanks."
+parent = -1
+
+[[nodes]]
+id = 826
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 827
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "How are you going to get all of us out of here?"
+parent = -1
+
+[[nodes]]
+id = 828
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure yet. Have you got any useful objects in your pockets?"
+parent = -1
+
+[[nodes]]
+id = 829
+depth = 1
+kind = "box"
+text = "pic=Shark detail.png|pic2=Air rune detail.png|The knight empties his pockets and hands you everything that might be useful."
+parent = -1
+
+[[nodes]]
+id = 830
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 831
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 832
+depth = 1
+kind = "box"
+text = "You need a lockpick of some kind to open this door."
+parent = -1
+
+[[nodes]]
+id = 833
+depth = 1
+kind = "box"
+text = "That wasn't the correct combination of tumblers. Try again."
+parent = -1
+
+[[nodes]]
+id = 834
+depth = 1
+kind = "box"
+text = "You succeed in unlocking the door."
+parent = -1
+
+[[nodes]]
+id = 835
+depth = 1
+kind = "box"
+text = "Why would you want to go back to jail?"
+parent = -1
+
+[[nodes]]
+id = 836
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Need a hand?"
+parent = -1
+
+[[nodes]]
+id = 837
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "No, my revenge will be my own. You must retrieve the Holy Grail!"
+parent = -1
+
+[[nodes]]
+id = 838
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 839
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "WHOO! Get 'em! Show no mercy."
+parent = -1
+
+[[nodes]]
+id = 840
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "They shall pay for what they have done."
+parent = -1
+
+[[nodes]]
+id = 841
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 842
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Give me an R. Give me an O. Give me a U..."
+parent = -1
+
+[[nodes]]
+id = 843
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "In the amount of time it will take you to spell out Round Table Knights, you could have found the Grail."
+parent = -1
+
+[[nodes]]
+id = 844
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 845
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Give him a right hook!"
+parent = -1
+
+[[nodes]]
+id = 846
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "How would I do that when I'm holding a sword? Leave me to the fighting, you find the Holy Grail!"
+parent = -1
+
+[[nodes]]
+id = 847
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 848
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You guys deal with the guards, I'll get the Holy Grail"
+parent = -1
+
+[[nodes]]
+id = 849
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Consider it done."
+parent = -1
+
+[[nodes]]
+id = 850
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "DIE SCUM!"
+parent = -1
+
+[[nodes]]
+id = 851
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 852
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How's it going, Sir Lancelot?"
+parent = -1
+
+[[nodes]]
+id = 853
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "How dare you attempt to imprison the greatest knight in the land? Have at thee!"
+parent = -1
+
+[[nodes]]
+id = 854
+depth = 1
+kind = "speaker"
+speaker = "Renegade Knight"
+text = "Please! Stop the hurting!"
+parent = -1
+
+[[nodes]]
+id = 855
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 856
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Show them what for!"
+parent = -1
+
+[[nodes]]
+id = 857
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "What for what?"
+parent = -1
+
+[[nodes]]
+id = 858
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 859
+depth = 1
+kind = "act"
+text = "Opens [[Table (King's Random)]] interface."
+parent = -1
+
+[[nodes]]
+id = 860
+depth = 1
+kind = "box"
+text = "A powerful magic seizes you and throws you from Keep La Faye."
+parent = -1
+
+[[nodes]]
+id = 861
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "I'll make them pay for what they've done to King Arhtur."
+parent = -1
+
+[[nodes]]
+id = 862
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 863
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "I fear we may never escape this dank dungeon."
+parent = -1
+
+[[nodes]]
+id = 864
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 865
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "How could this have happened to us?"
+parent = -1
+
+[[nodes]]
+id = 866
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 867
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "1,001, 1,002, 1,003..."
+parent = -1
+
+[[nodes]]
+id = 868
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 869
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "How could this have happened to us?"
+parent = -1
+
+[[nodes]]
+id = 870
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 871
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Sad is the day when the Round Table Knights fail their King."
+parent = -1
+
+[[nodes]]
+id = 872
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 873
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "I shall avenge Arthur for this misdeed!"
+parent = -1
+
+[[nodes]]
+id = 874
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 875
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "Let me out! Let me out, I say!"
+parent = -1
+
+[[nodes]]
+id = 876
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 877
+depth = 1
+kind = "box"
+text = "The Holy Grail drops into your pack."
+parent = -1
+
+[[nodes]]
+id = 878
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now I just need to get out of here and see Wizard Cromperty."
+parent = -1
+
+[[nodes]]
+id = 879
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 880
+depth = 1
+kind = "box"
+text = "You already possess the Holy Grail."
+parent = -1
+
+[[nodes]]
+id = 881
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 882
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Hello there. My name is Cromperty. I am a wizard, and an inventor."
+parent = -1
+
+[[nodes]]
+id = 883
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "You must be [player name]. My good friend Sedridor has told me about you. As both wizard and inventor, he has aided me in my great invention!"
+parent = -1
+
+[[nodes]]
+id = 884
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wizard Cromperty! Merlin sent me. King Arthur has been kidnapped and turned into a granite statue."
+parent = -1
+
+[[nodes]]
+id = 885
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Why would he want to be a statue?"
+parent = -1
+
+[[nodes]]
+id = 886
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He didn't WANT to be a statue. Morgan Le Faye turned him into one."
+parent = -1
+
+[[nodes]]
+id = 887
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Oh yes, I see now. Why are you telling me all this?"
+parent = -1
+
+[[nodes]]
+id = 888
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Merlin said you might know how to free King Arthur."
+parent = -1
+
+[[nodes]]
+id = 889
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Oh, well, I don't know anything about rocks. I'm a teleportation expert, myself. But there was this one time I teleported a girl right into a rock. What a mess that was."
+parent = -1
+
+[[nodes]]
+id = 890
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, Wizard Cromperty, I remember, I was there."
+parent = -1
+
+[[nodes]]
+id = 891
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Oh were you? Of course you were. Well, I suppose being turned into a statue is very similar to being teleported into a rock. Let me see what we'll need."
+parent = -1
+
+[[nodes]]
+id = 892
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "If my calculations are correct, this spell will need a bit more 'oomph' than last time around."
+parent = -1
+
+[[nodes]]
+id = 893
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why is that?"
+parent = -1
+
+[[nodes]]
+id = 894
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Well, before you were simply reanimating the person within the rock. This time you need to unravel Morgan Le Faye's spell first."
+parent = -1
+
+[[nodes]]
+id = 895
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do I do that?"
+parent = -1
+
+[[nodes]]
+id = 896
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "You'll need King Arthur's most prized possession. That will unravel Morgan's spell. Then you'll need a piece of granite, the same rock Arthur was turned into."
+parent = -1
+
+[[nodes]]
+id = 897
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's not so difficult. I already have the Holy Grail, King Arthur's most prized possession, and I know he was turned into a granite statue."
+parent = -1
+
+[[nodes]]
+id = 898
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Let me just get that spell scroll for you..."
+parent = -1
+children = [899, 900]
+
+[[nodes]]
+id = 899
+depth = 2
+kind = "cond"
+text = "If the player already has an animate rock scroll"
+parent = 898
+
+[[nodes]]
+id = 900
+depth = 2
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Oh, it looks like you still have the scroll I gave you."
+parent = 898
+
+[[nodes]]
+id = 901
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what do I do with this spell?"
+parent = -1
+
+[[nodes]]
+id = 902
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Take the scroll, the Holy Grail and a piece of granite, any amount will do, to the statue of King Arthur. Once in front of him, read the scroll and the magic should do the rest."
+parent = -1
+
+[[nodes]]
+id = 903
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Where is King Arthur being kept, anyway?"
+parent = -1
+
+[[nodes]]
+id = 904
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = """
+Merlin suspects King Arthur had been taken to the Black Knights' Fortress. The last time I was there I needed to disguise myself in a bronze medium helm and an iron chainbody just to get past the door.
+"""
+parent = -1
+
+[[nodes]]
+id = 905
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = """
+Well, that should still get you into the fortress, but I imagine you'll need a better disguise than that to reach King Arthur. He's a very important person and will be well guarded by the Black Knights.
+"""
+parent = -1
+
+[[nodes]]
+id = 906
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Don't underestimate them."
+parent = -1
+
+[[nodes]]
+id = 907
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, Wizard Cromperty!"
+parent = -1
+
+[[nodes]]
+id = 908
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Hmm...I wonder...if you used a magical object that turned you into stone on the statue, would it turn him back to being human? I must research that..."
+parent = -1
+
+[[nodes]]
+id = 909
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Oh, are you still here? Go on then, you've got a king to save!"
+parent = -1
+
+[[nodes]]
+id = 910
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 911
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Hello there. My name is Cromperty. I am a wizard, and an inventor."
+parent = -1
+
+[[nodes]]
+id = 912
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "You must be [player name]. My good friend Sedridor has told me about you. As both wizard and inventor, he has aided me in my great invention!"
+parent = -1
+
+[[nodes]]
+id = 913
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Wizard Cromperty."
+parent = -1
+
+[[nodes]]
+id = 914
+depth = 1
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Why hello, [player name], what can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 915
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+children = [916, 917, 918]
+
+[[nodes]]
+id = 916
+depth = 2
+kind = "option"
+text = "cond=If player has lost the spell scroll:|I seem to have lost the scroll you gave me; could I have another?"
+parent = 915
+
+[[nodes]]
+id = 917
+depth = 2
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "There you go."
+parent = 915
+
+[[nodes]]
+id = 918
+depth = 2
+kind = "act"
+text = "Continues back above at \"So what do I do with this spell?\""
+parent = 915
+
+[[nodes]]
+id = 919
+depth = 1
+kind = "option"
+text = "What did I need for the spell to work?"
+parent = -1
+children = [920, 921, 922]
+
+[[nodes]]
+id = 920
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What did I need for the spell to work?"
+parent = 919
+
+[[nodes]]
+id = 921
+depth = 2
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "Take the scroll, the Holy Grail and a piece of granite, of any size, shape or weight, to the statue of King Arthur. Once in front of him, read the scroll and the magic should do the rest."
+parent = 919
+
+[[nodes]]
+id = 922
+depth = 2
+kind = "act"
+text = "previous"
+parent = 919
+
+[[nodes]]
+id = 923
+depth = 1
+kind = "option"
+text = "How do I get into the Black Knights' Fortress?"
+parent = -1
+children = [924, 925, 926, 927, 928, 929, 930]
+
+[[nodes]]
+id = 924
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I get into the Black Knights' Fortress?"
+parent = 923
+
+[[nodes]]
+id = 925
+depth = 2
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "How should I know, I'm just a simple wizard."
+parent = 923
+
+[[nodes]]
+id = 926
+depth = 2
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = "However, from what you said about having to wear a helm and chainmail, it sounds like you were disguised as a mere guard."
+parent = 923
+
+[[nodes]]
+id = 927
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And..."
+parent = 923
+
+[[nodes]]
+id = 928
+depth = 2
+kind = "speaker"
+speaker = "Wizard Cromperty"
+text = """
+Well, King Arthur's statue wouldn't be trusted to mere guards. Only fully-fledged Black Knights will guard it. So you'll need to disguise yourself as one of them if you want to get access to the statue.
+"""
+parent = 923
+
+[[nodes]]
+id = 929
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course! Thanks, Wizard Cromperty."
+parent = 923
+
+[[nodes]]
+id = 930
+depth = 2
+kind = "act"
+text = "previous"
+parent = 923
+
+[[nodes]]
+id = 931
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [932, 933]
+
+[[nodes]]
+id = 932
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 931
+
+[[nodes]]
+id = 933
+depth = 2
+kind = "act"
+text = "end"
+parent = 931
+is_terminal = true
+
+[[nodes]]
+id = 934
+depth = 1
+kind = "speaker"
+speaker = "Fortress Guard"
+text = "I heard something happened to King Arthur and that Lord Daquarius was behind it."
+parent = -1
+
+[[nodes]]
+id = 935
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really? Where is King Arthur now?"
+parent = -1
+
+[[nodes]]
+id = 936
+depth = 1
+kind = "speaker"
+speaker = "Fortress Guard"
+text = "I have no idea, but it's a great victory for Lord Daquarius. To take such a mighty supporter of the White Knights down... Truly brilliant."
+parent = -1
+
+[[nodes]]
+id = 937
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 938
+depth = 1
+kind = "speaker"
+speaker = "Fortress Guard"
+text = "Good day, brave knight. Congratulations on your victory against King Arthur."
+parent = -1
+
+[[nodes]]
+id = 939
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Errr, thanks. Why don't you tell me in your own words how glorious you thought our victory was."
+parent = -1
+
+[[nodes]]
+id = 940
+depth = 1
+kind = "speaker"
+speaker = "Fortress Guard"
+text = "Of course. It was so clever of Lord Daquarius to lend our men to Morgan Le Faye in exchange for our prize. We got the better end of the deal, no doubt."
+parent = -1
+
+[[nodes]]
+id = 941
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 942
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't have everything necessary to cast the spell."
+parent = -1
+
+[[nodes]]
+id = 943
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 944
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 945
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to bring you some guard armour to disguise yourself in or you'll never be able to escape."
+parent = -1
+
+[[nodes]]
+id = 946
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Very well. I'll await you here."
+parent = -1
+
+[[nodes]]
+id = 947
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 948
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Thank you! I was afraid that would be the end of me."
+parent = -1
+
+[[nodes]]
+id = 949
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's no trouble. But we need to get you out of here quickly before any of the Black Knights suspect something."
+parent = -1
+
+[[nodes]]
+id = 950
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "The Black Knights? I thought Morgan did this to me."
+parent = -1
+
+[[nodes]]
+id = 951
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There's no time to explain; here, take this disguise."
+parent = -1
+
+[[nodes]]
+id = 952
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Very well."
+parent = -1
+
+[[nodes]]
+id = 953
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "You leave first and I'll sneak out in a few minutes. Meet me back at Camelot and I shall reward you generously for your aid."
+parent = -1
+
+[[nodes]]
+id = 954
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 955
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "You leave first and I'll sneak out in a few minutes. Meet me back at Camelot and I shall reward you generously for your aid."
+parent = -1
+
+[[nodes]]
+id = 956
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 957
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should go meet King Arthur at Camelot. He should have escaped by now."
+parent = -1
+
+[[nodes]]
+id = 958
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 959
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see you made it back safely."
+parent = -1
+
+[[nodes]]
+id = 960
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = """
+Indeed, thanks to the disguise you gave me. I arrived back just as Merlin had kicked out the Sinclair children. He scared them off with a few puffs of smoke and frogs. He told them if any of them left their house
+"""
+parent = -1
+
+[[nodes]]
+id = 961
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "again, he'd turn them all into rabbits."
+parent = -1
+
+[[nodes]]
+id = 962
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I guess we won't be hearing a peep out of them for awhile."
+parent = -1
+
+[[nodes]]
+id = 963
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Indeed. We of the Round Table are greatly indebted to you for all of your help. I wish to reward you for all the help you have given us..."
+parent = -1
+
+[[nodes]]
+id = 964
+depth = 1
+kind = "other"
+text = "QUEST COMPLETE!"
+parent = -1
+
+[[nodes]]
+id = 965
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 966
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Do you have any interesting news?"
+parent = -1
+
+[[nodes]]
+id = 967
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err, no?"
+parent = -1
+
+[[nodes]]
+id = 968
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Then what are you standing around for!"
+parent = -1
+
+[[nodes]]
+id = 969
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 970
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "I'm afraid I'm too busy to speak to you right now."
+parent = -1
+
+[[nodes]]
+id = 971
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 972
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Welcome, brave knight. I am always happy to see you back at my court. Please feel free to roam the castle and make use of the training grounds."
+parent = -1
+
+[[nodes]]
+id = 973
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What training grounds?"
+parent = -1
+
+[[nodes]]
+id = 974
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "My knights train daily on the top floor of Camelot. There they test their skills and strength against each other. Because of all the help you have given us, I open this training ground to you as well."
+parent = -1
+
+[[nodes]]
+id = 975
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Speak to the squire on the top floor of Camelot - he will explain the rules of the training grounds in detail."
+parent = -1
+
+[[nodes]]
+id = 976
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 977
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So how did you remove the Sinclairs from Camelot?"
+parent = -1
+
+[[nodes]]
+id = 978
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = """
+Well, after I climbed out the vent, I snuck aboard a passing trade ship that dropped me at Catherby. From there, I returned to Camelot and used the Sinclairs own secret entrance against them. I used some of my
+"""
+parent = -1
+
+[[nodes]]
+id = 979
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = """
+own inventions to create a great deal of chaos and drove them from the house. Then I made sure they returned to their mansion and told them if they ever stepped foot from it again, I'd turn them all into rabbits.
+"""
+parent = -1
+
+[[nodes]]
+id = 980
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How did you get your magic powers back?"
+parent = -1
+
+[[nodes]]
+id = 981
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Ah, Morgan's spell was not hard to break once I had access to my workshop. It's rather technical, so I won't bore you with the details."
+parent = -1
+
+[[nodes]]
+id = 982
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You had an exciting day!"
+parent = -1
+
+[[nodes]]
+id = 983
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 984
+depth = 1
+kind = "speaker"
+speaker = "Squire"
+text = "Greetings, brave knight!"
+parent = -1
+
+[[nodes]]
+id = 985
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. What's through that door?"
+parent = -1
+
+[[nodes]]
+id = 986
+depth = 1
+kind = "speaker"
+speaker = "Squire"
+text = "That door leads to the training ground for the Knights of the Round Table."
+parent = -1
+
+[[nodes]]
+id = 987
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I go in there?"
+parent = -1
+
+[[nodes]]
+id = 988
+depth = 1
+kind = "speaker"
+speaker = "Squire"
+text = "Of course, my lord. But I must tell you the rules first. Would you like to hear them now?"
+parent = -1
+
+[[nodes]]
+id = 989
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 990
+depth = 1
+kind = "option"
+text = "Yes please."
+parent = -1
+children = [991, 992, 993, 994, 995, 996, 997, 998, 999]
+
+[[nodes]]
+id = 991
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes please."
+parent = 990
+
+[[nodes]]
+id = 992
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "The training ground is a melee combat area only. Merlin has cast a spell over the grounds to prevent anyone using Prayer, Ranged or Magic."
+parent = 990
+
+[[nodes]]
+id = 993
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = """
+Upon entering the grounds, you will fight each of the Round Table Knights in turn. Each knight is more skilled than the last, but all have different attack styles that can be exploited. There are eight knights in all, and
+"""
+parent = 990
+
+[[nodes]]
+id = 994
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "each will do damage not only to your hitpoints, but also your combat stats. If you should die in the grounds, Merlin will teleport you back here. You will not lose any of your items."
+parent = 990
+
+[[nodes]]
+id = 995
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "If you feel you cannot complete the battle, you may exit the training grounds. However, if you exit or die, you will have to start over with the first knight the next time you enter."
+parent = 990
+
+[[nodes]]
+id = 996
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = """
+If you are a great warrior and defeat Sir Lancelot, mightiest of all knights, you will receive great rewards. Two new prayers will become available to you and your respawn point will be set to Camelot, as well as 20,000
+"""
+parent = 990
+
+[[nodes]]
+id = 997
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "XP in to each of your combat stats."
+parent = 990
+
+[[nodes]]
+id = 998
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "If you do not want your respawn set to Camelot, Merlin can change it for you."
+parent = 990
+
+[[nodes]]
+id = 999
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "Would you like me to repeat any of that for you?"
+parent = 990
+
+[[nodes]]
+id = 1000
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+children = [1001, 1008, 1017, 1027]
+
+[[nodes]]
+id = 1001
+depth = 2
+kind = "option"
+text = "Tell me about the training ground."
+parent = 1000
+children = [1002, 1003, 1004, 1005, 1006, 1007]
+
+[[nodes]]
+id = 1002
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the training ground."
+parent = 1001
+
+[[nodes]]
+id = 1003
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "Only melee combat is allowed within the training grounds. Merlin will prevent the use of Prayer, Ranged and Magic."
+parent = 1001
+
+[[nodes]]
+id = 1004
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = 1001
+
+[[nodes]]
+id = 1005
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "These grounds are for only the best knights of the land. It is not just testing your combat ability, but your honour and your chivalry. You must face your enemy head on, honourably and bravely."
+parent = 1001
+
+[[nodes]]
+id = 1006
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "Be watchful of your stats, as the Knights can do damage to your combat stats as well as your hitpoints."
+parent = 1001
+
+[[nodes]]
+id = 1007
+depth = 3
+kind = "act"
+text = "end"
+parent = 1001
+is_terminal = true
+
+[[nodes]]
+id = 1008
+depth = 2
+kind = "option"
+text = "Tell me about dying or leaving the grounds."
+parent = 1000
+children = [1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016]
+
+[[nodes]]
+id = 1009
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about dying or leaving the grounds."
+parent = 1008
+
+[[nodes]]
+id = 1010
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "As these are only training grounds, we keep our knights safe. If you should die, you will be teleported back to here and all of your items will be safe."
+parent = 1008
+
+[[nodes]]
+id = 1011
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "However, leaving the training grounds, in anyway, will mean you will have to start from the beginning the next time you enter. These grounds do not favour cowards."
+parent = 1008
+
+[[nodes]]
+id = 1012
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have to start again? What do you mean?"
+parent = 1008
+
+[[nodes]]
+id = 1013
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "You fight each knight of the Round Table, starting with Sir Bedivere and finishing with Sir Lancelot. Leaving means you will have to begin fighting Sir Bedivere again and work your way back up."
+parent = 1008
+
+[[nodes]]
+id = 1014
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What if I log out during the fights?"
+parent = 1008
+
+[[nodes]]
+id = 1015
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "If you log out during a fight, upon logging back in you will fight the knight you were fighting when you logged out."
+parent = 1008
+
+[[nodes]]
+id = 1016
+depth = 3
+kind = "act"
+text = "end"
+parent = 1008
+is_terminal = true
+
+[[nodes]]
+id = 1017
+depth = 2
+kind = "option"
+text = "Tell me about the rewards."
+parent = 1000
+children = [1018, 1019, 1020, 1021, 1022, 1023, 1024, 1025, 1026]
+
+[[nodes]]
+id = 1018
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the rewards."
+parent = 1017
+
+[[nodes]]
+id = 1019
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = """
+King Arthur believes in rewarding his knights for their chivalry. Having proven yourself in combat against his knights, and in your services rendered to Camelot, you will be rewarded with two new prayers, and a new
+"""
+parent = 1017
+
+[[nodes]]
+id = 1020
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "respawn at Camelot, as well as 20,000 XP in to each of your combat stats."
+parent = 1017
+
+[[nodes]]
+id = 1021
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do the new prayers do?"
+parent = 1017
+
+[[nodes]]
+id = 1022
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "Ah, patience is a virtue in knights, my lord. Fight in the training ground and earn your reward to find out!"
+parent = 1017
+
+[[nodes]]
+id = 1023
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Then tell me about the respawn - how will it work?"
+parent = 1017
+
+[[nodes]]
+id = 1024
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = """
+Ah, Merlin has offered, as a reward for your help, to let your respawn in the safety of Camelot, should you befall misfortune elsewhere in the world. Should you wish to change your respawn back to Lumbridge, simply
+"""
+parent = 1017
+
+[[nodes]]
+id = 1025
+depth = 3
+kind = "speaker"
+speaker = "Squire"
+text = "speak to Merlin."
+parent = 1017
+
+[[nodes]]
+id = 1026
+depth = 3
+kind = "act"
+text = "end"
+parent = 1017
+is_terminal = true
+
+[[nodes]]
+id = 1027
+depth = 2
+kind = "option"
+text = "No, thank you."
+parent = 1000
+children = [1028, 1029]
+
+[[nodes]]
+id = 1028
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, thank you."
+parent = 1027
+
+[[nodes]]
+id = 1029
+depth = 3
+kind = "act"
+text = "end"
+parent = 1027
+is_terminal = true
+
+[[nodes]]
+id = 1030
+depth = 1
+kind = "option"
+text = "No, thank you."
+parent = -1
+children = [1031, 1032]
+
+[[nodes]]
+id = 1031
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, thank you."
+parent = 1030
+
+[[nodes]]
+id = 1032
+depth = 2
+kind = "act"
+text = "end"
+parent = 1030
+is_terminal = true
+
+[[nodes]]
+id = 1033
+depth = 1
+kind = "speaker"
+speaker = "Squire"
+text = "Good day, my lord. Is there anything I can do for you?"
+parent = -1
+
+[[nodes]]
+id = 1034
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 1035
+depth = 1
+kind = "option"
+text = "Tell me about the training ground."
+parent = -1
+children = [1036]
+
+[[nodes]]
+id = 1036
+depth = 2
+kind = "act"
+text = "above"
+parent = 1035
+
+[[nodes]]
+id = 1037
+depth = 1
+kind = "option"
+text = "Tell me about dying or leaving the grounds."
+parent = -1
+children = [1038]
+
+[[nodes]]
+id = 1038
+depth = 2
+kind = "act"
+text = "above"
+parent = 1037
+
+[[nodes]]
+id = 1039
+depth = 1
+kind = "option"
+text = "Tell me about the rewards."
+parent = -1
+children = [1040]
+
+[[nodes]]
+id = 1040
+depth = 2
+kind = "act"
+text = "above"
+parent = 1039
+
+[[nodes]]
+id = 1041
+depth = 1
+kind = "option"
+text = "No, thank you."
+parent = -1
+children = [1042]
+
+[[nodes]]
+id = 1042
+depth = 2
+kind = "act"
+text = "above"
+parent = 1041
+
+[[nodes]]
+id = 1043
+depth = 1
+kind = "box"
+text = "Followers are not allowed in the Knight Waves. You'll need to put it away if you wish to enter."
+parent = -1
+
+[[nodes]]
+id = 1044
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1045
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Well done, young adventurer. You truly are a worthy knight."
+parent = -1
+
+[[nodes]]
+id = 1046
+depth = 1
+kind = "box"
+text = "You receive access to the prayers Chivalry and Piety and 20,000 XP in your Hitpoints, Strength, Attack, and Defence skills. You may also speak to Merlin to set your respawn point to Camelot."
+parent = -1
+
+[[nodes]]
+id = 1047
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1048
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 1049
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Excuse me for rushing off like this, but I must get back to my workroom."
+parent = -1
+
+[[nodes]]
+id = 1050
+depth = 1
+kind = "other"
+text = "{{qact|Merlin disappears.}}"
+parent = -1
+
+[[nodes]]
+id = 1051
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

@@ -1,0 +1,135 @@
+name = "The Leviathan"
+source_pages = ["The Leviathan", "The Leviathan/Strategies"]
+npc_ids = [12215, 12219, 12214]
+
+[sections]
+"=Enrage phase=" = """
+[[File:The Leviathan - abyssal pathfinder glow.png|thumb|400px|The player has buffed their accuracy and damage by being within the abyssal pathfinder's area-of-effect.]]
+Upon reaching 180 hitpoints (20% of its health), the Leviathan will begin to focus on the player intensely, beginning the enrage phase. It will roar, causing one set of debris to drop on the arena, while an [[abyssal pathfinder]] will spawn. The abyssal pathfinder will spawn in the north-west corner of the arena, unless the spawn tile is blocked by debris. If blocked, it will instead spawn in the next corner following a clockwise pattern, unless all four spawn tiles are blocked, which will cause it to spawn in the original north-west corner. The Leviathan will also change its attack speed to 2, (i.e. 1.2 seconds) between attacks regardless of the state it was in before the phase started. It will only use magic and ranged orbs in this state, though it can still bite players if they are next to it.
+
+The abyssal pathfinder has a 5x5 Area-of-Effect that the player must stand in; if the player is not in its AoE, the Leviathan's attacks will pierce through protection prayers and the player's attacks will deal less damage. The player will glow when they are within the pathfinder's AoE, and will be granted perfect accuracy and an increased minimum hit<ref>{{PlainCiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1703058011122541032|date=16 September 2023|archiveurl=https://reldo.runescape.wiki/i/27963329|archivedate=16 September 2023|quote=Mod Ash: "[Hi, can you tell us how does the abyssal pathfinder at Leviathan works? How much dmg/accuracy % it gives?] If I'm reading my colleagues' code correctly, it's ensuring you hit for at least 20% of your max (...)"}}</ref>, so switching to a [[toxic blowpipe]] can be beneficial for its increased attack speed. Attacking with magic instead of ranged while within the pathfinder's AoE will grant doubled damage instead of perfect accuracy. 
+
+Players who have a [[webweaver bow]] can instead use the special attack twice to immediately finish it off, but this is not recommended in most cases, as even a [[lightbearer]] will not be able to restore back to full energy for the next kill, and would be disadvantageous for players with a [[zaryte crossbow]].
+
+Until the phase ends, debris will continually drop from above, '''including the permanent blocker debris''', so it is important to defeat the boss before too many appear and restrict movement. Once the Leviathan is slain, all debris on the field will be removed.
+"""
+
+"=Mechanics=" = """
+When the Leviathan is defeated, a drop will be rolled for until the roll results in a success, as described below:{{CiteNews|url=https://secure.runescape.com/m=news/desert-treasure-ii---tweaks-and-drop-rates?oldschool=1|title=Desert Treasure II - Tweaks and Drop Rates|newsdate=3 August 2023}}
+* Roll 1/96 for the tradeable unique drop table (3/96 for awakened variant).
+** If unsuccessful, roll 1/53 for the [[awakener's orb]].
+** If unsuccessful, roll 1/25 for [[scarred tablet]].
+** If unsuccessful, roll 1/200 for [[smoke quartz]].
+** If unsuccessful, roll 1/5 for the supply drop table.
+* If all rolls above were unsuccessful, the standard drop table is rolled.
+* Once the player rolls the entire drop table, roll 1/2,500 for [[Lil'viathan]] and 1/40 for a clue scroll.
+
+In addition, defeating the boss perfectly will earn 50% more loot from the standard drop table.{{CiteReddit|author=Mod Ayiza|url=https://www.reddit.com/r/2007scape/comments/15gzjui/desert_treasure_ii_tweaks_and_drop_rates/julpslb/|date=3 August 2023|archiveurl=https://archive.li/lVplt|archivedate=3 August 2023|quote=You have to do the fight while avoiding any avoidable damage. Essentially a perfect fight (chip damage does not count).|title=Desert Treasure II - Tweaks and Drop Rates}} This requires the player to kill the Leviathan without taking any avoidable damage, which includes:
+* Standard rapid-fire volleys
+* Getting hit by falling debris outside of enrage phase
+* Bite damage
+* Lightning Barrage damage
+* Smoke Blast damage
+* In the awakened fight, getting hit by the tornado
+"""
+
+"=Special attacks=" = """
+* '''Lightning Barrage''' - The Leviathan unleashes a barrage of lightning towards the player while also launching orbs around it. The orbs will land across the arena, but never on the tiles surrounding the pool and have a 1x1 AoE. Run in a tight circle to stay ahead of the electric stroke (it can also be dodged with precise movement whilst also attacking it; see the demonstrations below). Once the attack ends, step away from melee range to prevent it from using its bite attack.
+* '''Smoke Blast''' - The Leviathan begins to spit out debris that falls onto the player's location every tick. The debris take two ticks to land, so players can stand still for one tick on each tile if they want to attack. After throwing ten debris, it will discharge a blast of smoke that can be avoided by standing behind the debris left behind. Getting caught in the blast will deal up to 59 damage. Beginning the enrage phase during this special attack will NOT interrupt the smoke blast.
+
+Damage dealt to the Leviathan is reduced by 33% for the duration of each special attack.
+
+Players can determine which special attack will be used first in the fight after the first roar by observing where the debris remains, assuming that the Leviathan was not stunned before a volley ended. If the debris appears to the '''east and west''', then the '''Lightning Barrage''' attack is used first. If the debris appears to the '''north and south''', then the '''Smoke Blast''' attack is used instead. The boss will alternate between the two special attacks.
+
+<gallery mode="packed" heights="200" style="text-align:left">
+The Leviathan - Smoke Blast.mp4|The player avoids the Smoke Blast attack.
+The Leviathan - Lightning Barrage skip (4-tick weapon).mp4|Performing the Lightning Barrage skip with a 4-tick weapon (ex. the [[Bow of Faerdhinen]]).
+The Leviathan - Lightning Barrage skip (5-tick weapon).mp4|Performing the Lightning Barrage skip with a 5-tick weapon (ex. the [[Armadyl crossbow]]).
+</gallery>
+"""
+
+"Awakened mode" = """
+In Awakened mode, the Leviathan has the following changes:
+* The boss' health increases from 900 to '''2,700'''.
+* The boss is immune to [[stat drain]]s.
+* Upon reaching 50% of its health, a tornado will spawn in the arena and move towards the player. This will deal 40+ damage if it makes contact with them.
+* The permanent blocker debris is increased, from one to five dropped in a "+" style formation on the player.
+* Stuns are '''50% shorter''' in length.
+* Its enraged attack speed is '''doubled''' to one tick (0.6s)
+* The range of the [[abyssal pathfinder]] is increased to 7x7 tiles
+* Damage from the smoke blast increases from 59 to 70+ damage.
+* The [[black mask]] and [[Slayer helmet (i)|Slayer helmet]] do not apply their usual on-task damage and accuracy bonuses while on a Leviathan [[boss slayer task]].{{CiteNews|url=https://secure.runescape.com/m=news/desert-treasure-ii---tweaks-and-drop-rates?oldschool=1|title=Desert Treasure II - Tweaks and Drop Rates|newsdate=03 August 2023|quote=Slayer tasks no longer apply to the Awakened versions of the Desert Treasure II bosses.}}
+
+Rather than letting the Leviathan finish an attack sequence, it is highly recommended to stun it before it ends. This is because the boulders will drop in a +- shaped formation on the player, which will severely impede movement if allowed to appear; likely resulting in death in the enrage phase. This also ensures minimal damage is taken until the enrage phase, as the player is expected to take no damage from the lightning current or shockwave attacks. As the boss' magic level is significantly increased from 160 to 280, a [[twisted bow]] is the preferred weapon of choice over a crossbow, since it will fully benefit from its passive effect.
+
+Stunning Levi resets the player's attack delay, meaning you can attack immediately after casting barrage to get a free ranged shot every stun before Levi's damage reduction kicks in.
+
+Once the tornado appears at 50% health (1350 health), players must utilise two additional tiles to perfectly run the lightning current rather than running back and forth to avoid getting hit by it. The player will still retain the ability to attack despite these additional tiles. During the debris attack, each quadrant can allow for two instances of each attack before being unusable; during the first instance for each quadrant, run two tiles to leave a gap between it and the next thrown debris, so that the player can simply walk between them for the second instance of the attack. The majority of damage will be primarily dealt during the lightning current attack.
+
+When rushing in to stun the Leviathan, make sure to swap to [[Protect from Melee]] to avoid any potential bite attacks. To avoid any unnecessary chip damage from incoming attacks as the enrage phase starts, leave the boss as close as possible to 20% of its health, then stun and hit from behind. Before starting the enrage phase, make sure to have max health and prayer. It is also encouraged to leave the north-west clear of debris to ensure the pathfinder spawns there and luring the tornado as south as possible to get a head-start once starting the phase, as it is important not to let it trail close to the player.
+
+During the enrage phase (540 health), dump two webweaver specials upon being lit by the pathfinder, which should reduce the boss' health to ~360 and return to a twisted bow and continue attacking the boss while moving and reacting to incoming attacks. While a toxic blowpipe can be used for higher DPS with its attack speed, the boss' even faster attack speed and the tornado, along with having to flick the attacks, dodging the tornado and being in sync with the pathfinder makes this highly unfeasible. Make sure to stay away from the boss' melee distance to ensure that it will not bite, as it and an unprotected attack will usually result in death. The player should have enough time to defeat the boss before the pathfinder completes a full cycle, though this also depends on how much the boss will swap between combat styles.
+
+With a [[Twisted bow]] and max ranged, [[Masori]] has ~9% higher DPS during the fight, while Void is ~9% stronger during Enrage. It's recommended to bring both and swap to void before enrage.
+"""
+
+"Awakened version" = """
+The Leviathan can also be '''awakened''' by use of an [[Awakener's orb]], greatly increasing the boss' stats and increasing the difficulty of the mechanics for a much harder fight.
+For an overview of the differences between the regular and awakened versions of the boss, see this [[The Leviathan/Strategies#Awakened mode|strategy guide]].
+"""
+
+"Fight overview" = """
+The Leviathan uses a volley of rapid-firing attacks which deal damage upon impact; protection prayers will fully block these attacks. The lure on its head will change colours accordingly as another indicator of the attack style it is using. 
+
+{| class="wikitable"
+!Orb
+!Colour
+!Pray
+!Max hit if not protected
+|-
+|[[File:Leviathan magic attack.png|frameless|width=90x90]]
+|'''Blue'''
+|{{Ilink|Protect from Magic|pic=Protect from Magic|size=23}}
+|32
+|-
+|[[File:Leviathan ranged attack.png|frameless|width=90x90]]
+|'''Green'''
+|{{Ilink|Protect from Missiles|pic=Protect from Missiles}}
+|24
+|-
+|[[File:Leviathan melee orb.png|frameless|width=90x90]]
+|'''Orange'''
+|{{Ilink|Protect from Melee|pic=Protect from Melee|size=25}}
+|50
+|-
+|[[File:Leviathan boulder.png|frameless|width=90x90]]
+|'''Rocks'''
+|None; run away from shadows
+|25
+|}
+Alongside the orb attacks, the Leviathan can also utilize a biting attack when in melee range, which [[Protect from Melee]] will fully block. This is rarely used since it interrupts the volley sequence, but it has no warning animation. It will only be used if the player is directly next to the pool (including diagonal tiles), and it is recommended to mark these tiles to avoid running into them.
+
+[[File:The Leviathan - tick flick.mp4|thumb|500px|The player demonstrates the swift switching of protection prayers in the fifth and sixth sequence of attacks.]]
+At the end of each volley, the boss will roar and cause debris to fall around the arena, with one falling down on the player's location as a permanent spawn for the remainder of the fight. Players will take up to 7 chip damage from the roar but can avoid the debris by moving at least 1 tile away. Every subsequent volley of attacks will increase in intensity, which can make it difficult to switch prayers at later volleys. The sequence of attacks are as follows:
+* 3 tick attacks with magic and ranged
+* 2 tick attacks with magic and ranged
+* 2 tick attacks with all three styles
+* 1 tick attacks with magic and ranged
+* 1 tick attacks with all three styles
+* All three styles with faster projectile time (2 ticks to react)
+* All three styles with even faster projectile time (1 tick to react)
+
+At any point during the volley of attacks, players can cast any type of [[shadow spell]] to stun the Leviathan, where it will stay still for 15 [[ticks]] (9 seconds). Damage against it is capped at 10 when stunned, but the player can run around to attack the gaping wound on its backside. When attacking the backside with ranged, it deals at least a minimum of ~65% of your maximum hit as damage, whereas attacking with magic is not guaranteed to hit and is subject to the usual accuracy rolls, but will deal double damage. The Leviathan will break out of its stun when this occurs and use a special attack as retaliation.
+
+<u>Leviathan will progress down this list</u><u>, of attack styles, throughout the fight whether you stun or not!</u>
+
+If you:
+
+Stun ''and'' attack the gaping wound on The Leviathan's back
+
+- '''OR''' -
+
+Stun ''and'' have done 25% of The Leviathan's health in damage
+
+The Leviathan will reset to the 2nd attack style on the list and then progress downwards again. This will then repeat resetting to the 3rd on your second stun, so on and so forth until The Leviathan reaches its fastest attack. This means you should use your shadow spells to stun ''sparingly.''
+"""

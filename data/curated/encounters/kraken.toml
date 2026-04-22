@@ -1,0 +1,71 @@
+# Kraken — slayer-task boss, kraken cove. Tests: tentacle-first gating,
+# typeless prayer-unblockable damage, whirlpool reveal mechanic,
+# magical-ranged attack type (ranged accuracy vs magic defence).
+
+name = "Kraken"
+slug = "kraken"
+npc_ids = [494, 496]              # 494 = kraken, 496 = whirlpool form
+source_pages = ["Kraken", "Kraken/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Magical Ranged"
+# Wiki: "typeless magical ranged attack:
+#   'Typeless' → protection prayers have no effect.
+#   'Magical ranged' → accuracy = kraken's ranged attack bonus vs
+#   player's magic defence bonus."
+style = "magical_ranged"          # custom hybrid style
+accuracy_using = "ranged"
+defence_using = "magic"
+max_hit = 28
+warning_ticks = 2
+prayer_ignorable = true           # typeless; overheads don't reduce
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "whirlpools"
+enter_at_hp_pct = 100
+# Wiki: fight starts with 4 whirlpools hiding 4 Enormous Tentacles.
+# Player must attack each whirlpool to reveal its tentacle; tentacles
+# must be killed first before Kraken herself surfaces.
+script = "kraken_whirlpool_phase"
+allowed_attacks = []              # player-initiated; kraken untargetable
+
+[[phases]]
+id = "surfaced"
+enter_after = "whirlpools"
+allowed_attacks = ["Magical Ranged"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Whirlpool Gating"
+primitive = "spawn_hidden_minions"
+trigger = "phase_enter:whirlpools"
+# Four Enormous Tentacle NPCs, each hidden behind a whirlpool "shell"
+# that must be clicked to reveal. Each tentacle attacks with its own
+# Magical Ranged (max 2), dies in one hit but can't be targeted until
+# revealed.
+params.npc_name = "Enormous Tentacle"
+params.count = 4
+params.hidden_until_attacked = true
+params.hidden_object_name = "Whirlpool"
+params.tentacle_max_hit = 2
+
+[[mechanics]]
+name = "Surface After Tentacles"
+primitive = "phase_advance_on_condition"
+trigger = "while_in_phase:whirlpools"
+# Kraken surfaces (becomes targetable) once all 4 tentacles are dead.
+params.condition = "all_npcs_dead:Enormous Tentacle"
+params.advance_to = "surfaced"
+
+[[mechanics]]
+name = "Empty-Room Regen"
+primitive = "regen_when_no_player"
+params.heal_per_tick = 30
+# Kraken and all her tentacles reset/respawn if the room empties out
+# (player teleports or dies before finishing).
+params.reset_all_npcs = true

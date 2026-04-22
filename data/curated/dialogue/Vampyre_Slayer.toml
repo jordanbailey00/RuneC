@@ -1,0 +1,504 @@
+title = "Transcript:Vampyre Slayer"
+npcs = ["Morgan", "Dr Harlow"]
+node_count = 64
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Morgan"
+text = "Please please help us, bold adventurer!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's the problem?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Morgan"
+text = "Our little village has been dreadfully ravaged by an evil vampyre! He lives in the basement of the manor to the north, we need someone to get rid of him once and for all!"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "cond"
+text = "If the player has a combat level less than 20:"
+parent = -1
+children = [4]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "other"
+text = "Before starting this quest, be aware that your combat level is lower than the recommended level of 20."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "select"
+text = "Start the Vampyre Slayer quest?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [7, 8, 9, 10, 11]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'm up for an adventure."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Morgan"
+text = """
+I think first you should seek help. I have a friend who is a retired vampyre hunter, his name is Dr. Harlow. He may be able to give you some tips. He can normally be found in the Blue Moon Inn in Varrock, he's a bit
+"""
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Morgan"
+text = "of an old soak these days. Mention his old friend Morgan, I'm sure he wouldn't want me killed by a vampyre."
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll look him up then."
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [13, 14, 15]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, vampyres are scary!"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Morgan"
+text = "I don't blame you."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "speaker"
+speaker = "Morgan"
+text = "How are you doing with the quest?"
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Morgan"
+text = "Please hurry! Every day we live in fear that we will be the vampyre's next victim!"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Buy me a drrink pleassh..."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "No, you've had enough."
+parent = -1
+children = [23, 24]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, you've had enough."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Morgan needs your help!"
+parent = -1
+children = [26, 27, 28, 29, 30, 31, 32]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Morgan needs your help!"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Morgan you shhay..?"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "His village is being terrorised by a vampyre! He told me to ask you about how I can stop it."
+parent = 25
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Buy me a beer... then I'll teash you what you need to know..."
+parent = 25
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But this is your friend Morgan we're talking about!"
+parent = 25
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Buy ush a drink anyway..."
+parent = 25
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Buy me a drrink pleassh..."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "cond"
+text = "If the player isn't carrying a beer:"
+parent = -1
+children = [35, 36]
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll just go and buy one."
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "cond"
+text = "If the player is carrying a beer:"
+parent = -1
+children = [38, 39, 40, 41, 42, 43, 44, 47, 50, 54, 55, 56, 57]
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "box"
+text = "pic=Beer detail.png|You give a beer to Dr Harlow."
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Cheersh matey..."
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So tell me how to kill vampyres then."
+parent = 37
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Yesh Yesh vampyres, I was very good at killing em once..."
+parent = 37
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "box"
+text = "Dr Harlow appears to sober up slightly."
+parent = 37
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "cond"
+text = "If the stake is in the player's inventory:"
+parent = 37
+children = [45, 46]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Don't forget to take your stake with you, otherwise he'll just regenerate. Yes, you must have a stake to finish it off... I'd give you a stake but you've got one in your inventory."
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "act"
+text = "continues"
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "cond"
+text = "If the stake is in the player's bank:"
+parent = 37
+children = [48, 49]
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Don't forget to take your stake with you, otherwise he'll just regenerate. Yes, you must have a stake to finish it off... I'd give you a stake but you've already got one stored somewhere."
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "act"
+text = "continues"
+parent = 47
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "cond"
+text = "If the player doesn't have a stake:"
+parent = 37
+children = [51, 52, 53]
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "Well, you're going to need a stake, otherwise he'll just regenerate. Yes, you must have a stake to finish it off... I just happen to have one with me."
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "box"
+text = "pic=Stake detail.png|Dr Harlow hands you a stake."
+parent = 50
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "act"
+text = "continues"
+parent = 50
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "speaker"
+speaker = "Dr Harlow"
+text = """
+You'll need a hammer as well, to drive it in properly, your everyday general store hammer will do. One last thing... It's wise to carry garlic with you, vampyres are somewhat weakened if they can smell garlic. Morgan
+"""
+parent = 37
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Dr Harlow"
+text = "always liked garlic, you should try his house. But remember, a vampyre is still a dangerous foe!"
+parent = 37
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you very much!"
+parent = 37
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "other"
+text = "{{Mes|The vampyre seems to weaken.}}"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "other"
+text = "{{Mes|{{Colour|red|The vampyre seems to regenerate!}}}}"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "other"
+text = "{{Mes|{{Colour|red|You're unable to push the stake far enough in!}}}}"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "other"
+text = "{{Mes|{{Colour|red|The vampyre seems to regenerate!}}}}"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "other"
+text = "{{Mes|{{Colour|red|You hammer the stake into the vampyre's chest!}}}}"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1

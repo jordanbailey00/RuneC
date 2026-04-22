@@ -1,0 +1,900 @@
+title = "Transcript:2013 Christmas event"
+npcs = ["Shanty Claws", "Jack (Christmas 2013)", "Jeff (child)", "Jill"]
+node_count = 110
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "cond"
+text = "If the player isn't wearing a ring of Charos:"
+parent = -1
+children = [2, 3]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "'Raise the mainsail and hoist the anchor...' Eh! Oh, the names 'Shanty'; 'Shanty Claws' to a landlubber like ye. And oi've some terrible news for yer deck-swabbin' ears."
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "act"
+text = "continues"
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "cond"
+text = "If the player is wearing a ring of Charos:"
+parent = -1
+children = [5, 6]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'Raise the mainsail and hoist the anchor...' Eh! A fellow werewolf! I say; I never expected that, friend! Oh, the name's 'Shanty'; 'Shanty Claws' to a landlubber like ye. And oi've some terrible news for yer deck-swabbin' ears.
+"""
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "continues"
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I don't really swab the deck with... Oh, never mind, please do go on!"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'Splice the mainsail and shiver me timbers...' Ah yea, the news is of a disturbin' type so ye's best go ahead and prepare yerself, or the jelly in yer bones'll shrivel and yer'll end up a lifeless bag o' puss.
+"""
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Er, I think I'll manage. Please continue; your story's 'enthralling'."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+It's the gublinch, ye see. The evil gublinch ain't too pleased, what with the recent snow. Right near their landlubbin' homes, it be. And these sweaty, smelly, warmth-loving critters, they's a tad sensitive to the cold.
+"""
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "So they've childernapped the childerkins from hereabouts, forcin' 'em to stoke the fires in the gublinch caves!"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Childernapped the childerkins? Why, that sounds terrible! What can I do to help?"
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "You's be needin' to ice them gublinch. Freeze 'em good and proper, like. Then you's gonna have to get 'em into these 'ere cages so's we can ship 'em off someplace else!"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's in it for me?"
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+Ahhh, a hard-nosed dealer who talks straight, that's what I like. For yer 'ard effort, I'll be willin' ta compensate ye. How's ye fancy a festive hat with a fancy nose décor, what I got on a recent raid to the north?
+"""
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Let's see it then."
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Right you are!"
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "act"
+text = "pic=Reindeer hat detail.png|Shanty Claws shows you a strange looking hat with an accompanying nose decoration."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything else to sweeten the deal?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+Perhaps I can also tempt ye with a festive wintumber tree for yer player-owned house? it glitters fancifully in front of yer very eyes, though to plant it ye's needing to be on one them thar member's worlds and
+"""
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "have a spot in yer garden in which plant it.{{sic}}"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Eh? So I can plant this tree in the garden of my player-owned house?"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+Aye, that's what I said, aye. And to give it ye, you'll need to be on a members' server. If yer interested just start filling these 'ere cages with gublinch and, when they's filled, come see me for yer rewards.
+"""
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmmm, I'm not sure. I want to ask a few more questions first."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "What are gublinch?"
+parent = -1
+children = [26, 27, 28, 29]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are gublinch?"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'Fire the port gun, stow the belayin' pin...let's haul anchor ye mornin'...' Ah... So yer back and asking about th' gublinch? They're foul goberlin-style beasties, what take pride in their stinky sweatyness. Though
+"""
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+they's be little more than a pest. They're easy to get rid o' with them being so sensitive to th' chill. They's prefer more to live in them heated caverns and cook up a foul stink, than to do a second's worth o' work.
+"""
+parent = 25
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "act"
+text = "other"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "option"
+text = "Where are these gublinch?"
+parent = -1
+children = [31, 32, 33, 34, 35]
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where are these gublinch?"
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "'...haul the anchor, rig the mainsail...' Eh? Ah, th' gublinch have gone and nested themselves in, near the belching mountain."
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "D'you mean the volcano?"
+parent = 30
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Aye, [lad/lass], volcano is what I be meanin'. The south foot o' the same. They's be 'avin' a cavern there, but arm yerself wi' the chilly snowball ammo afore ye goes venturin' inside."
+parent = 30
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "act"
+text = "other"
+parent = 30
+is_terminal = true
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "option"
+text = "What do I get for getting rid of these gublinch?"
+parent = -1
+children = [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I get for getting rid of these gublinch?"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'...a brig's too good, so keelhaul him in the mornin'...' Ah, direct, ye are, and to the point. Well,  me swarthy deck-swabber, perhaps I can tempt ye with a festive hat with a big nose décor, what I got on a recent raid in the
+"""
+parent = 36
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "north?"
+parent = 36
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's see it then."
+parent = 36
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Right you are!"
+parent = 36
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "box"
+text = "pic=Reindeer hat detail.png|Shanty Claws shows you a strange-looking hat with an accompanying nose decoration."
+parent = 36
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything else to sweeten the deal?"
+parent = 36
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+Perhaps I can also tempt ye with a festive wintumber tree for yer player-owned house? It glitters fancifully in front of yer very eyes, though to plant it ye's needing to be on one them thar members' worlds and
+"""
+parent = 36
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "have a spot in yer garden in which to plant it."
+parent = 36
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Eh? So I can plant this tree in the garden of my player-owned house?"
+parent = 36
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Aye, that's what I said, aye. And to give it ye, you'll need to be on a members' server. If yer interested, just start filling these 'ere cages and, when ten are filled, come to me for yer rewards."
+parent = 36
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "act"
+text = "initial"
+parent = 36
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "Can you just tell me in a plain and simple way what I have to do?"
+parent = -1
+children = [50, 51, 52, 53, 54]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you just tell me in a plain and simple way what I have to do?"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+Certainly, [player name]. Local children have been kidnapped by creatures called gublinch. The gublinch cave is on the south side of the volcano. The gublinch are sensitive to cold, so use snowballs to freeze 'em.
+"""
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Ye'll find snowdrifts near the entrance to their cave. When ye's frozen a gublinch, bring it back 'ere an' place it in one o' these cages."
+parent = 49
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "In return for filling all ten cages, I'll give ye a reindeer hat and a members' only wintumber tree that you can plant in th' garden o' yer player-owned house."
+parent = 49
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "act"
+text = "initial"
+parent = 49
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "option"
+text = "Okay, thanks."
+parent = -1
+children = [56, 57]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "act"
+text = "end"
+parent = 55
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again. What should I do?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'Swab the decks and raise the top mast...' Oh, sorry there, ye be wantin' to know what to do, but yer already going great guns, shipmate! Keep up the good work, you old sea-dog, and get them gublinch shards
+"""
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "into them thar cages!"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "act"
+text = "(Same options as above.)"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "box"
+text = "You search the strange structure and find a notice attached."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "box"
+text = """
+*DANGER: GUBLINCH* This 'ere notice be warnin' all landlubbers o' these 'ere gublinch, what lie in wait in their stinky cavern below. Any swashbucklin' sailor or cutlass-wieldin' pirate wi' an eye fer treasure should seek out Shanty Claws (sailor), Musa Point, On the Dock. Thankee kindly.
+"""
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "other"
+text = "{{mes|You place the shards in the cage.}}"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "other"
+text = "{{mes|The gublinch rattles the cage doors, but cannot escape.}}"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "'...bring me home to a dry-dock and a bottle of hock...' Hey there, ye need to put them thar shards into a cage so's to restrain the gublinch!"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "'...skimming the sea with a sailor's heart, lofty and high...' Hey, whad'ya think yer doin! Go shove that in someone else's face!"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I've finished."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'...to exotic places with fair winds blowing in our faces...' Aarghhh! Me first mate, [player name] - ye's done a grand job, [lad/lass], and stuffed them evil gublinch in them cages. Now, this salty sea-wolf can offer ye something to make yer
+"""
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "eyes light up like ye's seen a treasure chest, brimful o' the bootiest booty ye ever did see."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "box"
+text = "pic=Reindeer hat detail.png|Shanty Claws shows you a reindeer hat with a matching flashing nose."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Ol' Shanty's got another prize for ye that'll make yer landlubbin' heart beat full bore. Ye'll be needing a patch o' dirt for yer dry-docked ship for this."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Dry-docked ship? Oh, you mean a player-owned house? Okay, so I need to plant it in the garden?"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Aye, that's what ol' Shanty says. Let it fill yer heart wi' festive cheer."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "box"
+text = "pic=Wintumber tree detail.png|Shanty Claws shows you a wintumber tree for your player-owned house."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "An' that's not all Shanty's got for ye. Wrap yer hands around this pile o' festive booty..."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "act"
+text = "Repeats in this order:"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "{{overhead|'Sailing on the sea...happy as can be...'}}"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "{{overhead|'...to exotic places...fair winds in our faces...'}}"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "{{overhead|'...and we'll sink a drink  to our sailor ways...'}}"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "{{overhead|'...polish ye cutlass's makes 'em rust-less...'}}"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "{{overhead|'...a brig's too good, so keelhaul him in the mornin'...'}}"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'...and we'll sink another drink to our sailor ways...' Eh? Arrrrgh. If it ain't me first mate, [player name], again. Ye have me heartiest thanks fer sortin' them thar gublinch, mate. If ye needs yer booty back, get yerself along to
+"""
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "Diango - I've left supplies wi' him, so I have."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "option"
+text = "What will happen to the gublinch now?"
+parent = -1
+children = [91, 92, 93, 94]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What will happen to the gublinch now?"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'...skimming the sea with a sailor's heart, lofty and high...' Arrgh, you be here again then, shipmate...and well you can ask about them thar gublinch. But a-fear ye not - they's be disposed of well, mark my words. And a
+"""
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "sweaty, swarthy bunch o' critters they'll be in their new home, far from here!"
+parent = 90
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "act"
+text = "other"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "option"
+text = "What will you do now?"
+parent = -1
+children = [96, 97, 98, 99, 100]
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What will you do now?"
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "I'll probably go on a long sea voyage and compose some more shanties! Shanty by name, shanty by nature!"
+parent = 95
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = """
+'...rounding the cape, with good hope in our heart, that we'll find treasure for our chests...' Arggh me swarthy landlubber, I's be sailin' away afore long, matey, an' striking up a tune for me shipmates; with a wholesome
+"""
+parent = 95
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Shanty Claws"
+text = "shanty coursing the rigging, old Shanty Claws will make his way. Wringing a salty sea song from the adventurers we'll survive, the people we'll meet and the treasure we'll find."
+parent = 95
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "act"
+text = "other"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "option"
+text = "Okay, thanks."
+parent = -1
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Jack/Jeff/Jill"
+text = "Thanks so much for saving us from those stinky gublinch. They were awful! I hope Shanty gave you somefing{{sic}} cool for your efforts."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "box"
+text = "The cavern is empty of gublinch now; there's no need to go down there."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "box"
+text = "You search the strange structure but find nothing."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

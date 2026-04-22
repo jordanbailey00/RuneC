@@ -1,0 +1,142 @@
+name = "The Whisperer"
+source_pages = ["The Whisperer", "The Whisperer/Strategies"]
+npc_ids = [12206, 12207, 12204, 12205]
+
+[sections]
+"=Enrage phase=" = """
+[[File:The Whisperer - enrage phase movement.mp4|thumb|400px|The player demonstrates swiftly switching prayers and dodging tentacles in the Whisperer's enrage phase.]]
+Upon reaching 0 health, the Whisperer will heal 140 hitpoints, restore any drained stats and pull the player into the Shadow Realm. Now, she will alternate between ranged and magic every two attacks with an increased attack speed and '''starting with ranged''', along with a single tentacle appearing per attack.
+
+The tentacles will still drain sanity as usual if hit by them. Focusing on movement should be prioritised because of this, since getting hit too much will likely result in the player going insane. Having high health and prayer going into the enrage phase is very beneficial, as it can be difficult to heal or restore prayer due to needing to constantly move and switch prayers.
+
+As enrage phase is about to begin, switch to [[Protect from Missiles]] and restore missing health/prayer. There are then two general strategies that can be used:
+
+* '''Basic movement''' (recommended for beginners). This relies on the fact that when running in a straight line, the player will naturally dodge the vast majority of tentacles; even running directly into a tentacle will usually not cause damage, as long as the player keeps moving. To take advantage of this, run in a large square around the Whisperer (stay out of melee range), or back-and-forth in a line in front of her, taking care not to stop for more than a few ticks. When the second auto-attack of the same style (ranged or magic) is just about to hit the player, click to move and then switch prayers. Fit in your own attacks where possible, and then immediately keep moving. If you get hit, do not panic, simply click to move a good distance away to gain recovery time, and ensure your prayers are correct.
+* '''Advanced movement'''. Utilises L-movement to dodge all tentacle attacks. See the video to the right for an example.
+
+Once the Whisperer dies, the player's sanity is instantly restored to 100% and any attacks launched in transition will not cause damage. She will respawn as the Odd Figure in roughly 18 seconds.
+
+Tips for mobile:
+The sanity interface, chat menu, and world map all take up extremely valuable space on the screen, and this can especially be a problem during the enrage phase. Long tap the world map icon to collapse the world map before the fight begins, and collapse the chat menu after the Whisperer’s specials to help you focus more on the direction of the tentacles during enrage.
+"""
+
+"=Mechanics=" = """
+When the Whisperer is defeated, a drop will be rolled for until the roll results in a success, as described below:{{CiteNews|url=https://secure.runescape.com/m=news/desert-treasure-ii---tweaks-and-drop-rates?oldschool=1|title=Desert Treasure II - Tweaks and Drop Rates|newsdate=3 August 2023}}
+* Roll 1/64 for the tradeable unique drop table (3/64 for awakened variant).
+** If unsuccessful, roll 1/34 for the [[awakener's orb]].
+** If unsuccessful, roll 1/25 for [[sirenic tablet]].
+** If unsuccessful, roll 1/200 for [[shadow quartz]].
+** If unsuccessful, roll 1/5 for the supply drop table.
+* If all rolls above were unsuccessful, the standard drop table is rolled.
+* Once the player rolls the entire drop table, roll 1/2,000 for [[Wisp]] and 1/40 for a clue scroll.
+
+In addition, defeating the boss perfectly will earn 50% more loot from the standard drop table.{{CiteReddit|author=Mod Ayiza|url=https://www.reddit.com/r/2007scape/comments/15gzjui/desert_treasure_ii_tweaks_and_drop_rates/julpslb/|date=3 August 2023|archiveurl=https://archive.li/lVplt|archivedate=3 August 2023|quote=You have to do the fight while avoiding any avoidable damage. Essentially a perfect fight (chip damage does not count).|title=Desert Treasure II - Tweaks and Drop Rates}} This requires the player to kill the Whisperer without taking any avoidable damage, which includes:
+* Any damage from her ranged or magic attacks. 
+* Unprotected damage from her melee attacks.
+* Getting hit by her [[Tentacle (The Whisperer)|tentacles]].
+* Getting hit by her Screech attack.
+* Getting hit by her Soul Siphon attack.
+* Stepping on a [[Corrupted_seed#Dark_green|dark green corrupted seed]].
+* Any [[corrupted seed]]s being hatched.
+"""
+
+"=Special attacks=" = """
+When the Whisperer reaches or falls below 720 (80%), 495 (55%), and 270 (30%) hitpoints, she will perform a special attack. The possible special attack rotations are:
+
+*Corrupted Seeds -> Screech -> Soul Siphon
+*Screech -> Soul Siphon -> Corrupted Seeds
+
+She will take less damage from the player's attacks during the specials, but [[thralls]] do not have their damage reduced. The damage reduction is 60% inside the shadow realm, and 70% outside of the shadow realm.
+* '''Corrupted Seeds:''' The Whisperer will appear in the centre and scatter [[corrupted seed]]s around her. The player must step on all the light green seeds to stop the attack, which can only be seen in the Shadow Realm; if the timer runs out before the attack is stopped, the player will take 75 damage and lose 75% sanity. Stopping the attack without stepping on any dark green seeds will restore sanity by 15%. Stepping on a dark green seed will deal 15-25 damage.
+** There are two layouts in which the seeds can spawn, and each layout has two patterns for the light green seeds. Each pattern has two lines of symmetry. To preserve sanity and prayer, players can memorise the seeds' locations, then activate the [[blackstone fragment]] again and step on them in the real world.
+** An easy way to memorize the current layout is to assign nicknames to them and spending minimal time in the shadow realm to check which one is active. For example, route 1 can be thought of as "Diagonals" due to only needing diagonal movement. Route 2 can be thought of as "T shapes". Route 3 can be thought of as "Buildings and fences" due to the large square alignment on opposite sides and small lines adjacent. Route 4 can be thought of as "Triangles and boxes" due to the triangle shapes opposite of each other and the small squares adjacent.
+** With a N-tick weapon, players can destroy N-1 seeds between attacks (e.g. with a five-tick weapon players can destroy four seeds between attacks).
+<gallery mode="packed" heights="200" style="text-align:left">
+The Whisperer - seed pattern 1 route.png|Route 1
+The Whisperer - seed pattern 2 route.png|Route 2
+The Whisperer - seed pattern 3 route.png|Route 3
+The Whisperer - seed pattern 4 route.png|Route 4
+</gallery>
+[[File:The Whisperer - screech dodging.mp4|thumb|400px|For the screech attack, enter the Shadow Realm, quickly determine where to stand, and return back to preserve sanity.]]
+* '''Screech:''' The Whisperer will teleport to the southern end of the cathedral and gather energy for three screeches. At the same time, [[Floating Column|floating columns]] will emerge from the water to block the incoming attacks. The pillars have 20, 40, or 60 health; the health bar can only be seen when in the [[Shadow Realm]]. Players must stand within the 2x2 square behind a pillar (clipping inside a pillar does not count) to avoid getting hit by the screech, even if the angle looks as if it would be safe otherwise. The Whisperer will deal 20 damage to every pillar each screech, and also destroy the pillar the player is hiding behind, so you must save the 60-health pillar for the final screech. Taking a screech will result in the Whisperer dealing 45 damage and draining sanity by 45%.
+** To avoid the attack, enter the Shadow Realm, look for the 60-health pillar, and then look for a 40-health pillar nearby the 60-health pillar. The player should hide behind pillars in the following order: ''any'' 20-health pillar, the 40-health pillar, and finally the 60-health pillar.
+** To preserve sanity and prayer, players can enter the Shadow Realm and quickly check which pillars to stand behind, then exit and move in the real world. One must be quick however, as the [[blackstone fragment]] will deactivate within a few seconds.
+[[File:The Whisperer - lost souls.mp4|thumb|400px|Killing lost souls with the venator bow. For the souls in a row, target one of the souls on the end to ensure the ricochet will hit all three.]]
+* '''Soul Siphon:''' The Whisperer will appear in the centre and summon twelve [[Lost Soul (The Whisperer)|lost souls]], beginning to siphon energy from them for a powerful chant. Players must activate their [[blackstone fragment]] to enter the [[Shadow Realm]] and kill at least one set of souls chanting the same phrase. If the player fails to kill a full set of souls within ~10 seconds, the Whisperer will unleash an attack that deals 50 damage and heals her for 100 health. The souls can only be damaged within the Shadow realm.
+** The beginning of the special is signalled by the Whisperer disappearing and reappearing in the centre of the room. To maximise the number of souls killed, immediately switch weapon once she disappears, and right afterwards click the blackstone fragment.
+** A [[venator bow]] can kill all of the spirits within the time frame. Any spirit can be attacked in the "L" formation (as the shot will bounce on all three); against spirits in a "\\" or "/" formation, the player has to attack the bottom or top spirit; attacking the middle will only bounce the shot to one other spirit.
+** Depending which set(s) of souls are killed, they will cause the following effects:
+*** {{Overhead|Vita!}} (2 yellow souls): Restores ~20% hitpoints.
+*** {{Overhead|Oratio!}} (3 blue souls): Restores ~20% prayer points.
+*** {{Overhead|Sanitas!}} (3 cyan souls): Restores 15% sanity.
+*** {{Overhead|Mors!}} (4 green souls): Deals 50 damage to the Whisperer (increased to 75 if all twelve souls are killed).
+** Without a venator bow, the next best weapon to use is a toxic blowpipe, which can kill up to 7 souls if the player enters the Shadow Realm as soon as possible.
+
+After each special attack, the Whisperer will usually launch a binding projectile at the player, which will always bind them regardless of their bonuses and lasts for ~8 seconds. She will then move towards the player in an attempt to melee them. During this state, any [[Ice spells|ice spell]] or [[standard spellbook]] binding spell will successfully freeze her in place even if it misses. This will automatically cause the bind to wear off if this happens. Standing at least 10 tiles away from her position after she launches the projectile provides enough distance to run away from her, as she will stop before reaching melee range.
+
+Players are highly recommended to be on the standard or ancient spellbook when killing the Whisperer. Although the [[Arceuus spellbook]]'s thralls can be lucrative, the player should note that thralls will not carry over between realms, limiting their use as the fight can be very quick that the thrall will not deal as much damage as expected. Additionally, [[grasp spells]] don't guarantee a bind unless using [[Undead Grasp]] whilst under the effects of [[Mark of Darkness]], meaning that players may wish to stand at least nine tiles away from her after each special attack to avoid getting hit by melee.
+
+Depending on how damaged the Whisperer is before using a special attack, there is a possibility that she may forgo the binding projectile after the special attack and use auto-attacks instead. This seems to occur the most after the first special attack, so players should keep note of this to avoid getting caught by surprise. If her health is somehow dropped below the next threshold while in the middle of a special attack, she will not use the projectile at all and instead transition as normal.
+
+[[File:Whisperer Bind Safespots.png|thumb|400px|The tiles that can be used to avoid the binding melee attacks after each special attack. If the Whisperer is in the centre (blue tiles), standing south of the red tiles or north of the violet ones will avoid the melee attacks. If the Whisperer is to the south (red tiles), standing north of the blue tiles will avoid the melee attacks.]]
+"""
+
+"Awakened mode" = """
+In Awakened mode, the Whisperer has the following changes:
+
+* The [[black mask]] and [[Slayer helmet (i)|Slayer helmet]] do not apply their usual on-task damage and accuracy bonuses while on a Whisperer [[boss slayer task]].{{CiteNews|url=https://secure.runescape.com/m=news/desert-treasure-ii---tweaks-and-drop-rates?oldschool=1|title=Desert Treasure II - Tweaks and Drop Rates|newsdate=03 August 2023|quote=Slayer tasks no longer apply to the Awakened versions of the Desert Treasure II bosses.}}
+* The boss' health increases from 900 to '''2,700'''. 
+* The Whisperer is immune to stat drains.
+* Sanity does not restore outside of the Shadow Realm. While in the Shadow Realm, the sanity and prayer drain is increased to '''4'''.
+* The Whisperer's regular attacks now consists of '''five''' projectiles rather than three.
+** Upon beginning the fight, she will use two of one style and three of the other (e.g Ranged -> Ranged -> Magic -> Magic -> Magic)
+** After two special attacks, she will use one of one style, two of the other, and then two of the first style (e.g. Ranged -> Magic -> Magic -> Ranged -> Ranged)
+** After the seventh special attack, she will alternate between both styles per hit.
+* Damage from the Whisperer's regular attacks is significantly increased.
+** Her regular magical attack can deal upwards of 45 damage, while her regular ranged attack can deal upwards of 53 damage. Praying correctly fully negates the damage.
+** Her regular melee attacks deals between 50-72 damage '''twice''' if not prayed against. If prayed against, it deals between 37-52 damage '''twice'''.
+* The Whisperer's tentacle formations are changed - the "X" now becomes an attack with seven tentacles (without any formation change) while the "+" becomes an attack with six tentacles all next to each other (which starts to appear after four special attacks are used), making the player run at least two tiles to the sides to avoid the attack. The damage and sanity drain is also increased from 20 to '''30'''.
+* Unlike other bosses who retain their normal mode mechanics at set health percentages, the Whisperer does not and will instead perform her special attacks at roughly 10% hitpoints thresholds:
+** ~2400 health, ~2120 health, ~1820 health, ~1600 health, ~1310 health, ~1050 health, ~800 health and ~500 health for a special attack.
+** The possible special attack rotations are:
+*** Screech -> Soul Siphon -> Corrupted Seeds -> Screech -> Soul Siphon -> Corrupted Seeds -> Screech -> Soul Siphon
+*** Corrupted Seeds -> Screech -> Soul Siphon -> Corrupted Seeds -> Screech -> Soul Siphon -> Corrupted Seeds
+* The Whisperer's '''Screech''' attack hits '''five times''' rather than three, and damage/sanity drain is increased from 45 to '''70'''.
+* An additional four lost souls are added for the '''Soul Siphon''' attack, increasing the total from 12 to '''16''', with these new souls being added to all cardinal directions. The timer is increased to '''21 seconds''' (35 ticks) to compensate.
+** However, all souls must be killed in time, as the Whisperer will manipulate the remaining souls to perform the full attack. If sets of souls are left, then they will restore her as normal, while the sets the player killed will have their effects applied to them.
+* The timer for the '''Corrupted Seeds''' mechanic is reduced to '''15.6 seconds''' (26 ticks), damage/sanity drain is increased from 15 to '''20''' if not stopped, while stepping on a dark green seed deals between '''60-75''' damage.
+* After a bind attack, the boss '''runs''' for 1.2 seconds (2 ticks) prior to walking 3.6 seconds (6 ticks) towards the player, instead of walking for the entire duration.
+* During the enrage phase, she now heals from 140 to '''250''', sends '''two or three tentacles''' every '''two''' attacks instead of one, starts with '''magic''' instead of ranged and also '''swaps styles''' after every attack.
+
+Due to the player not regaining sanity outside the Shadow Realm, it is mandatory that players perfect every mechanic and maintain it for the entire kill, or they will go insane. Utilising L-movements will dodge every tentacle attack other than the changed "+" formation, which the player will have to dodge reactively.
+
+During the Screech mechanic, the player '''must quickly''' identify the pillars' health, as staying in the Shadow Realm for the entire mechanic will drain 40% of the player's sanity; doing it even once will likely result in failure. Likewise, getting hit by a screech will result in failure due to the 70% sanity drain incurred.
+
+During the Soul Siphon mechanic, the player must bring a toxic blowpipe to deal with the souls that spawn in the cardinal directions alongside a venator bow. Kill a cluster of souls with a bow, then switch to the blowpipe to kill the lone soul and repeat. Immediately exit the realm once the last soul is killed. This will deal additional damage to the boss. Alternatively, for players wish to absolutely minimise the time spent in the Shadow Realm, they can simply kill the cyan spirits ({{Overhead|Sanitas!}}) and leave. This method will require players to tank a hit of 76 damage, and the kill will be slightly prolonged as the boss will heal 100 hitpoints for each instance of this mechanic. It can also deplete food supplies, which can be problematic during enrage.
+
+During the Corrupted Seeds mechanic, quickly enter the Shadow Realm, then leave once the pattern is discovered to minimise time spent inside. Avoid stepping on a dark green seed, as the damage is significantly increased that stepping on two seeds without healing will result in death.
+
+After every special attack, '''do not''' attack the Whisperer until she launches the binding projectile and stay at least 8 or more tiles away from her. Once this projectile is launched, '''immediately''' freeze the Whisperer, as she will run towards the player, and trying to get an auto-attack in will likely result in her reaching the player and using melee, causing severe damage or death.
+
+Before starting the enrage phase, it is highly encouraged to begin with over max health and as much prayer as possible, as focusing on the Whisperer's attacks is much more important than trying to eat or restore prayer. Likewise, the player should enter the enrage phase with ~60% or more sanity; the higher is better in case mistakes are made. Some players using a shadow may opt to bring a 4-tick weapon such as a [[sanguinesti staff]] to match the Whisperer's attack speed and tentacles on enrage, though this is completely optional.
+"""
+
+"Fight overview" = """
+The player must bring the [[blackstone fragment]] to initiate the fight, as parts of the fight will require the player to enter the [[Shadow Realm]]; the player will refuse to fight the Whisperer without it. 
+
+As the fight takes place in the Lassar Undercity, [[sanity]] is present throughout the fight, though it is present throughout the whole fight rather than just the Shadow Realm. When outside the Shadow Realm, the player will slowly restore 1% sanity every 4 ticks; inside, the player will lose 3% sanity along with 3 [[prayer points]]. Sanity can be further decreased regardless of which realm the player is in if they are hit by her [[Tentacle (The Whisperer)|tentacles]] or fail to avoid/stop her special attacks. '''<big>If the sanity bar fully depletes, the player will go insane and will quickly die within 10 ticks; therefore, if this occurs, teleportation is mandatory.</big>'''
+
+The fight begins by disturbing the [[Odd Figure]], who will then knock the player back and begin attacking as the Whisperer.
+
+[[File:The Whisperer - tentacle dodging.mp4|thumb|400px|The player demonstrates the L movement for both types of tentacle attack patterns and the timing of their protection prayers.]]
+The Whisperer's regular attack involves shooting three projectiles per attack in either [[Ranged]] or [[Magic]]. The ranged attacks consist of grey barbs, while the magic attacks consist of a cluster of three blue orbs; the Whisperer's chest will additionally emit a blue aura. Protection prayers fully block the projectiles' damage if activated before the projectile hits the player; if not blocked, they can deal up to 40 and 36 damage respectively. The pattern of these projectiles changes depending on how far into the fight the player is. Taking damage from a projectile will disqualify from a perfect kill; if it misses, the player is still eligible.
+* Upon beginning the fight, she will only use Magic (M) or Ranged (R) for all three projectiles.
+* After one special attack has been used, she will use M-M-R or R-R-M.
+* After the second special attack has been used, she will use  M-M-R or R-R-M.
+* After all three special attacks have been used, she will use M-R-M or R-M-R.
+* During her enrage phase, she will start with ranged, and switch styles every two attacks.
+
+After each regular attack, four [[Tentacle (The Whisperer)|shadow tentacles]] will surface four tiles from the player, converging on the tile they were on when they first appeared. If an object is in the way of the tentacle's spawn point (including the Whisperer herself), it will not spawn. Getting hit by this will deal 20 damage and drain sanity by 20%, regardless of how many tentacles actually hit them. Initially, these converge in an "X" formation, but after two special attacks, a "+" formation will also be used. Both formations can be dodged every time by performing an L movement (two tiles forward/backward, then one tile left/right - analogous to a knight move in chess!). Getting hit by a tentacle will disqualify from a perfect kill.
+
+The Whisperer also possesses a melee attack if a player stands next to her, whacking them with her tentacles, dealing two hits in two ticks. Unlike the other attacks, the melee attack will hit through prayer (although it slightly reduces damage), always lands as a [[successful hit]] and the second hit additionally mirrors the damage dealt by the first; e.g if the first hit dealt 40 damage, the second will also deal 40. The Whisperer will cancel her attack sequence if she senses the player is next to her, which can result in a flurry of unprotectable attacks and can spell a swift death if careless. Therefore, players are recommended to stay at least five tiles away from her to avoid misclicking and running into her.
+"""

@@ -1,0 +1,3848 @@
+title = "Transcript:Bone Voyage"
+npcs = ["Curator Haig Halen", "Barge foreman", "Sawmill operator", "Berry (Woodcutting Guild)", "Barge guard", "Lead Navigator", "Junior Navigator", "David (Fossil Island)", "John", "Jack Seagull", "Longbow Ben", "Ahab", "Odd Old Man", "Bones (NPC)", "Apothecary"]
+node_count = 490
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Welcome to the museum of Varrock."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "Have you any interesting news?"
+parent = -1
+children = [2, 3, 4, 5, 6, 7, 9, 13, 14, 15, 16, 17, 21]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you any interesting news?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Yes, we found a rather interesting island to the North of Morytania. We believe that it may be of archaeological significance."
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh? That sounds interesting."
+parent = 1
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Indeed. We are making the final preparations for our voyage, in fact, you may be just the person we are looking for... Assuming you've got the necessary qualifications, that is."
+parent = 1
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Would I qualify then?"
+parent = 1
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "cond"
+text = "If the player has not completed [[The Dig Site]]:"
+parent = 1
+children = [8]
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "cond"
+text = "If the player has completed The Dig Site but doesn't have enough [[Kudos]]:"
+parent = 1
+children = [10, 11, 12]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Although you do have the necessary qualifications, I'm not sure you're ready. Come back another time, and we'll discuss further."
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "box"
+text = "You do not meet all of the requirements to start the Bone Voyage quest."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Yes indeed. You've helped us a great deal around the Museum and you have the necessary qualifications from the Earth Sciences exams."
+parent = 1
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "I have received word from the digsite that the canal has been constructed, and the barge is awaiting some final touches."
+parent = 1
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "The site foreman requested the aid of a qualified and experienced adventurer, and I believe you would be a perfect fit for the role."
+parent = 1
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "select"
+text = "Start the Bone Voyage quest?"
+parent = 1
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 1
+children = [18, 19, 20]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sign me up!"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "That's great to hear. You should speak to the foreman at the digsite canal, I'll make sure he knows to expect you."
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "option"
+text = "No."
+parent = 1
+children = [22, 23, 24]
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I'm far too busy right now."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Fair enough, do let me know if you happen to change your mind."
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "act"
+text = "end"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "quest=No|Do you know where I could find any treasure?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "quest=No|How do I get a medallion?"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Welcome to the museum of Varrock."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "option"
+text = "Talk about Fossil Island."
+parent = -1
+children = [30, 31]
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "I'm afraid there's not much more I can help you with, Dazaator. The foreman at the digsite should be able to answer any of your questions, good luck."
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "end"
+parent = 29
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "option"
+text = "Have you any interesting news?"
+parent = -1
+children = [33, 34]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "The expedition to the island North of Morytania is certainly the most interesting thing going on around here at the moment."
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "act"
+text = "end"
+parent = 32
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "quest=No|Do you know where I could find any treasure?"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "option"
+text = "quest=No|How do I get a medallion?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, the curator said you could use some assistance here?"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "Ah yes, it's about time! We are in the final stages of preparation, there are a few minor adjustments I'd like to make to the barge before we get the crew ready."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can I do to help?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "Well, we've learned from our previous attempts that we need a sturdier type of wood to keep the barge afloat."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "However, magic logs had... well... peculiar side effects."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "Luckily, a new high-grade wood was discovered in distant Western lands, it would make the perfect material for the areas of the barge we need to reinforce."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you'd like me to bring you some of this wood?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "It's not quite that simple, I'm afraid. You'll have to talk to the sawmill operator at the Varrock sawmill to the North West, he will let you know what has to be done."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll talk to the sawmill operator."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "Welcome back, [player name]. Have you retrieved the supplies yet?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "Well we need them to reinforce the barge, the sawmill operator can tell you what you need to do if you're unsure."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? Or would you be interested in some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "option"
+text = "quest=No|Planks please!"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "option"
+text = "quest=No|What kind of planks can you make?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "option"
+text = "I'm here on behalf of the museum archaeological team."
+parent = -1
+children = [57, 58, 59, 60, 61, 62, 63, 64, 65]
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on behalf of the museum archaeological team."
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Ah, I was wondering when they would finally send over a member of the expedition."
+parent = 56
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what do you need me to do?"
+parent = 56
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "None of the lumber here is appropriate for the task at hand, however, I've arranged a fairly generous deal between myself and the sawmill over in the Hosidius Woodcutting guild."
+parent = 56
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "You'll have to deliver the agreement to their sawmill operator, or a representative of the guild if you lack the requirements to enter."
+parent = 56
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds fairly straight forward."
+parent = 56
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "That's good to hear. Once the document has been signed, bring it back to me and we'll get those supplies sent over to the foreman."
+parent = 56
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, bye."
+parent = 56
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "act"
+text = "end"
+parent = 56
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? Or would you be interested in some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "quest=No|Planks please!"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "quest=No|What kind of planks can you make?"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "I'm here on behalf of the museum archaeological team."
+parent = -1
+children = [72, 73, 74, 75]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on behalf of the museum archaeological team."
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = """
+Ah yes. You need to get those documents signed by the sawmill operator in the Woodcutting guild in Hosidius. If you lack the requirements to enter, a representative of the guild can sign it on the sawmill's behalf.
+"""
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll be back with those signed documents."
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? Or would you be interested in some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "quest=No|Planks please!"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "option"
+text = "quest=No|What kind of planks can you make?"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "I'm here on behalf of the museum archaeological team."
+parent = -1
+children = [81, 82, 83, 84]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on behalf of the museum archaeological team."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost the trade proposal..."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "No worries, here's another copy."
+parent = 80
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "cond"
+text = "If the player does not have the requirements to enter the [[Woodcutting Guild]]:"
+parent = -1
+children = [86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Berry"
+text = "Hello there, what business do you have with the Woodcutting guild?"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a proposal for your guild's sawmill, it is from the Varrock sawmill."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Berry"
+text = "Ah yes, our sawmill operator was expecting you. Do you have the proposal with you?"
+parent = 85
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = 85
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Berry"
+text = "Excellent, hand it over and I'll sign it on behalf of the guild if everything looks in order."
+parent = 85
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "box"
+text = "pic=Sawmill agreement detail.png|You hand the proposal to Berry, he glances over it before signing and returning the document."
+parent = 85
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Berry"
+text = "There you go, we'll ship the redwood planks over to Varrock sawmill immediately."
+parent = 85
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Redwood planks eh? Those would certainly make for an interesting building material..."
+parent = 85
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, bye."
+parent = 85
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "cond"
+text = "If the player has the requirements to enter the [[Woodcutting Guild]]:"
+parent = -1
+children = [97, 98]
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Berry"
+text = "Welcome to the woodcutting guild, adventurer."
+parent = 96
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "act"
+text = "end"
+parent = 96
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Berry"
+text = "Hello there, what business do you have with the Woodcutting guild?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not too sure what I'm supposed to be doing with this document."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Berry"
+text = "Everything has been signed, so you just need to take it back to the sawmill operator at the Varrock sawmill."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Berry"
+text = "Hello there, what business do you have with the Woodcutting guild?"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I lost the trade agreement..."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Berry"
+text = "No worries, here's another copy."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? Or would you be interested in some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "quest=No|Planks please!"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "option"
+text = "quest=No|What kind of planks can you make?"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "I'm here on behalf of the museum archaeological team."
+parent = -1
+children = [113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 127]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on behalf of the museum archaeological team."
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "How can I help?"
+parent = 112
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The sawmill operator in Varrock said you were in possession of some special planks?"
+parent = 112
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Ah yes, it was no easy feat, but I've managed to make some very high quality lumber out of the logs from the redwoods up there."
+parent = 112
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Redwood planks?"
+parent = 112
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Precisely."
+parent = 112
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could they be used to build anything else?"
+parent = 112
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Well, it certainly makes for an interesting material, I can imagine it being used for all sorts in the future..."
+parent = 112
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Anyway, do you have the proposed deal on you? The sooner we set up our agreement the sooner we can ship these materials."
+parent = 112
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the sawmill proposal:"
+parent = 112
+children = [123, 124, 125, 126]
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't have it on me right now."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Well you'll need to let me see the proposal before I can agree to anything."
+parent = 122
+
+[[nodes]]
+id = 125
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right, of course. I'll be back."
+parent = 122
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "cond"
+text = "If the player has the the sawmill proposal:"
+parent = 112
+children = [128, 129, 130, 131, 132, 133]
+
+[[nodes]]
+id = 128
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Excellent, hand it over and I'll just make sure everything looks in order."
+parent = 127
+
+[[nodes]]
+id = 130
+depth = 3
+kind = "box"
+text = "pic=Sawmill agreement detail.png|You hand over the proposal, the sawmill operator glances over it before signing and returning the document."
+parent = 127
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "There you go. We'll ship the materials over to the Varrock sawmill immediately."
+parent = 127
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, bye."
+parent = 127
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? Or would you be interested in some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "option"
+text = "quest=No|Planks please!"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "quest=No|What kind of planks can you make?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "I'm here on behalf of the museum archaeological team."
+parent = -1
+children = [140, 141, 142, 143, 144, 145]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on behalf of the museum archaeological team."
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "How can I help?"
+parent = 139
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not too sure what I'm supposed to be doing with this document."
+parent = 139
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Everything has been signed, so you just need to take it back to the sawmill operator at the Varrock sawmill."
+parent = 139
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 139
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "act"
+text = "end"
+parent = 139
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? Or would you be interested in some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "option"
+text = "quest=No|Planks please!"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "option"
+text = "quest=No|What kind of planks can you make?"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "option"
+text = "I'm here on behalf of the museum archaeological team."
+parent = -1
+children = [151, 152, 153, 154, 155]
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on behalf of the museum archaeological team."
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "How can I help?"
+parent = 150
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost the trade agreement..."
+parent = 150
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "No worries, here's another copy."
+parent = 150
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "act"
+text = "end"
+parent = 150
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? Or would you be interested in some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "quest=No|Planks please!"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "option"
+text = "quest=No|What kind of planks can you make?"
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "option"
+text = "I'm here on behalf of the museum archaeological team."
+parent = -1
+children = [161, 162, 163, 167]
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on behalf of the museum archaeological team."
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Great, do you have the documents with you?"
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the trade agreement:"
+parent = 160
+children = [164, 165, 166]
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have it with me."
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Well, I'll need it before I can send over these supplies."
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "cond"
+text = "If the player has the trade agreement with them:"
+parent = 160
+children = [168, 169, 170, 171, 172, 173]
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, here you go."
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "box"
+text = "pic=Sawmill agreement detail.png|You hand over the signed documents."
+parent = 167
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "That all looks to be in order. I'll get those supplies to the foreman right away."
+parent = 167
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "We're all done here, the foreman at the digsite should know what you need to do next."
+parent = 167
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, bye."
+parent = 167
+
+[[nodes]]
+id = 173
+depth = 3
+kind = "act"
+text = "end"
+parent = 167
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "The supplies arrived earlier, my men have reinforced the barge using those redwood planks. Thanks for your help, [player name]."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No problem. Is there anything else you need?"
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "The barge is prepared for the voyage, so I'm just about done here."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "Now that the barge is ready, you should probably talk to the lead navigator on board."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There doesn't seem to be a gangplank... How am I meant to get on board?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "The barge guard will happily help you on board. Just give him a prod!"
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "Now that the barge is ready, you should probably talk to the lead navigator on board."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There doesn't seem to be a gangplank... How am I meant to get on board?"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Barge foreman"
+text = "The barge guard will happily help you on board. Just give him a prod!"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Barge guard"
+text = "Hello there, can I help you?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "Can I go onto the barge?"
+parent = -1
+children = [190, 191, 192]
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I go onto the barge?"
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Barge guard"
+text = "Absolutely, the navigators are waiting for you on board!"
+parent = 189
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "act"
+text = "end"
+parent = 189
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "option"
+text = "No, thanks."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "David"
+text = "Hello. You should talk to the lead navigator."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "John"
+text = "Hello there, the lead navigator should be able to answer any questions you've got."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "You should talk to the lead navigator when you're ready to set sail."
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Hello, I'm the lead navigator on the expedition, I take it you're here to help us out?"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "option"
+text = "Yep, that would be me."
+parent = -1
+children = [206, 207, 208, 209, 210, 223]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yep, that would be me."
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Good, because we're going to need your help if we're ever going out on this voyage."
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's wrong?"
+parent = 205
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Well, you may be aware of the previous attempts at this expedition?"
+parent = 205
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "option"
+text = "No, what happened?"
+parent = 205
+children = [211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222]
+
+[[nodes]]
+id = 211
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, what happened?"
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Well, the first barge had some serious design flaws... it didn't float."
+parent = 210
+
+[[nodes]]
+id = 213
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The second barge suffered from 'feature creep'. Senior museum staff stuck their oar in and added unnecessary features: 'go-faster stripes', a portable fossil centrifuge and a walk-on mini-museum."
+parent = 210
+
+[[nodes]]
+id = 214
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Needless to say, it had... buoyancy issues."
+parent = 210
+
+[[nodes]]
+id = 215
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The third barge made it out to sea, but a special sealant was used that attracted sea monsters. They didn't make it very far."
+parent = 210
+
+[[nodes]]
+id = 216
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The fourth also used a special sealant, this one attracted icebergs."
+parent = 210
+
+[[nodes]]
+id = 217
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The fifth barge crashed into the sixth."
+parent = 210
+
+[[nodes]]
+id = 218
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "We lost the seventh one."
+parent = 210
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The eighth barge is still here, we think. An accident involving a magical explosion and some talking anchovies means that it is now believed to reside 12 seconds out of phase."
+parent = 210
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The ninth version was built using magic logs. The barge gained some form of rudimentary sentience. It developed serious depression and ran itself aground near Crandor."
+parent = 210
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "So, now do you understand why we need your help?"
+parent = 210
+
+[[nodes]]
+id = 222
+depth = 3
+kind = "act"
+text = "below"
+parent = 210
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "option"
+text = "I'm aware, no need to tell me about them."
+parent = 205
+children = [224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234]
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "So, now do you understand why we need your help?"
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Um... Not really."
+parent = 223
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The voyage is clearly cursed!"
+parent = 223
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh... right..."
+parent = 223
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Well, [player name], whether you believe it or not, know that none of my men will be going on this expedition unless you can ensure our safety from the curse."
+parent = 223
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How am I supposed to do that?"
+parent = 223
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "We're not the first crew to face a cursed voyage, perhaps someone who has experienced one before can give you some advice."
+parent = 223
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any idea where I'd be able to find someone like that?"
+parent = 223
+
+[[nodes]]
+id = 232
+depth = 3
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "I've heard all kinds of stories at the Rusty Anchor Inn in Port Sarim. I'm sure you'll be able to find out something about cursed voyages if you ask around the folks there."
+parent = 223
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see what I can learn."
+parent = 223
+
+[[nodes]]
+id = 234
+depth = 3
+kind = "act"
+text = "end"
+parent = 223
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [236, 237]
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 235
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "act"
+text = "end"
+parent = 235
+is_terminal = true
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "I've heard all kinds of stories at the Rusty Anchor Inn in Port Sarim. I'm sure you'll be able to find out something about cursed voyages if you ask around the folks there."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see what I can learn."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Ahab"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "option"
+text = "quest=No|I'm looking for Redbeard Frank."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "option"
+text = "quest=No|Can you help me get to Crandor Island?"
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "option"
+text = "Ever made any cursed voyages?"
+parent = -1
+children = [247, 248, 249]
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ever made any cursed voyages?"
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Naarrr, can't say I have [laddie/lassie]."
+parent = 246
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "act"
+text = "end"
+parent = 246
+is_terminal = true
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "option"
+text = "quest=No|Are you going to sit there all day?"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "quest=No|Do you want to trade?"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "option"
+text = "quest=No|I'm looking for Redbeard Frank."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "option"
+text = "quest=No|Why are you called Longbow Ben?"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "option"
+text = "Ever made any cursed voyages?"
+parent = -1
+children = [257, 258]
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ever made any cursed voyages?"
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "act"
+text = "(Continues below from Jack Seagull's \"Aye! I've sailed many...\""
+parent = 256
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "option"
+text = "quest=No|Can you help me get to Crandor Island?"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "quest=No|What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "option"
+text = "Ever made any cursed voyages?"
+parent = -1
+children = [263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ever made any cursed voyages?"
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Aye! I've sailed many a treacherous journey in my time! What it be to ye?"
+parent = 262
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = """
+I'm meant to be setting sail on a voyage of my own, but the crew won't go without some sort of 'protection'. I was hoping someone here would know of a way to avoid falling victim to the so-called curse.
+"""
+parent = 262
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "There be nothing 'so-called' about curses, [laddie/lassie/young'un]!"
+parent = 262
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Aye, 'tis a matter we take very seriously. Luckily, there are ways ye can avoid a curse."
+parent = 262
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great! What do I need to do?"
+parent = 262
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Well that all depends on the nature of yer travels!"
+parent = 262
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "We are heading out on an expedition to an ancient, previously unexplored, island for Varrock museum."
+parent = 262
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "The museum aye? Ye be diggin' up bones and them sorts then?"
+parent = 262
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well... I guess so."
+parent = 262
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Then the way I be seein' it, ye be needin' a lucky charm to do with that!"
+parent = 262
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A lucky charm to do with digging up bones?"
+parent = 262
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Aye! I hear folk talking of an odd old man up in the quarry near Paterdomus who sounds as if he might deal in those sorts of things."
+parent = 262
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Bahahahaha! This poor [laddie/lassie/young'un] is sailing a cursed voyage and ye be suggestin' lucky charms?!"
+parent = 262
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "What ye be gettin' at, Ahab?"
+parent = 262
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Listen here, [laddie/lassie/young'un]. There be no way out of a cursed voyage, however, there are ways one can make it through unscathed..."
+parent = 262
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Aye, just like ye and yer leg, Ahab? Ahahaha!"
+parent = 262
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Take no notice of him. I just thought it be worth ye knowing all the options is all."
+parent = 262
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps. What would I need to do to make it through the voyage 'unscathed'?"
+parent = 262
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Folk be tellin' tales of a special potion... A 'potion of sealegs' they be callin' it."
+parent = 262
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A potion of sealegs?"
+parent = 262
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Aye. The crew simply drink the potion before they be settin' sail, and the next thing they know, they be safely at their destination!"
+parent = 262
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Arrr! Magical potions? Be soundin' like nonsense to me!"
+parent = 262
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I guess I'll talk to the navigators and offer both up to the crew to see which they'd prefer before I go gathering them up! Thanks!"
+parent = 262
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Be off with ye then, and talk to them navigators! You're ruinin' me rum!"
+parent = 262
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "act"
+text = "end"
+parent = 262
+is_terminal = true
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "option"
+text = "quest=No|Have you got any quests I could do?"
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Welcome back, [player name]. Any luck finding a way for us to make it through this cursed voyage?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I've got two options, actually."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Interesting, let's hear them."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The first is to use a good luck charm, something related to our expedition - a lucky bone from an odd old man in Paterdomus."
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The second is a potion of sealegs, the crew would have to drink it at the start of the voyage."
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Well I'm certainly not putting my crew's life in the hands of some lucky charm! I think I'll go with the potion."
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "I think the lucky charm sounds like a good idea..."
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Oh quiet, boy - you shouldn't believe in such nonsense."
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's okay, I can get both."
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Fine by me, as long as you get that potion."
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "[Thanks, mister/Thanks, miss/Thanks]!"
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The apothecary in Varrock might be able to help you out with that potion of sealegs, I'd start by paying him a visit."
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Don't forget the lucky charm from the odd old man up in Paterdomus!"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll be back once I've got the potion of sealegs and the lucky charm."
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Any luck getting your hands on that potion of sealegs?"
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "The apothecary in Varrock might be able to help you out, you should pay him a visit."
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, bye."
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Hey, have you managed to get me that lucky charm?"
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "The old man up in Paterdomus collects those sort of things, I'd see if he's going anything he's willing to give up."
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see what I can do."
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Apothecary"
+text = "I am the Apothecary. I brew potions. Do you need anything specific?"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "option"
+text = "quest=No|Can you make potions for me?"
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "option"
+text = "Talk about something else."
+parent = -1
+children = [321, 322, 334, 335]
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "option"
+text = "quest=No|Have you got any decent gossip to share?"
+parent = 320
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "option"
+text = "Talk about Bone Voyage."
+parent = 320
+children = [323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333]
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I'm looking for an unusual potion to get my crew through a 'cursed' voyage."
+parent = 322
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "speaker"
+speaker = "Apothecary"
+text = "Aha! Don't tell me... You want a potion of sealegs?"
+parent = 322
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, actually. What's so funny?"
+parent = 322
+
+[[nodes]]
+id = 326
+depth = 3
+kind = "speaker"
+speaker = "Apothecary"
+text = "You'd be amazed at the nonsense these pirates believe! I'll let you in on a little secret, there is no magical potion to save you from the sea's wrath!"
+parent = 322
+
+[[nodes]]
+id = 327
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Then what have you been giving those sailors?"
+parent = 322
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Apothecary"
+text = "A simple herbal remedy containing vodka. Lots of vodka."
+parent = 322
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "speaker"
+speaker = "Apothecary"
+text = "Look, if you bring me the ingredients, I'll make you the potion. It's not going to save your crew from sea curses, of course, but it'll certainly put their fears to rest!"
+parent = 322
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well I don't really have a choice here, I need that potion. What ingredients do you need?"
+parent = 322
+
+[[nodes]]
+id = 331
+depth = 3
+kind = "speaker"
+speaker = "Apothecary"
+text = "Two bottles of vodka and an unfinished marrentill potion, I already have everything else I require."
+parent = 322
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll be back soon."
+parent = 322
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "act"
+text = "end"
+parent = 322
+is_terminal = true
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "option"
+text = "quest=No|Have you got any good potions to give away?"
+parent = 320
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "option"
+text = "quest=No|No thanks."
+parent = 320
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Apothecary"
+text = "I am the Apothecary. I brew potions. Do you need anything specific?"
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "option"
+text = "quest=No|Can you make potions for me?"
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "option"
+text = "Talk about something else."
+parent = -1
+children = [339, 340, 352, 353]
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "option"
+text = "quest=No|Have you got any decent gossip to share?"
+parent = 338
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "option"
+text = "Talk about Bone Voyage."
+parent = 338
+children = [341, 342, 347]
+
+[[nodes]]
+id = 341
+depth = 3
+kind = "speaker"
+speaker = "Apothecary"
+text = "Do you have the ingredients for the potion?"
+parent = 340
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "cond"
+text = "If the player doesn't have the ingredients:"
+parent = 340
+children = [343, 344, 345, 346]
+
+[[nodes]]
+id = 343
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What were they?"
+parent = 342
+
+[[nodes]]
+id = 344
+depth = 4
+kind = "speaker"
+speaker = "Apothecary"
+text = "You need to bring me 2 bottles of vodka and an unfinished marrentill potion."
+parent = 342
+
+[[nodes]]
+id = 345
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll be back soon."
+parent = 342
+
+[[nodes]]
+id = 346
+depth = 4
+kind = "act"
+text = "end"
+parent = 342
+is_terminal = true
+
+[[nodes]]
+id = 347
+depth = 3
+kind = "cond"
+text = "If the player has the ingredients:"
+parent = 340
+children = [348, 349, 350, 351]
+
+[[nodes]]
+id = 348
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yep, I've got them here."
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 4
+kind = "speaker"
+speaker = "Apothecary"
+text = "Excellent. Hand them over and I'll mix the potion."
+parent = 347
+
+[[nodes]]
+id = 350
+depth = 4
+kind = "box"
+text = "pic=Potion of sealegs detail.png|You hand the apothecary the ingredients. He adds a few herbs of his own before handing back the foul-smelling concoction."
+parent = 347
+
+[[nodes]]
+id = 351
+depth = 4
+kind = "act"
+text = "end"
+parent = 347
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "option"
+text = "quest=No|Have you got any good potions to give away?"
+parent = 338
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "option"
+text = "quest=No|No thanks."
+parent = 338
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Apothecary"
+text = "I am the Apothecary. I brew potions. Do you need anything specific?"
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "option"
+text = "quest=No|Can you make potions for me?"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "option"
+text = "Talk about Bone Voyage."
+parent = -1
+children = [358, 359, 360, 361]
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost the potion of sealegs..."
+parent = 357
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Apothecary"
+text = "Lucky for you I made extra, try to be more careful this time!"
+parent = 357
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "box"
+text = "pic=Potion of sealegs detail.png|The apothecary hands you another potion of sealegs."
+parent = 357
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "act"
+text = "end"
+parent = 357
+is_terminal = true
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "speaker"
+speaker = "Apothecary"
+text = "I am the Apothecary. I brew potions. Do you need anything specific?"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "option"
+text = "quest=No|Can you make potions for me?"
+parent = -1
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "option"
+text = "Talk about Bone Voyage."
+parent = -1
+children = [366, 367, 368, 369, 370]
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Apothecary"
+text = "How goes the expedition?"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "We haven't gone yet."
+parent = 365
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "speaker"
+speaker = "Apothecary"
+text = "Oh! Well, good luck!"
+parent = 365
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, bye."
+parent = 365
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "act"
+text = "end"
+parent = 365
+is_terminal = true
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "option"
+text = "Talk about lucky charms."
+parent = -1
+children = [372, 373, 374, 375, 376, 384, 396]
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I was told you might be able to help me get a lucky charm?"
+parent = 371
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Oh, yes? I suppose I might have something like that laying around..."
+parent = 371
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "Sack"
+text = "Mumblemumblemumble."
+parent = 371
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Why would you be looking for such an item?"
+parent = 371
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "option"
+text = "I'm working with the museum."
+parent = 371
+children = [377, 378, 379, 380, 381, 382, 383]
+
+[[nodes]]
+id = 377
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm working with the museum."
+parent = 376
+
+[[nodes]]
+id = 378
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Is that so..."
+parent = 376
+
+[[nodes]]
+id = 379
+depth = 3
+kind = "speaker"
+speaker = "Sack"
+text = "Mumblemumble. Mumble."
+parent = 376
+
+[[nodes]]
+id = 380
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Do you take me for a fool? As if someone working for the museum would be looking for something like that!"
+parent = 376
+
+[[nodes]]
+id = 381
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, that's not what I meant..."
+parent = 376
+
+[[nodes]]
+id = 382
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Oh really... so what would it be then?"
+parent = 376
+
+[[nodes]]
+id = 383
+depth = 3
+kind = "act"
+text = "other"
+parent = 376
+is_terminal = true
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "option"
+text = "I'm making a cursed voyage."
+parent = 371
+children = [385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395]
+
+[[nodes]]
+id = 385
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm making a cursed voyage. We're heading to an island on an archaeological expedition."
+parent = 384
+
+[[nodes]]
+id = 386
+depth = 3
+kind = "speaker"
+speaker = "Sack"
+text = "Mumblemumble."
+parent = 384
+
+[[nodes]]
+id = 387
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Interesting, yes, I may have something that could be of use..."
+parent = 384
+
+[[nodes]]
+id = 388
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's great, what would you like for it?"
+parent = 384
+
+[[nodes]]
+id = 389
+depth = 3
+kind = "speaker"
+speaker = "Sack"
+text = "Mumblemumble."
+parent = 384
+
+[[nodes]]
+id = 390
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Absolutely nothing! You can have it free of charge..."
+parent = 384
+
+[[nodes]]
+id = 391
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Just be sure to bring me back any interesting bones you find on that island."
+parent = 384
+
+[[nodes]]
+id = 392
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Err... Sure."
+parent = 384
+
+[[nodes]]
+id = 393
+depth = 3
+kind = "box"
+text = "pic=Bone charm detail.png|The Odd Old Man hands you a small object made out of bone."
+parent = 384
+
+[[nodes]]
+id = 394
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = 384
+
+[[nodes]]
+id = 395
+depth = 3
+kind = "act"
+text = "end"
+parent = 384
+is_terminal = true
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "option"
+text = "I'm a collector."
+parent = 371
+children = [397, 398, 399, 400, 401, 402, 403]
+
+[[nodes]]
+id = 397
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm a collector."
+parent = 396
+
+[[nodes]]
+id = 398
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Is that so..."
+parent = 396
+
+[[nodes]]
+id = 399
+depth = 3
+kind = "speaker"
+speaker = "Sack"
+text = "Mumblemumble. Mumble."
+parent = 396
+
+[[nodes]]
+id = 400
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "My collection is not up for grabs! Go find your own!"
+parent = 396
+
+[[nodes]]
+id = 401
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, that's not what I meant..."
+parent = 396
+
+[[nodes]]
+id = 402
+depth = 3
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Oh really... so what would it be then?"
+parent = 396
+
+[[nodes]]
+id = 403
+depth = 3
+kind = "act"
+text = "other"
+parent = 396
+is_terminal = true
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "select"
+text = "What would you like to do?"
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "option"
+text = "Talk about lucky charms."
+parent = -1
+children = [407, 408, 409, 410]
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost the lucky charm you gave me..."
+parent = 406
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Lucky for you I have another one here, try to be more careful this time!"
+parent = 406
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "box"
+text = "pic=Bone charm detail.png|The Odd Old Man hands you a small object made out of bone."
+parent = 406
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "act"
+text = "end"
+parent = 406
+is_terminal = true
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "select"
+text = "What would you like to do?"
+parent = -1
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "option"
+text = "Talk about lucky charms."
+parent = -1
+children = [414, 415, 416, 417, 418, 419, 420]
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Back already?"
+parent = 413
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "speaker"
+speaker = "Sack"
+text = "Mumblemumble."
+parent = 413
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Did you find any for me on that expedition of yours?"
+parent = 413
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Err... Not yet."
+parent = 413
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "speaker"
+speaker = "Odd Old Man"
+text = "Well make sure you keep an eye out for anything particularly interesting!"
+parent = 413
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure, bye."
+parent = 413
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "end"
+parent = 413
+is_terminal = true
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Hey, have you managed to get me that lucky charm?"
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Thanks, I'm feeling luckier already!"
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, I'm sure you are."
+parent = -1
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Thanks for getting me the lucky charm, [player name]. I'm feeling a lot better about the voyage already."
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Any luck getting your hands on that potion of sealegs?"
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Excellent work, [player name]! I'm sure the crew will be very glad to hear about this."
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Looks like we've got everything we need to set off!"
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "We're ready to go when you are, [player name]."
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "option"
+text = "I'm ready, let's go."
+parent = -1
+children = [438, 439, 440, 441, 442, 443, 444, 445, 448, 454, 455, 456, 457, 458, 459]
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "box"
+text = "Each member of the crew, apart from the junior navigator, take a sip of the potion of sealegs."
+parent = 437
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "box"
+text = "It doesn't take long for the potion to take effect, causing them to pass out."
+parent = 437
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "What did your potion do to the crew?!"
+parent = 437
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, the apothecary figured they can't be afraid if they're unconcious..."
+parent = 437
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "But then who's going to get us to the island?"
+parent = 437
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aren't you meant to be a navigator?"
+parent = 437
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Yes, a JUNIOR navigator! I've never navigated open waters like this!"
+parent = 437
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "cond"
+text = "If the player hasn't completed Pandemonium:"
+parent = 437
+children = [446, 447]
+
+[[nodes]]
+id = 446
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What are we going to do?"
+parent = 445
+
+[[nodes]]
+id = 447
+depth = 3
+kind = "act"
+text = "continues"
+parent = 445
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "cond"
+text = "If the player has completed Pandemonium:"
+parent = 437
+children = [449, 450, 451, 452, 453]
+
+[[nodes]]
+id = 449
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I've got some sailing experience myself. Hopefully I can get us there without too much trouble."
+parent = 448
+
+[[nodes]]
+id = 450
+depth = 3
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "But this barge is highly specialised! It's the only one of its kind and it took years for the lead navigator to learn how to sail it!"
+parent = 448
+
+[[nodes]]
+id = 451
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh..."
+parent = 448
+
+[[nodes]]
+id = 452
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, this might not be as straightforward as I thought. What are we going to do?"
+parent = 448
+
+[[nodes]]
+id = 453
+depth = 3
+kind = "act"
+text = "continues"
+parent = 448
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Okay... Let me think..."
+parent = 437
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "You'll need to operate the barge controls, I'll let you know if we're headed in the right direction."
+parent = 437
+
+[[nodes]]
+id = 456
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "You'll have to fight against the winds to keep the bearing North, you can do that by steering the barge."
+parent = 437
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "You can increase or decrease our speed by adjusting the sails. You might find keeping the bearing North easier at slower speeds, but it will take longer to reach the island."
+parent = 437
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "If we're headed in the wrong direction for too long I'll take us back to the digsite. Let me know if you want me to go back over these instructions at any point."
+parent = 437
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "act"
+text = "end"
+parent = 437
+is_terminal = true
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "option"
+text = "I need to do something first."
+parent = -1
+children = [461, 462, 463]
+
+[[nodes]]
+id = 461
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to do something first."
+parent = 460
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Okay, see you soon."
+parent = 460
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "act"
+text = "end"
+parent = 460
+is_terminal = true
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "act"
+text = "(Same as above from \"Looks like we've got everything we need to set off!\")"
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "We were completely off course, [player name]. Talk to the lead navigator to try again."
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "select"
+text = "Abort the voyage?"
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [469]
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "other"
+text = "{{mes|With the aid of the junior navigator, you sail back to the digsite.}}"
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "option"
+text = "Cancel."
+parent = -1
+children = [471]
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "act"
+text = "end"
+parent = 470
+is_terminal = true
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "You should talk to the lead navigator when you're ready to set sail."
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "My head... What happened? I thought we were going to set off on our voyage, [Player name]?"
+parent = -1
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There were some... complications."
+parent = -1
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Well, are you ready to set off again? Let me know and I'll get the crew to take another dose of this potion of sealegs."
+parent = -1
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "option"
+text = "I'm ready, let's go."
+parent = -1
+children = [480]
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "act"
+text = "above"
+parent = 479
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "option"
+text = "I need to do something first."
+parent = -1
+children = [482, 483, 484]
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to do something first."
+parent = 481
+
+[[nodes]]
+id = 483
+depth = 2
+kind = "speaker"
+speaker = "Lead Navigator"
+text = "Okay, see you soon."
+parent = 481
+
+[[nodes]]
+id = 484
+depth = 2
+kind = "act"
+text = "end"
+parent = 481
+is_terminal = true
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Good work, [player name], you got us here in one piece!"
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "I suppose you'll want to start exploring the island as soon as possible."
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "speaker"
+speaker = "Junior Navigator"
+text = "Here, take this journal so you can keep track of your discoveries. Base camp is being set up on shore, let me know if you'd like to head there."
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

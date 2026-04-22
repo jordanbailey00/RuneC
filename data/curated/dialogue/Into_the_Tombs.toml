@@ -1,0 +1,2762 @@
+title = "Transcript:Into the Tombs"
+npcs = ["Messenger (Into the Tombs)", "Maisa", "Apmeken", "Crondis", "Het", "Scabaras", "Amascut", "Osmumten"]
+node_count = 349
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "If the player has enough inventory space:"
+parent = -1
+children = [1, 2, 3]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Messenger"
+text = "Hello there. I have a message for you."
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "box"
+text = "pic=Maisa's message detail.png|You've been given a message."
+parent = 0
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "act"
+text = "end"
+parent = 0
+is_terminal = true
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [5, 6]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Messenger"
+text = "Hello there. I have a message for you, but you'll need to make some room for it."
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "end"
+parent = 4
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Hey! You made it."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I came as soon as I could. What are we dealing with?"
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Up here? Not a lot. The Devourer must be deeper inside."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well then I guess that's where we're going as well."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "We shouldn't leave this entry unguarded. The Devourer still has plenty of servants out in the desert who we won't want coming in after us."
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm... fair point. Alright, you keep an eye on things up here while I go after Amascut."
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "I had a feeling you might say that, so I made some preparations."
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Preparations?"
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Indeed. The Devourer has made plenty of enemies, and there are others willing to help us. Before you head deeper into the tomb, you might want to consider grouping up with some of them."
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "box"
+text = "You can enter a raid of the Tombs of Amascut in parties of up to eight people. To form a party or join an existing one, use the Grouping Obelisk."
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I might just do that. Anything else I should know?"
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "It seems Osmumten had various magical protections built into his tomb. It looks like the Devourer disabled them, which should make things easier for you."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "box"
+text = """
+Before entering a raid, you can customise the difficulty of the challenges you'll face by using Invocations. Invocations can be enabled or disabled from the Grouping Obelisk. There are a large variety of Invocations available, covering both challenge-specific mechanics as well as raid-wide systems.
+"""
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "box"
+text = """
+Enabling or disabling Invocations will change the Raid Level. On top of the Invocation effects, increasing the Raid Level will also increase the stats of all foes in the raid. However, higher Raid Levels will result in more rewards becoming available.
+"""
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'd better not waste any more time. Amascut may well have already found the two weapons. If so, she'll already be draining the lesser gods of their power."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Meaning the longer we wait, the stronger she gets. If we don't stop her attaining true godhood, who knows what will happen."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We'll stop her."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Oh, I almost forgot, I found this journal that might be worth a read."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [26, 27, 28]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "box"
+text = "pic=Akila's journal detail.png|Maisa shows you a journal."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "Just let me know if you want it."
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "act"
+text = "continue"
+parent = 25
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "cond"
+text = "If the player has one free inventory space:"
+parent = -1
+children = [30]
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "box"
+text = "pic=Akila's journal detail.png|Maisa gives you a journal."
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks. I'd better get ready."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Good luck."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Hey."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "option"
+text = "What do I need to be doing?"
+parent = -1
+children = [37, 38, 39, 40, 41, 42, 43]
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to be doing?"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "The Devourer has all four of the lesser gods somewhere in this tomb. We have to assume she's already found the two weapons she seeks as well."
+parent = 36
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Which means she'll already be draining the lesser gods of their power."
+parent = 36
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "Exactly. You need to head deeper into the tomb, free the lesser gods and stop the Devourer before it's too late."
+parent = 36
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "This won't be an easy fight, so make sure you're well prepared. Thankfully, the Devourer is not short of enemies. If needs be, you can use the obelisk here and find some allies to join you."
+parent = 36
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I might just do that."
+parent = 36
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "act"
+text = "other"
+parent = 36
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "Do you have that journal from earlier?"
+parent = -1
+children = [45, 46, 49, 53]
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have that journal from earlier?"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 44
+children = [47, 48]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Maisa"
+text = "I do, but you'll need to make some room for it."
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "act"
+text = "end"
+parent = 46
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 44
+children = [50, 51, 52]
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Maisa"
+text = "I do. Here you go."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "box"
+text = "pic=Akila's journal detail.png|Maisa gives you a journal."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "cond"
+text = "If the player has [[Akila's journal]] in their inventory:"
+parent = 44
+children = [54, 55, 56]
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Maisa"
+text = "Don't you already have it?"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ah, so I do. Never mind."
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "act"
+text = "end"
+parent = 53
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "I'd better get going."
+parent = -1
+children = [58, 59, 60]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "Good luck."
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Apmeken"
+text = "You did it! I wasn't sure I'd make it out of that one, but I'm glad you proved me wrong. Come, let's get out of here."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "other"
+text = "{{qact|Apmeken and the player return to the Nexus}}"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Crondis"
+text = "Amascut's hold on me is finally at an end. Human, let us return to the Nexus."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "other"
+text = "{{qact|Crondis and the player return to the Nexus}}"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "Even with everything we're going through, I have to admit, that was an impressive fight to behold! I wish I could have joined you, friend. Now, let us return to the Nexus."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "other"
+text = "{{qact|Het and the player return to the Nexus}}"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Scabaras"
+text = "The... the noise! Her voice in my head for so long, and now... silence! It's so loud! Please, we must leave!"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "other"
+text = "{{qact|Scabaras and the player return to the Nexus}}"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there. How are you doing?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Apmeken"
+text = "Oh, you know, just getting over years of being controlled by a deranged family member. All part of the fun in a family like ours, I guess."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You seem quite jolly about it all."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Apmeken"
+text = "Well as I always say, 'the real winner is the one smiling.' What Amascut has done is horrific, but it's not too late to stop her. I won't let her get me down, not while there's still hope."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [78, 79]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Apmeken"
+text = "Anyway, I'm annoyingly a bit too weak to help you much down here. However, I reckon if you can free the others, we'll be able to open the way to the lower level for you."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "act"
+text = "end"
+parent = 77
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [81, 82]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Apmeken"
+text = "Anyway, we've been able to open the way for you! I wish we could help you down there, but we're still too weak. Don't worry though, I know you can do it!"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [84, 85]
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Apmeken"
+text = "I'm annoyingly a bit too weak to help you much down here. However, I reckon if you can free the others, we'll be able to open the way to the lower level for you."
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "act"
+text = "end"
+parent = 83
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [87, 88]
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Apmeken"
+text = "We've been able to open the way for you! I wish we could help you down there, but we're still too weak. Don't worry though, I know you can do it!"
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "end"
+parent = 86
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Crondis"
+text = "Human."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not feeling talkative?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Crondis"
+text = "I'm sure you will find a conversation with me more appealing than one with Scabaras. Still, I leave most of the talking to Apmeken."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [93, 94]
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Crondis"
+text = "Now, I can't support you in your fight, but if you can free the others, we'll be able to open the way to Amascut."
+parent = 92
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "act"
+text = "end"
+parent = 92
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [96, 97]
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Crondis"
+text = "Now, we've opened the way to Amascut, but we can do no more. From here, it's up to you."
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "end"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [99, 100]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Crondis"
+text = "Human, I can't support you in your fight, but if you can free the others, we'll be able to open the way to Amascut."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "act"
+text = "end"
+parent = 98
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Crondis"
+text = "Human, we've opened the way to Amascut, but we can do no more. From here, it's up to you."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "Amascut! She's always been a monster, but she's doing things now I never believed her to be capable of! Had I not let my guard down, she'd surely be regretting her choices by now."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "I guess we're lucky you came along when you did, my friend. I think you might have just given us a fighting chance!"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm glad to have helped, but it's not over yet."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "Indeed. Were I not still weak, I would gladly deal with her myself, but I fear you will have to face Amascut without me."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [109, 110]
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Het"
+text = "You'll find her on the level below. If you can free the others, we should be able to open the way for you."
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "act"
+text = "end"
+parent = 108
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [112, 113]
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Het"
+text = "You'll find her on the level below. We have managed to open the way for you. Go now, and show her the error of her ways!"
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "end"
+parent = 111
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [115, 116]
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Het"
+text = "My friend, Amascut has heavily weakened me, but I know you can do what is needed. If you can free the others, we should be able to open the way to the level below."
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "act"
+text = "end"
+parent = 114
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [118, 119]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Het"
+text = "We have opened the way for you, my friend. Any other day, I would have joined you in the fight against Amascut, but this one is up to you. Go now, and show her the error of her ways!"
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [122, 123]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Scabaras"
+text = "The silence... it's so loud! Free the others! Free them and we can help. Now please... go!"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "end"
+parent = 121
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [125, 126]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Scabaras"
+text = "We... opened the way. Now... go. Stop her! Please!"
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "act"
+text = "end"
+parent = 124
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "cond"
+text = "If the other Avatars of Tumeken have not been freed yet:"
+parent = -1
+children = [128, 129]
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Scabaras"
+text = "The silence... it's so loud! Free the others! Free them and we can help. Now please... go!"
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "cond"
+text = "If all of the other Avatars of Tumeken have been freed:"
+parent = -1
+children = [131, 132]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Scabaras"
+text = "We... opened the way. Now... go. Stop her! Please!"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "end"
+parent = 130
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Amascut"
+text = "You! I should have known this would be your doing!"
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's over, Amascut! Your plan has failed."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Amascut"
+text = "My plan has only just begun! Even with this setback, those pathetic fragments of my father have still given me ample power. My strength is absolute!"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Maybe, but it doesn't matter. I've stopped every one of your schemes so far, and I'll stop the next one as well."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Amascut"
+text = "Really? You think you're leaving this place alive? I can promise you that won't be the case! My father's weapons have given me his power, and now they'll finally rid me of you!"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "select"
+text = "Are you ready for the final challenge?"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [140]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "other"
+text = "{{qact|Amascut activates the obelisk and teleports away.}}"
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [142]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "box"
+text = "As you approach the spirit, you hear a voice echoing in your head."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Spirit"
+text = "{{Colour|#000080|You. You fought against the Devourer. Her influence here has been lessened as a result. You are to be commended for your strength.}}"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I take it you're Osmumten?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Osmumten"
+text = "{{Colour|#000080|Once, but who I was in life means nothing. Vengeance is all that matters now. The Devourer may be gone, but my home has been corrupted. This corruption must be destroyed.}}"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I help?"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Osmumten"
+text = "{{Colour|#000080|You can. Take your prize and leave, but when you are ready, return here. The Devourer's thralls will soon be back. You must fight them.}}"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll do what I can."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Osmumten"
+text = "{{Colour|#000080|We shall see if it is enough.}}"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "select"
+text = "Are you ready to leave the Tombs of Amascut?"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [153]
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "act"
+text = "Player gets teleported to the [[Tombs of Amascut]] lobby."
+parent = 152
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [155]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "act"
+text = "end"
+parent = 154
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "cond"
+text = "If the player did not claim their rewards yet:"
+parent = -1
+children = [157]
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Osmumten"
+text = "{{colour|#000080|The Devourer's thralls will be back, but they have been weakened because of you. Your prize awaits.|#AAAAAA}}"
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "cond"
+text = "If the player claimed their rewards:"
+parent = -1
+children = [159, 160, 163, 166]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 158
+children = [161, 162]
+
+[[nodes]]
+id = 161
+depth = 3
+kind = "speaker"
+speaker = "Osmumten"
+text = "{{colour|#000080|You have done well, but it is time for you to leave. The Devourer's thralls will soon return.|#AAAAAA}}"
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "act"
+text = "continues"
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 158
+children = [164, 165]
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "speaker"
+speaker = "Osmumten"
+text = "{{colour|#000080|You fought well. The Devourer's influence here has lessened, but it will soon be restored. It is time for you to leave.|#AAAAAA}}"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "act"
+text = "continues"
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 158
+children = [167, 168]
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Osmumten"
+text = "{{colour|#000080|The Devourer's thralls will be back, but they have been weakened because of you. Now, leave this place.|#AAAAAA}}"
+parent = 166
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "act"
+text = "continues"
+parent = 166
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "select"
+text = "Are you ready to leave the Tombs of Amascut?"
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [171]
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "act"
+text = "Player gets teleported to the [[Tombs of Amascut]] lobby."
+parent = 170
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [173]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "My friend, we would like to have a word with you before you head back inside."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "So this is a new one. There's a bunch of lesser gods standing just over there. You should probably go and talk to them."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Apmeken"
+text = "Here [he is/she is/they are]!"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "My friend, you managed what few have ever achieved. You overcame Amascut herself! I wish I could have been there to see it!"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I couldn't have done it alone. Speaking of which, where's Scabaras?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Crondis"
+text = "Scabaras walks his own path. Do not consider his absence an insult. This is his way."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "Not to mention that he was under Amascut's control far longer than the rest of us. It will take him time to come to terms with his role in her plots."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Apmeken"
+text = "Don't worry, he'll be okay. He always is."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Het"
+text = "Before we go any further... We didn't have much time for conversation back in the tomb. I'm sure you have some questions for us."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Crondis"
+text = "If you do, now is the time to ask them."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "option"
+text = "I have a question for Apmeken."
+parent = -1
+children = [188, 189, 190, 197, 203, 207]
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a question for Apmeken."
+parent = 187
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 187
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "option"
+text = "What's your role in the Menaphite Pantheon?"
+parent = 187
+children = [191, 192, 193, 194, 195, 196]
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's your role in the Menaphite Pantheon?"
+parent = 190
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "I'm Tumeken's avatar of companionship! Tumeken himself was always considered a bit cold, which is a tad ironic when you think about it."
+parent = 190
+
+[[nodes]]
+id = 193
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A cold sun god?"
+parent = 190
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Exactly! Bit odd, right? Still, although he wasn't exactly known for his social side, he still understood the importance of such things. That's why he made me!"
+parent = 190
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "My job is to make sure everyone remembers the importance of friendship. After all, we all need a friend or two, or ten, or maybe hundreds! Have as many as you want! I won't judge."
+parent = 190
+
+[[nodes]]
+id = 196
+depth = 3
+kind = "act"
+text = "other"
+parent = 190
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "option"
+text = "Why aren't there more monkeys or apes in the desert?"
+parent = 187
+children = [198, 199, 200, 201, 202]
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why aren't there more monkeys or apes in the desert?"
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Ah, you can thank Amascut for that. The desert used to be home to thousands of apes and monkeys, but she targeted them to try and get to me."
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry."
+parent = 197
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Don't be! Now that I'm back, I know we can turn things around!"
+parent = 197
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "act"
+text = "other"
+parent = 197
+is_terminal = true
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "option"
+text = "Actually, I've changed my mind."
+parent = 187
+children = [204, 205, 206]
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I've changed my mind."
+parent = 203
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Fair enough."
+parent = 203
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "act"
+text = "initial"
+parent = 203
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "option"
+text = "I'll be back soon."
+parent = 187
+children = [208, 209, 210]
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 207
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "We'll be here when you're ready."
+parent = 207
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "act"
+text = "end"
+parent = 207
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "option"
+text = "I have a question for Crondis."
+parent = -1
+children = [212, 213, 214, 222, 231, 235]
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a question for Crondis."
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "option"
+text = "What's your role in the Menaphite Pantheon?"
+parent = 211
+children = [215, 216, 217, 218, 219, 220, 221]
+
+[[nodes]]
+id = 215
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's your role in the Menaphite Pantheon?"
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "I am Tumeken's avatar of resourcefulness."
+parent = 214
+
+[[nodes]]
+id = 217
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Meaning?"
+parent = 214
+
+[[nodes]]
+id = 218
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "Meaning my job is to guide the people of the desert not to live lives of excess."
+parent = 214
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Guessing you're not a fan of Menaphos then?"
+parent = 214
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "Much of the desert has forgotten the importance of modesty in my absence, but the situation in Menaphos is definitely the most concerning. Let us hope it can soon be rectified."
+parent = 214
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "act"
+text = "other"
+parent = 214
+is_terminal = true
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "option"
+text = "Why are crocodiles so rude?"
+parent = 211
+children = [223, 224, 225, 226, 227, 228, 229, 230]
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why are crocodiles so rude?"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "Rude? How so."
+parent = 222
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well they always try to eat me when I go near them."
+parent = 222
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "The life of a crocodile is not an easy one. They must seek food wherever it is available."
+parent = 222
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "Besides, I sense you do not speak the whole truth. Did you not befriend a crocodile yourself in times past?"
+parent = 222
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You mean Roger! I guess he was quite friendly."
+parent = 222
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "Then perhaps crocodiles are not as rude as you think."
+parent = 222
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "act"
+text = "other"
+parent = 222
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "option"
+text = "Actually, I've changed my mind."
+parent = 211
+children = [232, 233, 234]
+
+[[nodes]]
+id = 232
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I've changed my mind."
+parent = 231
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "As you wish."
+parent = 231
+
+[[nodes]]
+id = 234
+depth = 3
+kind = "act"
+text = "initial"
+parent = 231
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "option"
+text = "I'll be back soon."
+parent = 211
+children = [236, 237, 238]
+
+[[nodes]]
+id = 236
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 235
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "We will be here."
+parent = 235
+
+[[nodes]]
+id = 238
+depth = 3
+kind = "act"
+text = "end"
+parent = 235
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "option"
+text = "I have a question for Het."
+parent = -1
+children = [240, 241, 251, 259, 263]
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a question for Het."
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "option"
+text = "What's your role in the Menaphite Pantheon?"
+parent = 239
+children = [242, 243, 244, 245, 246, 247, 248, 249, 250]
+
+[[nodes]]
+id = 242
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's your role in the Menaphite Pantheon?"
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "I am Tumeken's avatar of health, both physical and mental."
+parent = 241
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You talk about strength and fighting a lot. Surely fighting isn't good for someone's health."
+parent = 241
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Well when it comes to health, is strength not the ultimate goal? The strongest individual is one who is healthy in both body and mind, and what better way to celebrate that strength than in combat!"
+parent = 241
+
+[[nodes]]
+id = 246
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I guess, but what about those who aren't strong?"
+parent = 241
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Well health is not something to be hoarded, is it? Most weaknesses can be overcome, and it is the duty of the strong to help those less fortunate."
+parent = 241
+
+[[nodes]]
+id = 248
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So they can become strong and healthy themselves?"
+parent = 241
+
+[[nodes]]
+id = 249
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Exactly!"
+parent = 241
+
+[[nodes]]
+id = 250
+depth = 3
+kind = "act"
+text = "other"
+parent = 241
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "option"
+text = "Do you have more followers than the others?"
+parent = 239
+children = [252, 253, 254, 255, 256, 257, 258]
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "An interesting question. Why do you ask?"
+parent = 251
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Considering you have a human appearance, I wondered if that might resonate more with people."
+parent = 251
+
+[[nodes]]
+id = 254
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Not as much as you might think. Believe it or not, in some ways, I'm actually considered a bit boring! Why follow the human when you have a baboon god?"
+parent = 251
+
+[[nodes]]
+id = 255
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Especially when the baboon god is so fun to be around!"
+parent = 251
+
+[[nodes]]
+id = 256
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Of course, people just following one of us was never really the intention anyway. We're a pantheon, and we all have a part to play."
+parent = 251
+
+[[nodes]]
+id = 257
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Now that Amascut is running with her tail between her legs, perhaps we can remind people of that."
+parent = 251
+
+[[nodes]]
+id = 258
+depth = 3
+kind = "act"
+text = "other"
+parent = 251
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "option"
+text = "Actually, I've changed my mind."
+parent = 239
+children = [260, 261, 262]
+
+[[nodes]]
+id = 260
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I've changed my mind."
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Very well."
+parent = 259
+
+[[nodes]]
+id = 262
+depth = 3
+kind = "act"
+text = "initial"
+parent = 259
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "option"
+text = "I'll be back soon."
+parent = 239
+children = [264, 265, 266]
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "We'll wait for you to return."
+parent = 263
+
+[[nodes]]
+id = 266
+depth = 3
+kind = "act"
+text = "end"
+parent = 263
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "option"
+text = "I have a question for all of you."
+parent = -1
+children = [268, 269, 270, 286, 300, 304]
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a question for all of you."
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 267
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "option"
+text = "What will happen with Amascut?"
+parent = 267
+children = [271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285]
+
+[[nodes]]
+id = 271
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What will happen with Amascut?"
+parent = 270
+
+[[nodes]]
+id = 272
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "I'd say that's up to her. If she doesn't change her ways, her fate won't be pretty."
+parent = 270
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "But it's never too late for redemption. There might still be hope for her."
+parent = 270
+
+[[nodes]]
+id = 274
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "Whatever path she takes, we will be ready."
+parent = 270
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you really think she'd change her ways at this point?"
+parent = 270
+
+[[nodes]]
+id = 276
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "It seems unlikely, but there is one who might be able to change that."
+parent = 270
+
+[[nodes]]
+id = 277
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Who?"
+parent = 270
+
+[[nodes]]
+id = 278
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Icthlarin! If anyone can help Amascut find her way again, it's him!"
+parent = 270
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "He doesn't seem to have been doing much to help so far."
+parent = 270
+
+[[nodes]]
+id = 280
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Icthlarin is limited in what he can do. His duties to the dead require constant attention."
+parent = 270
+
+[[nodes]]
+id = 281
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Not to mention the pact!"
+parent = 270
+
+[[nodes]]
+id = 282
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Pact?"
+parent = 270
+
+[[nodes]]
+id = 283
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "That is not for us to discuss."
+parent = 270
+
+[[nodes]]
+id = 284
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Oh yes, sorry. Maybe we should talk about something else."
+parent = 270
+
+[[nodes]]
+id = 285
+depth = 3
+kind = "act"
+text = "other"
+parent = 270
+is_terminal = true
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "option"
+text = "Are you actually gods?"
+parent = 267
+children = [287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299]
+
+[[nodes]]
+id = 287
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Are you actually gods?"
+parent = 286
+
+[[nodes]]
+id = 288
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "If you asked a citizen of these lands, I'm sure they'd probably say yes."
+parent = 286
+
+[[nodes]]
+id = 289
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "Indeed, but they would not be truly correct."
+parent = 286
+
+[[nodes]]
+id = 290
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How so?"
+parent = 286
+
+[[nodes]]
+id = 291
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Tumeken made us using his own divine essence! Each of us is a piece of him!"
+parent = 286
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "But that does not make us gods. While great, our power is insignificant compared to a true god. That is why they are gone, and we remain."
+parent = 286
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what are you really?"
+parent = 286
+
+[[nodes]]
+id = 294
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "You might hear some refer to us as the Avatars of Tumeken. We'd consider that a more fitting title."
+parent = 286
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What about Icthlarin and Amascut?"
+parent = 286
+
+[[nodes]]
+id = 296
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Tumeken made them too. Difference is, they also have some of Elidinis' divine essence, making them a lot more powerful!"
+parent = 286
+
+[[nodes]]
+id = 297
+depth = 3
+kind = "speaker"
+speaker = "Crondis"
+text = "But again, they are not true gods."
+parent = 286
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "speaker"
+speaker = "Het"
+text = "Amascut was hoping to change that today, but you showed her where to stick that plan!"
+parent = 286
+
+[[nodes]]
+id = 299
+depth = 3
+kind = "act"
+text = "other"
+parent = 286
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "option"
+text = "Actually, I've changed my mind."
+parent = 267
+children = [301, 302, 303]
+
+[[nodes]]
+id = 301
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I've changed my mind."
+parent = 300
+
+[[nodes]]
+id = 302
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "Fair enough."
+parent = 300
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "act"
+text = "initial"
+parent = 300
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "option"
+text = "I'll be back soon."
+parent = 267
+children = [305, 306, 307]
+
+[[nodes]]
+id = 305
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 304
+
+[[nodes]]
+id = 306
+depth = 3
+kind = "speaker"
+speaker = "Apmeken"
+text = "We'll be here when you're ready."
+parent = 304
+
+[[nodes]]
+id = 307
+depth = 3
+kind = "act"
+text = "end"
+parent = 304
+is_terminal = true
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "option"
+text = "So what happens now?"
+parent = -1
+children = [309, 310, 311, 312, 313, 314, 315, 316]
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what happens now?"
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Crondis"
+text = "We are the Avatars of Tumeken, and the Kharidian Desert has been without guidance for too long. It is time we fixed that."
+parent = 308
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Apmeken"
+text = "We're going to get started right away!"
+parent = 308
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Het"
+text = "But don't worry, we don't intend to miss the fight against Amascut. I hope you'll stand alongside us when that day comes."
+parent = 308
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Crondis"
+text = "For now though, this is goodbye. We will meet again, human."
+parent = 308
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Apmeken"
+text = "It was great to meet you. Thank you for helping us!"
+parent = 308
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "box"
+text = "The avatars depart."
+parent = 308
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "act"
+text = "end"
+parent = 308
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "option"
+text = "I'll be back soon."
+parent = -1
+children = [318, 319, 320]
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Het"
+text = "We'll wait for you to return."
+parent = 317
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "act"
+text = "end"
+parent = 317
+is_terminal = true
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Apmeken"
+text = "You're back!"
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "speaker"
+speaker = "Crondis"
+text = "If you have questions, now is the time to ask them."
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "Maisa"
+text = "Hey! We should discuss some things before you head back in."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+children = [326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 343, 346, 347, 348]
+is_terminal = true
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "You're back! I have a little something for you, but you don't seem to have room for it. Come back when you do."
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "act"
+text = "end"
+parent = 325
+is_terminal = true
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "You're back! I just had an interesting chat with a group of lesser gods. Seems you dealt a heavy blow to the Devourer and made some powerful new friends in the process."
+parent = 325
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It didn't go perfectly. Amascut still escaped, and she'd already gained a fair amount of power by that point."
+parent = 325
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "True, but things could have wound up going a lot worse. You're right though, this is clearly far from over."
+parent = 325
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where do you think she'll have gone? Menaphos?"
+parent = 325
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "Most likely. She didn't go to all the effort of causing those plagues for nothing. This tomb was clearly only part of her plan."
+parent = 325
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "Still, she'll need to reconsider her strategy after her defeat. We have a little time now."
+parent = 325
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hopefully time for the city to reopen again. What will you do in the meantime?"
+parent = 325
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Maisa"
+text = "The lesser gods were under the Devourer's control for a long time, and a lot's changed since they disappeared. I've offered to help them where I can."
+parent = 325
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Then I guess this is goodbye for now."
+parent = 325
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "cond"
+text = "If the player does not have the [[Antique lamp (Into the Tombs)|Antique lamp]] in their inventory:"
+parent = 325
+children = [338, 339, 340, 341, 342]
+
+[[nodes]]
+id = 338
+depth = 3
+kind = "speaker"
+speaker = "Maisa"
+text = "Indeed, but before I go, I have something for you."
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 3
+kind = "box"
+text = "pic=Antique lamp (Into the Tombs) detail.png|Maisa gives you an antique lamp."
+parent = 337
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = 337
+
+[[nodes]]
+id = 341
+depth = 3
+kind = "speaker"
+speaker = "Maisa"
+text = "Don't mention it. Now, take care of yourself out there."
+parent = 337
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "act"
+text = "continue"
+parent = 337
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "cond"
+text = "If the player talks to Maisa after having the [[Antique lamp (Into the Tombs)|Antique lamp]] in their inventory or after using the lamp:"
+parent = 325
+children = [344, 345]
+
+[[nodes]]
+id = 344
+depth = 3
+kind = "speaker"
+speaker = "Maisa"
+text = "Indeed. Take care of yourself out there."
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 3
+kind = "act"
+text = "continue"
+parent = 343
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you."
+parent = 325
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "box"
+text = "Maisa departs."
+parent = 325
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "act"
+text = "end"
+parent = 325
+is_terminal = true

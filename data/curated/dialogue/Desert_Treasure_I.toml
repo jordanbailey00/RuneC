@@ -1,0 +1,6716 @@
+title = "Transcript:Desert Treasure I"
+npcs = ["Terry Balando", "Asgarnia Smith", "Azzanadra", "Bandit (Bandit Camp)", "Bartender (The Big Heist Lodge)", "Dunstan", "Eblis", "High Priest (Entrana)", "Malak", "Rasolo", "Roavar", "Ruantun", "Troll child", "Troll father", "Troll mother", "Stranger", "Ice troll (Desert Treasure I)"]
+node_count = 848
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "box"
+text = "He seems to be lost in his own thoughts..."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Howdy stranger. What brings you out to these parts?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "What are you doing here?"
+parent = -1
+children = [7, 8, 9, 10, 11, 13, 15]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing much - What are you doing here? It doesn't seem like there's much to do out here in the desert!"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well, that's where you'd be wrong. I work for the Archaeological Society of Varrock, and have been excavating around here recently."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Was there something you specifically wanted?"
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "Do you have any quests?"
+parent = 6
+children = [12]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "below"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "Who are you?"
+parent = 6
+children = [14]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "below"
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "Nothing really."
+parent = 6
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "below"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "Do you have any quests?"
+parent = -1
+children = [18, 19, 20, 21, 23, 24, 30]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any quests? Call it a hunch, but you look like the type of man who might..."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = """
+Well, it's funny you should say that. I'm not sure if I would really call it a quest as such, but I found this ancient stone tablet in one of my excavations, and it would really help me out if you could go and take it back to the digsite for me and get it examined.
+"""
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "It's very old, and I don't recognise any of the inscriptions on it."
+parent = 17
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "cond"
+text = "Without the required skill levels"
+parent = 17
+children = [22]
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "box"
+text = "Before starting this quest, be aware that one or more of your skill levels are lower than what is required to fully complete it."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "select"
+text = "Start the Desert Treasure I quest?"
+parent = 17
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 17
+children = [25, 26, 27, 28, 29]
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I was heading that way anyway. Any particular person at the digsite you want me to talk to?"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = """
+His name's Terry Balando. Give it to nobody but him. I'm sorry, I can't entrust you with the actual tablet I found, it is far too valuable to give away, but I took these etchings - they should be enough for him to make
+"""
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "a preliminary translation on. Come back and let me know what he says, I would hate to waste my time excavating anything that isn't worth my time as a world famous archaeologist!"
+parent = 24
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "act"
+text = "receives=[[etchings]]"
+parent = 24
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "act"
+text = "end"
+parent = 24
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "option"
+text = "No."
+parent = 17
+children = [31, 32, 33]
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No thanks. Playing delivery boy doesn't really sound much like fun to me."
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well, okay. Can't say as I blame you for thinking that. I'll go take it there myself later I guess."
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "act"
+text = "end"
+parent = 30
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [35, 36, 37, 38, 39, 40, 41, 42, 44, 46]
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you, anyway?"
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "You don't recognise me??? I am the world famous Asgarnia Smith, Archaeologist extraordinaire!"
+parent = 34
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "I am the one who discovered the long forgotten Temple of Ikov! The one who unearthed the strange trap filled arena in Brimhaven!"
+parent = 34
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "I'm the leading archaeological expert of our time! I was voted archaeologist of the year four years running by the Varrock Herald! Are you REALLY sure you've never heard of me?"
+parent = 34
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I really haven't."
+parent = 34
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well then, I'm confused. Why did you come over and speak to me if you don't know who I am? What do you want?"
+parent = 34
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 34
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "option"
+text = "What are you doing here?"
+parent = 34
+children = [43]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "act"
+text = "above"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "option"
+text = "Do you have any quests?"
+parent = 34
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "act"
+text = "above"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "option"
+text = "Nothing really."
+parent = 34
+children = [47]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "act"
+text = "below"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "option"
+text = "Nothing really."
+parent = -1
+children = [49, 50, 51]
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing really. I'm just wandering around for no good reason."
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Uh-huh. Well, if you'll excuse me, I have a lot more work to do before I can bed down for the night."
+parent = 48
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "So what did Terry Balando say about those etchings? Did he give you a translation for me?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "cond"
+text = "If the player has the etchings."
+parent = -1
+children = [55, 56, 57, 58]
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... yeah... about that... I kind of didn't go and speak to him yet..."
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well what are you waiting for? A written invitation? All I want you to do is take those etchings up to the digsite for me!"
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll do that then."
+parent = 54
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "cond"
+text = "If the player lost the etchings."
+parent = -1
+children = [60, 61, 62, 63]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... yeah... about that... I kind of lost those etchings you gave me..."
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well how in the world did you do that? (sigh) Okay, I'll make another set, but try not to lose these ones this time!"
+parent = 59
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "receives=[[etchings]]"
+parent = 59
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "end"
+parent = 59
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, are you Terry Balando?"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "That's right, who wants to know...?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "Ah yes, I recognise you! You're the fellow who found that strange artefact about Zaros for the museum, aren't you? What can I do for you now?"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the etchings."
+parent = -1
+children = [68, 69, 70]
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I had some etchings to deliver to you, but I don't have them on me..."
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = "Then... you better go get them for me?"
+parent = 67
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "act"
+text = "end"
+parent = 67
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "cond"
+text = "If the player has the etchings."
+parent = -1
+children = [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's right. I was in the desert down by the Bedabin Camp, and I found an archaeologist who asked me to deliver this to you."
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = "You spoke to the legendary Asgarnia Smith??? Quickly, let me see what he had to give you! He is always at the forefront of archaeological breakthroughs!"
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what does the inscription say? Anything interesting?"
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = "This... this is fascinating! These cuneiforms seem to predate even the settlement we are excavating here... Yes, yes, this is most interesting indeed!"
+parent = 71
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you translate it for me?"
+parent = 71
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = """
+Well, I am not familiar with this particular language, but the similarities inherent in the pictographs seem to show a prevalent trend towards a syllabary consistent with the phonemes we have discovered in this excavation!
+"""
+parent = 71
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... So, can you translate it for me or not?"
+parent = 71
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = "Well, unfortunately this is the only example of this particular language I have ever seen, but I might be able to make a rough translation, of sorts..."
+parent = 71
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = "It might be slightly obscure on the finer details, but it should be good enough to understand the rough meaning of what was originally written. Please, just wait a moment, I will write up what I can"
+parent = 71
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = "translate into a journal for you. Then you can take it back to Asgarnia, I think he will be extremely interested in the translation!"
+parent = 71
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "There you go, that book contains the sum of my translating ability. If you would be so kind as to take that back to Asgarnia, I think it will reassure him that he is on the"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "right track for a find of great archaeological importance"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "act"
+text = "receives=[[translation]]"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wow! You write really quickly don't you?"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "What can I say? It's a skill I picked up through my many years of taking field notes!"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "Hello again. Was that translation any use to Asgarnia?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I, uh, kind of didn't take it to him yet..."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "Whyever not? You're the strangest delivery boy I've ever met!"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I lost that translation you gave me..."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Terry Balando"
+text = "Oh, no matter, I mostly remember what it said anyway! Here you go!"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "receives=[[translation]]"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "So what did Terry Balando say about those etchings? Did he give you a translation for me?"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the translation."
+parent = -1
+children = [100, 101, 102, 103]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, he did. But I don't have it with me."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "..."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "I see."
+parent = 99
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well could you go and get me that translation? It could be vital!"
+parent = 99
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "cond"
+text = "If the player has the translation."
+parent = -1
+children = [105, 106, 107, 108, 111]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, he did. I have it here in this book."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Did you take a ready of this? It will do you good to understand how this profession works. Here, have a read."
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 104
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "option"
+text = "Read book"
+parent = 104
+children = [109, 110]
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "act"
+text = "opens=Translation"
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "act"
+text = "end"
+parent = 108
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "option"
+text = "Don't read book"
+parent = 104
+children = [112, 113, 114, 115]
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, I did. Kind of boring really."
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "act"
+text = "gives=[[translation]]"
+parent = 111
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Excellent. Just give me a moment to read this, and talk to me again in a second."
+parent = 111
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "act"
+text = "end"
+parent = 111
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Hmmm. Interesting. It seems to me like there's some kind of treasure hidden out in the desert."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "So what do you say? Fancy being a treasure hunter like me?"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh... don't you mean archaeologist?"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Yeeees... An archaeologist..."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "It's all this hot sun getting to me I think."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = """
+Well anyway, let's just assume there is a treasure hidden in the desert somewhere, and let's just say for the sake of argument that maybe if I found a big stash of gold and treasure I wouldn't necessarily just hand it
+"""
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "all over to the Museum of Varrock."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = """
+Let's also say, purely hypothetically, that if there were such a big stash of treasure and someone were to help me find it, then that hypothetical personal might be entitled to, oh, let's say a purely for the sake of
+"""
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "argument thirty percent split..."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fifty percent."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "That's right!"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "A purely for the sake of argument fifty-fifty split on this hypothetical treasure, should it exist..."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Do you see where I'm going with this?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = """
+You want me to help you find some treasure for a fifty percent share, as long as I don't tell anybody, and your reputation as an esteemed archaeologist with the Museum of Varrock remains intact, and nobody
+"""
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "discovers you're actually just a treasure hunter?"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Uh... yes, but the way you said it makes it sound like I'm doing something wrong..."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "So what do you say? Partners?"
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "option"
+text = "Help him"
+parent = -1
+children = [136, 137, 138, 139, 140, 141]
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well... I guess nobody is really going to lose out on anything, and we don't even know if there is any treasure..."
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aw, go on then. Count me in."
+parent = 135
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Good lad! Well, if we split up we'll be able to find treasure quicker."
+parent = 135
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "I'll continue searching around here in this Bedabin Camp, you head due South to the Bandit Village. If either of us find anything, we'll come find each other and say what, okay?"
+parent = 135
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "You head due South, see what you can find out about this tablet."
+parent = 135
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "act"
+text = "end"
+parent = 135
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "Don't help him"
+parent = -1
+children = [143, 144, 145, 146, 147, 148, 149, 150, 152]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This all sounds very immoral, and I don't want any part of your seedy little schemes."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Aw, c'mon, cut me a break here man! Look, nobody is really getting hurt, right? This treasure is either going to lie around in some underground ruin, or lie around in some museum for"
+parent = 142
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "people to look at!"
+parent = 142
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "It makes sense for the people to go to all the risk to get a little payback for it, right? Besides, anything of real historical value we can hand over to the museum - we'll just keep the cash for"
+parent = 142
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "ourselves!"
+parent = 142
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "C'mon... what do you say? Partners?"
+parent = 142
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 142
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "option"
+text = "Help him"
+parent = 142
+children = [151]
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "act"
+text = "above"
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "option"
+text = "Don't help him"
+parent = 142
+children = [153, 154, 155, 156]
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't trust anything about your little scheme, including you! I want nothing to do with this!"
+parent = 152
+
+[[nodes]]
+id = 154
+depth = 3
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Eh, you'll come running back when you realize just how much money we could be talking here."
+parent = 152
+
+[[nodes]]
+id = 155
+depth = 3
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "I'll see you again when you come crawling back, begging to be cut in on the deal."
+parent = 152
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "act"
+text = "end"
+parent = 152
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Hello again. You find any signs of that treasure yet?"
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet..."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well, head south to that bandit camp. I bet if there's anything out here, they'll know about it."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Don't let on it might be valuable though! Those thieves will steal it as soon as look at you!"
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "select"
+text = "What would you like to talk about?"
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "Ask about the Desert Treasure quest."
+parent = -1
+children = [164, 165, 166]
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Terry Balando"
+text = "Hello again. Was that translation any use to Asgarnia?"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think it was, thanks!"
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "option"
+text = "quest=No|Ask about the Digsite quest."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "What do you want lad?"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here on an archaeological expedition for the Museum of Varrock."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I believe there may be some interesting artefacts in the area."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "You are a crazy man. The only thing you will find out here in the desert is your death."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I represent the Museum of Varrock, and I have reason to believe there may be some kinds of artefacts of historical significance in the nearby area..."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Ah yes. The only time people care about our existence is when they think they have something to gain from us."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "I have nothing to say to you. You and your kind are not welcome here."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please, if I can just have a few minutes of your time to ask some questions...?"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "(sigh) I suppose I can spare you that. What do you wish to know about?"
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "option"
+text = "Why is this village so hostile?"
+parent = -1
+children = [180, 181, 182, 183, 202]
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why are all of the people here so hostile? You would think I was asking you for money instead of just for answers to a few questions..."
+parent = 179
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "It is a long story, and I doubt you have much interest in hearing it. Your sort never are, you just take what you can of ours, and then abandon us once more to the desert."
+parent = 179
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 179
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "option"
+text = "No, I want to hear this story."
+parent = 179
+children = [184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201]
+
+[[nodes]]
+id = 184
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I'd be quite interested to hear what it is you have to say to excuse the attitude everybody in this village seems to have."
+parent = 183
+
+[[nodes]]
+id = 185
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Ah, it all begun many generations ago, when our ancestors were the proud rulers of these lands..."
+parent = 183
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "My ancestors lived far to the North of here, and our lands stretched from the sea in the East to the river Lum, and the mountain of ice. From coast to coast, North to South, our domain was absolute."
+parent = 183
+
+[[nodes]]
+id = 187
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Our god was kind to us, and blessed us with prosperity and happiness, and in return we were merciless to his enemies wherever we found them."
+parent = 183
+
+[[nodes]]
+id = 188
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Then came the betrayal."
+parent = 183
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Our god was banished, leaving us helpless to our fates."
+parent = 183
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Without his protection, we were forced to fend for ourselves once more, against the enemies that sought to destroy us through their petty jealousies."
+parent = 183
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "But we did not succumb without fighting! The spiteful Saradomin and pathetic Zamorak warred with each other, but the hatred they had for each other was as nothing to the hatred they held towards us!"
+parent = 183
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "With each battle they waged, we lost more and more land, unable to fight on all fronts, and were pushed further and further South into this gods-forsaken desert."
+parent = 183
+
+[[nodes]]
+id = 193
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Our greatest hero, Azzanadra, was finally trapped in a strange stone structure to the South of here, and bound within by terrible powers..."
+parent = 183
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "And with that our lands, our homes, our very lives were stolen from us! Too weak to reclaim what was rightfully ours, we made our homes here, knowing that someday Azzanadra will"
+parent = 183
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "return with his magnificent power, and bring us back to our former glory..."
+parent = 183
+
+[[nodes]]
+id = 196
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you're upset because of something that happened hundreds of years ago?"
+parent = 183
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Seems to me like maybe you should find some closure, and let the past go..."
+parent = 183
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "The insults heaped upon my race will never be forgotten, will never be forgiven and will never again be overlooked."
+parent = 183
+
+[[nodes]]
+id = 199
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Someday, a harsh wind will blow upon this land, uncovering the wrongs of the past, and we will get back what is rightfully ours. Until such a day we will bide our time here, and will"
+parent = 183
+
+[[nodes]]
+id = 200
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "always be ready with our blades for our righteous vengeance."
+parent = 183
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "act"
+text = "end"
+parent = 183
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "option"
+text = "I don't care about your story."
+parent = 179
+children = [203, 204, 205, 206, 207, 208, 209]
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't really care what your story is to be honest, there is no excuse for such rudeness or hostility."
+parent = 202
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have done nothing wrong to you, but everybody here treats me like I have committed some great crime against the village."
+parent = 202
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "That is because, from our point of view, you have."
+parent = 202
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What? Just because I entered your village?"
+parent = 202
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "You have no right to be here! You have no right to the life you have, for it was taken at our expense!"
+parent = 202
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Whatever... No wonder all you loonies live out here in the desert by yourselves."
+parent = 202
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "act"
+text = "end"
+parent = 202
+is_terminal = true
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "option"
+text = "Do you know anything about treasure near here?"
+parent = -1
+children = [211, 212, 213, 214]
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was wondering if you knew anything about some treasure somewhere around here?"
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some evidence that there might be some kind of treasure hidden very close to this village..."
+parent = 210
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "If I knew of any treasure I would not choose to spend my life in this gods-forsaken desert."
+parent = 210
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "act"
+text = "end"
+parent = 210
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "Do you know anything about a fortress near here?"
+parent = -1
+children = [216, 217, 218]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about some kind of fortress nearby? I have reason to believe there is, or at least used to be, some kind of fortress very close to here..."
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Nobody would build anything in this wasteland unless they were forced to, to survive."
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "I know of no fortress, I know of no reason why anyone would ever bother doing anything out here in the desert."
+parent = 215
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "option"
+text = "Nothing thanks."
+parent = -1
+children = [220, 221, 222]
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually, there was nothing I really wanted to ask you about."
+parent = 219
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Yes, it is exactly like your sort to waste my time in such a way."
+parent = 219
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "act"
+text = "end"
+parent = 219
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "If you're not buying anything, I have nothing to say to you."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "option"
+text = "Ask about Desert Treasure I"
+parent = -1
+children = [226, 227, 228, 229]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "As I understand it there's some kind of hidden treasure in these parts..."
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Look around pal. Does it looks{{sic}} like there's any treasure near here?"
+parent = 225
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "If I were you I'd get lost before someone takes a dislike to your face and removes it for you."
+parent = 225
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "option"
+text = "Buy a drink"
+parent = -1
+children = [231, 234]
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "act"
+text = "If the player doesn't have 650 coins."
+parent = 230
+children = [232, 233]
+
+[[nodes]]
+id = 232
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "You ain't got the 650 coins it costs to buy it, and I'm glad 'cos I didn't want to serve you anyway."
+parent = 231
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "act"
+text = "end"
+parent = 231
+is_terminal = true
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "act"
+text = "If the player has 650 coins."
+parent = 230
+children = [235, 236, 237, 242]
+
+[[nodes]]
+id = 235
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "What's that? You wanna buy a beer? It'll cost ya 650 coins."
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 234
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "act"
+text = "Buy a beer"
+parent = 234
+children = [238, 239, 240, 241]
+
+[[nodes]]
+id = 238
+depth = 4
+kind = "act"
+text = "gives=650 [[coins]]"
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 4
+kind = "act"
+text = "receives=[[Bandit's brew]]"
+parent = 237
+
+[[nodes]]
+id = 240
+depth = 4
+kind = "speaker"
+speaker = "Bartender"
+text = "There you go. Now get out, we don't like your sort around here."
+parent = 237
+
+[[nodes]]
+id = 241
+depth = 4
+kind = "act"
+text = "end"
+parent = 237
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 3
+kind = "option"
+text = "Don't buy anything"
+parent = 234
+children = [243, 244]
+
+[[nodes]]
+id = 243
+depth = 4
+kind = "speaker"
+speaker = "Bartender"
+text = "Get out of my bar then! We don't like your sort round here!"
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 4
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "You've had your drink, now get out of here. I have nothing to say to the-"
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, Wait! Look, I'm here on an archaeological expedition for the Museum of Varrock."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am only here looking for artefacts..."
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Oh really? Our inheritance is only sand and death. What do you expect to find out here in this desert forsaken by the gods?"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "option"
+text = "I heard about treasure..."
+parent = -1
+children = [251, 252, 253, 254]
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "As I understand it there's some kind of hidden treasure in these parts..."
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Look around pal. Does it looks{{sic}} like there's any treasure near here?"
+parent = 250
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "If I were you I'd get lost before someone takes a dislike to your face and removes it for you."
+parent = 250
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "act"
+text = "end"
+parent = 250
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "option"
+text = "I heard about four diamonds..."
+parent = -1
+children = [256, 257, 258, 259, 260, 261]
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I heard a rumour about four diamonds or crystals..."
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "The four diamonds of Azzanadra??? How came you to know of this?"
+parent = 255
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You've heard of them then?"
+parent = 255
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "It's just a fairy tale for children. Maybe one of the village elders might know more, but it's not really something I care about."
+parent = 255
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Now get out of here, your sort isn't welcome in my bar."
+parent = 255
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "act"
+text = "end"
+parent = 255
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "option"
+text = "I heard about a fortress..."
+parent = -1
+children = [263, 264, 265, 266]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Certain things have led me to believe there may be some kind of ruined fortress around here..."
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Doubt it. What in the world would someone need to guard against in the middle of this desert?"
+parent = 262
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "A bad attack of sand? I think you're on the wrong track, mister so-called archaeologist."
+parent = 262
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "act"
+text = "end"
+parent = 262
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "You've had your drink, now get out of here. I have nothing to say to the-"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, Wait! Look, I'm here on an archaeological expedition for the Museum of Varrock."
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am only here looking for artefacts..."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Oh really? Our inheritance is only sand and death. What do you expect to find out here in this desert forsaken by the gods?"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "option"
+text = "I heard about treasure..."
+parent = -1
+children = [273]
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "act"
+text = "above"
+parent = 272
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "option"
+text = "I heard about four diamonds..."
+parent = -1
+children = [275]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "act"
+text = "above"
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "option"
+text = "I heard about a fortress..."
+parent = -1
+children = [277]
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "act"
+text = "above"
+parent = 276
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "option"
+text = "I heard of the Diamonds of Azzanadra."
+parent = -1
+children = [279, 280, 281, 282, 283]
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me all you know about the Diamonds of Azzanadra."
+parent = 278
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Not that I think it's any of your business, but when I was a child I remember hearing the legend."
+parent = 278
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "I don't recall it particularly well, other than they are said to contain an incredible power."
+parent = 278
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "If you really want to hear more about it you'd be best off finding someone who cares about the past, and the history of this area, and stop bothering me."
+parent = 278
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "act"
+text = "end"
+parent = 278
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I represent the Museum of Varrock, and I have reason to believe there may be some kinds of artefacts of historical significance in the nearby area..."
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Ah yes. The only time people care about our existence is when they think they have something to gain from us."
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "I have nothing to say to you. You and your kind are not welcome here."
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please, if I can just have a few minutes of your time to ask some questions...?"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "(sigh) I suppose I can spare you that. What do you wish to know about?"
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "option"
+text = "Why is this village so hostile?"
+parent = -1
+children = [291]
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "act"
+text = "above"
+parent = 290
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "option"
+text = "Do you know anything about treasure near here?"
+parent = -1
+children = [293]
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "act"
+text = "above"
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "option"
+text = "Do you know anything about a fortress near here?"
+parent = -1
+children = [295]
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "act"
+text = "above"
+parent = 294
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "option"
+text = "Tell me of The four diamonds of Azzanadra"
+parent = -1
+children = [297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 335]
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So tell me... Did you ever hear of something called the Diamonds of Azzanadra?"
+parent = 296
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "This is the treasure which you seek???"
+parent = 296
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Please accept my apologies noble sir! I thought you were but some opportunistic thief, looking to steal what heritage we have left! Now I see that you are in fact a brave adventurer,"
+parent = 296
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "looking to restore our glories back upon us!"
+parent = 296
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uh... yeah... So anyway, you have heard of them?"
+parent = 296
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Heard of them? Of course I have heard of them! They are the legacy of the great Mahjarrat hero, Azzanadra!"
+parent = 296
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So... do you have any idea where they might be? I have a feeling they will be very valuable."
+parent = 296
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uh, valuable as historical artefacts I mean, obviously."
+parent = 296
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "They were stolen by warriors of the false god Zamorak generations ago. When you find the warriors, you will find the diamonds."
+parent = 296
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "I suspect they will not willingly part with such objects of power however."
+parent = 296
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Beware too, for these warriors are very powerful; they have taken the powers of the diamonds into themselves!"
+parent = 296
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do you mean?"
+parent = 296
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Each diamond has an elemental quality..."
+parent = 296
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "There is the Diamond of Blood, the Diamond of Ice, the Diamond of Smoke and the Diamond of Shadow."
+parent = 296
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "You should expect the warriors to have taken some aspect of these diamonds as their own..."
+parent = 296
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any idea how I could track down these warriors somehow, then?"
+parent = 296
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "There is an ancient spell I know of that may spy upon such power... But it will require a few ingredients for it to work."
+parent = 296
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Should you be willing to get these ingredients for me, I will be able to locate the rough area where each of these warriors has taken refuge. The spell is imprecise, but it should help you get on the"
+parent = 296
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "right track in your search."
+parent = 296
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Is your desire for our freedom strong enough? Will you gather the ingredients for this spell for me?"
+parent = 296
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 296
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 296
+children = [319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 333]
+
+[[nodes]]
+id = 319
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sure, what do you need?"
+parent = 318
+
+[[nodes]]
+id = 320
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "For this spell, I will need to make some scrying glasses. I will need enough so that we can view the realm in its entirety."
+parent = 318
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "When enchanted, the scrying glass will be able to let us view any area that has been influenced by the presence of the Diamonds of Azzanadra."
+parent = 318
+
+[[nodes]]
+id = 322
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, but what exactly do you need for this spell?"
+parent = 318
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Well, six scrying glasses should be sufficient. For each scrying glass, I will need two magic logs, a steel bar and some molten glass. This makes a total of 12 magic logs, 6 pieces of molten"
+parent = 318
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "glass, and 6 steel bars."
+parent = 318
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "In addition, for the actual spell to enchant the glasses, I will require one set of normal bones, some ash, some charcoal and a single blood rune."
+parent = 318
+
+[[nodes]]
+id = 326
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Do you understand me, adventurer?"
+parent = 318
+
+[[nodes]]
+id = 327
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Quick question; what kind of bones do you need?"
+parent = 318
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "Standard bones. Other types of bones are of no use to me in this spell."
+parent = 318
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 318
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "option"
+text = "Yes, I will go get those for you."
+parent = 318
+children = [331, 332]
+
+[[nodes]]
+id = 331
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It's a slightly odd collection of ingredients, but I shouldn't have too much trouble getting those for you."
+parent = 330
+
+[[nodes]]
+id = 332
+depth = 4
+kind = "act"
+text = "end"
+parent = 330
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "option"
+text = "No, please repeat those ingredients."
+parent = 318
+children = [334]
+
+[[nodes]]
+id = 334
+depth = 4
+kind = "act"
+text = "Same as \"Talking to Eblis after agreeing to get ingredients\" below."
+parent = 333
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "option"
+text = "No"
+parent = 296
+children = [336, 337, 338]
+
+[[nodes]]
+id = 336
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually I don't feel like going on a shopping trip for you right now."
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "speaker"
+speaker = "Eblis"
+text = "As you wish. I should have known not to get my hopes up that our long cursed life may soon be at an end..."
+parent = 335
+
+[[nodes]]
+id = 338
+depth = 3
+kind = "act"
+text = "end"
+parent = 335
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "option"
+text = "Nothing thanks."
+parent = -1
+children = [340]
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "above"
+parent = 339
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "cond"
+text = "If the player has some ingredients"
+parent = -1
+children = [342, 343]
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some of the stuff you are looking for with me..."
+parent = 341
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Thank you, pass over the ingredients so that I may begin working on the spell."
+parent = 341
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Before I can complete the spell I will still need the following items;"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "cond"
+text = "If Eblis still needs ingredients for the scrying glasses, or if the spell ingredients are partially handed in."
+parent = -1
+children = [346]
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "12 magic logs 6 steel bars 6 molten glass"
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "cond"
+text = "If Eblis still needs ingredients for the spell, or if the scrying glass ingredients are partially handed in."
+parent = -1
+children = [348]
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "1 bones, 1 ashes, 1 charcoal and 1 blood rune"
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "act"
+text = "gives=[[magic logs]]"
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "other"
+text = "{{mes|You hand over a magic log.}}"
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "act"
+text = "gives=[[steel bar]]"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "other"
+text = "{{mes|You hand over a steel bar.}}"
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "act"
+text = "gives=[[molten glass]]"
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "other"
+text = "{{mes|You hand over some molten glass.}}"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "act"
+text = "gives=[[ashes]]"
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Thank you, that is enough ash for the spell."
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "act"
+text = "gives=[[bones]]"
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Thank you, those are enough bones for the spell."
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "act"
+text = "gives=[[charcoal]]"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Thank you, that is enough charcoal for the spell."
+parent = -1
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "act"
+text = "gives=[[blood rune]]"
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Thank you, that blood rune should be sufficient for the spell."
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Excellent! Those are all the ingredients I need to create the scrying glasses."
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "I will find a suitable spot in the desert to the East of here, and set them up. When you are ready to begin your search, please come and find me there, I will show you how to utilise the"
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "mirrors to find the diamonds."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Meet me again in the desert East of here, I will use these ingredients to create a scrying glass for you."
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So can you give me any help on where to find these warriors and their diamonds?"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "No, the magic used in this spell is powerful, but inaccurate. The direction the scrying glass faces is roughly the direction you will find the warrior, but I'm afraid I"
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "can't be any more help than that."
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't understand why there are six mirrors when there are only four diamonds..."
+parent = -1
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "As I say, the enchantment is very inaccurate."
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = """
+I can only focus upon the aura the diamonds have left behind them, so any place where the Diamonds were present for a significant period of time will still be shown - such as the Bandit Camp where I make my home.
+"""
+parent = -1
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "My apologies, but magic is an inaccurate art in many respects."
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Don't forget to come back here when you have collected all four diamonds."
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "other"
+text = "{{mes|You gaze into the mirror...}}"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Hello again. You find any signs of that treasure yet?"
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not as such... Although I think I'm onto something of a promising lead..."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Did you ever hear of something called the Diamonds of Azzanadra?"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Diamonds of Azzanadra? That sounds very promising indeed!"
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you have heard of them?"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Nope, never heard of them before, but you said diamonds! Diamonds are always promising!"
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Rasolo"
+text = "Greetings friend. I am Rasolo, the famous merchant. Would you care to see my wares?"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "option"
+text = "quest=no|Yes"
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "option"
+text = "quest=no|No"
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "option"
+text = "Ask about the Diamonds of Azzanadra"
+parent = -1
+children = [397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 429]
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, actually I was looking for something specific..."
+parent = 396
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Hmmmm? And what would that be?"
+parent = 396
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am looking for one of the Diamonds of Azzanadra. I have reason to believe it may be somewhere around here..."
+parent = 396
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Ahhh... The Shadow Diamond..."
+parent = 396
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "I know the object of which you speak. It is guarded by a fearsome warrior known as Damis, they say, who lives in the shadows, invisible to prying eyes..."
+parent = 396
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How can I find this 'Damis' then?"
+parent = 396
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Well now... perhaps we can help each other out here."
+parent = 396
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "I have in my possession a small trinket, a ring, that allows its wearer to see the unseen..."
+parent = 396
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How much do you want for it?"
+parent = 396
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Ah, but it is not for sale... As such..."
+parent = 396
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "I am offering to trade it for an item that was rightfully mine, but that was stolen by a bandit named Laheeb."
+parent = 396
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "The item is question is a gilded cross, that has some sentimental value to myself. I wish for you to recover this item for me, and I will happily let you have my ring of visibility."
+parent = 396
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find this Laheeb?"
+parent = 396
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Well, as a travelling merchant I have roamed these lands for many years..."
+parent = 396
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "To the far east of here there is an area that is dry and barren like the desert... it is called..."
+parent = 396
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Al Kharid?"
+parent = 396
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "...Yes, Al Kharid. Now to the south of Al Kharid there is a passageway, it is called the..."
+parent = 396
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Shantay Pass."
+parent = 396
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "...Yes. I didn't realise you had travelled there yourself."
+parent = 396
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = """
+Anyway, when you have gone through the Shantay Pass, you will find yourself in a hostile desert... You will need to bring water with you to keep your life. Now, to the south-west of this pass, you will find a small
+"""
+parent = 396
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "village..."
+parent = 396
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Bedabin camp."
+parent = 396
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "If you know where Laheeb lives, why did you ask me?"
+parent = 396
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't. Sorry, please continue."
+parent = 396
+
+[[nodes]]
+id = 421
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Well, okay then. Anyway, south of this encampment there is an area where few have ever been... It is a village of murderous bandits, and treacherous"
+parent = 396
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "thieves... This is where Laheeb makes his home."
+parent = 396
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "He will have hidden his stolen treasure somewhere in that village, I am sure of it. When you find his loot, you will find my gilded cross. Return it to me, and I will reward you with my ring"
+parent = 396
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "of visibility, so that you may find Damis. Does this seem fair to you?"
+parent = 396
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 396
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "option"
+text = "quest=no|Yes"
+parent = 396
+children = [427, 428]
+
+[[nodes]]
+id = 427
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not a problem. I'll be back with your cross before you know it."
+parent = 426
+
+[[nodes]]
+id = 428
+depth = 3
+kind = "act"
+text = "end"
+parent = 426
+is_terminal = true
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "option"
+text = "quest=no|No"
+parent = 396
+children = [430, 431, 432]
+
+[[nodes]]
+id = 430
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like too much effort to me. I'll find this Damis by myself."
+parent = 429
+
+[[nodes]]
+id = 431
+depth = 3
+kind = "speaker"
+speaker = "Rasolo"
+text = "As you wish."
+parent = 429
+
+[[nodes]]
+id = 432
+depth = 3
+kind = "act"
+text = "end"
+parent = 429
+is_terminal = true
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find this Damis again?"
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Rasolo"
+text = "I have already told you, he is of the shadows. You will see neither him nor his lair without the aid of magic."
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "act"
+text = "Same as above, starting at \"Well now... perhaps we can help each other out here.\""
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "speaker"
+speaker = "Rasolo"
+text = "Have you retrieved my gilded cross for me yet?"
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet..."
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "speaker"
+speaker = "Rasolo"
+text = "Well what seems to be the problem?"
+parent = -1
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "option"
+text = "Where can I find Laheeb?"
+parent = -1
+children = [441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455]
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find this Laheeb?"
+parent = 440
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Well, as a travelling merchant I have roamed these lands for many years..."
+parent = 440
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "To the far east of here there is an area that is dry and barren like the desert... it is called..."
+parent = 440
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Al Kharid?"
+parent = 440
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "...Yes, Al Kharid. Now to the south of Al Kharid there is a passageway, it is called the..."
+parent = 440
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Shantay Pass."
+parent = 440
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "...Yes. I didn't realise you had travelled there yourself."
+parent = 440
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = """
+Anyway, when you have gone through the Shantay Pass, you will find yourself in a hostile desert... You will need to bring water with you to keep your life. Now, to the south-west of this pass, you will find a small
+"""
+parent = 440
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "village..."
+parent = 440
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Bedabin camp."
+parent = 440
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "If you know where Laheeb lives, why did you ask me?"
+parent = 440
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't. Sorry, please continue."
+parent = 440
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "Well, okay then. Anyway, south of this encampment there is an area where few have ever been... It is a village of murderous bandits, and treacherous"
+parent = 440
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "thieves... This is where Laheeb makes his home."
+parent = 440
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "act"
+text = "end"
+parent = 440
+is_terminal = true
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "option"
+text = "Can't I just buy your ring?"
+parent = -1
+children = [457, 458, 459, 460, 462]
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can't I just buy your ring?"
+parent = 456
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "No, it is not for sale. Some things are more important than money, and the return of my gilded cross is one of them."
+parent = 456
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 456
+
+[[nodes]]
+id = 460
+depth = 2
+kind = "option"
+text = "Where can I find Laheeb?"
+parent = 456
+children = [461]
+
+[[nodes]]
+id = 461
+depth = 3
+kind = "act"
+text = "above"
+parent = 460
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "option"
+text = "Is Damis near here, then?"
+parent = 456
+children = [463]
+
+[[nodes]]
+id = 463
+depth = 3
+kind = "act"
+text = "below"
+parent = 462
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "option"
+text = "Is Damis near here, then?"
+parent = -1
+children = [465, 466, 467, 468, 470]
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is Damis near here, then?"
+parent = 464
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "speaker"
+speaker = "Rasolo"
+text = "You would be surprised to know just how close he is..."
+parent = 464
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 464
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "option"
+text = "Where can I find Laheeb?"
+parent = 464
+children = [469]
+
+[[nodes]]
+id = 469
+depth = 3
+kind = "act"
+text = "above"
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "option"
+text = "Can't I just buy your ring?"
+parent = 464
+children = [471]
+
+[[nodes]]
+id = 471
+depth = 3
+kind = "act"
+text = "above"
+parent = 470
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "other"
+text = "{{qact|You cannot see any way to open this chest.}}"
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "speaker"
+speaker = "Roavar"
+text = "M-my lord Malak, what brings you here?"
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Hmmm? You know very well that your tithe is due, Roavar."
+parent = -1
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "I am here to collect it this time."
+parent = -1
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "speaker"
+speaker = "Roavar"
+text = "Y-yes of course, sire, but surely your graciousness is too important to perform such menial duties such as this himself?"
+parent = -1
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "speaker"
+speaker = "Roavar"
+text = "Is this not Gadderanks job, your most high beneficence?"
+parent = -1
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Indeed it is Roavar, but I cannot find that incompetent fool. And assuming you are not the one who wishes to tell Lord Drakan that his tithe has not been collected, I saw"
+parent = -1
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "fit to take on the duty myself this time."
+parent = -1
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "speaker"
+speaker = "Roavar"
+text = "Of course my lord, I meant no disrespect."
+parent = -1
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "So you have the tithe ready for me?"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "speaker"
+speaker = "Roavar"
+text = "Of course my lord, I trust you will find it all there and in good order."
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Hmmm. Well, for your sake you had better hope that indeed it is."
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "The mood I am in for having to come to this wolfen cesspit means any shortfall is coming from you directly."
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Then again... perhaps this was not a total waste of my time after all."
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "You there!"
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "M-me?"
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Yes, you. Your bearing suggests you are not one of the usual peasants, and your stench suggests you are not one of these filthy wolfen folk."
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Come here, I would like to know what you are doing in these lands."
+parent = -1
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "cond"
+text = "If the player is wearing a Ring of charos(a)."
+parent = -1
+children = [492]
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "A human, eh? Don't think that silly little ring of yours will fool me. Give me one good reason why I should not just take you to Lord Drakan now."
+parent = 491
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "cond"
+text = "If the player is not wearing a Ring of charos(a)."
+parent = -1
+children = [494]
+
+[[nodes]]
+id = 494
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "A human, eh? Give me one good reason why I should not just take you to Lord Drakan now."
+parent = 493
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "You had better make it a good one too, or you will not survive the night, I'll wager."
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "option"
+text = "I am here to worship Zamorak"
+parent = -1
+children = [498, 499, 500, 501, 502]
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am here to worship the almighty Zamorak! Yay! Go Zamorak!"
+parent = 497
+
+[[nodes]]
+id = 499
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "I see. You are a moron. You have probably settled right in with the rest of the idiots in this pathetic excuse for a village."
+parent = 497
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Unfortunately for you, that is not a good enough reason to explain your presence here."
+parent = 497
+
+[[nodes]]
+id = 501
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Now tell me the reason for your coming here, or I will ensure you suffer a horrible fate indeed."
+parent = 497
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "act"
+text = "other"
+parent = 497
+is_terminal = true
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "option"
+text = "I am here to praise Lord Drakan"
+parent = -1
+children = [504, 505, 507, 508, 510, 511]
+
+[[nodes]]
+id = 504
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am here only to serve the mighty Drakan. Yup, Drakan, he's the man."
+parent = 503
+
+[[nodes]]
+id = 505
+depth = 2
+kind = "cond"
+text = "If the player has completed Vampire Slayer"
+parent = 503
+children = [506]
+
+[[nodes]]
+id = 506
+depth = 3
+kind = "speaker"
+speaker = "Malak"
+text = "I see. I would perhaps be more inclined to believe you if I could not smell the death blood of his brother Draynor upon you."
+parent = 505
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "What are you real intentions here?"
+parent = 503
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "cond"
+text = "If the player has not completed Vampyre Slayer"
+parent = 503
+children = [509]
+
+[[nodes]]
+id = 509
+depth = 3
+kind = "speaker"
+speaker = "Malak"
+text = "Really? That is interesting, that you would want to give your life by tresspassing in this land for such an unbelievable reason."
+parent = 508
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Now speak, what is your purpose in coming here?"
+parent = 503
+
+[[nodes]]
+id = 511
+depth = 2
+kind = "act"
+text = "other"
+parent = 503
+is_terminal = true
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "option"
+text = "I am here to worship you, oh mighty Malak"
+parent = -1
+children = [513, 514, 515, 516]
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I came here looking for you, oh mighty Malak, so that I might serve your glory."
+parent = 512
+
+[[nodes]]
+id = 514
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Please. Do not think that I am so vain and foolish as to allow you to avoid my question with such obvious sycophancy."
+parent = 512
+
+[[nodes]]
+id = 515
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Now tell me the reason behind your being here, or I will ensure that you suffer."
+parent = 512
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "act"
+text = "other"
+parent = 512
+is_terminal = true
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "option"
+text = "I am here to kill Lord Drakan"
+parent = -1
+children = [518, 519, 520, 521]
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am here to kill Lord Drakan, and every stinking one of his vampyre brood!"
+parent = 517
+
+[[nodes]]
+id = 519
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Hah! Most entertaining, human!"
+parent = 517
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Now tell me the reason you are here, or we shall soon see who will be killing whom."
+parent = 517
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "act"
+text = "other"
+parent = 517
+is_terminal = true
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "option"
+text = "I am looking for a special Diamond..."
+parent = -1
+children = [523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 580]
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am here looking for a special diamond... I have reason to believe it is somewhere in this vicinity, and it is probably in the possession of a warrior of Zamorak."
+parent = 522
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm fairly sure it will have some kind of magical aura or something too. I don't suppose you've seen it, or know where it might be?"
+parent = 522
+
+[[nodes]]
+id = 525
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Interesting... Well perhaps we can come to a little... arrangement, human."
+parent = 522
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "I may have information that may assist you, but you in turn will have to do something for me. What do you say? Do you think we could come to some form of"
+parent = 522
+
+[[nodes]]
+id = 527
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "agreement?"
+parent = 522
+
+[[nodes]]
+id = 528
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, what kind of something? No offence, but you're not exactly the trustworthy type..."
+parent = 522
+
+[[nodes]]
+id = 529
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Ah, you have a healthy sense of paranoia, I see. It is not a particularly unfair request on my part..."
+parent = 522
+
+[[nodes]]
+id = 530
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "All I ask is that you ensure that the current owner of the diamond is killed. For my part, I will let you know his whereabouts, and how exactly to kill him."
+parent = 522
+
+[[nodes]]
+id = 531
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "When he is dead, you may take the diamond from his corpse and do with it what you will. I have no interest in such baubles."
+parent = 522
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "So what say you? A life for a diamond. As a mark of good faith, I will give you some information free:"
+parent = 522
+
+[[nodes]]
+id = 533
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "The current owner of this diamond is named Dessous."
+parent = 522
+
+[[nodes]]
+id = 534
+depth = 2
+kind = "select"
+text = "Agree to this arrangement?"
+parent = 522
+
+[[nodes]]
+id = 535
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 522
+children = [536, 537, 538, 539, 540, 552, 561, 576]
+
+[[nodes]]
+id = 536
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well... I can't see any drawback. Okay, I accept your offer. Now tell me what you know."
+parent = 535
+
+[[nodes]]
+id = 537
+depth = 3
+kind = "speaker"
+speaker = "Malak"
+text = "What I know? Hah! After you have been alive for as long as I, the things I know are enough to fill a library."
+parent = 535
+
+[[nodes]]
+id = 538
+depth = 3
+kind = "speaker"
+speaker = "Malak"
+text = "I'm afraid you will need to be a little more specific."
+parent = 535
+
+[[nodes]]
+id = 539
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 535
+
+[[nodes]]
+id = 540
+depth = 3
+kind = "option"
+text = "Why do you want Dessous dead?"
+parent = 535
+children = [541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551]
+
+[[nodes]]
+id = 541
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I don't see exactly how this bargain benefits you... Why exactly do you want Dessous killed anyway?"
+parent = 540
+
+[[nodes]]
+id = 542
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "That is an impertinent question to demand from myself."
+parent = 540
+
+[[nodes]]
+id = 543
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "However, if it will help seal our deal, I will let you know some of the details."
+parent = 540
+
+[[nodes]]
+id = 544
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "As you may or may not know, myself and my blood kin are the rulers of this land, all serving under Lord Drakan. However, we tend not to die of old age or similar"
+parent = 540
+
+[[nodes]]
+id = 545
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "natural causes, which means that to gain another Lords{{sic}} tithe or land, there often need to be..."
+parent = 540
+
+[[nodes]]
+id = 546
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = """
+Unnatural causes of death involved. Let us just say, that Dessous is in control of some land that I myself would like some say in, and that it is not in my interest to be seen to be responsible for the
+"""
+parent = 540
+
+[[nodes]]
+id = 547
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "death of a fellow Lord."
+parent = 540
+
+[[nodes]]
+id = 548
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "It would however be extremely advantageous to myself should some random human adventurer take it upon themself to remove this rival for me... Do you understand?"
+parent = 540
+
+[[nodes]]
+id = 549
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes... I think so..."
+parent = 540
+
+[[nodes]]
+id = 550
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "Good, we understand each other then. We will both benefit from the death of Dessous."
+parent = 540
+
+[[nodes]]
+id = 551
+depth = 4
+kind = "act"
+text = "other"
+parent = 540
+is_terminal = true
+
+[[nodes]]
+id = 552
+depth = 3
+kind = "option"
+text = "Where can I find Dessous?"
+parent = 535
+children = [553, 554, 555, 556, 557, 558, 559, 560]
+
+[[nodes]]
+id = 553
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find this Dessous?"
+parent = 552
+
+[[nodes]]
+id = 554
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "He currently resides in a graveyard to the South-East of here. You will not be able to move the gravestone which he lies beneath however, you will need to find some way to"
+parent = 552
+
+[[nodes]]
+id = 555
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "lure him out from his tomb."
+parent = 552
+
+[[nodes]]
+id = 556
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "And how exactly would I go about doing that?"
+parent = 552
+
+[[nodes]]
+id = 557
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "Well, he is a vampyre, so fresh blood would almost certainly entice him out."
+parent = 552
+
+[[nodes]]
+id = 558
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = """
+However, even though he is a frail and decrepit example of our species, he will be able to kill a weakling human such as yourself extremely easily. Having him in a bloodlust as he does so, will not make
+"""
+parent = 552
+
+[[nodes]]
+id = 559
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "your job any easier."
+parent = 552
+
+[[nodes]]
+id = 560
+depth = 4
+kind = "act"
+text = "other"
+parent = 552
+is_terminal = true
+
+[[nodes]]
+id = 561
+depth = 3
+kind = "option"
+text = "How can I kill Dessous?"
+parent = 535
+children = [562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575]
+
+[[nodes]]
+id = 562
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what advice can you give me on killing Dessous?"
+parent = 561
+
+[[nodes]]
+id = 563
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "As ancient and weak as Dessous is, he is still more than a match for the likes of you."
+parent = 561
+
+[[nodes]]
+id = 564
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "That is, assuming you were to fight him fairly."
+parent = 561
+
+[[nodes]]
+id = 565
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "My proposal would be for you to even the odds up a little bit..."
+parent = 561
+
+[[nodes]]
+id = 566
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "How would I go about doing that?"
+parent = 561
+
+[[nodes]]
+id = 567
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "Well, my plan would be as follows. First, take a silver bar to the man living in the sewers in Draynor. He was an assistant to Count Draynor in some of his..."
+parent = 561
+
+[[nodes]]
+id = 568
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = """
+more interesting experiments many years past. Tell him you need a sacrificial offering pot. He will know what you speak of, it is a unique type of container used in various ancient vampyric ceremonies.
+"""
+parent = 561
+
+[[nodes]]
+id = 569
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "Then take the pot to Entrana and get it blessed by the Head Monk. This will lend the pot some holy power."
+parent = 561
+
+[[nodes]]
+id = 570
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "If you then bring that silver pot back to me, I will provide you with some fresh blood, to put into it. To that pot of blood, you will add some crushed garlic, and some spice to disguise the smell."
+parent = 561
+
+[[nodes]]
+id = 571
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "Use that pot of blood upon Dessous' tomb, and he will be unable to resist rising and drinking from it."
+parent = 561
+
+[[nodes]]
+id = 572
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "The combination of garlic, silver, and blessings from Saradomin will act upon him as a poison, and allow you to kill him."
+parent = 561
+
+[[nodes]]
+id = 573
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "This is just my suggestion of course, you may ignore it if you wish, although I offer no guarantees of your ability to defeat him otherwise."
+parent = 561
+
+[[nodes]]
+id = 574
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "Was there anything else you wanted?"
+parent = 561
+
+[[nodes]]
+id = 575
+depth = 4
+kind = "act"
+text = "other"
+parent = 561
+is_terminal = true
+
+[[nodes]]
+id = 576
+depth = 3
+kind = "option"
+text = "Actually, I don't need to know anything."
+parent = 535
+children = [577, 578, 579]
+
+[[nodes]]
+id = 577
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Never mind, I will figure out all I need to know by myself."
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 4
+kind = "speaker"
+speaker = "Malak"
+text = "As you wish. Come and see me when you have managed to kill Dessous."
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 4
+kind = "act"
+text = "end"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "option"
+text = "No"
+parent = 522
+children = [581, 582, 583, 584]
+
+[[nodes]]
+id = 581
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't trust you, or anything you say. I'm afraid I have to decline."
+parent = 580
+
+[[nodes]]
+id = 582
+depth = 3
+kind = "speaker"
+speaker = "Malak"
+text = "As you wish human. I doubt anybody near here knows of the diamond you seek, however."
+parent = 580
+
+[[nodes]]
+id = 583
+depth = 3
+kind = "speaker"
+speaker = "Malak"
+text = "If you wish to claim it as your own, you have little choice but to accept my bargain. I will wait here until such time as you change your mind."
+parent = 580
+
+[[nodes]]
+id = 584
+depth = 3
+kind = "act"
+text = "end"
+parent = 580
+is_terminal = true
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Why are you still here? I notice Dessous still lives."
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 587
+depth = 1
+kind = "option"
+text = "Where can I find Dessous?"
+parent = -1
+children = [588, 589, 590, 591, 592, 593, 594]
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find this Dessous?"
+parent = 587
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "He currently resides in a graveyard to the South-East of here. You will not be able to move the gravestone which he lies beneath however, you will need to find some way to"
+parent = 587
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "lure him out from his tomb."
+parent = 587
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And how exactly would I go about doing that?"
+parent = 587
+
+[[nodes]]
+id = 592
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Come and see my when you have prepared a silver ritual pot in the manner I have told you."
+parent = 587
+
+[[nodes]]
+id = 593
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "I will ensure that you get some fresh blood that you may taint with garlic and spices, to lure our Dessous."
+parent = 587
+
+[[nodes]]
+id = 594
+depth = 2
+kind = "act"
+text = "end"
+parent = 587
+is_terminal = true
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "option"
+text = "How do I kill Dessous again?"
+parent = -1
+children = [596, 597, 598, 599, 600]
+
+[[nodes]]
+id = 596
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How am I supposed to kill Dessous again?"
+parent = 595
+
+[[nodes]]
+id = 597
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "Take a silver bar to the man in the Draynor sewers. He will fashion a ritualistic pot for you, which you should then take to Entrana and get blessed."
+parent = 595
+
+[[nodes]]
+id = 598
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "When you have done that, come back here and speak to me, I will provide you with some fresh blood which you will then crush some garlic into, and then add some spices to hide the garlic."
+parent = 595
+
+[[nodes]]
+id = 599
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "In this way, you will be able to lure him from his tomb and he should be sufficiently weakened to be vulnerable to your attacks."
+parent = 595
+
+[[nodes]]
+id = 600
+depth = 2
+kind = "act"
+text = "end"
+parent = 595
+is_terminal = true
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "option"
+text = "Actually, I don't need to know anything."
+parent = -1
+children = [602, 603, 604]
+
+[[nodes]]
+id = 602
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind, I will figure out all I need to know by myself."
+parent = 601
+
+[[nodes]]
+id = 603
+depth = 2
+kind = "speaker"
+speaker = "Malak"
+text = "As you wish. Come and see me when you have managed to kill Dessous."
+parent = 601
+
+[[nodes]]
+id = 604
+depth = 2
+kind = "act"
+text = "end"
+parent = 601
+is_terminal = true
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Ruantun"
+text = "You sshould not be down here..."
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you an assistant to Count Draynor?"
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "Ruantun"
+text = "I usssed to have that honour... Why do you ssseek me?"
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "cond"
+text = "If the player has a silver bar."
+parent = -1
+children = [610, 611, 612, 613, 614]
+
+[[nodes]]
+id = 610
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a silver bar with me, I was wondering if you could make it into a 'sacrificial offering pot' for me?"
+parent = 609
+
+[[nodes]]
+id = 611
+depth = 2
+kind = "act"
+text = "gives=[[silver bar]]"
+parent = 609
+
+[[nodes]]
+id = 612
+depth = 2
+kind = "act"
+text = "receives=[[Silver pot (Desert Treasure I)|silver pot]]"
+parent = 609
+
+[[nodes]]
+id = 613
+depth = 2
+kind = "speaker"
+speaker = "Ruantun"
+text = "Yesss, of courssse... There you are, put it to good usssse..."
+parent = 609
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "act"
+text = "end"
+parent = 609
+is_terminal = true
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "cond"
+text = "If the player doesn't have a silver bar."
+parent = -1
+children = [616, 617, 618, 619, 620, 621, 622]
+
+[[nodes]]
+id = 616
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I understand that you can make me a 'sacrificial offering pot' if I bring you a bar of silver?"
+parent = 615
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Ruantun"
+text = "And where did you hear thisss?"
+parent = 615
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It was from Malak in Canifis."
+parent = 615
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Ruantun"
+text = "Ah, I sssee... Yesss, I know how to make sssuch an item... It has been many yearsss sssince I have needed to however..."
+parent = 615
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "speaker"
+speaker = "Ruantun"
+text = "It is not my wisssh to quessstion your desssire for sssuch an item. I wasss merely sssurprisssed that one sssuch as you would make sssuch a requessst..."
+parent = 615
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "speaker"
+speaker = "Ruantun"
+text = "I will happily make you thisss pot, but you mussst bring me a bar of sssilver... Alasss, I can no longer collect my own ingredientsss, and mussst remain here..."
+parent = 615
+
+[[nodes]]
+id = 622
+depth = 2
+kind = "act"
+text = "end"
+parent = 615
+is_terminal = true
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Many greetings. Welcome to our fair island."
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I was wondering, can you quickly bless this for me?"
+parent = -1
+children = [625, 626]
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "act"
+text = "gives=[[Silver pot (Desert Treasure I)|silver pot]]"
+parent = 624
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "act"
+text = "receives=[[blessed pot]]"
+parent = 624
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "A somewhat strange request, but I see no harm in it. There you go. May Saradomin walk with you."
+parent = -1
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I was wondering, can you quickly bless this for me?"
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "A somewhat strange request, but I see no harm in... Wait a moment... is that BLOOD?"
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Erm... yes..."
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Why do you want me to bless a pot full of someones blood???"
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, don't worry, it's not 'someones', it's my own!"
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "I... see... Well it is an unusual thing, but I see no harm in it. Take this, and walk in peace with Saradomin."
+parent = -1
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found Ruantun in Draynors{{sic}} sewers. He made me this pot, now where can I get some fresh blood to fill it with?"
+parent = -1
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "other"
+text = "{{mes|Malak cuts you and pours some of your blood into the pot.}}"
+parent = -1
+
+[[nodes]]
+id = 638
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ow!"
+parent = -1
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "There you go. As fresh as it gets."
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for nothing."
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Come and speak to me again when you have managed to kill Dessous."
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "other"
+text = "{{mes|You add some crushed garlic to the pot.}}"
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "other"
+text = "{{mes|You add some spices to the pot.}}"
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "other"
+text = "{{mes|You pour the blood from the pot onto the tomb.}}"
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Dessous"
+text = "{{overhead|Hssssssssssss}}"
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well that's Dessous dead, but where is the Diamond he was supposed to have?"
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "If Malak lied to me about it, he is going to pay!"
+parent = -1
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Ah, the wandering hero returns! I take it you have dispatched poor old Dessous for me?"
+parent = -1
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Quit playing games with me, Malak. I want that diamond, and I want it now!"
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "act"
+text = "gives=[[blessed pot]]"
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "act"
+text = "receives=[[blood diamond]]"
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Do not take that tone of voice with me, meat. You should be thankful I have allowed you your life."
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Here, take your precious little bauble."
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = """
+I will take that silver pot from you as well, humans are not meant to possess such artefacts. Now get out of my sight, our deal is complete, and if I see you here again I will not hesistate to take you to
+"""
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Lord Drakan."
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "He will be extremely pleased to meet the murderer of poor Dessous, I suspect."
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Be lucky I have let you live, meat. Our deal is done, I wish no further dealing with you."
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where is the Diamond of Blood? I know you have it!"
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "act"
+text = "receives=[[blood diamond]]"
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Malak"
+text = "Do not take that tone of voice with me, meat. Here, take your bauble. I have no use for it."
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "Waaaaaaa!"
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "other"
+text = "{{qact|This troll seems very upset about something. Maybe some sweet food would take his mind off things?}}"
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "WAAAAAAAA!"
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "other"
+text = "{{qact|It doesn't look like that will cheer him up at all...}}"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "act"
+text = "gives=sweet food"
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey there little troll... Take this and dry those tears..."
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "(sniff)"
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "-sniff- H-hello there."
+parent = -1
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why so sad, little troll?"
+parent = -1
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "It was the bad man! He hurt my mommy and daddy! He made them all freezey!"
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Bad man...?"
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "He said it was because they stole his diamond! But they never did! They found it, and didn't know who it belonged to!"
+parent = -1
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "My mommy always told me stealing is wrong, they would never steal from someone!"
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "Then he did some wavey hand thing and my mommy and daddy got frozified!"
+parent = -1
+
+[[nodes]]
+id = 685
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A diamond you say? Listen, I think I might be able to help your parents, but I need that Diamond in return."
+parent = -1
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "-sniff- I don't think they really wanted it anyway, they would have given it back to the bad man if he'd asked before freezifying them..."
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "I give you my promise mister that if you unfreeze my mommy and daddy, you can have the stupid diamond."
+parent = -1
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "Do we have a deal?"
+parent = -1
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "option"
+text = "Yes"
+parent = -1
+children = [691, 692]
+
+[[nodes]]
+id = 691
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely. Don't worry kid, I'll get your parents back to you safe and sound."
+parent = 690
+
+[[nodes]]
+id = 692
+depth = 2
+kind = "act"
+text = "end"
+parent = 690
+is_terminal = true
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "option"
+text = "No"
+parent = -1
+children = [694, 695, 696]
+
+[[nodes]]
+id = 694
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I can't make any promises about that, and I don't think I have the time to waste trying to defrost some stupid ice trolls."
+parent = 693
+
+[[nodes]]
+id = 695
+depth = 2
+kind = "speaker"
+speaker = "Troll child"
+text = "Waaaaaaa!"
+parent = 693
+
+[[nodes]]
+id = 696
+depth = 2
+kind = "act"
+text = "end"
+parent = 693
+is_terminal = true
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "Oh, I'm sorry. My mommy says that we ice trolls are so cold we can freeze the air around us when we are upset or angry."
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "I'm afraid I must have frozen those gates too much when I was crying, but since you told me you are going to help rescue my mommy and daddy you should be able to squeeze through the bars."
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "You are much smaller than most trolls, it should be easy for you!"
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "other"
+text = "{{mes|You squeeze through the large icy bars of the gate.}}"
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "speaker"
+speaker = "Ice troll"
+text = "Hur hur hur! Well look here, a puny fleshy human! You should beware of the icy wind that runs through this valley, it will bring a fleshy like you to a cold end indeed!"
+parent = -1
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "other"
+text = "{{mes|A chunk of ice falls away from the cave entrance.}}"
+parent = -1
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "speaker"
+speaker = "Kamil"
+text = "{{overhead|Sallamakar Ro!}}"
+parent = -1
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, that must have been the 'bad man' that the troll kid was on about... His parents must be up ahead somewhere."
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 708
+depth = 1
+kind = "other"
+text = "{{mes|You Squeeze through the large icy bars of the gate.}}"
+parent = -1
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "other"
+text = "{{qact|There is a thick layer of ice covering this troll. You will have to find some way of shattering it.}}"
+parent = -1
+
+[[nodes]]
+id = 710
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "Oh thank you! It was really cold in there! But please, you must free my wife as well! Our son is depending on us!"
+parent = -1
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "speaker"
+speaker = "Troll mother"
+text = "Wow, thanks for breaking me out of that ice! But please, my husband is still trapped in there!"
+parent = -1
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 714
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "Phew! Am I glad to be out of that big ice cube! Are you okay too darling?"
+parent = -1
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "speaker"
+speaker = "Troll mother"
+text = "Yes, I thought we were done for! Why ever did that nasty Kamil freeze us up there anyway?"
+parent = -1
+
+[[nodes]]
+id = 716
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He must have been trying to protect his Diamond..."
+parent = -1
+
+[[nodes]]
+id = 717
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "You mean that diamond I found the other day belonged to him? But why didn't he just ask for it back? It's not like I really want it or anything!"
+parent = -1
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "And how did you know we had that diamond anyway, fleshy?"
+parent = -1
+
+[[nodes]]
+id = 719
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your son told me. That's why I rescued you, it is very important that I have that diamond..."
+parent = -1
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "speaker"
+speaker = "Troll mother"
+text = "Ooohhhhh, my poor baby! He must have been so worried about us..."
+parent = -1
+
+[[nodes]]
+id = 721
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "Yes, but he certainly inherited his Dad's smarts!"
+parent = -1
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "If he'd told this fleshy that he had the Diamond and not us, we might never have been rescued!"
+parent = -1
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait... what? That stupid little troll kid had the diamond all along?"
+parent = -1
+
+[[nodes]]
+id = 724
+depth = 1
+kind = "speaker"
+speaker = "Troll mother"
+text = "Don't you talk about my baby like that!"
+parent = -1
+
+[[nodes]]
+id = 725
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "Now, now dear, all's well that ends well. We've been freed and this fleshy has certainly earned himself that diamond."
+parent = -1
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "Let's get out of this terrible place and see our son!"
+parent = -1
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "act"
+text = "Screen fades out, and the player appears back at the ice gate."
+parent = -1
+
+[[nodes]]
+id = 728
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "Mommy! Daddy! You're free!"
+parent = -1
+
+[[nodes]]
+id = 729
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "That's right son, and it's all thanks to this brave adventurer here. Now, make sure you hand over that diamond he{{sic|Doesn't change based on player gender}} was looking for."
+parent = -1
+
+[[nodes]]
+id = 730
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "It has been nothing but trouble for us, let's just get back to our cave and have dinner."
+parent = -1
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "speaker"
+speaker = "Troll mother"
+text = "That's right son, it's your favorite tonight too! A big plate of raw mackerel!"
+parent = -1
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "RAW MACKEREL! YUMMY!"
+parent = -1
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "act"
+text = "receives=[[ice diamond]]"
+parent = -1
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "Here ya go, [mister/lady]! Thanks for getting my mom and dad away from the bad man!"
+parent = -1
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry about it, just as long as I don't have to go back into that blizzard."
+parent = -1
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 737
+depth = 1
+kind = "speaker"
+speaker = "Troll father"
+text = "Thanks again for freeing me from that ice block! I might be a troll, but it was real uncomfortable in there!"
+parent = -1
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 739
+depth = 1
+kind = "speaker"
+speaker = "Troll mother"
+text = "Thanks again for freeing me from that ice block! I don't know what my little snookums would have done without us!"
+parent = -1
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 741
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "Thanks for all your help! I'm surprised you managed to survive the blizzard, being a thin skinned fleshy and all!"
+parent = -1
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can I say? I'm a lot tougher than I look."
+parent = -1
+
+[[nodes]]
+id = 743
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 744
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I lost that diamond of Ice you gave me..."
+parent = -1
+
+[[nodes]]
+id = 745
+depth = 1
+kind = "act"
+text = "receives=[[ice diamond]]"
+parent = -1
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "speaker"
+speaker = "Troll child"
+text = "That's okay, it blew back on an icy wind... It's almost like it wants to stay here! Here, take it back, you've earned it."
+parent = -1
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 748
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have collected one Diamond so far!"
+parent = -1
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "That is a good start... but Azzanadra is still imprisoned!"
+parent = -1
+
+[[nodes]]
+id = 750
+depth = 1
+kind = "act"
+text = "Same as \"Talking to Eblis at the mirrors\""
+parent = -1
+
+[[nodes]]
+id = 751
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have collected 2 Diamonds so far!"
+parent = -1
+
+[[nodes]]
+id = 752
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "That is a good start... but Azzanadra is still imprisoned!"
+parent = -1
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "act"
+text = "Same as \"Talking to Eblis at the mirrors\""
+parent = -1
+
+[[nodes]]
+id = 754
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have collected 3 Diamonds so far!"
+parent = -1
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "That is a good start... but Azzanadra is still imprisoned!"
+parent = -1
+
+[[nodes]]
+id = 756
+depth = 1
+kind = "act"
+text = "Same as \"Talking to Eblis at the mirrors\""
+parent = -1
+
+[[nodes]]
+id = 757
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So I have all four of these Diamonds of Azzanadra, now what?"
+parent = -1
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Azzanadra was our greatest ever hero. He was unkillable, and the cowardly traitors who stole our lands did not know what to do with him, for his hatred for them was as strong as his magics."
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "In the end, they cast a spell upon him, to trap him in the stone structure to the South of here."
+parent = -1
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "They stole his very life force, the essence of his power, and trapped it within four crystals - the very same Four Diamonds which you have now recovered from the brigands who stole from us."
+parent = -1
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "The four pillars surrounding the structure are keeping the containment spell intact. By placing a diamond into each, you will breach the magical defenses and begin to restore Azzanadra's"
+parent = -1
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "power, and be able to enter the structure."
+parent = -1
+
+[[nodes]]
+id = 763
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Go, place the diamonds, and free my lord Azzanadra!"
+parent = -1
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "The path will be hard, for his prison is full of traps and danger to prevent his rescue, but he will reward you beyond your wildest dreams when freed!"
+parent = -1
+
+[[nodes]]
+id = 765
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Quickly... After all these centuries, Lord Azzanadra is nearly free! You must spare no time, place the Diamonds upon the pillars and enter the pyramid so that you may free him!"
+parent = -1
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 767
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Hello again. How's the treasure hunting going?"
+parent = -1
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I've found four diamonds."
+parent = -1
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "What? But you've been gone ages!"
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "C'mon, you can be square with me, you must have found more treasure than just four measly diamonds by now!"
+parent = -1
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I really haven't."
+parent = -1
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Hmmm. Well, okay a deal is a deal. Hand two of them over."
+parent = -1
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I think I'm going to need them to gain access to the real treasure..."
+parent = -1
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "REALLY? Great, I love treasure!"
+parent = -1
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Don't worry about two measly diamonds if you think they'll lead to something better!"
+parent = -1
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "I don't usually get out of bed for less than a hundred gold certs!"
+parent = -1
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "other"
+text = "{{mes|You are not a powerful enough mage to breach the protective aura.}}"
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "other"
+text = "{{mes|You need a magic level of at least 50 to enter the Pyramid.}}"
+parent = -1
+
+[[nodes]]
+id = 781
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I used the Four Diamonds on the pillars surrounding the pyramid..."
+parent = -1
+
+[[nodes]]
+id = 782
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Yes? And what happened?"
+parent = -1
+
+[[nodes]]
+id = 783
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Er... they changed colour."
+parent = -1
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Ah, that was the power being re-absorbed back into them. That should have been sufficient to break the magic seal preventing anyone exiting or entering the structure."
+parent = -1
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Quickly, you must let Lord Azzanadra know that he is free again after these many years!"
+parent = -1
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Please, when you have freed Azzanadra, let me know what words he has for his faithful followers..."
+parent = -1
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Hello again, apprentice archaeologist. How's the treasure hunting going?"
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well... I found four diamonds..."
+parent = -1
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Great! Pass me my share, and it's a good job all around!"
+parent = -1
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Um... sorry, I can't."
+parent = -1
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Huh? You're not trying to break a deal here are ya???"
+parent = -1
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, it's just... There were these weird pillars around this pyramid..."
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Yes?"
+parent = -1
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... Well..."
+parent = -1
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They kind of... ate the diamonds..."
+parent = -1
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Pyramid columns ate your diamonds?"
+parent = -1
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "That's a crazy story kid. Why would you go putting diamonds into them in the first place anyway? Diamonds!"
+parent = -1
+
+[[nodes]]
+id = 800
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Of all things!"
+parent = -1
+
+[[nodes]]
+id = 801
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this feeling there is some better treasure inside that pyramid, and I needed to put the diamonds in to gain entrance."
+parent = -1
+
+[[nodes]]
+id = 802
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Well what are you wasting time talking to me for?"
+parent = -1
+
+[[nodes]]
+id = 803
+depth = 1
+kind = "speaker"
+speaker = "Asgarnia Smith"
+text = "Go get me some treasure, pal!"
+parent = -1
+
+[[nodes]]
+id = 804
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 805
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "I knew they could not trap me here for long! Well done, friend. Tell me, how goes the war?"
+parent = -1
+
+[[nodes]]
+id = 806
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "War?"
+parent = -1
+
+[[nodes]]
+id = 807
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "You do not know of the war for our survival? More time must have passed than I had thought..."
+parent = -1
+
+[[nodes]]
+id = 808
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "Tell me, what news of great Paddewwa? Do the shining spires of Lassar still stand? And what of glorious Annakarl? The fortress is still intact?"
+parent = -1
+
+[[nodes]]
+id = 809
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Er... sorry, I've never heard of them..."
+parent = -1
+
+[[nodes]]
+id = 810
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "No! My lord... what has become of you? I cannot hear your voice anymore!"
+parent = -1
+
+[[nodes]]
+id = 811
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = """
+My thanks to you friend for your help in freeing me from this accursed place, but it seems I have much to do to make amends. If our empire no longer stands, then it means that we must have failed my lord.
+"""
+parent = -1
+
+[[nodes]]
+id = 812
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "How long have I been trapped here? Master... have you truly been dispatched from this world?"
+parent = -1
+
+[[nodes]]
+id = 813
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "My friend, for your efforts in freeing me, I offer you the gift of knowledge. We Mahjarrat were once granted powerful ancient magicks by our lord. I now bestow their power upon you."
+parent = -1
+
+[[nodes]]
+id = 814
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "They will replace the knowledge you previously had, but you may switch between them by praying at the altar in this room at any time. May you use them well."
+parent = -1
+
+[[nodes]]
+id = 815
+depth = 1
+kind = "speaker"
+speaker = "Azzanadra"
+text = "I trust that we shall meet again, but now I must leave you. Feel free to use the portal I shall create to return here easily in the future!"
+parent = -1
+
+[[nodes]]
+id = 816
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "So have you spoken to my Lord Azzanadra yet?"
+parent = -1
+
+[[nodes]]
+id = 818
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes I have."
+parent = -1
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "And what words did he have for his followers?"
+parent = -1
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Er... He didn't really mention you at all, but he did teach me some cool new magic spells."
+parent = -1
+
+[[nodes]]
+id = 821
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "It is understandable perhaps... His poor mind must be addled after all of those years of confinement, he would not willingly ignore his followers..."
+parent = -1
+
+[[nodes]]
+id = 822
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Anyway, if he has taught you our ancient magics, you may be interested in purchasing an ancient heirloom that was passed down to me. My ancestor fought in the ancient battles using the"
+parent = -1
+
+[[nodes]]
+id = 823
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "magic of our god. This heirloom will help you with the speed of your spell-casting."
+parent = -1
+
+[[nodes]]
+id = 824
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Normally I could not bear to part with such a priceless relic, but for your help in freeing my Lord Azzanadra, I will be prepared to sell it to you for a mere 80,000 gold."
+parent = -1
+
+[[nodes]]
+id = 825
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Are you interested?"
+parent = -1
+
+[[nodes]]
+id = 826
+depth = 1
+kind = "option"
+text = "Yes please"
+parent = -1
+
+[[nodes]]
+id = 827
+depth = 1
+kind = "cond"
+text = "If the player has enough gold to purchase it:"
+parent = -1
+children = [828, 829]
+
+[[nodes]]
+id = 828
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = """
+Take care of it, it is the only heirloom from those times I possess, although rumour has it many of our ancient warriors were buried with identical weapons so that they could continue to fight for my Lord in their deaths.
+"""
+parent = 827
+
+[[nodes]]
+id = 829
+depth = 2
+kind = "act"
+text = "end"
+parent = 827
+is_terminal = true
+
+[[nodes]]
+id = 830
+depth = 1
+kind = "cond"
+text = "If the player doesn't have enough gold to purchase it:"
+parent = -1
+children = [831, 832, 833]
+
+[[nodes]]
+id = 831
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Stranger... Do not abuse my generosity... I cannot possibly sell it for less than 80,000 gold."
+parent = 830
+
+[[nodes]]
+id = 832
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "Come back and see me when you have the necessary funds to buy."
+parent = 830
+
+[[nodes]]
+id = 833
+depth = 2
+kind = "act"
+text = "end"
+parent = 830
+is_terminal = true
+
+[[nodes]]
+id = 834
+depth = 1
+kind = "option"
+text = "No thanks"
+parent = -1
+children = [835, 836, 837, 839]
+
+[[nodes]]
+id = 835
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 834
+
+[[nodes]]
+id = 836
+depth = 2
+kind = "speaker"
+speaker = "Eblis"
+text = "As you wish. Bear my offer in mind should you ever change your decision, I will remain here."
+parent = 834
+
+[[nodes]]
+id = 837
+depth = 2
+kind = "option"
+text = "Have you got any symbols of your god?"
+parent = 834
+children = [838]
+
+[[nodes]]
+id = 838
+depth = 3
+kind = "act"
+text = "below"
+parent = 837
+
+[[nodes]]
+id = 839
+depth = 2
+kind = "option"
+text = "I'll leave you to it."
+parent = 834
+children = [840]
+
+[[nodes]]
+id = 840
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll leave you to it."
+parent = 839
+
+[[nodes]]
+id = 841
+depth = 1
+kind = "option"
+text = "Have you got any symbols of your god?"
+parent = -1
+children = [842, 843, 844]
+
+[[nodes]]
+id = 842
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you got any symbols of your god?"
+parent = 841
+
+[[nodes]]
+id = 843
+depth = 2
+kind = "box"
+text = "Eblis gives you a little signet. Its shape matches the icon you saw on the altar in the pyramid."
+parent = 841
+
+[[nodes]]
+id = 844
+depth = 2
+kind = "act"
+text = "end"
+parent = 841
+is_terminal = true
+
+[[nodes]]
+id = 845
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 846
+depth = 1
+kind = "speaker"
+speaker = "Eblis"
+text = "Greetings. I await the return of my Lord Azzanadra and of our god. I do not know why, but I feel this spot has some significance..."
+parent = -1
+
+[[nodes]]
+id = 847
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

@@ -1,0 +1,2348 @@
+title = "Transcript:Getting Ahead"
+npcs = ["Gordon", "Mary (Getting Ahead)", "Sergeant (Kebos Lowlands)"]
+node_count = 296
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Who are you?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "The name's Gordon. Good day to you."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's a nice farm you've got here."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Thank you. We built it ourselves."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really? So you haven't been here long?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Nope. Not too long ago you couldn't safely travel around these parts. Too many lizardmen. But then some Hosidius explorers discovered how fertile this land was."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Lord Hosidius made a deal with Lord Shayzien and the lizardmen were cleared out to make room for the Farming Guild."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "When we heard, we decided to come up here and start up our own farm."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "option"
+text = "Need a hand with anything?"
+parent = -1
+children = [9, 10, 13]
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Need a hand with anything?"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "cond"
+text = "If the player does not have the requirements to start the quest:"
+parent = 8
+children = [11, 12]
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Gordon"
+text = "I think we're good. Thank you for the offer though."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "end"
+parent = 10
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "cond"
+text = "If the player has the requirements to start the quest:"
+parent = 8
+children = [14, 15, 16, 17, 18, 22]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Gordon"
+text = "Well actually, there is something we've been having a problem with."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Gordon"
+text = "Recently, some strange beast has been stealing our livestock at night. The soldiers are too busy dealing with the lizardmen to help, so we haven't been able to stop it."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Gordon"
+text = "You look like you know your way around a weapon. If you can kill the beast and bring me its head as proof, I'll ensure you are compensated for your trouble."
+parent = 13
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "select"
+text = "Start the Getting Ahead quest?"
+parent = 13
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "option"
+text = "Yes."
+parent = 13
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Bring back the head? I can do that. I'm good at killing things. Do you know where the beast is?"
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "speaker"
+speaker = "Gordon"
+text = "Well it can't be living too far from here, but I don't know exactly where. You might want to check with my wife, Mary. Perhaps she's seen something I haven't."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Very well. I'll return once I have the head of this beast!"
+parent = 18
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "option"
+text = "No."
+parent = 13
+children = [23, 24, 25]
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Not something I can help with I'm afraid. Good luck though."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Gordon"
+text = "I understand. I'm sure someone else will be able to help."
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "Very nice. Well I hope it goes well for you."
+parent = -1
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Very nice. Well I hope it goes well for you."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Gordon"
+text = "Thank you friend. See you later."
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again. How are things?"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hello there. Not too bad, thanks.<!--Prior to a game update: \"Hello there. Not to bad, thanks.\"-->"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "option"
+text = "Need a hand with anything?"
+parent = -1
+children = [33]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "act"
+text = "above"
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "option"
+text = "Great to hear. All the best."
+parent = -1
+children = [35, 36, 37]
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great to hear. All the best."
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Gordon"
+text = "Thank you friend. See you later."
+parent = 34
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hello again. Any luck finding that beast?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've been trying, but I haven't made much progress yet."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Well it can't be living too far from here. You might want to check with my wife, Mary. Perhaps she's seen something I haven't."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. Are you Mary?"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "That's right. Who are you?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm [player name]. Your husband told me that some beast has been causing you both trouble. I've agreed to kill it and bring back its head!"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Ah, that's good to hear. We've already lost a lot of livestock to it."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well fear not. I'm sure I'll make short work of it. I do have one issue, however."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "What's that?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't yet know where to find this beast. I was wondering if you'd seen anything?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "I'm afraid not. It only ever comes in the night, so we haven't been able to get a proper look at it."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm. This is a problem."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Well let's see now..."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Oh! I have an idea! If this beast ended up getting coated in flour, it wouldn't be hard for you to track it back to its home."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But how would I get it coated in flour?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Oh come on now! You're the adventurer here! Why don't you use your head?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Use my head? Wait... Did you just...?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "I don't know what you mean."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm..."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. How goes the headhunt?"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still trying to come up with a way to cover the beast in flour."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Well I'm sure you'll think of something. Just remember to use your head."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Do you know anything about the beast causing trouble around here?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Sergeant"
+text = "The farmers mentioned it. We haven't seen anything though. Our focus is on the lizardmen."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Surely you'd notice a big beast wondering around though?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Sergeant"
+text = "The farmers said it came at night. We're not on shift then."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But then who's guarding the farm at night?"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Sergeant"
+text = "That's not our problem. We're just here to follow orders."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fine. I'll find the beast myself."
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hello again. Any luck finding that beast?"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've been trying, but I haven't made much progress yet."
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Anything you need from me?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Just one question. You said this beast has been going for your livestock. Which animals has it been targeting?"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "It's mainly been going for the cattle. I fixed up a new gate which has kept it out the past couple of nights. Not sure how long it will hold though."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. Thanks for the information."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "box"
+text = "You pour some flour over the gate."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There we go. Anything that touches this gate will end up coated in flour. Now just to wait for the beast to come..."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "box"
+text = "You head off for the night and come back the next day."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Looks like the beast tried to get in again. Now to see if the flour plan worked..."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hello again. Any luck finding that beast?"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your wife gave me a good idea to help track it down. I'll have its head soon enough!"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Great to hear!"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. How goes the headhunt?"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The flour idea worked great. Now I just need to find the beast's home."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Well keep your head up. I'm sure you'll manage it."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ah... a headless beast. Can't really bring back the head if there isn't one. Let's hope Gordon is still happy to reward me..."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. How goes the headhunt?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've run into a little issue. The beast is dead, but it didn't have a head."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Oh dear. You should probably talk to Gordon about this."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hello again. Any luck finding that beast?"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The beast is dead!"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Wonderful! Do you have the head?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well that's the thing..."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Is there a problem?"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So it didn't actually have a head."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Didn't have a head?"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nope."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Like... at all?"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not even a proper stump."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Oh..."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sorry."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I get paid now?"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "I'm sorry, but no. I agreed to pay you for a head and you don't have one."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well actually I do have a head. Quite a good looking one in fact. It was the beast that didn't."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "That's not what I meant. Look, it's nothing personal, but I can't be seen paying someone if they didn't do the job."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I did the job... How am I meant to bring you the head of a beast with no head?"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Maybe you killed the wrong beast? It doesn't make sense that a headless beast would be taking cattle. How would it eat them?"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't know..."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Well if you manage to get hold of the beast's head, let me know. Until then, I can't pay you."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay..."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hello again. Do you have the head of that beast yet?"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No..."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Well I can't pay you if you don't have the head."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay..."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "box"
+text = "You show the journal to Gordon."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't have the head of the beast. I do have proof it was headless though."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Proof? This doesn't seem like proof to me. Anyone could have written this. Maybe you wrote it?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You assume I can read and write."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Can you?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well.. yes. I promise I didn't write this though."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Well you would say that. I'm sorry but I'm not having this. Come back when you have the head of the beast."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "box"
+text = "You show the bones to Gordon."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't have the head of the beast. I do have the bones though!"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Bones? I don't want bones! I want the beast's head!"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Have you considered that you might be being too picky?"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Of course not! Besides, these bones could be from anywhere."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Eugh! Fine!"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "box"
+text = "You show the ensouled head to Gordon."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof!"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hmmm... I'm not so sure..."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This is literally the head of a dead bear. What is wrong with you?"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "I can see this is the head of a bear! This beast we're dealing with is more than a mere bear though!"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? You said you'd never seen the beast! How do you know it wasn't just a bear?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "We've dealt with bears before! This is clearly something more! Now, go and find the real beast!"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "box"
+text = "You show the fake bearhead to Gordon."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof!"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "What? But this is clearly just part of a costume!"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err... No it's not..."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "It's hollow!"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Maybe it didn't have any brains."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "The only thing without brains is you! Come back once you have the actual head!"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. How goes the headhunt?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've run into a little issue. The beast is dead, but it didn't have a head. Your husband says he won't pay me until I bring him one."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Oh dear. I'm afraid Gordon can be quite picky sometimes."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But what do I do now? I can't bring him a head if there isn't one."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Well, between you and me, Gordon is a good farmer but I wouldn't say he's a genius by any means. He also doesn't actually know what the beast looks like."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So I make him a fake head! Great idea!"
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "That's the spirit! I've tried my hand at clay modelling in the past. You can make all sorts of things. Just get some soft clay and a knife and I'm sure you'll be able to make a lovely head."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll give it a shot!"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. Any luck with that head?"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Keep at it! I've tried my hand at clay modelling in the past. You can make all sorts of things. Just get some soft clay and a knife and I'm sure you'll be able to make a lovely head."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll give it a shot!"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "box"
+text = "You sculpt the clay into the shape of a head."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wow!"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It looks awful!"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Still, maybe it will be enough to convince Gordon."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. Any luck with that head?"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've made a head out of clay."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Wonderful! You should show it to Gordon."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "box"
+text = "pic=25148 detail.png|You show the clay head to Gordon."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof!"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "act"
+text = "below"
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hello again. Do you have the head of that beast yet?"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "box"
+text = "pic=25148 detail.png|You show the clay head to Gordon."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof!"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Its head? This is its head?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right!"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "But this just looks like clay... It feels like clay..."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "box"
+text = "As you talk to Gordon, part of the clay falls off."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "It's falling apart... What creature is this?"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ah yes! A good question! A very good question! A good question in need of a good answer I'm sure!"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Okay... So what is the answer?"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes... well... This is the head of a... a claybear!"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Claybear? There's no such thing!"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They're quite rare around here."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Quite rare because they don't exist! I'm no fool, this is clearly a pretend head! It doesn't even have any fur!"
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Come back once you have the real head of the beast!"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Do you have the head of that beast yet? Or do you just have more clay?"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't have it yet."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "No head, no pay."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. Any luck with that head?"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I made a head out of clay. Gordon didn't buy it though."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Oh dear. Keep trying. I'm sure with a few tweaks you can make a head that will convince him."
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "box"
+text = "You attach the fur to the clay head."
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wow!"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It somehow looks even worse than before!"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Gordon said it needed fur though. Maybe he'll be happy with this one."
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. Any luck with that head?"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I made a head out of clay. Gordon didn't buy it though, so I've now added some fur."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Wonderful! You should show it to Gordon."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "box"
+text = "pic=25149 detail.png|You show the fur head to Gordon."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof! For real this time!"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "act"
+text = "below"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Do you have the head of that beast yet? Or do you just have more clay?"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "box"
+text = "pic=25149 detail.png|You show the fur head to Gordon."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof! For real this time!"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Well there's fur this time. It does look like an actual head, I have to admit."
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "act"
+text = "It really doesn't, but you let Gordon continue."
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Yes, I think this is the head of a beast."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wonderful! So about my payment?"
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Well hang on just a moment..."
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh oh."
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Where's the blood? If this is a fresh kill, the head should have blood on."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ah... Yes... Well the thing about this head is that this is the head of a..."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Yes?"
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A... bloodbear?"
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Bloodbear? What's a bloodbear?"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's a rare type of bear. One that doesn't have any blood."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "It's called a bloodbear but it doesn't have blood? Did a fool name it?"
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well actually the one that named it is quite the intellectual... Very cool as well... not that I know them or anything."
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "You must take me for an idiot! This is some head you bought from a taxidermist or something. It's clearly not a fresh kill!"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Come back once you have the real head!"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "*sigh*"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Do you have the head of that beast yet? Or do you just have more fakes?"
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't have it yet."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "No head, no reward. Come back once you have it!"
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. Any luck with that head?"
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Gordon didn't buy the clay head so I tried adding some fur. He still wasn't convinced though."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Well I'm sure you're not far off. Keep it up!"
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "box"
+text = "That would be a terrible waste. Perhaps there's something better you can use."
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "box"
+text = "You dye the fur head red."
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great! Now it looks bloody!"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well... it doesn't. It actually looks like someone tried to dye a fur covered clay monstrosity red."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Still, maybe Gordon won't notice..."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. Any luck with that head?"
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Gordon didn't buy the clay head so I tried adding some fur. He still wasn't convinced so I've dyed it red to make it look bloody."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Wonderful! I'm sure this will convince him. You should show him what you've got."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "box"
+text = "pic=25150 detail.png|You show the bloody head to Gordon."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof... Again!"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "act"
+text = "below"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Do you have the head of that beast yet? Or do you just have more fakes?"
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "box"
+text = "pic=25150 detail.png|You show the bloody head to Gordon."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have bested the beast and I bring you its head as proof... Again!"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hmm..."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm?"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Hmm..."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well?"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "It's..."
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes?"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "It's wonderful! This is clearly the head of the beast! Well done adventurer!"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hooray!"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "There's just one thing though..."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh for the love of-"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "A head like this deserves a place of honour! My friend, please could you mount it in our home?"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Eugh. Fine."
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Have you mounted the head of the beast in our home yet?"
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Well let me know once you have and I'll give you your reward."
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Hello there. Any luck with that head?"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes. Gordon was happy with the head I made. In fact, he was so happy that he wants it mounting in your home."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Oh dear. Well if it keeps him happy, I suppose. There should be a good spot near the stairs."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What a work of art! I've really outdone myself this time! I guess I should let Gordon know."
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Well I have to say that mounted head looks awful."
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sorry."
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Not to worry. If it keeps Gordon happy, so be it. Anyway, you should go and let him know it's all done."
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "Have you mounted the head of the beast yet?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's all done."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Gordon"
+text = "That's great! I'd say it's about time for your reward. But first, let's have a look at this head..."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "other"
+text = """
+{{qact|A cutscene plays in which Gordon cheers and laughs at his new mounted head. Meanwhile, Mary comes next to the player. Both wipe the sweat off their forehead, happy that Gordon has been fooled.}}
+"""
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "other"
+text = "{{mes|Congratulations, you've completed a quest: {{color|#081190|Getting Ahead}}}}"
+parent = -1

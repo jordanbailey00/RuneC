@@ -1,0 +1,1771 @@
+title = "Transcript:2016 Christmas event"
+npcs = ["Holly", "Ivy (2016 Christmas event)", "Carol (Christmas 2016)", "Billam", "Palum", "Cave goblin worker", "Sam (Christmas 2016)", "Tragacanth", "Tom", "Ulina", "Dylan", "Oracle", "Diango"]
+node_count = 227
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, you look a bit worse for wear, are you okay?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "We're okay just very tired, our boss has been working us very hard this year."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Working hard on what?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "We work in a factory making Christmas presents, we used to love our work but this year our boss has turned into a corporate machine and is making us work crazy hours."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "If you job is that bad can't you just quit?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "If we don't make presents it will ruin Christmas! We just need a better boss."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "Perhaps I should speak to your boss."
+parent = -1
+children = [8, 9, 10, 11, 12, 14]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps I should speak to your boss and teach her a thing or two about management."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "That would be great! We're based on a mountain to the far west of here but you can teleport there with us."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "Would you like to teleport to the factory now?"
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "select"
+text = "Teleport to the Christmas Factory?"
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 7
+children = [13]
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "other"
+text = "{{qact|The player is teleported to the Christmas Factory.}}"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "option"
+text = "No"
+parent = 7
+children = [15]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "option"
+text = "You'd better get back to work then!"
+parent = -1
+children = [17]
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Ivy"
+text = "I'm so tired..."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "So where is this boss of yours then?"
+parent = -1
+children = [22, 23, 24, 25, 26, 27, 28, 32]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So where is this boss of yours then?"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "Before you speak to Carol there is one other small detail you should probably know about her..."
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "Carol is a Mountain Troll."
+parent = 21
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A Troll!? You want me to stand up to a mountain troll?"
+parent = 21
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "Carol isn't like most trolls, she's from a group of more intelligent trolls."
+parent = 21
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 21
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "option"
+text = "Fine, I'll go and talk to her."
+parent = 21
+children = [29, 30, 31]
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fine, I'll go and talk to her... Where can I find Carol?"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Holly"
+text = "Thank you! You'll find Carol in the factory to the North West, just descend the steps to go inside."
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "act"
+text = "end"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "option"
+text = "Nope, I'm out!"
+parent = 21
+children = [33]
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "option"
+text = "Why is your factory on this mountain?"
+parent = -1
+children = [35, 36, 37]
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why is your factory on this mountain?"
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "Don't ask me I just work here..."
+parent = 34
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "act"
+text = "initial"
+parent = 34
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "option"
+text = "Can you teleport me back to Port Sarim?"
+parent = -1
+children = [39]
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should speak to Holly before I wander into an unknown dungeon."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Carol."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "What puny human worker want?"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You've been treating your staff terribly and I'm here to put a stop to it!"
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Puny human worker make me laugh. Me has targets to meet, workers must meet targets."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No. They're overworked and underpaid and this will stop now!"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "If puny human worker want to help puny human will go work with them."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, you will stop this slavery now!"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Puny human worker will leave now."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd better go and speak to Holly."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I tried speaking to Carol but she just won't budge. Do you have any ideas?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Perhaps we should try and ignite Carol's Christmas spirit... help her to see that work and targets isn't what Christmas is about."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That might work, how do you propose we do that? Do Trolls even care about Christmas?"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Carol once spoke about her favourite gift from a previous Christmas, if you could find that and give it to her it should remind her that Christmas is a time of joy."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good idea, where should I start looking?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "We have storage chests in the factory, you should start there."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "box"
+text = "pic=Battered teddy detail.png|You rummage around in Carol's chest and find an old battered teddy bear among paperwork and other trollish items."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've found your teddy... Doesn't this remind of what Christmas is about?{{Sic}}"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "box"
+text = "pic=Battered teddy detail.png|You hand the teddy to Carol."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Carol remembers... but that was past. I am business troll now and targets must still be met."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But think of the people... don't they deserve to feel good about Christmas?"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Targets must be met!"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I gave Carol her old gift but she says that was the past and she is focussed{{sic}} on business now."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "We'll have to try something else, perhaps a new gift could make her feel differently."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where could we get a Christmas gift?"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "We're making them in factory!{{Sic}} You'll have to find out what kind of gift would be suitable though!"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How can I do that? I don't think Carol will just tell me what she wants."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "The other staff probably know her best, you'll have to ask them for the information."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay I'll try that, thanks."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about Carol's likes and dislikes? I want to make her a present."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Palum"
+text = "I'm not really sure... I know she keeps going on about the beautiful red sunsets around here. Don't know if that helps though."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about Carol's likes and dislikes? I want to make her a present."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Tragacanth"
+text = "I'm not really sure... I know she keeps going on about the beautiful red sunsets around here. Don't know if that helps though."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about Carol's likes and dislikes? I want to make her a present."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Billam"
+text = "Given how many times I've been poked, she likes getting her point across."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about Carol's likes and dislikes? I want to make her a present."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Tom"
+text = "Given how many times I've been poked, she likes getting her point across."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about Carol's likes and dislikes? I want to make her a present."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Cave goblin worker"
+text = "She can't stand playing with stuff though, we're banned from playing."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about Carol's likes and dislikes? I want to make her a present."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Sam"
+text = "She can't stand playing with stuff though, we're banned from playing."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "No stealing the presents!"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "box"
+text = "pic=Blank paper hat detail.png|You take a piece of shaped paper."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "box"
+text = "pic=Unpainted marionette detail.png|You take an unpainted marionette."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "select"
+text = "Which colour would you like to take?"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "option"
+text = "Red"
+parent = -1
+children = [104, 105]
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "box"
+text = "pic=Deflated red bouncy ball detail.png|You take a deflated red ball."
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "act"
+text = "end"
+parent = 103
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "option"
+text = "Green"
+parent = -1
+children = [107, 108]
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "box"
+text = "pic=Deflated green bouncy ball detail.png|You take a deflated green ball."
+parent = 106
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "act"
+text = "end"
+parent = 106
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "Blue"
+parent = -1
+children = [110, 111]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "box"
+text = "pic=Deflated blue bouncy ball detail.png|You take a deflated blue ball."
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "box"
+text = "pic=Red bouncy ball detail.png|You carefully operate the bellows to inflate the ball."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "No stealing the presents!"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "cond"
+text = "Paper hat in a red cauldron:"
+parent = -1
+children = [117, 118]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "box"
+text = "pic=Red paper hat detail.png|You dip the paper hat in the red paint."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "act"
+text = "end"
+parent = 116
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "cond"
+text = "Paper hat in a blue cauldron:"
+parent = -1
+children = [120, 121]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "box"
+text = "pic=Blue paper hat detail.png|You dip the paper hat in the blue paint."
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 119
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "cond"
+text = "Paper hat in a green cauldron:"
+parent = -1
+children = [123, 124]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "box"
+text = "pic=Green paper hat detail.png|You dip the paper hat in the green paint."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "cond"
+text = "Unpainted marionette in a red cauldron:"
+parent = -1
+children = [126, 127]
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "box"
+text = "pic=Red marionette detail.png|You dip the marionette in the red paint."
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "end"
+parent = 125
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "cond"
+text = "Unpainted marionette in a blue cauldron:"
+parent = -1
+children = [129, 130]
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "box"
+text = "pic=Blue marionette detail.png|You dip the marionette in the blue paint."
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "act"
+text = "end"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "cond"
+text = "Unpainted marionette in a green cauldron:"
+parent = -1
+children = [132, 133]
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "box"
+text = "pic=Green marionette detail.png|You dip the marionette in the green paint."
+parent = 131
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "act"
+text = "end"
+parent = 131
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have a present for you!"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "box"
+text = "pic=Red paper hat detail.png|You hand Carol your freshly crafted Red paper hat."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "This good, Carol likes this!"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Doesn't it feel good to receive gifts? Now will you cut your workers some slack?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Haha puny human is funny. Get back to work."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I made a{{sic}} Carol a new present and she liked it but it still hasn't convinced her."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Blasted Trolls... What do you think we should do?"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, reminding Carol of the past and improving her present didn't work... we need to convince her the future will be better if she changes her ways."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Carol is business minded so she should always be looking ahead, this might work!"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The only problem is we have no way of seeing the future..."
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Indeed we can't see the future [player], but I know someone who can... the Oracle!"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find this Oracle?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "The Oracle resides atop Ice Mountain, between Edgeville and Falador."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "Okay I will go and speak to the Oracle."
+parent = -1
+children = [150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay I will go and speak to the Oracle."
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Oracle"
+text = "Hello? Is this thing working?"
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What? Who? I'm hearing voices!"
+parent = 149
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "That will be the Oracle I'm guessing."
+parent = 149
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oracle, I seek your wisdom to save Christmas."
+parent = 149
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Oracle"
+text = "Do not speak [player]. I foresaw your request and I have what you seek."
+parent = 149
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "other"
+text = "{{qact|The screen fades to black and transitions to beneath the factory, inside the Chambers of Xeric.}}"
+parent = 149
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Worker"
+text = "So tired... must find somewhere better to sleep than those lice ridden blankets."
+parent = 149
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "other"
+text = "{{qact|Ulina walks into a big room, when suddenly the Great Olm appears.}}"
+parent = 149
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Worker"
+text = "{{overhead|What...}}"
+parent = 149
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "other"
+text = "{{qact|The screen cuts to an animation of a kitten playing with a ball.}}"
+parent = 149
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "box"
+text = "We interrupt this harrowing scene with a soothing picture of a kitten. Please do not think about what happened to Ulina - she found peace."
+parent = 149
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "other"
+text = "{{qact|The screen fades back to Holly and the player.}}"
+parent = 149
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you Oracle!"
+parent = 149
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Holly! The Oracle showed me what's going to happen! Ulina is going to die!"
+parent = 149
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Holly"
+text = "Oh no! You must tell Carol, even she won't want this!"
+parent = 149
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "act"
+text = "end"
+parent = 149
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "option"
+text = "That's too far, go yourself."
+parent = -1
+children = [168]
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Carol, I've seen the future! If you don't change your ways Ulina is going to die!"
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Hahaha, nice try human... get back to work!"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Carol won't believe me that Ulina is going to die! What should we do?"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "I guess it is a little farfetched, especially coming from a human... Maybe you can turn yourself a ghost or something?"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I did see some beds in the factory, I could use one of the sheets!"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Good idea but you must hurry [player], we don't know how long Ulina has left!"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "select"
+text = "Take and wear the sheet?"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "option"
+text = "Yes"
+parent = -1
+children = [178, 179]
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "box"
+text = "You throw the sheet over yourself and start to itch. But at least you look slightly ghostly, if a little grubby."
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "act"
+text = "end"
+parent = 177
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "option"
+text = "No"
+parent = -1
+children = [181]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Eeeeek! A ghost! Please don't hurt Carol."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Carol... I am the ghost of Christmas future... you must change your ways..."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "But Carol doing good, targets are being met."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You must take care of your workers Carol. Money isn't everything."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Money is everything to business troll. What happens if Carol not change?"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your workers are so tired they will wander deeper in to the cave to search for somewhere to sleep."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ulina will wander too far and she will not return. How will your targets be met if your workers die Carol?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Carol not want Ulina to die. That human worker was right. Carol is bad boss and Carol is sorry."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It is not too late Carol, you can still change things for the better."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Carol is bad boss. Carol has failed to meet targets. Carol will return to Wiss{{sic}} now..."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No Carol, you must stay and make the presents for Christmas!"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "other"
+text = "{{qact|Carol disappears as the screen fades to black.}}"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "box"
+text = "Carol hurriedly leaves the factory and runs away."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd better go and tell Holly the good news."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It worked! Carol has gone! You're all free!!"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Gone? What!? We were always free, we just wanted better working conditions! You idiot... how are we going to make the presents now!?"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I thought you hated Carol? Can't you work without a boss?"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "We can make presents but now we have no one to manage deliveries and shipping... you've ruined Christmas!"
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait! What about Diango? He's always making presents and might be able to help you out?"
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "You had better hope so [player]. Go and speak to Diango and let me know as soon as possible!"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "Can I get a teleport back to Port Sarim?"
+parent = -1
+children = [205]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "other"
+text = "{{qact|The player is teleported back outside Port Sarim.}}"
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "option"
+text = "Ok, I'll go find Diango."
+parent = -1
+children = [207]
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "option"
+text = "Ask about Christmas workers."
+parent = -1
+children = [210, 211, 212, 213, 214, 215, 216, 217]
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me? We need to save Christmas!"
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "That depends... what do you need? A dragon kite?"
+parent = 209
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not exactly. I kind of need you to hire a team of workers from another Christmas Factory."
+parent = 209
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "WHAT? Why?"
+parent = 209
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I ruined Christmas by putting a stop to their slave labour camp, apparently."
+parent = 209
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "Well... I... In that case well done, I think. And it just so happens I can help, I'm short of staff right now so I'll hire everyone I can get."
+parent = 209
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's great! I'll go and tell Holly the good news!"
+parent = 209
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "end"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "option"
+text = "Spinning plates?|event=no"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "option"
+text = "I'd like to check holiday items please!|event=no"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "option"
+text = "What else are you selling?|event=no"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "option"
+text = "I'm fine, thanks.|event=no"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good news! Diango says he can help! He's happy to hire your entire team."
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Thanks so much for your help. I was worried we would ruin Christmas entirely! Here, take these gifts as a present from us to you."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Holly"
+text = "Thanks for all your help [player name]. We're really looking forward to working with Diango!"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

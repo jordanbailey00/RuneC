@@ -1,0 +1,1407 @@
+title = "Transcript:Daddy's Home"
+npcs = ["Marlo", "Old Man Yarlo", "Sawmill operator", "Sawmill Operator (Prifddinas)", "Sawmill Operator (Auburnvale)"]
+node_count = 180
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Marlo"
+text = "Hello - it's lovely to see a Mahogany Homes contractor on their rounds! Now, can I help you with something? Or might you be able to do me a little favour?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "cond=If the player has not joined Mahogany Home yet:|What does this Mahogany Homes company do?"
+parent = -1
+children = [2, 3, 4, 5, 6]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What does this Mahogany Homes company do?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "Oh, we redecorate people's houses, fixing things and building new furniture. Mending cabinets, building new chairs and tables - things like that."
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "When a client hires us to redecorate their house, we send a builder round to do the job, and we ensure the builder's paid for their work."
+parent = 1
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "We can't hire you for that kind of work now, but perhaps you could do me a little favour instead, if you're willing. I can pay!"
+parent = 1
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "other"
+parent = 1
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "quest=No|What's my current construction contract?"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "option"
+text = "What kind of favour do you want me to do?"
+parent = -1
+children = [9, 10, 11, 16, 20, 33]
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What kind of favour do you want me to do?"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "Well, you see, it's about my dad. His house is really decrepit. I need someone to rip out the broken furniture and build him some better stuff. I'll pay you if you do it."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "Aren't you in a construction company yourself though?"
+parent = 8
+children = [12, 13, 14, 15]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Aren't you in a construction company yourself though?"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Marlo"
+text = "See, my dad just - um - found the house. No-one was using it, so he just settled in. It's all perfectly harmless, and he's a sick old man anyway, so..."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Marlo"
+text = "Basically, he's not really meant to be there. And we'd prefer that the landlord not find out, so we're keeping this job off the record. I'll pay you myself."
+parent = 11
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "other"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "option"
+text = "Why has he got such a bad house?"
+parent = 8
+children = [17, 18, 19]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why has he got such a bad house?"
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Marlo"
+text = "Some kind of economic downturn wiped out his pension plans. It happens more often than you'd think. But I'd rather not talk about it. Can you help him, though?"
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "act"
+text = "other"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "option"
+text = "Tell me more about the job."
+parent = 8
+children = [21, 22, 23, 25, 27, 31]
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more about the job."
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Marlo"
+text = "Nothing too hard. You'll have to rip out the broken furniture, then build replacements. Dad will talk you through it - he's a retired carpenter himself. He loves talking about construction."
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "option"
+text = "Aren't you in a construction company yourself though?"
+parent = 20
+children = [24]
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "act"
+text = "above"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "option"
+text = "Why has he got such a bad house?"
+parent = 20
+children = [26]
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "act"
+text = "above"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "option"
+text = "Tell me where he lives, and I'll do the job."
+parent = 20
+children = [28, 29, 30]
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me where he lives, and I'll do the job."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Marlo"
+text = "Fabulous! Dad lives in the south-east of Varrock, west of Aubury's Rune Shop. His name's Yarlo. Old Man Yarlo, they call him."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "option"
+text = "I'd rather not."
+parent = 20
+children = [32]
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "act"
+text = "below"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "option"
+text = "I'd rather not."
+parent = 8
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'd rather not."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Marlo"
+text = "Okay, suit yourself."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "option"
+text = "quest=No|Maybe another time."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Marlo"
+text = "How are you getting on with helping my dad?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "option"
+text = "Where did you say he lived?"
+parent = -1
+children = [40, 41, 42]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you say he lived?"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "Dad lives in the south-east of Varrock, west of Aubury's Rune Shop. His name's Yarlo. Old Man Yarlo, they call him. He's sure to be at home, so keep looking around."
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "option"
+text = "quest=No|What's my current construction contract?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "What brings you here, young man?"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Marlo sent me to fix your furniture."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "My boy Marlo sent you? Oh yes, you've come to help with my furniture. It's in a terrible state. You'll want to start by removing all the tatty old furniture."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "There are two stools, two tables, a chair and a rotten carpet to replace. I need a better bed too. Let me know when you've removed all the old furniture."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Ah, young man, how's the redecoration coming on?"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What am I supposed to be doing again?"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "You'll want to start by removing all the tatty old furniture. There are two stools, two tables, a chair and a rotten carpet to remove, as well as the campbed. Let me know when you've done that."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Ah, young man, how's the redecoration coming on?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've been removing the old furniture."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "You still need to remove: - A broken stool in the kitchen - A broken stool in the bedroom - A broken chair in the bedroom"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "- A broken table in the kitchen - A broken table in the bedroom - The old campbed - The rotten carpet"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Ah, young man, how's the redecoration coming on?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've finished removing all the old furniture."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Jolly good, young man. Now, we'll need to have a talk about what you'll build for me to replace it."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "You see, I used to be a carpenter myself, before the arthritis got me. Such wonderful things I could build. Let me tell you about the things Construction can do for you..."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "cond"
+text = "If the player already has a player-owned house:"
+parent = -1
+children = [63]
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is this necessary? I've got a house of my own, in [city], and I've been learning about Construction for a while."
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "option"
+text = "Listen to Yarlo."
+parent = -1
+children = [65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "other"
+text = "{{qact|A cutscene plays in which Old Man Yarlo is in a newly purchased player-owned house.}}"
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "box"
+text = "As a builder, in your own house, you can create your own rooms full of furniture. A house may start out very basic..."
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "box"
+text = "... but in Building Mode, you'll see what you can add to it..."
+parent = 64
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "other"
+text = "{{qact|Old Man Yarlo builds a fully furnished parlour.}}"
+parent = 64
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "box"
+text = "... with fancier options available as your Construction level rises."
+parent = 64
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "other"
+text = "{{qact|Old Man Yarlo removes several furniture and builds fancier ones.}}"
+parent = 64
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "box"
+text = "You can add lots more rooms, and build their furniture too, unlocking really handy features."
+parent = 64
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "other"
+text = "{{qact|The camera shifts and Old Man Yarlo is now seen in a fully furnished home fitted with the highest-level furniture.}}"
+parent = 64
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "box"
+text = "For example, in a study, you could build a lectern for creating spell tablets, powerful items that can cast spells without runes. You could sell your tablets to other people too."
+parent = 64
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "box"
+text = "A Teleport Nexus can take you to a huge range of destinations, making your home a powerful travel hub."
+parent = 64
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "box"
+text = "Show your dedication to the gods by building an altar, where you can sacrifice bones for bonus Prayer XP."
+parent = 64
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "box"
+text = "With a regeneration pool, you can get healed quickly, before you teleport back to the action."
+parent = 64
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "box"
+text = "The Estate Agents can redecorate your house in different styles, if you want something a bit more impressive."
+parent = 64
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "box"
+text = "And, of course, to make your house feel truly like a home, you can fill it with adorable critters..."
+parent = 64
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "box"
+text = "... and drop your guests into the monster pit beneath your throne room."
+parent = 64
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "box"
+text = "All this could be yours, if you train Construction!"
+parent = 64
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Now, I was just getting round to telling you about the furniture I want you to build for me. For a start, I'd like two new stools, two new tables and a new chair."
+parent = 64
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "box"
+text = """
+pic=Plank detail.png|pic2=Bronze nails detail.png|Some basic wooden planks and some nails should do, for those. I won't ask for anything more fancy - it'd only get stolen anyway, in this neighbourhood.
+"""
+parent = 64
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "box"
+text = "pic=Bolt of cloth detail.png|I'll want a new carpet too. They can really change the atmosphere of a room, you know! You can buy cloth at the sawmill to make one."
+parent = 64
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Now, for the bed, I've got something special in mind. This town's quite damp, and I don't want the moisture rising up the bed into my blankets. But I've found some wood that resists water."
+parent = 64
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "box"
+text = """
+pic=Waxwood log detail.png|Those abandoned crates in the kitchen were here when I moved in, and I found they contain waxwood logs. Waxwood isn't much used in carpentry, but it resists water, so I want a bed made from that.
+"""
+parent = 64
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "box"
+text = """
+pic=Waxwood log detail.png|pic2=Waxwood plank detail.png|You'll have to take three logs from the crate to the sawmill. The chap there will turn them into planks if you mention my name - I've known his family for years.
+"""
+parent = 64
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "I think that's everything - two stools, two tables, a chair, a bed and a carpet. Off you trot, young man. I'll be here if you have any questions."
+parent = 64
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "option"
+text = "Skip Yarlo's lecture. He'll offer it later if you like."
+parent = -1
+children = [90, 91, 92]
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "You young people are always rushing around trying to optimise the fun out of life. There are other ways to enjoy the world, you know! But I'm sure you know best."
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Now, I was just getting round to telling you about the furniture I want you to build for me. For a start, I'd like two new stools, two new tables and a new chair."
+parent = 89
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "above"
+parent = 89
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Do you need some help with the building work, young man?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "option"
+text = "How do I build furniture?"
+parent = -1
+children = [95, 96, 97, 98, 99]
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I build furniture?"
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Ah. Look in the place where the new furniture will go..."
+parent = 94
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "box"
+text = "A talented builder will see a vision there of the furniture they could build. Interact with that, and you should find you can build furniture."
+parent = 94
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "You'll need a hammer and saw. I can supply those if you need them."
+parent = 94
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "other"
+parent = 94
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "option"
+text = "Where do I get planks, nails and cloth?"
+parent = -1
+children = [101, 102, 103, 104, 105]
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get planks, nails and cloth?"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "From the sawmill! They sell nails and cloth at reasonable prices. You'd have to take your own logs there, though, to get planks, but there are plenty of trees to chop nearby."
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Watch out, though - nails can bend, if you're not careful. You should probably get some spares, just in case."
+parent = 100
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "box"
+text = "Look on your World Map to find the sawmill."
+parent = 100
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "act"
+text = "other"
+parent = 100
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "option"
+text = "I need some tools."
+parent = -1
+children = [107, 110]
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "cond"
+text = "If the player already has a saw and hammer:"
+parent = 106
+children = [108, 109]
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "You've got a hammer and a saw. I wouldn't be able to offer you anything else."
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "act"
+text = "other"
+parent = 107
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "cond"
+text = "If the player doesn't have a saw or hammer:"
+parent = 106
+children = [111, 112, 113, 117]
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I need some tools."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Would you like a [hammer/saw]? I can spare one."
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "option"
+text = "Yes please."
+parent = 110
+children = [114, 115, 116]
+
+[[nodes]]
+id = 114
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes please."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 4
+kind = "box"
+text = "Yarlo gives you a [hammer/saw.]"
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 4
+kind = "act"
+text = "other"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "option"
+text = "No thanks."
+parent = 110
+children = [118, 119]
+
+[[nodes]]
+id = 118
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 4
+kind = "act"
+text = "other"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "Tell me about the waxwood for the bed."
+parent = -1
+children = [121, 122, 123, 124, 125, 126]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the waxwood for the bed."
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "This town's quite damp, and I don't want the moisture rising up the bed into my blankets. But I've found some wood that resists water."
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "box"
+text = "Those abandoned crates in the kitchen were here when I moved in, and I found they contain waxwood logs. Waxwood isn't much used in carpentry, but it resists water, so I want a bed made from that."
+parent = 120
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "box"
+text = "You'll have to take three logs from the crate to the sawmill. The chap there will turn them into planks if you mention my name."
+parent = 120
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "box"
+text = "Look on your World Map to find the sawmill."
+parent = 120
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "act"
+text = "other"
+parent = 120
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "option"
+text = "I'll get on with it."
+parent = -1
+children = [128, 129]
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll get on with it."
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "box"
+text = "pic=Waxwood log detail.png|The crate contains that water-repellant waxwood Old Man Yarlo described. You take some."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "Do you want me to make some planks for you? I can make planks from wood, oak, teak and mahogany logs. Or would you like to buy some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "option"
+text = "I need some waxwood planks for Old Man Yarlo."
+parent = -1
+children = [134, 135, 136]
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need some waxwood planks for Old Man Yarlo."
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Sawmill operator"
+text = "That old geezer? Oh, alright. I won't charge for this, since it's for him."
+parent = 133
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "quest=No|Yes, please make me some planks."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "quest=No|Can I buy some housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Sawmill Operator"
+text = "Hello there. Do you want me to make some planks for you? I can make planks from wood, oak, teak and mahogany logs. Or would you like to buy some other housing supplies?"
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "Yes, please make me some planks.|quest=No"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "option"
+text = "Can I buy some housing supplies?|quest=No"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "option"
+text = "I need some waxwood planks for Old Man Yarlo."
+parent = -1
+children = [145, 146, 147, 148, 149]
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need some waxwood planks for Old Man Yarlo."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Sawmill Operator"
+text = "I don't know any Old Man Yarlo, and I'd rather not work with that horrible material."
+parent = 144
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But he said he knew the chap at the sawmill, and you'd make waxwood planks for him."
+parent = 144
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Sawmill Operator"
+text = "Perhaps he was thinking of some other sawmill operator."
+parent = 144
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "act"
+text = "end"
+parent = 144
+is_terminal = true
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "option"
+text = "I'm good, thanks.|quest=No"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "That's everything! Thank you so much, young man. Trot off back to my boy Marlo, now. He'll have something for you."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll head back to Marlo."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Hello again, young man. Has my boy Marlo rewarded you yet?"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet. I'll get round to visiting him soon."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Old Man Yarlo"
+text = "Yes, you should do that. You've earned it."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've finished building the new furniture for your dad."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Marlo"
+text = "That's wonderful news! Dad's going to be so much happier. I'm very grateful! Now, I promised to pay you for your work..."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "option"
+text = "Yeah, what have you got for me?"
+parent = -1
+children = [161, 162, 163, 164, 165]
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, what have you got for me?"
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "Now, I can't spare very much money, but I've got some supplies in this crate that might help with your own Construction work."
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = """
+I've included some handy spell tablets that'll take you to your house, to cut down on the walking a bit, as well as one for visiting my boss in Falador. Now, let me tell you some tricks of the trade too...
+"""
+parent = 160
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "box"
+text = "Marlo rewards you with a crate of supplies, some money, and 400 Construction XP."
+parent = 160
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "act"
+text = "end"
+parent = 160
+is_terminal = true
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "option"
+text = "quest=No|What's my current construction contract?"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "option"
+text = "Can I do some other kind of building work for you?"
+parent = -1
+children = [168, 169, 170]
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I do some other kind of building work for you?"
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "I'm so sorry, but you're not qualified to do contracts for Mahogany Homes yet. Just keep helping my dad, for now, and perhaps I can sort that out for you."
+parent = 167
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "act"
+text = "end"
+parent = 167
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Marlo"
+text = "I haven't forgotten that I promised to pay you for your help. Is this a good time for that?"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "option"
+text = "Yeah, what have you got for me?"
+parent = -1
+children = [173, 174, 175, 176, 177]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, what have you got for me?"
+parent = 172
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "Now, I can't spare very much money, but I've persuaded the Estate Agent to let me give you a house of your own. You'll be able to decorate it, like you did for my dad's house."
+parent = 172
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "Normally a new house costs 1,000 coins, so that's a bit of a saving. Also, I've got a crate of supplies to help you decorate it."
+parent = 172
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Marlo"
+text = "I've included some handy spell tablets that'll take you to your house, to cut down on the walking a bit, as well as one for visiting my boss in Falador. Let me tell you some tricks of the trade too..."
+parent = 172
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "option"
+text = "Can I do some other kind of building work for you?"
+parent = -1
+children = [179]
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "act"
+text = "above"
+parent = 178

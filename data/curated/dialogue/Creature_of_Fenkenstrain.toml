@@ -1,0 +1,4314 @@
+title = "Transcript:Creature of Fenkenstrain"
+npcs = ["Dr Fenkenstrain", "Gardener Ghost", "Roavar", "Lord Rologarth", "Zombie head"]
+node_count = 558
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "If the player reads the signpost:"
+parent = -1
+children = [1]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "select"
+text = "Start the Creature of Fenkenstrain quest?"
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [3, 4, 5]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "box"
+text = """
+The signpost has a note pinned onto it. The note says:<br />'----Braindead Butler Wanted----<br />Gravedigging skills essential - Hunchback advantageous<br />See Dr Fenkenstrain at the castle NE of Canifis'
+"""
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "other"
+text = "{{mes|You've started a new quest: {{colour|#000080|Creature of Fenkenstrain}}}}"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [7]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "What do you think you're doing???"
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Have you come to apply for the job?"
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [13, 14, 15, 16, 17, 18, 22, 24, 26]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, if it pays well."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I'll have to ask you some questions first."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay..."
+parent = 12
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "How would you describe yourself in one word?"
+parent = 12
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 12
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "option"
+text = "Stunning."
+parent = 12
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Mmmm, I see."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I'm sorry, but I don't think you have the aptitude for this position."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "option"
+text = "Awe-inspiring."
+parent = 12
+children = [23]
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "act"
+text = "above"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "option"
+text = "Breathtaking."
+parent = 12
+children = [25]
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "act"
+text = "above"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "option"
+text = "Braindead."
+parent = 12
+children = [27, 28, 29, 30, 31, 35, 37, 39]
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Mmmm, I see."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Just one more question. What would you say is your greatest skill?"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 26
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "option"
+text = "Combat."
+parent = 26
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Combat."
+parent = 26
+children = [32, 33, 34]
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Mmmm, I see."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I'm sorry, but I don't think you have the aptitude for this position."
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "option"
+text = "Magic."
+parent = 26
+children = [36]
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "act"
+text = "above"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "option"
+text = "Cooking."
+parent = 26
+children = [38]
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "act"
+text = "above"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "option"
+text = "Grave-digging."
+parent = 26
+children = [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Mmmm, I see."
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Looks like you're just the [man/woman] for the job! Welcome aboard!"
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything you'd like me to do for you, sir?"
+parent = 39
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Yes, there is. You're highly skilled at grave-digging, yes?"
+parent = 39
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Err...yes, that's what I said."
+parent = 39
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Excellent. Now listen carefully."
+parent = 39
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I need you to find some...stuff...for me."
+parent = 39
+
+[[nodes]]
+id = 47
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Stuff?"
+parent = 39
+
+[[nodes]]
+id = 48
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "That's what I said...stuff."
+parent = 39
+
+[[nodes]]
+id = 49
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What kind of stuff?"
+parent = 39
+
+[[nodes]]
+id = 50
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Well...dead stuff."
+parent = 39
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Go on..."
+parent = 39
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I need you to get me enough dead body parts for me to stitch together a complete body, which I plan to bring to life."
+parent = 39
+
+[[nodes]]
+id = 53
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Right...okay...if you insist."
+parent = 39
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [56, 57, 58]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thanks, I wouldn't work here if you paid me."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Charming."
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "act"
+text = "end"
+parent = 55
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "option"
+text = "Do you know where I could find body parts?"
+parent = -1
+children = [61, 62, 63, 64, 65]
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know where I could find body parts?"
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "The soil of Morytania is unique in its ability to preserve the bodies of the dead, which is one reason why I have chosen to carry out my experiments here."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I recommend digging up some graves in the local area. To the south-east you will find the Haunted Woods; I believe there are many graves there."
+parent = 60
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "There is also a mausoleum on an island west of this castle. I expect the bodies that are buried there to be extremely well preserved, as they were wealthy in life."
+parent = 60
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "option"
+text = "Remind me what you want me to do."
+parent = -1
+children = [67, 68, 69, 70]
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you want me to do, again?"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I need you to get me enough dead body parts for me to stitch together a complete body, which I plan to bring to life."
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right...okay...if you insist."
+parent = 66
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "act"
+text = "end"
+parent = 66
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "Why are you trying to make this creature?"
+parent = -1
+children = [72, 73, 74, 75, 76, 77, 78]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why do you want to make a creature?"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I came to the land of Morytania many years ago, to find a safe sanctuary for my experiments. This abandoned castle suited my purposes exactly."
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What were you experimenting in?"
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Oh, perfectly innocent experiments - for the good of mankind."
+parent = 71
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Then why did you need to come to Morytania?"
+parent = 71
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Enough questions, now. Get back to your work."
+parent = 71
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "option"
+text = "Will this creature put me out of a job?"
+parent = -1
+children = [80, 81, 82]
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will this creature put me out of a job?"
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "No, my friend. I have a very special purpose in mind for this creature."
+parent = 79
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "act"
+text = "end"
+parent = 79
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "option"
+text = "I must get back to work, sir."
+parent = -1
+children = [84, 85]
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I must get back to work, sir."
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "act"
+text = "end"
+parent = 83
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "Tell me about Fenkenstrain."
+parent = -1
+children = [88, 89, 91]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me anything about Fenkenstrain?"
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "cond"
+text = "If the player is not wearing the amulet of ghostspeak:"
+parent = 87
+children = [90]
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "box"
+text = "The Headless Gardener's neck twitches at you, but the lack of any head prevents him from speaking."
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "cond"
+text = "If the player is wearing the amulet of ghostspeak:"
+parent = 87
+children = [92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105]
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "box"
+text = "pic=Ghostspeak amulet detail.png|You feel power emanate from the Amulet of Ghostspeak, and the air around you vibrates with the ghostly voice of the Headless Gardener..."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me anything about Fenkenstrain?"
+parent = 91
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Oi could tell you a few things about old Fenky, yeah."
+parent = 91
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Go on."
+parent = 91
+
+[[nodes]]
+id = 96
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Once, this castle were full o' good folk - my friends. Fenky was just the castle doctor you know, to the Lord and the castle folk."
+parent = 91
+
+[[nodes]]
+id = 97
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "I don't know what happened to them all, but one by one they all disappeared. When they were gone a while, I went an dug graves for 'em, in the forest."
+parent = 91
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "After a while there weren't no-one left, but the Lord, Fenkenstrain, and meself."
+parent = 91
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Old Fenky sent me into the Forest to dig 'im a pit. Never said what for. Then would you believe it, someone chops me head off."
+parent = 91
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Did you see who did it, before ..."
+parent = 91
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Before oi kicked the bucket, you mean?"
+parent = 91
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Umm..."
+parent = 91
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Don't worry yourself, I'm not worried about bein' dead. Worse things could happen, I suppose."
+parent = 91
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "One thing I do know is, there ain't no Lord of the castle anymore, 'cept for old Fenky. Makes you think a bit, don't it?"
+parent = 91
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "option"
+text = "What happened to your head?"
+parent = -1
+children = [107, 108, 110]
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me anything about Fenkenstrain?"
+parent = 106
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "cond"
+text = "If the player is not wearing the amulet of ghostspeak:"
+parent = 106
+children = [109]
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "act"
+text = "above"
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "cond"
+text = "If the player is wearing the amulet of ghostspeak:"
+parent = 106
+children = [111]
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "box"
+text = "pic=Ghostspeak amulet detail.png|You feel power emanate from the Amulet of Ghostspeak, and the air around you vibrates with the ghostly voice of the Headless Gardener..."
+parent = 110
+children = [112, 113, 114, 115, 116, 117, 120]
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What happened to your head?"
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 4
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Oi was in the old 'aunted Forest to the south, diggin' a pit for moi old maaster, old Fenkenstrain, when would you believe it, someone chops me head off. Awful bad luck, weren't it?"
+parent = 111
+
+[[nodes]]
+id = 114
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Oh yes, dreadful bad luck."
+parent = 111
+
+[[nodes]]
+id = 115
+depth = 4
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "So oi thinks to meself, I don't needs any 'ead to be gettin on with me gardenin', long as I got me hands and me spade."
+parent = 111
+
+[[nodes]]
+id = 116
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Would you show me where the place was?"
+parent = 111
+
+[[nodes]]
+id = 117
+depth = 4
+kind = "cond"
+text = "If the player already found the head:"
+parent = 111
+children = [118, 119]
+
+[[nodes]]
+id = 118
+depth = 5
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "No mate, you've found my head already, oi think."
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 5
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 4
+kind = "cond"
+text = "If the player does not have the head:"
+parent = 111
+children = [121, 122, 123]
+
+[[nodes]]
+id = 121
+depth = 5
+kind = "act"
+text = "The Gardener Ghost follows the player"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 5
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Well, oi s'pose oi've got 10 minutes to spare."
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 5
+kind = "act"
+text = "end"
+parent = 120
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "option"
+text = "What's your name?"
+parent = -1
+children = [125, 126, 128]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me anything about Fenkenstrain?"
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "cond"
+text = "If the player is not wearing the amulet of ghostspeak:"
+parent = 124
+children = [127]
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "act"
+text = "above"
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "cond"
+text = "If the player is wearing the amulet of ghostspeak:"
+parent = 124
+children = [129, 130, 131, 132, 133, 134, 135]
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "box"
+text = "pic=Ghostspeak amulet detail.png|You feel power emanate from the Amulet of Ghostspeak, and the air around you vibrates with the ghostly voice of the Headless Gardener..."
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Me name? It's been a moivellous long while, mate, since I had any use for such a thing as a name."
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I was just trying to make conversation."
+parent = 128
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "No, no, I can't be havin' that - I'll remember in a minute-"
+parent = 128
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Please, don't worry."
+parent = 128
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Lestwit, that's it! Ed Lestwit!"
+parent = 128
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "act"
+text = "end"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "cond"
+text = "If the player attempts to use the decapitated head (with or without the brain) on the gardener:"
+parent = -1
+children = [137]
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "cond"
+text = "If the player around Fenkenstrain's Castle:"
+parent = -1
+children = [139]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "{{overhead|You need to head off to them Haunted Woods, mate.}}"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "cond"
+text = "If the player in the Haunted Woods:"
+parent = -1
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "{{overhead|Go [direction], mate.}}"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "cond"
+text = "If the player near the Gardener Ghost's grave:"
+parent = -1
+children = [143, 144]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "{{overhead|This is the place where I met me' maker.}}"
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "The Gardener Ghost returns to Fenkenstrain's Castle"
+parent = 142
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "cond"
+text = "If the player is in an area other than Fenkenstrain's Castle or the Haunted Woods:"
+parent = -1
+children = [146]
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "act"
+text = "below"
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "{{overhead|Oi'm afraid you've gone well off the beaten track..}}"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "{{overhead|Fare thee well - oi must return to me' garden.}}"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "act"
+text = "The Gardener Ghost returns to Fenkenstrain's Castle"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "cond"
+text = "If the player reads the grave:"
+parent = -1
+children = [151, 152, 153]
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies Unknown - REST IN PEACE'}}"
+parent = 150
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "act"
+text = "end"
+parent = 150
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "cond"
+text = "If the player digs the grave:"
+parent = -1
+children = [155, 156, 157]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "other"
+text = "{{mes|...but the grave is empty.}}"
+parent = 154
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "act"
+text = "end"
+parent = 154
+is_terminal = true
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "cond"
+text = "If the player searches the memorial:"
+parent = -1
+children = [159, 160]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "other"
+text = "{{mes|You find nothing remarkable about the memorial stone.}}"
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "act"
+text = "end"
+parent = 158
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "cond"
+text = "If the player pushes the memorial:"
+parent = -1
+children = [162, 163]
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "other"
+text = "{{mes|The coffin is incredible heavy, and does not budge.}}"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "act"
+text = "end"
+parent = 161
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "cond"
+text = "If the player reads the grave:"
+parent = -1
+children = [165, 166, 167]
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 164
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies Unknown - REST IN PEACE'}}"
+parent = 164
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "act"
+text = "end"
+parent = 164
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "cond"
+text = "If the player digs the grave:"
+parent = -1
+children = [169, 170, 171]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "other"
+text = "{{mes|...but the grave is empty.}}"
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "cond"
+text = "If the player searches the memorial:"
+parent = -1
+children = [173, 174]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "other"
+text = "{{mes|You find a depression in the memorial stone in the shape of a six-pointed star.}}"
+parent = 172
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "cond"
+text = "If the player pushes the memorial without inserting the star amulet:"
+parent = -1
+children = [176]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "other"
+text = "{{mes|The coffin is incredible heavy, and does not budge.}}"
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "cond"
+text = "If the player pushes the memorial after inserting the star amulet:"
+parent = -1
+children = [178, 179]
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "act"
+text = "The memorial opens and the player goes underground."
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "act"
+text = "end"
+parent = 177
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "cond"
+text = "If the player uses the star amulet on the memorial:"
+parent = -1
+children = [181, 182]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "box"
+text = "pic=Star amulet detail.png|The star amulet fits exactly into the depression on the coffin lid."
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "act"
+text = "end"
+parent = 180
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "cond"
+text = "If the player searches the grave:"
+parent = -1
+children = [184, 185]
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 183
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies Elena Frey - REST IN PEACE'}}"
+parent = 183
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "cond"
+text = "If the player digs the grave:"
+parent = -1
+children = [187, 188, 189]
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 186
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "other"
+text = "{{mes|...but the grave is empty.}}"
+parent = 186
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "act"
+text = "end"
+parent = 186
+is_terminal = true
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "cond"
+text = "If the player searches the grave:"
+parent = -1
+children = [191, 192]
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 190
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies Isla Skye - REST IN PEACE'}}"
+parent = 190
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "cond"
+text = "If the player digs the grave:"
+parent = -1
+children = [194, 195, 196]
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "other"
+text = "{{mes|...but the grave is empty.}}"
+parent = 193
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "act"
+text = "end"
+parent = 193
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "cond"
+text = "If the player searches the grave:"
+parent = -1
+children = [198, 199]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies Marabella Kludge - REST IN PEACE}}"
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "cond"
+text = "If the player digs the grave:"
+parent = -1
+children = [201, 202, 203]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "other"
+text = "{{mes|...but the grave is empty.}}"
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "cond"
+text = "If the player searches the grave:"
+parent = -1
+children = [205, 206]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies Ed Lestwit - REST IN PEACE'}}"
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "cond"
+text = "If the player digs the grave:"
+parent = -1
+children = [208, 209, 210, 211, 215]
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 207
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "act"
+text = "receives=a [[Decapitated head]]"
+parent = 207
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "box"
+text = "pic=Decapitated head detail.png|... and you unearth a decapitated head."
+parent = 207
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "cond"
+text = "If the Gardener was following the player:"
+parent = 207
+children = [212, 213, 214]
+
+[[nodes]]
+id = 212
+depth = 3
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "{{overhead|This is the place where I met me' maker.}}"
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 3
+kind = "act"
+text = "The Gardener Ghost returns to Fenkenstrain's Castle"
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 3
+kind = "act"
+text = "continue"
+parent = 211
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "act"
+text = "end"
+parent = 207
+is_terminal = true
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "cond"
+text = "If the player attempts to pick up the Pickled brain at the [[Hair of the Dog]] pub:"
+parent = -1
+children = [217, 218, 219, 220, 221, 222, 225]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Roavar"
+text = "You're interested in our speciality, I see. Would you like to buy some?"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly is in the jar?"
+parent = 216
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "speaker"
+speaker = "Roavar"
+text = "Pickled brain, my friend. Only 50 gold to you."
+parent = 216
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Err...pickled brain from what animal?"
+parent = 216
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Roavar"
+text = "Animal? Don't be disgusting, man! No, this is a human brain - only the best for my customers."
+parent = 216
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "cond"
+text = "If the player does not have 50 coins:"
+parent = 216
+children = [223, 224]
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That sounds very nice, but I'm afraid I don't have enough gold at the moment."
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "act"
+text = "end"
+parent = 222
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "cond"
+text = "If the player has 50 coins:"
+parent = 216
+children = [226, 227, 231]
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "option"
+text = "I'll buy one."
+parent = 225
+children = [228, 229, 230]
+
+[[nodes]]
+id = 228
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'll buy one, please."
+parent = 227
+
+[[nodes]]
+id = 229
+depth = 4
+kind = "act"
+text = "receives=[[pickled brain]]"
+parent = 227
+
+[[nodes]]
+id = 230
+depth = 4
+kind = "speaker"
+speaker = "Roavar"
+text = "A very wise choice, [sir/miss]. Don't eat it all at once, savour every morsel - that's my advice to you."
+parent = 227
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "option"
+text = "I'm not hungry."
+parent = 225
+children = [232, 233]
+
+[[nodes]]
+id = 232
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I'm not really hungry at the moment."
+parent = 231
+
+[[nodes]]
+id = 233
+depth = 4
+kind = "act"
+text = "end"
+parent = 231
+is_terminal = true
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "cond"
+text = "If the player uses the decapitated head on the brain (or vice versa):"
+parent = -1
+children = [235, 236, 237]
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "box"
+text = "pic=Decapitated head (brain) detail.png|You squeeze the pickled brain into the decapitated head."
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "act"
+text = "receives=a [[Decapitated head (brain)|decapitated head with a brain]]"
+parent = 234
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "act"
+text = "end"
+parent = 234
+is_terminal = true
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "cond"
+text = "If the player attempts to take the pickled brain whilst having one in their inventory:"
+parent = -1
+children = [239, 240]
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "speaker"
+speaker = "Roavar"
+text = "You can leave that alone, my friend. I've already sold you one of your own - eat that. I can't afford to give away freebies in this business!"
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "act"
+text = "end"
+parent = 238
+is_terminal = true
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "cond"
+text = "If the player winds the clock at the south-west:"
+parent = -1
+children = [242, 243, 244]
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "box"
+text = "pic=Letter (Creature of Fenkenstrain) detail.png|As you wind the old clock a letter falls out. Judging by the thick covering of dust it must have been here for some time."
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "act"
+text = "receives=a [[Letter (Creature of Fenkenstrain)|letter]]"
+parent = 241
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "act"
+text = "end"
+parent = 241
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "cond"
+text = "If the player winds the clock again with the letter in the inventory:"
+parent = -1
+children = [246, 247]
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "other"
+text = "{{mes|You wind the old clock.}}"
+parent = 245
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "act"
+text = "end"
+parent = 245
+is_terminal = true
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "cond"
+text = "If the player searches the bookcase to the north-west:"
+parent = -1
+children = [249]
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "select"
+text = "Which book would you like to read?"
+parent = 248
+children = [250, 251, 252, 253]
+
+[[nodes]]
+id = 250
+depth = 3
+kind = "option"
+text = "1001 Ways To Eat Fried Gizzards|quest=no"
+parent = 249
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "option"
+text = "Practical Gardening For The Headless|quest=no"
+parent = 249
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "option"
+text = "Human Taxidermy for Nincompoops|quest=no"
+parent = 249
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "option"
+text = "The Joy of Gravedigging"
+parent = 249
+children = [254, 255, 259]
+
+[[nodes]]
+id = 254
+depth = 4
+kind = "box"
+text = "As you pull the book a hidden latch springs into place, and the bookcase swings open, revealing a secret compartment."
+parent = 253
+
+[[nodes]]
+id = 255
+depth = 4
+kind = "cond"
+text = "If the player does not have the marble amulet:"
+parent = 253
+children = [256, 257, 258]
+
+[[nodes]]
+id = 256
+depth = 5
+kind = "act"
+text = "receives=[[marble amulet]]"
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 5
+kind = "box"
+text = "pic=Marble amulet detail.png|You find a marble amulet in the secret compartment."
+parent = 255
+
+[[nodes]]
+id = 258
+depth = 5
+kind = "act"
+text = "end"
+parent = 255
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 4
+kind = "cond"
+text = "If marble or star amulet is in the player's inventory:"
+parent = 253
+children = [260, 261]
+
+[[nodes]]
+id = 260
+depth = 5
+kind = "box"
+text = "The secret compartment is empty."
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 5
+kind = "act"
+text = "end"
+parent = 259
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "cond"
+text = "If the player searches the bookcase to the north-east:"
+parent = -1
+children = [263]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "select"
+text = "Which book would you like to read?"
+parent = 262
+children = [264, 265, 272]
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "option"
+text = "Chimney Sweeping on a Budget|quest=no"
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "option"
+text = "Handy Maggot Avoidance Techniques"
+parent = 263
+children = [266, 267, 270]
+
+[[nodes]]
+id = 266
+depth = 4
+kind = "box"
+text = "pic=Journal (Creature of Fenkenstrain) detail.png|As you pull the book a hidden latch springs into place, and the bookcase swings open, revealing a secret compartment."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 4
+kind = "cond"
+text = "Without the obsidian amulet:"
+parent = 265
+children = [268, 269]
+
+[[nodes]]
+id = 268
+depth = 5
+kind = "act"
+text = "receives=[[obsidian amulet]]"
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 5
+kind = "box"
+text = "pic=Obsidian amulet detail.png|You find an obsidian amulet in the secret compartment."
+parent = 267
+
+[[nodes]]
+id = 270
+depth = 4
+kind = "cond"
+text = "If obsidian or star amulet is in the backpack:"
+parent = 265
+children = [271]
+
+[[nodes]]
+id = 271
+depth = 5
+kind = "box"
+text = "The secret compartment is empty."
+parent = 270
+
+[[nodes]]
+id = 272
+depth = 3
+kind = "option"
+text = "My Family and Other Zombies|quest=no"
+parent = 263
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "cond"
+text = "If the player combines the marble and obsidian amulets:"
+parent = -1
+children = [274, 275, 276]
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "box"
+text = "pic=Star amulet detail.png|The marble and obsidian amulets snap together tightly to form a six-pointed amulet."
+parent = 273
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "act"
+text = "receives=a [[star amulet]]"
+parent = 273
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "act"
+text = "end"
+parent = 273
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "cond"
+text = "If the player searches the chest near the Mausoleum entrance:"
+parent = -1
+children = [278, 279]
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "box"
+text = "pic=Cavern key detail.png|You take a key out of the chest."
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "act"
+text = "end"
+parent = 277
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "cond"
+text = "If the player searches the chest near the Mausoleum entrance after finding the key:"
+parent = -1
+children = [281, 282]
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "other"
+text = "{{mes|The chest is empty.}}"
+parent = 280
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "act"
+text = "end"
+parent = 280
+is_terminal = true
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "cond"
+text = "If the player searches the memorial right next to the entrance:"
+parent = -1
+children = [284, 285]
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "other"
+text = "{{mes|You find nothing remarkable about the memorial stone.}}"
+parent = 283
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "act"
+text = "end"
+parent = 283
+is_terminal = true
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "cond"
+text = "If the player reads the grave north-west of the entrance:"
+parent = -1
+children = [287, 288, 289]
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 286
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies  {{sic|extra space?}}Rolomere, 14th Lord of the North Coast - REST IN PEACE'}}"
+parent = 286
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "act"
+text = "end"
+parent = 286
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "cond"
+text = "If the player digs the grave north-west of the entrance:"
+parent = -1
+children = [291, 292, 293, 294, 295]
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 290
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "other"
+text = "{{mes|... and you unearth a torso.}}"
+parent = 290
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "box"
+text = "pic=Torso detail.png|... and you unearth a torso."
+parent = 290
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "act"
+text = "receives=a [[Torso]]"
+parent = 290
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "act"
+text = "end"
+parent = 290
+is_terminal = true
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "cond"
+text = "If the player reads the grave north of the entrance:"
+parent = -1
+children = [297, 298, 299]
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 296
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies  {{sic|extra space?}}Rolovanne, 13th Lord of the North Coast - REST IN PEACE'}}"
+parent = 296
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "act"
+text = "end"
+parent = 296
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "cond"
+text = "If the player digs the grave north of the entrance:"
+parent = -1
+children = [301, 302, 303, 304, 305]
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 300
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "other"
+text = "{{mes|... and you unearth a pair of arms.}}"
+parent = 300
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "box"
+text = "pic=Arms detail.png|... and you unearth a pair of arms."
+parent = 300
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "act"
+text = "receives=a pair of [[Arms]]"
+parent = 300
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "act"
+text = "end"
+parent = 300
+is_terminal = true
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "cond"
+text = "If the player reads the grave north-east of the entrance:"
+parent = -1
+children = [307, 308, 309]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "other"
+text = "{{mes|The grave says:}}"
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "other"
+text = "{{mes| 'Here lies  {{sic|extra space?}}Rologray, 12th Lord of the North Coast - REST IN PEACE'}}"
+parent = 306
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "act"
+text = "end"
+parent = 306
+is_terminal = true
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "cond"
+text = "If the player reads the grave north-east of the entrance:"
+parent = -1
+children = [311, 312, 313, 314, 315]
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "other"
+text = "{{mes|You start digging...}}"
+parent = 310
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "other"
+text = "{{mes|... and you unearth a pair of legs.}}"
+parent = 310
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "box"
+text = "pic=Legs detail.png|... and you unearth a pair of legs."
+parent = 310
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "act"
+text = "receives=a pair of [[Legs]]"
+parent = 310
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "act"
+text = "end"
+parent = 310
+is_terminal = true
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have a winner for you here, Doctor! Look! It's still moving!"
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "speaker"
+speaker = "Zombie Head"
+text = "Nobody knows the troubles I've seen...nobody knows my sorrow..."
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I can't use that head!"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why not?"
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "If that thing keeps wriggling around, I'll never get the stitches straight."
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "...And who knows what problems will come up if we have an undead head on a truly dead body."
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Bring me another head, one that isn't still moving{{Sic|no period}}"
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "option"
+text = "I have some body parts for you."
+parent = -1
+children = [326, 327, 330, 333, 336, 339]
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some body parts for you."
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "cond"
+text = "If the player has the decapitated head with the brain:"
+parent = 325
+children = [328, 329]
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Fantastic, you've brought me a head."
+parent = 327
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "act"
+text = "end"
+parent = 327
+is_terminal = true
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "cond"
+text = "If the player has the torso:"
+parent = 325
+children = [331, 332]
+
+[[nodes]]
+id = 331
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Splendid, you've brought me a torso."
+parent = 330
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "act"
+text = "end"
+parent = 330
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "cond"
+text = "If the player has the arms:"
+parent = 325
+children = [334, 335]
+
+[[nodes]]
+id = 334
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Great, you've brought me some arms."
+parent = 333
+
+[[nodes]]
+id = 335
+depth = 3
+kind = "act"
+text = "end"
+parent = 333
+is_terminal = true
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "cond"
+text = "If the player has the legs:"
+parent = 325
+children = [337, 338]
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Excellent, you've brought me some legs."
+parent = 336
+
+[[nodes]]
+id = 338
+depth = 3
+kind = "act"
+text = "end"
+parent = 336
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "cond"
+text = "If the player brought all parts to Dr Fenkenstrain:"
+parent = 325
+children = [340, 341, 342]
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Superb!! Those are all the parts I need. Now to sew them together ..."
+parent = 339
+
+[[nodes]]
+id = 341
+depth = 3
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Go and get me a needle, and I'll need 5 lots of thread."
+parent = 339
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "act"
+text = "end"
+parent = 339
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "Remind me what you want me to do."
+parent = -1
+children = [344]
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "act"
+text = "above"
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "option"
+text = "Why are you trying to make this creature?"
+parent = -1
+children = [346]
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "act"
+text = "above"
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "option"
+text = "Will this creature put me out of a job?"
+parent = -1
+children = [348]
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "act"
+text = "above"
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "option"
+text = "I must get back to work, sir."
+parent = -1
+children = [350]
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "act"
+text = "above"
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Where are my needle and thread, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "cond"
+text = "If the player does not have either the needle or five thread:"
+parent = -1
+children = [353]
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "act"
+text = "end"
+parent = 352
+is_terminal = true
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "cond"
+text = "If the player has a costume needle:"
+parent = -1
+children = [355]
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "act"
+text = "end"
+parent = 354
+is_terminal = true
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "cond"
+text = "If the player only has a needle in their inventory:"
+parent = -1
+children = [357, 358]
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Ah, a needle. Wonderful."
+parent = 356
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "act"
+text = "end"
+parent = 356
+is_terminal = true
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "cond"
+text = "If the player only has 1-5 thread in their inventory:"
+parent = -1
+children = [360, 361]
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Some thread, excellent."
+parent = 359
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "act"
+text = "end"
+parent = 359
+is_terminal = true
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "cond"
+text = "If the player only brought the needle and speaks to him again:"
+parent = -1
+children = [363, 364]
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Where's my thread, [player name]?"
+parent = 362
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "act"
+text = "end"
+parent = 362
+is_terminal = true
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "cond"
+text = "If the player only brought the thread and speaks to him again:"
+parent = -1
+children = [366, 367]
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Where's my needle, [player name]?"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "act"
+text = "end"
+parent = 365
+is_terminal = true
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "other"
+text = "{{mes|If the player brought the needle and five thread to Dr Fenkenstrain:}}"
+parent = -1
+children = [369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379]
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "box"
+text = "Fenkenstrain uses the needle and thread to sew the body parts together. Soon, a hideous creature lies inanimate on the ritual table."
+parent = 368
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Perfect. But I need one more thing from you - flesh and bones by themselves do not make life."
+parent = 368
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Really?"
+parent = 368
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I have honed to perfection an ancient ritual that will give life to this creature, but for this I must harness the very power of Nature."
+parent = 368
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And what power is this?"
+parent = 368
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "The power of lightning."
+parent = 368
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, can't make lightning, you've got the wrong man-"
+parent = 368
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Silence your insolent tongue! The storm that brews overhead will create the lightning. What I need you to do is to repair the lightning conductor on the balcony above."
+parent = 368
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Repair the lightning conductor, right. Can I have a break, soon? By law I'm entitled to 15 minutes every-"
+parent = 368
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Repair the conductor and BEGONE!!!"
+parent = 368
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "act"
+text = "end"
+parent = 368
+is_terminal = true
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do I repair the lightning conductor?"
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Oh, it would be easier to do it myself! If you find a conductor mould you should be able to cast a new one."
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Remember this, [player name]: my experiment will only work with a conductor made from silver."
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "option"
+text = "Tell me about Fenkenstrain."
+parent = -1
+children = [386]
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "act"
+text = "above"
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "option"
+text = "Do you know where the key to the shed is?"
+parent = -1
+children = [388, 389, 390, 391, 392]
+
+[[nodes]]
+id = 388
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know where the key to the shed is?"
+parent = 387
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Got it right 'ere in my pocket. Here you go."
+parent = 387
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "box"
+text = "pic=Shed key detail.png|The headless gardener hands you a rusty key."
+parent = 387
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "act"
+text = "receives=a Shed key (in their inventory or on the ground with no inventory space)"
+parent = 387
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "act"
+text = "end"
+parent = 387
+is_terminal = true
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "option"
+text = "Do you know where a conductor mould is?"
+parent = -1
+children = [394, 395, 396, 397, 398, 399]
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know where I can find a lightning conductor mould?"
+parent = 393
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "A conductive mould, you say? Let me see-"
+parent = 393
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "There used to be a bloke 'ere, sort of an 'andyman e was. Did everything round the place - fixed what was broke, swept the chimneys and the like. He would 'ave had a mould, I imagine."
+parent = 393
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where is he now?"
+parent = 393
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "E's dead, just like everyone else round 'ere ... 'cept for me."
+parent = 393
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "act"
+text = "end"
+parent = 393
+is_terminal = true
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "option"
+text = "What happened to your head?"
+parent = -1
+children = [401]
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "act"
+text = "above"
+parent = 400
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "cond"
+text = "If the player attempts to open the shed door without the key:"
+parent = -1
+children = [403, 404]
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "other"
+text = "{{mes|The door is locked.}}"
+parent = 402
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "act"
+text = "end"
+parent = 402
+is_terminal = true
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "cond"
+text = "If the player attempts to open the shed door with the key:"
+parent = -1
+children = [406, 407]
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "act"
+text = "The shed door opens."
+parent = 405
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "act"
+text = "end"
+parent = 405
+is_terminal = true
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "cond"
+text = "If the player searches the cupboard:"
+parent = -1
+children = [409, 410, 411]
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "box"
+text = "pic=Garden brush detail.png|You find a garden brush in the cupboard."
+parent = 408
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "act"
+text = "receives=a [[garden brush]]"
+parent = 408
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "act"
+text = "end"
+parent = 408
+is_terminal = true
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "cond"
+text = "If the player searches the cupboard whilst having the garden brush:"
+parent = -1
+children = [413, 414]
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "other"
+text = "{{mes|You search the cupboard but find nothing.}}"
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "act"
+text = "end"
+parent = 412
+is_terminal = true
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "cond"
+text = "If the player uses the garden cane on the garden brush (or vice versa):"
+parent = -1
+children = [416, 417]
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "box"
+text = "You try to attach the canes, but you need something suitable to hold them together."
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "act"
+text = "end"
+parent = 415
+is_terminal = true
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine the cane with the brush:"
+parent = -1
+children = [419, 420]
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "box"
+text = "You try to attach the canes, but you need something suitable to hold them together."
+parent = 418
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "end"
+parent = 418
+is_terminal = true
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine the cane with another cane:"
+parent = -1
+children = [422, 423]
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 421
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "act"
+text = "end"
+parent = 421
+is_terminal = true
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine a brush with another brush:"
+parent = -1
+children = [425]
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "act"
+text = "above"
+parent = 424
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "cond"
+text = "If the player attempts to use a rope on either the brush or cane (with the other in the inventory):"
+parent = -1
+children = [427]
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "act"
+text = "above"
+parent = 426
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine the cane with the brush:"
+parent = -1
+children = [429, 430]
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "box"
+text = "You try to attach the canes, but you need something suitable to hold them together."
+parent = 428
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "act"
+text = "end"
+parent = 428
+is_terminal = true
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine the cane with another cane:"
+parent = -1
+children = [432, 433]
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 431
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "act"
+text = "end"
+parent = 431
+is_terminal = true
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine a brush with another brush:"
+parent = -1
+children = [435]
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "act"
+text = "above"
+parent = 434
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "cond"
+text = "If the player attempts to use a bowstring or sinew on either the brush or cane (with the other in the inventory):"
+parent = -1
+children = [437]
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "act"
+text = "above"
+parent = 436
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine the cane with the brush:"
+parent = -1
+children = [439, 440]
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "box"
+text = "You try to attach the canes, but you need something suitable to hold them together."
+parent = 438
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "act"
+text = "end"
+parent = 438
+is_terminal = true
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine the cane with another cane:"
+parent = -1
+children = [442, 443]
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 441
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "act"
+text = "end"
+parent = 441
+is_terminal = true
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "cond"
+text = "If the player attempts to combine a brush with another brush:"
+parent = -1
+children = [445]
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "act"
+text = "above"
+parent = 444
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "cond"
+text = "If the player attempts to use a ball of wool on either the brush or cane (with the other in the inventory):"
+parent = -1
+children = [447]
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "act"
+text = "above"
+parent = 446
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "cond"
+text = "If the player uses the bronze wire on a cane (with or without the brush in the inventory):"
+parent = -1
+children = [449, 450]
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 448
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "act"
+text = "end"
+parent = 448
+is_terminal = true
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "cond"
+text = "If the player uses the bronze wire on a brush (with or without the canes in the inventory):"
+parent = -1
+children = [452, 453]
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "act"
+text = "end"
+parent = 451
+is_terminal = true
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "cond"
+text = "If the player uses the cane with a brush (or extended brush) whilst having a bronze wire in their inventory):"
+parent = -1
+children = [455, 456]
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "other"
+text = "{{mes|You attach the cane to the brush.}}"
+parent = 454
+
+[[nodes]]
+id = 456
+depth = 2
+kind = "act"
+text = "end"
+parent = 454
+is_terminal = true
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "cond"
+text = "If the player uses a cane with an extended brush with three canes:"
+parent = -1
+children = [458, 459]
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "other"
+text = "{{mes|The brush is too long to attach any more canes.}}"
+parent = 457
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "act"
+text = "end"
+parent = 457
+is_terminal = true
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "cond"
+text = "If the player attempts to use the garden brush on any of the fireplaces:"
+parent = -1
+children = [461, 462]
+
+[[nodes]]
+id = 461
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 460
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "act"
+text = "end"
+parent = 460
+is_terminal = true
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "cond"
+text = "If the player uses the extended brush on the main floor - east chimney:"
+parent = -1
+children = [464, 465]
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "other"
+text = "{{mes|You give the chimney a jolly good clean out.}}"
+parent = 463
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "act"
+text = "end"
+parent = 463
+is_terminal = true
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "cond"
+text = "If the player uses the extended brush on the main floor - west chimney:"
+parent = -1
+children = [467, 468]
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "other"
+text = "{{mes|You give the chimney a jolly good clean out.}}"
+parent = 466
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "act"
+text = "end"
+parent = 466
+is_terminal = true
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "cond"
+text = "If the player uses the extended brush on the east chimney upstairs:"
+parent = -1
+children = [470, 471]
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "other"
+text = "{{mes|You give the chimney a jolly good clean out.}}"
+parent = 469
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "act"
+text = "end"
+parent = 469
+is_terminal = true
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "cond"
+text = "If the player uses the extended brush on the west chimney upstairs:"
+parent = -1
+children = [473, 474, 475]
+
+[[nodes]]
+id = 473
+depth = 2
+kind = "box"
+text = "pic=Conductor mould detail.png|A lightning conductor mould falls down out of the chimney."
+parent = 472
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "act"
+text = "receives=a [[conductor mould]]"
+parent = 472
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "act"
+text = "end"
+parent = 472
+is_terminal = true
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "cond"
+text = "If the player uses the extended brush on the west chimney upstairs with the mould in their inventory:"
+parent = -1
+children = [477, 478]
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "other"
+text = "{{mes|You give the chimney a jolly good clean out.}}"
+parent = 476
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "act"
+text = "end"
+parent = 476
+is_terminal = true
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "cond"
+text = "If the player uses a silver bar on the furnace with the mould in the inventory:"
+parent = -1
+children = [480, 481]
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "act"
+text = "The smithing interface opens with the mould option available."
+parent = 479
+
+[[nodes]]
+id = 481
+depth = 2
+kind = "cond"
+text = "If the player selects the conductor option:"
+parent = 479
+children = [482, 483]
+
+[[nodes]]
+id = 482
+depth = 3
+kind = "act"
+text = "receives=a [[conductor]] and 50 Crafting experience"
+parent = 481
+
+[[nodes]]
+id = 483
+depth = 3
+kind = "act"
+text = "end"
+parent = 481
+is_terminal = true
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Very good, you have made a new conductor - now get up on the roof and repair it before this storm passes!"
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "cond"
+text = "If the player attempts to place the conductor without fixing the lightning conductor stand:"
+parent = -1
+children = [487, 488, 489]
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "box"
+text = "You repair the lightning conductor not one moment too soon - a tremendous bolt of lightning melts the new lightning conductor, and power blazes throughout the castle, if only briefly."
+parent = 486
+
+[[nodes]]
+id = 488
+depth = 2
+kind = "act"
+text = "The player loses the conductor in the process."
+parent = 486
+
+[[nodes]]
+id = 489
+depth = 2
+kind = "act"
+text = "end"
+parent = 486
+is_terminal = true
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "cond"
+text = "If the player repairs the lightning conductor stand with a hammer in their inventory:"
+parent = -1
+children = [491, 492]
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "other"
+text = "{{mes|The lightning conductor is now beyond repair.}}"
+parent = 490
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "act"
+text = "end"
+parent = 490
+is_terminal = true
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So did it work, then?"
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Yes, I'm afraid it did, LogWarden - all too well."
+parent = -1
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't see it anywhere."
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I tricked it into going up to the Tower, and there it remains, imprisoned."
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So the creature wasn't all you'd hoped, then?"
+parent = -1
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "...oh, what have I done..."
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I see, we're developing a sense of right and wrong now are we?"
+parent = -1
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Bit late for that, I'd say."
+parent = -1
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "I have no control over it! It's coming to get me!"
+parent = -1
+
+[[nodes]]
+id = 502
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you want me to do about it?"
+parent = -1
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Destroy it!!! Take the key to the Tower and take back the life I never should have granted!!!"
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How are you?"
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "speaker"
+speaker = "Gardener Ghost"
+text = "Same as ever, mate, just getting' on with it regardless."
+parent = -1
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good for you...err...mate."
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am commanded to destroy you, creature!"
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' Oh that's *hic* not very *hic* nice ..."
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you feeling okay?"
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' Abso *hic* lutely. Never *buuurrp* better."
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You don't look very dangerous."
+parent = -1
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' How *hic* do I look?"
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You really don't know, do you? Have a look for yourself."
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "box"
+text = "The creature stumbles over towards the mirror, focuses upon his reflection and..."
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' AAAAARRGGGGHHHH!"
+parent = -1
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "box"
+text = "The creature becomes instantly sober, horror all too evident in his undead eyes."
+parent = -1
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry. I suppose I'm partly to blame for this."
+parent = -1
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' No - it was him I wager - Fenkenstrain - wasn't it? He's brought me back to life!"
+parent = -1
+
+[[nodes]]
+id = 520
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who are - were - you?"
+parent = -1
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' I was Rologarth, Lord of the North Coast - this castle was once mine. Fenkenstrain was the castle doctor."
+parent = -1
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So the castle wasn't really abandoned when he found it?"
+parent = -1
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' Is that what he told you? No, no, this castle was once full of people and life. Fenkenstrain advised me to sell them to the vampyres, which - I am sad to say - I did."
+parent = -1
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found your brain in a jar in Canifis, so he must have sold you too."
+parent = -1
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' Of that I will not speak. There lie memories that should rest with the dead, the living unable to bear them."
+parent = -1
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's it - I'm leaving this dreadful place, whether I get paid or not. Is there anything I can do for you before I leave?"
+parent = -1
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "other"
+text = """
+'''Fenkenstrain's Monster:''' Only one - please stop Fenkenstrain from carrying on his experiments, once and for all, so that no other poor soul has to endure suffering such as that of my people and I.
+"""
+parent = -1
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know how I can stop Fenkenstrain's experiments?"
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' Take the Ring of Charos from him."
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What is this ring?"
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "other"
+text = "'''Fenkenstrain's Monster:''' It was my birthright, passed down to me through the ages, its origin forgotten."
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "other"
+text = """
+'''Fenkenstrain's Monster:''' The Ring of Charos has many powers, but Fenkenstrain has bent them to his own evil purposes. Without the power of the ring, he will not be able to raise the dead from their sleep.
+"""
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "other"
+text = """
+'''Fenkenstrain's Monster:''' It has one other, extremely important use - it confuses the werewolves' senses, making them believe that they smell one of their own kind. Without the ring, Fenkenstrain will be at their mercy.
+"""
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "So have you destroyed it?!!?"
+parent = -1
+
+[[nodes]]
+id = 537
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Never, now that he has told me the truth!"
+parent = -1
+
+[[nodes]]
+id = 538
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Oh my, oh my, this is exactly what I feared!"
+parent = -1
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "Why did you have to pick Rologarth's brain of all brains?!?"
+parent = -1
+
+[[nodes]]
+id = 540
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm through working for you."
+parent = -1
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "No!! I refuse to release you!! You must help me build another creature to destroy this dreadful mistake!!"
+parent = -1
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "cond"
+text = "If the player pickpockets Dr Fenkenstrain:"
+parent = -1
+children = [544, 545, 546, 547]
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "other"
+text = "{{mes|You steal the Ring of Charos from Fenkenstrain.}}"
+parent = 543
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "act"
+text = "receives=1000 Thieving experience"
+parent = 543
+
+[[nodes]]
+id = 546
+depth = 2
+kind = "other"
+text = "{{mes|Congratulations, you've completed a quest: Creature of Fenkenstrain}}"
+parent = 543
+
+[[nodes]]
+id = 547
+depth = 2
+kind = "act"
+text = "end"
+parent = 543
+is_terminal = true
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "speaker"
+speaker = "Rologarth"
+text = "How goes it, friend?"
+parent = -1
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I stole the Ring of Charos from Fenkenstrain."
+parent = -1
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "speaker"
+speaker = "Rologarth"
+text = "I saw him climb up into the Tower to hide it. It doesn't matter - soon the werewolves will come for him, and his experiments will be forever ceased."
+parent = -1
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you want the ring back? It is yours after all."
+parent = -1
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "speaker"
+speaker = "Rologarth"
+text = "No, you keep it, my friend. Werewolves hunger for the scent of live flesh - I have no need for the ring. I have my castle back, if not my soul."
+parent = -1
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 554
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "theyrecomingtogetme theyrecomingtogetme..."
+parent = -1
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It is all you deserve. Lord Rologarth is master of this castle once more. Let him protect you - if he wants to."
+parent = -1
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "speaker"
+speaker = "Dr Fenkenstrain"
+text = "theyrecomingtogetme theyrecomingtogetme..."
+parent = -1
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

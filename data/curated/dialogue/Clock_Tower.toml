@@ -1,0 +1,399 @@
+title = "Transcript:Clock Tower"
+npcs = ["Brother Kojo"]
+node_count = 51
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello monk."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "Hello adventurer. My name is Brother Kojo. Do you happen to know the time?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, sorry, I don't."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "Exactly! This clock tower has recently broken down, and without it nobody can tell the correct time. I must fix it before the town people become too angry!"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "I don't suppose you could assist me in the repairs? I'll pay you for your help."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "select"
+text = "Start the Clock Tower quest?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [7, 8, 9, 10, 11, 12]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "OK old monk, what can I do?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "Oh, thank you kind [sir/madam]! In the cellar below, you'll find four cogs. They're too heavy for me, but you should be able to carry them one at a time."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "I know one goes on each floor... but I can't exactly remember which goes where specifically. Oh well, I'm sure you can figure it out fairly easily."
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'll do my best."
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "Thank you again! And remember to be careful, the cellar is full of strange beasts!"
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [14, 15, 16]
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not now old monk."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "OK then. Come back and let me know if you change your mind."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "Oh hello, are you having trouble? The cogs are in four rooms below us. Place one cog on a pole on each of the four tower levels."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, gotcha. I'll do that then."
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "cond"
+text = "If the player does not have a [[bucket of water]] or [[ice gloves]] equipped:"
+parent = -1
+children = [22, 23]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "box"
+text = "The cog is red hot from the flames. You cannot pick it up."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "act"
+text = "end"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "cond"
+text = "If the player has a [[bucket of water]] or [[ice gloves]] equipped:"
+parent = -1
+children = [25, 26, 27]
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "box"
+text = "You pour water over the cog. It quickly cools down enough to take."
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "act"
+text = "receives=a [[black cog]]"
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "act"
+text = "end"
+parent = 24
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "cond"
+text = "Trying to open the door before the rats have been poisoned:"
+parent = -1
+children = [29]
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "other"
+text = "{{mes|This door does not seem to be openable.}}"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "cond"
+text = "Using the poison on the food trough:"
+parent = -1
+children = [31, 32, 33, 34]
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "other"
+text = "{{mes|The rats swarm towards the poisoned food...}}"
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "other"
+text = "{{mes|... and devour it hungrily.}}"
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "other"
+text = "{{mes|You see them smashing against the gates in a panic.}}"
+parent = 30
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "other"
+text = "{{mes|They seem to be dying.}}"
+parent = 30
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "cond"
+text = "Opening the door after poisoning the rats:"
+parent = -1
+children = [36, 37]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "box"
+text = "The death throes of the rats seem to have shaken the door loose its hinges. You pick it up and go through."
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "act"
+text = "end"
+parent = 35
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "other"
+text = "{{mes|The cog fits perfectly.}}"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've placed a cog!"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "That's great. Come see me when you've done the other three."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Two down!"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "Two to go."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "One left."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have replaced all the cogs!"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "Really..? Wait, listen! Well done, well done! Yes yes yes, you've done it! You ARE clever!"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Brother Kojo"
+text = "The townsfolk will all be able to know the correct time now! Thank you so much for all of your help! And as promised, here is your reward!"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1

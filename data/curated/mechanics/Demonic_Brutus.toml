@@ -1,0 +1,35 @@
+name = "Demonic Brutus"
+source_pages = ["Demonic Brutus", "Demonic Brutus/Strategies"]
+npc_ids = [15628, 15629]
+
+[sections]
+"Fight overview" = """
+{{Tile markers box|Module:Tile markers/Demonic Brutus.json}}
+Unlike Brutus, Demonic Brutus' basic melee attack can hit through [[Protect from Melee]], with a max hit of 4. He cannot be killed as part of a [[Slayer task/Cows|cow slayer task]], and is immune to stat drains and [[enchanted bolt]]s effects. Additionally, despite his name, Demonic Brutus is not classified as a [[Demon (attribute)|demon]].
+
+Every two to three attacks, Brutus will use one of two special attacks; which one he chooses initially is random, but it will alternate between the two afterward in a predictable cycle.
+* '''Charge''' - Brutus will spawn orthogonally across the player before charging, followed by three ghosts that repeat the same attack in rapid succession in a clockwise order, starting with the real Brutus.
+* '''Slam''' - Brutus will disappear and spawn diagonally across the player, stomping the area in front of him, followed by three ghosts that repeat the same attack in rapid succession in a clockwise order, starting with the real Brutus.
+
+Getting hit by any of the bulls will deal 45-56 damage each, resulting in a swift death if two bulls are missed in quick succession without healing. Additionally, if the player is standing too close to an obstacle when Brutus starts a special attack, they will be pushed into open space and will be unable to run for the special attack's duration, which effectively spells instant death.
+
+There are two possible attack rotations, of which there are four possible positions for him to initiate a special attack. This will be performed in a cyclical pattern, as seen in the following demonstrations.
+<gallery mode="packed" heights="300" style="text-align:left">
+Demonic Brutus - cycle 1.mp4|A full cycle of the boss' first attack rotation. In this rotation, the very first special attack will be a slam attack, starting from the south-east, going clockwise.
+Demonic Brutus - cycle 2.mp4|A full cycle of the boss' second attack rotation. In this rotation, the very first special attack will be a charge attack, starting from the east, going clockwise.
+</gallery>
+
+Upon reaching 500 (66.6%) health, Demonic Brutus' special attacks will be performed quicker, giving players little time to react to the attack.
+
+Upon reaching 250 (33.33%) health, the boss' special attacks are performed in counterclockwise pattern instead, which necessitate different tiles to stand on to dodge depending on the attack rotation it chose.
+<gallery mode="packed" heights="300" style="text-align:left">
+Demonic Brutus - ⅔rd health spec timing.mp4|The boss will initiate special attacks near instantly after reaching 66.6% health.
+Demonic Brutus - ⅓rd health cycle switch.mp4|The boss' special attacks will move counterclockwise after reaching 33.3% health. 
+</gallery>
+
+Once Demonic Brutus' health reaches 0, it will exclaim {{Overhead|moo moo!}} and heal itself for 487 health, beginning phase 2 of the fight. The fight is almost identical to the first phase at 66.6% health (faster special attacks), so players must return to using the tiles for dodging the bulls moving clockwise and return to the counterclockwise tiles once Brutus is at 33.3% health again.
+[[File:Demonic Brutus - phase 2 projectiles.mp4|thumb|400px|Projectiles appearing alongside Demonic Brutus' special attacks in phase 2 of the fight.]]
+During phase 2, each time Brutus initiates a special attack, four orbs will appear above the player's head with their colour indicating the type of attack to pray against. These projectiles will land on the player whenever each bull attacks, dealing 18-20 damage; the first three projectiles are '''always''' magic-melee-ranged, with the fourth being random. These projectiles will also trigger auto-retaliate, so it's recommended to have it turned off so it doesn't cause the player to path into the special attacks.
+
+A simple strategy to avoid the majority of damage while still keeping dodge timing using the above tiles is to keep praying melee and just tank the initial mage orb. Once you step onto the second dodge tile you can then flick the range + random prayer without having to worry about further movement commands. While this does involve you tanking a little damage (18-20), most players die during the fight when they get hit by Brutus and his ghosts while trying to focus on flicking prayers.
+"""

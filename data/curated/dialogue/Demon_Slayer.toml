@@ -1,0 +1,3963 @@
+title = "Transcript:Demon Slayer"
+npcs = ["Aris", "Wally", "Sir Prysin", "Captain Rovin", "Wizard Traiborn", "Denath", "Dark wizard"]
+node_count = 509
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Aris"
+text = "Hello young one. Cross my palm with silver and the future will be revealed to you."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "cond"
+text = "If the player doesn't have any money with them:"
+parent = -1
+children = [2, 3]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh dear. I don't have any money."
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "act"
+text = "end"
+parent = 1
+is_terminal = true
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 26, 31, 37]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, here you go."
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Come closer, and listen carefully to what the future holds for you, as I peer into the swirling mists of the crystal ball."
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "I can see images forming. I can see you."
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "You are holding a very impressive looking sword. I'm sure I recognise that sword..."
+parent = 4
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "There is a big dark shadow appearing now."
+parent = 4
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Aaargh!"
+parent = 4
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you all right?"
+parent = 4
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "It's Delrith! Delrith is coming!"
+parent = 4
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who's Delrith?"
+parent = 4
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Delrith..."
+parent = 4
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Delrith is a powerful demon."
+parent = 4
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Oh! I really hope he didn't see me looking at him through my crystal ball!"
+parent = 4
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "He tried to destroy this city 150 years ago. He was stopped just in time by the great hero Wally."
+parent = 4
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Using his magic sword Silverlight, Wally managed to trap the demon in the stone circle just south of this city."
+parent = 4
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Ye gods! Silverlight was the sword you were holding in my vision! You are the one destined to stop the demon this time."
+parent = 4
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "select"
+text = "What would you like to say?"
+parent = 4
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "option"
+text = "How am I meant to fight a demon who can destroy cities?"
+parent = 4
+children = [22, 23, 24, 25]
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How am I meant to fight a demon who can destroy cities?!"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "If you face Delrith while he is still weak from being summoned, and use the correct weapon, you will not find the task too arduous."
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Do not fear. If you follow the path of the great hero Wally, then you are sure to defeat the demon."
+parent = 21
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "act"
+text = "other"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "option"
+text = "Okay, where is he? I'll kill him for you!"
+parent = 4
+children = [27, 28, 29, 30]
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, where is he? I'll kill him for you!"
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Ah, the overconfidence of the young!"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Delrith can't be harmed by ordinary weapons. You must face him using the same weapon that Wally used."
+parent = 26
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "act"
+text = "other"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "option"
+text = "Wally doesn't sound like a very heroic name."
+parent = 4
+children = [32, 33, 34, 35, 36]
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Wally doesn't sound a very heroic name."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Yes I know. Maybe that is why history doesn't remember him. However he was a very great hero."
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!"
+parent = 31
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "It looks like you are going to need to perform similar heroics."
+parent = 31
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "other"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "So how did Wally kill Delrith?"
+parent = 4
+children = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 52, 54, 61, 66]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So how did Wally kill Delrith?"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "other"
+text = "{{Qact|A cutscene showing Wally defeating Delrith plays.}}"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids..."
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Wally"
+text = "Die, foul demon!"
+parent = 37
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Wally"
+text = "Now, what was that incantation again?"
+parent = 37
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "act"
+text = "The following five words are Aber, Gabindo, Purchai, Camerinthum, and Carlem. The order of the five words is random."
+parent = 37
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Wally"
+text = "[word 1]... [word 2]... [word 3]... [word 4]... [word 5]!"
+parent = 37
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Wally"
+text = "I am the greatest demon slayer EVER!"
+parent = 37
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone block in the centre of the circle."
+parent = 37
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "other"
+text = "{{Qact|Cutscene ends.}}"
+parent = 37
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Delrith will come forth from the stone circle again."
+parent = 37
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "I would imagine an evil sorcerer is already starting on the rituals to summon Delrith as we speak."
+parent = 37
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "option"
+text = "How am I meant to fight a demon who can destroy cities?"
+parent = 37
+children = [51]
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "act"
+text = "above"
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "option"
+text = "Okay, where is he? I'll kill him for you!"
+parent = 37
+children = [53]
+
+[[nodes]]
+id = 53
+depth = 4
+kind = "act"
+text = "above"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "option"
+text = "What is the magical incantation?"
+parent = 37
+children = [55, 56, 57, 58, 59, 60]
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is the magical incantation?"
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "speaker"
+speaker = "Aris"
+text = "Oh yes, let me think a second..."
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "act"
+text = "The following five words Aber, Gabindo, Purchai, Camerinthum, and Carlem"
+parent = 54
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "speaker"
+speaker = "Aris"
+text = "Alright, I think I've got it now, it goes.... [word 1]... [word 2]... [word 3]... [word 4]... [word 5]. Have you got that?"
+parent = 54
+
+[[nodes]]
+id = 59
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I think so, yes."
+parent = 54
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "act"
+text = "other"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 3
+kind = "option"
+text = "Where can I find Silverlight?"
+parent = 37
+children = [62, 63, 64, 65]
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find Silverlight?"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 4
+kind = "speaker"
+speaker = "Aris"
+text = "Silverlight has been passed down through Wally's descendants. I believe it is currently in the care of one of the King's knights called Sir Prysin."
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "speaker"
+speaker = "Aris"
+text = "He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Aris sent you."
+parent = 61
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "act"
+text = "other"
+parent = 61
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "option"
+text = "Okay, thanks. I'll do my best to stop the demon."
+parent = 37
+children = [67, 68, 69, 70]
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok thanks. I'll do my best to stop the demon."
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "speaker"
+speaker = "Aris"
+text = "Good luck, and may Guthix be with you!"
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 4
+kind = "act"
+text = "[[Demon Slayer]] is started."
+parent = 66
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "act"
+text = "end"
+parent = 66
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [72, 73, 74]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't believe in that stuff."
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Ok suit yourself."
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Aris"
+text = "Greetings. How goes thy quest?"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Aris"
+text = "Well if you need any advice I'm always here, young one."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "option"
+text = "What is the magical incantation?"
+parent = -1
+children = [79]
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "act"
+text = "above"
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "Where can I find Silverlight?"
+parent = -1
+children = [81]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "act"
+text = "above"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "option"
+text = "Stop calling me that!"
+parent = -1
+children = [83, 84, 85, 90]
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Stop calling me that!"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "In the scheme of things you are very young."
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "option"
+text = "Ok but how old are you?"
+parent = 82
+children = [86, 87, 88, 89]
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok, but how old are you?"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "Count the number of legs on the stools in the Blue Moon inn, and multiply that number by seven."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Er, yeah, whatever."
+parent = 85
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "option"
+text = "Oh if it's in the scheme of things that's ok."
+parent = 82
+children = [91, 92, 93]
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh if it's in the scheme of things that's ok."
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "speaker"
+speaker = "Aris"
+text = "You show wisdom for one so young."
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "act"
+text = "end"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "option"
+text = "Well I'd better press on with it."
+parent = -1
+children = [95, 96, 97]
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I'd better press on with it."
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "See you anon."
+parent = 94
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "end"
+parent = 94
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Hello, who are you?"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "option"
+text = "I am a mighty adventurer. Who are you?"
+parent = -1
+children = [100, 101, 102]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am a mighty adventurer, who are you?"
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "I am Sir Prysin. A bold and famous knight of the realm."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "act"
+text = "end"
+parent = 99
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "option"
+text = "I'm not sure, I was hoping you could tell me."
+parent = -1
+children = [104, 105, 106]
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was hoping you could tell me."
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Well I've never met you before."
+parent = 103
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "end"
+parent = 103
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "cond=If [[Demon Slayer]] is started:|Aris said I should come and talk to you."
+parent = -1
+children = [108, 109, 110, 181]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aris said I should come and talk to you."
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Aris? Is she still alive? I remember her from when I was pretty young. Well what do you need to talk to me about?"
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "option"
+text = "I need to find Silverlight."
+parent = 107
+children = [111, 112, 113, 114, 115, 175]
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I need to find Silverlight."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "What do you need to find that for?"
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I need it to fight Delrith."
+parent = 110
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Delrith? I thought the world was rid of him, thanks to my great-grandfather."
+parent = 110
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "option"
+text = "Well, Aris' crystal ball seems to think otherwise."
+parent = 110
+children = [116, 117, 118, 119, 120, 121, 171]
+
+[[nodes]]
+id = 116
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Well Aris' crystal ball seems to think otherwise."
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 4
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Well if the ball says so, I'd better help you."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 4
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "The problem is getting Silverlight."
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You mean you don't have it?"
+parent = 115
+
+[[nodes]]
+id = 120
+depth = 4
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Oh I do have it, but it is so powerful that the king made me put it in a special box which needs three different keys to open it. That way it won't fall into the wrong hands."
+parent = 115
+
+[[nodes]]
+id = 121
+depth = 4
+kind = "option"
+text = "So give me the keys!"
+parent = 115
+children = [122, 123, 124, 125, 126, 127, 128, 150, 160]
+
+[[nodes]]
+id = 122
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "So give me the keys!"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 5
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Um, well, it's not so easy."
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 5
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "I kept one of the keys. I gave the other two to other people for safe keeping."
+parent = 121
+
+[[nodes]]
+id = 125
+depth = 5
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "One I gave to Rovin, the captain of the palace guard."
+parent = 121
+
+[[nodes]]
+id = 126
+depth = 5
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "I gave the other to the wizard Traiborn."
+parent = 121
+
+[[nodes]]
+id = 127
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 121
+
+[[nodes]]
+id = 128
+depth = 5
+kind = "option"
+text = "Can you give me your key?"
+parent = 121
+children = [129, 130, 131, 132, 133, 134, 146, 148]
+
+[[nodes]]
+id = 129
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Can you give me your key?"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 6
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Um.... ah...."
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 6
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Well there's a problem there as well."
+parent = 128
+
+[[nodes]]
+id = 132
+depth = 6
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "I managed to drop the key in the drain just outside the palace kitchen. It is just inside and I can't reach it."
+parent = 128
+
+[[nodes]]
+id = 133
+depth = 6
+kind = "select"
+text = "Select an Option"
+parent = 128
+
+[[nodes]]
+id = 134
+depth = 6
+kind = "option"
+text = "So what does the drain lead to?"
+parent = 128
+children = [135, 136, 137, 138, 140, 142]
+
+[[nodes]]
+id = 135
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "So what does the drain connect to?"
+parent = 134
+
+[[nodes]]
+id = 136
+depth = 7
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "It is the drain for the drainpipe running from the sink in the kitchen down to the palace sewers."
+parent = 134
+
+[[nodes]]
+id = 137
+depth = 7
+kind = "select"
+text = "Select an Option"
+parent = 134
+
+[[nodes]]
+id = 138
+depth = 7
+kind = "option"
+text = "Where can I find Captain Rovin?"
+parent = 134
+children = [139]
+
+[[nodes]]
+id = 139
+depth = 8
+kind = "act"
+text = "below"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 7
+kind = "option"
+text = "Where does the wizard live?"
+parent = 134
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 8
+kind = "act"
+text = "below"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 7
+kind = "option"
+text = "Well I'd better go key hunting."
+parent = 134
+children = [143, 144, 145]
+
+[[nodes]]
+id = 143
+depth = 8
+kind = "speaker"
+speaker = "Player"
+text = "Well I'd better go key hunting."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 8
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Ok, goodbye."
+parent = 142
+
+[[nodes]]
+id = 145
+depth = 8
+kind = "act"
+text = "end"
+parent = 142
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 6
+kind = "option"
+text = "Where can I find Captain Rovin?"
+parent = 128
+children = [147]
+
+[[nodes]]
+id = 147
+depth = 7
+kind = "act"
+text = "below"
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 6
+kind = "option"
+text = "Where does the wizard live?"
+parent = 128
+children = [149]
+
+[[nodes]]
+id = 149
+depth = 7
+kind = "act"
+text = "below"
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 5
+kind = "option"
+text = "Where can I find Captain Rovin?"
+parent = 121
+children = [151, 152, 153, 154, 156, 158]
+
+[[nodes]]
+id = 151
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find Captain Rovin?"
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 6
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Captain Rovin lives at the top of the guards' quarters in the north-west wing of this palace."
+parent = 150
+
+[[nodes]]
+id = 153
+depth = 6
+kind = "select"
+text = "Select an Option"
+parent = 150
+
+[[nodes]]
+id = 154
+depth = 6
+kind = "option"
+text = "Can you give me your key?"
+parent = 150
+children = [155]
+
+[[nodes]]
+id = 155
+depth = 7
+kind = "act"
+text = "above"
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 6
+kind = "option"
+text = "Where does the wizard live?"
+parent = 150
+children = [157]
+
+[[nodes]]
+id = 157
+depth = 7
+kind = "act"
+text = "below"
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 6
+kind = "option"
+text = "Well I'd better go key hunting."
+parent = 150
+children = [159]
+
+[[nodes]]
+id = 159
+depth = 7
+kind = "act"
+text = "above"
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 5
+kind = "option"
+text = "Where does the wizard live?"
+parent = 121
+children = [161, 162, 163, 164, 165, 167, 169]
+
+[[nodes]]
+id = 161
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Where does the wizard live?"
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 6
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Wizard Traiborn?"
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 6
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "He is one of the wizards who lives in the tower on the little island just off the south coast. I believe his quarters are on the first floor of the tower."
+parent = 160
+
+[[nodes]]
+id = 164
+depth = 6
+kind = "select"
+text = "Select an Option"
+parent = 160
+
+[[nodes]]
+id = 165
+depth = 6
+kind = "option"
+text = "Can you give me your key?"
+parent = 160
+children = [166]
+
+[[nodes]]
+id = 166
+depth = 7
+kind = "act"
+text = "above"
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 6
+kind = "option"
+text = "Where can I find Captain Rovin?"
+parent = 160
+children = [168]
+
+[[nodes]]
+id = 168
+depth = 7
+kind = "act"
+text = "above"
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 6
+kind = "option"
+text = "Well I'd better go key hunting."
+parent = 160
+children = [170]
+
+[[nodes]]
+id = 170
+depth = 7
+kind = "act"
+text = "above"
+parent = 169
+
+[[nodes]]
+id = 171
+depth = 4
+kind = "option"
+text = "And why is this a problem?"
+parent = 115
+children = [172, 173, 174]
+
+[[nodes]]
+id = 172
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "And why is this a problem?"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 5
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "I kept one of the keys. I gave the other two to other people for safe keeping."
+parent = 171
+
+[[nodes]]
+id = 174
+depth = 5
+kind = "act"
+text = "above"
+parent = 171
+
+[[nodes]]
+id = 175
+depth = 3
+kind = "option"
+text = "He's back and unfortunately I've got to deal with him."
+parent = 110
+children = [176, 177, 178, 179, 180]
+
+[[nodes]]
+id = 176
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "He's back and unfortunately I've got to deal with him."
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 4
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "You don't look up to much. I suppose Silverlight may be good enough to carry you through though."
+parent = 175
+
+[[nodes]]
+id = 178
+depth = 4
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "The problem is getting Silverlight."
+parent = 175
+
+[[nodes]]
+id = 179
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You mean you don't have it?"
+parent = 175
+
+[[nodes]]
+id = 180
+depth = 4
+kind = "act"
+text = "above"
+parent = 175
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "option"
+text = "Yes, she is still alive."
+parent = 107
+children = [182, 183, 184, 185, 186]
+
+[[nodes]]
+id = 182
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes she is still alive. She lives right outside the castle!"
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 3
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Oh, is that the same Aris? I would have thought she would have died by now. She was pretty old when I was a lad."
+parent = 181
+
+[[nodes]]
+id = 184
+depth = 3
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Anyway, what can I do for you?"
+parent = 181
+
+[[nodes]]
+id = 185
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I need to find Silverlight."
+parent = 181
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "act"
+text = "above"
+parent = 181
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "So how are you doing with getting the keys?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I haven't found any of them yet."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "Can you remind me where all the keys were again?"
+parent = -1
+children = [190, 191, 192, 193, 194, 196, 198]
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you remind me where all the keys were again?"
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "I kept one of the keys. I gave the other two to other people for safe keeping."
+parent = 189
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "One I gave to Rovin, the captain of the palace guard."
+parent = 189
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "I gave the other to the wizard Traiborn."
+parent = 189
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "option"
+text = "Can you give me your key?"
+parent = 189
+children = [195]
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "act"
+text = "above"
+parent = 194
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "option"
+text = "Where can I find Captain Rovin?"
+parent = 189
+children = [197]
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "act"
+text = "above"
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "option"
+text = "Where does the wizard live?"
+parent = 189
+children = [199]
+
+[[nodes]]
+id = 199
+depth = 3
+kind = "act"
+text = "above"
+parent = 198
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "option"
+text = "I'm still looking."
+parent = -1
+children = [201, 202, 203]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking."
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Ok, tell me when you've got them all."
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "So how are you doing with getting the keys?"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "cond"
+text = "If the player has the key from Captain Rovin:"
+parent = -1
+children = [206, 207]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got the key from Captain Rovin."
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "act"
+text = "(Same options as before.)"
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "cond"
+text = "If the player has the key from Wizard Traiborn:"
+parent = -1
+children = [209, 210]
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got the key from Wizard Traiborn."
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "act"
+text = "(Same options as before).)"
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "cond"
+text = "If the player has the key from the drain:"
+parent = -1
+children = [212, 213]
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got the key which you dropped down the drain."
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "act"
+text = "(Same options as before).)"
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "So how are you doing with getting the keys?"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "cond"
+text = "If the player has keys from Traiborn and Rovin:"
+parent = -1
+children = [216, 217]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got the keys from Wizard Traiborn and Captain Rovin."
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "(Same options as before.)"
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "cond"
+text = "If the player has keys from Rovin and the drain:"
+parent = -1
+children = [219, 220]
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got the key from Captain Rovin and the one that you dropped down the drain."
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "act"
+text = "(Same options as before.)"
+parent = 218
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "cond"
+text = "If the player has keys from Traiborn and the drain:"
+parent = -1
+children = [222, 223]
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got the key from Wizard Traiborn and the one that you dropped down the drain."
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "act"
+text = "(Same options as before.)"
+parent = 221
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "What are you doing up here? Only the palace guards are allowed up here."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "option"
+text = "quest=no|I am one of the palace guards."
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "option"
+text = "quest=no|What about the King?"
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "option"
+text = "Yes I know, but this is important."
+parent = -1
+children = [229, 230, 231, 232]
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I know, but this is important."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Ok, I'm listening. Tell me what's so important."
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 228
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "option"
+text = "There's a demon who wants to invade this city."
+parent = 228
+children = [233, 234, 235, 236, 240]
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "There's a demon who wants to invade the city."
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 3
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Is it a powerful demon?"
+parent = 232
+
+[[nodes]]
+id = 235
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 232
+
+[[nodes]]
+id = 236
+depth = 3
+kind = "option"
+text = "Not really."
+parent = 232
+children = [237, 238, 239]
+
+[[nodes]]
+id = 237
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Not really."
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 4
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Well, I'm sure the palace guards can deal with it, then. Thanks for the information."
+parent = 236
+
+[[nodes]]
+id = 239
+depth = 4
+kind = "act"
+text = "end"
+parent = 236
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "option"
+text = "Yes, very."
+parent = 232
+children = [241, 242, 243, 244, 249]
+
+[[nodes]]
+id = 241
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes, very."
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 4
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "As good as the palace guards are, I don't know if they're up to taking on a very powerful demon."
+parent = 240
+
+[[nodes]]
+id = 243
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 240
+
+[[nodes]]
+id = 244
+depth = 4
+kind = "option"
+text = "Yeah, the palace guards are rubbish!"
+parent = 240
+children = [245, 246, 247, 248]
+
+[[nodes]]
+id = 245
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, the palace guards are rubbish!"
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 5
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Yeah, they're--"
+parent = 244
+
+[[nodes]]
+id = 247
+depth = 5
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Wait! How dare you insult the palace guards? Get out of my sight!"
+parent = 244
+
+[[nodes]]
+id = 248
+depth = 5
+kind = "act"
+text = "end"
+parent = 244
+is_terminal = true
+
+[[nodes]]
+id = 249
+depth = 4
+kind = "option"
+text = "It's not them who are going to fight the demon, it's me."
+parent = 240
+children = [250, 251, 252, 253, 254, 255, 259, 263]
+
+[[nodes]]
+id = 250
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "It's not them who are going to fight the demon, it's me."
+parent = 249
+
+[[nodes]]
+id = 251
+depth = 5
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "What, all by yourself? How are you going to do that?"
+parent = 249
+
+[[nodes]]
+id = 252
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I'm going to use the powerful sword Silverlight, which I believe you have one of the keys for?"
+parent = 249
+
+[[nodes]]
+id = 253
+depth = 5
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Yes, I do. But why should I give it to you?"
+parent = 249
+
+[[nodes]]
+id = 254
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 249
+
+[[nodes]]
+id = 255
+depth = 5
+kind = "option"
+text = "Fortune-teller Aris said I was destined to kill the demon."
+parent = 249
+children = [256, 257, 258]
+
+[[nodes]]
+id = 256
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Fortune-teller Aris said I was destined to kill the demon."
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 6
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "A fortune-teller? Destiny? I don't believe in that stuff. I got where I am today by hard work, not by destiny! Why should I care what that mad old fortune-teller says?"
+parent = 255
+
+[[nodes]]
+id = 258
+depth = 6
+kind = "act"
+text = "other"
+parent = 255
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 5
+kind = "option"
+text = "Otherwise the demon will destroy the city!"
+parent = 249
+children = [260, 261, 262]
+
+[[nodes]]
+id = 260
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Otherwise the demon will destroy the city!"
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 6
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "You can't fool me! How do I know you haven't just made that story up to get my key?"
+parent = 259
+
+[[nodes]]
+id = 262
+depth = 6
+kind = "act"
+text = "other"
+parent = 259
+is_terminal = true
+
+[[nodes]]
+id = 263
+depth = 5
+kind = "option"
+text = "Sir Prysin said you would give me the key."
+parent = 249
+children = [264, 265, 266, 267, 268, 277, 279]
+
+[[nodes]]
+id = 264
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Sir Prysin said you would give me the key."
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 6
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Oh, he did, did he? Well I don't report to Sir Prysin, I report directly to the king!"
+parent = 263
+
+[[nodes]]
+id = 266
+depth = 6
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "I didn't work my way up through the ranks of the palace guards so I could take orders from an ill-bred moron who only has his job because his great- grandfather was a hero with a silly name!"
+parent = 263
+
+[[nodes]]
+id = 267
+depth = 6
+kind = "select"
+text = "Select an Option"
+parent = 263
+
+[[nodes]]
+id = 268
+depth = 6
+kind = "option"
+text = "Why did he give you one of the keys then?"
+parent = 263
+children = [269, 270, 271, 272, 273, 274, 275, 276]
+
+[[nodes]]
+id = 269
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "Why did he give you one of the keys then?"
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 7
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Only because the king ordered him to! The king couldn't get Sir Prysin to part with his precious ancestral sword, but he made him lock it up so he couldn't lose it."
+parent = 268
+
+[[nodes]]
+id = 271
+depth = 7
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "I got one key and I think some wizard got another. Now what happened to the third one?"
+parent = 268
+
+[[nodes]]
+id = 272
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "Sir Prysin dropped it down a drain!"
+parent = 268
+
+[[nodes]]
+id = 273
+depth = 7
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Ha ha ha! The idiot!"
+parent = 268
+
+[[nodes]]
+id = 274
+depth = 7
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Okay, I'll give you the key, just so that it's you that kills the demon and not Sir Prysin!"
+parent = 268
+
+[[nodes]]
+id = 275
+depth = 7
+kind = "box"
+text = "pic=Silverlight key (Captain Rovin) detail.png|Captain Rovin hands you a key."
+parent = 268
+
+[[nodes]]
+id = 276
+depth = 7
+kind = "act"
+text = "end"
+parent = 268
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 6
+kind = "option"
+text = "Aris said I was destined to kill the demon."
+parent = 263
+children = [278]
+
+[[nodes]]
+id = 278
+depth = 7
+kind = "act"
+text = "above"
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 6
+kind = "option"
+text = "Otherwise the demon will destroy the city!"
+parent = 263
+children = [280]
+
+[[nodes]]
+id = 280
+depth = 7
+kind = "act"
+text = "above"
+parent = 279
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "option"
+text = "quest=no|Erm I forgot."
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "option"
+text = "quest=no|The castle has just received its ale delivery."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "What are you doing up here? Only the palace guards are allowed up here."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "option"
+text = "quest=no|I am one of the palace guards."
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "option"
+text = "quest=no|What about the King?"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "option"
+text = "Yes I know, but this is important."
+parent = -1
+children = [288, 289, 290, 291, 301, 302]
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I know, but this is important."
+parent = 287
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Ok, I'm listening. Tell me what's so important."
+parent = 287
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 287
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "option"
+text = "There's a demon who wants to invade this city."
+parent = 287
+children = [292, 293, 294, 295, 298]
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "There's a demon who wants to invade the city."
+parent = 291
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Yes, you said before, haven't you killed it yet?"
+parent = 291
+
+[[nodes]]
+id = 294
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well I'm going to use the powerful sword Silverlight, which I believe you have one of the keys for?"
+parent = 291
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "cond"
+text = "If the player has the key in their inventory:"
+parent = 291
+children = [296, 297]
+
+[[nodes]]
+id = 296
+depth = 4
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "I already gave you my key. Check your pockets."
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 4
+kind = "act"
+text = "end"
+parent = 295
+is_terminal = true
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "cond"
+text = "If the player has the key in their bank:"
+parent = 291
+children = [299, 300]
+
+[[nodes]]
+id = 299
+depth = 4
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "I already gave you my key. Maybe you left it somewhere. Have you checked your bank account?"
+parent = 298
+
+[[nodes]]
+id = 300
+depth = 4
+kind = "act"
+text = "end"
+parent = 298
+is_terminal = true
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "option"
+text = "quest=no|Erm I forgot."
+parent = 287
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "option"
+text = "quest=no|The castle has just received its ale delivery."
+parent = 287
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That must be the key Sir Prysin dropped."
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't seem to be able to reach it. I wonder if I can dislodge it somehow. That way it may go down into the sewers."
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "act"
+text = "(The player hears a clink.)"
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "OK, I think I've washed the key down into the sewer. I'd better go down and get it!"
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "other"
+text = "{{mes|You pour the liquid down the drain.}}"
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "other"
+text = "{{mes|Nothing interesting seems to have been dropped down here today.}}"
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "box"
+text = "pic=Silverlight key (Sir Prysin) detail.png|You pick up an old rusty key."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "option"
+text = "Talk about Demon Slayer."
+parent = -1
+children = [318, 319, 320, 321, 337, 375]
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to get a key given to you by Sir Prysin."
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Sir Prysin? Who's that? What would I want his key for?"
+parent = 317
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 317
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "option"
+text = "He told me you were looking after it for him."
+parent = 317
+children = [322, 323, 324, 325, 335]
+
+[[nodes]]
+id = 322
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "He told me you were looking after it for him."
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "That wasn't very clever of him. I'd lose my head if it wasn't screwed on. Go and tell him to find someone else to look after his valuables in future."
+parent = 321
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 321
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "option"
+text = "Okay, I'll go and tell him that."
+parent = 321
+children = [326, 327, 328, 329, 333]
+
+[[nodes]]
+id = 326
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll go and tell him that."
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 4
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Oh that's great, if it wouldn't be too much trouble."
+parent = 325
+
+[[nodes]]
+id = 328
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 325
+
+[[nodes]]
+id = 329
+depth = 4
+kind = "option"
+text = "Err I'd better be off really."
+parent = 325
+children = [330, 331, 332]
+
+[[nodes]]
+id = 330
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Err I'd better be off really."
+parent = 329
+
+[[nodes]]
+id = 331
+depth = 5
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Oh ok, have a good time, and watch out for sheep! They're more cunning than they look."
+parent = 329
+
+[[nodes]]
+id = 332
+depth = 5
+kind = "act"
+text = "end"
+parent = 329
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 4
+kind = "option"
+text = "Well, have you got any keys knocking around?"
+parent = 325
+children = [334]
+
+[[nodes]]
+id = 334
+depth = 5
+kind = "act"
+text = "below"
+parent = 333
+
+[[nodes]]
+id = 335
+depth = 3
+kind = "option"
+text = "Well, have you got any keys knocking around?"
+parent = 321
+children = [336]
+
+[[nodes]]
+id = 336
+depth = 4
+kind = "act"
+text = "below"
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "option"
+text = "He's one of the King's knights."
+parent = 317
+children = [338, 339, 340, 341, 342, 351]
+
+[[nodes]]
+id = 338
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "He's one of the King's knights."
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Say, I remember one of the King's knights. He had nice shoes..."
+parent = 337
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "...and didn't like my homemade spinach rolls. Would you like a spinach roll?"
+parent = 337
+
+[[nodes]]
+id = 341
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 337
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "option"
+text = "Yes please."
+parent = 337
+children = [343, 344, 345, 346, 347, 349]
+
+[[nodes]]
+id = 343
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes please."
+parent = 342
+
+[[nodes]]
+id = 344
+depth = 4
+kind = "box"
+text = "pic=Spinach roll detail.png|Traiborn digs around in the pockets of his robes. After a few moments he triumphantly presents you with a spinach roll."
+parent = 342
+
+[[nodes]]
+id = 345
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thank you very much."
+parent = 342
+
+[[nodes]]
+id = 346
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 342
+
+[[nodes]]
+id = 347
+depth = 4
+kind = "option"
+text = "Err I'd better be off really."
+parent = 342
+children = [348]
+
+[[nodes]]
+id = 348
+depth = 5
+kind = "act"
+text = "above"
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 4
+kind = "option"
+text = "Well, have you got any keys knocking around?"
+parent = 342
+children = [350]
+
+[[nodes]]
+id = 350
+depth = 5
+kind = "act"
+text = "below"
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 3
+kind = "option"
+text = "Just tell me if you have the key."
+parent = 337
+children = [352, 353, 354, 355, 356, 370]
+
+[[nodes]]
+id = 352
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Just tell me if you have the key."
+parent = 351
+
+[[nodes]]
+id = 353
+depth = 4
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "The key? The key to what?"
+parent = 351
+
+[[nodes]]
+id = 354
+depth = 4
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "There's more than one key in the world don't you know? Would be a bit odd if there was only the one."
+parent = 351
+
+[[nodes]]
+id = 355
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 351
+
+[[nodes]]
+id = 356
+depth = 4
+kind = "option"
+text = "It's the key to get a sword called Silverlight."
+parent = 351
+children = [357, 358, 359, 360, 368]
+
+[[nodes]]
+id = 357
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "It's the key to get a sword called Silverlight."
+parent = 356
+
+[[nodes]]
+id = 358
+depth = 5
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Silverlight? Never heard of that. Sounds a good name for a ship. Are you sure it's not the name of a ship rather than a sword?"
+parent = 356
+
+[[nodes]]
+id = 359
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 356
+
+[[nodes]]
+id = 360
+depth = 5
+kind = "option"
+text = "Yeah, pretty sure."
+parent = 356
+children = [361, 362, 363, 364, 366]
+
+[[nodes]]
+id = 361
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, pretty sure."
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 6
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "That's a pity, waste of a name."
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 6
+kind = "select"
+text = "Select an Option"
+parent = 360
+
+[[nodes]]
+id = 364
+depth = 6
+kind = "option"
+text = "Err I'd better be off really."
+parent = 360
+children = [365]
+
+[[nodes]]
+id = 365
+depth = 7
+kind = "act"
+text = "above"
+parent = 364
+
+[[nodes]]
+id = 366
+depth = 6
+kind = "option"
+text = "Well, have you got any keys knocking around?"
+parent = 360
+children = [367]
+
+[[nodes]]
+id = 367
+depth = 7
+kind = "act"
+text = "below"
+parent = 366
+
+[[nodes]]
+id = 368
+depth = 5
+kind = "option"
+text = "Well, have you got any keys knocking around?"
+parent = 356
+children = [369]
+
+[[nodes]]
+id = 369
+depth = 6
+kind = "act"
+text = "below"
+parent = 368
+
+[[nodes]]
+id = 370
+depth = 4
+kind = "option"
+text = "You've lost it, haven't you?"
+parent = 351
+children = [371, 372, 373, 374]
+
+[[nodes]]
+id = 371
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "You've lost it haven't you?"
+parent = 370
+
+[[nodes]]
+id = 372
+depth = 5
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Me? Lose things? That's a nasty accusation."
+parent = 370
+
+[[nodes]]
+id = 373
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well, have you got any keys knocking around?"
+parent = 370
+
+[[nodes]]
+id = 374
+depth = 5
+kind = "act"
+text = "continues"
+parent = 370
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "option"
+text = "Well, have you got any keys knocking around?"
+parent = 317
+children = [376, 377, 378, 379, 380, 381, 382, 383, 387]
+
+[[nodes]]
+id = 376
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, have you got any keys knocking around?"
+parent = 375
+
+[[nodes]]
+id = 377
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Now you come to mention it, yes I do have a key. It's in my special closet of valuable stuff. Now how do I get into that?"
+parent = 375
+
+[[nodes]]
+id = 378
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "I sealed it using one of my magic rituals. So it would make sense that another ritual would open it again."
+parent = 375
+
+[[nodes]]
+id = 379
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So do you know what ritual to use?"
+parent = 375
+
+[[nodes]]
+id = 380
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Let me think a second."
+parent = 375
+
+[[nodes]]
+id = 381
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Yes a simple drazier style ritual should suffice. Hmm, main problem with that is I'll need 25 sets of bones. Now where am I going to get hold of something like that?"
+parent = 375
+
+[[nodes]]
+id = 382
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 375
+
+[[nodes]]
+id = 383
+depth = 3
+kind = "option"
+text = "Hmm, that's too bad. I really need that key."
+parent = 375
+children = [384, 385, 386]
+
+[[nodes]]
+id = 384
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, that's too bad. I really need that key."
+parent = 383
+
+[[nodes]]
+id = 385
+depth = 4
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ah well, sorry I couldn't be any more help."
+parent = 383
+
+[[nodes]]
+id = 386
+depth = 4
+kind = "act"
+text = "end"
+parent = 383
+is_terminal = true
+
+[[nodes]]
+id = 387
+depth = 3
+kind = "option"
+text = "I'll get the bones for you."
+parent = 375
+children = [388, 389, 390, 391]
+
+[[nodes]]
+id = 388
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'll help get the bones for you."
+parent = 387
+
+[[nodes]]
+id = 389
+depth = 4
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ooh that would be very good of you."
+parent = 387
+
+[[nodes]]
+id = 390
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll speak to you when I've got some bones."
+parent = 387
+
+[[nodes]]
+id = 391
+depth = 4
+kind = "act"
+text = "end"
+parent = 387
+is_terminal = true
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "option"
+text = "quest=no|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "option"
+text = "Talk about Demon Slayer."
+parent = -1
+children = [396, 397, 398, 399]
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "How are you doing finding bones?"
+parent = 395
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't got any at the moment."
+parent = 395
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Nevermind, keep working on it."
+parent = 395
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "act"
+text = "end"
+parent = 395
+is_terminal = true
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "option"
+text = "quest=no|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "option"
+text = "Talk about Demon Slayer."
+parent = -1
+children = [404, 405, 406, 407, 408, 409, 410, 411]
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "How are you doing finding bones?"
+parent = 403
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some bones."
+parent = 403
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Give 'em here then."
+parent = 403
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "box"
+text = "You give Traiborn [X] set of bones."
+parent = 403
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's all of them."
+parent = 403
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "I still need [25-X] more."
+parent = 403
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll keep looking."
+parent = 403
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "act"
+text = "end"
+parent = 403
+is_terminal = true
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "option"
+text = "quest=no|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "option"
+text = "Talk about Demon Slayer."
+parent = -1
+children = [416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426]
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "How are you doing finding bones?"
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some bones."
+parent = 415
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Give 'em here then."
+parent = 415
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "box"
+text = "You give Traiborn [X] sets of bones."
+parent = 415
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Hurrah! That's all 25 sets of bones."
+parent = 415
+
+[[nodes]]
+id = 421
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Wings of dark and colour too, Spreading in the morning dew; Locked away I have a key; Return it now, please, unto me."
+parent = 415
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "act"
+text = "(A weird-looking wardrobe pops out from the ground.)"
+parent = 415
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "box"
+text = "pic=Silverlight key (Wizard Traiborn) detail.png|Traiborn hands you a key."
+parent = 415
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you very much."
+parent = 415
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Not a problem for a friend of Sir What's-his-face."
+parent = 415
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "act"
+text = "end"
+parent = 415
+is_terminal = true
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "option"
+text = "quest=no|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "option"
+text = "Talk about Demon Slayer."
+parent = -1
+children = [431, 432, 433]
+
+[[nodes]]
+id = 431
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Don't you have somewhere to be, young thingummywut? You still have that key you asked me for."
+parent = 430
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're right. I've got a demon to slay."
+parent = 430
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "act"
+text = "end"
+parent = 430
+is_terminal = true
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "option"
+text = "Talk about Demon Slayer."
+parent = -1
+children = [438, 439, 440, 441]
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = 437
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the key you gave to me."
+parent = 437
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Yes I know, it was returned to me. If you want it back you're going to have to collect another 25 sets of bones."
+parent = 437
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "act"
+text = "end"
+parent = 437
+is_terminal = true
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "option"
+text = "quest=no|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "So how are you doing with getting the keys?"
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got all three keys!"
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Excellent! Now I can give you Silverlight."
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "other"
+text = "{{qact|Sir Prysin walks to the sword case, unlocks it and hands the player Silverlight. If the door is closed the player will teleport inside. The sword shines in the player's hands.}}"
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "box"
+text = "pic=Silverlight detail.png|Sir Prysin hands you a very shiny sword."
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "That sword belonged to my great-grandfather. Make sure you treat it with respect!"
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Now go kill that demon!"
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Aris"
+text = "How goes the quest?"
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found Sir Prysin. Unfortunately I haven't got the sword yet. He's made it complicated for me."
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "speaker"
+speaker = "Aris"
+text = "Ok, hurry, we haven't much time."
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "option"
+text = "What is the magical incantation?"
+parent = -1
+children = [455]
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "act"
+text = "above"
+parent = 454
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "option"
+text = "Well I'd better press on with it."
+parent = -1
+children = [457, 458, 459]
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I'd better press on with it."
+parent = 456
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "See you anon."
+parent = 456
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "act"
+text = "end"
+parent = 456
+is_terminal = true
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Have you sorted that demon out yet?"
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "cond"
+text = "If the player has Silverlight:"
+parent = -1
+children = [462, 463, 464]
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = 461
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Well get on with it. He'll be pretty powerful when he gets to full strength."
+parent = 461
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "act"
+text = "end"
+parent = 461
+is_terminal = true
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "cond"
+text = "If the player does not have Silverlight:"
+parent = -1
+children = [466, 467, 468]
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet. And I, um, lost Silverlight."
+parent = 465
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Yes, I know, someone returned it to me. Take better care of it this time. {{^|With full inventory it drops to the ground.}}"
+parent = 465
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "act"
+text = "end"
+parent = 465
+is_terminal = true
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "speaker"
+speaker = "Aris"
+text = "How goes the quest?"
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have the sword now. I just need to kill the demon, I think."
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "speaker"
+speaker = "Aris"
+text = "Yep, that's right."
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "option"
+text = "What is the magical incantation?"
+parent = -1
+children = [474]
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "act"
+text = "above"
+parent = 473
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "option"
+text = "Well I'd better press on with it{{sic|No full stop."
+parent = -1
+children = [476]
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "act"
+text = "above"
+parent = 475
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "option"
+text = "Where can I find the demon?"
+parent = -1
+children = [478, 479, 480]
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find the demon?"
+parent = 477
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Aris"
+text = "Just head south and you should find the stone circle just outside the city gate."
+parent = 477
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "act"
+text = "end"
+parent = 477
+is_terminal = true
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "other"
+text = "{{Qact|The player enters the stone circle south of Varrock with Silverlight.}}"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "Arise, O mighty Delrith! Bring destruction to this soft, weak city!"
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "speaker"
+speaker = "Dark wizards"
+text = "Arise, Delrith!"
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "box"
+text = "The wizards cast an evil spell..."
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "Ha ha ha! At last you are free, my demonic brother! Rest now, and then have your revenge on this pitiful city!"
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "speaker"
+speaker = "Dark wizard"
+text = "Who's that?"
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "Noo! Not Silverlight! Delrith is not ready yet!"
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "I've got to get out of here..."
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "other"
+text = "{{mes|I'd better wield Silverlight first.}}"
+parent = -1
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "other"
+text = "{{Qact|Delrith is weakened and no longer attacking.}}"
+parent = -1
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now what was that incantation again?"
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "act"
+text = "The following five words in the order from earlier on."
+parent = -1
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[word 1]..."
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[word 2]..."
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[word 3]..."
+parent = -1
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[word 4]..."
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[word 5]!"
+parent = -1
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "act"
+text = "If the player incorrectly selects the five words:"
+parent = -1
+children = [501, 502]
+
+[[nodes]]
+id = 501
+depth = 2
+kind = "box"
+text = "The vortex collapses. That was the wrong incantation."
+parent = 500
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "other"
+text = "{{Qact|Delrith heals to full Hitpoints and continues fighting}}"
+parent = 500
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "act"
+text = "If the player correctly selects the five words:"
+parent = -1
+children = [504, 505, 506, 507, 508]
+
+[[nodes]]
+id = 504
+depth = 2
+kind = "box"
+text = "Delrith is sucked into the vortex..."
+parent = 503
+
+[[nodes]]
+id = 505
+depth = 2
+kind = "box"
+text = "...back into the dark dimension from which he came."
+parent = 503
+
+[[nodes]]
+id = 506
+depth = 2
+kind = "other"
+text = "{{mes|You scurry away from the enraged dark wizards having defeated the demon.}}"
+parent = 503
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "other"
+text = "{{Qact|Delrith is sucked into a portal, saving the entire world.}}"
+parent = 503
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "other"
+text = "{{Qact|Quest Complete!}}"
+parent = 503

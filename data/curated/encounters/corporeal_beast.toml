@@ -1,0 +1,119 @@
+# Corporeal Beast — God Wars-adjacent solo/group boss. Tests: stomp
+# positional AoE, magic attack variants, hp-leech "dark core" helper,
+# weapon-class damage gate (corpbane).
+
+name = "Corporeal Beast"
+slug = "corporeal_beast"
+npc_ids = [319]
+source_pages = ["Corporeal Beast", "Corporeal Beast/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Melee Swipe"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 33
+warning_ticks = 0
+# Protect from Melee → full block.
+
+[[attacks]]
+name = "Magic Regular"
+style = "magic"
+max_hit = 65
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Drain-Heal"
+style = "magic"
+max_hit = 55
+warning_ticks = 2
+# Wiki: "has a chance to drain Magic or Prayer by 1 or 2. The stat
+# drain effect only takes place upon a successful hit. The boss is
+# healed by half of the damage dealt, rounded down."
+on_hit.drain_one_of = ["magic", "prayer"]
+on_hit.drain_range = [1, 2]
+on_hit.heal_boss_pct_of_damage = 50
+
+[[attacks]]
+name = "Magic AoE Split"
+style = "magic"
+max_hit = 40                      # main projectile on-target
+warning_ticks = 2
+# Splits into 6 sub-projectiles. Main hits 40 on-target / 30 adjacent.
+# Each sub hits 30 on-target / 20 adjacent. All dodgeable.
+splits_into.count = 6
+splits_into.per_proj_max_on = 30
+splits_into.per_proj_max_adj = 20
+main_max_adj = 30
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Swipe", "Magic Regular",
+                   "Magic Drain-Heal", "Magic AoE Split"]
+# Adjacent: 40% melee, 60% magic split evenly across 3 magic attacks.
+# Non-adjacent: 100% magic (1/3 each of the three magic variants).
+adjacency_style_weights = { melee = 4, magic = 6 }
+non_adjacent_style_weights = { magic = 10 }
+# Partial magic protection: Protect from Magic reduces damage by 1/3.
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Stomp"
+primitive = "positional_aoe"
+# Wiki: "If the player steps under the Corporeal Beast, it may
+# perform a stomp attack that will always deal 30–51 damage. This
+# attack is on a timer that checks if any players are under the
+# Corporeal Beast every 7 ticks. Cannot be negated with protection
+# prayers."
+period_ticks = 7
+params.trigger_condition = "player_under_boss"
+params.damage_min = 30
+params.damage_max = 51
+params.prayer_ignorable = true
+
+[[mechanics]]
+name = "Dark Energy Core"
+primitive = "spawn_leech_npc"
+# Randomly spawns during the fight. Leeches HP from adjacent players
+# to heal Corp. Jumps to players if none are adjacent. Weakened by
+# poison.
+period_ticks = 40                 # approximate spawn cadence
+params.npc_name = "Dark energy core"
+params.leech_per_tick = 1
+params.heals_boss_with_leeched = true
+params.poison_weak = true
+
+[[mechanics]]
+name = "Empty-Room Regen"
+primitive = "regen_when_no_player"
+# Corp rapidly regenerates if no players in the room.
+params.heal_per_tick = 10
+params.trigger = "no_players_in_room"
+
+# ---- Damage modifiers -------------------------------------------------
+# "The Corporeal Beast has a 50% damage reduction against any weapon
+# that is not a Corpbane weapon on stab attack style."
+[[damage_modifiers]]
+condition = "weapon_not_corpbane_stab"
+damage_scale = 0.5
+
+# ---- Protections -------------------------------------------------------
+[[protections]]
+attack = "Magic Regular"
+player_prayer = "protect_from_magic"
+damage_scale = 0.67               # 33% reduction, not full block
+
+[[protections]]
+attack = "Magic Drain-Heal"
+player_prayer = "protect_from_magic"
+damage_scale = 0.67
+
+[[protections]]
+attack = "Magic AoE Split"
+player_prayer = "protect_from_magic"
+damage_scale = 0.67

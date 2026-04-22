@@ -1,0 +1,56 @@
+name = "Hespori"
+source_pages = ["Hespori", "Hespori/Strategies"]
+npc_ids = [8583]
+
+[sections]
+"= Mechanics =" = """
+[[File:Fighting Hespori.png|left|thumb|220px|A player battles the Hespori.]]
+[[File:Hespori dead.png|left|thumb|220px|A defeated Hespori.]]
+The Hespori is surrounded by four [[Flower|flower buds]] that keep it invulnerable while it attacks the player. These buds open three times during the fight: on initiation of the fight, when the Hespori has 66%, and  when the Hespori has 33% health remaining. Each bud has 10 hitpoints but will die in one hit from any weapon.
+
+The Hespori has a ranged attack, a magic attack, and a special attack:
+
+'''Ranged Attack''':
+
+Throws green spores that hit twice with a max hit of 8+8 (reduced to 2+2 with [[Protect from Missiles]]'')''.
+
+'''Magic Attack:''' 
+
+A green wave with a max hit of 14 (reduced to 3 with [[Protect from Magic]]).
+
+'''Special Attack''': 
+
+{{mes|color=red|Hespori entangles you in some vines!}} will appear in the chatbox when the Hespori uses this special attack, with roots immobilizing the player preventing movement and attacks. After 6 seconds (10 ticks) the player will take 40+ damage unless they break free early by clicking repeatedly on either a new tile or the Hespori, or by using a [[Transformation rings|Transformation Ring]]. As you click, {{mes|You feel the vines loosen slightly as you try to move.}} will appear in the chatbox and after the 5th such message, clicking again will prevent the special attack and allow the player to move and attack again.
+"""
+
+"==Special seeds==" = """
+{{DropsTableHead}}
+{{DropsLine|name=Teak seed|quantity=2-5|rarity=4/80}}
+{{DropsLine|name=Mahogany seed|quantity=1-3|rarity=3/80}}
+{{DropsLine|name=Cactus seed|quantity=4-14|rarity=2/80}}
+{{DropsLine|name=Potato cactus seed|quantity=4-14|rarity=2/80}}
+{{DropsLine|name=Celastrus seed|quantity=1|rarity=2/80}}
+{{DropsLine|name=Spirit seed|quantity=1|rarity=1/80|gemw=No}}
+{{DropsLine|name=Redwood tree seed|quantity=1|rarity=1/80}}
+{{DropsTableBottom}}
+"""
+
+"Mechanics" = """
+The Hespori is benign until the player attacks it. You can enter the cave, drink potions and enable prayers before starting the fight.
+
+The Hespori is surrounded by four [[Flower|flower buds]] that keep it invulnerable while it attacks the player. These buds open three times during the fight, on initiation of the fight and again when the Hespori has 66% and 33% health remaining. Each bud has 10 hitpoints but will die in one hit from any weapon.
+
+The Hespori has a ranged attack, a magic attack, and a special attack:
+
+'''Ranged Attack''':
+
+Throws green spores that hit twice with a max hit of 8+8 (reduced to 2+2 with [[Protect from Missiles]]'')''.
+
+'''Magic Attack:''' 
+
+A green wave with a max hit of 14 (reduced to 3 with [[Protect from Magic]]).
+
+'''Special Attack''': 
+
+{{mes|color=red|Hespori entangles you in some vines!}} will appear in the chatbox when the Hespori uses this special attack, with roots immobilizing the player preventing movement and attacks. After 6 seconds (10 ticks) the player will take 40+ damage unless they break free early by clicking repeatedly on either a new tile or the Hespori, or by using a [[Transformation rings|Transformation Ring]]. As you click {{mes|You feel the vines loosen slightly as you try to move.}} will appear in the chatbox and after the 5th such message, clicking again will prevent the special attack and allow the player to move and attack again.
+"""

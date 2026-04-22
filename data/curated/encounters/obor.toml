@@ -1,0 +1,49 @@
+# Obor, the Hill Titan — F2P boss, Edgeville dungeon.
+# Minimum-schema test case: no phases, no specials, just a big melee
+# NPC with a ranged-damage-reduction quirk.
+
+name = "Obor"
+slug = "obor"
+npc_ids = [7416]
+source_pages = ["Obor"]
+
+[stats_override]
+# Wiki: hp=120, combat=106, max_hit=21 (melee). Left to NDEF unless
+# we discover mismatch.
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Melee"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 21
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged"
+style = "ranged"
+max_hit = 21
+warning_ticks = 2
+# Wiki: "ranged attack deals 50% less damage when Protect from
+# Missiles is used." Partial-immunity pattern (not full-block).
+# Use the same mechanism as KQ's overhead prayers.
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee", "Ranged"]
+# Single phase; style weights even between melee and ranged by
+# default. Style choice driven by range-to-player (adjacent = melee
+# bias, far = ranged bias).
+
+# ---- Protections -------------------------------------------------------
+# Protect from Melee: full block (standard player protection).
+# Protect from Missiles: 50% damage reduction on Ranged only (not
+# full block).
+[[protections]]
+attack = "Ranged"
+player_prayer = "protect_from_missiles"
+damage_scale = 0.50

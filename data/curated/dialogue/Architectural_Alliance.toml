@@ -1,0 +1,1238 @@
+title = "Transcript:Architectural Alliance"
+npcs = ["Hosa", "Arcis", "Piliar", "Lovada", "Shayda"]
+node_count = 155
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What happened to the statue?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "There was an awful storm, worst we've ever seen. The combination of cold and wind as well as its great age just... well... you only have to look around to find pieces."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Looks like you're planning on rebuilding it?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "I was, but I can't do it alone. Architects from all five cities have been working on individual projects to improve the roads around the kingdom,"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "but now we're done and I hoped that they might come to help with the statue."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "option"
+text = "Can I help?"
+parent = -1
+children = [6, 7, 8, 9, 10, 15]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I help?"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Hosa"
+text = "Would you? The others... they refuse to talk to me."
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure. I assume that each city in Kourend will have an architect?"
+parent = 5
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Hosa"
+text = "Yes indeed. If you could call together the architects from all five cities to co-operate on this statue - that will be something that has never happened before..."
+parent = 5
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "cond"
+text = "If the player does not have 100% Hosidius favour:"
+parent = 5
+children = [11, 12, 13, 14]
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Hosa"
+text = "Sadly you are not favoured by the citizens of Hosidius. When you are, come back to me and I'll help."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But you're organising this thing."
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Hosa"
+text = "That's all very well, but I would lose face with my people if I were to actively assist someone who was not favoured."
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "end"
+parent = 10
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "cond"
+text = "If the player has 100% Hosidius favour:"
+parent = 5
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "end"
+parent = 15
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "Oh, that's a shame."
+parent = -1
+children = [18, 19]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, that's a shame."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How are we doing on the statue?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "Until we have architects skilled in all areas of the statue, we cannot proceed."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I guess I have to go find some more architects then!"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "You'll find them all at home, in their respective cities."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "cond"
+text = "If the player does not have 100% Hosidius favour:"
+parent = -1
+children = [25, 26, 27]
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help?"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Hosa"
+text = "Sadly you are not favoured by the citizens of Hosidius. When you are, come back to me and I'll help too."
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "act"
+text = "end"
+parent = 24
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "cond"
+text = "If the player has 100% Hosidius favour:"
+parent = -1
+children = [29]
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "act"
+text = "end"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you an architect?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "I am."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You are not favoured by the people of Arceuus. Now, if you don't mind, I have things to think about."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you an architect?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "Why yes I am. How can I help you?"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wondered if you might be able to lend a hand with rebuilding a statue."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "Possibly. What might this statue be?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "King Rada I!"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "Of course I will help you. You are referring of course to the statue that was destroyed in the storm. How large were you thinking?"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Very big."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "Hmm if it's really big, then my skills are limited to feet, legs and robes on big statues."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's ok, I can find someone else to work on the other bits. See you at the site!"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "I am preparing. I will be there shortly."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you an architect?"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "Oh hello there, you've come to the right place."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wondered if you might have some time to help...?"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "I am sorry but the people of Port Piscarilius does not favour you currently. I have to get back to my duties."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I'm looking for an architect?"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "I am indeed, fastest builder in Kourend and a dab hand at sculpture. How can I help?"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wondered if you would be interested in helping to build a statue."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "Maybe. What of?"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "An enormous statue of King Rada I in the centre of Kourend."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "Oh really? Who was he then?"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He was your founding ruler! Surely you know your history?"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "Of course I do, just pulling your leg. Sounds like a great idea, though I am only good at doing arms and hands on big statues - is that of use?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes it is, I can find someone else to work on the other bits. See you at the site!"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "Yes, yes, I'm on my way, just collecting my things! I'll be there shortly."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi!"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for an architect?"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "What? Who're you? What do you want?"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wondered if you might have some time to help...?"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Can't be doin' with that. Yer not favoured in my city. Go away."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi!"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for an architect?"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Ay? What's that you say?"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "ARE YOU AN ARCHITECT?"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "No need to shout. I'm a well respected architect you know."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wondered if you would be interested in helping to build a statue."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Maybe. What's it of?"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "King Rada I."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "What? A larder that's burst? That's absurd!"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "KING RADA I!"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "All right, all right, no need to shout, I'm not deaf."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "King Rada you say? My grandad met him."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um, really? That was an awful long time ago."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Hmm... Might have been my great grandad..."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The statue... do you want to help?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "What's that? Oh, yes, of course. But if it's big, I'm really only good at the main body bit, most like a house you see."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's huge, and in the centre of Kourend."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Well then I'm your dwarf."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I need to find someone else to work on the other bits. See you at the site!"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi!"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Yes, yes, I'm on my way, give my old bones a chance! I'll be there shortly."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for an architect?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "Oh hello there, I'm an architect."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wondered if you might have some time to help...?"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "So sorry but the people of Shayzien do not favour you currently. Please leave."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you an architect?"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "Yes [sir/ma'am]."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ah good, I wondered if you would be interested in helping to build a statue."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "Of course [sir/ma'am]. What kind of statue?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "An enormous statue of King Rada I in the centre of Kourend."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "Well! How extraordinary! I'm definitely in, but only really good at doing armour and weapons on big statues - is that of use?"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It is indeed, I can find someone else to work on the other bits. See you at the site!"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "Yes, yes, I'm on my way, just collecting my things! I'll be there shortly."
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We're all here, let's get started on this statue!"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "other"
+text = "{{qact|Cutscene plays.}}"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you all for agreeing to help me in this endeavour."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "You earned the favour of my people and I think it's right that we honour the founding of our city in this way, that is why I am here."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "I agree wholeheartedly."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "{{overhead|Same here.}}"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "{{overhead|Let us commence our work.}}"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "{{overhead|Yep, let's begin.}}"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "{{overhead|Indeed we shall.}}"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "{{overhead|Yes, let's bash some rock.}}"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "other"
+text = "{{qact|The architects all walk towards the statue.}}"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "All"
+text = "{{overhead|Ready!}}"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "other"
+text = "{{qact|The architects all throw rocks at the statue and by some miracle, they finish building the statue. The cutscene then ends.}}"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "Thanks for helping us all get together to finally build this statue! I've got something for you..."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh yes! I love rewards, what have you got for me?"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "box"
+text = "pic=Antique lamp (Architectural Alliance) detail.png|Hosa hands you an antique lamp!"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "I've had this lamp for a while, but it'll serve you more good than it does for me."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Truly awesome!"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "Isn't it just!"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I seem to have lost that antique lamp you gave me, have you got another one?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "box"
+text = "pic=Antique lamp (Architectural Alliance) detail.png|Hosa hands you an antique lamp!"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Hosa"
+text = "Here you go!"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Magnificent!"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Arcis"
+text = "Truly a testament to a great King. Thank you for the opportunity to contribute."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Truly awesome sight!"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Piliar"
+text = "Indeed, rather proud of it myself, look at those fingernails."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How moving it looks!"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Move it? Not now it's built!"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I meant... oh it doesn't matter..."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Lovada"
+text = "Aye, lovely statue isn't it."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Utterly amazing! So much better than I imagined."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Shayda"
+text = "Isn't it just? I'm so proud at what we have pulled together to create."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

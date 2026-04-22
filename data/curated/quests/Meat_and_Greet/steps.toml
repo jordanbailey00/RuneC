@@ -1,0 +1,88 @@
+quest = "Meat and Greet"
+step_count = 5
+
+[[steps]]
+index = 0
+name = "Starting off"
+links = ["Emelio", "Outer Fortis", "Civitas illa Fortis", "kebab", "Varlamore", "Spice Merchant", "bazaar", "Alba", "Ortus Farm"]
+text = """
+[[File:Emelio chathead.png|left|frameless]]
+Make your way to [[Emelio]]'s house in [[Outer Fortis]], just outside the south-eastern entrance to [[Civitas illa Fortis]]. Alternatively use Fairy ring {{fairycode|AJP}}.
+
+Recognising you as an "easterner," Emelio will enlist your help in a business venture involving something called a kabit.
+[[File:Meat and Greet - spice box PIN.png|thumb|150px|The PIN pad for the spice box.]]
+After you inform him that what he's speaking about is in fact called a [[kebab]], Emelio will share his goal of introducing the kebab to [[Varlamore]] by opening up a shop. However, he'll mention that the spices and meat he ordered have not been delivered yet, and will ask you to speak to the [[Spice Merchant|spice merchant]] in the [[bazaar]] and [[Alba]] at [[Ortus Farm]] to see what the delay is.
+"""
+
+[[steps]]
+index = 1
+name = "Supply chain issues"
+links = ["Civitas illa Fortis", "Ali Morrisane", "Ortus Farm", "Alba", "dire wolves", "Wolf Den", "Dire Wolf Alpha", "melee"]
+text = """
+Head west into [[Civitas illa Fortis]], to the bazaar, and speak to the spice merchant in the south-eastern corner of the market. Ask her about the missing delivery, and she'll tell you the spices arrived that morning; however, [[Ali Morrisane]], her "reputable" supplier, sent them in a locked box. Offer to help her open the box, which is a four-digit PIN. Based on the brightness of the keypads, the order of the numbers is '''2546'''. Press the {{Mes|→|colour=white|size=14pt|bg=grey}} key to open the box, and she will send the delivery to Emelio.
+
+Next, head further west to the [[Ortus Farm]], and speak to [[Alba]] inside the building. She will tell you the order was delayed due to a pack of wolves causing issues for the farm. You will offer to deal with it, and she'll tell you that their den is directly west of the farm. Run all the way westwards until you see a pack of [[dire wolves]], and enter the [[Wolf Den]] to face the level 113 [[Dire Wolf Alpha]]. ('''Warning''': the Wolf Den requires confirmation to exit - if overwhelmed, lower-level players may get stuck inside.) 
+[[File:Meat and Greet - Dire Wolf Alpha safespot.png|thumb|360x360px|The safespot used to fight the alpha wolf.]]
+The alpha dire wolf uses a strong [[melee]] attack, and can summon dire wolves that accurately attack with ranged. However, the alpha will only summon wolves if the player is within melee distance. Players can use a safespot to safely kill the alpha by quickly moving behind the stalagmites north of the cave exit at the start of the fight.
+
+Return to Alba to inform her the problem has been dealt with. She'll tell you that the meat was delivered during your time away, so head to Emelio's house to check in.
+"""
+
+[[steps]]
+index = 2
+name = "The golden ratio"
+links = ["Vincens", "Renata", "Lucas", "test kebab", "Fortis Colosseum"]
+text = """
+[[File:Vincens chathead.png|left|frameless]]
+Return to Emelio's to find he has gathered three "connoisseurs" from the nearby pub, and given them the individual ingredients to try. He will ask that you find the perfect ratio for the kebab. Talk to [[Vincens]], [[Renata]], and [[Lucas]] for their opinions on the ingredients:
+{| class="wikitable"
+|+Connoisseur comments
+!Connoisseur
+!Ideal ratio
+!Formula
+!Conclusion
+|-
+|Vincens
+|As much sauce as spice and salad combined
+|S<sub>1</sub> = S<sub>2</sub> + S<sub>3</sub>
+|Sauce must be '''3 portions'''
+|-
+| rowspan="2" |Renata
+| rowspan="2" |Less spice than there is salad
+| rowspan="2" |S<sub>2</sub> < S<sub>3</sub>
+|Spice must be '''1 portions'''
+|-
+|Salad must be '''2 portions'''
+|-
+|Lucas
+|Twice as much meat as there is salad
+|M = 2*S<sub>3</sub>
+|Meat must be '''4 portions'''
+|}
+Speak to Emelio, and give him above portion amounts. Once you confirm the amounts are correct, tell him it is perfect and he will give you a [[test kebab]] that the "connoisseurs" can try out. Give it to any one of the three, who will say it's brilliant and amazing. Speak to Emelio once more, and he will move on to the next phase of his plan: marketing the kebabs at the [[Fortis Colosseum]].
+"""
+
+[[steps]]
+index = 3
+name = "Guerilla marketing"
+links = ["Lelia", "Colosseum Announcer", "Minotaur (Meat and Greet)"]
+text = """
+[[File:Lelia chathead.png|left|frameless]]
+Emelio will give you another two test kebabs to bring to [[Lelia]], located in the southern room of the lobby area of the Colosseum. Though initially skeptical, she will change her mind upon tasting the kebab, and will mention a free advertising spot that opened up for the next contest. She will suggests you head in, eat one of the kebabs, and fight a young minotaur as part of your advertising act. Prepare for an encounter with a level 193 enemy.[[File:Meat and Greet - fighting minotaur.png|thumb|300px|Fighting the young minotaur.]]
+Lelia will ask if you are prepared before sending you in. Once you accept the fight, you will be brought into the arena, as the [[Colosseum Announcer]] advertises Emelio's kebab. You eat the kebab as instructed, but the [[Minotaur (Meat and Greet)|young minotaur]] will mistakenly believe you ate minotaur meat rather than buffalo, and will attack you in anger. If you die or leave the arena during the fight, you can speak to Lelia to re-enter.
+"""
+
+[[steps]]
+index = 4
+name = "= The fight ="
+links = ["Protect from Magic", "Varlamorian kebab"]
+text = """
+The minotaur attacks with melee, can move at running speed, can path around the pillars, and is immune to binds and poison. It is weak to slash attacks. Protect from Melee will block all of its primary damage, but it can also use two special attacks:
+* When it shouts {{overhead|Moo!}}, it will launch a '''magic''' attack. To block, switch to [[Protect from Magic]] until after the attack hits you, then switch back to Protect from Melee.
+* When it shouts {{overhead|Moooooo!}}, it will attack 1 tick faster. Keep Protect from Melee on during this time.
+* Between 50-100% health, it will attack with melee three times and magic on the fourth. Below 50%, it will attack with melee two times and magic on the third. This rotation means it is possible to prayer flick the minotaur without taking any damage.
+
+Once the minotaur is defeated, Lelia will be satisfied, and will tell you to return to Emelio and inform him of the good impression the kebabs made on the crowd. Return to Emelio, who will give you a premium discount on any [[Varlamorian kebab]]s you buy.
+
+'''Congratulations, quest complete!'''
+"""

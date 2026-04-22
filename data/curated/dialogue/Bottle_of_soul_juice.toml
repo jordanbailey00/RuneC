@@ -1,0 +1,264 @@
+title = "Transcript:Bottle of soul juice"
+npcs = ["Death (NPC)"]
+node_count = 34
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "box"
+text = "You take a second look at the expiry date on this drink. It looks like it will be extremely potent and dangerous. Are you REALLY sure you want to drink this?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Are you REALLY sure you want to drink this?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "other"
+text = "{{mes|You drink the bottle of soul juice.}}"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "box"
+text = "Something taps you on the shoulder. You feel the presence of Death."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "What do you think you are doing?"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Death? I'm just charting the sea!"
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "How does that involve desecrating souls?"
+parent = 2
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just enjoying a drink!"
+parent = 2
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "That was a trapped soul, you fool."
+parent = 2
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I thought it was just some sort of marketing nonsense!"
+parent = 2
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "Well it wasn't. Hold still whilst I extract your unfortunate victim."
+parent = 2
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "box"
+text = "You feel a painful shiver in your spine."
+parent = 2
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "It is done. Do not be so careless again, or I shall not be so forgiving."
+parent = 2
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm so sorry!"
+parent = 2
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [17]
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "box"
+text = "You take a second look at the expiry date on this drink. It looks like it will be extremely potent and dangerous. Are you REALLY sure you want to drink this?"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "select"
+text = "Are you REALLY sure you want to drink this?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "Player does [[Vengeance]] animation and takes 90% of their maximum hitpoints in damage."
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "box"
+text = "Something grips you hard on the shoulder. You shiver in agony."
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "Did you forget our last little chat?."
+parent = 20
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not at all! This isn't another real soul is it?"
+parent = 20
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "box"
+text = "You feel death nod inside your head."
+parent = 20
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "Let me extract this poor soul."
+parent = 20
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "box"
+text = "You feel a painful shiver in your spine."
+parent = 20
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "It is done. Consider this pain next time you uncork any bottle. Do not let me have to talk to you a third time."
+parent = 20
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be more careful, I promise!"
+parent = 20
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Death"
+text = "Hmph."
+parent = 20
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "end"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [33]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "act"
+text = "end"
+parent = 32
+is_terminal = true

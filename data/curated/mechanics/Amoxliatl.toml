@@ -1,0 +1,29 @@
+name = "Amoxliatl"
+source_pages = ["Amoxliatl", "Amoxliatl/Strategies"]
+npc_ids = [13685]
+
+[sections]
+"Fight overview" = """
+Amoxliatl uses three different attacks. Her standard magic attack summons ice spikes on the player's current tile and around the arena. [[Protect from Magic]] will protect against the initial attack, but the ice spikes additionally deal typeless damage. Finally, an icy pool will be left on the tile where the player was originally standing on that will deal 6-10 damage per tick. 
+
+After every 2-4 standard attacks, Amoxliatl will use one of two special attacks; which one she chooses initially is random, but will alternate between the two afterward.
+* '''Unstable Ice''' - 1-4 blocks of [[unstable ice]] are launched near the player, indicated by the game message {{mes|Amoxliatl forms some unstable ice blocks around you.|colour=#00e6e6}}. If not destroyed within 15 ticks (9 seconds), all remaining ice blocks will shatter, causing icy pools to form within 3x3 of where they were, and healing the boss (16-25) for each block shattered. The unstable ice blocks can only be destroyed with melee, and melee attacks against them will result in a max hit with an attack speed of 1. After destroying an ice block, the player may eat a piece of food without incurring the normal attack delay, should they need to heal.
+** It is possible to hit Amoxliatl and unstable ice with the same swing of a [[Scythe of vitur|scythe of Vitur]], capitalising on the increased attack speed to do extra damage to the boss while also not incurring additional delay for the first regular attack after the final ice block is destroyed.
+* '''Icicle Crash''': Amoxliatl will first disable all the player's active prayers before launching an icicle attack directly toward the player, dealing up to 34 damage (which can be negated by reactivating Protect from Magic). This attack is indicated by the game message {{mes|Amoxliatl disables your prayers and launches an icicle attack!|colour=#ff3045}}
+
+A good tip for the fight is to run to any two tiles from wherever they are standing after Amoxliatl begins her standard attack to drag her forward, then attack her again to stand on a new non-icy tile.
+
+<gallery mode="packed" heights="300" style="text-align:left">
+Amoxliatl - stepping back movement.mp4|The player steps two tiles back to drag Amoxliatl and resume attacking on a non-icy tile.
+Amoxliatl - unstable ice.mp4|Melee weapons will instantly destroy unstable ice blocks without an attack cooldown.
+</gallery>
+"""
+
+"Prayer info" = """
+{{Prayer info
+|name = Amoxliatl
+|level = 40
+|xp = 104
+|type = spectral
+}}
+"""

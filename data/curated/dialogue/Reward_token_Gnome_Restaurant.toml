@@ -1,0 +1,137 @@
+title = "Transcript:Reward token (Gnome Restaurant)"
+npcs = ["Mounted terrorchick gnome"]
+node_count = 18
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "box"
+text = "You can use this token to order gnome food to deliver. You can currently order [X] items."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "other"
+text = "{{Mes|You have made your order, please be patient while the gnome finds you.}}"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "cond"
+text = "If there is no valid location for the gnome to spawn for 60 seconds:"
+parent = -1
+children = [4, 5]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "other"
+text = "{{mes|Your food order has timed out. Make sure you're somewhere it can be delivered!}}"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "end"
+parent = 3
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "cond"
+text = "Otherwise:"
+parent = -1
+children = [7, 8, 9, 12, 14, 17]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "A [[mounted terrorchick gnome]] appears after a few seconds and approaches the player."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "other"
+text = "'''Mounted terrorchick gnome''': {{overhead|Delivery for [player name]!!!}}"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "cond"
+text = "After a few seconds, one of the following:"
+parent = 6
+children = [10, 11]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "other"
+text = "'''Mounted terrorchick gnome''': {{overhead|Aluft Aloft delivery for [player name]!!!}}"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "other"
+text = "'''Mounted terrorchick gnome''': {{overhead|Make Way!{{sic|\"Way\" should not be capitalised.}} Package for [player name]!!!}}"
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "cond"
+text = "If the gnome can't see the player:"
+parent = 6
+children = [13]
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "other"
+text = "'''Mounted terrorchick gnome''': {{overhead|Hey, [player name], I can't get to you!}}"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "cond"
+text = "Upon reaching the player:"
+parent = 6
+children = [15, 16]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "other"
+text = "'''Mounted terrorchick gnome''': {{overhead|Here you go [player name], your food delivery - still warm!}}"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "Gnome food is placed into the player's inventory."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true

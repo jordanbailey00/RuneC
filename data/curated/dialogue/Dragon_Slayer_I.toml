@@ -1,0 +1,5066 @@
+title = "Transcript:Dragon Slayer I"
+npcs = ["Guildmaster", "Oziach", "Melzar the Mad", "Oracle", "General Bentnoze", "Wormbrain", "Klarense", "Cabin Boy Jenkins", "Ahab", "Jack Seagull", "Longbow Ben", "Seaman Lorris", "Seaman Thresnor", "Captain Tobias", "Trader Stan", "Ned", "Duke Horacio"]
+node_count = 648
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "What is this place?"
+parent = -1
+children = [3, 4, 5]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is this place?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "This is the Champions' Guild. Only adventurers who have proved themselves worthy by gaining influence from quests are allowed in here."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "Can I have a quest?"
+parent = -1
+children = [7, 8, 9, 10, 12, 13, 18]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have a quest?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Aha!"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Yes! A mighty and perilous quest fit only for the most powerful champions! And, at the end of it, you will earn the right to wear the legendary rune platebody!"
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "cond"
+text = "If the player does not have 45 combat or 33 Magic:"
+parent = 6
+children = [11]
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "box"
+text = "Before starting this quest, be aware that your combat level is lower than the recommended level of 45. One or more of your skill levels are also lower than recommended."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "select"
+text = "Start the Dragon Slayer I quest?"
+parent = 6
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 6
+children = [14, 15, 16, 17]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So, what is this quest?"
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Guildmaster"
+text = "You'll have to speak to Oziach, the maker of rune armour. He sets the quests that champions must complete in order to wear it."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Oziach lives in a hut, by the cliffs to the west of Edgeville. He can be a little...odd...sometimes, though."
+parent = 13
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "option"
+text = "No."
+parent = 6
+children = [19, 20]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I'll give it a miss."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "quest=No|What is this place?"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "option"
+text = "Can I have a quest?"
+parent = -1
+children = [25, 26, 27, 28, 29, 30]
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have a quest?"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "You're already on a quest for me, if I recall correctly. Have you talked to Oziach yet?"
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = 24
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Well, he's the only one who can grant you the right to wear rune platemail. He lives in a hut, by the cliffs west of Edgeville."
+parent = 24
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll go and talk to him."
+parent = 24
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "act"
+text = "end"
+parent = 24
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Oziach"
+text = "Aye, 'tis a fair day my friend."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "Can you sell me a rune platebody?"
+parent = -1
+children = [34, 35, 36, 37, 62]
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you sell me a rune platebody?"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Oziach"
+text = "So, how does thee know I 'ave some?"
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 33
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "The Guildmaster of the Champions' Guild told me."
+parent = 33
+children = [38, 39, 40, 41, 42, 58]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The Guildmaster of the Champions' Guild told me."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Oziach"
+text = "Yes, I suppose he would, wouldn't he? He's always sending you fancy-pants 'heroes' up to bother me. Telling me I'll give them a quest or sommat like that."
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Oziach"
+text = "Well, I'm not going to let just anyone wear my rune platemail. It's only for heroes. So, leave me alone."
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 37
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "option"
+text = "I thought you were going to give me a quest."
+parent = 37
+children = [43, 44, 45, 46, 47, 48, 54]
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I thought you were going to give me a quest."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Oziach"
+text = "*Sigh*"
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "speaker"
+speaker = "Oziach"
+text = "All right, I'll give ye a quest. I'll let ye wear my rune platemail if ye..."
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "speaker"
+speaker = "Oziach"
+text = "Slay the dragon of Crandor!"
+parent = 42
+
+[[nodes]]
+id = 47
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 42
+
+[[nodes]]
+id = 48
+depth = 4
+kind = "option"
+text = "A dragon, that sounds like fun."
+parent = 42
+children = [49, 50, 51, 52, 53]
+
+[[nodes]]
+id = 49
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "A dragon, that sounds like fun!"
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 5
+kind = "speaker"
+speaker = "Oziach"
+text = "Hah, yes, you are a typical reckless adventurer, aren't you? Now go kill the dragon and get out of my face."
+parent = 48
+
+[[nodes]]
+id = 51
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "But how can I defeat the dragon?"
+parent = 48
+
+[[nodes]]
+id = 52
+depth = 5
+kind = "speaker"
+speaker = "Oziach"
+text = "Go talk to the Guildmaster in the Champions' Guild. He'll help ye out if yer so keen on doing a quest. I'm not going to be handholding any adventurers."
+parent = 48
+
+[[nodes]]
+id = 53
+depth = 5
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "option"
+text = "I may be a champion, but I don't think I'm up to dragon-killing yet."
+parent = 42
+children = [55, 56, 57]
+
+[[nodes]]
+id = 55
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I may be a champion, but I don't think I'm up to dragon-killing yet."
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 5
+kind = "speaker"
+speaker = "Oziach"
+text = "Yes, I can understand that. Yer a coward."
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 5
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "option"
+text = "That's a pity, I'm not a hero."
+parent = 37
+children = [59, 60, 61]
+
+[[nodes]]
+id = 59
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "That's a pity, I'm not a hero."
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "speaker"
+speaker = "Oziach"
+text = "Aye, I ken tell!"
+parent = 58
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "act"
+text = "end"
+parent = 58
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "option"
+text = "I am a master detective."
+parent = 33
+children = [63, 64, 65, 66, 68]
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I am a master detective."
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Oziach"
+text = "Well, however you found out about it, I'm not going to let just anyone wear my rune platemail. It's only for heroes. So leave me alone."
+parent = 62
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 62
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "option"
+text = "I thought you were going to give me a quest."
+parent = 62
+children = [67]
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "act"
+text = "above"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "option"
+text = "That's a pity, I'm not a hero."
+parent = 62
+children = [69]
+
+[[nodes]]
+id = 69
+depth = 4
+kind = "act"
+text = "above"
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "option"
+text = "quest=No|I'm not your friend."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "quest=No|Yes, it's a very nice day."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Oziach"
+text = "Have ye slayed that dragon yet?"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... no."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Oziach"
+text = "Be off with ye then."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "option"
+text = "quest=No|What is this place?"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "option"
+text = "I talked to Oziach..."
+parent = -1
+children = [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 120, 128, 132, 134]
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I talked to Oziach and he gave me a quest."
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Oh? What did he tell you to do?"
+parent = 79
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Defeat the dragon of Crandor."
+parent = 79
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "The dragon of Crandor?"
+parent = 79
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um, yes..."
+parent = 79
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Goodness, he hasn't given you an easy job, has he?"
+parent = 79
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's so special about this dragon?"
+parent = 79
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Thirty years ago, Crandor was a thriving community with a great tradition of mages and adventurers. Many Crandorians even earned the right to be part of the Champions' Guild!"
+parent = 79
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "One of their adventurers went too far, however. He descended into the volcano in the centre of Crandor and woke the dragon Elvarg."
+parent = 79
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "He must have fought valiantly against the dragon because they say that, to this day, she has a scar down her side,"
+parent = 79
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "but the dragon still won the fight. She emerged and laid waste to the whole of Crandor with her fire breath!"
+parent = 79
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Some refugees managed to escape in fishing boats. They landed on the coast, north of Rimmington, and set up camp but the dragon followed them and burned the camp to the ground."
+parent = 79
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Out of all the people of Crandor there were only three survivors: a trio of wizards who used magic to escape. Their names were Thalzar, Lozar and Melzar."
+parent = 79
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "If you're serious about taking on Elvarg, first you'll need to get to Crandor, and to my knowledge, the only way to do that is by sea."
+parent = 79
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I just sail over there? Seems easy enough."
+parent = 79
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "If only that were true. The island is surrounded by dangerous underwater reefs. You'll need a map to guide you through them and a ship capable of doing so."
+parent = 79
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "And then of course there's the dragon herself. Once you reach Crandor, you'll need some kind of protection against her breath."
+parent = 79
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 79
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "option"
+text = "Where can I find a map to Crandor?"
+parent = 79
+children = [99, 100, 101, 102, 103, 110, 115]
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find a map to Crandor?"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "speaker"
+speaker = "Guildmaster"
+text = "After what happened, people were afraid of enraging the dragon. Most maps to the island were destroyed, but I have heard that one survived. It was held by Melzar, Thalzar and Lozar."
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "speaker"
+speaker = "Guildmaster"
+text = "However, the three apparently split the map into three pieces, which each of them taking one piece."
+parent = 98
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 98
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "option"
+text = "Where is Melzar's map piece?"
+parent = 98
+children = [104, 105, 106, 107, 108, 109]
+
+[[nodes]]
+id = 104
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where is Melzar's map piece?"
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Melzar built a castle on the site of the Crandorian refugee camp, north of Rimmington. He's locked himself in there and no one's seen him for years."
+parent = 103
+
+[[nodes]]
+id = 106
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "The inside of his castle is like a maze, and is populated by undead monsters. Maybe, if you could get all the way through the maze, you could find his piece of the map."
+parent = 103
+
+[[nodes]]
+id = 107
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Adventurers sometimes go in there to prove themselves, so I can give you this key to Melzar's Maze."
+parent = 103
+
+[[nodes]]
+id = 108
+depth = 4
+kind = "box"
+text = "pic=Maze key detail.png|The Guildmaster hands you a key."
+parent = 103
+
+[[nodes]]
+id = 109
+depth = 4
+kind = "act"
+text = "other"
+parent = 103
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "option"
+text = "Where is Thalzar's map piece?"
+parent = 98
+children = [111, 112, 113, 114]
+
+[[nodes]]
+id = 111
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where is Thalzar's map piece?"
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Thalzar was the most paranoid of the three wizards. He hid his map piece and took the secret of its location to his grave."
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "I don't think you'd be able to find out where it is by ordinary means. You'll need to talk to the Oracle on Ice Mountain."
+parent = 110
+
+[[nodes]]
+id = 114
+depth = 4
+kind = "act"
+text = "other"
+parent = 110
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "option"
+text = "Where is Lozar's map piece?"
+parent = 98
+children = [116, 117, 118, 119]
+
+[[nodes]]
+id = 116
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where is Lozar's map piece?"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "A few weeks ago, I'd have told you to speak to Lozar herself, in her house across the river from Lumbridge."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Unfortunately, goblin raiders killed her and stole everything. One of the goblins from the Goblin Village probably has the map piece now."
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 4
+kind = "act"
+text = "other"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "option"
+text = "What kind of ship do I need?"
+parent = 79
+children = [121, 122, 123, 124, 127]
+
+[[nodes]]
+id = 121
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What kind of ship do I need?"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 3
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Quite a specific one I'm afraid. Even with a map, very few ships will be able to navigate the reefs around the island. You're going to need one of Crandorian design."
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "speaker"
+speaker = "Guildmaster"
+text = "If there's still one in existence, it's probably in Port Sarim. However, a ship will also need a captain, and I'm not sure where you'd find one willing to sail to Crandor!"
+parent = 120
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "cond"
+text = "If the player has completed [[Pandemonium]]:"
+parent = 120
+children = [125, 126]
+
+[[nodes]]
+id = 125
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Could I not just captain it myself? I have some experience in that area."
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 4
+kind = "speaker"
+speaker = "Guildmaster"
+text = "I suppose you could, but given you have a dragon to be dealing with, I'd suggest getting someone else to worry about the captaining for you."
+parent = 124
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "act"
+text = "other"
+parent = 120
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "option"
+text = "How can I protect myself from the dragon's breath?"
+parent = 79
+children = [129, 130, 131]
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How can I protect myself from the dragon's breath?"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 3
+kind = "speaker"
+speaker = "Guildmaster"
+text = "That part shouldn't be too difficult, actually. I believe the Duke of Lumbridge has a special shield in his armoury that is enchanted against dragon's breath."
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "act"
+text = "other"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "option"
+text = "What's so special about this dragon?"
+parent = 79
+children = [133]
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "act"
+text = "above"
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "option"
+text = "Okay, I'll get going!"
+parent = 79
+children = [135, 136]
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll get going!"
+parent = 134
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "act"
+text = "end"
+parent = 134
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "What is this place?"
+parent = -1
+children = [140]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "above"
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "About my quest to kill the dragon..."
+parent = -1
+children = [142, 143, 144, 145, 146, 147, 148, 150, 152, 154, 156]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About my quest to kill the dragon..."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "If you're serious about taking on Elvarg, first you'll need to get to Crandor, and to my knowledge, the only way to do that is by sea."
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I just sail over there? Seems easy enough."
+parent = 141
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "If only that were true. The island is surrounded by dangerous underwater reefs. You'll need a map to guide you through them and a ship capable of doing so."
+parent = 141
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "And then of course there's the dragon herself. Once you reach Crandor, you'll need some kind of protection against her breath."
+parent = 141
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 141
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "option"
+text = "Where can I find a map to Crandor?"
+parent = 141
+children = [149]
+
+[[nodes]]
+id = 149
+depth = 3
+kind = "act"
+text = "above"
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "option"
+text = "What kind of ship do I need?"
+parent = 141
+children = [151]
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "act"
+text = "above"
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "option"
+text = "How can I protect myself from the dragon's breath?"
+parent = 141
+children = [153]
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "act"
+text = "above"
+parent = 152
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "option"
+text = "What's so special about this dragon?"
+parent = 141
+children = [155]
+
+[[nodes]]
+id = 155
+depth = 3
+kind = "act"
+text = "above"
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "option"
+text = "Okay, I'll get going!"
+parent = 141
+children = [157]
+
+[[nodes]]
+id = 157
+depth = 3
+kind = "act"
+text = "above"
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "cond"
+text = "On the ground floor:"
+parent = -1
+children = [159, 160]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "box"
+text = "The wardrobe is full of heaps of dead rats!"
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "act"
+text = "end"
+parent = 158
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "cond"
+text = "On the first floor:"
+parent = -1
+children = [162, 163]
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "box"
+text = "The wardrobe is full of scorched and broken objects: clothes, tools, and children's toys. Each is labelled with a scrawled number. You don't see anything of value or use."
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "act"
+text = "end"
+parent = 161
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "cond"
+text = "On the second floor:"
+parent = -1
+children = [165, 166]
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "box"
+text = "The wardrobe is full of heaps of bones and incomplete skeletons, each one labelled with a number."
+parent = 164
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "act"
+text = "end"
+parent = 164
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "box"
+text = "These books are full of scrawled notes. You open one at a random page..."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "act"
+text = "One excerpt from [[Transcript:Melzar's notes|Melzar's notes]] is displayed."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "other"
+text = "{{mes|The key disintegrates as it unlocks the door.}}"
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [172]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Melzar the Mad"
+text = "{{overhead|By the power of custard!}}"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [174]
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Melzar the Mad"
+text = "{{overhead|Feel the wrath of my feet!}}"
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [176]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Melzar the Mad"
+text = "{{overhead|Let me drink my tea in peace.}}"
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [178]
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Melzar the Mad"
+text = "{{overhead|Leave me alone, I need to feed my pet rock.}}"
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "box"
+text = "pic=Map part (Melzar) detail.png|You find a map piece in the chest."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "box"
+text = "pic=Map part (Melzar) detail.png|This is a piece of map that you found in Melzar's Maze. You will need to join it to the other two map pieces before you can see the route to Crandor."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "option"
+text = "I seek a piece of the map to the island of Crandor."
+parent = -1
+children = [185, 186, 187, 188]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek a piece of the map to the island of Crandor."
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Oracle"
+text = "The map's behind a door below, but entering is rather tough. This is what you need to know: You must use the following stuff."
+parent = 184
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Oracle"
+text = "First, a drink used by a mage. Next, some worm string, changed to sheet. Then, a small crustacean cage. Last, a bowl that's not seen heat."
+parent = 184
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "act"
+text = "end"
+parent = 184
+is_terminal = true
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "quest=No|Can you impart your wise knowledge to me, O Oracle?"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "other"
+text = "{{mes|You put the silk into the opening in the door.}}"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "other"
+text = "{{mes|You put the Lobster{{sic}} pot into the opening in the door.}}"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "other"
+text = "{{mes|You put the unfired bowl into the opening in the door.}}"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "other"
+text = "{{mes|You pour the Wizard's Mind Bomb into the opening in the door.}}"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "other"
+text = "{{mes|The door opens...}}"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "box"
+text = "As you open the chest, you notice an inscription on the lid:"
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "box"
+text = """
+Here I rest the map to my beloved home. To whoever finds it, I beg of you, let it be. I was honour-bound not to destroy the map piece, but I have used all my magical skill to keep it from being recovered.
+"""
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "box"
+text = """
+This map leads to the lair of the beast that destroyed my home, devoured my family, and burned to a cinder all that I love. But revenge would not benefit me now, and to disturb this beast is to risk bringing its wrath down upon another land.
+"""
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "box"
+text = "I cannot stop you from taking this map piece now, but think on this: if you can slay the Dragon of Crandor, you are a greater hero than my land ever produced. There is no shame in backing out now."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "box"
+text = "pic=Map part (Thalzar) detail.png|You find a map piece in the chest."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "box"
+text = """
+pic=Map part (Thalzar) detail.png|This is a piece of map that you found in a secret chest in the Dwarven Mine. You will need to join it to the other two map pieces before you can see the route to Crandor.
+"""
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "I've heard that one of your number has got hold of part of a map."
+parent = -1
+children = [205, 206, 207, 208, 209]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've heard that one of your number has got hold of part of a map."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Aha, that'd be Wormbrain."
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where would he be?"
+parent = 204
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Wormbrain steals too much. He got caught. Now he lives in Port Sarim town jail."
+parent = 204
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "option"
+text = "quest=No|So how is life for the goblins?"
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Whut you want?"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "option"
+text = "I believe you've got a piece of map that I need."
+parent = -1
+children = [214, 215, 216, 217, 221, 225, 244]
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I believe you've got piece of a map that I need."
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Wormbrain"
+text = "So? Why should I be giving it to you? What you do for Wormbrain?"
+parent = 213
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 213
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "option"
+text = "I'm not going to do anything for you. Forget it."
+parent = 213
+children = [218, 219, 220]
+
+[[nodes]]
+id = 218
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm not going to do anything for you. Forget it."
+parent = 217
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Be dat way then."
+parent = 217
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "act"
+text = "end"
+parent = 217
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "option"
+text = "I'll let you live. I could just kill you."
+parent = 213
+children = [222, 223, 224]
+
+[[nodes]]
+id = 222
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll let you live. I could just kill you."
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Ha! Me in here and you out dere. You not get map piece."
+parent = 221
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "act"
+text = "other"
+parent = 221
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "option"
+text = "I suppose I could pay you for the map piece..."
+parent = 213
+children = [226, 227, 228, 229, 233]
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I suppose I could pay you for the map piece. Say, 500 coins?"
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Me not stoopid, it worth at least 10,000 coins!"
+parent = 225
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 225
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "option"
+text = "You must be joking! Forget it."
+parent = 225
+children = [230, 231, 232]
+
+[[nodes]]
+id = 230
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You must be joking! Forget it."
+parent = 229
+
+[[nodes]]
+id = 231
+depth = 4
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Fine, you not get map piece."
+parent = 229
+
+[[nodes]]
+id = 232
+depth = 4
+kind = "act"
+text = "end"
+parent = 229
+is_terminal = true
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "option"
+text = "Alright then, 10,000 it is."
+parent = 225
+children = [234, 239]
+
+[[nodes]]
+id = 234
+depth = 4
+kind = "cond"
+text = "If the player does not have enough coins:"
+parent = 233
+children = [235, 236, 237, 238]
+
+[[nodes]]
+id = 235
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Alright then, 10,000 coins it is."
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Oops, I don't have enough on me."
+parent = 234
+
+[[nodes]]
+id = 237
+depth = 5
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Comes back when you has enough."
+parent = 234
+
+[[nodes]]
+id = 238
+depth = 5
+kind = "act"
+text = "end"
+parent = 234
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 4
+kind = "cond"
+text = "If the player has enough coins:"
+parent = 233
+children = [240, 241, 242, 243]
+
+[[nodes]]
+id = 240
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Alright then, 10,000 coins it is."
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 5
+kind = "box"
+text = "pic=Map part (Lozar) detail.png|You buy the map piece from Wormbrain."
+parent = 239
+
+[[nodes]]
+id = 242
+depth = 5
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Fank you very much! Now me can bribe da guards, hehehe."
+parent = 239
+
+[[nodes]]
+id = 243
+depth = 5
+kind = "act"
+text = "end"
+parent = 239
+is_terminal = true
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "option"
+text = "Where did you get the map piece from?"
+parent = 213
+children = [245, 246, 247, 248, 249, 250, 251, 252]
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where did you get the map piece from?"
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "We rob house of stupid wizard. She very old, not put up much fight at all. Hahaha!"
+parent = 244
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Uh... Hahaha."
+parent = 244
+
+[[nodes]]
+id = 248
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Her house full of pictures of a city on island and old pictures of people. Me not recognise island."
+parent = 244
+
+[[nodes]]
+id = 249
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Me find map piece. Me not know what it is, but it in locked box so me figure it important."
+parent = 244
+
+[[nodes]]
+id = 250
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "But, by the time me get box open, other goblins gone. Then me not run fast enough and guards catch me."
+parent = 244
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "speaker"
+speaker = "Wormbrain"
+text = "But now you want map piece so must be special! What you do for me to get it?"
+parent = 244
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "act"
+text = "other"
+parent = 244
+is_terminal = true
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "option"
+text = "What are you in for?"
+parent = -1
+children = [254, 255, 256, 257, 258, 259, 260]
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you in for?"
+parent = 253
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Me not sure. Me pick some stuff up and take it away."
+parent = 253
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, did the stuff belong to you?"
+parent = 253
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Umm...no."
+parent = 253
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, that would be why then."
+parent = 253
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Wormbrain"
+text = "Oh, right."
+parent = 253
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "act"
+text = "end"
+parent = 253
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "Sorry, thought this was a zoo."
+parent = -1
+children = [262, 263]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, thought this was a zoo."
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "act"
+text = "end"
+parent = 261
+is_terminal = true
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Wormbrain"
+text = "{{overhead|Ow!}}"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "other"
+text = "{{mes|Wormbrain drops a map piece on the floor.}}"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "other"
+text = "{{mes|You have already taken Wormbrain's map piece. There is no use in beating him up further.}}"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "other"
+text = "{{mes|You have just beaten Wormbrain up. Give the poor goblin a break.}}"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "box"
+text = "pic=Map part (Lozar) detail.png|This is a piece of map that you got from Wormbrain, the goblin thief. You will need to join it to the other two map pieces before you can see the route to Crandor."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "other"
+text = "{{mes|You still need one more piece of map.}}"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "box"
+text = "pic=Crandor map detail.png|You put the three pieces together and assemble a map that shows the route through the reefs to Crandor."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "Hey, stay off my ship! That's private property!"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "Hello there! Interested in buying this fine ship? I'm sure I can offer her to you for a much better price than any of those shipwrights ask for!"
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A much better price? What's the catch?"
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "Well, she's not quite seaworthy right now..."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not seaworthy? Why would I want to buy her then?"
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "Because this isn't just any ship! This is the Lady Lumbridge, one of the last Crandorian ships! Despite her size, she's one of the most agile ship{{sic|Should be \"ships\"}} around!"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Except she's not seaworthy..."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "No, but a bit of work will quickly sort that out!"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "option"
+text = "I'd like to buy her."
+parent = -1
+children = [283, 284, 285, 286, 287, 296]
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like to buy her."
+parent = 282
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "speaker"
+speaker = "Klarense"
+text = "Of course! I'm sure the work needed to do on it wouldn't be too expensive."
+parent = 282
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Klarense"
+text = "How does 2,000 gold sound? I'll even throw in my cabin boy, Jenkins, for free! He'll swab the decks and splice the mainsails for you!"
+parent = 282
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 282
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "option"
+text = "Yep, sounds good."
+parent = 282
+children = [288, 292]
+
+[[nodes]]
+id = 288
+depth = 3
+kind = "cond"
+text = "If the player does not have enough coins:"
+parent = 287
+children = [289, 290, 291]
+
+[[nodes]]
+id = 289
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yep, sounds good."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "...except I don't have that kind of money on me..."
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 4
+kind = "act"
+text = "end"
+parent = 288
+is_terminal = true
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "cond"
+text = "If the player has enough coins:"
+parent = 287
+children = [293, 294, 295]
+
+[[nodes]]
+id = 293
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yep, sounds good."
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 4
+kind = "speaker"
+speaker = "Klarense"
+text = "Okey-dokey! She's all yours!"
+parent = 292
+
+[[nodes]]
+id = 295
+depth = 4
+kind = "act"
+text = "end"
+parent = 292
+is_terminal = true
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "option"
+text = "I'm not paying that much for a broken boat!"
+parent = 282
+children = [297, 298, 299]
+
+[[nodes]]
+id = 297
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm not paying that much for a broken boat!"
+parent = 296
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "That's fair enough, I suppose."
+parent = 296
+
+[[nodes]]
+id = 299
+depth = 3
+kind = "act"
+text = "end"
+parent = 296
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "option"
+text = "Why is she damaged?"
+parent = -1
+children = [301, 302, 303]
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why is she damaged?"
+parent = 300
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Klarense"
+text = """
+Oh, there was no particular accident, just years of wear and tear. It's been a long time since Crandor was destroyed and she's had several owners since then. Unfortunately, not all of them looked after her.
+"""
+parent = 300
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "act"
+text = "other"
+parent = 300
+is_terminal = true
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "option"
+text = "I think I'll pass."
+parent = -1
+children = [305, 306]
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll pass."
+parent = 304
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "act"
+text = "end"
+parent = 304
+is_terminal = true
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "Hello, captain! Here to inspect your new ship? Just a little work and she'll be seaworthy again."
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "option"
+text = "So, what needs fixing on the ship?"
+parent = -1
+children = [310, 314]
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "cond"
+text = "If the player has not fixed the ship:"
+parent = 309
+children = [311, 312, 313]
+
+[[nodes]]
+id = 311
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So, what needs fixing on this ship?"
+parent = 310
+
+[[nodes]]
+id = 312
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "Well, the big gaping hole in the hold is the problem. You'll need a few wooden planks hammered in with steel nails to fix it."
+parent = 310
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "act"
+text = "other"
+parent = 310
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "cond"
+text = "If the player has fixed the ship:"
+parent = 309
+children = [315, 316, 317, 318]
+
+[[nodes]]
+id = 315
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "I dunno. It looks fine to me."
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But you said it needed fix-"
+parent = 314
+
+[[nodes]]
+id = 317
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "Yes, but that was before you fixed it!"
+parent = 314
+
+[[nodes]]
+id = 318
+depth = 3
+kind = "act"
+text = "other"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "option"
+text = "Would you sail this ship to Crandor for me?"
+parent = -1
+children = [320, 321, 322, 323, 329]
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So would you like to sail this ship to Crandor for me?"
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Klarense"
+text = "Crandor? You're joking, right?"
+parent = 319
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 319
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "option"
+text = "Yes. Ha ha ha!"
+parent = 319
+children = [324, 325, 326, 327, 328]
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes. Ha ha ha!"
+parent = 323
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "Crandor's not something we sailors joke about. You can't sail from here to Catherby, or Entrana, or Ardougne without going past that accursed island."
+parent = 323
+
+[[nodes]]
+id = 326
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "You can't get close to it because of the reefs, but you can always see it."
+parent = 323
+
+[[nodes]]
+id = 327
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "Sometimes you can see a dark shape in the sky, circling the island. That's when you have to sail on as quick as you can and pray it's not hungry. Every year, more ships are lost to that dragon."
+parent = 323
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "act"
+text = "other"
+parent = 323
+is_terminal = true
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "option"
+text = "No. I want to go to Crandor."
+parent = 319
+children = [330, 331, 332, 333, 334]
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No. I want to go to Crandor."
+parent = 329
+
+[[nodes]]
+id = 331
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "Then you must be crazy."
+parent = 329
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "That island is surrounded by reefs that would rip this ship to shreds. Even if you found a map, you'd need an experienced captain to stand a chance of getting through"
+parent = 329
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "speaker"
+speaker = "Klarense"
+text = "and, even if I could get to it, there's no way I'm going any closer to that dragon than I have to. They say it can destroy whole ships with one bite."
+parent = 329
+
+[[nodes]]
+id = 334
+depth = 3
+kind = "act"
+text = "other"
+parent = 329
+is_terminal = true
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "option"
+text = "What are you going to do now you don't have a ship?"
+parent = -1
+children = [336, 337, 338]
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you going to do now you don't have a ship?"
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Klarense"
+text = "Oh, I'll be fine. I've got work as Port Sarim's first lifeguard!"
+parent = 335
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "act"
+text = "other"
+parent = 335
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "option"
+text = "Can I board the ship now?"
+parent = -1
+children = [340, 341, 342]
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I board the ship now?"
+parent = 339
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "speaker"
+speaker = "Klarense"
+text = "Sure thing, she's all yours."
+parent = 339
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "act"
+text = "end"
+parent = 339
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Ahoy! What d'ye think of yer ship then?"
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "option"
+text = "I'm ready to go back to shore."
+parent = -1
+children = [346, 347, 348]
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm ready to go back on shore."
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "box"
+text = "You disembark from the ship."
+parent = 345
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "act"
+text = "end"
+parent = 345
+is_terminal = true
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "option"
+text = "I'd like to inspect her some more."
+parent = -1
+children = [350, 351, 352]
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like to inspect her some more."
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Aye."
+parent = 349
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "act"
+text = "end"
+parent = 349
+is_terminal = true
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "option"
+text = "Can you sail this ship to Crandor?"
+parent = -1
+children = [354, 355, 356, 357, 358, 359, 360]
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you sail this ship to Crandor?"
+parent = 353
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Not me, sir! I'm just an 'umble cabin boy. You'll need a proper cap'n."
+parent = 353
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find a captain?"
+parent = 353
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "The cap'ns round 'ere seem to be a mite scared of Crandor. I ask 'em why and they just say it was afore my time,"
+parent = 353
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "but there is one cap'n I reckon might 'elp. I 'eard there's a retired 'un who lives in Draynor Village who's so desperate to sail again 'e'd take any job."
+parent = 353
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "I can't remember 'is name, but 'e lives in Draynor Village an' makes rope."
+parent = 353
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "act"
+text = "end"
+parent = 353
+is_terminal = true
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "cond"
+text = "If the player does not have any planks:"
+parent = -1
+children = [362]
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "box"
+text = "You'll need to use wooden planks on this hole to patch it up."
+parent = 361
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "cond"
+text = "If the player has planks but does not have any steel nails:"
+parent = -1
+children = [364]
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "box"
+text = "You need 30 steel nails to attach the plank with."
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "cond"
+text = "If the player has planks and nails but does not have a hammer:"
+parent = -1
+children = [366]
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "box"
+text = "You need a hammer to force the nails in with."
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "box"
+text = "You nail a plank over the hole, but you still need more planks to close the hole completely."
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "box"
+text = "You nail a plank over the hole, but you still need one more plank to close the hole completely."
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "box"
+text = "You nail a final plank over the hole. You have successfully patched the hole in the ship."
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Ahab"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "option"
+text = "quest=No|Arrr!"
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "option"
+text = "Can you help me get to Crandor Island?"
+parent = -1
+children = [375, 376, 377, 378, 379, 380, 381]
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me get to Crandor Island?"
+parent = 374
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Arrr, matey, ye canna be serious! That be the home of Elvarg the Dragon!"
+parent = 374
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, that's right. I 've got to go there and kill the dragon for this quest I'm doing."
+parent = 374
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "I canna help ye. And right sorry I be to see a fine young [laddie/lassie/'un] like yerself go off to yer doom."
+parent = 374
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, but I'll be fine!"
+parent = 374
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "speaker"
+speaker = "Ahab"
+text = "Arrr..."
+parent = 374
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "act"
+text = "end"
+parent = 374
+is_terminal = true
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "option"
+text = "quest=No|Are you going to sit there all day?"
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "option"
+text = "quest=No|Do you want to trade?"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "option"
+text = "quest=No|Have you got any quests I could do?"
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "option"
+text = "quest=No|What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "option"
+text = "Can you help me get to Crandor Island?"
+parent = -1
+children = [389, 390, 391, 392, 393, 394, 395, 396, 397, 398]
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me get to Crandor Island?"
+parent = 388
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Crandor Island, ye say?"
+parent = 388
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Arrr, keep yeself away from that accursed place if ye values yer skin!"
+parent = 388
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So that's a 'No', then?"
+parent = 388
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Aye, that it be."
+parent = 388
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anyone who would take me there?"
+parent = 388
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "No, I don't know many idiots. Except for young Ben there."
+parent = 388
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Arrr, get away with ye, ye scurvy scallywag!"
+parent = 388
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks anyway."
+parent = 388
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "act"
+text = "end"
+parent = 388
+is_terminal = true
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "option"
+text = "quest=No|Have you got any quests I could do?"
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "option"
+text = "quest=No|Why are you called Longbow Ben?"
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "option"
+text = "Can you help me get to Crandor Island?"
+parent = -1
+children = [404, 405, 406, 407, 408, 409, 410, 411, 412]
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me get to Crandor Island?"
+parent = 403
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Arrr, ye may be wanting to go to Crandor Island now, but if ye gets there, ye'll be a-wantin' to get off it again quickly enough!"
+parent = 403
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So that's a 'No', then?"
+parent = 403
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "[Aye, laddie/Aye, lassie/Aye], that it is."
+parent = 403
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anyone who would take me there?"
+parent = 403
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "There's only one sailor alive daft enough to go there. Old Ned, the ropemaker in Draynor Village. I can't think of any other fools just now. Except for old Jack Seagull there."
+parent = 403
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Arrr, who are ye calling old?"
+parent = 403
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks anyway."
+parent = 403
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "act"
+text = "end"
+parent = 403
+is_terminal = true
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Seaman Lorris"
+text = "Hello there. Do you want to go on a trip to Karamja? We can take you to Musa Point for only 30 coins."
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "option"
+text = "I'd rather go to Crandor."
+parent = -1
+children = [416, 417, 418]
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd rather go to Crandor."
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Seaman Lorris/Thresnor/Captain Tobias"
+text = "Crandor? No chance! You may have a death wish, but we don't!"
+parent = 415
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "act"
+text = "end"
+parent = 415
+is_terminal = true
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "option"
+text = "quest=No|Yes please."
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "option"
+text = "quest=No|No, thank you."
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Trader Stan"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "option"
+text = "quest=No|Yes, who are you?"
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "option"
+text = "Yes, I would like to charter a ship."
+parent = -1
+children = [425, 426, 427, 428, 429]
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I would like to charter a ship."
+parent = 424
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "speaker"
+speaker = "Trader Stan"
+text = "[Certainly sir/Certainly madam/Certainly]. Where would you like to go?"
+parent = 424
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "act"
+text = "The player chooses from [[:File:Trade charter map.png|the map interface]]."
+parent = 424
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "speaker"
+speaker = "Trader Stan"
+text = "Crandor? Are you crazy? No charter ship would take you to that island. You'd need to use your own ship, but even then, you'd need a miracle to find a safe route there!"
+parent = 424
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "act"
+text = "end"
+parent = 424
+is_terminal = true
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "speaker"
+speaker = "Ned"
+text = "Why, hello there, [lad/lass/kid]. Me friends call me Ned. I was a man of the sea, but it's past me now. Could I be making or selling you some rope?"
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "option"
+text = "You're a sailor? Could you take me to Crandor?"
+parent = -1
+children = [434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 447, 448, 449, 450, 451]
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're a sailor? Could you take me to the island of Crandor?"
+parent = 433
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Well, I was a sailor. I've not been able to get work at sea these days, though. They say I'm too old."
+parent = 433
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Sorry, where was it you said you wanted to go?"
+parent = 433
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "To the island of Crandor."
+parent = 433
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Crandor?"
+parent = 433
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "But... It would be a chance to sail a ship once more. I'd sail anywhere if it was a chance to sail again."
+parent = 433
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Then again, no captain in his right mind would sail to that island..."
+parent = 433
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Ah, you only live once! I'll do it!"
+parent = 433
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "So, where's your ship?"
+parent = 433
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "cond"
+text = "If the player hasn't bought the ship yet:"
+parent = 433
+children = [444, 445, 446]
+
+[[nodes]]
+id = 444
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I don't actually have a ship yet."
+parent = 443
+
+[[nodes]]
+id = 445
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "Ah, well. Let me know when you do. The place to look would be Port Sarim."
+parent = 443
+
+[[nodes]]
+id = 446
+depth = 3
+kind = "act"
+text = "end"
+parent = 443
+is_terminal = true
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's the Lady Lumbridge, in Port Sarim."
+parent = 433
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "That old pile of junk? Last I heard, she wasn't seaworthy."
+parent = 433
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I fixed her up!"
+parent = 433
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "You did? Excellent!"
+parent = 433
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Just show me the map and we can get ready to go!"
+parent = 433
+children = [452, 457, 462]
+
+[[nodes]]
+id = 452
+depth = 3
+kind = "cond"
+text = "If the player has the completed map:"
+parent = 451
+children = [453, 454, 455, 456]
+
+[[nodes]]
+id = 453
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 452
+
+[[nodes]]
+id = 454
+depth = 4
+kind = "box"
+text = "pic=Crandor map detail.png|You hand the map to Ned."
+parent = 452
+
+[[nodes]]
+id = 455
+depth = 4
+kind = "speaker"
+speaker = "Ned"
+text = "Excellent! I'll meet you at the ship, then."
+parent = 452
+
+[[nodes]]
+id = 456
+depth = 4
+kind = "act"
+text = "end"
+parent = 452
+is_terminal = true
+
+[[nodes]]
+id = 457
+depth = 3
+kind = "cond"
+text = "If the player has all three map parts:"
+parent = 451
+children = [458, 459, 460, 461]
+
+[[nodes]]
+id = 458
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 457
+
+[[nodes]]
+id = 459
+depth = 4
+kind = "box"
+text = "pic=Crandor map detail.png|You hand the map parts to Ned."
+parent = 457
+
+[[nodes]]
+id = 460
+depth = 4
+kind = "speaker"
+speaker = "Ned"
+text = "Excellent! I'll meet you at the ship, then."
+parent = 457
+
+[[nodes]]
+id = 461
+depth = 4
+kind = "act"
+text = "end"
+parent = 457
+is_terminal = true
+
+[[nodes]]
+id = 462
+depth = 3
+kind = "cond"
+text = "If the player does not have the completed map:"
+parent = 451
+children = [463, 464, 465]
+
+[[nodes]]
+id = 463
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Uh...yeah...about that. I don't actually have a map on me."
+parent = 462
+
+[[nodes]]
+id = 464
+depth = 4
+kind = "speaker"
+speaker = "Ned"
+text = "You'd better go find it, then. I'm not going to go sailing off without a map to show me where to head!"
+parent = 462
+
+[[nodes]]
+id = 465
+depth = 4
+kind = "act"
+text = "end"
+parent = 462
+is_terminal = true
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "option"
+text = "quest=No|Yes, I would like some rope."
+parent = -1
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "option"
+text = "quest=No|No thanks, Ned. I don't need any."
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "speaker"
+speaker = "Ned"
+text = "Hello again, [lad/lass/kid]. Something I can help you with? Want to buy some rope perhaps?"
+parent = -1
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "option"
+text = "Will you take me to Crandor now, then?"
+parent = -1
+children = [471, 472, 473, 474, 478, 479, 480, 483, 484, 485]
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will you take me to Crandor now, then?"
+parent = 470
+
+[[nodes]]
+id = 472
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "I said I would and old Ned is a man of his word!"
+parent = 470
+
+[[nodes]]
+id = 473
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "So, where's your ship?"
+parent = 470
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "cond"
+text = "If the player hasn't bought the ship yet:"
+parent = 470
+children = [475, 476, 477]
+
+[[nodes]]
+id = 475
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I don't actually have a ship yet."
+parent = 474
+
+[[nodes]]
+id = 476
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "Ah, well. Let me know when you do. The place to look would be Port Sarim."
+parent = 474
+
+[[nodes]]
+id = 477
+depth = 3
+kind = "act"
+text = "end"
+parent = 474
+is_terminal = true
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's the Lady Lumbridge, in Port Sarim."
+parent = 470
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "That old pile of junk? Last I heard, she wasn't seaworthy."
+parent = 470
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "cond"
+text = "If the player hasn't repaired the ship yet:"
+parent = 470
+children = [481, 482]
+
+[[nodes]]
+id = 481
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, good point. I'd better go and fix her up."
+parent = 480
+
+[[nodes]]
+id = 482
+depth = 3
+kind = "act"
+text = "end"
+parent = 480
+is_terminal = true
+
+[[nodes]]
+id = 483
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I fixed her up!"
+parent = 470
+
+[[nodes]]
+id = 484
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "You did? Excellent!"
+parent = 470
+
+[[nodes]]
+id = 485
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Just show me the map and we can get ready to go!"
+parent = 470
+children = [486, 491]
+
+[[nodes]]
+id = 486
+depth = 3
+kind = "cond"
+text = "If the player has the completed map or all 3 pieces:"
+parent = 485
+children = [487, 488, 489, 490]
+
+[[nodes]]
+id = 487
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 486
+
+[[nodes]]
+id = 488
+depth = 4
+kind = "box"
+text = "pic=Crandor map detail.png|You hand the map to Ned."
+parent = 486
+
+[[nodes]]
+id = 489
+depth = 4
+kind = "speaker"
+speaker = "Ned"
+text = "Excellent! I'll meet you at the ship, then."
+parent = 486
+
+[[nodes]]
+id = 490
+depth = 4
+kind = "act"
+text = "end"
+parent = 486
+is_terminal = true
+
+[[nodes]]
+id = 491
+depth = 3
+kind = "cond"
+text = "If the player does not have the completed map or all 3 pieces:"
+parent = 485
+children = [492, 493, 494]
+
+[[nodes]]
+id = 492
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Uh...yeah...about that. I don't actually have a map on me."
+parent = 491
+
+[[nodes]]
+id = 493
+depth = 4
+kind = "speaker"
+speaker = "Ned"
+text = "You'd better go find it, then. I'm not going to go sailing off without a map to show me where to head!"
+parent = 491
+
+[[nodes]]
+id = 494
+depth = 4
+kind = "act"
+text = "end"
+parent = 491
+is_terminal = true
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "option"
+text = "quest=No|Yes, I would like some rope."
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "option"
+text = "quest=No|No thanks, Ned. I don't need any."
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Ahoy! What d'ye think of yer ship then?"
+parent = -1
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "option"
+text = "I'm ready to go back to shore."
+parent = -1
+children = [500, 501, 502]
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm ready to go back on shore."
+parent = 499
+
+[[nodes]]
+id = 501
+depth = 2
+kind = "box"
+text = "You disembark from the ship."
+parent = 499
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "act"
+text = "end"
+parent = 499
+is_terminal = true
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "option"
+text = "I'd like to inspect her some more."
+parent = -1
+children = [504, 505, 506]
+
+[[nodes]]
+id = 504
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like to inspect her some more."
+parent = 503
+
+[[nodes]]
+id = 505
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Aye."
+parent = 503
+
+[[nodes]]
+id = 506
+depth = 2
+kind = "act"
+text = "end"
+parent = 503
+is_terminal = true
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "option"
+text = "Can you sail this ship to Crandor?"
+parent = -1
+children = [508, 509, 510, 511, 512, 513, 514]
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you sail this ship to Crandor?"
+parent = 507
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Not me, sir! I'm just an 'umble cabin boy. You'll need a proper cap'n."
+parent = 507
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find a captain?"
+parent = 507
+
+[[nodes]]
+id = 511
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "The cap'ns round 'ere seem to be a mite scared of Crandor. I ask 'em why and they just say it was afore my time,"
+parent = 507
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "but there is one cap'n I reckon might 'elp. I 'eard there's a retired 'un who lives in Draynor Village who's so desperate to sail again 'e'd take any job."
+parent = 507
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "I can't remember 'is name, but 'e lives in Draynor Village an' makes rope."
+parent = 507
+
+[[nodes]]
+id = 514
+depth = 2
+kind = "act"
+text = "end"
+parent = 507
+is_terminal = true
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "option"
+text = "I seek a shield that will protect me from dragonbreath."
+parent = -1
+children = [518, 519, 520, 521, 548]
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek a shield that will protect me from dragonbreath."
+parent = 517
+
+[[nodes]]
+id = 519
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "A knight going on a dragon quest, hmm? What dragon do you intend to slay?"
+parent = 517
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 517
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "option"
+text = "Elvarg, the dragon of Crandor island!"
+parent = 517
+children = [522, 523, 524, 525, 544]
+
+[[nodes]]
+id = 522
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Elvarg, the dragon of Crandor island!"
+parent = 521
+
+[[nodes]]
+id = 523
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Elvarg? Are you sure?"
+parent = 521
+
+[[nodes]]
+id = 524
+depth = 3
+kind = "select"
+text = "Well, are you sure?"
+parent = 521
+
+[[nodes]]
+id = 525
+depth = 3
+kind = "option"
+text = "Yes"
+parent = 521
+children = [526, 527, 528, 529, 530, 531, 532, 533, 537]
+
+[[nodes]]
+id = 526
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes!"
+parent = 525
+
+[[nodes]]
+id = 527
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well, you're a braver man than I!"
+parent = 525
+
+[[nodes]]
+id = 528
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why is everyone so scared of this dragon?"
+parent = 525
+
+[[nodes]]
+id = 529
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Back in my father's day, Crandor was an important city-state. Politically, it was as important as Falador or Varrock and its ships traded with every port."
+parent = 525
+
+[[nodes]]
+id = 530
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "But, one day when I was little, all contact was lost. The trading ships and the diplomatic envoys just stopped coming."
+parent = 525
+
+[[nodes]]
+id = 531
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I remember my father being very scared. He posted lookouts on the roof to warn if the dragon was approaching. All the city rulers were worried that Elvarg would devastate the whole continent."
+parent = 525
+
+[[nodes]]
+id = 532
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 525
+
+[[nodes]]
+id = 533
+depth = 4
+kind = "option"
+text = "I'd better leave that dragon alone."
+parent = 525
+children = [534, 535, 536]
+
+[[nodes]]
+id = 534
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I'd better leave that dragon alone."
+parent = 533
+
+[[nodes]]
+id = 535
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "That's a relief. I would hate to see such a promising adventurer cut down in [his/her/their] prime."
+parent = 533
+
+[[nodes]]
+id = 536
+depth = 5
+kind = "act"
+text = "end"
+parent = 533
+is_terminal = true
+
+[[nodes]]
+id = 537
+depth = 4
+kind = "option"
+text = "So, are you going to give me the shield or not?"
+parent = 525
+children = [538, 539, 540, 541, 542, 543]
+
+[[nodes]]
+id = 538
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "So, are you going to give me the shield or not?"
+parent = 537
+
+[[nodes]]
+id = 539
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "If you really think you're up to it then perhaps you are the one who can kill this dragon."
+parent = 537
+
+[[nodes]]
+id = 540
+depth = 5
+kind = "box"
+text = "pic=Anti-dragon shield detail.png|The Duke hands you a heavy orange shield."
+parent = 537
+
+[[nodes]]
+id = 541
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Take care out there. If you kill it..."
+parent = 537
+
+[[nodes]]
+id = 542
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "If you kill it, for Saradomin's sake make sure it's really dead!"
+parent = 537
+
+[[nodes]]
+id = 543
+depth = 5
+kind = "act"
+text = "end"
+parent = 537
+is_terminal = true
+
+[[nodes]]
+id = 544
+depth = 3
+kind = "option"
+text = "No"
+parent = 521
+children = [545, 546, 547]
+
+[[nodes]]
+id = 545
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 544
+
+[[nodes]]
+id = 546
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Very wise. There are some monsters that are best left alone."
+parent = 544
+
+[[nodes]]
+id = 547
+depth = 4
+kind = "act"
+text = "end"
+parent = 544
+is_terminal = true
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "option"
+text = "Oh, no dragon in particular"
+parent = 517
+children = [549, 550, 551]
+
+[[nodes]]
+id = 549
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, no dragon in particular. I just feel like killing a dragon."
+parent = 548
+
+[[nodes]]
+id = 550
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I don't have an infinite supply of these shields, you know. I'll only give one for a truly worthy cause."
+parent = 548
+
+[[nodes]]
+id = 551
+depth = 3
+kind = "act"
+text = "end"
+parent = 548
+is_terminal = true
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "option"
+text = "quest=No|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "option"
+text = "quest=No|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 554
+depth = 1
+kind = "speaker"
+speaker = "Ned"
+text = "Hello again, [lad/lass/kid]. Something I can help you with? Want to buy some rope perhaps?"
+parent = -1
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "option"
+text = "Will you take me to Crandor now, then?"
+parent = -1
+children = [557, 558, 559]
+
+[[nodes]]
+id = 557
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will you take me to Crandor now, then?"
+parent = 556
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "I said I would and old Ned is a man of his word! I'll meet you on board the Lady Lumbridge in Port Sarim."
+parent = 556
+
+[[nodes]]
+id = 559
+depth = 2
+kind = "act"
+text = "end"
+parent = 556
+is_terminal = true
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "option"
+text = "Yes, I would like some rope."
+parent = -1
+
+[[nodes]]
+id = 561
+depth = 1
+kind = "option"
+text = "No thanks, Ned. I don't need any."
+parent = -1
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 563
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [564, 565, 566, 567]
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Arr, Jim lad!"
+parent = 563
+
+[[nodes]]
+id = 565
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "It's Jenkins, cap'n!"
+parent = 563
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Arr, Jenkins lad!"
+parent = 563
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "act"
+text = "end"
+parent = 563
+is_terminal = true
+
+[[nodes]]
+id = 568
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [569, 570, 571]
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Shiver me timbers!"
+parent = 568
+
+[[nodes]]
+id = 570
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Aye aye, cap'n!"
+parent = 568
+
+[[nodes]]
+id = 571
+depth = 2
+kind = "act"
+text = "end"
+parent = 568
+is_terminal = true
+
+[[nodes]]
+id = 572
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [573, 574, 575]
+
+[[nodes]]
+id = 573
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Splice the mainsail!"
+parent = 572
+
+[[nodes]]
+id = 574
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Aye aye, cap'n!"
+parent = 572
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "act"
+text = "end"
+parent = 572
+is_terminal = true
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [577, 578, 579]
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Swab the deck!"
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Aye aye, cap'n!"
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "act"
+text = "end"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [581, 582, 583]
+
+[[nodes]]
+id = 581
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Weigh the anchor!"
+parent = 580
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "It's too heavy, cap'n!"
+parent = 580
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "act"
+text = "end"
+parent = 580
+is_terminal = true
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Ah, it's good to be on board a ship again! No matter how long I live on land, a ship will always seem better. Are you ready to depart?"
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "option"
+text = "Yes, let's go!"
+parent = -1
+children = [587, 588]
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, let's go!"
+parent = 586
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "act"
+text = "Cutscene begins."
+parent = 586
+
+[[nodes]]
+id = 589
+depth = 1
+kind = "option"
+text = "No, I'm not quite ready yet."
+parent = -1
+children = [590, 591, 592]
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not quite ready yet."
+parent = 589
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Well, you go do whatever you need to do. I'll wait here for you until you're ready."
+parent = 589
+
+[[nodes]]
+id = 592
+depth = 2
+kind = "act"
+text = "end"
+parent = 589
+is_terminal = true
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene begins; the camera pans towards the Lady Lumbridge.}}"
+parent = -1
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Ah, it's good to feel the salt spray on my face once again!"
+parent = -1
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "And this is a mighty fine ship. She don't look much, but she handles like a dream."
+parent = -1
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How much longer until we reach Crandor?"
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Not long now! According to the chart, we'd be able to see Crandor if it wasn't for those clouds on the horizon."
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "box"
+text = "Clouds surround the ship."
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "speaker"
+speaker = "Cabin Boy Jenkins"
+text = "Looks like there's a storm coming up, cap'n. Soon we won't be able to see anything!"
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Oh, well. The weather had been so good up until now."
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "other"
+text = "{{qact|Elvarg flies over the ship.}}"
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Did you see that?"
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "See what?"
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I thought I saw something up above us."
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "other"
+text = "{{qact|Fire rains down on the ship.}}"
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "It's the dragon!"
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "other"
+text = "{{Qact|Elvarg flies over the ship in circles, and rains more fire down on the ship. Cabin Boy Jenkins is hit and dies instantly.}}"
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "We're going to sink!"
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Look! Land ahead!"
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "We're going to crash!"
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "other"
+text = "{{Colour|#800000|CRASH!}}"
+parent = -1
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "box"
+text = "You are knocked unconscious and later awake on an ash-strewn beach."
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene ends.}}"
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Now I see why all the other captains said I'd be mad to go near Crandor. It looks like we're stranded."
+parent = -1
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "cond"
+text = "If the shortcut has been opened:"
+parent = -1
+children = [616, 617, 618, 619]
+
+[[nodes]]
+id = 616
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry about that. I found a secret passage in the dragon's lair that leads off the island!"
+parent = 615
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "Oh, that's good. I'll be able to get back to Draynor somehow,"
+parent = 615
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "speaker"
+speaker = "Captain Ned"
+text = "if I can sneak past all the skeletons and demons on this island!"
+parent = 615
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "act"
+text = "end"
+parent = 615
+is_terminal = true
+
+[[nodes]]
+id = 620
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 621
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "Wow! You sure are lucky! Seems the Lady Lumbridge just washed right up into the dock by herself!"
+parent = -1
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "speaker"
+speaker = "Klarense"
+text = "She's pretty badly damaged, though..."
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "option"
+text = "So, what needs fixing on the ship?"
+parent = -1
+children = [625]
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "act"
+text = "above"
+parent = 624
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "option"
+text = "What are you going to do now you don't have a ship?"
+parent = -1
+children = [627]
+
+[[nodes]]
+id = 627
+depth = 2
+kind = "act"
+text = "above"
+parent = 626
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "option"
+text = "Can I board the ship now?"
+parent = -1
+children = [629]
+
+[[nodes]]
+id = 629
+depth = 2
+kind = "act"
+text = "above"
+parent = 628
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "other"
+text = "{{mes|You cut off Elvarg's head as proof of your victory!}}"
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Greetings!"
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "option"
+text = "quest=No|What is this place?"
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "option"
+text = "I killed the dragon!"
+parent = -1
+children = [635, 636, 637, 638]
+
+[[nodes]]
+id = 635
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I killed the dragon!"
+parent = 634
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "Really? That's amazing!"
+parent = 634
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "speaker"
+speaker = "Guildmaster"
+text = "You are a true hero. There's no way that Oziach can refuse to sell you rune platemail now. You should tell him at once!"
+parent = 634
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "act"
+text = "end"
+parent = 634
+is_terminal = true
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Oziach"
+text = "Have ye slayed that dragon yet?"
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have!"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "cond"
+text = "If the player has Elvarg's head in their inventory:"
+parent = -1
+children = [642, 643]
+
+[[nodes]]
+id = 642
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have its head here."
+parent = 641
+
+[[nodes]]
+id = 643
+depth = 2
+kind = "act"
+text = "continues"
+parent = 641
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Oziach"
+text = "You actually did it?"
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Oziach"
+text = "I underestimated ye, adventurer. I apologise."
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Oziach"
+text = "Yer a true hero, and I'd be happy to sell ye rune platebodies."
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

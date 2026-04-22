@@ -1,0 +1,51 @@
+name = "Shellbane gryphon"
+source_pages = ["Shellbane gryphon", "Shellbane gryphon/Strategies"]
+npc_ids = [14860]
+
+[sections]
+"Fight overview" = """
+Like normal gryphons, the shellbane gryphon is primarily weak to [[melee]], but [[magic]] can also be effective due to its [[elemental weakness]] to [[wind spells]]; however, due to one of its special attacks, this is not entirely practical. Additionally, a [[tortugan shield]] is recommended for the encounter with the shellbane gryphon, otherwise the player will take heavy damage from gryphon's melee attacks even through [[Protect from Melee]], and receive a game message stating {{mes|The gryphon's attacks are devastating! You need some sort of protection!|colour=#ff3045}} Using Protect from Melee whilst having the tortugan shield equipped will fully negate all melee damage dealt.
+
+The shellbane gryphon primarily attacks with melee, but also uses a [[ranged]] attack occasionally. It also has three special attacks:
+[[File:Shellbane gryphon - reverse knockback.mp4|thumb|400px|A heavy player negating the shellbane gryphon's knockback, stunning it and returning the favour.]]
+* '''Knockback''' - The boss will throw the player backwards, dealing up to 30 unavoidable damage. Despite the audio from this attack, the player is not stunned and can immediately resume attacking. The knockback is countered by having the player's '''equipped''' weight be ≥40kg, which also causes the boss to prioritise using its other two special attacks.
+** Negating the knockback stuns the boss for 2 ticks (1.2s). During this short window, the player can quickly click to attack the boss to knock it back one tile and grants player one additional attack free of attack delay. However, if the player does not click to attack the boss while it's stunned, they will be knocked back regardless of equipped weight, indicated by the game message {{mes|The gryphon regains its focus and strikes!|colour=#ff3045}}
+** Players may not be able to perform the knockback in time if their attack is delayed by eating food.
+* '''Corrosive spit''' - An orange blob is launched, which corrodes the player's worn equipment if they do not move one tile away from where they stood. This causes a player to take 3-12 damage 6 times (18-72 damage total) over the course of 32 ticks (19.2s), which can be interrupted by quickly unequipping all of the player's items.
+[[File:Shellbane gryphon - strength 5 whirlwind.mp4|thumb|400px|A player taking large amounts of damage from a strength 5 whirlwind.]]
+* '''Whirlwind''' -  [[Whirlwind]]s begin to form at the player's current position, indicated by the game message {{mes|The gryphon aggressively flaps its wings...|colour=#ff3045}}
+** The boss will form a whirlwind every 3 ticks (1.8s), up to a maximum of 5. If a whirlwind would have formed on top of an existing whirlwind, that whirlwind instead grows more powerful. 6 ticks (3.6s) after the last whirlwind forms, all whirlwinds will begin damaging every tick the player stands on them.
+** 15 seconds after that, all summoned whirlwinds will burst and deal large amounts of damage, indicated by the game message {{mes|The whirlwinds explode outwards in a large gust of wind!|colour=#ff3045}} As such, its recommended to move one tile every attack in order to avoid whirlwinds stacking and increasing their size, resulting in less damage received.
+** When countering the knockback attack, players should be cautious on where they move to, as a whirlwind may inadvertently end up in range of damaging the player upon shoving the boss.
+{|class=wikitable style="text-align:center;"
+!Wind strength
+!Damage every tick
+!Burst damage
+!Burst radius
+|-
+|1
+|2-3
+|20-24
+|0
+|-
+|2
+|5-6
+|25-29
+|1
+|-
+|3
+|8-9
+|30-39
+|2
+|-
+|4
+|10-12
+|40-49
+|3
+|-
+|5
+|11-15
+|50+
+|Entire cave
+|}
+"""

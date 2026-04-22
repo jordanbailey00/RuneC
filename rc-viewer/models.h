@@ -4,6 +4,7 @@
 #ifndef RC_MODELS_H
 #define RC_MODELS_H
 
+#include "../rc-core/io.h"
 #include "raylib.h"
 #include <math.h>
 #include <stdint.h>
@@ -30,6 +31,8 @@ typedef struct {
     int loaded;
 } ModelSet;
 
+static void models_free(ModelSet *set);
+
 static ModelEntry *model_find(ModelSet *set, uint32_t id) {
     for (int i = 0; i < set->count; i++)
         if (set->entries[i].model_id == id && set->entries[i].loaded) return &set->entries[i];
@@ -41,30 +44,67 @@ static ModelSet *models_load(const char *path) {
     if (!f) { fprintf(stderr, "models: can't open %s\n", path); return NULL; }
 
     uint32_t magic, count;
-    fread(&magic, 4, 1, f);
-    if (magic != MDL2_MAGIC) { fprintf(stderr, "models: bad magic\n"); fclose(f); return NULL; }
-    fread(&count, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "model magic")
+            || magic != MDL2_MAGIC) {
+        fprintf(stderr, "models: bad magic\n");
+        fclose(f);
+        return NULL;
+    }
+    if (!rc_read_exact(f, &count, sizeof(count), 1, path, "model count")) {
+        fclose(f);
+        return NULL;
+    }
     if (count > MODEL_SET_MAX) count = MODEL_SET_MAX;
 
     uint32_t *offsets = malloc(count * 4);
-    fread(offsets, 4, count, f);
+    if (!offsets
+            || !rc_read_exact(f, offsets, sizeof(offsets[0]), count, path, "model offsets")) {
+        free(offsets);
+        fclose(f);
+        return NULL;
+    }
 
     ModelSet *set = calloc(1, sizeof(ModelSet));
     set->count = (int)count;
 
     for (uint32_t m = 0; m < count; m++) {
-        fseek(f, offsets[m], SEEK_SET);
+        if (!rc_seek(f, offsets[m], SEEK_SET, path, "model offset table")) {
+            free(offsets);
+            fclose(f);
+            models_free(set);
+            return NULL;
+        }
         uint32_t mid; uint16_t evc, fc, bvc;
-        fread(&mid, 4, 1, f);
-        fread(&evc, 2, 1, f);
-        fread(&fc, 2, 1, f);
-        fread(&bvc, 2, 1, f);
+        if (!rc_read_exact(f, &mid, sizeof(mid), 1, path, "model id")
+                || !rc_read_exact(f, &evc, sizeof(evc), 1, path, "model expanded vertex count")
+                || !rc_read_exact(f, &fc, sizeof(fc), 1, path, "model face count")
+                || !rc_read_exact(f, &bvc, sizeof(bvc), 1, path, "model base vertex count")) {
+            free(offsets);
+            fclose(f);
+            models_free(set);
+            return NULL;
+        }
 
         int vc = (int)evc, tc = (int)fc;
         float *verts = malloc(vc * 3 * sizeof(float));
-        fread(verts, sizeof(float), vc * 3, f);
+        if (!verts
+                || !rc_read_exact(f, verts, sizeof(float), vc * 3, path, "model vertices")) {
+            free(verts);
+            free(offsets);
+            fclose(f);
+            models_free(set);
+            return NULL;
+        }
         unsigned char *colors = malloc(vc * 4);
-        fread(colors, 1, vc * 4, f);
+        if (!colors
+                || !rc_read_exact(f, colors, sizeof(unsigned char), vc * 4, path, "model colors")) {
+            free(verts);
+            free(colors);
+            free(offsets);
+            fclose(f);
+            models_free(set);
+            return NULL;
+        }
 
         // OSRS units -> tile units, flip Z for Raylib
         for (int i = 0; i < vc; i++) {
@@ -94,12 +134,30 @@ static ModelSet *models_load(const char *path) {
 
         // Animation data
         int16_t *bv = malloc(bvc * 3 * sizeof(int16_t));
-        fread(bv, sizeof(int16_t), bvc * 3, f);
+        if (!bv
+                || !rc_read_exact(f, bv, sizeof(int16_t), bvc * 3, path, "model base vertices")) {
+            free(offsets);
+            fclose(f);
+            models_free(set);
+            return NULL;
+        }
         uint8_t *skins = malloc(bvc);
-        fread(skins, 1, bvc, f);
+        if (!skins
+                || !rc_read_exact(f, skins, sizeof(uint8_t), bvc, path, "model vertex skins")) {
+            free(offsets);
+            fclose(f);
+            models_free(set);
+            return NULL;
+        }
         uint16_t *fi = malloc(tc * 3 * sizeof(uint16_t));
-        fread(fi, sizeof(uint16_t), tc * 3, f);
-        fseek(f, tc, SEEK_CUR); // skip priorities
+        if (!fi
+                || !rc_read_exact(f, fi, sizeof(uint16_t), tc * 3, path, "model face indices")
+                || !rc_seek(f, tc, SEEK_CUR, path, "model priorities")) {
+            free(offsets);
+            fclose(f);
+            models_free(set);
+            return NULL;
+        }
 
         set->entries[m] = (ModelEntry){
             .model_id = mid, .model = LoadModelFromMesh(mesh), .loaded = 1,

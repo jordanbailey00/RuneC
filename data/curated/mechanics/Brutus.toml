@@ -1,0 +1,30 @@
+name = "Brutus"
+source_pages = ["Brutus", "Brutus/Strategies"]
+npc_ids = [15626, 15627]
+
+[sections]
+"Fight overview" = """
+Brutus uses a basic melee attack with a max hit of 3, which can be negated through the use of the [[Protect from Melee]] prayer. 
+
+After four to five basic attacks, Brutus will use one of two special attacks; which one he chooses initially is random, but it will alternate between the two afterward. The damage of both special attacks scale with the player's [[Hitpoints]] level, with a max hit of upwards of 19. Low level players can expect to be hit for around 30-40% of their health by the special attacks. This damage ignores protection prayers, but may be avoided entirely by moving out of the way before Brutus moves.
+
+* The player can avoid all damage from special attacks with either of the following methods:
+** Walk forward into Brutus to his tail end before the special attack.
+** Stand diagonally from Brutus when attacking and move diagonally away from him at the start of either of his special attack animations.
+
+* '''Charge''' - Brutus will exclaim {{overhead|*growls*}}, then prepare to charge towards the player. There is a 3 tick (1.8s) window to move out of the way.
+** Brutus will not use this attack if charging would result in him hitting a wall. As such, standing east of his spawn point will cause him to never use the charge attack.
+** If sidestepping by one tile, a player can sneak in an attack as Brutus runs by the player minimising loss to DPS.
+* '''Slam''' - Brutus will exclaim {{overhead|*snorts*}}, then prepare to slam the ground in front of it. There is a 4 tick (2.4s) window to move out of the way, and he will do this three times.
+** The tiles that Brutus chooses is based on the player's position relative to him, in either a 3x1 (if the player is adjacent to him) or an L shape (if the player is diagonal to him). Both slam attacks also deal damage on adjacent tiles beneath Brutus.
+** Timed properly, the player can sidestep by one tile then immediately move back to the tile they moved from while launching another attack allowing the player to treat this special attack as an opportunity for a free hit without taking damage.
+
+<gallery mode="packed" heights="300" style="text-align:left">
+Brutus - charging.mp4|The player moves out of the way of Brutus' charge.
+Brutus - ground slam.mp4|Brutus can slam the ground in two possible ways depending on the player's position.
+</gallery>
+
+Setting up a [[dwarf multicannon]] in the instance will result in the message {{mes|It's far too muddy for you to set up a cannon here.}}
+
+Brutus drops [[logs]] and [[oak logs]] quite often, as well as at least one guaranteed [[raw t-bone steak]] each kill. Bringing a [[tinderbox]] (with 15 [[Firemaking]] for oak logs) can be helpful to burn logs and cook steaks between kills, allowing for several back-to-back kills even if taking damage each kill. The altar in the [[Lumbridge church]] can be used to restore prayer as well.
+"""

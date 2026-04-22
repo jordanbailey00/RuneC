@@ -1,0 +1,124 @@
+name = "Doom of Mokhaiotl"
+source_pages = ["Doom of Mokhaiotl", "Doom of Mokhaiotl/Strategies"]
+npc_ids = [14707, 14708, 14709]
+
+[sections]
+"=Attack rotations=" = """
+During delve levels 1-4, the Doom uses standard attacks, charges with protection prayers, Rock Throw, and Shockwave attack in its rotation. Shockwave attacks during these delve levels generally begin roughly one minute into the fight.
+
+During delves 5 and higher, the attack rotation is slightly changed due to the addition of the car phase:
+* Standard delve level 1-4 attack rotation
+* Shield phase (upon reaching 75% health)
+* Car phase (two zooms)
+* Volatile earth spawn
+* 3 standard attacks
+* Shockwave
+* 2 attacks, of which one will always be a Rock Throw
+* Loop back to shield phase
+
+After delve level 6, the attack rotation would always be as follows:
+* Standard delve level 1-4 attack rotation
+* Shield phase (upon reaching 75% health)
+* Car phase (Zoom then Car slam, does this 3 times)
+* Volatile earth spawn
+* 4 attacks, of which one will always be a Rock Throw
+* Shockwave
+* 2 attacks, of which one will always be a Rock Throw
+* Loop back to shield phase
+"""
+
+"=Burrowing (car phase)=" = """
+[[File:Doom of Mokhaiotl (Burrowed).webp|right|300px]]
+Popularly known as the "car phase". Starting at delve level 5, after the shield phase ends, the Doom will enter a burrowed form and cause numerous rocks to fall from above. During this transition, there is a short grace period in which players can run over acid blood and stand in larva explosions without consequence.
+
+Once burrowed, the Doom checks which of the 8 compass directions the player is located in relative to its center, then spawns a yellow eye four tiles past the player in that direction. After a short duration, the Doom will zoom straight towards the eye, destroying any rocks and trampling players in the way, before doing so a second time. If the player is hit by Doom at the end destination, they will additionally be shoved out of the way.
+
+During the car phase, the Doom will be charging constantly for its Special Beam Cannon, making it an opportune time to use a [[Zaryte crossbow]], [[dragon knife]] or [[rosewood blowpipe]] special attack as all attacks made whilst charging are 100% accurate. Any attack will reset the charge.
+
+The car phase will increase in intensity as the delve level increases:
+* At delve level 5, the Doom will zoom twice, and trample damage dealt is at 10. 
+* At delve level 6, the Doom will zoom, launch 1-3 standard attacks depending on distance travelled, then initiate a Car Slam attack. It will do this three times. Trample damage is also increased to 20.
+** Instead of an earthen shield, the rocks that fall when it begins burrowing serve as protection from its slams.
+* At delve level 7, trample damage is increased to 30.
+* At delve level 8+, fewer falling rocks are provided when the car phase is initiated. Additionally, the Doom's zoom speed is significantly increased, reaching its destination in 1 or 2 ticks. Trample damage is also increased to 40.
+"""
+
+"=Mechanics=" = """
+[[File:The Doom of Mokhaiotl - tongue whipping.mp4|thumb|400px|Standing next to the Doom will result in a tongue-lashing.|autoplay|loop]]
+The Doom's standard attack consists of a single projectile, with its colour and shape indicating the combat style to pray against:
+
+* blue for magic,
+* green for ranged,
+* and red for melee;
+
+melee-style projectiles will begin being used at delve level 2 and beyond.
+
+These attacks will calculate damage on impact and as such can be protected against after the Doom launches the projectile. If the player does not activate their protection prayer in time, they can deal up to 47 damage, gradually increasing as the delve level increases; at level 8, a missed projectile can deal up to 65 damage. The travel speed of these projectiles is rather slow at the first few delve levels, but will increase until delve 6, where they are at their fastest. The Doom’s attack speed will also increase through delve levels up until level 7, where the Doom will attack at a 4 tick speed.
+
+Additionally, standing next to the Doom will result in a melee attack in which it whips the player with its tongue, dealing up to 40 damage, halved if [[Protect from Melee]] is active.
+
+The Doom additionally has a multitude of special attacks and hazards that it will use depending on delve level which gradually increases the difficulty of the fight; higher delve levels will enhance these, as well as require the player to react to multiple at once.
+"""
+
+"=Special Beam Cannon=" = """
+[[File:Doom of Mokhaiotl - Special Beam Cannon.mp4|thumb|400px|A player at delve level 5 narrowly manages to dodge the Doom's Special Beam Cannon during its shield phase.]]
+The Doom enters a defensive stance and begins to charge up, indicated by a yellow charge bar appearing. If allowed to charge completely, the Doom will unleash the Special Beam Cannon, dealing 60 damage. This increases to 80 at delves level 4-5, and deals 99 damage at delve level 6+. This makes it the highest priority attack to deal with, as the Doom will also charge faster at higher delve levels.
+
+There are three distinct occasions in which the charge bar appears, and the player must attack the Doom to interrupt/reset the charge bar. Attacks whilst charging are 100% accurate and will always result in a [[successful hit]].
+* '''Melee Charge''' - on all delve levels, the Doom will pray against ranged and magic ([[File:Protect_from_Magic_and_Missiles overhead.png|link=]]) and begin charging. This is always accompanied by the Rock Throw attack. Only a melee attack will interrupt the charge. 
+* '''Shield Charge''' - at delve levels 3+, the Doom will begin using a demonic shield with 500 shield health and begin charging constantly. Only demonbane (excluding [[holy water]]) will reset the charge.
+* '''Burrow Charge''' - At delve levels 5+, the Doom's burrowed form (commonly referred to as "car phase") will always be charging constantly. Any attack will reset the charge.
+"""
+
+"=Special attack weapons=" = """
+The [[Zaryte crossbow]] is the most powerful special attack weapon and should be paired with regular [[Ruby bolts (e)|enchanted ruby bolts]] for cost efficiency, as the [[Ruby dragon bolts (e)|dragon variant]] provides no additional benefit in this scenario. When to use it will vary - at delve levels 1-4, a successful special attack can help speed up the fight and reach deeper quicker. However, at delve levels 6+, it is not recommended to use the crossbow special attack as the opener due to the necessity of the [[#Rockblock|Rockblock]] strategy at higher delve levels. As such, it is recommended to use the crossbow special attack once the car phase starts to guarantee a high [[successful hit]] (as all attacks are 100% accurate in that form), or if health/supplies are low, preserve energy for a special attack that restores hitpoints or prayer on the [[volatile earth]] (ex. a [[toxic blowpipe]]) for a large amount of restoration.
+
+For players who do not have a Zaryte crossbow, their next best option is to use a [[crystal halberd]], reserved for melee punish. Every melee punish with a crystal halberd will guarantee a minimum of 46 damage (two bonus hits of 23). This is the same guaranteed damage as a [[Scythe of vitur]] would deal (three bonus hits of 15). The additional range, much higher average upfront hit, and availability to all players makes the crystal halberd much more desirable than even the scythe on depths 6+. Bringing extra switches for melee punish is not necessary given its randomness, but players who wish to do so are encouraged to bring the best melee [[amulet]] and [[gloves]]. This will increase death costs, so players are not recommended to bring these swaps unless they are already repaying the highest amount possible.
+
+[[Rosewood blowpipe]] special attacks are a viable alternative to [[Dragon knife]] special attacks as they give only a slight loss of damage whilst costing significantly less, {{Coins|{{GEP|Adamant dart}}}} and {{Coins|{{GEP|Dragon knife}}}} respectively, losing only 2 max hits in either void or masori.
+
+Immediately when car phase starts, use a Zaryte crossbow special or dump 3-4 dragon knife special attacks. Note that at deeper delves, these short-ranged weapons are likely to have diminishing returns unless the player is able to manipulate Doom and attacking from a safe distance. Phasing deep past 75% health and starting car phase with a Zaryte crossbow special, or dragon knife/rosewood blowpipe dump, will make it much more likely that the boss dies before it gets the chance to pull off a shockwave attack, as it and exploding rocks have a very high chance of death if handled improperly.
+
+Due to the importance of special attacks on key phases of the fight, a [[lightbearer]] is highly recommended over any other ring. Upgraded [[Death Charge]] from [[Yama]] is extremely beneficial as well, as Death Charge procs on both Doom and its larvae. With upgraded death charge and a lightbearer, players can restore 40-50% energy per level. Similarly to [[Fortis Colosseum]], special attack energy restoration is reset between waves, e.g if a player defeated the Doom 3 seconds before their energy restores, it will be an additional 30 seconds (or 15 seconds with lightbearer) after starting the next wave before special attack energy will regenerate.
+
+While a defence-draining weapon such as the [[Tonalztics of ralos]], [[dragon warhammer]], or [[elder maul]] can improve accuracy, the Doom's defence cap, relatively low hitpoints, and guaranteed accuracy during the melee punish and car phase make them less helpful than expected. If you factor in guaranteed damage from demonic larvae, melee punishes, and car phase, defence-draining weapons can often ''increase'' the average time to kill.
+
+Players with low combat stats, ironmen without a Zaryte crossbow or dragon knives, or players struggling to get many attacks in during car phase can use any of the mentioned defence-reducing special attacks at the start of the fight. Although generally slower, you will still gain additional consistency of attacks leading up to the volatile earth shockwave while still retaining special attack for melee punishes.
+"""
+
+"=Table of attacks by delve level=" = """
+{| class="wikitable"
+|+
+! Delve level !! HP !! Rock Throw projectiles !! Shockwave !! Demonic larvae !! Beam damage !! Acid blood !! Shield phase !! Car phase !! Trample damage !! Car slams
+|-
+| 1 || 525 || 1 projectile || 1 slam || Neutral || 60 || {{No|None}} || {{No|None}} || {{No|None}} || {{No}} || {{No}}
+|-
+| 2 || 550 || 2 projectiles || 1 slam || Neutral || 60 || {{No|None}} || {{No|None}} || {{No|None}} || {{No}} || {{No}}
+|- 
+| 3 || 575 || 2 projectiles || 2 slams || Neutral || 60 || {{Yes}} || {{Yes}} || {{No|None}} || {{No}} || {{No}}
+|-
+| 4 || 600 || 3 projectiles || 2 slams || Coloured || 80 || {{Yes}} || {{Yes}} || {{No|None}} || {{No}} || {{No}}
+|-
+| 5 || 625 || 3 projectiles || 3 slams || 2x Coloured || 80 || {{Yes}} || {{Yes}} || {{Yes|2 zooms, no projectiles}} || {{Yes|10}} || {{No}}
+|-
+| 6 || 650 || 3 projectiles || 3 slams || 2x Coloured || 99 || {{Maybe|Arena cleared}} || {{Yes}} || {{Yes|3 zooms with projectiles}} || {{Yes|20}} || {{Yes|3 slams}}
+|-
+| 7 || 650 || 3 projectiles || 4 slams || 2x Coloured || 99 || {{Yes}} || {{Yes}} || {{Yes|3 zooms with projectiles}} || {{Yes|30}} || {{Yes|3 slams}}
+|-
+| 8 || 675 || 2 sets of 3 projectiles || 5 slams || Giant || 99 || {{Yes}} || {{Yes}} || {{Yes|3 zooms with projectiles}} || {{Yes|40}} || {{Yes|3 slams}}
+|-
+| 8+ || 625 ||2 sets of 3 projectiles || 5 slams || Giant || 99 || {{Yes}} || {{Yes}} || {{Yes|3 zooms with projectiles}} || {{Yes|40}} || {{Yes|3 slams}}
+|}
+"""
+
+"Fight overview" = """
+As a delve boss, defeating the Doom will cause it to delve deeper into the archive, growing in power as it does so. Pursuing it into deeper delve levels will increase the difficulty of the fight, up to delve level 8.
+
+Starting from delve level 1, the Doom of Mokhaiotl starts with a combat level of 558 and 525 Hitpoints. For every delve level after - up to delve level 8 - it will gain 50 additional combat levels and 25 Hitpoints. This excludes delve levels 6 and 7, which both have 650 Hitpoints. The boss' stats remain identical across delve levels, though the damage it deals increases with every delve level. 
+
+The Doom will not appear until the player clicks out of the prompt (after jumping through the gap or descending down a level), after which it will spawn shortly afterwards. 
+
+The Doom possesses a Defence level of 90 and Magic level of 275. It possesses +300 stab and slash defence, +60 crush defence, and +160 magic and overall ranged defence. Additionally, the Doom has a [[stat drain|defence drain cap]] of 30, meaning that its Defence can only be lowered to a minimum of 60. It is not immune to [[poison]], with any hits that would inflict [[venom]] instead being converted to poison.
+
+Further delve levels - referred to as deep delves - will remain at the same difficulty as delve level 8 in theory (having 625 Hitpoints instead of 675), but the persistent [[acid blood]] that remains in the arena makes it practically more difficult.
+"""

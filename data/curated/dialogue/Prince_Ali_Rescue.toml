@@ -1,0 +1,3714 @@
+title = "Transcript:Prince Ali Rescue"
+npcs = ["Chancellor Hassan", "Osman", "Leela", "Ned", "Aggie", "Lady Keli", "Joe (jail)", "Prince Ali"]
+node_count = 475
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Chancellor Hassan"
+text = "Greetings! I am Hassan, Chancellor to the Emir of Al Kharid."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "Is there anything I can help you with?"
+parent = -1
+children = [2, 3, 4, 5, 10]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything I can help you with?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Chancellor Hassan"
+text = "Well... we do currently have a very urgent issue we need to resolve, and I suppose you look like someone who knows how to get a job done. Are you definitely interested in helping?"
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "select"
+text = "Start the Prince Ali Rescue quest?"
+parent = 1
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 1
+children = [6, 7, 8, 9]
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Of course."
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Chancellor Hassan"
+text = "You'll find our Spymaster, Osman, just outside the palace. Go to him and tell him I sent you. He will fill you in on the details of our problem."
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll get to it."
+parent = 5
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "act"
+text = "end"
+parent = 5
+is_terminal = true
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "option"
+text = "No."
+parent = 1
+children = [11, 12, 13]
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I've changed my mind."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Chancellor Hassan"
+text = "I see. Well you know where to find me if you do wish to help us."
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "act"
+text = "end"
+parent = 10
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "quest=No|It's just too hot here. How can you stand it?"
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "option"
+text = "quest=No|Do you mind if I just kill your warriors?"
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "option"
+text = "quest=No|I'd better be off."
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Chancellor Hassan"
+text = "Hello again. Have you spoken to Osman yet? He should be just outside the palace."
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet. I'll go and see him."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Chancellor Hassan"
+text = "Hello again. I hear you have agreed to help rescue Prince Ali. On behalf of the Emir, I will have a reward ready for you upon your success."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Osman? I was told by the Chancellor to come and speak to you. Apparently you have an issue that I can help with."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "That would be an apt description. However, I find you to be an interesting choice by the Chancellor. Why has he chosen to trust you with this task over one of our own?"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Er... I just asked if he needed help and he said yes."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "That man is far too trusting at a time when we must take extra care. However, if he has made his decision, I will not question it. Still, you should know that I will be keeping a close eye on you."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough. So what is this issue?"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "Prince Ali, heir to the Emir of Al Kharid, has been taken. My spies have already discovered where he is being held, but we need someone to make the rescue."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I'm sure I can manage that. How do I go about rescuing him?"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "The Prince has been taken by a group of bandits led by the self-proclaimed 'Lady' Keli. They are holding him in the abandoned jail just east of Draynor Village."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "According to our information, Keli is the only one able to freely move around the area. For you to get the Prince out, you will need to disguise him as her. She will of course need dealing with first."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why can't I just go in and kill her and her bandits?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "And endanger the life of the Prince in the process? No. There will be no unnecessary risks. We need to do this with as little bloodshed as possible."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You make a fair point. Do you know what Keli looks like?"
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "She has blonde hair and wears pink clothes. My daughter, Leela, one of my spies, is currently in Draynor Village keeping an eye on the jail. I'm sure she can help you with the specifics."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "Before you go, there is one more thing. You'll need a key to get the Prince out of his cell. Keli has the only one. You could steal it, but that seems like a risk we should avoid."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But if she has the only copy, and I can't just steal it, how do I get the key?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "If you bring me an imprint of the key along with a bronze bar, I can show you how to make a copy. You should be able to make an imprint of the key using some soft clay."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "Of course, you'll need to find a way to get Keli to show you the key without causing suspicion. I'm sure Leela can help you with that."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like I should head on over to Draynor Village and see Leela then."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "Indeed. Do you have any further questions before you go?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Do you know why they've taken the Prince?"
+parent = -1
+children = [43, 44, 45, 46, 47, 48]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know why they've taken the Prince?"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "No, but we have our theories."
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Care to share them?"
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "No. You have not yet proven yourself enough to be trusted with that information."
+parent = 42
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "Now, do you have any further questions?"
+parent = 42
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "act"
+text = "other"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "Where abouts in Draynor is Leela?"
+parent = -1
+children = [50, 51, 52, 53]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where abouts in Draynor is Leela?"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "She will be somewhere near the abandoned jail that the bandits are using. It's just east of the village."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "Do you have any further questions?"
+parent = 49
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "act"
+text = "other"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "option"
+text = "No. I think I know everything I need to."
+parent = -1
+children = [55, 56, 57]
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No. I think I know everything I need to."
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "Then you should get going."
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "You again. How are things going in Draynor?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "cond"
+text = "If the player has the key imprint but no bronze bar:"
+parent = -1
+children = [60, 61, 62]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have an imprint of the key."
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "Good. Bring me a bronze bar, and I'll get a copy made."
+parent = 59
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "continues"
+parent = 59
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "cond"
+text = "If the player has the key imprint and a bronze bar:"
+parent = -1
+children = [64, 65, 66, 67]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have an imprint of the key."
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "box"
+text = "pic=Key print detail.png|pic2=Bronze bar detail.png|You give Osman the imprint along with a bronze bar."
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "I'll use this to have a copy of the key made. I'll send it to Leela once it's ready."
+parent = 63
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "act"
+text = "continues"
+parent = 63
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "cond"
+text = "If the player has not acquired the key imprint:"
+parent = -1
+children = [69, 70, 71]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on gathering all the items I need."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Osman"
+text = "Well if you need help, just talk to Leela."
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "act"
+text = "continues"
+parent = 68
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "option"
+text = "Do you know why they've taken the Prince?"
+parent = -1
+children = [74]
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "above"
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "option"
+text = "Where abouts in Draynor is Leela?"
+parent = -1
+children = [76]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "above"
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "I'll get going."
+parent = -1
+children = [78, 79]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll get going."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "act"
+text = "end"
+parent = 77
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You must be Leela. Your father sent me to help rescue Prince Ali."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "Yes, he sent word ahead that you'd be coming. Are you aware of the plan?"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to obtain a copy of the key to the Prince's cell, create a disguise for him that makes him look like Keli and then break him out of the jail."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "I'd say that's a good summary. Now, do you have any questions for me about any part of the plan?"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "option"
+text = "Any ideas for the key?"
+parent = -1
+children = [86, 87, 88, 93, 97, 98]
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas for the key?"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Keli keeps it on her at all times, on a chain around her neck. If you can convince her to show it to you, you might be able to use some soft clay to take an imprint."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "cond"
+text = "If the player hasn't obtained the [[key print]] yet:"
+parent = 85
+children = [89, 90, 91, 92]
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That doesn't sound easy."
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "speaker"
+speaker = "Leela"
+text = "My suggestion is that you pretend to be interested in joining her bandits. From there, you should be able to steer the conversation towards the key."
+parent = 88
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Leela"
+text = "Once you have the imprint, take it to my father along with a bronze bar. He'll then be able to make us a copy."
+parent = 88
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "act"
+text = "continues"
+parent = 88
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "cond"
+text = "If the player has the key print in their inventory:"
+parent = 85
+children = [94, 95, 96]
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I already have the imprint!"
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "speaker"
+speaker = "Leela"
+text = "Then you should take it to my father along with a bronze bar. He'll then be able to make us a copy."
+parent = 93
+
+[[nodes]]
+id = 96
+depth = 3
+kind = "act"
+text = "continues"
+parent = 93
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Do you have any other questions about the plan?"
+parent = 85
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "act"
+text = "other"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "option"
+text = "Any ideas for the disguise?"
+parent = -1
+children = [100, 101, 102, 103, 104, 105, 106]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas for the disguise?"
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "To make the Prince look like Keli, you'll need a blonde wig and a pink skirt. You'll also want some skin paste to hide the black eye he got when they captured him."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "There's an old sailor in the village who makes rope. Perhaps he could make you a wig. Don't forget to dye it once you have one."
+parent = 99
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "For the skin paste, there's a local witch who's apparently an expert on all sorts of potions. I'm sure she could make you some. I hear she also sells dye, if you need some for the wig."
+parent = 99
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Finally there's the skirt. I imagine you could just buy one from any clothes shop. Thessalia's Fine Clothes in Varrock is probably the closest."
+parent = 99
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Do you have any other questions about the plan?"
+parent = 99
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "other"
+parent = 99
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "Don't think so. I'll go and prepare."
+parent = -1
+children = [108, 109]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't think so. I'll go and prepare."
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "act"
+text = "end"
+parent = 107
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "You're back. Do you have everything needed yet?"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "Any ideas for the key?"
+parent = -1
+children = [113]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "above"
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "Any ideas for the disguise?"
+parent = -1
+children = [115]
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "act"
+text = "above"
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "Not yet. I'll go and prepare."
+parent = -1
+children = [117, 118]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet. I'll go and prepare."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "act"
+text = "end"
+parent = 116
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Ned"
+text = "Why, hello there, [lad/lass/kid]. Me friends call me Ned. I was a man of the sea, but it's past me now. Could I be making or selling you some rope?"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "option"
+text = "Could you make other things apart from rope?"
+parent = -1
+children = [122, 123, 124, 125, 130, 149, 156]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you make other things apart from rope?"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "I'm sure I can. What are you thinking of?"
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 121
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "option"
+text = "Could you knit me a sweater?"
+parent = 121
+children = [126, 127, 128, 129]
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Could you knit me a sweater?"
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "Do I look like a member of a sewing circle? Be off wi' you. I have fought monsters that would turn your hair blue."
+parent = 125
+
+[[nodes]]
+id = 128
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "I don't need to be laughed at just 'cos I'm getting a bit old."
+parent = 125
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "act"
+text = "end"
+parent = 125
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "option"
+text = "How about some sort of wig?"
+parent = 121
+children = [131, 132, 133, 136, 145]
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How about some sort of wig?"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "Well... that's an interesting thought. Yes, I think I could do something. Give me three balls of wool and I might be able to do it."
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "cond"
+text = "If the player does not have three balls of wool:"
+parent = 130
+children = [134, 135]
+
+[[nodes]]
+id = 134
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Great, I will get some. I think a wig would be useful."
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 4
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "cond"
+text = "If the player has three balls of wool:"
+parent = 130
+children = [137, 138]
+
+[[nodes]]
+id = 137
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 4
+kind = "option"
+text = "I have them here. Please make me a wig."
+parent = 136
+children = [139, 140, 141, 142, 143, 144]
+
+[[nodes]]
+id = 139
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I have them here. Please make me a wig."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 5
+kind = "speaker"
+speaker = "Ned"
+text = "Okay, I'll have a go."
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 5
+kind = "box"
+text = "pic=Wig detail.png|Ned gives you a pretty good wig."
+parent = 138
+
+[[nodes]]
+id = 142
+depth = 5
+kind = "speaker"
+speaker = "Ned"
+text = "Here you go. How's that for a quick effort? Not bad I think!"
+parent = 138
+
+[[nodes]]
+id = 143
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Ned. There's more to you than meets the eye."
+parent = 138
+
+[[nodes]]
+id = 144
+depth = 5
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 3
+kind = "option"
+text = "Actually, I don't need one right now."
+parent = 130
+children = [146, 147, 148]
+
+[[nodes]]
+id = 146
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I don't need one right now."
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 4
+kind = "speaker"
+speaker = "Ned"
+text = "Fair enough."
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 4
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "option"
+text = "Could you repair the arrow holes in the back of my shirt?"
+parent = 121
+children = [150, 151, 152, 153, 154, 155]
+
+[[nodes]]
+id = 150
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Could you repair the arrow holes in the back of my shirt?"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "Ah yes, it's a tough world these days. There's a few brave enough to attack from ten metres away."
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "box"
+text = "Ned pulls out a needle and attacks your shirt."
+parent = 149
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "There you go, good as new."
+parent = 149
+
+[[nodes]]
+id = 154
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Ned. Maybe next time they will attack me face to face."
+parent = 149
+
+[[nodes]]
+id = 155
+depth = 3
+kind = "act"
+text = "end"
+parent = 149
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "option"
+text = "quest=No|Actually, I don't need anything."
+parent = 121
+children = [157, 158]
+
+[[nodes]]
+id = 157
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I don't need anything."
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 3
+kind = "act"
+text = "end"
+parent = 156
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "quest=No|Yes, I would like some rope."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "option"
+text = "quest=No|No thanks, Ned. I don't need any."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Aggie"
+text = "What can I help you with?"
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "quest=No|What could you make for me?"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "option"
+text = "Can you make skin paste?"
+parent = -1
+children = [165, 166, 171]
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you make skin paste?"
+parent = 164
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "cond"
+text = "If the player does not have all the required items:"
+parent = 164
+children = [167, 168, 169, 170]
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Aggie"
+text = "Why, it's one of my most popular potions! Lots of people around here like to pretty their faces up a bit. I can make it for you if you get me what's needed."
+parent = 166
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do you need?"
+parent = 166
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "speaker"
+speaker = "Aggie"
+text = "Well dearie, you need a base for the paste. That's a mix of ash, flour and water. Then you need redberries to colour it as you want. Bring me those four items and I will make you some."
+parent = 166
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "act"
+text = "end"
+parent = 166
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "cond"
+text = "If the player has all the required items:"
+parent = 164
+children = [172, 173, 174, 182]
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "speaker"
+speaker = "Aggie"
+text = "Yes I can. I see you already have the ingredients. Would you like me to mix some for you now?"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 171
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "option"
+text = "Yes please. Mix me some skin paste."
+parent = 171
+children = [175, 176, 177, 178, 179, 180, 181]
+
+[[nodes]]
+id = 175
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes please. Mix me some skin paste."
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 4
+kind = "speaker"
+speaker = "Aggie"
+text = "That should be simple. Hand the things to Aggie then."
+parent = 174
+
+[[nodes]]
+id = 177
+depth = 4
+kind = "box"
+text = "pic=Redberries detail.png|pic2=Pot of flour detail.png|You hand the ash, flour, water and redberries to Aggie. She tips the ingredients into a cauldron and mutters some words."
+parent = 174
+
+[[nodes]]
+id = 178
+depth = 4
+kind = "speaker"
+speaker = "Aggie"
+text = "Tourniquet, Fenderbaum, Tottenham, Marshmallow, Marblearch."
+parent = 174
+
+[[nodes]]
+id = 179
+depth = 4
+kind = "box"
+text = "pic=Paste detail.png|Aggie hands you the skin paste."
+parent = 174
+
+[[nodes]]
+id = 180
+depth = 4
+kind = "speaker"
+speaker = "Aggie"
+text = "There you go dearie. That will make you look good at the Varrock dances."
+parent = 174
+
+[[nodes]]
+id = 181
+depth = 4
+kind = "act"
+text = "end"
+parent = 174
+is_terminal = true
+
+[[nodes]]
+id = 182
+depth = 3
+kind = "option"
+text = "No thank you. I don't need any skin paste right now."
+parent = 171
+children = [183, 184, 185]
+
+[[nodes]]
+id = 183
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No thank you. I don't need any skin paste right now."
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 4
+kind = "speaker"
+speaker = "Aggie"
+text = "Okay dearie, that's always your choice."
+parent = 182
+
+[[nodes]]
+id = 185
+depth = 4
+kind = "act"
+text = "end"
+parent = 182
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "option"
+text = "quest=No|Cool, do you turn people into frogs?"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "option"
+text = "quest=No|You mad old witch, you can't help me."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "option"
+text = "quest=No|Can you make dyes for me please?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you the famous Lady Keli? Leader of the toughest gang of bandits around?"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Yes, I am Keli. You've heard of me then?"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "option"
+text = "Heard of you? You're famous in Gielinor!"
+parent = -1
+children = [193, 194, 195, 196, 200, 250, 258]
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Heard of you? You're famous in Gielinor!"
+parent = 192
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "speaker"
+speaker = "Lady Keli"
+text = "That's very kind of you to say. Reputations are not easily earned. I have managed to succeed where many fail."
+parent = 192
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 192
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "option"
+text = "cond=If Shield of Arrav has been completed:|I think Katrine is still tougher."
+parent = 192
+children = [197, 198, 199]
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I think Katrine is still tougher."
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Well you can think that all you like! Those cowards dare not leave Varrock. Out here, I'm toughest. You can tell them that! Now get out of my sight, before I call my guards."
+parent = 196
+
+[[nodes]]
+id = 199
+depth = 3
+kind = "act"
+text = "end"
+parent = 196
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "option"
+text = "What's your latest plan then?"
+parent = 192
+children = [201, 202, 203, 204, 205, 206, 207, 215, 247]
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's your latest plan then?"
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Why do you want to know?"
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well I was actually hoping to join your group."
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Join us? Interesting... I suppose you do look the type."
+parent = 200
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "speaker"
+speaker = "Lady Keli"
+text = """
+You'll of course need to properly prove yourself before we let you join us. However, what I can tell you is that we currently have a very valuable prisoner. If all goes well, he will make us very rich.
+"""
+parent = 200
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 200
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "option"
+text = "Ah, I see. You must have been very skillful."
+parent = 200
+children = [208, 209, 210, 211, 213]
+
+[[nodes]]
+id = 208
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ah, I see. You must have been very skillful."
+parent = 207
+
+[[nodes]]
+id = 209
+depth = 4
+kind = "speaker"
+speaker = "Lady Keli"
+text = "To catch him? Oh yes. We had to grab him without his bodyguards noticing. It was a stroke of genius. Mostly my doing, of course."
+parent = 207
+
+[[nodes]]
+id = 210
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 207
+
+[[nodes]]
+id = 211
+depth = 4
+kind = "option"
+text = "How do you know someone won't try to free him?"
+parent = 207
+children = [212]
+
+[[nodes]]
+id = 212
+depth = 5
+kind = "act"
+text = "below"
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 4
+kind = "option"
+text = "Well good luck with it."
+parent = 207
+children = [214]
+
+[[nodes]]
+id = 214
+depth = 5
+kind = "act"
+text = "below"
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 3
+kind = "option"
+text = "How do you know someone won't try to free him?"
+parent = 200
+children = [216, 217, 218, 219, 220, 240, 244]
+
+[[nodes]]
+id = 216
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "How do you know someone won't try to free him?"
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 4
+kind = "speaker"
+speaker = "Lady Keli"
+text = "There is no way to release him. The only key to his cell is on a chain around my neck, and the locksmith who made it died very suddenly."
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 4
+kind = "speaker"
+speaker = "Lady Keli"
+text = "There isn't another key like this in the world."
+parent = 215
+
+[[nodes]]
+id = 219
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 215
+
+[[nodes]]
+id = 220
+depth = 4
+kind = "option"
+text = "Could I see the key please?"
+parent = 215
+children = [221, 222, 223, 224, 225, 226, 229, 230, 237]
+
+[[nodes]]
+id = 221
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Could I see the key please?"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 5
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Why?"
+parent = 220
+
+[[nodes]]
+id = 223
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "It will be something I can tell my grandchildren, when you are even more famous than you are now."
+parent = 220
+
+[[nodes]]
+id = 224
+depth = 5
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Well I suppose there's no harm in letting you see it. After all, you have no hope of stealing it."
+parent = 220
+
+[[nodes]]
+id = 225
+depth = 5
+kind = "box"
+text = "pic=Bronze key (Prince Ali Rescue) detail.png|Keli shows you a small key on a strong looking chain."
+parent = 220
+
+[[nodes]]
+id = 226
+depth = 5
+kind = "cond"
+text = "If the player doesn't have soft clay or already has the key print:"
+parent = 220
+children = [227, 228]
+
+[[nodes]]
+id = 227
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Thank you. I'd better go now."
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 6
+kind = "act"
+text = "end"
+parent = 226
+is_terminal = true
+
+[[nodes]]
+id = 229
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 220
+
+[[nodes]]
+id = 230
+depth = 5
+kind = "option"
+text = "Could I touch the key for a moment please?"
+parent = 220
+children = [231, 232, 233, 234, 235, 236]
+
+[[nodes]]
+id = 231
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Could I touch the key for a moment please?"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 6
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Well... only for a moment then."
+parent = 230
+
+[[nodes]]
+id = 233
+depth = 6
+kind = "box"
+text = "pic=Key print detail.png|As you touch the key, you take an imprint of it using your soft clay."
+parent = 230
+
+[[nodes]]
+id = 234
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Thank you so much! You are too kind."
+parent = 230
+
+[[nodes]]
+id = 235
+depth = 6
+kind = "speaker"
+speaker = "Lady Keli"
+text = "You are welcome, but run along now. I will need some time to consider your request to join us."
+parent = 230
+
+[[nodes]]
+id = 236
+depth = 6
+kind = "act"
+text = "end"
+parent = 230
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 5
+kind = "option"
+text = "Thank you. I'd better go now."
+parent = 220
+children = [238, 239]
+
+[[nodes]]
+id = 238
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Thank you. I'd better go now."
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 6
+kind = "act"
+text = "end"
+parent = 237
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 4
+kind = "option"
+text = "That is a good way to keep secrets."
+parent = 215
+children = [241, 242, 243]
+
+[[nodes]]
+id = 241
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "That is a good way to keep secrets."
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 5
+kind = "speaker"
+speaker = "Lady Keli"
+text = "It is the best way I know. Dead men tell no tales."
+parent = 240
+
+[[nodes]]
+id = 243
+depth = 5
+kind = "act"
+text = "other"
+parent = 240
+is_terminal = true
+
+[[nodes]]
+id = 244
+depth = 4
+kind = "option"
+text = "Well I'll be off. Good luck."
+parent = 215
+children = [245, 246]
+
+[[nodes]]
+id = 245
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well I'll be off. Good luck."
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 5
+kind = "act"
+text = "end"
+parent = 244
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "option"
+text = "Well good luck with it."
+parent = 200
+children = [248, 249]
+
+[[nodes]]
+id = 248
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Well good luck with it."
+parent = 247
+
+[[nodes]]
+id = 249
+depth = 4
+kind = "act"
+text = "end"
+parent = 247
+is_terminal = true
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "option"
+text = "You must have trained a lot for this work."
+parent = 192
+children = [251, 252, 253, 254, 256]
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You must have trained a lot for this work."
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "speaker"
+speaker = "Lady Keli"
+text = "I have used a sword since I was a girl. My first kill was before I was even six years old."
+parent = 250
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 250
+
+[[nodes]]
+id = 254
+depth = 3
+kind = "option"
+text = "What's your latest plan then?"
+parent = 250
+children = [255]
+
+[[nodes]]
+id = 255
+depth = 4
+kind = "act"
+text = "above"
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 3
+kind = "option"
+text = "I shouldn't disturb someone as tough as you."
+parent = 250
+children = [257]
+
+[[nodes]]
+id = 257
+depth = 4
+kind = "act"
+text = "below"
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "option"
+text = "I shouldn't disturb someone as tough as you."
+parent = 192
+children = [259, 260, 261]
+
+[[nodes]]
+id = 259
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I shouldn't disturb someone as tough as you."
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 3
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Yes, I am very busy. Goodbye."
+parent = 258
+
+[[nodes]]
+id = 261
+depth = 3
+kind = "act"
+text = "end"
+parent = 258
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "option"
+text = "cond=If Shield of Arrav has been completed:|I've heard a little, but I think Katrine is tougher."
+parent = -1
+children = [263]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "option"
+text = "I've heard rumours that you kill people."
+parent = -1
+children = [265, 266, 267, 268, 270, 272]
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've heard rumours that you kill people."
+parent = 264
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Lady Keli"
+text = "There's always someone ready to spread rumours. I hear all sort of ridiculous things these days."
+parent = 264
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 264
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "option"
+text = "What's your latest plan then?"
+parent = 264
+children = [269]
+
+[[nodes]]
+id = 269
+depth = 3
+kind = "act"
+text = "above"
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "option"
+text = "You must have trained a lot for this work."
+parent = 264
+children = [271]
+
+[[nodes]]
+id = 271
+depth = 3
+kind = "act"
+text = "above"
+parent = 270
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "option"
+text = "I shouldn't disturb someone as tough as you."
+parent = 264
+children = [273]
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "act"
+text = "above"
+parent = 272
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "option"
+text = "No, I've never really heard of you."
+parent = -1
+children = [275, 276, 277, 278, 292, 295, 297]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I've never really heard of you."
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Lady Keli"
+text = "You must be new around here then. Everyone knows of Lady Keli and her prowess with a sword."
+parent = 274
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 274
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "option"
+text = "No, still doesn't ring a bell."
+parent = 274
+children = [279, 280, 281, 282, 286, 288, 290]
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, still doesn't ring a bell."
+parent = 278
+
+[[nodes]]
+id = 280
+depth = 3
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Well, you know of me now. You should also know that I will wring your neck if you don't show some respect."
+parent = 278
+
+[[nodes]]
+id = 281
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 278
+
+[[nodes]]
+id = 282
+depth = 3
+kind = "option"
+text = "I don't show respect to killers and hoodlums."
+parent = 278
+children = [283, 284, 285]
+
+[[nodes]]
+id = 283
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I don't show respect to killers and hoodlums."
+parent = 282
+
+[[nodes]]
+id = 284
+depth = 4
+kind = "speaker"
+speaker = "Lady Keli"
+text = "You should, you really should. I am wealthy enough to place a bounty on your head, or I could just remove your head myself. Luckily, I am too busy to deal with the likes of you, so clear off!"
+parent = 282
+
+[[nodes]]
+id = 285
+depth = 4
+kind = "act"
+text = "end"
+parent = 282
+is_terminal = true
+
+[[nodes]]
+id = 286
+depth = 3
+kind = "option"
+text = "What's your latest plan then?"
+parent = 278
+children = [287]
+
+[[nodes]]
+id = 287
+depth = 4
+kind = "act"
+text = "above"
+parent = 286
+
+[[nodes]]
+id = 288
+depth = 3
+kind = "option"
+text = "You must have trained a lot for this work."
+parent = 278
+children = [289]
+
+[[nodes]]
+id = 289
+depth = 4
+kind = "act"
+text = "above"
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 3
+kind = "option"
+text = "I shouldn't disturb someone as tough as you."
+parent = 278
+children = [291]
+
+[[nodes]]
+id = 291
+depth = 4
+kind = "act"
+text = "above"
+parent = 290
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "option"
+text = "Actually, I have heard of you. You're famous in Gielinor!"
+parent = 274
+children = [293, 294]
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I have heard of you. You're famous in Gielinor!"
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 3
+kind = "act"
+text = "above"
+parent = 292
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "option"
+text = "You must have trained a lot for this work."
+parent = 274
+children = [296]
+
+[[nodes]]
+id = 296
+depth = 3
+kind = "act"
+text = "above"
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "option"
+text = "I shouldn't disturb someone as tough as you."
+parent = 274
+children = [298]
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "act"
+text = "above"
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Oh, it's you. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I was hoping we could talk more about your prisoner."
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Lady Keli"
+text = "Until you join us, I can say little. What I can tell you is that he is very valuable. If all goes well, he will make us very rich."
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "option"
+text = "Ah, I see. You must have been very skillful."
+parent = -1
+children = [305]
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "act"
+text = "above"
+parent = 304
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "How do you know someone won't try to free him?"
+parent = -1
+children = [307]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "act"
+text = "above"
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "option"
+text = "Well good luck with it."
+parent = -1
+children = [309]
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "act"
+text = "above"
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi. Who are you guarding here?"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "Joe"
+text = "Can't say. It's all very secret. You should get out of here. I am not supposed to talk while I guard."
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "You're back. Do you have everything needed yet?"
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I do indeed."
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "Good work. Now, before breaking the Prince out, you'll need to find a way to deal with his personal guard. He's talkative, so try to find a weakness. Remember, we don't want any unneeded violence."
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright. I'll go have a chat to this guard."
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "You're back. How are things going?"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I lost that key you gave me."
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "Well that was foolish. I can sort you out with another, but it will cost you 15 coins."
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "cond"
+text = "If the player does not have 15 coins:"
+parent = -1
+children = [322, 323, 324]
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't got that much."
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Then come back to me when you do."
+parent = 321
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "act"
+text = "end"
+parent = 321
+is_terminal = true
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "cond"
+text = "If the player has 15 coins:"
+parent = -1
+children = [326, 327, 328, 329, 330, 331]
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here, I have 15 coins."
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "box"
+text = "pic=Bronze key (Prince Ali Rescue) detail.png|Leela gives you a key."
+parent = 325
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Now, how are things going with that guard?"
+parent = 325
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't spoken to him yet."
+parent = 325
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Well you'd better get on it then. We need him out of the way."
+parent = 325
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "act"
+text = "end"
+parent = 325
+is_terminal = true
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Joe"
+text = "What do you want?"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "option"
+text = "I have some beer here. Fancy one?"
+parent = -1
+children = [336, 337, 338, 339, 340, 341, 342, 345]
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some beer here. Fancy one?"
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "Ah, that would be lovely. Only one though, just to wet my throat."
+parent = 335
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course. It must be tough being here without a drink."
+parent = 335
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "box"
+text = "pic=Beer detail.png|You hand a beer to the guard. He drinks it in seconds."
+parent = 335
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "That was perfect! I can't thank you enough."
+parent = 335
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How are you? Still okay? Not too drunk?"
+parent = 335
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "cond"
+text = "If the player has less than three beers:"
+parent = 335
+children = [343, 344]
+
+[[nodes]]
+id = 343
+depth = 3
+kind = "speaker"
+speaker = "Joe"
+text = "No, I don't get drunk from only one drink. I reckon I'd need at least two more for that. Still, thanks for the beer."
+parent = 342
+
+[[nodes]]
+id = 344
+depth = 3
+kind = "act"
+text = "end"
+parent = 342
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "cond"
+text = "If the player has two more beers:"
+parent = 335
+children = [346, 347, 348, 349, 350, 351]
+
+[[nodes]]
+id = 346
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Would you care for another beer, my friend?"
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 3
+kind = "speaker"
+speaker = "Joe"
+text = "I'd better not. I don't want to be drunk on duty."
+parent = 345
+
+[[nodes]]
+id = 348
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Here, just keep these for later. I hate to see a thirsty guard."
+parent = 345
+
+[[nodes]]
+id = 349
+depth = 3
+kind = "box"
+text = "pic=Beer detail.png|pic2=Beer detail.png|You hand two more beers to the guard. He takes a sip of one, and then he quickly drinks them both."
+parent = 345
+
+[[nodes]]
+id = 350
+depth = 3
+kind = "speaker"
+speaker = "Joe"
+text = "Franksh! That wash jusht what I need to shtay on guard. No more beersh, I don't want to get drunk."
+parent = 345
+
+[[nodes]]
+id = 351
+depth = 3
+kind = "act"
+text = "end"
+parent = 345
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "option"
+text = "Tell me about the life of a guard."
+parent = -1
+children = [353, 354, 355, 356, 357, 359]
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the life of a guard."
+parent = 352
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "Well, the hours are good, but most of those hours are a drag."
+parent = 352
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "Sometimes I wonder if I should have spent more time learning when I was a young boy. Maybe I wouldn't be here now, scared of Keli."
+parent = 352
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 352
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "option"
+text = "What did you want to be when you were a boy?"
+parent = 352
+children = [358]
+
+[[nodes]]
+id = 358
+depth = 3
+kind = "act"
+text = "below"
+parent = 357
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "option"
+text = "I'd better go."
+parent = 352
+children = [360]
+
+[[nodes]]
+id = 360
+depth = 3
+kind = "act"
+text = "below"
+parent = 359
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "option"
+text = "What did you want to be when you were a boy?"
+parent = -1
+children = [362, 363, 364, 365, 366, 367, 368, 398, 399, 400, 401]
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What did you want to be when you were a boy?"
+parent = 361
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "Well, I loved to sit by the lake, with my toes in the water. I'd shoot the fish with my bow and arrow."
+parent = 361
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's a strange hobby for a boy."
+parent = 361
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "It kept us from goblin hunting, which was what most boys did."
+parent = 361
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "Hang on... Why do you ask? What do you want?"
+parent = 361
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 361
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "option"
+text = "Hey, chill out. I won't cause you trouble."
+parent = 361
+children = [369, 370, 371, 372, 373, 374, 375, 388, 390, 396]
+
+[[nodes]]
+id = 369
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hey, chill out. I won't cause you trouble."
+parent = 368
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "speaker"
+speaker = "Joe"
+text = "Sorry, it's hard to relax when I'm on duty. Stress of the job, and all."
+parent = 368
+
+[[nodes]]
+id = 371
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So why do you do it?"
+parent = 368
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "speaker"
+speaker = "Joe"
+text = "There's good money in it, and some of the shouting I rather like."
+parent = 368
+
+[[nodes]]
+id = 373
+depth = 3
+kind = "speaker"
+speaker = "Joe"
+text = "RESISTANCE IS USELESS!"
+parent = 368
+
+[[nodes]]
+id = 374
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 368
+
+[[nodes]]
+id = 375
+depth = 3
+kind = "option"
+text = "So what do you buy with your great wages?"
+parent = 368
+children = [376, 377, 378, 379, 380, 382, 384, 386]
+
+[[nodes]]
+id = 376
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what do you buy with your great wages?"
+parent = 375
+
+[[nodes]]
+id = 377
+depth = 4
+kind = "speaker"
+speaker = "Joe"
+text = "Really, after working here, there's only time for a drink or three. All us guards go to the same pub and drink ourselves stupid."
+parent = 375
+
+[[nodes]]
+id = 378
+depth = 4
+kind = "speaker"
+speaker = "Joe"
+text = "It's what I enjoy these days. I can't resist the sight of a really cold beer."
+parent = 375
+
+[[nodes]]
+id = 379
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 375
+
+[[nodes]]
+id = 380
+depth = 4
+kind = "option"
+text = "I have some beer here. Fancy one?"
+parent = 375
+children = [381]
+
+[[nodes]]
+id = 381
+depth = 5
+kind = "act"
+text = "above"
+parent = 380
+
+[[nodes]]
+id = 382
+depth = 4
+kind = "option"
+text = "Tell me about the life of a guard."
+parent = 375
+children = [383]
+
+[[nodes]]
+id = 383
+depth = 5
+kind = "act"
+text = "above"
+parent = 382
+
+[[nodes]]
+id = 384
+depth = 4
+kind = "option"
+text = "What did you want to be when you were a boy?"
+parent = 375
+children = [385]
+
+[[nodes]]
+id = 385
+depth = 5
+kind = "act"
+text = "above"
+parent = 384
+
+[[nodes]]
+id = 386
+depth = 4
+kind = "option"
+text = "I'd better go."
+parent = 375
+children = [387]
+
+[[nodes]]
+id = 387
+depth = 5
+kind = "act"
+text = "below"
+parent = 386
+
+[[nodes]]
+id = 388
+depth = 3
+kind = "option"
+text = "Tell me about the life of a guard."
+parent = 368
+children = [389]
+
+[[nodes]]
+id = 389
+depth = 4
+kind = "act"
+text = "above"
+parent = 388
+
+[[nodes]]
+id = 390
+depth = 3
+kind = "option"
+text = "Would you be interested in making a little more money?"
+parent = 368
+children = [391, 392, 393, 394, 395]
+
+[[nodes]]
+id = 391
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Would you be interested in making a little more money?"
+parent = 390
+
+[[nodes]]
+id = 392
+depth = 4
+kind = "speaker"
+speaker = "Joe"
+text = "What? Are you trying to bribe me? I may not be a great guard, but I am loyal. How dare you try to bribe me!"
+parent = 390
+
+[[nodes]]
+id = 393
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No, no, you've got the wrong idea, totally. I just wondered if you wanted some part-time bodyguard work."
+parent = 390
+
+[[nodes]]
+id = 394
+depth = 4
+kind = "speaker"
+speaker = "Joe"
+text = "Oh... sorry. No, I don't need money. As long as you were not offering me a bribe."
+parent = 390
+
+[[nodes]]
+id = 395
+depth = 4
+kind = "act"
+text = "other"
+parent = 390
+is_terminal = true
+
+[[nodes]]
+id = 396
+depth = 3
+kind = "option"
+text = "I'd better go."
+parent = 368
+children = [397]
+
+[[nodes]]
+id = 397
+depth = 4
+kind = "act"
+text = "below"
+parent = 396
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "option"
+text = "Tell me about the life of a guard."
+parent = 361
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "act"
+text = "above"
+parent = 361
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "option"
+text = "I'd better go."
+parent = 361
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "act"
+text = "below"
+parent = 361
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "option"
+text = "I'd better go."
+parent = -1
+children = [403, 404, 405]
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd better go."
+parent = 402
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "Thanks, I appreciate that. Talking on duty can be punished by having your mouth stitched up. These are tough people, make no mistake."
+parent = 402
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "act"
+text = "end"
+parent = 402
+is_terminal = true
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "speaker"
+speaker = "Joe"
+text = "Halt! Who goes there?"
+parent = -1
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello friend. I'm just here to rescue the Prince, if thats okay?"
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Joe"
+text = "Thatsh a funny joke. You are lucky I'm shober. Go in peace, friend."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "You're back. How are things going with that guard?"
+parent = -1
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "option"
+text = "I could attack him."
+parent = -1
+children = [413, 414, 415, 416, 418, 420]
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I could attack him."
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "I don't think that's a good idea. Any violence could put the Prince at risk."
+parent = 412
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 412
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "option"
+text = "I might be able to get him drunk."
+parent = 412
+children = [417]
+
+[[nodes]]
+id = 417
+depth = 3
+kind = "act"
+text = "below"
+parent = 416
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "option"
+text = "Maybe I could bribe him to leave."
+parent = 412
+children = [419]
+
+[[nodes]]
+id = 419
+depth = 3
+kind = "act"
+text = "below"
+parent = 418
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "option"
+text = "I'll keep thinking."
+parent = 412
+children = [421, 422]
+
+[[nodes]]
+id = 421
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll keep thinking."
+parent = 420
+
+[[nodes]]
+id = 422
+depth = 3
+kind = "act"
+text = "end"
+parent = 420
+is_terminal = true
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "option"
+text = "I might be able to get him drunk."
+parent = -1
+children = [424, 425, 426]
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I might be able to get him drunk."
+parent = 423
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Yes, that could work. I'd imagine three beers would do it. Why don't you give it a try?"
+parent = 423
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "act"
+text = "end"
+parent = 423
+is_terminal = true
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "option"
+text = "Maybe I could bribe him to leave."
+parent = -1
+children = [428, 429, 430]
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe I could bribe him to leave."
+parent = 427
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "It would take a lot of gold to convince him to betray Keli. She's not known to be kind to those she believes to be traitors. Perhaps there's something else you could try."
+parent = 427
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "act"
+text = "other"
+parent = 427
+is_terminal = true
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "option"
+text = "I'm not sure yet."
+parent = -1
+children = [432, 433, 434]
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure yet."
+parent = 431
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "You should try talking to him. He might give away some sort of weakness."
+parent = 431
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "act"
+text = "end"
+parent = 431
+is_terminal = true
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "You're back. How are things going with that guard?"
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He's been dealt with."
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = """
+Great! I think that means we're ready. Go in and use some rope to tie Keli up. Once she's dealt with, use the key to free the Prince. Don't forget to give him his disguise so the guards outside don't spot him.
+"""
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "cond"
+text = "If the player is not ready:"
+parent = -1
+children = [440, 441, 442]
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "box"
+text = "You cannot tie Keli up until you have all equipment and disabled the guard!"
+parent = 439
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "box"
+text = "You'll need to deal with Lady Keli before freeing the Prince."
+parent = 439
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "act"
+text = "end"
+parent = 439
+is_terminal = true
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "cond"
+text = "If the player used rope on Lady Keli:"
+parent = -1
+children = [444, 445]
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "box"
+text = "You overpower Keli, tie her up, and put her in a cupboard."
+parent = 443
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "act"
+text = "end"
+parent = 443
+is_terminal = true
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "cond"
+text = "If the player is ready and talks to Lady Keli:"
+parent = -1
+children = [447, 448, 449, 450]
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello! I'm here to tie you up!"
+parent = 446
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "speaker"
+speaker = "Lady Keli"
+text = "What?"
+parent = 446
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "box"
+text = "You overpower Keli, tie her up, and put her in a cupboard."
+parent = 446
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "act"
+text = "end"
+parent = 446
+is_terminal = true
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Prince Ali? I'm here to rescue you."
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Prince Ali"
+text = "Oh thank goodness! What's your plan?"
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "cond"
+text = "If the player does not have a complete disguise and key:"
+parent = -1
+children = [454, 455]
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've already dealt with Lady Keli and the guard. I'm going to get you a disguise so the guards outside don't spot you leaving. I'll be back once I have it."
+parent = 453
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "act"
+text = "end"
+parent = 453
+is_terminal = true
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "cond"
+text = "If the player has a complete disguise and key:"
+parent = -1
+children = [457, 458, 459, 460]
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Take this disguise. You can use it to get past the guards outside."
+parent = 456
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "speaker"
+speaker = "Prince Ali"
+text = "Thank you, my friend. I must leave you now, but my father will pay you well for this."
+parent = 456
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "box"
+text = "Prince Ali puts on the disguise and uses it to escape."
+parent = 456
+
+[[nodes]]
+id = 460
+depth = 2
+kind = "act"
+text = "end"
+parent = 456
+is_terminal = true
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "speaker"
+speaker = "Joe"
+text = "Did yoush say something about shome Prince?"
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = -1
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "speaker"
+speaker = "Joe"
+text = "Oh... okay."
+parent = -1
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "You did it! Prince Ali is now safe again. You should head back to Al Kharid. I expect you will be well rewarded for your work."
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "speaker"
+speaker = "Osman"
+text = "Prince Ali is safe once more. Chancellor Hassan has your payment."
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "speaker"
+speaker = "Prince Ali"
+text = "Good to see you, friend. I am forever in your debt for what you did, as is all of Al Kharid."
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "speaker"
+speaker = "Prince Ali"
+text = "I know my father is very grateful as well. If he were in better health, he would have thanked you personally. However, at his age, it is best that he spends his time resting."
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm just happy to have helped. All the best."
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "speaker"
+speaker = "Chancellor Hassan"
+text = "Prince Ali is home safe. You have the eternal gratitude of the Emir for rescuing his son. Please, take this payment as a thank you."
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

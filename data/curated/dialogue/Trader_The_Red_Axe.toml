@@ -1,0 +1,66 @@
+title = "Transcript:Trader (The Red Axe)"
+npcs = ["Trade Referee", "Trader (The Red Axe)"]
+node_count = 8
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Trader"
+text = "{{overhead|Objection!}}"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "cond"
+text = "20% of the time:"
+parent = -1
+children = [3, 4]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Octagon Referee"
+text = "{{overhead|Objection sustained!}}"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "cond"
+text = "80% of the time:"
+parent = -1
+children = [6, 7]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Octagon Referee"
+text = "{{overhead|Objection overruled!}}"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "end"
+parent = 5
+is_terminal = true

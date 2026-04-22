@@ -1,0 +1,49 @@
+quest = "The Ides of Milk"
+step_count = 3
+
+[[steps]]
+index = 0
+name = "The cash cow"
+links = ["Cassius", "Lumbridge windmill", "Seth Groats", "Gillie Groats", "Lumbridge cow field", "Groats Principles", "shelves (The Ides of Milk)", "milk sample", "Duke Horacio"]
+text = """
+[[File:Cassius chathead.png|left]]
+Speak with [[Cassius]] by the Lumbridge pond, just south of the [[Lumbridge windmill|windmill]]. He will offer you a partnership in his future milk empire, and ask you to question [[Seth Groats|Seth]] and [[Gillie Groats]] about how they've made their animals so productive.
+
+[[Gillie Groats]] can be found inside the [[Lumbridge cow field]], just north of the gate. Talk to her and she'll say that happiness is the secret to better milk production, and suggest you talk to her father.
+
+[[Seth Groats]] can be found inside the house by the chicken coop, slightly north-west of the cow field. He will recommend his book, [[Groats Principles|The Groats Principles]], which discusses his approach to husbandry. Search the [[shelves (The Ides of Milk)|shelves]] on the southern wall to obtain it, and return to Cassius.
+[[File:Brutus and cow.png|thumb|width=400x400|The massive bull in the cow pen.]]
+Cassius will snatch the book away, and offer a [[milk sample]]. Drink the sample to discover that his milk tastes awful. Although the player takes 1 poison damage, they will '''not''' be poisoned and cannot die. Speak to him again, and he will give you another milk sample for [[Duke Horacio]] to try, in order to convince the Duke to give you a permit for selling the milk.{{Clear|left}}
+"""
+
+[[steps]]
+index = 1
+name = "A milketoast product"
+links = ["Duke Horacio", "Lumbridge Castle"]
+text = """
+[[File:Duke Horacio chathead.png|left]]
+[[Duke Horacio]] can be found in [[Lumbridge Castle]] on the {{FloorNumber|uk=1}}. Ask about the permit, and he'll refuse to issue it without the Groats' approval, seemingly worried about their potential response. He will ask you to speak with Gillie directly.
+
+Return to Gillie and offer her the sample. She'll be apprehensive about drinking a strange liquid, and ask you to drink the sample instead. Drink it (no damage will be dealt this time) to find that it tastes even worse than the first one. Gillie will comment that she might be helping people out by refusing to give a permit, given how bad the milk seems to be. You will then ask if there's anything you can do to convince her to give you one, and she'll mention that an aggressive bull has been disrupting her herd, saying that if you deal with it, she'll authorize the permit. Head to the gate north east of her and prepare for a fight.
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 2
+name = "Grabbing the bull by its horns"
+links = ["Brutus", "Hitpoint", "Hitpoints"]
+text = """
+{{Instance}}
+{{see also|Bull/Strategies}}
+Upon entering the north-eastern gate you will need to fight the [[Brutus|bull]]. If you wish to leave during the fight, run south-west to the gate to escape.
+
+The bull attacks using melee with a max hit of 3. However, this cannot kill the player during the quest, as they will always hit for 0 if the player is at 1 [[Hitpoint]]. After three melee attacks, he will also start using his special attacks after 1-6 hits. The damage of both special attacks scale with the player's [[Hitpoints]] level, with a max hit of upwards of 19. Low level players can expect to be hit for around 30-40% of their health by the special attacks. This damage ignores protection prayers, but may be avoided entirely by moving out of the way before Brutus moves.
+* When the bull {{overhead|*snorts*}}, he will then slam the ground and hit a number of tiles around the player, either a 3x1 row (if the player is adjacent to him) or an L shape (if the player is diagonal to him). This attack can be fully avoided by stepping two tiles '''to either side''' or one tile '''backwards'''.
+* When the bull {{overhead|*growls*}}, he is about to charge towards the player. This attack can be fully avoided by stepping two tiles '''to either side'''.
+
+After defeating the bull, your player will pick up the tag he drops and it reveals the bull was Brutus, Cassius' supposed business associate. Return to Gillie and let her know that the bull belonged to Cassius. She'll tell you to confront him; return to Cassius, and it is revealed that he was stealing milk from Seth's cow herd, and Brutus' aggression disrupting the herd was causing them to produce bad milk. He then chastises you for killing Brutus, and refuses to speak to you further.
+
+'''Congratulations, quest complete!'''
+
+''After completing the quest, return to Gillie to receive the additional quest rewards.''
+"""

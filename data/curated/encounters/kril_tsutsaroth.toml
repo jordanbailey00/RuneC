@@ -1,0 +1,126 @@
+# K'ril Tsutsaroth — GWD Zamorak. Tests: prayer-piercing special
+# attack (bypasses Protect from Melee when that prayer is active),
+# prayer-drain on hit, poison-through-prayer.
+
+name = "K'ril Tsutsaroth"
+slug = "kril_tsutsaroth"
+npc_ids = [3129]
+source_pages = ["K'ril Tsutsaroth", "K'ril Tsutsaroth/Strategies"]
+
+[[bosses]]
+name = "K'ril Tsutsaroth"
+npc_id = 3129
+is_primary = true
+
+[[bosses.attacks]]
+name = "Melee Scimitars"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 46
+warning_ticks = 0
+# Wiki: "has a chance of inflicting poison, even through Protect
+# from Melee, with damage starting at 16."
+inflicts_poison = true
+poison_starting_damage = 16
+poison_pierces_prayer = true
+
+[[bosses.attacks]]
+name = "Magic Shockwave"
+style = "magic"
+max_hit = 30
+min_hit = 10                      # 10-30 uniform
+warning_ticks = 2
+
+[[bosses.attacks]]
+name = "Enraged Melee (Prayer-Pierce)"
+# Wiki: "if his target is praying Protect from Melee, he can use a
+# devastating melee special attack that hits through prayer. Damage
+# 35-49 uniform. Drains half of the player's current prayer points."
+# Fired on ~1/9 of attacks (replaces standard melee) when target is
+# praying Protect from Melee.
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 49
+min_hit = 35
+warning_ticks = 0
+prayer_ignorable = true           # bypasses Protect from Melee
+on_hit.drain_prayer_pct = 50      # drain half current prayer pts
+forced_hit = false
+
+[[bosses]]
+name = "Balfrug Kreeyath"
+npc_id = 3130
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Magic Blast"
+style = "magic"
+max_hit = 21
+warning_ticks = 2
+
+[[bosses]]
+name = "Tstanon Karlak"
+npc_id = 3131
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Melee Claws"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 27
+warning_ticks = 0
+
+[[bosses]]
+name = "Zakl'n Gritch"
+npc_id = 3132
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Ranged Dart"
+style = "ranged"
+max_hit = 16
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+# Wiki: 2/3 melee, 1/3 magic. Every 9th hit → prayer-piercing special
+# (replaces the melee for that hit, only if target has Protect from
+# Melee on).
+style_weights = { melee = 2, magic = 1 }
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Prayer-Pierce Special"
+primitive = "attack_counter_special"
+# Wiki: "K'ril will use his special on 1 in every 9 hits instead of
+# a melee attack. Only fires if target is currently praying Protect
+# from Melee."
+params.every_n_attacks = 9
+params.condition = "target_praying:protect_from_melee"
+params.replaces_attack = "Melee Scimitars"
+params.special_attack = "Enraged Melee (Prayer-Pierce)"
+
+[[mechanics]]
+name = "Bodyguard Respawn Cycle"
+primitive = "periodic_respawn_if_dead"
+params.respawn_cooldown_ticks = 75
+params.applies_to_npc_ids = [3129, 3130, 3131, 3132]
+
+[[mechanics]]
+name = "Group Kill Required"
+primitive = "group_kill_required"
+params.required_npc_ids = [3129, 3130, 3131, 3132]
+params.grant_drops_for = [3129]
+
+[[mechanics]]
+name = "Empty-Room Reset"
+primitive = "regen_when_no_player"
+params.heal_to_full = true
+params.reset_all_npcs = true
+
+[entry_requirement]
+zamorak_killcount = 40

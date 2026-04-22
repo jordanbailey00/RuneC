@@ -1,0 +1,5621 @@
+title = "Transcript:2017 Christmas event"
+npcs = ["Wise Old Man", "Wise Old Man (2017 Christmas event)", "Dolph", "Thessalia", "Iffie", "Donnacha", "Diango", "Cait", "Cormac", "Fionn", "Ronan", "Rosie", "Sorcha", "Jack Frost", "Santa Claus", "Tree (Draynor guard)"]
+node_count = 725
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Talk about Christmas"
+parent = -1
+children = [3, 4, 5, 6, 7, 8, 9, 24, 35, 46]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Ah! [player name], just the person I need."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well, you know that this time of year Santa travels the multiverse, judging children and adults alike for their behaviour and rewarding them accordingly?"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeeeess... what does this have to do with me?"
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well, he's taking a holiday."
+parent = 2
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 2
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "option"
+text = "Isn't Christmas a stupid time for Santa to take a break?"
+parent = 2
+children = [10, 11, 12, 13, 14, 15, 16, 22]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Isn't Christmas a stupid time for Santa to take a break? Why can't he join the beatles on their summer holiday?"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I believe he had some personal matters to attend to. Not to worry."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Santa has entrusted me with the onerous responsibility of filling in for him this year."
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And you need me because..."
+parent = 9
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Everyone knows that Santa has little helpers."
+parent = 9
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 9
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "option"
+text = "Ok, ok. I'll help."
+parent = 9
+children = [17, 18, 19, 20, 21]
+
+[[nodes]]
+id = 17
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok, ok. I'll help. But you're doing most of the work."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Excellent!"
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what do you need me to do first?"
+parent = 16
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well, Santa left me a message that Diango has the key to his grotto, so firstly, please fetch the key, then we can see what kind of job awaits us."
+parent = 16
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "option"
+text = "Nope, not interested."
+parent = 9
+children = [23]
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "option"
+text = "cond=If the player completed the 2016 Christmas event:|So you want me to save Christmas, like last year?"
+parent = 2
+children = [25, 26, 27, 28, 29, 30, 31, 33]
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you want me to save Christmas, like last year?"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh no no no not at all."
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Santa has entrusted me with the onerous responsibility of filling in for him this year."
+parent = 24
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And you need me because..."
+parent = 24
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Everyone knows that Santa has little helpers."
+parent = 24
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 24
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "option"
+text = "Ok, ok. I'll help."
+parent = 24
+children = [32]
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "act"
+text = "above"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "option"
+text = "Nope, not interested."
+parent = 24
+children = [34]
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "act"
+text = "above"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "option"
+text = "cond=If the player didn't complete the 2016 Christmas event:|So you want me to save Christmas?"
+parent = 2
+children = [36, 37, 38, 39, 40, 41, 42, 44]
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you want me to save Christmas?"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh no no no not at all."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Santa has entrusted me with the onerous responsibility of filling in for him this year."
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And you need me because..."
+parent = 35
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Everyone knows that Santa has little helpers."
+parent = 35
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 35
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "option"
+text = "Ok, ok. I'll help."
+parent = 35
+children = [43]
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "act"
+text = "above"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "option"
+text = "Nope, not interested."
+parent = 35
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "act"
+text = "above"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "option"
+text = "So? I don't care."
+parent = 2
+children = [47]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "option"
+text = "event=No|(Talk about something else)"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Diango"
+text = "Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "option"
+text = "Spinning plates?|event=no"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "option"
+text = "I'd like to check holiday items please!|event=no"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [54, 55, 56, 57, 58, 59]
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hey Diango, I need the key to Santa's Grotto. Can you give it to me please?"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "I don't give that out to just anyone, you know. What on Gielinor could you need it for?"
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But the Wise Old Man needs it... Santa appears to have gone AWOL and left him in charge."
+parent = 53
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "Oh... Oh no no... Please [player]. Whatever you do, keep an eye on him."
+parent = 53
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "You'll need to fetch it from my workshop, the north-western most building in Draynor Village, as I can't leave my stall unprotected, there's an uncontrolled thieving crime wave in Draynor lately."
+parent = 53
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "act"
+text = "end"
+parent = 53
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "option"
+text = "What else are you selling?|event=no"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "I'm fine, thanks.|event=no"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Pixie Foreman"
+text = "Oi! You stay away from there! If you want anything, you're going to have to come talk to me!"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Are you here to negotiate terms?"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err... I don't think so."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Well you can't come in anyway."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, that might be an issue."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Sounds like a you problem."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am here to fetch the key to Santa's Grotto. You aren't going to stop me."
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Oh! Is that all! No need to go in for that, I really don't care what happens to it now. How dare he treat us like this."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "If I can't go in, how do I get the key?"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Cause it's a pass phrase. [Pass phrase]. Got it? <!--Pass phrase is different per player-->"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, thanks."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I forgot the pass phrase."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "No worries. [Pass phrase]."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Diango"
+text = "Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "Spinning plates?|event=no"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "option"
+text = "I'd like to check holiday items please!|event=no"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [83, 84, 85, 86]
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "[player name]! Did you get the key you were after?"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, thank you."
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "Excellent. As I said, keep an eye on that Wise Old Man. The last thing we want is for Christmas to be ruined!"
+parent = 82
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "end"
+parent = 82
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "What else are you selling?|event=no"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "option"
+text = "I'm fine, thanks.|event=no"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [91]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Pixie rights!}}"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [93]
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Pixie power!}}"
+parent = 92
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [95]
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Down with this kind of thing!}}"
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "Talk about Christmas"
+parent = -1
+children = [99, 100, 101, 102, 155, 160, 165]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I got the key!"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well done dear boy. Give it to me. <!--Pass phrase is different per player-->"
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 98
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "option"
+text = "Pixies pick a pack of pickled papayas."
+parent = 98
+children = [103, 104, 105, 106, 153]
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "cond"
+text = "If the password is correct:"
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "How amusing. At least we can get in the grotto now! Let me know when you're ready."
+parent = 102
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 102
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "option"
+text = "I was born ready."
+parent = 102
+children = [107, 108, 109, 110, 111, 112, 113, 138, 143, 148]
+
+[[nodes]]
+id = 107
+depth = 4
+kind = "other"
+text = "{{qact|The player and Wise Old Man are outside the grotto}}"
+parent = 106
+
+[[nodes]]
+id = 108
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Right, let's go into the grotto."
+parent = 106
+
+[[nodes]]
+id = 109
+depth = 4
+kind = "other"
+text = "{{qact|The player and Wise Old Man walk to the grotto door}}"
+parent = 106
+
+[[nodes]]
+id = 110
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Ahem... With great age comes great wisdom, but my memory isn't as good as it was. Can you remember the passphrase?"
+parent = 106
+
+[[nodes]]
+id = 111
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 106
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "option"
+text = "Pixies pick a pack of pickled papayas."
+parent = 106
+
+[[nodes]]
+id = 113
+depth = 4
+kind = "cond"
+text = "If the password is correct:"
+parent = 106
+children = [114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 132]
+
+[[nodes]]
+id = 114
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Pixies pick a pack of pickled papayas."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Excellent, let's see what's inside."
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 5
+kind = "other"
+text = "{{qact|The player and Wise Old Man enter the grotto}}"
+parent = 113
+
+[[nodes]]
+id = 117
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Ah! A list. So much to do... I'll need an assistant. You'll do."
+parent = 113
+
+[[nodes]]
+id = 118
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "But..."
+parent = 113
+
+[[nodes]]
+id = 119
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "You wouldn't want to disappoint all the children waiting for their presents would you? Just think of poor gnome children crying themselves to sleep."
+parent = 113
+
+[[nodes]]
+id = 120
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well, ok then."
+parent = 113
+
+[[nodes]]
+id = 121
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "That's the spirit. You'll need to look the part, of course."
+parent = 113
+
+[[nodes]]
+id = 122
+depth = 5
+kind = "other"
+text = "{{qact|The Wise Old Man takes curtains off the window.}}"
+parent = 113
+
+[[nodes]]
+id = 123
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Here, these can be made into a perfectly servicable{{sic}} snow imp costume. They just need some snow."
+parent = 113
+
+[[nodes]]
+id = 124
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "But... won't it melt?"
+parent = 113
+
+[[nodes]]
+id = 125
+depth = 5
+kind = "other"
+text = "{{qact|The Wise Old Man casts low level alchemy on it, enchanting it.}}"
+parent = 113
+
+[[nodes]]
+id = 126
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Not after I enchant the fabric!"
+parent = 113
+
+[[nodes]]
+id = 127
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I see."
+parent = 113
+
+[[nodes]]
+id = 128
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 113
+
+[[nodes]]
+id = 129
+depth = 5
+kind = "option"
+text = "Where do I get snow?"
+parent = 113
+children = [130, 131]
+
+[[nodes]]
+id = 130
+depth = 6
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "This is the land of snow... there's tons of it out there."
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 6
+kind = "act"
+text = "below"
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 5
+kind = "option"
+text = "Ok, I know where I can get snow."
+parent = 113
+children = [133, 134, 135, 136, 137]
+
+[[nodes]]
+id = 133
+depth = 6
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Of course, once you have coated it with snow, you'll need to get it tailored into a costume. Thessalia can probably help there."
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "But Varrock is miles away!"
+parent = 132
+
+[[nodes]]
+id = 135
+depth = 6
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I'm a wizard. Take the cloth, coat it with snow and I'll arrange transport."
+parent = 132
+
+[[nodes]]
+id = 136
+depth = 6
+kind = "box"
+text = "pic=Enchanted curtains detail.png|You take the enchanted cloth then head out to the Land of Snow."
+parent = 132
+
+[[nodes]]
+id = 137
+depth = 6
+kind = "act"
+text = "end"
+parent = 132
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 4
+kind = "option"
+text = "Remember remember to wash the umbrella."
+parent = 106
+children = [139, 140, 141, 142]
+
+[[nodes]]
+id = 139
+depth = 5
+kind = "cond"
+text = "If the password is correct:"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 5
+kind = "act"
+text = "above"
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 5
+kind = "cond"
+text = "If the password is incorrect:"
+parent = 138
+
+[[nodes]]
+id = 142
+depth = 5
+kind = "other"
+text = "{{tmissing}}"
+parent = 138
+
+[[nodes]]
+id = 143
+depth = 4
+kind = "option"
+text = "There's no place like gnome child's house."
+parent = 106
+children = [144, 145, 146, 147]
+
+[[nodes]]
+id = 144
+depth = 5
+kind = "cond"
+text = "If the password is correct:"
+parent = 143
+
+[[nodes]]
+id = 145
+depth = 5
+kind = "act"
+text = "above"
+parent = 143
+
+[[nodes]]
+id = 146
+depth = 5
+kind = "cond"
+text = "If the password is incorrect:"
+parent = 143
+
+[[nodes]]
+id = 147
+depth = 5
+kind = "act"
+text = "above"
+parent = 143
+
+[[nodes]]
+id = 148
+depth = 4
+kind = "option"
+text = "The dark squirrel faces north."
+parent = 106
+children = [149, 150, 151, 152]
+
+[[nodes]]
+id = 149
+depth = 5
+kind = "cond"
+text = "If the password is correct:"
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 5
+kind = "act"
+text = "above"
+parent = 148
+
+[[nodes]]
+id = 151
+depth = 5
+kind = "cond"
+text = "If the password is incorrect:"
+parent = 148
+
+[[nodes]]
+id = 152
+depth = 5
+kind = "act"
+text = "above"
+parent = 148
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "option"
+text = "Ok, give me a minute."
+parent = 102
+children = [154]
+
+[[nodes]]
+id = 154
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "option"
+text = "Remember remember to wash the umbrella."
+parent = 98
+children = [156, 157, 158, 159]
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "cond"
+text = "If the password is correct:"
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 3
+kind = "act"
+text = "above"
+parent = 155
+
+[[nodes]]
+id = 158
+depth = 3
+kind = "cond"
+text = "If the password is incorrect:"
+parent = 155
+
+[[nodes]]
+id = 159
+depth = 3
+kind = "act"
+text = "above"
+parent = 155
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "option"
+text = "There's no place like gnome child's house."
+parent = 98
+children = [161, 162, 163, 164]
+
+[[nodes]]
+id = 161
+depth = 3
+kind = "cond"
+text = "If the password is correct:"
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "act"
+text = "above"
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "cond"
+text = "If the password is incorrect:"
+parent = 160
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "act"
+text = "above"
+parent = 160
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "option"
+text = "The dark squirrel faces north."
+parent = 98
+children = [166, 167, 168, 169]
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "cond"
+text = "If the password is correct:"
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "act"
+text = "above"
+parent = 165
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "cond"
+text = "If the password is incorrect:"
+parent = 165
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "act"
+text = "above"
+parent = 165
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "option"
+text = "event=No|(Talk about something else)"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I gave you some enchanted cloth, if you recall. You should get it covered in snow so that it resembles a snow imp's pelt."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "box"
+text = "pic=Enchanted snowy curtains detail.png|You cover the enchanted cloth with snow. It sticks, and doesn't melt."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have the cloth all snowy."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Very good. Now I need you to get it turned into a costume. Thessalia ought to be able to help. She runs the Varrock clothes shop."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "box"
+text = "pic=Wise_old_man's_teleport_tablet_detail.png|The Wise Old Man hands you a teleport tablet you can use to return to the Land of Snow."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "other"
+text = "{{qact|The teleother menu pops up saying \"Wise Old Man ...wants to teleport you to... Thessalia's Store.\"}}"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have this special fabric, can you make me a snow imp costume?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Thessalia"
+text = "Everyone and his dog wants a fancy dress costume! My poor fingers are being worn to the bone with all this work. Unfortunately you'll need to find someone else to do it."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "I'll do it dearie."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Thessalia"
+text = "What? You can't even thread a needle without help!"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "I haven't lost it yet m'gell. You get on with your work. I'll help [player]."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Hello dearie, that looks like some interesting fabric you have there. Did you want something done with it?"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes please, I'd like an imp costume."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Not a problem. It won't be quite as fine as Thessalia's work, as my eyes aren't as good as they were but... hand it over."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "box"
+text = "After an hour threading a needle, and then 20 minutes of sewing, Iffie hands over something that vaguely represents a snow imp."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Go away. I'm trying to sleep."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I feel ridiculous in this outfit."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Not at all, you look very... ahem... festive! But your voice is wrong for a snow imp - you'll need to play the part properly to get this job done. This list is quite long."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "option"
+text = "What's on the list?"
+parent = -1
+children = [197, 198, 199]
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's on the list?"
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 196
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "act"
+text = "end"
+parent = 196
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "option"
+text = "What's on da list? Sorted mate."
+parent = -1
+children = [201, 202, 203, 204, 208]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's on da list? Sorted mate."
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well, first we have to... oh dear, that can't be right! Apparently we have to recharge the lead reindeer's nose?"
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "option"
+text = "Well it has to glow doesn't it?"
+parent = 200
+children = [205, 206, 207]
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well it has to glow doesn't it?"
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "option"
+text = "Well i' 'as ter glow doesn't it?"
+parent = 200
+children = [209, 210, 211, 215]
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well i' 'as ter glow doesn't it?"
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 3
+kind = "option"
+text = "Otherwise you can't see where you're going."
+parent = 208
+children = [212, 213, 214]
+
+[[nodes]]
+id = 212
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Otherwise you can't see where you're going."
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 4
+kind = "act"
+text = "end"
+parent = 211
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 3
+kind = "option"
+text = "Otherwise yew can't see where yer going."
+parent = 208
+children = [216, 217, 218]
+
+[[nodes]]
+id = 216
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Otherwise yew can't see where yer going."
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I suppose so. You had best go find out how to do that then."
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 4
+kind = "act"
+text = "end"
+parent = 215
+is_terminal = true
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "box"
+text = "pic=Fine mesh net detail.png|You take a net."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... I'm told that we have to recharge your nose?"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Oh no, not that time of year again."
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, a time to be happy!"
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "I wouldn't call having sprites shoved up your nose happytime."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sprites... those glowing things out there in the land of snow?"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Oh please let Santa bring you a brain this year. Of course sprites. Next you'll be asking how to catch them."
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "option"
+text = "Of course not, use a net."
+parent = -1
+children = [229, 230, 231]
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Dolph"
+text = "Wow... maybe you do have some intelligence. Not just any net though. There's a special one around here somewhere."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're very rude."
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "option"
+text = "Err, yeah. How do you catch them?"
+parent = -1
+children = [233, 234, 235]
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Dolph"
+text = "By the power of Santa's underwear... you use a net of course. A specific one. There's one around here somewhere."
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're very rude."
+parent = 232
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "act"
+text = "end"
+parent = 232
+is_terminal = true
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "other"
+text = "{{mes|You capture one of the fickle sprites.}}"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "box"
+text = "pic=Kebab detail.png|You take a delicious looking kebab."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "box"
+text = "The warmth of the meat and Christmas spices suffuse your mouth, it tastes somewhat like reindeer."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have sprites!"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Oh... is this supposed to make me happy? Go on then, get it over with."
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hold still while I..."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "act"
+text = "The player puts a sprite on Dolph's nose. It gets a little bit brighter red."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Santa's great dangling..."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Language!"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "ACHOO!"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "other"
+text = "{{Qact|A glob of snot covers the screen}}"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Eww..."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have sprites!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Oh... is this supposed to make me happy? Go on then, get it over with."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hold still while I..."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "act"
+text = "The player puts a sprite on Dolph's nose. It gets a little bit brighter red."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "WHY are you doing this to me you useless lump of snot?"
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Because otherwise the children will think Santa is fake."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "That makes ZERO sense. But I didn't expect much else of you."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have sprites!"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Oh... is this supposed to make me happy? Go on then, get it over with."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hold still while I..."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "act"
+text = "The player puts a sprite on Dolph's nose. It gets a little bit brighter red."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "GALLOPING GRAVY! Do you have to be so heavy handed, you oafish imp! I'll have no nose left at this rate. Get out of here!"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're still very rude."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Dolph"
+text = "Go chew on a cactus!"
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "box"
+text = "On reflection, you think that Dolph's nose is probably bright enough now."
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well done. Next on the list is an appropriate costume for me, as I'm not going to pass for Santa in my current robes."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Perhaps you can find something around here that Santa used?"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "cond"
+text = "If the player has the [[santa outfit]] from past events:"
+parent = -1
+children = [272, 273, 277]
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "option"
+text = "I've got a Santa costume."
+parent = 271
+children = [274, 275, 276]
+
+[[nodes]]
+id = 274
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've got a Santa costume."
+parent = 273
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 273
+
+[[nodes]]
+id = 276
+depth = 3
+kind = "act"
+text = "end"
+parent = 273
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "option"
+text = "I 'ave a Santa costume meself, innit."
+parent = 271
+children = [278, 279, 280, 281, 285]
+
+[[nodes]]
+id = 278
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I 'ave a Santa costume meself, innit."
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Thank you for the offer, however I'm rather taller than you and I fear that no one wants to see Santa's ankles. Perhaps you can find something around here that Santa used?"
+parent = 277
+
+[[nodes]]
+id = 280
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 277
+
+[[nodes]]
+id = 281
+depth = 3
+kind = "option"
+text = "Ok."
+parent = 277
+children = [282, 283, 284]
+
+[[nodes]]
+id = 282
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok."
+parent = 281
+
+[[nodes]]
+id = 283
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 281
+
+[[nodes]]
+id = 284
+depth = 4
+kind = "act"
+text = "end"
+parent = 281
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 3
+kind = "option"
+text = "I'm on it guv."
+parent = 277
+children = [286, 287]
+
+[[nodes]]
+id = 286
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm on it guv."
+parent = 285
+
+[[nodes]]
+id = 287
+depth = 4
+kind = "act"
+text = "end"
+parent = 285
+is_terminal = true
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the [[santa outfit]] from past events:"
+parent = -1
+children = [289, 290, 294]
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "option"
+text = "Ok."
+parent = 288
+children = [291, 292, 293]
+
+[[nodes]]
+id = 291
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok."
+parent = 290
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 290
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "act"
+text = "end"
+parent = 290
+is_terminal = true
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "option"
+text = "I'm on it guv."
+parent = 288
+children = [295, 296]
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm on it guv."
+parent = 294
+
+[[nodes]]
+id = 296
+depth = 3
+kind = "act"
+text = "end"
+parent = 294
+is_terminal = true
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I need an appropriate Santa costume. Perhaps you can find something for me."
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "option"
+text = "Ok."
+parent = -1
+children = [300]
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "act"
+text = "above"
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "option"
+text = "I'm on it guv."
+parent = -1
+children = [302]
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "act"
+text = "above"
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "other"
+text = "{{mes|You take the large red suit.}}"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "I found a suit in that wardrobe."
+parent = -1
+children = [307, 308, 309]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found a suit in that wardrobe."
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 306
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "act"
+text = "end"
+parent = 306
+is_terminal = true
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "option"
+text = "Found dis in a wardrobe,'ll{{sic|No space."
+parent = -1
+children = [311, 312, 313, 314, 318]
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Found dis in a wardrobe,'ll{{sic|No space.}} i' do?"
+parent = 310
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, that's far too big - just look at it! If only you could shrink it somehow, it might do."
+parent = 310
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 310
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "option"
+text = "How do I shrink it?"
+parent = 310
+children = [315, 316, 317]
+
+[[nodes]]
+id = 315
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How do I shrink it?"
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 314
+
+[[nodes]]
+id = 317
+depth = 3
+kind = "act"
+text = "end"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "option"
+text = "How do I gun 'n pink it?"
+parent = 310
+children = [319, 320, 321, 322, 324]
+
+[[nodes]]
+id = 319
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How do I gun 'n pink it?"
+parent = 318
+
+[[nodes]]
+id = 320
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Washing your clothes in really hot water can shrink them. There must be somewhere that Santa washes his clothes around here."
+parent = 318
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 318
+
+[[nodes]]
+id = 322
+depth = 3
+kind = "option"
+text = "Ok."
+parent = 318
+children = [323]
+
+[[nodes]]
+id = 323
+depth = 4
+kind = "act"
+text = "above"
+parent = 322
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "option"
+text = "I'm on it guv."
+parent = 318
+children = [325, 326]
+
+[[nodes]]
+id = 325
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm on it guv."
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 4
+kind = "act"
+text = "end"
+parent = 324
+is_terminal = true
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "other"
+text = "{{mes|You pick up a bundle of fire wood.}}"
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "other"
+text = "{{mes|You place the firewood in the washer firebox.}}"
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "other"
+text = "{{mes|You need a tinderbox the light that.}}"
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "other"
+text = "{{mes|You take a tinderbox from the shelf.}}"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "other"
+text = "{{mes|You light the fire and the water boils.}}"
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "other"
+text = "{{mes|You toss the suit into the boiling water - it shrinks!}}"
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "other"
+text = "{{mes|You pick up a bundle of fire wood.}}"
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "other"
+text = "{{mes|You place the firewood in the dryer firebox.}}"
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "other"
+text = "{{mes|You need a tinderbox the light that.}}"
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "other"
+text = "{{mes|You light the fire and the hot air starts to flow.}}"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "other"
+text = "{{mes|You dry the suit which now looks a suitable size for an old man.}}"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "option"
+text = "I found a suit in that wardrobe."
+parent = -1
+children = [351, 352, 353]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found a suit in that wardrobe."
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 350
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "act"
+text = "end"
+parent = 350
+is_terminal = true
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "option"
+text = "Got yer bowl of fruit, init."
+parent = -1
+children = [355, 356, 357, 358, 362]
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Got yer bowl of fruit, init."
+parent = 354
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh, very nice. Yes, this will make me look just right as Santa. Well done."
+parent = 354
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 354
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "option"
+text = "What's next?"
+parent = 354
+children = [359, 360, 361]
+
+[[nodes]]
+id = 359
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's next?"
+parent = 358
+
+[[nodes]]
+id = 360
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 358
+
+[[nodes]]
+id = 361
+depth = 3
+kind = "act"
+text = "end"
+parent = 358
+is_terminal = true
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "option"
+text = "Gor blimey wot's next?"
+parent = 354
+children = [363, 364, 365, 366, 370]
+
+[[nodes]]
+id = 363
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Gor blimey wot's next?"
+parent = 362
+
+[[nodes]]
+id = 364
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "The most important bit! Collecting the toys from Diango and paying for them."
+parent = 362
+
+[[nodes]]
+id = 365
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 362
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "option"
+text = "How will we pay for that?"
+parent = 362
+children = [367, 368, 369]
+
+[[nodes]]
+id = 367
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "How will we pay for that?"
+parent = 366
+
+[[nodes]]
+id = 368
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 366
+
+[[nodes]]
+id = 369
+depth = 4
+kind = "act"
+text = "end"
+parent = 366
+is_terminal = true
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "option"
+text = "Who's goin ta pony up?"
+parent = 362
+children = [371, 372, 373]
+
+[[nodes]]
+id = 371
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who's goin ta pony up?"
+parent = 370
+
+[[nodes]]
+id = 372
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Santa's good for it. His vault is over there. The list says he's hidden the key in the office for us. See if you can find it; I'm old, and my eyesight's not what it used to be."
+parent = 370
+
+[[nodes]]
+id = 373
+depth = 4
+kind = "act"
+text = "end"
+parent = 370
+is_terminal = true
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "box"
+text = "pic=Vault key detail.png|You find a key."
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What!? There's no money in here! I had better tell the Wise Old Man."
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "box"
+text = "pic=Santa's seal detail.png|You take the seal from the shelf."
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "option"
+text = "The vault is empty!"
+parent = -1
+children = [382, 383, 384]
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The vault is empty!"
+parent = 381
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 381
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "act"
+text = "end"
+parent = 381
+is_terminal = true
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "option"
+text = "Dere's nuffin in it, init."
+parent = -1
+children = [386, 387, 388, 389, 393]
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Dere's nuffin in it, init."
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Empty, you say? Well, I'm sure Santa has the money somewhere. We can give Diango a promissory note instead. Did you pick up Santa's seal? It should have been in the vault."
+parent = 385
+
+[[nodes]]
+id = 388
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 385
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "option"
+text = "Yes, I have it here."
+parent = 385
+children = [390, 391, 392]
+
+[[nodes]]
+id = 390
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = 389
+
+[[nodes]]
+id = 391
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 389
+
+[[nodes]]
+id = 392
+depth = 3
+kind = "act"
+text = "end"
+parent = 389
+is_terminal = true
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "option"
+text = "Yeah I gots it the precious."
+parent = 385
+children = [394, 395, 396]
+
+[[nodes]]
+id = 394
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah I gots it the precious."
+parent = 393
+
+[[nodes]]
+id = 395
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Excellent. Use the items on the desk to write a promissory note, promising that Santa will pay Diango for the toys, and sign it with Santa's seal."
+parent = 393
+
+[[nodes]]
+id = 396
+depth = 3
+kind = "act"
+text = "end"
+parent = 393
+is_terminal = true
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "box"
+text = "pic=Promissory note (Christmas 2017) detail.png|You write out a promissory note. You notice that the nose of the seal is inky so you use it to sign the note."
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Have you written the note?"
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "option"
+text = "Yes, I have it here."
+parent = -1
+children = [402, 403, 404]
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = 401
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 401
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "act"
+text = "end"
+parent = 401
+is_terminal = true
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "option"
+text = "Yeah I gots it the precious."
+parent = -1
+children = [406, 407, 408, 409, 410, 411, 415]
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah I gots it the precious."
+parent = 405
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "EEEeeeeggsellent."
+parent = 405
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = 405
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "*coughs* I mean, well done. Now you can fetch the toys from Diango. Use the sack over there."
+parent = 405
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 405
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "option"
+text = "Thanks."
+parent = 405
+children = [412, 413, 414]
+
+[[nodes]]
+id = 412
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 411
+
+[[nodes]]
+id = 413
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 411
+
+[[nodes]]
+id = 414
+depth = 3
+kind = "act"
+text = "end"
+parent = 411
+is_terminal = true
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "option"
+text = "Cheers mate."
+parent = 405
+children = [416, 417]
+
+[[nodes]]
+id = 416
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Cheers mate."
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 3
+kind = "act"
+text = "end"
+parent = 415
+is_terminal = true
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "box"
+text = "pic=Empty sack (Christmas 2017) detail.png|You take the sack and remove the packing material, it feels limp and empty."
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Have you paid for and got the toys from Diango yet?"
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "option"
+text = "No, not yet."
+parent = -1
+children = [423, 424, 425]
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = 422
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 422
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "act"
+text = "end"
+parent = 422
+is_terminal = true
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "option"
+text = "Nah mate."
+parent = -1
+children = [427, 428]
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nah mate."
+parent = 426
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "act"
+text = "end"
+parent = 426
+is_terminal = true
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "option"
+text = "I want to return to the Wise Old Man's house."
+parent = -1
+children = [431]
+
+[[nodes]]
+id = 431
+depth = 2
+kind = "other"
+text = "{{qact|The player is teleported to the Wise Old Man's house.}}"
+parent = 430
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "option"
+text = "I changed my mind, I'll stay here."
+parent = -1
+children = [433]
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "act"
+text = "end"
+parent = 432
+is_terminal = true
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Diango"
+text = "Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?"
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "option"
+text = "quest=no|Spinning plates?"
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "option"
+text = "quest=no|I'd like to check holiday items please!"
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [439, 440, 441, 442, 443, 444, 445, 446]
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hey Diango! I've come to collect the toys."
+parent = 438
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "Uh, [player name]... One small question. What about payment? Show me the money."
+parent = 438
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well... I have this note, which will guarantee payment once Santa returns. Will that do?"
+parent = 438
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "I suppose it will have to."
+parent = 438
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "You can go to my workshop and collect the toys now."
+parent = 438
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uh.. Diango. Is the hat you're wearing blocking your ears? Can you not hear it from here? The pixies are picketting{{sic}} at the warehouse."
+parent = 438
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "I wondered what that was... I thought it was my tinnitus flaring up. Can you find out why?"
+parent = 438
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "act"
+text = "end"
+parent = 438
+is_terminal = true
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "option"
+text = "quest=no|What else are you selling?"
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "option"
+text = "quest=no|I'm fine, thanks."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to collect the toys."
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "What toys? We haven't made em cause we're on strike!"
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But... why are you on strike?"
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Cause Santa's taken Christmas off, but we're not allowed to, oh no, we're just the cheap labour."
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "speaker"
+speaker = "Diango"
+text = "Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?"
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "option"
+text = "quest=no|Spinning plates?"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "option"
+text = "quest=no|I'd like to check holiday items please!"
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [459, 460, 461, 462, 463]
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Pixie Foreman says they're striking cause Santa is on holiday and they can't have one."
+parent = 458
+
+[[nodes]]
+id = 460
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "Oh, I have no clue how to solve that. If they have a holiday then we don't have the toys for Christmas."
+parent = 458
+
+[[nodes]]
+id = 461
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I could make the toys!"
+parent = 458
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "I don't think so, I reckon that would take you somewhere between 72 and 74 years even with the new make-all interface. Ask the Wise Old Man, perhaps he has an idea."
+parent = 458
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "act"
+text = "end"
+parent = 458
+is_terminal = true
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "option"
+text = "quest=no|What else are you selling?"
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "option"
+text = "quest=no|I'm fine, thanks."
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [469, 470, 471, 475]
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Have you paid for and got the toys from Diango yet?"
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 468
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "option"
+text = "Yes. But I'm having problems."
+parent = 468
+children = [472, 473, 474]
+
+[[nodes]]
+id = 472
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes. But I'm having problems."
+parent = 471
+
+[[nodes]]
+id = 473
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 471
+
+[[nodes]]
+id = 474
+depth = 3
+kind = "act"
+text = "end"
+parent = 471
+is_terminal = true
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "option"
+text = "Yeah mate. But here's issues."
+parent = 468
+children = [476, 477, 478, 479, 483]
+
+[[nodes]]
+id = 476
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah mate. But here's issues."
+parent = 475
+
+[[nodes]]
+id = 477
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh? Do elaborate."
+parent = 475
+
+[[nodes]]
+id = 478
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 475
+
+[[nodes]]
+id = 479
+depth = 3
+kind = "option"
+text = "The pixies are picketting!"
+parent = 475
+children = [480, 481, 482]
+
+[[nodes]]
+id = 480
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "The pixies are picketting!"
+parent = 479
+
+[[nodes]]
+id = 481
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 479
+
+[[nodes]]
+id = 482
+depth = 4
+kind = "act"
+text = "end"
+parent = 479
+is_terminal = true
+
+[[nodes]]
+id = 483
+depth = 3
+kind = "option"
+text = "Da pixies pickettin' init."
+parent = 475
+children = [484, 485, 486, 487, 491]
+
+[[nodes]]
+id = 484
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Da pixies pickettin' init."
+parent = 483
+
+[[nodes]]
+id = 485
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh dear. Well.. I have a cunning plan."
+parent = 483
+
+[[nodes]]
+id = 486
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 483
+
+[[nodes]]
+id = 487
+depth = 4
+kind = "option"
+text = "Does it involve a turnip?"
+parent = 483
+children = [488, 489, 490]
+
+[[nodes]]
+id = 488
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Does it involve a turnip?"
+parent = 487
+
+[[nodes]]
+id = 489
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 487
+
+[[nodes]]
+id = 490
+depth = 5
+kind = "act"
+text = "end"
+parent = 487
+is_terminal = true
+
+[[nodes]]
+id = 491
+depth = 4
+kind = "option"
+text = "Turnip guv?"
+parent = 483
+children = [492, 493, 494, 498, 503, 504, 505, 507, 509]
+
+[[nodes]]
+id = 492
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Turnip guv?"
+parent = 491
+
+[[nodes]]
+id = 493
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "What? No. We need to restore their faith in Santa."
+parent = 491
+
+[[nodes]]
+id = 494
+depth = 5
+kind = "cond"
+text = "If the player already owns an Anti-Santa costume from past events:"
+parent = 491
+children = [495, 496, 497]
+
+[[nodes]]
+id = 495
+depth = 6
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I believe you own an Anti-Santa costume. You should dress up as Anti-Santa and scare them. With the Santa suit you got me, I will then persuade them that I have saved them."
+parent = 494
+
+[[nodes]]
+id = 496
+depth = 6
+kind = "other"
+text = "{{mes|You already have the Anti-Santa outfit unlocked! Try checking in your bank, house or with Diango.}}"
+parent = 494
+
+[[nodes]]
+id = 497
+depth = 6
+kind = "act"
+text = "continues"
+parent = 494
+
+[[nodes]]
+id = 498
+depth = 5
+kind = "cond"
+text = "If the player doesn't an Anti-Santa costume from past events:"
+parent = 491
+children = [499, 500, 501, 502]
+
+[[nodes]]
+id = 499
+depth = 6
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "As Santa's delegate, I have granted you an Anti-Santa costume. Wear it and scare the pixies. With the Santa suit you got me, I will then persuade them that I have saved them."
+parent = 498
+
+[[nodes]]
+id = 500
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "You can give out holiday items?"
+parent = 498
+
+[[nodes]]
+id = 501
+depth = 6
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I'd be a pretty poor substitute for Santa if I couldn't unlock holiday items!"
+parent = 498
+
+[[nodes]]
+id = 502
+depth = 6
+kind = "act"
+text = "continues"
+parent = 498
+
+[[nodes]]
+id = 503
+depth = 5
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Did you want transport to the Land of Snow?"
+parent = 491
+
+[[nodes]]
+id = 504
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 491
+
+[[nodes]]
+id = 505
+depth = 5
+kind = "option"
+text = "Yes please."
+parent = 491
+children = [506]
+
+[[nodes]]
+id = 506
+depth = 6
+kind = "act"
+text = "(Teleother menu comes up.)"
+parent = 505
+
+[[nodes]]
+id = 507
+depth = 5
+kind = "option"
+text = "No thanks."
+parent = 491
+children = [508]
+
+[[nodes]]
+id = 508
+depth = 6
+kind = "other"
+text = "{{tmissing}}"
+parent = 507
+
+[[nodes]]
+id = 509
+depth = 5
+kind = "option"
+text = "How come you're here and there?"
+parent = 491
+children = [510, 511]
+
+[[nodes]]
+id = 510
+depth = 6
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "They don't call me the Wise Old Man for nothing, you know! How else do you think I manage to transport you to places no one else can get to? I can transport myself anywhere I want, too!"
+parent = 509
+
+[[nodes]]
+id = 511
+depth = 6
+kind = "act"
+text = "end"
+parent = 509
+is_terminal = true
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "option"
+text = "event=No|(Talk about something else)"
+parent = -1
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [516, 517, 518, 522]
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Don't forget the plan. You dress up as Anti-Santa, terrify the pixies and I will 'save' them. That should get them working."
+parent = 515
+
+[[nodes]]
+id = 517
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 515
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "option"
+text = "Right."
+parent = 515
+children = [519, 520, 521]
+
+[[nodes]]
+id = 519
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right."
+parent = 518
+
+[[nodes]]
+id = 520
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 518
+
+[[nodes]]
+id = 521
+depth = 3
+kind = "act"
+text = "end"
+parent = 518
+is_terminal = true
+
+[[nodes]]
+id = 522
+depth = 2
+kind = "option"
+text = "On it guv."
+parent = 515
+children = [523, 524, 525]
+
+[[nodes]]
+id = 523
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "On it guv."
+parent = 522
+
+[[nodes]]
+id = 524
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Did you want transport to the Land of Snow?"
+parent = 522
+
+[[nodes]]
+id = 525
+depth = 3
+kind = "act"
+text = "above"
+parent = 522
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "option"
+text = "event=No|(Talk about something else)"
+parent = -1
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Oh no, it's Anti-Santa!"
+parent = -1
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "other"
+text = "{{qact|The player stands in front of the pixies and a menu opens, allowing them to choose what to say to scare the pixies.}}"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "option"
+text = "I'll fill your stockings with coal by carbonising your feet."
+parent = -1
+children = [531, 532, 533, 534, 535, 536, 537, 538]
+
+[[nodes]]
+id = 531
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll fill your stockings with coal by carbonising your feet."
+parent = 530
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|No}}"
+parent = 530
+
+[[nodes]]
+id = 533
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Arg! No!}}"
+parent = 530
+
+[[nodes]]
+id = 534
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|How dare you!?}}"
+parent = 530
+
+[[nodes]]
+id = 535
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Leave us!}}"
+parent = 530
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|That's just evil}}"
+parent = 530
+
+[[nodes]]
+id = 537
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Get out of here!}}"
+parent = 530
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "act"
+text = "end"
+parent = 530
+is_terminal = true
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "option"
+text = "I'll set rude words to your favourite Christmas songs."
+parent = -1
+children = [540, 541, 542, 543, 544, 545]
+
+[[nodes]]
+id = 540
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll set rude words to your favourite Christmas songs."
+parent = 539
+
+[[nodes]]
+id = 541
+depth = 2
+kind = "speaker"
+speaker = "Foreman"
+text = "That's not scary. I used to love doing that when I was young. Jiggle bells, jiggle bells..."
+parent = 539
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Tell another joke!}}"
+parent = 539
+
+[[nodes]]
+id = 543
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Hehehe!}}"
+parent = 539
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Down with this kind of thing!}}"
+parent = 539
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "act"
+text = "end"
+parent = 539
+is_terminal = true
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "option"
+text = "I'll re-wrap your gifts in your kitten's pelt."
+parent = -1
+children = [547, 548, 549, 550, 551, 552, 553]
+
+[[nodes]]
+id = 547
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll re-wrap your gifts in your kitten's pelt."
+parent = 546
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|That's just wrong.}}"
+parent = 546
+
+[[nodes]]
+id = 549
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Ah!}}"
+parent = 546
+
+[[nodes]]
+id = 550
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Arg! No!}}"
+parent = 546
+
+[[nodes]]
+id = 551
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Don't bully}}"
+parent = 546
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|How dare you!?}}"
+parent = 546
+
+[[nodes]]
+id = 553
+depth = 2
+kind = "act"
+text = "end"
+parent = 546
+is_terminal = true
+
+[[nodes]]
+id = 554
+depth = 1
+kind = "option"
+text = "I'll recreate Evil Tree, starting with your Christmas tree."
+parent = -1
+children = [555, 556, 557]
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll recreate Evil Tree, starting with your Christmas tree."
+parent = 554
+
+[[nodes]]
+id = 556
+depth = 2
+kind = "speaker"
+speaker = "Foreman"
+text = "Actually I think I'd like that. It gave lots of XP."
+parent = 554
+
+[[nodes]]
+id = 557
+depth = 2
+kind = "act"
+text = "end"
+parent = 554
+is_terminal = true
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "option"
+text = "I'll put mistletoe where you won't like kissing under it."
+parent = -1
+children = [559, 560, 561, 562, 563, 564]
+
+[[nodes]]
+id = 559
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll put mistletoe where you won't like kissing under it."
+parent = 558
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|That's just evil}}"
+parent = 558
+
+[[nodes]]
+id = 561
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|No!}}"
+parent = 558
+
+[[nodes]]
+id = 562
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Don't let him hurt us!}}"
+parent = 558
+
+[[nodes]]
+id = 563
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Get out of here!}}"
+parent = 558
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "act"
+text = "end"
+parent = 558
+is_terminal = true
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "option"
+text = "I'm Auntie Santa. Give your auntie a kiss."
+parent = -1
+children = [566, 567, 568, 569, 570, 571]
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm Auntie Santa. Give your auntie a kiss."
+parent = 565
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "speaker"
+speaker = "Foreman"
+text = "What? You're not scary, you're just creepy!"
+parent = 565
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|That's funny.}}"
+parent = 565
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Are you sure he's evil?}}"
+parent = 565
+
+[[nodes]]
+id = 570
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Down with this kind of thing!}}"
+parent = 565
+
+[[nodes]]
+id = 571
+depth = 2
+kind = "act"
+text = "end"
+parent = 565
+is_terminal = true
+
+[[nodes]]
+id = 572
+depth = 1
+kind = "option"
+text = "Your gifts will need batteries that you can't get."
+parent = -1
+children = [573, 574, 575]
+
+[[nodes]]
+id = 573
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Your gifts will need batteries that you can't get."
+parent = 572
+
+[[nodes]]
+id = 574
+depth = 2
+kind = "speaker"
+speaker = "Foreman"
+text = "What are batteries? What kind of fantasy world do you think you're living in?"
+parent = 572
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "act"
+text = "end"
+parent = 572
+is_terminal = true
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "option"
+text = "I'll turn your snowcones yellow."
+parent = -1
+children = [577, 578, 579, 580]
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll turn your snowcones yellow."
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Ah!}}"
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Get out of here!}}"
+parent = 576
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "act"
+text = "end"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "other"
+text = "{{qact|The Wise Old Man appears in his Santa costume}}"
+parent = -1
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "{{overhead|Ho ho ho!}}"
+parent = -1
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "speaker"
+speaker = "Pixies"
+text = "{{overhead|It's Santa!}}"
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Leave the pixies alone, Anti-Santa!"
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you going to make me?"
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "other"
+text = "{{qact|The Wise Old Man throws a snowball at the player teleporting them away}}"
+parent = -1
+
+[[nodes]]
+id = 587
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ow!}}"
+parent = -1
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 589
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 590
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 591
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [592, 593, 596, 597, 599]
+
+[[nodes]]
+id = 592
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well, that seemed to fool them satisfactorily! Now that the silly pixies are back at work, you can go and pick up the presents."
+parent = 591
+
+[[nodes]]
+id = 593
+depth = 2
+kind = "cond"
+text = "If the player isn't wearing the snow imp costume:"
+parent = 591
+children = [594, 595]
+
+[[nodes]]
+id = 594
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and dress appropriately. If you're going to be Santa's assistant, you need to be a snow imp."
+parent = 593
+
+[[nodes]]
+id = 595
+depth = 3
+kind = "act"
+text = "end"
+parent = 593
+is_terminal = true
+
+[[nodes]]
+id = 596
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 591
+
+[[nodes]]
+id = 597
+depth = 2
+kind = "option"
+text = "Right."
+parent = 591
+children = [598]
+
+[[nodes]]
+id = 598
+depth = 3
+kind = "act"
+text = "above"
+parent = 597
+
+[[nodes]]
+id = 599
+depth = 2
+kind = "option"
+text = "On it guv."
+parent = 591
+children = [600]
+
+[[nodes]]
+id = 600
+depth = 3
+kind = "act"
+text = "above"
+parent = 599
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "option"
+text = "event=No|(Talk about something else)"
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I have my sack filled with presents please?"
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Of course! Let me have that empty sack."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "box"
+text = "pic=Bulging sack detail.png|The Pixie foreman hands over a bulging sack."
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [609, 610, 614]
+
+[[nodes]]
+id = 609
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 608
+
+[[nodes]]
+id = 610
+depth = 2
+kind = "option"
+text = "I got the presents!"
+parent = 608
+children = [611, 612, 613]
+
+[[nodes]]
+id = 611
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I got the presents!"
+parent = 610
+
+[[nodes]]
+id = 612
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 610
+
+[[nodes]]
+id = 613
+depth = 3
+kind = "act"
+text = "end"
+parent = 610
+is_terminal = true
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "option"
+text = "Tin tack's full guv."
+parent = 608
+children = [615, 616, 617, 618, 622]
+
+[[nodes]]
+id = 615
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tin tack's full guv."
+parent = 614
+
+[[nodes]]
+id = 616
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Excellent, I'll take that and be on my way delivering. Go check on the pixies, make sure they're still working."
+parent = 614
+
+[[nodes]]
+id = 617
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 614
+
+[[nodes]]
+id = 618
+depth = 3
+kind = "option"
+text = "Will do."
+parent = 614
+children = [619, 620, 621]
+
+[[nodes]]
+id = 619
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Will do."
+parent = 618
+
+[[nodes]]
+id = 620
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "No, I need you to take your work seriously and act appropriately. If you're going to be Santa's assistant, you need to speak like a snow imp."
+parent = 618
+
+[[nodes]]
+id = 621
+depth = 4
+kind = "act"
+text = "end"
+parent = 618
+is_terminal = true
+
+[[nodes]]
+id = 622
+depth = 3
+kind = "option"
+text = "Right you are guv."
+parent = 614
+children = [623, 624, 625]
+
+[[nodes]]
+id = 623
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Right you are guv."
+parent = 622
+
+[[nodes]]
+id = 624
+depth = 4
+kind = "other"
+text = "{{qact|The Wise Old Man disappears.}}"
+parent = 622
+
+[[nodes]]
+id = 625
+depth = 4
+kind = "act"
+text = "end"
+parent = 622
+is_terminal = true
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "option"
+text = "event=No|(Talk about something else)"
+parent = -1
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "speaker"
+speaker = "Foreman"
+text = "Was Santa happy with the toys?"
+parent = -1
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We're working out some difficulties."
+parent = -1
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "Pixie"
+text = "I love my job, Santa's given us all June{{sic|Gielinor doesn't use real world months, this should be Pentember}} off on holiday."
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "speaker"
+speaker = "Diango"
+text = "Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?"
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "option"
+text = "Spinning plates?|event=no"
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "option"
+text = "I'd like to check holiday items please!|event=no"
+parent = -1
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [636, 637, 638]
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "speaker"
+speaker = "Diango"
+text = "[player name]! How goes organising Christmas?"
+parent = 635
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Wise Old Man's set off to deliver the presents."
+parent = 635
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "act"
+text = "end"
+parent = 635
+is_terminal = true
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "option"
+text = "What else are you selling?|event=no"
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "option"
+text = "I'm fine, thanks.|event=no"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "Psssssst!"
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hhuh?{{sic}}"
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "Psssssst!"
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You said that already."
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "Uh, yeah well I need you to see something. I've been conducting surveillance on the Wise Old Man."
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "other"
+text = "{{qact|Cutscene of the surveillance video of the Wise Old Man in the Santa's office}}"
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Right, while [player name] is looking for Thessalia, let's have a look around..."
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "The key... just where the list said it would be."
+parent = -1
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "other"
+text = "{{qact|Inside the vault}}"
+parent = -1
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "That's more like it! Heroes should be rewarded for their service; I've always said so. Every quest ought to have a decent reward."
+parent = -1
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "other"
+text = "{{qact|The Wise Old Man telekinetic grabs all the gold bars in the vault}}"
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "{{overhead|Heh heh heh}}"
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Now to put the key back and no one will ever know..."
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Heh, heh - and when Santa asks, [player name] will testify that the money was already gone when he found the vault key."
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "other"
+text = "{{qact|End of cutscene}}"
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "See what I mean? That Wise Old Man is up to no good with Santa's gold!"
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, that looks bad... what do you want me to do?"
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "Go find the real Santa and tell him!"
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why can't you?"
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "I am an h'officer of the law. I must remain at my post."
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok, but I don't know where he is!"
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "Luckily for you, big data lets me track their bank accounts. He's with Jack Frost in Corsair Cove."
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "option"
+text = "Where's Corsair Cove?"
+parent = -1
+children = [665, 666, 667, 668, 669, 670, 672]
+
+[[nodes]]
+id = 665
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where's Corsair Cove?"
+parent = 664
+
+[[nodes]]
+id = 666
+depth = 2
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "I believe there's a boat in Port Sarim with a Captain Tock aboard that can take you there."
+parent = 664
+
+[[nodes]]
+id = 667
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was I doing again?"
+parent = 664
+
+[[nodes]]
+id = 668
+depth = 2
+kind = "speaker"
+speaker = "Guard up Tree"
+text = "Going to inform Santa of the Wise Old Man's treachery with Jack Frost in Corsair Cove."
+parent = 664
+
+[[nodes]]
+id = 669
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 664
+
+[[nodes]]
+id = 670
+depth = 2
+kind = "option"
+text = "Where's Corsair Cove?"
+parent = 664
+children = [671]
+
+[[nodes]]
+id = 671
+depth = 3
+kind = "act"
+text = "above"
+parent = 670
+
+[[nodes]]
+id = 672
+depth = 2
+kind = "option"
+text = "Ok, I'll go find him."
+parent = 664
+children = [673]
+
+[[nodes]]
+id = 673
+depth = 3
+kind = "act"
+text = "below"
+parent = 672
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "option"
+text = "Ok, I'll go find him."
+parent = -1
+children = [675, 676]
+
+[[nodes]]
+id = 675
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll go find him."
+parent = 674
+
+[[nodes]]
+id = 676
+depth = 2
+kind = "act"
+text = "end"
+parent = 674
+is_terminal = true
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He.. he.. stole it all!"
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "speaker"
+speaker = "Santa"
+text = "What? Who? Stole what? Calm down and tell me."
+parent = -1
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Wise Old Man, he took all of your gold!"
+parent = -1
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "speaker"
+speaker = "Santa"
+text = "He what!? Right, stay here, I'll sort this out."
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "speaker"
+speaker = "Jack Frost"
+text = "But..."
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "speaker"
+speaker = "Santa"
+text = "Sorry son, duty calls."
+parent = -1
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "other"
+text = "{{qact|Upstairs in the Wise Old Man's house}}"
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "{{overhead|Four million and 74.}}"
+parent = -1
+
+[[nodes]]
+id = 685
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "{{overhead|Heh heh heh}}"
+parent = -1
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "{{overhead|Four million and 75.}}"
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "{{overhead|Four million and 76.}}"
+parent = -1
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "other"
+text = "{{qact|Santa appears.}}"
+parent = -1
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "speaker"
+speaker = "Santa"
+text = "{{overhead|You better watch out.}}"
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "{{overhead|Oh, b-}}"
+parent = -1
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "other"
+text = "{{qact|Cutscene ends.}}"
+parent = -1
+
+[[nodes]]
+id = 692
+depth = 1
+kind = "speaker"
+speaker = "Santa"
+text = "[player name], thank you for your help. Things have now been sorted out. You can talk to the Wise Old man{{Sic}}... he may have something to say to you."
+parent = -1
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "speaker"
+speaker = "Santa"
+text = "Thanks so much for your help, [player name]. I can relax and enjoy my holiday now."
+parent = -1
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "speaker"
+speaker = "Jack Frost"
+text = "Shhh! You'll scare the fish!"
+parent = -1
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+children = [700, 701, 702, 703, 704, 705, 706, 707, 708, 709, 710]
+
+[[nodes]]
+id = 700
+depth = 2
+kind = "option"
+text = "Talk about Christmas."
+parent = 699
+
+[[nodes]]
+id = 701
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Santa says you have something to tell me."
+parent = 699
+
+[[nodes]]
+id = 702
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh, Ahem... I'm not filling in for Santa anymore. He and I have had a chat, and agreed that I should step down from that job."
+parent = 699
+
+[[nodes]]
+id = 703
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "He 'had a chat' with you?"
+parent = 699
+
+[[nodes]]
+id = 704
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well, he also got angry and filled my house with coal."
+parent = 699
+
+[[nodes]]
+id = 705
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ha ha haha! But... where is it all?"
+parent = 699
+
+[[nodes]]
+id = 706
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Coal sells quite well on the GE. I'm considerably richer for that."
+parent = 699
+
+[[nodes]]
+id = 707
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's ironic, when combined with iron ore that is."
+parent = 699
+
+[[nodes]]
+id = 708
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Well it's all thanks to you, yes, I know what you did. But I'm better off for it, so I guess I can use some of the tricks I learned filling in for Santa to reward you."
+parent = 699
+
+[[nodes]]
+id = 709
+depth = 2
+kind = "other"
+text = "{{qact|Event complete!}}"
+parent = 699
+
+[[nodes]]
+id = 710
+depth = 2
+kind = "act"
+text = "end"
+parent = 699
+is_terminal = true
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "option"
+text = "event=No|(Talk about something else)"
+parent = -1
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 714
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "speaker"
+speaker = "Diango"
+text = "Howdy there partner! Want to see my spinning plates? Or did ya want a holiday item back?"
+parent = -1
+
+[[nodes]]
+id = 716
+depth = 1
+kind = "option"
+text = "Spinning plates?|event=no"
+parent = -1
+
+[[nodes]]
+id = 717
+depth = 1
+kind = "option"
+text = "I'd like to check holiday items please!|event=no"
+parent = -1
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "option"
+text = "Talk about Christmas."
+parent = -1
+children = [719]
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 718
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "option"
+text = "What else are you selling?|event=no"
+parent = -1
+
+[[nodes]]
+id = 721
+depth = 1
+kind = "option"
+text = "I'm fine, thanks.|event=no"
+parent = -1
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [724]
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "speaker"
+speaker = "Pixie"
+text = "{{overhead|Happy happy joy joy!}}"
+parent = 723

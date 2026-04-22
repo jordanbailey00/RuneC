@@ -1,0 +1,903 @@
+title = "Transcript:Cook's Assistant"
+npcs = ["Cook (Lumbridge)"]
+node_count = 114
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "What am I to do?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "What's wrong?"
+parent = -1
+children = [2, 3, 4, 5, 6, 55]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's wrong?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Oh dear, oh dear, oh dear, I'm in a terrible terrible mess! It's the Duke's birthday today, and I should be making him a lovely big birthday cake."
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "I've forgotten to buy the ingredients. I'll never get them in time now. He'll sack me! What will I do? I have four children and a goat to look after. Would you help me? Please?"
+parent = 1
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "select"
+text = "Start the Cook's Assistant quest?"
+parent = 1
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 1
+children = [7, 8, 9, 21]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'll help you."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "Oh thank you, thank you. I need milk, an egg and flour. I'd be very grateful if you can get them for me."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "cond"
+text = "If the player already has the necessary items:"
+parent = 6
+children = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+[[nodes]]
+id = 10
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have all of those ingredients on me already!"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "That's an odd coincidence... Were you planning on making a cake too?"
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Not exactly. I just had an odd feeling you might be needing these ingredients. If I see a cook, I presume there's food of some kind! Lucky guess I suppose."
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "Well thank you! Hand them over, please."
+parent = 9
+
+[[nodes]]
+id = 14
+depth = 4
+kind = "box"
+text = "pic=Pot of flour detail.png|pic2=Bucket of milk detail.png|You hand the cook all of the ingredients."
+parent = 9
+
+[[nodes]]
+id = 15
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "You've brought me everything I need! I am saved! Thank you!"
+parent = 9
+
+[[nodes]]
+id = 16
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So do I get to go to the Duke's Party?"
+parent = 9
+
+[[nodes]]
+id = 17
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "I'm afraid not, only the big cheeses get to dine with the Duke."
+parent = 9
+
+[[nodes]]
+id = 18
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Well, maybe one day I'll be important enough to sit on the Duke's table."
+parent = 9
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "Maybe, but I won't be holding my breath."
+parent = 9
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "cond"
+text = "If the player doesn't have the necessary items:"
+parent = 6
+children = [22, 23, 31, 40, 52]
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So where do I find these ingredients then?"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "option"
+text = "Where do I find some flour?"
+parent = 21
+children = [24, 25, 28]
+
+[[nodes]]
+id = 24
+depth = 5
+kind = "speaker"
+speaker = "Cook"
+text = "There is a Mill fairly close, go North and then West. Mill Lane Mill is just off the road to Draynor. I usually get my flour from there."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 5
+kind = "cond"
+text = "If the player has an empty pot with them:"
+parent = 23
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 6
+kind = "speaker"
+speaker = "Cook"
+text = "Talk to Millie, she'll help, she's a lovely girl and a fine Miller. Make sure you take a pot with you for the flour though, you've got one on you already."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 6
+kind = "act"
+text = "other"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 5
+kind = "cond"
+text = "If the player does not have an empty pot with them:"
+parent = 23
+children = [29, 30]
+
+[[nodes]]
+id = 29
+depth = 6
+kind = "speaker"
+speaker = "Cook"
+text = "Talk to Millie, she'll help, she's a lovely girl and a fine Miller. Make sure you take a pot with you for the flour though, there should be one on the table in here."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 6
+kind = "act"
+text = "other"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 4
+kind = "option"
+text = "How about milk?"
+parent = 21
+children = [32, 33, 34, 37]
+
+[[nodes]]
+id = 32
+depth = 5
+kind = "speaker"
+speaker = "Cook"
+text = "There is a cattle field on the other side of the river, just across the road from the Groats' Farm."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 5
+kind = "speaker"
+speaker = "Cook"
+text = "Talk to Gillie Groats, she looks after the Dairy cows - she'll tell you everything you need to know about milking cows!"
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 5
+kind = "cond"
+text = "If the player has an empty bucket with them:"
+parent = 31
+children = [35, 36]
+
+[[nodes]]
+id = 35
+depth = 6
+kind = "speaker"
+speaker = "Cook"
+text = "You'll need an empty bucket for the milk itself. I do see you've got a bucket with you already luckily!"
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 6
+kind = "act"
+text = "other"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 5
+kind = "cond"
+text = "If the player does not have an empty bucket with them:"
+parent = 31
+children = [38, 39]
+
+[[nodes]]
+id = 38
+depth = 6
+kind = "speaker"
+speaker = "Cook"
+text = "You'll need an empty bucket for the milk itself. The general store just north of the castle will sell you one for a couple of coins."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 6
+kind = "act"
+text = "other"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "option"
+text = "And eggs? Where are they found?"
+parent = 21
+children = [41, 42, 43, 45, 47, 49]
+
+[[nodes]]
+id = 41
+depth = 5
+kind = "speaker"
+speaker = "Cook"
+text = "I normally get my eggs from the Groats' farm, on the other side of the river."
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 5
+kind = "speaker"
+speaker = "Cook"
+text = "But any chicken should lay eggs."
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 5
+kind = "option"
+text = "Where do I find some flour?"
+parent = 40
+children = [44]
+
+[[nodes]]
+id = 44
+depth = 6
+kind = "act"
+text = "above"
+parent = 43
+
+[[nodes]]
+id = 45
+depth = 5
+kind = "option"
+text = "How about milk?"
+parent = 40
+children = [46]
+
+[[nodes]]
+id = 46
+depth = 6
+kind = "act"
+text = "above"
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 5
+kind = "option"
+text = "And eggs? Where are they found?"
+parent = 40
+children = [48]
+
+[[nodes]]
+id = 48
+depth = 6
+kind = "act"
+text = "above"
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 5
+kind = "option"
+text = "I've got all the information I need. Thanks."
+parent = 40
+children = [50, 51]
+
+[[nodes]]
+id = 50
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "I've got all the information I need. Thanks."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 6
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "option"
+text = "Actually, I know where to find this stuff."
+parent = 21
+children = [53, 54]
+
+[[nodes]]
+id = 53
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I know where to find this stuff."
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 5
+kind = "act"
+text = "end"
+parent = 52
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "option"
+text = "No."
+parent = 1
+children = [56, 57, 58]
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't feel like it. Maybe later."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "Fine. I always knew you Adventurer types were callous beasts. Go on your merry way!"
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "act"
+text = "end"
+parent = 55
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "option"
+text = "You're a cook, why don't you bake me a cake?"
+parent = -1
+children = [60, 61, 62, 63]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're a cook, why don't you bake me a cake?"
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "*sniff* Don't talk to me about cakes..."
+parent = 59
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's wrong?"
+parent = 59
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "above"
+parent = 59
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "option"
+text = "You don't look very happy."
+parent = -1
+children = [65, 66, 67, 69]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You don't look very happy."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "No, I'm not. The world is caving in around me - I am overcome by dark feelings of impending doom."
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "option"
+text = "What's wrong?"
+parent = 64
+children = [68]
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "act"
+text = "above"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "option"
+text = "I'd take the rest of the day off if I were you."
+parent = 64
+children = [70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'd take the rest of the day off if I were you."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "No, that's the worst thing I could do. I'd get in terrible trouble."
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well maybe you need to take a holiday..."
+parent = 69
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "That would be nice, but the Duke doesn't allow holidays for core staff."
+parent = 69
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, why not run away to the sea and start a new life as a Pirate?"
+parent = 69
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "My wife gets sea sick, and I have an irrational fear of eyepatches. I don't see it working myself."
+parent = 69
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I've run out of ideas."
+parent = 69
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "I know I'm doomed."
+parent = 69
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's wrong?"
+parent = 69
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "act"
+text = "above"
+parent = 69
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "Nice hat!"
+parent = -1
+children = [81, 82, 83, 84, 85, 86, 87, 88]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nice hat!"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Err thank you. It's a pretty ordinary cooks hat really."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Still, suits you. The trousers are pretty special too."
+parent = 80
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Its all standard cook's issue uniform..."
+parent = 80
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The whole hat, apron, stripey trousers ensemble - it works. It make you looks like a real cook."
+parent = 80
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "I am a real cook! I haven't got time to be chatting about Culinary Fashion. I am in desperate need of help!"
+parent = 80
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's wrong?"
+parent = 80
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "above"
+parent = 80
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "How are you getting on with finding the ingredients?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "cond"
+text = "If the player has not obtained anything yet:"
+parent = -1
+children = [91, 92, 93, 94, 95, 97]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't got any of them yet, I'm still looking."
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Please get the ingredients quickly - I'm running out of time! The Duke will throw me into the streets!"
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "cond"
+text = "If the player hasn't handed in at least one item. Items are removed from the list when handed in:"
+parent = 90
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "box"
+text = "You still need to get: A bucket of milk A pot of flour An egg"
+parent = 90
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "option"
+text = "I'll get right on it."
+parent = 90
+children = [96]
+
+[[nodes]]
+id = 96
+depth = 3
+kind = "act"
+text = "end"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "option"
+text = "Can you remind me how to find these things again?"
+parent = 90
+children = [98, 99]
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So where do I find these ingredients then?"
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "act"
+text = "above"
+parent = 97
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "cond"
+text = "If the player has the ingredients:"
+parent = -1
+children = [101, 102, 103, 104, 107]
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here's a bucket of milk."
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here's a pot of flour."
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here's a fresh egg."
+parent = 100
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "cond"
+text = "If the player has not brought all the ingredients:"
+parent = 100
+children = [105, 106]
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "Thanks for the ingredients you have got so far. Please get the rest quickly - I'm running out of time! The Duke will throw me into the streets!"
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "act"
+text = "other"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "cond"
+text = "If the player has brought all the ingredients:"
+parent = 100
+children = [108, 109, 110, 111, 112, 113]
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "You've brought me everything I need! I am saved! Thank you!"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So do I get to go to the Duke's Party?"
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "I'm afraid not, only the big cheeses get to dine with the Duke."
+parent = 107
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, maybe one day I'll be important enough to sit on the Duke's table."
+parent = 107
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "Maybe, but I won't be holding my breath."
+parent = 107
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "act"
+text = "end"
+parent = 107
+is_terminal = true

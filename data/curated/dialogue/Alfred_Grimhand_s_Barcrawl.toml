@@ -1,0 +1,1833 @@
+title = "Transcript:Alfred Grimhand's Barcrawl"
+npcs = ["Barbarian guard", "Bartender (Blue Moon Inn)", "Blurberry", "Barman (Blurberry Bar)", "Bartender (Dead Man's Chest)", "Bartender (Dragon Inn)", "Bartender (Flying Horse Inn)", "Bartender (Forester's Arms)", "Bartender (Jolly Boar Inn)", "Tina", "Emily", "Kaylee", "Bartender (Rusty Anchor Inn)", "Zembo"]
+node_count = 240
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Oi, whaddya want?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "I want to come through this gate."
+parent = -1
+children = [3, 4, 5, 6, 9]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to come through this gate."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Barbarians only. Are you a barbarian? You don't look like one."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "Hmm, yep you've got me there."
+parent = 2
+children = [7, 8]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, yep you've got me there."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "option"
+text = "Looks can be deceiving, I am in fact a barbarian."
+parent = 2
+children = [10, 11, 14]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Looks can be deceiving, I am in fact a barbarian."
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "cond"
+text = "If the player does not have enough inventory space:"
+parent = 9
+children = [12, 13]
+
+[[nodes]]
+id = 12
+depth = 4
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Are you, now? Free up some space so you can carry something, and we'll see how barbarian you really are."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 4
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "cond"
+text = "If the player has sufficient inventory space:"
+parent = 9
+children = [15, 16, 17, 18, 19, 20]
+
+[[nodes]]
+id = 15
+depth = 4
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "If you're a barbarian you need to be able to drink like one. We barbarians like a good drink."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 4
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "I have the perfect challenge for you... The Alfred Grimhand Barcrawl! First completed by Alfred Grimhand."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 4
+kind = "box"
+text = "pic=Barcrawl card detail.png|The guard hands you a Barcrawl card."
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 4
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Take that card to each of the bars named on it. The bartenders will know what it means. We're kinda well known."
+parent = 14
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "They'll give you their strongest drink and sign your card. When you've done all that, we'll be happy to let you in."
+parent = 14
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "act"
+text = "end"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "I want some money."
+parent = -1
+children = [22, 23, 24]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want some money."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Do I look like a bank to you?"
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "act"
+text = "end"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "So, how's the Barcrawl coming along?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "cond"
+text = "If the player has their barcrawl card in their inventory:"
+parent = -1
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't finished it yet."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Well come back when you have, you lightweight."
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "cond"
+text = "If the player has their barcrawl card in their bank:"
+parent = -1
+children = [31, 32, 33, 34]
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "So, how's the Barcrawl coming along?"
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not too bad. I've got my barcrawl card stored somewhere for safe-keeping."
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "You need to take it with you when you're going on a barcrawl."
+parent = 30
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "act"
+text = "end"
+parent = 30
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "cond"
+text = "If the player has lost their barcrawl card:"
+parent = -1
+children = [36, 37, 38, 39]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost my barcrawl card..."
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "What are you like? You're gonna have to start all over now."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "box"
+text = "pic=Barcrawl card detail.png|The guard hands you a Barcrawl card."
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "act"
+text = "end"
+parent = 35
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "What can I do yer for?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "quest=No|A glass of your finest ale please."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "option"
+text = "quest=No|Can you recommend where an adventurer might make his fortune?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "quest=No|Do you know where I can get some good equipment?"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = -1
+children = [46, 47, 48, 49, 52]
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Oh no not another of you guys. These barbarian barcrawls cause too much damage to my bar."
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "You're going to have to pay 50 gold for the Uncle Humphrey's Gutrot."
+parent = 45
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "cond"
+text = "If the player does not have 50 coins:"
+parent = 45
+children = [50, 51]
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have 50 coins."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "cond"
+text = "If the player has 50 coins:"
+parent = 45
+children = [53, 54, 55, 56, 57, 58]
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "other"
+text = "{{mes|You buy some Uncle Humphrey's Gutrot.}}"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "other"
+text = "{{mes|You drink the Uncle Humphrey's Gutrot.}}"
+parent = 52
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "other"
+text = "{{mes|Your insides feel terrible.}}"
+parent = 52
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "other"
+text = "{{mes|The bartender signs your card.}}"
+parent = 52
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "speaker"
+speaker = "[player name]"
+text = "{{overhead|Blearrgh!}}"
+parent = 52
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "act"
+text = "end"
+parent = 52
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Blurberry"
+text = "Ah, you've come to the best stop on your list! I'll give you my famous Fire Toad Blast! It'll cost you 10 coins."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "cond"
+text = "If the player does not have 10 coins:"
+parent = -1
+children = [62, 63]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have 10 coins right now."
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "end"
+parent = 61
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "cond"
+text = "If the player has 10 coins:"
+parent = -1
+children = [65, 66, 67, 68]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "other"
+text = "{{mes|You buy a Fire Toad Blast.}}"
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "other"
+text = "{{mes|Your mouth and throat burn as you gulp it down.}}"
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "other"
+text = "{{mes|Blurberry signs your card.}}"
+parent = 64
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Barman"
+text = "Good day to you. What can I get you to drink?"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "option"
+text = "I'm trying to do Alfred Grimhand's barcrawl."
+parent = -1
+children = [71, 72, 73, 74]
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm trying to do Alfred Grimhand's barcrawl."
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Barman"
+text = "Oh, another silly human come to have [his/her/their] mind melted? You should take that barcrawl card to Blurberry - he always likes to serve the Fire Toad Blast himself!"
+parent = 70
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... thanks?!"
+parent = 70
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "end"
+parent = 70
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "option"
+text = "What do you have?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "option"
+text = "Nothing thanks.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "Can I buy some ingredients?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Yohoho me hearty what would you like to drink?"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thank you."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "option"
+text = "quest=No|A pint of Grog please."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "option"
+text = "quest=No|A bottle of rum please."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = -1
+children = [84, 85, 86, 89]
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Haha time to be breaking out the old Supergrog. That'll be 15 coins please."
+parent = 83
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "cond"
+text = "If the player does not have 15 coins:"
+parent = 83
+children = [87, 88]
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry I don't have 15 coins."
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "act"
+text = "end"
+parent = 86
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "cond"
+text = "If the player has 15 coins:"
+parent = 83
+children = [90, 91, 92, 93, 94]
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "other"
+text = "{{mes|The bartender serves you a glass of strange thick dark liquid.}}"
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "other"
+text = "{{mes|You wince and drink it.}}"
+parent = 89
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "other"
+text = "{{mes|You stagger backwards.}}"
+parent = 89
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "other"
+text = "{{mes|You think you see 2 bartenders signing 2 barcrawl cards.}}"
+parent = 89
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "act"
+text = "end"
+parent = 89
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "What can I get you?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's on the menu?"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Dragon Bitter and Greenman's Ale, oh and some cheap beer."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "option"
+text = "quest=No|I'll give it a miss I think."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "option"
+text = "quest=No|I'll try the Dragon Bitter."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "option"
+text = "quest=No|Can I have some Greenman's Ale?"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = -1
+children = [103, 104, 105, 108]
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "I suppose you'll be wanting some Fire Brandy. That'll cost you 12 coins."
+parent = 102
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "cond"
+text = "If the player does not have 12 coins:"
+parent = 102
+children = [106, 107]
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry I don't have 12 coins."
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "act"
+text = "end"
+parent = 105
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "cond"
+text = "If the player has 12 coins:"
+parent = 102
+children = [109, 110, 111, 112, 113]
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "other"
+text = "{{mes|The bartender hands you a small glass and sets light to the contents.}}"
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "other"
+text = "{{mes|You blow out the flame and drink it.}}"
+parent = 108
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "other"
+text = "{{mes|Your vision blurs and you stagger slightly.}}"
+parent = 108
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "other"
+text = "{{mes|You can just about make out the bartender signing your barcrawl card.}}"
+parent = 108
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "act"
+text = "end"
+parent = 108
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "quest=No|One cheap beer please!"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Would you like to buy a drink?"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you serve?"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Beer!"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "option"
+text = "quest=No|I'll have a beer then."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "quest=No|I'll not have anything then."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = -1
+children = [122, 123, 124, 127]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Fancy a bit of Heart Stopper then do you? It'll only be 8 coins."
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "cond"
+text = "If the player does not have 8 coins:"
+parent = 121
+children = [125, 126]
+
+[[nodes]]
+id = 125
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I don't have 8 coins."
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "act"
+text = "end"
+parent = 124
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "cond"
+text = "If the player has 8 coins:"
+parent = 121
+children = [128, 129, 130, 131, 132, 133]
+
+[[nodes]]
+id = 128
+depth = 3
+kind = "other"
+text = "{{mes|The bartender hands you a shot of Heart Stopper.}}"
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "other"
+text = "{{mes|You grimace and drink it.}}"
+parent = 127
+
+[[nodes]]
+id = 130
+depth = 3
+kind = "other"
+text = "{{mes|You clutch your chest.}}"
+parent = 127
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "other"
+text = "{{mes|Through your tears you see the bartender...}}"
+parent = 127
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "other"
+text = "{{mes|signing your barcrawl card}}"
+parent = 127
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Good morning, what would you like?"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "option"
+text = "quest=No|What do you have?"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "quest=No|Beer please."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = -1
+children = [139, 140, 141, 144]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Oh you're a barbarian then. Now which of these barrels contained the Liverbane Ale? That'll be 18 coins please."
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "cond"
+text = "If the player does not have 18 coins:"
+parent = 138
+children = [142, 143]
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I don't have 18 coins."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "cond"
+text = "If the player has 18 coins:"
+parent = 138
+children = [145, 146, 147, 148, 149]
+
+[[nodes]]
+id = 145
+depth = 3
+kind = "other"
+text = "{{mes|The bartender gives you a glass of Liverbane Ale.}}"
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 3
+kind = "other"
+text = "{{mes|You gulp it down.}}"
+parent = 144
+
+[[nodes]]
+id = 147
+depth = 3
+kind = "other"
+text = "{{mes|The room seems to be swaying.}}"
+parent = 144
+
+[[nodes]]
+id = 148
+depth = 3
+kind = "other"
+text = "{{mes|The bartender scrawls his signature on your card.}}"
+parent = 144
+
+[[nodes]]
+id = 149
+depth = 3
+kind = "act"
+text = "end"
+parent = 144
+is_terminal = true
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "option"
+text = "quest=No|I don't really want anything thanks."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "quest=No|I'll have a beer please."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "quest=No|Any hints where I can go adventuring?"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "option"
+text = "quest=No|Heard any good gossip?"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhands Barcrawl."
+parent = -1
+children = [157, 158, 159, 162]
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Ah, there seems to be a fair few doing that one these days. My supply of Olde Suspiciouse is starting to run low, it'll cost you 10 coins."
+parent = 156
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "cond"
+text = "If the player does not have 10 coins:"
+parent = 156
+children = [160, 161]
+
+[[nodes]]
+id = 160
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have 10 coins right now."
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 3
+kind = "act"
+text = "end"
+parent = 159
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "cond"
+text = "If the player has 10 coins:"
+parent = 156
+children = [163, 164, 165, 166, 167, 168]
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "other"
+text = "{{mes|You buy a pint of Olde Suspiciouse.}}"
+parent = 162
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "other"
+text = "{{mes|You gulp it down.}}"
+parent = 162
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "other"
+text = "{{mes|Your head is spinning.}}"
+parent = 162
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "other"
+text = "{{mes|The bartender signs your card.}}"
+parent = 162
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanksh very mush..."
+parent = 162
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "act"
+text = "end"
+parent = 162
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "option"
+text = "quest=No|I don't really want anything thanks."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Zembo"
+text = "Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja island."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "box"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "option"
+text = "quest=No|Yes please."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "quest=No|No, thank you."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's barcrawl."
+parent = -1
+children = [176, 177, 178, 181]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Zembo"
+text = "Ah, you'll be wanting some Ape Bite Liqueur then. It's got a lovely banana taste, and it'll only cost you 7 coins."
+parent = 175
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "cond"
+text = "If the player does not have 7 coins:"
+parent = 175
+children = [179, 180]
+
+[[nodes]]
+id = 179
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have 7 coins right now."
+parent = 178
+
+[[nodes]]
+id = 180
+depth = 3
+kind = "act"
+text = "end"
+parent = 178
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "cond"
+text = "If the player has 7 coins:"
+parent = 175
+children = [182, 183, 184, 185, 186]
+
+[[nodes]]
+id = 182
+depth = 3
+kind = "other"
+text = "{{mes|You buy some Ape Bite Liqueur.}}"
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 3
+kind = "other"
+text = "{{mes|You swirl it around and swallow it.}}"
+parent = 181
+
+[[nodes]]
+id = 184
+depth = 3
+kind = "other"
+text = "{{mes|Zembo signs your card.}}"
+parent = 181
+
+[[nodes]]
+id = 185
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Mmmmm, dat was luverly..."
+parent = 181
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "box"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Tina"
+text = "Heya! What can I get you?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "option"
+text = "quest=No|What ales are you serving?"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's barcrawl."
+parent = -1
+children = [192, 193, 194, 195, 196, 199]
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "box"
+parent = 191
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "speaker"
+speaker = "Tina"
+text = "Heehee, this'll be fun!"
+parent = 191
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "speaker"
+speaker = "Tina"
+text = "You'll be after our Hand of Death cocktail, then. Lots of expensive parts to the cocktail, though, so it will cost you 70 coins."
+parent = 191
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "cond"
+text = "If the player does not have 70 coins:"
+parent = 191
+children = [197, 198]
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have that much money on me."
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "act"
+text = "end"
+parent = 196
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "cond"
+text = "If the player has 70 coins:"
+parent = 191
+children = [200, 201, 202, 203, 204, 205]
+
+[[nodes]]
+id = 200
+depth = 3
+kind = "other"
+text = "{{mes|You buy a Hand of Death cocktail.}}"
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "other"
+text = "{{mes|You drink the cocktail.}}"
+parent = 199
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "other"
+text = "{{mes|You stumble around the room.}}"
+parent = 199
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "act"
+text = "The player's game screen swings slightly left and right."
+parent = 199
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "other"
+text = "{{mes|Tina giggles and signs your card.}}"
+parent = 199
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "act"
+text = "end"
+parent = 199
+is_terminal = true
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "option"
+text = "quest=No|What can you tell me about dwarves and ale?"
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "option"
+text = "quest=No|Could I buy a beer please?"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "option"
+text = "quest=No|Have you heard any rumours here?"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "option"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = -1
+children = [211, 212, 213, 214, 215, 218]
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm doing Alfred Grimhand's Barcrawl."
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Are you sure?  You look a bit skinny for that."
+parent = 210
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Just give me whatever I need to drink here."
+parent = 210
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "Ok one Black Skull Ale coming up, 8 coins please."
+parent = 210
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "cond"
+text = "If the player does not have 8 coins:"
+parent = 210
+children = [216, 217]
+
+[[nodes]]
+id = 216
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have 8 coins with me."
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 3
+kind = "act"
+text = "end"
+parent = 215
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "cond"
+text = "If the player has 8 coins:"
+parent = 210
+children = [219, 220, 221, 222, 223, 224]
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "other"
+text = "{{mes|You buy a Black Skull Ale.}}"
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "other"
+text = "{{mes|You drink your Black Skull Ale...}}"
+parent = 218
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "other"
+text = "{{mes|Your vision blurs.}}"
+parent = 218
+
+[[nodes]]
+id = 222
+depth = 3
+kind = "other"
+text = "{{mes|The bartender signs your card.}}"
+parent = 218
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "[player name]"
+text = "{{overhead|Hiccup!}}"
+parent = 218
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "act"
+text = "end"
+parent = 218
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "other"
+text = "{{mes|You are too drunk to be able to read the barcrawl card.}}"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "So, how's the Barcrawl coming along?"
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I tink I jusht 'bout done dem all... but I losht count..."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "box"
+text = "pic=Barcrawl card detail.png|You give the card to the barbarian."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Yep that seems fine, you can come in now. I never learned to read, but you look like you've drunk plenty. Also, one more thing..."
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "Since you drink like a barbarian, I can show you how to smash your vials when you finish them. Do you want to do that?"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "Yes please, I want to smash my vials."
+parent = -1
+children = [234, 235, 236]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes please, I want to smash my vials."
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Barbarian guard"
+text = "It’s all part of drinking like a barbarian! Okay, you will now smash your vials as you drink your potions."
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "act"
+text = "end"
+parent = 233
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "option"
+text = "No thank you, I'd rather keep my vials."
+parent = -1
+children = [238, 239]
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thank you, I'd rather keep my vials."
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "act"
+text = "end"
+parent = 237
+is_terminal = true

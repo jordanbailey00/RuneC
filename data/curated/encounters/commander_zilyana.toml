@@ -1,0 +1,94 @@
+# Commander Zilyana — GWD Saradomin. Same GWD pattern as Graardor
+# (boss + 3 bodyguards) but different styles + magic-in-melee-range
+# behavior.
+
+name = "Commander Zilyana"
+slug = "commander_zilyana"
+npc_ids = [2205]
+source_pages = ["Commander Zilyana", "Commander Zilyana/Strategies"]
+
+[[bosses]]
+name = "Commander Zilyana"
+npc_id = 2205
+is_primary = true
+
+[[bosses.attacks]]
+name = "Melee Slash"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 28
+warning_ticks = 0
+
+[[bosses.attacks]]
+name = "Magic Blast"
+style = "magic"
+max_hit = 20
+min_hit = 10                      # wiki: 10-20 range
+warning_ticks = 2
+requires_player_in_melee_range = true   # only used in melee distance
+
+[[bosses]]
+name = "Starlight"
+npc_id = 2207
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Melee"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 25
+warning_ticks = 0
+
+[[bosses]]
+name = "Growler"
+npc_id = 2208
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Magic Blast"
+style = "magic"
+max_hit = 25
+warning_ticks = 2
+
+[[bosses]]
+name = "Bree"
+npc_id = 2206
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Ranged Shot"
+style = "ranged"
+max_hit = 25
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+# Zilyana is melee 50% / magic 50% when in melee range; pure melee
+# when adjacent-only.
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Bodyguard Respawn Cycle"
+primitive = "periodic_respawn_if_dead"
+params.respawn_cooldown_ticks = 75
+params.applies_to_npc_ids = [2205, 2206, 2207, 2208]
+
+[[mechanics]]
+name = "Group Kill Required"
+primitive = "group_kill_required"
+params.required_npc_ids = [2205, 2206, 2207, 2208]
+params.grant_drops_for = [2205]
+
+[[mechanics]]
+name = "Empty-Room Reset"
+primitive = "regen_when_no_player"
+params.heal_to_full = true
+params.reset_all_npcs = true
+params.reset_stat_drains = true
+
+[entry_requirement]
+saradomin_killcount = 40

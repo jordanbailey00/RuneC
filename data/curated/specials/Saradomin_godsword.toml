@@ -1,0 +1,12 @@
+name = "Saradomin godsword"
+item_ids = [11806]
+
+[special]
+"Special attack" = """
+[[File:Healing Blade.gif|frame|A player performs the Saradomin godsword's special attack, ''Healing Blade''.]]
+The Saradomin godsword has a [[special attacks|special attack]] called ''Healing Blade'', which consumes 50% of the player's special attack energy. When used, the player's max hit is increased by 10%, their accuracy is doubled, and [[Hitpoints]] and [[Prayer|Prayer Points]] are restored equal to 50% and 25% of the damage dealt respectively, rounded up in even intervals, with a minimum of 10 Hitpoints and 5 Prayer points. This effect only occurs on a successful hit. ''Healing Blade'' rolls against the opponent's slash defence roll.
+
+The Prayer and [[Life leech]] from ''Healing Blade is'' calculated from the potential damage of a swing before some types of damage immunities are applied. This can allow it to restore health and prayer even if a monster appears to take zero damage. For example, [[kurask]]s can only be harmed by leaf-bladed weaponry, [[broad bolt]]s, or the [[Magic Dart]] spell, but if ''Healing Blade'' would have otherwise hit a 40 before immunity, the restoration effect still takes place and heals the player for 20 hitpoints and restores 10 prayer points. 
+
+This mechanic also applies if the target has less total health than the potential damage of a swing. If a target with only 2 Hitpoints remaining is struck with a ''Healing Blade'' that would have dealt 60 damage, the player will still be healed for the full amount of 30 Hitpoints and have 15 Prayer points restored. Additionally, the special attack's healing is calculated before [[flat armour]] is applied, resulting in situations where a monster with positive flat armour will shift a positive damage roll to a 0 and result in receiving healing despite not dealing damage to the NPC.
+"""

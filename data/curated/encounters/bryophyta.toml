@@ -1,0 +1,33 @@
+# Bryophyta — F2P moss giant boss, Varrock sewers.
+# Simplest possible encounter — poison-immune, crush + magic melee.
+
+name = "Bryophyta"
+slug = "bryophyta"
+npc_ids = [8195]
+source_pages = ["Bryophyta"]
+
+[stats_override]
+# Wiki: hp=115, combat=128, max_hit=16.
+
+[[attacks]]
+name = "Melee"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 16
+warning_ticks = 0
+
+[[attacks]]
+name = "Magic Bolts"
+style = "magic"
+max_hit = 16
+warning_ticks = 2
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee", "Magic Bolts"]
+adjacency_style_weights = { melee = 3, magic = 1 }
+non_adjacent_style_weights = { magic = 1 }
+
+# Poison / venom immune per infobox (immunepoison = Yes).
+# Handled automatically via npc_defs.bin immunity bits.

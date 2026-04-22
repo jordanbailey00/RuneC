@@ -1,0 +1,15 @@
+name = "Magic comp bow"
+item_ids = [10284]
+
+[special]
+"Special attack" = """
+The magic comp bow's special attack, ''Powershot'', is [[Successful hit|guaranteed to hit]] the target. This consumes 35% of the player's special attack energy. This special attack is also shared with the [[magic longbow]], to the extent of copying the magic longbow's attack speed for this hit - this functionally makes the special attack 1 tick slower than the comp bow's regular attack.
+
+''Powershot'' uses a custom form of damage calculation that does not take into account offensive Prayers (such as [[Eagle Eye]]) when determining a player's [[Maximum ranged hit#Calculating your maximum ranged hit|maximum Ranged hit]].{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1167133164642480131|date=29 August 2019|archiveurl=https://reldo.runescape.wiki/i/102769|archivedate=23 May 2021|quote=[The special attack for rune throwing axes, magic shortbow, and magic longbow all ignore the active range boosting prayers for the special attack, and this ends up with a lower max hit during special attack. is this intentional?] They always had their own special calculations for effective accuracy/damage (...)}}
+
+The following formula can be used to calculate the max hit of ''Powershot'': <br/>
+<br/>
+<math>\\text{Maximum Hit} =\\left\\lfloor 0.5+\\frac{(\\text{Visible Ranged Level} + 10) *(\\text{Ammo Ranged Strength} +64)}{640} \\right\\rfloor</math> {{efn|name=level|Only the player's visible ranged level matters. Boosts given through prayers and Void Knight armour are ignored.}} {{efn|name=stance|A stance bonus of 10 is used regardless of attack style used.}} {{efn|name=ammo|The ranged strength bonus of the player's armour and gear is ignored. Only the ranged strength bonus of the player's ammo is used.}} {{efn|name=slayer|The bonus damage usually provided by wearing a Slayer helmet (i), Salve amulet (i) or Salve amulet (ei) is ignored.}}
+
+{{notelist}}
+"""

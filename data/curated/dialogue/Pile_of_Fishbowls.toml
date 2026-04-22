@@ -1,0 +1,96 @@
+title = "Transcript:Pile of Fishbowls"
+npcs = []
+node_count = 12
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "If the player has not deposited a [[fishbowl helmet]] into the pile:"
+parent = -1
+children = [1, 2]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "other"
+text = "{{mes|You put your bowl on the pile.}}"
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "act"
+text = "end"
+parent = 0
+is_terminal = true
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "cond"
+text = "If the player has deposited a fishbowl helmet into the pile:"
+parent = -1
+children = [4, 5]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "box"
+text = "You already have a bowl on the pile."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "end"
+parent = 3
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "cond"
+text = "If the player has not deposited a fishbowl helmet into the pile:"
+parent = -1
+children = [7, 8]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It doesn't look like my bowl is in the pile."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "cond"
+text = "If the player has deposited a fishbowl helmet into the pile:"
+parent = -1
+children = [10, 11]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "other"
+text = "{{mes|You take your bowl.}}"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true

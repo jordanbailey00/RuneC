@@ -1,0 +1,176 @@
+# Chambers of Xeric — 1-5 room-predecessors → Great Olm final boss.
+# Room selection is randomized per raid; covers 4-8 rooms before Olm.
+
+name = "Chambers of Xeric"
+slug = "chambers_of_xeric"
+# Olm hand + head npc_ids — actual encounter has multiple rooms.
+npc_ids = [7554, 7555, 7559]
+source_pages = [
+    "Chambers of Xeric", "Chambers of Xeric/Strategies",
+    "Great Olm", "Great Olm/Strategies",
+]
+
+# ---- Rooms / phases ---------------------------------------------------
+# CoX's rooms randomize per raid. Model the whole raid as a sequence
+# of rooms, with room content selected at world-init.
+#
+# Combat rooms: Muttadile, Tekton, Vasa Nistirio, Vespula, Guardians,
+# Skeletal Mystics, Shamans, Ice demon.
+# Skilling rooms: Farming, Mining, Scavengers, Thieving.
+# Puzzle rooms: Crabs, Ice demon, Tightrope.
+
+[[rooms]]
+id = "tekton"
+type = "combat"
+boss_npc = "Tekton"
+mechanics = ["melee_only", "anvil_recharge", "enrage_when_hit_anvil"]
+
+[[rooms]]
+id = "muttadile"
+type = "combat"
+boss_npc = "Muttadile"
+mechanics = ["small_muttadile_first", "muttadile_eats_to_heal"]
+
+[[rooms]]
+id = "vasa_nistirio"
+type = "combat"
+boss_npc = "Vasa Nistirio"
+mechanics = ["teleport_and_drain",
+             "crystal_pillars_must_be_destroyed",
+             "stone_zap"]
+
+[[rooms]]
+id = "vespula"
+type = "combat"
+boss_npc = "Vespula"
+mechanics = ["vespula_and_portal_hp_share",
+             "abyssal_portal_spawns_lux_grubs"]
+
+[[rooms]]
+id = "guardians"
+type = "combat"
+bosses_npc = ["Guardian 1", "Guardian 2"]
+mechanics = ["only_pickaxes_damage", "damage_reflects_to_player"]
+
+[[rooms]]
+id = "skeletal_mystics"
+type = "combat"
+bosses_npc = ["Skeletal Mystic"]
+mechanics = ["three_of_them_spawn", "aggressive_mages"]
+
+[[rooms]]
+id = "lizardman_shamans"
+type = "combat"
+bosses_npc = ["Lizardman Shaman"]
+mechanics = ["poison_spit_aoe", "shaman_jumps_away_to_reposition"]
+
+[[rooms]]
+id = "ice_demon"
+type = "combat"
+boss_npc = "Ice demon"
+mechanics = ["fire_spells_only", "burnable_logs_to_warm_room",
+             "freezes_player_periodically"]
+
+# ---- Great Olm (final boss) -------------------------------------------
+
+[[phases]]
+id = "olm_acid"
+enter_after = "rooms_cleared"
+script = "olm_phase_1"
+allowed_attacks = ["Olm Magic", "Olm Ranged", "Acid Spit",
+                   "Head Magic Shield"]
+# Phase 1: head untargetable; attack hands to expose head.
+
+[[phases]]
+id = "olm_crystal"
+enter_after = "olm_acid:hp_pct_66"
+script = "olm_phase_2"
+allowed_attacks = ["Olm Magic", "Olm Ranged", "Crystal Burst",
+                   "Head Magic Shield"]
+
+[[phases]]
+id = "olm_final"
+enter_after = "olm_crystal:hp_pct_33"
+script = "olm_phase_3"
+allowed_attacks = ["Olm Magic", "Olm Ranged", "Teleport Swap",
+                   "Fire Walls", "Lightning", "Auto-Heal Prevent"]
+
+# ---- Olm attacks ------------------------------------------------------
+
+[[attacks]]
+name = "Olm Magic"
+style = "magic"
+max_hit = 60
+warning_ticks = 2
+
+[[attacks]]
+name = "Olm Ranged"
+style = "ranged"
+max_hit = 60
+warning_ticks = 2
+
+[[attacks]]
+name = "Acid Spit"
+style = "ranged"
+max_hit = 20
+warning_ticks = 2
+targets_tile_not_entity = true
+aoe_shape = "3x3"
+on_hit.inflict_poison = true
+
+[[attacks]]
+name = "Crystal Burst"
+style = "ranged"
+max_hit = 45
+warning_ticks = 3
+# Scattered crystal projectiles across arena.
+
+# ---- Olm mechanics ---------------------------------------------------
+
+[[mechanics]]
+name = "Head + Hands"
+primitive = "multi_limb_boss"
+# Olm consists of: Head (main hp), Left Hand (magic shield), Right
+# Hand (melee / heal). Hands regenerate and return with new attack
+# pattern periodically.
+params.limbs = [
+    { name = "Olm Head", hp = 800, default_targetable = false, attack_style = "" },
+    { name = "Olm Left Hand", hp = 400, default_targetable = true, attack_style = "magic" },
+    { name = "Olm Right Hand", hp = 400, default_targetable = true, attack_style = "melee_heal" },
+]
+params.head_vulnerable_when = "both_hands_dead_or_reducing"
+
+[[mechanics]]
+name = "Teleport Swap"
+primitive = "player_position_swap"
+# Olm's final phase: teleports the player to a random corner of
+# the arena.
+period_ticks = 25
+params.min_distance = 8
+
+[[mechanics]]
+name = "Fire Walls"
+primitive = "environmental_wall_spawn"
+trigger = "phase_in:olm_final"
+period_ticks = 15
+params.wall_length = 8
+params.damage_on_cross = 30
+
+[[mechanics]]
+name = "Lightning"
+primitive = "tile_telegraph_lightning"
+trigger = "phase_in:olm_final"
+period_ticks = 8
+params.telegraph_ticks = 2
+params.damage_on_tile = 40
+params.tiles_per_volley = 5
+
+[[mechanics]]
+name = "Auto-Heal Prevent"
+primitive = "continuous_heal_unless_interrupted"
+trigger = "phase_in:olm_final"
+# Olm continuously heals unless player breaks specific crystals on
+# arena floor.
+params.heal_per_tick = 4
+params.interrupt_object = "Crystal (Olm)"
+params.interrupt_cooldown_ticks = 15

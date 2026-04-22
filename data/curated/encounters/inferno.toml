@@ -1,0 +1,110 @@
+# The Inferno — 67-wave solo-only endgame challenge culminating in
+# TzKal-Zuk. Wave 69 = Zuk. Tests: massive wave progression,
+# multi-NPC arena, Zuk shield mechanic, healer spawn cycle,
+# Jal-MejJak (healers), Jal-Nib-Rek (wave-end minions).
+
+name = "The Inferno"
+slug = "inferno"
+npc_ids = [7707]                  # TzKal-Zuk (final boss)
+source_pages = ["The Inferno", "TzKal-Zuk", "TzKal-Zuk/Strategies"]
+
+# ---- Wave progression -------------------------------------------------
+# 69 waves total (enumerated wave 1 → wave 69). Enemies escalate:
+#
+#   Waves 1-8:   Bat → Blob → Melee → Ranger → Mage → Jad (wave 9)
+#   Waves 9-17:  More complex combinations
+#   Wave 18:     3× Jad
+#   Waves 67-68: Clears + final prep
+#   Wave 69:     TzKal-Zuk + healers
+#
+# Full wave table elided for brevity — would be 69 entries.
+# Reference: https://oldschool.runescape.wiki/w/The_Inferno#Waves
+
+[[phases]]
+id = "early_waves"
+enter_at_hp_pct = 100
+script = "inferno_wave_progression"
+wave_range = [1, 40]
+untargetable = false
+# Each wave spawns a fixed enemy set; player must clear all.
+
+[[phases]]
+id = "triple_jad_wave"
+enter_after = "wave:67"
+# Three simultaneous TzTok-Jads + associated healers.
+script = "inferno_triple_jad"
+
+[[phases]]
+id = "zuk"
+enter_after = "wave:69_start"
+script = "inferno_zuk_phase"
+
+# ---- Zuk boss definition ----------------------------------------------
+
+[[bosses]]
+name = "TzKal-Zuk"
+npc_id = 7707
+is_primary = true
+
+[[bosses.attacks]]
+name = "Zuk Magic Blast"
+style = "magic"
+max_hit = 251                     # wiki: potentially one-shot
+warning_ticks = 2
+# Fired constantly at player; pray-blockable.
+
+[[bosses.attacks]]
+name = "Shield Blast"
+# Massive shield-AoE damage if shield not in line between Zuk and
+# player.
+style = "magic"
+max_hit = 300
+warning_ticks = 2
+requires_shield_alignment_fail = true
+
+# ---- Zuk mechanics ---------------------------------------------------
+
+[[mechanics]]
+name = "Zuk Shield"
+primitive = "line_of_sight_shield"
+# Shield moves slowly across arena. Player must stay in line with
+# shield between themselves and Zuk. Shield's movement pattern is
+# 1-2 tiles per direction, reverses at walls.
+params.shield_speed_tiles_per_tick = 0.5
+params.shield_path = "horizontal_oscillate"
+params.blocks_zuk_attacks = true
+params.failure_damage = 300
+
+[[mechanics]]
+name = "Healer Spawns"
+primitive = "hp_gated_healer_spawn"
+# Wiki: at 600 hp and 300 hp, 4 Jal-MejJak healers spawn; if
+# player doesn't kill / pillar-safespot them, they heal Zuk back
+# to full.
+params.spawn_thresholds = [
+    { hp_threshold = 600, healer_count = 4 },
+    { hp_threshold = 300, healer_count = 4 },
+]
+params.healer_npc = "Jal-MejJak"
+params.heal_per_tick = 8
+params.absorb_damage_when_player_attacks = true
+
+[[mechanics]]
+name = "Pillars"
+primitive = "destructible_pillars"
+# Three pillars in arena; healers can hide behind them but eventually
+# pillars destroy from Zuk's fire.
+params.pillar_count = 3
+params.pillar_hp = 500
+params.pillar_damaged_per_zuk_attack = 10
+
+[[mechanics]]
+name = "Jal-Nib-Rek"
+primitive = "wave_end_minion"
+# After killing Zuk → single Jal-Nib-Rek spawns as a victory
+# formality. Trivial hp; drops Infernal cape on kill.
+trigger = "zuk_killed"
+params.npc = "Jal-Nib-Rek"
+params.count = 1
+params.is_victory_lap = true
+params.drops = ["Infernal cape"]

@@ -35,9 +35,98 @@ from modern_cache_reader import ModernCacheReader, read_u8, read_u16, read_u32
 from export_models import decode_model, load_model_modern, expand_model
 from export_terrain import load_texture_average_colors_modern
 
+# Local (RuneC tools/) — osrsreboxed-db reader
+sys.path.insert(0, str(Path(__file__).parent))
+from database_sources import OsrsreboxedDB, WikiMonsters
+
 NDEF_MAGIC = 0x4E444546
+NDEF_VERSION = 2          # v2 adds osrsreboxed-db merged fields
 NSPN_MAGIC = 0x4E53504E
 MDL2_MAGIC = 0x4D444C32
+
+# Attack-type / weakness bitfield maps — must match rc-core/npc.h constants
+ATK_TYPE_BIT = {
+    "stab":    0x01, "slash":  0x02, "crush":  0x04,
+    "magic":   0x08, "ranged": 0x10,
+    "typeless": 0x00,
+}
+WEAKNESS_BIT = {
+    "fire":  0x01, "water":  0x02, "earth":  0x04, "air":    0x08,
+    "stab":  0x10, "slash":  0x20, "crush":  0x40,
+    "ranged":0x80, "magic":  0x80,   # share last bit; combat code picks by context
+}
+
+
+def merge_osrsreboxed_fields(defs: dict, db: OsrsreboxedDB,
+                             wiki: "WikiMonsters | None" = None):
+    """For each NPC def parsed from the b237 cache, merge in:
+       aggressive, max_hit, attack_speed, aggro_range (default 8 if aggressive),
+       slayer_level, attack_types (bitfield), weakness (bitfield),
+       poison_immune, venom_immune.
+
+    Wiki `infobox_monster` (when supplied) overrides osrsreboxed for
+    `max_hit` and `poison/venom_immune` — wiki captures breath/special
+    attack damage and multi-style immunity states that osrsreboxed
+    reports incompletely. See tools/reports/xvalidate_monsters.txt
+    for the 236 deltas that motivated this merge rule.
+    """
+    merged = 0
+    wiki_overrides = 0
+    for nid, d in defs.items():
+        rec = db.monster(nid)
+        if not rec:
+            d.update(aggressive=False, max_hit=0, attack_speed=0,
+                     aggro_range=0, slayer_level=1,
+                     attack_types=0, weakness=0,
+                     poison_immune=False, venom_immune=False)
+            continue
+        atk_types_list = rec.get("attack_type") or []
+        if isinstance(atk_types_list, str):
+            atk_types_list = [atk_types_list]
+        atk_bits = 0
+        for t in atk_types_list:
+            atk_bits |= ATK_TYPE_BIT.get(str(t).lower(), 0)
+
+        weak = rec.get("weakness")
+        weak_bits = WEAKNESS_BIT.get(str(weak).lower(), 0) if weak else 0
+
+        max_hit = int(rec.get("max_hit") or 0)
+        poison_immune = bool(rec.get("immune_poison"))
+        venom_immune = bool(rec.get("immune_venom"))
+
+        # Wiki overlay — authoritative on max_hit + immunities when present.
+        if wiki is not None:
+            wrec = wiki.by_id(nid)
+            if wrec is not None:
+                wmax = WikiMonsters.parse_max_hit(wrec.get("max_hit"))
+                if wmax is not None and wmax != max_hit:
+                    max_hit = wmax
+                    wiki_overrides += 1
+                wpoison = WikiMonsters.parse_bool_immune(
+                    wrec.get("poison_immune"))
+                if wpoison is not None:
+                    poison_immune = wpoison
+                wvenom = WikiMonsters.parse_bool_immune(
+                    wrec.get("venom_immune"))
+                if wvenom is not None:
+                    venom_immune = wvenom
+
+        d.update(
+            aggressive       = bool(rec.get("aggressive")),
+            max_hit          = max_hit,
+            attack_speed     = int(rec.get("attack_speed") or 0),
+            aggro_range      = 8 if rec.get("aggressive") else 0,
+            slayer_level     = int(rec.get("slayer_level") or 1),
+            attack_types     = atk_bits,
+            weakness         = weak_bits,
+            poison_immune    = poison_immune,
+            venom_immune     = venom_immune,
+        )
+        merged += 1
+    if wiki is not None:
+        print(f"  wiki overlay: {wiki_overrides} NPCs with differing max_hit",
+              file=sys.stderr)
+    return merged
 
 
 # ----- b237 cache: scan all NPC defs for name → ID map -----
@@ -374,8 +463,10 @@ def export_npc_model(reader, npc_id, model_ids, recolors=None, tex_colors=None):
 # ----- Binary writers -----
 
 def write_ndef(path, defs):
+    """NDEF v2 — adds osrsreboxed-merged combat fields after the name.
+    Loader in rc-core/npc.c reads both v1 and v2."""
     with open(path, "wb") as f:
-        f.write(struct.pack("<III", NDEF_MAGIC, 1, len(defs)))
+        f.write(struct.pack("<III", NDEF_MAGIC, NDEF_VERSION, len(defs)))
         for nid in sorted(defs.keys()):
             d = defs[nid]
             f.write(struct.pack("<I", nid))
@@ -390,6 +481,18 @@ def write_ndef(path, defs):
             f.write(struct.pack("<i", d["death_anim"]))
             name = d["name"].encode("latin-1")[:63]
             f.write(struct.pack("<B", len(name))); f.write(name)
+
+            # v2 merged fields (osrsreboxed-db)
+            immu = (1 if d.get("poison_immune") else 0) \
+                 | (2 if d.get("venom_immune") else 0)
+            f.write(struct.pack("<B", 1 if d.get("aggressive") else 0))
+            f.write(struct.pack("<H", min(65535, max(0, d.get("max_hit", 0)))))
+            f.write(struct.pack("<B", min(255, max(0, d.get("attack_speed", 0)))))
+            f.write(struct.pack("<B", min(255, max(0, d.get("aggro_range", 0)))))
+            f.write(struct.pack("<H", min(65535, max(0, d.get("slayer_level", 1)))))
+            f.write(struct.pack("<B", d.get("attack_types", 0) & 0xFF))
+            f.write(struct.pack("<B", d.get("weakness", 0) & 0xFF))
+            f.write(struct.pack("<B", immu & 0xFF))
 
 
 def write_nspn(path, spawns):
@@ -487,6 +590,12 @@ def main():
     print(f"Loading {len(unique_ids)} unique NPC defs (by b237 ID) from cache...")
     defs = load_npc_defs(reader, unique_ids)
     print(f"  {len(defs)} defs loaded")
+
+    print("Merging osrsreboxed-db combat/aggression fields + wiki overlay...")
+    osrs_db = OsrsreboxedDB()
+    wiki = WikiMonsters()
+    merged = merge_osrsreboxed_fields(defs, osrs_db, wiki=wiki)
+    print(f"  merged osrsreboxed data for {merged}/{len(defs)} NPCs")
 
     spawns = [s for s in spawns if s["npc_id"] in defs]
     print(f"  {len(spawns)} spawns with valid defs")

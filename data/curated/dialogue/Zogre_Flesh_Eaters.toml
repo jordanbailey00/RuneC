@@ -1,0 +1,5769 @@
+title = "Transcript:Zogre Flesh Eaters"
+npcs = ["Grish", "Ogre guard (Jiggig)", "Bartender (Dragon Inn)", "Zavistic Rarve", "Sithik Ints", "Uglug Nar", "Irwin Feaselbaum", "Johanhus Ulsbrecht"]
+node_count = 741
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, what's going on here?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Hey yous creature...wha's you's doing here? Yous be cleverer to be running so da sickies from da zogres don't dead ya."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "I'm just looking around thanks."
+parent = -1
+children = [4, 5, 6]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm just looking around thanks."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creature won'ts see muchly in dis place...just da zogries coming wiv da sickies."
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "initial"
+parent = 3
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "What do you mean sickies?"
+parent = -1
+children = [8, 9, 10, 11, 12, 13, 15, 17, 21, 56]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean sickies?"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Da zogries comin wiv da sickies...yous get bashed by da zogries and get da sickies...den you gonna be like da zogries."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I just don't understand..."
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Da sickies is when yous creature goes like orange till green and then goes 'Urggghhhh!' {{Colour|blue|~ Grish imitates falling down with only the white of his eyes visible. ~}}"
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 7
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "I'm just looking around thanks."
+parent = 7
+children = [14]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "above"
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "What do you mean sickies?"
+parent = 7
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "above"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "What are Zogres?"
+parent = 7
+children = [18, 19, 20]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What are Zogres?"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "Da Zogres are da bigun nasties wiv da sickies, deys old pals of Grish but deys jig in Jiggig when dey's full home is deep in da dirt, dey's is not da same dead'uns like was before."
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "previous"
+parent = 17
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "option"
+text = "Can I help in any way?"
+parent = 7
+children = [22, 23, 31, 32, 33, 34, 35, 36, 37, 42]
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I help in any way?"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "cond"
+text = "If the player doesn't have the requirements to start the quest:"
+parent = 21
+children = [24, 25, 26, 27, 28, 29, 30]
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Grish"
+text = "Sorry, yous creatures, but yous is too green behind da ears for dis job Grish finks."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not!"
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "speaker"
+speaker = "Grish"
+text = "Yes you are!"
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not!"
+parent = 23
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "speaker"
+speaker = "Grish"
+text = "Yes you are and that's final!"
+parent = 23
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "box"
+text = "You do not meet all of the requirements to start the Zogre Flesh Eaters quest."
+parent = 23
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "Yes creatures...yous does good fings for Grish and learn why Zogries at Jiggig and den get da Zogries back in da ground."
+parent = 21
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, so you want me to find out why the Zogres have appeared and then find a way of burying them?"
+parent = 21
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "Is what Grish says! But dis is da biggy danger fing yous creatures...yous be geddin' sickies most surely...yous needs be ready..wiv da foodies un da glug-glugs."
+parent = 21
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right, so you think there's a good chance that I can get ill from this, so I need to get some food and something to drink?"
+parent = 21
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "Yea creatures, yous just say what Grish says...not know own wordies creature?"
+parent = 21
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 21
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "option"
+text = "Hmm, sorry, it sounds a bit too dangerous."
+parent = 21
+children = [38, 39, 40, 41]
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, sorry, it sounds a bit too dangerous."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creature is not a stoopid one...stays out of dere, like clever Grish. Yous can paint circles on chest and be da Shaman too!"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, is it too late to reconsider?"
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "option"
+text = "Ok, I'll check things out then and report back."
+parent = 21
+children = [43, 44, 45, 46, 54]
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll check things out then and report back."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Grish"
+text = "Is yous creatures really, really sure yous wanna do dis creatures..we's got no glug-glugs for da sickies? We's knows nuffin for da going of da sickies?"
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "option"
+text = "Yes, I'm really sure!"
+parent = 42
+children = [47, 48, 49, 50, 51, 52, 53]
+
+[[nodes]]
+id = 47
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm really sure!"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 5
+kind = "speaker"
+speaker = "Grish"
+text = "Dats da good fing yous creature...yous does Grish a good fing. But yous know dat yous get sickies and mebe get dead!"
+parent = 46
+
+[[nodes]]
+id = 49
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "If that's your idea of a pep talk, I have to say that it leaves a lot to be desired."
+parent = 46
+
+[[nodes]]
+id = 50
+depth = 5
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creatures is alus says funny stuff...speaks proper like Grish!"
+parent = 46
+
+[[nodes]]
+id = 51
+depth = 5
+kind = "box"
+text = "pic=Cooked chompy detail.png|pic2=Super restore(3) detail.png|Grish hands you some food and two potions."
+parent = 46
+
+[[nodes]]
+id = 52
+depth = 5
+kind = "speaker"
+speaker = "Grish"
+text = "Der's yous go creatures...da best me's do for yous...and be back wivout da sickies."
+parent = 46
+
+[[nodes]]
+id = 53
+depth = 5
+kind = "act"
+text = "end"
+parent = 46
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "option"
+text = "Hmm, sorry, it sounds a bit too dangerous."
+parent = 42
+children = [55]
+
+[[nodes]]
+id = 55
+depth = 5
+kind = "act"
+text = "above"
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "option"
+text = "Sorry, I have to go."
+parent = 7
+children = [57, 58]
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I have to go."
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "act"
+text = "end"
+parent = 56
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "option"
+text = "What are Zogres?"
+parent = -1
+children = [60]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "above"
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "Sorry, I have to go."
+parent = -1
+children = [62]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "above"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Hey yous creature's come back den?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "option"
+text = "Yes, I want to help you out and find out about the zogres."
+parent = -1
+children = [66, 67]
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I want to help you out and find out about the zogres."
+parent = 65
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "act"
+text = "Continues above from \"Yes creatures...yous does good fings for Grish and learn why Zogries at Jiggig and den get da Zogries back in da ground.\""
+parent = 65
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "What was it you wanted me to do again?"
+parent = -1
+children = [69, 70]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creatures does da good fings for Grish and learn why Zogries at Jiggig and den get da Zogries back in da ground."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "act"
+text = "Continues above from \"Oh, so you want me to find out why the Zogres have appeared and then find a way of burying them?\""
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "Ok, thanks."
+parent = -1
+children = [72, 73]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, thanks."
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creature dun da fing yet? Da zogries going in da dirt full home?"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nope, I haven't figured out why the zogres are here yet."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Yous needs ta stay away from dis place...yous get da sickies and mebe yous goes to dead if yous da unlucky fing."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But Grish has asked me to look into this place and find out why all the undead ogres are here."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Ok, dat is da big, big scary, danger fing! You's sure you's wants to go in?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm sure."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Ok, I opens da stoppa's for yous creature."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "act"
+text = "The Ogre guard crushes the barricade."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Ok der' yous goes!"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "other"
+text = "{{mes|You climb down the steps.}}"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "other"
+text = "{{mes|You climb up the steps.}}"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene begins.}}"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "box"
+text = "You enter this blackened, charred area - it looks like some sort of explosion has taken place."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "other"
+text = "{{mes|You enter this blackened, charred area - it looks there's been an explosion!}}"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "other"
+text = "{{mes|You search the broken down lectern.}}"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "box"
+text = "pic=Torn page detail.png|You find a half torn page...it has spidery writing all over it."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "other"
+text = "{{mes|Something screams into life right in front of you.}}"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "The Zombie attacks."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Zombie"
+text = "{{overhead|Raaarrrggghhh}}"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "cond"
+text = "If the player does not have 3 inventory spaces:"
+parent = -1
+children = [98, 99]
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "other"
+text = "{{mes|You don't have enough room in your inventory for the contents of this bag.}}"
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "end"
+parent = 97
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "box"
+text = "pic=Ruined backpack detail.png|Just before you open the backpack, you notice a small leather patch with the moniker: 'B.Vahn', on it."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You find an interesting looking tankard."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "box"
+text = "pic=Knife detail.png|pic2=Rotten food detail.png|You find a knife and some rotten food, the backpack is ripped to shreds."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "other"
+text = "{{mes|You find a knife and some rotten food.}}"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "other"
+text = "{{mes|You find an interesting looking tankard.}}"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "box"
+text = """
+You search the coffin and find a small geometrically shaped hole in the side. It looks as if this hole was made with a considerable amount of force, maybe the thing which made the hole is still inside?
+"""
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "box"
+text = "The lock looks quite crude, with some skill and a slender blade, you may be able to force it."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "box"
+text = "pic=Knife detail.png|With some skill you manage to slide the blade along the lock edge and click into place the teeth of the primitive mechanism."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "cond"
+text = "If the player does not have enough inventory space:"
+parent = -1
+children = [112, 113]
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "box"
+text = "You start to lift the lid and see something inside, but you have no space in your inventory to store the item."
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "end"
+parent = 111
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "box"
+text = "The lid looks heavy, but now that you've unlocked it, you may be able to lift it. You prepare yourself."
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Urrrgggg."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Urrrgggg.}}"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aarrrgghhh!"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Aarrrgghhh!}}"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "cond"
+text = "If the player fails:"
+parent = -1
+children = [120, 121]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "box"
+text = "You struggle, but just get weakened from your experience. Perhaps you should try again after you've recovered from the effort?"
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 119
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "cond"
+text = "If the player succeeds:"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Raarrrggggg! Yes!"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Raarrrggggg! Yes!}}"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "box"
+text = "You eventually manage to lift the lid."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "box"
+text = "pic=Black prism detail.png|You find a creepy looking black prism inside."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "box"
+text = "You don't manage to understand all of it as there is only a half page here. But it seems the spell was used to place a curse on an area and for all time raise the dead."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "box"
+text = "If you look very carefully, you see what looks like a guild emblem."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|A stout ceramic tankard with a Dragon Emblem on the side, the words, 'Ye Olde Dragon Inn' are inscribed in the bottom."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "box"
+text = "pic=Black prism detail.png|It looks like a smokey black gem of some sort...very creepy. Some magical force must have prevented it from being shattered when it hit the coffin."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You show the tankard to Grish."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found this tankard in the tomb, have you got any suggestions?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Das a good drinker for da drinkies dat un is...is a small-un for Grish so yous creature keeps it yes. Yous creature keeps da fimble drinkers for da smaller drinkies."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "box"
+text = "pic=Torn page detail.png|You show the necromantic page to Grish."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This torn page was on a lectern in the tomb, do you know why?"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Dat's der wizzy stuff, not Ogery stuffsies like what Grish got. Das not even big enough for empty da big blower on! No use for Grish dat creatures...you's keeps it."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "box"
+text = "pic=Black prism detail.png|You show the black prism to Grish."
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey Grish, I found this in the tomb, do you know what it is?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Whas you's shuvvin wizzy stuff in Grish face...is a pretty one but dat's more stuff for da wizzy's dan Grish."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You show the tankard to the Inn Keeper."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, I found this tankard in an ogre tomb cavern. It has the emblem of this Inn on it and I wondered if you knew anything about it?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Oh yes, this is Brentle's mug...I'm surprised he left it just lying around down some cave. He's quite protective of it."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Brentle you say? So you knew him then?"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Yeah, this belongs to 'Brentle Vahn', he's quite a common customer, though I've not seen him in a while."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "He was talking to some shifty looking wizard the other day. I don't know his name, but I'd recognise him if I saw him."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, I'm sorry to tell you this, but Brentle Vahn is dead - I believe he was murdered."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Noooo! I'm shocked..."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "...but not surprised. He was a good customer...but I knew he would sell his sword arm and do many a dark deed if paid enough."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "If you need help bringing the culprit to justice, you let me know."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You show the tankard to the Inn Keeper."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again. Can you tell me what you know about this tankard again please?"
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Oh yes, Brentle's tankard. Yeah, you've shown me this already. It belonged to Brentle Vahn, he was quite a common customer, though I've not seen him in a while."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "act"
+text = "Continues above from \"He was talking to some shifty looking wizard the other day. I don't know his name, but I'd recognise him if I saw him.\""
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "box"
+text = "pic=Torn page detail.png|You show the bar tender the torn page."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any clue what this might be?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Oooh, don't show me that sort of stuff, it's probably all magical and wizardy, probably turn me into a frog as soon as I look at it..."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "box"
+text = "pic=Black prism detail.png|You show the bar tender the black prism."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, I found this black prism, I wondered if you knew anything about it."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Hmmm, it's not really familiar to me, sorry I don't know what it's for, looks magical to me...maybe someone else in Yanille can help you?"
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hey...who gave you permission to come in here! Get out, get out I say."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, alright...keep your night cap on."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, what's this then, can you explain it?!"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "box"
+text = "pic=Black prism detail.png|You show the black prism to Sithik."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Err..it looks sort of familiar, did you steal it from me? Come to think of it, you have the appearance of a common thief!"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found it in a place called Jiggig where some undead ogres happen to be wandering around."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Oh, nothing to do with me then, never seen it in my life before!"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Have you ever seen anything like this before?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "box"
+text = "pic=Torn page detail.png|You show the torn page to Sithik."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "It's probably a piece of rubbish someone threw away...what does it say, I can't read it?"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You should be able to read it, it's been torn from a book on necromancy and you're meant to be a specialist in the subject."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Oh, no..., not really a specialist, just a hobby of mine really. Hardly know anything about it, but it does seem interesting..."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What about this then? Guess where I found this?"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You show the tankard to Sithik."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "You probably found it at the local brewhouse! It doesn't take a genius to figure that one out."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aha! But I found this in an old ogre tomb! I suspect it's a clue which will lead me to the suspect."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hmmm, well that eliminates all the local people who don't actually drink at the 'Dragon Inn'. When do you think you'll start questioning the remaining population of Yanille?"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hey! What do you think you're doing?"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Erk! I'd better not start rifling through peoples things without permission."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hey! What do you think you're doing? Leave my tea alone!"
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing ringing that bell?! Don't you think some of us have work to do?"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I was told to ring the bell if I wanted some attention."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Well...anyway...we're very busy here, hurry up what do you want?"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "cond"
+text = "If the player has the Black prism but not the Torn page:"
+parent = -1
+children = [201, 202, 203, 204, 208, 209, 210, 211, 212]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There's some undead ogre activity over at 'Jiggig', and the ogres have asked me to look into it. I think I've found a clue and I wonder if you could take a look at it for me?"
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "box"
+text = "pic=Black prism detail.png|You show the black prism to the aged wizard."
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmmm, well this is an uncommon spell component. On its own it's useless, but with certain necromantic spells it can be very powerful. Did you find anything else there?"
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "cond"
+text = "If the player has the Dragon inn tankard:"
+parent = 200
+children = [205, 206, 207]
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You show the tankard to Zavistic."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I found this..."
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmmm, no, that's not really associated with this to be honest. Did you find anything else there?"
+parent = 204
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not really."
+parent = 200
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "I don't know what to say then, there isn't enough to go on with the clues you've shown me so far. I'd suggest going back to search a bit more, but you may just be wasting your time?"
+parent = 200
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmm, but this prism does seem to have some magical protection. Once you've finished with this item, bring it back to me would you? I may have a reward for you!"
+parent = 200
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure...I mean, I'll try if I remember."
+parent = 200
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "cond"
+text = "If the player has the Torn page but not the Black prism:"
+parent = -1
+children = [214, 215, 216, 217, 221, 222, 223]
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There's some undead ogre activity over at Jiggig, I've found a clue that you may be able to help with."
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "box"
+text = "pic=Torn page detail.png|You show the necromantic half page to the aged wizard."
+parent = 213
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmm, this is a half torn spell page, it requires another spell component to be effective. Did you find anything else there?"
+parent = 213
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "cond"
+text = "If the player has the Dragon inn tankard:"
+parent = 213
+children = [218, 219, 220]
+
+[[nodes]]
+id = 218
+depth = 3
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You show the tankard to Zavistic."
+parent = 217
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I found this..."
+parent = 217
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmmm, no, that's not really associated with this to be honest. Did you find anything else there?"
+parent = 217
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not really."
+parent = 213
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "I don't know what to say then, there isn't enough to go on with the clues you've shown me so far. I'd suggest going back to search a bit more, but you may just be wasting your time?"
+parent = 213
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "act"
+text = "end"
+parent = 213
+is_terminal = true
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "cond"
+text = "If the player has the Black prism and Torn page:"
+parent = -1
+children = [225, 226, 227, 228, 229, 230, 231, 232, 233, 234]
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There's some undead ogre activity over at Jiggig, I've found some clues, I wondered if you'd have a look at them."
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "box"
+text = "pic=Black prism detail.png|pic2=Torn page detail.png|You show the prism and the necromantic half page to the aged wizard."
+parent = 224
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmmm, now this is interesting! Where did you get these from?"
+parent = 224
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I got them from a nearby Ogre tomb, it's recently been infested with zombie ogres and I'm trying to work out what happened there."
+parent = 224
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "This is very troubling [player name], very troubling indeed. While it's permitted for learned members of our order to research the 'dark arts', it's absolutely forbidden to make use of such magic."
+parent = 224
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any leads on people that I might talk to regarding this?"
+parent = 224
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = """
+Well a wizard by the name of 'Sithik Ints' was doing some research in this area. He may know something about it. He's lodged at that guest house to the North, though he's ill and isn't able to leave his room.
+"""
+parent = 224
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Why not go and talk to him, poke around a bit and see if anything comes up. Let me know how you get on. However, I doubt that 'Sithik' had anything to do with it."
+parent = 224
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmm, that black prism seems to have some magical protection. Once you've finished with this item, bring it back to me would you. I may have a reward for you."
+parent = 224
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "act"
+text = "end"
+parent = 224
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "option"
+text = "quest=No|What is there to do in the Wizards' Guild?"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "option"
+text = "quest=No|What are the requirements to get in the Wizards' Guild?"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "option"
+text = "quest=No|What do you do in the Guild?"
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "option"
+text = "quest=No|Ok, thanks."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "cond"
+text = "If the player has started The Hand in the Sand:"
+parent = -1
+children = [241, 242, 243, 245]
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 240
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "option"
+text = "I'm here about the sicks...err Zogres"
+parent = 240
+children = [244]
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "act"
+text = "Continues above from \"There's some undead ogre activity...\""
+parent = 243
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "option"
+text = "quest=No|I have a rather sandy problem that I'd like to palm off on you."
+parent = 240
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "cond"
+text = "If the player has not started The Hand in the Sand:"
+parent = -1
+children = [247, 248, 249, 250]
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing bothering me? Don't you think some of us have work to do?"
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I thought you were here to help?"
+parent = 246
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Well... I am, I suppose, anyway... we're very busy here, hurry up, what do you want?"
+parent = 246
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "act"
+text = "Continues above from \"There's some undead ogre activity...\""
+parent = 246
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found this black prism at Jiggig where the undead ogre activity was happening?"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "box"
+text = "pic=Black prism detail.png|You show the black prism to the aged wizard."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Yes, you've already showed me that, bring it to me when you've resolved the problems at Jiggig and I'll see what I can do."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I've found a clue from the Jiggig area where the undead ogre activity is happening."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "box"
+text = "pic=Torn page detail.png|You show the necromantic half page to the aged wizard."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmm, this is a half torn spell page, it requires another spell component to be effective. Did you find anything else there?"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not really."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "I don't know what to say then really, there isn't enough to go on here as it is. I'd suggest going back to search a bit more, but you may just be wasting your time."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hey...who gave you permission to come in here!"
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zavistic Rarve said that I could come and talk to you and ask you a few questions."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Oh, Zavistic...why...why would he send you to me?"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "option"
+text = "Do you know anything about the undead ogres at Jiggig?"
+parent = -1
+children = [266, 267, 268, 269, 270, 271, 272]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about the undead ogres at Jiggig?"
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Er...undead ogres...no, sorry, no idea what you're talking about there."
+parent = 265
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, is that right..."
+parent = 265
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Well, yes, yes it is. If I knew something, I'd tell you."
+parent = 265
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Anyway, dead ogres you say? How strange? That must be a strange sight?"
+parent = 265
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Very well, if you don't know anything about it, you won't mind if I look around then?"
+parent = 265
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "act"
+text = "Continues below from \"Well,err....well, actually yes I do mind...it's my place and I don't want strangers going through my things.\""
+parent = 265
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "option"
+text = "What do you do?"
+parent = -1
+children = [274, 275, 276, 277, 278, 279, 280]
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you do?"
+parent = 273
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "I'm a scholarly student of the magical arts. When I was younger I used to be an adventurer, probably just like yourself. But I lost interest in the constant fighting, looting and gaining abilities."
+parent = 273
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Instead I decided to focus my attention and time to study the purer form of the lost arts."
+parent = 273
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The lost arts? What are they?"
+parent = 273
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ignorant people call them the 'dark arts'. I'm talking about Necromancy, the power to bring the dead back to life - the power of the gods! Surely the most awesome power known to man."
+parent = 273
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, well I guess I must be an ignorant person then, because bringing the dead back to life sounds very unnatural."
+parent = 273
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "act"
+text = "previous"
+parent = 273
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "option"
+text = "Do you mind if I look around?"
+parent = -1
+children = [282, 289]
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "cond"
+text = "If asking for the first time:"
+parent = 281
+children = [283, 284, 285, 286, 287, 288]
+
+[[nodes]]
+id = 283
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you mind if I look around?"
+parent = 282
+
+[[nodes]]
+id = 284
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Well, err....well, actually yes I do mind...it's my place and I don't want strangers going through my things."
+parent = 282
+
+[[nodes]]
+id = 285
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'm going to have a look around anyway, if you're not involved in this whole thing, you won't have anything to hide."
+parent = 282
+
+[[nodes]]
+id = 286
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Why, if I was a few years younger I'd give you a good hiding!"
+parent = 282
+
+[[nodes]]
+id = 287
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm sure!"
+parent = 282
+
+[[nodes]]
+id = 288
+depth = 3
+kind = "act"
+text = "previous"
+parent = 282
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "cond"
+text = "If asking him again:"
+parent = 281
+children = [290, 291, 292, 293]
+
+[[nodes]]
+id = 290
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you mind if I look around?"
+parent = 289
+
+[[nodes]]
+id = 291
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "I've already told you that I do! But you'll probably just ignore me again!"
+parent = 289
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Quite right!"
+parent = 289
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "act"
+text = "end"
+parent = 289
+is_terminal = true
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "option"
+text = "Ok, thanks."
+parent = -1
+children = [295, 296]
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, thanks."
+parent = 294
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "act"
+text = "end"
+parent = 294
+is_terminal = true
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [298, 299]
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "box"
+text = "You see an item in the wardrobe, but you don't have space to put it in your inventory."
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "act"
+text = "end"
+parent = 297
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "box"
+text = "pic=Book of 'h.a.m' detail.png|You find a book on Philosophy written by the 'Human's Against Monsters' leader, Johanhus Albrect{{sic"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "box"
+text = """
+You read this book for a while, it seems to be some sort of political manifesto about how the king doesn't do enough to safeguard the citizens of the realm from the monsters that still thrive within the borders. It sends out a rallying cry to all people who would want to stop monsters, to join the HAM movement.
+"""
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmmm, Sithik must really hate monsters then, I wonder if he hates ogres in particular?"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's this then?"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "box"
+text = "pic=Book of 'h.a.m' detail.png|You show the HAM book to Sithik."
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "What do you mean? It's a book by the respected HAM leader Johanhus Ulsbrecht, that man speaks for a lot of people who are unhappy with the current state of affairs."
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Can you honestly tell me that you've not had to fight for your life against the odd monster or two?"
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, that may be true, but I don't universally hate all monsters, whereas I have a sneaking suspicion that you do...and ogres in particular!"
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hmm, that's an interesting theory, care to back it up with any facts?"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, I've found this, do you know anything about it?"
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "Yes, in fact I do. I wrote many essays for this book, it was a great seller, many people are stirred by the words and feelings in such a tome."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [316, 317]
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "box"
+text = "You see an item in the cupboard, but you don't have space to put it in your inventory."
+parent = 315
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "act"
+text = "end"
+parent = 315
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "box"
+text = "pic=Necromancy book detail.png|You find a book on Necromancy."
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "box"
+text = """
+pic=Necromancy book detail.png|This book uses very strange language and some incomprehensible symbols. It has a very dark feeling to it. As you're loooking through the book, you notice that one of the pages has been torn and half of it is missing.
+"""
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aha! A necromantic book! What's this doing here then?"
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "box"
+text = "pic=Necromancy book detail.png|You show the Necromantic book to Sithik."
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Oh..I'm not quite sure actually...where did you find that then?"
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found it in this cupboard! What do you have to say for yourself?"
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Oh yes, that's right...I remember now. It's for my research, there's nothing really dangerous about it, unless it falls into the wrong hands. I'm sure it's pretty safe with me."
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmmm, likely story!"
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found this torn page, do you know anything about it?"
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Irwin Feaselbaum"
+text = "Hey...I hope you didn't rip that page out of one of those books, they'll be trouble if it was."
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, it wasn't actually, I got it from somewhere else, do you recognise it?"
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "speaker"
+speaker = "Irwin Feaselbaum"
+text = "Hmm, well it certainly looks like text from one of the books. Have you checked at the wizards' guild in Yanille? We sometime loan books to them."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, do you know anything about this book?"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "speaker"
+speaker = "Irwin Feaselbaum"
+text = "Hey...that book has been loaned to the wizards' guild in Yanille, I hope you're not returning it in a damaged condition!"
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I was just wondering where the book came from actually and try to get some more information about it."
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "speaker"
+speaker = "Irwin Feaselbaum"
+text = "Well, that book looks as if it's been through the wars...you're not going to return it in that condition. You take it back to the wizards at Yanille, they borrowed it, so it's their responsibility."
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "cond"
+text = "If the player does not have 3 inventory spaces:"
+parent = -1
+children = [340, 341]
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "box"
+text = "You see some items in the drawer, but you need 3 free inventory spaces to take them."
+parent = 339
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "act"
+text = "end"
+parent = 339
+is_terminal = true
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "cond"
+text = "If the player has papyrus but not charcoal:"
+parent = -1
+children = [343]
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "box"
+text = "pic=Papyrus detail.png|You find some papyrus."
+parent = 342
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "cond"
+text = "If the player has charcoal but not papyrus:"
+parent = -1
+children = [345]
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "box"
+text = "pic=Charcoal detail.png|You find some charcoal."
+parent = 344
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "cond"
+text = "If the player has neither:"
+parent = -1
+children = [347]
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "box"
+text = "pic=Charcoal detail.png|pic2=Papyrus detail.png|You find some charcoal and papyrus."
+parent = 346
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "box"
+text = "pic=Book of portraiture detail.png|You also find a book on portaiture{{sic"
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "box"
+text = "All interested artisans should really consider taking up the hobby of portraiture. To do so, one uses a piece of papyrus on the intended subject to initiate a likeness drawing activity."
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, so explain this then?"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "box"
+text = "pic=Book of portraiture detail.png|You show the book on portraiture to Sithik."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "It's my hobby...I'm interested in portraiture, but all art in general. It's fun, you should try it."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do I do it..."
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Well...you could start by reading the book!"
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "cond"
+text = "If the player doesn't have charcoal"
+parent = -1
+children = [359, 360]
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "box"
+text = "You have no charcoal with which to sketch this subject."
+parent = 358
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "act"
+text = "end"
+parent = 358
+is_terminal = true
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "cond"
+text = "If the player has charcoal"
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Oh lovely! You're making my portrait! Let me see it afterwards!"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "box"
+text = "You begin sketching the irritable Sithik."
+parent = -1
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "cond"
+text = "If the player fails at painting:"
+parent = -1
+children = [365]
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "box"
+text = "pic=Sithik portrait (bad) detail.png|You get a portrait of Sithik."
+parent = 364
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "cond"
+text = "If the player succeeds at painting:"
+parent = -1
+children = [367]
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "box"
+text = "pic=Sithik portrait detail.png|You get a portrait of Sithik."
+parent = 366
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here you go, what do you think?"
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "box"
+text = "pic=Sithik portrait (bad) detail.png|You show the sketch..."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hmmm, well it's an interesting interpretation, but not really classic realist representation is it? It's not my favourite, but I like the 'truth' of the work...well done."
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here you go, what do you think?"
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "box"
+text = "pic=Sithik portrait detail.png|You show the portrait to Sithik."
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hmmm, well it's not the most flattering of portraits, but I like the 'honesty' of the work...well done."
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Look, I made a portrait of Sithik."
+parent = -1
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "box"
+text = "pic=Sithik portrait (bad) detail.png|You show the sketch..."
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Who the demonikin is that? Is it meant to be a portrait of Sithik, it doesn't look anything like him!"
+parent = -1
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Look, I made a portrait of Sithik."
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "box"
+text = "pic=Sithik portrait detail.png|You show the portrait of Sithik to Zavistic."
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmm, great...but I already know what he looks like!"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "box"
+text = "pic=Sithik portrait (bad) detail.png|You show the sketch to the Inn keeper."
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Who's that? I mean, I guess it's a picture of a person isn't it? Sorry...you've got me? And before you ask, you're not putting it up on my wall!"
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's a portrait of Sithik Ints...don't you recognise him?"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "I'm sorry, I really am, but I just don't see it...can you make a better picture?"
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll try..."
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "box"
+text = "pic=Sithik portrait detail.png|You show the portrait to the Inn keeper."
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Yeah, that's the guy who was talking to Brentle Vahn the other day! Look at those eyes, never a more shifty looking pair will you ever see!"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, you've just identified the man who I think sent Brentle Vahn to his death."
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm trying to bring him to justice with the Wizards' Guild grand secretary. Do you think you could sign this portrait to say that he was talking to Brentle Vahn."
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "I can and I will!"
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "box"
+text = "pic=Sithik portrait detail.png|The Dragon Inn bartender signs the portrait."
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Many thanks for your help, it's really very good of you."
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Not at all, just doing my part."
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "box"
+text = """
+pic=Signed portrait detail.png|You see an image of Sithik with a message underneath '{{Colour|blue|I, the bartender of the Dragon Inn, do swear that this is a true likeness of the wizzy who was talking to Brentle Vahn, my customer the other day.
+"""
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, what do you think of this? I'm going to show it to Zavistic and you're going to be in trouble!"
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "box"
+text = "pic=Signed portrait detail.png|You show the portrait to Sithik."
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Hmmm, well, I've got quite a common looking face, I'm often mistaken for other wizards, you know, when I'm wearing my wizard's hat, robes and staff. There's a lot of us around here you know."
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think so! This is a signed picture of you, someone recognised you, you're in deep trouble!"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ok, I'll pay you to keep this secret - how much do you want for the picture?"
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You can't buy me Sithik!"
+parent = -1
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ok, let's say two million...two million to keep quiet and give me the picture."
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "box"
+text = "pic=Coins 250 detail.png|pic2=Coins 250 detail.png|Sithik shows you a chest brimming over with coins..."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh...erm...well, that is a lot of money actually...er...."
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Yes, and you deserve it, you're very clever! Now, take the money..."
+parent = -1
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "select"
+text = "Be bribed by Sithik for 2 million?"
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "option"
+text = "No, I won't take the money, I'm going to bring you to justice!"
+parent = -1
+children = [413, 414, 415]
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I won't take the money, I'm going to bring you to justice!"
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Oh well, suit yourself! I wasn't going to give you the money anyway! No one will believe some crazy adventurer and an Inn keep."
+parent = 412
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "act"
+text = "end"
+parent = 412
+is_terminal = true
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "option"
+text = "Ok, I'll shut up for two million!"
+parent = -1
+children = [417, 418, 419, 420]
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll shut up for two million!"
+parent = 416
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ha! Ha! You believed me! I'm not going to give you all my money! No one will believe a crazy adventurer and a local Inn keep!"
+parent = 416
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're a mean and cruel man Sithik, a mean and cruel man!"
+parent = 416
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "end"
+parent = 416
+is_terminal = true
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "option"
+text = "I'm here about the sicks...err Zogres"
+parent = -1
+children = [424, 425, 429, 433, 436, 479, 480]
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 423
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "option"
+text = "What did you say I should do?"
+parent = 423
+children = [426, 427, 428]
+
+[[nodes]]
+id = 426
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What did you say I should do?"
+parent = 425
+
+[[nodes]]
+id = 427
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = """
+You should go and have a chat with Sithik Ints, he's in that house just to the north. He's a lodger and has a room upstairs. Just tell him that I sent you to see him. He should be fine once you've mentioned my name.
+"""
+parent = 425
+
+[[nodes]]
+id = 428
+depth = 3
+kind = "act"
+text = "previous"
+parent = 425
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "option"
+text = "Where is Sithik?"
+parent = 423
+children = [430, 431, 432]
+
+[[nodes]]
+id = 430
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where is Sithik?"
+parent = 429
+
+[[nodes]]
+id = 431
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "He's in that house just to the north, less than a few seconds walk away. He's a lodger and has a room upstairs...he's not very well though."
+parent = 429
+
+[[nodes]]
+id = 432
+depth = 3
+kind = "act"
+text = "previous"
+parent = 429
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "option"
+text = "cond=If the player has one item:|I have an item that I'd like you to look at."
+parent = 423
+children = [434, 435]
+
+[[nodes]]
+id = 434
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have an item that I'd like you to look at."
+parent = 433
+
+[[nodes]]
+id = 435
+depth = 3
+kind = "act"
+text = "below"
+parent = 433
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "option"
+text = "cond=If the player has multiple items:|I have some items that I'd like you to look at."
+parent = 423
+children = [437, 438, 448, 456, 464, 472, 475]
+
+[[nodes]]
+id = 437
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have some items that I'd like you to look at."
+parent = 436
+
+[[nodes]]
+id = 438
+depth = 3
+kind = "cond"
+text = "If the player has the necromancy book:"
+parent = 436
+children = [439, 440, 441, 445, 446, 447]
+
+[[nodes]]
+id = 439
+depth = 4
+kind = "box"
+text = "pic=Necromancy book detail.png|You show the Necromancy book to Zavistic."
+parent = 438
+
+[[nodes]]
+id = 440
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have this necromancy book as evidence that Sithik is involved with the undead ogres at Jiggig."
+parent = 438
+
+[[nodes]]
+id = 441
+depth = 4
+kind = "cond"
+text = "If the player has shown Zavistic the necromancy book before:"
+parent = 438
+children = [442, 443, 444]
+
+[[nodes]]
+id = 442
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Yeah, you've shown me this before...if this is all the evidence you have?"
+parent = 441
+
+[[nodes]]
+id = 443
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Please just look at it again..."
+parent = 441
+
+[[nodes]]
+id = 444
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ok, let me look then."
+parent = 441
+
+[[nodes]]
+id = 445
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ok, so he's researching necromancy...it doesn't mean anything in itself."
+parent = 438
+
+[[nodes]]
+id = 446
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but if you look, you can see that there is a half torn page which matches the page I found at Jiggig."
+parent = 438
+
+[[nodes]]
+id = 447
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmm, yes, but someone could have stolen that from him and then gone and cast it without his permission or to try and deliberately implicate him."
+parent = 438
+
+[[nodes]]
+id = 448
+depth = 3
+kind = "cond"
+text = "If the player has the book of 'h.a.m':"
+parent = 436
+children = [449, 450, 451, 455]
+
+[[nodes]]
+id = 449
+depth = 4
+kind = "box"
+text = "pic=Book of 'h.a.m' detail.png|You show the HAM book to Zavistic."
+parent = 448
+
+[[nodes]]
+id = 450
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Look, this book proves that Sithik hates all monsters and most likely Ogres with a passion."
+parent = 448
+
+[[nodes]]
+id = 451
+depth = 4
+kind = "cond"
+text = "If the player has shown Zavistic the book of 'h.a.m' before:"
+parent = 448
+children = [452, 453, 454]
+
+[[nodes]]
+id = 452
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Yeah, you've shown me this before...if this is all the evidence you have?"
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Please just look at it again..."
+parent = 451
+
+[[nodes]]
+id = 454
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ok, let me look then."
+parent = 451
+
+[[nodes]]
+id = 455
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "So what, hating monsters isn't a crime in itself...although I suppose that it does give a motive if Sithik was involved. On its own, it's not enough evidence though."
+parent = 448
+
+[[nodes]]
+id = 456
+depth = 3
+kind = "cond"
+text = "If the player has the dragon inn tankard:"
+parent = 436
+children = [457, 458, 459, 463]
+
+[[nodes]]
+id = 457
+depth = 4
+kind = "box"
+text = "pic=Dragon inn tankard detail.png|You show the dragon{{sic"
+parent = 456
+
+[[nodes]]
+id = 458
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "This is the tankard I found on the remains of Brentle Vahn!"
+parent = 456
+
+[[nodes]]
+id = 459
+depth = 4
+kind = "cond"
+text = "If the player has shown Zavistic the Dragon Inn tankard before:"
+parent = 456
+children = [460, 461, 462]
+
+[[nodes]]
+id = 460
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Yeah, you've shown me this before...if this is all the evidence you have?"
+parent = 459
+
+[[nodes]]
+id = 461
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Please just look at it again..."
+parent = 459
+
+[[nodes]]
+id = 462
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ok, let me look then."
+parent = 459
+
+[[nodes]]
+id = 463
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "That doesn't mean anything in itself, you could have gotten that from anywhere. Even from the Dragon Inn tavern! There isn't anything to link Brentle Vahn with Sithik Ints."
+parent = 456
+
+[[nodes]]
+id = 464
+depth = 3
+kind = "cond"
+text = "If the player has the signed portrait:"
+parent = 436
+children = [465, 466, 467, 471]
+
+[[nodes]]
+id = 465
+depth = 4
+kind = "box"
+text = "pic=Signed portrait detail.png|You show the signed portrait of Sithik to Zavistic."
+parent = 464
+
+[[nodes]]
+id = 466
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "This is a portrait of Sithik, signed by the landlord of the Dragon Inn saying that he saw Sithik and Brentle Vahn together."
+parent = 464
+
+[[nodes]]
+id = 467
+depth = 4
+kind = "cond"
+text = "If the player has shown Zavistic the signed portrait before:"
+parent = 464
+children = [468, 469, 470]
+
+[[nodes]]
+id = 468
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Yeah, you've shown me this before...if this is all the evidence you have?"
+parent = 467
+
+[[nodes]]
+id = 469
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Please just look at it again..."
+parent = 467
+
+[[nodes]]
+id = 470
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ok, let me look then."
+parent = 467
+
+[[nodes]]
+id = 471
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Hmmm, well that is interesting."
+parent = 464
+
+[[nodes]]
+id = 472
+depth = 3
+kind = "cond"
+text = "If the player has not yet shown all 4 pieces of evidence:"
+parent = 436
+children = [473, 474]
+
+[[nodes]]
+id = 473
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "However, there isn't enough evidence for me to take the issue further at this point. If you find any further evidence bring it to me."
+parent = 472
+
+[[nodes]]
+id = 474
+depth = 4
+kind = "act"
+text = "end"
+parent = 472
+is_terminal = true
+
+[[nodes]]
+id = 475
+depth = 3
+kind = "cond"
+text = "If the player has shown all 4 pieces of evidence:"
+parent = 436
+children = [476, 477, 478]
+
+[[nodes]]
+id = 476
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = """
+And I'm starting to think that Sithik may be involved. Here, take this potion and give some to Sithik. It'll bring on a change which should solicit some answers - tell him the effects won't revert until he's told the truth.
+"""
+parent = 475
+
+[[nodes]]
+id = 477
+depth = 4
+kind = "box"
+text = "pic=Strange potion detail.png|Zavistic hands you a strange looking potion bottle and takes all the evidence you've accumulated so far."
+parent = 475
+
+[[nodes]]
+id = 478
+depth = 4
+kind = "act"
+text = "end"
+parent = 475
+is_terminal = true
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "option"
+text = "quest=No|I want to ask about the Magic Guild."
+parent = 423
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "option"
+text = "Sorry, I have to go."
+parent = 423
+children = [481, 482]
+
+[[nodes]]
+id = 481
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I have to go."
+parent = 480
+
+[[nodes]]
+id = 482
+depth = 3
+kind = "act"
+text = "end"
+parent = 480
+is_terminal = true
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "option"
+text = "quest=No|cond=If the player is partly through The Hand in the Sand:|I have a rather sandy problem that I'd like to palm off on you."
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Have you used that potion yet?"
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "cond"
+text = "If the player has lost the potion:"
+parent = -1
+children = [487, 488, 489, 490]
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, actually, I've lost it, could I have another one please?"
+parent = 486
+
+[[nodes]]
+id = 488
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Sure, but don't lose it this time."
+parent = 486
+
+[[nodes]]
+id = 489
+depth = 2
+kind = "box"
+text = "pic=Strange potion detail.png|Zavistic hands you a bottle of strange potion."
+parent = 486
+
+[[nodes]]
+id = 490
+depth = 2
+kind = "act"
+text = "end"
+parent = 486
+is_terminal = true
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet, what was I supposed to do again?"
+parent = -1
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = """
+Try to use the potion on Sithik somehow, he should undergo an interesting transformation, though you'll probably want to leave the house in case there are any side effects. Then go back and question Sithik and tell
+"""
+parent = -1
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "him the effects won't wear off until he tells the truth. In fact, that's not exactly true, but I'm sure it'll be an extra incentive to get him to be honest."
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "option"
+text = "What is there to do in the Wizards' Guild?"
+parent = -1
+children = [496]
+
+[[nodes]]
+id = 496
+depth = 2
+kind = "act"
+text = "above"
+parent = 495
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "option"
+text = "What are the requirements to get in the Wizards' Guild?"
+parent = -1
+children = [498]
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "act"
+text = "above"
+parent = 497
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "option"
+text = "What do you do in the Guild?"
+parent = -1
+children = [500]
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "act"
+text = "above"
+parent = 499
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "option"
+text = "Ok, thanks."
+parent = -1
+children = [502]
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "act"
+text = "above"
+parent = 501
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "What do you want now?"
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey there's no need to be rude!"
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "What do you expect when you just go snooping around a person's place against their express permission."
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "option"
+text = "What do you do?"
+parent = -1
+children = [508, 509, 510, 511, 512, 513, 514]
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you do?"
+parent = 507
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "I'm a scholarly student of the magical arts. When I was younger I used to be an adventurer, probably just like yourself. But I lost interest in the constant fighting, looting and gaining abilities."
+parent = 507
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Instead I decided to focus my attention and time to study the purer form of the lost arts."
+parent = 507
+
+[[nodes]]
+id = 511
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The lost arts? What are they?"
+parent = 507
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ignorant people call them the 'dark arts'. I'm talking about Necromancy, the power to bring the dead back to life - the power of the gods! Surely the most awesome power known to man."
+parent = 507
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, well I guess I must be an ignorant person then, because bringing the dead back to life sounds very unnatural."
+parent = 507
+
+[[nodes]]
+id = 514
+depth = 2
+kind = "act"
+text = "previous"
+parent = 507
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "option"
+text = "Why do you spend most of your time in bed?"
+parent = -1
+children = [516, 517, 518]
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why do you spend most of your time in bed?"
+parent = 515
+
+[[nodes]]
+id = 517
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "I'm actually quite old and not so very well and I'd like to get over this illness I have, then I'll return to my very serious and important studies."
+parent = 515
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "act"
+text = "previous"
+parent = 515
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "option"
+text = "Ok, thanks."
+parent = -1
+children = [520, 521]
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, thanks."
+parent = 519
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "act"
+text = "end"
+parent = 519
+is_terminal = true
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "other"
+text = "{{mes|You search but find nothing of significance.}}"
+parent = -1
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here, try some of this potion, it'll make you feel better!"
+parent = -1
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Err, yuck....no way am I taking any potions or medication off you...I don't trust you!"
+parent = -1
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "box"
+text = "pic=Strange potion detail.png|You pour some of the potion into the cup. Zavistic said it may take some time to have an effect."
+parent = -1
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Arghhhh..what's happened to me...you beast!"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's your own fault, you shouldn't have lied about your involvement with the undead Ogres at Jiggig. The potion will wear off once you've told the truth!"
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ok, ok, I admit it, I got Brentle Vahn to cast the spell to put an end to those awful Ogres...they're just disgusting creatures..."
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok, that's a start...now I want some answers."
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "option"
+text = "How do I remove the effects of the spell from the area?"
+parent = -1
+children = [534, 535, 540, 541, 542, 543, 544]
+
+[[nodes]]
+id = 534
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I remove the effects of the spell from the area? The ogres want to get their ceremonial dance area back and can't do that with undead walking all over it."
+parent = 533
+
+[[nodes]]
+id = 535
+depth = 2
+kind = "cond"
+text = "Asking for the first time:"
+parent = 533
+children = [536, 537, 538, 539]
+
+[[nodes]]
+id = 536
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Unfortunately you can't. The spell is permanent, it will last forever, the only option you have is to move the ceremonial area."
+parent = 535
+
+[[nodes]]
+id = 537
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're an evil man and I'm going to make you pay for this...you can stay like that forever as far as I'm concerned."
+parent = 535
+
+[[nodes]]
+id = 538
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "No...no, let me try to make amends...please I can help you. Just don't leave me like this."
+parent = 535
+
+[[nodes]]
+id = 539
+depth = 3
+kind = "act"
+text = "previous"
+parent = 535
+
+[[nodes]]
+id = 540
+depth = 2
+kind = "cond"
+text = "Asking him again:"
+parent = 533
+
+[[nodes]]
+id = 541
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Haven't I told you this already? You can't remove the spell, it's permanent, it will last forever, the only option you have is to move the ceremonial area."
+parent = 533
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're an evil man and I'm going to make you pay for this...you can stay like that forever as far as I'm concerned."
+parent = 533
+
+[[nodes]]
+id = 543
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "No...no, let me try to make amends...please I can help you. Just don't leave me like this."
+parent = 533
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "act"
+text = "previous"
+parent = 533
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "option"
+text = "How do I get rid of the undead ogres?"
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do I get rid of the undead ogres?"
+parent = -1
+children = [547, 555]
+
+[[nodes]]
+id = 547
+depth = 2
+kind = "cond"
+text = "Asking for the first time:"
+parent = 546
+children = [548, 549, 550, 551, 552, 553, 554]
+
+[[nodes]]
+id = 548
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ok, similar spells have been cast before and the only way to deal with the resulting creatures is to cordon off the area and not go in there again."
+parent = 547
+
+[[nodes]]
+id = 549
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "The undead creatures usually manifest some sort of disease so it's best to attack them from a distance with a ranged weapon."
+parent = 547
+
+[[nodes]]
+id = 550
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Normal missiles like arrows and darts do very little damage to them because they're designed to destroy internal organs. This is a waste of time with undead creatures like undead ogres."
+parent = 547
+
+[[nodes]]
+id = 551
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, clearly so what should we use?"
+parent = 547
+
+[[nodes]]
+id = 552
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "From my research it looks like a flat ended arrow was designed called a 'Brutal arrow'. This does large amounts of crushing damage to the creature. You can make them by using larger arrows."
+parent = 547
+
+[[nodes]]
+id = 553
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "I think some Ogre hunters make them. But instead of adding an arrow tip, you hammer a large nail into the end of the shaft."
+parent = 547
+
+[[nodes]]
+id = 554
+depth = 3
+kind = "act"
+text = "previous"
+parent = 547
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "cond"
+text = "Asking him again:"
+parent = 546
+children = [556, 557, 558]
+
+[[nodes]]
+id = 556
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Haven't I already explained this to you once before?"
+parent = 555
+
+[[nodes]]
+id = 557
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Humour me!"
+parent = 555
+
+[[nodes]]
+id = 558
+depth = 3
+kind = "act"
+text = "(Continues with \"Ok, similar spells...\")"
+parent = 555
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "option"
+text = "How do I get rid of the disease?"
+parent = -1
+children = [560, 561, 566, 571]
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I get rid of the disease?"
+parent = 559
+
+[[nodes]]
+id = 561
+depth = 2
+kind = "cond"
+text = "Asking for the first time:"
+parent = 559
+children = [562, 563, 564, 565]
+
+[[nodes]]
+id = 562
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "My research shows that two jungle based herbs can be used, one is found near river tributaries and looks like a vine, the other is found in caves and grows on the wall."
+parent = 561
+
+[[nodes]]
+id = 563
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "It's quite well camouflaged so it's unlikely that you'll find it."
+parent = 561
+
+[[nodes]]
+id = 564
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We'll see about that!"
+parent = 561
+
+[[nodes]]
+id = 565
+depth = 3
+kind = "act"
+text = "previous"
+parent = 561
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "cond"
+text = "Asking him again as an ogre:"
+parent = 559
+children = [567, 568, 569, 570]
+
+[[nodes]]
+id = 567
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Haven't I already explained this disease thing to you once before?"
+parent = 566
+
+[[nodes]]
+id = 568
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Just tell me again or else I'll never turn you back into a human!"
+parent = 566
+
+[[nodes]]
+id = 569
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "No...noo...please, I'll tell you."
+parent = 566
+
+[[nodes]]
+id = 570
+depth = 3
+kind = "act"
+text = "(Continues with \"My research shows...\")"
+parent = 566
+
+[[nodes]]
+id = 571
+depth = 2
+kind = "cond"
+text = "Asking him again as a human:"
+parent = 559
+children = [572, 573, 574, 575]
+
+[[nodes]]
+id = 572
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Haven't I already explained this disease thing to you once before?"
+parent = 571
+
+[[nodes]]
+id = 573
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Just tell me again or I'll turn you back into an ogre."
+parent = 571
+
+[[nodes]]
+id = 574
+depth = 3
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "No...noo...please, I'll tell you."
+parent = 571
+
+[[nodes]]
+id = 575
+depth = 3
+kind = "act"
+text = "(Continues with \"My research shows...\")"
+parent = 571
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "option"
+text = "Sorry, I have to go."
+parent = -1
+children = [577, 578, 579]
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I have to go."
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "But...you can't just leave me here like this!"
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "act"
+text = "end"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Arghhhh..what do you want now...you've turned me into a beast!"
+parent = -1
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got some questions for you...and you'd better answer them well or else!"
+parent = -1
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "speaker"
+speaker = "Sithik Ints"
+text = "Ok, ok, I'll tell you anything, just turn me back into a human again!"
+parent = -1
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "option"
+text = "How do I remove the effects of the spell from the area?"
+parent = -1
+children = [585]
+
+[[nodes]]
+id = 585
+depth = 2
+kind = "act"
+text = "above"
+parent = 584
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "option"
+text = "How do I get rid of the undead ogres?"
+parent = -1
+children = [587]
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "act"
+text = "above"
+parent = 586
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "option"
+text = "How do I get rid of the disease?"
+parent = -1
+children = [589]
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "act"
+text = "above"
+parent = 588
+
+[[nodes]]
+id = 590
+depth = 1
+kind = "option"
+text = "Sorry, I have to go."
+parent = -1
+children = [591]
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "act"
+text = "above"
+parent = 590
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = """
+Don't you worry about Sithik, he's not likely to be moving from his bed for a long time. When he eventually does get better, he's going to be sent before a disciplinary tribunal, then we'll sort out what's what.
+"""
+parent = -1
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help with all of this."
+parent = -1
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ooohh, no thanks required. It's I who should be thanking you my friend...your investigative mind has shown how vigilant we really should be for this type of evil use of the magical arts."
+parent = -1
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "option"
+text = "quest=No|What is there to do in the Wizards' Guild?"
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "option"
+text = "quest=No|What are the requirements to get in the Wizards' Guild?"
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "option"
+text = "quest=No|What do you do in the Guild?"
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "option"
+text = "quest=No|Ok, thanks."
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "speaker"
+speaker = "Uglug Nar"
+text = "Me's not got no glug-glugs to sell, yous bring me da sickies glug-glug den me's open da stufsies for ya."
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "box"
+text = "pic=Relicym's balm(3) detail.png|You show the potion to Uglug Nar."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, here you go! I brought you some of the potion which should cure the disease. You said that you would buy some from me."
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Uglug Nar"
+text = "Yous creatures done da good fing...yous get many bright pretties for dis...!"
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "box"
+text = "pic=Coins 250 detail.png|pic2=Relicym's balm(3) detail.png|You sell the potion and get 650 coins in return."
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creature dun da fing yet? Da zogries going in da ground?"
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "option"
+text = "I found who's responsible for the Zogres being here."
+parent = -1
+children = [611, 612, 613, 614, 615, 616, 617, 618, 619, 620, 621]
+
+[[nodes]]
+id = 611
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found who's responsible for the Zogres being here."
+parent = 610
+
+[[nodes]]
+id = 612
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Where is da creature? Me's wants to squeeze him till he's a deadun..."
+parent = 610
+
+[[nodes]]
+id = 613
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The person responsible is a wizard named 'Sithik Ints' and he's going to be in serious trouble. He told me that the spell which raised the zogres from the ground will last forever."
+parent = 610
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry to say, but you'll have to move the site of your ceremonial dancing somewhere else."
+parent = 610
+
+[[nodes]]
+id = 615
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Dat is da bad fing creature...we's needs new Jiggig for da fallin' down jig."
+parent = 610
+
+[[nodes]]
+id = 616
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, that's right, you'll need to create a new ceremonial dance area."
+parent = 610
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Urghhh...not good fing creature, yous gotta get da ogrish old fings for da making new jiggig special. You's creature needs da key for getting in da low bury place."
+parent = 610
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "box"
+text = "pic=Ogre gate key detail.png|Grish gives you a crudely crafted key."
+parent = 610
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, so you want me to go back in there and look for something for you?"
+parent = 610
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Yeah creature, yous gotta get da ogrish old fings for da making new jiggig and proper in da special way."
+parent = 610
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "act"
+text = "end"
+parent = 610
+is_terminal = true
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "option"
+text = "I've got some information on how to kill the zogres from a distance."
+parent = -1
+children = [623, 624, 625, 626, 627, 628, 629]
+
+[[nodes]]
+id = 623
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sithik told me how to make Brutal arrows which means I can kill these zogres from a distance!"
+parent = 622
+
+[[nodes]]
+id = 624
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Uhggh, whas you's sayin' creature? Yous speakies too stupid for Grish..."
+parent = 622
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know how to make large arrows...you know, 'big stabbers', to kill the zogres...they're bigger and apparently do a lot of damage, only thing is, the normal ogre bow I need to fire it is quite slow."
+parent = 622
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Why you's not say so creature...me's shows you how to make da bigger stabber chucker... {{Colour|blue|~ Grish gets a couple of items out of his back pack.~}}"
+parent = 622
+
+[[nodes]]
+id = 627
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "De're creature...now yous is makin' da bigga stabber chucker..."
+parent = 622
+
+[[nodes]]
+id = 628
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks! I think...."
+parent = 622
+
+[[nodes]]
+id = 629
+depth = 2
+kind = "act"
+text = "previous"
+parent = 622
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "option"
+text = "I've found out how to cure the disease."
+parent = -1
+children = [631, 632, 633]
+
+[[nodes]]
+id = 631
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I also found out that the disease can be cured."
+parent = 630
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Dat's da good fing creature, yous do good fing to give un to Uglug...he gives bright pretties for da sickies glug glug.."
+parent = 630
+
+[[nodes]]
+id = 633
+depth = 2
+kind = "act"
+text = "previous"
+parent = 630
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "option"
+text = "I have some other questions for you."
+parent = -1
+children = [635, 636, 637, 638, 650, 656, 661, 665]
+
+[[nodes]]
+id = 635
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some other questions for you."
+parent = 634
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Oh yes creatures...what's other fings yous wanna know?"
+parent = 634
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 634
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "option"
+text = "Why are you much nicer than the Shaman in Gu'Tanoth?"
+parent = 634
+children = [639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649]
+
+[[nodes]]
+id = 639
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why are you much nicer than the Shaman in Gu'Tanoth?"
+parent = 638
+
+[[nodes]]
+id = 640
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "Dey's is da big crazy one's! Dey's biggest angries wiv fings and wanna dead all fings...dey's gotten da biggies wizzy stuff...and dey's wanna eat yous creatures...Grish, not do dat..."
+parent = 638
+
+[[nodes]]
+id = 641
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, well that's a relief! It's good to know you don't eat humans..."
+parent = 638
+
+[[nodes]]
+id = 642
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "Grish not say dat! Me's want's tasty looking creatures for yums...you's looks like da sickies chompy...not good for da gutsies..."
+parent = 638
+
+[[nodes]]
+id = 643
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Gulp!"
+parent = 638
+
+[[nodes]]
+id = 644
+depth = 3
+kind = "speaker"
+speaker = "Uglug Nar"
+text = "Grish, you's is fright da creatures! Leave it alone!"
+parent = 638
+
+[[nodes]]
+id = 645
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "But it's da big laffsies when it's facey goes to whiteness....ha ha ha!"
+parent = 638
+
+[[nodes]]
+id = 646
+depth = 3
+kind = "speaker"
+speaker = "Uglug Nar"
+text = "But it's not da big yumsies when it's gone to all frighty..."
+parent = 638
+
+[[nodes]]
+id = 647
+depth = 3
+kind = "speaker"
+speaker = "Uglug Nar"
+text = "ha ha ha ha!"
+parent = 638
+
+[[nodes]]
+id = 648
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah...very funny, I'm sure."
+parent = 638
+
+[[nodes]]
+id = 649
+depth = 3
+kind = "act"
+text = "previous"
+parent = 638
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "option"
+text = "Do you know Rantz?"
+parent = 634
+children = [651, 652, 653, 654, 655]
+
+[[nodes]]
+id = 651
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you know Rantz?"
+parent = 650
+
+[[nodes]]
+id = 652
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "Me's know's about Rantz, he's da biggun chompy hunter..he finks...ha ha ha!"
+parent = 650
+
+[[nodes]]
+id = 653
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How do you mean?"
+parent = 650
+
+[[nodes]]
+id = 654
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "He's da bad shot chompy sticker, no good at sneaky, sneaky part, he's more gooder at da 'noisy, noisy miss da chompy', ha ha ha!"
+parent = 650
+
+[[nodes]]
+id = 655
+depth = 3
+kind = "act"
+text = "previous"
+parent = 650
+
+[[nodes]]
+id = 656
+depth = 2
+kind = "option"
+text = "Why doesn't Rantz live with the rest of the Ogres?"
+parent = 634
+children = [657, 658, 659, 660]
+
+[[nodes]]
+id = 657
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why doesn't Rantz live with the rest of the Ogres?"
+parent = 656
+
+[[nodes]]
+id = 658
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = """
+He's been leaving Gu 'Noth 'cos dey's peoples is da big stressy dere? All da ogries is busying all da time...not doin' no good for da healfy fing. Rantz is da brave-un tho! He's got da big secret fing for leaving Gu' Noth
+"""
+parent = 656
+
+[[nodes]]
+id = 659
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "but me's not knowin it. But maybe's he's just want's to be da better chompy sticker?"
+parent = 656
+
+[[nodes]]
+id = 660
+depth = 3
+kind = "act"
+text = "previous"
+parent = 656
+
+[[nodes]]
+id = 661
+depth = 2
+kind = "option"
+text = "Why do you call this place Jiggig?"
+parent = 634
+children = [662, 663, 664]
+
+[[nodes]]
+id = 662
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why do you call this place Jiggig?"
+parent = 661
+
+[[nodes]]
+id = 663
+depth = 3
+kind = "speaker"
+speaker = "Grish"
+text = "It's da place where da Jiggig is done...we's jig at Jiggig..."
+parent = 661
+
+[[nodes]]
+id = 664
+depth = 3
+kind = "act"
+text = "previous"
+parent = 661
+
+[[nodes]]
+id = 665
+depth = 2
+kind = "option"
+text = "I want to talk about the quest."
+parent = 634
+children = [666, 667]
+
+[[nodes]]
+id = 666
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I want to talk about the quest"
+parent = 665
+
+[[nodes]]
+id = 667
+depth = 3
+kind = "act"
+text = "previous2"
+parent = 665
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "option"
+text = "Sorry, I have to go."
+parent = -1
+children = [669, 670]
+
+[[nodes]]
+id = 669
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I have to go."
+parent = 668
+
+[[nodes]]
+id = 670
+depth = 2
+kind = "act"
+text = "end"
+parent = 668
+is_terminal = true
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creature got da old fings yet?"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the key you gave me!"
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Yous stupid creatures....luckily Grish has 'nother one.."
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creatures doesn't loosing this ones."
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creature got da old fings yet?"
+parent = -1
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "select"
+text = "Grish asks if you have the items yet."
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "option"
+text = "Nope, not yet."
+parent = -1
+children = [679, 680, 681]
+
+[[nodes]]
+id = 679
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nope, not yet."
+parent = 678
+
+[[nodes]]
+id = 680
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Yous gets 'em quick tho, cos we'ze wonna do da new Jiggig place..."
+parent = 678
+
+[[nodes]]
+id = 681
+depth = 2
+kind = "act"
+text = "previous"
+parent = 678
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "option"
+text = "There must be an easier way to kill these zogres!"
+parent = -1
+children = [683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693, 694]
+
+[[nodes]]
+id = 683
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There must be an easier way to kill these zogres!"
+parent = 682
+
+[[nodes]]
+id = 684
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sithik told me how to make Brutal arrows which means I can kill these zogres from a distance!"
+parent = 682
+
+[[nodes]]
+id = 685
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Uhggh, whas you's sayin' creature? Yous speakies too stupid for Grish..."
+parent = 682
+
+[[nodes]]
+id = 686
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know how to make large arrows...you know, 'big stabbers', to kill the zogres...they're bigger and apparently do a lot of damage, only thing is, the normal ogre bow I need to fire it is quite slow."
+parent = 682
+
+[[nodes]]
+id = 687
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Why you's not say so creature...me's shows you how to make da bigger stabber chucker... {{Colour|blue|~ Grish gets a couple of items out of his back pack.~}}"
+parent = 682
+
+[[nodes]]
+id = 688
+depth = 2
+kind = "box"
+text = "pic=Achey tree logs detail.png|pic2=Wolf bones detail.png|Grish shows you he has Achey tree logs and wolf bones, he starts to whittle away at them both with a knife."
+parent = 682
+
+[[nodes]]
+id = 689
+depth = 2
+kind = "box"
+text = "pic=Comp ogre bow detail.png|Grish shows you his achievement, a rather powerful looking composite bow frame..."
+parent = 682
+
+[[nodes]]
+id = 690
+depth = 2
+kind = "box"
+text = "pic=Comp ogre bow detail.png|pic2=Bow string detail.png|He shows you the bow frame and the string and after some time and a great deal of effort, he strings the composite ogre bow."
+parent = 682
+
+[[nodes]]
+id = 691
+depth = 2
+kind = "box"
+text = "pic=Comp ogre bow detail.png|Grish shows you his proud achievement..."
+parent = 682
+
+[[nodes]]
+id = 692
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "De're creature...now yous is makin' da bigga stabber chucker..."
+parent = 682
+
+[[nodes]]
+id = 693
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks! I think...."
+parent = 682
+
+[[nodes]]
+id = 694
+depth = 2
+kind = "act"
+text = "previous"
+parent = 682
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "option"
+text = "There must be a way to cure this disease!"
+parent = -1
+children = [696, 697, 698, 699]
+
+[[nodes]]
+id = 696
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There must be a way to cure this disease!"
+parent = 695
+
+[[nodes]]
+id = 697
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = """
+Did yous creature makes da sickies glug glug and putin some wiv Uglug for bright pretties? He's goodun for makin' da glug glugs...yous maken da glug-glug, den sellin' one for Uglug, he's makin' more of da sickies glug
+"""
+parent = 695
+
+[[nodes]]
+id = 698
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "glug and sellin' for bright pretties to yous creature..."
+parent = 695
+
+[[nodes]]
+id = 699
+depth = 2
+kind = "act"
+text = "previous"
+parent = 695
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "option"
+text = "Sorry, I have to go."
+parent = -1
+children = [701, 702]
+
+[[nodes]]
+id = 701
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I have to go."
+parent = 700
+
+[[nodes]]
+id = 702
+depth = 2
+kind = "act"
+text = "end"
+parent = 700
+is_terminal = true
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "cond"
+text = "If the player has the ogre gate key:"
+parent = -1
+children = [704]
+
+[[nodes]]
+id = 704
+depth = 2
+kind = "other"
+text = "{{mes|You use the Ogre Tomb Key to unlock the door.}}"
+parent = 703
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "cond"
+text = "If the player does not have the ogre gate key:"
+parent = -1
+children = [706]
+
+[[nodes]]
+id = 706
+depth = 2
+kind = "other"
+text = "{{mes|These gates are locked, you don't seem to be able to open them.}}"
+parent = 705
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "cond"
+text = "If the player is leaving:"
+parent = -1
+children = [708]
+
+[[nodes]]
+id = 708
+depth = 2
+kind = "other"
+text = "{{mes|You push the gates open.}}"
+parent = 707
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "box"
+text = "You search the plinth..."
+parent = -1
+
+[[nodes]]
+id = 710
+depth = 1
+kind = "other"
+text = "{{mes|Something stirs behind you!}}"
+parent = -1
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "act"
+text = "Slash Bash spawns and attacks."
+parent = -1
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "box"
+text = "You search the plinth..."
+parent = -1
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "cond"
+text = "If the player still has the artefact:"
+parent = -1
+children = [714]
+
+[[nodes]]
+id = 714
+depth = 2
+kind = "other"
+text = "{{mes|You find nothing in particular.}}"
+parent = 713
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "cond"
+text = "If the player lost the Ogre artefact:"
+parent = -1
+children = [716]
+
+[[nodes]]
+id = 716
+depth = 2
+kind = "box"
+text = "pic=Ogre artefact detail.png|An ogre artefact appears in front of you. You quickly put it into your backpack."
+parent = 715
+
+[[nodes]]
+id = 717
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "box"
+text = "The huge Slash Bash grows weary of your feeble attempts at combat and awaits a true challenge."
+parent = -1
+
+[[nodes]]
+id = 719
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "speaker"
+speaker = "Grish"
+text = "Hey, you's creature got da old fings?"
+parent = -1
+
+[[nodes]]
+id = 721
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "option"
+text = "cond=If the player lost the Ogre artefact:|No, I don't have them yet."
+parent = -1
+children = [723, 724, 725]
+
+[[nodes]]
+id = 723
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No sorry, I don't have them yet."
+parent = 722
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Yous creatures get dem for me soon doh, yes?"
+parent = 722
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "act"
+text = "previous"
+parent = 722
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "option"
+text = "cond=If the player has the Ogre artefact:|Yeah, I have them here!"
+parent = -1
+children = [727, 728, 729, 730, 731]
+
+[[nodes]]
+id = 727
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, I have them here!"
+parent = 726
+
+[[nodes]]
+id = 728
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "Dat is da goodly fing yous creature, now's we's can make da new Jiggig place away from zogries! Yous been da big helpy fing yous creature, Grish wishin' yous good stuff for da next fings for creature."
+parent = 726
+
+[[nodes]]
+id = 729
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "{{Colour|blue|~ Grish seems very pleased about the return of the artefacts. ~}}"
+parent = 726
+
+[[nodes]]
+id = 730
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, that's very nice of you!"
+parent = 726
+
+[[nodes]]
+id = 731
+depth = 2
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = 726
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "option"
+text = "How's everything going now?"
+parent = -1
+children = [733, 734, 735]
+
+[[nodes]]
+id = 733
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How's everything going now?"
+parent = 732
+
+[[nodes]]
+id = 734
+depth = 2
+kind = "speaker"
+speaker = "Grish"
+text = "All da zogries stayin' in da oldie Jiggig, we's gonna do da new Jiggig someways else. Yous creature da good- un for geddin' da oldie fings..."
+parent = 732
+
+[[nodes]]
+id = 735
+depth = 2
+kind = "act"
+text = "previous"
+parent = 732
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "option"
+text = "I have some other questions for you."
+parent = -1
+children = [737]
+
+[[nodes]]
+id = 737
+depth = 2
+kind = "act"
+text = "above"
+parent = 736
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "option"
+text = "Sorry, I have to go now."
+parent = -1
+children = [739, 740]
+
+[[nodes]]
+id = 739
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I have to go."
+parent = 738
+
+[[nodes]]
+id = 740
+depth = 2
+kind = "act"
+text = "end"
+parent = 738
+is_terminal = true

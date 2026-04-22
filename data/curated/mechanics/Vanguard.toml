@@ -1,0 +1,18 @@
+name = "Vanguard"
+source_pages = ["Vanguard"]
+npc_ids = [7528, 7527, 7526, 7529]
+
+[sections]
+"Mechanics" = """
+The three Vanguards originally spawn underground. When a player gets near one of the holes, all three will burst from the ground.
+
+All Vanguards attack three times with each attack; however, the [[magic]] and [[ranged]] Vanguards use AoE attacks (one always hitting the main target while two are launched elsewhere). The [[melee]] Vanguard simply attacks its target three times for every attack it performs. Protection prayers will not nullify their damage, but they will reduce it by a significant amount.
+[[File:Vanguard health difference near threshold.png|thumb|left|200px|The swirling mass around a Vanguard, indicating that the difference between the three's health is approaching the maximum threshold.]]
+To harm the Vanguards, damage must be '''spread equally''' to all three Vanguards. If just one of the Vanguard is heavily damaged while the others have much higher health (a difference of 40% in groups of four or less, and 33.3% in groups of five or more), the Vanguards will immediately shuffle and restore their health to full. As a warning indicator, a swirling mass of energy will appear around the Vanguards, which brightens in colour the closer they are to a forced heal.
+
+To stop this from occurring, the Vanguards' health must be within similar range of the other Vanguards by the time they shuffle positions. Vanguards will shuffle every 20 to 36 ticks on their own.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1437925375535984642|date=14 September 2021|archiveurl=https://web.archive.org/web/20210915112056/https://twitter.com/JagexAsh/status/1437925375535984642|archivedate=15 September 2021|quote=[How long do the vanguards stay attacking until they go back down to rotate, excluding the effects of healing which makes them go down instantly?] 20 - 36 ticks, I think.}} The Vanguards cannot be attacked while in their shell, but any damage dealt just before they shuffle will still count. When shuffling, they will lose aggression over their current target. If the damage is fatal but hits after the Vanguard goes into its shell, it will survive the hit and restore 1 health.
+
+As uncontrolled high damage is detrimental, weapons with low damage per hit such as [[toxic blowpipe]] are highly recommended. It may also be worthwhile to not activate damage boosting prayers and unequip gear that increases damage if there is a risk of dealing too much damage. Knowing the maximum hit for each weapon used is helpful.
+
+Stat drains are not recommended for Vanguards, as they will restore all drained stats upon retreating into their shell. Instead, opt for damaging specials.
+"""

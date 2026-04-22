@@ -1,0 +1,504 @@
+title = "Transcript:Olbertus"
+npcs = ["Olbertus", "Shaeded Beast"]
+node_count = 63
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "It's mine. You can't have it, we found it!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "What have you found?"
+parent = -1
+children = [2, 3, 4]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What have you found?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Olbertus"
+text = "Not dragonstones. I like dragonstones, that's why I came here. However, I found a valuable coin instead, it speaks to me... but you can't have it! It's precious to me!"
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "act"
+text = "other"
+parent = 1
+is_terminal = true
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "option"
+text = "I don't want it, I have something better."
+parent = -1
+children = [6, 7, 8, 9, 10, 14]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't want it, I have something better."
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Olbertus"
+text = "What is it? Is it dragonstones? I like dragonstones!"
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Olbertus (possessed)"
+text = "Ask it for five! It looks rich!"
+parent = 5
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Olbertus"
+text = "Five? Will it give us five?"
+parent = 5
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "cond"
+text = "If the player has less than five dragonstones:"
+parent = 5
+children = [11, 12, 13]
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No. I don't have five dragonstones."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Olbertus"
+text = "Well then we are not interested!"
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "act"
+text = "end"
+parent = 10
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "cond"
+text = "If the player has five dragonstones:"
+parent = 5
+children = [15, 16, 17, 18, 19, 20, 21, 22, 23, 28]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes. I have five dragonstones, tell you what, I'll trade you them for that coin you found."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Olbertus"
+text = "Yes! Yes! We'll trade it for the dragonstones."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Olbertus (possessed)"
+text = "No we will not! It is too precious!"
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Olbertus"
+text = "But why? I like dragonstones..."
+parent = 14
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Olbertus (possessed)"
+text = "It is trying to trick us! Evil, nasty creature it is. Do not listen to it!"
+parent = 14
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Olbertus"
+text = "But it seems nice enough..."
+parent = 14
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I am standing right here, you know? You really are crazy. Yes, I'll give you five! Do we have a deal or not?"
+parent = 14
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Olbertus"
+text = "Yes! Yes!"
+parent = 14
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "option"
+text = "Yes, give him your dragonstones."
+parent = 14
+children = [24, 25, 26, 27]
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "box"
+text = "You give Olbertus a dragonstone and receive a very worn coin in return."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Olbertus"
+text = "Thanks for helping me, I'm not sure what would have happened if I had continued to listen to the voices in my head."
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "speaker"
+speaker = "Olbertus"
+text = "I took that coin from the Stone Relief in the Crypt of the Moon and trapped my friend Eodan in a secret room behind the relief. Could you return the coin to the relief and set him free?"
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "option"
+text = "No, don't give him your dragonstones."
+parent = 14
+children = [29, 30]
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "On second thoughts, I'll keep it for myself."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "end"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "option"
+text = "Since it's valuable, I think I'll just just kill you for it."
+parent = -1
+children = [32, 33, 34, 35, 39]
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Since it's valuable, I think I'll just just kill you for it."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Olbertus"
+text = "Please! No!"
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "box"
+text = "{{Colour|#ff0000|This is a dangerous fight, you will lose your items on death."
+parent = 31
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "option"
+text = "Attack Olbertus."
+parent = 31
+children = [36, 37, 38]
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Olbertus"
+text = "{{overhead|Foolish decision!}}"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "act"
+text = "Olbertus transforms into a [[Shaeded Beast]], and curses the Altar, rendering it unusable."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Shaeded Beast"
+text = "{{overhead|I require this one alive human!}}"
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "option"
+text = "Just kidding."
+parent = 31
+children = [40, 41]
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Just kidding!"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "You're crazy!"
+parent = -1
+children = [43, 44]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're crazy!"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "Thanks for helping me, I'm not sure what would have happened if I had continued to listen to the voices in my head."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "I took that coin from the Stone Relief in the Crypt of the Moon and trapped my friend Eodan in a secret room behind the relief. Could you return the coin to the relief and set him free?"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "Thanks for killing that creature."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "It appears that when I stole the coin, the creature possessed me."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "I took that coin from the Stone Relief in the Crypt of the Moon and trapped my friend Eodan in a secret room behind the relief. Could you return the coin to the relief and set him free?"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "I'm glad I no longer have that coin. I'm not sure what would have happened if I had continued to listen to the voices in my head."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "For some reason the coin returned to me. Here, take it before it corrupts me again!"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "I took that coin from the Stone Relief in the Crypt of the Moon and trapped my friend Eodan in a secret room behind the relief. Could you return the coin to the relief and set him free?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "Thanks for killing that creature."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "It appears that when I stole the coin, the creature possessed me."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "For some reason the coin returned to me. Here, take it before it corrupts me again!"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "I took that coin from the Stone Relief in the Crypt of the Moon and trapped my friend Eodan in a secret room behind the relief. Could you return the coin to the relief and set him free?"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Olbertus"
+text = "I'm glad I no longer have that coin. I'm not sure what would have happened if I had continued to listen the voices in my head."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

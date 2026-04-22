@@ -1,0 +1,91 @@
+# Royal Titans — Eldric (fire) + Branda (ice) dual-boss encounter.
+# Must be fought together; each has elemental weakness and shares an
+# enrage mechanic when one dies before the other.
+
+name = "Royal Titans"
+slug = "royal_titans"
+npc_ids = [14147, 14148]          # Eldric, Branda
+source_pages = ["Royal Titans", "Royal Titans/Strategies"]
+
+[[bosses]]
+name = "Eldric the Fire Titan"
+npc_id = 14147
+is_primary = true
+
+[[bosses.attacks]]
+name = "Fire Slam"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 30
+warning_ticks = 0
+
+[[bosses.attacks]]
+name = "Fire Blast"
+style = "magic"
+max_hit = 25
+warning_ticks = 2
+# Branda (ice) is immune; Eldric weak to ice attacks.
+
+[[bosses.damage_modifiers]]
+condition = "incoming_style == 'magic' AND magic_element == 'ice'"
+damage_scale = 2.0                # weak to ice
+
+[[bosses]]
+name = "Branda the Ice Queen"
+npc_id = 14148
+is_primary = true
+
+[[bosses.attacks]]
+name = "Ice Slam"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 30
+warning_ticks = 0
+
+[[bosses.attacks]]
+name = "Ice Shard"
+style = "magic"
+max_hit = 25
+warning_ticks = 2
+
+[[bosses.damage_modifiers]]
+condition = "incoming_style == 'magic' AND magic_element == 'fire'"
+damage_scale = 2.0                # weak to fire
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+# Both titans attack simultaneously. Fight ends when both dead
+# within the enrage window.
+
+[[mechanics]]
+name = "Enrage On Partner Death"
+primitive = "surviving_boss_enrage"
+# When one titan dies, the other enrages until it revives. Partner
+# revives via Titanic Pillar interaction.
+params.trigger = "one_boss_dies"
+params.enrage_damage_multiplier = 1.5
+params.revives_via = "Titanic Pillar"
+
+[[mechanics]]
+name = "Titanic Pillar"
+primitive = "object_interaction_ticked"
+params.objects = [
+    { name = "Titanic Pillar (North)", location = "arena_N" },
+    { name = "Titanic Pillar (South)", location = "arena_S" },
+]
+params.activation_ticks = 8
+
+[[mechanics]]
+name = "Elemental Floor"
+primitive = "persistent_dot_tile_pool"
+period_ticks = 10
+params.tile_count_per_spawn = 3
+params.dot_per_tick = 10
+# Tiles alternate fire / ice based on which titan is active.
+
+[[mechanics]]
+name = "Group Kill Required"
+primitive = "group_kill_required"
+params.required_npc_ids = [14147, 14148]
+params.grant_drops_for = [14147]  # shared drop table

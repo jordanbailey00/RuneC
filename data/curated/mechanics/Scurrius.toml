@@ -1,0 +1,35 @@
+name = "Scurrius"
+source_pages = ["Scurrius", "Scurrius/Strategies"]
+npc_ids = [7222, 7221]
+
+[sections]
+"=Phase one=" = """
+At the start of the fight, Scurrius will be in the east side of the chamber and attack with '''melee''' by sweeping his tail, and occasionally use his Falling Bricks attack.
+
+Upon reaching 80% of his health, Scurrius will move towards one of the [[Food Pile]]s. He will break free of any binds in the process. The food pile selected is random, though usually one close to him. He may either walk or run towards the pile.
+"""
+
+"=Phase three=" = """
+After reaching 30% of his health Scurrius will move to the centre of the arena, attacking the player exclusively with '''ranged''' and '''magic''' attacks at a faster rate than the first two phases. He can also use the Falling Bricks attack and summon minions during this phase. '''Notably, he can use the Falling Bricks attack multiple times in a row during this phase,''' so players should pay attention to the shadows on the ground and move as necessary to avoid heavy damage. If Scurrius heals above 30% of his health, he will reset back to phase 2 and will attempt to heal again. This will continue until Scurrius is dead.
+"""
+
+"=Phase two=" = """
+[[File:Scurrius - ranged and magic attacks.mp4|thumb|400px|Scurrius using his ranged and magic attacks whilst healing off the food piles.]]
+At the food piles, Scurrius will eat every few seconds, healing 5 or 10 hitpoints per player in the arena. While the animation will show him eating ten times, he will only heal five times. After the tenth eating animation, he will stop and resume attacking players with '''melee'''. Scurrius can continue to use his '''Falling Bricks''' attack, attack with '''magic''' or '''range''', and summon [[Giant rat (Scurrius)|'''giant rats''']].
+
+The healing that occurs during this phase is affected by the [[smoke ancient sceptre]] if Scurrius is poisoned (in that case he will heal for only 4 or 8 hitpoints per player).
+"""
+
+"=Special attacks=" = """
+[[File:Scurrius - minion and rubble attacks.mp4|thumb|400px|Scurrius summoning some giant rats, and subsequently using his Falling Bricks attack.]]
+* '''Healing''' - Upon reaching 80% of his health, Scurrius will occasionally move to a [[Food Pile]], eating and restoring 5 or 10 health every few seconds. During this time, he will only use magic and ranged attacks, along with the Falling Bricks attack. This will stop upon reaching 30% of his health.
+* '''Minions''' - Scurrius will screech, causing six level 46 [[giant rat (Scurrius)|giant rat]]s to appear around the arena. The rats are very accurate and hit 0-1 through [[Protect from Melee]], but players will always instantly kill them upon attacking them, Protect from Melee is recommended as the rats can hit up to 4 without it. Hitting the rats with any of the rat bone weapons will incur no attack delay. '''The rats will persist even after Scurrius is slain, and can prevent players from healing with the [[Food Pile]]s.'''
+* '''Falling Bricks''' - Scurrius will jump on the spot, causing rubble to fall down on the arena. One piece will always target the player's current tile when it was used, while others will fall randomly around the arena. This is indicated with a looming shadow on the targeted tile. Getting hit by the attack will deal 15-24 damage (15-22 in solo mode).
+"""
+
+"Fight overview" = """
+[[Scurrius]] uses several different attack styles during the fight:
+* '''Tail Swipe''' - A [[melee]] attack where Scurrius strikes the player with his tail, dealing up to 13 damage; [[Protect from Melee]] negates all damage. Only being used during the first two phases, this is his fastest and most accurate attack, and no warning is given for it.
+* '''Bolts of Electricity''' - A [[magic]] attack where Scurrius discharges lightning at the player, dealing up to 14 damage (8 in solo mode); [[Protect from Magic]] negates all damage. The attack will only deal damage on impact.
+* '''Flying Fur''' - A [[ranged]] attack where Scurrius throws a stinky fur ball at the player, dealing up to 13 damage (7 in solo mode); [[Protect from Missiles]] negates all damage. The attack will only deal damage on impact.
+"""

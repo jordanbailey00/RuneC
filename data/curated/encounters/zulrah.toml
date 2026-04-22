@@ -1,0 +1,151 @@
+# Zulrah — slayer-task / solo boss. Tests: tick-driven phase rotation
+# (not HP), 4 form variants with per-form style + weakness, damage
+# capping (all hits > 50 → random 45-50), envenom-on-hit-even-blocked,
+# arena tile relocation per phase.
+
+name = "Zulrah"
+slug = "zulrah"
+# Multiple ids for green / magma / tanzanite / jad forms.
+npc_ids = [2042, 2043, 2044, 2045]
+source_pages = ["Zulrah", "Zulrah/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Ranged (green)"
+style = "ranged"
+max_hit = 41
+warning_ticks = 2
+envenoms_on_hit = true            # applies even when prayer blocks damage
+envenoms_starting_damage = 6
+
+[[attacks]]
+name = "Magic (tanzanite)"
+style = "magic"
+max_hit = 41
+warning_ticks = 2
+envenoms_on_hit = true
+envenoms_starting_damage = 6
+
+[[attacks]]
+name = "Crimson Tail Slam"
+# Crimson form's "melee" attack — actually a targeted-tile stomp
+# with warning.
+style = "melee_tile_slam"
+accuracy_roll = "crush"
+max_hit = 41
+warning_ticks = 3                 # stares at target tile before slam
+on_hit.stun_ticks = 5             # stunned for several seconds if hit
+targets_tile_not_entity = true
+# Wiki: "whipping its tail at that area. If the player does not move
+# away from the targeted area in time, they will be dealt 20-30
+# damage and be stunned for several seconds." Damage range is tighter
+# than max_hit when on-target.
+fixed_damage_range = [20, 30]
+
+[[attacks]]
+name = "Jad (alternating)"
+# Zulrah's green "Jad" phase: alternates ranged and magic each
+# attack. Player must swap prayer every tick.
+style = "alternating"
+alternates = ["ranged", "magic"]
+max_hit = 41
+warning_ticks = 2
+
+# ---- Rotations / phases ------------------------------------------------
+# Zulrah's "phases" are actually a tick-driven rotation, not HP-based.
+# Four distinct rotation patterns — game picks one at fight start.
+# Each full rotation takes ~3 min (300 ticks). After one rotation
+# finishes, a new one starts (possibly different).
+#
+# Model: a rotation script primitive drives position + form per
+# rotation step.
+
+[[rotations]]
+id = "rotation_1"
+# green (S-W center) → tanzanite (S-center) → crimson (N-W) →
+# jad (N-center) → green (S-center) → ... [abridged]
+steps = [
+    { form = "green",     arena_tile = "S_center",  duration_ticks = 30 },
+    { form = "tanzanite", arena_tile = "S_west",    duration_ticks = 30 },
+    { form = "crimson",   arena_tile = "N_west",    duration_ticks = 30 },
+    { form = "jad",       arena_tile = "N_center",  duration_ticks = 30 },
+    { form = "green",     arena_tile = "S_center",  duration_ticks = 30 },
+    { form = "tanzanite", arena_tile = "S_east",    duration_ticks = 30 },
+    { form = "crimson",   arena_tile = "N_east",    duration_ticks = 30 },
+    { form = "green",     arena_tile = "S_center",  duration_ticks = 30 },
+]
+# Similar definitions for rotations 2/3/4 would go here — elided for
+# brevity on this first pass; need to hand-curate from wiki rotation
+# charts during a later polish.
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+script = "zulrah_drive_rotation"
+allowed_attacks = ["Ranged (green)", "Magic (tanzanite)",
+                   "Crimson Tail Slam", "Jad (alternating)"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Dive Between Forms"
+primitive = "form_transition_dive"
+# Between rotation steps, Zulrah dives into the swamp then re-emerges
+# in the next form/tile. During dive animation, Zulrah is untargetable
+# but any in-flight attacks from it still resolve.
+params.dive_ticks = 3
+params.resurface_ticks = 2
+params.untargetable_during_dive = true
+params.in_flight_attacks_still_resolve = true
+
+[[mechanics]]
+name = "Snakelings Spawn"
+primitive = "spawn_npcs"
+# Zulrah spawns snakelings periodically. They deal significant damage
+# and must be killed quickly.
+period_ticks = 30
+params.npc_name = "Snakeling"
+params.count = 3
+params.distribution = "around_player"
+params.max_alive = 6
+
+# ---- Per-form weakness (damage_modifiers) -----------------------------
+# Each form has specific weakness / resistance to combat styles.
+[[damage_modifiers]]
+condition = "boss_form == 'green' AND incoming_style == 'magic'"
+damage_scale = 1.0                # normal damage
+
+[[damage_modifiers]]
+condition = "boss_form == 'green' AND incoming_style == 'ranged'"
+damage_scale = 0.25               # +50 ranged defence
+
+[[damage_modifiers]]
+condition = "boss_form == 'tanzanite' AND incoming_style == 'ranged'"
+damage_scale = 1.0
+
+[[damage_modifiers]]
+condition = "boss_form == 'tanzanite' AND incoming_style == 'magic'"
+damage_scale = 0.10               # +300 magic defence
+
+[[damage_modifiers]]
+condition = "boss_form == 'crimson' AND incoming_style == 'magic'"
+damage_scale = 1.0
+
+[[damage_modifiers]]
+condition = "boss_form == 'crimson' AND incoming_style == 'ranged'"
+damage_scale = 0.10               # +300 ranged defence
+
+# ---- Damage cap --------------------------------------------------------
+# Wiki: "All damage towards Zulrah is capped at 50; if players would
+# have dealt over 50 damage to Zulrah, it is reduced to 45-50 damage."
+[[damage_modifiers]]
+condition = "incoming_damage > 50"
+replace_damage_range = [45, 50]   # custom: roll within this range
+
+# ---- Melee reachability -----------------------------------------------
+# Wiki: "Zulrah has no melee defence in any form, but can only be
+# reached with a halberd-type weapon."
+[[damage_modifiers]]
+condition = "incoming_style == 'melee' AND weapon_not_halberd"
+damage_scale = 0.0

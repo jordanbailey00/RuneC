@@ -1,0 +1,105 @@
+# Kree'arra — GWD Armadyl. Tests: flying boss (melee-unreachable
+# without halberd/salamander), ranged-only main attack, wind AoE
+# that targets all players in room.
+
+name = "Kree'arra"
+slug = "kreearra"
+npc_ids = [3162]
+source_pages = ["Kree'arra", "Kree'arra/Strategies"]
+
+[[bosses]]
+name = "Kree'arra"
+npc_id = 3162
+is_primary = true
+
+[[bosses.attacks]]
+name = "Wind Gust"
+# Ranged AoE that hits all players in the room (not just tank).
+# Knocks players back.
+style = "ranged_aoe_room"
+max_hit = 21
+warning_ticks = 2
+hits_all_players_in_room = true
+
+[[bosses.attacks]]
+name = "Talon Swipe"
+# Melee attack — only used if no one is targeting Kree'arra (Wiki:
+# "if no one is targeting Kree'arra, he will fly up to players to
+# use Melee attacks as well").
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 21
+warning_ticks = 0
+conditional.used_when = "no_player_targeting_boss"
+
+[[bosses]]
+name = "Flight Kilisa"
+npc_id = 3163
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Melee"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 17
+warning_ticks = 0
+
+[[bosses]]
+name = "Flockleader Geerin"
+npc_id = 3164
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Ranged"
+style = "ranged"
+max_hit = 15
+warning_ticks = 2
+
+[[bosses]]
+name = "Wingman Skree"
+npc_id = 3165
+is_bodyguard = true
+
+[[bosses.attacks]]
+name = "Magic"
+style = "magic"
+max_hit = 13
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+
+# ---- Damage modifiers -------------------------------------------------
+# Wiki: "he and his bodyguards cannot be attacked with Melee, except
+# when using Halberds or Salamanders. This includes Magic-based
+# special attacks from melee weapons."
+[[damage_modifiers]]
+condition = "incoming_style == 'melee' AND weapon_not_halberd_or_salamander"
+applies_to_npc_ids = [3162, 3163, 3164, 3165]
+damage_scale = 0.0
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Bodyguard Respawn Cycle"
+primitive = "periodic_respawn_if_dead"
+params.respawn_cooldown_ticks = 75
+params.applies_to_npc_ids = [3162, 3163, 3164, 3165]
+
+[[mechanics]]
+name = "Group Kill Required"
+primitive = "group_kill_required"
+params.required_npc_ids = [3162, 3163, 3164, 3165]
+params.grant_drops_for = [3162]
+
+[[mechanics]]
+name = "Empty-Room Reset"
+primitive = "regen_when_no_player"
+params.heal_to_full = true
+params.reset_all_npcs = true
+
+[entry_requirement]
+armadyl_killcount = 40

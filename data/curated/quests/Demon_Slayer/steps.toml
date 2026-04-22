@@ -1,0 +1,101 @@
+quest = "Demon Slayer"
+step_count = 7
+
+[[steps]]
+index = 0
+name = "Scrying the future"
+links = ["gold coin", "Wally", "Aris", "Varrock Square", "coin", "Delrith", "Silverlight", "Sir Prysin", "Varrock Palace", "Captain Rovin", "Traiborn"]
+text = """
+{{Needed|3 empty inventory spaces, 1 [[gold coin]].}}
+[[File:Demon Slayer - Wally.png|thumb|350x350px|[[Wally]] slaying Delrith.]]
+[[File:Aris chathead.png|left|frameless]]
+Speak to [[Aris]] in the tent on the western side of [[Varrock Square]]. Pay her one [[coin]] and she will scry the future, seeing a vision of the player wielding an impressive sword fighting a demon named [[Delrith]], who terrorized Varrock over a century prior. Delrith was previously defeated by a hero named [[Wally]]; just your luck, the demon is being summoned again. Ask Aris where you can find the demon, and she will mention that to defeat him you must first find Wally's sword [[Silverlight]].
+
+Ask Aris, ''"So, how did Wally kill Delrith?"'' She will show you the incantation Wally used: write down or screenshot the phrase, as it will be important later on. '''The word order of this spell is randomised for every player.''' After telling you the incantation, she tells you to talk to [[Sir Prysin]] to help.
+
+Go north to [[Varrock Palace]]. [[Sir Prysin]] will be wandering the south-west portion of the {{FloorNumber|uk=0}} of the castle. Talk to him and tell him that Aris sent you. Ask for [[Silverlight]], the weapon needed to kill Delrith. He will tell you that to prevent the weapon from falling into the wrong hands, it was put into a special box that requires three different keys to open it. He has dropped his key in the drain just outside the palace kitchen, and the other two are in the possession of [[Captain Rovin]] and the Wizard [[Traiborn]].
+"""
+
+[[steps]]
+index = 1
+name = "Captain Rovin's key"
+links = ["Captain Rovin", "Silverlight"]
+text = """
+[[File:Captain Rovin chathead.png|left|frameless]]
+[[Captain Rovin]] is located in the north-west corner of the palace on the {{FloorNumber|uk=2}}, up two flights of stairs. Talk to him and tell him that you need the key in order to recover [[Silverlight]] to slay a demon that threatens the city. Mention that Sir Prysin said Captain Rovin would give the key to you, to which he will rant about the King being the only one to tell him what to do. Next, ask him why Sir Prysin gave the key to him in the first place, and he'll state the King made Sir Prysin give him the key so that it wouldn't get lost. After this dialogue, he'll then hand over the key, under the condition that you do not allow Sir Prysin to kill the demon.
+
+[[File:Demon Slayer - Wizard Traiborn's wardrobe.gif|thumb|250px|Wizard Traiborn casts a spell to summon a wardrobe containing his key]]
+"""
+
+[[steps]]
+index = 2
+name = "Sir Prysin's key"
+links = ["Bucket of water", "bucket", "Drain (Demon Slayer)", "Varrock Sewers", "manhole", "minimap", "Silverlight_key_(Sir_Prysin)"]
+text = """
+{{Needed|[[Bucket of water]].}}
+[[File:Sir Prysin chathead.png|left|frameless]]
+On the {{FloorNumber|uk=0}} of the palace, head to the kitchen in the north-east corner of the {{FloorNumber|uk=0}}. If you do not already have a bucket of water, you can find an empty [[bucket]] up the stairs, in the bedroom to the north-east. With the bucket, return to the kitchen and use it on the sink to obtain a bucket of water.
+
+Next, head outside through kitchen door and look for a [[Drain (Demon Slayer)|drain]] against the wall north of the doorway. Use your bucket of water on the drain. '''If you do not do this, you cannot obtain the key'''. The key will be washed down the drain, so you must now retrieve it from the [[Varrock Sewers|sewer]] below. Head east, out of the palace, and look for a [[manhole]] located south of the palace's east walls. It is marked by the [[File:Dungeon icon.png]] icon on the [[minimap]]. Once you find it, open the manhole and climb down to enter the sewer.
+
+<!-- This doesn't use the regular map template because it cannot draw text labels; the GeoJSON used as an alternative is somewhat bloated, and therefore placed in mapspace and transcluded here-->{{Map:Demon Slayer key location}}{{clear}}
+
+While in the sewer, go north-west and follow the path highlighted on the map above until you reach a stream. You should see a muddy patch to your left, next to a pile of skeletons. Examine this and you will find a [[Silverlight_key_(Sir_Prysin)|rusty key]].
+"""
+
+[[steps]]
+index = 3
+name = "Wizard Traiborn's key"
+links = ["bones", "Goblin", "Wizard Traiborn", "Wizards' Tower", "Draynor Village"]
+text = """
+{{Needed|25 unnoted [[bones]]. You can save some time by having all of the bones when you first speak to him. An easy way to get the bones is to kill [[Goblin|goblins]] south of the prison outside of Draynor Village}}
+[[File:Wizard Traiborn chathead.png|left|frameless|width=138x138]]
+[[Wizard Traiborn]] is located on the {{FloorNumber|uk=1}} of the [[Wizards' Tower]], which stands on an island south of [[Draynor Village]]. Ask him about the key and at first he won't remember it - but once you ask whether he has 'any keys knocking around', he will recall that he sealed it inside a magical wardrobe, for which he needs 25 regular [[bones]] to open. 
+
+Once all 25 bones have been delivered, Traiborn will perform his ritual and then give you his key. Note that you can deliver the bones in increments, so [[File:Ultimate ironman chat badge.png]] Ultimate Ironmen will not need to clear out their inventory to complete this step.
+
+'''If you die with the key, you will have to pay another 25 bones to re-retrieve it.'''
+
+[[File:Silverlight detail.png|thumb|width=255x255|The mighty sword Silverlight.]]
+"""
+
+[[steps]]
+index = 4
+name = "Silverlight"
+links = ["Sir Prysin", "Silverlight", "food", "armour", "Varrock", "dark wizard", "cutscene", "Delrith"]
+text = """
+Now that you have all three keys, head back to [[Sir Prysin]] in Varrock. Give him the keys, and he will give you [[Silverlight]]. Players can drop Silverlight and ask Sir Prysin for another one for free; after the quest he will charge {{Coins|500}}. Equip the sword, get any [[food]] and [[armour]] you may need for combat, and prepare to fight Delrith.
+
+''If you have forgotten the magical incantation, you can speak with Aris at her tent in Varrock Square to hear it again.''
+
+When you're ready, head south of [[Varrock]], and go east towards the stone circle surrounded by [[dark wizard]]s. A [[cutscene]] will play of [[Delrith]] being summoned by the wizards after you enter the circle.
+"""
+
+[[steps]]
+index = 5
+name = "Banishing Delrith"
+links = ["food", "armour", "instance", "Varrock", "stone circle", "dark wizard", "aggressive", "combat level", "Hitpoints", "Magic Defence", "single-way combat", "cow"]
+text = """
+[[File:Demon Slayer - Summoning ritual.png|thumb|220px|The dark wizards attempt to summon Delrith!]]
+{{Needed|recommended=[[food]] and [[armour]].}}
+[[File:Dark wizard chathead.png|left|frameless]]
+[[File:Demon Slayer - Delrith is summoned.png|thumb|220px|Delrith is summoned!]]
+
+The final part takes place in an [[instance]] of the [[Varrock]] [[stone circle]], with Delrith and several [[dark wizard]]s (two level 7 wizards and a level 20 wizard). Level 7 and 20 wizards will be [[aggressive]] to players with lower than 15 or 41 [[combat level]] respectively. Additionally, upon the cutscene finishing for the first time, one of the level 7 wizards will attack regardless of combat level. The level 20 wizard's maximum hit of 6 can threaten players with a low [[Hitpoints]] level, especially if the player has negative [[Magic Defence]] bonus. '''To leave, run to the edge at any time during the fight.'''
+
+Because the fight takes place in a [[single-way combat]] zone, if you are already under attack from a dark wizard, you will need to kill or hide from it before you are able to begin combat with Delrith. It is recommended for lower-level players to approach from the south, and hide from wizards behind the southernmost stone wall until Delrith is nearby. Since the wizards '''do not respawn''' in the instance, it is also possible to kill them first, leave and restock, and then return to face Delrith.
+
+Attack Delrith with Silverlight equipped. Despite his combat level of 27, the Silverlight's weakening effect will reduce Delrith's hitpoints to less than that of a [[cow]]. When he reaches 0 hitpoints, say the magical incantation. If the wrong incantation is said, Delrith regenerates to full health. '''If you cannot remember your personal randomized incantation you can return to Aris and she will repeat it when prompted.'''
+"""
+
+[[steps]]
+index = 6
+name = "= Pures and lower levels ="
+links = ["flinch", "Confuse", "Curse", "Weaken", "Ring of recoil", "Delrith"]
+text = """
+For those wishing to attack with magic, wielding Silverlight and manually casting spells will also deal damage. Other methods include [[flinch|flinching]] him or using [[Confuse]], [[Curse]], or [[Weaken]] to make him easier to kill with melee. [[Ring of recoil]]s can be used for this fight. <!-- is combat xp normal? -->
+
+If you take too long<!-- how long? --> to finish off [[Delrith]], he will disappear and you will need to leave and re-enter the instance. If Delrith disappears during the dialogue to banish him the quest can still be completed by pressing "continue" until the end.
+
+'''Congratulations, quest complete!'''
+"""

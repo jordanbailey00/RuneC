@@ -1,0 +1,25 @@
+name = "Xamphur"
+source_pages = ["Xamphur"]
+npc_ids = [10954, 10955, 10953, 10956]
+
+[sections]
+"Fight overview" = """
+The first time you reach this encounter, after you use the key on the door - you will then need to walk up to the black gate to trigger a cutscene, after which you'll be immediately in combat.  On subsequent attempts, you'll teleport directly to Xamphur after interacting with the first door. 
+
+Xamphur uses 1 spell throughout the fight:  
+
+* '''Ghostly Grasp'''- An unavoidable [[magic]] attack from the Arceuus Spellbook,  [[Ghostly Grasp]] comes up from the ground and damages the player.  This is cast by Xamphur approximately every 4 ticks. 
+** [[Protect from Magic]] does not negate the damage entirely, but better gear can help mitigate this to almost 0.  This spell has a 10% chance to bind you in place for 2 ticks.
+
+Xamphur will also alternate between his two special attacks, which are announced by various lines of dialog.
+
+* '''Phantom Hands''' - Xamphur will summon two [[Phantom Hand]]s (level 47) with 12 hitpoints each.  Upon a [[successful hit]], these hands will have a 50% chance to inflict [[Corruption (status)|corruption]], draining 12 prayer points over the course of 18 seconds. Kill these as soon as they spawn to avoid being corrupted.
+* '''Crushing Hands''' - Ghostly hands descend from above, and deal significant damage on every game tick for 16 ticks. You can almost entirely avoid the falling ghostly hands that deal damage by '''WALKING''' in a straight line along any row of tiles with no Marks of Darkness.
+
+There are 18 glowing pools spread out around the arena.  Stepping on any of these pools will buff Xamphur with [[Mark of Darkness]] - which gives him two notable boons.
+
+* Mark of Darkness doubles the bind chance of Ghostly Grasp (from 10% to 20%)
+* Phantom Hands are guaranteed to inflict [[Corruption|Greater Corruption]] on their next successful hit.  This drains 12 prayer points over the course of 30 ticks (18s). The first drains 2 prayer points, the second 4 prayer points, and the third drains 6 prayer points
+
+You cannot get more than 4 tiles away from Xamphur as he closes the distance when you move further away. You should only need to move during the Crushing Press attack. It is safe to stand in melee range, as Xamphur has no melee attacks
+"""

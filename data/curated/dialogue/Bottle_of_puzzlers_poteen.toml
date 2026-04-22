@@ -1,0 +1,486 @@
+title = "Transcript:Bottle of puzzlers poteen"
+npcs = ["Quiz Master"]
+node_count = 63
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "other"
+text = "{{mes|You drink the bottle of puzzlers poteen.}}"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Welcome to the quiz!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What on Gielinor is going on?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Quiz Master"
+text = "It's quiz time!"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where are you? Who is this?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Quiz Master"
+text = "It's quiz time!!!"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright then, what's the question..."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Quiz Master"
+text = "It's! Quiz! Time!"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please..."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Question 1: Which of these is bigger: The things there are or the things there are not?"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "option"
+text = "The things there are."
+parent = -1
+children = [12, 13, 14, 59]
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Question 2: If a tree falls in the forest, does it make a sound?"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 11
+children = [15, 16, 17, 22, 24, 26]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Question 3: If up is down and down is up, how would you go west?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "option"
+text = "Go north."
+parent = 14
+children = [18, 19, 20, 21]
+
+[[nodes]]
+id = 18
+depth = 4
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Oh, I'm sorry that is incorrect..."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "other"
+text = "{{mes|Your head aches violently as you feel braincells{{sic}} dying.}}"
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "act"
+text = "Player is damaged for 10% of their Hitpoints."
+parent = 17
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "option"
+text = "Go east."
+parent = 14
+children = [23]
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "act"
+text = "above"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "option"
+text = "Go south."
+parent = 14
+children = [25]
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "act"
+text = "above"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "option"
+text = "Go west."
+parent = 14
+children = [27, 28, 29, 34, 36, 57]
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Question 4: Is redacted?"
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "option"
+text = "Pass."
+parent = 26
+children = [30, 31, 32, 33]
+
+[[nodes]]
+id = 30
+depth = 5
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Oh, I'm sorry that is incorrect..."
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 5
+kind = "other"
+text = "{{mes|Your head aches violently as you feel braincells{{sic}} dying.}}"
+parent = 29
+
+[[nodes]]
+id = 32
+depth = 5
+kind = "act"
+text = "Player is damaged for 10% of their Hitpoints."
+parent = 29
+
+[[nodes]]
+id = 33
+depth = 5
+kind = "act"
+text = "end"
+parent = 29
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "option"
+text = "Yes it is."
+parent = 26
+children = [35]
+
+[[nodes]]
+id = 35
+depth = 5
+kind = "act"
+text = "above"
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "option"
+text = "No it isn't."
+parent = 26
+children = [37, 38, 39, 44, 46, 48]
+
+[[nodes]]
+id = 37
+depth = 5
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Question 5: What's wrong?"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 5
+kind = "select"
+text = "Select an option"
+parent = 36
+
+[[nodes]]
+id = 39
+depth = 5
+kind = "option"
+text = "This quiz."
+parent = 36
+children = [40, 41, 42, 43]
+
+[[nodes]]
+id = 40
+depth = 6
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Oh, I'm sorry that is incorrect..."
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 6
+kind = "other"
+text = "{{mes|Your head aches violently as you feel braincells{{sic}} dying.}}"
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 6
+kind = "act"
+text = "Player is damaged for 10% of their Hitpoints."
+parent = 39
+
+[[nodes]]
+id = 43
+depth = 6
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 5
+kind = "option"
+text = "Who is what and where is his wrong?"
+parent = 36
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 6
+kind = "act"
+text = "above"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 5
+kind = "option"
+text = "What is always wrong."
+parent = 36
+children = [47]
+
+[[nodes]]
+id = 47
+depth = 6
+kind = "act"
+text = "above"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 5
+kind = "option"
+text = "Oh, I'm sorry that is incorrect..."
+parent = 36
+children = [49, 50, 54]
+
+[[nodes]]
+id = 49
+depth = 6
+kind = "speaker"
+speaker = "Quiz Master"
+text = "Oh, I'm sorry that is incorrect..."
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 6
+kind = "cond"
+text = "If player has not passed the test before:"
+parent = 48
+children = [51, 52, 53]
+
+[[nodes]]
+id = 51
+depth = 7
+kind = "speaker"
+speaker = "Quiz Master"
+text = "What an inspired answer! First prize for you!"
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 7
+kind = "act"
+text = "receives=5 [[Mystery Box]]es"
+parent = 50
+
+[[nodes]]
+id = 53
+depth = 7
+kind = "act"
+text = "end"
+parent = 50
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 6
+kind = "cond"
+text = "If player has passed the test before:"
+parent = 48
+children = [55, 56]
+
+[[nodes]]
+id = 55
+depth = 7
+kind = "speaker"
+speaker = "Quiz Master"
+text = "You've already had your prize... Thanks for playing!"
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 7
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "option"
+text = "Answer 4 is redacted."
+parent = 26
+children = [58]
+
+[[nodes]]
+id = 58
+depth = 5
+kind = "act"
+text = "above"
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "option"
+text = "No."
+parent = 11
+children = [60]
+
+[[nodes]]
+id = 60
+depth = 3
+kind = "other"
+text = "'{{tact|above}}"
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "The things there are not."
+parent = -1
+children = [62]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "above"
+parent = 61

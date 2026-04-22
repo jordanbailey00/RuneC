@@ -1,0 +1,1840 @@
+title = "Transcript:Dwarf Cannon"
+npcs = ["Captain Lawgof", "Lollk", "Nulodion"]
+node_count = 233
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Guthix be praised, the cavalry has arrived! Hero, how would you like to be made an honorary member of the Black Guard?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Black Guard? What's that?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = """
+Hawhaw! 'What's that' [he/she] asks, what a sense of humour! The Black Guard is the finest regiment in the dwarven army. Only the best of the best are allowed to join it and then they receive months of rigorous training.
+"""
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "However, we are currently in need of a hero, so for a limited time only I'm offering you, a human, a chance to join this prestigious regiment. What do you say?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "select"
+text = "Start the Dwarf Cannon quest?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [7, 8, 9, 10, 11, 12, 15, 16, 17]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I'd be honoured to join."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "That's the spirit! Now trooper, we have no time to waste - the goblins are attacking from the forests to the South. There are so many of them, they are overwhelming my men and breaking through our"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "perimeter defences; could you please try to fix the stockade by replacing the broken rails with these new ones?"
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure, sounds easy enough..."
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "box"
+text = "The Dwarf Captain gives you six railings."
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "cond"
+text = "If the player does not have a hammer:"
+parent = 6
+children = [13, 14]
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "You'll need this hammer too."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "receives=a hammer"
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Report back to me once you've fixed the railings."
+parent = 6
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes Sir, Captain!"
+parent = 6
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry, I'm too busy mining."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Well best make the most of it while you can, if the goblins over-run us they'll descend on the mines like a plague of locusts!"
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "box"
+text = "The Black Guard sent Lawgof this cannon to help defend the mines against the goblins."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "box"
+text = "This railing is broken and needs to be replaced."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "cond"
+text = "If the player does not have a railing:"
+parent = -1
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not going to be able to fix this without a new railing. Lawgof should have some spare ones."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "other"
+text = "{{mes|You attempt to repalce the broken railing...}}"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "cond"
+text = "If the player does not have a hammer:"
+parent = -1
+children = [30, 31]
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "other"
+text = "{{mes|You will need a hammer to fix the railings.}}"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "end"
+parent = 29
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "cond"
+text = "If the player fails to repair the railing:"
+parent = -1
+children = [33, 34, 36, 38, 40, 42, 43, 44, 46, 48, 50, 52]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 32
+children = [35]
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "other"
+text = "{{mes|Your arm is getting tired.}}"
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 32
+children = [37]
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "other"
+text = "{{mes|You cut yourself on the rusty old railing.}}"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 32
+children = [39]
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "other"
+text = "{{mes|You accidentally crush your hand in the railing.}}"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 32
+children = [41]
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "other"
+text = "{{mes|You wrench your back trying to handle the railings.}}"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "act"
+text = "(The player is dealt 0-2 damage.)"
+parent = 32
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 32
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 32
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Oooch!}}"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 32
+children = [47]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ow!}}"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 32
+children = [49]
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Urrrgh!}}"
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 32
+children = [51]
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Gah!}}"
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "act"
+text = "end"
+parent = 32
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "cond"
+text = "If the player successfully repairs the railing:"
+parent = -1
+children = [54]
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "other"
+text = "{{mes|This railing is now fixed.}}"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "cond"
+text = "If all the railing are fixed:"
+parent = -1
+children = [56]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've fixed all these railings now."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've fixed all these railings now."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's better, the goblins won't get past this piece of fencing now."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Hello, trooper, how are you doing with those railings?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm getting there."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "The goblins are still getting in, so there must still be some broken railings."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "cond"
+text = "If the player has no railings:"
+parent = -1
+children = [67, 68, 69, 72, 73]
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I'm out of railings..."
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "That's okay, we've got plenty, here you go."
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 66
+children = [70, 71]
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "There's no room in your backpack, so I can't give you anymore."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "act"
+text = "end"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "other"
+text = "{{mes|The Dwarf Captain gives you another railing.}}"
+parent = 66
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "act"
+text = "end"
+parent = 66
+is_terminal = true
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "cond"
+text = "If the player has at least 1 railing:"
+parent = -1
+children = [75, 76]
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'll find them soon enough."
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "end"
+parent = 74
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Well done, trooper! The goblins seems to have stopped getting in. I think you've done the job!"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great, I'll be getting on then."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "What? I'll have you jailed for desertion!"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = """
+Besides, I have another commission for you. Just before the goblins over-ran us we lost contact with our watch tower to the South, that's why the goblins managed to catch us unawares. I'd like you to perform
+"""
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "a covert operation into enemy territory, to check up on the guards we have stationed there."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "They should have reported in by now ..."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see what I can find out."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Excellent! I have two men there, the dwarf-in-charge is called Gilob, find him and tell him that I'll send him a relief guard just as soon as we mop up these remaining goblins."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello{{sic|No period}}"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Hello, any news from the watchman?"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Well, as quick as you can then."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "cond"
+text = "If the player already has the remains:"
+parent = -1
+children = [92, 93]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What? Carrying one set of Dwarf remains is enough..."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I had better take these remains. {{^|Remains drop to ground with full inventory.}}"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Have you been to the watch tower yet?"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I went up but there was no one there."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "That's strange, Gilob would never leave his post... His son was also with him, something doesn't smell right. Can you return and look for clues?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Of course, I'll do what I can."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Have you been to the watch tower yet?"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have some terrible news for you Captain, the goblins over ran the tower, your guards fought well but were overwhelmed."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "box"
+text = "pic=Dwarf remains detail.png|You give the Dwarf Captain his subordinate's remains..."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "I can't believe it, Gilob was the finest lieutenant I had! We'll give him a fitting funeral, but what of his command? His son, Lollk, was with him. Did you find his body too?"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, there was only one body there, I searched pretty well."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "The goblins must have taken him. Please traveler, seek out the goblins' hideout and return the lad to us. They always attack from the South-east, so they must be based down there."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see if I can find their hideout."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "other"
+text = "{{mes|You search the crate...}}"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "other"
+text = "{{mes|You search the crate but find nothing.}}"
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "other"
+text = "{{mes|You search the crate..}}"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "other"
+text = "{{mes|Inside you see a dwarf child, tied up!}}"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "other"
+text = "{{mes|You untie the child.}}"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Lollk"
+text = "Thank the heavens, you saved me! I thought I'd be goblin lunch for sure!"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Lollk"
+text = "I think so, I'd better run off home."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right, you get going, I'll catch up."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Lollk"
+text = "Thanks again, brave adventurer."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "other"
+text = "{{mes|The dwarf child runs off into the caverns.}}"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, has Lollk returned yet?"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "He has, and I thank you from the bottom of my heart - without you he'd be a goblin barbecue!"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Always a pleasure to help."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "In that case could I ask one more favour of you..."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = """
+When the goblins attacked us some of them managed to slip past my guards and sabotage our cannon. I don't have anybody who understands how it works, could you have a look at it and see if you could get it working for
+"""
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "us, please?"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "option"
+text = "Okay, I'll see what I can do."
+parent = -1
+children = [131, 132, 133, 136, 137, 138]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see what I can do."
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Thank you, take this toolkit, you'll need it..."
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 130
+children = [134, 135]
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "You don't have room to take this, report back to me when you do."
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "other"
+text = "{{mes|The Dwarf Captain gives you a tool kit.{{sic}}}}"
+parent = 130
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Report back to me if you manage to fix it."
+parent = 130
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "act"
+text = "end"
+parent = 130
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "Sorry, I've done enough for today."
+parent = -1
+children = [140, 141, 142]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I've done enough for today."
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Fair enough, didn't think you'd be able to help anyway, not much chance for a human to be able to fix it when the best dwarven engineers have failed."
+parent = 139
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "act"
+text = "end"
+parent = 139
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I guess I'd better fix it with the toolkit I was given."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "How are you doing in there, trooper? We've been trying our best with that thing, but I just haven't got the patience."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not an easy job, but I'm getting there."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Good stuff, let me know if you have any luck. If we manage to get that thing working, those goblins will be no trouble at all."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "cond"
+text = "If the player lost the toolkit:"
+parent = -1
+children = [149, 150, 153, 154]
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I lost the toolkit..."
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 148
+children = [151, 152]
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "That was silly... never mind, I can give you another, but you'll have to free up some space in your backpack first."
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "act"
+text = "end"
+parent = 150
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "That was silly... never mind, here you go."
+parent = 148
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "other"
+text = "{{mes|The Dwarf Captain gives you another toolkit.}}"
+parent = 148
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "other"
+text = "{{mes|Well done! You've fixed the cannon! Better go and tell Captain Lawgof.}}"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This should work nicely now that I've fixed it."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "What do you think you're doing, trooper! Did I give you orders to move that cannon? No! Well then don't!"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Hello there trooper, how's things?"
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I think I've done it, take a look..."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "That's fantastic, well done!"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Well I don't believe it, it seems to be working perfectly! I seem to have underestimated you, trooper!"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not bad for an adventurer eh?"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "other"
+text = "{{mes|You give the toolkit back to Captain Lawgof.}}"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Not bad at all, your effort is appreciated, my friend. Now, if I could figure what the thing uses as ammo..."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "The Black Guard forgot to send instructions. I know I said that was the last favour, but..."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What now?"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "I can't leave this post, could you go to the Black Guard base and find out what this thing actually shoots?"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "option"
+text = "Sorry, I've really done enough."
+parent = -1
+children = [174, 175, 176]
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I've really done enough."
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Fair enough, fair enough."
+parent = 173
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "act"
+text = "end"
+parent = 173
+is_terminal = true
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "option"
+text = "Okay then, just for you!"
+parent = -1
+children = [178, 179, 180, 181, 182]
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay then, just for you!"
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "That's great, we were lucky you came along when you did. The base is located just South of the Ice Mountain."
+parent = 177
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "You'll need to speak to Nulodion, the Dwarf Cannon engineer. He's the Weapons Development Chief for the Black Guard, so if anyone knows how to fire this thing, it'll be him."
+parent = 177
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see what I can do."
+parent = 177
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "act"
+text = "end"
+parent = 177
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi again."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Hello trooper, any word from the Cannon Engineer?"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "The Black Guard camp is South of the Ice Mountain, the quicker we can get some ammo for this thing the quicker those Goblins will leave us be."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get to it."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Nulodion"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Captain Lawgof sent me. He's having trouble with his cannon."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Nulodion"
+text = "Of course, we forgot to send the ammo mould!"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It fires mould?"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Nulodion"
+text = "Don't be silly - the ammo's made by using a mould. Here, take these to him. The instructions explain everything."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [196, 197]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Nulodion"
+text = "You can't take these things unless you free up some space in your inventory. I suggest you visit a bank and then come back to talk to me."
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "act"
+text = "end"
+parent = 195
+is_terminal = true
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "other"
+text = "{{mes|The Cannon Engineer gives you some notes and a mould.}}"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's great, thanks."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Nulodion"
+text = "Thank you, adventurer. The Dwarf Black Guard will remember this."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "cond"
+text = "If the player lost the notes:"
+parent = -1
+children = [204, 205, 206, 207]
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the notes."
+parent = 203
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Nulodion"
+text = "Here, take these..."
+parent = 203
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "other"
+text = "{{mes|The Cannon Engineer gives you some more notes.}} {{^|Notes drop to ground with full inventory.}}"
+parent = 203
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "act"
+text = "end"
+parent = 203
+is_terminal = true
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "cond"
+text = "If the player lost the ammo mould:"
+parent = -1
+children = [209, 210, 211, 212]
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the cannonball mould."
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Nulodion"
+text = "Deary me, you are trouble. Here, take this one."
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "other"
+text = "{{mes|The Cannon Engineer gives you another mould.}} {{^|Mould drops to ground with full inventory.}}"
+parent = 208
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "act"
+text = "end"
+parent = 208
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Nulodion"
+text = "So has the Captain figured out how to work the cannon yet?"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet, but I'm sure he will."
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "speaker"
+speaker = "Nulodion"
+text = "If you can get those items to him it'll be a great help."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi."
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Hello trooper, any word from the Cannon Engineer?"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have spoken to him."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "cond"
+text = "If the player does not have the notes and ammo mould:"
+parent = -1
+children = [221, 222, 223, 224]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "He gave me some items to give you... but I seem to have lost something."
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "If you could go back and get another, I'd appreciate it."
+parent = 220
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, okay then."
+parent = 220
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "act"
+text = "end"
+parent = 220
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He gave me an ammo mould and some notes to give to you..."
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Aah, of course, we make the ammo! This is great, now we will be able to defend ourselves. I don't know how to thank you..."
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You could give me a cannon..."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "Hah! You'd be lucky, those things are worth a fortune."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "I'll tell you what though, I'll write to the Cannon Engineer requesting him to sell you one. He controls production of the cannons."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Captain Lawgof"
+text = "He won't be able to give you one, but for the right price, I'm sure he'll sell one to you."
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmmm... sounds interesting, I might take you up on that."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1

@@ -1,0 +1,1981 @@
+title = "Transcript:The Queen of Thieves"
+npcs = ["Tomas Lawry", "Poor looking man", "Poor looking woman", "Robert O'Reilly", "Devan Rutter", "Conrad King", "Lady Shauna Piscarilius"]
+node_count = 250
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Greetings. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "What are you doing here?"
+parent = -1
+children = [3, 4, 5, 14, 20]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing here?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "I'm conducting important business here for the Kourend Council."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "option"
+text = "Anything I can help with?"
+parent = 2
+children = [6, 7, 10]
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can help with?"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "cond"
+text = "If the player does not have the requirements to start the quest:"
+parent = 5
+children = [8, 9]
+
+[[nodes]]
+id = 8
+depth = 4
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Hmm, I suppose I could use some assistance. However, you're not really the person I need for this task."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 4
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "cond"
+text = "If the player has the requirements to start the quest:"
+parent = 5
+children = [11, 12, 13]
+
+[[nodes]]
+id = 11
+depth = 4
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Hmm, I suppose I could use some assistance. I'm here to investigate some unusual happenings in Port Piscarilius."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What are you investigating?"
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 4
+kind = "act"
+text = "below"
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "option"
+text = "What's the Kourend Council?"
+parent = 2
+children = [15, 16, 17, 18, 19]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's the Kourend Council?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Although it's called a kingdom, Great Kourend hasn't actually had a king for many years. These days Kourend is a republic and it is ruled by the Kourend Council."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "The Council consists of four councillors who are elected by the people every four years. The current councillors are Councillor Hughes, Councillor Unkar, Councillor Orson and Councillor Andrews."
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Can I help you with anything else?"
+parent = 14
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "act"
+text = "other"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "option"
+text = "Well good luck with that."
+parent = 2
+children = [21, 22]
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well good luck with that."
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "act"
+text = "end"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "I'm looking for a quest."
+parent = -1
+children = [24, 25, 28]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for a quest."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "cond"
+text = "If the player does not have the requirements to start the quest:"
+parent = 23
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Well there is something I could use some help with. However, you're not really the person I need for this task."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "cond"
+text = "If the player has the requirements to start the quest:"
+parent = 23
+children = [29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 53]
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Well there is something I could use some help with. I'm here to investigate some unusual happenings in Port Piscarilius."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What are you investigating?"
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Port Piscarilius is home to various gangs. They're a nuisance, but up until now we haven't had much trouble in dealing with them."
+parent = 28
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what's the problem?"
+parent = 28
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "A new gang calling themselves the Saviours of Kourend has recently formed. That's not surprising as gangs come and go all of the time, but this one is different."
+parent = 28
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How so?"
+parent = 28
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "The Saviours of Kourend have been absorbing many of the other gangs. Within a few weeks, they've already become the largest gang in Kourend and more join them each day."
+parent = 28
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "The talk amongst the people is that it's all down to their leader, a mysterious figure known only as the Queen of Thieves."
+parent = 28
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Nice name. Why doesn't the ruler of Port Piscarilius do something about this?"
+parent = 28
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Shauna Piscarilius is the ruler of Port Piscarilius, but she spends most of her time galavanting around in that boat of hers rather than looking after her home."
+parent = 28
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough. So what do you need me for?"
+parent = 28
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Well my original plan was to infiltrate the gang to get close to the queen and capture her. However, I've been unable to make any progress. Apparently, I don't look the part."
+parent = 28
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah not sure what that's all about. You clearly fit right in here."
+parent = 28
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Quite right. They're quite insistent though, so someone else will need to give it a go. You look like you might be just the type they're after."
+parent = 28
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What are you trying to say?"
+parent = 28
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "That you look poor."
+parent = 28
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh..."
+parent = 28
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Anyway, if you're up for the task you'll need to infiltrate the Saviours of Kourend, find the Queen of Thieves, apprehend her and then bring her to me."
+parent = 28
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "So, do you think you can do it?"
+parent = 28
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "select"
+text = "Start The Queen of Thieves quest?"
+parent = 28
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "option"
+text = "Yes."
+parent = 28
+children = [50, 51, 52]
+
+[[nodes]]
+id = 50
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Excellent. The Saviours of Kourend must have their headquarters somewhere nearby. You should ask around town and see if anyone knows where they are. Good luck."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "option"
+text = "Nah."
+parent = 28
+children = [54, 55, 56]
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Nah."
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Fair enough. I'll be here if you change your mind."
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "act"
+text = "end"
+parent = 53
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "Nothing thanks."
+parent = -1
+children = [58, 59, 60]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing thanks."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Very well. Until next time."
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Greetings. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "option"
+text = "Let's talk about my quest."
+parent = -1
+children = [65, 66, 67, 68, 69, 70]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's talk about my quest."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Very well. How goes things?"
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What am I meant to be doing again?"
+parent = 64
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "You need to infiltrate the Saviours of Kourend, find the Queen of Thieves, apprehend her and then bring her to me."
+parent = 64
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "The Saviours of Kourend headquarters will be somewhere nearby. You might be able to learn more by asking around town."
+parent = 64
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "Nothing thanks."
+parent = -1
+children = [72]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "act"
+text = "above"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey there. I'm looking for the Saviours of Kourend. Do you know where I can find them?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Poor looking man/woman"
+text = "Keep your voice down! You've no idea who might be listening!"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh sorry. Do you know where I can find them though?"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Poor looking man/woman"
+text = "No I don't! I keep my distance from that lot!"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Poor looking man/woman"
+text = "However, word on the streets is that Robert O'Reilly has been working with them. Perhaps he could help you. He lives in the middle of town."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great. Thanks for the help."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find Robert O'Reilly?"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Poor looking man/woman"
+text = "He'll probably be at his home. You'll find it in the middle of town."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the help."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I'm looking for the Saviours of Kourend and I was hoping you could help me."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "other"
+text = "'''Robert O'Reilly:''' Yeah I can help you, but not for free."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's your price?"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "other"
+text = "'''Robert O'Reilly:''' It's been too long since I've eaten some proper food. All we get around here is fish. Bring me a nice stew and I'll help you out."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "cond"
+text = "If the player doesn't already have stew in their inventory:"
+parent = -1
+children = [89, 90, 91, 92]
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where am I going to get some stew?"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "other"
+text = "'''Robert O'Reilly:''' Buy some? Cook some? Doesn't matter to me."
+parent = 88
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Very well. I'll return when I have some stew."
+parent = 88
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "end"
+parent = 88
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "cond"
+text = "If the player already has stew in their inventory:"
+parent = -1
+children = [94, 95, 96, 97, 98, 104]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It just so happens I have some stew right here."
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "other"
+text = "'''Robert O'Reilly:''' Well that's suspiciously convenient."
+parent = 93
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know right, what are the chances?"
+parent = 93
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "other"
+text = "'''Robert O'Reilly:''' Well hand it over then."
+parent = 93
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "option"
+text = "Okay."
+parent = 93
+children = [99, 100, 101, 102, 103]
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "box"
+text = "pic=Stew detail.png|You give Robert O'Reilly some stew."
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "other"
+text = "'''Robert O'Reilly:''' Thanks. The Saviours of Kourend make their home in a place called the Warrens. You'll find it in the sewers beneath us."
+parent = 98
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thank you for your help. I'll be on my way."
+parent = 98
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "act"
+text = "end"
+parent = 98
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "option"
+text = "No."
+parent = 93
+children = [105, 106, 107]
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "other"
+text = "'''Robert O'Reilly:''' No information for you then. Come back if you change your mind."
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "other"
+text = "'''Robert O'Reilly:''' Do you have my stew yet?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "cond"
+text = "If the player doesn't have stew in their inventory:"
+parent = -1
+children = [110, 111, 112]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "other"
+text = "'''Robert O'Reilly:''' No stew, no information. Come back when you have some."
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "cond"
+text = "If the player has stew in their inventory:"
+parent = -1
+children = [114, 115, 116, 118]
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I do indeed."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "other"
+text = "'''Robert O'Reilly:''' Well hand it over then."
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "option"
+text = "Okay."
+parent = 113
+children = [117]
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "act"
+text = "above"
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "option"
+text = "No."
+parent = 113
+children = [119]
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "act"
+text = "above"
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "other"
+text = "'''Robert O'Reilly:''' How goes things?"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I haven't found the Saviours of Kourend yet."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "other"
+text = "'''Robert O'Reilly:''' Well you should look in the sewers beneath us. There you'll find the Warrens, where the Saviours make their home."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I'm looking for the Saviours of Kourend. Do you know where I could find them?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Right here is where you'll find them. What business do you have with the Saviours?"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I was hoping I could join the gang."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Join the gang? Do you think this is a game?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "We don't just let anyone join our gang. If you want in, you'll need to prove your worth."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And how can I do that?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Since our formation, many of the other gangs in Kourend have joined our cause. However, some still choose to resist."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Our largest rivals are the Vipers and our leader..."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Queen of Thieves?"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Let me finish!"
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Our leader has had enough of the Vipers and wants to make an example of them."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "We need to send a message to the Vipers to let them know that their days are done."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "We'd like you to kill Conrad King, one of their senior members. The man has been a thorn in our side for far too long. Besides, his murderous ways make us look like paragons of virtue in comparison."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You want me to kill someone?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "As in, kill them, kill them?"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So like, kill them dead?"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Yes!"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Is this going to be a problem?"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "Nope, sounds good to me."
+parent = -1
+children = [146, 147, 148, 149]
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nope, sounds good to me."
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Good. You'll find Conrad King south of the Piscarilius Foodhall. News travels fast around here so we'll know when the deed is done."
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great. I'll be back soon."
+parent = 145
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "option"
+text = "I don't think I can do it."
+parent = -1
+children = [151, 152, 153]
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't think I can do it."
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Well then we have nothing to discuss. If you change your mind, you'll find Conrad King south of the Piscarilius Foodhall. News travels fast around here so we'll know when the deed is done."
+parent = 150
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "act"
+text = "end"
+parent = 150
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Conrad King is still alive so I don't know what you're doing here. Go get the job done. He can be found south of the Piscarilius Foodhall."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "select"
+text = "How would you like to kill him?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "Brutally"
+parent = -1
+children = [158, 159, 160]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "box"
+text = "You brutally murder Conrad King. You monster."
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Conrad King"
+text = "{{overhead|I'm coming Elizabeth!}}"
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "act"
+text = "end"
+parent = 157
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "option"
+text = "Softly"
+parent = -1
+children = [162, 163, 164]
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "box"
+text = "You realise that you can't really kill someone softly. You brutally murder him instead."
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Conrad King"
+text = "{{overhead|I'm coming Elizabeth!}}"
+parent = 161
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "act"
+text = "end"
+parent = 161
+is_terminal = true
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Word on the streets is that Conrad King has met his maker. The queen is impressed. You should head on in and speak to her."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So can I go in now?"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Devan Rutter"
+text = "Yes! Now get out of my sight!"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "So you're the one who killed Conrad King. Not bad, but you don't look like much to me."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You'd be surprised."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "No I wouldn't. I've seen hundreds of fools like you and you're all the same. I doubt you'll be sticking around here very long."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And neither will you. On behalf of the Kourend Council, I'm bringing you in."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "Wow."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "You truly are a complete and utter idiot."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = """
+Allow me to enlighten you. While you may have been told that the Saviours of Kourend are evil, the truth is quite the opposite. Before we came along, Kourend was filled with violent gangs who cared little for their victims.
+"""
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Let me guess, you're different."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "Shut up and let me speak!"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "Yes the Saviours of Kourend are thieves, the Saviours of Kourend are murderers. However, we do not randomly pick our targets. Everything we do has a purpose."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Which is?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "The name isn't a joke. We're here to save Kourend. To save it from the corruption that has tainted this once great kingdom."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "We do that by taking from those who would lord themselves over the people. We remove their power and give it back to those who keep this kingdom alive."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yet you call yourself a queen. Bit ironic don't you think?"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "The irony isn't lost on me. In truth I didn't want to lead at all, but it fell to me because I'm the best at it. Being born a Piscarilius means that you have to be."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hang on... you're part of the Piscarilius family?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "The Queen of Thieves"
+text = "I am the Piscarilius family. Of course Lady Shauna Piscarilius couldn't well take charge of a gang, so I took on a different name, one that the rich and degenerate are already starting to fear."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, you've got my attention. But how do I know you're telling the truth?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = """
+You are clearly fairly new to Kourend, so you might not be fully aware of our current leadership situation. After the last King died, rulership should have passed on to his daughter. However, she was declared mad.
+"""
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "It was the King's closest advisors that made this declaration. They took over and became the Kourend Council. They've ruled the kingdom ever since."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Now, the councillors are supposedly voted for by the people. However, the seats have been held by the same four people since the start. Pretty suspicious don't you think?"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That does sound odd."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Exactly. The Council is clearly corrupt, and we intend to bring that to light. Councillor Hughes is our first target. We have reason to believe that she may be in league with the Disciples of Yama."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Disciples of Yama?"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "A cult of Zamorakians who supposedly serve a demon called Yama."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "They've been a problem for a while, but they haven't been deemed dangerous enough to be properly dealt with. Councillor Hughes' influence, no doubt."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Anyway, go to her home and find proof of her corruption. If you find it, you will know I'm telling the truth. If you don't... well don't pretend you care about breaking and entering anyway."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fine, I'll give you benefit of the doubt. But if you're wrong, I'm coming straight back here to apprehend you."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "I'll pretend I didn't hear that. Councillor Hughes' home is on the northern side of Kingstown. Even a fool like you should be able to find it. Don't worry, she's never in."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Once you have the evidence, give it to that Lawry fellow. Provided he's not as useless as you, he'll make sure that she's dealt with."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Now get lost."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Oh it's you. Are you going to actually let me finish what I'm saying this time or are you just going to walk off again."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll let you finish this time."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Good. In future you should try not to be so rude."
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = """
+Anyway, you are clearly fairly new to Kourend, so you might not be fully aware of our current leadership situation. After the last King died, rulership should have passed on to his daughter. However, she was declared
+"""
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "mad."
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "It was the King's closest advisors that made this declaration. They took over and became the Kourend Council. They've ruled the kingdom ever since."
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Now, the councillors are supposedly voted for by the people. However, the seats have been held by the same four people since the start. Pretty suspicious don't you think?"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Whatever you want I don't care. Come back to me when you've completed your task."
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Greetings. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "option"
+text = "Let's talk about my quest."
+parent = -1
+children = [215, 216, 217, 218, 219, 220, 226]
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's talk about my quest."
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Very well. How goes things?"
+parent = 214
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't had any luck finding the Queen of Thieves. However, I've come across this letter which you might find interesting."
+parent = 214
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "box"
+text = "pic=Letter (The Queen of Thieves) detail.png|Tomas takes the letter."
+parent = 214
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Blimey! Forget the Queen of Thieves. If this letter is to be believed, Councillor Hughes is working with those vile Disciples of Yama. I must report this to the Council immediately."
+parent = 214
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "option"
+text = "Great! So can I have a reward?"
+parent = 214
+children = [221, 222, 223, 224, 225]
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Great! So can I have a reward?"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "You've done a great service to the people of Kourend. As I'm sure you know, there is no greater reward than the satisfaction of a job well done."
+parent = 220
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh..."
+parent = 220
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Now be on your way. I have a lot of work to do."
+parent = 220
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "act"
+text = "end"
+parent = 220
+is_terminal = true
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "option"
+text = "What do you know of the Disciples of Yama?"
+parent = 214
+children = [227, 228, 229, 230, 231, 232]
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do you know of the Disciples of Yama?"
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "They're a group of deranged cultists that worship some sort of demon. They're not a big threat compared to the lizardmen, but they're still an enemy to Kourend."
+parent = 226
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And Councillor Hughes is helping them? That's not good."
+parent = 226
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Indeed. I must report this to the Council immediately."
+parent = 226
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So can I have a reward?"
+parent = 226
+
+[[nodes]]
+id = 232
+depth = 3
+kind = "act"
+text = "above"
+parent = 226
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "Nothing thanks."
+parent = -1
+children = [234, 235, 236]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing thanks."
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Very well. Until next time."
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "act"
+text = "end"
+parent = 233
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Tomas Lawry"
+text = "Hello. Thanks again for your help."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "I hear Councillor Hughes has been arrested. Perhaps you're not totally useless after all."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You know, you're really not a nice person."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Oh give me a break. You think I care what you think?"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Anyway, I guess this is the part where you expect a reward?"
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I wouldn't complain."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Fine. As much as I hate to admit it, you've done alright. The arrest of Councillor Hughes can only mean good things for Kourend and her people."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "This is only the beginning though. There's much work to still be done. I may well call on your help again. Or maybe I won't, who knows. Now take these and go."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Lady Shauna Piscarilius"
+text = "Why are you still here?"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = -1

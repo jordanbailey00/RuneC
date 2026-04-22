@@ -1,0 +1,5246 @@
+title = "Transcript:Biohazard"
+npcs = ["Elena", "Jerico", "Mourner (Biohazard)", "Omart", "Kilron", "Nurse Sarah", "Chancy", "Da Vinci", "Hops (Biohazard)", "Chemist", "Guard (East Varrock)", "Julie", "Guidor", "Asyff", "King Lathas"]
+node_count = 667
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day to you, Elena."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "You too, thanks for freeing me."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "It's just a shame the mourners confiscated my equipment."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What did they take?"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "My distillator. I can't test any plague samples without it. They're holding it in the Mourner Headquarters in West Ardougne."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "I must somehow retrieve that distillator if I am to find a cure for this awful affliction. Do you think you could help me?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "select"
+text = "Start the Biohazard quest?"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [8, 9, 10, 11, 12]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course I can help. Where do we start?"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Elena"
+text = "I was hoping you would say that. Unfortunately they discovered the tunnel and filled it in. We need another way over the wall."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas?"
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Elena"
+text = "My father's friend Jerico is in communication with West Ardougne. He might be able to help us. He lives in a house south east of here, north of the chapel."
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [14, 15, 16]
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm busy at the moment, I'm afraid."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Elena"
+text = "Fair enough."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "box"
+text = "pic=Spade detail.png|The ground's been filled in and packed hard."
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Jerico."
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "Hello, I've been expecting you. Elena tells me you need to cross the wall."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "My messenger pigeons help me communicate with friends over the wall."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "I have arranged for two of them to aid you with a rope ladder. Omart is waiting for you at the southern end of the wall."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "But be careful, if the mourners catch you, the punishment will be severe."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Jerico."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "Hello again. Have you spoken to Omart yet?"
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "You'll find him at the southern end of the wall. Keep an eye out for them mourners."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "box"
+text = "pic=Bird feed detail.png|The cupboard is full of bird feed."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [33, 34]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "box"
+text = "pic=Bird feed detail.png|You find some bird feed in the cupboard but you don't have enough room to take it."
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "act"
+text = "end"
+parent = 32
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "cond"
+text = "If the player already has bird feed:"
+parent = -1
+children = [36, 37]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't need any more bird feed."
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "act"
+text = "end"
+parent = 35
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Mmm, bird feed! Now what could I do with that?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Omart, Jerico said you might be able to help me."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "He informed me of your problem traveller. I would be glad to help, I have a rope ladder and my associate, Kilron, is waiting on the other side."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good stuff."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "Unfortunately we can't risk it with the watchtower so close. So first we need to distract the guards in the tower."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "I reckon some of Jerico's pigeons might help us out here. Chuck some bird feed at the tower and then release some pigeons nearby. They should provide a nice distraction."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get the bird feed and the pigeons?"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "I'm sure Jerico can help you out with that if you ask him nicely."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "Hello. Have you sorted that distraction yet?"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "Try using some of Jerico's pigeons. Chuck some bird feed at the tower and then release some pigeons nearby. Jerico should be able to help you out."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Jerico."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "Hello again. Have you spoken to Omart yet?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have. He told me to ask you about some pigeons."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "Pigeons? What do you need my pigeons for?"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Omart thought they'd make a good distraction for the guards."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = """
+Ahh, very clever. Well I'm sure I can let you borrow some, as long as you look after them. Just grab one of the cages from behind my house. You'll want some bird feed as well. I should have some in my cupboard.
+"""
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "cond"
+text = "If the player is not near the watchtower fence:"
+parent = -1
+children = [62, 63]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I probably shouldn't waste it by throwing it here."
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "end"
+parent = 61
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "cond"
+text = "If the player is near the fence:"
+parent = -1
+children = [65, 66]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "box"
+text = "You throw a handful of seeds onto the watchtower. The mourners do not seem to notice."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "cond"
+text = "If the player is in the wrong place or has not thrown the bird feed:"
+parent = -1
+children = [68, 69]
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "other"
+text = "{{mes|The pigeons don't want to leave.}}"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "act"
+text = "end"
+parent = 67
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "cond"
+text = "If the player has thrown the bird feed and is near the watchtower fence:"
+parent = -1
+children = [71, 72]
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "box"
+text = "The pigeons fly towards the watchtower. The mourners frantically try to scare them away."
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "act"
+text = "end"
+parent = 70
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "The guards are distracted by the birds, you must go now, quickly traveller."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "Well done, the guards are having real trouble with those birds. You must go now traveller, it's your only chance."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "option"
+text = "Okay, lets do it."
+parent = -1
+children = [79, 80, 84, 85, 86, 87, 88, 89, 90]
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, lets{{sic}} do it."
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "cond"
+text = "If the player is not wearing a gas mask:"
+parent = 78
+children = [81, 82, 83]
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Omart"
+text = "I'd recommend you wear a gas mask before entering West Ardougne. You don't want to risk catching the plague."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That would be wise. Thanks Omart."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "box"
+text = "Omart throws a rope ladder over the wall."
+parent = 78
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "box"
+text = "You climb up the rope ladder..."
+parent = 78
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "box"
+text = "...and drop down on the other side."
+parent = 78
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Kilron"
+text = "Welcome to West Ardougne friend. I'm Kilron. Let me know if you want to go back over the wall."
+parent = 78
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Kilron. Do you know where to find the Mourner Headquarters?"
+parent = 78
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Kilron"
+text = "It's the most north eastern building in the city. Be careful around there."
+parent = 78
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "end"
+parent = 78
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "option"
+text = "I'll be back soon."
+parent = -1
+children = [92, 93, 94]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Omart"
+text = "Don't take too long, those mourners will soon be rid of those birds."
+parent = 91
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Omart."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "Hello traveller. Do you wish to cross the wall?"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "Okay, let's do it."
+parent = -1
+children = [99, 100, 101, 102, 103]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, lets do it."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "box"
+text = "Omart throws a rope ladder over the wall."
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "box"
+text = "You climb up the rope ladder..."
+parent = 98
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "box"
+text = "...and drop down on the other side."
+parent = 98
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 98
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "option"
+text = "I'll be back soon."
+parent = -1
+children = [105]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "act"
+text = "above"
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "other"
+text = "{{mes|You should leave your gas mask on while you're in West Ardougne}}"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Kilron."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Kilron"
+text = "Hello traveller. Do you need to go back over?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "option"
+text = "Yes I do."
+parent = -1
+children = [111, 112, 113, 114, 115, 116]
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes I do."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Kilron"
+text = "Okay, quickly now!"
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "box"
+text = "Kilron throws a rope ladder over the wall."
+parent = 110
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "box"
+text = "You climb up the rope ladder..."
+parent = 110
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "box"
+text = "...and drop down on the other side."
+parent = 110
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "act"
+text = "end"
+parent = 110
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "option"
+text = "Do you know where to find the Mourner Headquarters?"
+parent = -1
+children = [118, 119, 120]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know where to find the Mourner Headquarters?"
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Kilron"
+text = "It's the most north eastern building in the city. Be careful around there."
+parent = 117
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "option"
+text = "Not yet Kilron."
+parent = -1
+children = [122, 123, 124]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet Kilron."
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Kilron"
+text = "Okay, just give me the word."
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "act"
+text = "end"
+parent = 121
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again Jerico."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "So you've returned traveller. Did you get what you wanted?"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Jerico"
+text = "Omart will be waiting by the wall, in case you need to cross again."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "Back away citizen. Only mourners are allowed inside the headquarters."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm. I wonder if there's another way in."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Looks like a nice stew is being prepared. This must be to feed all of the mourners."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello nurse."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Nurse Sarah"
+text = "I don't know how much longer I can cope here."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? Is the plague getting to you?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Nurse Sarah"
+text = "No, strangely enough the people here don't seem to be affected. It's just the awful living conditions that is making people ill."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I was under the impression that everyone here was affected."
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Nurse Sarah"
+text = "Me too, but that doesn't seem to be the case."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "box"
+text = "You place the rotten apple in the pot. It quickly dissolves into the stew."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Anyone who eats this stew is going to have a bad time now."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Eugh, locked. There must be a way for me to get in. Maybe there's something around here that will help me."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "Back away citizen. Several mourners are ill with food poisoning."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is there a doctor nearby? Maybe I can go fetch them."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "There are no doctors in West Ardougne, just that nurse south west of the chapel. You don't need to worry though, we'll soon have it sorted."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "cond"
+text = "If the player has not yet poisoned the stew or already has a medical gown:"
+parent = -1
+children = [152, 153]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "other"
+text = "{{mes|You search the cupboard but you find nothing of interest.}}"
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "act"
+text = "end"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [155, 156]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "box"
+text = "pic=Medical gown detail.png|You find a medical gown in the cupboard but you don't have enough room to take it."
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "end"
+parent = 154
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "box"
+text = "pic=Medical gown detail.png|You find a medical gown in the cupboard."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "A doctor? I didn't think there were any left around here."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I heard there was some trouble with food poisoning here."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "You heard right. Head on in and see what you can do."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "other"
+text = "{{mes|You should leave your medical gown on while you're in the Mourner Headquarters.}}"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "other"
+text = "{{mes|The trapdoor is bolted on the other side.}}"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "Oh dear oh dear. I feel terrible, I think it was the stew."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You should be more careful with your ingredients."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "There is one mourner who's really sick. They're resting upstairs. You should see to them first."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see what I can do."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "A doctor? At last! I don't know what I've eaten but I feel like I'm on death's door."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm... interesting, sounds like food poisoning."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "Yes, I'd figured that out already. What can you give me to help."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "Just hold your breath and count to ten."
+parent = -1
+children = [177, 178, 179, 180, 181]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Just hold your breath and count to ten."
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Mourner"
+text = "What? How will that help? What kind of doctor are you?"
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Erm... I'm new, I just started."
+parent = 176
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "Mourner"
+text = "You're no doctor!"
+parent = 176
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "act"
+text = "(Mourner attacks the player.)"
+parent = 176
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "option"
+text = "The best I can do is pray for you."
+parent = -1
+children = [183, 184, 185]
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The best I can do is pray for you."
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "Mourner"
+text = "Pray for me? You're no doctor... You're an imposter!"
+parent = 182
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "act"
+text = "(Mourner attacks the player.)"
+parent = 182
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "option"
+text = "There's nothing I can do, it's fatal."
+parent = -1
+children = [187, 188, 189, 190, 191, 192, 193]
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There's nothing I can do, it's fatal."
+parent = 186
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Mourner"
+text = "No, I'm too young to die! I've never even had a girlfriend."
+parent = 186
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's life for you."
+parent = 186
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Mourner"
+text = "Wait a minute, where's your equipment?"
+parent = 186
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's erm... at home."
+parent = 186
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Mourner"
+text = "You're no doctor!"
+parent = 186
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "act"
+text = "(Mourner attacks the player.)"
+parent = 186
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "box"
+text = "pic=Key (Biohazard) detail.png|The mourner drops a key as he dies."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "Sorry, I'd like to be left in peace."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "cond"
+text = "If the player has the key:"
+parent = -1
+children = [200, 201]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "box"
+text = "You use the key to open the gate."
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "act"
+text = "end"
+parent = 199
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "cond"
+text = "If the player does not have the key:"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [204, 205]
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "box"
+text = "pic=Distillator detail.png|You search the crate and find Elena's distillator but you don't have enough room to take it."
+parent = 203
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "act"
+text = "end"
+parent = 203
+is_terminal = true
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "cond"
+text = "If the player already has the distillator:"
+parent = -1
+children = [207, 208]
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "other"
+text = "{{mes|You search the crate but find nothing of interest.}}"
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "act"
+text = "end"
+parent = 206
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "box"
+text = "pic=Distillator detail.png|You search the crate and find Elena's distillator."
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Mourner"
+text = "Oh dear oh dear. I feel terrible, I think it was the stew."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You should be more careful with your ingredients."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "box"
+text = "The door is locked."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "You're back, did you find the distillator?"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid not."
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "I can't test the samples without the distillator. Please don't give up until you find it."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "You're back, did you find the distillator?"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, here it is!"
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Great! Now I can finally run these tests."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "box"
+text = "Elena uses the distillator to test some samples."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "I don't understand... the touch paper hasn't changed colour at all..."
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What does that mean?"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = """
+I'm not sure. My old mentor in Varrock, Guidor, might know though. Could you take these to him and see what he thinks? You'll need to drop by the chemist in Rimmington first to pick up some more touch paper.
+"""
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "box"
+text = "pic=Plague sample detail.png|pic2=Sulphuric broline detail.png|Elena gives you a plague sample along with three vials."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Now, last time I went to see Guidor, some one told the guards I was carrying some plague samples. Annoyingly, that means they've started searching everyone going to that part of the city."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Ironically, the guards won't be smart enough to recognise the sample itself, so you should be able to get that in just fine. They'll probably confiscate the rest though."
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what do I do?"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Well I know the chemist has still been managing to get chemicals to Guidor. Maybe he can help you smuggle the things in."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great, I'll see if he can help. See you soon."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "What are you doing back here?"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "option"
+text = "I just find it hard to say goodbye sometimes."
+parent = -1
+children = [238, 239, 240]
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I just find it hard to say goodbye sometimes."
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "speaker"
+speaker = "Elena"
+text = "I see... I understand what you mean... But let's discuss that later."
+parent = 237
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "act"
+text = "other"
+parent = 237
+is_terminal = true
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "option"
+text = "I'm afraid I've lost some of the stuff that you gave me..."
+parent = -1
+children = [242, 243, 246]
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I've lost some of the stuff that you gave me..."
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "cond"
+text = "If the player has all the items:"
+parent = 241
+children = [244, 245]
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "speaker"
+speaker = "Elena"
+text = "Are you sure? Looks like you have everything to me."
+parent = 243
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "act"
+text = "end"
+parent = 243
+is_terminal = true
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "cond"
+text = "If the player is missing items:"
+parent = 241
+children = [247, 248, 251, 252, 253, 254]
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "speaker"
+speaker = "Elena"
+text = "That's alright, I've got plenty."
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 3
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 246
+children = [249, 250]
+
+[[nodes]]
+id = 249
+depth = 4
+kind = "box"
+text = "pic=Plague sample detail.png|pic2=Sulphuric broline detail.png|Elena tries to give you some items but you don't have enough room for them."
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 4
+kind = "act"
+text = "end"
+parent = 248
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "box"
+text = "pic=Plague sample detail.png|pic2=Sulphuric broline detail.png|Elena replaces your lost items."
+parent = 246
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "speaker"
+speaker = "Elena"
+text = "There you go. That should be everything."
+parent = 246
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Great, I'll be on my way."
+parent = 246
+
+[[nodes]]
+id = 254
+depth = 3
+kind = "act"
+text = "end"
+parent = 246
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "option"
+text = "I've forgotten what I need to do."
+parent = -1
+children = [256, 257, 258, 259, 260]
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've forgotten what I need to do."
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Elena"
+text = "Go to Rimmington and get some touch paper from the chemist. Once you've done that, you'll need to take those things to Guidor in Varrock."
+parent = 255
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "speaker"
+speaker = "Elena"
+text = "You'll probably need to smuggle some of the items in to stop them getting confiscated. If you need help moving them discreetly, the chemist might be able to assist you."
+parent = 255
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll get to it."
+parent = 255
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "act"
+text = "end"
+parent = 255
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "Nothing."
+parent = -1
+children = [262, 263]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing."
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "act"
+text = "end"
+parent = 261
+is_terminal = true
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Omart."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Omart"
+text = "Hello adventurer. I'm afraid it's too risky to use the ladder again. You'll have to find another way into the city."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello! Playing solitaire?"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Hush - I'm trying to perfect the art of dealing off the bottom of the deck."
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Bah! A great artist such as myself should not have to suffer the HUMILIATION of spending time where the likes of you wander everywhere!"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Hops don't wanna talk now."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "select"
+text = "What do you want to talk about?"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "option"
+text = "quest=No|Lamps."
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "option"
+text = "Your quest."
+parent = -1
+children = [277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290]
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Sorry, I'm afraid we're just closing now. You'll have to come back another time."
+parent = 276
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I was sent by Elena from Ardougne."
+parent = 276
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Oh, well that's different then. Must be pretty important for her to send you all this way."
+parent = 276
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "She asked me to pick up some touch paper for a guy called Guidor."
+parent = 276
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Guidor? This one's on me then, I owe him more than a few favours."
+parent = 276
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "I should warn you though, getting to him might not be easy if you're carrying any chemicals. The guards are searching anyone heading to that part of Varrock."
+parent = 276
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh right... so am I going to be okay carrying these three vials with me?"
+parent = 276
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "With touch paper as well? You're asking for trouble. You'd better use my errand boys outside. Give them a vial each. I must warn you though, they do have a habit of stealing things."
+parent = 276
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well that's no good. How do I stop them stealing my vials?"
+parent = 276
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Just make sure you give them something they have no reason to steal. One's a painter, one's a gambler, and one's a drunk. Not ideal I know, but if you pay peanuts you'll get monkeys, right?"
+parent = 276
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "box"
+text = "pic=Touch paper detail.png|The chemist gives you some touch paper."
+parent = 276
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Now don't stand around here gassing. This is clearly important to Elena. You'll find Guidor's home in the south east corner of Varrock."
+parent = 276
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks for your help. I know Elena appreciates it."
+parent = 276
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "act"
+text = "end"
+parent = 276
+is_terminal = true
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "option"
+text = "quest=No|Impling jars."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "select"
+text = "What do you want to talk about?"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "option"
+text = "quest=No|Lamps."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "option"
+text = "Your quest."
+parent = -1
+children = [295, 296, 297, 301, 307, 308, 309]
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = 294
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Oh hello, do you need more touch paper?"
+parent = 294
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "cond"
+text = "If the player still has the touch paper:"
+parent = 294
+children = [298, 299, 300]
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 3
+kind = "speaker"
+speaker = "Chemist"
+text = "Fair enough, don't forget to talk to my errand boys outside if you need help getting things to Guidor. I must warn you though, they do have a habit of stealing things."
+parent = 297
+
+[[nodes]]
+id = 300
+depth = 3
+kind = "act"
+text = "continues"
+parent = 297
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "cond"
+text = "If the player does not have the touch paper:"
+parent = 294
+children = [302, 303, 304, 305, 306]
+
+[[nodes]]
+id = 302
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes please."
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "speaker"
+speaker = "Chemist"
+text = "Okay, here you go."
+parent = 301
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "box"
+text = "pic=Touch paper detail.png|The chemist gives you some touch paper."
+parent = 301
+
+[[nodes]]
+id = 305
+depth = 3
+kind = "speaker"
+speaker = "Chemist"
+text = "Don't forget to talk to my errand boys outside if you need help getting things to Guidor. I must warn you though, they do have a habit of stealing things."
+parent = 301
+
+[[nodes]]
+id = 306
+depth = 3
+kind = "act"
+text = "continues"
+parent = 301
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well that's no good. What if they take my stuff?"
+parent = 294
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Just make sure you give them something they have no reason to steal. One's a painter, one's a gambler, and one's a drunk. Not ideal I know, but if you pay peanuts you'll get monkeys, right?"
+parent = 294
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "act"
+text = "end"
+parent = 294
+is_terminal = true
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "option"
+text = "quest=No|Impling jars."
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, I've got a vial for you to take to Varrock."
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Tssch... that chemist asks for a lot for the wages he pays."
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Maybe you should ask him for more money."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Nah... I just use my initiative here and there."
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "option"
+text = "You give him the vial of ethenea..."
+parent = -1
+children = [317, 320, 321, 322]
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "cond"
+text = "If the player does not have ethenea:"
+parent = 316
+children = [318, 319]
+
+[[nodes]]
+id = 318
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 3
+kind = "act"
+text = "end"
+parent = 317
+is_terminal = true
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "box"
+text = "pic=Ethenea detail.png|You give him the vial of ethenea."
+parent = 316
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Chancy"
+text = "Right. I'll meet you at the Dancing Donkey Inn in south east Varrock. Be lucky!"
+parent = 316
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "act"
+text = "end"
+parent = 316
+is_terminal = true
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "option"
+text = "You give him the vial of liquid honey..."
+parent = -1
+children = [324, 327, 328, 329]
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "cond"
+text = "If the player does not have liquid honey:"
+parent = 323
+children = [325, 326]
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 3
+kind = "act"
+text = "end"
+parent = 324
+is_terminal = true
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "box"
+text = "pic=Liquid honey detail.png|You give him the vial of liquid honey."
+parent = 323
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Chancy"
+text = "Right. I'll meet you at the Dancing Donkey Inn in south east Varrock. Be lucky!"
+parent = 323
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "act"
+text = "end"
+parent = 323
+is_terminal = true
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "option"
+text = "You give him the vial of sulphuric broline..."
+parent = -1
+children = [331, 334, 335, 336]
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "cond"
+text = "If the player does not have sulphuric broline:"
+parent = 330
+children = [332, 333]
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 331
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "act"
+text = "end"
+parent = 331
+is_terminal = true
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "box"
+text = "pic=Sulphuric broline detail.png|You give him the vial of sulphuric broline."
+parent = 330
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Chancy"
+text = "Right. I'll meet you at the Dancing Donkey Inn in south east Varrock. Be lucky!"
+parent = 330
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "act"
+text = "end"
+parent = 330
+is_terminal = true
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Look, I've got your vial but I'm not taking two. I always like to play the percentages."
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, I hear you're an errand boy for the chemist."
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Well that's my job yes. But I don't necessarily define my identity in such black and white terms."
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good for you. Now can you take a vial to Varrock for me?"
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Go on then."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "option"
+text = "You give him the vial of ethenea..."
+parent = -1
+children = [345, 348, 349, 350]
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "cond"
+text = "If the player does not have ethenea:"
+parent = 344
+children = [346, 347]
+
+[[nodes]]
+id = 346
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 3
+kind = "act"
+text = "end"
+parent = 345
+is_terminal = true
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "box"
+text = "pic=Ethenea detail.png|You give him the vial of ethenea."
+parent = 344
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Okay, I'll meet you at the Dancing Donkey in Varrock."
+parent = 344
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "act"
+text = "end"
+parent = 344
+is_terminal = true
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "option"
+text = "You give him the vial of liquid honey..."
+parent = -1
+children = [352, 355, 356, 357]
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "cond"
+text = "If the player does not have liquid honey:"
+parent = 351
+children = [353, 354]
+
+[[nodes]]
+id = 353
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 352
+
+[[nodes]]
+id = 354
+depth = 3
+kind = "act"
+text = "end"
+parent = 352
+is_terminal = true
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "box"
+text = "pic=Liquid honey detail.png|You give him the vial of liquid honey."
+parent = 351
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Okay, I'll meet you at the Dancing Donkey in Varrock."
+parent = 351
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "act"
+text = "end"
+parent = 351
+is_terminal = true
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "option"
+text = "You give him the vial of sulphuric broline..."
+parent = -1
+children = [359, 362, 363, 364]
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "cond"
+text = "If the player does not have sulphuric broline:"
+parent = 358
+children = [360, 361]
+
+[[nodes]]
+id = 360
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 359
+
+[[nodes]]
+id = 361
+depth = 3
+kind = "act"
+text = "end"
+parent = 359
+is_terminal = true
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "box"
+text = "pic=Sulphuric broline detail.png|You give him the vial of sulphuric broline."
+parent = 358
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Okay, I'll meet you at the Dancing Donkey in Varrock."
+parent = 358
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "act"
+text = "end"
+parent = 358
+is_terminal = true
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Oh, it's you again. Please don't distract me now, I'm contemplating the sublime."
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I've got something for you to take to Varrock."
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Sounds like pretty thirsty work."
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, there's an Inn in Varrock if you're desperate."
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Don't worry, I'm a pretty resourceful fellow you know."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "option"
+text = "You give him the vial of ethenea..."
+parent = -1
+children = [373, 376, 377, 378, 379]
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "cond"
+text = "If the player does not have ethenea:"
+parent = 372
+children = [374, 375]
+
+[[nodes]]
+id = 374
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 373
+
+[[nodes]]
+id = 375
+depth = 3
+kind = "act"
+text = "end"
+parent = 373
+is_terminal = true
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "box"
+text = "pic=Ethenea detail.png|You give him the vial of ethenea."
+parent = 372
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see you in Varrock."
+parent = 372
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Hops"
+text = "Sure, I'm a regular at the Dancing Donkey Inn as it happens."
+parent = 372
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "act"
+text = "end"
+parent = 372
+is_terminal = true
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "option"
+text = "You give him the vial of liquid honey..."
+parent = -1
+children = [381, 384, 385, 386, 387]
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "cond"
+text = "If the player does not have liquid honey:"
+parent = 380
+children = [382, 383]
+
+[[nodes]]
+id = 382
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 381
+
+[[nodes]]
+id = 383
+depth = 3
+kind = "act"
+text = "end"
+parent = 381
+is_terminal = true
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "box"
+text = "pic=Liquid honey detail.png|You give him the vial of liquid honey."
+parent = 380
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see you in Varrock."
+parent = 380
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "speaker"
+speaker = "Hops"
+text = "Sure, I'm a regular at the Dancing Donkey Inn as it happens."
+parent = 380
+
+[[nodes]]
+id = 387
+depth = 2
+kind = "act"
+text = "end"
+parent = 380
+is_terminal = true
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "option"
+text = "You give him the vial of sulphuric broline..."
+parent = -1
+children = [389, 392, 393, 394, 395]
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "cond"
+text = "If the player does not have sulphuric broline:"
+parent = 388
+children = [390, 391]
+
+[[nodes]]
+id = 390
+depth = 3
+kind = "box"
+text = "You can't give him what you don't have."
+parent = 389
+
+[[nodes]]
+id = 391
+depth = 3
+kind = "act"
+text = "end"
+parent = 389
+is_terminal = true
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "box"
+text = "pic=Sulphuric broline detail.png|You give him the vial of sulphuric broline."
+parent = 388
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll see you in Varrock."
+parent = 388
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Hops"
+text = "Sure, I'm a regular at the Dancing Donkey Inn as it happens."
+parent = 388
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "act"
+text = "end"
+parent = 388
+is_terminal = true
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "I suppose I'd better get going. I'll meet you at the Dancing Donkey Inn."
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Please don't disturb me, I've got to keep any eye out for suspicious individuals."
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Halt. I need to conduct a search on you. There have been reports of someone bringing a virus into this area of Varrock."
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "box"
+text = "The guard searches you."
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "cond"
+text = "If the player has ethenea:"
+parent = -1
+children = [403]
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "box"
+text = "pic=Ethenea detail.png|He takes the vial of ethenea from you."
+parent = 402
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "cond"
+text = "If the player has liquid honey:"
+parent = -1
+children = [405]
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "box"
+text = "pic=Liquid honey detail.png|He takes the vial of liquid honey from you."
+parent = 404
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "cond"
+text = "If the player has sulphuric broline:"
+parent = -1
+children = [407]
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "box"
+text = "pic=Sulphuric broline detail.png|He takes the vial of sulphuric broline from you."
+parent = 406
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "You may now pass."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good morning."
+parent = -1
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Leave me alone. I'm trying to find my gambling buddies!"
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, thanks for doing that."
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "No problem. I've got some money for you actually."
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Well, it turns out that potion you gave me, was quite valuable..."
+parent = -1
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "I know that I probably shouldn't have sold it... but some friends and I were having a little wager, the odds were just too good!"
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You sold my vial and gambled with the money?!"
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Actually yes... but praise be to Saradoming{{sic|Saradomin}} because I won! So all's well that ends well right?"
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "option"
+text = "No! Nothing could be further from the truth!"
+parent = -1
+children = [423, 424, 425, 426]
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No! Nothing could be further from the truth!"
+parent = 422
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Chancy"
+text = "Well, there's no pleasing some people. Here's your cut anyway."
+parent = 422
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "act"
+text = "receives=10 [[coins]]"
+parent = 422
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "act"
+text = "end"
+parent = 422
+is_terminal = true
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "option"
+text = "You have no idea what you have just done!"
+parent = -1
+children = [428, 429, 430, 431]
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You have no idea what you have just done!"
+parent = 427
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "speaker"
+speaker = "Chancy"
+text = "Ignorance is bliss I'm afraid. Here's your cut anyway."
+parent = 427
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "act"
+text = "receives=10 [[coins]]"
+parent = 427
+
+[[nodes]]
+id = 431
+depth = 2
+kind = "act"
+text = "end"
+parent = 427
+is_terminal = true
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, thanks for doing that."
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "No problem."
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [435, 436]
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "box"
+text = "pic=Liquid honey detail.png|He tries to give you the vial of liquid honey but you don't have enough room for it."
+parent = 434
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "act"
+text = "end"
+parent = 434
+is_terminal = true
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "box"
+text = "pic=Liquid honey detail.png|He gives you the vial of liquid honey."
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "speaker"
+speaker = "Chancy"
+text = "Next time give me something more valuable... I couldn't get anything for this on the blackmarket."
+parent = -1
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That was the idea."
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Bah! A great artist such as myself should not have to suffer the HUMILIATION of spending time where the likes of you wander everywhere!"
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Hello again. I hope your journey was as pleasant as mine."
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yep. Anyway, I'll take the package off you now."
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Package? That's a funny way to describe a liquid of such exquisite beauty!"
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "option"
+text = "I'm getting a bad feeling about this."
+parent = -1
+children = [448, 449]
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm getting a bad feeling about this."
+parent = 447
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "act"
+text = "continues"
+parent = 447
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "option"
+text = "Just give me the stuff now please."
+parent = -1
+children = [451, 452]
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Just give me the stuff now please."
+parent = 450
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "act"
+text = "continues"
+parent = 450
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You do still have it don't you?"
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Absolutely. It's just not stored in a vial anymore."
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Instead it has been liberated. It now gleams from the canvas of my latest epic: The Majesty of Varrock!"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's great. Thanks to you I'll have to walk back to East Ardougne to get another vial."
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Well you can't put a price on art."
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Hello again. I hope your journey was as pleasant as mine."
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, as they say, it's always sunny in Gielinor."
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Okay, here it is."
+parent = -1
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [464, 465]
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "box"
+text = "pic=Ethenea detail.png|He tries to give you the vial of ethenea but you don't have enough room for it."
+parent = 463
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "act"
+text = "end"
+parent = 463
+is_terminal = true
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "box"
+text = "pic=Ethenea detail.png|He gives you the vial of ethenea."
+parent = -1
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, you've been a big help."
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Hops don't wanna talk now."
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, how was your journey?"
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Pretty thirst-inducing actually..."
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please tell me that you haven't drunk the contents..."
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Of course I can tell you that I haven't drunk the contents..."
+parent = -1
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "But I'd be lying. Sorry about that me old mucker, can I get you a drink?"
+parent = -1
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I think you've done enough for now."
+parent = -1
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, how was your journey?"
+parent = -1
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Pretty thirst-inducing actually..."
+parent = -1
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please tell me that you haven't drunk the contents..."
+parent = -1
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Oh the gods no! What do you take me for?"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "speaker"
+speaker = "Hops"
+text = "Here's your vial anyway."
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [484, 485]
+
+[[nodes]]
+id = 484
+depth = 2
+kind = "box"
+text = "pic=Sulphuric broline detail.png|He tries to give you the vial of sulphuric broline but you don't have enough room for it."
+parent = 483
+
+[[nodes]]
+id = 485
+depth = 2
+kind = "act"
+text = "end"
+parent = 483
+is_terminal = true
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "box"
+text = "pic=Sulphuric broline detail.png|He gives you the vial of sulphuric broline."
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, I'll let you get your drink now."
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should probably talk to Guidor before leaving the area. Otherwise I'll need to get my vials smuggled in again."
+parent = -1
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "select"
+text = "Leave anyway?"
+parent = -1
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [492]
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "act"
+text = "end"
+parent = 491
+is_terminal = true
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [494]
+
+[[nodes]]
+id = 494
+depth = 2
+kind = "act"
+text = "end"
+parent = 493
+is_terminal = true
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's someone's bedroom. I'm not going in there without a reason."
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "Please leave my husband alone. He's very sick, and I don't want anyone bothering him."
+parent = -1
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry to hear that. Is there anything I can do?"
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "Thank you, but I just want him to see a priest."
+parent = -1
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A priest? Hmmm..."
+parent = -1
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 502
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "Oh dear! Oh dear! I don't have time to chat!"
+parent = -1
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I'm a friend of Elena, here to see Guidor."
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "I'm afraid that Guidor is not long for this world! So I'm not letting people see him now."
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm really sorry to hear about Guidor."
+parent = -1
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I do have some very important business to attend to!"
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "You heartless rogue! What could be more important than Guidor's life? A life spent well, if not always wisely... I just hope that Saradomin shows mercy on his soul!"
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Guidor is a religious man?"
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "Oh goodness no! But I am! If only I could get him to see a priest!"
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A priest? Hmmm..."
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "speaker"
+speaker = "Asyff"
+text = "Now you look like someone who goes to a lot of fancy dress parties."
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Errr...what are you saying exactly?"
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "speaker"
+speaker = "Asyff"
+text = "I'm just saying that perhaps you would like to peruse my selection of garments."
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "speaker"
+speaker = "Asyff"
+text = "Or, if that doesn't interest you, then maybe you have something else to offer? I'm always on the look out for interesting or unusual new materials."
+parent = -1
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "option"
+text = "quest=No|Okay, let's see what you've got then."
+parent = -1
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "option"
+text = "Do you have a spare Priest Gown?"
+parent = -1
+children = [520, 521, 522, 523, 524, 525, 526]
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have a spare Priest Gown?"
+parent = 519
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "speaker"
+speaker = "Asyff"
+text = "Well I do sell them. I don't hand them out for free though. This is a shop not a charity."
+parent = 519
+
+[[nodes]]
+id = 522
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Please! It's really important."
+parent = 519
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "speaker"
+speaker = "Asyff"
+text = "Well I suppose you can have this old one. It's not in good enough condition to sell."
+parent = 519
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "box"
+text = "pic=Priest gown (top) detail.png|You are given a Priest Gown."
+parent = 519
+
+[[nodes]]
+id = 525
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 519
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "act"
+text = "end"
+parent = 519
+is_terminal = true
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "option"
+text = "quest=No|I think I might just leave the perusing for now, thanks."
+parent = -1
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "option"
+text = "quest=No|Can you make clothing suitable for hunting?"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "option"
+text = "quest=No|What sort of unusual materials did you have in mind?"
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "A priest! thank goodness! My husband is very ill! Perhaps you could read him his last rites?"
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll see what I can do."
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, you must be Guidor. I understand that you are unwell."
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "speaker"
+speaker = "Guidor"
+text = "Is my wife asking priests to visit me now? I'm a man of science for god's sake. I know she means well but it's only a little cough!"
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "She made out it was something more serious."
+parent = -1
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "speaker"
+speaker = "Guidor"
+text = "Well it's not killed me yet. So what do you want?"
+parent = -1
+
+[[nodes]]
+id = 537
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 538
+depth = 1
+kind = "option"
+text = "I've come to ask your assistance in stopping a plague."
+parent = -1
+children = [539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 552, 555, 558, 559, 560, 561, 562, 563, 564]
+
+[[nodes]]
+id = 539
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've come to ask your assistance in stopping a plague."
+parent = 538
+
+[[nodes]]
+id = 540
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "You mean the plague of West Ardougne?"
+parent = 538
+
+[[nodes]]
+id = 541
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's the one. I have a sample here from your former student, Elena."
+parent = 538
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "Elena eh?"
+parent = 538
+
+[[nodes]]
+id = 543
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, she wants you to analyse it. You might be the only one who can help."
+parent = 538
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "Right then, sounds like we'd better get to work!"
+parent = 538
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have the plague sample."
+parent = 538
+
+[[nodes]]
+id = 546
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "Now I'll be needing some liquid honey, some sulphuric broline, and then..."
+parent = 538
+
+[[nodes]]
+id = 547
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "... some ethenea?"
+parent = 538
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "Indeed!"
+parent = 538
+
+[[nodes]]
+id = 549
+depth = 2
+kind = "cond"
+text = "If the player does not have all three vials:"
+parent = 538
+children = [550, 551]
+
+[[nodes]]
+id = 550
+depth = 3
+kind = "speaker"
+speaker = "Guidor"
+text = "Look, I need all three reagents to test the plague sample. Come back when you've got them."
+parent = 549
+
+[[nodes]]
+id = 551
+depth = 3
+kind = "act"
+text = "end"
+parent = 549
+is_terminal = true
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "cond"
+text = "If the player does not have touch paper:"
+parent = 538
+children = [553, 554]
+
+[[nodes]]
+id = 553
+depth = 3
+kind = "speaker"
+speaker = "Guidor"
+text = "Oh. You don't have any touch paper. I won't be able to help after all."
+parent = 552
+
+[[nodes]]
+id = 554
+depth = 3
+kind = "act"
+text = "end"
+parent = 552
+is_terminal = true
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "cond"
+text = "If the player does not have the plague sample:"
+parent = 538
+children = [556, 557]
+
+[[nodes]]
+id = 556
+depth = 3
+kind = "speaker"
+speaker = "Guidor"
+text = "Seems like you don't actually have the plague sample. It's a long way to come empty handed... and quite a long way back too."
+parent = 555
+
+[[nodes]]
+id = 557
+depth = 3
+kind = "act"
+text = "end"
+parent = 555
+is_terminal = true
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "Now I'll just apply these to the sample and... I don't get it... the touch paper has remained the same."
+parent = 538
+
+[[nodes]]
+id = 559
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's why Elena wanted you to do it, because she wasn't sure what was happening."
+parent = 538
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "Well that's just it, nothing has happened. I don't know what this sample is, but it certainly isn't toxic."
+parent = 538
+
+[[nodes]]
+id = 561
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what about the plague?"
+parent = 538
+
+[[nodes]]
+id = 562
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "This result can only mean one thing... there is no plague. It seems that someone has been lying about all of it. The only question is... why?"
+parent = 538
+
+[[nodes]]
+id = 563
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well this is worrying. I'd better go and tell Elena right away."
+parent = 538
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "act"
+text = "end"
+parent = 538
+is_terminal = true
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "option"
+text = "I was just going to bless your room and I've done that now."
+parent = -1
+children = [566, 567, 568]
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just going to bless your room and I've done that now."
+parent = 565
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "speaker"
+speaker = "Guidor"
+text = "Oh. Goodbye then."
+parent = 565
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "act"
+text = "end"
+parent = 565
+is_terminal = true
+
+[[nodes]]
+id = 569
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again Guidor."
+parent = -1
+
+[[nodes]]
+id = 570
+depth = 1
+kind = "speaker"
+speaker = "Guidor"
+text = "Well, hello traveller. I still can't understand why they would lie about the plague."
+parent = -1
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's strange, anyway how are you doing?"
+parent = -1
+
+[[nodes]]
+id = 572
+depth = 1
+kind = "speaker"
+speaker = "Guidor"
+text = "I'm hanging in there."
+parent = -1
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good for you."
+parent = -1
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 575
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "Hello there. I fear Guidor may not be long for this world!"
+parent = -1
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 578
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "You're back! So what did Guidor say?"
+parent = -1
+
+[[nodes]]
+id = 579
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nothing."
+parent = -1
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He ran his tests and discovered nothing. The plague... it doesn't exist."
+parent = -1
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Doesn't exist? But I don't understand... why?"
+parent = -1
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't know, but I think we're about to uncover something huge."
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Well I think there's only one thing for it. The king must be confronted!"
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The king?"
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Yes. King Lathas of East Ardougne. He was the one that had the wall built. He was the one who called the mourners in. He must know what's really going on here."
+parent = -1
+
+[[nodes]]
+id = 587
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I'd better go and speak to the king then."
+parent = -1
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Be quick. You should find him in the castle."
+parent = -1
+
+[[nodes]]
+id = 589
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 590
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Elena."
+parent = -1
+
+[[nodes]]
+id = 591
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "You must go and see King Lathas immediately!"
+parent = -1
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I assume that you are King Lathas of East Ardougne?"
+parent = -1
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "You assume correctly, but where do you get such impertinence."
+parent = -1
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I get it from finding out that the plague is a hoax."
+parent = -1
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "A hoax? I've never heard such a ridiculous thing..."
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have evidence, from Guidor of Varrock."
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "Ah... I see. Well then you are right about the plague. But I did it for the good of my people."
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "When is it ever good to lie to people like that?"
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "When it protects them from a far greater danger, a fear too big to fathom."
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't understand..."
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "When my father was king, he ruled over a united Ardougne. But on his deathbed, he could not decide which of his sons should succeed him, so he had the city split into two."
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "I became king of East Ardougne while my brother, Tyras, ruled over West Ardougne. My brother was a good man and was great at many things. Being a king was not one of them."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "Rather than looking after his people, he went on numerous expeditions to the lands west of here. On one of these expeditions, he was captured by the forces of the Dark Lord."
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "The Dark Lord agreed to spare his life, but only on one condition... That he would drink from the Chalice of Eternity."
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what happened?"
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "The chalice corrupted him. He joined forces with the Dark Lord, the embodiment of pure evil..."
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = """
+And so I erected the wall, not just to protect my people, but to protect all the people of Gielinor. Tyras is king of West Ardougne, sealing off the city was the only way to stop him and the Dark Lord.
+"""
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "I knew people would never believe the truth, so I had the plague made up as an excuse for the cordon. I'm not proud of it, but it was the only way to keep people safe."
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. Well at least I know now."
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "While my brother is still at large, I must ask that you keep this secret. We can't bring the wall down until we know he is no longer a danger."
+parent = -1
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But how do we stop him?"
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "You're willing to help? Gods be praised!"
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = """
+My brother is currently gathering strength in the lands to the west. If we are to stop him, we must find a way through the mountains. There is an underground pass that should lead through but it is full of danger.
+"""
+parent = -1
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "Return to me when you are ready to face this peril. Until then, I give you permission to use my training area. It's located just to the north west of the city."
+parent = -1
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = """
+I'll also let the mourners know that you are a friend to Ardougne. You will be allowed to pass through the gates to West Ardougne whenever you please. Now, you'd better be off. You have much to prepare for.
+"""
+parent = -1
+
+[[nodes]]
+id = 617
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 618
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "Do you need anything else adventurer?"
+parent = -1
+
+[[nodes]]
+id = 619
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 620
+depth = 1
+kind = "option"
+text = "Why don't I get started right away?"
+parent = -1
+children = [621, 622, 623, 624]
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why don't I get started right away?"
+parent = 620
+
+[[nodes]]
+id = 622
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Your enthusiasm is to be commended. Very well, if you feel you are already prepared then who am I to stop you."
+parent = 620
+
+[[nodes]]
+id = 623
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "As we've previously discussed, my brother is currently gathering strength in the lands west of here. The only known way into those lands is through the Underground Pass."
+parent = 620
+
+[[nodes]]
+id = 624
+depth = 2
+kind = "act"
+text = "(Continues with Underground Pass dialogue.)"
+parent = 620
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "option"
+text = "I don't think so."
+parent = -1
+children = [626, 627, 628]
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't think so."
+parent = 625
+
+[[nodes]]
+id = 627
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Very well. Return to me once you are ready and we will discuss our next steps."
+parent = 625
+
+[[nodes]]
+id = 628
+depth = 2
+kind = "act"
+text = "end"
+parent = 625
+is_terminal = true
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day King Lathas."
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "And to you adventurer. I assume you're here about King Tyras?"
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "option"
+text = "I am. What's our plan?"
+parent = -1
+children = [633, 634, 635]
+
+[[nodes]]
+id = 633
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am. What's our plan?"
+parent = 632
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Well, as we've previously discussed, my brother is currently gathering strength in the lands west of here. The only known way into those lands is through the Underground Pass."
+parent = 632
+
+[[nodes]]
+id = 635
+depth = 2
+kind = "act"
+text = "(Continues with Underground Pass dialogue.)"
+parent = 632
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "option"
+text = "I'm just passing through."
+parent = -1
+children = [637, 638, 639]
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm just passing through."
+parent = 636
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Fair enough. Return to me when you are ready and we will discuss our next steps."
+parent = 636
+
+[[nodes]]
+id = 639
+depth = 2
+kind = "act"
+text = "end"
+parent = 636
+is_terminal = true
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Elena."
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Hey, how are you?"
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good thanks, yourself?"
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Not bad, did you speak to the king?"
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I did, he admitted the plague is a hoax."
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Did he say why?"
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He did. He asked me to keep it a secret though."
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Even from me?"
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid so. Don't worry though, I'm working with the king to resolve all of this."
+parent = -1
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "I hope so. Even without the plague, I still worry about the people of West Ardougne."
+parent = -1
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Elena."
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Hey, how are you?"
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good thanks, yourself?"
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "Not bad, I do wish you could tell me what's going on with the plague though."
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So do I Elena. I promise I'll tell you everything once this is all over."
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Elena"
+text = "I hope that's not too far off."
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It shouldn't be, don't worry."
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Julie"
+text = "Oh hello, I can't chat now. I have to keep an eye on my husband. He's very ill!"
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry to hear that!"
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again Guidor. How are you doing?"
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Guidor"
+text = "I'm hanging in there."
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good for you."
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

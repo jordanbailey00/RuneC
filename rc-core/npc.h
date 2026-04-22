@@ -20,8 +20,17 @@ typedef struct {
     // Per-NPC AI parameters (set from def + Void data)
     int wander_range;       // max tiles from spawn (default 5)
     int respawn_ticks;      // ticks before respawn after death (default 25)
+    // Combat / behaviour fields merged from osrsreboxed-db (NDEF v2 onward)
     bool aggressive;
     int aggro_range;
+    int max_hit;            // 0 = non-combat
+    int attack_speed;       // ticks between attacks; 0 = non-combat
+    int slayer_level;       // level required to damage; 1 = always
+    int attack_types;       // bitfield: 0x1 stab 0x2 slash 0x4 crush 0x8 magic 0x10 ranged
+    int weakness;           // bitfield: 0x1 fire 0x2 water 0x4 earth 0x8 air
+                            //           0x10 stab 0x20 slash 0x40 crush 0x80 ranged/magic
+    bool poison_immune;
+    bool venom_immune;
 } RcNpcDef;
 
 // Global NPC definitions table — loaded once at startup

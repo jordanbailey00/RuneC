@@ -1,0 +1,41 @@
+name = "Tempoross"
+source_pages = ["Tempoross", "Tempoross/Strategies"]
+npc_ids = []
+
+[sections]
+"=Tempoross' attacks=" = """
+[[File:Tempoross phase two.png|thumb|Dispersing the magical fish forming Tempoross's essence.]]
+During the fight, Tempoross will attempt to disrupt the player's efforts by unleashing an array of attacks. '''These attacks do not deal any damage'''; rather, they hinder the player's movements and can cause players to lose some of the fish and tools gathered during the encounter. The only items that can be lost during these encounters are the [[Hammer]], [[Rope]], [[Bucket]], [[Bucket of water]], [[Raw harpoonfish]], and [[Harpoonfish]]. All other equipped and inventory items are safe from Tempoross's attacks. 
+
+[[File:Tempoross Colossal Wave.gif|thumb|''A colossal wave closes in...'']]
+*'''Wave attack''' - A huge wave covers the entire cove, pushing players a few tiles away. Players can avoid being swept away by using rope to tether themselves to [[Mast (Tempoross)|mast]]s or [[totem pole]]s found on the ships and islands respectively. Tethered players will be unaffected by the wave attack but will be unable to move for the duration of the wave (though players can freely tether/untether themselves). Alternatively the wave will not push players if they are stood between the ammunition creates, it will still cause items to be lost however. The wave can also break masts and totem poles, which will need to be repaired with a hammer before they can be used to tether again. The chance of a tether site breaking is between 15% and 25%, scaling with the intensity of the storm.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1638489323510063104|date=22 March 2023|archiveurl=https://reldo.runescape.wiki/i/102099|archivedate=22 March 2023|quote=Between 15% and 25%, depending on the storm intensity at the time. Rolled independently for each tether site.}} The wave will also extinguish any fires started by the lightning attack. The wave attack will not start if Tempoross' energy is 10% or lower.
+
+[[File:Tempoross Cloud Attack.gif|thumb|upright|''A strong wind blows as clouds roll in...'']]
+*'''Lightning attack''' - Large grey clouds move over the island and ships, expand, and then emit lightning bolts lighting [[Fire (Tempoross Cove)|fires]]. Players can put out the fires with [[bucket of water|buckets of water]], but if not done quickly, fires will spread to more tiles. As with the wave attack, the lightning attack will not start if Tempoross' energy is 10% or lower. However, fires will continue to spread.
+
+[[File:Tempoross Zapped Cannon.gif|thumb|A zapped cannon]]
+[[File:Tempoross Torrent Attack.gif|thumb|''A charged torrent of water surges towards a nearby cannon...'']]
+*'''Torrent attack''' - A swirling pillar of water is launched towards a cannon, which temporarily disables it and stuns any player currently loading the cannon. This can be avoided by quickly stepping away or switching to another cannon onboard. The Torrent Attack will not start if Tempoross' energy is 10% or lower.
+"""
+
+"Fighting Tempoross" = """
+{{Main|Tempoross/Strategies}}
+[[File:Tempoross cannons.png|thumb|Four cannons fire harpoonfish at Tempoross.]]
+
+Players can begin the encounter by boarding the ship located at the end of the dock in the [[Ruins of Unkah]]. Tempoross can be fought either alone via the 'Solo-start' option on the [[rope ladder]], or by waiting for others on the boat before [[Captain Dudi]] reaches the end of her countdown. However, the boat will leave immediately if the maximum number of players reaches the maximum capacity (of 40 players) on the boat. Despite being on the boat, a player can miss its departure due to performing an emote and will have to wait for the next one. 
+
+Multiple instances of the encounter can run simultaneously, so players will not have to wait for an in-progress encounter to return before a new encounter can begin. The boss fight scales based on the amount of players taking part. This means players attempting to start this boss alone will not be at a disadvantage. However, fires will be harder to put out alone as this mechanic does not depend on the amount of players in the game. 
+
+After the ship departs, players will arrive at [[Tempoross Cove]] on board one of two ships, both of which are identical in function and role in defeating Tempoross. A selection of equipment, including [[rope]]s, [[bucket]]s, [[hammer]]s, and [[harpoon]]s are available from the crates on deck should the player have lost or forgotten any items.
+
+Players must help the anglers subdue Tempoross by draining its essence to zero. To do this, players must first deplete its energy by firing cannons found on the decks of both ships, using [[harpoonfish]] as ammunition. The fish are gathered via harpoon spots found in the waters around the island and can optionally be cooked to deal more damage. Occasionally, a fishing spot will have jumping harpoonfish. Fishing at these spots allows for the chance of catching two harpoonfish at a time. [[Raw harpoonfish]] drain 10 energy per fish, while cooked fish drain 15 energy per fish. In a solo encounter, Tempoross has ~266 Energy at 100%. 
+
+[[File:Tempoross Jumping Harpoonfish.gif|thumb|Double harpoonfish!]]
+Once its energy is depleted to zero, Tempoross will submerge and the second phase of the fight will begin. During this phase, players must catch the energised fish from Tempoross by fishing at the whirlpool at the end of each dock. Doing so will reduce its essence. If the essence depletes to zero before Tempoross has fully restored its energy, it will retreat and the encounter will be successful. However, if Tempoross fully regains its energy before its essence is fully depleted, it will emerge and the first phase of the fight will repeat again. Any essence depleted from Tempoross in the second phase will remain depleted. This cycle can be repeated up to three times, after which Tempoross will gain too much energy, becoming "enraged", and the encounter will end unsuccessfully.
+
+The starting energy of Tempoross depends on the amount of players in the encounter, with each player contributing a certain amount of energy to its health pool that scales based on player count: around 260 energy is added by a player in a solo setting, scaling linearly up to ~180 energy per player when 40 players embark.{{CiteTwitter|author=Mod Squid|url=https://twitter.com/JagexSquid/status/1478772976862601231|date=5 January 2022|archiveurl=https://reldo.runescape.wiki/i/103237|archivedate=20 April 2023|quote=(...) It's linear with some scaled lenience, so each player roughly adds 2.6k (1 player) - 1.8k (40 players) to Energy and 2.5k (1) - 1.7k (40) to Essence. (Hitsplat values are x10 behind the scenes).|name=preciousfluids}} Likewise, the amount of essence available to Tempoross varies with player count: around 250 essence is added to the total if a single player is present, scaling up to ~170 essence per player with a party size of 40.{{NamedRef|preciousfluids}}
+
+While harpooning energised fish at this stage, the player's [[Energy|run energy]] will be restored by 3% each time the message {{mes|The glowing fish scatter, shedding their magical scales.}} appears in the chatbox, that is to say about every four ticks.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1603796197826756608|date=16 December 2022|archiveurl=https://reldo.runescape.wiki/i/96904|archivedate=16 December 2022|quote=3% for Tempoross. (...)}} It should also be noted that regardless of fishing level, the max hit any player can deal is 12. Therefore dragon harpoon specials should be saved for harpooning the harpoonfish pools rather than the spirit pools.
+
+If the encounter is successful, the player will be automatically sent back to the Ruins of Unkah after approximately 20 seconds. Players can skip the wait by using the right-click leave option on any of the NPCs around the Cove.
+"""

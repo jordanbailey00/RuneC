@@ -1,0 +1,47 @@
+# Giant Mole — wilderness lair boss. Tests: escape/teleport mechanic
+# probability-gated on hp band + incoming attack.
+
+name = "Giant Mole"
+slug = "giant_mole"
+npc_ids = [5779]
+source_pages = ["Giant Mole", "Giant Mole/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Claw Swipe"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 21
+warning_ticks = 0
+# Cannot path around obstacles — player can safespot.
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Claw Swipe"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Burrow Escape"
+primitive = "teleport_on_incoming_attack"
+# Wiki: "When the mole's health is between 5-50%, there is a 25%
+# chance for any incoming attack to cause it to burrow away into
+# another location." Excludes splashed magic.
+params.hp_pct_band = [5, 50]
+params.chance_per_incoming = 0.25
+params.exclude_splashed_magic = true
+params.distribution = "random_floor_tile_in_lair"
+params.extinguishes_light = true     # dirt splatter extinguishes
+                                     # open light sources
+# Poison-damage-over-time does NOT trigger burrow (wiki note).
+params.exclude_poison_dot = true
+# On burrow, Scorpia loses aggression; player must re-engage.
+params.drops_aggression = true
+
+# ---- Immunities (from NPC def — listed here for reference) ------------
+# immune_venom = true, immune_poison = false (susceptible to poison).
+# Already captured in npc_defs.bin; no override needed.

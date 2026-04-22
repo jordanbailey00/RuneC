@@ -1,0 +1,89 @@
+title = "Transcript:Ancient Relic (Library Historical Archive)"
+npcs = ["Istoria"]
+node_count = 11
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "box"
+text = "pic=Dark relic detail.png|A dark power emanates from the relic. You sense that this power can be directed."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Commune with the relic?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [3, 4, 5, 6, 7]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Istoria"
+text = "Don't touch that!"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why not?"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Istoria"
+text = "That is an ancient relic recovered from the Chambers of Xeric. It's a powerful artefact, and we're still studying its powers."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh okay, sorry!"
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [9, 10]
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I probably shouldn't touch this."
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true

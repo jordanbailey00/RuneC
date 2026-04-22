@@ -1,0 +1,1505 @@
+title = "Transcript:Lost City"
+npcs = ["Shamus", "Warrior (Lost City)", "Archer (Lost City)", "Wizard (Lost City)", "Monk (Lost City)", "Cave monk", "Tree spirit (Lost City)", "Tool Leprechaun"]
+node_count = 191
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Warrior"
+text = "Hello there traveller."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "What are you camped out here for?"
+parent = -1
+children = [3, 4, 5, 6, 42, 50]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you camped here for?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Warrior"
+text = "We're looking for Zanaris...GAH! I mean we're not here for any particular reason at all."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "Who's Zanaris?"
+parent = 2
+children = [7, 8, 9, 10, 33]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Who's Zanaris?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "Ahahahaha! Zanaris isn't a person! It's a magical hidden city filled with treasures and rich.. uh, nothing. It's nothing."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "option"
+text = "If it's hidden how are you planning to find it?"
+parent = 6
+children = [11, 12, 13, 14, 16]
+
+[[nodes]]
+id = 11
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "If it's hidden how are you planning to find it?"
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 4
+kind = "speaker"
+speaker = "Warrior"
+text = "Well, we don't want to tell anyone else about that, because we don't want anyone else sharing in all that glory and treasure."
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 4
+kind = "option"
+text = "Please tell me."
+parent = 10
+children = [15]
+
+[[nodes]]
+id = 15
+depth = 5
+kind = "act"
+text = "below"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 4
+kind = "option"
+text = "Looks like you don't know either."
+parent = 10
+children = [17, 18, 19, 21, 22, 30]
+
+[[nodes]]
+id = 17
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well, it looks to me like YOU don't know EITHER seeing as you're all just sat around here."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 5
+kind = "speaker"
+speaker = "Warrior"
+text = "Of course we know! We just haven't found which tree the stupid leprechaun's hiding in yet!"
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 5
+kind = "cond"
+text = "If the player has lower than 45 combat and either 31 Crafting or 36 Woodcutting:"
+parent = 16
+children = [20]
+
+[[nodes]]
+id = 20
+depth = 6
+kind = "box"
+text = "Before starting this quest, be aware that one or more of your skill levels are lower than what is required to fully complete it. Your combat level is also lower than the recommended level of 45."
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 5
+kind = "select"
+text = "Start the Lost City quest?"
+parent = 16
+
+[[nodes]]
+id = 22
+depth = 5
+kind = "option"
+text = "Yes."
+parent = 16
+children = [23, 24, 25, 26, 27, 28, 29]
+
+[[nodes]]
+id = 23
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Leprechaun?"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 6
+kind = "speaker"
+speaker = "Warrior"
+text = "GAH! I didn't mean to tell you that! Look, just forget I said anything okay?"
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "So a leprechaun knows where Zanaris is eh?"
+parent = 22
+
+[[nodes]]
+id = 26
+depth = 6
+kind = "speaker"
+speaker = "Warrior"
+text = "Ye.. uh, no. No, not at all. And even if he did - which he doesn't - he DEFINITELY ISN'T hiding in some tree around here. Nope, definitely not. Honestly."
+parent = 22
+
+[[nodes]]
+id = 27
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the help!"
+parent = 22
+
+[[nodes]]
+id = 28
+depth = 6
+kind = "speaker"
+speaker = "Warrior"
+text = "Help? What help? I didn't help! Please don't say I did, I'll get in trouble!"
+parent = 22
+
+[[nodes]]
+id = 29
+depth = 6
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 5
+kind = "option"
+text = "No"
+parent = 16
+children = [31, 32]
+
+[[nodes]]
+id = 31
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Right... Well good luck with it."
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 6
+kind = "act"
+text = "end"
+parent = 30
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "option"
+text = "There's no such thing."
+parent = 6
+children = [34, 35, 36, 38, 40]
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "There's no such thing!"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Warrior"
+text = "When we've found Zanaris you'll... GAH! I mean, we're not here for any particular reason at all."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "option"
+text = "Who's Zanaris?"
+parent = 33
+children = [37]
+
+[[nodes]]
+id = 37
+depth = 5
+kind = "act"
+text = "above"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "option"
+text = "What's Zanaris?"
+parent = 33
+children = [39]
+
+[[nodes]]
+id = 39
+depth = 5
+kind = "act"
+text = "below"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "option"
+text = "What makes you think it's out here?"
+parent = 33
+children = [41]
+
+[[nodes]]
+id = 41
+depth = 5
+kind = "act"
+text = "below"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "option"
+text = "What's Zanaris?"
+parent = 2
+children = [43, 44, 45, 47]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's Zanaris?"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "I don't think we want other people competing with us to find it. Forget I said anything."
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "option"
+text = "Please tell me."
+parent = 42
+children = [46]
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "act"
+text = "below"
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "option"
+text = "Oh well. Never mind."
+parent = 42
+children = [48, 49]
+
+[[nodes]]
+id = 48
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Oh well. Never mind."
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 4
+kind = "act"
+text = "end"
+parent = 47
+is_terminal = true
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "option"
+text = "What makes you think it's out here?"
+parent = 2
+children = [51, 52, 53, 55]
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What makes you think it's out here?"
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "Don't you know of the legends that tell of the magical city, hidden in the swam... Uh, no, you're right, we're wasting our time here."
+parent = 50
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "option"
+text = "If it's hidden how are you planning to find it?"
+parent = 50
+children = [54]
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "act"
+text = "above"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "option"
+text = "There's no such thing!"
+parent = 50
+children = [56]
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "act"
+text = "above"
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "Do you know any good adventures I can go on?"
+parent = -1
+children = [58, 59, 60, 68]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know any good adventures I can go on?"
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Warrior"
+text = "Well we're on an adventure right now. Mind you, this is OUR adventure and we don't want to share it - find your own!"
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "option"
+text = "Please tell me."
+parent = 57
+children = [61, 62, 63, 64, 65, 66, 67]
+
+[[nodes]]
+id = 61
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Please tell me?"
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "No."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Please?"
+parent = 60
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "No!"
+parent = 60
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "PLEEEEEEEEEEEEEEEEEEEEEASE?"
+parent = 60
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "NO!"
+parent = 60
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "option"
+text = "I don't think you've found a good adventure at all!"
+parent = 57
+children = [69, 70, 71, 72, 73, 74, 76, 78]
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't think you've found a good adventure at all!"
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "Hah! Adventurers of our calibre don't just hang around in forests for fun, whelp!"
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh really?"
+parent = 68
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What are you camped here for?"
+parent = 68
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "speaker"
+speaker = "Warrior"
+text = "We're looking for Zanaris...GAH! I mean we're not here for any particular reason at all."
+parent = 68
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "option"
+text = "Who's Zanaris?"
+parent = 68
+children = [75]
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "act"
+text = "above"
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "option"
+text = "What's Zanaris?"
+parent = 68
+children = [77]
+
+[[nodes]]
+id = 77
+depth = 4
+kind = "act"
+text = "above"
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "option"
+text = "What makes you think it's out here?"
+parent = 68
+children = [79]
+
+[[nodes]]
+id = 79
+depth = 4
+kind = "act"
+text = "above"
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why are you guys hanging around here?"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Archer"
+text = "(ahem)...'Guys'?"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh... yeah, sorry about that. Why are you all standing around out here?"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Archer"
+text = "Well, that's really none of your business."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why are all of you standing around here?"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Hahaha you dare talk to a mighty wizard such as myself? I bet you can't even cast windstrike yet amateur!"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...You're an idiot."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why are all of you standing around here?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "None of your business. Get lost."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So let me get this straight: I need to search the trees around here for a leprechaun; and then when I find him, he will tell me where this 'Zanaris' is?"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Warrior"
+text = "What? How did you know that? Uh... I mean, no, no you're very wrong. Very wrong, and not right at all, and I definitely didn't tell you about that at all."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So I hear theres{{sic}} a leprechaun around here who can show me the way to Zanaris?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Archer"
+text = "...W-what? How did you..?"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Archer"
+text = "No. You're wrong. Now go away."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Found that leprechaun yet?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Hahaha go away amateur! You're not worthy of joining our great group!"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...right."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Have you found the tree with the leprechaun yet?"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "No, we've looked for ages but haven't... Hey! Wait a minute! How did you know about that?"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the information!"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "...You tricked me. I'm not talking to you anymore."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Tool Leprechaun"
+text = "Ah, 'tis a foine day to be sure! Were yez wantin' me to store yer tools, or maybe ye might be wantin' yer stuff back from me?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "Can you tell me about the Lost City?"
+parent = -1
+children = [110, 111, 112]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me about the Lost City?"
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Tool Leprechaun"
+text = """
+Nay, ye be wantin' to ask Shamus if ye wants to know about the Lost City. He be living up a tree somewhere near Draynor Village. Last I heard he were wailin' about some biggun tryin' to chop his tree down!
+"""
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "option"
+text = "Yes please.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "What can you store?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "What do you do with the tools you're storing?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "No thanks, I'll keep hold of my stuff.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Shamus"
+text = "Ay yer big elephant! Yer've caught me, to be sure! What would an elephant like yer be wanting wid ol' Shamus then?"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Shamus"
+text = "Well you'll have to be catchin' me again when yer are, elephant!"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "box"
+text = "The leprechaun magically disappears."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Shamus"
+text = "Hey! Yer big elephant! Don't go choppin' down me house, now!"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Shamus"
+text = "Ay yer big elephant! Yer've caught me, to be sure! What would an elephant like yer be wanting wid ol' Shamus then?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I want to find Zanaris."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Shamus"
+text = "Zanaris is it now? Well well well... Yer'll be needing to be going to that funny little shed out there in the swamp, so you will."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...but... I thought... Zanaris was a city...?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Shamus"
+text = "Aye that it is!"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "option"
+text = "How does it fit in a shed then?"
+parent = -1
+children = [131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "...How does it fit in a shed then?"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "Ah yer stupid elephant! The city isn't IN the shed! The doorway to the shed is being a portal to Zanaris, so it is."
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I just walk into the shed and end up in Zanaris then?"
+parent = 130
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "Oh, was I fergetting to say? Yer need to be carrying a Dramenwood staff to be getting there! Otherwise Yer'll just be ending up in the shed."
+parent = 130
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So where would I get a staff?"
+parent = 130
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "Dramenwood staffs are crafted from branches of the Dramen tree, so they are. I hear there's a Dramen tree over on the island of Entrana in a cave"
+parent = 130
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "or some such. There would probably be a good place for an elephant like yer to be starting looking I reckon."
+parent = 130
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "The monks are running a ship from Port Sarim to Entrana, I hear too. Now leave me alone yer elephant!"
+parent = 130
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "box"
+text = "The leprechaun magically disappears."
+parent = 130
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 130
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "I've been in that shed, I didn't see a city."
+parent = -1
+children = [142, 143, 144, 145, 146, 147, 148, 149]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've been in that shed. I didn't see a city."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "Oh, was I fergetting to say? Yer need to be carrying a Dramenwood staff to be getting there! Otherwise Yer'll just be ending up in the shed."
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So where would I get a staff?"
+parent = 141
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "Dramenwood staffs are crafted from branches of the Dramen tree, so they are. I hear there's a Dramen tree over on the island of Entrana in a cave"
+parent = 141
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "or some such. There would probably be a good place for an elephant like yer to be starting looking I reckon."
+parent = 141
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "The monks are running a ship from Port Sarim to Entrana, I hear too. Now leave me alone yer elephant!"
+parent = 141
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "box"
+text = "The leprechaun magically disappears."
+parent = 141
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Shamus"
+text = "Ay yer big elephant! Yer've caught me, to be sure! What would an elephant like yer be wanting wid ol' Shamus then?"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "option"
+text = "I'm not sure."
+parent = -1
+children = [153, 154, 155, 156]
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure."
+parent = 152
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "Ha! Look at yer! Look at the stupid elephant who tries to go catching a leprechaun when he don't even be knowing what he wants!"
+parent = 152
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "box"
+text = "The leprechaun magically disappears."
+parent = 152
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "end"
+parent = 152
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "How do I get to Zanaris again?"
+parent = -1
+children = [158, 159, 160, 161, 162]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I get to Zanaris again?"
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "Yer stupid elephant! I'll tell yer again! Yer need to be entering the shed in the middle of the swamp while holding a dramenwood staff! Yer can make the Dramen staff"
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Shamus"
+text = "from a dramen tree branch, and there's a Dramen tree on Entrana! Now leave me alone yer great elephant!"
+parent = 157
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "box"
+text = "The leprechaun magically disappears."
+parent = 157
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "act"
+text = "end"
+parent = 157
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Have you found anything yet?"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Warrior"
+text = "We're still searching for Zanaris...GAH! I mean we're not doing anything here at all."
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I haven't found it yet either."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you didn't find the entrance to Zanaris yet, huh?"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Archer"
+text = "Don't tell me a novice like YOU has found it!"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yep. Found it REALLY easily too."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Archer"
+text = "...I cannot believe that someone like YOU could find the portal where experienced adventurers such as ourselves could not."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Believe what you want. Enjoy your little camp fire."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Hahaha you're such an amateur! Go away and play with some cabbage amateur!"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...right."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "I already told you. I'm not talking to you anymore."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Cave monk"
+text = "Be careful going in there! You are unarmed, and there is much evilness lurking down there! The evilness seems to block off our contact with our gods,"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Cave monk"
+text = "so our prayers seem to have less effect down there. Oh, also, you won't be able to come back this way - This ladder only goes one way!"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Cave monk"
+text = "The only exit from the caves below is a portal which leads only to the deepest wilderness!"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "I don't think I'm strong enough to enter then."
+parent = -1
+children = [182, 183]
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't think I'm strong enough to enter then."
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "option"
+text = "Well that is a risk I will have to take."
+parent = -1
+children = [185, 186]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well that is a risk I will have to take."
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "act"
+text = "end"
+parent = 184
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Tree spirit"
+text = "{{overhead|shadow=yes|colour=yellow|You must defeat me before touching the tree!}}"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Tree spirit"
+text = "{{overhead|shadow=yes|colour=yellow|You must defeat me before touching the tree!}}"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "box"
+text = "With the Tree Spirit defeated you can now chop the tree."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

@@ -1,0 +1,3099 @@
+title = "Transcript:Merlin's Crystal"
+npcs = ["King Arthur", "Sir Bedivere", "Sir Gawain", "Sir Kay", "Sir Lancelot", "Sir Lucan", "Sir Palomedes", "Sir Pelleas", "Sir Tristram", "Arhein", "Sir Mordred", "Morgan Le Faye", "Candle maker", "The Lady of the Lake", "Beggar", "Thrantax the Mighty", "Merlin"]
+node_count = 398
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Welcome to my court. I am King Arthur of the Knights of the Round Table."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "I want to become a Knight of the Round Table!"
+parent = -1
+children = [3, 4, 5, 6, 7, 11]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to become a Knight of the Round Table!"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "King Arthur"
+text = "Really? Well then you will need to go on a quest to prove yourself worthy. My knights all appreciate a good quest."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "King Arthur"
+text = "Unfortunately, our current quest is to rescue Merlin. He recently got himself trapped in some sort of magical crystal. We've moved him from the cave we found him in and now he's upstairs in his tower."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "select"
+text = "Start the Merlin's Crystal quest?"
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 2
+children = [8, 9, 10]
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I will see what I can do then."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "King Arthur"
+text = "Talk to my knights if you need any help."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "No."
+parent = 2
+children = [12, 13, 14]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I may come back and try that later."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "King Arthur"
+text = "Be sure that you come speak to me soon then."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "option"
+text = "quest=no|So what are you doing in Gielinor?"
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "option"
+text = "quest=no|Thank you very much."
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Welcome to my court. I am King Arthur of the Knights of the Round Table."
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "option"
+text = "I want to become a Knight of the Round Table!"
+parent = -1
+children = [20, 21, 22]
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to become a Knight of the Round Table!"
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "King Arthur"
+text = "Well then you must complete your quest to rescue Merlin. Talk to my knights if you need any help."
+parent = 19
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "act"
+text = "end"
+parent = 19
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "quest=no|So what are you doing in Gielinor?"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "option"
+text = "quest=no|Thank you very much."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "May I help you?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Merlin's in a crystal. Little help?"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "That is what we were hoping for from you, adventurer!"
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmmm. Well, ok, thanks anyway."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Good morrow!"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on getting Merlin out of that crystal?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Unfortunately not, Sirrah."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "The only person I know of who would possibly have been of help is Merlin..."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, that's not actually too helpful."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "I am well aware of that, adventurer."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "Greetings! I am Sir Lancelot, the greatest Knight in the land! What do you want?"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "option"
+text = "I want to get Merlin out of the crystal."
+parent = -1
+children = [40, 41, 42]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to get Merlin out of the crystal."
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "Well, if the Knights of the Round Table can't manage it, I can't see how a commoner like you could succeed where we have failed."
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "option"
+text = "quest=no|You're a little full of yourself aren't you?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "Hello there adventurer."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any suggestions on freeing Merlin?"
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "I've tried all the weapons I can find, yet none are powerful enough to break his crystal prison..."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excalibur eh? Where would I find that?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "The Lady of the Lake is looking after it I believe... but I know not where she resides currently."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks. I'll try and find someone who does."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Hello there adventurer, what do you want of me?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd like some advice on breaking that Crystal Merlin's trapped in."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Sorry, I cannot help you with that."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Greetings to the court of King Arthur!"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any suggestions on freeing Merlin?"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "My best guess would be some sort of magic. Unfortunately Merlin is our magic expert."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok, well, thanks anyway."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Hail Arthur, King of the Britons!"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... Hello."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know much about breaking magical crystals?"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Funnily enough...absolutely nothing."
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok. Goodbye."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Good day to you!"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "quest=no|Good day."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "Any ideas on how to get Merlin out of that crystal?"
+parent = -1
+children = [70, 71]
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on how to get Merlin out of that crystal?"
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "I'm a little stumped myself. We've tried opening it with anything and everything!"
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "option"
+text = "Do you know how Merlin got trapped?"
+parent = -1
+children = [73, 74, 75, 76, 77, 78, 82]
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know how Merlin got trapped?"
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "I would guess this is the work of the evil Morgan Le Faye!"
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And where could I find her?"
+parent = 72
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "She lives in her stronghold to the south of here, guarded by some renegade knights led by Sir Mordred."
+parent = 72
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 72
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "option"
+text = "Any idea how to get into Morgan Le Faye's stronghold?"
+parent = 72
+children = [79, 80, 81]
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any idea how to get into Morgan Le Faye's stronghold?"
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "No, you've got me stumped there..."
+parent = 78
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "act"
+text = "end"
+parent = 78
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "option"
+text = "Thank you for the information."
+parent = 72
+children = [83, 84, 85]
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thank you for the information."
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "It is the least I can do."
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "act"
+text = "end"
+parent = 82
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "May I help you?"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't suppose you have any idea how to break into Mordred's fort do you?"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "I am afraid not. Would that we could! Mordred and his cronies have been thorns in our side for far too long already!"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok. Thanks. See you later!"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "Take care adventurer, Mordred is an evil and powerful foe."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Good morrow!"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on getting into Mordred's fort?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Mordred... So you think he may be involved with the curse upon Merlin?"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good a guess as any right?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "I think that you may be onto something there. Unfortunately his fortress is impregnable!"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...I'll figure something out."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "Hello there adventurer."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to get into Mordred's Fortress."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "So... you think Mordred's behind this? I'm afraid I don't have any suggestions..."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks. I'll try and find someone who does."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Hello there adventurer, what do you want of me?"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd like some advice on breaking into Mordred's fort."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Sorry, I cannot help you with that."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Greetings to the court of King Arthur!"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any suggestions on getting into Mordred's fort?"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "My best guess would be using magic. Unfortunately Merlin is our magic expert."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok, well, thanks anyway."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Hail Arthur, King of the Britons!"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... Hello. I need to get into Mordred's fort..."
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Good luck with that!"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "Greetings! I am Sir Lancelot, the greatest Knight in the land! What do you want?"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "option"
+text = "I want to get Merlin out of the crystal."
+parent = -1
+children = [120]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "act"
+text = "above"
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "option"
+text = "quest=no|You're a little full of yourself aren't you?"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "option"
+text = "Any ideas on how to get into Morgan Le Faye's stronghold?"
+parent = -1
+children = [123, 124, 125, 126, 127]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on how to get into Morgan Le Faye's stronghold?"
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "That stronghold is built in a strong defensive position."
+parent = 122
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "It's on a big rock sticking out into the sea."
+parent = 122
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "There are two ways in that I know of, the large heavy front doors, and the sea entrance, only penetrable by boat. They get all their deliveries by boat from Catherby."
+parent = 122
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello! Would you like to trade?"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "option"
+text = "quest=no|Yes."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "option"
+text = "quest=no|No thank you."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "option"
+text = "Is that your ship?"
+parent = -1
+children = [133, 134, 135, 136, 149, 162]
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is that your ship?"
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes, I use it to make deliveries to my customers up and down the coast. These crates here are all ready for my next trip."
+parent = 132
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 132
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "option"
+text = "Do you deliver to the fort just down the coast?"
+parent = 132
+children = [137]
+
+[[nodes]]
+id = 137
+depth = 3
+kind = "option"
+text = "Do you deliver to the fort just down the coast?"
+parent = 136
+children = [138, 139, 140, 141, 145]
+
+[[nodes]]
+id = 138
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Do you deliver to the fort just down the coast?"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 4
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes, I do have orders to deliver there from time to time. I think I may have some bits and pieces for them when I leave here next actually."
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 137
+
+[[nodes]]
+id = 141
+depth = 4
+kind = "option"
+text = "Can you drop me off on the way down please?"
+parent = 137
+children = [142, 143, 144]
+
+[[nodes]]
+id = 142
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Can you drop me off on the way down please?"
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 5
+kind = "speaker"
+speaker = "Arhein"
+text = "I don't think Sir Mordred would like that. He wants as few outsiders visiting as possible. I wouldn't want to lose his business."
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 5
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 4
+kind = "option"
+text = "Aren't you worried about supplying evil knights?"
+parent = 137
+children = [146, 147, 148]
+
+[[nodes]]
+id = 146
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Aren't you worried about supplying evil knights?"
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 5
+kind = "speaker"
+speaker = "Arhein"
+text = "Hey, you gotta take business where you can find it these days! Besides, if I didn't supply them, someone else would."
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 5
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "option"
+text = "Where do you deliver to?"
+parent = 132
+children = [150, 151, 152, 153, 158]
+
+[[nodes]]
+id = 150
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where do you deliver to?"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "Oh, various places up and down the coast. Mostly Karamja and Port Sarim."
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 149
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "option"
+text = "I don't suppose I could get a lift anywhere?"
+parent = 149
+children = [154, 155, 156, 157]
+
+[[nodes]]
+id = 154
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I don't suppose I could get a lift anywhere?"
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 4
+kind = "speaker"
+speaker = "Arhein"
+text = "Sorry pal, but I'm afraid I'm not quite ready to sail yet."
+parent = 153
+
+[[nodes]]
+id = 156
+depth = 4
+kind = "speaker"
+speaker = "Arhein"
+text = "I'm waiting on a big delivery of candles which I need to deliver further along the coast."
+parent = 153
+
+[[nodes]]
+id = 157
+depth = 4
+kind = "act"
+text = "end"
+parent = 153
+is_terminal = true
+
+[[nodes]]
+id = 158
+depth = 3
+kind = "option"
+text = "Well, good luck with your business."
+parent = 149
+children = [159, 160, 161]
+
+[[nodes]]
+id = 159
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Well, good luck with your business."
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 4
+kind = "speaker"
+speaker = "Arhein"
+text = "Thanks buddy!"
+parent = 158
+
+[[nodes]]
+id = 161
+depth = 4
+kind = "act"
+text = "end"
+parent = 158
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "option"
+text = "Are you rich then?"
+parent = 132
+children = [163, 164, 165]
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Are you rich then?"
+parent = 162
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "Business is going reasonably well... I wouldn't say I was the richest of merchants ever, but I'm doing fairly well all things considered."
+parent = 162
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "act"
+text = "end"
+parent = 162
+is_terminal = true
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hey buddy! Get away from my ship alright?"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah... uh... sorry..."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "box"
+text = "The crate is empty. It's just about big enough to hide inside."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "select"
+text = "Would you like to hide inside the crate?"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 194]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "box"
+text = "You climb inside the crate and wait."
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "box"
+text = "And wait..."
+parent = 171
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "box"
+text = "You hear voices outside the crate. {{color|#000080|Is this your crate, Arhein?"
+parent = 171
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "box"
+text = "{{color|#800000|Yeah, I think so. Pack it aboard soon as you can. I'm on a tight schedule for deliveries!"
+parent = 171
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "box"
+text = "You feel the crate being lifted. {{color|#000080|Oof. Wow, this is pretty heavy! I never knew candles weighed so much!"
+parent = 171
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "box"
+text = "{{color|#800000|Quit your whining, and stow it in the hold."
+parent = 171
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "box"
+text = "You feel the crate being put down inside the ship."
+parent = 171
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "box"
+text = "You wait..."
+parent = 171
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "box"
+text = "And wait..."
+parent = 171
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "box"
+text = "{{color|#800000|Casting off!"
+parent = 171
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "box"
+text = "You feel the ship start to move."
+parent = 171
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "box"
+text = "Feels like you're now out at sea."
+parent = 171
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "box"
+text = "The ship comes to a stop."
+parent = 171
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "box"
+text = "{{color|#800000|Unload Mordred's deliveries onto the jetty."
+parent = 171
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "box"
+text = "You feel the crate being lifted."
+parent = 171
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "box"
+text = "You can hear someone mumbling outside the crate. {{color|#000080|...stupid Arhein... making me... candles... never weigh THIS much....hurts....union about this!..."
+parent = 171
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "box"
+text = "{{color|#000080|...if....MY ship be different!... stupid Arhein..."
+parent = 171
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "box"
+text = "You feel the crate being put down."
+parent = 171
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "select"
+text = "Would you like to get back out of the crate?"
+parent = 171
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 171
+children = [192, 193]
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "box"
+text = "You climb out of the crate."
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 3
+kind = "act"
+text = "end"
+parent = 191
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "option"
+text = "No."
+parent = 171
+children = [195, 196, 197, 198]
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "box"
+text = "You wait."
+parent = 194
+
+[[nodes]]
+id = 196
+depth = 3
+kind = "box"
+text = "And wait..."
+parent = 194
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "box"
+text = "And wait..."
+parent = 194
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "select"
+text = "Would you like to get back out of the crate?"
+parent = 194
+children = [199]
+
+[[nodes]]
+id = 199
+depth = 4
+kind = "act"
+text = "above"
+parent = 198
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [201]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Sir Mordred"
+text = "You DARE to invade MY stronghold?!?! Have at thee knave!!!"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "other"
+text = "{{Qact|Sir Mordred attacks}}"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "other"
+text = "{{Qact|Morgan Le Faye appears}}"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "STOP! Please... spare my son."
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "option"
+text = "Tell me how to untrap Merlin and I might."
+parent = -1
+children = [208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 222, 223, 227]
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me how to untrap Merlin and I might."
+parent = 207
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "You have guessed correctly that I'm responsible for that."
+parent = 207
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "I suppose I can live with that fool Merlin being loose for the sake of my son."
+parent = 207
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "Setting him free won't be easy though."
+parent = 207
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "You will need to find a magic symbol as close to the crystal as you can find."
+parent = 207
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "You will then need to drop some bats' bones on the magic symbol while holding a lit black candle."
+parent = 207
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "This will summon a mighty spirit named Thrantax."
+parent = 207
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "You will need to bind him with magic words."
+parent = 207
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "Then you will need the sword Excalibur with which the spell was bound in order to shatter the crystal."
+parent = 207
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 207
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "option"
+text = "So where can I find Excalibur?"
+parent = 207
+children = [219, 220, 221]
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So where can I find Excalibur?"
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "The lady of the lake has it. I don't know if she'll give it to you though, she can be rather temperamental."
+parent = 218
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "act"
+text = "above"
+parent = 218
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 207
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "option"
+text = "OK I will do all that."
+parent = 207
+children = [224, 225, 226]
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I will go do all that."
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "box"
+text = "Morgan Le Faye vanishes."
+parent = 223
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "act"
+text = "end"
+parent = 223
+is_terminal = true
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "option"
+text = "What are the magic words?"
+parent = 207
+children = [228, 229, 230, 231]
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What are the magic words?"
+parent = 227
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "You will find the magic words at the base of one of the chaos altars."
+parent = 227
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "speaker"
+speaker = "Morgan Le Faye"
+text = "Which chaos altar I cannot remember."
+parent = 227
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "act"
+text = "above"
+parent = 227
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "option"
+text = "No. He deserves to die."
+parent = -1
+children = [233, 234, 235]
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No. He deserves to die."
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "other"
+text = "{{mes|You kill Mordred.}}"
+parent = 232
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "act"
+text = "end"
+parent = 232
+is_terminal = true
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "option"
+text = "Ok then."
+parent = -1
+children = [237, 238, 239]
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "OK then."
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "box"
+text = "Morgan Le Faye vanishes."
+parent = 236
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "act"
+text = "end"
+parent = 236
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Candle maker"
+text = "Hi! Would you be interested in some of my fine candles?"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "option"
+text = "Have you got any black candles?"
+parent = -1
+children = [243, 244, 245, 246, 247, 248, 249, 250]
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you got any black candles?"
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "speaker"
+speaker = "Candle maker"
+text = "BLACK candles???"
+parent = 242
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Candle maker"
+text = "Hmmm. In the candle making trade, we have a tradition that it's very bad luck to make black candles."
+parent = 242
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "speaker"
+speaker = "Candle maker"
+text = "VERY bad luck."
+parent = 242
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I will pay good money for one..."
+parent = 242
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Candle maker"
+text = "I still dunno..."
+parent = 242
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "speaker"
+speaker = "Candle maker"
+text = "IF you can bring me a bucket FULL of wax."
+parent = 242
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "quest=no|Yes please."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "option"
+text = "quest=no|No thank you."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Candle maker"
+text = "Have you got any wax yet?"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "cond"
+text = "If the player has the bucket of wax in their inventory:"
+parent = -1
+children = [255, 256, 257, 258]
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have some now."
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "box"
+text = "You exchange the wax with the candle maker for a black candle."
+parent = 254
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "act"
+text = "receives=a black candle"
+parent = 254
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "act"
+text = "end"
+parent = 254
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "cond"
+text = "If the player does not have the bucket of wax in their inventory:"
+parent = -1
+children = [260, 261]
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nope, not yet."
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "act"
+text = "end"
+parent = 259
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "May I help you?"
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Know anything about Excalibur?"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "Um... it's a really good sword?"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Know where I can find it?"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "Nope, sorry."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Good day to you!"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on finding Excalibur?"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Unfortunately not, adventurer."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Good morrow!"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on finding Excalibur?"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Unfortunately not, Sirrah."
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "Hello there adventurer."
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to find Excalibur."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "I'm afraid I don't have any suggestions..."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks. I'll try and find someone who does."
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Hello there adventurer, what do you want of me?"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd like some advice on finding Excalibur."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Sorry, I cannot help you with that."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Greetings to the court of King Arthur!"
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any suggestions on finding Excalibur?"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "My best guess would be some sort of spell. Unfortunately Merlin is our magic expert."
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok, well, thanks anyway."
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Hail Arthur, King of the Britons!"
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... Hello."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to find Excalibur..."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Good luck with that!"
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "Good day to you."
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "option"
+text = "quest=no|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "option"
+text = "quest=no|Good day."
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "option"
+text = "I seek the sword Excalibur."
+parent = -1
+children = [300, 301, 302, 303, 304, 305, 306, 307, 308]
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek the sword Excalibur."
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "Aye, I have that artefact in my possession."
+parent = 299
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "'Tis very valuable, and not an artefact to be given away lightly."
+parent = 299
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "I would want to give it away only to one who is worthy and good."
+parent = 299
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And how am I meant to prove that?"
+parent = 299
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "I shall set a test for you."
+parent = 299
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "First I need you to travel to Port Sarim. Then go to the upstairs room of the jeweller's shop there."
+parent = 299
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok. That seems easy enough."
+parent = 299
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "end"
+parent = 299
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Beggar"
+text = "Please, stranger... my family and I are starving..."
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Beggar"
+text = "Could you find it in your heart to spare me a simple loaf of bread?"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "option"
+text = "Yes certainly."
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "cond"
+text = "If the player has bread in their inventory:"
+parent = -1
+children = [314, 315, 316, 317, 318, 319, 320]
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, certainly."
+parent = 313
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "box"
+text = "You give the bread to the beggar."
+parent = 313
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Beggar"
+text = "Thank you very much!"
+parent = 313
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "box"
+text = "The beggar has turned into the Lady of the Lake!"
+parent = 313
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "Well done. You have passed my test."
+parent = 313
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "Here is Excalibur, guard it well."
+parent = 313
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "act"
+text = "end"
+parent = 313
+is_terminal = true
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "cond"
+text = "If the player has no bread in their inventory:"
+parent = -1
+children = [322, 323, 324, 325]
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, certainly."
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "... except I don't have any bread on me at the moment..."
+parent = 321
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "speaker"
+speaker = "Beggar"
+text = "Well, if you get some, you know where to come."
+parent = 321
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "act"
+text = "end"
+parent = 321
+is_terminal = true
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "option"
+text = "No I don't have any bread with me."
+parent = -1
+children = [327, 328, 329]
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't have any bread with me."
+parent = 326
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Beggar"
+text = "Well, if you get some, you know where to come."
+parent = 326
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "act"
+text = "end"
+parent = 326
+is_terminal = true
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Beggar"
+text = "Have you got any bread for me yet?"
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "option"
+text = "Yes, here you go."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "cond"
+text = "If the player has bread in their inventory:"
+parent = -1
+children = [334, 335, 336, 337, 338, 339, 340]
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, here you go."
+parent = 333
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "box"
+text = "You give the bread to the beggar."
+parent = 333
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Beggar"
+text = "Thank you very much!"
+parent = 333
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "box"
+text = "The beggar has turned into the Lady of the Lake!"
+parent = 333
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "Well done. You have passed my test."
+parent = 333
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "The Lady of the Lake"
+text = "Here is Excalibur, guard it well."
+parent = 333
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "end"
+parent = 333
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "cond"
+text = "If the player has no bread in their inventory:"
+parent = -1
+children = [342, 343, 344]
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, here you go."
+parent = 341
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I'm wrong. I still don't have any bread. Sorry."
+parent = 341
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "act"
+text = "end"
+parent = 341
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "option"
+text = "No, I still have none."
+parent = -1
+children = [346, 347]
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, no, I still have none."
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "act"
+text = "end"
+parent = 345
+is_terminal = true
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "box"
+text = "You find a small inscription at the bottom of the altar. It reads: 'Snarthon Candtrick Termanto'."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "box"
+text = "I think I'd better learn the words of binding before summoning a mighty spirit..."
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "other"
+text = "{{mes|You can sense a powerful presence here...}}"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "box"
+text = "Suddenly a mighty spirit appears!"
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now what were those magic words again?"
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "select"
+text = "Select an option (The following options may appear in any order)"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "option"
+text = "Snarthtrick Candanto Termon"
+parent = -1
+children = [357, 358, 359, 360, 361]
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Snarthtrick..."
+parent = 356
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Candato..."
+parent = 356
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Termon!"
+parent = 356
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Thrantax the Mighty"
+text = "GRAAAAAARGH!"
+parent = 356
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "other"
+text = "{{qact|Thrantax the Mighty destroys the black candle and attacks}}"
+parent = 356
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "option"
+text = "Snarthanto Candon Termtrick"
+parent = -1
+children = [363, 364, 365, 366, 367]
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Snarthanto..."
+parent = 362
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Candon..."
+parent = 362
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Termtrick!"
+parent = 362
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Thrantax the Mighty"
+text = "GRAAAAAARGH!"
+parent = 362
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "other"
+text = "{{qact|Thrantax the Mighty destroys the black candle and attacks}}"
+parent = 362
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "option"
+text = "Snarthon Candtrick Termanto"
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Snarthon..."
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Candtrick..."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Termanto!"
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Thrantax the Mighty"
+text = "GRAAAAAARGH!"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "speaker"
+speaker = "Thrantax the Mighty"
+text = "Thou hast me in thine control. So that I mayst return from whence I came, I must grant thee a boon. What dost thou wish of me?"
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I wish to free Merlin from his giant crystal!"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Thrantax the Mighty"
+text = "GRAAAAAARGH!"
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "speaker"
+speaker = "Thrantax the Mighty"
+text = "The deed is done. Thou mayst now shatter Merlin's crystal with Excalibur, and I can once more rest. Begone! And leave me once more in peace."
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "other"
+text = "{{mes|You attempt to smash the crystal...}}"
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "cond"
+text = "If the player doesn't have Excalibur:"
+parent = -1
+children = [380, 381]
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "other"
+text = "{{mes|...but your weapon didn't do any damage at all.}}"
+parent = 379
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "act"
+text = "end"
+parent = 379
+is_terminal = true
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "cond"
+text = "If the player doesn't have Excalibur but has a hammer:"
+parent = -1
+children = [383, 384]
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "other"
+text = "{{mes|...but hammering it had absolutely no effect.}}"
+parent = 382
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "act"
+text = "end"
+parent = 382
+is_terminal = true
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "cond"
+text = "If the player has Excalibur but doesn't have Thrantax's boon:"
+parent = -1
+children = [386]
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "other"
+text = "{{mes|...but it seems to be protected by a dark force}}"
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "cond"
+text = "If the player has Excalibur and Thrantax's boon:"
+parent = -1
+children = [388, 389, 390, 391, 392, 393]
+
+[[nodes]]
+id = 388
+depth = 2
+kind = "other"
+text = "{{mes|... and it shatters under the force of Excalibur!}}"
+parent = 387
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "Thank you! Thank you! Thank you!"
+parent = 387
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "It's not fun being trapped in a giant crystal!"
+parent = 387
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "Go speak to King Arthur, I'm sure he'll reward you!"
+parent = 387
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "box"
+text = "You have set Merlin free. Now talk to King Arthur."
+parent = 387
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "act"
+text = "end"
+parent = 387
+is_terminal = true
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have freed Merlin from his crystal!"
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Ah. A good job, well done. I dub thee a Knight Of The Round Table. You are now an honorary knight."
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

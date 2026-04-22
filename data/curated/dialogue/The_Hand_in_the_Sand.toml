@@ -1,0 +1,3340 @@
+title = "Transcript:The Hand in the Sand"
+npcs = ["Bert", "Guard Captain", "Zavistic Rarve", "Sandy", "Betty", "Mazion"]
+node_count = 426
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Eeee, wha' shall I do! I'll mos' certainly lose tha job..."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lose your job? What's wrong, why?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "I w-w-work... over yon sand pit... and weeell... I found... this... hand! T'were buried in't Sand!"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "Oh, you found a hand in the sand - that's nice for you."
+parent = -1
+children = [4, 5]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, you found a hand in the sand - that's nice for you."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "end"
+parent = 3
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "Eww a hand, in the sand! Why haven't you told the authorities?"
+parent = -1
+children = [7, 8, 9, 10, 11, 12, 18]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Eww a hand, in the sand! Why haven't you told the authorities?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Bert"
+text = "They's no' wha' they once was. Tha cap'ain o'the Guard spends near all o'the time drunk in yon pub."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh? The Guard Captain is drunk in the pub you say? That's not good, what will you do?"
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Bert"
+text = "Weeellll... do yer think yer could 'elp me?"
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "other"
+text = "Start The Hand in the Sand quest?"
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 6
+children = [13, 14, 15, 16, 17]
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I'll give you a hand."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Bert"
+text = "..... Nae, ye can 'ave the 'and as h'evidence."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "box"
+text = "pic=Sandy hand detail.png|Bert gives you a rather smelly, sand covered hand."
+parent = 12
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Bert"
+text = "P'raps tha smell will get t'Guard Cap'ain's nose out o'his beer fer 2 seconds!"
+parent = 12
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "option"
+text = "No."
+parent = 6
+children = [19, 20]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I want no part in this!"
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Did ye see yon Guard Capt'n 'bout hand?"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not at the moment, but I will be seeing him soon."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "Need more beer..."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sir? I have some more beer for you..."
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "box"
+text = "pic=Beer detail.png|You give the beer to the Guard Captain who takes a large gulp."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "Ahh... jus' wha' I need, now, wha' did you wanna know?"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've come to report that Bert, the sandman, found a hand in the sand pit."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "Lucky for him, means he can get even more work done."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But aren't you going to find out who it ... belonged to?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "box"
+text = "pic=Beer soaked hand detail.png|You hand the... hand... to the Guard Captain, he fumbles with it, drops it in his beer, fishes it out and hands it back."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "Oops, No 'arm done. S'prob'ly a wizard, i's always the wizards fault, go ask them, jus' ring the bell outshide the guild and talk to the first pointy hatted ninny you shee!"
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err... ok, I'll go ring the bell and talk to a wizard then."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Did ye see yon Guard Capt'n 'bout hand?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, the Guard Captain said to see the wizards in the guild."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "So why you hangin' abou' 'ere then? Go ring t'bell at t'mage guild just over yonder!"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "cond"
+text = "If the player has lost the sandy hand:"
+parent = -1
+children = [40, 41, 44, 45, 46, 47]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It seems to have slipped through my fingers!"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "cond"
+text = "If the player doesn't have enough inventory space:"
+parent = 39
+children = [42, 43]
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Bert"
+text = "Tha's no' surprisin' with yer bag so full, come back when s'not."
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "act"
+text = "end"
+parent = 41
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Bert"
+text = "Thank t'gods! I tho' I was bein invaded by undead 'ands from t'sand when I found this'un! Take i' to tha mage guild and ring tha' bell to talk ta someone."
+parent = 39
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Bert, I'm off to see the wizards, the wonderful wizards of Yanille!"
+parent = 39
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "act"
+text = "receives=[[Beer soaked hand]]"
+parent = 39
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not at the moment."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Sir!"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "Go 'way! This pint'sh nearly finished! Unlessh you got more that ish....? Wizards, s'all the wizard's fault...prob'ly that Zavistic one, he'sh the worsht!"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "E're, you left this 'and in me beer!"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "cond"
+text = "If the player doesn't have enough inventory space:"
+parent = -1
+children = [54, 55]
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "speaker"
+speaker = "Guard Captain"
+text = "No good if you don' have space fer it in yer invent'ry, come back when you do."
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "act"
+text = "end"
+parent = 53
+is_terminal = true
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "other"
+text = "The Guard Captain fished the hand out of his beer and hands it to you."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "act"
+text = "receives=[[Beer soaked hand]]"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "cond"
+text = "Speaking to Zavistic Rarve via the bell:"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "cond"
+text = "If the player has completed Zogre Flesh Eaters:"
+parent = -1
+children = [61, 62, 63, 65, 66, 67, 68]
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "option"
+text = "quest=No|I'm here about the sicks...err Zogres"
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "option"
+text = "I have a rather sandy problem that I'd like to palm off on you."
+parent = 60
+children = [64]
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "act"
+text = "continue"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing ringing that bell?! Don't you think some of us have work to do?"
+parent = 60
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I was told to ring the bell if I wanted some attention."
+parent = 60
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Well...anyway...we're very busy here, hurry up what do you want?"
+parent = 60
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "act"
+text = "continue"
+parent = 60
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "cond"
+text = "Speaking to Zavistic Rarve inside the guild:"
+parent = -1
+children = [70, 71, 72, 73, 76]
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing bothering me? Don't you think some of us have work to do?"
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I thought you were here to help?"
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Well... I am, I suppose, anyway... we're very busy here, hurry up, what do you want?"
+parent = 69
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "cond"
+text = "If the player does not have the beer soaked hand in their inventory:"
+parent = 69
+children = [74, 75]
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "box"
+text = "Maybe you should have the hand with you before speaking to Zavistic."
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "act"
+text = "end"
+parent = 73
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "cond"
+text = "If the player has the beer soaked hand in their inventory:"
+parent = 69
+children = [77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "box"
+text = "pic=Beer soaked hand detail.png|You wave the hand at the wizard."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ummm... Do you have all your wizards?"
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "All my.... whatever do you mean...?"
+parent = 76
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The Guard Captain asked me to see if you have any... missing... wizards."
+parent = 76
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "That's silly! No one would kill a wizard... would they?"
+parent = 76
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Erm... no..."
+parent = 76
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well.. maybe, you see Bert found this hand and it might belong to.. a wizard!"
+parent = 76
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Bert? Ahh yes, the sandman who seems to have been working very long hours recently. Let's see that hand..."
+parent = 76
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "box"
+text = "pic=Beer soaked hand detail.png|You hand it over."
+parent = 76
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Oh my! This is most definitely Clarence, my most able student! You must find out who did this!"
+parent = 76
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any input as to the matter at hand?"
+parent = 76
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Well.... Ask Bert about the long hours he's been working, that sounds suspicious to me. Digging things up at all hours of the day isn't natural."
+parent = 76
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "act"
+text = "end"
+parent = 76
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing bothering me? Don't you think some of us have work to do?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I thought you were here to help?"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Well... I am, I suppose, anyway... we're very busy here, hurry up, what do you want?"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Did you find out who killed Clarence yet?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet, but don't lose your head over it.<!-- after some quest progress it changes to \"Player: Not yet, but don't bust a gut over it!\" or is it random??-->"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "I don' need a hand drinkin me beer, go 'way!"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But..."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Guard Captain"
+text = "Talk to tha' hand coz thish face ain't lishtnin'!"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Wha' info ye find 'bout hand, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I dug up quite a lot about the hand. Can you tell me about your job?"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Sand! Lots o' sand! Me boss be Sandy o' Sandy's Sand Corp based in Brimhaven on tha isle of Karamja an' I hauls sand fr' there to yon sand pit."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "I's looong harrrrd hours, bu' keeps me busy, y'know what tha say! 'Idle hands'r Zamorak's tools.'"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you're employed by Sandy's Sand Corp in Brimhaven. Have you changed your hours recently?"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = -1
+children = [106, 107]
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Bert"
+text = "Yer coul' see fer yerself iffen yer had space in yorn invent'ry, come back when yer do."
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "act"
+text = "end"
+parent = 105
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "act"
+text = "receives=[[Bert's rota]]"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Nae! See fer yersel', here's a copy o' me rota tha' be held a' head office - yer can looksee iffin ye talk t' Sandy, me boss."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the Rota Bert. I'll go check for the original with Sandy in Brimhaven."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Ey'up [player name]. Did yer see Sandy in Brimhaven 'bout me rota?"
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "cond"
+text = "If the player has lost the rota:"
+parent = -1
+children = [114, 115, 120, 121]
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Err, no, I kind of... lost it..."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = 113
+children = [116, 117, 118, 119]
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "speaker"
+speaker = "Bert"
+text = "Lucky fer yorn tha' I's made a copy then ain't it, I's 'ave been given it to yer iffen you 'ad some space in yer invent'ry."
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What did you say?"
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "speaker"
+speaker = "Bert"
+text = "Is you stupid? I said I'd give ye another but yer bags be full!"
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Bert"
+text = "Lucky fer yorn tha' I's made a copy then ain't it, 'ere 'ave another."
+parent = 113
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I'll fit it in my schedule somewhere soon."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Sir, do you run the Sand Corp?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Sandy"
+text = "Who wants to know?"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm [player name]. I'm here investigating the possible murder of a wizard."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Sandy"
+text = "I don't care about that, I have far too much work to do. Let the authorities take care of things like murder and stop snooping around my office!"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "box"
+text = "Sand seems very keen to get you out of the office, perhaps you should take a look around."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = -1
+children = [131, 132]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "box"
+text = "I'd better make room in my inventory first!"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "end"
+parent = 130
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "cond"
+text = "If the pickpocket attempt fails:"
+parent = -1
+children = [134, 135]
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "box"
+text = "You felt something but it slipped through your fingers..."
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "cond"
+text = "If the pickpocket attempt succeeds:"
+parent = -1
+children = [137, 138, 139]
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "box"
+text = "You rummage around in Sandy's pockets..."
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "box"
+text = "You find a small amount of sand."
+parent = 136
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "act"
+text = "end"
+parent = 136
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = -1
+children = [141, 142]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "box"
+text = "I'd better make room in my inventory first!"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "act"
+text = "end"
+parent = 140
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "cond"
+text = "If the player does not have Sandy's rota:"
+parent = -1
+children = [144, 145]
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "box"
+text = "You quickly sift through some of the papers on Sandy's desk and find a work rota for Bert."
+parent = 143
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "act"
+text = "end"
+parent = 143
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "cond"
+text = "If the player already has Sandy's rota:"
+parent = -1
+children = [147, 148]
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "box"
+text = "You already have Sandy's original work rota."
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "act"
+text = "end"
+parent = 146
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "box"
+text = "You already have the rota, perhaps you should take both rotas back to Bert in Yanille."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I managed to get a copy of the original rota. Your hours changed a week ago!"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "Nae! Nae! I din't remember tha', bu'... hmmm, aye... tha' migh' be it..."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? Give me a hand here, I'm having a hard time understanding how you don't remember changing hours!"
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "I's all be tha wizard's fault! Tha magic leaks fr'm yon magic guild I tells yer! Tha's why this weirrrrd scroll appeareded a week ago!"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A scroll appeared? Can I take a look at it while you look at the rotas?"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "O'course [player name], le's be 'avin'yon rota and 'ere be tha scroll, yer be takin' it back ta those inferrrnal wizards quick sharp!"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "act"
+text = "receives=[[A magic scroll]]"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Bert"
+text = "I be hopin' tha search is goin' well... are tha wizard's owning up ta anythin' yet?"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've found out a lot and will let you know when it's all over."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+children = [163, 164]
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "option"
+text = "quest=No|I'm here about the sicks...err Zogres"
+parent = 162
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "option"
+text = "I have a rather sandy problem that I'd like to palm off on you."
+parent = 162
+children = [165, 166, 167, 168, 169, 170, 171, 172, 173, 174]
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I talked to Bert and found something very strange about his hours."
+parent = 164
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Oh? Did he kill Clarence?"
+parent = 164
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, but he doesn't remember changing his hours, and his rota and the original that his boss Sandy had, are different!"
+parent = 164
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "... oh, and this scroll appeared when they changed - he gave it to me."
+parent = 164
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "I recognise that type of scroll! It's used in a mind altering spell of some sort. Did you speak to this... Sandy guy? Perhaps he has a hand in this."
+parent = 164
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I took a look around his office. I don't know about a hand in it, I think he has both hands and feet in it!"
+parent = 164
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Even more suspicious! Here, take this magical scrying orb and get some Truth Serum from Betty in Port Sarim, she owes me a favour, just tell her I sent you if she complains."
+parent = 164
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Then you will be equipped to ask Sandy a few questions. Oh Clarence, I will find your murderer!"
+parent = 164
+
+[[nodes]]
+id = 173
+depth = 3
+kind = "box"
+text = "pic=Magical orb detail.png|You exchange the scroll for the magical scrying orb. Perhaps Zavistic can give you even more of a hand to find the murderer?"
+parent = 164
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "act"
+text = "end"
+parent = 164
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+children = [176, 177]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "option"
+text = "quest=No|I'm here about the sicks...err Zogres"
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "option"
+text = "I have a rather sandy problem that I'd like to palm off on you."
+parent = 175
+children = [178, 189, 190, 191, 192]
+
+[[nodes]]
+id = 178
+depth = 3
+kind = "cond"
+text = "If the player has lost the magical orb:"
+parent = 177
+children = [179, 180, 181, 182]
+
+[[nodes]]
+id = 179
+depth = 4
+kind = "option"
+text = "quest=No|What is there to do in the Wizards' Guild?"
+parent = 178
+
+[[nodes]]
+id = 180
+depth = 4
+kind = "option"
+text = "quest=No|What are the requirements to get in the Wizards' Guild?"
+parent = 178
+
+[[nodes]]
+id = 181
+depth = 4
+kind = "option"
+text = "quest=No|What do you do in the Guild?"
+parent = 178
+
+[[nodes]]
+id = 182
+depth = 4
+kind = "option"
+text = "I've lost my magical scrying orb!"
+parent = 178
+children = [183, 184, 187, 188]
+
+[[nodes]]
+id = 183
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I've lost my magical scrying orb!"
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 5
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = 182
+children = [185, 186]
+
+[[nodes]]
+id = 185
+depth = 6
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "I'd give you another magical scrying orb if you had some space in your inventory."
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 6
+kind = "act"
+text = "end"
+parent = 184
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "No matter, here, have another and please hurry, whoever killed Clarence must pay!"
+parent = 182
+
+[[nodes]]
+id = 188
+depth = 5
+kind = "act"
+text = "end"
+parent = 182
+is_terminal = true
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "option"
+text = "quest=No|What is there to do in the Wizards' Guild?"
+parent = 177
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "option"
+text = "quest=No|What are the requirements to get in the Wizards' Guild?"
+parent = 177
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "option"
+text = "quest=No|What do you do in the Guild?"
+parent = 177
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "option"
+text = "Can you help me more?"
+parent = 177
+children = [193, 194, 195, 197]
+
+[[nodes]]
+id = 193
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me more?"
+parent = 192
+
+[[nodes]]
+id = 194
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Bring me a vial and I'll help you a little more."
+parent = 192
+
+[[nodes]]
+id = 195
+depth = 4
+kind = "cond"
+text = "If the player does not have a [[vial]] with them:"
+parent = 192
+children = [196]
+
+[[nodes]]
+id = 196
+depth = 5
+kind = "act"
+text = "end"
+parent = 195
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 4
+kind = "cond"
+text = "If the player has a vial with them:"
+parent = 192
+children = [198, 199, 200, 204]
+
+[[nodes]]
+id = 198
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I have a vial here for you."
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 5
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ok, would you like me to transport you to Port Sarim? I'm sticking my neck out a bit helping you like this and can only do it once though!"
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 5
+kind = "option"
+text = "Yes, that would be great!"
+parent = 197
+children = [201, 202, 203]
+
+[[nodes]]
+id = 201
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Yes, that would be great!"
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 6
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Off you go then, break a leg!"
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 6
+kind = "other"
+text = "{{qact|The player is teleported to [[Betty]] shop.}}"
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 5
+kind = "option"
+text = "No, I prefer using my legs, thanks all the same."
+parent = 197
+children = [205, 206, 207]
+
+[[nodes]]
+id = 205
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "No, I prefer using my legs, thanks all the same."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 6
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ok, suit yourself!"
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 6
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "option"
+text = "Talk to Betty about the Hand in the Sand."
+parent = -1
+children = [209, 210, 211, 214, 215, 216]
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've come from Yanille, the wizard says you can make Truth Serum?"
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "This is true deary, I'll need an empty vial."
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "cond"
+text = "If the player doesn't have an empty vial:"
+parent = 208
+children = [212, 213]
+
+[[nodes]]
+id = 212
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll have to go find one then, I'll be back!"
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 3
+kind = "act"
+text = "end"
+parent = 211
+is_terminal = true
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have one here!"
+parent = 208
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "That's good, now you'll need to make a rose tinted lens. Pink dye can be made from red berries in this bottle to make redberry juice, then add white berries. Just use that on a bullseye lens."
+parent = 208
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "act"
+text = "end"
+parent = 208
+is_terminal = true
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "option"
+text = "quest=No|Talk to Betty about her shop."
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "act"
+text = "Using the redberries on the bottled water:"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "other"
+text = "{{Mes|Now you just need to add the white berries to make the pink dye.}}"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "act"
+text = "Using the pink dye on the lantern lens:"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "box"
+text = "pic=Rose-tinted lens detail.png|You have successfully made the rose tinted lens!"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "option"
+text = "Talk to Betty about the Hand in the Sand."
+parent = -1
+children = [224, 225, 228]
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Hello deary! Have you managed to make that lens yet?"
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "option"
+text = "I'm still working on it."
+parent = 223
+children = [226, 227]
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "option"
+text = "I'm afraid I've forgotten how!"
+parent = 223
+children = [229, 230, 231]
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I've forgotten how!"
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "speaker"
+speaker = "Betty"
+text = "Pink dye can be made from red berries in the bottle I gave you. Add white berries to make the pink dye and then you just need to use that on a bullseye lens. Good luck!"
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "option"
+text = "quest=No|Talk to Betty about her shop."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "Talk to Betty about the Hand in the Sand."
+parent = -1
+children = [234, 235, 236, 237, 238]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Wonderful deary. When you're ready, just stand in the open doorway and focus the light on the empty vial on my desk and I'll pour the serum into it."
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, what does that do?"
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Why it makes the person who drinks it unable to hide in the shadow of lies. The light of truth will shine!"
+parent = 233
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "box"
+text = "pic=Vial detail.png|Betty places a vial on her counter."
+parent = 233
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "act"
+text = "end"
+parent = 233
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "option"
+text = "quest=No|Talk to Betty about her shop."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "box"
+text = "pic=Truth serum detail.png|As you focus the light on the vial and betty pours the potion in, the lens heats up and shatters. After a few seconds betty hand you the vial of Truth Serum."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "option"
+text = "Talk to Betty about the Hand in the Sand."
+parent = -1
+children = [243, 244, 247, 248, 249, 250, 251]
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Ok, now the last ingredient, something personal from the person you need to tell the truth, else it won't work!"
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the sand:"
+parent = 242
+children = [245, 246]
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll see if I can find something."
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 3
+kind = "act"
+text = "end"
+parent = 244
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What about this sand straight from his pocket?"
+parent = 242
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "That's excellent deary!"
+parent = 242
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "box"
+text = "pic=Sand detail.png|You hand the sand and watch Betty sprinkle it in the serum, it fizzes."
+parent = 242
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Don't forget to dilute it in something like tea or coffee."
+parent = 242
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "option"
+text = "quest=No|Talk to Betty about her shop."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "box"
+text = "Perhaps you should let Betty do that, it looks tricky."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "option"
+text = "Talk to Betty about the Hand in the Sand."
+parent = -1
+children = [256, 257, 258, 260, 268, 269, 270, 271, 272, 273]
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Hello deary! How did the serum work?"
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "cond"
+text = "If the player has lost the truth serum:"
+parent = 255
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "option"
+text = "I've forgotten how to use the serum."
+parent = 255
+children = [259]
+
+[[nodes]]
+id = 259
+depth = 3
+kind = "act"
+text = "continue"
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "option"
+text = "I've lost it!"
+parent = 255
+children = [261, 262, 265, 266, 267]
+
+[[nodes]]
+id = 261
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost it!"
+parent = 260
+
+[[nodes]]
+id = 262
+depth = 3
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = 260
+children = [263, 264]
+
+[[nodes]]
+id = 263
+depth = 4
+kind = "speaker"
+speaker = "Betty"
+text = "That's not a problem, I kept some of it here just in case, but you have no space for it! Come back when you do{{sic}}"
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 4
+kind = "act"
+text = "end"
+parent = 262
+is_terminal = true
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "speaker"
+speaker = "Betty"
+text = "That's not a problem, I kept some of it here just in case, here you are!"
+parent = 260
+
+[[nodes]]
+id = 266
+depth = 3
+kind = "box"
+text = "pic=Truth serum detail.png|Betty hands you a new vial of truth serum."
+parent = 260
+
+[[nodes]]
+id = 267
+depth = 3
+kind = "act"
+text = "end"
+parent = 260
+is_terminal = true
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't tried it yet."
+parent = 255
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Well don't forget to dilute it in a drink or something else bad things might happen."
+parent = 255
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Bad things?"
+parent = 255
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Well.... bits might drop off."
+parent = 255
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh! I... see. I'll remember to dilute it then."
+parent = 255
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "act"
+text = "end"
+parent = 255
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "option"
+text = "quest=No|Talk to Betty about her shop."
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+children = [276, 277]
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "option"
+text = "quest=No|I'm here about the sicks...err Zogres"
+parent = 275
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "option"
+text = "I have a rather sandy problem that I'd like to palm off on you."
+parent = 275
+children = [278, 279, 280]
+
+[[nodes]]
+id = 278
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Have you made the serum and talked to Sandy yet?"
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not yet, but don't bust a gut over it!"
+parent = 277
+
+[[nodes]]
+id = 280
+depth = 3
+kind = "act"
+text = "end"
+parent = 277
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "cond"
+text = "If the the truth serum isn't complete:"
+parent = -1
+children = [282, 283]
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "box"
+text = "You'll need to have completed the truth serum before doing that!"
+parent = 281
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "act"
+text = "end"
+parent = 281
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "cond"
+text = "If Sandy has not been distracted:"
+parent = -1
+children = [285, 286]
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "box"
+text = "You'll need to distract Sandy before doing that."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "act"
+text = "end"
+parent = 284
+is_terminal = true
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "cond"
+text = "If sandy has been distracted:"
+parent = -1
+children = [288, 289]
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "box"
+text = "You pour the serum in Sandy's coffee, the a little while later watch him drink it."
+parent = 287
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "act"
+text = "end"
+parent = 287
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Sandy"
+text = "I don't have time to talk to you. Go away!"
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "option"
+text = "There's a herd of huge mutant herring about to drop from the sky!"
+parent = -1
+children = [292, 293, 295, 297]
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There's a herd of huge mutant herring about to drop from the sky!"
+parent = 291
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "cond"
+text = "If distracting Sandy succeeds:"
+parent = 291
+children = [294]
+
+[[nodes]]
+id = 294
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "Wow! I must see this!"
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "cond"
+text = "If distracting Sandy fails:"
+parent = 291
+children = [296]
+
+[[nodes]]
+id = 296
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "I'm not falling for that one!"
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "act"
+text = "end"
+parent = 291
+is_terminal = true
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "option"
+text = "But the pygmy shrews have eaten all the sand!"
+parent = -1
+children = [299, 300, 302, 304]
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But the pygmy shrews have eaten all the sand!"
+parent = 298
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "cond"
+text = "If distracting Sandy succeeds:"
+parent = 298
+children = [301]
+
+[[nodes]]
+id = 301
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "Wow! I must see this!"
+parent = 300
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "cond"
+text = "If distracting Sandy fails:"
+parent = 298
+children = [303]
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "I'm not falling for that one!"
+parent = 302
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "act"
+text = "end"
+parent = 298
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "option"
+text = "A small parrot with a pink banana is sitting outside your window!"
+parent = -1
+children = [306, 307, 309, 311]
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A small parrot with a pink banana is sitting outside your window!"
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "cond"
+text = "If distracting Sandy succeeds:"
+parent = 305
+children = [308]
+
+[[nodes]]
+id = 308
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "Wow! I must see this!"
+parent = 307
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "cond"
+text = "If distracting Sandy fails:"
+parent = 305
+children = [310]
+
+[[nodes]]
+id = 310
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "I'm not falling for that one!"
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "act"
+text = "end"
+parent = 305
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "box"
+text = "pic=Magical orb detail.png|You rub the magical scrying orb as the Wizard{{sic"
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "cond"
+text = "If the magical orb is not activated:"
+parent = -1
+children = [315, 316]
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "box"
+text = "You need to activate the magical scrying orb, obtained from the wizard in Yanille, to capture the conversation with Sandy!"
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "act"
+text = "end"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "cond"
+text = "If the magical orb is activated:"
+parent = -1
+children = [318, 319, 320, 327, 335, 341]
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Now, I'm going to ask you some questions and I want you to answer me truthfully..."
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Sandy"
+text = "Ok..."
+parent = 317
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "option"
+text = "Why is Bert's rota different from the original?"
+parent = 317
+children = [321, 322, 323, 325]
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why is Bert's rota different from the original?"
+parent = 320
+
+[[nodes]]
+id = 322
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "Because... I changed it."
+parent = 320
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "cond"
+text = "If all questions have been asked:"
+parent = 320
+children = [324]
+
+[[nodes]]
+id = 324
+depth = 4
+kind = "act"
+text = "continue"
+parent = 323
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "cond"
+text = "If not all questions have been asked:"
+parent = 320
+children = [326]
+
+[[nodes]]
+id = 326
+depth = 4
+kind = "act"
+text = "other"
+parent = 325
+is_terminal = true
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "option"
+text = "Why doesn't Bert remember the change in his hours?"
+parent = 317
+children = [328, 329, 330, 331, 333]
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "Because.... because.... I bribed a wizard to put a spell on him so he would believe everything I say!!"
+parent = 327
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = 327
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "So that I could make him work longer without paying him more!"
+parent = 327
+
+[[nodes]]
+id = 331
+depth = 3
+kind = "cond"
+text = "If all questions have been asked:"
+parent = 327
+children = [332]
+
+[[nodes]]
+id = 332
+depth = 4
+kind = "act"
+text = "continue"
+parent = 331
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "cond"
+text = "If not all questions have been asked:"
+parent = 327
+children = [334]
+
+[[nodes]]
+id = 334
+depth = 4
+kind = "act"
+text = "other"
+parent = 333
+is_terminal = true
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "option"
+text = "What happened to the wizard?"
+parent = 317
+children = [336, 337, 339]
+
+[[nodes]]
+id = 336
+depth = 3
+kind = "speaker"
+speaker = "Sandy"
+text = "I...I... I KILLED HIM! So I wouldn't have to pay him and no one would know. I put his body in the next load of sand."
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "cond"
+text = "If all questions have been asked:"
+parent = 335
+children = [338]
+
+[[nodes]]
+id = 338
+depth = 4
+kind = "act"
+text = "continue"
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 3
+kind = "cond"
+text = "If not all questions have been asked:"
+parent = 335
+children = [340]
+
+[[nodes]]
+id = 340
+depth = 4
+kind = "act"
+text = "other"
+parent = 339
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "option"
+text = "Ok, I'm done with you."
+parent = 317
+children = [342]
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "cond"
+text = "If all the available questions have not been asked:"
+parent = 341
+children = [343, 344]
+
+[[nodes]]
+id = 343
+depth = 4
+kind = "box"
+text = "You need to ask Sandy all the questions."
+parent = 342
+
+[[nodes]]
+id = 344
+depth = 4
+kind = "act"
+text = "end"
+parent = 342
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I have enough evidence now, you can go for now, but I think you're up to your neck in it!"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "box"
+text = "pic=Magical orb detail.png|Sandy has told you all he knows. The magical orb is full and needs to be returned to the Wizard{{sic"
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Sandy"
+text = "I don't have time to talk to you. Go away!"
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "option"
+text = "Talk to Betty about the Hand in the Sand."
+parent = -1
+children = [351, 352, 353]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Betty"
+text = "Hello again deary. Come back and tell me what happened when all the fuss is over."
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok Betty, I'll be back!"
+parent = 350
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "act"
+text = "end"
+parent = 350
+is_terminal = true
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "option"
+text = "quest=No|Talk to Betty about her shop."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+children = [356, 357]
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "option"
+text = "quest=No|I'm here about the sicks...err Zogres"
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "option"
+text = "I have a rather sandy problem that I'd like to palm off on you."
+parent = 355
+children = [358, 362, 363]
+
+[[nodes]]
+id = 358
+depth = 3
+kind = "cond"
+text = "If the orb is lost or isn't in the player's inventory:"
+parent = 357
+children = [359, 360, 361]
+
+[[nodes]]
+id = 359
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I got the whole story from Sandy... but I lost the orb."
+parent = 358
+
+[[nodes]]
+id = 360
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "It's ok, I saw the whole thing as the orb is connected via magic to me as I enchanted it."
+parent = 358
+
+[[nodes]]
+id = 361
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "I think this Sandy needs a lesson, please bring me 5 earth runes and a bucket of sand."
+parent = 358
+
+[[nodes]]
+id = 362
+depth = 3
+kind = "act"
+text = "continue"
+parent = 357
+
+[[nodes]]
+id = 363
+depth = 3
+kind = "cond"
+text = "Else, with the orb in hand:"
+parent = 357
+children = [364, 365, 366, 367, 368, 369]
+
+[[nodes]]
+id = 364
+depth = 4
+kind = "box"
+text = "You hand the magical scrying orb to the Wizard{{sic"
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Well, well...I think this Sandy needs a lesson, please bring me 5 earth runes and a bucket of sand."
+parent = 363
+
+[[nodes]]
+id = 366
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Erm, why?"
+parent = 363
+
+[[nodes]]
+id = 367
+depth = 4
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Don't question me or you'll end up as braindead as that legless Guard Captain!"
+parent = 363
+
+[[nodes]]
+id = 368
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Umm.. ok, I'll get you the 5 earth runes and bucket of sand."
+parent = 363
+
+[[nodes]]
+id = 369
+depth = 4
+kind = "act"
+text = "end"
+parent = 363
+is_terminal = true
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+children = [371, 372, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386]
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "option"
+text = "quest=No|I'm here about the sicks...err Zogres"
+parent = 370
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "option"
+text = "I have a rather sandy problem that I'd like to palm off on you."
+parent = 370
+children = [373, 374, 375]
+
+[[nodes]]
+id = 373
+depth = 3
+kind = "cond"
+text = "If the player doesn't have the required items:"
+parent = 372
+
+[[nodes]]
+id = 374
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "You really mean you forgot? Bring me 5 earth runes and 1 bucket of sand to help stop that moneygrabbing Sandy!"
+parent = 372
+
+[[nodes]]
+id = 375
+depth = 3
+kind = "act"
+text = "end"
+parent = 372
+is_terminal = true
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = 370
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've brought what you wanted, what are you going to do?"
+parent = 370
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Ahh excellent, let's have those! Watch and learn..."
+parent = 370
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "other"
+text = "{{qact|Cutscene starts.}}"
+parent = 370
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "box"
+text = "The Wizard chants and your attention to the sandpit where Bert is found."
+parent = 370
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "speaker"
+speaker = "Bert"
+text = "{{overhead|My sand! My lovely sand!}}"
+parent = 370
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "box"
+text = "Something very strange happens to the Sandpit, it looks like it has filled itself up!"
+parent = 370
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "other"
+text = "{{qact|Cutscene ends.}}"
+parent = 370
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "There, the sand pit will now magically refill. No more work for Bert!"
+parent = 370
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "We must find the rest of Clarence, I've sent some wizards out to some of the sandpits, would you please check the Entrana sandpit?"
+parent = 370
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "act"
+text = "end"
+parent = 370
+is_terminal = true
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there!"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Mazion"
+text = "Uh...greetings [player name]!"
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uhh... How do you know my name?"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "speaker"
+speaker = "Mazion"
+text = "Oh, I like to keep ahead of things."
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err.. ok. Well, I've been sent from the Wizards' Guild in Yanille. There's been an... incident... Do you have any body parts?"
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Mazion"
+text = "How did you know! I found the most awful thing in my sandpit - a head!"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ahhh good! I need to take it back to be buried!"
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Mazion"
+text = "You're very strange, but if it means I get rid of the horrid thing..."
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = -1
+children = [396, 397]
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Mazion"
+text = "Or I would if you had any room in your bag!"
+parent = 395
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "act"
+text = "end"
+parent = 395
+is_terminal = true
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "box"
+text = "pic=Wizard's head detail.png|Mazion gives you the head."
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "speaker"
+speaker = "Mazion"
+text = "I see you still have that head! Take it back to the Wizards in Yanille!"
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "speaker"
+speaker = "Mazion"
+text = "Hello again [player name]!"
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "option"
+text = "What should I do with the head?"
+parent = -1
+children = [404, 405, 406]
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What should I do with the head?"
+parent = 403
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "speaker"
+speaker = "Mazion"
+text = "It was you that came demanding the head to give to the wizard in the first place! Go back to Yanille with it!"
+parent = 403
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "act"
+text = "end"
+parent = 403
+is_terminal = true
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "option"
+text = "I've lost my head!"
+parent = -1
+children = [408, 409, 412, 413, 414]
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost my head!"
+parent = 407
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = 407
+children = [410, 411]
+
+[[nodes]]
+id = 410
+depth = 3
+kind = "speaker"
+speaker = "Mazion"
+text = "You dropped it and you don't have room to carry it now, come back when you do."
+parent = 409
+
+[[nodes]]
+id = 411
+depth = 3
+kind = "act"
+text = "end"
+parent = 409
+is_terminal = true
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Mazion"
+text = "Keep your hair on! You dropped it! Make sure you take it straight back to the wizards else you won't have a leg to stand on."
+parent = 407
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "box"
+text = "pic=Wizard's head detail.png|Mazion gives you the head."
+parent = 407
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "act"
+text = "end"
+parent = 407
+is_terminal = true
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+children = [416, 417, 419, 420]
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "option"
+text = "quest=No|I'm here about the sicks...err Zogres"
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "option"
+text = "I have a rather sandy problem that I'd like to palm off on you."
+parent = 415
+children = [418]
+
+[[nodes]]
+id = 418
+depth = 3
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Did you visit the Entrana sandpit yet? Ask the worker there if he's found an arm or a leg."
+parent = 417
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet no. I've been running around like a headless chicken, but I'll get to it!"
+parent = 415
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "end"
+parent = 415
+is_terminal = true
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "What are you doing...Oh, it's you...sorry...didn't realise...what can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "box"
+text = "pic=Wizard's head detail.png|You show the wizard the head."
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Alas poor Clarence. I knew him, [player name]."
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "speaker"
+speaker = "Zavistic Rarve"
+text = "Thank you - we shall bury him today. I have sent word for the guards to arrest Sandy, so no one will ever see him again!"
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

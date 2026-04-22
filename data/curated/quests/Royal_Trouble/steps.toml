@@ -1,0 +1,131 @@
+quest = "Royal Trouble"
+step_count = 8
+
+[[steps]]
+index = 0
+name = "Stolen goods"
+links = ["Gunnhild", "Leif", "Fisherman Frodi", "Miner Magnus", "Etceteria"]
+text = """
+Speak to the King. He'll say that several items from many of Miscellania's citizens have been going missing, and that you should investigate.
+
+Find and speak with either [[Gunnhild]] by the herbs, [[Leif]] by the trees, [[Fisherman Frodi|Frodi]] on the dock, or [[Miner Magnus|Magnus]] by the mines (they will all say the same thing, you only need to talk to one of them). Apparently, [[Etceteria|Etceterian]] soldiers came to ask for tithes, the workers refused, and the next day items were stolen.
+
+Talk with the King again. He'll send you to discuss this situation with Queen Sigrid.
+"""
+
+[[steps]]
+index = 1
+name = "More stolen goods"
+links = ["Etceteria", "Helga", "Haming", "Matilda", "Miscellania", "antipoison", "prayer potion"]
+text = """
+Speak with Queen Sigrid in [[Etceteria]]. She'll tell you to talk to her citizens about things gone missing, criticising the king whenever she gets the chance.
+
+Go downstairs to speak to one of the Etceterian citizens such as [[Helga]], [[Haming]], or [[Matilda]]. They will tell you the same story as the workers in [[Miscellania]], only with the roles reversed.
+
+Speak again with Queen Sigrid and update her on the known information. Soldiers have been mentioned in both stories, yet neither side has an army. She'll say this is your responsibility due to your position as regent and demand you solve things.
+
+'''''Note:''' Be sure to have the things you will need for the fight at this point, utilising the bank directly north on Etceteria. Remember to take [[antipoison]] potions and [[prayer potion]]s as needed. It is recommended to leave about 10 inventory spaces open for items you're going to use later on during the quest.''
+"""
+
+[[steps]]
+index = 2
+name = "To the dungeon with you!"
+links = ["Sailor", "Miscellania", "Scroll (Royal Trouble)", "minimap", "dwarf", "Donal"]
+text = """
+[[File:Royal Trouble Meddling Kids.png|thumb|The sailor explains about the island's dungeons and recent visitors.]]
+Go back to Miscellania and speak with King Vargas to review your conversation with the Queen. He'll ask you to speak with Ghrim about the presence of these alleged armies and the missing goods.
+
+Ghrim, assuming these happenings are being caused by outsiders, will suggest you speak with the [[Sailor]] at the docks to find out if he's seen any suspicious characters.
+
+Head to the Sailor at the docks of [[Miscellania]]. He will mention a group of children who came to the island recently, saying they had gone to go visit their family in the dungeon.
+
+The dungeon is still inaccessible at this point, so speak again with King Vargas to gain access. He'll give you a [[Scroll (Royal Trouble)|scroll]] with his signature.
+
+Take the scroll and enter the dungeon within Miscellania's castle walls (look for the dungeon icon on the [[minimap]]), and you will arrive in a small underground settlement. 
+
+Go to the pub and speak with a [[dwarf]] called [[Donal]].
+"""
+
+[[steps]]
+index = 3
+name = "Repairing the lift"
+links = ["mining prop", "pickaxe", "Crevice (Miscellania Dungeon)", "engine", "beam", "pulley beam", "rope", "coal", "long pulley beam", "longer pulley beam"]
+text = """
+{{Needed|9 free inventory spaces, 5 coal (or you can mine the coal from the chamber with a pickaxe you can find near the dwarf miners)}}
+[[File:Royal Trouble lift fixed.png|right|thumb|250px|The lift is operational again.]]Upon speaking with Donal, he'll talk about a monster deep within the caves. He'll give you a [[mining prop]] to get through the passage and into a room with a broken lift.
+
+Head up north, and you will see two dwarf miners. Pick up a [[pickaxe]] from the rock if you need one.
+
+Use the mining prop on the [[Crevice (Miscellania Dungeon)|crevice]] and squeeze through it.
+
+Now, you need to repair the lift using items found in the boxes in the chamber:
+
+#First, take an [[engine]] and three [[beam]]s, three [[pulley beam]]s, and two [[rope]]s from the crates.
+#Before you start assembling the whole structure, add five chunks of [[coal]] to the engine (this can also be done last, after step 8). ''If you did not bring coal with you, the chamber has four coal rocks as well as a pickaxe near the dwarves if you forgot one.''
+#Use a pulley beam on the broken scaffold on the east side of the room to attach it.
+#Use a beam on a pulley beam to make a [[long pulley beam]], and then use it with another beam to get a [[longer pulley beam]], which you must then attach to the scaffold.
+#Use the final pulley beam on the scaffold.
+#Use a rope on the scaffold to wind it through the pulleys.
+#Use the third beam on the ''platform'' to repair it.
+#Place the engine on the ''engine platform (Note: the engine platform is not the same as the platform from step 7. Rather, it is the one on the tile which faces the engine spawning spot)''.
+#Add the 5 pieces of coal to the engine (only necessary if not already added).
+
+The lift should be operational now. While making sure you have another rope, click the 'Use-Lift' option on the platform to head closer to the mysteries of the island. ''(If this option doesn't appear, make sure you have added 5 coal to the engine. You can do it when placed on the engine platform.)''
+"""
+
+[[steps]]
+index = 4
+name = "The burnt diary"
+links = ["plank", "Tunnel (Miscellania Dungeon)", "burnt diary", "Rocks (Miscellania and Etceteria Dungeon)", "run trick", "steam vent", "Burnt diary"]
+text = """
+Take the [[plank]] and enter the small [[Tunnel (Miscellania Dungeon)|tunnel]] on the east wall. Continue travelling east and use a rope with the overhanging rock to swing across the water.
+
+You will come across the remains of a fire, search it to get the first part of a [[burnt diary]]. Read the diary, and save it for later.
+
+Use the plank to cross the [[Rocks (Miscellania and Etceteria Dungeon)|slippery rocks]] - otherwise, you may be hit for 8 damage. The plank is not left behind and may be reused every time. The rocks can also be safely skipped without a plank via the [[run trick]].
+
+As you proceed further into the caves, you will come across two more fire remains, search them to get the second and third part of the diary. After the third fire remains, there will be some [[steam vent]]s in the ground. '''Do not walk across or stand on them as they repeatedly damage you depending on your Hitpoints level.'''
+
+After the vents, there will be another set of fire remains, search it for the fourth part of the diary. Going further down into the caves, there will be some rocks lying on the cliffs above your path. '''Do not stand or walk under those rocks as they will fall down on you and deal some damage depending on your Hitpoints level.'''
+
+After progressing through the area with the rocks, you will come across yet another fire remains. Search it to find the fifth and final page for the diary. Once you have completed the [[Burnt diary|diary]], you must read it before being able to enter a crevice at the end of the passage.
+"""
+
+[[steps]]
+index = 5
+name = "Those meddling kids!"
+links = ["Fremennik", "Sea Snake Young", "Giant Sea Snake"]
+text = """
+[[File:Meddling Kids.png|thumb|The children discussing what to do.]]
+Enter through the crevice, and you should see a cutscene involving some lost kids. Speak to them to get the full story. The kids had apparently not been able to pass the trials to become a [[Fremennik]], so they were going to start a war here and then stop it, and be seen as heroes. They are to blame for everything.
+
+Travel out through the next exit, and roam the passages where there are lots of [[Sea Snake Young]] until you reach another crevice; squeeze through and kill the [[Giant Sea Snake]] (level 149, with only 100 HP).
+"""
+
+[[steps]]
+index = 6
+name = "King of Slither and Thither"
+links = ["Protect from Melee", "Protect from Missiles", "Ranged", "Magic", "Iban Blast", "Dwarf multicannon", "Giant Sea Snake", "poison", "antipoison", "superantipoison", "Black d'hide", "Magic Shortbow (i)", "Rune arrows", "Dragon scimitar"]
+text = """
+{{Instance}}
+[[File:Royal Trouble boss fight.png|thumb|250px|A player fighting the Giant Sea Snake.]]
+[[Protect from Melee]] works fine if you want to run up close. From a distance the snake uses ranged attacks so use [[Protect from Missiles]] if [[Ranged|ranging]] or [[Magic|maging]]. Level 60 [[Magic]] and [[Iban Blast|Iban blast]] will be enough to kill the snake quickly. A [[Dwarf multicannon]] can be setup in the boss room to help lower levels defeat the [[Giant Sea Snake]].
+
+Its [[poison]] damage hits 9 so an [[antipoison]] is '''strongly''' recommended. Note that a [[superantipoison]] will also negate any effects for 5 minutes. A player who has around level 70 Ranged, full [[Black d'hide]], a [[Magic Shortbow (i)]], and [[Rune arrows]], for example, should only need 1 dose of normal Antipoison to kill the Snake. Similarly, level ~70 Melee stats with a [[Dragon scimitar]] should also only need 1 dose of antipoison. After the fight, it is also recommended to immediately drink your antipoison because the damage of the poison is very slow, yet heavy.
+"""
+
+[[steps]]
+index = 7
+name = "At peace once again"
+links = ["heavy box", "Letter (Royal Trouble)"]
+text = """
+Pick up the [[heavy box]] that the snake drops. If you forget to collect the box before leaving, speak to the guard outside the dungeon on Etceteria.
+
+Return through the crevice. A guard will notice you and help you up, and you will surface near Sigrid's castle.
+
+Go to Queen Sigrid and talk to her. She'll be impressed with you, and she'll give you 20,000 coins as a reward and a [[Letter (Royal Trouble)|letter]] to take to King Vargas (reading it will not affect the quest).
+
+Talk to King Vargas to give him the letter for the rest of your reward.
+
+'''Congratulations, quest complete!'''
+"""

@@ -1,0 +1,153 @@
+# Phantom Muspah — DT2-era solo boss. Tests: alternating ranged/magic
+# 5-tick attack cycle, HP-gated special attacks (Lightning Clouds,
+# Homing Spikes), prayer-shielded final phase with smite-counter
+# mechanic.
+
+name = "Phantom Muspah"
+slug = "phantom_muspah"
+npc_ids = [12078, 12079, 12080, 12082]   # various phase forms
+source_pages = ["Phantom Muspah", "Phantom Muspah/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Ranged Spike"
+style = "ranged"
+max_hit = 32
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Projectile"
+style = "magic"
+max_hit = 32
+warning_ticks = 2
+
+[[attacks]]
+name = "Melee Claw"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 40
+warning_ticks = 0
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "opening"
+enter_at_hp_pct = 100
+# Wiki: "can spawn in ranged or melee form". Spawn form determines
+# which special the 75% hp threshold triggers.
+spawn_form_random = ["ranged", "melee"]
+
+[[phases]]
+id = "ranged_form"
+enter_after = "opening:if_spawn == 'ranged'"
+allowed_attacks = ["Ranged Spike", "Magic Projectile"]
+# 4-tick attack cycle: strictly alternating ranged / magic.
+attack_pattern = "strict_alternate"
+attack_cycle_ticks = 4
+
+[[phases]]
+id = "melee_form"
+enter_after = "opening:if_spawn == 'melee'"
+allowed_attacks = ["Melee Claw"]
+attack_cycle_ticks = 4
+
+[[phases]]
+id = "first_special"
+# Lightning Clouds if ranged-spawn; Homing Spikes if melee-spawn.
+# Triggered at 75% hp.
+enter_at_hp_pct = 75
+script = "muspah_first_special"
+
+[[phases]]
+id = "mid_combat"
+enter_after = "first_special"
+# Form swap after the special resolves.
+script = "muspah_form_swap"
+
+[[phases]]
+id = "second_special"
+# The special that wasn't used at 75% fires at 50%.
+enter_at_hp_pct = 50
+script = "muspah_second_special"
+
+[[phases]]
+id = "shielded"
+enter_at_hp_pct = 25
+script = "muspah_shield_up"
+allowed_attacks = ["Ranged Spike", "Magic Projectile"]
+# Muspah raises prayer shield; player must Smite to drain it.
+# 5-tick attack cycle (one tick faster than earlier phases).
+attack_cycle_ticks = 5
+# Wiki 5-tick schedule from player's POV:
+#   t1 = Ranged damage calc
+#   t2 = empty (Smite window)
+#   t3 = empty (Smite window)
+#   t4 = Magic damage calc
+#   t5 = empty (Smite window)
+cycle_sequence = [
+    { tick = 1, attack = "Ranged Spike" },
+    { tick = 4, attack = "Magic Projectile" },
+]
+shield_mechanic = "smite_drain"
+
+[[phases]]
+id = "final_combat"
+enter_after = "shielded"
+# Once shield depleted, Muspah returns to ranged form with 5-tick
+# attack speed + homing-spike barrage every 4 attacks.
+allowed_attacks = ["Ranged Spike", "Magic Projectile", "Homing Spikes"]
+attack_cycle_ticks = 5
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Lightning Clouds"
+primitive = "teleporting_tile_aoe"
+trigger = "phase_in:first_special|phase_in:second_special"
+condition = "spawn_form == 'ranged' OR unused_at_75pct"
+# Muspah teleports around arena spawning lightning clouds that
+# traverse the area. 20 dmg on cloud contact. Safe tile exists.
+params.cloud_count = 8
+params.damage_max = 20
+params.safe_tile_exists = true
+params.boss_untargetable_during = false   # can attack boss
+params.damage_during_counts_toward_progression = false
+params.boss_reappears_at = "arena_north_east"
+
+[[mechanics]]
+name = "Homing Spikes"
+primitive = "homing_projectiles_with_walls"
+trigger = "phase_in:first_special|phase_in:second_special|phase_in:final_combat"
+condition = "spawn_form == 'melee' OR unused_at_75pct OR final_combat"
+# 2-4 spikes home toward player; move 1 tile per 2 ticks; don't move
+# diagonally; block on existing idle spikes. Harden after ~20 seconds.
+params.spike_count_range = [2, 4]
+params.tiles_per_tick = 0.5
+params.allows_diagonal = false
+params.blocked_by_idle_spikes = true
+params.harden_ticks = 33
+params.damage_on_hit = 30
+params.excludes_under_boss_tiles = true
+
+[[mechanics]]
+name = "Prayer Shield"
+primitive = "smite_drain_shield"
+trigger = "phase_enter:shielded"
+# Muspah raises a prayer shield. Smite prayer drains it at standard
+# rate when the player hits the boss. Sapphire-bolt special effect
+# drains ~33 extra.
+params.shield_hp = 200            # approximate — tune
+params.hits_to_drain = 20         # approximate baseline
+params.sapphire_bolt_bonus_drain = 33
+
+[[mechanics]]
+name = "Spike Barrage Final"
+primitive = "periodic_spike_cluster"
+trigger = "phase_in:final_combat"
+# Every 4 attacks, spawn a cluster of spikes including one on player.
+params.every_n_attacks = 4
+params.cluster_tiles = 8
+params.one_on_player = true
+params.damage_on_hit = 30
+params.grows_from_existing_clusters = true

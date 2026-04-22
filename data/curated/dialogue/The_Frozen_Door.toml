@@ -1,0 +1,983 @@
+title = "Transcript:The Frozen Door"
+npcs = ["Messenger (The Frozen Door)", "Ashuelot Reis"]
+node_count = 124
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "Delivering the letter for the first time:"
+parent = -1
+children = [1, 2, 3]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Messenger"
+text = "I have a letter for you. I'm told it's quite important. Please read it when you get a chance."
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "act"
+text = "An [[important letter]] is given to the player."
+parent = 0
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "act"
+text = "end"
+parent = 0
+is_terminal = true
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "cond"
+text = "If the player destroys the letter without reading it:"
+parent = -1
+children = [5, 6, 7]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Messenger"
+text = "Apparently you destroyed that last letter I gave you without reading it, or something like that. The sender doesn't appreciate that sort of thing, so I've got another one for you."
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "The [[important letter]] is given to the player again."
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "end"
+parent = 4
+is_terminal = true
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "cond"
+text = "If the player destroys the letter without reading it for the second time:"
+parent = -1
+children = [9, 10, 11]
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Messenger"
+text = """
+Look, you can destroy that letter as many times as you want, but it won't change anything. The sender isn't the kind of individual who takes no for an answer, so for both of our sakes, please just read it.
+"""
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "act"
+text = "The [[important letter]] is given to the player once more."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "cond"
+text = "If the player destroys the letter without reading it for the third time:"
+parent = -1
+children = [13, 14, 15]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Messenger"
+text = "Please... don't keep doing this. You don't know who you're dealing with..."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "act"
+text = "The [[important letter]] is given to the player... again."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "cond"
+text = "If the player destroys the letter without reading it for the fourth time:"
+parent = -1
+children = [17, 18, 19]
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "box"
+text = "The messenger says nothing as he hands you another letter. However, the fear in his eyes is clear to see."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "act"
+text = "The [[important letter]] is, again, given to the player. The same message will be given if destroyed again without reading it."
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "cond"
+text = "If the player does not have all four pieces of the key:"
+parent = -1
+children = [21, 22]
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "box"
+text = "You don't have enough pieces to assemble the key. It looks like you'll need four separate pieces in total."
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "act"
+text = "end"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "cond"
+text = "If the player has all four pieces of the key:"
+parent = -1
+children = [24, 25]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "box"
+text = "pic=Frozen key (The Frozen Door) detail.png|You line up all four pieces of the key and they magically snap together."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "cond"
+text = "If the player does have not the frozen key:"
+parent = -1
+children = [27, 28, 29, 31, 33, 35, 37, 39, 41]
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "box"
+text = "You try to open the door, but it doesn't seem to budge."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 26
+children = [30]
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "other"
+text = "{{mes|''All those who oppose us will perish...''}}"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 26
+children = [32]
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "other"
+text = "{{mes|''Face me and know despair...''}}"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 26
+children = [34]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "other"
+text = "{{mes|''Give me the power of shadow...''}}"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 26
+children = [36]
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "other"
+text = "{{mes|''Mortals, only death awaits you here...''}}"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 26
+children = [38]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "other"
+text = "{{mes|''My revenge will be great...''}}"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 26
+children = [40]
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "other"
+text = "{{mes|''You cannot imprison me forever...''}}"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "cond"
+text = "If the player has the frozen key:"
+parent = -1
+children = [43, 44]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "box"
+text = "You use the frozen key to unlock the door. It disintegrates as you do."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "I can't let you go in there."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello? Who are you? What is this place?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "I'm... Ashuelot... Ashuelot Reis. But I don't understand... How are you here?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh... Well I'm [player name], and I'm here because I was told there was a great treasure to be found."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Treasure? I fear you have been misled. There is no treasure here, only our great mistake."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Mistake?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "This place is a prison. Here, a being of incomprehensible power was sealed away. Things would have stayed that way, if not for our foolishness."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What happened?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "We thought we were doing good, but we were led astray. We opened the prison, and unleashed the horror within."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But the door was locked until I came along."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Yes... After our great mistake, four opposing armies united to contain the evil again. They managed to reseal the prison, but they were unable to repair the original enchantments."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "This place has remained vulnerable ever since."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And now I've opened it again."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "If what you've told me is true, you were fooled just as we were. But I suppose that means little now. With the prison now open again, there isn't much to prevent the evil escaping once more."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There must be something I can do to stop it."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "There is only one thing you can do. You can fight."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Then that is what I will do."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Though, now that I think about it, I'm still not overly clear what this evil is."
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "She is a being of darkness. A servant of the Ruinous Powers. She is the Angel of Death. She is Nex."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll stop her."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "I hope so. Nex can be found in the inner section of the prison. Join me there. But be warned, Nex was not imprisoned alone. You'll need to fight through her followers to reach her."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Good luck."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "act"
+text = "Ashuelot Reis departs for the inner section of the prison."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "You made it?"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You didn't think I would?"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Nex's followers are capable of bringing down even the strongest of warriors. I did fear you might not make it past them."
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Still, they are nothing compared to the Angel of Death herself."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So how do I deal with her?"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "You will never be able to truly defeat her. The best you can do is to try and keep her contained. When you are ready to face her, just go through the barrier."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "If it helps, while my magic is limited here, I should still be able to transfer items in and out of the prison for you. Let me know if you'd like me to do this before you enter."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "Tell me more about Nex."
+parent = -1
+children = [78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more about Nex."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Long ago, these lands were dominated by a great empire, ruled over by an ancient god. The Empty Lord is what they often called him, but his true name was Zaros."
+parent = 77
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Zaros? I've heard of him."
+parent = 77
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "At the height of his power, Zaros seemed untouchable, but he was eventually defeated by those he trusted the most. With him gone, the empire collapsed. War broke out soon after."
+parent = 77
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Although their god was gone, many Zarosians fought to keep his empire alive. Among them was Nex. She was Zaros' most powerful weapon, and she led a great army to try and restore his empire."
+parent = 77
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Not that she needed an army of course. Nex alone was powerful enough to hold back hundreds of lesser beings."
+parent = 77
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So how did she end up here?"
+parent = 77
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "The forces of Saradomin knew that Nex needed to be dealt with. They were able to lure her into these caverns."
+parent = 77
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "After great effort and sacrifice, they managed to place Nex and her followers into a frozen, enchanted sleep."
+parent = 77
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Once Nex was no longer an immediate threat, they built the Temple of Lost Ancients around her. Most of the temple has since fallen to ruin, but you can still see some of the remains."
+parent = 77
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But she wasn't frozen forever, was she? You said you were fooled into freeing her."
+parent = 77
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Yes. Later in the war, a great battle broke out in the Temple of Lost Ancients. I was a Saradominist soldier at the time, and I was among those who fought for him in that battle."
+parent = 77
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = """
+By then, many of us had grown tired of war. One of our priests discovered this. He came to us and revealed that he felt the same way, and that he had secretly converted to Guthix. He encouraged us to join him.
+"""
+parent = 77
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "We abandoned the cause of Saradomin and became followers of Guthix. Our new leader taught us the ways of the druids, including an ancient ritual that had the power to awaken Guthix himself."
+parent = 77
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "We believed this ritual to be the only way to end the war."
+parent = 77
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I'm guessing that's not how things went?"
+parent = 77
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "No... When our leader led us to perform the ritual, it was not Guthix we woke, but Nex and her forces. The ritual also destroyed the protective enchantments on their prison."
+parent = 77
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And that was exactly what your leader wanted?"
+parent = 77
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "It was. He had never been a follower of Guthix, or Saradomin. His real goal had always been to free Nex."
+parent = 77
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = """
+The rest is as I already told you. Nex posed such a danger, that the four armies temorarily joined forces to drive her back into the prison. They resealed it, but were unable to fix the enchantments we destroyed.
+"""
+parent = 77
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = """
+As for me, I was one of the first to fall after Nex was freed, but I didn't truly die. Something about our ritual tied me to this place. I've been trapped here ever since. Not dead, but not really alive either.
+"""
+parent = 77
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry."
+parent = 77
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Don't be. This is the punishment for my sins."
+parent = 77
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What of the one that led the ritual. What came of him?"
+parent = 77
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "He'd achieved his goal, so he left. I never saw him again."
+parent = 77
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But who was he really?"
+parent = 77
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "He never gave us his true name, but as Nex was freed, she spoke to him."
+parent = 77
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "She knew him?"
+parent = 77
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "It seemed that way. I heard little of what they said, but I did hear what she called him."
+parent = 77
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was it?"
+parent = 77
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Sliske."
+parent = 77
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Forgive me, but this conversation has brought back many memories. Let us speak no more of this."
+parent = 77
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course."
+parent = 77
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "act"
+text = "other"
+parent = 77
+is_terminal = true
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "Can I access my bank?"
+parent = -1
+children = [113, 114, 115]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I access my bank?"
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Of course."
+parent = 112
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "act"
+text = "bank interface opens"
+parent = 112
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "I'd like to collect some items."
+parent = -1
+children = [117, 118, 119]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like to collect some items."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Of course."
+parent = 116
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "Grand Exchange collection opens"
+parent = 116
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "I need to go."
+parent = -1
+children = [121, 122, 123]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to go."
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Ashuelot Reis"
+text = "Good luck out there."
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "end"
+parent = 120
+is_terminal = true

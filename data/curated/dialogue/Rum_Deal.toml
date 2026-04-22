@@ -1,0 +1,6224 @@
+title = "Transcript:Rum Deal"
+npcs = ["Pirate Pete", "Captain Braindeath", "Davey", "Captain Donnie", "Brewer", "Zombie protester", "50% Luke", "Zombie swab"]
+node_count = 791
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Mornin'."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Hey...you're an adventurer, right?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes I am!"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Got any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Yeah, I do, as a matter of fact!"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "(Ahem.)"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "I am a poor, dispossessed nobleman, forced by circumstance to lurk in the middle of nowhere, soliciting help from passers-by."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "You see, my fiendish half-brother has seized my estates and forced me into exile."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "The simple lemon farmers suffer under his tyrannous yoke, and only a brave adventurer can lift his iron boot from the neck of the poor."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "To reclaim my lands I will need to have my family sword returned to me so that I may present it as proof of my rulership."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Will you help me find my family sword?"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "cond"
+text = "If the player has one or more levels less than the requirement:"
+parent = -1
+children = [13, 14]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "box"
+text = "Before starting this quest, be aware that one or more of your skill levels are lower than what is required to fully complete it."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "act"
+text = "continues"
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "option"
+text = "Yes!"
+parent = -1
+children = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 45]
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes! Your uncorroborated sob story has touched my heart. When do we set off?"
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "You'll help! Wonderful!"
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "But, alas, my half brother has a powerful ally, the mighty demon..."
+parent = 16
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Err..."
+parent = 16
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Err...Barrelor!"
+parent = 16
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Barrelor?"
+parent = 16
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "That's what I said!"
+parent = 16
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Barrelor is an awesome opponent, and to reclaim my family sword you will need to defeat him, for he guards it within the deadly Trapped Pit of Barrelor."
+parent = 16
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 16
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "option"
+text = "Of course, I fear no demon!"
+parent = 16
+children = [27, 28, 29, 30, 31, 32, 39]
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Of course, I fear no demon!"
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Atta [boy/girl]!"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "When I am reinstated in my rightful place, I will not be a very wealthy man, as my half-brother has squandered my family fortune."
+parent = 26
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "However, I will gladly give you every bent penny of what is left, and starve in the gutter with my many, many adorable children, if you say you will help me."
+parent = 26
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 26
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "option"
+text = "Nonsense! Keep the money!"
+parent = 26
+children = [33, 34, 35, 36, 37, 38]
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Nonsense! Keep the money! I will dispose of this evil half-brother of yours and leave you what little money is left to feed your family."
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Wonderful! Just pick up your diversion and we'll leave!"
+parent = 32
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What diversion?"
+parent = 32
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "other"
+text = "{{qact|Pirate Pete catches the player off guard and knocks them out with a bottle.}}"
+parent = 32
+
+[[nodes]]
+id = 37
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "{{Overhead|Ow!}}"
+parent = 32
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "act"
+text = "(Cutscene 1 begins.)"
+parent = 32
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "option"
+text = "Great, I'll take the cash in used coins please."
+parent = 26
+children = [40, 41, 42, 43, 44]
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Great, I'll take the cash in used coins please."
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Er..."
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 4
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Look, I think I'll wait here for someone a little more... you know..."
+parent = 39
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "...heroic."
+parent = 39
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "option"
+text = "Not a chance, this sounds too dangerous."
+parent = 16
+children = [46, 47, 48, 49]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not a chance, this sounds too dangerous."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Look, I think I'll wait here for someone a little more... you know..."
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "...heroic."
+parent = 45
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "act"
+text = "end"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [51, 52, 53, 54]
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't think I'll help you out this time."
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Look, I think I'll wait here for someone a little more... you know..."
+parent = 50
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "...heroic."
+parent = 50
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "act"
+text = "end"
+parent = 50
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "cond"
+text = "If talking to Pirate Pete with having second thoughts after accepting the quest:"
+parent = -1
+children = [56, 57, 58, 59, 60, 61, 71]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Had any luck finding someone to slay the demon?"
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "What?"
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Oh! Yes! The demon, with the oppression and stuff!"
+parent = 55
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "No, not yet. Why?"
+parent = 55
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 55
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "option"
+text = "Because I came to offer to help."
+parent = 55
+children = [62, 63, 64, 65, 66, 67, 69]
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Because I came to offer to help."
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "That's the spirit!"
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "When I am reinstated in my rightful place, I will not be a very wealthy man, as my half-brother has squandered my family fortune."
+parent = 61
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "However, I will gladly give you every bent penny of what is left, and starve in the gutter with my many adorable children if you say you will help me."
+parent = 61
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 61
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "option"
+text = "Nonsense! Keep the money!"
+parent = 61
+children = [68]
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "act"
+text = "above"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "option"
+text = "Great, I'll take the cash in used coins please."
+parent = 61
+children = [70]
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "act"
+text = "above"
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "option"
+text = "No reason."
+parent = 55
+children = [72, 73, 74, 75, 76]
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No reason. I was just in the area and I thought I would ask."
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "I see..."
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Look, I think I'll wait here for someone a little more... you know..."
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "...heroic."
+parent = 71
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arrr... 'Tis lookin' bleak..."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Good news Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "I found us a hero down by the docks!"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Be they heroic, brave and true?"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "Aye! They also be gullible, tied up and unconscious!"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Pirate Pete"
+text = "They were willing to help out some random stranger with a good enough sob story, so I smacked them with a bottle and rowed them over."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Brilliant! The island's location will remain a secret!"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Bring 'em here and wake 'em up."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "We may make it through this yet..."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "act"
+text = "(Cutscene ends and dialogue continues below.)"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Are ye alright, [lad/lass]?"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ohhhh... My head..."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It feels like someone has smacked me one with a bottle..."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr... Those devils gave ye a nasty knock when ye came to aid us."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "But now yer here we'll run those evil brain-eatin' dogs off the island fer good!"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? What is going on here?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't seem to remember anything beyond chatting to a man at the docks."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr. Well, [lad/lass], that would be Pete, one of my men."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "He's been out lookin' fer heroes like yerself to aid us in our peril."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay... I'll buy that. It sounds like something I would do."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So where am I, and what is going on?"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Yer on Braindeath Island!"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Where it lies is a secret, because ye are standin' in the brewery of Cap'n Braindeath, purveyor of the most vitriolic alcoholic beverages in the world!"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wow!"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I am the notorious alchemist Cap'n Braindeath, and this whole operation be my idea!"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "With my crew of sturdy, upright pirate brewers, we sail the seven seas, distributing cheap 'alcohol' to all and sundry."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oooh!"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "These be dark times, though, [lad/lass]. See, a week ago we awoke to find ourselves beseiged."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "The lads and I have held them off so far, but 'tis only a matter of time before they sweep through the buildin' and put us all to the sword."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who?"
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Them!"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "other"
+text = "{{qact|Cutscene begins}}"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "box"
+text = "The captian points out of the window...."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "other"
+text = "{{qact|Cutscene ends}}"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are they..."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...protesting?"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr, [lad/lass]! That they are!"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Day and night they seek to break our will with their chantin', and their singin' and their passive resistance!"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, what do you want me to do?"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, me and the lads got our heads together and decided that if we can get their Cap'n drunk enough, perhaps they'll stop protestin'."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "If that happens, we'll slip out the back and set up shop somewhere else."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, how can I help?"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, first of all, we need someone to go out the front and grow us some Blindweed."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "'Tis one of the ingredients of our 'rum'."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "The only problem is that those rottin' fiends have torn up and destroyed all but one of the Blindweed Patches."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Here, [lad/lass]. I'll give ye the seed you'll need fer growin' the herb. Help yerself to the gardenin' equipment in the basement."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I'll warn ye again that those devils are sat right on top of the patch."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Try hecklin' 'em from a distance. Those Swabs may talk a good fight, but if ye can put a scare in 'em they'll keep out of yer way!"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [130, 131, 132, 133]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr, well I want ye to get outside and grow some Blindweed."
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Best be careful, [lad/lass], fer them pirates will skin ye alive if they catch ye."
+parent = 129
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "cond"
+text = "If the player has lost the Blindweed seed:"
+parent = 129
+children = [134, 135, 136, 139, 142]
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And what happens if I lose the seed?"
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Then I'll have ye flogged, hung, slapped with a haddock and sent back out there to fight the zombie hordes with little more than harsh language!"
+parent = 133
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 133
+children = [137, 138]
+
+[[nodes]]
+id = 137
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Come back and see me when ye ain't loaded down with stuff, and I'll give ye another."
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 4
+kind = "act"
+text = "end"
+parent = 136
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 133
+children = [140, 141]
+
+[[nodes]]
+id = 140
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr... Here, [lad/lass]. Just take this and get goin'!"
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 4
+kind = "act"
+text = "(The player is handed another seed.)"
+parent = 139
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154]
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why do you talk like a pirate? Didn't you tell me you were an alchemist?"
+parent = 143
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr, [lad/lass], 'tis true."
+parent = 143
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "However, 'tis also true that I stumbled across the basic recipe fer my most potent of brews in a terrible alchemical accident."
+parent = 143
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "See, 'twas a dark and stormy night, and the wind was howlin' around the trees as I worked late into the night."
+parent = 143
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Steppin' too close to a candle with my flask in my hand, I was suddenly swept up in a terrible, yet potently alcoholic, explosion."
+parent = 143
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And?"
+parent = 143
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well' [lad/lass], it seems the fumes from that first batch of me 'rum' did strange things to me brain."
+parent = 143
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I don't remember the exact words the healers used, but apparently the stuff burned out the tiny, specialised part of me brain that tells me not to talk like a pirate."
+parent = 143
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That... that... that sounds utterly impossible!"
+parent = 143
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr! That be what I told them!"
+parent = 143
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "act"
+text = "end"
+parent = 143
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171]
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what do you make here anyway?"
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "'Rum', [lad/lass]!"
+parent = 155
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "The finest, most potent, most flammable and most debilitatin' 'rum' in the whole of Gielinor!"
+parent = 155
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Rum, eh?"
+parent = 155
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "No, [lad/lass], 'rum'!"
+parent = 155
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's the difference?"
+parent = 155
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, see, it's like this."
+parent = 155
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "If we called the stuff we make 'rum' without makin' the little quote gestures every time, then the Cookin' Guild has promised to do entertaininly painful things to us with whisks."
+parent = 155
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "See, technically -"
+parent = 155
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "And by that I mean technically according to the Disposal of Hazardous Waste Act and the Health and Safety Laws -"
+parent = 155
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "technically, what we're brewin' here is Artificially Produced Hyper Condensed Sweetened 'Rum' Flavour Distillate."
+parent = 155
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Riiiiiiiight..."
+parent = 155
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "So ye see, [lad/lass], we just call it 'rum' because the real name be a bit of a mouthful."
+parent = 155
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Want a drop?"
+parent = 155
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thanks... I think I'll skip it for now."
+parent = 155
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "act"
+text = "end"
+parent = 155
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do with this?"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr, well, I want ye to get outside and grow some Blindweed."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Best be careful, lad, fer them pirates will skin ye alive if they catch ye."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Very well."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You sure?"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Oh Guthix, who am I kidding?"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "We're all gonna die!"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Who are you?"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "You're one of THEM, aren't you!"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "O...kay...walking away now, smiling and not making eye contact."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Game over, man! Game over!"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Errr...keep up the good work."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "How do I know you're not one of them?"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I don't know... the way I'm breathing could give it away."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "That means nothing! NOTHING!"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Don't talk to me! If I play this right, I can sell you lot out and make it to the mainland!"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "No school today mother, my brain hurts real baaaad..."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "I no sleep in many, many, many days."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Don't sneak up on me like that!"
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Don't you know there's a war on?"
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I didnt think this counted as a war."
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "That's because you're a landlubber!"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "I bet ye've never had to beat a dozen zombies to death with a blunt toothpick!"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right. Have you?"
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "No, I've spent most of my time in the toilet to be honest."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... how are you holding up?"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "Very well, considering."
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Considering what?"
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "speaker"
+speaker = "Brewer"
+text = "That I've been crawling into the corner to cry whenever nobody is looking."
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wow... I always thought pirates were tough..."
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "'Ello guv."
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why are you not helping out the others?"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Well you see, guv, I've got these unshakable religious convictions."
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And those are?"
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Well, it's like this, see. I used to do a bit of the old priestin' on the side."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "You know, collectin' for repairs to the church roof, passing the collection plate, jumble sales, nicking the lead off the temple roof so they needed repairing again."
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Real holy stuff, you know."
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That doesn't sound all that holy to me."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Well, that's because you're not a man of the cloth are you?"
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "You are, in fact, what we refer to in layman's terms as a punter."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "But anyway, all that priestin' left me with an unshakable faith in three things."
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "The power of good over evil."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "The true glory of the human spirit."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "And that I ain't goin out there with those things runnin' around."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "box"
+text = "There is a tangle of rusty old farming equipment in here."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "box"
+text = "What would you like to take?"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "option"
+text = "A rake"
+parent = -1
+children = [239, 242, 245, 246]
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = 238
+children = [240, 241]
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "box"
+text = "You do not have any free space for the rake."
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 3
+kind = "act"
+text = "end"
+parent = 239
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "cond"
+text = "If the player already has a rake:"
+parent = 238
+children = [243, 244]
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "box"
+text = "You can't find another rake. Good job you already have one."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "box"
+text = "You take an old rake."
+parent = 238
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "act"
+text = "end"
+parent = 238
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "option"
+text = "A seed dibber"
+parent = -1
+children = [248, 251, 254]
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = 247
+children = [249, 250]
+
+[[nodes]]
+id = 249
+depth = 3
+kind = "box"
+text = "You do not have any free space for the seed dibber."
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 3
+kind = "act"
+text = "end"
+parent = 248
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "cond"
+text = "If the player already has a seed dibber:"
+parent = 247
+children = [252, 253]
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "box"
+text = "The only dibber you find has a bent dibbing bit. You should use the one you have."
+parent = 251
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "act"
+text = "end"
+parent = 251
+is_terminal = true
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 247
+children = [255, 256]
+
+[[nodes]]
+id = 255
+depth = 3
+kind = "box"
+text = "You take an old seed dibber."
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 3
+kind = "act"
+text = "end"
+parent = 254
+is_terminal = true
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "option"
+text = "A watering can"
+parent = -1
+children = [258, 261, 264]
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = 257
+children = [259, 260]
+
+[[nodes]]
+id = 259
+depth = 3
+kind = "box"
+text = "You do not have any free space for the watering can."
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 3
+kind = "act"
+text = "end"
+parent = 258
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "cond"
+text = "If the player already has a watering can:"
+parent = 257
+children = [262, 263]
+
+[[nodes]]
+id = 262
+depth = 3
+kind = "box"
+text = "You can't find any watering cans without holes in them, so you decide to use your own."
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 3
+kind = "act"
+text = "end"
+parent = 261
+is_terminal = true
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 257
+children = [265, 266]
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "box"
+text = "You take an old watering can."
+parent = 264
+
+[[nodes]]
+id = 266
+depth = 3
+kind = "act"
+text = "end"
+parent = 264
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "option"
+text = "All of the above!"
+parent = -1
+children = [268, 271, 274]
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = 267
+children = [269, 270]
+
+[[nodes]]
+id = 269
+depth = 3
+kind = "box"
+text = "You do not have any free space for all of these items."
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 3
+kind = "act"
+text = "end"
+parent = 268
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "cond"
+text = "If the player already has all the tools:"
+parent = 267
+children = [272, 273]
+
+[[nodes]]
+id = 272
+depth = 3
+kind = "box"
+text = "The remaining stuff seems fused together in a lump of spiky, tetanus-inducing rust. Best leave it alone for now."
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "act"
+text = "end"
+parent = 271
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 267
+children = [275, 276]
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "box"
+text = "You help yourself to what you need."
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 3
+kind = "act"
+text = "end"
+parent = 274
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excuse me, but..."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Zombie protester"
+text = "Arr!"
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is there any way you could..."
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Zombie protester"
+text = "ARRR!"
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is there anyone else I could..."
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Zombie protester"
+text = "Arrrrrrrrrr!!!"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fiiine..."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Arr! What be ye wantin?"
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I, err, came to..."
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "option"
+text = "Tell you to leave."
+parent = -1
+children = [289, 290, 291, 292, 293, 294, 295, 296, 297, 298]
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have come to tell you to leave."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Ye have?"
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 288
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Hahahahahahahahahahahahaha!"
+parent = 288
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Bwahahahahahahahahahahahaha!"
+parent = 288
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Wheeze...wheeze..."
+parent = 288
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Gadzooks [lad/lass], that be the funniest thing I've heard all day! Say it again!"
+parent = 288
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have come to tell you to leave."
+parent = 288
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Stop [lad/lass]! I'll shatter me ribs!"
+parent = 288
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "act"
+text = "end"
+parent = 288
+is_terminal = true
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "option"
+text = "Ask what you wanted."
+parent = -1
+children = [300, 301, 302, 303, 304, 305]
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've come to ask you what you want."
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Whadda we want? 'Rum'! When do we want it? Now!"
+parent = 299
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So...if I were to give you 'rum' you would leave?"
+parent = 299
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Not really [lad/lass]. If ye were to give us 'rum' we'd kill ye quickly, as opposed to over a few weeks."
+parent = 299
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh..."
+parent = 299
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "act"
+text = "end"
+parent = 299
+is_terminal = true
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "Join your crew."
+parent = -1
+children = [307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've come to join your crew!"
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Err, I mean..."
+parent = 306
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Arr! Shiver me mainbraces and make them landlubbers walk the scurvy plank, Cap'n! I've come to join yer cut- throat, bilge swillin' crew! Also, arr!"
+parent = 306
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Are ye quite done, [lad/lass]?"
+parent = 306
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, for the time being anyway."
+parent = 306
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Well, ye'll be glad to know that after that little performance I'd be glad to have ye on me crew!"
+parent = 306
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Huzzah!"
+parent = 306
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Course, I'll have te kill ye first."
+parent = 306
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh..."
+parent = 306
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Don't ye worry, [lad/lass]. After we take the island I'll have the boss haul yer body to the temple and..."
+parent = 306
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Err, never mind."
+parent = 306
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind what?"
+parent = 306
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Ferget I said anything."
+parent = 306
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "act"
+text = "end"
+parent = 306
+is_terminal = true
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "box"
+text = "I don't think he wants to talk to you."
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "speaker"
+speaker = "50% Luke"
+text = "Arr! Tryin' ter get away eh? Well ye'll never sneak past me, I'm the best lookout this crew has ever seen!"
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err...look...an astonishing...thing. There. Behind you."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "50% Luke"
+text = "Ye'll have te do better than that, landlubber!"
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey you!"
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "Hey yerself, landlubber!"
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "box"
+text = "We interrupt this insult to bring you this soothing picture of a kitten. Normal service will be resumed shortly. Thank you for your patience."
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...so that you will know exactly what time it is due to the horrible pain in your earlobes!"
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "That be the most intimidatin' thing I've ever heard! I'm not messin' with you!"
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey you!"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "Arr! Prepare to die!"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "box"
+text = "We interrupt this insult to bring you this soothing picture of a kitten. Normal service will be resumed shortly. Thank you for your patience."
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...meaning you'll need a dozen Ogres and a team of highly skilled surgeons to remove them!"
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "That be the most intimidatin' thing I've ever heard! I'm not messin' with you!"
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey you!"
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "Hahahaha!"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "Yer goin ter die!"
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "box"
+text = "We interrupt this insult to bring you this soothing picture of a kitten. Normal service will be resumed shortly. Thank you for your patience."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...so that all you will be able to hear from then on will be the rustling of the ants walking through them!"
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "That be the most intimidatin' thing I've ever heard! I'm not messin' with you!"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey you!"
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "Yer brave, but stupid!"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "box"
+text = "We interrupt this insult to bring you this soothing picture of a kitten. Normal service will be resumed shortly. Thank you for your patience."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...and then I'll use a wrench to remove the handles, so you'll see it every time you cough!"
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "That be the most intimidatin' thing I've ever heard! I'm not messin' with you!"
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey you!"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "Who? Me?"
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "box"
+text = "We interrupt this insult to bring you this soothing picture of a kitten. Normal service will be resumed shortly. Thank you for your patience."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...and I'll grind up what's left, mix it with lemon juice and throw the whole lot into the ocean!"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "That be the most intimidatin' thing I've ever heard! I'm not messin' with you!"
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey you!"
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "Yer a deadman, sez I!"
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "box"
+text = "We interrupt this insult to bring you this soothing picture of a kitten. Normal service will be resumed shortly. Thank you for your patience."
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...leading to the eventual, violent explosion of those organs!"
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "speaker"
+speaker = "Zombie swab"
+text = "That be the most intimidatin' thing I've ever heard! I'm not messin' with you!"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "other"
+text = "{{mes|He seems to have vanished... you must have scared him off.}}"
+parent = -1
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "other"
+text = "{{mes|I don't think he will be causing any more trouble.}}"
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "other"
+text = "{{mes|The soil here is too poor to farm on.}}"
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "other"
+text = "{{mes|You will probably have a hard time raking that.}}"
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "act"
+text = "If the player has not planted the seed yet:"
+parent = -1
+children = [373, 374]
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "box"
+text = "This is a blindweed patch. The soil has not been treated. The patch needs weeding."
+parent = 372
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "act"
+text = "end"
+parent = 372
+is_terminal = true
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "act"
+text = "If the player already planted the seed:"
+parent = -1
+children = [376, 377]
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "other"
+text = "{{mes|This is a blindweed patch. The soil has not been treated. The patch has something growing in it.}}"
+parent = 375
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "act"
+text = "end"
+parent = 375
+is_terminal = true
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "act"
+text = "If the blindweed is fully grown:"
+parent = -1
+children = [379, 380]
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "other"
+text = "{{mes|This is a blindweed patch. The soil has not been treated. The patch (Crop) is fully grown.}}"
+parent = 378
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "act"
+text = "end"
+parent = 378
+is_terminal = true
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "cond"
+text = "If the player does not have level 40 Farming:"
+parent = -1
+children = [382, 383]
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "box"
+text = "You must be a Level 40 Farmer to plant those."
+parent = 381
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "act"
+text = "end"
+parent = 381
+is_terminal = true
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "cond"
+text = "If the player has level 40 Farming:"
+parent = -1
+children = [385, 386]
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "box"
+text = "You plant a seed in the blindweed patch."
+parent = 384
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "act"
+text = "end"
+parent = 384
+is_terminal = true
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "other"
+text = "{{mes|I wonder how my Blindweed is coming along...}}"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here! I have your Blindweed!"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Splendid, [lad/lass]! Go shove it in the Intake Hopper upstairs."
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "We'll beat them zombies yet! Arr!"
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Captain... I grew some blindweed but then I lost it..."
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "There there, lad. 'Tis all right."
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Here, I've been savin' some fer an emergency."
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Go shove that in the Intake Hopper, and try not ter lose this lot!"
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [401, 402, 403, 418]
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 400
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I want ye to go put yer Blindweed in the intake hopper, and to be sharp about it!"
+parent = 400
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "cond"
+text = "If the player loses the blindweed:"
+parent = 400
+children = [404, 405, 406, 407, 408, 411]
+
+[[nodes]]
+id = 404
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And what happens if I lose the Blindweed between here and the intake hopper?"
+parent = 403
+
+[[nodes]]
+id = 405
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Theoretically, of course, as it would be almost impossible for me to simply lose the stuff in the time it will take me."
+parent = 403
+
+[[nodes]]
+id = 406
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Gah!"
+parent = 403
+
+[[nodes]]
+id = 407
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Yer nothin' better than a sea-slug wearin', lilly-legged, bandy-livered landlubber!"
+parent = 403
+
+[[nodes]]
+id = 408
+depth = 3
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = 403
+children = [409, 410]
+
+[[nodes]]
+id = 409
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I've got a little put aside fer an emergency. Drop some of that junk yer carryin', and come see me to get it."
+parent = 408
+
+[[nodes]]
+id = 410
+depth = 4
+kind = "act"
+text = "end"
+parent = 408
+is_terminal = true
+
+[[nodes]]
+id = 411
+depth = 3
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 403
+children = [412, 413, 414, 415, 416, 417]
+
+[[nodes]]
+id = 412
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Here, I was savin' a little fer an emergency, so take this and shove it in the hopper before I bung ye in there and turn the handle!"
+parent = 411
+
+[[nodes]]
+id = 413
+depth = 4
+kind = "act"
+text = "receives=another blindweed"
+parent = 411
+
+[[nodes]]
+id = 414
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You had some all the time?"
+parent = 411
+
+[[nodes]]
+id = 415
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why was I risking my neck killing pirates to grow some if you had some all along?"
+parent = 411
+
+[[nodes]]
+id = 416
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Less talk, lad, haven't ye got a hopper to be fillin'?"
+parent = 411
+
+[[nodes]]
+id = 417
+depth = 4
+kind = "act"
+text = "end"
+parent = 411
+is_terminal = true
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "act"
+text = "end"
+parent = 400
+is_terminal = true
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [420]
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "above"
+parent = 419
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [422]
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "act"
+text = "above"
+parent = 421
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [426, 427, 428, 440]
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 425
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I want ye to go put yer Blindweed in the intake hopper, and to be sharp about it!"
+parent = 425
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "cond"
+text = "If the player has lost the blindweed... again:"
+parent = 425
+children = [429, 430, 431, 432, 433, 436, 437, 438, 439]
+
+[[nodes]]
+id = 429
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And what happens if I lose the Blindweed between here and the intake hopper?"
+parent = 428
+
+[[nodes]]
+id = 430
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Theoretically, of course, as it would be almost impossible for me to simply lose the stuff in the time it will take me."
+parent = 428
+
+[[nodes]]
+id = 431
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Gah!"
+parent = 428
+
+[[nodes]]
+id = 432
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Yer nothin' better than a sea-slug wearin', lilly-legged, bandy-livered landlubber!"
+parent = 428
+
+[[nodes]]
+id = 433
+depth = 3
+kind = "cond"
+text = "If the player doesn't have room in their inventory:"
+parent = 428
+children = [434, 435]
+
+[[nodes]]
+id = 434
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I've got a little put aside fer an emergency. Drop some of that junk yer carryin', and come see me to get it."
+parent = 433
+
+[[nodes]]
+id = 435
+depth = 4
+kind = "act"
+text = "end"
+parent = 433
+is_terminal = true
+
+[[nodes]]
+id = 436
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Here, I was savin' a little fer an emergency, so take this and shove it in the hopper before I bung ye in there and turn the handle!"
+parent = 428
+
+[[nodes]]
+id = 437
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You had some all the time?"
+parent = 428
+
+[[nodes]]
+id = 438
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why was I risking my neck killing pirates to grow some if you had some all along?"
+parent = 428
+
+[[nodes]]
+id = 439
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Less talk, [lad/lass], haven't ye got a hopper to be fillin'?"
+parent = 428
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "act"
+text = "end"
+parent = 425
+is_terminal = true
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [442]
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "act"
+text = "above"
+parent = 441
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [444]
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "act"
+text = "above"
+parent = 443
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "other"
+text = "{{mes|You stuff the Blindweed into the Hopper.}}"
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, that takes care of the Blindweed. What now?"
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, now ye've shoved the Blindweed into the mix, what we need is a bucket of stagnant water."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where can I get some of that?"
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Ye won't have to go far, [lad/lass], we have a pool of the stuff here!"
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here in the brewery?"
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "No, [lad/lass], that would be a strange thing to have in a brewery!"
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "It's up the mountain to the north."
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Up a mountain?"
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, 'tis technically a volcano, but ye get the general idea."
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And I assume the place is crawling with these zombies?"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "No [lad/lass], there be not a zombie in sight."
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, good!"
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "All ye have to do is get past the keen-eyed lookout that's been spottin' my men when I send 'em."
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I'll tell ye that it won't be easy!"
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "When is it ever..."
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "cond"
+text = "If the player doesn't have an empty bucket:"
+parent = -1
+children = [463, 464]
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Don't ferget yer bucket!"
+parent = 462
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "act"
+text = "(The player is given an empty bucket. If the inventory is full, this line still occurs, but no bucket will appear.)"
+parent = 462
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [469, 470, 471, 472, 474]
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "To get off yer lazy behind and head out to the stagnant lake on top of the volcano."
+parent = 468
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Chop chop, lad."
+parent = 468
+
+[[nodes]]
+id = 472
+depth = 2
+kind = "cond"
+text = "If the player doesn't have an empty bucket:"
+parent = 468
+children = [473]
+
+[[nodes]]
+id = 473
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Don't ferget yer bucket!"
+parent = 472
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "act"
+text = "end"
+parent = 468
+is_terminal = true
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [476]
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "act"
+text = "above"
+parent = 475
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [478]
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "act"
+text = "above"
+parent = 477
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "speaker"
+speaker = "50% Luke"
+text = "Arr! Tryin' ter get away eh? Well ye'll never sneak past me, I'm the best lookout this crew has ever seen!"
+parent = -1
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "act"
+text = "Says a [[Transcript:50% Luke#From the south side|randomised distraction dialogue]]"
+parent = -1
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "speaker"
+speaker = "50% Luke"
+text = "{{overhead|Where?}}"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "box"
+text = "You scoop up a bucket of stagnant water."
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "50% Luke"
+text = "Hey! What are you doing out there?"
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nothing."
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "50% Luke"
+text = "Well Cap'n Donnie said no livin' landlubbers were allowed out of the compound."
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "speaker"
+speaker = "50% Luke"
+text = "So get yerself back in here, or yer for it!"
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [493, 494, 495, 496]
+
+[[nodes]]
+id = 493
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 492
+
+[[nodes]]
+id = 494
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I want ye to go pour yer bucket into yonder hopper."
+parent = 492
+
+[[nodes]]
+id = 495
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Take yer time, lad, we're only bein' besieged by zombies."
+parent = 492
+
+[[nodes]]
+id = 496
+depth = 2
+kind = "cond"
+text = "If the player has lost the bucket of water:"
+parent = 492
+children = [497, 498, 499, 500, 503, 504, 505, 506]
+
+[[nodes]]
+id = 497
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Err... Captain..."
+parent = 496
+
+[[nodes]]
+id = 498
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Aye, what is it, lad?"
+parent = 496
+
+[[nodes]]
+id = 499
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, on my way over to the hopper some big boy stole the bucket and ran away..."
+parent = 496
+
+[[nodes]]
+id = 500
+depth = 3
+kind = "cond"
+text = "If the player doesn't have room in their inventory"
+parent = 496
+children = [501, 502]
+
+[[nodes]]
+id = 501
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, 'tis a good job I saved a little, isn't it? Now get rid of something so I can give it to ye."
+parent = 500
+
+[[nodes]]
+id = 502
+depth = 4
+kind = "act"
+text = "end"
+parent = 500
+is_terminal = true
+
+[[nodes]]
+id = 503
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Give me strength!"
+parent = 496
+
+[[nodes]]
+id = 504
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "If ye weren't so good at distractin' the zombies I'd skin ye alive!"
+parent = 496
+
+[[nodes]]
+id = 505
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Take this bucket and pour it into the hopper. If ye don't get it right this time I'll have yer guts fer garters!"
+parent = 496
+
+[[nodes]]
+id = 506
+depth = 3
+kind = "act"
+text = "end"
+parent = 496
+is_terminal = true
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [508]
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "act"
+text = "above"
+parent = 507
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [510]
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "act"
+text = "above"
+parent = 509
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "other"
+text = "{{mes|You dump the water into the hopper.}}"
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So is that everything?"
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "No, [lad/lass], next ye'll need to go outside and catch five loads of Sluglings fer the brew."
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? Sluglings? That's disgusting!"
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr, [lad/lass], that it be."
+parent = -1
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "To a weak-stomached, knock-kneed landlubber..."
+parent = -1
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why Sluglings?"
+parent = -1
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "'Cos, [lad/lass] they're one of our super-secret ingredients! Yer not too susceptible to mind control are ye [lad/lass]?"
+parent = -1
+
+[[nodes]]
+id = 520
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = -1
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Because they have been known te, well, influence people every now and again."
+parent = -1
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I'm sure ye've got nothing te worry about!"
+parent = -1
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "cond"
+text = "If the player has completed Sea Slug quest:"
+parent = -1
+children = [524, 525, 526, 527]
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "They aren't related to those Seaslugs are they?"
+parent = 523
+
+[[nodes]]
+id = 525
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "No [lad/lass], we just call them 'Sluglings' 'cos of a long and convoluted story involvin' a metal pipe and three dead seagulls."
+parent = 523
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Aye they're related! Tis a good job they'll starve if they tried te eat yer brains!"
+parent = 523
+
+[[nodes]]
+id = 527
+depth = 2
+kind = "act"
+text = "continues"
+parent = 523
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what should I do with these Sluglings anyway?"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, Ye shove them in the Pressure Barrel in the attic."
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "And then ye..."
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And then I..."
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Pressurise 'em."
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Pressurise them?!"
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Just a little."
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Look, we don't have all day, get movin'."
+parent = -1
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "cond"
+text = "If the player doesn't have free inventory space:"
+parent = -1
+children = [537, 538, 539]
+
+[[nodes]]
+id = 537
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Ye'll be needin' a fishbowl in a big net to help ye catch them slimy little blighters."
+parent = 536
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Pity ye ain't got any free space to carry one."
+parent = 536
+
+[[nodes]]
+id = 539
+depth = 2
+kind = "act"
+text = "end"
+parent = 536
+is_terminal = true
+
+[[nodes]]
+id = 540
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [541, 542, 543, 544, 545, 546]
+
+[[nodes]]
+id = 541
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Here. Ye'll need this to catch them."
+parent = 540
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What should I do with it?"
+parent = 540
+
+[[nodes]]
+id = 543
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Just dunk it in the water. I'm sure a clever [lad/lass] like yerself will have no problem."
+parent = 540
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Oh, and if ye haul up some squiddy-looking things, don't hesitate to shove 'em in the barrel too."
+parent = 540
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "They add a special, fishy texture to the drink."
+parent = 540
+
+[[nodes]]
+id = 546
+depth = 2
+kind = "act"
+text = "end"
+parent = 540
+is_terminal = true
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [550, 551, 552, 553, 562]
+
+[[nodes]]
+id = 550
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 549
+
+[[nodes]]
+id = 551
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I want ye to go outside and catch five sea creatures from the squid fishin' spot."
+parent = 549
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "When ye've grabbed them, jam 'em in the barrel in the attic and pressurise 'em."
+parent = 549
+
+[[nodes]]
+id = 553
+depth = 2
+kind = "cond"
+text = "If the player doesn't have a fishbowl and net:"
+parent = 549
+children = [554, 555, 556, 557, 558, 561]
+
+[[nodes]]
+id = 554
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How am I suppost to catch these things?"
+parent = 553
+
+[[nodes]]
+id = 555
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Ye'll be needin' to use a fishbowl in a big net to snare these little devils."
+parent = 553
+
+[[nodes]]
+id = 556
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And if I don't have one?"
+parent = 553
+
+[[nodes]]
+id = 557
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Why, I oughta..."
+parent = 553
+
+[[nodes]]
+id = 558
+depth = 3
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = 553
+children = [559, 560]
+
+[[nodes]]
+id = 559
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Come see me when yer not so laden down. I've got another one fer ye if ye need it."
+parent = 558
+
+[[nodes]]
+id = 560
+depth = 4
+kind = "act"
+text = "end"
+parent = 558
+is_terminal = true
+
+[[nodes]]
+id = 561
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Here! Try not ter lose this one! These things don't grow on trees, ye know."
+parent = 553
+
+[[nodes]]
+id = 562
+depth = 2
+kind = "act"
+text = "end"
+parent = 549
+is_terminal = true
+
+[[nodes]]
+id = 563
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [564]
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "act"
+text = "above"
+parent = 563
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [566]
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "act"
+text = "above"
+parent = 565
+
+[[nodes]]
+id = 567
+depth = 1
+kind = "other"
+text = "{{mes|You do not have the correct equipment to fish here.}}"
+parent = -1
+
+[[nodes]]
+id = 568
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 569
+depth = 1
+kind = "other"
+text = "{{mes|You do not have any free space for anything that you will catch!}}"
+parent = -1
+
+[[nodes]]
+id = 570
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "box"
+text = "You must be a Level 40 Fisherman to fish here."
+parent = -1
+
+[[nodes]]
+id = 572
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "other"
+text = "{{mes|You dunk the bowl in the water...}}"
+parent = -1
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "other"
+text = "{{mes|...and you catch some Sluglings!}}"
+parent = -1
+
+[[nodes]]
+id = 575
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Gah! Get that slimy thing away from me!"
+parent = -1
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 578
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The slugs are talking to me... They tell me to do bad things..."
+parent = -1
+
+[[nodes]]
+id = 579
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Gimme that!"
+parent = -1
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "box"
+text = "The Captain takes the Slugling and stamps on it until it stops squirming, then hands it back."
+parent = -1
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Egad... what just happened?"
+parent = -1
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "What happened is ye were messin' about with Sluglings!"
+parent = -1
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Don't ye have anything better to do?"
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "other"
+text = "{{mes|You stuff the squirming Sluglings into the barrel.}}"
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 587
+depth = 1
+kind = "other"
+text = "{{mes|You stuff the squirming Karamthultu into the barrel.}}"
+parent = -1
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 589
+depth = 1
+kind = "other"
+text = "{{mes|You don't think you can stuff any more Sluglings in there.}}"
+parent = -1
+
+[[nodes]]
+id = 590
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 591
+depth = 1
+kind = "other"
+text = "{{mes|You do not yet have five sea creatures in the barrel!}}"
+parent = -1
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "box"
+text = "You pressurise the asserted sea creatures."
+parent = -1
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How could I kill my sluggy brethren...?"
+parent = -1
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Snap out of it, [lad/lass]! Yer in slug-shock!"
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? Who?"
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Gah! Sorry about that."
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "No problem. Well, now ye have just one more ingredient to grab, and then we can get this 'rum' flowin!"
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, how far away will I have to go to grab it?"
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Not far at all, [lad/lass]. Ye've just got to get it from the basement!"
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great! What is it?"
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Hold yer horses, [lad/lass]! While ye was off gallivantin' with yer slimy aquatic playmates, the 'rum' achieved spiritual critical mass."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "To put it in terms ye'll understand: the brewin' equipment is possessed."
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Possessed!"
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Don't ye worry yerself about it! This happens all the time."
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, to tell the truth, my lads are a little quicker off the mark, so it only happens occasionally."
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Not that I'm criticisin' yer performance, [lad/lass]."
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Give the controls a couple of belts with this wrench."
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "One of the lads did a little priestin' on the side before he came here. Get him to bless it and ye'll do fine."
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [615, 616, 617]
+
+[[nodes]]
+id = 615
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 614
+
+[[nodes]]
+id = 616
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I want yeto go clear the Evil Spirit out of the brewin' controls. Use the wrench I gave ye, but get it blessed first."
+parent = 614
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "cond"
+text = "If the player has lost the wrench:"
+parent = 614
+children = [618, 619, 620, 621, 626]
+
+[[nodes]]
+id = 618
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Mumblemumblewhatwrenchmumble..."
+parent = 617
+
+[[nodes]]
+id = 619
+depth = 3
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "What were that?"
+parent = 617
+
+[[nodes]]
+id = 620
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I said, what if I've lost the wrench?"
+parent = 617
+
+[[nodes]]
+id = 621
+depth = 3
+kind = "cond"
+text = "If the player doesn't have inventory space:"
+parent = 617
+children = [622, 623, 624, 625]
+
+[[nodes]]
+id = 622
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr, ye landlubber!"
+parent = 621
+
+[[nodes]]
+id = 623
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Calm down, remember yer ulcer..."
+parent = 621
+
+[[nodes]]
+id = 624
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Look, I've got another wrench, but ye don't have any free space fer it. Come back when ye do."
+parent = 621
+
+[[nodes]]
+id = 625
+depth = 4
+kind = "act"
+text = "end"
+parent = 621
+is_terminal = true
+
+[[nodes]]
+id = 626
+depth = 3
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 617
+children = [627, 628, 629, 630]
+
+[[nodes]]
+id = 627
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Arr! I'd get more work out of a minty flavoured brick!"
+parent = 626
+
+[[nodes]]
+id = 628
+depth = 4
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "If ye lose this one I'll have ye turned inside out, covered with spiders and turned rightside in so they'll eat ye alive!"
+parent = 626
+
+[[nodes]]
+id = 629
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Steady on!"
+parent = 626
+
+[[nodes]]
+id = 630
+depth = 4
+kind = "act"
+text = "end"
+parent = 626
+is_terminal = true
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [632]
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "act"
+text = "above"
+parent = 631
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [634]
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "act"
+text = "above"
+parent = 633
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Come out and face me!}}"
+parent = -1
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "box"
+text = "Well, it seems that this wrench is just not holy enough to work. You should go and get it blessed."
+parent = -1
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 638
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You used to be a priest, right?"
+parent = -1
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "I didn't nick anything, guv. I've got twenty people who'll swear blind I was..."
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Never mind. I need some help with the spirit in the brewing equipment."
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "cond"
+text = "Without the [[wrench]]:"
+parent = -1
+children = [643, 644]
+
+[[nodes]]
+id = 643
+depth = 2
+kind = "speaker"
+speaker = "Davey"
+text = "Well, I'll bless something for you if you need it, but just don't spread it around that I'm giving out freebies."
+parent = 642
+
+[[nodes]]
+id = 644
+depth = 2
+kind = "act"
+text = "end"
+parent = 642
+is_terminal = true
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Trust me, guv, lots of people need help after coming into contact with the spirits we produce here."
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you bless this wrench for me?"
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "cond"
+text = "If the player does not have 47 [[Prayer points]]:"
+parent = -1
+children = [648, 649, 650, 651, 652, 653, 654, 655, 656, 657, 658]
+
+[[nodes]]
+id = 648
+depth = 2
+kind = "speaker"
+speaker = "Davey"
+text = "Nope."
+parent = 647
+
+[[nodes]]
+id = 649
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nope?"
+parent = 647
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "speaker"
+speaker = "Davey"
+text = "Nope. You don't strike me as being... devout, you know?"
+parent = 647
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Come again?"
+parent = 647
+
+[[nodes]]
+id = 652
+depth = 2
+kind = "speaker"
+speaker = "Davey"
+text = "Your holy aura, it's a little shoddy, if you catch my drift."
+parent = 647
+
+[[nodes]]
+id = 653
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = 647
+
+[[nodes]]
+id = 654
+depth = 2
+kind = "speaker"
+speaker = "Davey"
+text = "You need a Prayer level of 47. <!--Davey: You need a Prayer of 47.-->"
+parent = 647
+
+[[nodes]]
+id = 655
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh!"
+parent = 647
+
+[[nodes]]
+id = 656
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well why didn't you just say so?"
+parent = 647
+
+[[nodes]]
+id = 657
+depth = 2
+kind = "speaker"
+speaker = "Davey"
+text = "I might have had a bit of an overestimation problem guv. I'm sure it won't happen again."
+parent = 647
+
+[[nodes]]
+id = 658
+depth = 2
+kind = "act"
+text = "end"
+parent = 647
+is_terminal = true
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "I might well do. Remember, only the first one's free."
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Dominoes Ad Nauseum, Romanes Eunt Domus."
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Sorted."
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is that it?"
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Oh, you want the full package deal."
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "All right. Brace yourself."
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "other"
+text = "{{Qact|Davey cheers. The player holds up the [[wrench]] and it is zapped by a magical force turning it into the [[holy wrench]].}}"
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Groovy.}}"
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "No problem, guv. Good luck with your little problem."
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "You might find that little wrench worth hanging on to after you're done with the Spirit."
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really? I mean, it's holy and everything, but I don't think it looks all that useful."
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "Well, it may not look much, but you'll find that you might need a few less prayer potions if you have it in your pack, if you know what I mean."
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, no.  {{sic|extra space}}I don't know what you mean, but I'm sure I'll find out!"
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You used to be a priest, right?"
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "I didn't nick anything, guv. I've got twenty people who'll swear blind I was..."
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Never mind. I need some help with the spirit in the brewing equipment."
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "speaker"
+speaker = "Davey"
+text = "You mean more help? I've already blessed one wrench for you, that should be enough."
+parent = -1
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [683, 684, 685, 686]
+
+[[nodes]]
+id = 683
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 682
+
+[[nodes]]
+id = 684
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I want ye to go clear the Evil Spirit out of the brewin' controls. Use the wrench I gave ye, but get it blessed first."
+parent = 682
+
+[[nodes]]
+id = 685
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I see ye've got the wrench good and blessed, so go whack the controls till the Evil Spirit pops out."
+parent = 682
+
+[[nodes]]
+id = 686
+depth = 2
+kind = "act"
+text = "end"
+parent = 682
+is_terminal = true
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [688]
+
+[[nodes]]
+id = 688
+depth = 2
+kind = "act"
+text = "above"
+parent = 687
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [690]
+
+[[nodes]]
+id = 690
+depth = 2
+kind = "act"
+text = "above"
+parent = 689
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I see ye've got the wrench good and blessed, so go whack the hopper 'til the Evil Spirit pops out."
+parent = -1
+
+[[nodes]]
+id = 692
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "other"
+text = "{{mes|You raise your wrench on high and smite the controls mightily!}}"
+parent = -1
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|The power of Guthix compels you!}}"
+parent = -1
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "other"
+text = "{{mes|The Evil Spirit is forced from the controls!}}"
+parent = -1
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "other"
+text = "{{mes|The Evil Spirit has already manifested!}}"
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "other"
+text = "{{mes|You have banished the Evil Spirit!}}"
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, now that ye've got that spirit out of there ye can dump in the final ingredient."
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And that is?"
+parent = -1
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "We need the body of a diseased Fever Spider!"
+parent = -1
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Remind me never to drink anything you have ever made. Or touched."
+parent = -1
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "When yer quite done flappin' yer lips, go down into the basement and whack spiders until ye find a fever spider body."
+parent = -1
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Shove it in the hopper, and then we're in business."
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "cond"
+text = "Not wearing Slayer Gloves:"
+parent = -1
+children = [708, 709]
+
+[[nodes]]
+id = 708
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Ye may want to hop back to the mainland and see a Slayer Master."
+parent = 707
+
+[[nodes]]
+id = 709
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "These Fever Spiders carry a nasty disease, and ye'll need a pair of Slayer Gloves on to not catch it!"
+parent = 707
+
+[[nodes]]
+id = 710
+depth = 1
+kind = "cond"
+text = "Wearing Slayer Gloves:"
+parent = -1
+children = [711]
+
+[[nodes]]
+id = 711
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I see yer already wearin' some Slayer Gloves. That'll keep the Fever Spiders from gnawin' yer hands off!"
+parent = 710
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So..."
+parent = -1
+
+[[nodes]]
+id = 714
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "option"
+text = "What exactly do you want me to do?"
+parent = -1
+children = [716, 717, 718, 719]
+
+[[nodes]]
+id = 716
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly do you want me to do?"
+parent = 715
+
+[[nodes]]
+id = 717
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "I want ye to go kill a Fever Spider and jam its body in the hopper."
+parent = 715
+
+[[nodes]]
+id = 718
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Whenever yer ready, [lad/lass]."
+parent = 715
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "act"
+text = "end"
+parent = 715
+is_terminal = true
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "option"
+text = "Why do you talk like a pirate?"
+parent = -1
+children = [721]
+
+[[nodes]]
+id = 721
+depth = 2
+kind = "act"
+text = "above"
+parent = 720
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "option"
+text = "So what do you make here anyway?"
+parent = -1
+children = [723]
+
+[[nodes]]
+id = 723
+depth = 2
+kind = "act"
+text = "above"
+parent = 722
+
+[[nodes]]
+id = 724
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "What are ye doin', [lad/lass]? I want ye to shove that in the hopper, not in me face!"
+parent = -1
+
+[[nodes]]
+id = 725
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Ye just can't get good help these days..."
+parent = -1
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "other"
+text = "{{mes|You cram the diseased Fever Spider body into the hopper.}}"
+parent = -1
+
+[[nodes]]
+id = 728
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 729
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I stuck your spider in the hopper, what now?"
+parent = -1
+
+[[nodes]]
+id = 730
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Now ye stand well back and watch the glory of brewin' at its best!"
+parent = -1
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "other"
+text = "{{qact|The brewing control starts to rumble.}}"
+parent = -1
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is that it?"
+parent = -1
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Aye [lad/lass]! Now get outside and feed that stuff to the pirates."
+parent = -1
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Try givin' it to the Captain, he's in charge. Get him bladdered and the rest will fall!"
+parent = -1
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Ye'll need to use that bucket of yours. Most stuff can't stand bein' in contact with our 'rum' fer too long."
+parent = -1
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Took us a lot of dissolvin' to work that one out."
+parent = -1
+
+[[nodes]]
+id = 737
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "So, what did he say?"
+parent = -1
+
+[[nodes]]
+id = 739
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who?"
+parent = -1
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "The Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 741
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh! I haven't spoken to him yet!"
+parent = -1
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Well, get a move on!"
+parent = -1
+
+[[nodes]]
+id = 743
+depth = 1
+kind = "cond"
+text = "If the player hasn't gotten 'rum' yet:"
+parent = -1
+children = [744]
+
+[[nodes]]
+id = 744
+depth = 2
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "And don't ferget the 'rum'!"
+parent = 743
+
+[[nodes]]
+id = 745
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "cond"
+text = "If the player does not have an empty bucket:"
+parent = -1
+children = [747, 748]
+
+[[nodes]]
+id = 747
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 746
+
+[[nodes]]
+id = 748
+depth = 2
+kind = "act"
+text = "end"
+parent = 746
+is_terminal = true
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "cond"
+text = "If the player has an empty bucket:"
+parent = -1
+children = [750, 751, 752]
+
+[[nodes]]
+id = 750
+depth = 2
+kind = "box"
+text = "You carefully fill the bucket with the foul-smelling swill."
+parent = 749
+
+[[nodes]]
+id = 751
+depth = 2
+kind = "act"
+text = "receives=an [[unsanitary swill]]"
+parent = 749
+
+[[nodes]]
+id = 752
+depth = 2
+kind = "act"
+text = "end"
+parent = 749
+is_terminal = true
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Be that the finest, most abrasive 'rum' I've ever smelled?"
+parent = -1
+
+[[nodes]]
+id = 754
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes! That it be!"
+parent = -1
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Hand it over or I'll run ye through!"
+parent = -1
+
+[[nodes]]
+id = 756
+depth = 1
+kind = "box"
+text = "The Captain drinks the 'rum' as quickly as possible."
+parent = -1
+
+[[nodes]]
+id = 757
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Arr."
+parent = -1
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Ye be a good [lad/lass], fer a filthy livin' landlubber."
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So... I take it your boss will be pleased?"
+parent = -1
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Arr, that he will. I'll tell..."
+parent = -1
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Wait a minute..."
+parent = -1
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Arr, ye tricky dog!"
+parent = -1
+
+[[nodes]]
+id = 763
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Ye tried to trick old Donnie!"
+parent = -1
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh well, I guess I'll have to try again."
+parent = -1
+
+[[nodes]]
+id = 765
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Arr, [lad/lass], you tried to trick me, but i was too clever for ye!"
+parent = -1
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Besides, Rabid Jack would have my hide if I told ye it were him that sent me!"
+parent = -1
+
+[[nodes]]
+id = 767
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sure he would. Good job you caught me out, eh!"
+parent = -1
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Aye! Now get ye gone, and don't return without more 'rum'!"
+parent = -1
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Hey you! I can smell the 'rum' on ye!"
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "If it isn't in my belly by the time I cout ter three, I'll have ye flogged!"
+parent = -1
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "box"
+text = "Donnie drinks the 'rum' like it is water."
+parent = -1
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "speaker"
+speaker = "Captain Donnie"
+text = "Arrr...that hits the spot..."
+parent = -1
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "box"
+text = "You thankfully have no need to do that any more."
+parent = -1
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "So, what did he say?"
+parent = -1
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not much that was coherent."
+parent = -1
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who is Rabid Jack?"
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Rabid Jack!"
+parent = -1
+
+[[nodes]]
+id = 781
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "THE Rabid Jack!"
+parent = -1
+
+[[nodes]]
+id = 782
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Egad...I haven't heard that name..."
+parent = -1
+
+[[nodes]]
+id = 783
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "...before."
+parent = -1
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, who is he?"
+parent = -1
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Dunno [lad/lass]."
+parent = -1
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Almost as if I aren't changing subjects, well done!"
+parent = -1
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "With those rottin' dogs legless they'll never keep fighting us now, so we've decided to stay here and keep the 'rum' flowin!"
+parent = -1
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "speaker"
+speaker = "Captain Braindeath"
+text = "Thanks, [lad/lass]. We'd never have managed without ye!"
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

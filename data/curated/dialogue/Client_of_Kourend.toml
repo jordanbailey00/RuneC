@@ -1,0 +1,2378 @@
+title = "Transcript:Client of Kourend"
+npcs = ["Horace", "Jennifer (Shayzien)", "Leenz", "Munty", "Regath", "Veos", "Veos' Client"]
+node_count = 305
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Veos"
+text = "Hello again, [player name]! What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "quest=No|Where am I exactly?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "quest=No|Can you take me somewhere?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "Could you give me some advice on Kourend?|quest=No"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "option"
+text = "Have you got any quests for me?"
+parent = -1
+children = [5, 6, 7, 8, 9, 10, 11, 27]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you got any quests for me?"
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "As a matter of fact, [player name], I do..."
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "I have a client from the mainland who's interested in learning a bit more about Kourend. They've asked me to gather some information on the five cities for them."
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "I was just going to do it myself, but as you're quite new around here, this might be a good opportunity for you to get to know the kingdom a bit better."
+parent = 4
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "So what do you say?"
+parent = 4
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "select"
+text = "Start the Client of Kourend quest?"
+parent = 4
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 4
+children = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sounds interesting! How can I help?"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "box"
+text = "pic=Enchanted scroll detail.png|Veos hands you an enchanted scroll."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Take this scroll."
+parent = 11
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "My client is interested in the hierarchy and general social organisation of Great Kourend. Especially when it comes to how it differs from the mainland."
+parent = 11
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "That scroll is special. When written on with a particular type of quill, my client will see what you're writing without anything being seen on the scroll itself."
+parent = 11
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Wait, wait! I'm not spying for somebody am I?"
+parent = 11
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Not exactly... My client simply wishes to keep their 'knowledge gathering' on the down low."
+parent = 11
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That seems fair. Who should I speak to in order to find out more about the cities?"
+parent = 11
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "There's many a man and woman who could give you the information you need, but general store owners in each city will likely be your best bet."
+parent = 11
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "They should know enough about their cities, and always seem up for a chat."
+parent = 11
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Good call. What about this special quill you mentioned?"
+parent = 11
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Simply touching a normal feather onto the paper should synchronise their magical ability to work together. You don't need any ink."
+parent = 11
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right, I'll return to you when I have the information your client needs."
+parent = 11
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "See you soon."
+parent = 11
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "option"
+text = "No."
+parent = 4
+children = [28, 29, 30]
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm busy at the moment, actually. Not now."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Very well. Do come back if you wish to help out my client."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|You attune the feather to the enchanted scroll, creating an enchanted quill."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "act"
+text = "Player receives an [[enchanted quill]]."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "box"
+text = "pic=Enchanted quill detail.png|You already have an Enchanted quill in your backpack. There's no need to make another."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "box"
+text = "pic=Enchanted quill detail.png|You can't create another quill... by using the quill on the scroll."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Veos"
+text = "Hello again, [player name]! What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "option"
+text = "quest=No|Where am I exactly?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "option"
+text = "quest=No|Can you take me somewhere?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me more about Kourend?"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Let's talk about your client..."
+parent = -1
+children = [43, 44, 52]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's talk about your client..."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "option"
+text = "What am I meant to be doing, again?"
+parent = 42
+children = [45, 46, 47, 48, 49, 50, 51]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What am I meant to be doing, again?"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "My client is interested in the hierarchy and general social organisation of Great Kourend. Especially when it comes to how it differs from the mainland."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "That scroll I given to you{{sic}} is special. When written on with a particular type of quill, my client will see what you're writing without anything being seen on the scroll itself."
+parent = 44
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Speak to the general store owners of each city. They should have enough knowledge of their own city to pry out of them what you need, and they always seem up for a chat."
+parent = 44
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Remember: simply use a feather on the scroll to attune it as a quill."
+parent = 44
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, Veos!"
+parent = 44
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "option"
+text = "I've lost something you've given me."
+parent = 42
+children = [53, 54, 57, 63]
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost something you've given me."
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "cond"
+text = "If the player has lost/banked the scroll but doesn't have inventory space:"
+parent = 52
+children = [55, 56]
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "speaker"
+speaker = "Veos"
+text = "I'll be happy to provide you with another scroll, [player name], though I'm afraid you don't seem to have any room in your backpack! Return to me when you have."
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "cond"
+text = "If the player has lost/banked the scroll:"
+parent = 52
+children = [58, 59, 60, 61, 62]
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "box"
+text = "Veos hands you back an enchanted scroll."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 4
+kind = "speaker"
+speaker = "Veos"
+text = "Worry not, [player], I have many of those scrolls. Luckily, due to the way it works, you haven't lost any information on it!"
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "speaker"
+speaker = "Veos"
+text = "Remember, if you still need to create a quill, simply attune a feather by using it on the scroll."
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, Veos!"
+parent = 57
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "cond"
+text = "If the player has the scroll in their backpack:"
+parent = 52
+children = [64, 65]
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "speaker"
+speaker = "Veos"
+text = "You already have your scroll, [player], I can literally see it peeking out of your backpack..."
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "act"
+text = "end"
+parent = 63
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Regath"
+text = "What do you require, traveller? I deal in many things."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "option"
+text = "quest=No|Let's see what you've got."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "quest=No|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "quest=No|I don't need anything."
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "option"
+text = "Can I ask you about Arceuus?"
+parent = -1
+children = [71, 72, 73, 74, 75, 76, 77, 78, 83]
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I ask you about Arceuus?"
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Regath"
+text = "This city holds knowledge many would deem unsafe to share. Why should I be so trusting to you?"
+parent = 70
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'm a..."
+parent = 70
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uhm..."
+parent = 70
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A journalist! Yes, a journalist from the mainland. I want to let the wider world know of how this incredible city works."
+parent = 70
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Regath"
+text = "Someone willing to share knowledge of our great city to many others?"
+parent = 70
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Regath"
+text = "Very well, then. The rest of the world could certainly do with learning about our great library."
+parent = 70
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "cond"
+text = "If the player does not have an enchanted quill:"
+parent = 70
+children = [79, 80, 81, 82]
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "other"
+text = "{{mes|You require the Enchanted Scroll Veos gave you and an Enchanted Quill before gathering information from the shopkeepers.}}"
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I was hoping to write this all down but I don't have the correct equipment! I'll be back in a tick!"
+parent = 78
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Regath"
+text = "You're not a very good journalist if you forget your equipment. Very well, then. I'll await your return."
+parent = 78
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "act"
+text = "end"
+parent = 78
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "cond"
+text = "If the player has an enchanted quill:"
+parent = 70
+children = [84, 89]
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "option"
+text = "So what exactly is it the people Arceuus bring to Great Kourend?"
+parent = 83
+children = [85, 86, 87, 88]
+
+[[nodes]]
+id = 85
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what exactly is it the people Arceuus bring to Great Kourend?"
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 4
+kind = "speaker"
+speaker = "Regath"
+text = """
+Arceuus is filled with literary and magical scholars. Lead by the great Trobin Arceuus. As a leader, he assists in pushing the limit of our knowledge surrounding magical abilities, souls and the crafting of runic energy.
+"""
+parent = 84
+
+[[nodes]]
+id = 87
+depth = 4
+kind = "speaker"
+speaker = "Regath"
+text = "He cares not for petty control, focusing instead on the expansion of knowledge within Great Kourend."
+parent = 84
+
+[[nodes]]
+id = 88
+depth = 4
+kind = "act"
+text = "previous"
+parent = 84
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "option"
+text = "What is there to do in Arceuus?"
+parent = 83
+children = [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 101, 103, 104, 105]
+
+[[nodes]]
+id = 90
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is there to do in Arceuus?"
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 4
+kind = "speaker"
+speaker = "Regath"
+text = "Our library is something to behond{{sic}}, but the millennia of knowledge found there; runic, magical and religious, are but small findings compared to the power of the Dark Altar."
+parent = 89
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "speaker"
+speaker = "Regath"
+text = "Through its power, we have great knowledge on life and death. This knowledge could be yours as well."
+parent = 89
+
+[[nodes]]
+id = 93
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|ARGH!}}"
+parent = 89
+
+[[nodes]]
+id = 94
+depth = 4
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|Your quill and scroll glow, causing a seething pain to run through your hand and arm."
+parent = 89
+
+[[nodes]]
+id = 95
+depth = 4
+kind = "speaker"
+speaker = "Regath"
+text = "What is the matter, journalist?"
+parent = 89
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I... I don't know."
+parent = 89
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I must have caught my finger with the quill. Apologies; please continue."
+parent = 89
+
+[[nodes]]
+id = 98
+depth = 4
+kind = "speaker"
+speaker = "Regath"
+text = "Very well. As mentioned, rewards on offer within our city are priceless. The sharing of our magical research is but child's play compared to the knowledge of Blood and Soul runecrafting."
+parent = 89
+
+[[nodes]]
+id = 99
+depth = 4
+kind = "cond"
+text = "If Regath was not the last general store owner you talked to:"
+parent = 89
+children = [100]
+
+[[nodes]]
+id = 100
+depth = 5
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|You jot down all of the information Regath had to say about Arceuus."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 4
+kind = "cond"
+text = "If Regath was the last general store owner you talked to:"
+parent = 89
+children = [102]
+
+[[nodes]]
+id = 102
+depth = 5
+kind = "box"
+text = "As you jot down the final information on Arceuus, you hear a mysterious whisper in your ear. 'Return to Veos...'"
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help!"
+parent = 89
+
+[[nodes]]
+id = 104
+depth = 4
+kind = "speaker"
+speaker = "Regath"
+text = "You're welcome. Spread the word of this great city with the new knowledge you have gained, and perhaps be more careful with how you hold your scroll in the future..."
+parent = 89
+
+[[nodes]]
+id = 105
+depth = 4
+kind = "act"
+text = "end"
+parent = 89
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Horace"
+text = "Hello, I'm Horace. Welcome to my shop. Would you like to buy or sell something?"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "quest=No|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "option"
+text = "quest=No|Okay, let's trade"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "quest=No|No, I'm fine."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "option"
+text = "Can I ask you about Hosidius?"
+parent = -1
+children = [111, 112, 113, 118]
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I ask you about Hosidius?"
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Horace"
+text = "Well, well my friend! I've lived in this great and glorious city all of my life. I'd be happy to share with you anything you'd like to know!"
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "cond"
+text = "If the player does not have an enchanted quill:"
+parent = 110
+children = [114, 115, 116, 117]
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "other"
+text = "{{mes|You require the Enchanted Scroll Veos gave you and an Enchanted Quill before gathering information from the shopkeepers.}}"
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh dear, I'm sorry. I was hoping to write this all down but I don't have the correct equipment! Can you hold that thought?"
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "speaker"
+speaker = "Horace"
+text = "Absolutely. I'm always up for a chat with any of my new patrons!"
+parent = 113
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "cond"
+text = "If the player has an enchanted quill:"
+parent = 110
+children = [119, 124]
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "option"
+text = "What is it that Hosidius provides for Great Kourend?"
+parent = 118
+children = [120, 121, 122, 123]
+
+[[nodes]]
+id = 120
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is it that Hosidius provides for Great Kourend?"
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 4
+kind = "speaker"
+speaker = "Horace"
+text = "Hosidius is filled with keen and skilled farmers alike! Lead by the incredibly efficient Kandur Hosidius, his intelligent resourcefulness ensures optimal agricultural production."
+parent = 119
+
+[[nodes]]
+id = 122
+depth = 4
+kind = "speaker"
+speaker = "Horace"
+text = """
+Our fields stretch as far as the eye can see. With incredible teamwork and group efforts, the ability to provide Great Kourend's people with food and herbal supplies is quite literally the fruits of our labour.
+"""
+parent = 119
+
+[[nodes]]
+id = 123
+depth = 4
+kind = "act"
+text = "previous"
+parent = 119
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "option"
+text = "What is there to do in Hosidius?"
+parent = 118
+children = [125, 126, 127, 129, 131, 132, 133]
+
+[[nodes]]
+id = 125
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is there to do in Hosidius?"
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 4
+kind = "speaker"
+speaker = "Horace"
+text = "Our personal kitchens and farming patches are lovely. That being said, the real gems of Hosidius are the vinery and Tithe farm. Both are world class!"
+parent = 124
+
+[[nodes]]
+id = 127
+depth = 4
+kind = "cond"
+text = "If Horace was not the last general store owner you talked to:"
+parent = 124
+children = [128]
+
+[[nodes]]
+id = 128
+depth = 5
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|You jot down all of the information Horace had to say about Hosidius."
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 4
+kind = "cond"
+text = "If Horace was the last general store owner you talked to:"
+parent = 124
+children = [130]
+
+[[nodes]]
+id = 130
+depth = 5
+kind = "box"
+text = "As you jot down the final information on Hosidius, you hear a mysterious whisper in your ear. 'Return to Veos...'"
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help, Horace!"
+parent = 124
+
+[[nodes]]
+id = 132
+depth = 4
+kind = "speaker"
+speaker = "Horace"
+text = "Anytime, friend! Feel free to pop along if you ever need any wares!"
+parent = 124
+
+[[nodes]]
+id = 133
+depth = 4
+kind = "act"
+text = "end"
+parent = 124
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Munty"
+text = "Can I help you, human?"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "option"
+text = "quest=No|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "option"
+text = "quest=No|Let's trade."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "quest=No|No, I'm fine."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "Can I ask you about Lovakengj?"
+parent = -1
+children = [139, 140, 141, 146]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I ask you about Lovakengj?"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Munty"
+text = "Why I'd be happy to have a chat! I do enjoy talking about this great city of ours."
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "cond"
+text = "If the player does not have an enchanted quill:"
+parent = 138
+children = [142, 143, 144, 145]
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "other"
+text = "{{mes|You require the Enchanted Scroll Veos gave you and an Enchanted Quill before gathering information from the shopkeepers.}}"
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh dear, excuse me, I was hoping to write this all down but I don't have the correct equipment! I'll be back in a tick!"
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 3
+kind = "speaker"
+speaker = "Munty"
+text = "Very well, I look forward to chatting with you!"
+parent = 141
+
+[[nodes]]
+id = 145
+depth = 3
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "cond"
+text = "If the player has an enchanted quill:"
+parent = 138
+children = [147, 152]
+
+[[nodes]]
+id = 147
+depth = 3
+kind = "option"
+text = "What is it that Lovakengj provides for Great Kourend?"
+parent = 146
+children = [148, 149, 150, 151]
+
+[[nodes]]
+id = 148
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is it that Lovakengj provides for Great Kourend?"
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 4
+kind = "speaker"
+speaker = "Munty"
+text = "Lovakengj is filled with incredibly skilled blacksmiths. Under the leadership of Vulcana Lovakengj, our intelligent material saving skills make us the finest blacksmiths in the land."
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 4
+kind = "speaker"
+speaker = "Munty"
+text = "Armours, weaponry, tools and structures - our city supplies Kourend with all of these to the finest standards known to Dwarf and Human alike."
+parent = 147
+
+[[nodes]]
+id = 151
+depth = 4
+kind = "act"
+text = "previous"
+parent = 147
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "option"
+text = "What is there to do in Lovakenj?"
+parent = 146
+children = [153, 154, 155, 156, 157, 159, 161, 162, 163]
+
+[[nodes]]
+id = 153
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is there to do in Lovakenj?"
+parent = 152
+
+[[nodes]]
+id = 154
+depth = 4
+kind = "speaker"
+speaker = "Munty"
+text = "Well creating dynamite and mining in the sulphur mine isn't a pretty job, but someone has to do it!"
+parent = 152
+
+[[nodes]]
+id = 155
+depth = 4
+kind = "speaker"
+speaker = "Munty"
+text = "We also make the armour worn by the very soldiers of the Shayzien Army here, not to mention the Blast Mine."
+parent = 152
+
+[[nodes]]
+id = 156
+depth = 4
+kind = "speaker"
+speaker = "Munty"
+text = "The rewards able to be reaped in our city are nothing to be scoffed at!"
+parent = 152
+
+[[nodes]]
+id = 157
+depth = 4
+kind = "cond"
+text = "If Munty was the last general store owner you talked to:"
+parent = 152
+children = [158]
+
+[[nodes]]
+id = 158
+depth = 5
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|You jot down all of the information Munty had to say about Lovakengj."
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 4
+kind = "cond"
+text = "If Munty was the last general store owner you talked to:"
+parent = 152
+children = [160]
+
+[[nodes]]
+id = 160
+depth = 5
+kind = "box"
+text = "As you jot down the final information on Lovakengj, you hear a mysterious whisper in your ear. 'Return to Veos...'"
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help!"
+parent = 152
+
+[[nodes]]
+id = 162
+depth = 4
+kind = "speaker"
+speaker = "Munty"
+text = "Anytime! Come back soon!"
+parent = 152
+
+[[nodes]]
+id = 163
+depth = 4
+kind = "act"
+text = "end"
+parent = 152
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Leenz"
+text = "A great adventurer, from afar? How may I help with my repertoire?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "option"
+text = "quest=No|Let's trade."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "option"
+text = "quest=No|I don't need anything right now."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "option"
+text = "Can I ask you about Port Piscarilius?"
+parent = -1
+children = [168, 169, 170, 175]
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I ask you about Port Piscarilius?"
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Leenz"
+text = "If it's Piscarilius information you seek, it's in my brain that you must peek!"
+parent = 167
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "cond"
+text = "If the player does not have an enchanted quill:"
+parent = 167
+children = [171, 172, 173, 174]
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "other"
+text = "{{mes|You require the Enchanted Scroll Veos gave you and an Enchanted Quill before gathering information from the shopkeepers.}}"
+parent = 170
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry, I was hoping to write this all down but I don't have the correct equipment! Can you hold that rhyme?"
+parent = 170
+
+[[nodes]]
+id = 173
+depth = 3
+kind = "speaker"
+speaker = "Leenz"
+text = "If there's one thing, that I do best, it's waiting patiently, for my guests!"
+parent = 170
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "act"
+text = "end"
+parent = 170
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "cond"
+text = "If the player has an enchanted quill:"
+parent = 167
+children = [176, 182]
+
+[[nodes]]
+id = 176
+depth = 3
+kind = "option"
+text = "What is it that Port Piscarilius provides for Kourend?"
+parent = 175
+children = [177, 178, 179, 180, 181]
+
+[[nodes]]
+id = 177
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You're certainly a chirpy woman! What is it that Port Piscarilius provides for Great Kourend?"
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 4
+kind = "speaker"
+speaker = "Leenz"
+text = "Within Port Piscarilius, you'll find, great fisherman, traders, pirates and I. All lead, by our ruthless leader, Shauna Piscarilius, none yet to supersede her."
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 4
+kind = "speaker"
+speaker = "Leenz"
+text = "No surprise if you meet her, her tactics are ruthless. Her demeanour renders, all pirates toothless."
+parent = 176
+
+[[nodes]]
+id = 180
+depth = 4
+kind = "speaker"
+speaker = "Leenz"
+text = "Our great shore and trading, have treasures to be found, providing export and fish, in quantities abound."
+parent = 176
+
+[[nodes]]
+id = 181
+depth = 4
+kind = "act"
+text = "previous"
+parent = 176
+
+[[nodes]]
+id = 182
+depth = 3
+kind = "option"
+text = "What is there to do in Port Piscarilius?"
+parent = 175
+children = [183, 184, 185, 187, 189, 190, 191, 192, 193]
+
+[[nodes]]
+id = 183
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is there to do in Port Piscarilius?"
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 4
+kind = "speaker"
+speaker = "Leenz"
+text = "Our shore is brimming, with gold from the sea, the most loyal of our people, are handed the key. We'll let you stand on our shores and collect, the great anglerfish; other{{sic}} only... covet?"
+parent = 182
+
+[[nodes]]
+id = 185
+depth = 4
+kind = "cond"
+text = "If Leenz was not the last general store owner you talked to:"
+parent = 182
+children = [186]
+
+[[nodes]]
+id = 186
+depth = 5
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|You jot down all of the information Leenz had to say about Port Piscarilius... With slightly less poetry."
+parent = 185
+
+[[nodes]]
+id = 187
+depth = 4
+kind = "cond"
+text = "If Leenz was the last general store owner you talked to:"
+parent = 182
+children = [188]
+
+[[nodes]]
+id = 188
+depth = 5
+kind = "box"
+text = "As you jot down the final information on Port Piscarilius, you hear a mysterious whisper in your ear. 'Return to Veos...'"
+parent = 187
+
+[[nodes]]
+id = 189
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Hang on a second... that last one didn't rhyme too well!"
+parent = 182
+
+[[nodes]]
+id = 190
+depth = 4
+kind = "speaker"
+speaker = "Leenz"
+text = "Listen here pal, you don't mess with people in Port Piscarilius. Do you want happy rhyming Leenz, or angry, gruff and pain-inflicting Leenz?"
+parent = 182
+
+[[nodes]]
+id = 191
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Happy rhyming Leenz, please! Thanks for your help!"
+parent = 182
+
+[[nodes]]
+id = 192
+depth = 4
+kind = "speaker"
+speaker = "Leenz"
+text = "Anytime, my adventuring friend, enjoy your time in Great Kourend!"
+parent = 182
+
+[[nodes]]
+id = 193
+depth = 4
+kind = "act"
+text = "end"
+parent = 182
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "What're yer looking for, me luv'?"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "quest=No|Let's trade."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "option"
+text = "quest=No|I don't need anything right now."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "option"
+text = "Can I ask you about Shayzien?"
+parent = -1
+children = [198, 199, 200, 205]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I ask you about Shayzien?"
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Jennifer"
+text = "Well I could give you some info if that's all yer wantin'. Gets lonely in 'ere while me mates are out there fightin' the good war!"
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "cond"
+text = "If the player does not have an enchanted quill:"
+parent = 197
+children = [201, 202, 203, 204]
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "other"
+text = "{{mes|You require the Enchanted Scroll Veos gave you and an Enchanted Quill before gathering information from the shopkeepers.}}"
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Apologies, I was hoping to write this all down but I don't have the correct equipment!"
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "speaker"
+speaker = "Jennifer"
+text = "Well ye canne remember everything I 'ave to say about this wee 'ouse without that, can you? Come back when yer 'ead's not all fried!"
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "cond"
+text = "If the player has an enchanted quill:"
+parent = 197
+children = [206, 211]
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "option"
+text = "What is it that Shayzien provides for Great Kourend?"
+parent = 205
+children = [207, 208, 209, 210]
+
+[[nodes]]
+id = 207
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is it that Shayzien provides for Great Kourend?"
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 4
+kind = "speaker"
+speaker = "Jennifer"
+text = "Phwoar, what don' we do? This place is filled with officers and the like. Lead by our rig'rous leader Shiro Shayzien, 'e ensures ultimate justice and safety for the entirety of Great Kourend."
+parent = 206
+
+[[nodes]]
+id = 209
+depth = 4
+kind = "speaker"
+speaker = "Jennifer"
+text = """
+Our soldiers fight off the constant threat of the lizardman, while our 'ighly trained medics 'eal them from battle. Strict in combat trainin' and discipline. Law, order and defence. These are the words we live by!
+"""
+parent = 206
+
+[[nodes]]
+id = 210
+depth = 4
+kind = "act"
+text = "previous"
+parent = 206
+
+[[nodes]]
+id = 211
+depth = 3
+kind = "option"
+text = "What is there to do in Shayzien?"
+parent = 205
+children = [212, 213, 214, 216, 218, 219, 220]
+
+[[nodes]]
+id = 212
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is there to do in Shayzien?"
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 4
+kind = "speaker"
+speaker = "Jennifer"
+text = "It ain't all pretty 'ere, but if you 'elp our soldiers and tackle some organised crime... you'll soon find that the spoils o' war are grand."
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 4
+kind = "cond"
+text = "If Jennifer was not the last general store owner you talked to:"
+parent = 211
+children = [215]
+
+[[nodes]]
+id = 215
+depth = 5
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|You jot down all of the information Jennifer had to say about Shayzien."
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 4
+kind = "cond"
+text = "If Jennifer was the last general store owner you talked to:"
+parent = 211
+children = [217]
+
+[[nodes]]
+id = 217
+depth = 5
+kind = "box"
+text = "As you jot down the final information on Shayzien, you hear a mysterious whisper in your ear. 'Return to Veos...'"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help!"
+parent = 211
+
+[[nodes]]
+id = 219
+depth = 4
+kind = "speaker"
+speaker = "Jennifer"
+text = "That's alright petal, you go'un and have fun."
+parent = 211
+
+[[nodes]]
+id = 220
+depth = 4
+kind = "act"
+text = "end"
+parent = 211
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Veos"
+text = "Hello again, [player name]! What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "option"
+text = "quest=No|Where am I exactly?"
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "option"
+text = "quest=No|Can you take me somewhere?"
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me more about Kourend?"
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "option"
+text = "Let's talk about your client..."
+parent = -1
+children = [226, 227, 228, 229, 230, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's talk about your client..."
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have gathered information from all of the cities."
+parent = 225
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I could hear a voice, Veos... in my head! As if it whispered in my ear to return to you!"
+parent = 225
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "Yes, I heard it too... they mentioned that your task was complete."
+parent = 225
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "cond"
+text = "If the player still has the enchanted scroll and quill:"
+parent = 225
+children = [231, 232]
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Let me take those items off your hands."
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 3
+kind = "box"
+text = "pic=Enchanted scroll detail.png|pic2=Enchanted quill detail.png|Veos removes the items he gave you from your backpack."
+parent = 230
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That reminds me, Veos! I didn't sign up to this! I wasn't told that my mind would be entered. And what about the possibility of severely damaging my hand?"
+parent = 225
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "If it makes you feel any better, my client sends their apologies. It wasn't intentional. Needless to say, something you said provoked emotion..."
+parent = 225
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "Namely..."
+parent = 225
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "The Dark Altar..."
+parent = 225
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "If I knew mentioning the Dark Altar would upset them so much, I'd have not written that bit of information down!"
+parent = 225
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "Well that's just the thing, [player name]. My client is pleased you found such information. Tell me... Would you be willing to do one last thing for them?"
+parent = 225
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I don't necessarily believe I have much of a choice!"
+parent = 225
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What should I do now?"
+parent = 225
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "I'm certainly glad you're able to assist once again."
+parent = 225
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "My client will be most pleased."
+parent = 225
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "My client requires... another simple task. They assure me that it will be the last. Take this orb. You must activate it beside the Dark Altar, north of Arceuus."
+parent = 225
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "act"
+text = "Player receives a [[mysterious orb (Client of Kourend)|mysterious orb]]."
+parent = 225
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I ask why I would do that?"
+parent = 225
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "It's best you don't."
+parent = 225
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, can't argue with that! I'll return when I'm done!"
+parent = 225
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Veos"
+text = "Hello again, [player name]! What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "option"
+text = "quest=No|Where am I exactly?"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "quest=No|Can you take me somewhere?"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me more about Kourend?"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "option"
+text = "Let's talk about your client..."
+parent = -1
+children = [254, 255]
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's talk about your client..."
+parent = 253
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "option"
+text = "So what exactly is it your client now wants me to do?"
+parent = 253
+children = [256, 257, 260]
+
+[[nodes]]
+id = 256
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what exactly is it your client now wants me to do?"
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 3
+kind = "cond"
+text = "If the player has lost the mysterious orb:"
+parent = 255
+children = [258, 259]
+
+[[nodes]]
+id = 258
+depth = 4
+kind = "box"
+text = "pic=Mysterious orb (Client of Kourend) detail.png|Veos hands you an enchanted orb."
+parent = 257
+
+[[nodes]]
+id = 259
+depth = 4
+kind = "speaker"
+speaker = "Veos"
+text = "Take this orb."
+parent = 257
+
+[[nodes]]
+id = 260
+depth = 3
+kind = "act"
+text = "(Same as above from \"My client requires...\")"
+parent = 255
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "I've lost something you've given me."
+parent = -1
+children = [262, 263, 266, 269]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost something you've given me."
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "cond"
+text = "If the player has the orb in their backpack:"
+parent = 261
+children = [264, 265]
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "You already have the orb, [player name], I can literally see it peeking out of your backpack..."
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "act"
+text = "end"
+parent = 263
+is_terminal = true
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "cond"
+text = "If the player has lost/banked the orb but doesn't have inventory space:"
+parent = 261
+children = [267, 268]
+
+[[nodes]]
+id = 267
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "I'll be happy to provide you with another orb, [player name], though I'm afraid you don't seem to have any room in your backpack! Return to me when you have room."
+parent = 266
+
+[[nodes]]
+id = 268
+depth = 3
+kind = "act"
+text = "end"
+parent = 266
+is_terminal = true
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "cond"
+text = "If the player has lost/banked the orb:"
+parent = 261
+children = [270, 271, 272, 273]
+
+[[nodes]]
+id = 270
+depth = 3
+kind = "box"
+text = "pic=Mysterious orb (Client of Kourend) detail.png|Veos hands you another mysterious orb."
+parent = 269
+
+[[nodes]]
+id = 271
+depth = 3
+kind = "speaker"
+speaker = "Veos"
+text = "Please be more careful, [player name]. Remember to return to me when you have used the orb in the area."
+parent = 269
+
+[[nodes]]
+id = 272
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, Veos!"
+parent = 269
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "act"
+text = "end"
+parent = 269
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [275, 276]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Goodbye."
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "act"
+text = "end"
+parent = 274
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Argh!}}"
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "box"
+text = "pic=Broken glass detail.png|The orb shatters after being held in the air."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "box"
+text = "You hear a whisper in your ear. {{Colour|#000080|'Return... to Veos. My thanks...'"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I really wish I would be warned about these things earlier..."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "box"
+text = "pic=Mysterious orb (Client of Kourend) detail.png|The orb doesn't seem to respond here. Try moving closer to the Dark Altar."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Veos"
+text = "Hello again, [player name]! What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "option"
+text = "quest=No|Where am I exactly?"
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "option"
+text = "quest=No|Can you take me somewhere?"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me more about Kourend?"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "option"
+text = "Let's talk about your client..."
+parent = -1
+children = [289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304]
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Veos, enough is enough! I've suffered through enough. Exploding orbs and burning quills..."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "[player name]? What are you talking about?"
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You know darn well what I'm talking about!"
+parent = 288
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "[player name], I haven't spoken with you since bringing you to Kourend, I have no idea what you're on ab--"
+parent = 288
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "speaker"
+speaker = "Veos"
+text = "ARGH!"
+parent = 288
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Veos, this isn't funny anymore... Are you alright? I did all that your client asked of me..."
+parent = 288
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "other"
+text = "'''Veos' Client:''' {{Colour|#000080|Indeed you have.}}"
+parent = 288
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uhm... Veos?"
+parent = 288
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "other"
+text = "'''Veos' Client:''' {{Colour|#000080|You have done well. For that, you have my thanks.}}"
+parent = 288
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you? What have you done with Veos?"
+parent = 288
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "other"
+text = "'''Veos' Client:''' {{Colour|#000080|You need not fear for him. I will ensure no harm comes his way.}}"
+parent = 288
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "other"
+text = "'''Veos' Client:''' {{Colour|#000080|As for who I am... Well, that is of no importance.}}"
+parent = 288
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a right to know!"
+parent = 288
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "other"
+text = "'''Veos' Client:''' {{Colour|#000080|Knowledge can be a curse. Sometimes, it is better to remain unaware.}}"
+parent = 288
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "other"
+text = "'''Veos' Client:''' {{Colour|#000080|Now, time to release this mind back to consciousness... Don't worry, I'll make sure he rewards you. After all, you've been very useful to me...}}"
+parent = 288
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = 288

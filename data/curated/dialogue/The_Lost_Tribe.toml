@@ -1,0 +1,3500 @@
+title = "Transcript:The Lost Tribe"
+npcs = ["Sigmund", "Cook (Lumbridge)", "Hans", "Bob", "Duke Horacio", "Reldo", "General Bentnoze", "General Wartface", "Mistag", "Ur-tag"]
+node_count = 451
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Do you have any quests for me?"
+parent = -1
+children = [3, 4, 5, 6, 7, 11]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any quests for me?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "There was recently some damage to the castle cellar. Part of the wall has collapsed."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "The Duke insists that it was an earthquake, but I think some kind of monsters are to blame."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "select"
+text = "Start The Lost Tribe quest?"
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 2
+children = [8, 9, 10]
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what do you need me to do?"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Sigmund"
+text = "You should ask people around the town about it. Maybe someone saw something."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "No."
+parent = 2
+children = [12, 13]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I'm not interested."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "Who are you?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "What was I doing again?"
+parent = -1
+children = [18, 19, 20]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was I doing again?"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "I asked you to talk to people around Lumbridge to see if any of them know what happened in the cellar."
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "Who are you?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "option"
+text = "I seek a shield that will protect me from dragonbreath."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "option"
+text = "What happened in the cellar?"
+parent = -1
+children = [28, 29, 30]
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happened in the cellar?"
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "The wall collapsed because of an earthquake. I'm waiting for a team of builders to come and repair it."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "How is the adventuring going, my friend?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "quest=no|Do you have any other quests for me?"
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "option"
+text = "Do you know what happened in the castle cellar?"
+parent = -1
+children = [35, 36]
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Oh no, it's terrible, isn't it? There was rock dust everywhere, it got on all my ingredients!"
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "option"
+text = "quest=no|I am getting strong and mighty."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "option"
+text = "quest=no|I keep on dying."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "option"
+text = "quest=no|Can I use your range?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Hello. What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Do you know what happened in the cellar?"
+parent = -1
+children = [43, 44, 45]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened in the castle cellar?"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Hans"
+text = "The wall collapsed. I had to spend all day clearing it up! The Duke says it was an earthquake."
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "option"
+text = "quest=no|I have come to kill everyone in this castle!"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "option"
+text = "quest=no|I don't know. I'm lost. Where am I?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "option"
+text = "quest=no|Can you tell me how long I've been here?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "quest=no|Nothing."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "option"
+text = "Do you know what happened in the castle cellar?"
+parent = -1
+children = [52, 53, 54, 55, 56, 57, 58]
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened in the castle cellar?"
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Last night I was in the kitchen and I heard a noise from the cellar. I opened the trapdoor and saw a creature dart into a hole in the wall."
+parent = 51
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "It looked a bit like a goblin, but it had big bulging eyes. It wasn't wearing armour, but it had this odd helmet with a light on it."
+parent = 51
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "The tunnel was too dark for me to follow it, so I went to tell the Duke. But when we went down to the cellar the hole had been blocked up, and no one believes me."
+parent = 51
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I believe you."
+parent = 51
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Thank you, [player name]! If you can convince the Duke I'm telling the truth then we can get to the bottom of this mystery."
+parent = 51
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "act"
+text = "end"
+parent = 51
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "option"
+text = "quest=no|Give me a quest!"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "option"
+text = "quest=no|Have you anything to sell?"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "quest=no|Can you repair my items for me?"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "Do you know what happened in the castle cellar?"
+parent = -1
+children = [64, 65, 66]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened in the castle cellar?"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "I told you about the creature I saw. You should go and tell the Duke."
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "act"
+text = "end"
+parent = 63
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "option"
+text = "quest=no|Give me a quest!"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "quest=no|Have you anything to sell?"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "quest=no|Can you repair my items for me?"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "option"
+text = "Bob says he saw something in the cellar."
+parent = -1
+children = [73, 74, 75]
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Bob says he saw something in the cellar. Like a goblin with big eyes."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "A goblin? This validates my suspicion! We should tell the Duke!"
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "act"
+text = "end"
+parent = 72
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "option"
+text = "Who are you?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "option"
+text = "Bob says he saw something in the cellar"
+parent = -1
+children = [82, 83, 84, 85, 86, 88, 90, 91]
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Bob says he saw something in the cellar. Like a goblin with big eyes."
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Yes, he mentioned that to me. But I think he was imagining things. Goblins live in natural caves but everyone knows they don't have the wit to make their own tunnels."
+parent = 81
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "Yes your grace, but if there is any possibility that this is a goblin incursion then we should take that possibility very seriously!"
+parent = 81
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think we should at least investigate."
+parent = 81
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "cond"
+text = "If the player has completed [[Dragon Slayer I]]:"
+parent = 81
+children = [87]
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Sigmund"
+text = "Your grace, this is the adventurer who defeated the dragon Elvarg. I think you should listen to [him/her/them]."
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "cond"
+text = "If the player has completed [[Rune Mysteries]]:"
+parent = 81
+children = [89]
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Sigmund"
+text = "Your grace, this adventurer took that talisman you discovered to Sedridor. I think you should listen to [him/her/them]."
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Hmm, very well. I give you permission to investigate this mystery. If there is a blocked tunnel then perhaps you should try to un-block it."
+parent = 81
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "act"
+text = "end"
+parent = 81
+is_terminal = true
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "option"
+text = "What was I doing again?"
+parent = -1
+children = [97, 98, 99]
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was I doing again?"
+parent = 96
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "You were helping to investigate what happened in the cellar. Come back when you've found something out."
+parent = 96
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "end"
+parent = 96
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "option"
+text = "What was I doing again?"
+parent = -1
+children = [103, 104, 105]
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was I doing again?"
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "The Duke asked you to investigate the damage in the cellar. I hope you can find the monsters that are behind this!"
+parent = 102
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "act"
+text = "end"
+parent = 102
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "option"
+text = "Who are you?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "box"
+text = "pic=Bronze pickaxe detail.png|You dig a narrow tunnel through the rocks."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "option"
+text = "I dug through the rubble..."
+parent = -1
+children = [114, 115, 116, 117]
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I dug through the rubble in the cellar and found a tunnel!"
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "You see, your grace? It is a goblin attack!"
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "That tunnel could have many origins. I suggest you investigate further."
+parent = 113
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "I dug through the rubble..."
+parent = -1
+children = [121, 122, 123]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I dug through the rubble in the cellar and found a tunnel!"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "See, it was goblins! You should tell the Duke."
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "end"
+parent = 120
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "option"
+text = "Who are you?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "I dug through the rubble..."
+parent = -1
+children = [130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I dug through the rubble in the cellar and found a tunnel!"
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "On the ground I found this brooch."
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I've never seen anything like that before. It doesn't come from Lumbridge. What do you think, Sigmund?"
+parent = 129
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "It is unknown to me, your grace. But the fact it is there is enough to prove Bob's story. It must have been dropped by a goblin as it fled."
+parent = 129
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I've never heard of a goblin wearing something so well-crafted."
+parent = 129
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "Then it must have been stolen!"
+parent = 129
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "But it wasn't stolen from us. Where could it be from?"
+parent = 129
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "That doesn't matter! You said yourself that goblins couldn't have made that, so they must have stolen it from somewhere."
+parent = 129
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "Horrible, thieving goblins have broken into our cellar! We must retaliate immediately!"
+parent = 129
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "First we should wipe out the goblins east of the river, then we can march on the goblin village to the north-west..."
+parent = 129
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I will not commit troops until I have proof that goblins are behind this."
+parent = 129
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "[Player name], please find out what you can about this brooch. The librarian in Varrock might be able to help identify the symbol."
+parent = 129
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Hello there, [player name]."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "What can you tell me about this brooch?"
+parent = -1
+children = [146, 147, 148, 149, 150, 151, 152, 153]
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about this brooch?"
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "I've never seen that symbol before. Where did you find it?"
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "In a cave beneath Lumbridge."
+parent = 145
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "Very odd. Have you any idea how it got there?"
+parent = 145
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A goblin might have dropped it."
+parent = 145
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "I've never heard of a goblin carrying a brooch like this. But just a minute..."
+parent = 145
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "The other day I filed a book about ancient goblin tribes. It's somewhere at the west end of the library, I think. Maybe that will be of some use."
+parent = 145
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "Do you have anything to trade?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "option"
+text = "I'd better get going.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "'A History of the Goblin Race'. This must be it."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "box"
+text = "You take the book from the bookcase."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "act"
+text = "(The player flips through the book's pages. Fortunately, there are pictures.)"
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey... The symbol of the 'Dorgeshuun' tribe looks just like the symbol on the brooch I found."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "option"
+text = "I found out about the symbol..."
+parent = -1
+children = [166, 167, 168, 169]
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found out about the symbol. It was the symbol of one of the ancient goblin tribes!"
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "You see, your grace? I told you goblins were behind this!"
+parent = 165
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I still find it surprising that such a well-crafted brooch would have a goblin symbol on it. Perhaps you should find out more about this ancient tribe."
+parent = 165
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "act"
+text = "end"
+parent = 165
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "option"
+text = "I found out about the symbol..."
+parent = -1
+children = [173, 174, 175]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found out about the symbol. It was the symbol of one of the ancient goblin tribes!"
+parent = 172
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "At last, proof that goblins are behind this! You should tell the Duke at once!"
+parent = 172
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "Who are you?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "option"
+text = "Have you ever heard of the Dorgeshuun?"
+parent = -1
+children = [179, 180, 181, 182, 183, 184, 185, 191, 196]
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you ever heard of the Dorgeshuun?"
+parent = 178
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Dorgeshuun? That old goblin legend. Lost tribe."
+parent = 178
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "General Wartface"
+text = "In time of much-war there many tribes. Big High War-God send Dorgesh tribe to fight beardy-short-people in mountains."
+parent = 178
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "No no, he send them to fight tall people with biting blades, that what I hear."
+parent = 178
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "General Wartface"
+text = "It was beardy-short-people, that how legend go."
+parent = 178
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 178
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "option"
+text = "Make up your minds!"
+parent = 178
+children = [186, 187, 188, 189, 190]
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Make up your minds!"
+parent = 185
+
+[[nodes]]
+id = 187
+depth = 3
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "It was tall people! That what old storyteller say!"
+parent = 185
+
+[[nodes]]
+id = 188
+depth = 3
+kind = "speaker"
+speaker = "General Wartface"
+text = "No, beardy-short-people. That how legend always go, stupid."
+parent = 185
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "You stupid!"
+parent = 185
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "act"
+text = "other"
+parent = 185
+is_terminal = true
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "option"
+text = "Do you want me to decide for you again?"
+parent = 178
+children = [192, 193, 194, 195]
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you want me to decide for you again?"
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 3
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "That most stupid idea yet. If it happen it either happen one way or the other. You can't just decide which."
+parent = 191
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "General Wartface"
+text = "Yeah even goblins know that."
+parent = 191
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "act"
+text = "other"
+parent = 191
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "option"
+text = "It doesn't really matter"
+parent = 178
+children = [197, 198, 199, 200, 201, 202, 203, 204, 205, 210, 215]
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It doesn't really matter. What happened to them?"
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "speaker"
+speaker = "General Wartface"
+text = "Well, they say, 'We not want to fight,' so god punish them."
+parent = 196
+
+[[nodes]]
+id = 199
+depth = 3
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "That silly. No goblin ever say that."
+parent = 196
+
+[[nodes]]
+id = 200
+depth = 3
+kind = "speaker"
+speaker = "General Wartface"
+text = "What happen then?"
+parent = 196
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "They lose battle, that why god punish them."
+parent = 196
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "speaker"
+speaker = "General Wartface"
+text = "Ha ha! If they lost battle they all be dead!"
+parent = 196
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "No no, they losing so they run away, and Big High War-God punish them for running away."
+parent = 196
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 196
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "option"
+text = "Who were they fighting again?"
+parent = 196
+children = [206, 207, 208, 209]
+
+[[nodes]]
+id = 206
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who were they fighting again?"
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 4
+kind = "speaker"
+speaker = "General Wartface"
+text = "It was beardy-short-people in mountains."
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 4
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "No no, it was tall people."
+parent = 205
+
+[[nodes]]
+id = 209
+depth = 4
+kind = "act"
+text = "previous"
+parent = 205
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "option"
+text = "What kind of god would punish them for refusing to fight?"
+parent = 196
+children = [211, 212, 213, 214]
+
+[[nodes]]
+id = 211
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What kind of god would punish them for refusing to fight?"
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 4
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Shh! Must not question Big High War-God!"
+parent = 210
+
+[[nodes]]
+id = 213
+depth = 4
+kind = "speaker"
+speaker = "General Wartface"
+text = "No, because he much bigger than us."
+parent = 210
+
+[[nodes]]
+id = 214
+depth = 4
+kind = "act"
+text = "other"
+parent = 210
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 3
+kind = "option"
+text = "Well either way they refused to fight"
+parent = 196
+children = [216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 230, 235]
+
+[[nodes]]
+id = 216
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Well either way they refused to fight."
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 4
+kind = "speaker"
+speaker = "General Wartface"
+text = "Yeah I suppose so."
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 4
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Anyway then Big High War-God punish them. He turn their insides to stone."
+parent = 215
+
+[[nodes]]
+id = 219
+depth = 4
+kind = "speaker"
+speaker = "General Wartface"
+text = "Ha ha ha! That silly!"
+parent = 215
+
+[[nodes]]
+id = 220
+depth = 4
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Not as silly as green armour! What happen then?"
+parent = 215
+
+[[nodes]]
+id = 221
+depth = 4
+kind = "speaker"
+speaker = "General Wartface"
+text = "He put them inside stone! Big hole open in ground and they all go into cave."
+parent = 215
+
+[[nodes]]
+id = 222
+depth = 4
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "That not punishment! Caves nice and cool."
+parent = 215
+
+[[nodes]]
+id = 223
+depth = 4
+kind = "speaker"
+speaker = "General Wartface"
+text = "But then he close cave so they not get out! You not want to stay in cave all the time."
+parent = 215
+
+[[nodes]]
+id = 224
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 215
+
+[[nodes]]
+id = 225
+depth = 4
+kind = "option"
+text = "Why were they punished again?"
+parent = 215
+children = [226, 227, 228, 229]
+
+[[nodes]]
+id = 226
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Why were there punished again?"
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 5
+kind = "speaker"
+speaker = "General Wartface"
+text = "It because they run away from fight."
+parent = 225
+
+[[nodes]]
+id = 228
+depth = 5
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "No, it because they refuse to fight night before battle."
+parent = 225
+
+[[nodes]]
+id = 229
+depth = 5
+kind = "act"
+text = "previous"
+parent = 225
+
+[[nodes]]
+id = 230
+depth = 4
+kind = "option"
+text = "So do goblins make their own tunnels?"
+parent = 215
+children = [231, 232, 233, 234]
+
+[[nodes]]
+id = 231
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "So do goblins make their own tunnels?"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 5
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "What? Make our own tunnels?"
+parent = 230
+
+[[nodes]]
+id = 233
+depth = 5
+kind = "speaker"
+speaker = "General Wartface"
+text = "We hadn't thought of that."
+parent = 230
+
+[[nodes]]
+id = 234
+depth = 5
+kind = "act"
+text = "other"
+parent = 230
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 4
+kind = "option"
+text = "Well I found a brooch underground..."
+parent = 215
+children = [236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 249, 255]
+
+[[nodes]]
+id = 236
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well I found a brooch underground, and I looked up the symbol and it was the symbol of the Dorgeshuun."
+parent = 235
+
+[[nodes]]
+id = 237
+depth = 5
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "That not look like goblin brooch."
+parent = 235
+
+[[nodes]]
+id = 238
+depth = 5
+kind = "speaker"
+speaker = "General Wartface"
+text = "Goblins not wear jewellery."
+parent = 235
+
+[[nodes]]
+id = 239
+depth = 5
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Well if it Dorgeshuun tribe they not know who won big wars. You should greet them with goblin victory dance!"
+parent = 235
+
+[[nodes]]
+id = 240
+depth = 5
+kind = "speaker"
+speaker = "General Wartface"
+text = "No no, you greet them with goblin tribal bow."
+parent = 235
+
+[[nodes]]
+id = 241
+depth = 5
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Doing bow make you look like a wimp."
+parent = 235
+
+[[nodes]]
+id = 242
+depth = 5
+kind = "speaker"
+speaker = "General Wartface"
+text = "It how tribes greet each other in old days."
+parent = 235
+
+[[nodes]]
+id = 243
+depth = 5
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Only if they wimpy tribes! Goblin salute strong!"
+parent = 235
+
+[[nodes]]
+id = 244
+depth = 5
+kind = "select"
+text = "Select an option"
+parent = 235
+
+[[nodes]]
+id = 245
+depth = 5
+kind = "option"
+text = "So why is the Dorgeshuun tribe underground?"
+parent = 235
+children = [246, 247, 248]
+
+[[nodes]]
+id = 246
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "So why is the Dorgeshuun tribe underground?"
+parent = 245
+
+[[nodes]]
+id = 247
+depth = 6
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "They punished by Big High War-God."
+parent = 245
+
+[[nodes]]
+id = 248
+depth = 6
+kind = "act"
+text = "previous"
+parent = 245
+
+[[nodes]]
+id = 249
+depth = 5
+kind = "option"
+text = "Wait, you say YOU won the big wars?"
+parent = 235
+children = [250, 251, 252, 253, 254]
+
+[[nodes]]
+id = 250
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Wait, you say YOU won the big wars?"
+parent = 249
+
+[[nodes]]
+id = 251
+depth = 6
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Well we must have done! We goblins! Goblins always win!"
+parent = 249
+
+[[nodes]]
+id = 252
+depth = 6
+kind = "speaker"
+speaker = "General Wartface"
+text = "Actually we not know who won."
+parent = 249
+
+[[nodes]]
+id = 253
+depth = 6
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "It was goblins I say!"
+parent = 249
+
+[[nodes]]
+id = 254
+depth = 6
+kind = "act"
+text = "other"
+parent = 249
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 5
+kind = "option"
+text = "Well why not show me both greetings?"
+parent = 235
+children = [256, 257, 258, 259, 260, 265, 267]
+
+[[nodes]]
+id = 256
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Well why not show me both greetings?"
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 6
+kind = "speaker"
+speaker = "General Wartface"
+text = "That good idea. Watch."
+parent = 255
+
+[[nodes]]
+id = 258
+depth = 6
+kind = "box"
+text = "The goblins show you the Goblin Victory Salute and Goblin Bow."
+parent = 255
+
+[[nodes]]
+id = 259
+depth = 6
+kind = "select"
+text = "Select an option"
+parent = 255
+
+[[nodes]]
+id = 260
+depth = 6
+kind = "option"
+text = "Thanks"
+parent = 255
+children = [261, 262, 263, 264]
+
+[[nodes]]
+id = 261
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 260
+
+[[nodes]]
+id = 262
+depth = 7
+kind = "speaker"
+speaker = "General Bentnoze"
+text = "Bye then."
+parent = 260
+
+[[nodes]]
+id = 263
+depth = 7
+kind = "speaker"
+speaker = "General Wartface"
+text = "Bye."
+parent = 260
+
+[[nodes]]
+id = 264
+depth = 7
+kind = "act"
+text = "end"
+parent = 260
+is_terminal = true
+
+[[nodes]]
+id = 265
+depth = 6
+kind = "option"
+text = "Wait, you say YOU won the big wars?"
+parent = 255
+children = [266]
+
+[[nodes]]
+id = 266
+depth = 7
+kind = "act"
+text = "above"
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 6
+kind = "option"
+text = "So why is the Dorgeshuun tribe underground?"
+parent = 255
+children = [268]
+
+[[nodes]]
+id = 268
+depth = 7
+kind = "act"
+text = "above"
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "option"
+text = "quest=no|So how is life for the goblins?"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "option"
+text = "quest=no|I seek a shield that will protect me from dragonbreath."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "option"
+text = "I spoke to the generals in the goblin village..."
+parent = -1
+children = [276, 277, 278, 279, 280]
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I spoke to the goblin generals in the goblin village. They told me about an ancient goblin tribe that went to live underground."
+parent = 275
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "What more proof do we need? Nasty, smelly goblins have been living under our feet all this time! We must crush them at once!"
+parent = 275
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Hmm, perhaps you are right. I will send word to the army to prepare for an underground assault."
+parent = 275
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "[Player name], I would still like you to find out more about this tribe. It cannot hurt to know one's enemy."
+parent = 275
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "act"
+text = "end"
+parent = 275
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "option"
+text = "I spoke to the generals in the Goblin Village..."
+parent = -1
+children = [284, 285, 286]
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I spoke to the goblin generals in the Goblin Village. They told me about an ancient goblin tribe that went to live underground."
+parent = 283
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "I don't see how there can be any more doubt. You should tell the Duke at once!"
+parent = 283
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "act"
+text = "end"
+parent = 283
+is_terminal = true
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "option"
+text = "quest=no|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "Who...who are you? How did you get in here?"
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "Help! A surface-dweller this deep in our mines? We will all be destroyed!"
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "cond"
+text = "If the player performs the Goblin Bow emote:"
+parent = -1
+children = [292, 293, 294, 295, 296, 297, 298, 299, 300, 301]
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "A human knows ancient greeting?"
+parent = 291
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Perhaps you are friend after all!"
+parent = 291
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Greetings, friend. I am sorry I panicked when I saw you."
+parent = 291
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Our legends tell of the surface as a place of horror and violence, where the gods forced us to fight in terrible battles."
+parent = 291
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "When I saw a surface-dweller appear I was afraid it was a return to the old days!"
+parent = 291
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you break in to the castle cellar?"
+parent = 291
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "It was an accident. We were following a seam of iron and suddenly we found ourselves in a room!"
+parent = 291
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "We blocked up our tunnel behind us and ran back here. Then we did what cave goblins always do when there is a problem: we hid and hoped it would go away."
+parent = 291
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "We meant no harm! Please tell the ruler of the above- people that we want to make peace."
+parent = 291
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "act"
+text = "end"
+parent = 291
+is_terminal = true
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "cond"
+text = "If the player performs the Goblin Salute emote:"
+parent = -1
+children = [303, 304]
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Eeek! The war-dance!"
+parent = 302
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "act"
+text = "end"
+parent = 302
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "Hello, friend?"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "May I mine the rocks here?"
+parent = -1
+children = [307, 308, 309]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "May I mine the rocks here?"
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "No offence, but we will not let you mine here until there is peace between the humans and the Dorgeshuun."
+parent = 306
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "act"
+text = "end"
+parent = 306
+is_terminal = true
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "option"
+text = "Why do the Dorgeshuun live underground?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "option"
+text = "What happened to your arm?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "option"
+text = "Can you show me the way out of the mines?"
+parent = -1
+children = [313, 314, 315]
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you show me the way out of the mines?"
+parent = 312
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Certainly. Please hurry, you must avert the war!"
+parent = 312
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "other"
+text = "{{mes|Mistag shows you the way through the tunnels.}}"
+parent = 312
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is this your brooch?"
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "We have more important things to think about than a brooch right now. We must prevent a war!"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "option"
+text = "I've made contact with the cave goblins..."
+parent = -1
+children = [325, 326, 327, 328, 329, 330]
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've made contact with the cave goblins. They say they were following a seam and broke into the cellar by mistake."
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "And I suppose you believe them, goblin-lover?"
+parent = 324
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, they seemed friendlier than most goblins, and nothing was taken from the cellar."
+parent = 324
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Actually, something was taken. Sigmund has informed me that some of the castle silverware is missing from the cellar."
+parent = 324
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Unless it is returned, I am afraid I will have no option but war."
+parent = 324
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "act"
+text = "end"
+parent = 324
+is_terminal = true
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "option"
+text = "What was I doing again?"
+parent = -1
+children = [336, 337, 338]
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was I doing again?"
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "We are preparing to go to war with the underground goblins over the missing silverware. If you think the cave goblins are innocent you should present evidence quickly!"
+parent = 335
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "act"
+text = "end"
+parent = 335
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "option"
+text = "Tell me about the silverware that was stolen."
+parent = -1
+children = [342, 343, 344, 345, 346]
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the silverware that was stolen."
+parent = 341
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "The priceless Lumbridge Silverware! It comes out only on special occasions. It was kept in storage in the cellar, but now the goblins have stolen it."
+parent = 341
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So why did no one notice earlier?"
+parent = 341
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "That doesn't matter. You'll never find it, because the goblins took it. So you can't stop the war!"
+parent = 341
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "act"
+text = "end"
+parent = 341
+is_terminal = true
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "option"
+text = "Who are you?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "Hello, friend?"
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "option"
+text = "Some silverware has gone missing from the castle cellar..."
+parent = -1
+children = [351, 352, 353, 354]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Some silverware has gone missing from the castle, and the Duke thinks you stole it!"
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Oh no! We would never do such a thing!"
+parent = 350
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "I assure you we took nothing from the cellar. You must convince the Duke we are innocent!"
+parent = 350
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "act"
+text = "end"
+parent = 350
+is_terminal = true
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "option"
+text = "Where is the silverware you stole from the castle cellar?"
+parent = -1
+children = [356, 357, 358, 359, 360, 361, 362]
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where's the silverware you stole from the castle cellar?"
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "What? We didn't take anything!"
+parent = 355
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You expect me to believe that? Perhaps Sigmund was right: you're just thieving little goblins!"
+parent = 355
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Why would we want to steal silver? As you see we have much silver already in our mines!"
+parent = 355
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, the Duke says he will attack you unless the silverware is returned."
+parent = 355
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "The last thing we want is war! If we had anything of yours, we would return it at once. But we don't!"
+parent = 355
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "act"
+text = "end"
+parent = 355
+is_terminal = true
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "option"
+text = "Can you show me the way out of the mines?"
+parent = -1
+children = [364]
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "act"
+text = "above"
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "box"
+text = "pic=Key (The Lost Tribe) detail.png|You steal a little key."
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "cond"
+text = "If the player has the key:"
+parent = -1
+children = [368, 369, 370]
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "box"
+text = "pic=Ham shirt detail.png|In the chest you find a set of H.A.M. robes!"
+parent = 367
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sigmund must be a member of the Humans Against Monsters cult!"
+parent = 367
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "act"
+text = "end"
+parent = 367
+is_terminal = true
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the key:"
+parent = -1
+children = [372, 373]
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "box"
+text = "You don't have the key to open this chest."
+parent = 371
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "act"
+text = "end"
+parent = 371
+is_terminal = true
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "option"
+text = "You're a H.A.M. member, aren't you?"
+parent = -1
+children = [377, 378, 379, 380]
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're a H.A.M member, aren't you?"
+parent = 376
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "What?"
+parent = 376
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "Well, so what if I am? It's not a crime."
+parent = 376
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "act"
+text = "end"
+parent = 376
+is_terminal = true
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "option"
+text = "quest=no|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "option"
+text = "Did you know Sigmund is a member of HAM?"
+parent = -1
+children = [386, 387, 388]
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you know Sigmund is a member of HAM?"
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Hmm, I had suspected it. But however much I disapprove of the HAM movement it's not actually illegal. I'll keep an eye on him though."
+parent = 385
+
+[[nodes]]
+id = 388
+depth = 2
+kind = "act"
+text = "end"
+parent = 385
+is_terminal = true
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "box"
+text = "pic=Silverware detail.png|You find the Lumbridge Silverware!"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "option"
+text = "Tell me about the silverware that was stolen."
+parent = -1
+children = [394, 395, 396, 397, 398, 399, 400]
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the silverware that was stolen."
+parent = 393
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "The priceless Lumbridge Silverware! It comes out only on special occasions. It was kept in storage in the cellar, but now the goblins have stolen it."
+parent = 393
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So why did no one notice earlier?"
+parent = 393
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "That doesn't matter. You'll never find it, because the goblins took it. So you can't stop the war!"
+parent = 393
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually I have found it! You put it in the H.A.M. cave!"
+parent = 393
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "I... I... You're lying! I don't know what you're talking about."
+parent = 393
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "act"
+text = "end"
+parent = 393
+is_terminal = true
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "option"
+text = "quest=no|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "option"
+text = "I found the missing silverware in the HAM cave!"
+parent = -1
+children = [407, 408, 409, 410, 411, 412, 413, 414, 415, 416]
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found the missing silverware in the HAM cave!"
+parent = 406
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Sigmund! Is this your doing?"
+parent = 406
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "Of...of course not! The goblins must have, um, dropped the silverware as they ran away."
+parent = 406
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Don't lie to me! I knew you were a HAM member but I didn't think you would stoop to this. You are dismissed from my service."
+parent = 406
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Sigmund"
+text = "But don't you see it was for the best? For goblins to be living under our feet like this... ugh. It doesn't matter how civilized they are: all sub-human species must be wiped out!"
+parent = 406
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "That's enough! Get out of my castle now!"
+parent = 406
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I see I was ill-advised. Unless there is an act of aggression by the cave goblins there is no need for war."
+parent = 406
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "box"
+text = "pic=Peace treaty detail.png|The Duke writes a document and signs it."
+parent = 406
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "This peace treaty specifies the border between Lumbridge and the Cave Goblin realm. Please take it to the cave goblins and tell them I would like to meet with their leader to sign it."
+parent = 406
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "act"
+text = "end"
+parent = 406
+is_terminal = true
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "other"
+text = "{{mes|Sigmund is ignoring you.}}"
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "option"
+text = "quest=no|Have you any quests for me?"
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "option"
+text = "quest=no|Where can I find money?"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "option"
+text = "What was I doing again?"
+parent = -1
+children = [423, 424, 425, 429]
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was I doing again?"
+parent = 422
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "You were taking the peace treaty to the cave goblins."
+parent = 422
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the peace treaty:"
+parent = 422
+children = [426, 427, 428]
+
+[[nodes]]
+id = 426
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I, er, lost the treaty."
+parent = 425
+
+[[nodes]]
+id = 427
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "*sigh* All right, here's another copy."
+parent = 425
+
+[[nodes]]
+id = 428
+depth = 3
+kind = "act"
+text = "end"
+parent = 425
+is_terminal = true
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "act"
+text = "end"
+parent = 422
+is_terminal = true
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "Hello, friend?"
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have a peace treaty from the Duke of Lumbridge."
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "A peace treaty? Then you will not invade?"
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No. As long as you stick to the terms of this treaty there will be no conflict. The Duke of Lumbridge wants to meet your ruler to sign it."
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "I will summon Ur-tag, our headman, at once."
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "other"
+text = "{{qact|Fade to black and a cutscene starts}}"
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "box"
+text = "{{Colour|#800000|~ The Signing of the Lumbridge-Dorgeshuun Treaty ~"
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your grace, I present Ur-tag, headman of the Dorgeshuun."
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Welcome, Ur-tag. I am sorry that your race came under suspicion."
+parent = -1
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I assure you that the warmongering element has been dealt with."
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "I apologize for the damage to your cellar. I will send workers to repair the hole."
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "No, let it stay. It can be a route of commerce between our lands."
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "[Player name], Lumbridge is in your debt. Please accept this ring as a token of my thanks."
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "It is enchanted to save you in your hour of need."
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "other"
+text = "{{qact|The Duke hands the player a Ring of Life.}}"
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "I too thank you. Accept the freedom of the Dorgeshuun mines."
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "These are strange times. I never dreamed that I would see the surface, still less that I would be on friendly terms with its people."
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "other"
+text = "{{qact|The camera pans out to reveal Sigmund eavesdropping beyond the doors.}}"
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Prattle on, goblin."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Soon you will be destroyed!"
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

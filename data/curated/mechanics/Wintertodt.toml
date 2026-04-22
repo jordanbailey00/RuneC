@@ -1,0 +1,67 @@
+name = "Wintertodt"
+source_pages = ["Wintertodt", "Wintertodt/Strategies"]
+npc_ids = []
+
+[sections]
+"=Wintertodt's attacks=" = """
+[[File:Wintertodt Safe Area.png|thumb|The area safe from the Wintertodt's attacks.]]
+{{Main|Wintertodt/Strategies#Wintertodt's attacks}}
+The Wintertodt uses five kinds of attacks during the fight:
+*Standard attack - All individual players will take periodic damage as the cold of the Wintertodt begins to seep into their bones. The damage taken is based on the player's total Firemaking level, and is drastically reduced while wearing warm clothing.
+*Area attack - Heavy snow will occasionally appear over a 3x3 area centred on a specific player as a warning, then fall to the ground causing damage to all players currently in the 3x3 area.
+*Brazier heavy attack - Heavy snow will occasionally appear over a brazier as a warning, then the brazier will shatter. Players standing directly next to a brazier when it shatters will take damage.
+*Brazier light attack - Light snow will occasionally appear over a brazier as a warning, then it will extinguish. This does not cause damage.
+*Pyromancer attack - Light snow will occasionally appear over an individual pyromancer as a warning, then she will take damage. This is not dangerous to other players.
+
+The amount of time between these attacks is random{{CiteTwitter|author=Mod Ed|url=https://twitter.com/JagexEd/status/869286904730181632|date=29 May 2017|archiveurl=https://reldo.runescape.wiki/i/27963835|archivedate=11 December 2023|quote=The amount of time between each attack is random.}} but the frequency significantly depends on the Wintertodt's remaining energy. Standard attacks will be more common at first; later in the fight, brazier and pyromancer attacks will be more common.
+"""
+
+"Fighting the Wintertodt" = """
+[[File:Fighting the Wintertodt.png|thumb|right|Players fighting the Wintertodt.]]
+{{Main|Wintertodt/Strategies}}
+The Wintertodt cannot be attacked by conventional [[combat]]. Instead, players must help the [[pyromancer]]s drain its energy by lighting and maintaining the [[brazier]]s around the prison. To do this, players must chop the roots of the bruma tree found near the braziers to obtain [[bruma root]]s, optionally fletch them with a [[knife]] into more potent [[bruma kindling]], then add them to the burning braziers.
+"""
+
+"Wintertodt's attacks" = """
+[[File:Wintertodt Safe Area.png|thumb|The area safe from the Wintertodt's attacks.]]
+The Wintertodt has three attacks that can damage the player, as well as two other actions that interfere with defeating it:
+
+* Standard attack – All individual players will take periodic damage while outside of the safe area. The damage taken is based on the player's total Firemaking level, and is drastically reduced while wearing warm clothing to a minimum of around 10–15% of the player's warmth meter. This damage has a cooldown of 10 ticks (6 seconds). It will interrupt fletching and feeding braziers, but does not interrupt chopping bruma roots.
+* Area attack – Heavy snow will occasionally appear over a 3x3 area centred on a specific player as a warning, then fall to the ground causing damage to all players currently in the 3x3 area. This can be easily avoided by watching out for the snow and stepping out of the area. If not avoided, it will deal roughly double the damage done by the periodic standard attack. This attack cannot target any player that is standing next to an obstacle, though such a player may fall within the 3x3 range of someone else near them. There are also several spots (notably the ones next to the bruma roots) where a snowfall cannot occur due to not having a 3x3 space available.
+* Brazier heavy attack – Heavy snow will occasionally appear over a brazier as a warning, then the brazier will shatter. Players standing directly next to a brazier when it shatters will take the same amount of damage as if snow had fallen on them.
+* Brazier light attack – Light snow will occasionally appear over on a brazier as a warning, then it will extinguish. This does not cause damage.
+* Pyromancer attack – Light snow will occasionally appear over an individual pyromancer as a warning, then she will take damage. This is not dangerous to other players.
+
+The area shown in the image is safe, and none of the Wintertodt's attacks will damage the player within this zone. Players cannot fletch here; however, they can make rejuvenation potions.
+
+The frequency of these attacks significantly depends on the Wintertodt's remaining energy. Standard attacks will happen a normal amount at first (100–60% energy), and then occur very rarely near the end of each round (20–0% energy). Brazier and pyromancer attacks will happen very rarely at first (100–80% energy), and then occur a normal amount near the end of each round (40–0% energy). Specifically:
+
+* When the Wintertodt attempts to do a standard attack, a random number between zero and the maximum energy of the Wintertodt is picked, which is then compared against its current energy. If the randomly picked number is lower, the attack will proceed, making them more frequent at higher energy levels.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1318467209744830465|date=20 October 2020|archiveurl=https://reldo.runescape.wiki/i/102940|archivedate=18 December 2022|quote=It's a linear scale, picking a random number up to the max health of the 'todt, and attacking if the number is lower than its remaining health. So as its remaining health becomes lower, it becomes less likely to attack. There's no threshold to aim for.}} 
+* When the Wintertodt attempts to attack one of the braziers or pyromancers, a random number is rolled up to the Wintertodt's maximum energy, and compared against its remaining energy. If the randomly rolled number is higher, an attack against a brazier or pyromancer goes through, making them more frequent at lower energy levels.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1734186672542138434|date=11 December 2023|archiveurl=https://archive.is/0z9hx|archivedate=11 December 2023|quote=Linear, I think - it's periodically rolling a random number up to the Wintertodt's max health, and seeing if the Wintertodt's remaining health is more or less than it. As the remaining health decreases, it's therefore more likely to go for the braziers.}}
+
+The following formulas can be used to determine the amount of damage taken, rounded down.{{CiteTwitter|author=Mod Ed|url=https://twitter.com/JagexEd/status/869168964609429504|date=29 May 2017|archiveurl=https://reldo.runescape.wiki/i/104874|archivedate=30 May 2020|quote=As requested, here's how damage is calculated at the Wintertodt. [https://pbs.twimg.com/media/DA_obAAWAAAJ-XV.jpg]}}
+
+{| class="wikitable"
+|+
+!Attack type
+!Formula
+|-
+|Standard attack
+| align=left |<math> 1 \\times \\lfloor \\frac{{(16 - W - \\min (2 \\times B,6)) \\times (100)}}{FM} \\rfloor
+</math>
+|-
+|Brazier attack
+| align=left |<math> 2 \\times  \\lfloor \\frac{{(10 - W) \\times (100)}}{FM} \\rfloor
+</math>
+|-
+|Area attack
+| align=left |<math> 3 \\times \\lfloor \\frac{{(10 - W) \\times (100)}}{FM} \\rfloor
+
+</math>
+|-
+| colspan="2" |
+*'''FM''' = Base [[Firemaking]] level
+*'''W''' = Number of warm items worn, where the maximum value is 4
+*'''B''' = Number of braziers lit, where the maximum value is 3
+|}
+"""

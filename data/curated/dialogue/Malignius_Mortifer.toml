@@ -1,0 +1,1390 @@
+title = "Transcript:Malignius Mortifer"
+npcs = ["Ghost (Malignius Mortifer)", "Malignius Mortifer", "Skeleton (Malignius Mortifer)", "Skeleton mage (Malignius Mortifer)", "Zombie (Malignius Mortifer)"]
+node_count = 175
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "So, [player name], your curiosity leads you to speak to me?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "cond=If Fairytale Part I has been completed:|About those enchanted secateurs again..."
+parent = -1
+children = [3, 4, 5, 6, 33]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About those enchanted secateurs again..."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "What now, [player name], can't you just leave me alone to practice my art?"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "Can I get another set of enchanted secateurs?"
+parent = 2
+children = [7, 8, 9, 10, 11, 12, 16, 20]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I get another set of enchanted secateurs?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Well I guess it's your lucky day! Since your last visit I've been thinking, I never use my enchanted secateurs anymore, I could sell them to you, if you like."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's great!"
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How much would they cost?"
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I could let you have them for a mere 40,000 gp."
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "option"
+text = "40,000! That's outrageous!"
+parent = 6
+children = [13, 14, 15]
+
+[[nodes]]
+id = 13
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "40,000! That's outrageous!"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Well, that's my price. If you change your mind, you can come back and talk to me. Good day."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 4
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "option"
+text = "That's too expensive for me I'm afraid."
+parent = 6
+children = [17, 18, 19]
+
+[[nodes]]
+id = 17
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "That's too expensive for me I'm afraid."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Well, that's my price. If you change your mind, you can come back and talk to me. Good day."
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "option"
+text = "Ok, great."
+parent = 6
+children = [21, 22, 25, 28]
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok, great."
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "cond"
+text = "If the player has at least 40,000 coins, and enough inventory space:"
+parent = 20
+children = [23, 24]
+
+[[nodes]]
+id = 23
+depth = 5
+kind = "act"
+text = "receives=[[magic secateurs]]"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "A pleasure doing business with you, [player name]."
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "cond"
+text = "If the player has at least 40,000 coins, but no inventory space:"
+parent = 20
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "You don't have room to hold them. Stop wasting my time."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 5
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "cond"
+text = "If the player does not have at least 40,000 coins:"
+parent = 20
+children = [29, 30, 31, 32]
+
+[[nodes]]
+id = 29
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "You don't have 40,000 gp with you! Do you take me for a fool?"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I didn't realise. I'll have to visit a bank."
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Fine, I might see you later then."
+parent = 28
+
+[[nodes]]
+id = 32
+depth = 5
+kind = "act"
+text = "end"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "option"
+text = "Sorry to have bothered you."
+parent = 2
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry to have bothered you."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "That's ok, I shouldn't have been so abrupt with you."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "option"
+text = "cond=If the player does not have a [[brown apron]] in their inventory and has completed Swan Song:|Could you spare me a brown apron?"
+parent = -1
+children = [38, 39, 40, 41]
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you spare me a brown apron?"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Oh, if you must."
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "act"
+text = "receives=[[brown apron]]"
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "cond=|If the player has completed Swan Song:|Can I have some more bone seeds?"
+parent = -1
+children = [43, 44, 47]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have some more bone seeds?"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "cond"
+text = "If the player does not have an [[airtight pot]], or an [[empty pot]] and [[pot lid]]:"
+parent = 42
+children = [45, 46]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "You fetch me a pot with a lid first."
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "cond"
+text = "If the player has an [[airtight pot]], or an [[empty pot]] and [[pot lid]]:"
+parent = 42
+children = [48, 49, 50, 51]
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fortunately I do have another pot with a lid."
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Yes, yes, have fun with them!"
+parent = 47
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "act"
+text = "receives=[[bone seeds]]"
+parent = 47
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "end"
+parent = 47
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "option"
+text = "... MORE ..."
+parent = -1
+children = [53, 54, 102, 128, 137, 147]
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "select"
+text = "What would you like to say?"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "option"
+text = "Who are you and what are you doing here?"
+parent = 52
+children = [55, 56, 57, 58, 59, 60, 61, 62, 63, 66, 69, 70, 71, 89, 94, 98]
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Who are you and what are you doing here?"
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = """
+I am the great Malignius Mortifer, wielder of strange and terrible powers. These lowly followers of mine are dedicated students of the magical arts. Their business is to follow me and learn all they can.
+"""
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "They don't look very tough."
+parent = 54
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "You may believe that, but even if you strike one down, another will rise up within minutes."
+parent = 54
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, right."
+parent = 54
+
+[[nodes]]
+id = 60
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Each of my followers is a master of his chosen element. His life becomes bound to that element in a way you could not hope to understand."
+parent = 54
+
+[[nodes]]
+id = 61
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And what do you do?"
+parent = 54
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I am mastering a branch of magic that few dare to attempt: Necromancy! The fools in the Guild of Wizards shun anyone who practices this art, but there are a few in this land who know the rudiments."
+parent = 54
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "cond"
+text = "If Zogre Flesh Eaters has been completed:"
+parent = 54
+children = [64, 65]
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Grayzag, Invrigar, Sithik... Even Melzar studied the methods of necromancy, until an accident affected his mind. Now his spells tend to result in..."
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "act"
+text = "continues"
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "cond"
+text = "If Zogre Flesh Eaters hasn't been completed:"
+parent = 54
+children = [67, 68]
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Grayzag and Invrigar... Even Melzar studied the methods of necromancy, until an accident affected his mind. Now his spells tend to result in..."
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "act"
+text = "continues"
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "... well, let us simply say that he does NOT raise armies of undead minions."
+parent = 54
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "select"
+text = "What would you like to say?"
+parent = 54
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "option"
+text = "Is this like Summoning?"
+parent = 54
+children = [72, 73, 74, 75, 76, 77, 80, 83, 86]
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Is this like Summoning? Can you teach me?"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "The obscure magical art of necromancy has nothing to do with Summoning."
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Through necromancy, I may resurrect the bodies of those who have fallen, and bend them to my will, and even command them to tell me hidden knowledge."
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I shall not pass on my secrets lightly to any passer-by!"
+parent = 71
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Even a mighty hero like me?"
+parent = 71
+
+[[nodes]]
+id = 77
+depth = 4
+kind = "cond"
+text = "If the player isn't wearing equipment aligned with Guthix, Saradomin, or Zamorak:"
+parent = 71
+children = [78, 79]
+
+[[nodes]]
+id = 78
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Perhaps one day you shall learn ways to summon creatures to your side, but my own work is of a different sort."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 5
+kind = "act"
+text = "previous"
+parent = 77
+
+[[nodes]]
+id = 80
+depth = 4
+kind = "cond"
+text = "If the player is wearing equipment aligned with Guthix:"
+parent = 71
+children = [81, 82]
+
+[[nodes]]
+id = 81
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Deluded lover of Guthix, you will get no secrets from me!"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 5
+kind = "act"
+text = "previous"
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 4
+kind = "cond"
+text = "If the player is wearing equipment aligned with Saradomin:"
+parent = 71
+children = [84, 85]
+
+[[nodes]]
+id = 84
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Saradominist fool, you will get no secrets from me!"
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 5
+kind = "act"
+text = "previous"
+parent = 83
+
+[[nodes]]
+id = 86
+depth = 4
+kind = "cond"
+text = "If the player is wearing equipment aligned with Zamorak:"
+parent = 71
+children = [87, 88]
+
+[[nodes]]
+id = 87
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Although I note your respect for our Lord Zamorak, I am afraid the subtle secrets of necromancy must remain beyond your grasp."
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 5
+kind = "act"
+text = "previous"
+parent = 86
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "option"
+text = "What happened to Melzar?"
+parent = 54
+children = [90, 91, 92, 93]
+
+[[nodes]]
+id = 90
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What happened to Melzar?"
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "The forces required to wield power over the dead are very difficult to control. Melzar's concentration slipped, and his spell rebounded upon him."
+parent = 89
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Although he did not die, his mind broke. Now he dwells amidst the beasts that fill his strange home, and when he attempts to do magic he gets... amusing results."
+parent = 89
+
+[[nodes]]
+id = 93
+depth = 4
+kind = "act"
+text = "previous"
+parent = 89
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "option"
+text = "Why do you keep making fungi appear?"
+parent = 54
+children = [95, 96, 97]
+
+[[nodes]]
+id = 95
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why do you keep making fungi appear?"
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Necromancy is... still not fully understood. So few people dare to study it. Although my spells usually raise whichever undead creature I desire, they sometimes misfire. As Melzar has learnt!"
+parent = 94
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "act"
+text = "previous"
+parent = 94
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "option"
+text = "Thanks, I'll be off now."
+parent = 54
+children = [99, 100, 101]
+
+[[nodes]]
+id = 99
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, I'll be off now."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I am sure your curiosity will eventually draw you to speak to me again, [player name]."
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 4
+kind = "act"
+text = "end"
+parent = 98
+is_terminal = true
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "option"
+text = "Can you teach me something about magic?"
+parent = 52
+children = [103, 104, 108]
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you teach me something about magic?"
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "cond"
+text = "If Rune Mysteries hasn't been completed:"
+parent = 102
+children = [105, 106, 107]
+
+[[nodes]]
+id = 105
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I see no glimmer of understanding in your eyes; my time would be wasted trying to teach you of the subtle arts."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "If you are truly interested in magic, perhaps you should go and speak to the Duke of Lumbridge, who lives east of this place. Perchance he will have a mission for you that will teach you something."
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 4
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "cond"
+text = "If Rune Mysteries has been completed:"
+parent = 102
+children = [109, 110, 111, 112, 113, 114, 115, 116, 117, 123]
+
+[[nodes]]
+id = 109
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Ah, you are an inquisitive fellow. I shall speak of the great Wizards' Tower, destroyed by fire many years ago..."
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Many say it was the greatest building in the history of Gielinor, a magnificent monument to human ingenuity."
+parent = 108
+
+[[nodes]]
+id = 111
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Yet when humans are offered great power, they so often buy it at the cost of their principles."
+parent = 108
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Wizards who claimed allegiance to Saradomin began to insist that magic be restricted to the few they deemed 'worthy' of such powers."
+parent = 108
+
+[[nodes]]
+id = 113
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Before long, those who did not share their fatuous obsession with Saradomin were excluded from the Tower completely. This state of affairs could not continue."
+parent = 108
+
+[[nodes]]
+id = 114
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "One dark night, a brave band of magi loyal to the great Lord Zamorak stormed the Tower. Despite heavy losses, they fought their way up the levels until they reached the Great Library."
+parent = 108
+
+[[nodes]]
+id = 115
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = """
+Alas, they were trapped and could not steal the precious records. But before they could be defeated, the bravest of them took it upon himself to blast the writings into nothingness, destroying the library.
+"""
+parent = 108
+
+[[nodes]]
+id = 116
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "The ensuing fire raced through the tower, and none escaped its fury. Some say that Lord Zamorak himself fanned the flames to ensure the destruction of his enemies!"
+parent = 108
+
+[[nodes]]
+id = 117
+depth = 4
+kind = "cond"
+text = "If Enter the Abyss has been completed:"
+parent = 108
+children = [118, 119, 120, 121, 122]
+
+[[nodes]]
+id = 118
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = """
+Much of that knowledge was lost, and some has never yet been rediscovered. Still, your efforts on behalf of my colleagues have not been wasted! Once again, the forces of Zamorak can create unlimited runestones!
+"""
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "May the world cower in its boots!"
+parent = 117
+
+[[nodes]]
+id = 120
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I see..."
+parent = 117
+
+[[nodes]]
+id = 121
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "I bid you farewell for now."
+parent = 117
+
+[[nodes]]
+id = 122
+depth = 5
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 123
+depth = 4
+kind = "cond"
+text = "If Enter the Abyss hasn't been completed:"
+parent = 108
+children = [124, 125, 126, 127]
+
+[[nodes]]
+id = 124
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Much of that knowledge was lost, and some has never yet been rediscovered. Still, the power of magic remains in the world, and we who dedicate our lives to its study may yet perform great works..."
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, I'll be going now."
+parent = 123
+
+[[nodes]]
+id = 126
+depth = 5
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "As you wish."
+parent = 123
+
+[[nodes]]
+id = 127
+depth = 5
+kind = "act"
+text = "end"
+parent = 123
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "option"
+text = "cond=If the player has completed Swan Song:|About those skeletal magi in the Colony..."
+parent = 52
+children = [129, 130, 131, 132, 133, 134, 135, 136]
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "About those skeletal magi in the Colony - why don't they disappear now the Colony's safe?"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "HAHAHA! I never specified how long they'd stay there!"
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So when will they go away? They're in the dormitories, and that's a real nuisance for the colonists!"
+parent = 128
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "HAHAHA!"
+parent = 128
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you're not going to get rid of them?"
+parent = 128
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "HAHAHA!"
+parent = 128
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, forget I asked."
+parent = 128
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "act"
+text = "end"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "option"
+text = "Where can I get clothes like those?"
+parent = 52
+children = [138, 139, 140, 141, 142, 143, 144, 145, 146]
+
+[[nodes]]
+id = 138
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where can I get clothes like those?"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Bah! Our garments are an outward sign of our dominance of the magical arts. You cannot simply buy them in a shop!"
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What happens if I kill you and take them?"
+parent = 137
+
+[[nodes]]
+id = 141
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Try it and see!"
+parent = 137
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How about if you teach me enough about magic so I can wear those clothes too?"
+parent = 137
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "How about if I turn you into a mushroom to make you stop bothering me?"
+parent = 137
+
+[[nodes]]
+id = 144
+depth = 3
+kind = "act"
+text = "The player is transformed into a mushroom."
+parent = 137
+
+[[nodes]]
+id = 145
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "MMMmmph!"
+parent = 137
+
+[[nodes]]
+id = 146
+depth = 3
+kind = "act"
+text = "end"
+parent = 137
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "option"
+text = "Actually, I don't want to talk to you."
+parent = 52
+children = [148, 149, 150]
+
+[[nodes]]
+id = 148
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I don't want to talk to you."
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 3
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Bah! Then go away!"
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 3
+kind = "act"
+text = "end"
+parent = 147
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "You should take that pot a bit further away from me before you open it!"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [155, 156]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "{{overhead|Da mihi potentiam!}}"
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "continue"
+parent = 154
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [158, 159, 165, 167, 169, 171]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "{{overhead|Veni, cohortes malefici!}}"
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "cond"
+text = "If a fungus is summoned:"
+parent = 157
+children = [160, 161, 163]
+
+[[nodes]]
+id = 160
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 159
+children = [162]
+
+[[nodes]]
+id = 162
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "{{overhead|Curses - more fungi!}}"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 159
+children = [164]
+
+[[nodes]]
+id = 164
+depth = 4
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "{{overhead|Blast - fungi again!}}"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "cond"
+text = "If a [[Zombie (Malignius Mortifer)|zombie]] is summoned:"
+parent = 157
+children = [166]
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "speaker"
+speaker = "Zombie"
+text = "{{overhead|DUUUHHH}}"
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "cond"
+text = "If a [[Ghost (Malignius Mortifer)|ghost]] is summoned (even when wearing a [[ghostspeak amulet]]):"
+parent = 157
+children = [168]
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "speaker"
+speaker = "Ghost"
+text = "{{overhead|OooOOOooooOOOOooo}}"
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "cond"
+text = "If a [[Skeleton mage (Malignius Mortifer)|skeleton mage]] is summoned:"
+parent = 157
+children = [170]
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "speaker"
+speaker = "Skeleton mage"
+text = "{{overhead|Krrrrsssss}}"
+parent = 169
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "cond"
+text = "If a [[Skeleton (Malignius Mortifer)|skeleton]] is summoned:"
+parent = 157
+children = [172]
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "speaker"
+speaker = "Skeleton"
+text = "{{overhead|Krrrrsssss}}"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Malignius Mortifer"
+text = "Oi - stop waving your items at me!"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

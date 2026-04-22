@@ -1,0 +1,142 @@
+quest = "The Forsaken Tower"
+step_count = 7
+
+[[steps]]
+index = 0
+name = "The Assembly"
+links = ["Games necklace", "Xeric's talisman", "Battlefront teleport", "Lovakengj Assembly", "Lovakengj", "Great Kourend", "Lady Vulcana Lovakengj", "Kourend Council", "Councillor Unkar", "Undor", "Doors of Dinh", "Wintertodt Camp", "games necklace", "Arceuus Library", "Ignisia", "Wintertodt", "Dinh's hammer", "The Forsaken Tower (location)", "Mount Karuulm", "Lovakengj Minecart Network", "Smithing", "Kourend & Kebos Diary", "adamantite ore", "coal"]
+text = """
+{{Needed|recommended=[[Games necklace]], [[Xeric's talisman]], [[Battlefront teleport]]}}
+[[File:The Forsaken Tower - Unkar explains.png|thumb|right|Unkar tells the player about the Doors of Dinh.]]
+[[File:Lady Vulcana Lovakengj chathead.png|left]]
+Head to the [[Lovakengj Assembly]], west of the southern bank in [[Lovakengj]] of [[Great Kourend]], and talk to [[Lady Vulcana Lovakengj]], fairy ring code {{Fairycode|djr}} will teleport you just south of her. If she's not ready to talk, the player must first talk to Ignisia to learn about Wintertodt. A member of the [[Kourend Council]], [[Councillor Unkar]], explains that the blacksmith [[Undor]] has found the cause of why the [[Doors of Dinh]] are failing, and requests assistance. Agree to help Unkar.
+
+Head to the [[Wintertodt Camp]]. A [[games necklace]] can be used to get there very quickly. Alternatively, players can use the cart system to get to the Northern Tundras or fairy ring {{Fairycode|cis}} will drop you off just north of the [[Arceuus Library]]. Speak to [[Undor]] on the west side of the camp. If he says he need to finish a job first then finish the dialogue and talk with [[Ignisia]] found a little to the east. Then go back to [[Undor]] and tell him: '''I've been sent to help you.'''
+
+He will explain that the Doors have been purposely damaged by someone or something, creating a small hole in the doors. Although not much, it is enough for the [[Wintertodt]] imprisoned within to draw a small amount of power into the prison.
+
+Undor can easily fix the damage done, but he needs [[Dinh's hammer]] in order to repair the doors, which he believes is located in the [[The Forsaken Tower (location)|Forsaken Tower]], located on the peninsula due west of [[Lovakengj]] and due east{{Direction}} of [[Mount Karuulm]].
+
+Fairy ring {{Fairycode|cir}} takes you to the base of [[Mount Karuulm]]. Alternatively, players can use the [[Lovakengj Minecart Network|cart system]] to get back to Lovakengj or use their [[Battlefront teleport]] to get to the graveyard directly south of the Forsaken Tower.
+
+'''Tip:''' Players with 70 [[Smithing]] planning to complete a [[Kourend & Kebos Diary#Hard|hard task]] for the [[Kourend & Kebos Diary]] should also bring an [[adamantite ore]] and six [[coal]]. '''{{Colour|red|Warning}}:''' Be sure to follow the steps below before igniting the furnace; otherwise, you may take up to 34 damage.
+"""
+
+[[steps]]
+index = 1
+name = "The Quest for the Hammer"
+links = ["Display Case (The Forsaken Tower)", "ancient letter"]
+text = """
+[[File:The Forsaken Tower - Undor needs a hammer.png|thumb|right|Undor requests help from the player.]]
+{{Map|name=The Forsaken Tower|x:1383,y:3813|plane=0|mapID=0|align=right|height=250|width=250|caption=The location of the Forsaken Tower.}}
+Once you're inside the tower, inspect the [[Display Case (The Forsaken Tower)|display case]]. The interface shown displays each of the four puzzles required to unlock the case.
+
+Optionally, search the crate by the south-west corner to obtain an [[ancient letter]], which gives you a little more insight into the Tower's history.
+"""
+
+[[steps]]
+index = 2
+name = "=The Forsaken Furnace="
+links = ["Tinderbox", "tinderbox", "5-gallon jug", "8-gallon jug", "Furnace (The Forsaken Tower)", "coolant dispenser", "furnace coolant", "adamantite bar", "Kourend & Kebos Diary"]
+text = """
+{{Needed|[[Tinderbox]]}}
+Enter one of the doors to the back room. Search the cupboards for a [[tinderbox]], and a [[5-gallon jug|5]] and [[8-gallon jug]].<br />
+'''{{Colour|red|Warning}}:''' Do not light [[Furnace (The Forsaken Tower)|the furnace]] before completing the next step or you will take over 20 hitpoints of damage.<br />
+In the north-west corner of the room there is a [[coolant dispenser]]. The objective is to get 4 gallons in the 5 gallon jug, which can be done by following these steps:
+[[File:The Forsaken Tower - Adding coolant.png|thumb|right|Adding coolant to the coolant mechanism.]]
+{{Checklist|
+*Fill the 5-gallon jug with coolant making 5-0
+*Use the 5-gallon jug on the empty 8 gallon jug making 0-5
+*Fill the 5-gallon jug with coolant making 5-5
+*Use the 5-gallon jug on the 8 gallon jug making 2-8
+*Empty the 8 gallon jug (select "check" then "empty") making 2-0
+*Use the 5-gallon jug on the empty 8 gallon jug again making 0-2
+*Fill the 5-gallon jug with coolant making 5-2
+*Use the 5-gallon jug on the 8 gallon jug again making 0-7
+*Fill the 5-gallon jug with coolant making 5-7
+*Use the 5-gallon jug on the 8 gallon jug again making 4-8
+}}
+
+The riddle is a math problem known as a {{WP|Water pouring puzzle}}, in which you must determine a multiple of 8s and 5s between which the difference is 4. Therefore, the solution is either to fill up the 5-gallon jug 4 times (+20) and emptying the 8-gallon twice (-16), or filling up the 8-gallon jug 3 times (+24) and emptying the 5-gallon jug 4 times (-20).
+
+You should now have 4 gallons in the 5 gallon jug. Use the 5-gallon jug (with 4 gallons in it) on the [[furnace coolant]] mechanism on the left side of the furnace. Once it's full, light the furnace using your [[tinderbox]].
+
+'''Note:''' Once the furnace has been lit, players can smelt an [[adamantite bar]] for a [[Kourend & Kebos Diary]] [[Kourend & Kebos Diary#Hard|hard task]].
+"""
+
+[[steps]]
+index = 3
+name = "=The Powerless Grid="
+links = ["Display Case (The Forsaken Tower)", "generator crank", "steam generator", "power grid"]
+text = """
+<gallery perrow="2" align="center" mode="packed">
+File:The Forsaken Tower - Display case interface.png|The display case interface.
+File:The Forsaken Tower - Powergrid solution.png|The powergrid solution.
+</gallery>
+
+Go into the basement using the ladder north to the [[Display Case (The Forsaken Tower)|display case]]  and search the crates in the room immediately east of the ladder until you find a [[generator crank]]. Start the [[steam generator]] using the crank. Once the generator is started, align the [[power grid]] in the centre of the room (solution above).
+"""
+
+[[steps]]
+index = 4
+name = "=The Pernicious Potions="
+links = ["Antipoison", "Food", "Table (The Forsaken Tower)", "refinery", "unknown fluid", "poisoning", "antipoison", "old notes (The Forsaken Tower)"]
+text = """
+{{Needed|recommended=[[Antipoison]] and [[Food]].}}
+Go upstairs to the {{FloorNumber|uk=1}}. You will see a [[Table (The Forsaken Tower)|table of potions]] and a [[refinery]]. The refinery needs to be activated, but before it can be, it needs to be cleansed, by use of cleansing fluid. One of the [[unknown fluid|potions]] on the table is cleansing fluid, but the correct number is random for each player. Using the wrong fluid on the refinery will result in up to 40 damage and [[poisoning]]. With an [[antipoison]] and plenty of food, the puzzle can be brute-forced by trial and error.
+
+[[File:The Forsaken Tower - old notes explanation.png|thumb|300px|A visual explanation of the solution.]]
+To solve which potion is the correct one, you can search the cupboard in the south-east{{Direction}} corner of the room to find [[old notes (The Forsaken Tower)|old notes]] with a riddle, which includes some potions' locations on the table relative to each other. The potion you need to get is the '''cleansing fluid'''. The riddle layout is the same for everyone, but the fluids differ.
+*Fluid A is directly left of Fluid B.
+*Fluid B is next to Fluid C.
+*Fluid D is directly right of Fluid E.
+*Fluid A is opposite Fluid D.
+
+For the solution:
+*A has to be 1 (far left).
+*B has to be 2 (middle left).
+*C has to be 3 (middle).
+*D has to be 5 (far right).
+*E has to be 4 (middle right).
+
+Once you've chosen the correct fluid, click on the refinery, cleanse it, and then activate it.
+"""
+
+[[steps]]
+index = 5
+name = "=The Pylons="
+links = ["energy pylon", "Runic Altar (The Forsaken Tower)", "energy disk", "Dinh's hammer"]
+text = """
+[[File:The Forsaken Tower - The altar.png|thumb|right|The altar at the top of the tower.]]
+Go up the ladder to the {{FloorNumber|uk=2}}. You will be in a room with three [[energy pylon]]s and a [[Runic Altar (The Forsaken Tower)|runic altar]]. The western pylon has four weighted [[energy disk]]s on it of varying size. The objective of this puzzle is to stack all of the rings in order on the middle pylon.
+
+Remove the disc from a pylon and place it on another pylon in the following order:
+{{Checklist|
+*From West '''(W)''' to East '''(E)'''
+*From '''W''' to Centre '''(C)'''
+*From '''E''' to '''C'''
+*From '''W''' to '''E'''
+*From '''C''' to '''W'''
+*From '''C''' to '''E'''
+*From '''W''' to '''E'''
+*From '''W''' to '''C'''
+*From '''E''' to '''C'''
+*From '''E''' to '''W'''
+*From '''C''' to '''W'''
+*From '''E''' to '''C'''
+*From '''W''' to '''E'''
+*From '''W''' to '''C'''
+*From '''E''' to '''C'''
+}}
+With this done, all of the locks on the display case should be green. Go downstairs to the {{FloorNumber|uk=0}} and retrieve [[Dinh's hammer]].
+"""
+
+[[steps]]
+index = 6
+name = "Finishing up"
+links = ["Undor", "Wintertodt Camp", "Dinh's hammer", "Doors of Dinh", "pyromancer", "Wintertodt", "Lady Vulcana Lovakengj", "Fairy ring code"]
+text = """
+Return to [[Undor]] at the [[Wintertodt Camp]], and give him [[Dinh's hammer]]. Now, he can fix the [[Doors of Dinh]], but even so, the [[pyromancer]]s will have to continue subduing the [[Wintertodt]], as it has already gained much power in the time the Doors were damaged. He will tell you to return to [[Lady Vulcana Lovakengj]], [[Fairy ring code|fairy ring code {{Fairycode|djr}}]] will teleport you just south of her or players can use the cart system to get back to Lovakengj to the east of her. Speak to her to complete the quest and obtain your reward.
+
+'''Congratulations, quest complete!'''
+"""

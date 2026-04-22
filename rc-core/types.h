@@ -3,6 +3,9 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "handles.h"
+#include "events.h"
+#include "encounter.h"
 
 // Limits
 #define RC_MAX_NPCS         256
@@ -125,14 +128,11 @@ typedef struct {
     int boosted_level[SKILL_COUNT];
 } RcSkills;
 
-// Tile
+// Tile — core keeps only collision data. Visual fields (height, underlay,
+// overlay, shape, settings) belong to the viewer's terrain mesh, not the
+// game-logic grid. See rc-viewer/terrain.h for visual terrain state.
 typedef struct {
     uint32_t collision_flags;
-    int16_t  height;
-    uint8_t  underlay_id;
-    uint8_t  overlay_id;
-    uint8_t  overlay_shape;
-    uint8_t  settings;
 } RcTile;
 
 // Region (64x64 tiles, 4 planes)
@@ -203,11 +203,6 @@ typedef struct {
     int skill_timer;
     int skill_target_x, skill_target_y;
 
-    // Animation
-    int animation;
-    int anim_frame;
-    float facing_angle;
-
     // Regen
     int hp_regen_counter;
 
@@ -234,8 +229,6 @@ typedef struct {
     int num_pending_hits;
     int facing_entity;
     int facing_x, facing_y;
-    int animation;
-    int anim_frame;
     bool is_dead;
     int wander_timer;
     int prev_x, prev_y;
@@ -251,8 +244,10 @@ typedef struct {
     bool active;
 } RcGroundItem;
 
-// World (top-level game state)
-typedef struct {
+// World (top-level game state). Named struct tag so other subsystem
+// headers can forward-declare it without pulling in this file.
+typedef struct RcWorld {
+    // Base (always present, always valid)
     RcPlayer player;
     RcNpc npcs[RC_MAX_NPCS];
     int npc_count;
@@ -261,6 +256,19 @@ typedef struct {
     RcWorldMap map;
     int tick;
     uint32_t rng_state;
+
+    // Subsystem bitmask — see config.h for RC_SUB_* flags. Checked
+    // only by the base tick dispatcher; subsystem code assumes its
+    // subsystem is enabled if it gets called.
+    uint32_t enabled;
+
+    // Event bus — subsystems subscribe at init, fire episodically.
+    // See events.h / README §7.
+    RcEventBus events;
+
+    // Encounter subsystem state (inline arena layout per README §4).
+    // Only exercised when RC_SUB_ENCOUNTER is enabled.
+    RcEncounterState encounter;
 } RcWorld;
 
 #endif

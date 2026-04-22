@@ -1,0 +1,1726 @@
+title = "Transcript:The Depths of Despair"
+npcs = ["Lord Kandur Hosidius", "Elena Hosidius", "Butler Jarvis", "Chef Olivia", "Galana", "Artur Hosidius"]
+node_count = 219
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [3, 4, 5, 6, 7, 8]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "I am Lord Kandur Hosidius, ruler of this city. Who are you?"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm [player name]."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Pleased to meet you [player name]. It is a shame we could not meet in better circumstances."
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can help you with?"
+parent = 2
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "act"
+text = "below"
+parent = 2
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "option"
+text = "Anything I can help you with?"
+parent = -1
+children = [10, 11, 14]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can help you with?"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "cond"
+text = "If the player does not have the requirements to start the quest:"
+parent = 9
+children = [12, 13]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Our family is in dire need of assistance. Alas, I do not feel I can trust you enough to involve you in this."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "cond"
+text = "If the player has the requirements to start the quest:"
+parent = 9
+children = [15, 16, 17, 18, 22]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Our family is in dire need of assistance. My eldest son, Artur, has gone missing and we could desperately use some help in finding him."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Would you be willing to assist us? You will be rewarded if you bring him home safe."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "select"
+text = "Start The Depths of Despair quest?"
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "option"
+text = "Yes."
+parent = 14
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I can help. What do you need me to do?"
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Thank you friend. I suggest you begin your search by talking to my family and servants. One of them might know where Artur has gone."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "option"
+text = "No."
+parent = 14
+children = [23, 24, 25]
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No. I'm afraid I have other things to be doing."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "I'm sorry to hear that. If you change your mind please return to me as soon as you can."
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Goodbye."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Until next time."
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Hello there. Have you found my son yet?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "I suggest you begin your search by talking to my family and servants. One of them might know where he's gone."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Butler Jarvis"
+text = "Good day, [sir/madam].<!--If pronoun is they/them he just says \"Good day.\"-->"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I'm helping Lord Hosidius find his missing son. I was wondering if you could help me."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Butler Jarvis"
+text = "I'm afraid I know not where Artur has gone. I do not speak to him much. He keeps himself to himself."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Butler Jarvis"
+text = "However, I've noticed him speaking to Olivia before. Maybe she can help."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great, thanks."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Butler Jarvis"
+text = "Good day [sir/madam]. I hope your quest is going well."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I..."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "You're the one helping to find our son."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes I..."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "It's good that you're here to help. Artur is a good lad, but he does have a habit of biting off more than he can chew."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I was wondering if..."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "He's meant for greatness you know. He'll be a king one day."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't you mean..."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "Lord. I meant to say lord. Now be on your way. Artur needs your help."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, I'm helping Lord Hosidius find his missing son. I was wondering if you had any idea where he might have gone?"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "I'm sorry, but I don't know anything."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Well... I err..."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err?"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Oh this is awful. Please don't tell Lord Hosidius. He'll fire me if he finds out."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Calm down, you have nothing to fear from me. I just want to help find Artur. Do you know where he is?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Artur and I, we're..."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're in love aren't you?"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Yes..."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well don't worry, your secret is safe with me."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Thank you. Before he went missing, Artur told me he was going to find the original copy of the Royal Accord of Twill. That's where he will have gone."
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "He's been spending a lot of time in the Arceuus Library recently, researching the Accord. He mentioned a librarian called Galana. Maybe she can help you."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Please bring Artur back."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Please bring Artur back."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where should I be looking again?"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "He's been spending a lot of time in the Arceuus Library. He mentioned a librarian called Galana. Maybe she can help you."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "Do you need something?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for information on the Royal Accord of Twill."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "The Royal Accord of Twill was signed by the heads of Kourend's five houses, known then as the Royal Lords. This was over a thousand years ago."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "The Accord declared that they would take over rulership of Great Kourend from the Council of Elders."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "For many years after the Accord was signed, the Royal Lords took it in turns to rule the kingdom. Each of them ruled for ten years in turn."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "Those practices have long since been abolished though and Kourend is now ruled by the Kourend Council. The original Accord has since been lost, but copies still exist in this library."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What if I wanted to find the original?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "Many have tried and failed. You would likely have no better luck. However, if it interests you, you might wish to read The Envoy to Varlamore, by Deryk Paulson."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "It details how the original Accord was lost."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know where I can find the book?"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "Try the [top/middle/bottom] floor, [north/south] [eastern/western] bay."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could you remind me where I can find that book on the Accord?"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Galana"
+text = "Try the [top/middle/bottom] floor, [north/south] [eastern/western] bay."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "cond"
+text = "If the player already has the book:"
+parent = -1
+children = [91, 92]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "box"
+text = "pic=Varlamore envoy detail.png|You find: {{color|#00007f|The Envoy to Varlamore, by Deryk Paulson."
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "end"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [94, 95]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "box"
+text = "pic=Varlamore envoy detail.png|You find: {{color|#00007f|The Envoy to Varlamore, by Deryk Paulson."
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "act"
+text = "end"
+parent = 93
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "box"
+text = "pic=Varlamore envoy detail.png|You find: {{color|#00007f|The Envoy to Varlamore, by Deryk Paulson."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "other"
+text = "{{mes|You climb down into the cave.}}"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "other"
+text = "{{mes|You squeeze through the crevice.}}"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "other"
+text = "{{mes|You attempt to cross the stepping stones.}}"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "cond"
+text = "If the player succesfully crosses:"
+parent = -1
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "other"
+text = "{{mes|You successfully make it to the other side.}}"
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "cond"
+text = "If the player does not succesfully cross:"
+parent = -1
+children = [105, 106, 107, 108]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "other"
+text = "{{mes|You slip and fall into the water.}}"
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Crikey!}}"
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "other"
+text = "{{mes|You manage to swim back to the shore.}}"
+parent = 104
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "cond"
+text = "If the player successfully crosses the rocks:"
+parent = -1
+children = [110, 111]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "other"
+text = "{{mes|You climb over the rocks.}}"
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "cond"
+text = "If the player does not successfully cross the rocks:"
+parent = -1
+children = [113, 114]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ouch!}}"
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "act"
+text = "end"
+parent = 112
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "other"
+text = "{{mes|You climb down the rope.}}"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Hello. I wasn't expecting to see anyone else down here."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you Artur Hosidius?"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "That's me. Who are you?"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm [player name]. Your father sent me to find you. He's worried about you."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "He really shouldn't worry, I'm fine. I'll head home as soon as I've finished here."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well could I help speed things along in some way? I promised him I'd get you home."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Now that you mention it, I could use some help. There's a chest in the next cave with something important in it. It's got a big snake guarding it though."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "By something important do you mean the Royal Accord of Twill?"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "How did you know that?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do you think I found you?"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Oh. Well as you already seem to know, yes I'm here looking for the Royal Accord of Twill. I think it's in that chest, but the snake is in the way. Could you kill it for me?"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can't you do it yourself?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "I tried, but I'm not very good at fighting."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Typical. Fine, I'll kill the snake. Just wait here."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Have you killed that snake yet?"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "The sooner you kill it, the sooner I can head home."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's dead."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Great. Now we just need to empty that chest. Would you mind?"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fine. Wait here."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "cond"
+text = "If the player already has the royal accord:"
+parent = -1
+children = [141, 142]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "other"
+text = "{{mes|You have already recovered the Accord.}}"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "act"
+text = "end"
+parent = 140
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [144, 145]
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "other"
+text = "{{mes|You do not have enough inventory space to loot this chest.}}"
+parent = 143
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "act"
+text = "end"
+parent = 143
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "box"
+text = "pic=Royal accord of twill detail.png|You search the chest and find the original Royal Accord of Twill."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've emptied that chest."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "And?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found the Accord."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Great! Hand it over then."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet. You'll get it once you've returned home."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Eugh. Fine, I'll go home. But you'd better not run off with the Accord."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "Why do you want the Accord anyway?"
+parent = -1
+children = [155, 156, 157, 158, 159, 160, 161, 168]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why do you want the Accord anyway?"
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Why wouldn't I want it? The signing of the Accord marked the start of a golden age. Once the Royal Lords replaced the Council of Elders, Kourend prospered like never before."
+parent = 154
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But that was a long time ago. Why does it matter now?"
+parent = 154
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Because I think it's time for another golden age. The Kourend Council, like the Council of Elders before them, have failed to do a good job in running this kingdom."
+parent = 154
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you think the five houses would do a better job?"
+parent = 154
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Exactly."
+parent = 154
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "option"
+text = "What makes you say the Council have done a bad job?"
+parent = 154
+children = [162, 163, 164, 165, 166, 167]
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What makes you say the Council have done a bad job?"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "More crime. Fewer homes. More illness. Loss of jobs. The list goes on."
+parent = 161
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But aren't the five houses partially to blame as well? They rule the cities."
+parent = 161
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "The Council sets the laws and the Council sets the budgets. We have to do as they say, just like everyone else."
+parent = 161
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hmmm, fair enough. Anyway, we'd better get off."
+parent = 161
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "act"
+text = "end"
+parent = 161
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "option"
+text = "Fair enough. Now let's be off."
+parent = 154
+children = [169, 170]
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough. Now let's be off."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "I won't. Now let's get going."
+parent = -1
+children = [172, 173]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I won't. Now let's get going."
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "act"
+text = "end"
+parent = 171
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "other"
+text = "{{mes|You climb up the rope.}}"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "other"
+text = "{{mes|You climb up the sand pile.}}"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again Artur."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "Hello [player name]. Thanks for your help in recovering the Accord."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No problem."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Artur Hosidius"
+text = "You should talk to my father. He will probably want to reward you."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Chef Olivia"
+text = "Thank you for bringing Artur home safe."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Butler Jarvis"
+text = "Good day [sir/madam]. On behalf of the Hosidius family, I thank you for bringing Artur home."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "Thank you for finding our son. You've done this kingdom a great service."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's no..."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "I do wonder if his father could have done more though. My brother would have had the entire army out searching."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your brother..."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "My brother is Lord Shiro Shayzien. He commands the Shayzien Army. A luxury my husband doesn't have."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you..."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Elena Hosidius"
+text = "Maybe it doesn't always have to be that way. Things may well soon be different. Now be on your way, I have things to do."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Hello there. Artur is safely back home again. I hear we have you to thank for that."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "All in a days work."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "He also said that you managed to recover the original copy of the Royal Accord of Twill."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the accord in their inventory:"
+parent = -1
+children = [198, 199, 200]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I did. I don't have it with me though."
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Well go fetch it and bring it here."
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "act"
+text = "end"
+parent = 197
+is_terminal = true
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "cond"
+text = "If the player has the accord in their inventory:"
+parent = -1
+children = [202, 203, 204, 205, 206, 207, 208, 209, 210]
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I did. I assume you'll be wanting it."
+parent = 201
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Yes. I'll make sure it's well looked after. Now as for that reward I promised."
+parent = 201
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = 201
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Is there anything else I can do for you?"
+parent = 201
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 201
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "option"
+text = "quest=No|Tell me about yourself."
+parent = 201
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "option"
+text = "quest=No|Tell me about Hosidius."
+parent = 201
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "option"
+text = "quest=No|Tell me about your plans."
+parent = 201
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "option"
+text = "quest=No|Goodbye."
+parent = 201
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Lord Kandur Hosidius"
+text = "I assume you're after that reward I promised you. Here you go."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "quest=No|Tell me about yourself."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "option"
+text = "quest=No|Tell me about Hosidius."
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "option"
+text = "quest=No|Tell me about your plans."
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "option"
+text = "quest=No|Goodbye."
+parent = -1

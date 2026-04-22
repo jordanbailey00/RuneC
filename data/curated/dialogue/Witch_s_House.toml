@@ -1,0 +1,485 @@
+title = "Transcript:Witch's House"
+npcs = ["Nora T. Hagg", "Boy"]
+node_count = 64
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello young man."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "box"
+text = "The boy sobs."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "What's the matter?"
+parent = -1
+children = [4, 5, 6, 8, 9, 13]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's the matter?"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Boy"
+text = "I've kicked my ball over that hedge, into that garden! The old lady who lives there is scary... She's locked the ball in her wooden shed! Can you get my ball back for me please?"
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "If the player is below level 10 combat:"
+parent = 3
+children = [7]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "other"
+text = "Before starting this quest, be aware that your combat level is lower than the recommended level of 35."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "select"
+text = "Start the Witch's House quest?"
+parent = 3
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 3
+children = [10, 11, 12]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll see what I can do."
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Boy"
+text = "Thanks mister!"
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "No."
+parent = 3
+children = [14, 15, 16, 17]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Get it back yourself."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Boy"
+text = "You're a meany!"
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "box"
+text = "The boy starts crying again."
+parent = 13
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "option"
+text = "Well if you're not going to answer, I'll go."
+parent = -1
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well if you're not going to answer, I'll go."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "box"
+text = "The boy sniffs slightly."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Boy"
+text = "Have you got my ball back yet?"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Boy"
+text = "Well, it's in the shed in that garden."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "box"
+text = "pic=Door key (Witch's House) detail.png|You find a key hidden under the flower pot."
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "other"
+text = "{{mes|You don't find anything interesting.}}"
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "other"
+text = "{{mes|You decide not to attract the attention of the witch by playing on the piano.}}"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "other"
+text = "{{mes|You can't see anything of interest on the stand.}}"
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "box"
+text = "This door is locked."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Strange... I can't see any kind of lock or handle to open this door..."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "box"
+text = "As your bare hands touch the gate you feel a shock."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "box"
+text = "You find a magnet in the cupboard."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "other"
+text = "{{mes|You don't find anything interesting.}}"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "box"
+text = "A mouse runs out of the hole."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "box"
+text = """
+You attach the magnet to the mouse's harness. The mouse finishes the cheese and runs back into its hole. You hear some odd noises from inside the walls. There is a strange whirring noise from above the door frame.
+"""
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "box"
+text = "This doesn't seem to be the right magnet to open this door..."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "other"
+text = "{{mes|You have already unlocked this door.}}"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Nora T. Hagg"
+text = "{{overhead|Stop! Thief!}}"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Nora T. Hagg"
+text = "{{overhead|Klarata... Sepptento... Valkan!}}"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "other"
+text = "{{qact|The witch casts a spell on the player and the player is teleported out of the witch's house next to the boy.}}"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "other"
+text = "{{mes|The shed door is locked.}}"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "box"
+text = "You search for the secret compartment mentioned in the diary. Inside it you find a small key. You take the key."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "other"
+text = "{{mes|There is nothing in the fountain.}}"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd better not go in there yet... I think I can hear someone inside!"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "other"
+text = "{{mes|The shapeshifter glares at you. You feel slightly weakened.}}"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "other"
+text = "{{mes|A shapeshifter appears, and knocks you back from the ball!}}"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "other"
+text = "{{mes|the shapeshifters' body begins to deform!}}"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "other"
+text = "{{mes|The shapeshifter turns into a spider!}}"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "other"
+text = "{{mes|The shapeshifters' body begins to twist!}}"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "other"
+text = "{{mes|The shapeshifter turns into a bear!}}"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "other"
+text = "{{mes|The shapeshifters' body pulses!}}"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "other"
+text = "{{mes|The shapeshifter turns into a wolf!}}"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "other"
+text = "{{mes|You finally kill the shapeshifter once and for all.}}"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I have got your ball back. It was MUCH harder than I thought it would be."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "box"
+text = "You give the ball back."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Boy"
+text = "Thank you so much!"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

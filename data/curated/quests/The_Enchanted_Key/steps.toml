@@ -1,0 +1,72 @@
+quest = "The Enchanted Key"
+step_count = 3
+
+[[steps]]
+index = 0
+name = "Temperature readings"
+links = []
+text = """
+The enchanted key changes temperature as the player moves about. Its temperature is based on the distance of the treasure from the player, measured in the number of steps (including diagonal steps) it would take to reach the treasure, ignoring any obstacles (this is the {{wp|Chebyshev distance}} between the player and treasure). The warmer the key gets, the closer the player is to the treasure. Clicking "Feel Enchanted key" gives information on its temperature, consisting of two parts described below. It is like playing the game of hot and cold.
+"""
+
+[[steps]]
+index = 1
+name = "=First part="
+links = ["spade"]
+text = """
+The following table indicates the 8 possible temperature readings based on the distance to the treasure (measured as described above):
+
+{| class="wikitable"
+!Distance
+!Temperature description
+|-
+|More than 1000 squares
+|'''It's freezing'''
+|-
+|701 to 1000 squares
+|'''It's very cold'''
+|-
+|401 to 700 squares
+|'''It's cold'''
+|-
+|101 to 400 squares
+|'''It's warm'''
+|-
+|61 to 100 squares
+|'''It's hot'''
+|-
+|31 to 60 squares
+|'''It's very hot'''
+|-
+|5 to 30 squares
+|'''Ouch! It's burning hot'''
+|-
+|Up to 4 squares
+|'''The key is steaming'''
+|}
+
+When a player receives the message "'''The key is steaming'''", they can use a [[spade]] to dig up the treasure. Note that, as indicated by the table, there is a 9 by 9 square region in which they may dig.
+"""
+
+[[steps]]
+index = 2
+name = "=Second part="
+links = []
+text = """
+If the player has already felt the key since last logging on or finding treasure, the temperature reading will contain a second part, indicating whether the temperature is warmer, colder or the same
+as the last reading, thereby indicating whether the distance to the treasure (measured as described above) has increased, decreased, or is the same. The three descriptions are:
+
+*'''Warmer than last time''' - You are getting closer than before.
+*'''Colder than last time''' - You are getting farther away than before.
+*'''Same temperature as last time''' - You are the same distance away.
+
+Players may use this information to determine which direction to go, as follows:
+
+#Move one square north, south, east and west, taking temperature readings between each step.
+#One direction, for example north, will result in the message "'''Warmer than last time'''".
+#Move directly north while constantly taking readings, until the message "'''Same temperature as last time'''" is produced.
+#Move one square east and west, taking temperature readings between each step.
+#One direction, say east, will result in the message "'''Warmer than last time'''".
+#At this point the treasure is directly north-east of the player.
+#Move diagonally in this direction while taking readings, until the message "'''The key is steaming'''" is produced.
+"""

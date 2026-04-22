@@ -1,0 +1,110 @@
+# Cerberus — Taverley dungeon solo boss. Tests: scripted attack
+# pattern counter, HP-gated special unlocks, summoned souls +
+# prayer drain, lava-pool DoT tiles.
+
+name = "Cerberus"
+slug = "cerberus"
+npc_ids = [5862, 5863, 5866]
+source_pages = ["Cerberus", "Cerberus/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+# All three styles share a max hit of 23 and can be fully blocked by
+# the matching overhead prayer — prayer must be active at the launch
+# tick, not impact tick.
+
+[[attacks]]
+name = "Melee Bite"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 23
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged Spikes"
+style = "ranged"
+max_hit = 23
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Ball"
+style = "magic"
+max_hit = 23
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+# Cerberus doesn't have "phases" in the HP-gated sense — her specials
+# unlock at hp thresholds but she never changes base behavior. Model
+# the unlocks as gates on the mechanic triggers below.
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Bite", "Ranged Spikes", "Magic Ball"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Triple Attack"
+primitive = "attack_counter_special"
+# Wiki: "initiated as her first attack and repeated after every ten
+# attacks in sequence. magic, ranged, melee, 2 ticks apart each. The
+# melee attack will be executed regardless of distance, does not act
+# as a projectile."
+params.first_attack_trigger = true
+params.every_n_attacks = 10
+params.sequence = [
+    { style = "magic", tick_delay = 0 },
+    { style = "ranged", tick_delay = 2 },
+    { style = "melee", tick_delay = 4, ignores_distance = true },
+]
+params.max_hit = 23
+params.priority = 1               # Wiki: triple > souls > lava pools
+
+[[mechanics]]
+name = "Summoned Souls"
+primitive = "spawn_soul_attackers"
+# Wiki: "summons three souls that come from the river and attack with
+# each combat style. Each attack drains 30 prayer if blocked, or 30
+# hitpoints if not. Only available under 400hp (2/3 of 600). 10% random
+# chance to skip and use regular attack instead."
+params.every_n_attacks = 7
+params.min_hp = 0
+params.max_hp = 400               # "under 400 hitpoints"
+params.styles = ["melee", "ranged", "magic"]
+params.damage_if_unblocked = 30
+params.prayer_drain_if_blocked = 30
+params.prayer_drain_with_ward_of_arceuus = 20
+params.prayer_drain_with_spectral_shield = 15
+params.prayer_drain_with_both = 10
+params.skip_chance = 0.10
+params.priority = 2
+
+[[mechanics]]
+name = "Lava Pools"
+primitive = "dot_tile_placement"
+# Wiki: "spits three balls of fire on the ground. One on player, two
+# random. Continuous damage while standing in. Reduced by dragonfire
+# protection. Available under 200hp. 10% random skip chance."
+params.every_n_attacks = 5
+params.max_hp = 200
+params.pool_count = 3
+params.pools_on_player = 1
+params.pools_random = 2
+params.dot_per_tick = 8           # approximate, reduce with antifire
+params.dragonfire_protection_applies = true
+params.skip_chance = 0.10
+params.priority = 3
+
+[[mechanics]]
+name = "Fire Line on Re-entry"
+primitive = "static_dot_line"
+# Wiki: "a line of fire will spawn between the entrance and the boss
+# if a player has recently fought the boss; 5 damage on cross."
+params.damage_per_cross = 5
+params.trigger = "player_returning_post_fight"
+
+[[mechanics]]
+name = "Empty-Room Regen"
+primitive = "regen_when_no_player"
+params.heal_to_full = true        # resets to full hp when empty
+params.untargetable_when_empty = true

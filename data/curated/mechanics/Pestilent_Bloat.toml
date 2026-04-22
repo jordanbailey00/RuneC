@@ -1,0 +1,18 @@
+name = "Pestilent Bloat"
+source_pages = ["Pestilent Bloat"]
+npc_ids = [8359, 10813, 10812]
+
+[sections]
+"Mechanics" = """
+[[File:Fighting Pestilent Bloat.png|thumb|left|280px|A group of players fighting The Butcher's crazed creation, the Pestilent Bloat.]]
+The Bloat will walk around its room in a square as soon as the party enters the room. If any player is within its line of sight, the Bloat's flies will attack them, causing players to take rapid hits of 10-20 every [[tick]] until they are out of the Bloat's line of sight. This will spread to other players in the raid also and can therefore kill a party very quickly. Additionally, the Bloat receives 50% less damage (rounded down) while moving.
+
+On the first walk after 39-47 game ticks (23.5 to 28.2 seconds), it will stop moving, allowing players to attack it and deal full damage. After 19.2 seconds, it will stomp the surrounding area, dealing 40-80 damage, though it can be tick eaten. After  the stomp, it will stop moving after 34 to 42 ticks (20.4 to 25.2 seconds). If its Defence has been reduced, it will regenerate to full when it stomps. If a player is hit by a mutilated flesh, it will deal 30–50 damage and stun them temporarily. Falling flesh can be evaded beforehand by looking for their shadow on the floor, and will only occur when the boss walks around upon reaching 90% of its health in normal mode. If the Bloat turns or changes speed during the walk, Bloat cannot go down for 5 another ticks which can slightly extend the length of the walk if the turn or speed change occurs close to the end of the walking phase. Bloat can be eligible to turn every 32 ticks in regular mode.
+
+Pestilent Bloat uses a custom implementation of the line of sight check for its attacks: rather than using one tile within the Bloat's 5x5 area as the reference point for these checks, all tiles on the side of the Bloat nearest to the player are checked for line of sight, and the attack is allowed to go through if any of them has an unobstructed view of the player.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1722220964929495045|date=8 November 2023|archiveurl=https://archive.is/xThHO|archivedate=8 November 2023|quote=It is line-of-sight as far as I can see in my colleagues' code, but that boss has custom line-of-sight checks. (...) The developer appears to have tried writing a manual check to see if any tile on the NPC's nearest side has line-of-sight to the target. The standard line-of-sight checks apparently aren't reliable for this for large NPCs.}}
+
+The speed at which the Bloat moves depends on its health; up to 60.0%, it will always walk; between 40% and 60%, it will always run. 
+
+At 39.9% and lower, the Bloat will alternate between walking or running for every attack made on it regardless if it hits or not.
+{{clear|left}}
+"""

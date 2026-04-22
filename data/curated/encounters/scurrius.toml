@@ -1,0 +1,125 @@
+# Scurrius — Phase 4 pilot encounter.
+# Derived from data/curated/mechanics/Scurrius.toml (Phase 3 wiki extract) +
+# infobox_monster stats (Phase 1) + Scurrius/Strategies section prose.
+
+name = "Scurrius"
+slug = "scurrius"
+npc_ids = [7221, 7222]        # 7221 = solo mode, 7222 = multi-player
+source_pages = ["Scurrius", "Scurrius/Strategies"]
+
+[stats_override]
+# Wiki lists 500 hp, 290 combat. NDEF values come from cache /
+# osrsreboxed merge; left as inheritance unless we discover a gap.
+# hp = 500
+# combat_level = 290
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Tail Swipe"
+style = "melee"
+accuracy_roll = "crush"        # sweeping tail strike
+max_hit = 13
+warning_ticks = 0              # instant; no telegraph
+# Protect from Melee → 0 damage.
+
+[[attacks]]
+name = "Bolts of Electricity"
+style = "magic"
+max_hit = 14
+max_hit_solo = 8
+warning_ticks = 2              # projectile travel
+# Protect from Magic → 0 damage.
+
+[[attacks]]
+name = "Flying Fur"
+style = "ranged"
+max_hit = 13
+max_hit_solo = 7
+warning_ticks = 2
+# Protect from Missiles → 0 damage.
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "melee_focus"
+enter_at_hp_pct = 100
+allowed_attacks = [
+    "Tail Swipe",
+    "Bolts of Electricity",
+    "Flying Fur",
+    "Falling Bricks",
+]
+style_weights = { melee = 10, magic = 1, ranged = 1 }
+
+[[phases]]
+id = "heal"
+enter_at_hp_pct = 80
+script = "scurrius_heal_at_food_pile"
+allowed_attacks = [
+    "Tail Swipe",
+    "Bolts of Electricity",
+    "Flying Fur",
+    "Falling Bricks",
+    "Minions",
+]
+# In multi-player: heals 10 per player per tick; solo: 5 per tick.
+# Heals up to 10 ticks (5 actual heals — anim shows 10 but only 5
+# resolve).
+
+[[phases]]
+id = "enraged"
+enter_at_hp_pct = 30
+script = "scurrius_center_rage"
+allowed_attacks = [
+    "Bolts of Electricity",
+    "Flying Fur",
+    "Falling Bricks",
+    "Minions",
+]
+style_weights = { magic = 1, ranged = 1 }
+attack_speed_override = 4      # faster; base is 5
+can_revert_to = "heal"          # if healed back above 30%
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Falling Bricks"
+primitive = "telegraphed_aoe_tile"
+period_ticks = 8               # approximate — tune in testing
+# Per wiki: "One piece will always target the player's current tile
+# when it was used, while others will fall randomly around the arena."
+params.target_current_tile = true
+params.extra_random_tiles = 5
+params.warning_ticks = 1       # shadow appears 1 tick before impact
+params.damage_min = 15
+params.damage_max = 24
+params.solo_damage_max = 22    # wiki: 15-22 in solo mode
+
+[[mechanics]]
+name = "Minions"
+primitive = "spawn_npcs"
+period_ticks = 30              # approximate
+# Per wiki: "six level 46 giant rats appear around the arena. ...
+# persists even after Scurrius is slain."
+params.npc_name = "Giant rat (Scurrius)"
+params.count = 6
+params.distribution = "around_arena_random"
+params.persist_after_death = true
+
+[[mechanics]]
+name = "Food Heal"
+primitive = "heal_at_object"
+trigger = "phase_enter:heal"
+# On phase entry, Scurrius walks to the nearest Food Pile and heals.
+params.object_name = "Food Pile"
+params.heal_per_player = 5     # scales by player count in multi
+params.heal_ticks_cap = 5      # anim shows 10, only 5 resolve
+params.tick_period = 4         # seconds between each heal tick
+# Smoke ancient sceptre poison halves the per-player heal to 4/8.
+
+# ---- Drop table (already in drops.bin) -------------------------------
+
+# Scurrius drops live in data/defs/drops.bin (NPC id 7221 / 7222).
+# No override needed — encounter code consumes drops.bin directly on
+# death.

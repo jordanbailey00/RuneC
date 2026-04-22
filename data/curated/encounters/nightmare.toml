@@ -1,0 +1,196 @@
+# The Nightmare — multi-player group boss. Tests: 3-phase totem-based
+# progression, shield + totems gating phase transitions, heavy
+# multi-player mechanics (husks-freeze, corpse-flowers quadrant,
+# sleepwalkers-power-blast, parasites, curse-prayer-shuffle, surge,
+# spores).
+
+name = "The Nightmare"
+slug = "the_nightmare"
+npc_ids = [9432, 9433, 9416]       # main + variants (including
+                                   # Phosani's variant)
+source_pages = ["The Nightmare", "The Nightmare/Strategies"]
+
+# Phosani's Nightmare is a distinct solo variant encoded separately
+# (different attack timings + additional Sleepwalker mechanics). See
+# `phosanis_nightmare.toml` (to be authored).
+
+# ---- Standard attacks --------------------------------------------------
+
+[[attacks]]
+name = "Melee Swipe"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 40
+warning_ticks = 0
+# Used against the player currently being melee-tanked (adjacent).
+
+[[attacks]]
+name = "Ranged Projectile"
+style = "ranged"
+max_hit = 40
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Projectile"
+style = "magic"
+max_hit = 40
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+# Phase transitions require charging 4 totems, NOT hitting HP
+# thresholds. Shield must be depleted first before totems can be
+# charged.
+
+[[phases]]
+id = "phase_1"
+enter_at_hp_pct = 100
+script = "nightmare_phase_1"
+allowed_attacks = [
+    "Melee Swipe", "Ranged Projectile", "Magic Projectile",
+    "Grasping Claws", "Husks", "Corpse Flowers",
+]
+# Shield present; damage scaled down until shield depleted.
+shield_present = true
+damage_reduction_until_shield_broken = 0.5
+
+[[phases]]
+id = "phase_2"
+enter_after = "totems_charged:1"
+script = "nightmare_phase_2"
+allowed_attacks = [
+    "Melee Swipe", "Ranged Projectile", "Magic Projectile",
+    "Grasping Claws", "Curse", "Parasites",
+    "Sleepwalkers",
+]
+shield_present = true              # new shield at phase start
+damage_reduction_until_shield_broken = 0.5
+
+[[phases]]
+id = "phase_3"
+enter_after = "totems_charged:2"
+script = "nightmare_phase_3"
+allowed_attacks = [
+    "Melee Swipe", "Ranged Projectile", "Magic Projectile",
+    "Grasping Claws", "Spores", "Surge",
+    "Sleepwalkers",
+]
+shield_present = true
+damage_reduction_until_shield_broken = 0.5
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Totems (4)"
+primitive = "totem_charge_progression"
+# 4 corner totems in the arena. Once shield depleted, player attacks
+# totems to charge them. Fully charged totems damage Nightmare for
+# 1/3 of her hp and advance to the next phase.
+params.totem_count = 4
+params.charge_per_attack = 10     # approximate
+params.total_charge_per_totem = 100
+params.advance_damage_per_full_charge = 333   # 1/3 * 1000 hp
+params.trigger_advance = "all_totems_full"
+
+[[mechanics]]
+name = "Grasping Claws"
+primitive = "telegraphed_portal_aoe"
+# Phases 1-3. Spawn a black portal under Nightmare + random "end"
+# portals; 50 dmg if standing on ANY portal.
+period_ticks = 12
+params.portal_count_extra = 4
+params.warning_ticks = 2
+params.damage_max = 50
+params.prayer_ignorable = true
+
+[[mechanics]]
+name = "Husks"
+primitive = "spawn_paired_husks"
+trigger = "phase_in:phase_1"
+# Phase 1 only. Spawn 2 husks (blue=magic, green=ranged) around a
+# random player; targeted player immobilized until both husks dead.
+period_ticks = 24
+params.pair_count = 1
+params.husk_blue_style = "magic"
+params.husk_green_style = "ranged"
+params.target_random_player = true
+params.immobilizes_target = true
+
+[[mechanics]]
+name = "Corpse Flowers"
+primitive = "quadrant_safe_zone_dot"
+trigger = "phase_in:phase_1"
+# Arena divided into 4 quadrants. One safe (white flowers), three
+# unsafe (red berries). Standing in unsafe → 20 dmg/tick. Nightmare
+# heals 2× damage dealt.
+period_ticks = 40
+params.safe_quadrants = 1
+params.unsafe_dot_per_tick = 20
+params.heals_boss_multiplier = 2.0
+
+[[mechanics]]
+name = "Curse"
+primitive = "shuffle_player_prayers"
+trigger = "phase_in:phase_2"
+# Phase 2 only. Protect from Magic → Missiles, Missiles → Melee,
+# Melee → Magic. Lasts 5 attacks.
+period_ticks = 30
+params.duration_attacks = 5
+params.shuffle_mapping = [
+    { from = "protect_from_magic",    to = "protect_from_missiles" },
+    { from = "protect_from_missiles", to = "protect_from_melee" },
+    { from = "protect_from_melee",    to = "protect_from_magic" },
+]
+
+[[mechanics]]
+name = "Parasites"
+primitive = "infectious_dot_with_cure"
+trigger = "phase_in:phase_2"
+# Parasites attach to random players; burst after ~18 ticks for
+# massive damage, then attack as NPCs that heal Nightmare / reverse
+# totems. Can be weakened by drinking Relicym's balm or Sanfew serum.
+period_ticks = 30
+params.incubation_ticks = 18
+params.burst_damage = 70
+params.burst_damage_if_cured = 20
+params.cure_items = ["Relicym's balm", "Sanfew serum"]
+params.parasite_hp_uncured = 80
+params.parasite_hp_cured = 40
+params.reverses_totem_charge = true
+params.restores_boss_shield = [31, 50]   # per parasite attack
+
+[[mechanics]]
+name = "Sleepwalkers"
+primitive = "spawn_convergent_minions"
+trigger = "phase_enter:phase_2|phase_enter:phase_3"
+# At phase 2 & 3 start: spawn N sleepwalkers that walk to Nightmare.
+# Each absorbed → increases power blast damage (unavoidable AoE).
+# N scales by player count (1-24).
+params.npc_name = "Sleepwalker"
+params.count_per_player = 3
+params.walks_toward = "boss"
+params.absorb_damage_per_walker = 5
+params.power_blast_on_absorption = true
+params.power_blast_min = 5
+
+[[mechanics]]
+name = "Spores"
+primitive = "aoe_tile_debuff"
+trigger = "phase_in:phase_3"
+# Spores scattered in patterns; 3x3 AoE on player trigger. Burst
+# disables run + slows attack speed by 1 tick.
+period_ticks = 20
+params.pattern = "scattered"
+params.aoe_size = 3
+params.debuff = { run_disabled = true, attack_speed_penalty = 1 }
+params.debuff_ticks = 10
+params.spreads_to_adjacent_players = true
+
+[[mechanics]]
+name = "Surge"
+primitive = "line_dash"
+trigger = "phase_in:phase_3"
+# Nightmare teleports to edge, dashes across arena. 60 dmg to anyone
+# caught in the line.
+period_ticks = 30
+params.damage_max = 60
+params.direction = "edge_to_opposite_edge"

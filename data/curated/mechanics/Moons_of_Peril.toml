@@ -1,0 +1,75 @@
+name = "Moons of Peril"
+source_pages = ["Moons of Peril", "Moons of Peril/Strategies"]
+npc_ids = []
+
+[sections]
+"==Special attacks==" = """
+The boss will alternate between the following special attacks:
+* ''Full Moon'': '''Blood Rain''' - The Blood Moon will disappear and rain blood from above, forming temporary pools of blood throughout the room. Move off of the blood pools on the floor to avoid standing on them. Being hit by a blood pool will heal the boss, while staying off the blood pools will do small chip damage to her.
+** While Eyatlalli's glyph will reappear before this special attack is finished, any blood pools on the active moon symbol will still be dangerous.
+* ''New Moon'': '''Blood Jaguar''' - [[Blood jaguar]]s spawn around the room, along with a damaging square of blood pools. Eyatlalli imbues a sigil with her power, and the player must stand on this sigil to avoid taking rapid chip damage. The jaguars perform a cleave attack every four ticks just after the blood pools despawn, and to avoid healing the boss and taking damage from the jaguar, the player should step back as the blood pools appears fully formed, and attack the jaguar as they attack to avoid being hit when the blood pool reappears. Lower-level players using the zombie axe may wish to switch to a faster hitting weapon during this phase, as the 5-tick attack speed will prevent the player from executing this correctly. The jaguar will siphon up to 15 hitpoints from the player if they manage to attack, but the player can attack the jaguar to restore up to 25 hitpoints with enough damage. In total the moon will spawn blood pools 7 times, the first 6 requiring the player to step back to avoid damage. For players chaining many runs, it is recommended to turn the prayers off during the jaguar phase (provided the player can still consistently recover more than 15hp) as any damage done to the jaguars does NOT transfer to the moon.
+"""
+
+"==Standard attacks==" = """
+During the three hits of a standard attack, her Curse of the Moon will heal her for 1x the first hit, 2x the second hit, and a significant extra amount (usually in excess of 30) if the final hit lands. 
+
+It's possible to '''avoid the last hit and its heal''' by walking outside Eyatlalli's glyph during the attack. This manoeuvre requires concentration, but will decrease your kill time significantly. To do this, look for a blood syphon coming out of you as Blood Moon's attack animation starts. If one appears, step under the boss for a tick, click back on the glyph and continue attacking.
+"""
+
+"=Standard attacks=" = """
+The Moon will face one of six potential directions based on the cycles above, where they will perform a unique melee attack that hits three times. The Moons have a ramping max hit based on how many of the attacks land in a row, so they can hit much harder than their combat level suggests. The first hit maxes 4, the second, 8, and the third, 20, for a total max of 32 damage in every series of hits. However, their attack has a unique rule in that if one of these hits miss, all hits succeeding it will also miss; for example, if the first hit in sequence does not land, the next two will also miss. 
+
+Each standard attack in the 3-hit cycle applies 1, 2, and 5 stacks of the Curse of the Moons. The effects of the curse differs between the three bosses, but maxes out at 127 and slowly degrades by 2 every 5 [[ticks]]. Because of their typeless attacks and how the curse is applied, players are recommended to bring more defensive armour (especially for lower levels) to reduce overall damage. The Curse of the Moons debuff disappears fully after defeating a Moon of Peril.
+
+Due to the timing of the standard attacks, weapon speed plays a larger role in determining DPS. For example, a 4-tick weapon can hit 3 times per cycle, whereas a 5-tick weapon can only hit twice. Because your character will take 1-2 ticks to run to the next glyph, you can exploit the attack cooldown mechanic to get in extra max hits. For example, it is possible to hit twice with a 4-tick weapon and then once with a 5-tick weapon in one cycle without losing any ticks. Similarly to common uses of the crystal halberd when there is forced downtime, weapons like a leaf-bladed battleaxe or a zombie axe may have a higher damage per hit, making them more effective as switches.
+"""
+
+"Boss mechanics" = """
+The Moons of Peril are located in their respective chambers within the prison. 
+
+Players can visually see other players in the same room fighting the moons, but unlike other bosses, the health bar only displays your personal contribution towards pacifying them.  
+
+Each Moon has 500 Hitpoints and share nearly the same combat stats; an [[Attack]] level of 258, [[Strength]] and [[Magic]] level of 100 and a [[Defence]] level of 60. Their melee attacks additionally have an accuracy bonus of +100 with ramping damage based on how many hits successfully land. Defensively, they have +100 melee defence to the styles they are not weak to, along with +500 magic and ranged defence.
+
+'''Note:''' [[Protection prayers]] will not do anything against any of their attacks.
+
+The Moon will inflict small amounts of damage to itself when attacking a player or using special attacks. This damage does not have visible hitsplats but deducts from the boss health bar. This damage is based on how much total health the moon has remaining and slows down significantly at low health. For this reason, the total damage necessary to kill a moon can be deceptive, as a player does not need to deal the full amount.
+
+If the player enters a Moon's chamber while it is in the middle of a special attack, the attack will scale depending on how much time is left for the special attack when they enter, and the mechanic has a delayed application on them, which can either result in the mechanic doing nothing at all or being shorter than usual.
+
+Upon defeating a boss, you will be teleported to one of the three campsites, next to the [[Cooking stove]]; which campsite depends on the order in which they have been defeated.
+
+After killing Eclipse Moon, the player will be put in the Earthbound Cavern unless Blood Moon has already been killed, in which case the player will be put in the Streambound Cavern.
+
+After killing Blue Moon, the player will be put in the Ancient Prison unless Blood Moon has already been killed, in which case the player will be put in the Streambound Cavern.
+
+After killing Blood Moon, the player will be put in the Earthbound Cavern unless Blue Moon has already been killed, in which case the player will be put in the Ancient Prison.
+{| class="wikitable" style="width:500px"
+!Ancient prison
+!Earthbound cavern
+!Streambound cavern
+|-
+|{{map|x=1352|y=9582|zoom=2|mapID=45|height=160|width=160|group=1
+|mtype:dot,fill:#E92828,1352,9582
+|mtype:dot,fill:#008FE2,1376,9710
+|mtype:dot,fill:#F4BE45,1512,9692
+}}
+|{{map|x=1376|y=9710|zoom=2|mapID=45|height=160|width=160|group=1
+}}
+|{{map|x=1512|y=9692|zoom=2|mapID=45|height=160|width=160|group=1
+}}
+|}
+If the player dies at the same time as one of the bosses, they will be sent out of the fight arena as normal with one health point and the fight will be considered a victory.
+"""
+
+"Fight overview" = """
+{{main|Moons of Peril/Strategies}}
+The player's trip into [[Neypotzli]] begins in the antechamber, expanding outwards along three accessible entrances. Each of these - the Streambound Cavern, Earthbound Cavern, and the Ancient Prison - have different resources where players can create food and potions that are more powerful than even the best found outside; as such, it is highly recommended to gather supplies from within these caverns rather than bringing in supplies from outside. Campsites around the three areas will also have [[Supply crates (Neypotzli)|supply crates]] that store the required tools to gather resources, and [[cooking stove]]s to cook food and fully restore [[run energy]].
+
+Once the player is ready, they can proceed to face the Moons of Peril; the three bosses share a unique mechanic where their basic attack will hit three times, each dealing more damage than the last; however, if one hit misses, the remainder will as well. This means having good defence bonuses will result in less damage taken overall. [[Protection prayers]] will not do anything against any of their attacks.
+
+While they can be fought by multiple players simultaneously, the boss' health is tied to individual players, meaning each player will effectively have to deal all damage on their own. [[Ironman_Mode|Ironmen]] are thus eligible for full rewards. Additionally, each Moon of Peril has a lower defence bonus against a specific melee style:
+* [[Eclipse Moon]] - vulnerable to stab 
+* [[Blue Moon]] - vulnerable to crush
+* [[Blood Moon]] - vulnerable to slash
+"""

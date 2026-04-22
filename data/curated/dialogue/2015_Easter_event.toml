@@ -1,0 +1,1257 @@
+title = "Transcript:2015 Easter event"
+npcs = ["Easter Bunny", "Chocolate demon"]
+node_count = 162
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Hello? Can you hear me? I need help!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello? This is [player] here. What's going on?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "This is the Easter Bunny. I'm stuck in my office, and I'm having to use my emergency broadcast system to talk to you."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "We're having some sort of infestation down here. The chocolate's gone mad! Please come down to my office and help me. There's a reward."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "option"
+text = "Is it safe for me?"
+parent = -1
+children = [6, 7, 8]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is it safe for me?"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "I expect so. Just... don't eat the chocolate. Can you come to my office now, please?"
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "act"
+text = "other"
+parent = 5
+is_terminal = true
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "option"
+text = "Sure, I'll come down to your office."
+parent = -1
+children = [10, 11, 12, 13, 14]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I'll come down to your office."
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "other"
+text = "{{qact|The player enters the warrens, and is approached by a chocolate chicken and chocolate bunny.}}"
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Chocolate chicken"
+text = "{{overhead|Grrr!}}"
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... what are those things? Get away from me!"
+parent = 9
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "option"
+text = "Nope, I'm not interested."
+parent = -1
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "The storeroom's full of the dratted critters! Fortunately I don't need anything from there just now, so you can leave them alone."
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "My office is at the eastern side of the warren. Please come and help me."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [22]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "other"
+text = "{{overhead|Graarh!}}"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [24]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "other"
+text = "{{overhead|Kkrrrr!}}"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [26]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "other"
+text = "{{overhead|Hiss!}}"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "My office is at the eastern side of the warren. Please come and help me."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Ah, [player], thank you so much for coming to help me. It's terrible, simply terrible. I can't understand it at all."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "My job's supposed to be simple - I get chocolate eggs from the bird and tell the rabbits to deliver them in the springtime. That's all I should have to do!"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Focus! What's been happening here?"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "It's the eggs, the chocolate eggs for Easter. They've been hatching. Now my warren's infested by demonic chocolate critters. They're terrifying!"
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "What could have made the eggs start hatching?"
+parent = -1
+children = [36, 37, 38]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What could have made the eggs start hatching?"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I've no idea. The bird doesn't know either. I suspect magical sabotage. Maybe someone really hates Easter eggs."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "act"
+text = "other"
+parent = 35
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "option"
+text = "How do I get rid of the creatures?"
+parent = -1
+children = [40, 41, 42, 46, 49, 50, 51, 52]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I get rid of the creatures?"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I have a plan! Last Halloween, that Diango fellow sold me a 'Phantasmic Destabliser Mark 500'. He said they were brilliant, and he only wanted 1,000,000 coins."
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "cond"
+text = "If the player completed the 2013 Halloween event:"
+parent = 39
+children = [43, 44, 45]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You paid Diango 1,000,000 coins for a ghost buster? He was just handing them out last year. I had one."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh... drat. Maybe I should just use the Grand Exchange."
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "act"
+text = "continues"
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "cond"
+text = "If the player didn't complete the 2013 Halloween event:"
+parent = 39
+children = [47, 48]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "It's a sort of weapon. I gather Diango originally had it built to attack some ghosts."
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "act"
+text = "continues"
+parent = 46
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Anyway, this blaster might be just what we need. If we load it with different ammunition, it should work on chocolate instead of ghosts."
+parent = 39
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So where is the blaster, and what ammunition are we going to use on it?"
+parent = 39
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "It's in a crate in the bird's room, at the north end of my warren. I'll use the loudspeakers to give more instructions when you've found it."
+parent = 39
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "option"
+text = "I'm not interested."
+parent = -1
+children = [54]
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Have you found the blaster yet? It's in a crate in the bird's room, at the north end of my warren."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "Remind me what I'm supposed to be doing."
+parent = -1
+children = [58, 59, 60, 61]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Remind me what I'm supposed to be doing."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Go to the bird's room, at the north of my warren. In a crate, you'll find a weapon that we can adapt to work on the creatures."
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I'll use the loudspeakers to give more instructions when you've found it."
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "option"
+text = "I'll be back."
+parent = -1
+children = [63]
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Have you found the blaster yet? It's in a crate in the bird's room, at the north end of my warren."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "box"
+text = "pic=Empty blaster detail.png|pic2=Bronze pickaxe detail.png|You find a blaster and a pickaxe."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Great! Now, there are some rocks in the middle of my warren containing an explosive mineral. Mine some, and load the blaster."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "other"
+text = "{{mes|The blaster doesn't have any suitable ammunition for that.}}"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "The rocks containing explosive minerals are in the middle of my warren, near the entrance. Mine some, and load it into the blaster."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "other"
+text = "{{mes|You swing your pick at the rock.}}"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "other"
+text = "{{mes|You manage to mine some of the mineral.}}"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Have you loaded the blaster with the oil yet?"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "Remind me what I'm supposed to be doing."
+parent = -1
+children = [78, 79, 80, 81]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Remind me what I'm supposed to be doing."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Near the mining rocks, there's a gungy pool where a flammable oil floats to the surface. Try to suck some up the blaster's nozzle."
+parent = 77
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back."
+parent = 77
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "act"
+text = "end"
+parent = 77
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "option"
+text = "I'll be back."
+parent = -1
+children = [83]
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "above"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "box"
+text = "pic=Incomplete blaster detail.png|You load the blaster with explosive rounds."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Excellent! Now you need some flammable oil. There's a gungy pool near the mining rocks with an oily scum on the surface."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "box"
+text = "pic=Easter blaster detail.png|Some oil has oozed up to the surface from the rotting vegetation in the pool's depths. You suck some of it into the blaster."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "That's the weapon all prepared. Now you can use it to wipe out those horrible critters."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "other"
+text = "{{overhead|*glub glub glub*}}"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "other"
+text = "{{mes|You might get hurt if you shoot the wall at short range!}}"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "other"
+text = "{{mes|This blaster is for use on the chocolate critters infesting the Easter Bunny's warren.}}"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "other"
+text = "{{mes|The Easter Bunny is unlikely to appreciate you doing that in here.}}"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "cond"
+text = "After killing 1 creature:"
+parent = -1
+children = [96, 97]
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Excellent! 4 more left to kill."
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "end"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "cond"
+text = "After killing 2 creatures:"
+parent = -1
+children = [99, 100]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "You're doing great. Three more to go."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "act"
+text = "end"
+parent = 98
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "cond"
+text = "After killing 3 creatures:"
+parent = -1
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Excellent! 2 more left to kill."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "cond"
+text = "After killing 4 creatures:"
+parent = -1
+children = [105, 106]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Just one left now."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "cond"
+text = "After killing 5 creatures:"
+parent = -1
+children = [108, 109, 110, 111, 112, 113, 114, 115, 118, 121, 122, 123, 124, 125, 126]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Well done - you've got them all!"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "other"
+text = "{{qact|The chocolate demon reveals itself.}}"
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Chocolate demon"
+text = "Graaaah! How dare you slay my creatures? But I shall not fail my master."
+parent = 107
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Your creatures? You mean you made those chocolate things come out of the eggs?"
+parent = 107
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Chocolate demon"
+text = "My master summoned me to end this Easter foolishness. Humans seize any excuse to pretend a season is special, with frivolous gifts and unhealthy foodstuffs."
+parent = 107
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who is your master?"
+parent = 107
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Chocolate demon"
+text = "He calls himself Anti-Santa. Normally he focuses on destroying Christmas, but he gets very bored in the springtime, so he's branching out."
+parent = 107
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "cond"
+text = "If the player participated in the 2014 Christmas event:"
+parent = 107
+children = [116, 117]
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, him. Yes, I met Anti-Santa last Christmas. So he summoned a chocolate demon to attack Easter?"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "act"
+text = "continues"
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "cond"
+text = "If the player didn't participate in the 2014 Christmas event:"
+parent = 107
+children = [119, 120]
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So this Anti-Santa person summoned a chocolate demon to attack Easter?"
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 3
+kind = "act"
+text = "continues"
+parent = 118
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Chocolate demon"
+text = "My chocolatey powers make me the ideal agent to attack the Easter Bunny's chocolate eggs."
+parent = 107
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Chocolate demon"
+text = "With no chocolate eggs, there can be no celebration. And the eggs were easy to sabotage - it took very little of my magic to animate and possess them."
+parent = 107
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you going to give up now?"
+parent = 107
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Chocolate demon"
+text = "No! You have slain my creatures, but I still have my magic. As long as I live, there will be no Easter festivity here!"
+parent = 107
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "He's made of chocolate. That means you can destroy him with the blaster. Quick - save Easter!"
+parent = 107
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "act"
+text = "end"
+parent = 107
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "cond"
+text = "Upon killing the chocolate demon:"
+parent = -1
+children = [128, 129, 130]
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Chocolate demon"
+text = "{{overhead|Aaarrgh!}}"
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "It's dead! You've saved Easter! Come back to my office - I've got a reward for you."
+parent = 127
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thank you so much for your help! Now those critters and the demon have gone, my rabbits can get back to work."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I'm gonna give you my spare boots. I think they'll suit you. I'll give you a couple Easter eggs too."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "If you'd like more Easter eggs, go up to my storeroom. It's still infested with the critters, but there are Easter eggs in there somewhere."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "box"
+text = "pic=Bunny feet detail.png|The Easter Bunny awards you a pair of bunny feet boots."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thanks again for helping to save the Easter festivities! Have a word with Diango if you need to collect your holiday items."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "Can I have some more Easter eggs, please?"
+parent = -1
+children = [139, 140, 141]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have some more Easter eggs, please?"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Sure, go up to my storeroom. It's still infested with the critters, but there are Easter eggs in there somewhere. Take the blaster."
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "Okay, bye."
+parent = -1
+children = [143]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny (speaker)"
+text = "Thanks again for helping to save the Easter festivities!"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "other"
+text = "{{trandom}} <!--First 5 lines are also said at random or when being attack by other chocolate creatures earlier in the event-->"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [148]
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "other"
+text = "{{overhead|Graarh!}}"
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [150]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "other"
+text = "{{overhead|Kkrrrr!}}"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [152]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "other"
+text = "{{overhead|Hiss!}}"
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [154]
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "other"
+text = "{{overhead|Sksksks!}}"
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [156]
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "other"
+text = "{{overhead|Grrr!}}"
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "Dialogue 6"
+parent = -1
+children = [158]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "other"
+text = "{{overhead|We'll defeat the Bunny next time!}}"
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "Dialogue 7"
+parent = -1
+children = [160]
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "other"
+text = "{{overhead|Down with Easter!}}"
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "other"
+text = "{{mes|You have now received all the rewards you can gain from killing these critters.|colour=red}}"
+parent = -1

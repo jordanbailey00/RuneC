@@ -1,0 +1,50 @@
+# Sarachnis — mid-level solo boss, Forthos Dungeon. Spider with
+# spiderling spawn mechanic + melee/ranged alternation.
+
+name = "Sarachnis"
+slug = "sarachnis"
+npc_ids = [8713]
+source_pages = ["Sarachnis", "Sarachnis/Strategies"]
+
+[[attacks]]
+name = "Melee Bite"
+style = "melee"
+accuracy_roll = "stab"
+max_hit = 28
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged Web"
+style = "ranged"
+max_hit = 24
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Strand"
+style = "magic"
+max_hit = 24
+warning_ticks = 2
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Bite", "Ranged Web", "Magic Strand"]
+# Alternates ranged + magic when non-adjacent; melee when adjacent.
+adjacency_style_weights = { melee = 2, ranged = 1, magic = 1 }
+non_adjacent_style_weights = { ranged = 1, magic = 1 }
+
+[[mechanics]]
+name = "Spiderling Spawn"
+primitive = "spawn_npcs"
+period_ticks = 10
+params.npc_name = "Sarachnis cub"
+params.count = 3
+params.distribution = "around_boss"
+params.max_alive = 6
+# Wiki: cubs heal Sarachnis if left alive.
+
+[[mechanics]]
+name = "Cub Heal"
+primitive = "periodic_heal_boss"
+params.heal_per_tick = 2
+params.requires_npc_alive = "Sarachnis cub"

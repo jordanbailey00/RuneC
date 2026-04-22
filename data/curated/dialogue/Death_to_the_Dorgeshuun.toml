@@ -1,0 +1,8859 @@
+title = "Transcript:Death to the Dorgeshuun"
+npcs = ["Mistag", "Zanik", "Sigmund", "Johanhus Ulsbrecht", "H.A.M. Guard", "H.A.M. Member", "H.A.M. Member (Death to the Dorgeshuun)", "Ur-tag", "Dwarf (Death to the Dorgeshuun)", "Juna", "H.A.M. Deacon", "Jimmy the Chisel", "Duke Horacio", "Cook (Lumbridge", "Crafting tutor", "Banker tutor", "Hans", "Gee", "Donie", "Man", "Woman", "Lumbridge Guide", "Cooking tutor", "Bob", "Prayer tutor", "Father Aereck", "Woodsman tutor", "Smithing apprentice", "Ranged combat tutor", "Magic combat tutor", "Melee combat tutor", "Shop keeper (Lumbridge)", "Shop assistant (Lumbridge)", "Fred the Farmer", "Millie Miller", "Father Urhney", "Goblin", "Candle seller", "Kazgar"]
+node_count = 1135
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "It is good to see you again! The Dorgeshuun Council would like to ask a favour of you, if you are interested?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "What is this favour?"
+parent = -1
+children = [3, 4, 5, 6, 7, 8, 13]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is this favour?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "Surface-dwellers have been visiting the mines for some time now, but no Dorgeshuun has yet visited the surface."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "We are curious about the surface, and we are also worried about the dangers it poses. We know that Lumbridge is friendly but we are worried that the HAM group may be plotting against us."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Mistag"
+text = "We are planning to send an agent to the surface and we would like you to act as a guide."
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "select"
+text = "Start the Death to the Dorgeshuun quest?"
+parent = 2
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 2
+children = [9, 10, 11, 12]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll act as a guide."
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Mistag"
+text = "Thank you!"
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Mistag"
+text = """
+In order to get into the HAM base undetected you will both need to go in disguise. You should get two full sets of HAM robes. Once you have them, our agent will meet you in the cellar of Lumbridge castle.
+"""
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "previous"
+parent = 8
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "No."
+parent = 2
+children = [14, 15, 16]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm too busy."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Mistag"
+text = "Oh dear! Our agent is ready, but the Council will not let an expedition go ahead without a guide. If you reconsider, please let me know!"
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "quest=no|Can I sell you some ore?"
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "option"
+text = "quest=no|Why do the Dorgeshuun live underground?"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "option"
+text = "quest=no|What happened to your arm?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "option"
+text = "quest=no|Can you show me the way out of the mines?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "You must be the famous [player name]!"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "Yes, I'm [player name]!"
+parent = -1
+children = [24, 25, 26, 27, 28, 33, 39, 45]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm [player name]!"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Pleased to meet you! I'm Zanik of the Dorgeshuun!"
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I can't wait to see the surface! But first you need to get us both sets of HAM robes."
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 23
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "option"
+text = "Where do I get the robes?"
+parent = 23
+children = [29, 30, 31, 32]
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get the robes?"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "How should I know? You're the surface-dweller! Maybe you could steal them from the HAM people or something."
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "We'll need two sets of full robes: shirt, robe, hood, cloak, gloves, boots and badge."
+parent = 28
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "act"
+text = "other"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "option"
+text = "Aren't you scared of the surface?"
+parent = 23
+children = [34, 35, 36, 37, 38]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Aren't you scared of the surface?"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "Well... a bit. All our legends say it's a terrible place."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "But that's a bad reason not to visit it. Maybe the legends are wrong. Or even if they're right, we should know for sure."
+parent = 33
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "And I've always wondered... what's beyond the next cave? What's at the end of every tunnel? The surface is a whole new world to explore, and I can't wait!"
+parent = 33
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "act"
+text = "other"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "option"
+text = "What's that mark on your forehead?"
+parent = 23
+children = [40, 41, 42, 43, 44]
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's that mark on your forehead?"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "I, er, er..."
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "To be honest I don't know. It happened when..."
+parent = 39
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "If you don't mind, I'd rather not talk about it now. Maybe once you've shown me some of the surface."
+parent = 39
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "act"
+text = "other"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "option"
+text = "cond=After choosing at least one dialogue option:|OK"
+parent = 23
+children = [46, 47, 48]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "OK."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "See you soon!"
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "act"
+text = "end"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "No, I'm not [player name]."
+parent = -1
+children = [50, 51, 52]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not [player name]."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh well."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Hi [player name]! Have you got our disguises yet?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "option"
+text = "Not yet."
+parent = -1
+children = [56, 57, 58]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm so looking forward to seeing the surface. But the Council insists that I get the disguise first."
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "act"
+text = "other"
+parent = 55
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "option"
+text = "Where do I get the robes?"
+parent = -1
+children = [60]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "above"
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "Aren't you scared of the surface?"
+parent = -1
+children = [62]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "above"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "What's that mark on your forehead?"
+parent = -1
+children = [64]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "act"
+text = "above"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Hi [player name]! Have you got our disguises yet?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have two sets of robes!"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "cond"
+text = "If the player has a follower with them"
+parent = -1
+children = [68, 69]
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "You should pick up your pet thingy. It would only get in the way."
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "act"
+text = "end"
+parent = 67
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "All right, let's go! I can't wait to see all around Lumbridge!"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "act"
+text = "Zanik takes a set of H.A.M. robes from you."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What are we waiting for? Let's go!"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [76, 77, 78]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to do something else for a bit."
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "All right. I'll wait for you in the castle cellar."
+parent = 75
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "act"
+text = "end"
+parent = 75
+is_terminal = true
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "option"
+text = "Aren't you going to put on your disguise?"
+parent = -1
+children = [80, 81, 82]
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aren't you going to put on your disguise?"
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "There's no need for that yet. Why don't you show me around Lumbridge first? I'm so excited about visiting the surface!"
+parent = 79
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "act"
+text = "end"
+parent = 79
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "option"
+text = "Will you tell me about the mark on your forehead?"
+parent = -1
+children = [84, 85, 86]
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I, er..."
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I will tell you, [player name], but not just yet. Finish showing me around Lumbridge and then I'll tell you."
+parent = 83
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "end"
+parent = 83
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "Follow me!"
+parent = -1
+children = [88, 89, 90]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Follow me!"
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Okay!"
+parent = 87
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Are you ready to finish our tour now?"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Well then, let's go!"
+parent = -1
+children = [96]
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "act"
+text = "end"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "option"
+text = "Not now."
+parent = -1
+children = [98, 99, 100]
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not now."
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh well."
+parent = 97
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "act"
+text = "end"
+parent = 97
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Where are we? I thought that ladder led to the surface."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We are on the surface! We're in Lumbridge Castle!"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "It's so enclosed, it could almost be underground. Let's go outside, [player name]! I want to see the sun!"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [106]
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "above"
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "Aren't you going to put on your disguise?"
+parent = -1
+children = [108]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "act"
+text = "above"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "Will you tell me about the mark on your forehead?"
+parent = -1
+children = [110]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "act"
+text = "above"
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "option"
+text = "Follow me!"
+parent = -1
+children = [112]
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "act"
+text = "above"
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene begins, and the camera zooms up and out into the sky.}}"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "So this is the surface!"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What's that? The giant light?"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's the sun."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "It's so bright! I can't look at it!"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "But it's amazing to think that there's nothing above me. Just the sun and the air and empty space, forever..."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "For generations my people have lived with rock over our heads. But now I can see the sky!"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We can't go into the HAM lair yet! I'm not wearing my disguise!"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "You said you'd show me around Lumbridge before we went down there, Azacor."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [125, 126]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "act"
+text = "end"
+parent = 124
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "option"
+text = "I'm going down anyway."
+parent = -1
+children = [128, 129, 130]
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm going down anyway."
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I'll wait for you back in the castle then."
+parent = 127
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Cave goblin guard"
+text = "Surface-dweller! You may not pass through that door!"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm sorry, [player name]. I'd like to show you around the city, but the council has decided not to let any surface-dwellers in yet."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Man"
+text = "Eeek! What is it?"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun!"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Man"
+text = "A cave goblin? Well, there goes the neighbourhood!"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Man"
+text = "It's all very well the duke signing a peace treaty with those creatures. Maybe that'll stop them attacking us."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Man"
+text = "But for them to come wandering around the surface and mixing with decent people? I don't know, what's the world coming to?"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We were never going to attack you! YOU nearly attacked US!"
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Man"
+text = "Oh, they may say they're civilised, but they're still goblins. You can't trust them. The only reason they're not a threat is that they're so stupid."
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Stop talking about me like I'm not here!"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [146, 147]
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "Keep away from me you dirty goblin!"
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [149, 150, 151, 152]
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "I don't know, what will be next? Cave goblins LIVING up here? Taking our jobs? I wouldn't want my daughter to marry a goblin!"
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm not sure a Dorgeshuun would want to marry a human!"
+parent = 148
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "What rudeness! This is why they say goblins have no manners!"
+parent = 148
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "act"
+text = "end"
+parent = 148
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [154, 155]
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "Oh, I've got nothing against goblins in their own place. I just don't think they ought to be wandering around in our city and making the place look bad."
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "act"
+text = "end"
+parent = 153
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [157, 158]
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "Goblins wandering around Lumbridge and talking to the duke like they're normal people? I don't know what the world's coming to."
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "act"
+text = "end"
+parent = 156
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [160, 161, 162]
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "It just makes me uncomfortable, is all. What if I was in bed and some horrible little goblin poked its head up through the floor?"
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "We would never do that! We don't tunnel upwards and we're very careful not to damage human cellars."
+parent = 159
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "act"
+text = "end"
+parent = 159
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "Dialogue 6"
+parent = -1
+children = [164, 165, 166, 167]
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "You cave goblins... don't you, you know, eat people?"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "No!"
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "Oh! Well, that's all right then."
+parent = 163
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "It's good to see a visitor from the Dorgeshuun! I am Duke Horacio."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Headman Ur-Tag sends his greetings."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Tell Ur-Tag that I wish to speak with him again. I think that our cities could profit from trading with one another, but there can be little trade if he does not allow visitors to enter the city."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I know! But the ruling council is so slow to make decisions. It's made up of old fogeys who are set in their ways."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Now then, child, there is room for caution and experience in politics."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Maybe when I return I can convince them to open the gates of the city."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "I'd like to get into the city too."
+parent = -1
+children = [177, 178, 179, 180]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like to get into the city too."
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I wish I could show it to you, [player name]!"
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Someday I will, but I don't think the council will agree to open the doors any time soon."
+parent = 176
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "act"
+text = "end"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "Tell me about the treaty."
+parent = -1
+children = [182, 183, 184, 185, 186, 187]
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the treaty."
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "It basically defines the borders between our two societies. It's not usual for two states to be above one another rather than side-by-side!"
+parent = 181
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Everything above ground, within the borders of Lumbridge, belongs to Lumbridge. Everything below ground belongs to the Dorgeshuun. Except for the cellars of our buildings, those belong to Lumbridge."
+parent = 181
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Of course both our underground systems might expand. Neither state can build new tunnels that are too close to the other's systems..."
+parent = 181
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "This is boring. Let's go."
+parent = 181
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "option"
+text = "Have you heard of any HAM activity lately?"
+parent = -1
+children = [189, 190, 191]
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you heard of any HAM activity lately?"
+parent = 188
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "No... I know they've been gaining members but I haven't heard anything else from them. They may be planning something, but then again they may not."
+parent = 188
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "act"
+text = "end"
+parent = 188
+is_terminal = true
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Hello again, Zanik, [player name]. I hope you are enjoying your tour. Perhaps someday a human can have a similar tour of your city."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "I'd like to get into the city too."
+parent = -1
+children = [196]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "act"
+text = "above"
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "option"
+text = "Tell me about the treaty."
+parent = -1
+children = [198]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "act"
+text = "above"
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "option"
+text = "Have you heard of any HAM activity lately?"
+parent = -1
+children = [200]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "act"
+text = "above"
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "What, er, who is this? Is it a cave goblin?"
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik is the first cave goblin to visit the surface! I'm giving her a tour of Lumbridge."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "Well, er, pleased to meet you, Zanik."
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "In fact, it's a good thing I met you. It's the Duke's birthday today, and I should be making him a lovely big birthday cake. I need eggs, flour and milk..."
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't know what those things are! Are they exotic surface foods?"
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "Well, they're not exactly exotic, they're just the basic ingredients of a cake."
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "If they're the basic ingredients, why don't you already have them?"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "Well, er..."
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think Zanik has time to help you."
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "It was worth a try. Anyway..."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "How is the adventuring going, my friend?"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "option"
+text = "quest=no|Do you have any other quests for me?"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "quest=no|I am getting strong and mighty."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "option"
+text = "quest=no|I keep on dying."
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "option"
+text = "quest=no|Can I use your range?"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Crafting tutor"
+text = "Hello there Zanik! How can I help?"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What's that thing with the wheel?"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Crafting tutor"
+text = "This is my spinning wheel! Look at the way it goes round and round and round..."
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What's it for?"
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Crafting tutor"
+text = "It spins wool into balls so we can work it more easily."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't know what wool is, but I'm sure it's fascinating!"
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Crafting tutor"
+text = "What about you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "option"
+text = "quest=no|How can I train my crafting?"
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "option"
+text = "quest=no|What kinds of things can be crafted?"
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "option"
+text = "quest=no|No, thank you."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Banker tutor"
+text = "Good day, how may I help you?"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What is this place?"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Banker tutor"
+text = "This is the Lumbridge branch of the Bank of Gielinor! Would you like to access your account?"
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't have an account! All my belongings are safe at home in Dorgesh-Kaan!"
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Banker tutor"
+text = "What about you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "option"
+text = "quest=no|How do I use the bank?"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "option"
+text = "quest=no|I'd like to access my bank account please."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "option"
+text = "quest=no|I'd like to collect items."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "option"
+text = "quest=no|I'd like to check my PIN settings."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "option"
+text = "quest=no|I'd like to buy more bank slots."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Hello. What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm giving Zanik here a tour of Lumbridge."
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Pleased to meet you, Zanik! I know not everyone in Lumbridge was pleased with the peace treaty, but I'm delighted to have new underground neighbours."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "option"
+text = "quest=no|I'm looking for whoever is in charge of this place."
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "option"
+text = "quest=no|I have come to kill everyone in this castle!"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "option"
+text = "quest=no|I don't know. I'm lost. Where am I?"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "option"
+text = "quest=no|Can you tell me how long I've been here?"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "quest=no|Nothing."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Gee/Donie"
+text = "Hello there, can I help you?"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm taking Zanik on a tour of Lumbridge. She's the first cave goblin to visit the surface!"
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Gee/Donie"
+text = "Hello Zanik! I hope you like what you find up here!"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "It's amazing! The sky is so huge!"
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "But I'm not sure I'd want to live under it for too long. It's kind of scary!"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Gee/Donie"
+text = "You'd get used to it!"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "Greetings adventurer. I am Phileas the Lumbridge Guide."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "Greetings Zanik! I am here to give information and directions to new players. Do you require any help?"
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "No thank you! [player name] is showing me around!"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "Well, can I help you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "option"
+text = "quest=no|Yes please."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "option"
+text = "quest=no|No, I can find things myself thank you."
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Cooking tutor"
+text = "Hello there Zanik! How can I help?"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What kind of foods do you eat up here on the surface?"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Cooking tutor"
+text = "All sorts of foods! There are lots of kinds of fish, and there are stews, pizzas, bread, baked potatoes..."
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "This is so exciting! Perhaps later I'll come back and sample lots of different surface foods!"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Cooking tutor"
+text = "I'm sure you'll like them! What about you, [player name]? Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "option"
+text = "quest=no|How can I train my cooking?"
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "option"
+text = "quest=no|What kinds of things can I cook?"
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "option"
+text = "quest=no|No, thank you."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "Get out of my shop! GET OUT!"
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "We don't serve the likes of that thing in here."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't need anything you've got to sell anyway!"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "option"
+text = "Let's go, Zanik."
+parent = -1
+children = [284, 285, 286]
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's go, Zanik."
+parent = 283
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "And don't come back, you filthy goblin!"
+parent = 283
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "act"
+text = "end"
+parent = 283
+is_terminal = true
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "option"
+text = "I'm not with her."
+parent = -1
+children = [288, 289, 290, 291, 292, 293, 294]
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not with her."
+parent = 287
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "!"
+parent = 287
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Oh, well... what do you want?"
+parent = 287
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 287
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "option"
+text = "quest=no|Give me a quest!"
+parent = 287
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "option"
+text = "quest=no|Have you anything to sell?"
+parent = 287
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "option"
+text = "quest=no|Can you repair my items for me?"
+parent = 287
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Welcome to the church of Holy Saradomin!"
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What's a church? And what is Holy Saradomin?"
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Surely you have heard of the god, Saradomin?"
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Father Aereck"
+text = "He who creates the forces of goodness and purity in this world? I cannot believe your ignorance!"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh, a GOD."
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Not just A god! Saradomin is the god with more followers than any other! At least in this part of the world."
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Which god do you cave goblins worship?"
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We DON'T worship any god!"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Thousands of years ago the gods made our ancestors fight in horrible wars. It was only after we escaped from them that we were able to build a civilisation."
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "option"
+text = "What god did the Dorgeshuun use to follow?"
+parent = -1
+children = [306, 307, 308, 309, 310]
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What god did the Dorgeshuun use to follow?"
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Our history does not remember his name. We know only that he was a violent god of war."
+parent = 305
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Sounds like Zamorak to me! Or one of the minor gods who followed him."
+parent = 305
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Saradomin would never be so barbaric."
+parent = 305
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "act"
+text = "other"
+parent = 305
+is_terminal = true
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "option"
+text = "What happened in the wars?"
+parent = -1
+children = [312, 313, 314, 315, 316, 317, 318]
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happened in the wars?"
+parent = 311
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "We do have stories about a war between the gods. I had always interpreted them as symbolic of the spiritual war between light and darkness in our hearts."
+parent = 311
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Dorgeshuun history remembers them as real. But we don't know much detail. Our ancestors were just footsoldiers, they didn't know what they were fighting for."
+parent = 311
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "I am sure they were engaged in a noble struggle, although perhaps on the wrong side!"
+parent = 311
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Saradomin was fighting to bring goodness and order to the universe, but Zamorak was leading the forces of darkness in a bid to bring eternal night to the world!"
+parent = 311
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Our history doesn't make a distinction. There was your own god who would kill you if you refused to fight, and someone else's god who would only kill you if you lost."
+parent = 311
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "act"
+text = "other"
+parent = 311
+is_terminal = true
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "option"
+text = "Not all the gods are bad!"
+parent = -1
+children = [320, 321, 322, 323, 324, 325]
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not all the gods are bad!"
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Quite right! The Dorgeshuun have just had bad experiences of them."
+parent = 319
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Maybe that's true. I should try to approach things with an open mind!"
+parent = 319
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "Exactly! You Dorgeshuun have lived in darkness for too long. But now you can come into the light of Holy Saradomin!"
+parent = 319
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "We don't like bright lights. They hurt our eyes."
+parent = 319
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "act"
+text = "other"
+parent = 319
+is_terminal = true
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "option"
+text = "Bye."
+parent = -1
+children = [327, 328, 329, 330]
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Bye."
+parent = 326
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Father Aereck"
+text = "May Saradomin bless you in all your pursuits!"
+parent = 326
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I can manage without Saradomin, but thanks anyway."
+parent = 326
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "act"
+text = "end"
+parent = 326
+is_terminal = true
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "speaker"
+speaker = "Woodsman tutor"
+text = "Greetings, Zanik! Listen to the wind in the trees..."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Are these trees then?"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Woodsman tutor"
+text = "Of course! What did you think they were?"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't know! I've never visited the surface before!"
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Woodsman tutor"
+text = "Shall I show you how to chop trees and make fires then?"
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Perhaps some other time. Right now I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "speaker"
+speaker = "Woodsman tutor"
+text = "How about you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "option"
+text = "quest=no|Any advice for an advanced woodcutter?"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "option"
+text = "quest=no|Tell me about different trees and axes."
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "option"
+text = "quest=no|What is that cape you're wearing?"
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "quest=no|Goodbye."
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "Hello there, Zanik! You look like you know your ores!"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Well, I know iron and silver. What other ores are there?"
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "There are all sorts! Mithril, adamantite, runite... shall I tell you about them?"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Perhaps some other time."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "What about you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do I do after smelting the ore?"
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "Ahh you'll need to learn to smith. You can use bronze bars on the anvil outside with a hammer."
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "But for the best advice, go to Varrock. That's where my master, the Smithing Tutor, plies his trade. Ask him to teach you how to smith."
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "box"
+text = "pic=22574 detail.png|Look for this icon in the west of Varrock."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "Smelt some ore and store it in the bank. Grab a hammer from the general store before you go too!"
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "speaker"
+speaker = "Ranged combat tutor"
+text = "Hi, Zanik! I see you know how to handle a bow!"
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "They tell me I'm an expert with the bone crossbow!"
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "speaker"
+speaker = "Ranged combat tutor"
+text = "You don't need any more help, then. How about you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "option"
+text = "quest=no|How can I train my Ranged?"
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "option"
+text = "quest=no|How do I create a bow and arrows?"
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "option"
+text = "quest=no|Let's discuss how my ammo acts when I pick it up."
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "option"
+text = "quest=no|Goodbye."
+parent = -1
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "speaker"
+speaker = "Magic combat tutor"
+text = "Greetings Zanik! You look like someone who might know something about spells!"
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Actually I don't know anything about spells."
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "speaker"
+speaker = "Magic combat tutor"
+text = "Well, if you have some air runes and mind runes you can cast Wind Strike..."
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Magic combat tutor"
+text = "You can't even cast Wind Strike?"
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We Dorgeshuun don't have any magical knowledge at all."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Magic combat tutor"
+text = "Well, if you don't know the basics at all it'll take a long time to teach you..."
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Perhaps some other time then."
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "speaker"
+speaker = "Magic combat tutor"
+text = "How about you, [player name]? Do you want any help?"
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "option"
+text = "quest=no|Tell me about magic combat please."
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "option"
+text = "quest=no|How do I make runes?"
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "option"
+text = "quest=no|Let's discuss how my runes act when I pick them up."
+parent = -1
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "option"
+text = "quest=no|Goodbye."
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Melee combat tutor"
+text = "Ho there Zanik! You look like a strong fighter!"
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I've been training on giant frogs!"
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Melee combat tutor"
+text = "You don't need any more help, then. How about you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "option"
+text = "quest=no|Tell me about melee combat."
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "option"
+text = "quest=no|Tell me about different weapon types I can use."
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "option"
+text = "quest=no|Tell me about skillcapes."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "option"
+text = "quest=no|I'd like a training sword and shield."
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "option"
+text = "quest=no|Goodbye."
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "speaker"
+speaker = "Prayer tutor"
+text = "Greetings, Zanik! Dedication's what you need."
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Why?"
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Prayer tutor"
+text = "Because training your prayer takes a long time!"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't want to train prayer! I can manage without asking the gods for favours!"
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Prayer tutor"
+text = "Suit yourself. How about you, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "option"
+text = "quest=no|How can I train my prayer?"
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "option"
+text = "quest=no|What is prayer useful for?"
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "option"
+text = "quest=no|No, thank you."
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "speaker"
+speaker = "Shop keeper"
+text = "Can I help you at all?"
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "It's a surface shop full of exotic surface goods! What are you selling?"
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Shop keeper"
+text = "Um, yes, exotic surface goods... here, have a look at our wares..."
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Wow... The bucket and the hammer, what are they made of?"
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Shop keeper"
+text = "Um... wood. It, er, grows on trees?"
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Amazing!"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "speaker"
+speaker = "Shop keeper"
+text = "So, do you want to buy anything?"
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "A wood bucket! And a wood hammer! And a newcomer map! I brought some surface money."
+parent = -1
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Shop keeper"
+text = "There you go!"
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Thank you!"
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "speaker"
+speaker = "Shop keeper"
+text = "How about you?"
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "option"
+text = "quest=no|Yes please. What are you selling?"
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "option"
+text = "quest=no|No thanks."
+parent = -1
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Are those... goblins?"
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "H-hello? Goblin?"
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "speaker"
+speaker = "Goblin"
+text = "Who you?"
+parent = -1
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun!"
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Goblin"
+text = "Dorgeshuun?"
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Yes! The Dorgeshuun tribe? We live underground. We've been cut off from other goblins for generations but now we're back!"
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Goblin"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We, er, we're your distant cousins? We want to learn about your culture."
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "speaker"
+speaker = "Goblin"
+text = "Culture?"
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Your art! Your philosophy! Your way of life! Now that the godwars are over you must have been able to build a peaceful civilisation!"
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "speaker"
+speaker = "Goblin"
+text = "Peace is for weak. We goblins! We strong!"
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Why is peace for the weak?"
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "speaker"
+speaker = "Goblin"
+text = "Big High War God say so! He make us strong!"
+parent = -1
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Big High War..."
+parent = -1
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh. I see."
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Let's go, [player name]."
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can we come through this gate?"
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Border Guard"
+text = "You may pass if you pay the toll, but your goblin friend must stay on this side."
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Border Guard"
+text = "Why do you think this gate is here, if not to keep the goblins out of Al Kharid?"
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But Zanik isn't like other goblins!"
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Never mind, [player name]. I don't think we need to go to Al Kharid anyway!"
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "What are you doing on my land?"
+parent = -1
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Your land?"
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Yes, my land! This is my farm!"
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm sorry! I didn't realize. I'm Zanik of the Dorgeshuun!"
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "So you're one of them cave goblins, then? I suppose you weren't to know."
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What are those things outside?"
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Things? There's more than one now?"
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "There are lots of them! You know, the white fluffy things?"
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Oh, you mean my sheep!"
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "'Sheep'! Finding all these strange surface creatures is so exciting!"
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "But as for YOU..."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "What are you doing on my land?"
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "option"
+text = "quest=no|I'm looking for something to kill."
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "option"
+text = "quest=no|I'm lost."
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "option"
+text = "quest=no|Fred! Fred! I've seen The Thing!"
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "speaker"
+speaker = "Millie Miller"
+text = "Hello Adventurers. Welcome to Mill Lane Mill. Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! What is this place?"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "speaker"
+speaker = "Millie Miller"
+text = "This is Mill Lane Mill.  Millers of the finest flour in Gielinor, and home to the Miller family for many generations"
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Millie Miller"
+text = "We take grain from the field nearby and mill into flour."
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What's flour?"
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Millie Miller"
+text = "It's the stuff we get from milling the grain. We use it to make bread and cakes and things."
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We don't have any of those things in Dorgesh-Kaan! They sound so interesting!"
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "speaker"
+speaker = "Father Urhney"
+text = "Go away! I'm meditating!"
+parent = -1
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "speaker"
+speaker = "Father Urhney"
+text = "I don't care! I'm still meditating!"
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "speaker"
+speaker = "Candle seller"
+text = "Do you want a lit candle for 1000 gold?"
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "No thank you, I have a lantern of my own!"
+parent = -1
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "speaker"
+speaker = "Candle seller"
+text = "Oh! Who are you? Some kind of goblin?"
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of the Dorgeshuun! Pleased to meet you!"
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Dorgeshuun live in the caves beneath the swamp. I made contact with them and now I'm giving Zanik a tour or the surface!"
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "speaker"
+speaker = "Candle seller"
+text = "Oh, that's good! And it's all down to the candles I sold! So do you want to buy another one?"
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "option"
+text = "quest=no|Yes please."
+parent = -1
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "option"
+text = "quest=no|One thousand gold?!"
+parent = -1
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "option"
+text = "quest=no|No thanks, I'd rather curse the darkness."
+parent = -1
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "speaker"
+speaker = "Mistag"
+text = "Hello Zanik, hello [player name]. How is your exploration of the surface going?"
+parent = -1
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I've hardly SEEN the surface yet! [player name] just dragged me back down here!"
+parent = -1
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "option"
+text = "quest=no|Can I sell you some ore?"
+parent = -1
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "option"
+text = "quest=no|Why do the Dorgeshuun live underground?"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "option"
+text = "quest=no|What happened to your arm?"
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "option"
+text = "quest=no|Can you show me the way out of the mines?"
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "speaker"
+speaker = "Kazgar"
+text = "Hello, Zanik! Hello, surface-dweller! Would you like me to lead you to the mines?"
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Hello, Kazgar!"
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "option"
+text = "quest=no|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "option"
+text = "quest=no|Yes please."
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "option"
+text = "quest=no|Maybe some other time."
+parent = -1
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [492, 493]
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I ought to visit the Duke of Lumbridge while I'm here. Ur-Tag asked me to give him his regards."
+parent = 491
+
+[[nodes]]
+id = 493
+depth = 2
+kind = "act"
+text = "continues"
+parent = 491
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "option"
+text = "Dialogue 2; after talking to the Duke"
+parent = -1
+children = [495, 496]
+
+[[nodes]]
+id = 495
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Duke Horacio seemed nice. But politics is just as boring up here as it is at home!"
+parent = 494
+
+[[nodes]]
+id = 496
+depth = 2
+kind = "act"
+text = "continues"
+parent = 494
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [498, 499]
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "There are so many people around! You must introduce me to them, [player name]!"
+parent = 497
+
+[[nodes]]
+id = 499
+depth = 2
+kind = "act"
+text = "continues"
+parent = 497
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "option"
+text = "Dialogue 4; after introducing her to a common man or woman"
+parent = -1
+children = [501, 502, 503]
+
+[[nodes]]
+id = 501
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "It's a pity some people up here don't like me. I suppose I should have expected that."
+parent = 500
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "But at least you're friendly, [player name]!"
+parent = 500
+
+[[nodes]]
+id = 503
+depth = 2
+kind = "act"
+text = "continues"
+parent = 500
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [505, 506]
+
+[[nodes]]
+id = 505
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Why don't you take me to a shop? I promised Tignik I would bring back a souvenir from the surface."
+parent = 504
+
+[[nodes]]
+id = 506
+depth = 2
+kind = "act"
+text = "continues"
+parent = 504
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "option"
+text = "Dialogue 6; after taking her to a shop"
+parent = -1
+children = [508, 509]
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "This 'wood' is an odd material. It's heavier than bone but it doesn't seem to be as brittle. It would be good for making crossbows out of!"
+parent = 507
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "act"
+text = "continues"
+parent = 507
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "option"
+text = "Dialogue 7"
+parent = -1
+children = [511, 512, 513]
+
+[[nodes]]
+id = 511
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Are there still goblins living on the surface, [player name]? Are there any near Lumbridge?"
+parent = 510
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I should reunite the two sides of the race!"
+parent = 510
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "act"
+text = "continues"
+parent = 510
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "option"
+text = "Dialogue 8; after introducing her to a goblin"
+parent = -1
+children = [515, 516]
+
+[[nodes]]
+id = 515
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Those poor goblins. It's hard to believe I'm the same species as them. No wonder the HAM people hate us if they assume we're like them."
+parent = 514
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "act"
+text = "continues"
+parent = 514
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "option"
+text = "Dialogue 9"
+parent = -1
+children = [518, 519, 520, 521]
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "So far on the surface we haven't seen any... you know... gods."
+parent = 517
+
+[[nodes]]
+id = 519
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course not! The gods don't just wander around Lumbridge!"
+parent = 517
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Don't they? I have no idea what to expect!"
+parent = 517
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "act"
+text = "continues"
+parent = 517
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "option"
+text = "Dialogue 10; after introducing her to Father Aereck"
+parent = -1
+children = [523, 524]
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "That priest seemed friendly. I thought any servant of a god would be much more aggressive."
+parent = 522
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "act"
+text = "continues"
+parent = 522
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "option"
+text = "Dialogue 11; if you took her underground"
+parent = -1
+children = [526, 527]
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "What are we doing down here? I want to see the surface!"
+parent = 525
+
+[[nodes]]
+id = 527
+depth = 2
+kind = "act"
+text = "continues"
+parent = 525
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "option"
+text = "Have you seen enough of Lumbridge yet?"
+parent = -1
+children = [531, 532, 535, 538, 541, 545, 548]
+
+[[nodes]]
+id = 531
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you seen enough of Lumbridge yet?"
+parent = 530
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "cond"
+text = "Before talking to the Duke:"
+parent = 530
+children = [533, 534]
+
+[[nodes]]
+id = 533
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "Perhaps we could talk to the Duke of Lumbridge. Headman Ur-Tag asked me to give him his regards."
+parent = 532
+
+[[nodes]]
+id = 534
+depth = 3
+kind = "act"
+text = "end"
+parent = 532
+is_terminal = true
+
+[[nodes]]
+id = 535
+depth = 2
+kind = "cond"
+text = "Before talking to a common man/woman:"
+parent = 530
+children = [536, 537]
+
+[[nodes]]
+id = 536
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "You must introduce me to some of the surface people!"
+parent = 535
+
+[[nodes]]
+id = 537
+depth = 3
+kind = "act"
+text = "end"
+parent = 535
+is_terminal = true
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "cond"
+text = "Before talking to Father Aereck:"
+parent = 530
+children = [539, 540]
+
+[[nodes]]
+id = 539
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "Well... our legends all talk about the gods living on the surface, but since I've been up here I haven't see any. Is there anyone around here who might know about them?"
+parent = 538
+
+[[nodes]]
+id = 540
+depth = 3
+kind = "act"
+text = "end"
+parent = 538
+is_terminal = true
+
+[[nodes]]
+id = 541
+depth = 2
+kind = "cond"
+text = "Before talking to goblins:"
+parent = 530
+children = [542, 543, 544]
+
+[[nodes]]
+id = 542
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "Are there still goblins living on the surface, Player? Are there any near Lumbridge?"
+parent = 541
+
+[[nodes]]
+id = 543
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "I should reunite the two sides of the race!"
+parent = 541
+
+[[nodes]]
+id = 544
+depth = 3
+kind = "act"
+text = "end"
+parent = 541
+is_terminal = true
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "cond"
+text = "Before talking to the shopkeeper:"
+parent = 530
+children = [546, 547]
+
+[[nodes]]
+id = 546
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "I promised Tignik I would bring a souvenir back from the surface. Will you take me to a shop?"
+parent = 545
+
+[[nodes]]
+id = 547
+depth = 3
+kind = "act"
+text = "end"
+parent = 545
+is_terminal = true
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "cond"
+text = "After showing her everything she wanted to see:"
+parent = 530
+children = [549, 550, 551, 570]
+
+[[nodes]]
+id = 549
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "I think I've seen enough of Lumbridge now. If you like I'll tell you about the mark on my forehead."
+parent = 548
+
+[[nodes]]
+id = 550
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 548
+
+[[nodes]]
+id = 551
+depth = 3
+kind = "option"
+text = "Yes please!"
+parent = 548
+children = [552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569]
+
+[[nodes]]
+id = 552
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes please!"
+parent = 551
+
+[[nodes]]
+id = 553
+depth = 4
+kind = "other"
+text = "{{qact|A cutscene begins.}}"
+parent = 551
+
+[[nodes]]
+id = 554
+depth = 4
+kind = "box"
+text = "It was about the same time the passage to the surface opened up. I was visiting Juna, the Story-Snake. She likes to hear of my adventures and she sometimes lets me drink the Tears of Guthix."
+parent = 551
+
+[[nodes]]
+id = 555
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "...And when they opened up the giant frog's stomach they found all the missing silver, and Mistag's brooch!"
+parent = 551
+
+[[nodes]]
+id = 556
+depth = 4
+kind = "speaker"
+speaker = "Juna"
+text = "Your stories have entertained me. I will let you into the cave for a short time."
+parent = 551
+
+[[nodes]]
+id = 557
+depth = 4
+kind = "box"
+text = "I collected the tears like I had before..."
+parent = 551
+
+[[nodes]]
+id = 558
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "I hope I get ranging XP!"
+parent = 551
+
+[[nodes]]
+id = 559
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "Aaaah!"
+parent = 551
+
+[[nodes]]
+id = 560
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "What -- what's happening?"
+parent = 551
+
+[[nodes]]
+id = 561
+depth = 4
+kind = "speaker"
+speaker = "Juna"
+text = "It is not normal for the Tears to have that effect."
+parent = 551
+
+[[nodes]]
+id = 562
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "I know! What happened?"
+parent = 551
+
+[[nodes]]
+id = 563
+depth = 4
+kind = "speaker"
+speaker = "Juna"
+text = "It is a sign. The power of the Tears has marked you for a special purpose."
+parent = 551
+
+[[nodes]]
+id = 564
+depth = 4
+kind = "speaker"
+speaker = "Juna"
+text = "I cannot tell you more now. That mark will soon fade, but someday it will glow again, and on that day you should return to me so that I can tell you more about your destiny."
+parent = 551
+
+[[nodes]]
+id = 565
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "Wow..."
+parent = 551
+
+[[nodes]]
+id = 566
+depth = 4
+kind = "other"
+text = "{{qact|The cutscene ends.}}"
+parent = 551
+
+[[nodes]]
+id = 567
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "Ever since then I've wondered what the sign meant. But perhaps you will help me to find out, [player name]!"
+parent = 551
+
+[[nodes]]
+id = 568
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "I've seen enough of Lumbridge now. Let's get to the HAM lair and see if they're up to anything!"
+parent = 551
+
+[[nodes]]
+id = 569
+depth = 4
+kind = "act"
+text = "end"
+parent = 551
+is_terminal = true
+
+[[nodes]]
+id = 570
+depth = 3
+kind = "option"
+text = "Actually I'm not interested!"
+parent = 548
+children = [571, 572, 573]
+
+[[nodes]]
+id = 571
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Actually I'm not interested!"
+parent = 570
+
+[[nodes]]
+id = 572
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "You don't care about me at all!"
+parent = 570
+
+[[nodes]]
+id = 573
+depth = 4
+kind = "act"
+text = "end"
+parent = 570
+is_terminal = true
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "option"
+text = "Will you tell me about the mark on your forehead?"
+parent = -1
+children = [575, 576, 580]
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will you tell me about the mark on your forehead?"
+parent = 574
+
+[[nodes]]
+id = 576
+depth = 2
+kind = "cond"
+text = "If you're not done touring yet"
+parent = 574
+children = [577, 578, 579]
+
+[[nodes]]
+id = 577
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "I, er..."
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "I will tell you, Azacor, but not just yet. Finish showing me around Lumbridge and then I'll tell you."
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 3
+kind = "act"
+text = "end"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "cond"
+text = "If you are done touring, but outside Lumbridge"
+parent = 574
+children = [581, 582]
+
+[[nodes]]
+id = 581
+depth = 3
+kind = "speaker"
+speaker = "Zanik"
+text = "All right. But not here. Let's go back into Lumbridge town."
+parent = 580
+
+[[nodes]]
+id = 582
+depth = 3
+kind = "act"
+text = "end"
+parent = 580
+is_terminal = true
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We're getting a bit far away from Lumbridge, [player name]. I'd like to see the rest of the world someday but not right now. Let's stick to Lumbridge for now."
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [586, 587]
+
+[[nodes]]
+id = 586
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 585
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "act"
+text = "end"
+parent = 585
+is_terminal = true
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "option"
+text = "I'm going anyway."
+parent = -1
+children = [589, 590, 591]
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm going anyway."
+parent = 588
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "All right. I'll wait for you back in Lumbridge castle cellar."
+parent = 588
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "act"
+text = "end"
+parent = 588
+is_terminal = true
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Aren't you going to put on your HAM disguise? You might be able to do without one but I don't want you giving me away!"
+parent = -1
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [595]
+
+[[nodes]]
+id = 595
+depth = 2
+kind = "act"
+text = "above"
+parent = 594
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [597, 598]
+
+[[nodes]]
+id = 597
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 596
+
+[[nodes]]
+id = 598
+depth = 2
+kind = "act"
+text = "end"
+parent = 596
+is_terminal = true
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "option"
+text = "I've lost my HAM disguise!"
+parent = -1
+children = [600, 601, 602]
+
+[[nodes]]
+id = 600
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost my HAM disguise!"
+parent = 599
+
+[[nodes]]
+id = 601
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "You'll have to find a new one from somewhere then."
+parent = 599
+
+[[nodes]]
+id = 602
+depth = 2
+kind = "act"
+text = "end"
+parent = 599
+is_terminal = true
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What are we waiting for? Let's get to the HAM hideout and find out what they're planning!"
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [606]
+
+[[nodes]]
+id = 606
+depth = 2
+kind = "act"
+text = "above"
+parent = 605
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [608]
+
+[[nodes]]
+id = 608
+depth = 2
+kind = "act"
+text = "end"
+parent = 607
+is_terminal = true
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Are you ready to go to the HAM cave now?"
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [612, 613, 614]
+
+[[nodes]]
+id = 612
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 611
+
+[[nodes]]
+id = 613
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Well then, let's go!"
+parent = 611
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "act"
+text = "end"
+parent = 611
+is_terminal = true
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "option"
+text = "Not now."
+parent = -1
+children = [616, 617, 618]
+
+[[nodes]]
+id = 616
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not now."
+parent = 615
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh well."
+parent = 615
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "act"
+text = "end"
+parent = 615
+is_terminal = true
+
+[[nodes]]
+id = 619
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Hello, brother, you fit in much better now that you're correctly attired. Before you stuck out like a sore thumb! Keep your eyes peeled though; I've heard there are thieves amongst us!"
+parent = -1
+
+[[nodes]]
+id = 620
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "I don't think I've seen you before! What's your name?"
+parent = -1
+
+[[nodes]]
+id = 621
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm Zanik of--"
+parent = -1
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I mean, I'm Zanik!"
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Zanik? What kind of a name is that?"
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik isn't from round here."
+parent = -1
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "It's good that we're getting members from further afield!"
+parent = -1
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Is the monster problem very bad where you're from, Zanik?"
+parent = -1
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh yes. My whole city is overrun by goblins."
+parent = -1
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Goblins? That's terrible!"
+parent = -1
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "You know, there are goblins living right underneath Lumbridge. And the duke is treating them as if they were people like you and me! He's even signed a peace treaty with them!"
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "So what's your group planning to do about it?"
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Johanhus doesn't tell his plans to ordinary members like us, but I've heard he and Sigmund are planning something big."
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "I don't think we'll have to worry about the cave goblin threat for much longer!"
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "No... I'm sure the threat will be dealt with soon."
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "option"
+text = "quest=no|What are all you people doing here?"
+parent = -1
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "option"
+text = "quest=no|Who are you and what do you do here?"
+parent = -1
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "option"
+text = "quest=no|What do you think you're going to achieve?"
+parent = -1
+
+[[nodes]]
+id = 638
+depth = 1
+kind = "option"
+text = "quest=no|Where did all you people come from?"
+parent = -1
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "option"
+text = "quest=no|Ok, thanks."
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Listen to what that speaker's saying, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "And they're all lapping it up! No one challenges him or even asks questions. They're just sitting there while he fills their minds with hate!"
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "So you've brought a friend down here to mock me, [player name]? Well soon I will be the one mocking you!"
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Is that Sigmund? The one who tried to start the war between Lumbridge and the cave goblins?"
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Yes, I am! And I'm not ashamed of it! Those cave goblins are an abomination in the eyes of Holy Saradomin!"
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "But I have another plan to destroy them. Soon Johanhus and I will be meeting to discuss the details."
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "And there's nothing you can do about it!"
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "Welcome brother... to our organisation... Ours is a fight for humanity in all its shapes and forms... and to rid mankind of the monsters that exist in our world."
+parent = -1
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "option"
+text = "quest=no|What kind of organisation is this?"
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "option"
+text = "quest=no|Who are you and what do you do here?"
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "option"
+text = "quest=no|Ok, thanks."
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "option"
+text = "Are you planning to do anything about the cave goblins?"
+parent = -1
+children = [655, 656, 657, 658, 662, 667]
+
+[[nodes]]
+id = 655
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you planning to do anything about the cave goblins?"
+parent = 654
+
+[[nodes]]
+id = 656
+depth = 2
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "You should know, brother... we don't let ordinary members in on all our plans... but rest assured those foul creatures will be dealt with very soon!"
+parent = 654
+
+[[nodes]]
+id = 657
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 654
+
+[[nodes]]
+id = 658
+depth = 2
+kind = "option"
+text = "Can't you please tell me?"
+parent = 654
+children = [659, 660, 661]
+
+[[nodes]]
+id = 659
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can't you please tell me?"
+parent = 658
+
+[[nodes]]
+id = 660
+depth = 3
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "No! That kind of information is for...only senior members of the group. Ordinary members like you must learn to...trust your leaders."
+parent = 658
+
+[[nodes]]
+id = 661
+depth = 3
+kind = "act"
+text = "other"
+parent = 658
+is_terminal = true
+
+[[nodes]]
+id = 662
+depth = 2
+kind = "option"
+text = "Is it really necessary?"
+parent = 654
+children = [663, 664, 665, 666]
+
+[[nodes]]
+id = 663
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Is it really necessary?"
+parent = 662
+
+[[nodes]]
+id = 664
+depth = 3
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "How can you even...ask that? Right beneath Lumbridge is a whole cave system full of those creatures! They've got a passage leading right up into the castle kitchen!"
+parent = 662
+
+[[nodes]]
+id = 665
+depth = 3
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "And I've heard that there's a whole city of those things down there, not that anyone has ever seen it. What have they got in there? What are they planning?"
+parent = 662
+
+[[nodes]]
+id = 666
+depth = 3
+kind = "act"
+text = "other"
+parent = 662
+is_terminal = true
+
+[[nodes]]
+id = 667
+depth = 2
+kind = "option"
+text = "That's good."
+parent = 654
+children = [668, 669]
+
+[[nodes]]
+id = 668
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's good."
+parent = 667
+
+[[nodes]]
+id = 669
+depth = 3
+kind = "act"
+text = "end"
+parent = 667
+is_terminal = true
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "So this is the HAM hideout. It's so squalid and dirty! I don't know how they can bear to live here."
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [673]
+
+[[nodes]]
+id = 673
+depth = 2
+kind = "act"
+text = "above"
+parent = 672
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "option"
+text = "Have you seen enough?"
+parent = -1
+children = [675, 676, 677]
+
+[[nodes]]
+id = 675
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you seen enough?"
+parent = 674
+
+[[nodes]]
+id = 676
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "We ought to talk to some of the HAM people. That's what we're here for, after all!"
+parent = 674
+
+[[nodes]]
+id = 677
+depth = 2
+kind = "act"
+text = "end"
+parent = 674
+is_terminal = true
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Let's have another look around the main area. Maybe there's something we missed."
+parent = -1
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [681]
+
+[[nodes]]
+id = 681
+depth = 2
+kind = "act"
+text = "above"
+parent = 680
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "option"
+text = "Have you seen enough?"
+parent = -1
+children = [683, 684, 685]
+
+[[nodes]]
+id = 683
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you seen enough?"
+parent = 682
+
+[[nodes]]
+id = 684
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Not yet. There must be another area where the HAM people make their plans. We should try to find it."
+parent = 682
+
+[[nodes]]
+id = 685
+depth = 2
+kind = "act"
+text = "end"
+parent = 682
+is_terminal = true
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Look, there."
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where?"
+parent = -1
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Over there. There's a trapdoor hidden by dirt."
+parent = -1
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You cave goblins must have better eyesight than humans. I would never have noticed it without you!"
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "box"
+text = "You need a thieving level of 23 in order to pick the lock of that trapdoor."
+parent = -1
+
+[[nodes]]
+id = 692
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Can't you open it?"
+parent = -1
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not good enough at thieving."
+parent = -1
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'm not much good at thieving either, I'm afraid. You'd better get some practice."
+parent = -1
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "The room where the HAM members make their plans must be down here somewhere. We've got to find it without getting caught!"
+parent = -1
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Hey! Ordinary members aren't allowed here!"
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Go back upstairs and I'll say nothing about it. But if any of the other guards see you you're in big trouble!"
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "*whispers* Get him to face away from me..."
+parent = -1
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "*whispers* Get that guard to turn his back on me. Maybe if you walk around him he'll keep facing you."
+parent = -1
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Ordinary members aren't allowed in this area. Get back to the cave above."
+parent = -1
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Hey! Where do you think you're going?"
+parent = -1
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Uh!"
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We can get through this if we work together, [player name]. But I can't get too close to the guards or they'll see I'm not human."
+parent = -1
+
+[[nodes]]
+id = 708
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "You've got to get them to turn their backs on me so I can shoot them without them seeing me draw my crossbow."
+parent = -1
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 710
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "If you can get to the other side of that guard you can make him turn around so I can shoot him. Make sure another guard doesn't catch you though!"
+parent = -1
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [713, 714]
+
+[[nodes]]
+id = 713
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 712
+
+[[nodes]]
+id = 714
+depth = 2
+kind = "act"
+text = "end"
+parent = 712
+is_terminal = true
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "option"
+text = "Wait here."
+parent = -1
+children = [716, 717, 718, 719, 720, 721, 722]
+
+[[nodes]]
+id = 716
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Wait here."
+parent = 715
+
+[[nodes]]
+id = 717
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Okay."
+parent = 715
+
+[[nodes]]
+id = 718
+depth = 2
+kind = "act"
+text = "end"
+parent = 715
+is_terminal = true
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "option"
+text = "cond=If Zanik has been told to wait|Follow me!"
+parent = 715
+
+[[nodes]]
+id = 720
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Follow me!"
+parent = 715
+
+[[nodes]]
+id = 721
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Okay, let's go!"
+parent = 715
+
+[[nodes]]
+id = 722
+depth = 2
+kind = "act"
+text = "end"
+parent = 715
+is_terminal = true
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "option"
+text = "Isn't shooting people in the back wrong?"
+parent = -1
+children = [724, 725, 726]
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Isn't shooting people in the back wrong?"
+parent = 723
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Why more so than shooting them in the front?"
+parent = 723
+
+[[nodes]]
+id = 726
+depth = 2
+kind = "act"
+text = "end"
+parent = 723
+is_terminal = true
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "option"
+text = "How did you kill that guard in one hit?"
+parent = -1
+children = [728, 729, 730]
+
+[[nodes]]
+id = 728
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How did you kill that guard in one hit? I want to learn how to do that!"
+parent = 727
+
+[[nodes]]
+id = 729
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "It's a special technique with the bone crossbow. If we both get out of this alive I'll teach you, [player name]!"
+parent = 727
+
+[[nodes]]
+id = 730
+depth = 2
+kind = "act"
+text = "end"
+parent = 727
+is_terminal = true
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "other"
+text = "{{overhead|Hey! What are you doing here? Get out!}}"
+parent = -1
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "other"
+text = "{{overhead|You there! You aren't allowed in here!}}"
+parent = -1
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "What are you doing here!?"
+parent = -1
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "other"
+text = "{{overhead|Hey! You there!}}"
+parent = -1
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = -1
+
+[[nodes]]
+id = 737
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "[player name]! Wake up!"
+parent = -1
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Bwuh?"
+parent = -1
+
+[[nodes]]
+id = 739
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uuuurgh..."
+parent = -1
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where am I?"
+parent = -1
+
+[[nodes]]
+id = 741
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "The guards caught you but I managed to slip away. Here, I'll let you out!"
+parent = -1
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Let's go!"
+parent = -1
+
+[[nodes]]
+id = 743
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 744
+depth = 1
+kind = "box"
+text = "You need an agility level of 23 to squeeze through that crack."
+parent = -1
+
+[[nodes]]
+id = 745
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Can't you get through?"
+parent = -1
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not agile enough."
+parent = -1
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't think I could get through either. You'd better get some agility training done."
+parent = -1
+
+[[nodes]]
+id = 748
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Hey! What are you--"
+parent = -1
+
+[[nodes]]
+id = 750
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Unk!"
+parent = -1
+
+[[nodes]]
+id = 751
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Thanks, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 752
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Is the coast clear to get past?"
+parent = -1
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, there's a guard patrolling the corridor."
+parent = -1
+
+[[nodes]]
+id = 754
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'll take care of him! Just tell me when his back is to us..."
+parent = -1
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 756
+depth = 1
+kind = "option"
+text = "Now!"
+parent = -1
+children = [757, 758, 759, 760, 761, 762, 763]
+
+[[nodes]]
+id = 757
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Now!"
+parent = 756
+
+[[nodes]]
+id = 758
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "We got him, [player name]!"
+parent = 756
+
+[[nodes]]
+id = 759
+depth = 2
+kind = "act"
+text = "end"
+parent = 756
+is_terminal = true
+
+[[nodes]]
+id = 760
+depth = 2
+kind = "cond"
+text = "If the player gets the timing wrong"
+parent = 756
+
+[[nodes]]
+id = 761
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Now!"
+parent = 756
+
+[[nodes]]
+id = 762
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Noo! He's seen us!"
+parent = 756
+
+[[nodes]]
+id = 763
+depth = 2
+kind = "act"
+text = "The player is caught by the guards and sent back to the jail."
+parent = 756
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "option"
+text = "Isn't shooting people in the back wrong?"
+parent = -1
+children = [765]
+
+[[nodes]]
+id = 765
+depth = 2
+kind = "act"
+text = "above"
+parent = 764
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "option"
+text = "How did you kill that guard in one hit?"
+parent = -1
+children = [767]
+
+[[nodes]]
+id = 767
+depth = 2
+kind = "act"
+text = "above"
+parent = 766
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There are two more guards but I don't know how to get behind them."
+parent = -1
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Then maybe you could lead one of them past me..."
+parent = -1
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [772]
+
+[[nodes]]
+id = 772
+depth = 2
+kind = "act"
+text = "above"
+parent = 771
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "option"
+text = "Wait here."
+parent = -1
+children = [774]
+
+[[nodes]]
+id = 774
+depth = 2
+kind = "act"
+text = "above"
+parent = 773
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "option"
+text = "Isn't shooting people in the back wrong?"
+parent = -1
+children = [776]
+
+[[nodes]]
+id = 776
+depth = 2
+kind = "act"
+text = "above"
+parent = 775
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "option"
+text = "How did you kill that guard in one hit?"
+parent = -1
+children = [778]
+
+[[nodes]]
+id = 778
+depth = 2
+kind = "act"
+text = "above"
+parent = 777
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There are two more guards but I don't know how to get behind them."
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "That guard in the east corridor... if I wait at the end of the corridor then you could lead him past me..."
+parent = -1
+
+[[nodes]]
+id = 781
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 782
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [783]
+
+[[nodes]]
+id = 783
+depth = 2
+kind = "act"
+text = "above"
+parent = 782
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "option"
+text = "Wait here."
+parent = -1
+children = [785]
+
+[[nodes]]
+id = 785
+depth = 2
+kind = "act"
+text = "above"
+parent = 784
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "option"
+text = "Isn't shooting people in the back wrong?"
+parent = -1
+children = [787]
+
+[[nodes]]
+id = 787
+depth = 2
+kind = "act"
+text = "above"
+parent = 786
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "option"
+text = "How did you kill that guard in one hit?"
+parent = -1
+children = [789]
+
+[[nodes]]
+id = 789
+depth = 2
+kind = "act"
+text = "above"
+parent = 788
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Another one down!"
+parent = -1
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There's just one guard left."
+parent = -1
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't think that guard's going to move away from the door. I think we need to approach him from different directions..."
+parent = -1
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [796]
+
+[[nodes]]
+id = 796
+depth = 2
+kind = "act"
+text = "above"
+parent = 795
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "option"
+text = "Wait here."
+parent = -1
+children = [798]
+
+[[nodes]]
+id = 798
+depth = 2
+kind = "act"
+text = "above"
+parent = 797
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "option"
+text = "Isn't shooting people in the back wrong?"
+parent = -1
+children = [800]
+
+[[nodes]]
+id = 800
+depth = 2
+kind = "act"
+text = "above"
+parent = 799
+
+[[nodes]]
+id = 801
+depth = 1
+kind = "option"
+text = "How did you kill that guard in one hit?"
+parent = -1
+children = [802]
+
+[[nodes]]
+id = 802
+depth = 2
+kind = "act"
+text = "above"
+parent = 801
+
+[[nodes]]
+id = 803
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Hey! You there!"
+parent = -1
+
+[[nodes]]
+id = 804
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "That's the last of them! Now to listen to what's happening in the meeting room!"
+parent = -1
+
+[[nodes]]
+id = 805
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 806
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There's no more guards! We've got them all!"
+parent = -1
+
+[[nodes]]
+id = 807
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I think I can hear something happening behind the double doors. We should listen."
+parent = -1
+
+[[nodes]]
+id = 808
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 809
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [810]
+
+[[nodes]]
+id = 810
+depth = 2
+kind = "act"
+text = "above"
+parent = 809
+
+[[nodes]]
+id = 811
+depth = 1
+kind = "option"
+text = "Wait here."
+parent = -1
+children = [812]
+
+[[nodes]]
+id = 812
+depth = 2
+kind = "act"
+text = "above"
+parent = 811
+
+[[nodes]]
+id = 813
+depth = 1
+kind = "option"
+text = "Isn't shooting people in the back wrong?"
+parent = -1
+children = [814]
+
+[[nodes]]
+id = 814
+depth = 2
+kind = "act"
+text = "above"
+parent = 813
+
+[[nodes]]
+id = 815
+depth = 1
+kind = "option"
+text = "How did you kill that guard in one hit?"
+parent = -1
+children = [816]
+
+[[nodes]]
+id = 816
+depth = 2
+kind = "act"
+text = "above"
+parent = 815
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "box"
+text = "You listen at the door..."
+parent = -1
+
+[[nodes]]
+id = 818
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't hear anything."
+parent = -1
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Shh! I can hear them."
+parent = -1
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "box"
+text = "Zanik listens..."
+parent = -1
+
+[[nodes]]
+id = 821
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "They're saying something about... they're planning something... something about a machine..."
+parent = -1
+
+[[nodes]]
+id = 822
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh! Oh no!"
+parent = -1
+
+[[nodes]]
+id = 823
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are they saying?"
+parent = -1
+
+[[nodes]]
+id = 824
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We've got to do something, [player name]! They're going to--"
+parent = -1
+
+[[nodes]]
+id = 825
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Got you, you spy!"
+parent = -1
+
+[[nodes]]
+id = 826
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 827
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oww... my head..."
+parent = -1
+
+[[nodes]]
+id = 828
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik?"
+parent = -1
+
+[[nodes]]
+id = 829
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where's Zanik?"
+parent = -1
+
+[[nodes]]
+id = 830
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 831
+depth = 1
+kind = "speaker"
+speaker = "Jimmy the Chisel"
+text = "Hello mate!"
+parent = -1
+
+[[nodes]]
+id = 832
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Did you see what happened to my friend?"
+parent = -1
+
+[[nodes]]
+id = 833
+depth = 1
+kind = "speaker"
+speaker = "Jimmy the Chisel"
+text = "There was a lot of commotion when they dragged you in here. There was someone else, she was struggling like anything. They said they'd take her outside. Dunno what happened to her then."
+parent = -1
+
+[[nodes]]
+id = 834
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh no! I've got to find her!"
+parent = -1
+
+[[nodes]]
+id = 835
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 836
+depth = 1
+kind = "cond"
+text = "If the player is in a HAM outfit:"
+parent = -1
+children = [837, 838]
+
+[[nodes]]
+id = 837
+depth = 2
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Hello, brother, you fit in much better now that you're correctly attired. Before you stuck out like a sore thumb! Keep your eyes peeled though; I've heard there are thieves amongst us!"
+parent = 836
+
+[[nodes]]
+id = 838
+depth = 2
+kind = "act"
+text = "continues"
+parent = 836
+
+[[nodes]]
+id = 839
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Did you hear? They caught a goblin spy down in the store rooms!"
+parent = -1
+
+[[nodes]]
+id = 840
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What did you do to her?"
+parent = -1
+
+[[nodes]]
+id = 841
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "Oh, Sigmund and some of the guys took it upstairs and dealt with it. Can't have goblins coming down here!"
+parent = -1
+
+[[nodes]]
+id = 842
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Guard"
+text = "You should have seen how it was screaming for mercy! Those monsters aren't so tough when they're outnumbered twenty to one!"
+parent = -1
+
+[[nodes]]
+id = 843
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 844
+depth = 1
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "So, you got out of the cell? No matter...your goblin friend has already been dealt with...and Sigmund is on his way to deal with the rest of her foul brood!"
+parent = -1
+
+[[nodes]]
+id = 845
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 846
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik?"
+parent = -1
+
+[[nodes]]
+id = 847
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik! Where are you?"
+parent = -1
+
+[[nodes]]
+id = 848
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 849
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik? Are you okay?"
+parent = -1
+
+[[nodes]]
+id = 850
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik!"
+parent = -1
+
+[[nodes]]
+id = 851
+depth = 1
+kind = "box"
+text = "Zanik is not breathing..."
+parent = -1
+
+[[nodes]]
+id = 852
+depth = 1
+kind = "box"
+text = "pic=Zanik (item) detail.png|But you notice that the mark on her forehead is glowing brightly."
+parent = -1
+
+[[nodes]]
+id = 853
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Juna told Zanik that when the mark glowed again she should go to see her."
+parent = -1
+
+[[nodes]]
+id = 854
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps I should take Zanik's body to Juna. I can't leave her here anyway!"
+parent = -1
+
+[[nodes]]
+id = 855
+depth = 1
+kind = "box"
+text = "pic=Zanik (item) detail.png|You pick up Zanik's body."
+parent = -1
+children = [856, 857, 858]
+
+[[nodes]]
+id = 856
+depth = 2
+kind = "cond"
+text = "If the player doesn't have free space"
+parent = 855
+
+[[nodes]]
+id = 857
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I'll have to free up an inventory slot first."
+parent = 855
+
+[[nodes]]
+id = 858
+depth = 2
+kind = "act"
+text = "end"
+parent = 855
+is_terminal = true
+
+[[nodes]]
+id = 859
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 860
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't just leave Zanik's body lying around! I should take her to Juna."
+parent = -1
+
+[[nodes]]
+id = 861
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 862
+depth = 1
+kind = "box"
+text = "Doing that would be disrespectful to Zanik."
+parent = -1
+
+[[nodes]]
+id = 863
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 864
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Tell me... a story..."
+parent = -1
+
+[[nodes]]
+id = 865
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Zanik is dead!"
+parent = -1
+
+[[nodes]]
+id = 866
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "That cannot be. She had not yet returned to learn of her destiny. The mark that the tears gave her had not begun to glow again."
+parent = -1
+
+[[nodes]]
+id = 867
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's glowing now. Look."
+parent = -1
+
+[[nodes]]
+id = 868
+depth = 1
+kind = "box"
+text = "pic=Zanik (item) detail.png|You lay Zanik's corpse in front of Juna."
+parent = -1
+
+[[nodes]]
+id = 869
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "This is indeed strange. I must commune with mighty Guthix and the forces of destiny."
+parent = -1
+
+[[nodes]]
+id = 870
+depth = 1
+kind = "box"
+text = "Juna meditates for a few moments."
+parent = -1
+
+[[nodes]]
+id = 871
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Zanik's death was premature. The gods will allow it to be reversed."
+parent = -1
+
+[[nodes]]
+id = 872
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You can just bring her back to life?!"
+parent = -1
+
+[[nodes]]
+id = 873
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "The Tears of Guthix have powers beyond the understanding of mortals. They can restore her to life, with the gods' permission."
+parent = -1
+
+[[nodes]]
+id = 874
+depth = 1
+kind = "cond"
+text = "If the Tears of Guthix quest hasn't been completed:"
+parent = -1
+children = [875, 876]
+
+[[nodes]]
+id = 875
+depth = 2
+kind = "speaker"
+speaker = "Juna"
+text = "You must collect some of the tears using Zanik's tear-bowl. Although I would not normally deem you worthy to collect the tears, I will let you into the cave for this special purpose."
+parent = 874
+
+[[nodes]]
+id = 876
+depth = 2
+kind = "act"
+text = "continues"
+parent = 874
+
+[[nodes]]
+id = 877
+depth = 1
+kind = "cond"
+text = "If the Tears of Guthix quest has been completed:"
+parent = -1
+children = [878, 879]
+
+[[nodes]]
+id = 878
+depth = 2
+kind = "speaker"
+speaker = "Juna"
+text = "You must collect some of the tears using Zanik's tear-bowl. I will not count this against the next time you can collect the tears for yourself."
+parent = 877
+
+[[nodes]]
+id = 879
+depth = 2
+kind = "act"
+text = "continues"
+parent = 877
+
+[[nodes]]
+id = 880
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Are you ready?"
+parent = -1
+
+[[nodes]]
+id = 881
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 882
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [883, 884, 887]
+
+[[nodes]]
+id = 883
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 882
+
+[[nodes]]
+id = 884
+depth = 2
+kind = "cond"
+text = "If the player is wielding something in their hands:"
+parent = 882
+children = [885, 886]
+
+[[nodes]]
+id = 885
+depth = 3
+kind = "speaker"
+speaker = "Juna"
+text = "You must have both hands free to carry the bowl. Speak to me again when your hands are free."
+parent = 884
+
+[[nodes]]
+id = 886
+depth = 3
+kind = "act"
+text = "end"
+parent = 884
+is_terminal = true
+
+[[nodes]]
+id = 887
+depth = 2
+kind = "cond"
+text = "If the player's hands are free:"
+parent = 882
+children = [888, 889]
+
+[[nodes]]
+id = 888
+depth = 3
+kind = "speaker"
+speaker = "Juna"
+text = "Twenty tears should be sufficient. Collect twenty blue tears, but remember that green tears will decrease the amount of blue."
+parent = 887
+
+[[nodes]]
+id = 889
+depth = 3
+kind = "act"
+text = "end"
+parent = 887
+is_terminal = true
+
+[[nodes]]
+id = 890
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [891, 892, 893]
+
+[[nodes]]
+id = 891
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 890
+
+[[nodes]]
+id = 892
+depth = 2
+kind = "speaker"
+speaker = "Juna"
+text = "Then the forces of destiny must wait until a time that is more convenient for you."
+parent = 890
+
+[[nodes]]
+id = 893
+depth = 2
+kind = "act"
+text = "end"
+parent = 890
+is_terminal = true
+
+[[nodes]]
+id = 894
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Zanik has not yet fulfilled her destiny, so the gods will allow her to be resurrected. You must collect some of the Tears of Guthix to allow this to happen."
+parent = -1
+
+[[nodes]]
+id = 895
+depth = 1
+kind = "cond"
+text = "If the Tears of Guthix quest hasn't been completed:"
+parent = -1
+children = [896, 897]
+
+[[nodes]]
+id = 896
+depth = 2
+kind = "speaker"
+speaker = "Juna"
+text = "You must collect some of the tears using Zanik's tear-bowl. Although I would not normally deem you worthy to collect the tears, I will let you into the cave for this special purpose."
+parent = 895
+
+[[nodes]]
+id = 897
+depth = 2
+kind = "act"
+text = "continues"
+parent = 895
+
+[[nodes]]
+id = 898
+depth = 1
+kind = "cond"
+text = "If the Tears of Guthix quest has been completed:"
+parent = -1
+children = [899, 900]
+
+[[nodes]]
+id = 899
+depth = 2
+kind = "speaker"
+speaker = "Juna"
+text = "You must collect some of the tears using Zanik's tear-bowl. I will not count this against the next time you can collect the tears for yourself."
+parent = 898
+
+[[nodes]]
+id = 900
+depth = 2
+kind = "act"
+text = "continues"
+parent = 898
+
+[[nodes]]
+id = 901
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Are you ready?"
+parent = -1
+
+[[nodes]]
+id = 902
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 903
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "You will need to collect twenty tears in order to resurrect Zanik."
+parent = -1
+
+[[nodes]]
+id = 904
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 905
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+
+[[nodes]]
+id = 906
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = -1
+children = [907]
+
+[[nodes]]
+id = 907
+depth = 2
+kind = "act"
+text = "end"
+parent = 906
+is_terminal = true
+
+[[nodes]]
+id = 908
+depth = 1
+kind = "option"
+text = "I want to get out now!"
+parent = -1
+
+[[nodes]]
+id = 909
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I want to get out now!"
+parent = -1
+children = [910]
+
+[[nodes]]
+id = 910
+depth = 2
+kind = "act"
+text = "end"
+parent = 909
+is_terminal = true
+
+[[nodes]]
+id = 911
+depth = 1
+kind = "other"
+text = "{{mes|You have collected twenty tears.}}"
+parent = -1
+
+[[nodes]]
+id = 912
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have the Tears."
+parent = -1
+
+[[nodes]]
+id = 913
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Then I will call upon their power."
+parent = -1
+
+[[nodes]]
+id = 914
+depth = 1
+kind = "other"
+text = "{{qact|Zanik hovers in the air before returning to life}}"
+parent = -1
+
+[[nodes]]
+id = 915
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Uuuhhh!"
+parent = -1
+
+[[nodes]]
+id = 916
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Get off me, you monsters!"
+parent = -1
+
+[[nodes]]
+id = 917
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What are you doing? Noo! Don't kill me! [player name], help me!"
+parent = -1
+
+[[nodes]]
+id = 918
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh!"
+parent = -1
+
+[[nodes]]
+id = 919
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "They killed me, didn't they, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 920
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 921
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Then what am I doing here?"
+parent = -1
+
+[[nodes]]
+id = 922
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Juna brought you back from the dead."
+parent = -1
+
+[[nodes]]
+id = 923
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Listen to me, Zanik. You are marked for a special purpose, and you have been granted new life so that you can carry it out. Your destiny is to lead all goblins into a new age."
+parent = -1
+
+[[nodes]]
+id = 924
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "But what does that mean?"
+parent = -1
+
+[[nodes]]
+id = 925
+depth = 1
+kind = "speaker"
+speaker = "Juna"
+text = "Someday you will know. But today you must hurry to foil the plot that even now threatens your home!"
+parent = -1
+
+[[nodes]]
+id = 926
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "The plot! [player name], I've got to tell you what I heard outside the meeting room!"
+parent = -1
+
+[[nodes]]
+id = 927
+depth = 1
+kind = "other"
+text = "{{qact|A flashback cutscene plays}}"
+parent = -1
+
+[[nodes]]
+id = 928
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't hear anything."
+parent = -1
+
+[[nodes]]
+id = 929
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Shh! I can hear them."
+parent = -1
+
+[[nodes]]
+id = 930
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Good news, brothers! Our tunnel from the water mill cellar has reached the cave goblin tunnels, and the last shipment of machinery is on its way from Keldagrim."
+parent = -1
+
+[[nodes]]
+id = 931
+depth = 1
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "Do we have to deal with the dwarves? They may not exactly be monsters but they're still not human."
+parent = -1
+
+[[nodes]]
+id = 932
+depth = 1
+kind = "speaker"
+speaker = "HAM member"
+text = "If it wasn't for the King's tolerance of monsters, we humans would have a better industry than the dwarves!"
+parent = -1
+
+[[nodes]]
+id = 933
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Deacon"
+text = "Well said, brother!"
+parent = -1
+
+[[nodes]]
+id = 934
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "I'll need to take some of the low-level members to help unload the machinery at the Lumbridge water mill."
+parent = -1
+
+[[nodes]]
+id = 935
+depth = 1
+kind = "speaker"
+speaker = "Johanhus Ulsbrecht"
+text = "By all means. It's about time that lot made themselves useful."
+parent = -1
+
+[[nodes]]
+id = 936
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Soon the mighty River Lum will wash away those evil goblins forever!"
+parent = -1
+
+[[nodes]]
+id = 937
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Deacon"
+text = "Saradomin will surely bless us for destroying those abominations!"
+parent = -1
+
+[[nodes]]
+id = 938
+depth = 1
+kind = "speaker"
+speaker = "All"
+text = "Death to the Dorgeshuun!"
+parent = -1
+
+[[nodes]]
+id = 939
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 940
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Let's go, [player name]! We've got to get to the Lumbridge water mill so we can foil Sigmund's plan!"
+parent = -1
+
+[[nodes]]
+id = 941
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 942
+depth = 1
+kind = "option"
+text = "Let's go!"
+parent = -1
+children = [943, 944]
+
+[[nodes]]
+id = 943
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's go!"
+parent = 942
+
+[[nodes]]
+id = 944
+depth = 2
+kind = "act"
+text = "end"
+parent = 942
+is_terminal = true
+
+[[nodes]]
+id = 945
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [946, 947, 948]
+
+[[nodes]]
+id = 946
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to do something else for a bit."
+parent = 945
+
+[[nodes]]
+id = 947
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Do it quickly, [player name]! We've got to stop Sigmund from destroying my city!"
+parent = 945
+
+[[nodes]]
+id = 948
+depth = 2
+kind = "act"
+text = "end"
+parent = 945
+is_terminal = true
+
+[[nodes]]
+id = 949
+depth = 1
+kind = "option"
+text = "What did Sigmund do to you?"
+parent = -1
+children = [950, 951, 952, 953, 954]
+
+[[nodes]]
+id = 950
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What did Sigmund do to you?"
+parent = 949
+
+[[nodes]]
+id = 951
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "It was horrible, [player name]!"
+parent = 949
+
+[[nodes]]
+id = 952
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "They didn't just k-kill me quickly. They were enjoying themselves. The light was so bright I couldn't see but I could hear them laughing..."
+parent = 949
+
+[[nodes]]
+id = 953
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Let's get them, [player name]! I need to save my city and I want to get my revenge!"
+parent = 949
+
+[[nodes]]
+id = 954
+depth = 2
+kind = "act"
+text = "end"
+parent = 949
+is_terminal = true
+
+[[nodes]]
+id = 955
+depth = 1
+kind = "option"
+text = "What's it like being dead?"
+parent = -1
+children = [956, 957, 958, 959, 960, 961, 962, 963]
+
+[[nodes]]
+id = 956
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's it like being dead?"
+parent = 955
+
+[[nodes]]
+id = 957
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "It was... it wasn't like anything."
+parent = 955
+
+[[nodes]]
+id = 958
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "One moment Sigmund and his thugs were... you know..."
+parent = 955
+
+[[nodes]]
+id = 959
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "And then suddenly I was down in the cave and you were here. There was nothing in between."
+parent = 955
+
+[[nodes]]
+id = 960
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "We Dorgeshuun don't believe in an afterlife. At least, if there is one we don't claim to know about it. And if anything happened to me while I was dead then I don't remember it."
+parent = 955
+
+[[nodes]]
+id = 961
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "And now my life's a mystery too. What was that destiny Juna talked about?"
+parent = 955
+
+[[nodes]]
+id = 962
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "But there's no time for that now. Let's get to the water mill!"
+parent = 955
+
+[[nodes]]
+id = 963
+depth = 2
+kind = "act"
+text = "end"
+parent = 955
+is_terminal = true
+
+[[nodes]]
+id = 964
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Quick, [player name]! Let's get to the water mill and stop Sigmund from destroying my home!"
+parent = -1
+
+[[nodes]]
+id = 965
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 966
+depth = 1
+kind = "option"
+text = "Let's go!"
+parent = -1
+children = [967, 968, 969]
+
+[[nodes]]
+id = 967
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's go!"
+parent = 966
+
+[[nodes]]
+id = 968
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Okay!"
+parent = 966
+
+[[nodes]]
+id = 969
+depth = 2
+kind = "act"
+text = "end"
+parent = 966
+is_terminal = true
+
+[[nodes]]
+id = 970
+depth = 1
+kind = "option"
+text = "Not now."
+parent = -1
+children = [971, 972, 973]
+
+[[nodes]]
+id = 971
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not now."
+parent = 970
+
+[[nodes]]
+id = 972
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh well."
+parent = 970
+
+[[nodes]]
+id = 973
+depth = 2
+kind = "act"
+text = "end"
+parent = 970
+is_terminal = true
+
+[[nodes]]
+id = 974
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What are we going down there again for? We know where we need to go -- the Lumbridge water mill!"
+parent = -1
+
+[[nodes]]
+id = 975
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 976
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [977, 978]
+
+[[nodes]]
+id = 977
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 976
+
+[[nodes]]
+id = 978
+depth = 2
+kind = "act"
+text = "end"
+parent = 976
+is_terminal = true
+
+[[nodes]]
+id = 979
+depth = 1
+kind = "option"
+text = "I'm going down anyway."
+parent = -1
+children = [980, 981, 982]
+
+[[nodes]]
+id = 980
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm going down anyway."
+parent = 979
+
+[[nodes]]
+id = 981
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I'll wait for you back in the castle then."
+parent = 979
+
+[[nodes]]
+id = 982
+depth = 2
+kind = "act"
+text = "end"
+parent = 979
+is_terminal = true
+
+[[nodes]]
+id = 983
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We're not too late! They're still assembling the machine. Now we've got to find some way to get down there and stop them."
+parent = -1
+
+[[nodes]]
+id = 984
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 985
+depth = 1
+kind = "option"
+text = "How can we get down there?"
+parent = -1
+children = [986, 987, 988]
+
+[[nodes]]
+id = 986
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How can we get down there?"
+parent = 985
+
+[[nodes]]
+id = 987
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I don't know. But there must be something around here we can use..."
+parent = 985
+
+[[nodes]]
+id = 988
+depth = 2
+kind = "act"
+text = "end"
+parent = 985
+is_terminal = true
+
+[[nodes]]
+id = 989
+depth = 1
+kind = "option"
+text = "I need to do something else for a bit."
+parent = -1
+children = [990]
+
+[[nodes]]
+id = 990
+depth = 2
+kind = "act"
+text = "above"
+parent = 989
+
+[[nodes]]
+id = 991
+depth = 1
+kind = "option"
+text = "What did Sigmund do to you?"
+parent = -1
+children = [992]
+
+[[nodes]]
+id = 992
+depth = 2
+kind = "act"
+text = "above"
+parent = 991
+
+[[nodes]]
+id = 993
+depth = 1
+kind = "option"
+text = "What's it like being dead?"
+parent = -1
+children = [994]
+
+[[nodes]]
+id = 994
+depth = 2
+kind = "act"
+text = "above"
+parent = 993
+
+[[nodes]]
+id = 995
+depth = 1
+kind = "speaker"
+speaker = "Kazgar"
+text = "Hello, Zanik! Hello, surface-dweller! Would you like me to lead you to the mines?"
+parent = -1
+
+[[nodes]]
+id = 996
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We've not got time to talk now, Kazgar! [player name], you've got to take me to the Lumbridge water mill at once!"
+parent = -1
+
+[[nodes]]
+id = 997
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 998
+depth = 1
+kind = "speaker"
+speaker = "Dwarf"
+text = "What do you want?"
+parent = -1
+
+[[nodes]]
+id = 999
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1000
+depth = 1
+kind = "option"
+text = "What's in these crates?"
+parent = -1
+children = [1001, 1002, 1003]
+
+[[nodes]]
+id = 1001
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's in these crates?"
+parent = 1000
+
+[[nodes]]
+id = 1002
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "None of your business! Those funny pink-robed people told me to keep it secret!"
+parent = 1000
+
+[[nodes]]
+id = 1003
+depth = 2
+kind = "act"
+text = "previous"
+parent = 1000
+
+[[nodes]]
+id = 1004
+depth = 1
+kind = "option"
+text = "Where's Sigmund?"
+parent = -1
+children = [1005, 1006, 1007]
+
+[[nodes]]
+id = 1005
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where's Sigmund?"
+parent = 1004
+
+[[nodes]]
+id = 1006
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "The guy who ordered all this? I don't see that's any of your business."
+parent = 1004
+
+[[nodes]]
+id = 1007
+depth = 2
+kind = "act"
+text = "previous"
+parent = 1004
+
+[[nodes]]
+id = 1008
+depth = 1
+kind = "option"
+text = "Why are you helping the HAM people?"
+parent = -1
+children = [1009, 1010, 1011, 1012]
+
+[[nodes]]
+id = 1009
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why are you helping the HAM people?"
+parent = 1008
+
+[[nodes]]
+id = 1010
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "What, these odd pink-robed people? Oh, the normal reason. Because they paid me."
+parent = 1008
+
+[[nodes]]
+id = 1011
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But don't you know what they're planning to do?"
+parent = 1008
+
+[[nodes]]
+id = 1012
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "No, and I don't want to. Now go away!"
+parent = 1008
+
+[[nodes]]
+id = 1013
+depth = 1
+kind = "option"
+text = "Thanks."
+parent = -1
+children = [1014, 1015]
+
+[[nodes]]
+id = 1014
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 1013
+
+[[nodes]]
+id = 1015
+depth = 2
+kind = "act"
+text = "end"
+parent = 1013
+is_terminal = true
+
+[[nodes]]
+id = 1016
+depth = 1
+kind = "speaker"
+speaker = "Dwarf"
+text = "Oh, it's another one of you funny people. Okay, grab one of the crates and take it downstairs. I told your boss how to put the parts together."
+parent = -1
+
+[[nodes]]
+id = 1017
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1018
+depth = 1
+kind = "option"
+text = "What's in these crates?"
+parent = -1
+children = [1019, 1020]
+
+[[nodes]]
+id = 1019
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's in these crates?"
+parent = 1018
+
+[[nodes]]
+id = 1020
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "Didn't your boss tell you? It's a digging machine. Very special. Digs straight up, and can work without supervision when it's turned on."
+parent = 1018
+
+[[nodes]]
+id = 1021
+depth = 1
+kind = "option"
+text = "Where's Sigmund?"
+parent = -1
+children = [1022, 1023, 1024]
+
+[[nodes]]
+id = 1022
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where's Sigmund?"
+parent = 1021
+
+[[nodes]]
+id = 1023
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "What, your boss? He's downstairs waiting for you slackers to carry the rest of the crates down. So get a move on!"
+parent = 1021
+
+[[nodes]]
+id = 1024
+depth = 2
+kind = "act"
+text = "previous"
+parent = 1021
+
+[[nodes]]
+id = 1025
+depth = 1
+kind = "option"
+text = "Why are you helping the HAM people?"
+parent = -1
+children = [1026, 1027, 1028]
+
+[[nodes]]
+id = 1026
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why are you helping the HAM people?"
+parent = 1025
+
+[[nodes]]
+id = 1027
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "Is that what you people call yourselves? Well, it's certainly not out of the goodness of my heart. Your boss paid good money for this machine, plus my fee for transporting it all this way."
+parent = 1025
+
+[[nodes]]
+id = 1028
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "So get to work and get it downstairs!"
+parent = 1025
+
+[[nodes]]
+id = 1029
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [1030, 1031]
+
+[[nodes]]
+id = 1030
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 1029
+
+[[nodes]]
+id = 1031
+depth = 2
+kind = "act"
+text = "end"
+parent = 1029
+is_terminal = true
+
+[[nodes]]
+id = 1032
+depth = 1
+kind = "option"
+text = "There's no way I'm helping!"
+parent = -1
+children = [1033, 1034, 1035]
+
+[[nodes]]
+id = 1033
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There's no way I'm helping!"
+parent = 1032
+
+[[nodes]]
+id = 1034
+depth = 2
+kind = "speaker"
+speaker = "Dwarf"
+text = "Oh, honestly! If you're not here to help then get out of the way!"
+parent = 1032
+
+[[nodes]]
+id = 1035
+depth = 2
+kind = "act"
+text = "end"
+parent = 1032
+is_terminal = true
+
+[[nodes]]
+id = 1036
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Member"
+text = "*pant* Go away, outsider! *pant*"
+parent = -1
+
+[[nodes]]
+id = 1037
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1038
+depth = 1
+kind = "speaker"
+speaker = "H.A.M. Member"
+text = "These crates are heavy! I could do with some help if that's what you're here for."
+parent = -1
+
+[[nodes]]
+id = 1039
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1040
+depth = 1
+kind = "speaker"
+speaker = "Dwarf"
+text = "Where do you think you're going? Only people helping assemble the machine are allowed down there!"
+parent = -1
+
+[[nodes]]
+id = 1041
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1042
+depth = 1
+kind = "speaker"
+speaker = "Dwarf"
+text = "Hey! No goblins allowed down there!"
+parent = -1
+
+[[nodes]]
+id = 1043
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1044
+depth = 1
+kind = "speaker"
+speaker = "Dwarf"
+text = "Hey! What do you think you're doing going down there empty-handed? Get a crate and carry it down!"
+parent = -1
+
+[[nodes]]
+id = 1045
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1046
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Those must be the parts for the machine they're going to use to flood my city!"
+parent = -1
+
+[[nodes]]
+id = 1047
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey... if I carried one of these crates I could slip downstairs and stop them!"
+parent = -1
+
+[[nodes]]
+id = 1048
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Don't you dare go down there without me, [player name]! Find some way to get us both down there so I can face Sigmund myself!"
+parent = -1
+
+[[nodes]]
+id = 1049
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1050
+depth = 1
+kind = "other"
+text = "{{mes|The crate is full of machine parts.}}"
+parent = -1
+
+[[nodes]]
+id = 1051
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Are you thinking what I'm thinking, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 1052
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1053
+depth = 1
+kind = "option"
+text = "I don't know, what are you thinking?"
+parent = -1
+children = [1054, 1055, 1056, 1057, 1063]
+
+[[nodes]]
+id = 1054
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't know, what are you thinking?"
+parent = 1053
+
+[[nodes]]
+id = 1055
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I could hide in one of those crates, and then you could carry me downstairs as if you were carrying some of the machinery."
+parent = 1053
+
+[[nodes]]
+id = 1056
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 1053
+
+[[nodes]]
+id = 1057
+depth = 2
+kind = "option"
+text = "Good idea."
+parent = 1053
+children = [1058, 1059, 1060]
+
+[[nodes]]
+id = 1058
+depth = 3
+kind = "other"
+text = "{{qact|Zanik enters the crate and the player picks it up.}}"
+parent = 1057
+
+[[nodes]]
+id = 1059
+depth = 3
+kind = "act"
+text = "end"
+parent = 1057
+is_terminal = true
+
+[[nodes]]
+id = 1060
+depth = 3
+kind = "cond"
+text = "If the player is wielding something"
+parent = 1057
+children = [1061, 1062]
+
+[[nodes]]
+id = 1061
+depth = 4
+kind = "speaker"
+speaker = "Zanik"
+text = "You ought to free both your hands so you can carry the crate. I'm afraid I might be heavy!"
+parent = 1060
+
+[[nodes]]
+id = 1062
+depth = 4
+kind = "act"
+text = "end"
+parent = 1060
+is_terminal = true
+
+[[nodes]]
+id = 1063
+depth = 2
+kind = "option"
+text = "Not now."
+parent = 1053
+children = [1064, 1065]
+
+[[nodes]]
+id = 1064
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not now."
+parent = 1063
+
+[[nodes]]
+id = 1065
+depth = 3
+kind = "act"
+text = "end"
+parent = 1063
+is_terminal = true
+
+[[nodes]]
+id = 1066
+depth = 1
+kind = "option"
+text = "I doubt it."
+parent = -1
+children = [1067, 1068]
+
+[[nodes]]
+id = 1067
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I doubt it."
+parent = 1066
+
+[[nodes]]
+id = 1068
+depth = 2
+kind = "act"
+text = "end"
+parent = 1066
+is_terminal = true
+
+[[nodes]]
+id = 1069
+depth = 1
+kind = "other"
+text = "{{mes|The crate is empty.}}"
+parent = -1
+
+[[nodes]]
+id = 1070
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Why are we going away from the mill? We should get down there and save my city!"
+parent = -1
+
+[[nodes]]
+id = 1071
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1072
+depth = 1
+kind = "box"
+text = "You can't drop your follower while holding the heavy crate."
+parent = -1
+
+[[nodes]]
+id = 1073
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "This must lead to the Dorgeshuun mines! Sigmund must mean the water to run through here and flood the city!"
+parent = -1
+
+[[nodes]]
+id = 1074
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We've got to stop him, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 1075
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1076
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "[player name]! You and your goblin friend have interfered for the last time! Guards, kill them!"
+parent = -1
+
+[[nodes]]
+id = 1077
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I won't let you destroy my home, Sigmund!"
+parent = -1
+
+[[nodes]]
+id = 1078
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1079
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "{{overhead|Saradomin protect me from melee!}}"
+parent = -1
+
+[[nodes]]
+id = 1080
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "{{overhead|Saradomin protect me from magic!}}"
+parent = -1
+
+[[nodes]]
+id = 1081
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "{{overhead|Saradomin protect me from ranged!}}"
+parent = -1
+
+[[nodes]]
+id = 1082
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "{{overhead|Saradomin protect me from this foul goblin!}}"
+parent = -1
+
+[[nodes]]
+id = 1083
+depth = 1
+kind = "box"
+text = "You should deal with Sigmund first."
+parent = -1
+
+[[nodes]]
+id = 1084
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Let's get them, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 1085
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1086
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Don't leave me, [player name]! I can't defeat Sigmund without you!"
+parent = -1
+
+[[nodes]]
+id = 1087
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1088
+depth = 1
+kind = "option"
+text = "Okay, I'll stay!"
+parent = -1
+children = [1089, 1090]
+
+[[nodes]]
+id = 1089
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll stay!"
+parent = 1088
+
+[[nodes]]
+id = 1090
+depth = 2
+kind = "act"
+text = "end"
+parent = 1088
+is_terminal = true
+
+[[nodes]]
+id = 1091
+depth = 1
+kind = "option"
+text = "Don't worry, I'll be back!"
+parent = -1
+children = [1092, 1093, 1094]
+
+[[nodes]]
+id = 1092
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'll be back!"
+parent = 1091
+
+[[nodes]]
+id = 1093
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "Hurry, [player name]!"
+parent = 1091
+
+[[nodes]]
+id = 1094
+depth = 2
+kind = "act"
+text = "end"
+parent = 1091
+is_terminal = true
+
+[[nodes]]
+id = 1095
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "[player name]! Thank goodness you're all right! Now let's finish off Sigmund and his cronies before they flood the city!"
+parent = -1
+
+[[nodes]]
+id = 1096
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1097
+depth = 1
+kind = "speaker"
+speaker = "Sigmund"
+text = "Curse you, Player, and your goblin friend! You win this time, but we will meet again!"
+parent = -1
+
+[[nodes]]
+id = 1098
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "What happened? He vanished!"
+parent = -1
+
+[[nodes]]
+id = 1099
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He must have had a ring of life! It looks like he got away from us this time, Zanik."
+parent = -1
+
+[[nodes]]
+id = 1100
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "The important thing is we stopped him! Now let's smash that machine and then get back to Dorgesh-Kaan!"
+parent = -1
+
+[[nodes]]
+id = 1101
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1102
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Quick, [player name], let's smash that drilling machine before Sigmund returns! Then we can return to Dorgesh- Kaan for a hero's welcome!"
+parent = -1
+
+[[nodes]]
+id = 1103
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1104
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We can't just leave that machine there for someone else to complete! We should smash it beyond repair before returning home!"
+parent = -1
+
+[[nodes]]
+id = 1105
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1106
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "There's no need to go that way, [player name]! We can go south along the tunnel to the Dorgeshuun mine."
+parent = -1
+
+[[nodes]]
+id = 1107
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1108
+depth = 1
+kind = "option"
+text = "Okay, I'll stay!"
+parent = -1
+children = [1109]
+
+[[nodes]]
+id = 1109
+depth = 2
+kind = "act"
+text = "above"
+parent = 1108
+
+[[nodes]]
+id = 1110
+depth = 1
+kind = "option"
+text = "Don't worry, I'll be back!"
+parent = -1
+children = [1111]
+
+[[nodes]]
+id = 1111
+depth = 2
+kind = "act"
+text = "above"
+parent = 1110
+
+[[nodes]]
+id = 1112
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Now let's get back to Dorgesh-Kaan to tell them what happened! We can go south along the tunnel Sigmund has dug."
+parent = -1
+
+[[nodes]]
+id = 1113
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1114
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "We did it, [player name]! My city is safe! Now we can follow that tunnel south back to the mines!"
+parent = -1
+
+[[nodes]]
+id = 1115
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1116
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Where did you go? We should follow the tunnel south to Dorgesh-Kaan!"
+parent = -1
+
+[[nodes]]
+id = 1117
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1118
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "I'll show you the way through to the city. Wait till we tell Mistag about what happened!"
+parent = -1
+
+[[nodes]]
+id = 1119
+depth = 1
+kind = "box"
+text = "{{Colour|#800000|~ [player name] and Zanik return victorious to the Dorgeshuun mine ~"
+parent = -1
+
+[[nodes]]
+id = 1120
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "Welcome back, Zanik. What have you to report?"
+parent = -1
+
+[[nodes]]
+id = 1121
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "The city is safe! The HAM group was plotting against us, but we stopped them!"
+parent = -1
+
+[[nodes]]
+id = 1122
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "You stopped them this time, but the surface still poses a danger. The council has been debating how much contact we should have with it, and wants you to make a recommendation."
+parent = -1
+
+[[nodes]]
+id = 1123
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "The surface is a strange and wonderful place! We should embrace it, not shut ourselves off!"
+parent = -1
+
+[[nodes]]
+id = 1124
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "And not all surface-dwellers are bad. Without [player name] the city would have been destroyed for sure!"
+parent = -1
+
+[[nodes]]
+id = 1125
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "[player name], we are in your debt once again."
+parent = -1
+
+[[nodes]]
+id = 1126
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "The council has voted that, if Zanik's recommendation was positive, humans from Lumbridge should be allowed into the city. You may now enter Dorgesh-Kaan!"
+parent = -1
+
+[[nodes]]
+id = 1127
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "This is brilliant! I'm sure you won't regret this!"
+parent = -1
+
+[[nodes]]
+id = 1128
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Thank you for taking me on that adventure, [player name]! I'll show you how to use the bone crossbow like I promised I would!"
+parent = -1
+
+[[nodes]]
+id = 1129
+depth = 1
+kind = "box"
+text = "Zanik shows you how to use the bone crossbow's special attack."
+parent = -1
+
+[[nodes]]
+id = 1130
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = """
+Come find me in the city if you ever want to chat, [player name]. I'm going to go and think about what Juna said about my destiny. I don't know what it will involve, but I have a feeling we will adventure together again!
+"""
+parent = -1
+
+[[nodes]]
+id = 1131
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 1132
+depth = 1
+kind = "cond"
+text = "If the player left the water mill cellar without a light source:"
+parent = -1
+children = [1133, 1134]
+
+[[nodes]]
+id = 1133
+depth = 2
+kind = "box"
+text = "Zanik gives you a torch so you can see."
+parent = 1132
+
+[[nodes]]
+id = 1134
+depth = 2
+kind = "act"
+text = "end"
+parent = 1132
+is_terminal = true

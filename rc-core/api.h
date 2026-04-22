@@ -2,8 +2,13 @@
 #define RC_API_H
 
 #include "types.h"
+#include "config.h"
 
-// Lifecycle
+// Lifecycle. Prefer `rc_world_create_config` for new code — it lets
+// you pick a subsystem preset (full game, combat-only sim,
+// skilling-only, base-only). `rc_world_create(seed)` is a
+// convenience wrapper for the full-game preset.
+RcWorld *rc_world_create_config(const RcWorldConfig *cfg);
 RcWorld *rc_world_create(uint32_t seed);
 void     rc_world_destroy(RcWorld *world);
 

@@ -1,0 +1,20 @@
+name = "TzKal-Zuk"
+source_pages = ["TzKal-Zuk"]
+npc_ids = [7706]
+
+[sections]
+"Fight overview" = """
+{{main|Inferno/Strategies#TzKal-Zuk}}
+As TzKal-Zuk is isolated from the platform the player is on, it cannot be attacked with melee. Only ranged or magic attacks will be able to reach Zuk.
+
+As the fight starts, a [[Ancestral Glyph|shield]] will appear to offer protection from Zuk's attacks. The shield will move, so players will need to move alongside it to avoid taking damage from Zuk. If the player is not covered by the shield when Zuk attacks, they run the risk of taking massive damage; Zuk is extremely accurate and can kill a player from full hitpoints (including over max) and its attacks cannot be [[Tick manipulation|tick-eaten]].
+
+The projectile attack performs a hybrid accuracy roll of a mage and range attack based off of the player's and Zuk's stats, which rolls the average of the player's effective Ranged defence and effective Magic defence against the average of Zuk's effective Ranged accuracy and effective Magic accuracy.{{CiteTwitter|url=https://twitter.com/JagexAsh/status/1546043065999269890|author=Mod Ash|date=10 July 2022|archiveurl=https://reldo.runescape.wiki/i/106414|archivedate=22 July 2022|quote=It looks at your effective ranged defence and your effective magic defence, and takes the average (i.e. add the two numbers, divide by 2). It does the same for the NPC's effective ranged & magic accuracy. It rolls the average accuracy against the average defence. The max hit's calculated off the NPC's stats too, taking its ranged max hit and magic max hit, and using an average of those two numbers.}} The same goes for the projectile's damage, which consists of a single roll between 0 and the average of Zuk's maximum Magic hit and maximum Ranged hit.{{NamedRef|damage}}
+
+Throughout the fight, Zuk will spawn minions:
+*Periodically, a [[Jal-Xil]] (ranger) and [[Jal-Zek]] (mager) will appear throughout the fight and attack the shield; once attacked, they will instead target the player. If the shield takes 600 damage, it will be destroyed, leaving the player fully vulnerable to Zuk's attacks.
+*At 480 hitpoints, a [[JalTok-Jad]] will appear and attack the shield.
+*At 240 hitpoints, Zuk will become enraged as it fights for its life, attacking 3 ticks (1.8s) faster and summoning four [[Jal-MejJak]]s on the lava in front of it. Once attacked, they will stop healing Zuk and bombard the player's area for 5-10 damage with area-of-effect attacks.
+
+Any remaining minions when TzKal-Zuk is killed will automatically die with it.
+"""

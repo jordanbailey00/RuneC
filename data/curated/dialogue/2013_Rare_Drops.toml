@@ -1,0 +1,956 @@
+title = "Transcript:2013 Rare Drops"
+npcs = ["Dommik", "Advisor Ghrim", "TzHaar-Ket-Zuh", "Barker", "Cook (Lumbridge)", "Baker", "Emily"]
+node_count = 123
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "other"
+text = "{{mes|You have found a {{mes|tradeable|color=red}} rare item. If you lose it, you will {{mes|not|color=red}} be able to get a replacement.}}"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "other"
+text = "{{mes|You have found an {{mes|untradeable|color=red}} rare item. If you lose it, you can get it back from {{mes|Diango|color=red}}.}}"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "other"
+text = "{{mes|You already have that item. You don't need another.}}"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Dommik"
+text = "That stuff you're carrying - is it for Jack?"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "option"
+text = "Yes, help yourself."
+parent = -1
+children = [6, 7, 8, 9, 10]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, help yourself."
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Dommik"
+text = "Thanks, mate, Jack'll be over the moon. Here's your cracker."
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "act"
+text = "receives=[[Christmas cracker]]"
+parent = 5
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 5
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "act"
+text = "end"
+parent = 5
+is_terminal = true
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [12, 13]
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "act"
+text = "Continues with standard dialogue"
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "What are you talking about?"
+parent = -1
+children = [15, 16, 17]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Dommik"
+text = "Um... never mind. I thought you were here for something else."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "end"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Dommik"
+text = "You're not going to get another cracker out of me, you know. Jack's odd, but he's not stupid."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "act"
+text = "Continues with standard dialogue"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Advisor Ghrim"
+text = "Greetings, Your Royal Highness."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Advisor Ghrim"
+text = "Those items you're carrying, Your Royal Highness, are they for Jack? <!--Those items you're carrying - are they for Jack?-->"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "Yes, help yourself."
+parent = -1
+children = [24, 25, 26, 27, 28]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, help yourself."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Advisor Ghrim"
+text = "Thank you, Your Royal Highness, Jack will be very happy. I present you with your cracker. <!--Thank you, Jack will be very happy. Here's your cracker.-->"
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "act"
+text = "receives=[[Christmas cracker]]"
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 23
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [30, 31]
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "Continues with standard dialogue"
+parent = 29
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "option"
+text = "What are you talking about?"
+parent = -1
+children = [33, 34, 35]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Advisor Ghrim"
+text = "Sorry, I thought you were here for something else."
+parent = 32
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "act"
+text = "end"
+parent = 32
+is_terminal = true
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Advisor Ghrim"
+text = "Jack doesn't need anything more from you, thank you. <!--might be different with Throne of Misc completion-->"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "act"
+text = "Continues with standard dialogue"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "TzHaar-Ket-Zuh"
+text = "You are bringing items for JalYt-Hur-Jack?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "option"
+text = "Yes, help yourself."
+parent = -1
+children = [41, 42, 43, 44, 45]
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, help yourself."
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "TzHaar-Ket-Zuh"
+text = "I pass the items to JalYt-Hur-Jack. You get little toy in thanks."
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "act"
+text = "receives=[[Christmas cracker]]"
+parent = 40
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 40
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "act"
+text = "end"
+parent = 40
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [47, 48]
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "act"
+text = "Continues with standard dialogue"
+parent = 46
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "What are you talking about?"
+parent = -1
+children = [50, 51, 52]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "TzHaar-Ket-Zuh"
+text = "Never mind, I see you are not."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "TzHaar-Ket-Zuh"
+text = "JalYt-Hur-Jack does not require more items from you today."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "act"
+text = "Continues with standard dialogue"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Barker"
+text = "You have stuff for my friend Jack, yes?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "Yes, help yourself."
+parent = -1
+children = [58, 59, 60, 61, 62]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, help yourself."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Barker"
+text = "Good, good, I will pass it to Jack soon. Here is your reward."
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "receives=[[Christmas cracker]]"
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 57
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [64, 65]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "act"
+text = "Continues with standard dialogue"
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "option"
+text = "What are you talking about?"
+parent = -1
+children = [67, 68, 69]
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Barker"
+text = "Very sorry, I misunderstood."
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "act"
+text = "end"
+parent = 66
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Barker"
+text = "Jack won't need anything more from you today."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "act"
+text = "Continues with standard dialogue"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "Is that lot for Jack?"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "option"
+text = "Yes, help yourself."
+parent = -1
+children = [75, 76, 77, 78, 79]
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, help yourself."
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Cheers, I'll pass it on. Here's your cracker."
+parent = 74
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "act"
+text = "receives=[[Christmas cracker]]"
+parent = 74
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 74
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "act"
+text = "end"
+parent = 74
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [81, 82]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "act"
+text = "Continues with standard dialogue"
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "option"
+text = "What are you talking about?"
+parent = -1
+children = [84, 85, 86]
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Oh, right, I thought it was for Jack."
+parent = 83
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "end"
+parent = 83
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "Jack won't need anything more from you today."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "act"
+text = "Continues with standard dialogue"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Baker"
+text = "Is this ze delivery for Monsiuer Jacques?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "option"
+text = "Yes, help yourself."
+parent = -1
+children = [92, 93, 94, 95, 96]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, help yourself."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Baker"
+text = "Merci, I shall pass it to Monsieur Jacques tout de suite. Here is ze cracker as promised."
+parent = 91
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "act"
+text = "receives=[[Christmas cracker]]"
+parent = 91
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 91
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [98, 99]
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "Continues with standard dialogue"
+parent = 97
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "option"
+text = "What are you talking about?"
+parent = -1
+children = [101, 102, 103]
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Baker"
+text = "Monsieur Jacques? You do not know Monsieur Cracker Jacques? How strange, I thought you did."
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 100
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Baker"
+text = "Non, non, you have already brought a delivery for Monsiuer Jacques today."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "act"
+text = "Continues with standard dialogue"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Emily"
+text = "Are you leaving that stuff for Jack?"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "select"
+text = "What would you like to say?"
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "option"
+text = "Yes, help yourself."
+parent = -1
+children = [109, 110, 111, 112, 113]
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, help yourself."
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Emily"
+text = "Sure, thanks. Here's your cracker."
+parent = 108
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "act"
+text = "receives=[[Christmas cracker]]"
+parent = 108
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 108
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "end"
+parent = 108
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "Maybe later."
+parent = -1
+children = [115, 116]
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "act"
+text = "Continues with standard dialogue"
+parent = 114
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "option"
+text = "What are you talking about?"
+parent = -1
+children = [118, 119, 120]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Emily"
+text = "Oh, sorry, I thought you were doing something else."
+parent = 117
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Emily"
+text = "Just one per day, thanks."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "act"
+text = "Continues with standard dialogue"
+parent = -1

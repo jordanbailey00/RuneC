@@ -19,6 +19,7 @@
 #ifndef OSRS_PVP_ANIM_H
 #define OSRS_PVP_ANIM_H
 
+#include "../rc-core/io.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -142,12 +143,19 @@ static AnimCache* anim_cache_load(const char* path) {
         return NULL;
     }
 
-    fseek(f, 0, SEEK_END);
-    long size = ftell(f);
-    fseek(f, 0, SEEK_SET);
+    long size = rc_file_size(f, path, "animation cache");
+    if (size <= 0) {
+        fclose(f);
+        return NULL;
+    }
 
     uint8_t* buf = (uint8_t*)malloc(size);
-    fread(buf, 1, size, f);
+    if (!buf
+            || !rc_read_exact(f, buf, sizeof(uint8_t), (size_t)size, path, "animation cache bytes")) {
+        free(buf);
+        fclose(f);
+        return NULL;
+    }
     fclose(f);
 
     const uint8_t* p = buf;

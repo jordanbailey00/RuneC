@@ -1,0 +1,1850 @@
+title = "Transcript:Big Cats & WWF"
+npcs = ["WWF conservationist", "Emem Sharma", "Humroc", "Strolgrum", "Thidrolda"]
+node_count = 240
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "WWF conservationist"
+text = "I'm part of a conservation team and we are on a mission to protect the endangered big cats of Gielinor."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "WWF conservationist"
+text = "Our representative Emem Sharma is in the wildlife area where she is looking for help to protect the big cats."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "select"
+text = "Would you like to be teleported to the conservation area?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "Yes"
+parent = -1
+children = [4, 5, 6]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "act"
+text = "The player is teleported to the World Wildlife Fund conservation area."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "box"
+text = "You are now in the World Wildlife Fund conservation area. Talk to Emem Sharma for more information."
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "end"
+parent = 3
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "No"
+parent = -1
+children = [8]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "act"
+text = "The player is teleported to the World Wildlife Fund conservation area."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "box"
+text = "You are now in the World Wildlife Fund conservation area. Talk to Emem Sharma for more information."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "cond"
+text = "If the player has a bond:"
+parent = -1
+children = [13, 14, 15]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "WWF conservationist"
+text = "Thank you for your donation, adventurer - it will support WWF's work to conserve species around the world."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 12
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "I'm Emem Sharma, and I am on a mission to protect the endangered big cats of Gielinor."
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "I am looking for your help to protect and rebuild four habitats each for a different species of big cat."
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "option"
+text = "What do I need to do?"
+parent = -1
+children = [20, 21, 22, 23, 24]
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "There are habitats for four different types of big cat in the surrounding area."
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Each needs to be rebuilt or protected in some way to help the big cats survive."
+parent = 19
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Investigate each of the areas to see how you can help."
+parent = 19
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "If you get stuck come back and ask me about your progress and I will steer you in the right direction."
+parent = 19
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "act"
+text = "previous"
+parent = 19
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Tell me more about the cats"
+parent = -1
+children = [26, 27, 32, 37, 42, 47]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Which big cats would you like to know about?"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "option"
+text = "Lions"
+parent = 25
+children = [28, 29, 30, 31]
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Lions live in prides and are the only cats to grow manes. Their habitat is south east of here."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "The World Wildlife Fund has more information on big cats if you want to learn more."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Would you like to know about any other big cats?"
+parent = 27
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "act"
+text = "other"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "option"
+text = "Tigers"
+parent = 25
+children = [33, 34, 35, 36]
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Tigers, unlike many cats, are excellent swimmers. Their habitat is south west of here."
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "The World Wildlife Fund has more information on big cats if you want to learn more."
+parent = 32
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Would you like to know about any other big cats?"
+parent = 32
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "other"
+parent = 32
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "Amur leopards"
+parent = 25
+children = [38, 39, 40, 41]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Amur leopards have different coats in winter to keep themselves warm. This coat can be up to 7cm long. Their habitat is north east of here."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "The World Wildlife Fund has more information on big cats if you want to learn more."
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Would you like to know about any other big cats?"
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "act"
+text = "other"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "option"
+text = "Snow leopards"
+parent = 25
+children = [43, 44, 45, 46]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Snow leopards can leap as far as fifteen meters in one go and can travel for many kilometres a night. Their habitat is north west of here."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "The World Wildlife Fund has more information on big cats if you want to learn more."
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Would you like to know about any other big cats?"
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "act"
+text = "other"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "option"
+text = "Change subject"
+parent = 25
+children = [48]
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "act"
+text = "initial"
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "What would the rewards be?"
+parent = -1
+children = [50, 51, 52, 53]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "For each area that you protect I will give a toy. The toy will be a cat of that area."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "There are four habitats to protect and rebuild, one for the lions, one for tigers, one for amur leopards and one for snow leopards."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Once you have made the habitat safe for the cats in an area come and talk to me and I will give you your toy."
+parent = 49
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "act"
+text = "other"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "option"
+text = "What is my progress?"
+parent = -1
+children = [55, 76]
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "cond"
+text = "If there are still habitats left to protect:"
+parent = 54
+children = [56, 57, 64, 68, 72]
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "select"
+text = "Which cat do you want to check progress on?"
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "option"
+text = "Tiger."
+parent = 55
+children = [58, 60]
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "cond"
+text = "If no progress has been made in protecting the tiger habitat:"
+parent = 57
+children = [59]
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have not yet started to protect the tiger habitat. Try talking to the dwarves south of here."
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "cond"
+text = "If the player has agreed to build the bridge:"
+parent = 57
+children = [61, 62, 63]
+
+[[nodes]]
+id = 61
+depth = 5
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Thank you for stopping the dwarves cutting down the trees. Now you need to build the bridge to help them easily across the river."
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 5
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "Try looking for some stone to the south."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 5
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "option"
+text = "Lion."
+parent = 55
+children = [65]
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "cond"
+text = "If no progress has been made in protecting the lion habitat:"
+parent = 64
+children = [66, 67]
+
+[[nodes]]
+id = 66
+depth = 5
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have not yet started to protect the lion habitat. The grasslands in their area needs regrowing. Look at some of the existing grasses to find seeds."
+parent = 65
+
+[[nodes]]
+id = 67
+depth = 5
+kind = "act"
+text = "end"
+parent = 65
+is_terminal = true
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "option"
+text = "Amur Leopard."
+parent = 55
+children = [69]
+
+[[nodes]]
+id = 69
+depth = 4
+kind = "cond"
+text = "If no progress has been made in protecting the amur leopard habitat:"
+parent = 68
+children = [70, 71]
+
+[[nodes]]
+id = 70
+depth = 5
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have not yet started to protect the amur leopard habitat. The pine trees in their area need regrowing. Look at some of the existing trees to find seeds."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 5
+kind = "act"
+text = "end"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "option"
+text = "Snow leopard."
+parent = 55
+children = [73]
+
+[[nodes]]
+id = 73
+depth = 4
+kind = "cond"
+text = "If no progress has been made in protecting the snow leopard habitat:"
+parent = 72
+children = [74, 75]
+
+[[nodes]]
+id = 74
+depth = 5
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have not yet started to protect the snow leopard habitat. The fencing that is holding the sheep in their pen nearby needs repairing."
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 5
+kind = "act"
+text = "end"
+parent = 73
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "cond"
+text = "If all habitats have been protected:"
+parent = 54
+children = [77, 78]
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have protected the habitats of all of the different big cats. Thank you for all of your help for this worthy cause."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "act"
+text = "end"
+parent = 76
+is_terminal = true
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "cond"
+text = "If there are still habitats left to protect:"
+parent = -1
+children = [80, 81, 83, 85, 87]
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "select"
+text = "Which cat do you want to check progress on?"
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "option"
+text = "Tiger."
+parent = 79
+children = [82]
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "act"
+text = "above"
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "option"
+text = "Lion."
+parent = 79
+children = [84]
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "act"
+text = "above"
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "option"
+text = "Amur Leopard."
+parent = 79
+children = [86]
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "act"
+text = "above"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "option"
+text = "Snow leopard."
+parent = 79
+children = [88]
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "act"
+text = "above"
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "cond"
+text = "If all habitats have been protected:"
+parent = -1
+children = [90]
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "above"
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "cond"
+text = "If no habitats have been newly protected:"
+parent = -1
+children = [92, 93]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You do not have any toys to claim at the moment."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "cond"
+text = "If the snow leopard habitat has been protected:"
+parent = -1
+children = [95, 96, 97, 98]
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have fixed all of the fencing sections on the sheep pen and the snow leopard habitat has been protected. Thank you."
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "To show my thanks please have this snow leopard toy."
+parent = 94
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "other"
+text = "{{mes|You've received a holiday item: {{Colour|#ff0000|Snow leopard toy}}}}"
+parent = 94
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "act"
+text = "receives=a [[snow leopard toy]]"
+parent = 94
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "cond"
+text = "If the lion habitat has been protected:"
+parent = -1
+children = [100, 101, 102, 103]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have regrown all of the grassland areas and rebuilt the habitat. The lions are now able to come back. Thank you."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "To show my thanks please have this lion toy."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "other"
+text = "{{mes|You've received a holiday item: {{Colour|#ff0000|Lion toy}}}}"
+parent = 99
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "receives=a [[lion toy]]"
+parent = 99
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "cond"
+text = "If the amur leopard habitat has been protected:"
+parent = -1
+children = [105, 106, 107, 108]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have regrown all of the trees and the amur leopards have returned to the area. Thank you."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "To show my thanks please have this amur leopard toy."
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "other"
+text = "{{mes|You've received a holiday item: {{Colour|#ff0000|Amur leopard toy}}}}"
+parent = 104
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "act"
+text = "receives=an [[amur leopard toy]]"
+parent = 104
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "cond"
+text = "If the tiger habitat has been protected:"
+parent = -1
+children = [110, 111, 112, 113, 114]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You have helped the dwarves, but more importantly you have saved the tiger habitat, thank you."
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "To show my thanks please have this tiger toy."
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "other"
+text = "{{mes|You've received a holiday item: {{Colour|#ff0000|Tiger toy}}}}"
+parent = 109
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "receives=a [[tiger toy]]"
+parent = 109
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "I'm here to help raise money for a wonderful cause. You can help threatened big cats by donating Bonds to the WWF."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "box"
+text = "Old School players have donated [number] Old School bonds so far to the WWF."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "cond"
+text = "If the player has no bonds:"
+parent = -1
+children = [118, 119]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Emem Sharma"
+text = "You do not have any Bonds with you right now, but please do come back when you do."
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "cond"
+text = "If the player has a bond:"
+parent = -1
+children = [121]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "select"
+text = "Leave the conservation area?"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [124, 125]
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "act"
+text = "The player is teleported back to the Grand Exchange."
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "act"
+text = "end"
+parent = 123
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [127]
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "select"
+text = "What would you like to take from the crate?"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "Secateurs"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "option"
+text = "Spade"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "option"
+text = "Seed Dibber"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "option"
+text = "More…"
+parent = -1
+children = [133, 134, 135, 136, 143]
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "select"
+text = "What would you like to take from the crate?"
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "option"
+text = "Pickaxe"
+parent = 132
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "option"
+text = "Hammer"
+parent = 132
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "option"
+text = "Axe"
+parent = 132
+children = [137, 140]
+
+[[nodes]]
+id = 137
+depth = 3
+kind = "cond"
+text = "If the player already has an axe:"
+parent = 136
+children = [138, 139]
+
+[[nodes]]
+id = 138
+depth = 4
+kind = "other"
+text = "{{mes|You already have an axe in your inventory.}}"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 4
+kind = "act"
+text = "end"
+parent = 137
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "cond"
+text = "If the player does not:"
+parent = 136
+children = [141, 142]
+
+[[nodes]]
+id = 141
+depth = 4
+kind = "act"
+text = "receives=a bronze axe"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 4
+kind = "act"
+text = "end"
+parent = 140
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "option"
+text = "Previous"
+parent = 132
+children = [144]
+
+[[nodes]]
+id = 144
+depth = 3
+kind = "act"
+text = "previous"
+parent = 143
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Strolgrum"
+text = "Hello there. How can I help you?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Strolgrum"
+text = "We're traders, passing through. You can talk to Humroc over there for more information."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. Are you here to help the big cats?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Thidrolda"
+text = "No, I don't tend to mess with nature and it leaves me alone. I'm here as one of Humroc's traders. I'm sure he'd be happy to talk to you."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "Hello there. Are you a fellow traveller looking to get across the river?"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to protect the habitats of the big cats."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you not just cross at the ford to the south?"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "I don't really know much about any big cats, expect{{sic}} that they are roaming around this area."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "We're going to cross at the ford we're just making camp before chopping down the trees to make a clear path to it."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But that will destroy part of the tigers' habitat."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "We need an easy way across."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How about if there was a bridge? One could be built right here and you wouldn't need to chop any trees."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "We don't know how to build bridges, we're traders."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can build you a bridge. If I do will you promise not to chop any trees?"
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "Certainly, we'd have no need to. Let us know when you are done."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "How are you going with the bridge?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've not started yet."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "I heard that there are some stone deposits around here, which should help you on your way."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "It's excellent work. Thank you very much for doing this for us."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "We're so happy that we're going to wait for our leader to get here and have an official bridge opening."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Humroc"
+text = "A bridge like that deserves it."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "cond"
+text = "If the player is not in front of the building area:"
+parent = -1
+children = [173, 174]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 172
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "cond"
+text = "If the player has fewer than 25 stones:"
+parent = -1
+children = [176, 177]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "other"
+text = "{{mes|You need 25 stone rocks to build this stage of the bridge. Mine some nearby.}}"
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "act"
+text = "end"
+parent = 175
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "cond"
+text = "If the player has no hammer:"
+parent = -1
+children = [179, 180]
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "other"
+text = "{{mes|You need a hammer to be able to build the bridge.}}"
+parent = 178
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "act"
+text = "end"
+parent = 178
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "cond"
+text = "If the player has at least 25 stones and a hammer:"
+parent = -1
+children = [182, 183]
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "box"
+text = "You have successfully started construction on the bridge."
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "cond"
+text = "If the player has at least 25 stones and a hammer:"
+parent = -1
+children = [185, 186]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "box"
+text = "You have successfully continued construction of the bridge."
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "act"
+text = "end"
+parent = 184
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "cond"
+text = "If the player has at least 25 stones and a hammer:"
+parent = -1
+children = [188, 189]
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "box"
+text = "You have successfully completed construction of the bridge. Talk to the dwarves to let them know of their alternative route."
+parent = 187
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "act"
+text = "end"
+parent = 187
+is_terminal = true
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "other"
+text = "{{mes|You start to search the grass.}}"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "other"
+text = "{{mes|You have found a grass seed. Plant it in a planting area to help regrow the lion habitat.}}"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "act"
+text = "receives=a grass seed"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "other"
+text = "{{mes|Use a grass seed on the planting area to plant a tree.}}{{sic}}"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "other"
+text = "{{mes|You plant a grass seed in the patch.}}"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "cond"
+text = "If six or fewer patches of grass have been grown:"
+parent = -1
+children = [199, 200, 201]
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "other"
+text = "{{mes|You examine the grass for signs of disease and find that it's in perfect health.}}"
+parent = 198
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "other"
+text = "{{mes|You have helped to restore the lion habitat.}}"
+parent = 198
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "act"
+text = "end"
+parent = 198
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "cond"
+text = "On claiming the experience for growing the seventh patch of grass:"
+parent = -1
+children = [203, 204, 205, 206]
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "other"
+text = "{{mes|You examine the grass for signs of disease and find that it's in perfect health.}}"
+parent = 202
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "other"
+text = "{{mes|You have helped to restore the lion habitat.}}"
+parent = 202
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "box"
+text = "You have regrown the lion habitat. Talk to the Conservationist to claim your reward."
+parent = 202
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "act"
+text = "end"
+parent = 202
+is_terminal = true
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "other"
+text = "{{mes|You start to search the tree.}}"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "other"
+text = "{{mes|You have found a pine tree seed. Plant it in a planting area to help regrow the amur leopard habitat.}}"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "other"
+text = "{{mes|You start digging up the tree stump.}}"
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "other"
+text = "{{mes|You dig up the tree stump.}}"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "cond"
+text = "If the player has no seed dibber:"
+parent = -1
+children = [214, 215]
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "box"
+text = "You need a seed dibber to plant seeds."
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "act"
+text = "end"
+parent = 213
+is_terminal = true
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "cond"
+text = "If the player has a seed dibber:"
+parent = -1
+children = [217, 218]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "other"
+text = "{{mes|You plant a pine tree seed in the patch.}}"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "act"
+text = "end"
+parent = 216
+is_terminal = true
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "other"
+text = "{{mes|You chop down the dead tree.}}"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "other"
+text = "{{mes|Use a pine tree seed on the planting area to plant a tree.}}"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "cond"
+text = "If six or fewer evergreens have been grown:"
+parent = -1
+children = [223, 224, 225]
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "other"
+text = "{{mes|You examine the tree for signs of disease and find that it's in perfect health.}}"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "other"
+text = "{{mes|You have helped to restore the amur leopard habitat.}}"
+parent = 222
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "act"
+text = "end"
+parent = 222
+is_terminal = true
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "cond"
+text = "On claiming the experience for growing the seventh evergreen:"
+parent = -1
+children = [227, 228, 229, 230]
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "other"
+text = "{{mes|You examine the tree for signs of disease and find that it's in perfect health.}}"
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "other"
+text = "{{mes|You have helped to restore the amur leopard habitat.}}"
+parent = 226
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "box"
+text = "You have regrown the amur leopard habitat. Talk to the Conservationist to claim your reward."
+parent = 226
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "act"
+text = "end"
+parent = 226
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "cond"
+text = "If the player has no oak logs:"
+parent = -1
+children = [232, 233]
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "other"
+text = "{{mes|You need some sturdy wood to fix this fence. An oak log would work well.}}"
+parent = 231
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "act"
+text = "end"
+parent = 231
+is_terminal = true
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "cond"
+text = "If the player has oak logs:"
+parent = -1
+children = [235, 236]
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "other"
+text = "{{mes|You repair the fence and help maintain the snow leopard habitat.}}"
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "act"
+text = "end"
+parent = 234
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "cond"
+text = "On repairing the seventh broken fencing:"
+parent = -1
+children = [238, 239]
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "box"
+text = "You have protected the snow leopard habitat. Talk to the Conservationist to claim your reward."
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "act"
+text = "end"
+parent = 237
+is_terminal = true

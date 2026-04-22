@@ -1,0 +1,135 @@
+# Abyssal Sire — slayer boss, 4-phase corridor encounter. Tests:
+# non-HP phase transitions (stun / break / unstun), tentacle-wall
+# spawn, bile pool DoT tiles, phase-gated targetable NPC, child
+# respiratory system support NPCs.
+
+name = "Abyssal Sire"
+slug = "abyssal_sire"
+npc_ids = [5890, 5891, 5908, 5909]   # four form ids across phases
+source_pages = ["Abyssal Sire", "Abyssal Sire/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Melee Punch"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 56                      # phase 3+ active attack
+warning_ticks = 0
+# Only used in phases 3 / 4 (sire awake + active).
+
+[[attacks]]
+name = "Magic Bolt"
+style = "magic"
+max_hit = 25
+warning_ticks = 2
+
+[[attacks]]
+name = "Poison Miasma"
+# AoE poison cloud deployed during sire's fight phases; DoT on
+# player tiles.
+style = "magic_aoe_tile"
+max_hit = 0                       # damage comes from DoT
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+# Sire's phases are scripted, not HP-threshold:
+#   Phase 1 — Respiratory systems alive; sire unconscious
+#   Phase 2 — Respiratory systems destroyed; sire awakens + walks
+#   Phase 3 — Sire stuns self on wall; tentacle phase (player attacks
+#             tentacles)
+#   Phase 4 — Final combat phase
+
+[[phases]]
+id = "respiratory"
+enter_at_hp_pct = 100
+script = "sire_respiratory_phase"
+allowed_attacks = []              # sire is inert; respiratory systems
+                                  # attack on their own
+untargetable = true               # sire has no HP bar yet
+
+[[phases]]
+id = "walking"
+enter_after = "respiratory"
+script = "sire_walking_phase"
+allowed_attacks = []              # sire walks, doesn't attack yet
+untargetable = true
+# Wiki: once all respiratory systems are destroyed, sire awakens.
+
+[[phases]]
+id = "stunned_tentacles"
+enter_after = "walking"
+script = "sire_stun_on_wall"
+allowed_attacks = []              # sire pinned; player attacks
+                                  # tentacles first
+untargetable = true               # sire untargetable during
+                                  # tentacle phase
+
+[[phases]]
+id = "active"
+enter_after = "stunned_tentacles"
+allowed_attacks = ["Melee Punch", "Magic Bolt", "Poison Miasma"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Respiratory Systems"
+primitive = "spawn_objective_npcs"
+trigger = "phase_enter:respiratory"
+# Four Respiratory System NPCs must be destroyed to advance. They
+# attack the player with poison splatters while alive.
+params.npc_name = "Respiratory system"
+params.count = 4
+params.distribution = "fixed_arena_slots"
+params.advance_phase_on = "all_dead"
+params.advance_to = "walking"
+
+[[mechanics]]
+name = "Walk to Wall"
+primitive = "npc_pathed_movement"
+trigger = "phase_enter:walking"
+# Sire walks from respiratory chamber to arena center; player must
+# keep up / lead it toward the wall. No attacks during this.
+params.destination = "arena_wall"
+params.ticks_to_complete = 20
+params.advance_to = "stunned_tentacles"
+
+[[mechanics]]
+name = "Tentacles on Stun"
+primitive = "spawn_wall_tentacles"
+trigger = "phase_enter:stunned_tentacles"
+# 4 tentacles emerge from the walls; each must be killed before
+# sire unstuns and enters active combat.
+params.tentacle_count = 4
+params.tentacle_positions = "wall_corners"
+params.advance_phase_on = "all_tentacles_dead"
+params.advance_to = "active"
+
+[[mechanics]]
+name = "Bile Pools"
+primitive = "dot_tile_placement"
+trigger = "phase_in:active"
+# Sire spits bile pools that deal DoT while stood on.
+period_ticks = 10
+params.pool_count = 3
+params.pools_on_player = 1
+params.pools_random = 2
+params.dot_per_tick = 8
+
+[[mechanics]]
+name = "Spawn Support Children"
+primitive = "spawn_npcs"
+trigger = "phase_in:active"
+# Lesser demons / scions of the abyss spawn periodically during the
+# active phase.
+period_ticks = 25
+params.npc_name = "Scion of the Abyss"
+params.count = 2
+params.distribution = "adjacent_to_boss"
+params.max_alive = 4
+
+# ---- Entry ------------------------------------------------------------
+
+[entry_requirement]
+slayer_level = 85
+task_required = "abyssal demon or abyssal sire"

@@ -1,0 +1,243 @@
+title = "Transcript:2024 Birthday event"
+npcs = ["Party Pete"]
+node_count = 32
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Hi! I'm Party Pete. Welcome to the Party Room!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "What's with all the banners?"
+parent = -1
+children = [3, 4, 5, 6, 7]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's with all the banners?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "It's OldSchool's birthday and we're celebrating in style. I'm on top of my game with organisation this year, so all you need to do is party with your mates!"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nice! What if I wanted to look cool doing so?"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Any spares from previous birthdays are on the tables over there. Once you've checked them out, let me know which ones you want to withdraw!"
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "option"
+text = "event=No|So what's this room for?"
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "option"
+text = "event=No|What's the big lever over there for?"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "option"
+text = "event=No|What's the gold chest for?"
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "option"
+text = "event=No|I wanna party!"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "cond"
+text = "If the player hasn't taken rewards yet and has inventory space:"
+parent = -1
+children = [13, 14]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "box"
+text = "You help yourself to rewards from the table. You can now retrieve these from Diango, or from Party Pete for the duration of this event. The Old School team wishes you a Happy 11th Birthday!"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "box"
+text = "You need {{color|#ff0000|1"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "cond"
+text = "If the player has already unlocked the rewards from a previous birthday event:"
+parent = -1
+children = [18]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "box"
+text = "You have already unlocked everything there was to unlock. Talk to Diango or Party Pete to withdraw any of the unlocked items."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "box"
+text = "You have already unlocked everything there was to unlock. Talk to Diango or Party Pete to withdraw any of the unlocked items."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "other"
+text = "{{mes|You do not have enough space for a slice of cake.}}"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Hi! I'm Party Pete. Welcome to the Party Room!"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Can I see my holiday items?"
+parent = -1
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I see my holiday items?"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "act"
+text = "(Party Pete's Holiday Item Retrieval interface opens.)"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "option"
+text = "event=No|So what's this room for?"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "option"
+text = "event=No|What's the big lever over there for?"
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "option"
+text = "event=No|What's the gold chest for?"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "option"
+text = "event=No|I wanna party!"
+parent = -1

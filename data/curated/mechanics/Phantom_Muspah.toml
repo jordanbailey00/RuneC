@@ -1,0 +1,67 @@
+name = "Phantom Muspah"
+source_pages = ["Phantom Muspah", "Phantom Muspah/Strategies"]
+npc_ids = [12082, 12078, 12079, 12080, 12077]
+
+[sections]
+"=Shielded phase=" = """
+Upon reaching less than 127 health, Muspah will teleport to the centre of the arena and unleash a massive shockwave that engulfs the entire arena. Players must stand behind a spike to avoid the attack, or it will deal up to 80 damage and the subsequent corruption will drain more prayer points compared to its magic attack. Players can place spikes on 8 specific tiles (also provided with the above button) to block the shockwave most efficiently. Spikes being on all 8 tiles is unlikely, but would completely negate a shockwave. Once Muspah finishes the attack, it will change into its shielded form, activating a prayer shield and [[Soul Split]], as well as increasing the max hit and accuracy of its attacks.
+[[File:Phantom Muspah - prayer flicking.mp4|thumb|400px|The player adjusts their timing to attack Muspah after it attacks, so that they can activate Smite to deplete the prayer shield quicker without risk of being attacked without protection prayers.]]
+
+The prayer shield has 75 health, and is drained by 2 after each attack. The [[Phantom Muspah]] will also heal itself for 50% of the damage inflicted, rounded down to the nearest whole number; e.g., a hit of 23 will cause it to heal 11 health. The player can further speed up the drain by using various prayer-draining methods, such as the [[Smite]] prayer or having a [[corruption spell]] active. 
+
+Using a crossbow with [[Sapphire bolts (e)|enchanted sapphire bolts]] or [[sapphire dragon bolts (e)|enchanted sapphire dragon bolts]] is highly recommended, as they have a 25% chance (27.5% with completion of the [[Hard Kandarin Diary]]){{CiteTwitter|author=Mod Ash|url=https://twitter.com/jagexash/status/1633115030588731395|date=7 March 2023|archiveurl=https://archive.ph/bt0xu|archivedate=7 March 2023|quote=I think it'd be based on 25% (plus diary buffs) for any eligible NPC *if* you pass the accuracy/defence roll first.}} to activate their special effect against the prayer shield, draining around 33 prayer from it.
+
+To successfully use Smite, players should avoid lining up their attacks with Muspah's ranged or magic attacks. Players can utilize the following five-tick cycle to determine when they can use Smite:
+
+* '''Tick 1''': Muspah's ranged attack damage is calculated (Protect from Ranged must be active on this tick to reduce damage)
+* '''Tick 2:''' Empty (can use Smite)
+* '''Tick 3''': Empty (can use Smite)
+* '''Tick 4''': Muspah's magic attack damage is calculated (Protect from Magic must be active on this tick to avoid damage)
+* '''Tick 5''': Empty (can use Smite)
+
+If the player is using a weapon with a five-tick attack speed, such as a crossbow on rapid, attacking Muspah on the first possible tick of the shielded phase will ensure that the player always attacks on Tick 2 of the above cycle, allowing them to flick Smite consistently. If players find themselves attacking on Tick 1 or Tick 4 of the cycle, it is advisable to delay their next attack by one tick to offset their attacks.
+
+Note that because this attack cycle is one tick faster than in previous phases, there is one less tick between a magic attack landing and the next ranged attack being calculated. As a result, players should be prepared to switch prayers quickly after a magic projectile hits them. 
+
+Once the shield is depleted, Muspah will return to its ranged form—though still with a five-tick attack speed—and create a large number of spikes (including one on the player's position) before resuming combat as normal. The spikes will emerge every four attacks and cover more tiles, growing from existing clusters of spikes.
+"""
+
+"Fight overview" = """
+{{Tile markers box|Module:Tile markers/Phantom Muspah.json}}
+The Phantom Muspah can spawn in ranged or melee form, and will trigger special attacks at 75% and 50% health. Ranged spawns will trigger Lightning clouds at 75%, melee spawns will trigger homing spikes at 75%. The unused special will always occur at 50% health.
+
+*Players may deal large hits at the end of a ranged form, which will count towards ending the melee form.
+*Hitting Muspah below 637 HP before hitting under 650 HP prevents Muspah from entering ranged form before his lightning cloud special attack. This allows you a full 100 damage against range form instead of switching to melee immediately after.
+*Large amounts of damage dealt during the lightning cloud special attack will likely skip the entirety of the final melee phase.
+*'''Lightning Clouds''' -  Muspah will rapidly teleport around the arena and spawn lightning clouds that travel across the area. 
+** Getting hit by a cloud will deal up to 20 damage, though they can be avoided by standing on a specific tile, provided with the button above. Players should avoid standing on this tile until the attack occurs, so that spikes aren't protruding on it.
+** Muspah will always appear to the north-east when the move is finished.
+** Muspah has combat stats equal to Range form, and can be attacked during this phase.
+** Damage dealt during this phase '''does not''' count towards the damage threshold for a form swap.
+*'''Homing Spikes''' - The Phantom Muspah will slam the ground, causing 2-4 spikes to home in on the player.  
+** Players can stand behind hardened spikes to avoid the homing spikes from reaching them if there's more than one spike grouped together.
+** The spikes move 1 tile per 2 ticks, do not move diagonally, and cannot pass through idle spikes.
+** After ~20 seconds, the spikes harden and stop moving.
+** Spikes that are directly adjacent to the player and under the Phantom Muspah will never be chosen to home in on the player.
+<gallery mode="packed" heights="180" style="text-align:left">
+Phantom Muspah - blocking homing spikes.png|A player blocks the homing spikes by standing behind some icicles.
+Muspah-safespots.png|A player completely avoids the lightning clouds by standing on the "optimal" tile labelled '''o'''; a weapon with an attack range of 10 ensures the player is never dragged out of the tile whilst attacking. Two alternative safespots are marked with d1-d2, where player should run to d1, and when dragged by an attack to d2, run back to d1 to prevent being hit by clouds.
+</gallery>
+"""
+
+"Forms" = """
+Throughout the fight, the [[Phantom Muspah]] will switch forms after taking 100 damage in the Ranged form (barring the teleport attack) and 80 damage in the Melee form. Thrall damage does not count towards these damage thresholds (with the exception of the final stand transformation when the boss reaches ≤127 hitpoints). 
+
+During transformations, Muspah will slam the ground and spawn spikes around the arena. Always remember that a spike will always appear on the player's current position when Muspah transforms. Standing on a spike will knock the player back to a clear tile and heal the boss for ~75% of the damage dealt.
+
+Muspah's defence can be reduced down to 125. The defence reduction will preserve between phases until the shielded phase, where Muspah's defence resets to 200.
+"""
+
+"Prayer info" = """
+{{Prayer info
+|name = Phantom Muspah
+|level = 40
+|xp = 170
+|type = spectral
+}}
+"""

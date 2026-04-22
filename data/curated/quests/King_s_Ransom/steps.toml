@@ -1,0 +1,176 @@
+quest = "King's Ransom"
+step_count = 9
+
+[[steps]]
+index = 0
+name = "Starting out"
+links = ["Gossip", "Sinclair Mansion", "Camelot Castle", "Anna", "Murder Mystery", "King Arthur", "Guard (Sinclair Mansion)", "Camelot", "Lord Sinclair", "Seers' Council"]
+text = """
+To begin the quest, speak to [[Gossip]] outside the [[Sinclair Mansion]], just north-west of [[Camelot Castle]]. He will explain to you that the Sinclairs have packed up and left after incriminating [[Anna]] as Lord Sinclair's murderer. This, however, may not be the same person you proved to be guilty in [[Murder Mystery]]. Gossip will explain that one of the family members provided new evidence to prove Anna's guilt. He will then go on to explain that [[King Arthur]] and his knights disappeared at the same time as the family's departure. Agree to investigate, and you will start the quest.
+
+Now, speak to the [[Guard (Sinclair Mansion)|guard]] who suspects that the Sinclairs have something to do with the mysterious disappearance of the king of [[Camelot]] and his knights. He suspects that since [[Lord Sinclair]] gave King Arthur the castle, the disappearances may be part of a bigger plot to reclaim Camelot. The guard will explain that the [[Seers' Council]] has forbidden anyone to enter Sinclair Mansion or Camelot to investigate and will so pass on the investigation to you.
+"""
+
+[[steps]]
+index = 1
+name = "Investigating"
+links = ["Camelot", "address form", "Guard (Sinclair Mansion)", "King Arthur", "Gossip", "Lord Sinclair", "King Ulthas", "Kandarin", "Sinclair Mansion", "Anna", "Seers' Village", "Seers' Village Courthouse", "criminal's thread", "Murder Mystery"]
+text = """
+[[File:King's Ransom scrap paper.png|thumb|120px|Scrap paper]]Break the window on the east side of the mansion, and you shall be inside. Now obtain the following pieces of evidence from their respective locations:[[File:King's Ransom address form.png|thumb|120px|Address form]]
+
+{| class="wikitable"
+!Evidence
+!Location
+|-
+|{{plink|Scrap paper}}
+|Dining room on the {{FloorNumber|uk=0}}. The paper contains incomplete scribblings about [[Camelot]].
+|-
+|{{plink|Address form}}
+|{{FloorNumber|uk=1}} library and take an [[address form]] that was never filled out, proving that the Sinclairs left for good, and never intended to tell anyone where they were moving.
+|-
+|{{plink|Black knight helm}}
+|{{FloorNumber|uk=1}} library, western bookcase.
+|}
+Return to the [[Guard (Sinclair Mansion)|guard]] by right clicking the window and click on 'break' to get through, and present to him all three pieces of evidence. The guard will agree that there is enough evidence to prove malintent towards [[King Arthur]]. He says that since he has to follow proper proceedings that he will have to wait a month before presenting the evidence. You will offer to avoid the bureaucracy. He will then suggest that you learn more about the Sinclair family history, suggesting that town gossips know much about history.
+
+Talk to [[Gossip]]. There are three options to ask. Ask all three to learn the Sinclair history.
+
+The first two conversations are about the family history. Gossip will explain [[Lord Sinclair]] was a good friend of [[King Ulthas]] and did many good things for [[Kandarin]]. His children, however, were spoiled and horrid, but Gossip admits he didn't think they would commit murder. The second is about the mansion. He will explain that originally the Sinclairs lived in [[Camelot]] (then, under a different name). Lord Sinclair eventually sold the castle to King Arthur and his men. They packed up and built the [[Sinclair Mansion]]. His children were furious. The third option is about [[Anna]]. Gossip will tell you that she is in the courthouse in [[Seers' Village]], giving a really hard time to the authorities. Gossip is positive Anna will receive a guilty verdict.
+
+Head to the [[Seers' Village Courthouse|courthouse]] in Seers' Village (the building directly south of the mansion and south-east of the bank), and speak to Anna. She will say that the original murderer you suspected set her up. She will go on to explain that no one will believe her. She says the new evidence against her was forged. You will then ask her where her family has gone; she will say she doesn't know since she's been locked up. As you go to leave, she will make a deal to help you get into Camelot in exchange for help in receiving a not-guilty verdict. She will then hand you the [[criminal's thread]] that you found on the window in [[Murder Mystery]]. Anna will suggest that the servants may be able to provide testimony in her defence.
+
+'''Note: It is possible to skip the following section and obtain a not guilty verdict.''' Just walk down the stairs in the courthouse, and the trial will begin. Asking the servants questions does not advance the quest and is only purposeful for those who wish to do so or want to (re-)solve the case themselves.
+
+Return to the mansion to learn what the various servants will state during the trial. There are '''six''' in total, two of them being located outside of the mansion and the other four being located within it (once again, enter via the broken window to get inside). Ask them every possible question.
+
+The first question will gather information on what happened the night of the murder.
+
+The second question will gather information on where they last saw Anna on that fateful night.
+
+The third question will gather information on whom they ever saw handling the dagger.
+
+The fourth question will gather information on whom the thread may belong to.
+
+The fifth question will gather information on the poison.
+
+After talking to every servant (six in total), head to the lower level of Seers' Village courthouse to begin the trial.
+"""
+
+[[steps]]
+index = 2
+name = "The trial"
+links = ["Criminal's thread", "Anna", "Hobbes", "Pierre", "Mary (Murder Mystery)"]
+text = """
+{{Needed|[[Criminal's thread]]}}
+[[File:King's Ransom - court in session.png|thumb|220px|right|The trial begins.]]During the trial, you will call witnesses by talking to the judge, and question the witness by talking to the witness. The questions you may ask correspond to those asked while in the mansion. To get a not-guilty verdict, you must rebut the evidence provided:
+
+*Anna's fingerprints on the dagger
+*Anna having bought poison and not used it
+*A thread from Anna's clothing being found at the crime scene
+*Anna being at the scene of the crime
+
+To successfully clear [[Anna]] of the charges, you must rebut this evidence without accidentally providing more incriminating evidence against Anna (for example, bringing out testimony which puts Anna near Lord Sinclair's meal before he died). To do this, call the following witnesses with the following questions:
+
+*Call the [[Hobbes|'''butler''']] as a witness, and ask him about the '''dagger'''.
+*Call the [[Pierre|'''dog handler''']], and ask him about the '''poison'''.
+*Call the [[Mary (Murder Mystery)|'''maid''']], and ask her about '''what she saw the night of the murder'''.
+*Call '''anyone''' and ask about the '''thread''' to complete the case for the defence.
+
+The judge will end the trial and ask for a verdict. The jury will provide a not-guilty verdict against Anna.
+"""
+
+[[steps]]
+index = 3
+name = "Back to business"
+links = ["Anna", "Camelot", "Camelot Castle", "statue (King's Ransom)", "David (Murder Mystery)", "Morgan Le Faye"]
+text = """
+[[File:King's Ransom statue.png|thumb|220px|Secret passage]]
+Leave the courtroom by clicking the gate; then, talk to [[Anna]] in her cell. She will go back to being rude, but will tell you how to enter [[Camelot]].
+
+Head to the east side of [[Camelot Castle]], and search the [[statue (King's Ransom)|statue]] near the temple.
+
+[[File:King's Ransom confrontation.png|220px|thumb|left|Confronting Anna and Morgan.]]
+You will now see a cutscene of Anna talking to [[David (Murder Mystery)|David]]. The siblings were both responsible for Lord Sinclair's death, and set you up to trap you. They will explain they have no intention to help you. Suddenly, [[Morgan Le Faye]] will appear and knock you out with her staff.
+"""
+
+[[steps]]
+index = 4
+name = "In jail"
+links = ["Morgan Le Faye", "Merlin", "King Arthur", "Black Knight", "Camelot", "Holy grail (item)"]
+text = """
+After being knocked out by [[Morgan Le Faye]], you will wake up in a jail with Arthur's Knights and [[Merlin]].
+
+Speak to Merlin. He will explain that:
+
+*[[King Arthur]] has been turned to a granite statue and taken away by the [[Black Knight]]s.
+*Both the Sinclairs and Morgan Le Faye have teamed up to destroy Arthur and reclaim [[Camelot]] castle.
+*The black knights have also agreed to help Morgan Le Faye and the Sinclairs.
+*Morgan Le Faye has stolen the [[Holy grail (item)|Holy Grail]].
+"""
+
+[[steps]]
+index = 5
+name = "=Freeing Merlin="
+links = ["Merlin", "vent (King's Ransom)", "gate (Camelot)"]
+text = """
+[[File:King's Ransom - Freeing Merlin.png|thumb|right|220px|Freeing Merlin]]
+Ask [[Merlin]] what to do. Follow all of the available conversation options.
+
+Click on the [[vent (King's Ransom)|vent]] at the top of the wall opposite the jail gate inside the cell. A funny animation will show Merlin escaping with the help of all the knights making a pyramid, allowing him to reach the vent.
+
+'''Note:''' If you need to leave during this portion of the quest, click on the vent again and the knights will lift you out of the cell. To continue the quest later on, make your way back to Camelot or the Sinclair Mansion and click on the [[gate (Camelot)|gates]] or search the statue again to be teleported back into the cell by Morgan Le Faye.
+"""
+
+[[steps]]
+index = 6
+name = "=Freeing the Knights="
+links = ["Telekinetic Grab", "hair clip", "air rune", "law rune", "vial", "shark", "normal log", "vodka", "lockpick", "Wikipedia:Mastermind (board game)", "Keep Le Faye", "Renegade Knight"]
+text = """
+[[File:Guard combing.png|thumb|right|220px|Using Telekinetic Grab to obtain the hair clip.]]
+If you brought the runes for it, use [[Telekinetic Grab]] on the guard fixing his hair outside the cell to obtain a [[hair clip]] and use it on the metal door. Otherwise, talk to all of the knights and ask them if they have anything useful to help them escape. You will get a lot of items such as an [[air rune]], a [[law rune]], an [[vial|empty vial]], a cooked [[shark]], a [[normal log]], a bottle of [[vodka]], etc. If you received a [[lockpick]], use it on the metal door; if you received runes, obtain the hair clip from the guard. You may also bring a regular [[lockpick]] with you and skip this portion of the quest.
+
+You will need to solve a puzzle to unlock the jail lock. The puzzle very closely resembles the popular game [[Wikipedia:Mastermind (board game)|Mastermind]].
+
+To complete this puzzle, you must set each of four tumblers to the correct height. The most foolproof way to do this (not necessarily the quickest) is to set all tumblers to the lowest height of 0/5, and try the lock. If a tumbler shows a green circle, do not change that tumbler anymore. For all the other tumblers, increase the height by one and try again. If you see a red circle, do not try that height on any other tumblers. Continue until the lock unlocks. This method will take at most six attempts.
+
+[[File:King's Ransom locked jaildoor puzzle.png|thumb|220px|Puzzle]]
+You will emerge on the {{FloorNumber|uk=0}} of the [[Keep Le Faye]]. Arthur's knights will be engaged in battle with the [[Renegade Knight]]s.
+"""
+
+[[steps]]
+index = 7
+name = "Finding the Holy Grail"
+links = ["table (King's Ransom)", "Holy grail (item)", "Cave entrance (Clivet)", "Ardougne Monastery", "Keep Le Faye", "Morgan Le Faye"]
+text = """
+[[File:King's Ransom riddle.png|thumb|220px|Riddle to the Holy Grail]]
+Head to the top floor and search on the [[table (King's Ransom)|table]] to the north. You will now have to solve a riddle (click on Show riddle) and choose the correct container holding the [[Holy grail (item)|Holy Grail]]. The correct box is the round purple one on the right, second last box if counting from left to right.
+
+:'''Note:''' Some of the boxes contain a trap which will deal 5 damage, drain a random skill by several levels, and teleport you to near the [[Cave entrance (Clivet)|cave entrance]] just north of [[Ardougne Monastery]]. To continue the quest, you will have to either try opening the door to [[Keep Le Faye]], click on the gates of Camelot, or search the statue again. [[Morgan Le Faye]] will then appear and will teleport you back to jail. There, you don't need to solve the door puzzle again—you just have to open the door and walk back to the top floor.
+"""
+
+[[steps]]
+index = 8
+name = "Freeing King Arthur"
+links = ["Bronze med helm", "Iron chainbody", "Animate rock scroll", "Granite", "Black full helmet", "Black platebody", "Black platelegs", "Black plateskirt", "Holy grail (item)", "Ardougne teleport (tablet)", "Mind altar teleport (tablet)", "Camelot teleport (tablet)", "King Arthur", "Wizard Cromperty", "East Ardougne", "Petra Fiyed", "One Small Favour", "Morgan Le Faye", "animate rock scroll", "granite", "bronze med helm", "iron chainbody", "black platebody", "black platelegs", "black full helmet", "Draynor Manor", "Wayne's Chains", "Falador", "Black Knights' Fortress (location)", "Edgeville", "Ice Mountain", "Burthorpe", "Games necklace", "Tight-gap (Goblin Village)", "Falador diary", "Wilderness Ditch", "black equipment", "Camelot"]
+text = """
+{{Needed|[[Bronze med helm]], [[Iron chainbody]], [[Animate rock scroll]], [[Granite]] (any size), [[Black full helmet]], [[Black platebody]], [[Black platelegs]]/[[Black plateskirt|skirt]], [[Holy grail (item)|Holy Grail]]|recommended=[[Ardougne teleport (tablet)|Ardougne tab]], [[Mind altar teleport (tablet)|Mind altar tab]], [[Camelot teleport (tablet)|Camelot tab]]}}
+You must now free [[King Arthur]] from his stone prison. Head to [[Wizard Cromperty]] in [[East Ardougne]].
+
+Cromperty will explain you need to free King Arthur like you did to [[Petra Fiyed]] during [[One Small Favour]], though this time, you also need to unravel [[Morgan Le Faye|Morgan]]'s spell. He will give you an [[animate rock scroll]]—you will need to use on King Arthur once you have both the [[Holy grail (item)|Holy Grail]] and some [[granite]] in your inventory.
+
+:'''Note:''' Even if you already have the Animate scroll, you will still need to go talk to Wizard Cromperty, or your player will not be willing to cast the spell on King Arthur. '''Be sure to completely finish the dialogue after receiving the scroll, or you will need to return and speak with him again. If you have the animate scroll in your bank he will not give you another one.'''
+
+To actually get to King Arthur, you will need to have a [[bronze med helm]], [[iron chainbody]], [[black platebody]], [[black platelegs]]/[[Black plateskirt|skirt]] and [[black full helmet]].
+
+:'''Tip:''' Get the bronze med helm and iron chainbody in [[Draynor Manor]] and at [[Wayne's Chains]] in [[Falador]] respectively if you still need them. Alternatively, you can purchase both at the Warriors' Guild if you have access.
+
+Head to the [[Black Knights' Fortress (location)|Black Knights' Fortress]] west of [[Edgeville]]/north of [[Ice Mountain]]. (A [[Mind altar teleport (tablet)|Mind altar teleport]] is the closest teleport. Alternatively, teleport to [[Burthorpe]] with a [[Games necklace]], use the [[Tight-gap (Goblin Village)|Tight-gap]] (requires completion of the easy tier of [[Falador diary]]) and continue east along the [[Wilderness Ditch|Wilderness ditch]].)
+
+Equip the [[black equipment]], and enter the Black Knights' Fortress through the guards' door. Then, push the wall right behind the guards' door. You cannot push the wall if you are not wearing full black armour.[[File:King's Ransom arthur statue.png|thumb|220px|King Arthur turned into a stone statue.]]Climb down the ladder, and you will see King Arthur's statue. Use the ''Free'' option.
+
+Talk to King Arthur, and give him the guard uniform (bronze med helm and iron chainbody).
+
+Return to [[Camelot]] and speak to King Arthur in his castle to receive your reward.
+
+'''Congratulations, quest complete!'''
+"""

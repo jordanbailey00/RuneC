@@ -1,0 +1,56 @@
+name = "Zulrah"
+source_pages = ["Zulrah", "Zulrah/Strategies"]
+npc_ids = [2042, 2043, 2044]
+
+[sections]
+"=Rotation overview=" = """
+[[Zulrah]] will start the fight in one of the four rotations below, chosen at random.
+
+You can tell which rotation Zulrah is in by either the second or fourth phase:
+* If the second phase is Zulrah in its '''{{Colour|red|crimson}}''' form, then its third phase will be in its '''{{Colour|#008FFF|tanzanite}}''' form. Afterwards, Zulrah will be in its '''{{Colour|green|green}}''' form in the '''south''' (Rotation 1) or in the '''west''' (Rotation 2).
+* If the second phase is Zulrah in its '''{{Colour|green|green}}''' form, then it's in Rotation 3.
+* If the second phase is Zulrah in its '''{{Colour|#008FFF|tanzanite}}''' form, then it's in Rotation 4.
+
+The phases below specify Zulrah's position in bold and form by colour, while the "[[Jad]]" phase has been underlined.
+
+Beginners may wish to focus on one specific rotation to learn, immediately hopping worlds to try again if not in that rotation at the start of the second phase. Hopping worlds is possible because the player will not be in combat until the second phase. Rotation 3 is often best for learning since rotations 1 and 2 are ambiguous for longer at the start, and rotation 4 tends to cause more damage.
+"""
+
+"Fight overview" = """
+{{Tile markers box|Module:Tile markers/Zulrah.json}}
+
+All damage towards [[Zulrah]] is capped at 50; if players would have dealt over 50 damage to Zulrah, it is reduced to 45-50 damage.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/844675662631899136|date=22 March 2017|archiveurl=https://reldo.runescape.wiki/i/108141|archivedate=29 May 2020|quote=I think any number you roll over 50 [at Zulrah] is replaced with a random number between 45 and 50.}} Despite this, using the [[twisted bow]] with [[dragon arrows]] is still recommended, as dealing above 50 damage more often will result in more hits dealing 45-50 damage, and still increase the average damage output.
+
+At the start of the fight, Zulrah will be in one of four possible rotations (see chart), with each rotation consisting of predefined phases. It takes Zulrah about three minutes to complete each full rotation. After it finishes a rotation, Zulrah will then begin a new one; it is possible to be the same rotation as the previous one. All rotations after the first one have a chance for Zulrah to randomly be in a phase different from the expected phase. There is also a chance for Zulrah to enter a form where it will randomly switch between mage and ranged attacks in a way that cannot be predicted and prayed against (unlike the "[[Jad]]" phase, which alternates between Magic and Ranged each attack). Because of this, it is best to try to kill Zulrah within the first rotation.
+
+Each column in the chart corresponds to one of Zulrah's rotations, with each row corresponding to that rotation's phase. The green, red, and blue circles indicate Zulrah's form and position in each phase. The "x" represents where to run, and the [[RuneScape:Tile markers|tile markers]] above correspond to these locations. Ensure the camera's orientation is pointed '''south''' to better align with the images.
+
+It is recommended to always use [[Protect from Missiles]] (green form) or [[Protect from Magic]] (tanzanite form) when learning Zulrah, as its attacks are very accurate and often hit hard. The only exception is its green "Jad" phase, which requires alternating between Protect from Missiles and Protect from Magic after every attack it performs. Not every phase has Zulrah attacking the player, however, it is only recommended to disable these prayers once the player is comfortable with the fight's rotations. Zulrah's attacks are capable of hitting up to 41, and with the high damage of the [[snakeling]]s, can easily combo a player in seconds.
+
+Beginners may want to stop attacking or healing during the "Jad" phase and simply focus on praying correctly. As with most attacks in the game, a protection prayer only needs to be active '''starting''' on the same tick that Zulrah begins its attack animation. This means that as soon as a green ranged projectile is fired, overhead prayer should switch back to Protect from Magic. As soon as a red magic projectile is fired, overhead prayer should switch back to Protect from Missiles. The projectile may hit the character while the opposite prayer is active, but 0 damage will occur as long as the correct prayer was active at the start of Zulrah's attack animation.
+
+If Zulrah dies just as it launches an attack, the attack '''can still deal damage''', and can potentially kill the player.
+"""
+
+"Forms" = """
+[[File:Fighting Zulrah.png|thumb|300px|right|A player fights Zulrah, the serpent of the [[Poison Waste]], in its tanzanite form.]]
+Throughout the fight, [[Zulrah]] will continually dive into the swamp, sending out a plethora of attacks before doing so. It will then re-emerge in its next phase and continue its attacks, usually as a different form.
+
+If struck with a hit just as it dives, the hit will register on Zulrah shortly after it resurfaces. Unlike the [[Alchemical Hydra]], Zulrah's existing attacks will cause damage even after it is killed, so it is important to keep health and the appropriate prayer up to avoid an accidental death.
+
+Zulrah has a Defence, Magic, and Ranged level of 300, along with +50 ranged and magical accuracy and strength bonus on all forms. Although Zulrah has no melee defence in any form, Zulrah can only be reached with a halberd-type weapon. The ranged and magic attacks will envenom the player unless they miss, even if blocked by a protection prayer. Damage dealt to Zulrah is capped at 50, with hits dealing more than that randomly hitting it for 45-50 damage.
+
+[[File:Zulrah (serpentine).png|left|50px]]
+* Zulrah's '''{{Colour|green|green}}''' form, in which it will attack with [[Ranged]], with a few exceptions such as its "[[TzTok-Jad|Jad]]" phase (see rotations). While in this form, Zulrah is '''weak to magical''' attacks - possessing -45 magic defence and +50 ranged defence.
+{{clear|left}}
+[[File:Zulrah (magma).png|left|50px]]
+* Zulrah's '''{{Colour|red|crimson}}''' form, in which it will attack with [[Melee]]. Zulrah will stare at the player's position for several seconds before whipping its tail at that area. If the player does not move away from the targeted area in time, they will be dealt 20-30 damage and be [[Stun (status)|stunned]] for several seconds. While in this form, Zulrah is '''weak to magical''' attacks - possessing +0 magic defence and +300 ranged defence.
+{{clear|left}}
+[[File:Zulrah (tanzanite).png|left|50px]]
+* Zulrah's '''{{Colour|#008FFF|tanzanite}}''' form, in which it will randomly attack with both [[Magic]] and [[Ranged]] attacks, although it uses magic much more frequently compared to ranged. While in this form, Zulrah is '''weak to ranged''' attacks - possessing +300 magic defence and +0 ranged defence.
+{{clear|left}}
+"""
+
+"Special attacks" = """
+During the fight, Zulrah can summon [[snakeling]]s and/or [[venom]] clouds in ''any'' form, however the phase at which it does so, as well as when during the phase, is predetermined by the rotation.
+"""

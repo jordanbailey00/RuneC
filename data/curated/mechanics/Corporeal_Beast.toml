@@ -1,0 +1,32 @@
+name = "Corporeal Beast"
+source_pages = ["Corporeal Beast", "Corporeal Beast/Strategies"]
+npc_ids = [319]
+
+[sections]
+"=Attack styles=" = """
+The Corporeal Beast attacks with [[Melee]] and [[Magic]]. It attacks normally every 4 ticks, but it can occasionally attack 3 ticks after its last. It will use a melee attack 40% of the time provided you are in melee range, The magic attacks are all equally common with a 20% incidence in melee range or a 33% incidence outside of melee range.
+
+Protect from Melee will block all damage from the melee attack and Protect from Magic will block 1/3 of the damage from the magic attacks. Despite this, it is recommended to always use Protect from Magic due to the magic attacks' higher damage, accuracy and frequency.
+
+*The Melee attack is only used when the player is standing in Melee distance and can hit up to 33.
+*The Magic attack has three variations. See the images below on how to identify the different variations.
+**A regular Magic attack that can deal up to 65 damage.
+**A Magic attack that can deal up to 55 damage and has a chance to drain Magic or Prayer by 1 or 2. The stat drain effect only takes place upon a successful hit. The boss is healed by half of the damage dealt, rounded down.
+**A Magic attack that splits into six smaller projectiles that both have an AoE of 3x3. The main attack can hit up to 40 if it lands on top of you, or up to 30 if it lands next to you. Each of the projectiles can hit up to 30 if they land on top on you, or 20 if they land next to you. All of these can be dodged.
+
+If the player steps under the Corporeal Beast, it may perform a stomp attack that will always deal 30–51 damage. This attack is on a timer that checks if any players are under the Corporeal Beast every 7 ticks (4.2 seconds). This attack cannot be negated with protection prayers.
+
+<gallery captionalign="center" widths="350px" heights="300px" mode="packed">
+Corporeal Beast - Magic attack (1).png|The Corporeal Beast's regular Magic attack.
+Corporeal Beast - Magic attack (2).png|The Corporeal Beast's stat-draining Magic attack.
+Corporeal Beast - Magic attack (3).png|The Corporeal Beast's AoE Magic attack.
+</gallery>
+"""
+
+"Fight overview" = """
+{{Main|Corporeal Beast/Strategies}}
+[[File:Fighting Corporeal Beast.png|thumb|right|300px|A group of players fighting the Corporeal Beast.]]
+The Corporeal Beast has a 50% damage reduction against any weapon that is not a [[Corpbane weapons|Corpbane weapon]] on stab attack style. Although [[magic]] attacks also deal full damage, they are generally very inaccurate against the boss. [[Protect from Magic]] does not fully block its magic attacks; it only reduces the damage by 33%. The Corporeal Beast has very high accuracy and damage and attacks mostly with Magic.
+
+While fighting the Corporeal Beast, there is a chance that the [[dark energy core]] will spawn. This creature leeches [[Hitpoints]] from any players adjacent to it to heal the Corporeal Beast and jumps to players if none are adjacent, and it can be significantly weakened by [[poison]]ing it. The Corporeal Beast also rapidly regenerates health when there are no players in the room.
+"""

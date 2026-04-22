@@ -1,0 +1,3190 @@
+title = "Transcript:Holy Grail"
+npcs = ["King Arthur", "Merlin", "Sir Lucan", "Sir Gawain", "Sir Kay", "Sir Pelleas", "Sir Bedivere", "Sir Lancelot", "High Priest (Entrana)", "Crone", "Galahad", "Black Knight Titan", "Peasant", "Fisherman (Holy Grail)", "Grail Maiden", "The Fisher King", "Sir Percival"]
+node_count = 407
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now I am a knight of the round table, do you have any more quests for me?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Aha! I'm glad you are here! I am sending out various knights on an important quest. I was wondering if you too would like to take up this quest?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "Tell me of this quest."
+parent = -1
+children = [4, 5, 6, 7, 8, 11, 13, 18]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me of this quest."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "King Arthur"
+text = "Well, we recently found out that the Holy Grail has passed into Gielinor."
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "King Arthur"
+text = "This is most fortuitous!"
+parent = 3
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "King Arthur"
+text = "None of my knights ever did return with it last time. Now we have the opportunity to give it another go, maybe this time we will have more luck!"
+parent = 3
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "cond"
+text = "If the player's combat level is less than 50:"
+parent = 3
+children = [9, 10]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "box"
+text = "Before starting this quest, be aware that your combat level is lower than the recommended level of 50."
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "act"
+text = "continue"
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "cond"
+text = "If the player's combat level is more than 50:"
+parent = 3
+children = [12]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "select"
+text = "Start the Holy Grail quest?"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 3
+children = [14, 15, 16, 17]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'd enjoy trying that."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "King Arthur"
+text = "Go speak to Merlin. He may be able to give a better clue as to where it is now you have freed him from that crystal."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "King Arthur"
+text = "He has set up his workshop in the room next to the library."
+parent = 13
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "option"
+text = "No."
+parent = 3
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I may come back and try that later."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "King Arthur"
+text = "Be sure that you come speak to me soon then."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "I am weary of questing for the time being..."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am weary of questing for the time being..."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Maybe later then?"
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Maybe so."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "How goes thy quest?"
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am making progress, but I have not recovered the Grail yet."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Well, the Grail IS very elusive, it may take some perseverance."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "As I said before, speak to Merlin in the workshop by the library."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. King Arthur has sent me on a quest for the Holy Grail. He thought you could offer some assistance."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Ah yes... the Holy Grail..."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "That is a powerful artefact indeed. Returning it here would help Camelot a lot."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Due to its nature the Holy Grail is likely to reside in a holy place."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any suggestions?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "I believe there is a holy island somewhere not far away... I'm not entirely sure... I spent too long inside that crystal! Anyway, go and talk to someone over there."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "I suppose you could also try speaking to Sir Galahad?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "He returned from the quest many years after everyone else. He seems to know something about it, but he can only speak about those experiences cryptically."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "option"
+text = "Thank you for the advice."
+parent = -1
+children = [42, 43]
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you for the advice."
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "act"
+text = "end"
+parent = 41
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "Where can I find Sir Galahad?"
+parent = -1
+children = [45, 46, 47]
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find Sir Galahad?"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Merlin"
+text = "Galahad now lives a life of religious contemplation. He lives somewhere west of McGrubor's Wood I think."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "How goes thy quest?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am making progress, but I have not recovered the Grail yet."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Well, the Grail IS very elusive, it may take some perseverance."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Hello there adventurer, what do you want of me?"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd like some advice on finding the Grail."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Sorry, I cannot help you with that."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "Hello there adventurer."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I seek the Grail of legend!"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "I'm afraid I don't have any suggestions..."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks. I'll try and find someone who does."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Good day to you!"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I seek the Grail in the name of Camelot!"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "The Grail? That is truly a noble quest indeed. None but Galahad have come close."
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Galahad? Who is he?"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "He used to be one of the Knights of the Round Table, but he mysteriously disappeared many years ago."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why would he quit being a Knight?"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "That is a good question."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "I'm afraid I don't have the answer."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Good morrow!"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "I hear you are questing for the Holy Grail?!"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right. Any hints?"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Sir Kay"
+text = "Unfortunately not, Sirrah."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Hail Arthur, King of the Britons!"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... Hello."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am seeking the Grail..."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Good luck with that!"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Greetings to the court of King Arthur!"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any suggestions on finding the Grail?"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "My best guess would be some sort of spell. Merlin is our magic expert. Ask him?"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Although having said that, I believe Galahad found its location once..."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really? Know where I can find him?"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "I'm afraid not. He left here many moons ago and I know not where he went."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "May I help you?"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "You are looking for the Grail now adventurer?"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "The best of luck to you! Make the name of Camelot proud, and bring it back to us."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "Greetings! I am Sir Lancelot, the greatest Knight in the land! What do you want?"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am questing for the Holy Grail."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "The Grail? Ha! Frankly, friend, you're not in that league."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why do you say that?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "You got lucky with freeing Merlin but there's no way a puny wannabe like you is going to find the Holy Grail where so many others have failed."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We'll see about that."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Many greetings. Welcome to our fair island."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, I am in search of the Holy Grail."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "The object of which you speak did once pass through holy Entrana. I know not where it is now however."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Nor do I really care."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Crone"
+text = "Did you say the Grail? You are a Grail knight, yes? Well you'd better hurry. A Fisher King is in pain."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I would, but I don't know where I am going!"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Crone"
+text = "Go to where the six heads face, blow the whistle and away you go!"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "What are the six heads?"
+parent = -1
+children = [108, 109, 110, 111]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are the six heads?"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Crone"
+text = "The six stone heads have appeared just recently in the world. They all face the point of realm crossing. Find where two of the heads face,"
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Crone"
+text = "and you should be able to pinpoint where it is."
+parent = 107
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "act"
+text = "initial"
+parent = 107
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "What's a Fisher King?"
+parent = -1
+children = [113, 114, 115]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's a Fisher King?"
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Crone"
+text = "The Fisher King is the owner and slave of the Grail..."
+parent = 112
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "act"
+text = "initial"
+parent = 112
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "Ok, I will go searching."
+parent = -1
+children = [117, 118, 119]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I will go searching."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Crone"
+text = "Good luck with that."
+parent = 116
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "end"
+parent = 116
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "What do you mean by the whistle?"
+parent = -1
+children = [121, 122, 123, 124, 125, 126, 128, 130, 132]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean by the whistle?"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Crone"
+text = "You don't know about the whistles yet? The whistles are easy."
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Crone"
+text = """
+You will need one to get to and from the Fisher King's realm. They reside in a haunted manor house in Misthalin, though you may not perceive them unless you carry something from the realm of the Fisher
+"""
+parent = 120
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Crone"
+text = "King..."
+parent = 120
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 120
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "option"
+text = "What's a Fisher King?"
+parent = 120
+children = [127]
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "act"
+text = "above"
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "option"
+text = "Ok, I will go searching."
+parent = 120
+children = [129]
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "act"
+text = "above"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "option"
+text = "What do you mean by the whistle?"
+parent = 120
+children = [131]
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "act"
+text = "above"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "option"
+text = "The point of realm crossing?"
+parent = 120
+children = [133, 134, 135]
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The point of realm crossing?"
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Crone"
+text = "The realm of the Fisher King is not quite of this reality. It is of a reality very close to ours though... Where it is easiest to cross, THAT is a point of realm crossing."
+parent = 132
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "act"
+text = "end"
+parent = 132
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Galahad"
+text = "Welcome to my home. It's rare for me to have guests! Would you like a cup of tea? I'll just put the kettle on."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "box"
+text = "Brother Galahad hangs a kettle over the fire."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "quest=No|Are you any relation to Sir Galahad?"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "option"
+text = "I'm on a quest to find the Holy Grail!"
+parent = -1
+children = [141, 142, 143, 144, 145, 149, 155, 161, 165]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm on a quest to find the Holy Grail!"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Galahad"
+text = "Ah... the Grail... yes... that did fill me with wonder! Oh, that I could have stayed forever! The spear, the food, the people..."
+parent = 140
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 140
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "option"
+text = "So how can I find it?"
+parent = 140
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "option"
+text = "What are you talking about?"
+parent = 140
+children = [146, 147, 148]
+
+[[nodes]]
+id = 146
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "The Grail castle... It's... hard to describe with words. It mostly felt like a dream!"
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 3
+kind = "act"
+text = "above"
+parent = 145
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "option"
+text = "Why did you leave?"
+parent = 140
+children = [150, 151, 152, 153, 154]
+
+[[nodes]]
+id = 150
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why did you leave?"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "Apparently the time is getting close when the world will need Arthur and his knights of the round table again."
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "And that includes me."
+parent = 149
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "Leaving was tough for me, so I took this small cloth from the table as a keepsake."
+parent = 149
+
+[[nodes]]
+id = 154
+depth = 3
+kind = "act"
+text = "end"
+parent = 149
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "option"
+text = "Why didn't you bring the Grail with you?"
+parent = 140
+children = [156, 157, 158, 159, 160]
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why didn't you bring the Grail with you?"
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "...I'm not sure. Because... it seemed to be... NEEDED in the Grail castle? Half a moment, your cup of tea is ready."
+parent = 155
+
+[[nodes]]
+id = 158
+depth = 3
+kind = "box"
+text = "Sir Galahad gives you a cup of tea."
+parent = 155
+
+[[nodes]]
+id = 159
+depth = 3
+kind = "act"
+text = "receives=a cup of tea"
+parent = 155
+
+[[nodes]]
+id = 160
+depth = 3
+kind = "act"
+text = "end"
+parent = 155
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "option"
+text = "So how can I find it?"
+parent = 140
+children = [162, 163, 164]
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So how can I find it?"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "I did not find it through looking - though admittedly I looked long and hard - eventually, it found me."
+parent = 161
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "act"
+text = "above"
+parent = 161
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "option"
+text = "Well, I'd better be going then."
+parent = 140
+children = [166, 167, 168, 169, 170, 171]
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'd better be going then."
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "Half a moment, your cup of tea is ready."
+parent = 165
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "box"
+text = "Sir Galahad gives you a cup of tea."
+parent = 165
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "act"
+text = "receives=a cup of tea"
+parent = 165
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "If you do come across any particularily{{sic|Spelled particularly}} difficult obstacles on your quest, do not hesitate to ask my advice."
+parent = 165
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "I know more about the realm of the Grail than many, and I have a feeling you may need to come back and speak to me anyway..."
+parent = 165
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "option"
+text = "quest=No|Do you get lonely here on your own?"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "cond"
+text = "If the player talked to the High Priest of Entrana first:"
+parent = -1
+children = [174]
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "option"
+text = "I seek an item from the realm of the Fisher King."
+parent = 173
+children = [175, 176, 177, 178, 179, 180]
+
+[[nodes]]
+id = 175
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I seek an item from the realm of the Fisher King."
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 3
+kind = "speaker"
+speaker = "Galahad"
+text = "Funny you should mention that, but when I left there I took this small cloth from the table as a keepsake."
+parent = 174
+
+[[nodes]]
+id = 177
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't suppose I could borrow that? It could come in useful on my quest."
+parent = 174
+
+[[nodes]]
+id = 178
+depth = 3
+kind = "box"
+text = "Galahad reluctantly passes you a small cloth."
+parent = 174
+
+[[nodes]]
+id = 179
+depth = 3
+kind = "act"
+text = "receives=a Holy table napkin"
+parent = 174
+
+[[nodes]]
+id = 180
+depth = 3
+kind = "act"
+text = "end"
+parent = 174
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "cond"
+text = "If the player blows the whistle anywhere besides between the four pillars at [[Brimhaven]]:"
+parent = -1
+children = [182, 183]
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "box"
+text = "The whistle makes no noise. It will not work in this location."
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "cond"
+text = "If the player blows the whistle whilst inside the [[Fisher Realm]]:"
+parent = -1
+children = [185, 186]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "act"
+text = "The player is teleported back to Brimhaven."
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "act"
+text = "end"
+parent = 184
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "box"
+text = "{{Colour|red|I am the Black Knight Titan! You must pass through me before you can continue in this realm!"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "Okay, have at ye oh evil knight!"
+parent = -1
+children = [190, 191, 196]
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, have at ye oh evil knight!"
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "cond"
+text = "If the player defeats the Black Knight Titan without the [[excalibur]]:"
+parent = 189
+children = [192, 193, 194, 195]
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "box"
+text = "{{Colour|red|Puny mortal... You cannot defeat me..."
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 3
+kind = "other"
+text = "{{mes|Maybe you need something more to beat the titan?}}"
+parent = 191
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "act"
+text = "The Black Knight Titan's regenerates back to full health."
+parent = 191
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "act"
+text = "end"
+parent = 191
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "cond"
+text = "If the player uses the excalibur to defeat the Black Knight Titan:"
+parent = 189
+children = [197, 198]
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "other"
+text = "{{mes|Well done! You have defeated the Black Knight Titan!}}"
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "act"
+text = "end"
+parent = 196
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "option"
+text = "Actually I think I'll run away!"
+parent = -1
+children = [200, 201]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually I think I'll run away!"
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "act"
+text = "end"
+parent = 199
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Fisherman"
+text = "Hi! I don't get many visitors here!"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "option"
+text = "How's the fishing?"
+parent = -1
+children = [206, 207, 208]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How's the fishing?"
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Fisherman"
+text = "Not amazing. Not many fish can live in this gungey stuff. I remember when this was a pleasant river teeming with every sort of fish..."
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "act"
+text = "end"
+parent = 205
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "option"
+text = "Any idea how to get into the castle?"
+parent = -1
+children = [210, 211, 212, 213, 214, 215]
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any idea how to get into the castle?"
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Fisherman"
+text = "Why, that's easy!"
+parent = 209
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Fisherman"
+text = "Just ring one of the bells outside."
+parent = 209
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "...I didn't see any bells."
+parent = 209
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Fisherman"
+text = "You must be blind then. There's ALWAYS bells there when I go to the castle."
+parent = 209
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "act"
+text = "end"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "option"
+text = "Yes, well, this place is a dump."
+parent = -1
+children = [217, 218, 219]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, well, this place is a dump!"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Fisherman"
+text = "This place used to be very beautiful, however, as our king grows old and weak, the land seems to be dying too."
+parent = 216
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "act"
+text = "end"
+parent = 216
+is_terminal = true
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Peasant"
+text = "Woe is me! Our crops are all failing... how shall I feed myself this winter?"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "cond"
+text = "If the player rings the Grail bell but is not by the dismantled bricks:"
+parent = -1
+children = [223, 224, 225]
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "box"
+text = "Ting-a-ling-a-ling!"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "other"
+text = "{{mes|Nothing happens.}}"
+parent = 222
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "act"
+text = "end"
+parent = 222
+is_terminal = true
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "cond"
+text = "If the player rings the Grail bell and is at least four tiles by the dismantled bricks:"
+parent = -1
+children = [227, 228, 229, 230]
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "box"
+text = "Ting-a-ling-a-ling!"
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Grail Maiden"
+text = "Welcome to the Grail castle. You should come inside, it's cold out here."
+parent = 226
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "box"
+text = "Somehow you are now inside the castle."
+parent = 226
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "act"
+text = "end"
+parent = 226
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Grail Maiden"
+text = "Welcome to the Grail castle."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "box"
+text = "You feel that the Grail shouldn't be moved. You must complete some task here before you are worthy."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "The Fisher King"
+text = "Ah! You got inside at last! You spent all that time fumbling around outside, I thought you'd never make it here."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "option"
+text = "How did you know what I have been doing?"
+parent = -1
+children = [238, 239, 240]
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How did you know what I have been doing?"
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "speaker"
+speaker = "The Fisher King"
+text = "Oh, I can see what is happening in my realm. I have sent clues to help you get here, such as the fisherman, and the crone."
+parent = 237
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "act"
+text = "initial"
+parent = 237
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "option"
+text = "I seek the Holy Grail."
+parent = -1
+children = [242, 243, 244, 245, 246, 247, 248, 258]
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek the Holy Grail."
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "The Fisher King"
+text = "Ah excellent. A knight come to seek the Holy Grail. Maybe our land can be restored to its former glory."
+parent = 241
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "speaker"
+speaker = "The Fisher King"
+text = "At the moment the Grail cannot be removed from the castle. Legend has it a questing knight will one day work out how to restore our land; then he will claim the Grail as his prize."
+parent = 241
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas how I can restore the land?"
+parent = 241
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "speaker"
+speaker = "The Fisher King"
+text = "None at all."
+parent = 241
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 241
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "option"
+text = "You don't look too well."
+parent = 241
+children = [249, 250, 251, 252, 253, 254, 255, 256, 257]
+
+[[nodes]]
+id = 249
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You don't look too well."
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 3
+kind = "speaker"
+speaker = "The Fisher King"
+text = "Nope, I don't feel so good either."
+parent = 248
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "speaker"
+speaker = "The Fisher King"
+text = "I fear my life is running short... Alas, my son and heir is not here. I am waiting for my son to return to this castle."
+parent = 248
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "speaker"
+speaker = "The Fisher King"
+text = "If you could find my son, that would be a great weight off my shoulders."
+parent = 248
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Who is your son?"
+parent = 248
+
+[[nodes]]
+id = 254
+depth = 3
+kind = "speaker"
+speaker = "The Fisher King"
+text = "He is known as Percival."
+parent = 248
+
+[[nodes]]
+id = 255
+depth = 3
+kind = "speaker"
+speaker = "The Fisher King"
+text = "I believe he is a knight of the round table."
+parent = 248
+
+[[nodes]]
+id = 256
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I shall go and see if I can find him."
+parent = 248
+
+[[nodes]]
+id = 257
+depth = 3
+kind = "act"
+text = "end"
+parent = 248
+is_terminal = true
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "option"
+text = "Do you mind if I have a look around?"
+parent = 241
+children = [259, 260, 261]
+
+[[nodes]]
+id = 259
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you mind if I have a look around?"
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 3
+kind = "speaker"
+speaker = "The Fisher King"
+text = "No, not at all. Please, be my guest."
+parent = 258
+
+[[nodes]]
+id = 261
+depth = 3
+kind = "act"
+text = "end"
+parent = 258
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "option"
+text = "You don't look too well."
+parent = -1
+children = [263]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "act"
+text = "above"
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, do you have a knight named Sir Percival?"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Ah yes. I remember young Percival. He rode off on a quest a couple of months ago. We are getting a bit worried, he's not back yet..."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "He was going to try and recover the golden boots of Arkaneeses."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any idea which way that would be?"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Not exactly. We discovered some magic golden feathers that are said to point the way to the boots..."
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "They certainly point somewhere."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Just blowing gently on them will supposedly show the way to go."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "cond"
+text = "If the player does not have enough inventory space:"
+parent = -1
+children = [272, 273]
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "King Arthur"
+text = "Free up some space and I'll give you a feather."
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "act"
+text = "end"
+parent = 271
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "cond"
+text = "If the player has one free inventory space:"
+parent = -1
+children = [275, 276, 277]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "box"
+text = "pic=Magic gold feather detail.png|King Arthur gives you a feather."
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "act"
+text = "receives=a Magic gold feather"
+parent = 274
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "act"
+text = "end"
+parent = 274
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "cond"
+text = "If the player loses the feather:"
+parent = -1
+children = [279]
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "act"
+text = "initial"
+parent = 278
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "cond"
+text = "If the player is directly to the west of the boots:"
+parent = -1
+children = [281, 282]
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the east.}}"
+parent = 280
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "act"
+text = "end"
+parent = 280
+is_terminal = true
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "cond"
+text = "If the player is directly to the east of the boots:"
+parent = -1
+children = [284, 285]
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the west.}}"
+parent = 283
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "act"
+text = "end"
+parent = 283
+is_terminal = true
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "cond"
+text = "If the player is directly to north of the boots:"
+parent = -1
+children = [287, 288]
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the south.}}"
+parent = 286
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "act"
+text = "end"
+parent = 286
+is_terminal = true
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "cond"
+text = "If the player is directly to the south of the boots:"
+parent = -1
+children = [290, 291]
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the north.}}"
+parent = 289
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "act"
+text = "end"
+parent = 289
+is_terminal = true
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "cond"
+text = "If the player is southeast of the boots:"
+parent = -1
+children = [293, 294]
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the northwest.}}"
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "act"
+text = "end"
+parent = 292
+is_terminal = true
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "cond"
+text = "If the player is southwest of the boots:"
+parent = -1
+children = [296, 297]
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the northeast.}}"
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "act"
+text = "end"
+parent = 295
+is_terminal = true
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "cond"
+text = "If the player is northeast of the boots:"
+parent = -1
+children = [299, 300]
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the southwest.}}"
+parent = 298
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "act"
+text = "end"
+parent = 298
+is_terminal = true
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "cond"
+text = "If the player is northwest of the boots:"
+parent = -1
+children = [302, 303]
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to the southeast.}}"
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "act"
+text = "end"
+parent = 301
+is_terminal = true
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "cond"
+text = "If the player is within 5 tiles away from the boots:"
+parent = -1
+children = [305, 306]
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "other"
+text = "{{mes|The feather points to somewhere nearby.}}"
+parent = 304
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "act"
+text = "end"
+parent = 304
+is_terminal = true
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "cond"
+text = "If the player blows the feather whilst inside [[Scrubfoot's Cave]] or any dungeon:"
+parent = -1
+children = [308]
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "other"
+text = "{{mes|The feather doesn't seem to work here...}}"
+parent = 307
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "cond"
+text = "If the player blows the feather whilst inside Sir Percival's house:"
+parent = -1
+children = [310, 311]
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "other"
+text = "{{mes|The feather points at the sacks.}}"
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "act"
+text = "end"
+parent = 309
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "cond"
+text = "If the player prods at the sacks:"
+parent = -1
+children = [313, 314]
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "box"
+text = "You hear a muffled groan. The sack wriggles slightly."
+parent = 312
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "act"
+text = "end"
+parent = 312
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "cond"
+text = "If the player attempts to open the sack:"
+parent = -1
+children = [316, 317]
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "box"
+text = "You hear muffled noises from the sack. You open the sack."
+parent = 315
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "act"
+text = "continues"
+parent = 315
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Sir Percival"
+text = "Wow, thank you! I could hardly breathe in there!"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "option"
+text = "How did you end up in a sack?"
+parent = -1
+children = [321, 322, 323, 324, 325, 326, 327]
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How did you end up in a sack?"
+parent = 320
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "It's a little embarrassing really."
+parent = 320
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "After going on a long and challenging quest to retrieve the boots of Arkaneeses, defeating many powerful enemies on the way, I fell into a goblin trap!"
+parent = 320
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "I've been kept as a slave here for the last 3 months!"
+parent = 320
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "A day or so ago, they decided it was a fun game to put me in this sack:{{sic|Supposed to be a semicolon}} then they forgot about me!"
+parent = 320
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "I'm now very hungry, and my bones feel very stiff."
+parent = 320
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "act"
+text = "inital"
+parent = 320
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "option"
+text = "Come with me, I shall make you a king."
+parent = -1
+children = [329, 330, 331, 332, 333, 334]
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Come with me, I shall make you a king."
+parent = 328
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "What are you talking about?"
+parent = 328
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "The king of where?"
+parent = 328
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Your father is apparently someone called the Fisher King. He is dying and wishes you to be his heir."
+parent = 328
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "I have been told that before."
+parent = 328
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "I have not been able to find that castle again though..."
+parent = 328
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "cond"
+text = "If the player does not have the whistle:"
+parent = -1
+children = [336, 337]
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I do have the means to get us there - wait, let me go get the magic whistle!"
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "act"
+text = "end"
+parent = 335
+is_terminal = true
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "cond"
+text = "If the player has the magic whistle:"
+parent = -1
+children = [339, 340, 341, 342]
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I do have the means to get us there - a magic whistle!"
+parent = 338
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "box"
+text = "You give a whistle to Sir Percival. You tell sir Percival what to do with the whistle."
+parent = 338
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "Ok, I will see you there then!"
+parent = 338
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "act"
+text = "end"
+parent = 338
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "Your father wishes to speak to you."
+parent = -1
+children = [344, 345, 346, 347, 348]
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Your father wishes to speak to you."
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "My father? You have spoken to him recently?"
+parent = 343
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "He is dying and wishes you to be his heir."
+parent = 343
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "I have been told that before."
+parent = 343
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "I have not been able to find that castle again though..."
+parent = 343
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "cond"
+text = "If the player does not have the whistle:"
+parent = -1
+children = [350, 351]
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I do have the means to get us there - wait, let me go get the magic whistle!"
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "act"
+text = "end"
+parent = 349
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "cond"
+text = "If the player has the magic whistle:"
+parent = -1
+children = [353, 354, 355, 356]
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I do have the means to get us there - a magic whistle!"
+parent = 352
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "box"
+text = "You give a whistle to Sir Percival. You tell sir Percival what to do with the whistle."
+parent = 352
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Sir Percival"
+text = "Ok, I will see you there then!"
+parent = 352
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "act"
+text = "end"
+parent = 352
+is_terminal = true
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Sir Percival"
+text = "I said I will see you there then!"
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "speaker"
+speaker = "King Percival"
+text = "You missed all the excitement!"
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "speaker"
+speaker = "King Percival"
+text = "I got here and agreed to take over duties as king here, then before my eyes the most miraculous changes occured here... grass and trees were growing outside before our very eyes!"
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "speaker"
+speaker = "King Percival"
+text = "Thank you very much for showing me the way home."
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "cond"
+text = "If the player talks to him again:"
+parent = -1
+children = [364]
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "act"
+text = "above"
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "box"
+text = "You feel that taking more than one Holy Grail might be greedy..."
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "How goes thy quest?"
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have retrieved the Grail!"
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Wow! Incredible! You truly are a splendid knight!"
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "King Arthur"
+text = "Thank you for retrieving the Grail! You shall be long remembered as one of the greatest heroes amongst the Knights of the Round Table!"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "Hello there adventurer, what do you want of me?"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Sir Palomedes"
+text = "After your help freeing Merlin, my help is the least I can offer as a man of honour."
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nothing right now, but I'll bear it in mind. Thanks."
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "speaker"
+speaker = "Sir Lucan"
+text = "Congratulations on freeing Merlin!"
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Hail Arthur, King of the Britons!"
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... Hello."
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Sir Tristram"
+text = "Thanks for freeing Merlin."
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No problem. It was easy."
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "Greetings to the court of King Arthur!"
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Sir Pelleas"
+text = "You are a very talented Knight indeed to have freed Merlin so quickly. You have all of our gratitude."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "May I help you?"
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Sir Bedivere"
+text = "All Knights of the Round thank you for your assistance in this trying time for us."
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "Greetings! I am Sir Lancelot, the greatest Knight in the land! What do you want?"
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Sir Lancelot"
+text = "Hmmm. I heard you freed Merlin. Either you're better than you look or you got lucky. I think the latter."
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Good day to you!"
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "option"
+text = "Good day."
+parent = -1
+children = [397, 398]
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = 396
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "act"
+text = "end"
+parent = 396
+is_terminal = true
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "option"
+text = "Know you of any quests sir knight?"
+parent = -1
+children = [400, 401, 402, 403]
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Know you of any quests sir knight?"
+parent = 399
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "I think you've done the main quest we were on right now..."
+parent = 399
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "speaker"
+speaker = "Sir Gawain"
+text = "Good day to you!"
+parent = 399
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "act"
+text = "end"
+parent = 399
+is_terminal = true
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "speaker"
+speaker = "Merlin"
+text = "Congratulations, brave knight, on aiding Camelot in so many ways! If we ever require help again, I will make sure to call upon you!"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

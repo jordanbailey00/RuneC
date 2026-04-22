@@ -1,0 +1,50 @@
+name = "Cerberus"
+source_pages = ["Cerberus", "Cerberus/Strategies"]
+npc_ids = [5862, 5863, 5866]
+
+[sections]
+"=Attack Styles=" = """
+Cerberus attacks with all three forms of combat:
+
+*Melee - Cerberus bites the player. This attack will only be used if the player is standing within melee range.
+*Ranged - Cerberus stands on her hind legs and kicks out with her front legs, firing a translucent spiky ball. 
+*Magic - Cerberus lowers her head and fires a smooth black ball.
+**All of these attacks have a max hit of 23.
+**Protection Prayers prevent all damage, but must be active as the attack is launched.
+"""
+
+"=Attack pattern=" = """
+Cerberus has a special attack pattern that determines how she uses her attacks.
+
+As mentioned in each attack section, Cerberus' mechanics are initiated after the following, quickly summarized here:
+
+*The triple attack is performed as the first attack, then after every ten normal attacks.
+*The summoned souls attack is performed every seventh attack, but only after Cerberus has under 400 hitpoints.
+*The lava pools are deployed every fifth attack, but only after Cerberus has under 200 hitpoints.
+
+If the attacks end up overlapping with each other (e.g a triple attack and summoned souls on attack #21), Cerberus will instead prioritise the attacks in the following order:
+
+*Triple attack > Summoned Souls > Lava pools
+
+There is also a 10% chance that Cerberus will not use the summoned souls or lava pools special attacks when she is supposed to, and will use a regular attack instead.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1705829425365864637|date=24 September 2023|archiveurl=https://archive.ph/br0fx{{^|https://archive.ph/B7ZFA}}|archivedate=24 September 2023|quote=Her spectre & flame specials are available once her health's under 2/3. But there's still a 10% random chance of her just going for a normal attack rather than doing those.}}
+"""
+
+"=Triple Attack=" = """
+*This attack is initiated as her first attack and is repeated after every ten attacks in sequence.
+*She uses a magic, ranged and then melee attack 2 ticks after one another. This melee attack will be executed ''regardless'' of distance, and does not act as a projectile.
+*As with her standard attacks, these can deal up to 23 damage and can be fully blocked by prayer.
+"""
+
+"Fight overview" = """
+{{Main|Cerberus/Strategies}}
+When approaching her, Cerberus will become aggressive. She may attack with magic, ranged and melee attacks, each with a max hit of 23. The magic attack appears as a grey ball, the ranged attack appears as a ball of spikes, and the melee attack is her biting.
+
+Cerberus has three special attacks that she may use under certain circumstances:
+* She attacks in quick succession with magic followed by ranged and melee. The melee attack will hit the player even at a distance.
+* She summons three [[Summoned Soul|souls]] – indicated by her howling {{Overhead|Aaarrrooooooo}} – that come from the river behind her and attack the player with each combat style. Each attack will drain 30 prayer (20 with [[Ward of Arceuus]], 15 with [[spectral spirit shield]] equipped, 10 with both) if blocked or 30 hitpoints if not blocked.
+* She spits three balls of fire on the ground, indicated by a {{Overhead|Grrrrrr}} chat text above her head. One lava spot will land on the player and two in random spots around the room. Standing on one will deal continuous damage, which can be reduced with appropriate [[dragonfire]] protection.{{CiteTwitter|author=Mod Arcane|url=https://twitter.com/JagexArcane/status/1429082258602876930|date=21 August 2021|archiveurl=https://reldo.runescape.wiki/i/103708|archivedate=21 August 2021|quote=antifire actually seems to reduce damage from cerberus flame attack}}
+
+If a player has recently fought the boss, a line of [[Flames|fire]] will spawn between the entrance and the boss; stepping over this will deal 5 damage each way. The line of fire may be bugged, as it will not despawn unless the challenger dies to Cerberus or goes back through the line of fire after it respawns and if the player comes back after teleporting away mid-fight. Cerberus will restore all of her health if there are no players in her lair (she is not attackable and only has an examine option when this happens).
+
+Once defeated, Cerberus will respawn in five seconds.
+"""

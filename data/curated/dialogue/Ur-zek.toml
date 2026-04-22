@@ -1,0 +1,131 @@
+title = "Transcript:Ur-zek"
+npcs = ["Ur-taal", "Ur-zek"]
+node_count = 16
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Ur-zek"
+text = """
+I think that Ur-tag is trying to move too quickly. First, he opens the city to humans, and now he wants to invite these dwarves into the city. I think we should exercise more caution in dealing with surface-dwellers.
+"""
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Ur-taal"
+text = "The dwarves are not surface dwellers. They live in an underground city, like us!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Ur-zek"
+text = "Why does that mean we can trust them? Are you forgetting the machine that nearly destroyed us was made by dwarves?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Ur-taal"
+text = "You shouldn't judge all dwarves because of that!"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Ur-zek"
+text = "I know that! And I know not all humans want to kill us, but I still never thought we should open the city."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Ur-taal"
+text = "You can't deny it's done some good. Think of how happy everyone is trying surface foods in the market!"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Ur-zek"
+text = "I'm not denying that, I just don't think it's worth the risk. Our guards have their work cut out as it is, protecting us from renegade humans, without having to worry about dwarves as well."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Ur-taal"
+text = "Please don't be offended by my friend's attitude, surface-dweller. I'm sure you understand why we need to be cautious."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "option"
+text = "Listen to the councillors"
+parent = -1
+children = [11]
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "act"
+text = "above"
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "option"
+text = "Ask for permission to sell food in the market"
+parent = -1
+children = [13, 14, 15]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "May I have permission to sell food in the market?"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Ur-zek"
+text = "Of course you can."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true

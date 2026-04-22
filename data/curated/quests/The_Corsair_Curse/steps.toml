@@ -1,0 +1,118 @@
+quest = "The Corsair Curse"
+step_count = 7
+
+[[steps]]
+index = 0
+name = "The cursed crew"
+links = ["Captain Tock", "Port Sarim", "Corsair Cove", "Chief Tess", "Ithoi the Navigator", "Gnocci the Cook", "Arsen the Thief", "Cabin Boy Colin"]
+text = """
+[[File:Captain Tock chathead.png|left|width=123x123]]
+Speak to [[Captain Tock]] at the crossroads north of [[Port Sarim]]. He explains that his crew of corsairs has been inflicted with a curse and requests your help. After the player agrees to help him, a brief cutscene shows the location of his boat at the western Rimmington dock. Speak to him there to sail to [[Corsair Cove]].
+
+{{Map|mtype=pin|align=right|caption=A map of all the important locations visited during the quest.
+|2523,2861,title:[[Chief Tess]],desc:
+|2579,2840,title:[[Captain Tock]],desc:
+|2531,2833,title:[[Ithoi the Navigator]],desc:
+|2545,2862,title:[[Gnocci the Cook]],desc:
+|2556,2856,title:[[Arsen the Thief]] and [[Cabin Boy Colin]],desc:
+|2503,2839,title:Possessed doll,desc:
+}}
+"""
+
+[[steps]]
+index = 1
+name = "Ithoi's ideas"
+links = ["Ithoi the Navigator", "Arsen the Thief", "Colin", "Gnocci the Cook"]
+text = """
+[[File:Ithoi the Navigator chathead.png|left|frameless|width=110x110]]
+Visit [[Ithoi the Navigator|Ithoi]] first in his hut, south-west of the Corsair Cove. He will claim there is a curse, and that there are many things that can cause them.
+
+After talking to [[Ithoi the Navigator|Ithoi]], investigate what may have caused the curse by speaking to [[Arsen the Thief|Arsen]], [[Colin]], and [[Gnocci the Cook|Gnocci]] in any order. Refer to the map for their exact locations. Note that they are each ''upstairs'' in their huts, and you need to climb the stairs to reach them. Each will tell you they caused the curse with various events that occurred to each respectively. Arsen and Colin are upstairs in the large hut found immediately west of the dock, and Gnocci is upstairs in the smaller hut slightly further to the west. Each crew member's claim will need to be investigated further.
+"""
+
+[[steps]]
+index = 2
+name = "Arsen's appropriation"
+links = ["Arsen the Thief", "Ogre artefact (The Corsair Curse)", "Corsair Cove Dungeon", "Chief Tess"]
+text = """
+[[File:Arsen the Thief chathead.png|left|width=90x90]]
+[[Arsen the Thief]] will explain that he was asked by Captain Tock to explore some caves west of the cove. On entering, he was immediately spotted by the ogres in the cave, and in a panic, grabbed some loot and quickly fled. He believes he may have stolen a sacred relic, and says the shamans have cursed his crew for stealing it.
+
+Speak to Captain Tock, located on the ship, and ask him for the relic. As he has no use for it, he will give you the [[Ogre artefact (The Corsair Curse)|ogre artefact]].
+
+Head west of the cove and down the hole into the [[Corsair Cove Dungeon]]. Speak to [[Chief Tess]] at the entrance, and she will tell you that he simply grabbed one of her many tooth-picks, and that her shamans have not cursed the crew.
+
+Return to Arsen to explain what actually happened. Arsen is now assured that the curse was not his fault.
+"""
+
+[[steps]]
+index = 3
+name = "Colin's catcall"
+links = ["Cabin Boy Colin", "ogre", "Bugs", "Big Chompy Bird Hunting", "Rantz"]
+text = """
+[[File:The Corsair Curse - Colin sees a mermaid.png|thumb|right|Colin sees a mermaid through Ithoi's telescope.]]
+[[File:Cabin Boy Colin chathead.png|left|width=76x76]]
+[[Cabin Boy Colin]] believes he may have offended a mermaid after he saw one using Ithoi's telescope. He thinks that perhaps the mermaid didn't like strangers shouting about her appearance and blowing kisses at her, and that she cursed the crew as a result.
+
+Use the telescope in Ithoi's hut and discover that the mermaid Colin was referring to is an [[ogre]] named [[Bugs]]. If you have completed [[Big Chompy Bird Hunting]], you will recognise him as [[Rantz]]'s son. 
+
+{{Bug|Since the Sailing update, the ogre is barely in the frame of the camera, likely due to changes in ocean visuals.}}
+
+Return to Colin to explain what actually happened. Colin is now assured that the curse was not his fault.
+"""
+
+[[steps]]
+index = 4
+name = "Gnocci's no-no"
+links = ["Gnocci the Cook", "toy doll"]
+text = """
+[[File:Gnocci the Cook chathead.png|left]]
+[[File:The Corsair Curse - possessed doll location.png|thumb|300px|Dig here to find the Demonic Doll]]
+[[Gnocci the Cook]] will tell you that while fishing for food, he discovered a doll possessed by a demon and buried it next to the tree where he was fishing. He believes that this demon cursed the crew, and asks you to kill it.
+
+If you did not bring a tinderbox, pick up the one next to Gnocci. If you did not bring a spade, one can be found planted in the sand under the big Tropical Tree south of Gnocci the Cook's hut, near the rocks.
+
+Dig by the lump of sand to the far west of Ithoi's hut (just west of the fishing spot) where he buried the doll during the cutscene. You will discover it is a clockwork [[toy doll]]. If you have at least level {{SCP|Crafting|18|link=yes}}, you will also say that you know how to make a doll just like it.
+
+Return to Gnocci to explain what actually happened. Gnocci is assured that the curse was not his fault.
+"""
+
+[[steps]]
+index = 5
+name = "Traitor in the midst"
+links = ["Arsen", "Colin", "Gnocci", "Ithoi", "Francois", "tinderbox", "Captain Tock"]
+text = """
+[[File:Francois chathead.png|left|frameless|width=90x90]]
+At this point your quest log should end with, "I had{{sic}} ruled out all the corsairs' theories about how they had become cursed;" if not, repeat your conversations with each corsair as needed.
+
+After debunking [[Arsen]], [[Colin]], and [[Gnocci]]'s "curses," return to Captain Tock on the boat. He will explain to you that the curse began when he and [[Ithoi]] went away for a parlay and returned to find their crew sickly after eating dinner, with Ithoi soon falling ill as well. As Ithoi was with Captain Tock at the time, he rules out the food as the cause of the curse.
+
+Speak to Gnocci to discover that he didn't cook dinner that night, as he was still traumatised from the "possessed" doll. Gnocci will tell you that Ithoi cooked dinner that night, before leaving for his parlay with Captain Tock. He will also rule out the food as the cause of the curse.
+
+Next, speak to Arsen. He will reveal that his brother, [[Francois]], told him that Ithoi may be dismissed from Tock's crew, as they have settled in the Cove and no longer need a navigator.
+
+Speak to Ithoi, and tell him that you heard he cooked the meal that made the crew sick. He will believe you are accusing him of poisoning his crew, and asks why you would think so. Mention that you know the Captain is thinking of firing him and he will confess to the crime, saying that he hoped if the crew believed they were cursed, they would want Ithoi to stay on the crew.
+[[File:The Corsair Curse - Ithoi extinguishes fire.png|thumb|200px|Ithoi runs out to extinguish your fire, proving that he is faking the curse.]]
+Speak to Ithoi again and tell him you know the curse is fake. He will tell you he will not get up, thus making you unable to prove he is faking his illness. Leave the hut and use the [[tinderbox]] on the driftwood beneath Ithoi's hut, prompting him to get up and run outside to douse the flame with magic.
+
+Return to [[Captain Tock]], and tell him Ithoi is behind the curse. Outraged, Captain Tock will ask you to kill Ithoi.
+"""
+
+[[steps]]
+index = 6
+name = "Taking care of Ithoi"
+links = ["strike spells", "Curse", "Yusuf"]
+text = """
+[[File:Ithoi the Navigator.png|left|frameless|width=231x231]]
+{{Instance}}
+[[File:Fighting Ithoi the Navigator.png|thumb|right|200px|The player confronts Ithoi.]]
+Return to Ithoi's hut, and climb the stairs to begin the final fight.
+
+Upon climbing up, Ithoi will attack you immediately. He is level 35 and uses elemental [[strike spells]]. He can also use the [[Curse]] spell. Lower-leveled players should bring food for this fight, as while he does splash quite often, he can still deal considerable damage. ''Make sure that if you are using ranged attacks, you are comfortable losing the arrows or bolts that you use during the fight, as they will disappear at the end of the fight.'' 
+
+It is possible to flinch Ithoi if you have low stats and gear by running to the nearby telescope; he will become trapped on one side of the hut entrance, allowing you to attack him and run back to the safespot until he is dead.
+
+After killing Ithoi, leave his hut and return to Captain Tock, who will ask what is happening now. Explain to him that Ithoi was killed for poisoning his crew. He will thank you and say that he plans to let the crew members rest and get better. He will also mention that he will speak to [[Yusuf]], located in the bank north of the ship, allowing access to bank on the cove.
+
+'''Congratulations, quest complete!'''
+"""

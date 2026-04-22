@@ -1,0 +1,9536 @@
+title = "Transcript:The Giant Dwarf"
+npcs = ["Dwarven Boatman", "Black Guard Berserker", "Commander Veldaban", "Blasidar the sculptor", "Riki the sculptor's model", "Vermundi", "Librarian", "Saro", "Dromund", "Dromund's cat", "Santiri", "Reldo", "Thurgo", "Red Axe Director", "Red Axe Secretary", "Blue Opal Director", "Blue Opal Secretary", "Brown Engine Director", "Brown Engine Secretary", "Green Gemstone Director", "Green Gemstone Secretary", "Purple Pewter Director", "Purple Pewter Secretary", "Silver Cog Director", "Silver Cog Secretary", "White Chisel Director", "White Chisel Secretary", "Yellow Fortune Director", "Yellow Fortune Secretary"]
+node_count = 1218
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Ho there, human!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[player name]."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Ho there, [player name]! Want to take a ride with me?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where are you going? Across the river?"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "No no, that's what the ferryman is for! I'm going to Keldagrim, my home!"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How much will that cost me then?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "For a human like you, I can do it for free!"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "option"
+text = "That's a deal!"
+parent = -1
+children = [9, 10, 11, 12, 13, 81]
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's a deal!"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Excellent! I'm just waiting for my ship to arrive and then we can go."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Mind, this trip could take a few minutes! Are you sure you're ready to go as well?"
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "select"
+text = "Start The Giant Dwarf quest?"
+parent = 8
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 8
+children = [14, 15, 16, 17, 18, 20]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm ready and don't mind it taking a few minutes."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Well, let's not waste any more time then!"
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "other"
+text = "''Note: The option to skip the cutscene only appears in Leagues and Community Event worlds.''"
+parent = 13
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 13
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "option"
+text = "Skip Cutscene"
+parent = 13
+children = [19]
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "act"
+text = "Continues below at \"Identify yourself, human!\""
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "option"
+text = "Play Cutscene"
+parent = 13
+children = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 54, 61, 64, 65, 66, 67, 68, 72]
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "other"
+text = """
+{{qact|A cutscene starts. The screen displays the Keldagrim Palace. In large, red letters, \"Keldagrim, Grand Capital of the Dwarven realm\" appear on screen. The text disappears, and the following text appears next:}}
+"""
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "other"
+text = "Five hundred years have passed since the rule of King Alvis,"
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "other"
+text = "saviour of Keldagrim, victim of his own inventions."
+parent = 20
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "other"
+text = "He founded the Consortium: the gathering of mining companies"
+parent = 20
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "other"
+text = "that were to serve the monarchy. But eventually the monarchy came"
+parent = 20
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "other"
+text = "to serve the Consortium."
+parent = 20
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "other"
+text = "By the time of his death, the monarchy was all but abolished."
+parent = 20
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "other"
+text = "Now the Kings in Keldagrim are but a distant memory..."
+parent = 20
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "other"
+text = "with the only statue of King Alvis to remind people of the"
+parent = 20
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "other"
+text = "old days. The dark days."
+parent = 20
+
+[[nodes]]
+id = 31
+depth = 4
+kind = "other"
+text = """
+{{qact|The camera pans throughout Keldagrim-West, and the text \"Rise of the Red Axe Part 1\" appears on screen. The camera then pans to the statue of King Alvis, and the text \"The Giant Dwarf\" appears. The scene then shifts to a map of the River Kelda, the statue, and a mini version of the dwarven boat, moving.}}
+"""
+parent = 20
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Look, there's the statue of King Alvis, guarding the entrance to Keldagrim!"
+parent = 20
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Amazing! And we're going to go straight past it?"
+parent = 20
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "That's right!"
+parent = 20
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Er, hold on! There's something wrong!"
+parent = 20
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "speaker"
+speaker = "Both"
+text = "Aaargh!"
+parent = 20
+
+[[nodes]]
+id = 37
+depth = 4
+kind = "other"
+text = "{{qact|The boat crashes into the statue, destroying it. The cutscene then shifts to the dock in Keldagrim. Two Black Guard Berserkers are seen standing on the dock}}"
+parent = 20
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "speaker"
+speaker = "Black Guard Berserker"
+text = "Halt! By order of the Black Guard, you are under arrest!"
+parent = 20
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What?? I didn't do anything! It wasn't me!"
+parent = 20
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "speaker"
+speaker = "Black Guard Berserker"
+text = "Come with us, human! Commander Veldaban wants a word with you!"
+parent = 20
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "other"
+text = "{{qact|The cutscene ends, and the player arrives at the Black Guard Headquarters.}}"
+parent = 20
+
+[[nodes]]
+id = 42
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Identify yourself, human!"
+parent = 20
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I err, I'm [player name]. I was told I was under arrest. I had a little accident on the way in here."
+parent = 20
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Ah, so you're the one who knocked over the statue of our glorious king!"
+parent = 20
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I suppose so... I mean, I didn't do it on purpose or anything..."
+parent = 20
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Ah, don't worry about it!"
+parent = 20
+
+[[nodes]]
+id = 47
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "We haven't been ruled by a king for many a year... that statue was long overdue for replacement anyway. You're not under arrest, I merely wanted to talk to you."
+parent = 20
+
+[[nodes]]
+id = 48
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "But let me introduce myself. I am Veldaban, son of Dondakan. I am the Commander of the Black Guard in Keldagrim."
+parent = 20
+
+[[nodes]]
+id = 49
+depth = 4
+kind = "cond"
+text = "If the player has completed [[Between a Rock...]]:"
+parent = 20
+children = [50, 51, 52, 53]
+
+[[nodes]]
+id = 50
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Dondakan, you say?"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I helped your father in the mines south of the city."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Ah, so you are the one! I heard you banished a demon by defeating its avatar, most impressive."
+parent = 49
+
+[[nodes]]
+id = 53
+depth = 5
+kind = "act"
+text = "continue"
+parent = 49
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "cond"
+text = "If the player has started [[Between a Rock...]]:"
+parent = 20
+children = [55, 56, 57, 58, 59, 60]
+
+[[nodes]]
+id = 55
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Dondakan, you say?"
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I'm helping your father in the mines south of the city."
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Ah, he is forever trying to break open that rock of his, until his death I sometimes think."
+parent = 54
+
+[[nodes]]
+id = 58
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "So you don't think it's possible?"
+parent = 54
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Perhaps, human, perhaps... but if even our multicannon does not dent it, what chance is there really?"
+parent = 54
+
+[[nodes]]
+id = 60
+depth = 5
+kind = "act"
+text = "continue"
+parent = 54
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "cond"
+text = "If the player has not started [[Between a Rock...]]:"
+parent = 20
+children = [62, 63]
+
+[[nodes]]
+id = 62
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well, ehm... nice to meet you, Veldaban."
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 5
+kind = "act"
+text = "continue"
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Now listen carefully. I have a task for you."
+parent = 20
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "I want you to go and see the local sculptor and help him build a new statue."
+parent = 20
+
+[[nodes]]
+id = 66
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Will you do this for us?"
+parent = 20
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 20
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "option"
+text = "No, I can't be bothered."
+parent = 20
+children = [69, 70, 71]
+
+[[nodes]]
+id = 69
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "No, I can't be bothered."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "You destroy our statue and you cannot be bothered to help rebuild it? By Guthix, you are rude... even for a human!"
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 5
+kind = "act"
+text = "end"
+parent = 68
+is_terminal = true
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "option"
+text = "Yes, I will do this."
+parent = 20
+children = [73, 74, 75, 76, 77, 78, 79, 80]
+
+[[nodes]]
+id = 73
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I will do this."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "You are a good human, [player name]."
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Now, I need you to go to Blasidar, he is a sculptor who lives in Keldagrim-East."
+parent = 72
+
+[[nodes]]
+id = 76
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "To be honest I'm not much of a sculptor myself."
+parent = 72
+
+[[nodes]]
+id = 77
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Oh, don't worry! I just need you to help him out while he rebuilds the statue."
+parent = 72
+
+[[nodes]]
+id = 78
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "I'm sure there are many tasks that he needs doing."
+parent = 72
+
+[[nodes]]
+id = 79
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I'll see what I can do."
+parent = 72
+
+[[nodes]]
+id = 80
+depth = 5
+kind = "act"
+text = "end"
+parent = 72
+is_terminal = true
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "option"
+text = "No."
+parent = 8
+children = [82, 83, 84]
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't have time right now, I'll be back later."
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Sure, sure! Come back when you need to!"
+parent = 81
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "act"
+text = "end"
+parent = 81
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "option"
+text = "I prefer the mines to the city."
+parent = -1
+children = [86, 87, 88]
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I prefer the mines to the city."
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Dwarven Boatman"
+text = "Well, suit yourself then!"
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "How are you getting on with rebuilding our statue, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I haven't really done much yet..."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Get back to it as soon as you can, please!"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, can you help me?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Talk... to Blasidar."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? No, I was wondering if you could help me."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Talk... to Blasidar."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, alright."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excuse me, are you Blasidar, the famous sculptor?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Why, yes, yes, that I am!"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, well, I'm [player name]. Veldaban of the Black Guard sent me to you, you see. Said you might need some help with the statue."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Oh, I don't need an assistant sculptor, really, I can do just fine on my own."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not a sculptor."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "And I've also got a model here, you see, to base my statue on."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not a model!"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "But come to think of it, I do need some errands run. Yes, quite important errands too."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Yes, you will do just fine."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ehm, right, okay."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what did you need doing?"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Well, see... the Consortium has commisioned{{sic}} me to rebuild the statue exactly the way it was."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "But the statue itself has broken into a million pieces... and we dwarves aren't very good painters, you know, so we don't have any paintings of it either."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not a very artistic race, then, are you?"
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "No, that's not what I said, I said we're not very good painters."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "We're excellent with, for example, stone. Oh yes, quite good if I say so myself."
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "But I digress... simply speaking, I need some help with getting some items that I can base the new statue on."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Will you be able to help me with this, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "option"
+text = "No, I can't be bothered."
+parent = -1
+children = [119, 120, 121]
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I can't be bothered."
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "How rude is that? I don't think the Black Guard will be very pleased with you!"
+parent = 118
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 118
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "option"
+text = "Yes, I will do this."
+parent = -1
+children = [123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I will do this."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Excellent, excellent! Now what I need is the following..."
+parent = 122
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "I will need a pair of boots, the most exquisite boots you can find. The more they look like the original the better, but I don't think you'll be able to find an exact match."
+parent = 122
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "For the torso, I need clothes that look like King Alvis' clothes. I'm not sure where you would be able to find that, but I'm sure you'll manage."
+parent = 122
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Also, I need a battleaxe. Now this is particularly important. You are in luck, however, as I believe King Alvis' original axe still survives."
+parent = 122
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right, so I need a pair of boots, a piece of clothing and a battleaxe. Is that all?"
+parent = 122
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "For now, [player name], for now! I wish you good luck, and hurry back with the items!"
+parent = 122
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But... wait, wait, how am I supposed to find all this?"
+parent = 122
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "I don't know! You're supposed to find that out for me!"
+parent = 122
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "But it's a beautiful city, Keldagrim is, I'm sure you'll see many things while you do these tasks!"
+parent = 122
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What was it you needed doing again?"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "act"
+text = "Continues above from after \"So what did you need doing?\""
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Vermundi"
+text = "Welcome to my clothes stall, can I help you with anything?"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "quest=No|Yes, what clothes do you have in stock?"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "Yes, I'm looking for some special clothes."
+parent = -1
+children = [140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm looking for some special clothes."
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Oh, that sounds interesting, what's this about?"
+parent = 139
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm helping the sculptor to rebuild the statue of King Alvis. But he wants to know what his clothes looked like."
+parent = 139
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Oh dear, that statue is in a terrible mess, isn't it?"
+parent = 139
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "I could hear the tumult from over here!"
+parent = 139
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But the clothes, do you have any similar clothes?"
+parent = 139
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Oh no, no, I can't quite recall what the clothes looked like. But I know someone who can!"
+parent = 139
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who's that?"
+parent = 139
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Well, I'm sure Hugi the librarian in West can help you along."
+parent = 139
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "West?"
+parent = 139
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Keldagrim-West, dear... on the other side of the Kelda, towards the north end of the city."
+parent = 139
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "I'm sure he can show you the exact designs of the clothes."
+parent = 139
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I need the actual clothes themselves, not just the designs."
+parent = 139
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Oh, just bring the designs to me then, I'll fix you up some nice clothes!"
+parent = 139
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Sounds like a fun little thing to do!"
+parent = 139
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great, thanks a lot, I'll check out the library!"
+parent = 139
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "end"
+parent = 139
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "quest=No|No, I'm just browsing."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Librarian"
+text = "Welcome to the Keldagrim library, human traveller!"
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the library?"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "option"
+text = "Do you know anything about King Alvis' clothes?"
+parent = -1
+children = [161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171]
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about King Alvis's clothes?"
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "His clothes? How do you mean?"
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm helping Blasidar the sculptor to rebuild the statue of King Alvis, but he needs to know the design of his clothes."
+parent = 160
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "I see, I see."
+parent = 160
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "There is a book, somewhere in the library, that may help you. It is the 'Scholars Guide to Dwarven Costumes' and it contains the designs of the costumes of a lot of old Kings and dwarven dignitaries."
+parent = 160
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like just the thing. Where exactly could I find it?"
+parent = 160
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "Let me think... I believe it is on the top shelf of one of the bookcases in the library, because it is such an old book."
+parent = 160
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you be any more specific? Upstairs, downstairs?"
+parent = 160
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "I don't remember, sorry. You will have to try several bookcases. You will probably need the ladders, tall a human though you are."
+parent = 160
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, thanks, I'll have a look."
+parent = 160
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "act"
+text = "end"
+parent = 160
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "cond"
+text = "Before talking to the librarian:"
+parent = -1
+children = [173, 174]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "box"
+text = "You have no reason to climb that very wobbly looking ladder."
+parent = 172
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "cond"
+text = "If the player is over 30kg:"
+parent = -1
+children = [176, 177, 178]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "box"
+text = "As you put your foot on the bottom of the ladder, you hear it creak loudly... It nearly breaks! This ladder can't support your weight!"
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Bah. Annoying dwarven ladders, they're much too flimsy."
+parent = 175
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "act"
+text = "end"
+parent = 175
+is_terminal = true
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "cond"
+text = "If the player is under 30kg:"
+parent = -1
+children = [180, 181]
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "box"
+text = "You dust off the book you just retrieved and read the title: 'Scholars Guide to Dwarven Costumes'. Just what you need! You can take this to the clothes stall in the palace market now."
+parent = 179
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "act"
+text = "end"
+parent = 179
+is_terminal = true
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "cond"
+text = "If you already have the book:"
+parent = -1
+children = [183, 184]
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "box"
+text = "You already have a copy of the 'Scholars Guide to Dwarven Costumes'. That's quite enough for you."
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "act"
+text = "end"
+parent = 182
+is_terminal = true
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "box"
+text = "You already have a copy of this book."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Vermundi"
+text = "Welcome to my clothes stall, can I help you with anything?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "quest=No|Yes, what clothes do you have in stock?"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "option"
+text = "Yes, about those special clothes again..."
+parent = -1
+children = [191, 192, 193, 196, 198, 200]
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, about those special clothes again..."
+parent = 190
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "Oh yes, did you get those designs from the librarian?"
+parent = 190
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "cond"
+text = "If the player has not spoken to Hugi:"
+parent = 190
+children = [194, 195]
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I haven't actually spoken to the librarian yet, let me do that now."
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "act"
+text = "end"
+parent = 193
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "cond"
+text = "If the player has spoken to Hugi but did not retrieve the book:"
+parent = 190
+children = [197]
+
+[[nodes]]
+id = 197
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't have them yet, but I can get them for you. The librarian has a book."
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Vermundi"
+text = "A book, how wonderful!"
+parent = 190
+children = [199]
+
+[[nodes]]
+id = 199
+depth = 3
+kind = "act"
+text = "end"
+parent = 198
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "cond"
+text = "If the player has the book on costumes:"
+parent = 190
+children = [201, 202, 203, 204, 205, 206, 207, 208, 209, 210]
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have a book right here, have a look at it!"
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "act"
+text = "The player gives the book to Vermundi."
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "Oh, I see, I see!"
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "I can definitely help you with this."
+parent = 200
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "I only have one small problem, you see... I've run out of fuel for my spinning machine."
+parent = 200
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What does it run on?"
+parent = 200
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "Steam, of course!"
+parent = 200
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "But I've used up all my coal and wood and I don't have the time to leave my stall to get them."
+parent = 200
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'll get them for you. Let's see... some coal and some logs. Shouldn't be too hard."
+parent = 200
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "option"
+text = "quest=No|No, I'm just browsing."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "other"
+text = "{{mes|You bend down to light the logs.}}"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "cond"
+text = "If the player succeeds in lighting the logs."
+parent = -1
+children = [214]
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "other"
+text = "{{mes|...and successfully start the engine!}}"
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "cond"
+text = "If the player fails to light the logs."
+parent = -1
+children = [216, 217]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "other"
+text = "{{mes|...but fail miserably.}}"
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "other"
+text = "{{mes|Perhaps you should improve your firemaking skill? Or just try again...}}"
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "other"
+text = "{{mes|You've already done this.}}"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Vermundi"
+text = "Welcome to my clothes stall, can I help you with anything?"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "option"
+text = "quest=No|Yes, what clothes do you have in stock?"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "option"
+text = "Yes, about those special clothes again..."
+parent = -1
+children = [223, 224, 232, 239]
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, about those special clothes again..."
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "cond"
+text = "If the player has not loaded the spinning machine:"
+parent = 222
+children = [225, 226, 227, 228, 231]
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "Well, like I said, I can't do anything really without my spinning machine."
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right, and what did you need again to start the engine?"
+parent = 224
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "Some coal and logs should do it!"
+parent = 224
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "cond"
+text = "If the player has both items:"
+parent = 224
+children = [229, 230]
+
+[[nodes]]
+id = 229
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I've got them right here!"
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 4
+kind = "speaker"
+speaker = "Vermundi"
+text = "Then put them in the machine dear!"
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "act"
+text = "end"
+parent = 224
+is_terminal = true
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "cond"
+text = "If the player has loaded the spinning machine but not started it:"
+parent = 222
+children = [233, 234, 235, 236, 237, 238]
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "Well, the spinning machine is all ready now, except that it needs to be powered up."
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "As soon as it's up and running, I can spin your clothes for you."
+parent = 232
+
+[[nodes]]
+id = 235
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How does that work?"
+parent = 232
+
+[[nodes]]
+id = 236
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "Why, you light the logs of course!"
+parent = 232
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, okay, I'll do it! Just a moment."
+parent = 232
+
+[[nodes]]
+id = 238
+depth = 3
+kind = "act"
+text = "end"
+parent = 232
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "cond"
+text = "If the player has started the engine on the spinning machine:"
+parent = 222
+children = [240, 241, 242, 243, 244, 245, 253]
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I have those clothes now?"
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "Yes, I can spin them for you, but I will have to ask you for a small payment of money for them."
+parent = 239
+
+[[nodes]]
+id = 242
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What, after all that work?"
+parent = 239
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "I'm sorry, but the cloth to spin this is expensive. But for you, I can make the clothes for a nominal fee of 200 credits."
+parent = 239
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 239
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "option"
+text = "I'll pay."
+parent = 239
+children = [246, 247, 248, 249, 250, 251, 252]
+
+[[nodes]]
+id = 246
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'll pay, I'll pay."
+parent = 245
+
+[[nodes]]
+id = 247
+depth = 4
+kind = "speaker"
+speaker = "Vermundi"
+text = "Wonderful, let me get started then!"
+parent = 245
+
+[[nodes]]
+id = 248
+depth = 4
+kind = "other"
+text = "{{qact|Vermundi spins the machine and makes the clothing.}}"
+parent = 245
+
+[[nodes]]
+id = 249
+depth = 4
+kind = "speaker"
+speaker = "Vermundi"
+text = "There we go! And look how beautiful these clothes look!"
+parent = 245
+
+[[nodes]]
+id = 250
+depth = 4
+kind = "act"
+text = "receives=[[exquisite clothes]]"
+parent = 245
+
+[[nodes]]
+id = 251
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thank you very much!"
+parent = 245
+
+[[nodes]]
+id = 252
+depth = 4
+kind = "act"
+text = "end"
+parent = 245
+is_terminal = true
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "option"
+text = "I won't pay."
+parent = 239
+children = [254, 255, 256]
+
+[[nodes]]
+id = 254
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I won't pay, that's outrageous!"
+parent = 253
+
+[[nodes]]
+id = 255
+depth = 4
+kind = "speaker"
+speaker = "Vermundi"
+text = "I'm sorry you feel that way, I was looking forward to making these clothes."
+parent = 253
+
+[[nodes]]
+id = 256
+depth = 4
+kind = "act"
+text = "end"
+parent = 253
+is_terminal = true
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "option"
+text = "quest=No|No, I'm just browsing."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "box"
+text = "You're not sure what those clothes are for, but you don't need them. You have the clothes you need for the sculptor already."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "These clothes are too small for me, I might ruin them if I put them on. I'd better take them to the sculptor instead."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Saro"
+text = "Welcome to my store, human! Are you interested in buying anything?"
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "option"
+text = "quest=No|Yes, I'm looking for some armour."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "option"
+text = "Yes, I'm looking for a pair of special boots."
+parent = -1
+children = [266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm looking for a pair of special boots."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = "Boots, you say? What kind of boots?"
+parent = 265
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The best you have! Boots fit for a king!"
+parent = 265
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = "Hmm, let's see... Well, I've got this pair of very exclusive boots. They're not armoured, but they look nice."
+parent = 265
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = "Or rather, I had. I'm afraid I sold them, come to think of it."
+parent = 265
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you don't have anything else?"
+parent = 265
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = "I don't normally stock boots, no, nothing that's appropriate for... what did you say? A king?"
+parent = 265
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Please, tell me! Who did you sell the boots to?"
+parent = 265
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = "Old chap here in the west part of town, his name is Dromund. He's quite well known, not only for his wealth, but also for his... pecularities."
+parent = 265
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What house does he live in?"
+parent = 265
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = """
+Go out the door, and head north. You'll have the headquarters of the Black Guard on your left and the bank on your right. Keep heading north and you'll find Dromund's house on your right. Can't miss it!
+"""
+parent = 265
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = "And if you're going to try to get the boots off him, good luck. You'll need it."
+parent = 265
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = 265
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Saro"
+text = "Welcome to my store, human! Are you interested in buying anything?"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "option"
+text = "quest=No|Yes, I'm looking for some armour."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "option"
+text = "Yes, I'm looking for a pair of special boots."
+parent = -1
+children = [285, 286, 287, 288]
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm looking for a pair of special boots."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Saro"
+text = "I thought I already told you where to get them?"
+parent = 284
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh yes. The old dwarf north of the bank has them, I remember now."
+parent = 284
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "act"
+text = "end"
+parent = 284
+is_terminal = true
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "other"
+text = "{{mes|You don't need this boot.}}"
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "You're trespassing, get out!"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Calm down! I just want to ask you a few questions."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "Are you with the Black Guard or something?"
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "No, you wouldn't be, you're just a human."
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "What do you want from me?"
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I went to the Quality Armour shop. The proprietor told me you have just recently purchased a pair of boots from him."
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "Right, and nice they look too on my display tables."
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're not actually using them then? Might I be able to buy them off you?"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "Good one, human!"
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "They're mine and the last thing I'll do is part with them!"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Tell me, how much will you accept for these boots?"
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "Get out you pesky human! The boots are mine and you're not having them!"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure you don't want to give me those boots?"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Dromund"
+text = "Get out of here before I get one of my servants to throw you out!"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "cond"
+text = "If the player is in Dromund's line of sight:"
+parent = -1
+children = [308, 309, 310]
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Dromund"
+text = "What are you doing there?!"
+parent = 307
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing..."
+parent = 307
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "act"
+text = "end"
+parent = 307
+is_terminal = true
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "cond"
+text = "If the player is outside Dromund's line of sight:"
+parent = -1
+children = [312]
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "act"
+text = "receives=[[left boot]]"
+parent = 311
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "cond"
+text = "If the player is inside the house:"
+parent = -1
+children = [314, 315, 316, 317]
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Get your hands off that, you dirty human!"
+parent = 313
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Dromund"
+text = "Stay away from there! Who do you think you are, coming into my house like that?"
+parent = 313
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "box"
+text = "You don't think you'll be able to get close to this boot without the old dwarf noticing you, what with his cat guarding."
+parent = 313
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "act"
+text = "end"
+parent = 313
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "cond"
+text = "If the player is inside the house and casts Telekinetic Grab on the boots, outside Dromund's line of sight:"
+parent = -1
+children = [319, 320]
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Dromund"
+text = "What are you doing, casting spells in my house? Get out!"
+parent = 318
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "act"
+text = "end"
+parent = 318
+is_terminal = true
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "cond"
+text = "If the player is outside the house and casts Telekinetic Grab on the boots whilst it is in Dromund's line of sight:"
+parent = -1
+children = [322, 323, 324]
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Dromund"
+text = "Hey! Is there someone at my window?"
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Dromund"
+text = "Scram before I get the Black Guard to arrest you!"
+parent = 321
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "act"
+text = "end"
+parent = 321
+is_terminal = true
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "cond"
+text = "If the player is outside the house and casts Telekinetic Grab on the boots, whilst it is outside Dromund's line of sight:"
+parent = -1
+children = [326]
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "act"
+text = "receives=[[right boot]]"
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "box"
+text = "You already have the perfect pair of boots, you don't need to bother with this one."
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "cond"
+text = "If the player only has one boot:"
+parent = -1
+children = [330, 331]
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What, wear just one boot? Besides, the boot is too precious for that."
+parent = 329
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "act"
+text = "end"
+parent = 329
+is_terminal = true
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "cond"
+text = "If the player has the left and right boot:"
+parent = -1
+children = [333, 334]
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "box"
+text = "You now have the perfect pair of boots to bring to the sculptor's model!"
+parent = 332
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "act"
+text = "receives=[[exquisite boots]]"
+parent = 332
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "cond"
+text = "If the player has the exquisite boots:"
+parent = -1
+children = [336, 337]
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I shouldn't wear these boots, I don't want anything to happen to them before I bring them to the sculptor."
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "act"
+text = "end"
+parent = 335
+is_terminal = true
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "box"
+text = "pic=Exquisite boots detail.png|You drop one boot, but then the other shoe falls... you've lost them both!"
+parent = -1
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "speaker"
+speaker = "Santiri"
+text = "Welcome, human, to the Quality Weapons Shop! Can I interest you in a purchase?"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "option"
+text = "quest=No|Yes, I'm looking for some weapons."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "Yes, I'm looking for a particular battleaxe."
+parent = -1
+children = [344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 360, 410]
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm looking for a particular battleaxe."
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "speaker"
+speaker = "Santiri"
+text = "Fancy a particular colour then? Blue is quite popular at the moment, and red is on the rise."
+parent = 343
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, actually, I'm looking for King Alvis' axe."
+parent = 343
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "speaker"
+speaker = "Santiri"
+text = "The King's axe!"
+parent = 343
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Santiri"
+text = "What would a human want with it?"
+parent = 343
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've been tasked by Veldaban, Commander of the Black Guard in Keldagrim, to assist in every way possible with the rebuilding of King Alvis' statue."
+parent = 343
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Santiri"
+text = "Oh yes, the statue... a most unfortunate incident."
+parent = 343
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Santiri"
+text = "Not that I'm entirely sure that it was merely an accident, of course."
+parent = 343
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do you mean?"
+parent = 343
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Santiri"
+text = "I'm not entirely sure what I mean, human. But the axe, you say, what exactly did you need it for?"
+parent = 343
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 343
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "option"
+text = "Just give me the axe already, I know you have it!"
+parent = 343
+children = [356, 357, 358, 359]
+
+[[nodes]]
+id = 356
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Just give me the axe already, I know you have it!"
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "I'll give it to you, embedded into your head!"
+parent = 355
+
+[[nodes]]
+id = 358
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've had just about enough of this! Goodbye!"
+parent = 355
+
+[[nodes]]
+id = 359
+depth = 3
+kind = "act"
+text = "end"
+parent = 355
+is_terminal = true
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "option"
+text = "Blasidar the sculptor needs it for his statue."
+parent = 343
+children = [361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 376]
+
+[[nodes]]
+id = 361
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Blasidar the sculptor needs it for his statue. He wants a model for the axe, you see, and he believes the original axe still survives."
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "And so it does!"
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "It's been in my family's care for a few generations now, after it has been lost for a long time."
+parent = 360
+
+[[nodes]]
+id = 364
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What happened to it?"
+parent = 360
+
+[[nodes]]
+id = 365
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "I do not know how it got lost, but my great-grandfather found it at the banks of the Kelda, further downstream from the city."
+parent = 360
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I see it?"
+parent = 360
+
+[[nodes]]
+id = 367
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "There is not much left of it, to be honest. The blade has almost completely rusted away, and the sapphires on the hilt were either stolen or were washed away by the river before it was found."
+parent = 360
+
+[[nodes]]
+id = 368
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "I doubt it is useful to Blasidar in this state, master sculptor though he is."
+parent = 360
+
+[[nodes]]
+id = 369
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure this is the real axe then?"
+parent = 360
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = """
+Not entirely, no, but it matches the description well enough, and the holes for the sapphires are still clearly visible on the hilt. But since no one has a similar claim, I don't really care. It's genuine to me.
+"""
+parent = 360
+
+[[nodes]]
+id = 371
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 360
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "option"
+text = "This is tedious, I've lost interest."
+parent = 360
+children = [373, 374, 375]
+
+[[nodes]]
+id = 373
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "This is tedious, I've lost interest."
+parent = 372
+
+[[nodes]]
+id = 374
+depth = 4
+kind = "speaker"
+speaker = "Santiri"
+text = "I'll get back to work then."
+parent = 372
+
+[[nodes]]
+id = 375
+depth = 4
+kind = "act"
+text = "end"
+parent = 372
+is_terminal = true
+
+[[nodes]]
+id = 376
+depth = 3
+kind = "option"
+text = "Perhaps I can repair the axe?"
+parent = 360
+children = [377, 378, 379, 382, 385, 388, 391, 392, 398, 405, 406, 407, 408, 409]
+
+[[nodes]]
+id = 377
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps I can repair the axe?"
+parent = 376
+
+[[nodes]]
+id = 378
+depth = 4
+kind = "speaker"
+speaker = "Santiri"
+text = "On your own? I doubt it. The sapphires, perhaps, if you are a skilled enough crafter. But the blade..."
+parent = 376
+
+[[nodes]]
+id = 379
+depth = 4
+kind = "cond"
+text = "If the player has a Smithing level between 1 and 29:"
+parent = 376
+children = [380, 381]
+
+[[nodes]]
+id = 380
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Your feeble smithing skills will be of no use. No, you will need expert help on this."
+parent = 379
+
+[[nodes]]
+id = 381
+depth = 5
+kind = "act"
+text = "continue"
+parent = 379
+
+[[nodes]]
+id = 382
+depth = 4
+kind = "cond"
+text = "If the player has a Smithing level between 30 and 74:"
+parent = 376
+children = [383, 384]
+
+[[nodes]]
+id = 383
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "You're a decent smith, but this is far beyond your capabilities."
+parent = 382
+
+[[nodes]]
+id = 384
+depth = 5
+kind = "act"
+text = "continue"
+parent = 382
+
+[[nodes]]
+id = 385
+depth = 4
+kind = "cond"
+text = "If the player has a Smithing level between 75 and 98:"
+parent = 376
+children = [386, 387]
+
+[[nodes]]
+id = 386
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Formidable though your smithing skills are, this is beyond your capabilities."
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 5
+kind = "act"
+text = "continue"
+parent = 385
+
+[[nodes]]
+id = 388
+depth = 4
+kind = "cond"
+text = "If the player has level 99 Smithing:"
+parent = 376
+children = [389, 390]
+
+[[nodes]]
+id = 389
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Clearly you are a master smith, perhaps one of the best human smiths in all of Gielinor. Yet this is beyond even you."
+parent = 388
+
+[[nodes]]
+id = 390
+depth = 5
+kind = "act"
+text = "continue"
+parent = 388
+
+[[nodes]]
+id = 391
+depth = 4
+kind = "speaker"
+speaker = "Santiri"
+text = "What you need is the skills of an Imcando dwarf... but they must all be dead by now."
+parent = 376
+
+[[nodes]]
+id = 392
+depth = 4
+kind = "cond"
+text = "If the player has not completed [[The Knight's Sword]]:"
+parent = 376
+children = [393, 394, 395, 396, 397]
+
+[[nodes]]
+id = 393
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps I could try and find one?"
+parent = 392
+
+[[nodes]]
+id = 394
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Yes, perhaps, perhaps..."
+parent = 392
+
+[[nodes]]
+id = 395
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Perhaps the librarian, just due east of here, can help you."
+parent = 392
+
+[[nodes]]
+id = 396
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Yes, I like the sound of this!"
+parent = 392
+
+[[nodes]]
+id = 397
+depth = 5
+kind = "act"
+text = "continues"
+parent = 392
+
+[[nodes]]
+id = 398
+depth = 4
+kind = "cond"
+text = "If the player has completed The Knight's Sword:"
+parent = 376
+children = [399, 400, 401, 402, 403, 404]
+
+[[nodes]]
+id = 399
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I know where I can find an Imcando dwarf!"
+parent = 398
+
+[[nodes]]
+id = 400
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "He actually made a sword for me a while ago. I'm sure I can get him to help me again."
+parent = 398
+
+[[nodes]]
+id = 401
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Really? That is amazing news."
+parent = 398
+
+[[nodes]]
+id = 402
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "He lives on a cliff at the very south end of Asgarnia, just south of Port Sarim. I can visit him again if you like."
+parent = 398
+
+[[nodes]]
+id = 403
+depth = 5
+kind = "speaker"
+speaker = "Santiri"
+text = "Excellent! You can take a cart to Ice Mountain from the station here, that should help you get there faster."
+parent = 398
+
+[[nodes]]
+id = 404
+depth = 5
+kind = "act"
+text = "continues"
+parent = 398
+
+[[nodes]]
+id = 405
+depth = 4
+kind = "speaker"
+speaker = "Santiri"
+text = "I will entrust you with King Alvis' battleaxe, then, human."
+parent = 376
+
+[[nodes]]
+id = 406
+depth = 4
+kind = "speaker"
+speaker = "Santiri"
+text = "Help to restore it to its former glory!"
+parent = 376
+
+[[nodes]]
+id = 407
+depth = 4
+kind = "speaker"
+speaker = "Santiri"
+text = "And please ask Blasidar to return it to me after he's done with it, I would sure love to see the restored blade again."
+parent = 376
+
+[[nodes]]
+id = 408
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thank you. I will not disappoint you."
+parent = 376
+
+[[nodes]]
+id = 409
+depth = 4
+kind = "act"
+text = "end"
+parent = 376
+is_terminal = true
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "option"
+text = "I don't really care for it after all."
+parent = 343
+children = [411, 412, 413]
+
+[[nodes]]
+id = 411
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't really care for it after all."
+parent = 410
+
+[[nodes]]
+id = 412
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Then stop wasting my time."
+parent = 410
+
+[[nodes]]
+id = 413
+depth = 3
+kind = "act"
+text = "end"
+parent = 410
+is_terminal = true
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "speaker"
+speaker = "Santiri"
+text = "Welcome, human, to the Quality Weapons Shop! Can I interest you in a purchase?"
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "option"
+text = "quest=No|Yes, I'm looking for some weapons."
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "option"
+text = "Yes, I'm looking for a particular battleaxe."
+parent = -1
+children = [419, 420, 427, 435, 440, 445, 451]
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'm looking for a particular battleaxe."
+parent = 418
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "cond"
+text = "If the player still has the axe:"
+parent = 418
+children = [421, 422, 423, 424, 425, 426]
+
+[[nodes]]
+id = 421
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Ah, you mean King Alvis' axe? You still have it, yes?"
+parent = 420
+
+[[nodes]]
+id = 422
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but I was just wondering what I should be doing with this piece of junk."
+parent = 420
+
+[[nodes]]
+id = 423
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Piece of junk??"
+parent = 420
+
+[[nodes]]
+id = 424
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "I thought you were going to put sapphires on it and bring it to an Imcando dwarf?"
+parent = 420
+
+[[nodes]]
+id = 425
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh yes, of course, that's what I was going to do!"
+parent = 420
+
+[[nodes]]
+id = 426
+depth = 3
+kind = "act"
+text = "end"
+parent = 420
+is_terminal = true
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "cond"
+text = "If the player lost the axe:"
+parent = 418
+children = [428, 429, 430, 431, 432, 433, 434]
+
+[[nodes]]
+id = 428
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Ah, you mean King Alvis' axe? You still have it, yes?"
+parent = 427
+
+[[nodes]]
+id = 429
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I... sort of... ehm..."
+parent = 427
+
+[[nodes]]
+id = 430
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Look, I lost it!"
+parent = 427
+
+[[nodes]]
+id = 431
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "At least you are honest, human."
+parent = 427
+
+[[nodes]]
+id = 432
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "I found it, actually, after you lost it. I'm not happy with giving it to you again, but the rebuilding of the statue is important."
+parent = 427
+
+[[nodes]]
+id = 433
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Be careful with it this time, alright?"
+parent = 427
+
+[[nodes]]
+id = 434
+depth = 3
+kind = "act"
+text = "end"
+parent = 427
+is_terminal = true
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "cond"
+text = "If the player still has the axe and added sapphires to it:"
+parent = 418
+children = [436, 437, 438, 439]
+
+[[nodes]]
+id = 436
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Ah, you mean King Alvis' axe? You still have it, yes?"
+parent = 435
+
+[[nodes]]
+id = 437
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and I've crafted some sapphires on the hilt, look!"
+parent = 435
+
+[[nodes]]
+id = 438
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "That's a great start! Now if you can find an Imcando dwarf so the blade can be repaired, that would be even better!"
+parent = 435
+
+[[nodes]]
+id = 439
+depth = 3
+kind = "act"
+text = "end"
+parent = 435
+is_terminal = true
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "cond"
+text = "If the player still has the axe and has had it restored by Thurgo:"
+parent = 418
+children = [441, 442, 443, 444]
+
+[[nodes]]
+id = 441
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Ah, you mean King Alvis' axe? You still have it, yes?"
+parent = 440
+
+[[nodes]]
+id = 442
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and I got Thurgo the Imcando dwarf to fix it up nice and proper! Look!"
+parent = 440
+
+[[nodes]]
+id = 443
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Oh, that's beautiful! All it needs now is three sapphires crafted onto the hilt."
+parent = 440
+
+[[nodes]]
+id = 444
+depth = 3
+kind = "act"
+text = "end"
+parent = 440
+is_terminal = true
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "cond"
+text = "If the player still has the axe and has fully restored it:"
+parent = 418
+children = [446, 447, 448, 449, 450]
+
+[[nodes]]
+id = 446
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Ah, you mean King Alvis' axe? You still have it, yes?"
+parent = 445
+
+[[nodes]]
+id = 447
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and look, it's all fixed up now! I got Thurgo the Imcando dwarf to fix the blade, and I've crafted three sapphires onto the hilt."
+parent = 445
+
+[[nodes]]
+id = 448
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "That is amazing! Absolutely astounding work!"
+parent = 445
+
+[[nodes]]
+id = 449
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Go and give Blasidar a hand with it then, and make sure to tell him to send it back to me when he's done with it!"
+parent = 445
+
+[[nodes]]
+id = 450
+depth = 3
+kind = "act"
+text = "end"
+parent = 445
+is_terminal = true
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "cond"
+text = "If the player has given the axe to Riki:"
+parent = 418
+children = [452, 453, 454, 455, 456]
+
+[[nodes]]
+id = 452
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "Ah, you mean King Alvis' axe? Didn't you give it to Blasidar?"
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I did, actually, I was just wondering if he returned it to you yet."
+parent = 451
+
+[[nodes]]
+id = 454
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "No, I believe he's still using it."
+parent = 451
+
+[[nodes]]
+id = 455
+depth = 3
+kind = "speaker"
+speaker = "Santiri"
+text = "But thanks for your help with restoring the axe to its former glory!"
+parent = 451
+
+[[nodes]]
+id = 456
+depth = 3
+kind = "act"
+text = "end"
+parent = 451
+is_terminal = true
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "box"
+text = "You already have King Alvis' axe. You're not sure what that axe is for, but you don't need it."
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should be very careful with this battleaxe, it's almost a museum piece! I don't want to damage it by wielding  it."
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "speaker"
+speaker = "Librarian"
+text = "Welcome to the Keldagrim library, human traveller!"
+parent = -1
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the library?"
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "option"
+text = "Can you help me find an Imcando dwarf?"
+parent = -1
+children = [466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476]
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me find an Imcando dwarf?"
+parent = 465
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "An Imcando dwarf, you say?"
+parent = 465
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I need the help of an Imcando dwarf to repair an ancient battleaxe."
+parent = 465
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "I see, I see."
+parent = 465
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "Ah, I'm afraid I can't help you here, Keldagrim lost contact with that particular tribe of dwarves a long time ago."
+parent = 465
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there no one else who can help me?"
+parent = 465
+
+[[nodes]]
+id = 472
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "I suppose you could try Reldo, in the palace of Varrock. He is a most capable human librarian and knows quite a bit about us dwarves."
+parent = 465
+
+[[nodes]]
+id = 473
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you think he can help me?"
+parent = 465
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "He lives quite a good deal closer to where the Imcando used to live than we do, so it is not unlikely. Tell him Hugi the librarian sent you and I'm sure he'll be happy to help."
+parent = 465
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "speaker"
+speaker = "Librarian"
+text = "And take a cart to Ice Mountain from the station in the east side of the city. It'll help you get to Varrock faster."
+parent = 465
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "act"
+text = "end"
+parent = 465
+is_terminal = true
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "option"
+text = "What do you know about the Imcando dwarves?"
+parent = -1
+children = [479, 480, 481, 482, 483, 484, 485, 486, 487]
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you know about the Imcando dwarves?"
+parent = 478
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "The Imcando dwarves, you say? Let's see..."
+parent = 478
+
+[[nodes]]
+id = 481
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "Ah, yes... For many hundreds of years, they were the world's most skilled smiths. They used secret smithing knowledge passed down from generation to generation."
+parent = 478
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "Unfortunately, about a century ago, the once thriving group was wiped out during the barbarian invasions of that time."
+parent = 478
+
+[[nodes]]
+id = 483
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "I believe a few of them survived, but with the bulk of their population destroyed, their numbers dwindled even further. If any are left now, they'll no doubt keep to themselves."
+parent = 478
+
+[[nodes]]
+id = 484
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "However, I have heard tales of their love for redberry pie. Perhaps one of those could convince one to reveal their true heritage."
+parent = 478
+
+[[nodes]]
+id = 485
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I just go around offering random dwarves redberry pie?"
+parent = 478
+
+[[nodes]]
+id = 486
+depth = 2
+kind = "speaker"
+speaker = "Reldo"
+text = "Well, not totally random. Apparently some of the surviving Imcando made a home for themselves near the cliffs on the Asgarnian southern peninsula. That would be a good place to start."
+parent = 478
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "act"
+text = "end"
+parent = 478
+is_terminal = true
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "option"
+text = "quest=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "option"
+text = "Can you help me with this ancient axe?"
+parent = -1
+children = [491, 492, 498]
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me with this ancient axe?"
+parent = 490
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "cond"
+text = "If the player has not completed [[The Knight's Sword]]:"
+parent = 490
+children = [493, 494, 495, 497]
+
+[[nodes]]
+id = 493
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "No. I don't do that anymore. I'm getting old."
+parent = 492
+
+[[nodes]]
+id = 494
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 492
+
+[[nodes]]
+id = 495
+depth = 3
+kind = "option"
+text = "cond=If you have a redberry pie in your inventory:|Would you like a redberry pie?"
+parent = 492
+children = [496]
+
+[[nodes]]
+id = 496
+depth = 4
+kind = "act"
+text = "below"
+parent = 495
+
+[[nodes]]
+id = 497
+depth = 3
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = 492
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "cond"
+text = "If the player has completed The Knight's Sword:"
+parent = 490
+children = [499, 500, 501, 503]
+
+[[nodes]]
+id = 499
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "Well, you know what to do! Get me another redberry pie and I'll have a look at that axe of yours!"
+parent = 498
+
+[[nodes]]
+id = 500
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 498
+
+[[nodes]]
+id = 501
+depth = 3
+kind = "option"
+text = "cond=If you have a redberry pie in your inventory:|Would you like a redberry pie?"
+parent = 498
+children = [502]
+
+[[nodes]]
+id = 502
+depth = 4
+kind = "act"
+text = "below"
+parent = 501
+
+[[nodes]]
+id = 503
+depth = 3
+kind = "option"
+text = "quest=No|I'll come back another time."
+parent = 498
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "option"
+text = "cond=If you have a redberry pie in your inventory:|Would you like a redberry pie?"
+parent = -1
+children = [505, 506, 507, 508, 509, 510, 511, 554]
+
+[[nodes]]
+id = 505
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Would you like a redberry pie?"
+parent = 504
+
+[[nodes]]
+id = 506
+depth = 2
+kind = "box"
+text = "You see Thurgo's eyes light up."
+parent = 504
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "speaker"
+speaker = "Thurgo"
+text = "I'd never say no to a redberry pie! We Imcando dwarves love them - they're GREAT!"
+parent = 504
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "box"
+text = "pic=Redberry pie detail.png|You hand over the pie. Thurgo eats the pie. Thurgo pats his stomach."
+parent = 504
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "speaker"
+speaker = "Thurgo"
+text = "By Guthix! THAT was good pie! Anyone who makes pie like THAT has got to be alright!"
+parent = 504
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 504
+
+[[nodes]]
+id = 511
+depth = 2
+kind = "option"
+text = "Can you help me with this ancient axe?"
+parent = 504
+children = [512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 524, 528, 529, 532]
+
+[[nodes]]
+id = 512
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me with this ancient axe?"
+parent = 511
+
+[[nodes]]
+id = 513
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "You make excellent redberry pies, [player name], so how can I refuse? Let me see what's wrong with it then."
+parent = 511
+
+[[nodes]]
+id = 514
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Here... the blade of this axe has become extremely dull and brittle. I need it restored to its former glory."
+parent = 511
+
+[[nodes]]
+id = 515
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "Its former glory eh? May I ask where exactly you got this axe from?"
+parent = 511
+
+[[nodes]]
+id = 516
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It was given to me by someone in Keldagrim. I prefer not to say any more than that."
+parent = 511
+
+[[nodes]]
+id = 517
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "Ah, Keldagrim. We have not been there for a long time."
+parent = 511
+
+[[nodes]]
+id = 518
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We?"
+parent = 511
+
+[[nodes]]
+id = 519
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "Never mind."
+parent = 511
+
+[[nodes]]
+id = 520
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "Hand me the axe and I'll fix it right up for you."
+parent = 511
+
+[[nodes]]
+id = 521
+depth = 3
+kind = "cond"
+text = "If the player has not completed [[The Knight's Sword]]:"
+parent = 511
+children = [522, 523]
+
+[[nodes]]
+id = 522
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Will you need any materials?"
+parent = 521
+
+[[nodes]]
+id = 523
+depth = 4
+kind = "act"
+text = "continues"
+parent = 521
+
+[[nodes]]
+id = 524
+depth = 3
+kind = "cond"
+text = "If the player has completed The Knight's Sword:"
+parent = 511
+children = [525, 526, 527]
+
+[[nodes]]
+id = 525
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You don't want any blurite this time?"
+parent = 524
+
+[[nodes]]
+id = 526
+depth = 4
+kind = "speaker"
+speaker = "Thurgo"
+text = "Oh no, blurite is not appropriate here. No no, this is going to be a very delicate piece of work, requiring only a small amount in the way of raw materials."
+parent = 524
+
+[[nodes]]
+id = 527
+depth = 4
+kind = "act"
+text = "continues"
+parent = 524
+
+[[nodes]]
+id = 528
+depth = 3
+kind = "speaker"
+speaker = "Thurgo"
+text = "Can you get me one bar of iron? Then I'll be able to start my work on this."
+parent = 511
+
+[[nodes]]
+id = 529
+depth = 3
+kind = "cond"
+text = "If the player does not have an iron bar:"
+parent = 511
+children = [530, 531]
+
+[[nodes]]
+id = 530
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Of course."
+parent = 529
+
+[[nodes]]
+id = 531
+depth = 4
+kind = "act"
+text = "end"
+parent = 529
+is_terminal = true
+
+[[nodes]]
+id = 532
+depth = 3
+kind = "cond"
+text = "If the player has an iron bar:"
+parent = 511
+children = [533, 534, 535, 536, 539, 542, 543, 546, 549, 550, 551, 552]
+
+[[nodes]]
+id = 533
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I've got one right here."
+parent = 532
+
+[[nodes]]
+id = 534
+depth = 4
+kind = "speaker"
+speaker = "Thurgo"
+text = "Good, good! Hand me the axe and I'll get to work."
+parent = 532
+
+[[nodes]]
+id = 535
+depth = 4
+kind = "other"
+text = "{{qact|The screen fades to black briefly.}}"
+parent = 532
+
+[[nodes]]
+id = 536
+depth = 4
+kind = "cond"
+text = "If the sapphires haven't been added yet:"
+parent = 532
+children = [537, 538]
+
+[[nodes]]
+id = 537
+depth = 5
+kind = "speaker"
+speaker = "Thurgo"
+text = "Here's your axe, [player name]. It looks like there's some damage to the hilt as well, probably some missing sapphires. But I'm sure you can take care of that yourself."
+parent = 536
+
+[[nodes]]
+id = 538
+depth = 5
+kind = "act"
+text = "continues"
+parent = 536
+
+[[nodes]]
+id = 539
+depth = 4
+kind = "cond"
+text = "If the sapphires were already added:"
+parent = 532
+children = [540, 541]
+
+[[nodes]]
+id = 540
+depth = 5
+kind = "speaker"
+speaker = "Thurgo"
+text = "Here you go, [player name], good as new."
+parent = 539
+
+[[nodes]]
+id = 541
+depth = 5
+kind = "act"
+text = "continues"
+parent = 539
+
+[[nodes]]
+id = 542
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help Thurgo!"
+parent = 532
+
+[[nodes]]
+id = 543
+depth = 4
+kind = "cond"
+text = "If the sapphires haven't been added yet:"
+parent = 532
+children = [544, 545]
+
+[[nodes]]
+id = 544
+depth = 5
+kind = "box"
+text = "You are well on your way to restoring the axe. Do you wish to return to Keldagrim now?"
+parent = 543
+
+[[nodes]]
+id = 545
+depth = 5
+kind = "act"
+text = "continues"
+parent = 543
+
+[[nodes]]
+id = 546
+depth = 4
+kind = "cond"
+text = "If the sapphires were already added:"
+parent = 532
+children = [547, 548]
+
+[[nodes]]
+id = 547
+depth = 5
+kind = "box"
+text = "You have restored the axe to its former glory! You should return to Blasidar in Keldagrim now, do you wish to return at once?"
+parent = 546
+
+[[nodes]]
+id = 548
+depth = 5
+kind = "act"
+text = "continues"
+parent = 546
+
+[[nodes]]
+id = 549
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 532
+
+[[nodes]]
+id = 550
+depth = 4
+kind = "option"
+text = "Return to Keldagrim immediately."
+parent = 532
+
+[[nodes]]
+id = 551
+depth = 4
+kind = "other"
+text = "{{qact|The screen fades to black briefly, and the player arrives at Keldagrim, where Blasidar is.}}"
+parent = 532
+
+[[nodes]]
+id = 552
+depth = 4
+kind = "option"
+text = "Explore the area before returning."
+parent = 532
+children = [553]
+
+[[nodes]]
+id = 553
+depth = 5
+kind = "act"
+text = "end"
+parent = 552
+is_terminal = true
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "option"
+text = "quest=No|What is that cape you're wearing?"
+parent = 504
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "option"
+text = "quest=No|What is that cape you're wearing?"
+parent = -1
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "other"
+text = "{{mes|You take three of your cut sapphires and start your work...}}"
+parent = -1
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "other"
+text = "{{mes|Great, all it needs now is a little sharpening!}}"
+parent = -1
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "box"
+text = "Excellent, you've restored the battleaxe to its former glory! You'd better bring it to Blasidar the sculptor now."
+parent = -1
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "box"
+text = "I went through all this trouble to restore this axe, I'm not going to ruin it now by wielding it and accidentally smashing it to pieces. I'd better take it to the sculptor."
+parent = -1
+
+[[nodes]]
+id = 561
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "How are you getting along with those items, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 563
+depth = 1
+kind = "cond"
+text = "If the player has not finished getting boots:"
+parent = -1
+children = [564, 565]
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have your boots yet."
+parent = 563
+
+[[nodes]]
+id = 565
+depth = 2
+kind = "act"
+text = "continues"
+parent = 563
+
+[[nodes]]
+id = 566
+depth = 1
+kind = "cond"
+text = "If the player has exquisite boots in their inventory:"
+parent = -1
+children = [567, 568, 569]
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have your boots!"
+parent = 566
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Excellent, excellent! Go and give them to Riki over there so I can start my work on the base of the statue!"
+parent = 566
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "act"
+text = "continues"
+parent = 566
+
+[[nodes]]
+id = 570
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "What else?"
+parent = -1
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "cond"
+text = "If the player has the boots but not finished getting clothes:"
+parent = -1
+children = [572, 573]
+
+[[nodes]]
+id = 572
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have your clothes yet."
+parent = 571
+
+[[nodes]]
+id = 573
+depth = 2
+kind = "act"
+text = "continues"
+parent = 571
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the boots or clothes:"
+parent = -1
+children = [575, 576]
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I also don't have your clothes yet, I'm afraid."
+parent = 574
+
+[[nodes]]
+id = 576
+depth = 2
+kind = "act"
+text = "continues"
+parent = 574
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "cond"
+text = "If the player has exquisite clothes in their inventory:"
+parent = -1
+children = [578, 579, 580]
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I had Vermundi make these clothes!"
+parent = 577
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Oh yes, Vermundi is a good woman, she's very reliable. Wonderful clothing. Give it to Riki please."
+parent = 577
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "act"
+text = "continues"
+parent = 577
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "And? The battleaxe?"
+parent = -1
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "cond"
+text = "If the player has not finished getting the battleaxe:"
+parent = -1
+children = [583, 584, 585]
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, no, I'm still looking for it."
+parent = 582
+
+[[nodes]]
+id = 584
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Look a little harder please!"
+parent = 582
+
+[[nodes]]
+id = 585
+depth = 2
+kind = "act"
+text = "end"
+parent = 582
+is_terminal = true
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "cond"
+text = "If the player has a dwarven battleaxe in their inventory, but hasn't fully restored it:"
+parent = -1
+children = [587, 588, 589, 590, 591]
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Look, I've got it right here."
+parent = 586
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "What, that old thing? Is that a piece of rubbish you found in the garbage?"
+parent = 586
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "It looks so brittle it might well fall apart at any moment. I can't base my statue on that!"
+parent = 586
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Besides, from what I recall of the original axe, this doesn't even look anything like it."
+parent = 586
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "act"
+text = "end"
+parent = 586
+is_terminal = true
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "cond"
+text = "If the player has a fully restored dwarven battleaxe in their inventory:"
+parent = -1
+children = [593, 594, 595]
+
+[[nodes]]
+id = 593
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, yes, I've got it right here!"
+parent = 592
+
+[[nodes]]
+id = 594
+depth = 2
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Good job! Riki is your man, right over there. Give it to him please!"
+parent = 592
+
+[[nodes]]
+id = 595
+depth = 2
+kind = "act"
+text = "end"
+parent = 592
+is_terminal = true
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'll be back later with all those items!"
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'll be back with the rest of the items later!"
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back with the last item before you know it!"
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have some clothes for you to wear."
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Thank... you."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "act"
+text = "gives=[[exquisite clothes]]"
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have this battleaxe for you."
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Thank... you."
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "act"
+text = "gives=[[dwarven battleaxe]]"
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here, I have these boots for you to wear."
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Thank... you."
+parent = -1
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "act"
+text = "gives=[[exquisite boots]]"
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And look, I have some clothes as well!"
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Thank... you."
+parent = -1
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "act"
+text = "gives=[[exquisite clothes]]"
+parent = -1
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And finally, I have this battleaxe for you!"
+parent = -1
+
+[[nodes]]
+id = 617
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Thank... you."
+parent = -1
+
+[[nodes]]
+id = 618
+depth = 1
+kind = "act"
+text = "gives=[[dwarven battleaxe]]"
+parent = -1
+
+[[nodes]]
+id = 619
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 620
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, you're looking nice in that outfit!"
+parent = -1
+
+[[nodes]]
+id = 621
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Yes... I do."
+parent = -1
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So is the job done now?"
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello?"
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' No... it isn't."
+parent = -1
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Care to tell me why not?"
+parent = -1
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Talk... to Blasidar."
+parent = -1
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's very tiring trying to talk to you, you know?"
+parent = -1
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've all the items you asked me to get you. Can you make the statue now?"
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Yes, yes, that will do just fine. There is only one problem now, I still need to make the head."
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you need me to find a crown now as well?"
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Oh no, no no, apparantly{{Sic}} the Consortium has decided that crowns are out of fashion. As well as kings. Well, kings have been out of fashion here for hundreds of years."
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what is the head supposed to look like now?"
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "I don't think they've quite made a decision on that. You see, I think each of the directors of the Consortium fancies their own face on top of the statue."
+parent = -1
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? But I thought the whole point was that it would look like king what's-his-face?"
+parent = -1
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Yes, the Consortium can be a little fickle like that, unfortunately."
+parent = -1
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "But can you go and see if they've made a decision yet? I can't very well continue working on this statue without knowing what the face should look like, can I?"
+parent = -1
+
+[[nodes]]
+id = 638
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I suppose you can't. Alright, I'll check it out."
+parent = -1
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Great! In the mean time, I'll build the statue up to the neck!"
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "other"
+text = "{{qact|The screen fades to black, and the partially completed statue is shown. The screen then fades and returns to the player.}}"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Any word from the Consortium yet?"
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, the directors have not made a decision yet."
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Blasidar the sculptor"
+text = "Then please, try to persuade one of the directors to force the Consortium into a decision. I must finish this statue before I can move onto my other work."
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm glad I don't have to talk to you anymore!"
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "other"
+text = "'''Riki the sculptor's model:''' Hrm."
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "cond"
+text = "If the player has completed zero or few tasks for the secretary:"
+parent = -1
+children = [650, 651, 653, 655, 657, 659, 661]
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 649
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 649
+children = [652]
+
+[[nodes]]
+id = 652
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "What can I do for you, human?"
+parent = 651
+
+[[nodes]]
+id = 653
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 649
+children = [654]
+
+[[nodes]]
+id = 654
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Can I help you with anything?"
+parent = 653
+
+[[nodes]]
+id = 655
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 649
+children = [656]
+
+[[nodes]]
+id = 656
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Was there anything you wanted?"
+parent = 655
+
+[[nodes]]
+id = 657
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 649
+children = [658]
+
+[[nodes]]
+id = 658
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "What did you need of the [company name]?"
+parent = 657
+
+[[nodes]]
+id = 659
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 649
+children = [660]
+
+[[nodes]]
+id = 660
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Is there anything you need assistance with?"
+parent = 659
+
+[[nodes]]
+id = 661
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 649
+children = [662]
+
+[[nodes]]
+id = 662
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "And what can I do for you?"
+parent = 661
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "cond"
+text = "If the player has completed some tasks for the secretary:"
+parent = -1
+children = [664, 665, 667, 669, 671, 673, 675]
+
+[[nodes]]
+id = 664
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 663
+
+[[nodes]]
+id = 665
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 663
+children = [666]
+
+[[nodes]]
+id = 666
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Oh, hello there [player name]! Nice to see you!"
+parent = 665
+
+[[nodes]]
+id = 667
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 663
+children = [668]
+
+[[nodes]]
+id = 668
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "And what can I do for you on this fine day?"
+parent = 667
+
+[[nodes]]
+id = 669
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 663
+children = [670]
+
+[[nodes]]
+id = 670
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Welcome back to the palace of Keldagrim, [player name]!"
+parent = 669
+
+[[nodes]]
+id = 671
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 663
+children = [672]
+
+[[nodes]]
+id = 672
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Come in, come in! And tell us what you need!"
+parent = 671
+
+[[nodes]]
+id = 673
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 663
+children = [674]
+
+[[nodes]]
+id = 674
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "How may the [company name] assist you today?"
+parent = 673
+
+[[nodes]]
+id = 675
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 663
+children = [676]
+
+[[nodes]]
+id = 676
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Come to help us out some more, [player name]?"
+parent = 675
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "cond"
+text = "If the player is talking to the Purple Pewter Secretary and wearing H.A.M. robes:"
+parent = -1
+children = [678]
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "speaker"
+speaker = "Purple Pewter Secretary"
+text = "Oh, by the way, I really like that outfit of yours!"
+parent = 677
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "option"
+text = "quest=No|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "option"
+text = "quest=No|Where am I?"
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "option"
+text = "Is there anything I can help you with?"
+parent = -1
+children = [683, 684, 689, 696, 710, 726, 727, 728, 754]
+
+[[nodes]]
+id = 683
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything I can help you with?"
+parent = 682
+
+[[nodes]]
+id = 684
+depth = 2
+kind = "cond"
+text = "If the player was already assigned a task:"
+parent = 682
+children = [685, 686, 687, 688]
+
+[[nodes]]
+id = 685
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Have you completed your task yet? Did you get our [number] pieces of [copper ore/tin ore/clay/iron ore/silver ore/coal/gold ore/mithril ore]?"
+parent = 684
+
+[[nodes]]
+id = 686
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = 684
+
+[[nodes]]
+id = 687
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Then please, hurry up before time runs out."
+parent = 684
+
+[[nodes]]
+id = 688
+depth = 3
+kind = "act"
+text = "end"
+parent = 684
+is_terminal = true
+
+[[nodes]]
+id = 689
+depth = 2
+kind = "cond"
+text = "If the player has completed enough tasks for the secretary:"
+parent = 682
+children = [690, 691, 693, 695]
+
+[[nodes]]
+id = 690
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 689
+
+[[nodes]]
+id = 691
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 689
+children = [692]
+
+[[nodes]]
+id = 692
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "You should speak directly to the director."
+parent = 691
+
+[[nodes]]
+id = 693
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 689
+children = [694]
+
+[[nodes]]
+id = 694
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I'm afraid I have no more work to offer you, [player name], please speak to the director."
+parent = 693
+
+[[nodes]]
+id = 695
+depth = 3
+kind = "act"
+text = "end"
+parent = 689
+is_terminal = true
+
+[[nodes]]
+id = 696
+depth = 2
+kind = "cond"
+text = "If the player has completed zero or few tasks for the secretary:"
+parent = 682
+children = [697, 698, 700, 702, 704, 706, 708]
+
+[[nodes]]
+id = 697
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 696
+
+[[nodes]]
+id = 698
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 696
+children = [699]
+
+[[nodes]]
+id = 699
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "There's always work to be done, yes."
+parent = 698
+
+[[nodes]]
+id = 700
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 696
+children = [701]
+
+[[nodes]]
+id = 701
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Just a moment."
+parent = 700
+
+[[nodes]]
+id = 702
+depth = 3
+kind = "option"
+text = "Dialogue 3"
+parent = 696
+children = [703]
+
+[[nodes]]
+id = 703
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Yes, the [company name] always has work to do!"
+parent = 702
+
+[[nodes]]
+id = 704
+depth = 3
+kind = "option"
+text = "Dialogue 4"
+parent = 696
+children = [705]
+
+[[nodes]]
+id = 705
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Yes, I think we do have something for you."
+parent = 704
+
+[[nodes]]
+id = 706
+depth = 3
+kind = "option"
+text = "Dialogue 5"
+parent = 696
+children = [707]
+
+[[nodes]]
+id = 707
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Let's see... yes, yes, I do have a task for you."
+parent = 706
+
+[[nodes]]
+id = 708
+depth = 3
+kind = "option"
+text = "Dialogue 6"
+parent = 696
+children = [709]
+
+[[nodes]]
+id = 709
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I believe we have some work available, yes."
+parent = 708
+
+[[nodes]]
+id = 710
+depth = 2
+kind = "cond"
+text = "If the player has completed some tasks for the secretary:"
+parent = 682
+children = [711, 712, 714, 716, 718, 720, 722, 724]
+
+[[nodes]]
+id = 711
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 710
+
+[[nodes]]
+id = 712
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 710
+children = [713]
+
+[[nodes]]
+id = 713
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Oh yes, as you know the [company name] always has work!"
+parent = 712
+
+[[nodes]]
+id = 714
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 710
+children = [715]
+
+[[nodes]]
+id = 715
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Ah, always looking for ways to help us!"
+parent = 714
+
+[[nodes]]
+id = 716
+depth = 3
+kind = "option"
+text = "Dialogue 3"
+parent = 710
+children = [717]
+
+[[nodes]]
+id = 717
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Of course, we reserve our best tasks just for you, [player name]!"
+parent = 716
+
+[[nodes]]
+id = 718
+depth = 3
+kind = "option"
+text = "Dialogue 4"
+parent = 710
+children = [719]
+
+[[nodes]]
+id = 719
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "The [company name] is pleased to offer more work to an eager worker such as yourself, [player name]!"
+parent = 718
+
+[[nodes]]
+id = 720
+depth = 3
+kind = "option"
+text = "Dialogue 5"
+parent = 710
+children = [721]
+
+[[nodes]]
+id = 721
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I do believe we do, yes!"
+parent = 720
+
+[[nodes]]
+id = 722
+depth = 3
+kind = "option"
+text = "Dialogue 6"
+parent = 710
+children = [723]
+
+[[nodes]]
+id = 723
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I dare say we have something for you, yes."
+parent = 722
+
+[[nodes]]
+id = 724
+depth = 3
+kind = "option"
+text = "Dialogue 7"
+parent = 710
+children = [725]
+
+[[nodes]]
+id = 725
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Naturally, my good human, naturally!"
+parent = 724
+
+[[nodes]]
+id = 726
+depth = 2
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "We need [number] pieces of [copper ore/tin ore/clay/iron ore/silver ore/coal/gold ore/mithril ore] in the next [number] minutes."
+parent = 682
+
+[[nodes]]
+id = 727
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 682
+
+[[nodes]]
+id = 728
+depth = 2
+kind = "option"
+text = "I'll take it."
+parent = 682
+children = [729, 741]
+
+[[nodes]]
+id = 729
+depth = 3
+kind = "cond"
+text = "If the player has completed zero or few tasks for the secretary:"
+parent = 728
+children = [730, 731, 733, 735, 737, 739]
+
+[[nodes]]
+id = 730
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 729
+
+[[nodes]]
+id = 731
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 729
+children = [732]
+
+[[nodes]]
+id = 732
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "That ore needs to go on the trade floor soon, [player name], please hurry back with it."
+parent = 731
+
+[[nodes]]
+id = 733
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 729
+children = [734]
+
+[[nodes]]
+id = 734
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I will await your return soon, then."
+parent = 733
+
+[[nodes]]
+id = 735
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 729
+children = [736]
+
+[[nodes]]
+id = 736
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "The clock is ticking, please hurry back."
+parent = 735
+
+[[nodes]]
+id = 737
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 729
+children = [738]
+
+[[nodes]]
+id = 738
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Thanks, it's appreciated."
+parent = 737
+
+[[nodes]]
+id = 739
+depth = 4
+kind = "option"
+text = "Dialogue 5"
+parent = 729
+children = [740]
+
+[[nodes]]
+id = 740
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "The [company name] has noted your willingness to help."
+parent = 739
+
+[[nodes]]
+id = 741
+depth = 3
+kind = "cond"
+text = "If the player has completed some tasks for the secretary:"
+parent = 728
+children = [742, 743, 745, 747, 749, 751, 753]
+
+[[nodes]]
+id = 742
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 741
+
+[[nodes]]
+id = 743
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 741
+children = [744]
+
+[[nodes]]
+id = 744
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Excellent, I thought you'd like this!"
+parent = 743
+
+[[nodes]]
+id = 745
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 741
+children = [746]
+
+[[nodes]]
+id = 746
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "You never disappoint, [player name]!"
+parent = 745
+
+[[nodes]]
+id = 747
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 741
+children = [748]
+
+[[nodes]]
+id = 748
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "The [company name] appreciates the hard work you do."
+parent = 747
+
+[[nodes]]
+id = 749
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 741
+children = [750]
+
+[[nodes]]
+id = 750
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Thanks! But hurry back please, we really need that ore!"
+parent = 749
+
+[[nodes]]
+id = 751
+depth = 4
+kind = "option"
+text = "Dialogue 5"
+parent = 741
+children = [752]
+
+[[nodes]]
+id = 752
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I'm happy to hear that!"
+parent = 751
+
+[[nodes]]
+id = 753
+depth = 4
+kind = "act"
+text = "end"
+parent = 741
+is_terminal = true
+
+[[nodes]]
+id = 754
+depth = 2
+kind = "option"
+text = "No thanks."
+parent = 682
+children = [755, 771]
+
+[[nodes]]
+id = 755
+depth = 3
+kind = "cond"
+text = "If the player has completed zero or few tasks for the secretary:"
+parent = 754
+children = [756, 757, 759, 761, 763, 765, 767, 769]
+
+[[nodes]]
+id = 756
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 755
+
+[[nodes]]
+id = 757
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 755
+children = [758]
+
+[[nodes]]
+id = 758
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "That's unfortunate to hear."
+parent = 757
+
+[[nodes]]
+id = 759
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 755
+children = [760]
+
+[[nodes]]
+id = 760
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "That does not reflect well on you."
+parent = 759
+
+[[nodes]]
+id = 761
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 755
+children = [762]
+
+[[nodes]]
+id = 762
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Please, it would be appreciated if you made up your mind before you ask. I'm very busy you know."
+parent = 761
+
+[[nodes]]
+id = 763
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 755
+children = [764]
+
+[[nodes]]
+id = 764
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Fair enough, maybe some other time?"
+parent = 763
+
+[[nodes]]
+id = 765
+depth = 4
+kind = "option"
+text = "Dialogue 5"
+parent = 755
+children = [766]
+
+[[nodes]]
+id = 766
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I can't say I'm too pleased to hear that, to be honest."
+parent = 765
+
+[[nodes]]
+id = 767
+depth = 4
+kind = "option"
+text = "Dialogue 6"
+parent = 755
+children = [768]
+
+[[nodes]]
+id = 768
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "The [company name] isn't too pleased to hear that."
+parent = 767
+
+[[nodes]]
+id = 769
+depth = 4
+kind = "option"
+text = "Dialogue 7"
+parent = 755
+children = [770]
+
+[[nodes]]
+id = 770
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Please, in that case, you're wasting my time."
+parent = 769
+
+[[nodes]]
+id = 771
+depth = 3
+kind = "cond"
+text = "If the player has completed some tasks for the secretary:"
+parent = 754
+children = [772, 773, 775, 777, 779, 781, 783]
+
+[[nodes]]
+id = 772
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 771
+
+[[nodes]]
+id = 773
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 771
+children = [774]
+
+[[nodes]]
+id = 774
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Oh. Didn't know you were the type to refuse work."
+parent = 773
+
+[[nodes]]
+id = 775
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 771
+children = [776]
+
+[[nodes]]
+id = 776
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "That's a great shame, [player name]."
+parent = 775
+
+[[nodes]]
+id = 777
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 771
+children = [778]
+
+[[nodes]]
+id = 778
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I suppose you have other important business to attend to?"
+parent = 777
+
+[[nodes]]
+id = 779
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 771
+children = [780]
+
+[[nodes]]
+id = 780
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Is everything okay? I didn't think you normally refused our tasks."
+parent = 779
+
+[[nodes]]
+id = 781
+depth = 4
+kind = "option"
+text = "Dialogue 5"
+parent = 771
+children = [782]
+
+[[nodes]]
+id = 782
+depth = 5
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "No? That's unusual for you, [player name]."
+parent = 781
+
+[[nodes]]
+id = 783
+depth = 4
+kind = "act"
+text = "end"
+parent = 771
+is_terminal = true
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "option"
+text = "I need to speak to the director."
+parent = -1
+children = [785, 786, 804, 822]
+
+[[nodes]]
+id = 785
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to speak to the director."
+parent = 784
+
+[[nodes]]
+id = 786
+depth = 2
+kind = "cond"
+text = "If the player has completed zero or few tasks for the secretary:"
+parent = 784
+children = [787, 788, 791, 793, 794, 800]
+
+[[nodes]]
+id = 787
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 786
+
+[[nodes]]
+id = 788
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 786
+children = [789, 790]
+
+[[nodes]]
+id = 789
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "And I would grant you such a request, why?"
+parent = 788
+
+[[nodes]]
+id = 790
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "You need to prove yourself to the company first before such a privilege is bestowed on you."
+parent = 788
+
+[[nodes]]
+id = 791
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 786
+children = [792]
+
+[[nodes]]
+id = 792
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I don't see any reason to grant such a privilege to a lowly worker. No, first you must prove yourself."
+parent = 791
+
+[[nodes]]
+id = 793
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 786
+
+[[nodes]]
+id = 794
+depth = 3
+kind = "option"
+text = "But I've come from Blasidar the sculptor."
+parent = 786
+children = [795, 796, 797, 798, 799]
+
+[[nodes]]
+id = 795
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "But you don't understand. I've come from Blasidar the sculptor."
+parent = 794
+
+[[nodes]]
+id = 796
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Blasidar does not command the [company name]."
+parent = 794
+
+[[nodes]]
+id = 797
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "But... Commander Veldaban of the Black Guard has instructed me to do this!"
+parent = 794
+
+[[nodes]]
+id = 798
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Nor does the Black Guard. They are under the command of the Consortium, not the other way around."
+parent = 794
+
+[[nodes]]
+id = 799
+depth = 4
+kind = "act"
+text = "end"
+parent = 794
+is_terminal = true
+
+[[nodes]]
+id = 800
+depth = 3
+kind = "option"
+text = "How can I prove myself?"
+parent = 786
+children = [801, 802, 803]
+
+[[nodes]]
+id = 801
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "How can I prove myself?"
+parent = 800
+
+[[nodes]]
+id = 802
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "It's all very simple. You perform some tasks for us, help us out a little when we need something done urgently, and in reward you will rise in our estimation."
+parent = 800
+
+[[nodes]]
+id = 803
+depth = 4
+kind = "act"
+text = "end"
+parent = 800
+is_terminal = true
+
+[[nodes]]
+id = 804
+depth = 2
+kind = "cond"
+text = "If the player has completed some tasks for the secretary:"
+parent = 784
+children = [805, 806, 808, 810, 811, 817]
+
+[[nodes]]
+id = 805
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 804
+
+[[nodes]]
+id = 806
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 804
+children = [807]
+
+[[nodes]]
+id = 807
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "That is not a request that I can grant you yet, [player name], even though I am impressed with you so far."
+parent = 806
+
+[[nodes]]
+id = 808
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 804
+children = [809]
+
+[[nodes]]
+id = 809
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "The [company name] appreciates what you have done so far, [player name], but the director will only speak to the most loyal of followers."
+parent = 808
+
+[[nodes]]
+id = 810
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 804
+
+[[nodes]]
+id = 811
+depth = 3
+kind = "option"
+text = "But I've come from Blasidar the sculptor."
+parent = 804
+children = [812, 813, 814, 815, 816]
+
+[[nodes]]
+id = 812
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "But you don't understand. I've come from Blasidar the sculptor."
+parent = 811
+
+[[nodes]]
+id = 813
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Blasidar does not command the [company name]."
+parent = 811
+
+[[nodes]]
+id = 814
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "But... Commander Veldaban of the Black Guard has instructed me to do this!"
+parent = 811
+
+[[nodes]]
+id = 815
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I see. This sounds like a most serious matter, but I cannot bend the rules."
+parent = 811
+
+[[nodes]]
+id = 816
+depth = 4
+kind = "act"
+text = "end"
+parent = 811
+is_terminal = true
+
+[[nodes]]
+id = 817
+depth = 3
+kind = "option"
+text = "What else must I do?"
+parent = 804
+children = [818, 819, 820, 821]
+
+[[nodes]]
+id = 818
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What else must I do to prove myself?"
+parent = 817
+
+[[nodes]]
+id = 819
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Keep up what you're doing, [player name]! The more you help us out, the more we appreciate you!"
+parent = 817
+
+[[nodes]]
+id = 820
+depth = 4
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I'm sure the director will be happy to talk to you once the time is right."
+parent = 817
+
+[[nodes]]
+id = 821
+depth = 4
+kind = "act"
+text = "end"
+parent = 817
+is_terminal = true
+
+[[nodes]]
+id = 822
+depth = 2
+kind = "cond"
+text = "If the player has completed enough tasks for the secretary:"
+parent = 784
+children = [823, 824]
+
+[[nodes]]
+id = 823
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Why, naturally [player name]! The director is standing right over there!"
+parent = 822
+
+[[nodes]]
+id = 824
+depth = 3
+kind = "act"
+text = "end"
+parent = 822
+is_terminal = true
+
+[[nodes]]
+id = 825
+depth = 1
+kind = "option"
+text = "quest=No|I have to go!"
+parent = -1
+
+[[nodes]]
+id = 826
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've completed your task! Here is your ore!"
+parent = -1
+
+[[nodes]]
+id = 827
+depth = 1
+kind = "cond"
+text = "If the player has completed zero or few tasks for the secretary:"
+parent = -1
+children = [828, 829, 831, 833, 835, 837]
+
+[[nodes]]
+id = 828
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 827
+
+[[nodes]]
+id = 829
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 827
+children = [830]
+
+[[nodes]]
+id = 830
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "And not a minute too late as well. Well done."
+parent = 829
+
+[[nodes]]
+id = 831
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 827
+children = [832]
+
+[[nodes]]
+id = 832
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I am happy to see that the trust we put in you has not been in vain."
+parent = 831
+
+[[nodes]]
+id = 833
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 827
+children = [834]
+
+[[nodes]]
+id = 834
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "The [company name] recognizes your performance."
+parent = 833
+
+[[nodes]]
+id = 835
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 827
+children = [836]
+
+[[nodes]]
+id = 836
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "That's good to hear, thanks."
+parent = 835
+
+[[nodes]]
+id = 837
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 827
+children = [838]
+
+[[nodes]]
+id = 838
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I have to admit, I was worried for a moment, but I'm glad to see you came through for us."
+parent = 837
+
+[[nodes]]
+id = 839
+depth = 1
+kind = "cond"
+text = "If the player has completed some tasks for the secretary:"
+parent = -1
+children = [840, 841, 843, 845, 847, 849, 851]
+
+[[nodes]]
+id = 840
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 839
+
+[[nodes]]
+id = 841
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 839
+children = [842]
+
+[[nodes]]
+id = 842
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Well done, well done!"
+parent = 841
+
+[[nodes]]
+id = 843
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 839
+children = [844]
+
+[[nodes]]
+id = 844
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "You're always reliable, [player name]!"
+parent = 843
+
+[[nodes]]
+id = 845
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 839
+children = [846]
+
+[[nodes]]
+id = 846
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "You have done a great service to the [company name]!"
+parent = 845
+
+[[nodes]]
+id = 847
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 839
+children = [848]
+
+[[nodes]]
+id = 848
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Wonderful! I will personally oversee that it goes to the trade floor on time!"
+parent = 847
+
+[[nodes]]
+id = 849
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 839
+children = [850]
+
+[[nodes]]
+id = 850
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "I knew you were the right human for the job!"
+parent = 849
+
+[[nodes]]
+id = 851
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 839
+children = [852]
+
+[[nodes]]
+id = 852
+depth = 3
+kind = "speaker"
+speaker = "[company name] Secretary"
+text = "Thanks, I will make sure the director hears of your expeditiousness!"
+parent = 851
+
+[[nodes]]
+id = 853
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 854
+depth = 1
+kind = "option"
+text = "quest=No|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 855
+depth = 1
+kind = "option"
+text = "quest=No|Where am I?"
+parent = -1
+
+[[nodes]]
+id = 856
+depth = 1
+kind = "option"
+text = "Do you have another task for me?"
+parent = -1
+children = [857]
+
+[[nodes]]
+id = 857
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have another task for me?"
+parent = 856
+children = [858]
+
+[[nodes]]
+id = 858
+depth = 3
+kind = "act"
+text = "above"
+parent = 857
+
+[[nodes]]
+id = 859
+depth = 1
+kind = "option"
+text = "I need to speak to the director."
+parent = -1
+
+[[nodes]]
+id = 860
+depth = 3
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 861
+depth = 1
+kind = "option"
+text = "quest=No|I have to go!"
+parent = -1
+
+[[nodes]]
+id = 862
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Secretary"
+text = "Don't bother me!"
+parent = -1
+
+[[nodes]]
+id = 863
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 864
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 865
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 866
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 867
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [868, 869, 870, 871, 872, 873, 874, 877]
+
+[[nodes]]
+id = 868
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 867
+
+[[nodes]]
+id = 869
+depth = 2
+kind = "speaker"
+speaker = "Brown Engine Secretary"
+text = "I am the head secretary of the Brown Engine."
+parent = 867
+
+[[nodes]]
+id = 870
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The what?"
+parent = 867
+
+[[nodes]]
+id = 871
+depth = 2
+kind = "speaker"
+speaker = "Brown Engine Secretary"
+text = "The Brown Engine. We are one of the eight major mining companies, but our standard is higher than that of all the others."
+parent = 867
+
+[[nodes]]
+id = 872
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How is that?"
+parent = 867
+
+[[nodes]]
+id = 873
+depth = 2
+kind = "speaker"
+speaker = "Brown Engine Secretary"
+text = "Our policy is strictly gentlemen only, you see."
+parent = 867
+
+[[nodes]]
+id = 874
+depth = 2
+kind = "cond"
+text = "If the player's gender is male:"
+parent = 867
+children = [875, 876]
+
+[[nodes]]
+id = 875
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't quite see how that is good, but if you say so..."
+parent = 874
+
+[[nodes]]
+id = 876
+depth = 3
+kind = "act"
+text = "initial"
+parent = 874
+
+[[nodes]]
+id = 877
+depth = 2
+kind = "cond"
+text = "If the player's gender is female:"
+parent = 867
+children = [878, 879, 880, 881]
+
+[[nodes]]
+id = 878
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And this is a good thing, how?"
+parent = 877
+
+[[nodes]]
+id = 879
+depth = 3
+kind = "speaker"
+speaker = "Brown Engine Secretary"
+text = "Oh, my dear, please don't take it personally."
+parent = 877
+
+[[nodes]]
+id = 880
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Don't patronise me. I've had enough of this."
+parent = 877
+
+[[nodes]]
+id = 881
+depth = 3
+kind = "act"
+text = "end"
+parent = 877
+is_terminal = true
+
+[[nodes]]
+id = 882
+depth = 1
+kind = "option"
+text = "quest=No|Where am I?"
+parent = -1
+
+[[nodes]]
+id = 883
+depth = 1
+kind = "option"
+text = "Is there anything I can help you with?"
+parent = -1
+children = [884, 885, 889]
+
+[[nodes]]
+id = 884
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything I can help you with?"
+parent = 883
+
+[[nodes]]
+id = 885
+depth = 2
+kind = "cond"
+text = "If the player's gender is female:"
+parent = 883
+children = [886, 887, 888]
+
+[[nodes]]
+id = 886
+depth = 3
+kind = "speaker"
+speaker = "Brown Engine Secretary"
+text = "The Brown Engine is a gentleman only society, I'm afraid."
+parent = 885
+
+[[nodes]]
+id = 887
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How rude."
+parent = 885
+
+[[nodes]]
+id = 888
+depth = 3
+kind = "act"
+text = "end"
+parent = 885
+is_terminal = true
+
+[[nodes]]
+id = 889
+depth = 2
+kind = "cond"
+text = "If the player's gender is male:"
+parent = 883
+children = [890]
+
+[[nodes]]
+id = 890
+depth = 3
+kind = "act"
+text = "above"
+parent = 889
+
+[[nodes]]
+id = 891
+depth = 1
+kind = "option"
+text = "I need to speak to the director."
+parent = -1
+children = [892]
+
+[[nodes]]
+id = 892
+depth = 2
+kind = "act"
+text = "above"
+parent = 891
+
+[[nodes]]
+id = 893
+depth = 1
+kind = "option"
+text = "quest=No|I have to go!"
+parent = -1
+
+[[nodes]]
+id = 894
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 895
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 896
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 897
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [898, 899, 900, 901, 902, 903, 904, 907]
+
+[[nodes]]
+id = 898
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 897
+
+[[nodes]]
+id = 899
+depth = 2
+kind = "speaker"
+speaker = "Yellow Fortune Secretary"
+text = "I am the head secretary of the Yellow Fortune."
+parent = 897
+
+[[nodes]]
+id = 900
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The what?"
+parent = 897
+
+[[nodes]]
+id = 901
+depth = 2
+kind = "speaker"
+speaker = "Yellow Fortune Secretary"
+text = "The Yellow Fortune! We are the grandest of the mining companies that make up the Consortium!"
+parent = 897
+
+[[nodes]]
+id = 902
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How is that?"
+parent = 897
+
+[[nodes]]
+id = 903
+depth = 2
+kind = "speaker"
+speaker = "Yellow Fortune Secretary"
+text = "Why, because men are not allowed to work in our company, of course!"
+parent = 897
+
+[[nodes]]
+id = 904
+depth = 2
+kind = "cond"
+text = "If the player's gender is female:"
+parent = 897
+children = [905, 906]
+
+[[nodes]]
+id = 905
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ha, I see what you mean!"
+parent = 904
+
+[[nodes]]
+id = 906
+depth = 3
+kind = "act"
+text = "initial"
+parent = 904
+
+[[nodes]]
+id = 907
+depth = 2
+kind = "cond"
+text = "If the player's gender is male:"
+parent = 897
+children = [908, 909, 910, 911]
+
+[[nodes]]
+id = 908
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's a bit drastic, don't you think?"
+parent = 907
+
+[[nodes]]
+id = 909
+depth = 3
+kind = "speaker"
+speaker = "Yellow Fortune Secretary"
+text = "We simply consider men to be weak and inferior."
+parent = 907
+
+[[nodes]]
+id = 910
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I think I'd better go now, I don't like being insulted."
+parent = 907
+
+[[nodes]]
+id = 911
+depth = 3
+kind = "act"
+text = "end"
+parent = 907
+is_terminal = true
+
+[[nodes]]
+id = 912
+depth = 1
+kind = "option"
+text = "quest=No|Where am I?"
+parent = -1
+
+[[nodes]]
+id = 913
+depth = 1
+kind = "option"
+text = "Is there anything I can help you with?"
+parent = -1
+children = [914, 915, 921]
+
+[[nodes]]
+id = 914
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything I can help you with?"
+parent = 913
+
+[[nodes]]
+id = 915
+depth = 2
+kind = "cond"
+text = "If the player's gender is male:"
+parent = 913
+children = [916, 917, 918, 919, 920]
+
+[[nodes]]
+id = 916
+depth = 3
+kind = "speaker"
+speaker = "Yellow Fortune Secretary"
+text = "The Yellow Fortune does not employ the services of men."
+parent = 915
+
+[[nodes]]
+id = 917
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why not?"
+parent = 915
+
+[[nodes]]
+id = 918
+depth = 3
+kind = "speaker"
+speaker = "Yellow Fortune Secretary"
+text = "We often find that they are too weak or too slow to be of sufficient use."
+parent = 915
+
+[[nodes]]
+id = 919
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You shouldn't say such things to people."
+parent = 915
+
+[[nodes]]
+id = 920
+depth = 3
+kind = "act"
+text = "end"
+parent = 915
+is_terminal = true
+
+[[nodes]]
+id = 921
+depth = 2
+kind = "cond"
+text = "If the player's gender is female:"
+parent = 913
+children = [922]
+
+[[nodes]]
+id = 922
+depth = 3
+kind = "act"
+text = "above"
+parent = 921
+
+[[nodes]]
+id = 923
+depth = 1
+kind = "option"
+text = "I need to speak to the director."
+parent = -1
+children = [924]
+
+[[nodes]]
+id = 924
+depth = 2
+kind = "act"
+text = "above"
+parent = 923
+
+[[nodes]]
+id = 925
+depth = 1
+kind = "option"
+text = "quest=No|I have to go!"
+parent = -1
+
+[[nodes]]
+id = 926
+depth = 1
+kind = "cond"
+text = "If the player has not completed enough tasks to talk to the director:"
+parent = -1
+children = [927, 928, 930, 932, 934, 936, 938, 940, 942, 944, 946, 948]
+
+[[nodes]]
+id = 927
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 926
+
+[[nodes]]
+id = 928
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 926
+children = [929]
+
+[[nodes]]
+id = 929
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "How did you get in here? I don't have time to talk to you!"
+parent = 928
+
+[[nodes]]
+id = 930
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 926
+children = [931]
+
+[[nodes]]
+id = 931
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Talk to my secretary, I don't have time to deal with you."
+parent = 930
+
+[[nodes]]
+id = 932
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 926
+children = [933]
+
+[[nodes]]
+id = 933
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "My secretary will deal with any inquiries you have about the [company name]."
+parent = 932
+
+[[nodes]]
+id = 934
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 926
+children = [935]
+
+[[nodes]]
+id = 935
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I'm busy, please leave."
+parent = 934
+
+[[nodes]]
+id = 936
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 926
+children = [937]
+
+[[nodes]]
+id = 937
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I'm too important to talk to the likes of you, leave."
+parent = 936
+
+[[nodes]]
+id = 938
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 926
+children = [939]
+
+[[nodes]]
+id = 939
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I can't help you, go and see my secretary."
+parent = 938
+
+[[nodes]]
+id = 940
+depth = 2
+kind = "option"
+text = "Dialogue 7"
+parent = 926
+children = [941]
+
+[[nodes]]
+id = 941
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Do you mind? You're blocking my view."
+parent = 940
+
+[[nodes]]
+id = 942
+depth = 2
+kind = "option"
+text = "Dialogue 8"
+parent = 926
+children = [943]
+
+[[nodes]]
+id = 943
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Today is not a good day, can you come back tomorrow?"
+parent = 942
+
+[[nodes]]
+id = 944
+depth = 2
+kind = "option"
+text = "Dialogue 9"
+parent = 926
+children = [945]
+
+[[nodes]]
+id = 945
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "My secretary is sitting just over there, thank you."
+parent = 944
+
+[[nodes]]
+id = 946
+depth = 2
+kind = "option"
+text = "Dialogue 10"
+parent = 926
+children = [947]
+
+[[nodes]]
+id = 947
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "If you're looking for the market, it's downstairs."
+parent = 946
+
+[[nodes]]
+id = 948
+depth = 2
+kind = "act"
+text = "end"
+parent = 926
+is_terminal = true
+
+[[nodes]]
+id = 949
+depth = 1
+kind = "cond"
+text = "If the player has completed enough tasks to talk to the director:"
+parent = -1
+children = [950, 951, 953, 955, 957, 959, 961, 963]
+
+[[nodes]]
+id = 950
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 949
+
+[[nodes]]
+id = 951
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 949
+children = [952]
+
+[[nodes]]
+id = 952
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "You are an exceptional member of the [company name]."
+parent = 951
+
+[[nodes]]
+id = 953
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 949
+children = [954]
+
+[[nodes]]
+id = 954
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "[player name]! I've been hearing great things about you!"
+parent = 953
+
+[[nodes]]
+id = 955
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 949
+children = [956]
+
+[[nodes]]
+id = 956
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Come in, [player name], my secretary has been saying good things about you."
+parent = 955
+
+[[nodes]]
+id = 957
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 949
+children = [958]
+
+[[nodes]]
+id = 958
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "What have you come to ask of us, honourable [player name]?"
+parent = 957
+
+[[nodes]]
+id = 959
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 949
+children = [960]
+
+[[nodes]]
+id = 960
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Have you come to serve the [company name] again, [player name]?"
+parent = 959
+
+[[nodes]]
+id = 961
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 949
+children = [962]
+
+[[nodes]]
+id = 962
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Come, [player name], let us converse a while on your future with us."
+parent = 961
+
+[[nodes]]
+id = 963
+depth = 2
+kind = "option"
+text = "Dialogue 7"
+parent = 949
+children = [964]
+
+[[nodes]]
+id = 964
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "You are proving yourself a loyal member of the [company name], [player name]!"
+parent = 963
+
+[[nodes]]
+id = 965
+depth = 1
+kind = "cond"
+text = "If the player has joined the company:"
+parent = -1
+children = [966, 967, 969, 971, 973]
+
+[[nodes]]
+id = 966
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 965
+
+[[nodes]]
+id = 967
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 965
+children = [968]
+
+[[nodes]]
+id = 968
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Hello again, [player name], come in!"
+parent = 967
+
+[[nodes]]
+id = 969
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 965
+children = [970]
+
+[[nodes]]
+id = 970
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Come in, come in my friend!"
+parent = 969
+
+[[nodes]]
+id = 971
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 965
+children = [972]
+
+[[nodes]]
+id = 972
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "The [company name] is pleased to see you again!"
+parent = 971
+
+[[nodes]]
+id = 973
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 965
+children = [974]
+
+[[nodes]]
+id = 974
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Welcome back [player name], it's great to see you again!"
+parent = 973
+
+[[nodes]]
+id = 975
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 976
+depth = 1
+kind = "option"
+text = "It's an honour to meet you!"
+parent = -1
+children = [977, 978, 979, 981, 983, 985, 987]
+
+[[nodes]]
+id = 977
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's an honour to meet you!"
+parent = 976
+
+[[nodes]]
+id = 978
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 976
+
+[[nodes]]
+id = 979
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 976
+children = [980]
+
+[[nodes]]
+id = 980
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I'm always happy to make time for you, [player name]!"
+parent = 979
+
+[[nodes]]
+id = 981
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 976
+children = [982]
+
+[[nodes]]
+id = 982
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "And I'm honoured to make some time for you, [player name]!"
+parent = 981
+
+[[nodes]]
+id = 983
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 976
+children = [984]
+
+[[nodes]]
+id = 984
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Don't mention it, [player name]!"
+parent = 983
+
+[[nodes]]
+id = 985
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 976
+children = [986]
+
+[[nodes]]
+id = 986
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Almost as much an honour as it is to meet you again, [player name]!"
+parent = 985
+
+[[nodes]]
+id = 987
+depth = 2
+kind = "act"
+text = "initial"
+parent = 976
+
+[[nodes]]
+id = 988
+depth = 1
+kind = "option"
+text = "cond=If the player hasn't joined a company yet:|I'd like to officially join your company."
+parent = -1
+children = [989, 990, 991, 995]
+
+[[nodes]]
+id = 989
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like to officially join your company."
+parent = 988
+
+[[nodes]]
+id = 990
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Hmm, interesting, a human joining the [company name]."
+parent = 988
+
+[[nodes]]
+id = 991
+depth = 2
+kind = "cond"
+text = "If the player has completed zero or few tasks for the director:"
+parent = 988
+children = [992, 993, 994]
+
+[[nodes]]
+id = 992
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "But no. You may have proven yourself to my head secretary, and much appreciated that is as well, you have not fully proven yourself to me yet."
+parent = 991
+
+[[nodes]]
+id = 993
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "So no, I cannot grant you this request yet, but I will certainly keep it in mind. In the mean time make sure you help out the [company name] in any way you can."
+parent = 991
+
+[[nodes]]
+id = 994
+depth = 3
+kind = "act"
+text = "initial"
+parent = 991
+
+[[nodes]]
+id = 995
+depth = 2
+kind = "cond"
+text = "If the player has completed enough tasks for the director:"
+parent = 988
+children = [996, 997, 998, 999]
+
+[[nodes]]
+id = 996
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "But you have certainly proven yourself to be a most worthwhile contributor. I have not seen such dedication in all my years as a director of this company."
+parent = 995
+
+[[nodes]]
+id = 997
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "It is agreed then! You are now a 'trusted associate' of the [company name]. Welcome!"
+parent = 995
+
+[[nodes]]
+id = 998
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I will not disappoint you!"
+parent = 995
+
+[[nodes]]
+id = 999
+depth = 3
+kind = "act"
+text = "other"
+parent = 995
+is_terminal = true
+
+[[nodes]]
+id = 1000
+depth = 1
+kind = "option"
+text = "Do you have any more tasks for me?"
+parent = -1
+children = [1001, 1002, 1007]
+
+[[nodes]]
+id = 1001
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any more tasks for me?"
+parent = 1000
+
+[[nodes]]
+id = 1002
+depth = 2
+kind = "cond"
+text = "If the player already has a task:"
+parent = 1000
+children = [1003, 1004, 1005, 1006]
+
+[[nodes]]
+id = 1003
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Have you completed your current task yet? Did you get me my bars of [bronze/iron/steel/silver/gold/mithril]?"
+parent = 1002
+
+[[nodes]]
+id = 1004
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it, sorry."
+parent = 1002
+
+[[nodes]]
+id = 1005
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Hurry then, I don't have time for all this."
+parent = 1002
+
+[[nodes]]
+id = 1006
+depth = 3
+kind = "act"
+text = "initial"
+parent = 1002
+
+[[nodes]]
+id = 1007
+depth = 2
+kind = "cond"
+text = "If the player doesn't have a task:"
+parent = 1000
+children = [1008, 1019, 1021, 1022, 1023, 1036]
+
+[[nodes]]
+id = 1008
+depth = 3
+kind = "cond"
+text = "If the player has not joined the company:"
+parent = 1007
+children = [1009, 1010, 1012, 1014, 1016]
+
+[[nodes]]
+id = 1009
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 1008
+
+[[nodes]]
+id = 1010
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 1008
+children = [1011]
+
+[[nodes]]
+id = 1011
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Verily, I believe I do."
+parent = 1010
+
+[[nodes]]
+id = 1012
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 1008
+children = [1013]
+
+[[nodes]]
+id = 1013
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I do believe so, yes."
+parent = 1012
+
+[[nodes]]
+id = 1014
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 1008
+children = [1015]
+
+[[nodes]]
+id = 1015
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Why, certainly."
+parent = 1014
+
+[[nodes]]
+id = 1016
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 1008
+children = [1017, 1018]
+
+[[nodes]]
+id = 1017
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "A moment please, let me check."
+parent = 1016
+
+[[nodes]]
+id = 1018
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Yes, I have something appropriate for you here."
+parent = 1016
+
+[[nodes]]
+id = 1019
+depth = 3
+kind = "cond"
+text = "If the player has joined the company:"
+parent = 1007
+children = [1020]
+
+[[nodes]]
+id = 1020
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = "You don't need to do this anymore, you know?"
+parent = 1019
+
+[[nodes]]
+id = 1021
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "We need [number] bars of [bronze/iron/steel/silver/gold/mithril] in the next [number] minutes."
+parent = 1007
+
+[[nodes]]
+id = 1022
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 1007
+
+[[nodes]]
+id = 1023
+depth = 3
+kind = "option"
+text = "I'll take it."
+parent = 1007
+children = [1024, 1025, 1026, 1028, 1030, 1032, 1034]
+
+[[nodes]]
+id = 1024
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'll take it."
+parent = 1023
+
+[[nodes]]
+id = 1025
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 1023
+
+[[nodes]]
+id = 1026
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 1023
+children = [1027]
+
+[[nodes]]
+id = 1027
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Happy to hear that!"
+parent = 1026
+
+[[nodes]]
+id = 1028
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 1023
+children = [1029]
+
+[[nodes]]
+id = 1029
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Admirable attitude, [player name]!"
+parent = 1028
+
+[[nodes]]
+id = 1030
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 1023
+children = [1031]
+
+[[nodes]]
+id = 1031
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "The [company name] appreciates what you're doing, [player name]."
+parent = 1030
+
+[[nodes]]
+id = 1032
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 1023
+children = [1033]
+
+[[nodes]]
+id = 1033
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Excellent, get to it now!"
+parent = 1032
+
+[[nodes]]
+id = 1034
+depth = 4
+kind = "option"
+text = "Dialogue 5"
+parent = 1023
+children = [1035]
+
+[[nodes]]
+id = 1035
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Then hurry back, [player name], I'm counting on you!"
+parent = 1034
+
+[[nodes]]
+id = 1036
+depth = 3
+kind = "option"
+text = "No thanks."
+parent = 1007
+children = [1037, 1038, 1039, 1041, 1043, 1045, 1047, 1049]
+
+[[nodes]]
+id = 1037
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 1036
+
+[[nodes]]
+id = 1038
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 1036
+
+[[nodes]]
+id = 1039
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 1036
+children = [1040]
+
+[[nodes]]
+id = 1040
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I'm sorry to hear that, [player name], the company really needed those bars."
+parent = 1039
+
+[[nodes]]
+id = 1041
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 1036
+children = [1042]
+
+[[nodes]]
+id = 1042
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I don't understand, I thought you were a loyal follower?"
+parent = 1041
+
+[[nodes]]
+id = 1043
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 1036
+children = [1044]
+
+[[nodes]]
+id = 1044
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Then why did you ask, [player name]?"
+parent = 1043
+
+[[nodes]]
+id = 1045
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 1036
+children = [1046]
+
+[[nodes]]
+id = 1046
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "That is an unusual thing to say for you, [player name]."
+parent = 1045
+
+[[nodes]]
+id = 1047
+depth = 4
+kind = "option"
+text = "Dialogue 5"
+parent = 1036
+children = [1048]
+
+[[nodes]]
+id = 1048
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Oh? I thought you liked doing this kind of work?"
+parent = 1047
+
+[[nodes]]
+id = 1049
+depth = 4
+kind = "act"
+text = "end"
+parent = 1036
+is_terminal = true
+
+[[nodes]]
+id = 1050
+depth = 1
+kind = "option"
+text = "Blasidar the sculptor has sent me."
+parent = -1
+children = [1051, 1052, 1053, 1054, 1055, 1056, 1057, 1058, 1059, 1060, 1061, 1087]
+
+[[nodes]]
+id = 1051
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Blasidar the sculptor has sent me."
+parent = 1050
+
+[[nodes]]
+id = 1052
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Oh yes? This is in connection with the statue, presumably?"
+parent = 1050
+
+[[nodes]]
+id = 1053
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "He says he needs to know what the head of the statue should look like now that it's no longer going to look like King Alvis."
+parent = 1050
+
+[[nodes]]
+id = 1054
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Oh yes, Hreidmar suggested that it should be one of us. The Era of Kings is long gone, after all. Now the Consortium provides peace and above all prosperity... so the statue should reflect this."
+parent = 1050
+
+[[nodes]]
+id = 1055
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hreidmar? Who is Hreidmar?"
+parent = 1050
+
+[[nodes]]
+id = 1056
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "He is the Director of the Red Axe. Ha, that old fool quite fancies his own head up on that statue, he thinks he can get away with that just because his company is one of the largest in the Consortium."
+parent = 1050
+
+[[nodes]]
+id = 1057
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I shouldn't tell the sculptor that he should base it on him then?"
+parent = 1050
+
+[[nodes]]
+id = 1058
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Certainly not!"
+parent = 1050
+
+[[nodes]]
+id = 1059
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "The Consortium has yet to make a decision... all the companies are vying for the honour."
+parent = 1050
+
+[[nodes]]
+id = 1060
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 1050
+
+[[nodes]]
+id = 1061
+depth = 2
+kind = "option"
+text = "I would support you."
+parent = 1050
+children = [1062, 1063, 1064, 1070]
+
+[[nodes]]
+id = 1062
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I would support you."
+parent = 1061
+
+[[nodes]]
+id = 1063
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Ah, would you now, would you?"
+parent = 1061
+
+[[nodes]]
+id = 1064
+depth = 3
+kind = "cond"
+text = "If the player has completed zero or few tasks for the director:"
+parent = 1061
+children = [1065, 1066, 1067, 1068, 1069]
+
+[[nodes]]
+id = 1065
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I'm not altogether sure... much appreciated though you are, you are not really part of the [company name]. Not as such."
+parent = 1064
+
+[[nodes]]
+id = 1066
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What if I were?"
+parent = 1064
+
+[[nodes]]
+id = 1067
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Were what? A part of the [company name]?"
+parent = 1064
+
+[[nodes]]
+id = 1068
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Yes, that might certainly change things..."
+parent = 1064
+
+[[nodes]]
+id = 1069
+depth = 4
+kind = "act"
+text = "initial"
+parent = 1064
+
+[[nodes]]
+id = 1070
+depth = 3
+kind = "cond"
+text = "If the player has completed enough tasks for the director:"
+parent = 1061
+children = [1071, 1072, 1073, 1074, 1075, 1076, 1077, 1078, 1083]
+
+[[nodes]]
+id = 1071
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = "This might well work. Yes, an outsider to the city might have considerably more influence than one might expect, if we play our cards right."
+parent = 1070
+
+[[nodes]]
+id = 1072
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "How do you mean, play our cards right?"
+parent = 1070
+
+[[nodes]]
+id = 1073
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = "We wait until the most opportune moment for you to show your support. Yes, you must really come along to one of our meetings."
+parent = 1070
+
+[[nodes]]
+id = 1074
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Now you're really losing me... what meetings?"
+parent = 1070
+
+[[nodes]]
+id = 1075
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = """
+A Consortium meeting, when all the directors meet on the top floor of the palace. We have them from time to time. We'll have another one soon, to once and for all solve our little problem with the statue.
+"""
+parent = 1070
+
+[[nodes]]
+id = 1076
+depth = 4
+kind = "speaker"
+speaker = "[company name] Director"
+text = "So what do you say, will you speak out for me at the next meeting, so that they will base the head of the statue on me?"
+parent = 1070
+
+[[nodes]]
+id = 1077
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 1070
+
+[[nodes]]
+id = 1078
+depth = 4
+kind = "option"
+text = "Yes! Long live the [company name]!"
+parent = 1070
+children = [1079, 1080, 1081, 1082]
+
+[[nodes]]
+id = 1079
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Yes! Long live the [company name]!"
+parent = 1078
+
+[[nodes]]
+id = 1080
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Hurrah!"
+parent = 1078
+
+[[nodes]]
+id = 1081
+depth = 5
+kind = "box"
+text = "Now would be a good time to visit Veldaban of the Black Guard, in the west of Keldagrim."
+parent = 1078
+
+[[nodes]]
+id = 1082
+depth = 5
+kind = "act"
+text = "end"
+parent = 1078
+is_terminal = true
+
+[[nodes]]
+id = 1083
+depth = 4
+kind = "option"
+text = "I need to have a think about that."
+parent = 1070
+children = [1084, 1085, 1086]
+
+[[nodes]]
+id = 1084
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I need to have a think about that."
+parent = 1083
+
+[[nodes]]
+id = 1085
+depth = 5
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Understandable, yes. Just be sure not to think about it for too long."
+parent = 1083
+
+[[nodes]]
+id = 1086
+depth = 5
+kind = "act"
+text = "initial"
+parent = 1083
+
+[[nodes]]
+id = 1087
+depth = 2
+kind = "option"
+text = "I hope you lot figure it out soon."
+parent = 1050
+children = [1088, 1089, 1090, 1091]
+
+[[nodes]]
+id = 1088
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I hope you lot figure it out soon. This little job is starting to tire me out."
+parent = 1087
+
+[[nodes]]
+id = 1089
+depth = 3
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Don't count on it being any time soon. We're rather locked in an impasse on it."
+parent = 1087
+
+[[nodes]]
+id = 1090
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Just my luck."
+parent = 1087
+
+[[nodes]]
+id = 1091
+depth = 3
+kind = "act"
+text = "initial"
+parent = 1087
+
+[[nodes]]
+id = 1092
+depth = 1
+kind = "option"
+text = "Thank you for your time."
+parent = -1
+children = [1093, 1094, 1095]
+
+[[nodes]]
+id = 1093
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you for your time."
+parent = 1092
+
+[[nodes]]
+id = 1094
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Not at all, it was a delight to speak to you once more!"
+parent = 1092
+
+[[nodes]]
+id = 1095
+depth = 2
+kind = "act"
+text = "end"
+parent = 1092
+is_terminal = true
+
+[[nodes]]
+id = 1096
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've completed your task! Here are your bars!"
+parent = -1
+
+[[nodes]]
+id = 1097
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 1098
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [1099]
+
+[[nodes]]
+id = 1099
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I will get my secretary to send this to the trade floor at once!"
+parent = 1098
+
+[[nodes]]
+id = 1100
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [1101]
+
+[[nodes]]
+id = 1101
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "You never fail to satisfy, [player name]!"
+parent = 1100
+
+[[nodes]]
+id = 1102
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [1103]
+
+[[nodes]]
+id = 1103
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "You are a true asset to the [company name]!"
+parent = 1102
+
+[[nodes]]
+id = 1104
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [1105]
+
+[[nodes]]
+id = 1105
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "I am well pleased with your work, [player name]!"
+parent = 1104
+
+[[nodes]]
+id = 1106
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [1107]
+
+[[nodes]]
+id = 1107
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Guthix be praised!"
+parent = 1106
+
+[[nodes]]
+id = 1108
+depth = 1
+kind = "option"
+text = "Dialogue 6"
+parent = -1
+children = [1109]
+
+[[nodes]]
+id = 1109
+depth = 2
+kind = "speaker"
+speaker = "[company name] Director"
+text = "The [company name] can always rely on you, [player name]."
+parent = 1108
+
+[[nodes]]
+id = 1110
+depth = 1
+kind = "speaker"
+speaker = "[company name] Director"
+text = "Have you ever considered joining the [company name], [player name]? You would truly make a marvelous member."
+parent = -1
+
+[[nodes]]
+id = 1111
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1112
+depth = 1
+kind = "option"
+text = "quest=No|It's an honour to meet you!"
+parent = -1
+
+[[nodes]]
+id = 1113
+depth = 1
+kind = "option"
+text = "Do you have any more tasks for me?"
+parent = -1
+children = [1114]
+
+[[nodes]]
+id = 1114
+depth = 2
+kind = "act"
+text = "above"
+parent = 1113
+
+[[nodes]]
+id = 1115
+depth = 1
+kind = "option"
+text = "Blasidar the sculptor has sent me."
+parent = -1
+children = [1116]
+
+[[nodes]]
+id = 1116
+depth = 2
+kind = "act"
+text = "above"
+parent = 1115
+
+[[nodes]]
+id = 1117
+depth = 1
+kind = "option"
+text = "Thank you for your time."
+parent = -1
+children = [1118]
+
+[[nodes]]
+id = 1118
+depth = 2
+kind = "act"
+text = "above"
+parent = 1117
+
+[[nodes]]
+id = 1119
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "I am conducting a meeting here, begone!"
+parent = -1
+
+[[nodes]]
+id = 1120
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1121
+depth = 1
+kind = "cond"
+text = "If the player changed their gender from male to female:"
+parent = -1
+
+[[nodes]]
+id = 1122
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 1123
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [1124]
+
+[[nodes]]
+id = 1124
+depth = 2
+kind = "speaker"
+speaker = "Brown Engine Director"
+text = "Hello, [player name], are you trying to get in touch with your female side?"
+parent = 1123
+
+[[nodes]]
+id = 1125
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [1126]
+
+[[nodes]]
+id = 1126
+depth = 2
+kind = "speaker"
+speaker = "Brown Engine Director"
+text = "Hello there! You're looking a little feminine today, [player name]!"
+parent = 1125
+
+[[nodes]]
+id = 1127
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1128
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 1129
+depth = 1
+kind = "cond"
+text = "If the player changed their gender from female to male:"
+parent = -1
+
+[[nodes]]
+id = 1130
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 1131
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [1132]
+
+[[nodes]]
+id = 1132
+depth = 2
+kind = "speaker"
+speaker = "Yellow Fortune Director"
+text = "You are looking more and more like a male these days, [player name]... be careful now!"
+parent = 1131
+
+[[nodes]]
+id = 1133
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [1134]
+
+[[nodes]]
+id = 1134
+depth = 2
+kind = "speaker"
+speaker = "Yellow Fortune Director"
+text = "Hello there, [player name]. You look a little masculine today!"
+parent = 1133
+
+[[nodes]]
+id = 1135
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1136
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 1137
+depth = 1
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "What news from the Consortium, [player name]?"
+parent = -1
+
+[[nodes]]
+id = 1138
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have told the director of the [company name] that I will support their bid to be put upon the statue."
+parent = -1
+
+[[nodes]]
+id = 1139
+depth = 1
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Then perhaps they can finally end their impasse! Well, let's go to the meeting then!"
+parent = -1
+
+[[nodes]]
+id = 1140
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What, now?"
+parent = -1
+
+[[nodes]]
+id = 1141
+depth = 1
+kind = "cond"
+text = "If all sixteen cutscene rooms are occupied:"
+parent = -1
+children = [1142, 1143]
+
+[[nodes]]
+id = 1142
+depth = 2
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Well... not exactly now, no. I believe the Consortium has some other important business to attend to first. Come back in a minute or so."
+parent = 1141
+
+[[nodes]]
+id = 1143
+depth = 2
+kind = "act"
+text = "end"
+parent = 1141
+is_terminal = true
+
+[[nodes]]
+id = 1144
+depth = 1
+kind = "cond"
+text = "If a cutscene room is available:"
+parent = -1
+children = [1145, 1146, 1147, 1173]
+
+[[nodes]]
+id = 1145
+depth = 2
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Yes, now! Are you ready?"
+parent = 1144
+
+[[nodes]]
+id = 1146
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 1144
+
+[[nodes]]
+id = 1147
+depth = 2
+kind = "option"
+text = "I'm ready."
+parent = 1144
+children = [1148, 1149, 1150, 1151, 1160]
+
+[[nodes]]
+id = 1148
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm ready."
+parent = 1147
+
+[[nodes]]
+id = 1149
+depth = 3
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "I do have to warn you, this meeting may take a while. Do you want to attend the meeting personally, or do you simply want the minutes of the meetings so you can read what happened afterwards?"
+parent = 1147
+
+[[nodes]]
+id = 1150
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 1147
+
+[[nodes]]
+id = 1151
+depth = 3
+kind = "option"
+text = "I want to see the meeting."
+parent = 1147
+children = [1152, 1153, 1154, 1157]
+
+[[nodes]]
+id = 1152
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I want to see the meeting."
+parent = 1151
+
+[[nodes]]
+id = 1153
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Happy to hear that! Let's hurry then, I think the meeting is already starting!"
+parent = 1151
+
+[[nodes]]
+id = 1154
+depth = 4
+kind = "cond"
+text = "If all sixteen cutscene rooms are occupied:"
+parent = 1151
+children = [1155, 1156]
+
+[[nodes]]
+id = 1155
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Oh, I'm sorry, I was mistaken. The meeting hasn't started yet, we need to wait a bit longer."
+parent = 1154
+
+[[nodes]]
+id = 1156
+depth = 5
+kind = "act"
+text = "end"
+parent = 1154
+is_terminal = true
+
+[[nodes]]
+id = 1157
+depth = 4
+kind = "cond"
+text = "If a cutscene room is available:"
+parent = 1151
+children = [1158, 1159]
+
+[[nodes]]
+id = 1158
+depth = 5
+kind = "other"
+text = "{{qact|The Consortium Meeting at Keldagrim Palace begins.}}"
+parent = 1157
+
+[[nodes]]
+id = 1159
+depth = 5
+kind = "act"
+text = "below"
+parent = 1157
+
+[[nodes]]
+id = 1160
+depth = 3
+kind = "option"
+text = "I do NOT want to attend, I don't have time to waste."
+parent = 1147
+children = [1161, 1162, 1163, 1164, 1168]
+
+[[nodes]]
+id = 1161
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I do NOT want to attend, I don't have time to waste."
+parent = 1160
+
+[[nodes]]
+id = 1162
+depth = 4
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "[player name], are you absolutely sure? You might not get another chance like this. Are you sure you just want to read the summary of the meeting instead of seeing the actual meeting?"
+parent = 1160
+
+[[nodes]]
+id = 1163
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 1160
+
+[[nodes]]
+id = 1164
+depth = 4
+kind = "option"
+text = "On second thought, I can spare a few minutes to attend."
+parent = 1160
+children = [1165, 1166, 1167]
+
+[[nodes]]
+id = 1165
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "On second thought, I can spare a few minutes to attend."
+parent = 1164
+
+[[nodes]]
+id = 1166
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Happy to hear that! Let's hurry then, I think the meeting is already starting!"
+parent = 1164
+
+[[nodes]]
+id = 1167
+depth = 5
+kind = "act"
+text = "below"
+parent = 1164
+
+[[nodes]]
+id = 1168
+depth = 4
+kind = "option"
+text = "I just have a lot of smithing to do today, I can't attend."
+parent = 1160
+children = [1169, 1170, 1171, 1172]
+
+[[nodes]]
+id = 1169
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I just have a lot of smithing to do today, I can't attend."
+parent = 1168
+
+[[nodes]]
+id = 1170
+depth = 5
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Very well. I'll give you the meeting minutes after it's finished."
+parent = 1168
+
+[[nodes]]
+id = 1171
+depth = 5
+kind = "other"
+text = "{{qact|The screen fades to black briefly.}}"
+parent = 1168
+
+[[nodes]]
+id = 1172
+depth = 5
+kind = "act"
+text = "receives=[[meeting notes]]"
+parent = 1168
+
+[[nodes]]
+id = 1173
+depth = 2
+kind = "option"
+text = "No, I need more time."
+parent = 1144
+children = [1174, 1175, 1176]
+
+[[nodes]]
+id = 1174
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I need more time."
+parent = 1173
+
+[[nodes]]
+id = 1175
+depth = 3
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Very well then. Come back when you're ready, but hurry! You don't want to miss the meeting."
+parent = 1173
+
+[[nodes]]
+id = 1176
+depth = 3
+kind = "act"
+text = "end"
+parent = 1173
+is_terminal = true
+
+[[nodes]]
+id = 1177
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene starts in the meeting room. The [[Red Axe Cat]] can be seen laying down. In large, red letters, \"Keldagrim Palace, Consortium Meeting\" appears on screen.}}"
+parent = -1
+
+[[nodes]]
+id = 1178
+depth = 1
+kind = "speaker"
+speaker = "Brown Engine Director"
+text = "Clearly it is I who is most suitable."
+parent = -1
+
+[[nodes]]
+id = 1179
+depth = 1
+kind = "speaker"
+speaker = "Yellow Fortune Director"
+text = "You? How preposterous! Evidently, it should be my head atop that statue!"
+parent = -1
+
+[[nodes]]
+id = 1180
+depth = 1
+kind = "speaker"
+speaker = "Silver Cog Director"
+text = "Surely, your claim to the statue can be no better than anyone else's?"
+parent = -1
+
+[[nodes]]
+id = 1181
+depth = 1
+kind = "other"
+text = "{{qact|The camera pans away. The cat gets up, and walks away off screen. At the same time, the [[Red Axe Director]] walks into the meeting, and the scene shows all the directors in attendance.}}"
+parent = -1
+
+[[nodes]]
+id = 1182
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "Enough of this, everyone! This bickering is pointless."
+parent = -1
+
+[[nodes]]
+id = 1183
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "The Red Axe is the largest and wealthiest mining company, we have all rights here!"
+parent = -1
+
+[[nodes]]
+id = 1184
+depth = 1
+kind = "cond"
+text = "If the player has not completed [[Between a Rock...]]:"
+parent = -1
+children = [1185, 1186, 1187]
+
+[[nodes]]
+id = 1185
+depth = 2
+kind = "speaker"
+speaker = "White Chisel Director"
+text = "The fact that The Red Axe does its accounting behind closed doors makes that claim quite dubious!"
+parent = 1184
+
+[[nodes]]
+id = 1186
+depth = 2
+kind = "speaker"
+speaker = "Blue Opal Director"
+text = "We are not assembled here to squabble over accounting details or the economic state of the Consortium."
+parent = 1184
+
+[[nodes]]
+id = 1187
+depth = 2
+kind = "act"
+text = "continue"
+parent = 1184
+
+[[nodes]]
+id = 1188
+depth = 1
+kind = "cond"
+text = "If the player has completed Between a Rock...:"
+parent = -1
+children = [1189, 1190, 1191]
+
+[[nodes]]
+id = 1189
+depth = 2
+kind = "speaker"
+speaker = "White Chisel Director"
+text = "Dondakan's breaking of his rock, and the finding of his gold, has laid doubt to that claim!"
+parent = 1188
+
+[[nodes]]
+id = 1190
+depth = 2
+kind = "speaker"
+speaker = "Blue Opal Director"
+text = "It is not yet clear what consequences that discovery will have on the economy."
+parent = 1188
+
+[[nodes]]
+id = 1191
+depth = 2
+kind = "act"
+text = "continue"
+parent = 1188
+
+[[nodes]]
+id = 1192
+depth = 1
+kind = "speaker"
+speaker = "Green Gemstone Director"
+text = "Perhaps, then, we should choose a director for the statue at random?"
+parent = -1
+
+[[nodes]]
+id = 1193
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "No! I will go on top of that statue! I proposed this in the first place!"
+parent = -1
+
+[[nodes]]
+id = 1194
+depth = 1
+kind = "other"
+text = "{{qact|The scene changes to the meeting room entrance. Commander Veldaban and the player walk in.}}"
+parent = -1
+
+[[nodes]]
+id = 1195
+depth = 1
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Veldaban, Commander of the Black Guard in Keldagrim, presenting himself to the Consortium with a guest."
+parent = -1
+
+[[nodes]]
+id = 1196
+depth = 1
+kind = "other"
+text = "{{qact|The player bows.}}"
+parent = -1
+
+[[nodes]]
+id = 1197
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "A human, at a Consortium meeting? What is this?"
+parent = -1
+
+[[nodes]]
+id = 1198
+depth = 1
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "This human helped to rebuild the statue. [He has deserved/She has deserved/They deserve] this honour, surely?"
+parent = -1
+
+[[nodes]]
+id = 1199
+depth = 1
+kind = "speaker"
+speaker = "Purple Pewter Director"
+text = "{{overhead|Aye.}}"
+parent = -1
+
+[[nodes]]
+id = 1200
+depth = 1
+kind = "speaker"
+speaker = "Green Gemstone Director"
+text = "{{overhead|Aye.}}"
+parent = -1
+
+[[nodes]]
+id = 1201
+depth = 1
+kind = "speaker"
+speaker = "Silver Cog Director"
+text = "{{overhead|Aye.}}"
+parent = -1
+
+[[nodes]]
+id = 1202
+depth = 1
+kind = "speaker"
+speaker = "Purple Pewter Director"
+text = "Well then... instead of flipping a coin, why don't we let the human decide?"
+parent = -1
+
+[[nodes]]
+id = 1203
+depth = 1
+kind = "speaker"
+speaker = "Brown Engine Director"
+text = "Amusing, I accept!"
+parent = -1
+
+[[nodes]]
+id = 1204
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "This is outrageous! I'm warning you, The Red Axe will boycott the Trade Octagon!"
+parent = -1
+
+[[nodes]]
+id = 1205
+depth = 1
+kind = "speaker"
+speaker = "Yellow Fortune Director"
+text = "Stop your hollow threats and let the human speak."
+parent = -1
+
+[[nodes]]
+id = 1206
+depth = 1
+kind = "speaker"
+speaker = "Commander Veldaban"
+text = "Well then, [player name], what is it going to be?"
+parent = -1
+
+[[nodes]]
+id = 1207
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I choose..."
+parent = -1
+
+[[nodes]]
+id = 1208
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The [chosen company name]!"
+parent = -1
+
+[[nodes]]
+id = 1209
+depth = 1
+kind = "other"
+text = "{{qact|The Red Axe Director walks towards the meeting room exit. His cat follows suit.}}"
+parent = -1
+
+[[nodes]]
+id = 1210
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "You'll regret this, all of you!"
+parent = -1
+
+[[nodes]]
+id = 1211
+depth = 1
+kind = "other"
+text = """
+{{qact|The cutscene shifts to the statue. In large, red letters, \"A little while later\" appears on screen. The camera pans to display the full statue, with the head being the director of the player's chosen company. The cutscene then ends.}}
+"""
+parent = -1
+
+[[nodes]]
+id = 1212
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 1213
+depth = 1
+kind = "speaker"
+speaker = "Brown Engine Director"
+text = "Clearly it is I who is most suitable."
+parent = -1
+
+[[nodes]]
+id = 1214
+depth = 1
+kind = "speaker"
+speaker = "Yellow Fortune Director"
+text = "A male? How preposterous!"
+parent = -1
+
+[[nodes]]
+id = 1215
+depth = 1
+kind = "speaker"
+speaker = "Silver Cog Director"
+text = "But the statue is clearly male! It can't have a female head!"
+parent = -1
+
+[[nodes]]
+id = 1216
+depth = 1
+kind = "speaker"
+speaker = "Red Axe Director"
+text = "Enough of this, everyone! This bickering is pointless."
+parent = -1
+
+[[nodes]]
+id = 1217
+depth = 1
+kind = "act"
+text = "above"
+parent = -1

@@ -1,0 +1,430 @@
+title = "Transcript:2013 Thanksgiving event"
+npcs = ["Chef", "Cocktail seller", "Party gnome", "Gnome (2013 Thanksgiving event)", "Gnome child (2013 Thanksgiving event)"]
+node_count = 54
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Chef"
+text = "Happy Thanksgiving, human!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "What are you doing here?"
+parent = -1
+children = [3, 4, 5]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing here?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Chef"
+text = "Why, we're having a feast. I'm cooking while the kids have some fun with the gnomeball net."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "other"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "cond=If the player hasn't received a turkey in the last 12 seconds and doesn't have two cooked turkeys:|Can I have some food?"
+parent = -1
+children = [7, 8, 12]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have some food?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "cond"
+text = "If the player has room in their inventory:"
+parent = 6
+children = [9, 10, 11]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Chef"
+text = "Oh, I suppose I can spare you a bit of turkey."
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thank you very much!"
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "cond"
+text = "If the player doesn't have room in their inventory:"
+parent = 6
+children = [13, 14, 15]
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Chef"
+text = "Looks to me like you're carrying enough stuff already."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh yes, so I am."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "option"
+text = "Cheers."
+parent = -1
+children = [17, 18]
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Cheers."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Chef"
+text = "Happy Thanksgiving, human!"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Chef"
+text = "Why, we're having a feast. I'm cooking while the kids have some fun with the gnomeball net."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Cheers."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Yes, what have you got?"
+parent = -1
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, what have you got?"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "act"
+text = "opens=Party Cocktails"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "option"
+text = "Why are you here?"
+parent = -1
+children = [29, 30, 31]
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why are you here?"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Cocktail seller"
+text = "You couldn't have a party without a selection of Blurberry's finest cocktails! So can I offer you something?"
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "other"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "option"
+text = "I'm not interested, sorry."
+parent = -1
+children = [33, 34]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not interested, sorry."
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "act"
+text = "end"
+parent = 32
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [37]
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Party gnome"
+text = "Party party party!"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [39]
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Party gnome"
+text = "Mmm, turkey!"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [41]
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Party gnome"
+text = "I'm grateful!"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [43]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Party gnome"
+text = "Woohoo!"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "cond"
+text = "Each different party gnome will say the same line every time:"
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Party gnome"
+text = "{{overhead|[Player] scored!}}"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Party gnome"
+text = "{{overhead|[Player] hit the goal!}}"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Party gnome"
+text = "{{overhead|[Player] rules!}}"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Party gnome"
+text = "{{overhead|[Player] rocks!}}"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Gnome"
+text = "Happy Thanksgiving, human!"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Gnome"
+text = "Happy Thanksgiving, human!"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

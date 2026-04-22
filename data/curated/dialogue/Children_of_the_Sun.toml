@@ -1,0 +1,1746 @@
+title = "Transcript:Children of the Sun"
+npcs = ["Noah", "Alina", "Sergeant Tobyn", "Guard (Children of the Sun)", "Bandit (Children of the Sun)", "Prince Itzla Arkan"]
+node_count = 222
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Noah"
+text = "So they're from the west?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Alina"
+text = "Yes! They call it Varlamore, the Shining Kingdom! It's meant to be one of the most beautiful places in the world!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "cond"
+text = "If the player is on a free-to-play world:"
+parent = -1
+children = [4, 5]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Alina"
+text = "Oh, nothing you need to worry about."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "members"
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "cond"
+text = "If the player is on a member's world:"
+parent = -1
+children = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 60]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Alina"
+text = "Oh, hello! Are you here to see the delegation?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Delegation?"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Noah"
+text = "See! It's not just me who doesn't know what's happening."
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Alina"
+text = "The delegation from Varlamore, of course! After all these years, they're finally opening up the kingdom for travel and trade! Isn't it exciting?"
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Noah"
+text = "Why would I be excited about a place I never even knew existed?"
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Alina"
+text = "A whole land locked off for hundreds of years! Do you not want to be one of the first outsiders to step foot there? Think of the adventure!"
+parent = 6
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Noah"
+text = "Adventure? Sounds dangerous. I'll be staying right here, thank you very much!"
+parent = 6
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Alina"
+text = "Bah! Boring! What about you, stranger?"
+parent = 6
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "select"
+text = "Start the Children of the Sun quest?"
+parent = 6
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 6
+children = [17, 18, 19, 20, 31, 38, 56]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well I'm actually something of an adventurer myself."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Alina"
+text = "That's the spirit! I bet you'll want to be one of the first to head over to Varlamore!"
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 16
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "option"
+text = "What can you tell me about Varlamore?"
+parent = 16
+children = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Varlamore?"
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "It's far across the western sea, over the mountains south of Great Kourend. Between the sea and the mountains, it's totally isolated! No one is allowed to come or go without good reason."
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "Sounds like a prison."
+parent = 20
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "Quite the opposite! It's a beautiful and prosperous kingdom, ruled over by the Sun Queen!"
+parent = 20
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "The Sun Queen?"
+parent = 20
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "Yes! She rules from her palace in their capital, Civitas illa Fortis. The sun plays an important role in Varlamorian life. In fact, they worship it!"
+parent = 20
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "What... the sun?"
+parent = 20
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "That's right! They have their own religion over there dedicated to the sun and the moon. Isn't that fascinating?"
+parent = 20
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "I don't know... It all sounds a bit odd to me."
+parent = 20
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "other"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "option"
+text = "How come you know so much about Varlamore?"
+parent = 16
+children = [32, 33, 34, 35, 36, 37]
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "How come you know so much about Varlamore?"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "A while back, a group of travellers came through here, on their way to the dark lands of Morytania. They said they were from the College of Bards!"
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "College of Bards?"
+parent = 31
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "Yes! It's found in the floating city of Tempestus! Members of the College are some of the only people allowed to travel to and from Varlamore."
+parent = 31
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "They stayed the night in the Blue Moon Inn and spent hours telling us all about their homeland. I've been dying to visit ever since!"
+parent = 31
+
+[[nodes]]
+id = 37
+depth = 4
+kind = "act"
+text = "other"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "option"
+text = "When will this delegation arrive?"
+parent = 16
+children = [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55]
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "When will this delegation arrive?"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "Well it should be any time now!"
+parent = 38
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "Hang on... what's going on over there?"
+parent = 38
+
+[[nodes]]
+id = 42
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "Wait! That's them! They're here!"
+parent = 38
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "other"
+text = """
+{{qact|The scene begins with [[King Roald]], [[Aeonisig Raispher]], and two Varrock guards standing beside the square fountain. On the far side, the delegation can be seen approaching the king, which consists of [[Prince Itzla Arkan]], [[Servius, Teokan of Ralos]], [[Furia Tullus]], [[Ennius Tullus]], and six [[Knight of Varlamore (Children of the Sun)|Knights of Varlamore]].}}
+"""
+parent = 38
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "There they are: The children of the sun! That's Itzla Arkan, heir to the throne of Varlamore! And there's Servius, the Teokan of Ralos!"
+parent = 38
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "Teokan? What's a Teokan?"
+parent = 38
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "It means High Priest. He's the religious leader in Varlamore."
+parent = 38
+
+[[nodes]]
+id = 47
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "Huh..."
+parent = 38
+
+[[nodes]]
+id = 48
+depth = 4
+kind = "other"
+text = "{{qact|A guard with a big bag walks out of Varrock Castle.}}"
+parent = 38
+
+[[nodes]]
+id = 49
+depth = 4
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "What are you doing with that bag?"
+parent = 38
+
+[[nodes]]
+id = 50
+depth = 4
+kind = "speaker"
+speaker = "Guard"
+text = "Oh... Er... Just delivering some supplies to the guards at the gates."
+parent = 38
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Well hurry back. We need everyone at their posts."
+parent = 38
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "other"
+text = "{{qact|The guard walks past Alina, Noah, and the player.}}"
+parent = 38
+
+[[nodes]]
+id = 53
+depth = 4
+kind = "speaker"
+speaker = "Noah"
+text = "That's an unusually big bag he's carrying."
+parent = 38
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Hmm... Now where might you be going with that...?"
+parent = 38
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "act"
+text = "(Player begins tailing the guard.)"
+parent = 38
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "option"
+text = "Sorry, but I need to head off."
+parent = 16
+children = [57, 58, 59]
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, but I need to head off."
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "speaker"
+speaker = "Alina"
+text = "Fair enough."
+parent = 56
+
+[[nodes]]
+id = 59
+depth = 4
+kind = "act"
+text = "end"
+parent = 56
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "option"
+text = "No."
+parent = 6
+children = [61, 62, 63]
+
+[[nodes]]
+id = 61
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure. Doesn't really sound like my kind of thing."
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Alina"
+text = "Well... suit yourself, I guess."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Alina"
+text = "A whole land locked off for hundreds of years! Do you not want to be one of the first outsiders to step foot there? Think of the adventure!"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Noah"
+text = "Adventure? Sounds dangerous. I'll be staying right here, thank you very much!"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Alina"
+text = "Bah! Boring! What about you, stranger?"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "select"
+text = "Start the Children of the Sun quest?"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [69]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "act"
+text = "above"
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [71]
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "act"
+text = "above"
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "cond"
+text = "If the player is on a free-to-play world:"
+parent = -1
+children = [73, 74]
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "[Noah/Alina]"
+text = "Sorry, I can't stop to talk right now."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "members"
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "cond"
+text = "If the player is on a member's world:"
+parent = -1
+children = [76, 77, 78, 80, 82, 84]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Alina"
+text = "Hello again! So what do you think? Reckon you'll be one of the first to head over to Varlamore?"
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 75
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "option"
+text = "What can you tell me about Varlamore?"
+parent = 75
+children = [79]
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "act"
+text = "above"
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "option"
+text = "How come you know so much about Varlamore?"
+parent = 75
+children = [81]
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "act"
+text = "above"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "option"
+text = "When will this delegation arrive?"
+parent = 75
+children = [83]
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "act"
+text = "above"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "option"
+text = "Sorry, but I need to head off."
+parent = 75
+children = [85]
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "act"
+text = "above"
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "act"
+text = "(Guard cutscene begins.)"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "cond"
+text = "If the player is spotted by the guard:"
+parent = -1
+children = [88, 89, 90]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "{{overhead|Hey! What are you doing?}}"
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "box"
+text = "You failed to stay hidden from the guard."
+parent = 87
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "cond"
+text = "If the player is too far from the guard:"
+parent = -1
+children = [92, 93]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "box"
+text = "You failed to stay close enough to the guard."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Noah"
+text = "That was quite a large bag that guard was carrying. I wonder where he's taking it..."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "(Player begins tailing the guard.)"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Move along, citizen."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene begins. The player listens in on four bandits and the guard from a window outside the building.}}"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you up to in there...?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Bandit (red hood)"
+text = "You're late."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "I'm here aren't I? If you're not happy, maybe you should have been the one to steal the uniforms!"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Bandit (woman)"
+text = "Enough! We don't have much time. Do you have everything?"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Mostly."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Bandit (red hood)"
+text = "Mostly?"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "I grabbed what I could!"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Bandit (bearded)"
+text = "We're just going to have to make do. The delegation is already in the palace. We need to be ready to strike as they leave."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Bandit (tanned)"
+text = "Indeed. You all know the target. Get changed quick and be ready to take your positions."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Good luck. You're going to need it."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Bandit (bearded)"
+text = "You lot panic too much. It's going to be fine. Now, let's get going."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This doesn't sound good. I'd better let that sergeant know."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene ends.}}"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Move along, citizen."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait! I have some information that you need to hear."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "What is it?"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There are some bandits disguising themselves as guards! I think they're planning to attack the delegation from Varlamore!"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Surely you can't be serious?"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's true! One of them infiltrated your guards and stole some uniforms. He came right through here earlier with them."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "The one with the large bag? I thought I didn't recognise him, but then it's so hard to keep up. We get through guards so quickly around here for some reason..."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what do we do? Should we warn the delegation?"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "And risk a panic? No. Better we deal with this now while they're safe in the palace. Do you know how many bandits there are?"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Four in total."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Right, we can work with that. You get out there and point them out. With them being disguised, you'll need to keep a close eye out for any guard who looks or acts differently to the others."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Don't go too far. If the bandits intend to attack the delegation, they'll either be here in the square or on the eastern road between the square and the bank."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Return to me once you've found all four and we'll take them all at the same time."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll get to it."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Get out there and point out the four bandits. They're in disguise, so be sure to keep a close eye out for any guard who looks or acts differently to the others."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Remember, if they intend to attack the delegation, they'll either be here in the square or on the eastern road between the square and the bank."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll be back soon."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "cond"
+text = "If four guards are already marked:"
+parent = -1
+children = [132, 133]
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "box"
+text = "You've already marked enough guards."
+parent = 131
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "act"
+text = "end"
+parent = 131
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "other"
+text = "{{mes|You mark the guard.}}"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "other"
+text = "{{mes|You unmark the guard.}}"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I've pointed out all the bandits."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "cond"
+text = "If the player incorrectly marked any guards:"
+parent = -1
+children = [140, 141]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Are you sure? I definitely recognise at least one of them as one of my guards. Maybe you should try again."
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "act"
+text = "end"
+parent = 139
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "cond"
+text = "If the player correctly marked all four bandits:"
+parent = -1
+children = [143, 144, 145, 146, 147, 148, 149, 150, 151, 152]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Good work. I'll signal my guards to bring them in..."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "box"
+text = "Sergeant Tobyn signals to his guards and the bandits are quickly arrested."
+parent = 142
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "That could have ended up quite nasty if not for you. Once again, good work."
+parent = 142
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what happens now?"
+parent = 142
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "The bandits will be interrogated. If all goes well, we'll get some useful information out of them."
+parent = 142
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Speaking of which... given it was you who found them in the first place, you might be able to offer some support. Would you be willing to help?"
+parent = 142
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course! Where do you need me?"
+parent = 142
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Come with me. We'll use the cell on the palace roof for the interrogations. It's nice and out of the way."
+parent = 142
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "box"
+text = "Sergeant Tobyn escorts you to the palace roof."
+parent = 142
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "act"
+text = "end"
+parent = 142
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "That could have ended up quite nasty if not for you. Once again, good work."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Ah, nilsal, sergeant."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Prince Itzla! I... I'm sorry, but I wasn't expecting you here."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Well all that politics downstairs was getting a bit dry, but then I heard there'd been a bit of a commotion. I thought I'd come see what the fuss was all about. You don't mind, do you?"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Well no, it's just..."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Wonderful! And you! Who are you?"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. I'm [player name]."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "[player name]? Kuaini! Pleased to meet you. Crown Prince Itzla Arkan, heir to the Sun Throne, at your service."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Tell me, [player name], are you the one who caught these would-be assassins?"
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Well then, why don't you and I ask this one a few little questions. You don't mind, do you, sergeant?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Not at all, but..."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Excellent! Let's get started then."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "other"
+text = "{{qact|The player and Prince Itzla enter one of the bandits' cells.}}"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Nilsal to you, iknami. I hear you managed to get yourself into a spot of bother."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "I'm not telling you anything."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Ah, tetamo! Such a shame. No matter though! We'll have you talking in no time."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Now, you'll need to forgive me, but I'm a bit new around here, so your customs are not familiar to me. Tell me, iknami, what's the preferred method of interrogation in these parts?"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "You're asking me how you should interrogate me?"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Well it just seemed polite to ask. We have all sorts of fun methods back home in Varlamore. We could give one or two of them a go if you want?"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "If I want?"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Absolutely! Now, what are your thoughts on chicken?"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "Chicken?"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Oh, [player name], do you not have chickens here? Sorry, again, all this is quite new to me."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, we have chickens. The farms around here have loads."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Well then, why the confusion? Have you never seen one before? Oh you poor sheltered thing. Did your parents never show you the wonders of the countryside?"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "I know what a chicken is!"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Well why didn't you say so?"
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "I don't know what game you're playing, but it won't work on me!"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = """
+No game at all, iknami. The reason I ask is because one of our preferred methods in Varlamore involves just a small amount of fire, and you'd never believe it, but the smell of human flesh once it gets going...
+"""
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "You're going to cook me?"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Cook? No, not at all! That would imply I'm going to eat you, and I'm not a barbarian! Though, it would be interesting to know if it tastes like chicken as well..."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "Alright, enough! I'll tell you what you want!"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Kuaini!"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "So who are you working for?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "I don't know their name. They just paid us to attack the delegation. They didn't look to be from around here. I reckon it was one of your lot!"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Why did they want you to attack the delegation?"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "They didn't say, but that priest... he was the target!"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "So a Varlamorian paid you to assassinate the Teokan? You're not giving me much to go on."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Bandit"
+text = "That's all I know!"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Hmm..."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Well I think we're done here. Come, [player name]."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "other"
+text = "{{qact|The player and Prince Itzla leave the cell.}}"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "I think we got what we needed there."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "You're sure he told you everything?"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Oh yes. The fear of being cooked will do that to a person. All total rubbish of course! Imagine burning someone alive! We're much more civilised over in Varlamore."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "We just cut out their heart while it's still beating instead."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't tell if you're joking or not..."
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Anyway, sounds like there'll be some work to do when we get back home. An assassination attempt on the Teokan of Ralos... Concerning stuff. First up though, I'd better get back to the politics!"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "[player name], once we've got these papers signed, you lot will be free to travel to Varlamore for the first time! No more needing explicit permission. You can come and go as you please!"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Now, it's entirely up to you of course, but given we have you to thank for stopping this plot, I'd be very keen if you'd join me in Varlamore to continue the investigation."
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "cond"
+text = "Before the release of Varlamore:"
+parent = -1
+children = [206, 207]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "No need to decide now. It will take a bit longer for us to be ready for visitors anyway, but when the time comes, I'll have my people send word to you."
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "act"
+text = "continue"
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "cond"
+text = "After the release of Varlamore:"
+parent = -1
+children = [209, 210]
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "No need to decide now, but if you do wish to accept my offer, just speak to Regulus Cento outside the eastern gates of this city."
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "act"
+text = "continue"
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "Now, they'll be missing me downstairs. Timoiva, and may the sun light your way!"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "box"
+text = "Itzla departs."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Well, that was interesting..."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not every day the heir to a far-off land comes and interrogates one of your prisoners?"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Oddly enough, no. This will be an interesting report to write. And on that note, I'd best get to it. All the best, adventurer. Thank you for your help."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "act"
+text = "(Interrogation cutscene begins.)"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Prince Itzla Arkan"
+text = "I think we got what we needed there."
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Tobyn"
+text = "Well, that was interesting..."
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "act"
+text = "above"
+parent = -1

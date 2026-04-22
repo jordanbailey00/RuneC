@@ -1,0 +1,66 @@
+# The Hueycoatl — Varlamore 2024 boss. Feathered-serpent boss fought
+# in sections: player clears sub-sections of the body (each piece is
+# an NPC); final head phase after tail/body destroyed.
+
+name = "The Hueycoatl"
+slug = "hueycoatl"
+npc_ids = [14012, 14013, 14014]
+source_pages = ["The Hueycoatl", "The Hueycoatl/Strategies"]
+
+[[attacks]]
+name = "Fire Breath"
+style = "dragonfire"
+max_hit = 45
+warning_ticks = 2
+
+[[attacks]]
+name = "Lightning Strike"
+style = "magic"
+max_hit = 35
+warning_ticks = 3
+targets_tile_not_entity = true
+aoe_shape = "3x3"
+
+[[attacks]]
+name = "Tail Slam"
+style = "melee"
+max_hit = 30
+warning_ticks = 1
+aoe_shape = "line_length_5"
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "body_pieces"
+enter_at_hp_pct = 100
+script = "huey_body_pieces_phase"
+# Body made of multiple linked segments; player attacks each
+# segment. Destroying a segment exposes the next.
+allowed_attacks = ["Fire Breath", "Lightning Strike", "Tail Slam"]
+
+[[phases]]
+id = "head_phase"
+enter_after = "all_body_destroyed"
+script = "huey_head_phase"
+allowed_attacks = ["Fire Breath", "Lightning Strike"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Anvil Stun"
+primitive = "interactive_environment_object"
+# Players can lure Huey to an anvil/pillar that stuns it, exposing
+# the head for a damage window.
+trigger = "phase_in:head_phase"
+params.object_name = "Stone pillar"
+params.pin_duration_ticks = 15
+params.damage_window_multiplier = 2.0
+
+[[mechanics]]
+name = "Electric Floor"
+primitive = "persistent_dot_tile_pool"
+trigger = "phase_in:head_phase"
+period_ticks = 8
+params.duration_ticks = 30
+params.tile_count_per_spawn = 4
+params.dot_per_tick = 15

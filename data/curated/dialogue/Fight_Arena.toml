@@ -1,0 +1,2780 @@
+title = "Transcript:Fight Arena"
+npcs = ["Lady Servil", "Sammy Servil", "Justin Servil", "Khazard Guard", "Khazard Barman", "Head Guard (Fight Arena)", "Hengrad", "Slave (Fight Arena)", "General Khazard", "Joe (Fight Arena)", "Kelvin", "Spectator (Fight Arena)", "Door Guard", "Khazard Guard (Off duty)"]
+node_count = 351
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "box"
+text = "The chest is securely locked."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there. Looks like you're in some trouble."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "The cart? That's the least of my problems. I've got to find my family..."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "box"
+text = "Before starting this quest, be aware that your combat level is lower than the recommended level of 50."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "select"
+text = "Start the Fight Arena quest?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Your family? Can I help?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Lady Servil"
+text = "You'd be willing to?"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course. Tell me what happened."
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Well, I'm Lady Servil. I was travelling to Ardougne with my husband, Justin, and son, Sammy, when our cart broke on some rocks."
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Some of General Khazard's men spotted us and offered to help, but they demanded my husband and son fight in their arena first! We said no, but they took them anyway!"
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "General Khazard?"
+parent = 6
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Lady Servil"
+text = """
+He's a menace! This entire area is under the control of him and his mercenary group, the Khazard Army. They prey on the weak and vulnerable, making them fight in that arena of theirs, all for entertainment!
+"""
+parent = 6
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's horrible! How are they able to get away with it?"
+parent = 6
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Lady Servil"
+text = "The authorities don't care. Khazard's men just pay them off if they ever come to investigate."
+parent = 6
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well they won't stop me. I'm going to try my best to find your family."
+parent = 6
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Thank you. They'll be somewhere inside the arena. I'll be waiting here for you."
+parent = 6
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [20, 21]
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I hope it works out. Good luck."
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "end"
+parent = 19
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Adventurer, please... bring back my family. They'll be somewhere inside the arena."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'll find them."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Spectator"
+text = "Hello, stranger. Are you here for the fight arena?"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I suppose I am."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Spectator"
+text = "Anything in particular?"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Just visiting some friends."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Spectator"
+text = "Inside? Are you sure about that? Only Khazard guards are allowed in there. Unless you know where to get some of their armour, you won't be visiting anyone."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "Well I'm off-duty right now, so why don't you go and bother someone else."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "other"
+text = "{{mes|You open the chest.}}"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "cond"
+text = "If the player has a full inventory:"
+parent = -1
+children = [39]
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "box"
+text = "pic=Khazard helmet detail.png|pic2=Khazard armour detail.png|You search the chest and find a helmet and platebody. However, you don't have enough room to take them."
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Lady Servil."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Have you had any luck with freeing my family?"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've managed to get a guard's uniform, hopefully I can infiltrate the arena."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Please hurry."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "Despicable thieving scum!"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What happened?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "cond"
+text = "Without the Khazard armour equipped:"
+parent = -1
+children = [49, 50]
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "None of your business. Clear off!"
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "cond"
+text = "With the Khazard armour equipped:"
+parent = -1
+children = [52, 53, 54]
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "Someone came in and stole my armour!"
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh no! I'll let you know if I see anyone suspicious..."
+parent = 51
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "act"
+text = "end"
+parent = 51
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Door Guard"
+text = "Are you new? I've never seen you around here before."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You could say that. Long live General Khazard!"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Door Guard"
+text = "Er... yeah..."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [62, 63, 64]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "There should be some good fights today."
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "act"
+text = "end"
+parent = 61
+is_terminal = true
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [66, 67, 68]
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = 65
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "Keep an eye out for anything suspicious."
+parent = 65
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "act"
+text = "end"
+parent = 65
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [70, 71, 72]
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "I think I'll head to the bar on my next break."
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "act"
+text = "end"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [74, 75, 76]
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "Don't bother me while I'm on duty."
+parent = 73
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "end"
+parent = 73
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Spectator"
+text = "Hello there. I hear the Servil family are fighting soon. Should be very entertaining."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "What are you doing here? Leave at once!"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This door appears to be locked."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "Nice observation guard. You could have just asked to be let in like a normal person."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "cond"
+text = "If the player has the Khazard armour equipped:"
+parent = -1
+children = [87, 88, 89, 90, 91]
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do either of you know of the Servil family?"
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "If we did, why would we tell a guard?"
+parent = 86
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Kelvin"
+text = "Until our last breath, our every action will be against Khazard. Never will we help you."
+parent = 86
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "I spit on Khazard, and all who do his bidding."
+parent = 86
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "act"
+text = "end"
+parent = 86
+is_terminal = true
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "cond"
+text = "If the player does not have the Khazard armour equipped:"
+parent = -1
+children = [93, 94, 95, 96]
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do either of you know of the Servil family?"
+parent = 92
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Joe"
+text = "I've heard of them, but if your hope is to help them, I fear you may be too late."
+parent = 92
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Kelvin"
+text = "You should leave while you can. If the guards get you, you'll be in here next."
+parent = 92
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "act"
+text = "end"
+parent = 92
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. I'm looking for the Servil family."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "cond"
+text = "If the player has the Khazard armour equipped:"
+parent = -1
+children = [99, 100]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Slave"
+text = "Please leave me alone."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "act"
+text = "end"
+parent = 98
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "cond"
+text = "If the player does not have the Khazard armour equipped:"
+parent = -1
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Slave"
+text = "I've never heard of them."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "cond"
+text = "If the player has the Khazard armour equipped:"
+parent = -1
+children = [106, 107, 108, 109]
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "Hmm... You don't seem like a real guard to me. Who are you?"
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No one important. I'm looking for the Servil family."
+parent = 105
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "I've seen them in here, but my advice to you is to leave them. Whatever plan you have will only end with you in a cell as well."
+parent = 105
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "act"
+text = "end"
+parent = 105
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "cond"
+text = "If the player does not have the Khazard armour equipped:"
+parent = -1
+children = [111, 112, 113, 114]
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "You're not a guard. What are you doing in here?"
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for the Servil family."
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "I've seen them in here, but my advice to you is to leave them. Whatever plan you have will only end with you in a cell as well."
+parent = 110
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "act"
+text = "end"
+parent = 110
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "box"
+text = "The door is securely locked."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "box"
+text = "The gate is securely locked."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Long live General Khazard!"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Er... yes... quite right. Did you need something?"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Just checking if you have any orders for me."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Not right now. Things are all very boring at the moment. What I'd give to be over at the bar having a nice Khali brew..."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Khali brew? Can't say I've ever had one."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Oh, nothing beats them! Mind you, don't make the mistake of having too many. Last time I did, I ended up falling straight to sleep."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good to know, thanks."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "What a boring day. You'd think the slaves would be more entertaining."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not long now until you get a break though, right?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Too right! Then it's straight to the bar for a nice Khali brew."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "This area is restricted. Leave now!"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Are you Sammy?"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Please... don't hurt me."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'm here to help. Where do they keep the keys?"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "The Head Guard has them. He's the one with the big sword."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't lose heart, I'll be back."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Sammy."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Hello. Do you have the keys?"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Please hurry. The Head Guard has them. He's the one with the big sword."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lady Servil, I have managed to infiltrate General Khazard's arena."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "And my family?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm working on it."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Please hurry."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "option"
+text = "Dialogue 1 (Wearing Khazard armour)"
+parent = -1
+children = [152, 153, 154]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Joe/Kelvin"
+text = "Get away! One day we'll have our revenge on you all!"
+parent = 151
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "act"
+text = "end"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "option"
+text = "Dialogue 2 (Wearing Khazard armour)"
+parent = -1
+children = [156, 157, 158]
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Joe/Kelvin"
+text = "Spare us your fake pity. I spit on Khazard, and all who do his bidding."
+parent = 155
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "act"
+text = "end"
+parent = 155
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "Dialogue 3 (Not wearing Khazard armour)"
+parent = -1
+children = [160, 161, 162]
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Joe/Kelvin"
+text = "You're not safe here, traveller. Leave while you still can."
+parent = 159
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "act"
+text = "end"
+parent = 159
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "Dialogue 4 (Not wearing Khazard armour)"
+parent = -1
+children = [164, 165, 166]
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Joe/Kelvin"
+text = "You're brave coming in here. If the guards get you, you'll be the next one in a cell."
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "cond"
+text = "If the player has the Khazard armour equipped:"
+parent = -1
+children = [168, 169, 170]
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Slave"
+text = "Please leave me alone."
+parent = 167
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "act"
+text = "end"
+parent = 167
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "cond"
+text = "If the player does not have the Khazard armour equipped:"
+parent = -1
+children = [172, 173, 177, 181, 185]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 171
+children = [174, 175, 176]
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 3
+kind = "speaker"
+speaker = "Slave"
+text = "Why am I here?"
+parent = 173
+
+[[nodes]]
+id = 176
+depth = 3
+kind = "act"
+text = "end"
+parent = 173
+is_terminal = true
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 171
+children = [178, 179, 180]
+
+[[nodes]]
+id = 178
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 3
+kind = "speaker"
+speaker = "Slave"
+text = "Please leave me alone."
+parent = 177
+
+[[nodes]]
+id = 180
+depth = 3
+kind = "act"
+text = "end"
+parent = 177
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 171
+children = [182, 184]
+
+[[nodes]]
+id = 182
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = 181
+children = [183]
+
+[[nodes]]
+id = 183
+depth = 4
+kind = "speaker"
+speaker = "Slave"
+text = "What did I do to deserve this?"
+parent = 182
+
+[[nodes]]
+id = 184
+depth = 3
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 171
+children = [186, 188]
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = 185
+children = [187]
+
+[[nodes]]
+id = 187
+depth = 4
+kind = "speaker"
+speaker = "Slave"
+text = "You're not safe here. Leave while you can."
+parent = 186
+
+[[nodes]]
+id = 188
+depth = 3
+kind = "act"
+text = "end"
+parent = 185
+is_terminal = true
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "cond"
+text = "If the player has the Khazard armour equipped:"
+parent = -1
+children = [191, 192, 193, 194]
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "Hmm... You don't seem like a real guard to me. Who are you?"
+parent = 190
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No one important."
+parent = 190
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "If you say so."
+parent = 190
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "act"
+text = "end"
+parent = 190
+is_terminal = true
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "cond"
+text = "If the player does not have the Khazard armour equipped:"
+parent = -1
+children = [196, 197, 198, 199]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "You're not a guard. What are you doing in here?"
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing important."
+parent = 195
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Hengrad"
+text = "If you say so."
+parent = 195
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "act"
+text = "end"
+parent = 195
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Khazard barman"
+text = "Hi, what can I get you? We have a range of quality brews."
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "option"
+text = "I'll have a beer please.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "I'd like a Khali brew please."
+parent = -1
+children = [205, 206, 207, 210, 213, 214, 215]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd like a Khali brew please."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Khazard barman"
+text = "That'll be five gold coins please."
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "cond"
+text = "If the player doesn't have 5 coins:"
+parent = 204
+children = [208, 209]
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I don't have enough money with me."
+parent = 207
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "act"
+text = "end"
+parent = 207
+is_terminal = true
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "cond"
+text = "If the player has a full inventory:"
+parent = 204
+children = [211, 212]
+
+[[nodes]]
+id = 211
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I don't have enough room for one."
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 3
+kind = "act"
+text = "end"
+parent = 210
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Khazard barman"
+text = "There you go, that's five gold coins. I suggest lying down before you drink it. That way you have less distance to collapse. <!--Drops to ground with full inventory.-->"
+parent = 204
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "box"
+text = "pic=Khali brew detail.png|The barman gives you a Khali brew in exchange for five coins."
+parent = 204
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "option"
+text = "Got any news?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "option"
+text = "I'm good, thanks.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "What a boring day. You'd think the slaves would be more entertaining."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you still fancy a drink? <!--starts from here if using the brew on him-->"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "I really shouldn't..."
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure?"
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Oh... okay then, but just the one."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "box"
+text = "pic=Khali_brew detail.png|You hand a bottle of Khali brew to the Head Guard and he quickly drinks it all."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "That is some gooood stuff... yeah... wooh, yeah!"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you alright?"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Yeesshh! Oooh, maybe I sshould relax for a while."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good idea. I'll look after the prisoners."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Yeesh... that shounds reasonable. Here, take the keysch. Any trouble, you give... you give 'em a good beating."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "box"
+text = "pic=Khazard_cell_keys detail.png|The Head Guard gives you some keys."
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'll keep them in line"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Pleash... leave me alone. Did the walls always shway soooo much?"
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi, er... I lost the keys."
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "What? You're foolish... and I'm all drunk. Here... takes my shpare shh... set!"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "box"
+text = "pic=Khazard_cell_keys detail.png|The Head Guard gives you some keys."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Head Guard"
+text = "Thish areash resh... restricted! We don't like strangersh... 'specially ones who sway. Oooh!"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The gate is locked, but Sammy's not in there anyway."
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sammy look, I have the keys."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Wow! Please hurry and set me free."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We'll need to wait for the guards to change shift, but don't worry, you'll be out soon..."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene begins.}}"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, the coast is clear."
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "other"
+text = "{{qact|The player unlocks Sammy's cell and Sammy steps out.}}"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now, let's get you out of here."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Not yet! We need to find my dad!"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "other"
+text = "{{qact|Sammy walks off.}}"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sammy, wait!"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "other"
+text = "{{qact|The player follows Sammy into the Fight Arena.}}"
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Quick, help him!"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "other"
+text = "{{qact|The Khazard Ogre's cage is unlocked, and it attacks Jimmy Servil.}}"
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "select"
+text = "Are you sure you want to leave?"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "select"
+text = "Return to the arena?"
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "cond"
+text = "If the player has the Khazard armour equipped:"
+parent = -1
+children = [266, 267]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Spectator"
+text = "Hello there. I hear Khazard's got some great fights lined up today. I can't wait!"
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the Khazard armour equipped:"
+parent = -1
+children = [269, 270]
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Spectator"
+text = "Hello, stranger. I hear Khazard's got some great fights lined up today. I can't wait!"
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "act"
+text = "end"
+parent = 268
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lady Servil, I freed your son, but he went to help your husband."
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "No! Please, you have to help them!"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Well, well, well, you seem to be in quite the rush. Do you have somewhere else to be?"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Oh no..."
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "General Khazard, I presume?"
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "You presume correct. I must say, I sense a great air of defiance to you. Does my appearance not fill you with fear?"
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've seen worse."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "How arrogant. No matter though, you will come to learn."
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Now, despite your entertaining show, the two individuals you are attempting to leave with are my property."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They belong to nobody!"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Ha! Well if their freedom is so valuable to you, how about a trade? Fight in my arena, and if you win, I'll let them go."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And what if I refuse your offer?"
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Well... I wasn't actually giving you a choice. Guards, take [him/her/them] to the cells."
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "other"
+text = "{{qact|The player is taken to a jail cell.}}"
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Spectator"
+text = "Hey, you're the one from the arena! That was some great fighting!"
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Door Guard"
+text = "So you're back for more are you? General Khazard will be pleased."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "other"
+text = "{{qact|The player is taken back to the jail.}}"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Hengrad"
+text = "Hello there. So Khazard got his hands on you too?"
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Unfortunately so."
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Hengrad"
+text = "Well if you're lucky, you might last as long as me."
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How long have you been here?"
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Hengrad"
+text = "As long as I can remember. I was a child when his men kidnapped me. My whole life has been spent killing and fighting, all in the hope that one day I might escape."
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't give up."
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Hengrad"
+text = "Thanks, friend."
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Hengrad"
+text = "Wait... sounds like the guard is coming. Looks like you'll be going back into the arena. Good luck, friend."
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "other"
+text = "{{qact|The player is brought into the arena.}}"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Now watch closely, friends. I fear this may be where your protector dies."
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Justin Servil"
+text = "Ignore him! You can do it!"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Hengrad"
+text = "I don't know how you managed to escape, but you may not be as lucky next time. Get out of here while you can."
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Impressive, but now for a proper challenge. Time for my puppy. Bring on Bouncer!"
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Bouncer! No!"
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "You monster! You'll pay for what you've done!"
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I only did what you asked. I fought in your arena. Now let the Servils go."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Fine! I am not a coward who makes false promises. I have no need of them anyway. You on the other hand, won't be going anywhere."
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Guard, escort the Servils out. I'll take great pleasure in dealing with this one myself!"
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "speaker"
+speaker = "Sammy Servil"
+text = "Don't try to fight him! Just run!"
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "other"
+text = "{{qact|General Khazard attacks the player.}}"
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "You! You're the one who killed Bouncer."
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Khazard Guard"
+text = "{{overhead|Die you monster!}}"
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "Spectator"
+text = "Hey, you're the one who beat Bouncer! Amazing!"
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Going somewhere?"
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But... I killed you!"
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Ha! Arrogant fool! You think you can kill me? I am General Khazard! My power is absolute!"
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Now, part of me would very much like to kill you for what you've done today, but let it be known that I am not without generosity."
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "You proved yourself in battle against me. That is something few can boast of. For that, you may leave. However, if you ever oppose me again, I won't hesitate to wipe you from existence!"
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Now go. I have business to attend to elsewhere that is far more important than you."
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lady Servil."
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "You're alive! I feared General Khazard would have killed you!"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He tried, but I escaped."
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Thank goodness. I'd have never forgiven myself if you'd have died saving my family."
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Now, you'll be pleased to know that my son and husband are safe and recovering at home. Without you they would certainly be dead. Thank you, for everything."
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not a problem."
+parent = -1
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Please, take this payment. It's the least you deserve."
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lady Servil."
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "You're alive! I feared General Khazard would have killed you!"
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He tried, but I was able to defeat him."
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "You killed General Khazard?"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I thought I had at first, but it seems he is not that easy to kill."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Well, at least you're alive."
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Now, you'll be pleased to know that my son and husband are safe and recovering at home. Without you they would certainly be dead. Thank you, for everything."
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not a problem."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Lady Servil"
+text = "Please, take this payment. It's the least you deserve."
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

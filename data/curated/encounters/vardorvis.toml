@@ -1,0 +1,80 @@
+# Vardorvis — DT2 post-quest boss. Tests: moving damage hazards
+# (spinning axes), tile-telegraph attacks (axe drops), mind-flay
+# healing mechanic, awakened variant with scaled stats.
+
+name = "Vardorvis"
+slug = "vardorvis"
+# 12223 = standard, 12425 = awakened. Other ids cover quest variants.
+npc_ids = [12223, 12425, 12224, 12228, 12426]
+source_pages = ["Vardorvis", "Vardorvis/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Melee Claw"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 38
+warning_ticks = 0
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Claw"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Spinning Axes"
+primitive = "moving_rotational_hazards"
+# Axes that orbit Vardorvis in a rotating pattern; player must dodge
+# their path. Axes damage on contact.
+period_ticks = 4
+params.axe_count = 4
+params.orbit_radius = 3
+params.rotation_ticks_per_full_circle = 16
+params.damage_on_hit = 20
+
+[[mechanics]]
+name = "Axe Drops"
+primitive = "telegraphed_aoe_tile"
+# Periodically drops axes on telegraphed tiles; damage if still
+# standing when they land.
+period_ticks = 10
+params.target_current_tile = true
+params.extra_random_tiles = 2
+params.warning_ticks = 3
+params.damage_min = 30
+params.damage_max = 50
+
+[[mechanics]]
+name = "Mind Flay"
+primitive = "heal_boss_on_player_attack_miss"
+# Telegraphed grab attack: if player attacks Vardorvis during the
+# telegraph, attack fails AND heals Vardorvis.
+period_ticks = 25
+params.warning_ticks = 4
+params.heal_per_player_attack = 25
+params.cancel_player_attack = true
+
+[[mechanics]]
+name = "Grey Tiles"
+primitive = "tile_debuff_on_stand"
+# Grey tiles appear on arena; if player steps on one, they take
+# damage and get debuffed.
+period_ticks = 15
+params.tile_count = 4
+params.damage_on_step = 15
+params.debuff = { stat = "defence", amount = -3 }
+
+# ---- Awakened variant overrides ---------------------------------------
+# When npc_id == 12425, apply these overrides on top of the base
+# encounter. Awakened uses harder numbers + extra mechanic intensity.
+[awakened_override]
+applies_to_npc_id = 12425
+hp_multiplier = 1.5
+damage_multiplier = 1.33
+spinning_axes_period_ticks = 2
+axe_drops_period_ticks = 7

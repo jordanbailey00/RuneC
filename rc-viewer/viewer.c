@@ -4,6 +4,7 @@
 #include "../rc-core/api.h"
 #include "../rc-core/pathfinding.h"
 #include "../rc-core/npc.h"
+#include "../rc-content/content.h"
 #include "raylib.h"
 #include "raymath.h"
 #include "rlgl.h"
@@ -71,6 +72,7 @@ typedef struct {
     int anim_frame_idx;
     float anim_frame_timer;
     int player_moving;
+    float player_facing_angle;   // viewer-side; rc-core doesn't store
 
     int show_grid;
     int show_collision;
@@ -157,7 +159,8 @@ static void handle_input(ViewerState *v) {
     }
 }
 
-static void process_movement(RcWorld *world, int *moved) {
+static void process_movement(ViewerState *v, int *moved) {
+    RcWorld *world = v->world;
     static int logged = 0;
     RcPlayer *p = &world->player;
     *moved = 0;
@@ -184,7 +187,7 @@ static void process_movement(RcWorld *world, int *moved) {
         if (can) {
             p->x += dx; p->y += dy;
             // atan2(dx, dy) gives world-space angle. Negate because Z is flipped in rendering.
-            p->facing_angle = atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
+            v->player_facing_angle = atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
             *moved = 1;
         } else {
             uint32_t dest_f = rc_get_flags(&world->map, p->x + dx, p->y + dy, 0);
@@ -338,7 +341,7 @@ static void draw_scene(ViewerState *v) {
     ModelEntry *pe = (v->player_model && v->player_model->loaded) ? &v->player_model->entries[0] : NULL;
     if (pe && pe->loaded) {
         DrawModelEx(pe->model, (Vector3){px, py, pz}, (Vector3){0, 1, 0},
-                    p->facing_angle, (Vector3){1, 1, 1}, WHITE);
+                    v->player_facing_angle, (Vector3){1, 1, 1}, WHITE);
     } else {
         DrawCube((Vector3){px, py + 1.0f, pz}, 0.8f, 2.0f, 0.8f, BLUE);
     }
@@ -450,6 +453,9 @@ int main(void) {
 
     v.world = rc_world_create(12345);
     if (!v.world) { fprintf(stderr, "Failed to create world\n"); return 1; }
+    // Register all OSRS content modules (boss scripts, etc.). See
+    // rc-content/README.md for the engine/content split.
+    rc_content_register_all(v.world);
 
     v.world->player.x = PLAYER_START_X;
     v.world->player.y = PLAYER_START_Y;
@@ -553,7 +559,7 @@ int main(void) {
                 v.prev_player_y = (float)v.world->player.y;
 
                 int moved = 0;
-                process_movement(v.world, &moved);
+                process_movement(&v, &moved);
                 v.player_moving = moved;
 
                 // Tick all active NPCs (wander AI, respawn, movement)

@@ -1,0 +1,9470 @@
+title = "Transcript:Temple of the Eye"
+npcs = ["Aliya", "Apprentice Cordelia", "Apprentice Felix", "Apprentice Tamara", "Archmage Sedridor", "Dark Mage (Abyss)", "The Great Guardian", "Mage of Zamorak", "Tea Seller", "Wizard Persten", "Wizard Traiborn", "Zachariah"]
+node_count = 1205
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey there."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [3, 4, 5, 6, 7, 8, 9, 11]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "What? You haven't heard of me? The great Mia Persten of the Order of Wizards? The leading researcher in teleportation magic? The creator of the Home Teleport spell?"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I'm sorry. I didn't mean to offend you. I'm [player name]."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "No offence taken! My research tends to take me far from the Wizards' Tower. I've been all across Gielinor and even to some other planes of existence!"
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Other planes of existence? Sounds exciting!"
+parent = 2
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Exciting and terrifying! Brilliant, right?"
+parent = 2
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "option"
+text = "So what are you doing in Al Kharid?"
+parent = 2
+children = [10]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "act"
+text = "below"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "See you around."
+parent = 2
+children = [12]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "below"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "option"
+text = "What's a wizard doing in Al Kharid?"
+parent = -1
+children = [14, 20, 28, 29, 30, 31, 32, 33, 34, 35, 41, 42, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 61, 63, 64, 65, 66, 68]
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "cond"
+text = "If the player already asked \"Who are you?\":"
+parent = 13
+children = [15, 16, 17, 18, 19]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what are you doing in Al Kharid?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Should I not be in Al Kharid?"
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Er... good question. I guess I just haven't seen a wizard around here before."
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well, maybe you should start expecting the unexpected! That way you can spend less time worrying about why I'm here, and more time asking life's real questions."
+parent = 14
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "act"
+text = "continues"
+parent = 14
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "cond"
+text = "If the player did not ask \"Who are you?\":"
+parent = 13
+children = [21, 22, 23, 24, 25, 26, 27]
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's a wizard doing in Al Kharid?"
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Why shouldn't a wizard be in Al Kharid?"
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Er... good question. I guess I just haven't seen a wizard around here before."
+parent = 20
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well for a start, I'm not just any wizard. The name's Mia Persten. I'm the leading researcher in teleportation magic for the Order of Wizards."
+parent = 20
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Pleased to meet you. I'm [player name]."
+parent = 20
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Now as for your question, maybe you should start expecting the unexpected! That way you can spend less time worrying about why I'm here, and more time asking life's real questions."
+parent = 20
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "act"
+text = "continues"
+parent = 20
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right... and what kind of questions are you referring to?"
+parent = 13
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = """
+Well, that's the thing. It's different for everyone! Why do trees grow from stumps substantially faster than from seeds? Where do meteorites come from? Why do we have to hold our arms out to teleport successfully?
+"""
+parent = 13
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't know. What are the answers?"
+parent = 13
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "I don't know either!"
+parent = 13
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you're in Al Kharid to work out how trees grow?"
+parent = 13
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "No, silly! I came here to buy something."
+parent = 13
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Something?"
+parent = 13
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "cond"
+text = "If the player does not have 10 Runecraft:"
+parent = 13
+children = [36, 37, 38, 39, 40]
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "That's right! Something! Tell me, what do you know of runecrafting?"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not a lot really."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "A shame. Unfortunately, this something requires some understanding in that area."
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "box"
+text = "You do not meet all of the requirements to start the Temple of the Eye quest."
+parent = 35
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "act"
+text = "end"
+parent = 35
+is_terminal = true
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "That's right! Something! Tell me, what do you know of the Abyss?"
+parent = 13
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "cond"
+text = "If the player has not completed [[Enter the Abyss]]:"
+parent = 13
+children = [43, 44, 45, 46]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not a lot really."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "A shame. Unfortunately, this something requires somewhat of an abyssal understanding."
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "box"
+text = "You do not meet all of the requirements to start the Temple of the Eye quest."
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Abyss? I know all about the Abyss."
+parent = 13
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Really? It's quite unusual for an adventurer like yourself to have knowledge in that area."
+parent = 13
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I recently helped a group of Zamorakian wizards gain access to the Rune Essence Mine. In return, they gave me access to the Abyss."
+parent = 13
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Zamorakian wizards? You do realise that the Z.M.I. are enemies to the Order of Wizards, right?"
+parent = 13
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe I shouldn't have mentioned that..."
+parent = 13
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh, don't worry about it. The Order of Wizards may be a Saradominist group, but I've never personally had much time for gods. I prefer knowledge to religion."
+parent = 13
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Still, it's maybe best you don't tell anyone else. I can't imagine my fellow wizards will be happy to know that you gave away details on their secret mine."
+parent = 13
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Enough about them though. You've just shared quite the revelation with me! Is it really true that the Z.M.I. have found a way to access the Abyss?"
+parent = 13
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's right."
+parent = 13
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well in that case, I think you might be the perfect person to aid me in a little task."
+parent = 13
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "cond"
+text = "If the player has completed [[One Small Favour]]:"
+parent = 13
+children = [58, 59, 60]
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A little task? This sounds like the time someone asked me for one small favour. I'm not sure if I'm ready for that again."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh, don't be silly! This will be fun!"
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Alright, what kind of task is it?"
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "cond"
+text = "If the player has not completed [[One Small Favour]]:"
+parent = 13
+children = [62]
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What kind of task?"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well I can't go telling you that until you agree, can I? Wouldn't want you sharing my secrets."
+parent = 13
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're not giving me much to go on here."
+parent = 13
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "There'll be quite the reward for you at the end!"
+parent = 13
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 13
+children = [67]
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "act"
+text = "below"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "option"
+text = "No."
+parent = 13
+children = [69, 70, 71]
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'd rather not get involved."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "That's a shame. Well, you just let me know if you reconsider."
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "act"
+text = "end"
+parent = 68
+is_terminal = true
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "option"
+text = "See you around."
+parent = -1
+children = [73, 74]
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "See you around."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "end"
+parent = 72
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello again! Have you changed your mind about helping me with that little task?"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 115]
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, what do you need from me?"
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = """
+You'll help? Great! Well first, a question for you: you say the Z.M.I. have gained access to the Abyss? By any chance, are they using it to gain quick access to the runic altars for runecrafting purposes?
+"""
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but how did you..."
+parent = 76
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = """
+I knew it! I've been wondering for some time how they've been creating so many runes. I'd never considered that they'd somehow gained access to the Abyss, but I now realise it was the obvious explanation.
+"""
+parent = 76
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So is that what you're after? You want access to the Abyss as well?"
+parent = 76
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well, yes, but actually, no. It seems we've jumped ahead a bit. Let's go back to why I'm here."
+parent = 76
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The 'something' you bought?"
+parent = 76
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "The 'something' I bought! Here, take a look."
+parent = 76
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten shows you an amulet."
+parent = 76
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "A foolish archaeologist by the name of Asgarnia Smith recently found this washed up near the Ruins of Uzer. Despite his apparent archaeological credentials, he dismissed it as junk."
+parent = 76
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Luckily, I was able to buy it from him before he disposed of it. Can you believe he thought the 100 coins I paid was too much? If only he knew the true value of something like this..."
+parent = 76
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why is it so valuable?"
+parent = 76
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "You see that eye on it? That is the symbol of both the Order of Wizards and our home, the Wizards' Tower. Thing is, that's only the start."
+parent = 76
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "From what I can tell, this amulet is thousands of years old, but our order was only formed at the dawn of the Fifth Age. That wasn't even two hundred years ago!"
+parent = 76
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But how..."
+parent = 76
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hang on! I'm not done yet. I also inspected the amulet for magical energies and found something fascinating! I recognised two distinct magical signatures."
+parent = 76
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "The first is the same magic found in rune essence. That's already pretty exciting, but it's the second that will blow your mind!"
+parent = 76
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was it?"
+parent = 76
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "I'm getting to that! My, you do like interrupting, don't you? Don't worry, I understand. I get quite excited about these things as well!"
+parent = 76
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Anyway, here's the big reveal for you: the second signature was energy from the Abyss!"
+parent = 76
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you have an amulet with the symbol of your order on it, but it predates your order by thousands of years?"
+parent = 76
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It also turned up miles from where your order is based, and is filled with energy from a dimension that until recently, no one had even been to?"
+parent = 76
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Now you see why this is so exciting!"
+parent = 76
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what do you need from me?"
+parent = 76
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "I need to find out where this amulet came from. It should be possible to trace it using the abyssal energy it still contains."
+parent = 76
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "This is where you ask 'What's the catch?'"
+parent = 76
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "*sigh* What's the catch?"
+parent = 76
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "I'm glad you asked, [player name]! Unfortunately, the spell needed to trace the amulet will only work properly from inside the Abyss."
+parent = 76
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh I see where this is going. You don't have access to the Abyss, but I do."
+parent = 76
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Precisely! While I don't care about the religious squabbling between the Z.M.I. and my order, I still can't see them wanting to work with me any time soon."
+parent = 76
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I need to take this amulet to the Abyss and work out where it came from?"
+parent = 76
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Correct! I imagine you'll need the help of your Z.M.I. friends."
+parent = 76
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Just maybe don't tell them who gave it to you."
+parent = 76
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll visit the Mage of Zamorak in Varrock. He should be able to help me."
+parent = 76
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Return to me once you are done. Oh, and don't forget the amulet!"
+parent = 76
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 76
+children = [113, 114]
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten hands you the amulet."
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "act"
+text = "end"
+parent = 112
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = 76
+children = [116, 117]
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten tries to hand you the amulet, but you don't have enough room to take it."
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [119, 120, 121]
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd rather not get involved."
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "That's a shame. Well, you just let me know if you reconsider."
+parent = 118
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 118
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello again! Here, take this amulet to your Z.M.I. friend in Varrock. Hopefully he can tell us where it came from."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [124, 125]
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten hands you an amulet."
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "act"
+text = "end"
+parent = 123
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = -1
+children = [127, 128]
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten tries to hand you an amulet, but you don't have enough room to take it."
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "act"
+text = "end"
+parent = 126
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello again! Any luck with that amulet?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "cond"
+text = "If the player lost the amulet:"
+parent = -1
+children = [131, 132, 133, 134, 135, 138]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, but I lost it."
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "You lost a one of a kind ancient artefact?"
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes..."
+parent = 130
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well, good job I found it again. Here you go. Take it to your Z.M.I. friend in Varrock. Hopefully he can tell us where it came from."
+parent = 130
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 130
+children = [136, 137]
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten hands you an amulet."
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 3
+kind = "act"
+text = "end"
+parent = 135
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = 130
+children = [139, 140]
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten tries to hand you an amulet, but you don't have enough room to take it."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "cond"
+text = "If the player still has the amulet:"
+parent = -1
+children = [142, 143, 144]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "You should take it to your Z.M.I. friend in Varrock. Hopefully he can tell us where it came from."
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Ah, you again. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "option"
+text = "I need your help with an amulet."
+parent = -1
+children = [147, 148, 149, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177]
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with an amulet."
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "An amulet? What amulet?"
+parent = 146
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the amulet:"
+parent = 146
+children = [150, 151, 152]
+
+[[nodes]]
+id = 150
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I don't actually have it with me. I'll be back."
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Right..."
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "act"
+text = "end"
+parent = 149
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|You show the amulet to the Mage of Zamorak."
+parent = 146
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "That eye on it... That is the symbol of the Order of Wizards. What's all this about?"
+parent = 146
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The amulet is giving off abyssal energy. I was hoping you could help me work out where it came from."
+parent = 146
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Why should I?"
+parent = 146
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I did help you gain access to the Rune Essence Mine."
+parent = 146
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "And we gave you knowledge on the Abyss in return. We owe you no further favours."
+parent = 146
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you not even slightly curious about how an amulet with the symbol of the Order of Wizards on it is giving off abyssal energy? After all, they don't have access to the Abyss."
+parent = 146
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "I hope you're not about to tell me that you shared our secrets with the Saradominists?"
+parent = 146
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course not."
+parent = 146
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Then where did you get the amulet?"
+parent = 146
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I... bought it from an archaeologist."
+parent = 146
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "There's something off about all of this. Show it to me again."
+parent = 146
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|You show the amulet to the Mage of Zamorak again. As you do, he casts a spell upon it."
+parent = 146
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What was that?"
+parent = 146
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Just a spell to tell me more about it. It seems this amulet is very unusual."
+parent = 146
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you'll help?"
+parent = 146
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Very well, but first you must do something for me. Bring me a bucket of water and a strong cup of tea."
+parent = 146
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A strong cup of tea?"
+parent = 146
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "That's right. The tea seller just north east of here can give you one. He owes me, in fact, so just tell him Herbert sent you."
+parent = 146
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Wait... Your name is Herbert?"
+parent = 146
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Is that a problem?"
+parent = 146
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I guess not. I just never had you down as a Herbert."
+parent = 146
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = 146
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = 146
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "option"
+text = "I'll be back soon."
+parent = 146
+children = [178, 179]
+
+[[nodes]]
+id = 178
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 3
+kind = "act"
+text = "end"
+parent = 177
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "option"
+text = "quest=No|Nothing. I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Zamorak: Ah, you again. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "option"
+text = "Could you help me with that amulet now?"
+parent = -1
+children = [185, 186, 187, 188, 189, 190, 191]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you help me with that amulet now?"
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Do you have a bucket of water and a strong cup of tea?"
+parent = 184
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 184
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "I will not help you until you bring them to me. The tea seller just north east of here can give you a strong cup of tea. Just tell him Herbert sent you."
+parent = 184
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = 184
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = 184
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "option"
+text = "I'll be back soon."
+parent = 184
+children = [192]
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "act"
+text = "above"
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "quest=No|Nothing. I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Tea Seller"
+text = "Greetings! Are you in need of refreshment?"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "option"
+text = "quest=No|Yes please."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "option"
+text = "quest=No|What are you selling?"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "option"
+text = "Could I have a strong cup of tea?"
+parent = -1
+children = [200, 201, 202, 203, 204, 208]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could I have a strong cup of tea?"
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Tea Seller"
+text = "A strong cup of tea? What do you mean?"
+parent = 199
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Herbert sent me for one."
+parent = 199
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Tea Seller"
+text = "Ah, well why didn't you say that? Between you and me, Herbert's strong cups of tea are actually just my regular cups of tea, but if it makes him happy..."
+parent = 199
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 199
+children = [205, 206, 207]
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "box"
+text = "pic=Strong cup of tea detail.png|The Tea Seller hands you a strong cup of tea."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "speaker"
+speaker = "Tea Seller"
+text = "I hope Herbert enjoys it."
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 199
+children = [209, 210]
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "box"
+text = "pic=Strong cup of tea detail.png|The Tea Seller tries to hand you a strong cup of tea, but you don't have enough room to take it."
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "act"
+text = "end"
+parent = 208
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Tea Seller"
+text = "Greetings! Are you in need of refreshment?"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "option"
+text = "quest=No|Yes please."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "option"
+text = "quest=No|What are you selling?"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "Could I have a strong cup of tea?"
+parent = -1
+children = [216, 217, 218, 228]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could I have a strong cup of tea?"
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Tea Seller"
+text = "For Herbert? I already gave you one for him."
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "cond"
+text = "If the player lost the strong cup of tea:"
+parent = 215
+children = [219, 220, 221, 225]
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, but I need another."
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "speaker"
+speaker = "Tea Seller"
+text = "Hmm... alright, but I can't keep making these for free you know."
+parent = 218
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "cond"
+text = "If the player has inventory space:"
+parent = 218
+children = [222, 223, 224]
+
+[[nodes]]
+id = 222
+depth = 4
+kind = "box"
+text = "pic=Strong cup of tea detail.png|The Tea Seller hands you a strong cup of tea."
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 4
+kind = "speaker"
+speaker = "Tea Seller"
+text = "I hope Herbert enjoys it."
+parent = 221
+
+[[nodes]]
+id = 224
+depth = 4
+kind = "act"
+text = "end"
+parent = 221
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 218
+children = [226, 227]
+
+[[nodes]]
+id = 226
+depth = 4
+kind = "box"
+text = "pic=Strong cup of tea detail.png|The Tea Seller tries to hand you a strong cup of tea, but you don't have enough room to take it."
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 4
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "cond"
+text = "If the player already has the strong cup of tea:"
+parent = 215
+children = [229, 230]
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ah yes, how silly of me."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Ah, you again. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "Could you help me with that amulet now?"
+parent = -1
+children = [234, 235, 236, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 257, 258, 261]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you help me with that amulet now?"
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Do you have a bucket of water and a strong cup of tea?"
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "cond"
+text = "If the player does not have a bucket of water and a strong cup of tea:"
+parent = 233
+children = [237, 238, 239]
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 3
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "I will not help you until you bring them to me."
+parent = 236
+
+[[nodes]]
+id = 239
+depth = 3
+kind = "act"
+text = "above"
+parent = 236
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 233
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "box"
+text = "pic=Strong cup of tea detail.png|The Mage of Zamorak takes the strong cup of tea from you and immediately drinks it."
+parent = 233
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Aaah, nothing like a nice cuppa tea!"
+parent = 233
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Right, a deal is a deal, but the spell to determine the origin of that amulet will only work from the Abyss, so you'll need to have the initiate there perform it for you."
+parent = 233
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Meet me in the Wilderness when you're ready to be teleported there."
+parent = 233
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can't you just teleport me from here?"
+parent = 233
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "From the middle of Varrock? What if someone is watching?"
+parent = 233
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "If someone was watching, they'd know you have a secret Chaos Temple here in Varrock. I reckon you're pretty safe."
+parent = 233
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Fine, but don't expect me to make a habit of this. I will offer you a single teleport from here directly to the initiate in the Abyss. Make sure you are definitely ready."
+parent = 233
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hang on... what was the bucket of water for?"
+parent = 233
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Ah, that. While time passes slower in the Abyss, the initiate maintaining the rift has still been there for quite a while. He needs a good bath."
+parent = 233
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you just want me to throw it over him?"
+parent = 233
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Exactly. Now, are you ready to be teleported? Don't forget, this is a one-time offer. In future, you'll need to meet me in the Wilderness to access the Abyss."
+parent = 233
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "cond"
+text = "If the player does not have the eye amulet:"
+parent = 233
+children = [254, 255, 256]
+
+[[nodes]]
+id = 254
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I should probably get the amulet first."
+parent = 253
+
+[[nodes]]
+id = 255
+depth = 3
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "That would be wise."
+parent = 253
+
+[[nodes]]
+id = 256
+depth = 3
+kind = "act"
+text = "end"
+parent = 253
+is_terminal = true
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "select"
+text = "Teleport to the Abyss? You can only teleport from here once."
+parent = 233
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 233
+children = [259, 260]
+
+[[nodes]]
+id = 259
+depth = 3
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "{{overhead|Veniens! Sallakar! Rinnesset!}}"
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 3
+kind = "other"
+text = "{{qact|The player is brought to the centre of the Abyss.}}"
+parent = 258
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "option"
+text = "No."
+parent = 233
+children = [262, 263]
+
+[[nodes]]
+id = 262
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm not ready yet."
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 3
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Well then return to me when you are, but try not to waste too much of my time."
+parent = 261
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "option"
+text = "quest=No|Nothing. I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Ah, you again. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "option"
+text = "Could you help me with that amulet now?"
+parent = -1
+children = [269, 270, 271, 272, 276, 280]
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you help me with that amulet now?"
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "The spell to determine the origin of that amulet will only work from the Abyss, so you'll need to have the initiate there perform it for you."
+parent = 268
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Are you ready to be teleported there? Don't forget, this is a one-time offer. In future, you'll need to meet me in the Wilderness to access the Abyss."
+parent = 268
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "cond"
+text = "If the player does not have the eye amulet:"
+parent = 268
+children = [273, 274, 275]
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I should probably get the amulet first."
+parent = 272
+
+[[nodes]]
+id = 274
+depth = 3
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "That would be wise."
+parent = 272
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "act"
+text = "end"
+parent = 272
+is_terminal = true
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "cond"
+text = "If the player does not have the bucket of water:"
+parent = 268
+children = [277, 278, 279]
+
+[[nodes]]
+id = 277
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I should probably get that bucket of water first."
+parent = 276
+
+[[nodes]]
+id = 278
+depth = 3
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "That would be wise."
+parent = 276
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "act"
+text = "end"
+parent = 276
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "cond"
+text = "If the player has the eye necklace and a bucket of water:"
+parent = 268
+children = [281, 284]
+
+[[nodes]]
+id = 281
+depth = 3
+kind = "option"
+text = "Yes."
+parent = 280
+children = [282, 283]
+
+[[nodes]]
+id = 282
+depth = 4
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "{{overhead|Veniens! Sallakar! Rinnesset!}}"
+parent = 281
+
+[[nodes]]
+id = 283
+depth = 4
+kind = "other"
+text = "{{qact|The player is brought to the centre of the Abyss.}}"
+parent = 281
+
+[[nodes]]
+id = 284
+depth = 3
+kind = "option"
+text = "No."
+parent = 280
+children = [285, 286, 287]
+
+[[nodes]]
+id = 285
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm not ready yet."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 4
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Well then return to me when you are, but try not to waste too much of my time."
+parent = 284
+
+[[nodes]]
+id = 287
+depth = 4
+kind = "act"
+text = "end"
+parent = 284
+is_terminal = true
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "option"
+text = "quest=No|Nothing. I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Zamorak: Ah, you again. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "option"
+text = "Could you help me with that amulet now?"
+parent = -1
+children = [293, 294, 295, 296, 297]
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you help me with that amulet now?"
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "The spell to determine the origin of that amulet will only work from the Abyss, so you'll need to have the initiate there perform it for you."
+parent = 292
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "I already gave you your one-time teleport to the Abyss from here, so you'll need to meet me in the Wilderness if you want teleporting there."
+parent = 292
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright."
+parent = 292
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "act"
+text = "above"
+parent = 292
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "option"
+text = "quest=No|Nothing. I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Quiet! You must not break my concentration!"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "option"
+text = "quest=No|Why not?"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "option"
+text = "quest=No|What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "option"
+text = "I need your help with an amulet."
+parent = -1
+children = [306, 307, 308, 312, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342]
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with an amulet."
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Amulet?"
+parent = 305
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "cond"
+text = "If the player does not have the amulet:"
+parent = 305
+children = [309, 310, 311]
+
+[[nodes]]
+id = 309
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but I don't seem to have it with me. I'll be back soon."
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "What? Are you trying to waste my time?"
+parent = 308
+
+[[nodes]]
+id = 311
+depth = 3
+kind = "act"
+text = "end"
+parent = 308
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "cond"
+text = "If the player does not have a bucket of water:"
+parent = 305
+children = [313, 314, 315]
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but I also need to go and get a bucket of water."
+parent = 312
+
+[[nodes]]
+id = 314
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "What? Are you trying to waste my time?"
+parent = 312
+
+[[nodes]]
+id = 315
+depth = 3
+kind = "act"
+text = "end"
+parent = 312
+is_terminal = true
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Oh, hang on. Someone is trying to contact me..."
+parent = 305
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "box"
+text = "The Dark Mage suddenly starts talking to someone else."
+parent = 305
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "What do you want? Can't you see I'm busy?"
+parent = 305
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Fine. A simple transfiguration spell should resolve things for you."
+parent = 305
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Now can you leave me alone? I can't keep affording these distractions!"
+parent = 305
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "box"
+text = "The Dark Mage turns back to you."
+parent = 305
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "What did you want? Something about an amulet?"
+parent = 305
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but first..."
+parent = 305
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "box"
+text = "pic=Bucket of water detail.png|You throw the bucket of water over the Dark Mage."
+parent = 305
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "What in the actual..."
+parent = 305
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, but Herbert said you needed a wash."
+parent = 305
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Are you serious? What if I'd lost concentration and let this rift collapse? Do you like having a brain that isn't made of mush? Because mush is all that would have been left!"
+parent = 305
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I like my brain how it is, thanks. Now, could you help me?"
+parent = 305
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Why should I? I'm soaked thanks to you!"
+parent = 305
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Herbert said you would."
+parent = 305
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Of course he did! Alright then, what do you want?"
+parent = 305
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This amulet is giving off abyssal energy. I need you to cast a spell to tell me where it came from."
+parent = 305
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Let's have a look then."
+parent = 305
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|You show the amulet to the Dark Mage."
+parent = 305
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Right, just give me a moment."
+parent = 305
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|The Dark Mage casts a spell on the amulet."
+parent = 305
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Okay, this spell will allow me to triangulate the origin of the amulet. To make things easier, I'm using this rift to compare energy from that origin with energy from the runic altars."
+parent = 305
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Of course, thanks to the ways time and space work in this place, the information won't necessarily come in the right order."
+parent = 305
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Meaning?"
+parent = 305
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Meaning I'll need you to help, you fool! You see that energy that's just emerged from the rift? Work out which order it goes in!"
+parent = 305
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right..."
+parent = 305
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "act"
+text = "end"
+parent = 305
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "quest=No|I need your help with something."
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "option"
+text = "quest=No|Sorry, I'll go."
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Quiet! You must not break my concentration!"
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "option"
+text = "quest=No|Why not?"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "option"
+text = "quest=No|What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "option"
+text = "Could you help me with that amulet now?"
+parent = -1
+children = [350, 351, 352, 353, 354, 355, 356, 360]
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you help me with that amulet now?"
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Why should I? I'm soaked thanks to you!"
+parent = 349
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Herbert said you would."
+parent = 349
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Of course he did! Alright then, what do you want?"
+parent = 349
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This amulet is giving off abyssal energy. I need you to cast a spell to tell me where it came from."
+parent = 349
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Let's have a look then."
+parent = 349
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "cond"
+text = "If the player does not have the amulet:"
+parent = 349
+children = [357, 358, 359]
+
+[[nodes]]
+id = 357
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It seems I don't have it with me. I'll be back."
+parent = 356
+
+[[nodes]]
+id = 358
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "What? Don't waste my time!"
+parent = 356
+
+[[nodes]]
+id = 359
+depth = 3
+kind = "act"
+text = "end"
+parent = 356
+is_terminal = true
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "cond"
+text = "If the player has the amulet:"
+parent = 349
+children = [361, 362, 363, 364, 365, 366, 367, 368, 369]
+
+[[nodes]]
+id = 361
+depth = 3
+kind = "box"
+text = "pic=Eye amulet detail.png|You show the amulet to the Dark Mage."
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Right, just give me a moment."
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 3
+kind = "box"
+text = "pic=Eye amulet detail.png|The Dark Mage casts a spell on the amulet."
+parent = 360
+
+[[nodes]]
+id = 364
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Okay, this spell will allow me to triangulate the origin of the amulet. To make things easier, I'm using this rift to compare energy from that origin with energy from the runic altars."
+parent = 360
+
+[[nodes]]
+id = 365
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Of course, thanks to the ways time and space work in this place, the information won't necessarily come in the right order."
+parent = 360
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Meaning?"
+parent = 360
+
+[[nodes]]
+id = 367
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Meaning I'll need you to help, you fool! You see that energy that's just emerged from the rift? Work out which order it goes in!"
+parent = 360
+
+[[nodes]]
+id = 368
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right..."
+parent = 360
+
+[[nodes]]
+id = 369
+depth = 3
+kind = "act"
+text = "end"
+parent = 360
+is_terminal = true
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "option"
+text = "quest=No|Sorry, I'll go."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Quiet! You must not break my concentration!"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "option"
+text = "quest=No|Why not?"
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "option"
+text = "quest=No|What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "option"
+text = "What do I need to do with this energy?"
+parent = -1
+children = [376, 377, 378, 379]
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to do with this energy?"
+parent = 375
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Work out which order it goes in!"
+parent = 375
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right..."
+parent = 375
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "act"
+text = "end"
+parent = 375
+is_terminal = true
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "option"
+text = "quest=No|Sorry, I'll go."
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've worked out which order the energy goes in."
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Yes, I can see that. Now, hang on."
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "box"
+text = "pic=Abyssal incantation detail.png|The Dark Mage pauses for a moment, as if lost in thought. He then hastily pulls out a scroll and scribbles something on it."
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "I've noted the details on this scroll. A competent enough wizard should be able to use it to cast a teleportation spell to take you right there."
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me anything about the place?"
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "With all the time I've spent here, I'd like to consider myself an expert on the Abyss, but there's something very strange about the place this amulet came from."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Strange how?"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Well if I knew that, it wouldn't be strange, would it? Now, if you're done bothering me, I need to stay focused on this rift!"
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "box"
+text = "pic=Abyssal incantation detail.png|The Dark Mage hands you an incantation."
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Quiet! You must not break my concentration!"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "option"
+text = "quest=No|Why not?"
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "option"
+text = "quest=No|What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "option"
+text = "About that incantation..."
+parent = -1
+children = [396, 397, 398, 403]
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that incantation..."
+parent = 395
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Dark Mage"
+text = "What about it?"
+parent = 395
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "cond"
+text = "If the player lost the incantation:"
+parent = 395
+children = [399, 400, 401, 402]
+
+[[nodes]]
+id = 399
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I lost it."
+parent = 398
+
+[[nodes]]
+id = 400
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Oh the things I would do to you if I wasn't maintaining this rift! Here, take this you fool!"
+parent = 398
+
+[[nodes]]
+id = 401
+depth = 3
+kind = "box"
+text = "pic=Abyssal incantation detail.png|The Dark Mage hands you an incantation."
+parent = 398
+
+[[nodes]]
+id = 402
+depth = 3
+kind = "act"
+text = "end"
+parent = 398
+is_terminal = true
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "cond"
+text = "If the player already has the incantation:"
+parent = 395
+children = [404, 405, 406]
+
+[[nodes]]
+id = 404
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Er... Nothing."
+parent = 403
+
+[[nodes]]
+id = 405
+depth = 3
+kind = "speaker"
+speaker = "Dark Mage"
+text = "Nothing! Would you leave me alone!"
+parent = 403
+
+[[nodes]]
+id = 406
+depth = 3
+kind = "act"
+text = "end"
+parent = 403
+is_terminal = true
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "option"
+text = "quest=No|I need your help with something."
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "option"
+text = "quest=No|Sorry, I'll go."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Ah, you again. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "option"
+text = "Could you help me with that amulet now?"
+parent = -1
+children = [411, 412, 413, 414, 415]
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you help me with that amulet now?"
+parent = 410
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "The spell to determine the origin of that amulet will only work from the Abyss, so you'll need to have the initiate there perform it for you."
+parent = 410
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, he already did that."
+parent = 410
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Then why are you talking to me? You have what you need."
+parent = 410
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "act"
+text = "above"
+parent = 410
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = -1
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "option"
+text = "quest=No|Nothing. I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello again! Any luck with that amulet?"
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes! I have an incantation that could lead us to wherever it came from."
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Brilliant! Let's have a look."
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "box"
+text = "pic=Abyssal incantation detail.png|You show the incantation to Persten and she quickly makes a copy for herself."
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh, fascinating! Hmm... But that would mean..."
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That would mean what?"
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Shhh! I'm thinking."
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Yes... Two... no three more! Silly me! Counted myself didn't I."
+parent = -1
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well it should be fine. I can't see them saying no. After all, it's their symbol as well..."
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you on about?"
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh yes, you're here! Brilliant! You'll be pleased to know that I've worked out what we must do next."
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And that is?"
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Patience, young adventurer. Before we get to that, let me share with you my theory on where this amulet came from."
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "While you were gone, I was thinking about why the amulet would have magical energy from both rune essence and the Abyss. All of a sudden, it hit me!"
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ouch?"
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Quite the opposite! The source of this amulet must be an ancient teleportation matrix to the runic altars, just like the one the Z.M.I. have in the Abyss!"
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "This is good news, in case you were wondering! Access to a teleportation matrix like that will be life changing when it comes to my work!"
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Of course, the rest of my order will be very happy as well. It'll completely remove the advantage the Z.M.I. currently have. Now there's a balance that Guthix himself would love!"
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "cond"
+text = "If the player has the amulet:"
+parent = -1
+children = [439, 440, 441, 442]
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Ah, but this talk of the Z.M.I. has reminded me of something. Could I have that amulet back?"
+parent = 438
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 438
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "box"
+text = "pic=Eye amulet detail.png|You give the amulet back to Persten."
+parent = 438
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "act"
+text = "continues"
+parent = 438
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "cond"
+text = "If the player lost the amulet:"
+parent = -1
+children = [444, 445, 446, 447]
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Ah, but this talk of the Z.M.I. has reminded me of something. You lost that amulet didn't you?"
+parent = 443
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe..."
+parent = 443
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Don't worry, I found it for you. I'll keep hold of it for now."
+parent = 443
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "act"
+text = "continues"
+parent = 443
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Now, just give me a moment..."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "box"
+text = "pic=Eye amulet detail.png|Persten casts a spell on the amulet."
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Ah, yes. Well, that's not surprising."
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Your Z.M.I. friends cast a transmission spell on the amulet. Had we taken it with us, it would have transmitted all sorts of information back to them about the origin."
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "It's not a problem. I suspected they might do something like this. The good news is that this means they have no intention of using that incantation themselves."
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Again, as expected. They prefer to lurk in the shadows. To be honest, I totally understand. I've been known to do the same from time to time."
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Anyway, I've modified their spell to send false information to them. They'll be none the wiser."
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I thought you didn't care about religion? Why don't you want the Z.M.I. getting that information?"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh, my friend, you misunderstand. I have no issues with the Z.M.I. having the information, but I don't want them getting it before I've even had a chance to determine what it is!"
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. So what now?"
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Yes, back to business! The incantation is quite complex, so we will need the help of three other wizards to perform it. I'm afraid I'm not including you in that, although you are very talented!"
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, I think... so where do we get these other wizards?"
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "From the Wizards' Tower of course! My fellow wizards won't be able to resist getting their hands on a teleportation matrix, especially one that may be connected to the history of our order!"
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Now, you head to the Wizards' Tower and show that incantation to Sedridor. I have a couple of things to prepare first, but I will join you there soon."
+parent = -1
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh, and whatever you do, don't mention the Z.M.I. while you're there."
+parent = -1
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll see you soon."
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hey, if you want, I can teleport you to the Wizards' Tower. Consider it a one-time gift from me."
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "select"
+text = "Teleport to the Wizards' Tower? You can only use this teleport once."
+parent = -1
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [468]
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "other"
+text = "{{qact|The player is telported to the entrance of the Wizards' Tower.}}"
+parent = 467
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [470, 471, 472]
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll walk."
+parent = 469
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well let me know if you change your mind."
+parent = 469
+
+[[nodes]]
+id = 472
+depth = 2
+kind = "act"
+text = "end"
+parent = 469
+is_terminal = true
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello again! Did you take that incantation to Sedridor?"
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "cond"
+text = "If the player lost the incantation:"
+parent = -1
+children = [475, 476, 477, 478, 479, 480, 482]
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I may have lost it."
+parent = 474
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "No matter, I can give you a copy of mine. Try not to lose it this time!"
+parent = 474
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "box"
+text = "pic=Abyssal incantation detail.png|Persten hands you a copy of the incantation."
+parent = 474
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Now quickly! Time is of the essence! If you want, I can teleport you to the Wizards' Tower. Consider it a one-time gift from me."
+parent = 474
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "select"
+text = "Teleport to the Wizards' Tower? You can only use this teleport once."
+parent = 474
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 474
+children = [481]
+
+[[nodes]]
+id = 481
+depth = 3
+kind = "other"
+text = "{{qact|The player is telported to the entrance of the Wizards' Tower.}}"
+parent = 480
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "option"
+text = "No."
+parent = 474
+children = [483, 484, 485]
+
+[[nodes]]
+id = 483
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll walk."
+parent = 482
+
+[[nodes]]
+id = 484
+depth = 3
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well let me know if you change your mind."
+parent = 482
+
+[[nodes]]
+id = 485
+depth = 3
+kind = "act"
+text = "end"
+parent = 482
+is_terminal = true
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "cond"
+text = "If the player has the incantation:"
+parent = -1
+children = [487, 488, 489, 490, 491, 492, 493]
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 486
+
+[[nodes]]
+id = 488
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well hurry up! If you want, I can teleport you to the Wizards' Tower. Consider it a one-time gift from me."
+parent = 486
+
+[[nodes]]
+id = 489
+depth = 2
+kind = "select"
+text = "Teleport to the Wizards' Tower? You can only use this teleport once."
+parent = 486
+
+[[nodes]]
+id = 490
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 486
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "act"
+text = "above"
+parent = 486
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "option"
+text = "No."
+parent = 486
+
+[[nodes]]
+id = 493
+depth = 2
+kind = "act"
+text = "above"
+parent = 486
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello again! Did you take that incantation to Sedridor?"
+parent = -1
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "cond"
+text = "If the player lost the incantation:"
+parent = -1
+children = [496, 497, 498, 499, 500]
+
+[[nodes]]
+id = 496
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I may have lost it."
+parent = 495
+
+[[nodes]]
+id = 497
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "No matter, I can give you a copy of mine. Try not to lose it this time!"
+parent = 495
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "box"
+text = "pic=Abyssal incantation detail.png|Persten hands you a copy of the incantation."
+parent = 495
+
+[[nodes]]
+id = 499
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Now quickly! Time is of the essence!"
+parent = 495
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "act"
+text = "end"
+parent = 495
+is_terminal = true
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "cond"
+text = "If the player has the incantation:"
+parent = -1
+children = [502, 503, 504]
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 501
+
+[[nodes]]
+id = 503
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well hurry up! This could be the biggest discovery of our lifetimes!"
+parent = 501
+
+[[nodes]]
+id = 504
+depth = 2
+kind = "act"
+text = "end"
+parent = 501
+is_terminal = true
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, [player name]. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "option"
+text = "I need your help with an incantation."
+parent = -1
+children = [509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539]
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with an incantation."
+parent = 508
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "An incantation, hmm? What incantation?"
+parent = 508
+
+[[nodes]]
+id = 511
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A teleport that could potentially take us to an ancient teleportation matrix. Persten reckons you might be able to use it to gain easier access to the runic altars."
+parent = 508
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Wait... Persten sent you?"
+parent = 508
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's right. Oh, I should also mention that this teleportation matrix seems to have some connection to your order, despite predating it by thousands of years."
+parent = 508
+
+[[nodes]]
+id = 514
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = """
+So Persten disappears for all this time, and then shows up again with knowledge on an ancient teleportation matrix? I suppose I shouldn't be surprised. It's probably not the strangest thing she's done.
+"""
+parent = 508
+
+[[nodes]]
+id = 515
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Anyway, what do you need my help with exactly?"
+parent = 508
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Persten needs three other wizards to be able to perform the incantation."
+parent = 508
+
+[[nodes]]
+id = 517
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hmm... can I see it?"
+parent = 508
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the incantation:"
+parent = 508
+children = [519, 520, 521]
+
+[[nodes]]
+id = 519
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I don't have it with me."
+parent = 518
+
+[[nodes]]
+id = 520
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I'd very much like to see it. Come back to me when you have it."
+parent = 518
+
+[[nodes]]
+id = 521
+depth = 3
+kind = "act"
+text = "end"
+parent = 518
+is_terminal = true
+
+[[nodes]]
+id = 522
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure."
+parent = 508
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "box"
+text = "pic=Abyssal incantation detail.png|You give the incantation to Sedridor."
+parent = 508
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hmm... this scroll is very interesting. Did you get it from a Zamorakian wizard, perhaps? Don't lie to me, [player name]."
+parent = 508
+
+[[nodes]]
+id = 525
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well since you asked... I... well..."
+parent = 508
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "It's clear from your response that my suspicions are correct. This incantation is written on very thin flesh rather than parchment, a horrific practice only used by Zamorakians."
+parent = 508
+
+[[nodes]]
+id = 527
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Need I remind you that it was the Zamorakians who burnt down the first Wizards' Tower?"
+parent = 508
+
+[[nodes]]
+id = 528
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Er..."
+parent = 508
+
+[[nodes]]
+id = 529
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "[player name], I'm going to be frank with you. Persten hasn't been seen here for almost a year. My last meeting with her was to discuss changing her line of study due to her lack of results."
+parent = 508
+
+[[nodes]]
+id = 530
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "She was given one more year to produce something of note. Now, with time almost up, she sends you here with Zamorakian incantations and odd claims about an ancient teleportation matrix."
+parent = 508
+
+[[nodes]]
+id = 531
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But what if it's true? That teleportation matrix could change everything!"
+parent = 508
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I admit we went to some Zamorakians for help with the incantation, but they've had no other involvement. Persten has even made sure they won't get anything beneficial out of this."
+parent = 508
+
+[[nodes]]
+id = 533
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hmm... You have been a great help to us in the past. For that, I will consider it. First though, I will do a thorough arcane analysis of this incantation to determine if it is safe to cast."
+parent = 508
+
+[[nodes]]
+id = 534
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Now, as for your three wizards, I can't be wasting the others' time with this sort of thing, especially when I haven't even agreed to allow it yet."
+parent = 508
+
+[[nodes]]
+id = 535
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "However, Traiborn has three new apprentices who could help. This might be a good learning opportunity for them. Speak to him while I inspect this incantation."
+parent = 508
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = 508
+
+[[nodes]]
+id = 537
+depth = 2
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = 508
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "option"
+text = "quest=No|Could you tell me about the old Wizards' Tower?"
+parent = 508
+
+[[nodes]]
+id = 539
+depth = 2
+kind = "option"
+text = "Okay, thanks."
+parent = 508
+children = [540, 541]
+
+[[nodes]]
+id = 540
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks."
+parent = 539
+
+[[nodes]]
+id = 541
+depth = 3
+kind = "act"
+text = "end"
+parent = 539
+is_terminal = true
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the old Wizards' Tower?"
+parent = -1
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "option"
+text = "quest=No|Nothing thanks, I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, [player name]. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "option"
+text = "Can you help me with that incantation?"
+parent = -1
+children = [549, 550, 551, 552, 553, 554]
+
+[[nodes]]
+id = 549
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me with that incantation?"
+parent = 548
+
+[[nodes]]
+id = 550
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I haven't finished my analysis of it yet. While you wait, I suggest you speak with Traiborn. He has three new apprentices who could help you, assuming I agree to let things go ahead."
+parent = 548
+
+[[nodes]]
+id = 551
+depth = 2
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = 548
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = 548
+
+[[nodes]]
+id = 553
+depth = 2
+kind = "option"
+text = "quest=No|Could you tell me about the old Wizards' Tower?"
+parent = 548
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "option"
+text = "Okay, thanks."
+parent = 548
+children = [555]
+
+[[nodes]]
+id = 555
+depth = 3
+kind = "act"
+text = "above"
+parent = 554
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the old Wizards' Tower?"
+parent = -1
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "option"
+text = "quest=No|Nothing thanks, I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Thingummywut. Thin... gummy... what?"
+parent = -1
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = -1
+
+[[nodes]]
+id = 561
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "I'm a little busy trying to solve that mad wizard's puzzle. If you have any questions, ask him instead."
+parent = -1
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 563
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "So, if that's six and this is eight, then if we multiply... No, divide? No, that's not it either."
+parent = -1
+
+[[nodes]]
+id = 564
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = -1
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Oh, didn't see you there! I'm a little busy trying to solve a puzzle set by the great Traiborn. If you have any questions, could you ask him instead?"
+parent = -1
+
+[[nodes]]
+id = 566
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 567
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Air and earth? What about water and fire? Is this an elemental problem, or are they completely irrelevant?"
+parent = -1
+
+[[nodes]]
+id = 568
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you talking about?"
+parent = -1
+
+[[nodes]]
+id = 569
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Oh, didn't see you there. I'm a little busy trying to solve the puzzle Traiborn gave us. If you have any questions, you should ask him instead."
+parent = -1
+
+[[nodes]]
+id = 570
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 572
+depth = 1
+kind = "option"
+text = "quest=No|What's a thingummywut?"
+parent = -1
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "option"
+text = "I need your apprentices to help with an incantation."
+parent = -1
+children = [574, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597]
+
+[[nodes]]
+id = 574
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need your apprentices to help with an incantation."
+parent = 573
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Right now? But we're having a party!"
+parent = 573
+
+[[nodes]]
+id = 576
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A party?"
+parent = 573
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Party? What party?"
+parent = 573
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You said you were having a party?"
+parent = 573
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Well I suppose it is a party of sorts. A study party! Would you like to join in? You look like you could use one!"
+parent = 573
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll pass... Anyway, Sedridor said your apprentices could help me with an incantation."
+parent = 573
+
+[[nodes]]
+id = 581
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "What kind of incantation?"
+parent = 573
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "One that could lead us to an ancient teleportation matrix."
+parent = 573
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Teleportation matrix? Doesn't sound like the most comfortable place for a party... I bet it's full of thingummywuts as well!"
+parent = 573
+
+[[nodes]]
+id = 584
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not suggesting we move the party there. I'm suggesting that we cancel the party and discover the secrets of this teleportation matrix instead."
+parent = 573
+
+[[nodes]]
+id = 585
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Cancel the party? You're certainly a party pooper!"
+parent = 573
+
+[[nodes]]
+id = 586
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, how about instead of cancelling the party, we finish it with a bang? What's currently on the agenda?"
+parent = 573
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Finish it with a bang? Sedridor won't be happy if we burn the place down again, will he? Still, I like it!"
+parent = 573
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "I've currently tasked each of the apprentices with solving a problem. If they all solve it, we can celebrate together!"
+parent = 573
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good. So, what's the problem?"
+parent = 573
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Problem? There's no problem! Everything is fine here. We're having a party!"
+parent = 573
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I mean what's the problem they have to solve?"
+parent = 573
+
+[[nodes]]
+id = 592
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Oh! It's trivial! They just have to figure out what a thingummywut is!"
+parent = 573
+
+[[nodes]]
+id = 593
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A thingummy... what?"
+parent = 573
+
+[[nodes]]
+id = 594
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Precisely!"
+parent = 573
+
+[[nodes]]
+id = 595
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right... I'll speak to the apprentices. Perhaps together we can figure this out."
+parent = 573
+
+[[nodes]]
+id = 596
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Good luck!"
+parent = 573
+
+[[nodes]]
+id = 597
+depth = 2
+kind = "act"
+text = "end"
+parent = 573
+is_terminal = true
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "option"
+text = "quest=No|Teach me to be a mighty and powerful wizard."
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "option"
+text = "quest=No|I'd better go."
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "option"
+text = "quest=No|What's a thingummywut?"
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "option"
+text = "I think I know what a thingummywut is!"
+parent = -1
+children = [603, 604, 605, 610, 615, 620]
+
+[[nodes]]
+id = 603
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I know what a thingummywut is!"
+parent = 602
+
+[[nodes]]
+id = 604
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Oh? Do tell."
+parent = 602
+
+[[nodes]]
+id = 605
+depth = 2
+kind = "option"
+text = "A slayer creature!"
+parent = 602
+children = [606, 607, 608, 609]
+
+[[nodes]]
+id = 606
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A slayer creature!"
+parent = 605
+
+[[nodes]]
+id = 607
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "A slayer creature? That doesn't make any sense at all! Besides, not even the slayer masters know how to kill a thingummywut!"
+parent = 605
+
+[[nodes]]
+id = 608
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Perhaps my apprentices could teach you a thing or three. You should talk to them."
+parent = 605
+
+[[nodes]]
+id = 609
+depth = 3
+kind = "act"
+text = "end"
+parent = 605
+is_terminal = true
+
+[[nodes]]
+id = 610
+depth = 2
+kind = "option"
+text = "A great wizard, lost to history!"
+parent = 602
+children = [611, 612, 613, 614]
+
+[[nodes]]
+id = 611
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A great wizard, lost to history!"
+parent = 610
+
+[[nodes]]
+id = 612
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Lost to history? That doesn't make any sense at all! Besides, a thingummywut is not lost to history. It's very well documented inside my head!"
+parent = 610
+
+[[nodes]]
+id = 613
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Perhaps my apprentices could teach you a thing or three. You should talk to them."
+parent = 610
+
+[[nodes]]
+id = 614
+depth = 3
+kind = "act"
+text = "end"
+parent = 610
+is_terminal = true
+
+[[nodes]]
+id = 615
+depth = 2
+kind = "option"
+text = "You!"
+parent = 602
+children = [616, 617, 618, 619]
+
+[[nodes]]
+id = 616
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You!"
+parent = 615
+
+[[nodes]]
+id = 617
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Me? That doesn't make any sense at all! If I were a thingummywut, I wouldn't be stood here teaching!"
+parent = 615
+
+[[nodes]]
+id = 618
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Perhaps my apprentices could teach you a thing or three. You should talk to them."
+parent = 615
+
+[[nodes]]
+id = 619
+depth = 3
+kind = "act"
+text = "end"
+parent = 615
+is_terminal = true
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "option"
+text = "I don't know."
+parent = 602
+children = [621, 622, 623]
+
+[[nodes]]
+id = 621
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't know."
+parent = 620
+
+[[nodes]]
+id = 622
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Oh dear, how embarrassing. Perhaps my apprentices could teach you a thing or three. You should talk to them."
+parent = 620
+
+[[nodes]]
+id = 623
+depth = 3
+kind = "act"
+text = "end"
+parent = 620
+is_terminal = true
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "option"
+text = "quest=No|Teach me to be a mighty and powerful wizard."
+parent = -1
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "option"
+text = "quest=No|I'd better go."
+parent = -1
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Thingummywut. Thin... gummy... what?"
+parent = -1
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Traiborn said you're trying to solve a puzzle? Maybe I could help?"
+parent = -1
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Why? Do you think I need your help to solve this? I'll prove I'm smarter than these two!"
+parent = -1
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I don't doubt you're smart enough to solve this on your own. I'd just like to see the puzzle to further my own knowledge and understanding."
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "You think I'll be persuaded that easily? I'm not as easy to fool as the others, but I admire your efforts nonetheless."
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll be honest then. In truth, I don't care about this puzzle at all. I'm actually looking to recruit some talented wizards to help uncover a long-lost teleportation matrix."
+parent = -1
+
+[[nodes]]
+id = 632
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The hope is to use it to gain easy access to the runic altars for runecrafting purposes."
+parent = -1
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Well that's infinitely more interesting! In that case, why do you care about the puzzle?"
+parent = -1
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Traiborn said that he wouldn't give his permission for you to join me until the puzzle is solved, so I thought I'd lend a hand."
+parent = -1
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Very well, you appear to be telling the truth, and I'd rather be uncovering a teleportation matrix than doing this."
+parent = -1
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Here it is."
+parent = -1
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "other"
+text = "{{cquote2|Fire is four and Body is seven."
+parent = -1
+
+[[nodes]]
+id = 638
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could I see that puzzle again?"
+parent = -1
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Here it is."
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "act"
+text = "Puzzle interface opens"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "So, if that's six and this is eight, then if we multiply... No, divide? No, that's not it either."
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like you're trying to solve a puzzle. Perhaps I could help?"
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = """
+Oh, hey there! Yes, I'm trying to solve a puzzle set by the world-renowned Traiborn himself! It truly is an honour to have someone like him take the time to teach an up-and-coming wizard such as myself.
+"""
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why do you think so highly of him?"
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Oh, so many reasons! But the biggest is that amongst all of the wizards, he is the foremost expert in extra- planar magic!"
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Why else do you think he has the smallest room in the tower? Because he doesn't need the space! He can just open a portal to create more!"
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see, and is this the branch of magic you want to specialise in?"
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Oh absolutely! That's why I'm here. I need to solve this puzzle to prove that I'm ready to learn all that he has to teach."
+parent = -1
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well that's actually not too different to the reason I'm here. I'm currently helping a wizard called Persten, and she seems to be quite knowledgeable on different planes."
+parent = -1
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "She's tasked me with recruiting some wizards to help her uncover a teleportation matrix. Would you like to join us?"
+parent = -1
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "You've met Persten? She studied directly under Traiborn for multiple years! I'd love to meet her, but she's hard to track down. Could you introduce us?"
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I can do that. We need to solve this puzzle first though. Traiborn won't let you three leave until you do. Perhaps I could help you solve it?"
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "I'm not sure. I wouldn't want Traiborn to think poorly of me if I've cheated and asked for help... but I do want to work with Persten..."
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Okay, I'll show you the puzzle."
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "other"
+text = "{{cquote2|Water is six and Mind is eight."
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could I see that puzzle again?"
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Okay. Here you go!"
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "act"
+text = "Puzzle interface opens"
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Air and earth? What about water and fire? Is this an elemental problem, or are they completely irrelevant?"
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What appears to be the problem?"
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Oh, sorry! Didn't see you there."
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry. What were you muttering about with air and earth? Is it related to the puzzle Traiborn gave you all?"
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Yes, I just can't wrap my head around it. It feels like there are too many unknown variables. Besides, how does all this relate to a thingummywut in the first place? Whatever that actually is."
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Perhaps it's a slayer creature? Or a person? Is this a logical puzzle, a riddle or a mathematical problem?"
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. Perhaps I could take a look and help you out?"
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "I'm not sure... It sounds like cheating, but I really do want to beat Cordelia. She's always one step ahead of me, so it would be nice to finally win for a change."
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'm actually here to recruit the three of you to help uncover an old teleportation matrix. The only issue is that Traiborn won't let you leave until the puzzle is solved."
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Ooh! Did you say a teleportation matrix? Teleportation magic is my specialty! I'd love to help!"
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'd be glad to have you along! So, will you show me the puzzle?"
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Sure! Just please don't tell the others you helped me."
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "other"
+text = "{{cquote2|Earth is five and Air is three."
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could I see that puzzle again?"
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Sure! Just please don't tell the others you helped me."
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "act"
+text = "Puzzle interface opens"
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "option"
+text = "quest=No|What's a thingummywut?"
+parent = -1
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "option"
+text = "I think I know what a thingummywut is!"
+parent = -1
+children = [678, 679, 680, 694]
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I know what a thingummywut is!"
+parent = 677
+
+[[nodes]]
+id = 679
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Oh? Do tell."
+parent = 677
+
+[[nodes]]
+id = 680
+depth = 2
+kind = "cond"
+text = "If the input is 11:"
+parent = 677
+children = [681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692, 693]
+
+[[nodes]]
+id = 681
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "11!"
+parent = 680
+
+[[nodes]]
+id = 682
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Well done! That's correct!"
+parent = 680
+
+[[nodes]]
+id = 683
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "See, it's easier to solve problems when you put aside what's best for you and instead focus on what's best for the team!"
+parent = 680
+
+[[nodes]]
+id = 684
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Congratulations, you all pass!"
+parent = 680
+
+[[nodes]]
+id = 685
+depth = 3
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "But you said that only the first of us to solve it would pass!"
+parent = 680
+
+[[nodes]]
+id = 686
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Oh? Did I? I forgot. Either way, I hope you've all now learnt a valuable lesson in teamwork! You have this adventurer here to thank for that."
+parent = 680
+
+[[nodes]]
+id = 687
+depth = 3
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Wait, but we all had different puzzles written down?"
+parent = 680
+
+[[nodes]]
+id = 688
+depth = 3
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Of course! We needed to combine our puzzles to solve it. Wow, that's genius! What a great way to teach us all teamwork!"
+parent = 680
+
+[[nodes]]
+id = 689
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Now, finish with a bang did you say?"
+parent = 680
+
+[[nodes]]
+id = 690
+depth = 3
+kind = "act"
+text = "Traiborn suddenly sets off some fireworks!"
+parent = 680
+
+[[nodes]]
+id = 691
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What the - what was that for?!"
+parent = 680
+
+[[nodes]]
+id = 692
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Well, it was your idea after all. Now why don't you go tell Sedridor that my apprentices are free to help?"
+parent = 680
+
+[[nodes]]
+id = 693
+depth = 3
+kind = "act"
+text = "end"
+parent = 680
+is_terminal = true
+
+[[nodes]]
+id = 694
+depth = 2
+kind = "cond"
+text = "If the input is any other number:"
+parent = 677
+children = [695, 696, 697]
+
+[[nodes]]
+id = 695
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "[number]!"
+parent = 694
+
+[[nodes]]
+id = 696
+depth = 3
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "No, that's not right at all. You should think harder about this!"
+parent = 694
+
+[[nodes]]
+id = 697
+depth = 3
+kind = "act"
+text = "end"
+parent = 694
+is_terminal = true
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "option"
+text = "quest=No|Teach me to be a mighty and powerful wizard."
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "option"
+text = "quest=No|I'd better go."
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Ello young thingummywut."
+parent = -1
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "option"
+text = "quest=No|What's a thingummywut?"
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "option"
+text = "So your apprentices can help with the incantation?"
+parent = -1
+children = [703, 704, 705]
+
+[[nodes]]
+id = 703
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So your apprentices can help with the incantation?"
+parent = 702
+
+[[nodes]]
+id = 704
+depth = 2
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "That's right, young thingummywut. Now, don't keep Sedridor waiting!"
+parent = 702
+
+[[nodes]]
+id = 705
+depth = 2
+kind = "act"
+text = "end"
+parent = 702
+is_terminal = true
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "option"
+text = "quest=No|Teach me to be a mighty and powerful wizard."
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "option"
+text = "quest=No|I'd better go."
+parent = -1
+
+[[nodes]]
+id = 708
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Traiborn says I'm allowed to help you with this teleportation matrix. You should speak to Sedridor in the basement."
+parent = -1
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 710
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "I think I'm ready to meet Persten! You should go to the basement and let Sedridor know we're all ready."
+parent = -1
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Traiborn says I'm allowed to help you now. Let's find this teleportation matrix! I think you need to speak to Sedridor in the basement first though."
+parent = -1
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 714
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hello again! Ready to uncover a magical secret that could change the world forever?"
+parent = -1
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Slow down, Persten! I am still inspecting this amulet of yours."
+parent = -1
+
+[[nodes]]
+id = 716
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're inspecting the amulet now? Does that mean the incantation is safe?"
+parent = -1
+
+[[nodes]]
+id = 717
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "That's right! The amulet is as well, of course, but Sedridor here likes to be careful."
+parent = -1
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Not all of us are so carefree when it comes to the rules of our order, Persten. I mean really, Zamorakian incantations! Be glad I've even let you back in the tower!"
+parent = -1
+
+[[nodes]]
+id = 719
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "The unfortunate price of progress, Sedridor."
+parent = -1
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I can think of a few other unfortunate things..."
+parent = -1
+
+[[nodes]]
+id = 721
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Anyway, the amulet seems to be safe, and as much as I hate to admit it, your assessment seems to be correct."
+parent = -1
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So we can go ahead?"
+parent = -1
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Yes. I'm still not happy about this, but we can't throw away this chance. I assume Traiborn's apprentices are ready?"
+parent = -1
+
+[[nodes]]
+id = 724
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right."
+parent = -1
+
+[[nodes]]
+id = 725
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well then what are we waiting for? Let's do this!"
+parent = -1
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "[player name], are you ready?"
+parent = -1
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "option"
+text = "Let's do it."
+parent = -1
+children = [728, 729]
+
+[[nodes]]
+id = 728
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's do it."
+parent = 727
+
+[[nodes]]
+id = 729
+depth = 2
+kind = "act"
+text = "Incantation cutscene begins below."
+parent = 727
+
+[[nodes]]
+id = 730
+depth = 1
+kind = "option"
+text = "Not yet."
+parent = -1
+children = [731, 732, 733]
+
+[[nodes]]
+id = 731
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 730
+
+[[nodes]]
+id = 732
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Don't take too long."
+parent = 730
+
+[[nodes]]
+id = 733
+depth = 2
+kind = "act"
+text = "end"
+parent = 730
+is_terminal = true
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, [player name]. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "option"
+text = "So we're ready to perform the incantation?"
+parent = -1
+children = [737, 738, 739, 742]
+
+[[nodes]]
+id = 737
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So we're ready to perform the incantation?"
+parent = 736
+
+[[nodes]]
+id = 738
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "It seems so, assuming you are ready yourself?"
+parent = 736
+
+[[nodes]]
+id = 739
+depth = 2
+kind = "option"
+text = "Let's do it."
+parent = 736
+children = [740, 741]
+
+[[nodes]]
+id = 740
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Let's do it."
+parent = 739
+
+[[nodes]]
+id = 741
+depth = 3
+kind = "act"
+text = "Incantation cutscene begins below."
+parent = 739
+
+[[nodes]]
+id = 742
+depth = 2
+kind = "option"
+text = "Not yet."
+parent = 736
+children = [743, 744, 745]
+
+[[nodes]]
+id = 743
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 742
+
+[[nodes]]
+id = 744
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "We will be here once you are."
+parent = 742
+
+[[nodes]]
+id = 745
+depth = 3
+kind = "act"
+text = "end"
+parent = 742
+is_terminal = true
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the old Wizards' Tower?"
+parent = -1
+
+[[nodes]]
+id = 748
+depth = 1
+kind = "option"
+text = "quest=No|Nothing thanks, I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Ready to begin the incantation?"
+parent = -1
+
+[[nodes]]
+id = 750
+depth = 1
+kind = "option"
+text = "Let's do it."
+parent = -1
+children = [751, 752]
+
+[[nodes]]
+id = 751
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's do it."
+parent = 750
+
+[[nodes]]
+id = 752
+depth = 2
+kind = "act"
+text = "Incantation cutscene begins below."
+parent = 750
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "option"
+text = "Not yet."
+parent = -1
+children = [754, 755, 756]
+
+[[nodes]]
+id = 754
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 753
+
+[[nodes]]
+id = 755
+depth = 2
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Don't take too long."
+parent = 753
+
+[[nodes]]
+id = 756
+depth = 2
+kind = "act"
+text = "end"
+parent = 753
+is_terminal = true
+
+[[nodes]]
+id = 757
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene plays. The three apprentices and Traiborn appear.}}"
+parent = -1
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Everyone ready?"
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "We won't let you down, Persten."
+parent = -1
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Alright, with me!"
+parent = -1
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "speaker"
+speaker = "Persten and co."
+text = "{{overhead|Saris! Val! Curak! Belito!}}"
+parent = -1
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "other"
+text = "{{qact|A blue portal opens.}}"
+parent = -1
+
+[[nodes]]
+id = 763
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "It worked!"
+parent = -1
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Well what are we waiting for? Let's go in!"
+parent = -1
+
+[[nodes]]
+id = 765
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Go in? You three aren't going through that portal. We have no idea what's on the other side!"
+parent = -1
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I have given Persten and [player name] permission to go through. Until we know it's safe, no one else may enter."
+parent = -1
+
+[[nodes]]
+id = 767
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "You can't be serious!"
+parent = -1
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Please let us help! We've all worked so hard for an opportunity like this!"
+parent = -1
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "And we have Persten to look after us!"
+parent = -1
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "No. You are only apprentices. You were here to help with the incantation, and you've done that now. You should go back to your studies."
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "speaker"
+speaker = "Wizard Traiborn"
+text = "Come now, Sedridor. The young thingummywuts have proven themselves to be more than capable. Let them have their party!"
+parent = -1
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "It's going to be quite something! You really should let them help!"
+parent = -1
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Quiet, Persten!"
+parent = -1
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Let it be known that I consider this a bad idea. That said, they are your apprentices, Traiborn. If they have your permission, I won't stop them."
+parent = -1
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Alright! Ready to make history?"
+parent = -1
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Let's go!"
+parent = -1
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "other"
+text = "{{qact|The five of you enter the portal.}}"
+parent = -1
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "act"
+text = "Temple of the Eye cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, [player name]. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 781
+depth = 1
+kind = "option"
+text = "Are the others through the portal?"
+parent = -1
+children = [782, 783, 784]
+
+[[nodes]]
+id = 782
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are the others through the portal?"
+parent = 781
+
+[[nodes]]
+id = 783
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I assume so. You should probably go through and join them."
+parent = 781
+
+[[nodes]]
+id = 784
+depth = 2
+kind = "act"
+text = "end"
+parent = 781
+is_terminal = true
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the old Wizards' Tower?"
+parent = -1
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "option"
+text = "quest=No|Nothing thanks, I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "act"
+text = "Temple of the Eye cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "other"
+text = "{{qact|The five of you exit the portal at a strange, watery place.}}"
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well this is... unexpected."
+parent = -1
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Where are we?"
+parent = -1
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Are we... underwater?"
+parent = -1
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "other"
+text = "{{qact|The camera pans towards the Temple, and pans back to the group.}}"
+parent = -1
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Let me cast a locator spell!"
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "other"
+text = "{{qact|Tamara casts the spell.}}"
+parent = -1
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "It seems we're deep below the sea, just south of Morytania!"
+parent = -1
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Fascinating..."
+parent = -1
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Come, let's look around."
+parent = -1
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene ends.}}"
+parent = -1
+
+[[nodes]]
+id = 800
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "This place is brilliant! The apprentices are looking around to see what they can discover. You should join them!"
+parent = -1
+
+[[nodes]]
+id = 801
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 802
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Found anything interesting?"
+parent = -1
+
+[[nodes]]
+id = 803
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "There's something strange about this big hole here. It's giving out the tiniest amount of magical energy. I can't work out what it is though."
+parent = -1
+
+[[nodes]]
+id = 804
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You know, those plants look similar to stuff I've seen in the..."
+parent = -1
+
+[[nodes]]
+id = 805
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Quiet! I'm more than capable of working this out. Maybe you should go help the others instead."
+parent = -1
+
+[[nodes]]
+id = 806
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 807
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any luck with this hole?"
+parent = -1
+
+[[nodes]]
+id = 808
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Don't disturb me! I'll need absolute silence if I'm to work out what this mysterious energy is."
+parent = -1
+
+[[nodes]]
+id = 809
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 810
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's an interesting statue."
+parent = -1
+
+[[nodes]]
+id = 811
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "See the plaque on it? It reads: 'Aliya, Justiciar of the Lion and guardian of the Temple of the Eye.'"
+parent = -1
+
+[[nodes]]
+id = 812
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Temple of the Eye?"
+parent = -1
+
+[[nodes]]
+id = 813
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "That must be where we are right now! I've read about the justiciars before, in a book back at the Wizards' Tower."
+parent = -1
+
+[[nodes]]
+id = 814
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What did the book say?"
+parent = -1
+
+[[nodes]]
+id = 815
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "They were powerful warriors in service to Saradomin himself, back when the gods still walked among us! This temple must be ancient. Imagine if Saradomin himself once stood here!"
+parent = -1
+
+[[nodes]]
+id = 816
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Still looking at that statue?"
+parent = -1
+
+[[nodes]]
+id = 818
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Isn't it brilliant? A statue of a justiciar! I wish I could have met her!"
+parent = -1
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you looking at?"
+parent = -1
+
+[[nodes]]
+id = 821
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Look! Rune guardians, like the ones at the Mage Training Arena! If this place was once a teleportation matrix, these rune guardians might have helped the wizards that used it."
+parent = -1
+
+[[nodes]]
+id = 822
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Anything different about them?"
+parent = -1
+
+[[nodes]]
+id = 823
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Well, despite their age, they're actually of a remarkably similar design to the ones used by modern wizards. Isn't that amazing?"
+parent = -1
+
+[[nodes]]
+id = 824
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 825
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Discovered anything more about these rune guardians?"
+parent = -1
+
+[[nodes]]
+id = 826
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Not yet, but their mere presence here is an amazing discovery!"
+parent = -1
+
+[[nodes]]
+id = 827
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 828
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey!"
+parent = -1
+
+[[nodes]]
+id = 829
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 830
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello?"
+parent = -1
+
+[[nodes]]
+id = 831
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh, sorry, I didn't see you there. I was lost in thought!"
+parent = -1
+
+[[nodes]]
+id = 832
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What were you thinking about?"
+parent = -1
+
+[[nodes]]
+id = 833
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hmm? Oh, I was looking at these markings here. They're very interesting! They seem to be radiating a magical energy I've never encountered before!"
+parent = -1
+
+[[nodes]]
+id = 834
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Take a closer look! Maybe you'll feel the energy as well!"
+parent = -1
+
+[[nodes]]
+id = 835
+depth = 1
+kind = "box"
+text = "You look at the markings..."
+parent = -1
+
+[[nodes]]
+id = 836
+depth = 1
+kind = "other"
+text = "{{qact|You begin to experience a vision, and walk towards a Mysterious Stone.}}"
+parent = -1
+
+[[nodes]]
+id = 837
+depth = 1
+kind = "speaker"
+speaker = "First Mysterious Voice"
+text = "Saradomin be with you."
+parent = -1
+
+[[nodes]]
+id = 838
+depth = 1
+kind = "speaker"
+speaker = "Second Mysterious Voice"
+text = "And with you, Zachariah. So, it's really true?"
+parent = -1
+
+[[nodes]]
+id = 839
+depth = 1
+kind = "speaker"
+speaker = "Zachariah"
+text = "Indeed it is, Aliya, and he has given us the task of protecting it."
+parent = -1
+
+[[nodes]]
+id = 840
+depth = 1
+kind = "speaker"
+speaker = "Aliya"
+text = "What would he have me do?"
+parent = -1
+
+[[nodes]]
+id = 841
+depth = 1
+kind = "speaker"
+speaker = "Zachariah"
+text = "You must build a sanctuary for the Eye. The forces of chaos already seek to reobtain it, as do countless others."
+parent = -1
+
+[[nodes]]
+id = 842
+depth = 1
+kind = "speaker"
+speaker = "Aliya"
+text = "I will keep it safe, no matter the cost. And you?"
+parent = -1
+
+[[nodes]]
+id = 843
+depth = 1
+kind = "speaker"
+speaker = "Zachariah"
+text = "Zamorak has tasked his collector with finding the Eye. I will hunt him down before he does, along with any others who would try to claim it."
+parent = -1
+
+[[nodes]]
+id = 844
+depth = 1
+kind = "speaker"
+speaker = "Aliya"
+text = "Then I wish you luck, brother."
+parent = -1
+
+[[nodes]]
+id = 845
+depth = 1
+kind = "speaker"
+speaker = "Zachariah"
+text = "There is one last thing, Aliya. You must keep the Eye secret from all others, even our own. The fewer people that know the truth, the better."
+parent = -1
+
+[[nodes]]
+id = 846
+depth = 1
+kind = "speaker"
+speaker = "Aliya"
+text = "On my honour as a justiciar, it will be done."
+parent = -1
+
+[[nodes]]
+id = 847
+depth = 1
+kind = "speaker"
+speaker = "Zachariah"
+text = "Good. Saradomin be with you, sister."
+parent = -1
+
+[[nodes]]
+id = 848
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What the..."
+parent = -1
+
+[[nodes]]
+id = 849
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "[player name]?"
+parent = -1
+
+[[nodes]]
+id = 850
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Jas!"
+parent = -1
+
+[[nodes]]
+id = 851
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "What did you say?"
+parent = -1
+
+[[nodes]]
+id = 852
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I... I don't know."
+parent = -1
+
+[[nodes]]
+id = 853
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Did you just say... 'Jas'?"
+parent = -1
+
+[[nodes]]
+id = 854
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't remember. When I looked at the marks on the floor I had this... vision, but it's all unclear."
+parent = -1
+
+[[nodes]]
+id = 855
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Curious..."
+parent = -1
+
+[[nodes]]
+id = 856
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Well, time to see what the others have found!"
+parent = -1
+
+[[nodes]]
+id = 857
+depth = 1
+kind = "other"
+text = "{{qact|The group gathers by the centre of the temple.}}"
+parent = -1
+
+[[nodes]]
+id = 858
+depth = 1
+kind = "act"
+text = "Abyssal rift cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 859
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hey! Let's see what the others have found!"
+parent = -1
+
+[[nodes]]
+id = 860
+depth = 1
+kind = "act"
+text = "Abyssal rift cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 861
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Right, what have we discovered?"
+parent = -1
+
+[[nodes]]
+id = 862
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "That large hole behind you is radiating a strange energy. I'm still trying to work out what it is."
+parent = -1
+
+[[nodes]]
+id = 863
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Need a hand with that?"
+parent = -1
+
+[[nodes]]
+id = 864
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "No, I can work it out."
+parent = -1
+
+[[nodes]]
+id = 865
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "You sure can! What else do we have?"
+parent = -1
+
+[[nodes]]
+id = 866
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "There's some old rune guardians here with eye symbols on them."
+parent = -1
+
+[[nodes]]
+id = 867
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "So this place was definitely used by wizards at one point. Amazing!"
+parent = -1
+
+[[nodes]]
+id = 868
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Not just any wizards, Saradominist wizards! There's some statues of an old Saradominist Justiciar called Aliya!"
+parent = -1
+
+[[nodes]]
+id = 869
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Remarkable! The justiciars haven't been around for thousands of years. That confirms my suspicions about the age of this place."
+parent = -1
+
+[[nodes]]
+id = 870
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "That's not all I found. Apparently, this place was once called the Temple of the Eye!"
+parent = -1
+
+[[nodes]]
+id = 871
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "The Eye? What's the Eye?"
+parent = -1
+
+[[nodes]]
+id = 872
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "I remember reading about something called the Eye back at the Wizards' Tower! I only came across mention of it once, but apparently it was a powerful artefact made by Saradomin himself!"
+parent = -1
+
+[[nodes]]
+id = 873
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Sorry... made by Saradomin, you say?"
+parent = -1
+
+[[nodes]]
+id = 874
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "That's what the book said. Why?"
+parent = -1
+
+[[nodes]]
+id = 875
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Oh, just checking! I get all caught up in the moment and mishear things sometimes."
+parent = -1
+
+[[nodes]]
+id = 876
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This 'Eye'... did the book say what it looked like?"
+parent = -1
+
+[[nodes]]
+id = 877
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "It didn't. It didn't actually have any other information on it. I tried to learn more from other books, but found nothing."
+parent = -1
+
+[[nodes]]
+id = 878
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Anything else was probably lost when the first Wizards' Tower burnt down."
+parent = -1
+
+[[nodes]]
+id = 879
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Of course! I've worked out what the energy from that hole is. It's abyssal energy!"
+parent = -1
+
+[[nodes]]
+id = 880
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Hmm... Yes... Brilliant!"
+parent = -1
+
+[[nodes]]
+id = 881
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Persten?"
+parent = -1
+
+[[nodes]]
+id = 882
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Ah, sorry! Lost in thought again! It was for a good reason though. I think I've just about worked it all out!"
+parent = -1
+
+[[nodes]]
+id = 883
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Amazing as always, Persten! We're so lucky to be able to work with you."
+parent = -1
+
+[[nodes]]
+id = 884
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Thank you! So, I reckon my theory that this is an old teleportation matrix was spot on! The wizards here must have used power from the Abyss to create portals to the runic altars."
+parent = -1
+
+[[nodes]]
+id = 885
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Then, with the power from this 'Eye' and support from their rune guardians, they'd have been able to create runes at lightning speed!"
+parent = -1
+
+[[nodes]]
+id = 886
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "The Eye must have had a huge impact on their work. They named the temple after it and fashioned a symbol based on it."
+parent = -1
+
+[[nodes]]
+id = 887
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "And we're still using that symbol today! We just never knew why until now!"
+parent = -1
+
+[[nodes]]
+id = 888
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Should we report back to Sedridor?"
+parent = -1
+
+[[nodes]]
+id = 889
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "In a moment. I'm just going to cast a simple revealing spell first, just in case there's anything else hidden here."
+parent = -1
+
+[[nodes]]
+id = 890
+depth = 1
+kind = "other"
+text = "{{qact|Persten casts a revealing spell, but the Temple begins to rumble.}}"
+parent = -1
+
+[[nodes]]
+id = 891
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "What's happening?"
+parent = -1
+
+[[nodes]]
+id = 892
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Don't worry! I'm sure everything is fine. Let me handle this."
+parent = -1
+
+[[nodes]]
+id = 893
+depth = 1
+kind = "other"
+text = "{{qact|An abyssal rift opens.}}"
+parent = -1
+
+[[nodes]]
+id = 894
+depth = 1
+kind = "speaker"
+speaker = "Wizard Persten"
+text = "Huh... now that is a problem."
+parent = -1
+
+[[nodes]]
+id = 895
+depth = 1
+kind = "other"
+text = "{{qact|Persten is dragged into the rift.}}"
+parent = -1
+
+[[nodes]]
+id = 896
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Persten!"
+parent = -1
+
+[[nodes]]
+id = 897
+depth = 1
+kind = "other"
+text = "{{qact|Abyssal creatures begin coming out of the rift.}}"
+parent = -1
+
+[[nodes]]
+id = 898
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "You don't belong in this temple, accursed filth!"
+parent = -1
+
+[[nodes]]
+id = 899
+depth = 1
+kind = "other"
+text = "{{qact|Cordelia casts a powerful spell that instantly kills all the invading creatures. Suddenly, the Great Guardian appears from the centre of the Temple.}}"
+parent = -1
+
+[[nodes]]
+id = 900
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "And so the rift to the Scar is open once more. Humans, fight with us. Let us hold back the Abyss!"
+parent = -1
+
+[[nodes]]
+id = 901
+depth = 1
+kind = "act"
+text = "Great Guardian cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 902
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, [player name]. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 903
+depth = 1
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 904
+depth = 1
+kind = "option"
+text = "Sedridor! Something's gone wrong!"
+parent = -1
+children = [905, 906, 907, 908, 909]
+
+[[nodes]]
+id = 905
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sedridor! Something's gone wrong!"
+parent = 904
+
+[[nodes]]
+id = 906
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "What do you mean?"
+parent = 904
+
+[[nodes]]
+id = 907
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Through the portal! We've opened some sort of rift to the Abyss!"
+parent = 904
+
+[[nodes]]
+id = 908
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Well you'd better get back there and fix it!"
+parent = 904
+
+[[nodes]]
+id = 909
+depth = 2
+kind = "act"
+text = "end"
+parent = 904
+is_terminal = true
+
+[[nodes]]
+id = 910
+depth = 1
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 911
+depth = 1
+kind = "option"
+text = "quest=No|Could you tell me about the old Wizards' Tower?"
+parent = -1
+
+[[nodes]]
+id = 912
+depth = 1
+kind = "option"
+text = "quest=No|Nothing thanks, I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 913
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = -1
+
+[[nodes]]
+id = 914
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "I... I think so. Sorry... I need a moment to collect myself."
+parent = -1
+
+[[nodes]]
+id = 915
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll go and check on Tamara and Cordelia. I'll be back soon"
+parent = -1
+
+[[nodes]]
+id = 916
+depth = 1
+kind = "act"
+text = "Great Guardian cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 917
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "What do we do now? What if more of those creatures come through that rift?"
+parent = -1
+
+[[nodes]]
+id = 918
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Well don't think I'll be stopping them all again! I may be powerful, but that spell still took a lot out of me."
+parent = -1
+
+[[nodes]]
+id = 919
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Humans, use the cells. Protect me while I close the rift."
+parent = -1
+
+[[nodes]]
+id = 920
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Cells?"
+parent = -1
+
+[[nodes]]
+id = 921
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Tamara! [player name]! I think I've found something over here!"
+parent = -1
+
+[[nodes]]
+id = 922
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "On my way!"
+parent = -1
+
+[[nodes]]
+id = 923
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 924
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "If you're hoping I can help in some way, you're out of luck. I may be powerful, but that spell still took a lot out of me. You'll have to hope the others can do something."
+parent = -1
+
+[[nodes]]
+id = 925
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 926
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll go and see what Felix has found."
+parent = -1
+
+[[nodes]]
+id = 927
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Okay."
+parent = -1
+
+[[nodes]]
+id = 928
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 929
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What have you found?"
+parent = -1
+
+[[nodes]]
+id = 930
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Well... I can't say for sure, but I think the containers on this table contain small amounts of runic energy."
+parent = -1
+
+[[nodes]]
+id = 931
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, I'll take one to Tamara."
+parent = -1
+
+[[nodes]]
+id = 932
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Just make sure you don't take more than one! I tried to do that already and the energy within them exploded!"
+parent = -1
+
+[[nodes]]
+id = 933
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, thanks for the warning."
+parent = -1
+
+[[nodes]]
+id = 934
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 935
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "You should take one of these containers to Tamara. Just don't take more than one or they'll explode!"
+parent = -1
+
+[[nodes]]
+id = 936
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, thanks for the warning."
+parent = -1
+
+[[nodes]]
+id = 937
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 938
+depth = 1
+kind = "box"
+text = "pic=Weak cell detail.png|You show the cell to Tamara."
+parent = -1
+
+[[nodes]]
+id = 939
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This is what Felix found."
+parent = -1
+
+[[nodes]]
+id = 940
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "That must be one of the cells we need! Try placing it in the tile next to me."
+parent = -1
+
+[[nodes]]
+id = 941
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright."
+parent = -1
+
+[[nodes]]
+id = 942
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 943
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Try placing that cell in the tile next to me."
+parent = -1
+
+[[nodes]]
+id = 944
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright."
+parent = -1
+
+[[nodes]]
+id = 945
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 946
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "It worked! This barrier should protect us against those creatures!"
+parent = -1
+
+[[nodes]]
+id = 947
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "And just in time too. Here come more of them!"
+parent = -1
+
+[[nodes]]
+id = 948
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we do now?"
+parent = -1
+
+[[nodes]]
+id = 949
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "I'm not sure. The barrier won't hold out for long!"
+parent = -1
+
+[[nodes]]
+id = 950
+depth = 1
+kind = "speaker"
+speaker = "Great Guardian"
+text = "Humans, we need more support. Restore my brethren! Place cells within imbued rocks and they will do the rest."
+parent = -1
+
+[[nodes]]
+id = 951
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Imbued rocks? What does that mean?"
+parent = -1
+
+[[nodes]]
+id = 952
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll see if Felix can help."
+parent = -1
+
+[[nodes]]
+id = 953
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Be careful!"
+parent = -1
+
+[[nodes]]
+id = 954
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 955
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll see if Felix can help work out what to do next."
+parent = -1
+
+[[nodes]]
+id = 956
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Be careful!"
+parent = -1
+
+[[nodes]]
+id = 957
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 958
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Felix, we need to place cells in some imbued rocks. Any idea what that means?"
+parent = -1
+
+[[nodes]]
+id = 959
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "I think the essence piles here are actually remains of old guardians. They seem to contain elemental and catalytic energies. Perhaps you could try infusing each one with a cell."
+parent = -1
+
+[[nodes]]
+id = 960
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good idea."
+parent = -1
+
+[[nodes]]
+id = 961
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "You'll probably need a chisel to shape the essence first. Looks like there's one on the floor there."
+parent = -1
+
+[[nodes]]
+id = 962
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, I'll get to work."
+parent = -1
+
+[[nodes]]
+id = 963
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 964
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Try infusing each of the essence piles here with a cell. You'll probably need a chisel to shape the essence first. Looks like there's one on the floor there."
+parent = -1
+
+[[nodes]]
+id = 965
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, I'll get to work."
+parent = -1
+
+[[nodes]]
+id = 966
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 967
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "It worked! Looks like it's following the elemental symbols on the ground."
+parent = -1
+
+[[nodes]]
+id = 968
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Try creating another one using the other essence pile."
+parent = -1
+
+[[nodes]]
+id = 969
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 970
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Try infusing the other essence pile with a cell like you did with the first one."
+parent = -1
+
+[[nodes]]
+id = 971
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Will do."
+parent = -1
+
+[[nodes]]
+id = 972
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 973
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Amazing! Looks like this one's following the catalytic symbols."
+parent = -1
+
+[[nodes]]
+id = 974
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "These guardians should be strong enough to fend off those creatures. Head back to Tamara and see what we should do next."
+parent = -1
+
+[[nodes]]
+id = 975
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 976
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "The guardians should be strong enough to fend off those creatures. Maybe Tamara will know what to do next."
+parent = -1
+
+[[nodes]]
+id = 977
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 978
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "You made some rune guardians!"
+parent = -1
+
+[[nodes]]
+id = 979
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And they seem to be holding back those creatures."
+parent = -1
+
+[[nodes]]
+id = 980
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Humans, I lack the power needed to close the rift! I require runic energy!"
+parent = -1
+
+[[nodes]]
+id = 981
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Runic energy? Do we need more cells?"
+parent = -1
+
+[[nodes]]
+id = 982
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Hmm... I don't think they'll work for this. We'll need something else..."
+parent = -1
+
+[[nodes]]
+id = 983
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Of course! We can use the rune guardians! See all the fallen guardians around here? They'd have once been powered using runic energy!"
+parent = -1
+
+[[nodes]]
+id = 984
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "If you were to obtain some fragments from them, you might be able to make something to capture the runic energy needed."
+parent = -1
+
+[[nodes]]
+id = 985
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So mine the fallen guardians?"
+parent = -1
+
+[[nodes]]
+id = 986
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Exactly! Hopefully you can find a pickaxe somewhere. Once you have a few fragments, go and speak to Felix. I'm sure he'll be able to help you use them."
+parent = -1
+
+[[nodes]]
+id = 987
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 988
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Do you have anything to capture some runic energy with?"
+parent = -1
+
+[[nodes]]
+id = 989
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 990
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Try mining some fragments from the fallen guardians. Once you have a few, go and speak to Felix. I'm sure he'll be able to help you use them."
+parent = -1
+
+[[nodes]]
+id = 991
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 992
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I have enough fragments. I should speak to Felix about what to do with them."
+parent = -1
+
+[[nodes]]
+id = 993
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 994
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We need to power up this big guardian somehow, but I need a way to capture runic energy. Tamara said you might be able to help."
+parent = -1
+
+[[nodes]]
+id = 995
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Hmm... I reckon this old workbench here might have been used for just that. There's still plenty of pure essence on it for you to use, but that might not be enough..."
+parent = -1
+
+[[nodes]]
+id = 996
+depth = 1
+kind = "cond"
+text = "If the player has fragments:"
+parent = -1
+children = [997, 998]
+
+[[nodes]]
+id = 997
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some fragments from the fallen guardians. What if I combined the pure essence with them?"
+parent = 996
+
+[[nodes]]
+id = 998
+depth = 2
+kind = "act"
+text = "continue"
+parent = 996
+
+[[nodes]]
+id = 999
+depth = 1
+kind = "cond"
+text = "If the player has no fragments:"
+parent = -1
+children = [1000, 1001]
+
+[[nodes]]
+id = 1000
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What if I combined the pure essence with fragments from the fallen guardians?"
+parent = 999
+
+[[nodes]]
+id = 1001
+depth = 2
+kind = "act"
+text = "continue"
+parent = 999
+
+[[nodes]]
+id = 1002
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Yes! That would be perfect!"
+parent = -1
+
+[[nodes]]
+id = 1003
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll give it a go."
+parent = -1
+
+[[nodes]]
+id = 1004
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1005
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Do you have anything to capture some runic energy with?"
+parent = -1
+
+[[nodes]]
+id = 1006
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have some fragments from the fallen guardians."
+parent = -1
+
+[[nodes]]
+id = 1007
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Take them to Felix. He'll hopefully know what to do with them."
+parent = -1
+
+[[nodes]]
+id = 1008
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1009
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I used the old workbench to make some essence!"
+parent = -1
+
+[[nodes]]
+id = 1010
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "If you think you have enough, you should take it to Tamara."
+parent = -1
+
+[[nodes]]
+id = 1011
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1012
+depth = 1
+kind = "box"
+text = "pic=Guardian essence detail.png|You show the guardian essence to Tamara."
+parent = -1
+
+[[nodes]]
+id = 1013
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you think this will work?"
+parent = -1
+
+[[nodes]]
+id = 1014
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Perfect! Now we just need to capture some runic energy with it."
+parent = -1
+
+[[nodes]]
+id = 1015
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 1016
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "I shall now use power from the Abyss to open a portal to the Runic Altar of Mind."
+parent = -1
+
+[[nodes]]
+id = 1017
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Well... I guess that's your answer. Head to the Mind Altar and craft some runes. That essence you have should capture some of the runic energy released. Take an uncharged cell with you as well."
+parent = -1
+
+[[nodes]]
+id = 1018
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = -1
+
+[[nodes]]
+id = 1019
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "I have a theory to test."
+parent = -1
+
+[[nodes]]
+id = 1020
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough. I'll be back soon."
+parent = -1
+
+[[nodes]]
+id = 1021
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1022
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Head to the Mind Altar and craft some runes. That essence you made should capture some of the runic energy released. Take an uncharged cell with you as well."
+parent = -1
+
+[[nodes]]
+id = 1023
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = -1
+
+[[nodes]]
+id = 1024
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "I have a theory to test."
+parent = -1
+
+[[nodes]]
+id = 1025
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough. I'll be back soon."
+parent = -1
+
+[[nodes]]
+id = 1026
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1027
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What should I do now?"
+parent = -1
+
+[[nodes]]
+id = 1028
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "I'm not sure. Maybe Tamara will know what to do."
+parent = -1
+
+[[nodes]]
+id = 1029
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1030
+depth = 1
+kind = "box"
+text = "pic=Catalytic guardian stone detail.png|You show the guardian stones to Tamara."
+parent = -1
+
+[[nodes]]
+id = 1031
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Look! This is what happened when I took that essence to the Mind Altar."
+parent = -1
+
+[[nodes]]
+id = 1032
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Great! That's exactly what I was hoping for. What about the cell?"
+parent = -1
+
+[[nodes]]
+id = 1033
+depth = 1
+kind = "box"
+text = "pic=Weak cell detail.png|You show the cell to Tamara."
+parent = -1
+
+[[nodes]]
+id = 1034
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It seemed to capture energy from the altar as well."
+parent = -1
+
+[[nodes]]
+id = 1035
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "I had a feeling it would! It's all coming together!"
+parent = -1
+
+[[nodes]]
+id = 1036
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we do now?"
+parent = -1
+
+[[nodes]]
+id = 1037
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "First, you should use that new cell to replace the one powering the barrier here. I don't think the current one will last much longer."
+parent = -1
+
+[[nodes]]
+id = 1038
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And then?"
+parent = -1
+
+[[nodes]]
+id = 1039
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Then just use those stones to power up this big guardian."
+parent = -1
+
+[[nodes]]
+id = 1040
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right on it."
+parent = -1
+
+[[nodes]]
+id = 1041
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1042
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we do now?"
+parent = -1
+
+[[nodes]]
+id = 1043
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "First, you should use that new cell to replace the one powering the barrier here. I don't think the current one will last much longer."
+parent = -1
+
+[[nodes]]
+id = 1044
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And then?"
+parent = -1
+
+[[nodes]]
+id = 1045
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Then just use those stones to power up this big guardian."
+parent = -1
+
+[[nodes]]
+id = 1046
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right on it."
+parent = -1
+
+[[nodes]]
+id = 1047
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1048
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we do now?"
+parent = -1
+
+[[nodes]]
+id = 1049
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Just use those stones to power up this big guardian."
+parent = -1
+
+[[nodes]]
+id = 1050
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right on it."
+parent = -1
+
+[[nodes]]
+id = 1051
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1052
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Human, the stones have fueled me, but more are needed."
+parent = -1
+
+[[nodes]]
+id = 1053
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The guardian still needs more energy!"
+parent = -1
+
+[[nodes]]
+id = 1054
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "I guess we need to repeat the process again."
+parent = -1
+
+[[nodes]]
+id = 1055
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "I shall now use power from the Abyss to open a portal to the Runic Altar of Water."
+parent = -1
+
+[[nodes]]
+id = 1056
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = """
+Looks like the portal to the Mind Altar has closed. I guess the guardian only keeps them open for so long. You'll need to use the new portal instead. Make sure you take another uncharged cell with you.
+"""
+parent = -1
+
+[[nodes]]
+id = 1057
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1058
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we do now?"
+parent = -1
+
+[[nodes]]
+id = 1059
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = """
+Create some more of that essence and use it to capture energy from the Water Altar. You should then be able to use it to power up the guardian again. Make sure you take another uncharged cell with you.
+"""
+parent = -1
+
+[[nodes]]
+id = 1060
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll be back."
+parent = -1
+
+[[nodes]]
+id = 1061
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1062
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What should I do to power up the big guardian?"
+parent = -1
+
+[[nodes]]
+id = 1063
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "You could use the workbench here to combine pure essence with fragments from the nearby fallen guardians. The essence would then be perfect for capturing runic energy."
+parent = -1
+
+[[nodes]]
+id = 1064
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll give it a go."
+parent = -1
+
+[[nodes]]
+id = 1065
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1066
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we do now?"
+parent = -1
+
+[[nodes]]
+id = 1067
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Use some more of that essence to capture energy from the Water Altar. You should then be able to use it to power up the guardian again. Make sure you take another uncharged cell with you."
+parent = -1
+
+[[nodes]]
+id = 1068
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll be back."
+parent = -1
+
+[[nodes]]
+id = 1069
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1070
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have some stones I can use to power the big guardian."
+parent = -1
+
+[[nodes]]
+id = 1071
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Great! You should go do that now."
+parent = -1
+
+[[nodes]]
+id = 1072
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1073
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we do now?"
+parent = -1
+
+[[nodes]]
+id = 1074
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Just use those stones to power up the guardian again."
+parent = -1
+
+[[nodes]]
+id = 1075
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll get right on it."
+parent = -1
+
+[[nodes]]
+id = 1076
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1077
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Human, the stones have fueled me, but more are needed."
+parent = -1
+
+[[nodes]]
+id = 1078
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1079
+depth = 1
+kind = "box"
+text = "pic=Medium cell detail.png|pic2=Portal talisman (water) detail.png|You show the cell and the talisman to Tamara."
+parent = -1
+
+[[nodes]]
+id = 1080
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Something odd happened at the Water Altar. The energy in this cell seems different to before. The essence also formed this strange talisman."
+parent = -1
+
+[[nodes]]
+id = 1081
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Oh, fascinating! I guess it makes sense that the stronger the runic energy, the more powerful the cell will be. After all, water is more powerful than air or mind."
+parent = -1
+
+[[nodes]]
+id = 1082
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Try making another rune guardian using that cell. In the meantime, I'll see if I can work out what this talisman does."
+parent = -1
+
+[[nodes]]
+id = 1083
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1084
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Try making another rune guardian using that new cell. In the meantime, I'll see if I can work out what this talisman does."
+parent = -1
+
+[[nodes]]
+id = 1085
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright."
+parent = -1
+
+[[nodes]]
+id = 1086
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1087
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to make another rune guardian."
+parent = -1
+
+[[nodes]]
+id = 1088
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Go right ahead. Just use a chisel to shape one of these essence piles and then infuse the result with a cell."
+parent = -1
+
+[[nodes]]
+id = 1089
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1090
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Look at that! I don't know what you did, but that guardian is much stronger than the ones you made before."
+parent = -1
+
+[[nodes]]
+id = 1091
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1092
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That cell made a more powerful rune guardian!"
+parent = -1
+
+[[nodes]]
+id = 1093
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Great! We're almost there! I think we just need to power up this guardian one more time for it to be able to close that rift."
+parent = -1
+
+[[nodes]]
+id = 1094
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "I must conserve my power. The portal to the Runic Altar of Water has closed."
+parent = -1
+
+[[nodes]]
+id = 1095
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But we need that portal!"
+parent = -1
+
+[[nodes]]
+id = 1096
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Don't worry, I think there's another way. I reckon that talisman you gave me can be used to return to the Water Altar without the portal being open."
+parent = -1
+
+[[nodes]]
+id = 1097
+depth = 1
+kind = "box"
+text = "pic=Portal talisman (water) detail.png|Tamara hands you the talisman."
+parent = -1
+
+[[nodes]]
+id = 1098
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Just present that talisman to the statue where the portal to the Water Altar was. Make sure you take more essence and another cell with you."
+parent = -1
+
+[[nodes]]
+id = 1099
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1100
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Just present that talisman to the statue where the portal to the Water Altar was. Make sure you take more essence and another cell with you."
+parent = -1
+
+[[nodes]]
+id = 1101
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have another cell. Do you want me to power up the barrier again?"
+parent = -1
+
+[[nodes]]
+id = 1103
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "That's right! If my theory is correct, it should produce an even stronger barrier!"
+parent = -1
+
+[[nodes]]
+id = 1104
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1105
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Look! The barrier changed!"
+parent = -1
+
+[[nodes]]
+id = 1106
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Just as I thought! We can create better barriers by using stronger cells!"
+parent = -1
+
+[[nodes]]
+id = 1107
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Now, let's charge the guardian with those stones you created and close this rift!"
+parent = -1
+
+[[nodes]]
+id = 1108
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1109
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "Let's charge the guardian with those stones you created and close this rift!"
+parent = -1
+
+[[nodes]]
+id = 1110
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1111
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene plays. The Great Guardian prepares to close the rift.}}"
+parent = -1
+
+[[nodes]]
+id = 1112
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Humans, I now have the power to close the rift. Brace yourselves!"
+parent = -1
+
+[[nodes]]
+id = 1113
+depth = 1
+kind = "other"
+text = "{{qact|The Great Guardian shoots a beam towards the rift, and it fades away.}}"
+parent = -1
+
+[[nodes]]
+id = 1114
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "We are safe, for now."
+parent = -1
+
+[[nodes]]
+id = 1115
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "What was all that? What happened?"
+parent = -1
+
+[[nodes]]
+id = 1116
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "That was a rift into an area of the Abyss known as the Scar."
+parent = -1
+
+[[nodes]]
+id = 1117
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "The Scar? But I thought this was meant to be a teleportation matrix."
+parent = -1
+
+[[nodes]]
+id = 1118
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "You are mistaken. While it is true that teleportation magic is strong here, that is only a side effect of this temple's history."
+parent = -1
+
+[[nodes]]
+id = 1119
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "What history?"
+parent = -1
+
+[[nodes]]
+id = 1120
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "This temple was built to house a powerful artefact. Many sought to claim this artefact for themselves, including servants of the Fallen Empire."
+parent = -1
+
+[[nodes]]
+id = 1121
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "In their attempt to claim the artefact, they used magic they did not understand. The rift to the Scar was created as a result."
+parent = -1
+
+[[nodes]]
+id = 1122
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This artefact... you mean the Eye?"
+parent = -1
+
+[[nodes]]
+id = 1123
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "You are correct. The Eye was removed after the battle, but not before the Justiciar of the Lion used it to seal the rift once more."
+parent = -1
+
+[[nodes]]
+id = 1124
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "She then created us, the Guardians of the Rift, to protect this place in the event the rift was ever reopened."
+parent = -1
+
+[[nodes]]
+id = 1125
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "And we reopened it."
+parent = -1
+
+[[nodes]]
+id = 1126
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "But it's been sealed again now! The danger is gone."
+parent = -1
+
+[[nodes]]
+id = 1127
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Incorrect. Without the power of the Eye, we have no way to seal the rift permanently. It will soon reopen once more. You should leave before that happens."
+parent = -1
+
+[[nodes]]
+id = 1128
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "No. This was our mistake. I'm staying to help fix it."
+parent = -1
+
+[[nodes]]
+id = 1129
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "Me too!"
+parent = -1
+
+[[nodes]]
+id = 1130
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Cordelia"
+text = "Well if you two are staying, I guess I will as well."
+parent = -1
+
+[[nodes]]
+id = 1131
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Your support will be invaluable."
+parent = -1
+
+[[nodes]]
+id = 1132
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Tamara"
+text = "[player name], could you go back to the Wizards' Tower and let Sedridor know what happened here?"
+parent = -1
+
+[[nodes]]
+id = 1133
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, if you're absolutely sure about this."
+parent = -1
+
+[[nodes]]
+id = 1134
+depth = 1
+kind = "speaker"
+speaker = "Apprentice Felix"
+text = "What about Persten? We have to help her."
+parent = -1
+
+[[nodes]]
+id = 1135
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "No part of the Abyss is more dangerous than the Scar. Your friend will have already been consumed."
+parent = -1
+
+[[nodes]]
+id = 1136
+depth = 1
+kind = "speaker"
+speaker = "The Great Guardian"
+text = "Now, the power of the Abyss grows. The rift will soon reopen once more. Those of you staying should prepare yourselves."
+parent = -1
+
+[[nodes]]
+id = 1137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Then I guess I'd better go and see Sedridor. Good luck."
+parent = -1
+
+[[nodes]]
+id = 1138
+depth = 1
+kind = "other"
+text = "{{qact|The player returns to the Wizards' Tower.}}"
+parent = -1
+
+[[nodes]]
+id = 1139
+depth = 1
+kind = "act"
+text = "Sedridor cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 1140
+depth = 1
+kind = "act"
+text = "Sedridor cutscene continues below."
+parent = -1
+
+[[nodes]]
+id = 1141
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sedridor! It all went wrong!"
+parent = -1
+
+[[nodes]]
+id = 1142
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "What do you mean? Was there no teleportation matrix?"
+parent = -1
+
+[[nodes]]
+id = 1143
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Kind of, but not really. The portal took us to the Temple of the Eye, an ancient Saradominist temple built to house a powerful artefact."
+parent = -1
+
+[[nodes]]
+id = 1144
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Long ago, a rift to the Abyss was created in the temple, but it was sealed. At least it was, until Persten accidently opened it again..."
+parent = -1
+
+[[nodes]]
+id = 1145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "She was sucked into the Abyss, and all these abyssal creatures came out!"
+parent = -1
+
+[[nodes]]
+id = 1146
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Abyssal creatures? We have to get in there and stop this!"
+parent = -1
+
+[[nodes]]
+id = 1147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's okay again, for now. Some rune guardians called the Guardians of the Rift were built to protect the temple from the Abyss. They helped us close the rift again, but they say it will soon reopen."
+parent = -1
+
+[[nodes]]
+id = 1148
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "This is a disaster! I knew that teleportation matrix was too good to be true. I should have stopped this, but I was blinded by my own desires for that matrix!"
+parent = -1
+
+[[nodes]]
+id = 1149
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "What of Traiborn's apprentices?"
+parent = -1
+
+[[nodes]]
+id = 1150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They're safe. They chose to stay and help the Guardians of the Rift keep the rift closed."
+parent = -1
+
+[[nodes]]
+id = 1151
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Then I will ensure they have all the help they need. I will also begin researching this rift at once. Maybe we can still find a way to close it permanently."
+parent = -1
+
+[[nodes]]
+id = 1152
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "In the meantime, I suggest you do what you can to help them as well. After all, this is partially your doing."
+parent = -1
+
+[[nodes]]
+id = 1153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know. I'll help wherever I'm needed."
+parent = -1
+
+[[nodes]]
+id = 1154
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Thank you, [player name]. I appreciate that you did not mean for things to go this way. You should have this. It belonged to Persten. I don't want to think about where she got it."
+parent = -1
+
+[[nodes]]
+id = 1155
+depth = 1
+kind = "box"
+text = "pic=Medium pouch detail.png|Sedridor shows you a pouch."
+parent = -1
+
+[[nodes]]
+id = 1156
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you think she's still alive?"
+parent = -1
+
+[[nodes]]
+id = 1157
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Sadly, that seems unlikely. Still, if anyone can survive the Abyss, it's her."
+parent = -1
+
+[[nodes]]
+id = 1158
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Now, we'd better get to work."
+parent = -1
+
+[[nodes]]
+id = 1159
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 1160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 1161
+depth = 1
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Hello again, [player name]. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 1162
+depth = 1
+kind = "option"
+text = "quest=No|Can you teleport me to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 1163
+depth = 1
+kind = "option"
+text = "How are things at the Temple of the Eye?"
+parent = -1
+children = [1164, 1165, 1166, 1167, 1168, 1169, 1170]
+
+[[nodes]]
+id = 1164
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How are things at the Temple of the Eye?"
+parent = 1163
+
+[[nodes]]
+id = 1165
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Between the Guardians of the Rift and ourselves, we are managing to keep the Abyss at bay."
+parent = 1163
+
+[[nodes]]
+id = 1166
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "However, despite all our research, we are no closer to working out how to close the rift permanently."
+parent = 1163
+
+[[nodes]]
+id = 1167
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Gaining a better understanding of the artefact that was once there is key, but we have found little mention of this 'Eye'."
+parent = 1163
+
+[[nodes]]
+id = 1168
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "I'm sure the wizards of the first tower had plenty of research on it. After all, they knew enough about it to use its symbol as the symbol for our order."
+parent = 1163
+
+[[nodes]]
+id = 1169
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "All that knowledge lost because of those accursed Zamorakians!"
+parent = 1163
+
+[[nodes]]
+id = 1170
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Anyway, if you wish to help defend the temple, just head through the portal."
+parent = 1163
+
+[[nodes]]
+id = 1171
+depth = 1
+kind = "option"
+text = "quest=No|Who else knows the teleport to the Rune Essence Mine?"
+parent = -1
+
+[[nodes]]
+id = 1172
+depth = 1
+kind = "option"
+text = "Could you tell me about the old Wizards' Tower?"
+parent = -1
+children = [1173, 1174, 1175, 1176, 1177, 1178, 1179, 1180, 1181, 1183]
+
+[[nodes]]
+id = 1173
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could you tell me about the old Wizards' Tower?"
+parent = 1172
+
+[[nodes]]
+id = 1174
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Of course. The first Wizards' Tower was built at the same time the Order of Wizards was founded. It was at the dawn of the Fifth Age, when the secrets of runecrafting were rediscovered."
+parent = 1172
+
+[[nodes]]
+id = 1175
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "For years, the tower was a hub of magical research. Wizards of all races and religions were welcomed into our order."
+parent = 1172
+
+[[nodes]]
+id = 1176
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Alas, that openness is what ultimately led to disaster. The wizards who served Zamorak, the evil god of chaos, tried to claim our magical discoveries in his name."
+parent = 1172
+
+[[nodes]]
+id = 1177
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "They failed, but in retaliation, they burnt the entire tower to the ground. Years of work was destroyed."
+parent = 1172
+
+[[nodes]]
+id = 1178
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "The tower was soon rebuilt of course, but even now we are still trying to regain knowledge that was lost."
+parent = 1172
+
+[[nodes]]
+id = 1179
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "That's why I spend my time down here, in fact. This basement is all that is left of the old tower, and I believe there are still some secrets to discover here."
+parent = 1172
+
+[[nodes]]
+id = 1180
+depth = 2
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Of course, one secret I am no longer looking for is the teleportation incantation to the Rune Essence Mine. We have you to thank for that."
+parent = 1172
+
+[[nodes]]
+id = 1181
+depth = 2
+kind = "cond"
+text = "If the player did not speak to the [[Mage of Zamorak]] about the abyssal incantation post-quest:"
+parent = 1172
+children = [1182]
+
+[[nodes]]
+id = 1182
+depth = 3
+kind = "act"
+text = "other"
+parent = 1181
+is_terminal = true
+
+[[nodes]]
+id = 1183
+depth = 2
+kind = "cond"
+text = "If the player spoke to the [[Mage of Zamorak]] about the abyssal incantation post-quest:"
+parent = 1172
+children = [1184, 1185, 1186, 1187]
+
+[[nodes]]
+id = 1184
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've heard a different take on how the tower burnt down. Something about a ritual gone wrong?"
+parent = 1183
+
+[[nodes]]
+id = 1185
+depth = 3
+kind = "speaker"
+speaker = "Archmage Sedridor"
+text = "Nothing more than Zamorakian hearsay! They burnt the tower down and are now too cowardly to even admit it!"
+parent = 1183
+
+[[nodes]]
+id = 1186
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough."
+parent = 1183
+
+[[nodes]]
+id = 1187
+depth = 3
+kind = "act"
+text = "other"
+parent = 1183
+is_terminal = true
+
+[[nodes]]
+id = 1188
+depth = 1
+kind = "option"
+text = "quest=No|Nothing thanks, I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 1189
+depth = 1
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Ah, you again. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 1190
+depth = 1
+kind = "option"
+text = "About that incantation your initiate gave me..."
+parent = -1
+children = [1191, 1192, 1193, 1194, 1195, 1196, 1197, 1198, 1199, 1200, 1201, 1202]
+
+[[nodes]]
+id = 1191
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that incantation your initiate gave me..."
+parent = 1190
+
+[[nodes]]
+id = 1192
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Ah yes, the one to trace that amulet. Don't think I didn't notice that you modified the transmission spell I put on it. Next time you need help, we might not be so willing."
+parent = 1190
+
+[[nodes]]
+id = 1193
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well maybe you should have asked first! Besides, you wouldn't have got anything useful out of it. In tracing that amulet, we accidently managed to open an uncontrollable rift to the Abyss."
+parent = 1190
+
+[[nodes]]
+id = 1194
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "And does this 'we' include the Order of Wizards?"
+parent = 1190
+
+[[nodes]]
+id = 1195
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe..."
+parent = 1190
+
+[[nodes]]
+id = 1196
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "I knew it! It's just like them to play with magic they don't understand. First they burnt down the Wizards' Tower, now they're opening uncontrollable abyssal rifts!"
+parent = 1190
+
+[[nodes]]
+id = 1197
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Perhaps the fools should leave the dangerous magic to us next time!"
+parent = 1190
+
+[[nodes]]
+id = 1198
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, that reminds me. That incantation didn't appear to be written on parchment. What was it?"
+parent = 1190
+
+[[nodes]]
+id = 1199
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "Hmm... probably the flesh of an abyssal creature. Why do you ask?"
+parent = 1190
+
+[[nodes]]
+id = 1200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I just thought it might be human flesh. I'm relieved it wasn't!"
+parent = 1190
+
+[[nodes]]
+id = 1201
+depth = 2
+kind = "speaker"
+speaker = "Mage of Zamorak"
+text = "You've been spending too much time with your friends in the Order of Wizards! I know that we Zamorakians have a bad reputation, but do you really think we'd be so barbaric?"
+parent = 1190
+
+[[nodes]]
+id = 1202
+depth = 2
+kind = "act"
+text = "other"
+parent = 1190
+is_terminal = true
+
+[[nodes]]
+id = 1203
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about the Abyss?"
+parent = -1
+
+[[nodes]]
+id = 1204
+depth = 1
+kind = "option"
+text = "quest=No|Can you tell me more about your group?"
+parent = -1

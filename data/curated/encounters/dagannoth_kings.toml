@@ -1,0 +1,106 @@
+# Dagannoth Kings — 3-boss encounter. Tests: simultaneous multi-boss
+# shared arena, per-boss style lock, per-boss style-weakness gating
+# (rock-paper-scissors), shared-aggro mechanic.
+
+# Note: "Dagannoth Kings" is one *encounter* comprising three distinct
+# NPCs that exist in the same chamber. Each is modeled with its own
+# encounter file semantics within this single TOML — shared phase
+# logic, independent HP pools.
+
+name = "Dagannoth Kings"
+slug = "dagannoth_kings"
+# Rex = melee, Supreme = ranged, Prime = magic.
+npc_ids = [2883, 2882, 2881]
+source_pages = [
+    "Dagannoth Rex",
+    "Dagannoth Supreme",
+    "Dagannoth Prime",
+    "Dagannoth Kings/Strategies",
+]
+
+# ---- Boss-specific blocks --------------------------------------------
+# Unusual encounter shape: three simultaneous bosses. Model each as a
+# sub-encounter. Shared arena + shared player target pool.
+
+[[bosses]]
+name = "Dagannoth Rex"
+npc_id = 2883
+hp = 255
+
+[[bosses.attacks]]
+name = "Melee Crush"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 26
+warning_ticks = 0
+
+# Rex takes significant damage ONLY from magic attacks (weakness).
+# Takes reduced damage from melee + ranged.
+[[bosses.damage_modifiers]]
+condition = "incoming_style != magic"
+damage_scale = 0.0                # essentially immune to non-magic
+
+[[bosses]]
+name = "Dagannoth Supreme"
+npc_id = 2882
+hp = 255
+
+[[bosses.attacks]]
+name = "Ranged Spikes"
+style = "ranged"
+max_hit = 26
+warning_ticks = 2
+
+# Supreme takes significant damage ONLY from melee.
+[[bosses.damage_modifiers]]
+condition = "incoming_style != melee"
+damage_scale = 0.0
+
+[[bosses]]
+name = "Dagannoth Prime"
+npc_id = 2881
+hp = 255
+
+[[bosses.attacks]]
+name = "Magic Bolts"
+style = "magic"
+max_hit = 26
+warning_ticks = 2
+
+# Prime takes significant damage ONLY from ranged.
+[[bosses.damage_modifiers]]
+condition = "incoming_style != ranged"
+damage_scale = 0.0
+
+# ---- Shared phase ------------------------------------------------------
+# No phases in the traditional sense — all three bosses attack
+# simultaneously. Encounter ends when all three die.
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+# All three bosses active from fight start. Their "aggression" is
+# governed by which style the player is currently attacking with:
+# the boss whose style the player is countering becomes the primary
+# aggressor.
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "All Three Must Die"
+primitive = "group_kill_required"
+# Drops only granted when all three NPC ids are dead. If one respawns
+# before the others die (supreme/prime have respawn timers when
+# damaged but not killed), the encounter doesn't complete.
+params.required_npc_ids = [2881, 2882, 2883]
+params.grant_drops_for = [2881, 2882, 2883]   # each rolls its own table
+
+[[mechanics]]
+name = "Shared Room Respawn"
+primitive = "periodic_respawn_if_dead"
+# If one king dies but the other two haven't, the dead one will
+# respawn after a cooldown. Only when ALL three are dead within the
+# respawn window does the encounter finish.
+params.respawn_cooldown_ticks = 75   # approximate — wiki
+                                     # lists ~45 seconds
+params.applies_to_npc_ids = [2881, 2882, 2883]

@@ -1,0 +1,700 @@
+title = "Transcript:His Faithful Servants"
+npcs = ["Strange Old Man"]
+node_count = 90
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "It's time."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Time for what?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Time to dig. To dig, dig, dig. But no normal dig. We now have new purpose!"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean? What purpose?"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "The brothers six! Dutiful servants of Saradomin... At least, that's what they'd tell you! Ha! Not so. Not so."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "They made a pact you see! Strength in life for servitude in death."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Servitude?"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Yes! They guard it for him! That was their purpose, but that time is up now. He wants it back! You can get it! You can dig!"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You want me to bring you something?"
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "The icon! He needs it now! You must dig, dig, dig. Slay the brothers six! It's okay, it won't hurt them... much. The icon will be in the chest!"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right... So you want me to go and kill the six brothers and bring you back an icon?"
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Yes! Do this! Do this! Maybe little prize for you if you do. But first you must dig! Dig, dig, dig!"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay..."
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "Can you tell me more about the brothers?"
+parent = -1
+children = [15, 16, 20]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about the brothers?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "cond"
+text = "If the player does not have the [[crumbling tome]] in their inventory:"
+parent = 14
+children = [17, 18, 19]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "The brothers? His faithful servants! Book tell you more! Take it! I don't even want it!"
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "box"
+text = "pic=Crumbling tome detail.png|The Strange Old Man gives you a book."
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "cond"
+text = "If the player has the crumbling tome in their inventory:"
+parent = 14
+children = [21, 22]
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "The brothers? His faithful servants! Book tell you more! Read it! Read it!"
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "act"
+text = "end"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "I wanted to ask you about warnings."
+parent = -1
+children = [24, 25, 26, 30, 34, 35, 36]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I wanted to ask you about warnings."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Yes?"
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "act"
+text = "If the warnings are not combined:"
+parent = 23
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Currently when I'm trying to go plundering the catacombs here, my mind is plagued by several inconvenient warnings about the dangers below."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I was wondering, do you know of a way to condense these warnings into a single one?"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "act"
+text = "continue"
+parent = 26
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "act"
+text = "If the warnings are combined:"
+parent = 23
+children = [31, 32, 33]
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for having those mental warnings I was having condensed into a single one, but I miss having them seperated."
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Is there any chance you'd be willing to change it back for me?"
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "act"
+text = "continue"
+parent = 30
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "AAAAAAAAARRRRRRGGGGGHHHHHHHH!"
+parent = 23
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm guessing that was a yes? In that case, thanks."
+parent = 23
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "option"
+text = "I'll be back soon."
+parent = -1
+children = [38, 39]
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back soon."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Icon?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't have it yet."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Slow! No slow! Only fast! Fast dig! Dig, dig, dig!"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "Can you tell me more about the brothers?"
+parent = -1
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "act"
+text = "above"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "option"
+text = "I wanted to ask you about warnings."
+parent = -1
+children = [47]
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "act"
+text = "above"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "option"
+text = "Okay, I'll be back soon."
+parent = -1
+children = [49, 50]
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll be back soon."
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Icon?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "At last! Quick! Give it!"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "box"
+text = "pic=Strange icon detail.png|You give the icon to the Strange Old Man."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "other"
+text = "{{anchor|given-the-icon}}'''Strange Old Man:''' You did it! Now for me."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "box"
+text = "pic=28131 detail.png|Before you can react, the Strange Old Man casts a spell. The icon disintegrates in his hands."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "It's all little bits now."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? But why? I thought you needed it!"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "other"
+text = "{{anchor|destroyed-the-icon}}'''Strange Old Man:''' Yes! Needed it for him, but not to keep! His friend asked him to protect it, but he made a new plan, a better plan!"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you on about?"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "The old plan is gone. We're not doing it that way. His friend won't be happy, but it was for the best!"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Now we're doing it his way..."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Anyway, job well done! Still more digging though. Always dig. Dig, dig, dig!"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "Oh, and don't forget your prize! He made it very clear you had to have a prize!"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "box"
+text = "pic=Dusty lamp detail.png|pic2=Crypt map detail.png|The Strange Old Man gives you a lamp and a map."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks... I guess."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "act"
+text = "above|given-the-icon"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why did you destroy the icon? I though you needed it!"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "act"
+text = "above|destroyed-the-icon"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Strange Old Man"
+text = "This is for you. Take it! Take it!"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "cond"
+text = "If the player has not claimed the lamp nor the map:"
+parent = -1
+children = [73, 74]
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "box"
+text = "pic=Dusty lamp detail.png|pic2=Crypt map detail.png|The Strange Old Man has given you a lamp and a map."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "continues"
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "cond"
+text = "If the player has not claimed the lamp:"
+parent = -1
+children = [76, 77]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "box"
+text = "pic=Dusty lamp detail.png|The Strange Old Man has given you a lamp."
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "act"
+text = "continues"
+parent = 75
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "cond"
+text = "If the player has not claimed the map:"
+parent = -1
+children = [79, 80]
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "box"
+text = "pic=Crypt map detail.png|The Strange Old Man has given you a map."
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "act"
+text = "continues"
+parent = 78
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "option"
+text = "Can you tell me more about the brothers?"
+parent = -1
+children = [84]
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "act"
+text = "above"
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "option"
+text = "I wanted to ask you about warnings."
+parent = -1
+children = [86]
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "above"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "I'll leave you to it then..."
+parent = -1
+children = [88, 89]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll leave you to it then..."
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true

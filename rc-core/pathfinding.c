@@ -90,14 +90,15 @@ RcRoute rc_find_path(const RcWorldMap *map, int start_x, int start_y,
     #define SEARCH_SIZE 128
     #define SEARCH_HALF 64
 
-    static int visited[SEARCH_SIZE][SEARCH_SIZE];
-    static int dir_x[SEARCH_SIZE][SEARCH_SIZE];
-    static int dir_y[SEARCH_SIZE][SEARCH_SIZE];
-    static int queue_x[SEARCH_SIZE * SEARCH_SIZE];
-    static int queue_y[SEARCH_SIZE * SEARCH_SIZE];
-
-    // NOTE: these statics are fine for single-player (one caller).
-    // For multi-threaded use, make them stack-local or per-state.
+    // Thread-local scratch — each thread has its own copy, so the RL
+    // use case (one env per thread, thousands in parallel) is
+    // race-free. ~320 KB per thread; reused across every pathfind call
+    // on that thread (no per-call alloc).
+    static _Thread_local int visited[SEARCH_SIZE][SEARCH_SIZE];
+    static _Thread_local int dir_x[SEARCH_SIZE][SEARCH_SIZE];
+    static _Thread_local int dir_y[SEARCH_SIZE][SEARCH_SIZE];
+    static _Thread_local int queue_x[SEARCH_SIZE * SEARCH_SIZE];
+    static _Thread_local int queue_y[SEARCH_SIZE * SEARCH_SIZE];
 
     for (int i = 0; i < SEARCH_SIZE; i++)
         for (int j = 0; j < SEARCH_SIZE; j++)

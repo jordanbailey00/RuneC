@@ -1,0 +1,6283 @@
+title = "Transcript:Icthlarin's Little Helper"
+npcs = ["Wanderer", "Cat", "Klenter", "Sphinx", "High Priest (Sophanem)", "Embalmer", "Carpenter", "Raetul", "Icthlarin", "Amascut", "Siamun", "Priest (Sophanem)"]
+node_count = 801
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day, wanderer."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Hello to you too, adventurer."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Cat"
+text = "Hiss!"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Aghhh get that cat away from me. Quickly please."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why? What's your problem with it?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Just take it away please. Take it away. If you do, I'll tell you of the secret passageway."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What secret passage?"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Get the cat away from me first and then I'll tell you."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "box"
+text = "You pick up your cat."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, now where is this passage?"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "It's by that group of rocks just to the north east, but you won't be able to enter. Well, not yet anyway..."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where does it lead to?"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "To Sophanem, the city of the dead."
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sophanem?"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "The second city of the Menaphites, full of giant monuments to their departed."
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "The place is locked down at the moment, so the passage is the only way in. Apparently, they've been hit by a set of plagues. That pathetic new High Priest of Icthlarin is probably to blame."
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... Tell me about this Icthlarin."
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "No!"
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh. Well fair enough then."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So why do you say I won't be able to enter the passage?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "First bring me some supplies and then I'll tell you. I'm running low and I'm about to embark on a long journey."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you need?"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Get me a full waterskin and a tinderbox. I seem to have lost my own and these desert nights are very cold."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "select"
+text = "Start the Icthlarin's Little Helper quest?"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [25, 28]
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "cond"
+text = "If the player already has a full waterskin and a tinderbox:"
+parent = 24
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay. I actually have those on me already."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "act"
+text = "continue"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "cond"
+text = "If the player does not:"
+parent = 24
+children = [29, 30]
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll get you your supplies."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "act"
+text = "end"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [32, 33, 34]
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I've got other things to do."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Wanderer"
+text = "Fool! Only I can give you the knowledge on the secret passageway!"
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower:"
+parent = -1
+children = [36, 37, 38]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Hiss"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Wanderer"
+text = "Get that cat away from me!"
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "act"
+text = "end"
+parent = 35
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "cond"
+text = "If the player does not have a cat follower:"
+parent = -1
+children = [40, 41, 44]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Wanderer"
+text = "You again. Do you have my supplies?"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "cond"
+text = "If the player has a full waterskin and a tinderbox:"
+parent = 39
+children = [42, 43]
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes. I have them here."
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "act"
+text = "continue"
+parent = 41
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "cond"
+text = "If the player does not have a full waterskin or a tinderbox:"
+parent = 39
+children = [45, 46, 47]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What did you need again?"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Wanderer"
+text = "Bring me a full waterskin and a tinderbox."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yuck! It smells like there's dead cats in there or something. I'm not going in."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Good... Now, look into my eyes..."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Look deeply into them..."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "Don't blink..."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "other"
+text = "{{qact|The screen fades to black}}"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "act"
+text = "gives=tinderbox"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "act"
+text = "gives=waterskin(4)"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "act"
+text = "receives=canopic jar"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "other"
+text = "{{qact|The player wakes up in Sophanem}}"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "box"
+text = "You slowly pick yourself off the ground. Your head is pounding, and an irrational sense of guilt nags you."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ah, my poor head. What's going on?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How did I get here? That wanderer... This is her doing!"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "box"
+text = "You notice a ghostly figure making pained gestures in your direction."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "cond"
+text = "If a ghostspeak amulet is worn:"
+parent = -1
+children = [62, 63, 64, 65, 66]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Klenter"
+text = "You foul thief, return what is mine!"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Klenter"
+text = "You heard me! Restore what you have stolen from my tomb!"
+parent = 61
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But..."
+parent = 61
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "act"
+text = "end"
+parent = 61
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "cond"
+text = "If not:"
+parent = -1
+children = [68, 69, 70]
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Klenter"
+text = "Wooo wooo wooooo!"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "box"
+text = "The spirit tries to converse with you, but all you can understand is his anger, which is directed toward you."
+parent = 67
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "act"
+text = "end"
+parent = 67
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "cond"
+text = "If a ghostspeak amulet is worn:"
+parent = -1
+children = [72, 73, 76, 79, 82, 85, 88, 91, 94]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 71
+children = [74, 75]
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "Spawn of evil!"
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "act"
+text = "end"
+parent = 73
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 71
+children = [77, 78]
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "Organ snatcher!"
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "act"
+text = "end"
+parent = 76
+is_terminal = true
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 71
+children = [80, 81]
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "Thief!"
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "act"
+text = "end"
+parent = 79
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 71
+children = [83, 84]
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "Evil doer!"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "act"
+text = "end"
+parent = 82
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 71
+children = [86, 87]
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "Grave defiler!"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 71
+children = [89, 90]
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "You pathetic excuse for a thief!"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "act"
+text = "end"
+parent = 88
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "option"
+text = "Dialogue 7"
+parent = 71
+children = [92, 93]
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "You worm! May the Devourer take your soul!"
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "option"
+text = "Dialogue 8"
+parent = 71
+children = [95, 96]
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "speaker"
+speaker = "Klenter"
+text = "Grave robber!"
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 3
+kind = "act"
+text = "end"
+parent = 94
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "cond"
+text = "If an amulet of ghostspeak is not worn:"
+parent = -1
+children = [98, 99, 100]
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Klenter"
+text = "Wooo wooo wooooo!"
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "box"
+text = "The spirit tries to converse with you, but all you can understand is his anger, which is directed toward you."
+parent = 97
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "act"
+text = "end"
+parent = 97
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Jex"
+text = "I will not speak with a defiler of the dead. Be gone!"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Jex"
+text = "Hey! You don't have permission to go down there."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Raetul"
+text = "Get away! You're a thief and a desecrator of the dead."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Raetul"
+text = "You heard me! Clear off!"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Siamun"
+text = "Clear off! I'll have nothing to do with you!"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But..."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Siamun"
+text = "Go!"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Get away from me you filthy grave robber."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh... okay."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Clear off you evil body snatcher! You won't get any of my wares."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "What business do you have with a servant of Icthlarin?"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need some help figuring out what's going on."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "I will not aid a defiler of the dead. Be gone!"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Can I go through this gate?"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "No. Nobody may enter or leave Sophanem for any reason due to the quarantine. Move along."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "Sorry, but Sophanem is under quarantine. No one may leave or enter."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "cond"
+text = "If inside the city:"
+parent = -1
+children = [131, 132]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I'm not infected with anything!"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Priest"
+text = "I'm afraid my orders are clear."
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "You! I will have no dealings with those who plunder the houses of the dead."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Get thee gone from my presence!"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower or in the inventory:"
+parent = -1
+children = [139, 140, 141, 142, 143, 144]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "box"
+text = "The Sphinx ignores you."
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "Ah, how interesting... a cat. Come here to me, kitty."
+parent = 138
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meow."
+parent = 138
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "box"
+text = "Your cat and the Sphinx converse in a yeowling language for a short time."
+parent = 138
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "continue"
+parent = 138
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excuse me. I need help."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Yes, your companion tells me that you are in a spot of bother."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What companion? Oh, you mean my pet cat?"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Indeed."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any idea what happened to me? One moment I was talking to a wanderer in the desert, the next I was here. I also have a cracking headache."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "A wanderer?"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes. She had red hair, and weird red eyes as well."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Interesting, very interesting. I'm afraid I do not know what happened to you, but it sounds like quite a bit occurred between you meeting that wanderer and now."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I can't remember any of it."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Then I suggest you find something to remind you. I find that important objects and locations can trigger memories, no matter how repressed they are."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excuse me. I need help."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "We've already had this conversation, have we not? You're in a spot of bother, but you can't remember what happened to you."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Pretty much."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Perhaps you should try to find something to remind you again. I find that important objects and locations can trigger memories, no matter how repressed they are."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "box"
+text = "As you touch the pyramid door, a sense of deja-vu sweeps over you..."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "other"
+text = "{{qact|The player has a flashback of inside the pyramid}}"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "act"
+text = "(The canopic jar is replaced with an unholy symbol)"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I must go to the heart of the pyramid... The mistress commands it..."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I must get to the heard of the pyramid..."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "select"
+text = "Do you want to leave?"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [170]
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "act"
+text = "The flashback ends early"
+parent = 169
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [172]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "act"
+text = "end"
+parent = 171
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "other"
+text = "{{qact|The flashback ends}}"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I remember! That wanderer, she hypnotised me!"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But... I can't remember why. I needed to get... something. This is so confusing..."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Maybe someone around here can tell me what on Gielinor is going on."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Drat! It's locked."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "cond"
+text = "If the player does not have a cat follower or in the inventory:"
+parent = -1
+children = [182, 183]
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "I have no interest in speaking with you. You should bring your cat to me again. The two of us have much to discuss."
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower or in the inventory:"
+parent = -1
+children = [185, 186, 187, 188, 189, 190, 193, 196, 197, 198, 199, 200, 201, 202, 203, 244]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "box"
+text = "The Sphinx ignores you."
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "Ah, how interesting... a cat. Come here to me, kitty."
+parent = 184
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meow."
+parent = 184
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "box"
+text = "Your cat and the Sphinx converse in a yeowling language for a short time."
+parent = 184
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I managed to regain some of my memories."
+parent = 184
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "cond"
+text = "Initially:"
+parent = 184
+children = [191, 192]
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Yes, your cat tells me you're in a spot of bother. Something to do with grave robbing, tisk tisk. So unbecoming of a guardian of cats."
+parent = 190
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "act"
+text = "continue"
+parent = 190
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "cond"
+text = "Subsequently:"
+parent = 184
+children = [194, 195]
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Yes, your cat told me already. Something to do with grave robbing, tisk tisk. So unbecoming of a guardian of cats."
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "act"
+text = "continue"
+parent = 193
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me? Please?"
+parent = 184
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "Well, I have to say I enjoy a laugh at someone's expense now and again... so let's have a bit of fun."
+parent = 184
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't like the sound of this."
+parent = 184
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "I'll help you if you can solve a simple puzzle of mine, but..."
+parent = 184
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There's always a 'but', isn't there?"
+parent = 184
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "... but if you answer incorrectly, I get to keep your cat."
+parent = 184
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 184
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "option"
+text = "Okay, that sounds fair."
+parent = 184
+children = [204, 205, 206, 208, 225, 236, 238, 240]
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, that sounds fair."
+parent = 203
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "A husband and wife have six sons and each son has one sister. How many people are in the family?"
+parent = 203
+
+[[nodes]]
+id = 206
+depth = 3
+kind = "option"
+text = "7."
+parent = 203
+children = [207]
+
+[[nodes]]
+id = 207
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "7."
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Are you sure?"
+parent = 203
+children = [209, 210, 211, 221]
+
+[[nodes]]
+id = 209
+depth = 4
+kind = "box"
+text = "Your cat shakes it{{sic"
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 4
+kind = "option"
+text = "Totally positive."
+parent = 208
+children = [212, 213, 214, 215, 216, 217, 218, 219, 220]
+
+[[nodes]]
+id = 212
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Totally positive."
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 5
+kind = "box"
+text = "Your cat abandons you for the Sphinx."
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 5
+kind = "act"
+text = "The player's cat runs away."
+parent = 211
+
+[[nodes]]
+id = 215
+depth = 5
+kind = "speaker"
+speaker = "Sphinx"
+text = "I think your master has proven that [he/she] is too foolish to look after you. Come with me."
+parent = 211
+
+[[nodes]]
+id = 216
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Oh, come on! You can't take my cat. I've spent so long training and looking after it!"
+parent = 211
+
+[[nodes]]
+id = 217
+depth = 5
+kind = "speaker"
+speaker = "Sphinx"
+text = "Well, you should have thought of that before you risked it for some advice from a crazy old Sphinx."
+parent = 211
+
+[[nodes]]
+id = 218
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Could you at least help me now?"
+parent = 211
+
+[[nodes]]
+id = 219
+depth = 5
+kind = "speaker"
+speaker = "Sphinx"
+text = "What was it you needed help with? Oh yes, I remember now. You're a grave robber."
+parent = 211
+
+[[nodes]]
+id = 220
+depth = 5
+kind = "act"
+text = "continue"
+parent = 211
+
+[[nodes]]
+id = 221
+depth = 4
+kind = "option"
+text = "I don't know. I don't want to risk my cat."
+parent = 208
+children = [222, 223, 224]
+
+[[nodes]]
+id = 222
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I don't know. I don't want to risk my cat."
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 5
+kind = "speaker"
+speaker = "Sphinx"
+text = "How disappointing. Still, nothing ventured, nothing gained. Goodbye."
+parent = 221
+
+[[nodes]]
+id = 224
+depth = 5
+kind = "act"
+text = "end"
+parent = 221
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "option"
+text = "9."
+parent = 203
+children = [226, 227, 228, 234]
+
+[[nodes]]
+id = 226
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "9."
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 4
+kind = "speaker"
+speaker = "Sphinx"
+text = "Are you sure?"
+parent = 225
+
+[[nodes]]
+id = 228
+depth = 4
+kind = "option"
+text = "Totally positive."
+parent = 225
+children = [229, 230, 231, 232, 233]
+
+[[nodes]]
+id = 229
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Totally positive."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 5
+kind = "speaker"
+speaker = "Sphinx"
+text = "Well answered, human. I guess you get to keep your cat."
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Now, will you help me?"
+parent = 228
+
+[[nodes]]
+id = 232
+depth = 5
+kind = "speaker"
+speaker = "Sphinx"
+text = "With your grave robbing problem?"
+parent = 228
+
+[[nodes]]
+id = 233
+depth = 5
+kind = "act"
+text = "continue"
+parent = 228
+
+[[nodes]]
+id = 234
+depth = 4
+kind = "option"
+text = "I don't know. I don't want to risk my cat."
+parent = 225
+children = [235]
+
+[[nodes]]
+id = 235
+depth = 5
+kind = "act"
+text = "above"
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 3
+kind = "option"
+text = "12."
+parent = 203
+children = [237]
+
+[[nodes]]
+id = 237
+depth = 4
+kind = "act"
+text = "Same as answering 7 (incorrect answer)"
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 3
+kind = "option"
+text = "14."
+parent = 203
+children = [239]
+
+[[nodes]]
+id = 239
+depth = 4
+kind = "act"
+text = "Same as answering 7 (incorrect answer)"
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "option"
+text = "I don't know."
+parent = 203
+children = [241, 242, 243]
+
+[[nodes]]
+id = 241
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I don't know."
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 4
+kind = "speaker"
+speaker = "Sphinx"
+text = "How disappointing. Still, nothing ventured, nothing gained. Goodbye."
+parent = 240
+
+[[nodes]]
+id = 243
+depth = 4
+kind = "act"
+text = "end"
+parent = 240
+is_terminal = true
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "option"
+text = "I don't want to risk my cat."
+parent = 184
+children = [245, 246, 247]
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't want to risk my cat."
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "How disappointing. Still, nothing ventured, nothing gained. Goodbye."
+parent = 244
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "act"
+text = "end"
+parent = 244
+is_terminal = true
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I didn't rob anybody's grave!"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Too true, you didn't rob just anybody's grave. You managed to rob the grave of Klenter, the recently deceased High Priest of Icthlarin. Do you know what that means?"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Er... no."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Icthlarin is the Menaphite god of the dead. By desecrating the tomb of one of his priests, you've made an enemy out of every person in this city."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I didn't desecrate any tomb! There's no proof!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Really? Because if I'm not mistaken, that's Klenter's shade right over there. He definitely doesn't seem happy with you. There's also the burial jar in your possession. How do you explain that?"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How did you know about the burial jar?"
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "I can smell the rotting organs from here."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Look, I don't know exactly what happened. All I know is that wanderer hypnotised me and had me steal something from this pyramid."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "The burial jar?"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I... I guess so. It's all still very unclear."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Interesting. I'm afraid I can't help you. I have my own concerns without involving myself with petty human affairs."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "However, I suggest you seek out the new High Priest of Icthlarin to the south east. He might be able to assist you. Of course, you'll need to convince him to talk to you first."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Sphinx"
+text = "Here, I have a token that he will know is from me. Take that to him, and I'm sure he will speak with you."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "box"
+text = "pic=Sphinx's_token_detail.png|The Sphinx gives you a token."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks... I guess."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "option"
+text = "Tell me about yourself."
+parent = -1
+children = [266]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "act"
+text = "below"
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "option"
+text = "What's going on in this city?"
+parent = -1
+children = [268]
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "act"
+text = "below"
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "option"
+text = "I'll go speak with the High Priest."
+parent = -1
+children = [270, 271]
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll go speak with the High Priest."
+parent = 269
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "act"
+text = "end"
+parent = 269
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "cond"
+text = "If the player does not have a cat follower or in the inventory:"
+parent = -1
+children = [273, 274]
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "I have no interest in speaking with you. You should bring your cat to me again. The two of us have much to discuss."
+parent = 272
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "cond"
+text = "If the Sphinx previously stole the player's cat:"
+parent = 272
+children = [275, 276, 277]
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But you stole my last one!"
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Well, you would be well advised to get another."
+parent = 274
+
+[[nodes]]
+id = 277
+depth = 3
+kind = "act"
+text = "end"
+parent = 274
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower or in the inventory:"
+parent = -1
+children = [279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 324, 340]
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "box"
+text = "The Sphinx ignores you."
+parent = 278
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "Ah, how interesting... a cat. Come here to me, kitty."
+parent = 278
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meow."
+parent = 278
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "box"
+text = "Your cat and the Sphinx converse in a yeowling language for a short time."
+parent = 278
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost that token you gave me. Could I have another please?"
+parent = 278
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "Ah, you humans."
+parent = 278
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "box"
+text = "pic=Sphinx's_token_detail.png|The Sphinx gives you another token."
+parent = 278
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 278
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 278
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "option"
+text = "Tell me about yourself."
+parent = 278
+children = [289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 321]
+
+[[nodes]]
+id = 289
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about yourself."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "I am an agent of neither good nor evil. I am unconcerned with the plight of mankind and their petty wars and beliefs."
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, now that you've told me what you're not, can you perhaps tell me what you are?"
+parent = 288
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "I am the guardian of feline kind."
+parent = 288
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why would they need a guardian?"
+parent = 288
+
+[[nodes]]
+id = 294
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Cats play a significant role in the religion of this area, particularly when it comes to guarding the dead from the Devourer."
+parent = 288
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The Devourer?"
+parent = 288
+
+[[nodes]]
+id = 296
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "She's the very incarnation of destruction."
+parent = 288
+
+[[nodes]]
+id = 297
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't understand."
+parent = 288
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "What understanding do you have of the Menaphite gods?"
+parent = 288
+
+[[nodes]]
+id = 299
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Little to none."
+parent = 288
+
+[[nodes]]
+id = 300
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Well the Menaphite Pantheon is made up of four main deities."
+parent = 288
+
+[[nodes]]
+id = 301
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "The two main gods of the pantheon are Tumeken, the god of light, and Elidinis, the goddess of fertility."
+parent = 288
+
+[[nodes]]
+id = 302
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Tumeken and Elidinis also have two children. Icthlarin is one, and the Devourer is the other."
+parent = 288
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "They named her the Devourer? Not great at parenting, were they?"
+parent = 288
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "She was not always called such. She is known by her deeds now, rather than her name."
+parent = 288
+
+[[nodes]]
+id = 305
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So if the Devourer is the bad sibling, does that make Icthlarin the good one?"
+parent = 288
+
+[[nodes]]
+id = 306
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "That is the common belief, but things are rarely that simple. In some ways, neither of them are good or bad."
+parent = 288
+
+[[nodes]]
+id = 307
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Icthlarin is the god of the dead. He takes care of the passing of souls to their next life. The Devourer is the goddess of destruction, and that is what she craves."
+parent = 288
+
+[[nodes]]
+id = 308
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I thought you said she wasn't evil?"
+parent = 288
+
+[[nodes]]
+id = 309
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "That's not quite what I said. Still, is destruction enough to make one evil? Fire destroys, but is that evil?"
+parent = 288
+
+[[nodes]]
+id = 310
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Um... no, but it also creates heat."
+parent = 288
+
+[[nodes]]
+id = 311
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "We could have an overlong theological debate now, but let's instead get to my point. Destruction has a place, so maybe the Devourer does as well. However, she has taken it too far."
+parent = 288
+
+[[nodes]]
+id = 312
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = 288
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "The Devourer wishes to destroy every soul in existence, living or dead. As you can imagine, this has brought her into conflict with Icthlarin."
+parent = 288
+
+[[nodes]]
+id = 314
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ah, I see where this is going. The cats are used to protect the dead from the Devourer, like you said earlier. But who protects the cats?"
+parent = 288
+
+[[nodes]]
+id = 315
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = """
+Well anticipated. The Devourer is terrified of cats for reasons I will not explain. However, her followers, although few in number, are not. I ensure the survival of cats. For this service, Icthlarin grants me eternal life.
+"""
+parent = 288
+
+[[nodes]]
+id = 316
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So, then, you are a follower of Icthlarin?"
+parent = 288
+
+[[nodes]]
+id = 317
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Nothing of the sort. As I've said before, I have no interest in humans and their gods. I look after my kind. For that, Icthlarin looks after me."
+parent = 288
+
+[[nodes]]
+id = 318
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 288
+
+[[nodes]]
+id = 319
+depth = 3
+kind = "option"
+text = "What's going on in this city?"
+parent = 288
+children = [320]
+
+[[nodes]]
+id = 320
+depth = 4
+kind = "act"
+text = "below"
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "option"
+text = "This is all very interesting, but I've got to get going."
+parent = 288
+children = [322, 323]
+
+[[nodes]]
+id = 322
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "This is all very interesting, but I've got to get going."
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 4
+kind = "act"
+text = "end"
+parent = 321
+is_terminal = true
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "option"
+text = "What's going on in this city?"
+parent = 278
+children = [325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 337]
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's going on in this city?"
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "I thought that would be pretty obvious."
+parent = 324
+
+[[nodes]]
+id = 327
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I could benefit from your point of view. You seem the independent type."
+parent = 324
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Flattery, my adventurer, will get you everywhere. But to answer your question, Sophanem has been struck with plagues."
+parent = 324
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "More than one?"
+parent = 324
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Quite a number. There's a plague of frogs to the west. In the east, you can also find locusts."
+parent = 324
+
+[[nodes]]
+id = 331
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "The cows have only been producing sour milk since the outbreak, and the residents have been struck down by a rash of spots."
+parent = 324
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The residents? There are a lot of living people here for a city of the dead."
+parent = 324
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "speaker"
+speaker = "Sphinx"
+text = "Sophanem is called the city of the dead because the dead are brought here. Death plays a rather large role in the beliefs of the people and, as a result, the business."
+parent = 324
+
+[[nodes]]
+id = 334
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 324
+
+[[nodes]]
+id = 335
+depth = 3
+kind = "option"
+text = "Tell me about yourself."
+parent = 324
+children = [336]
+
+[[nodes]]
+id = 336
+depth = 4
+kind = "act"
+text = "above"
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "option"
+text = "This is all very interesting, but I've got to get going."
+parent = 324
+children = [338, 339]
+
+[[nodes]]
+id = 338
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "This is all very interesting, but I've got to get going."
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 4
+kind = "act"
+text = "end"
+parent = 337
+is_terminal = true
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "option"
+text = "I'll go speak with the High Priest."
+parent = 278
+children = [341, 342]
+
+[[nodes]]
+id = 341
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll go speak with the High Priest."
+parent = 340
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "act"
+text = "end"
+parent = 340
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "What do you want, cursed one?"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Sphinx told me to find the High Priest of Icthlarin."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "A likely story. She would never reduce herself to talk to one as lowly as you, never mind help you!"
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "You! I will have no dealings with those who plunder the houses of the dead."
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait! The Sphinx told me that I should talk to you."
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "The Sphinx? Is it possible? That contrary old cat has never done anything to help us. Prove it!"
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "cond"
+text = "If player does not have the token:"
+parent = -1
+children = [353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 379, 381, 383, 385]
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "She gave me a token to show you, but I lost it."
+parent = 352
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Well then stop wasting my time! Can't you see I'm trying to put a stop to these plagues?"
+parent = 352
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "act"
+text = "end"
+parent = 352
+is_terminal = true
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "cond"
+text = "If the player has the token:"
+parent = 352
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "box"
+text = "pic=Sphinx's_token_detail.png|You hand the token to the High Priest."
+parent = 352
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Well this is... unexpected..."
+parent = 352
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "So what do you want from me, thief?"
+parent = 352
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I appreciate it doesn't look great right now, but I'm not actually a bad person."
+parent = 352
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Well you could have fooled me! Good people don't rob from the dead!"
+parent = 352
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It wasn't me! Well... it was, I guess. I didn't do it on purpose though. I was hypnotised!"
+parent = 352
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Hypnotised?"
+parent = 352
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes! There was this wanderer! She had me break into that pyramid to steal... a burial jar... I think. It's all still a bit confusing."
+parent = 352
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "This is all a disaster! The plagues were bad enough, but now we've got hypnotised adventurers plundering tombs! I've only just started this job as well!"
+parent = 352
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You do seem to be going through a rough patch. Do you know what caused the plagues?"
+parent = 352
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "We fear they are a punishment sent by the gods. Perhaps we have displeased Icthlarin in some way. Maybe I am to blame. All this only started after I became High Priest."
+parent = 352
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I'm not sure if I can help with your plagues, but I need to fix whatever mess I caused in that pyramid. Can you help me?"
+parent = 352
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Oh, er... I suppose the burial jar you took must be returned as soon as possible. That will allow my predecessor to rest once more."
+parent = 352
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I can do that. Do you have any advice for me when it comes to the pyramid?"
+parent = 352
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "I don't think so... No wait! There is something important."
+parent = 352
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "As with many of our tombs, the pyramid has magical seals to protect it from the Devourer, the goddess of destruction. The fact that you were able to get in before means that you must have a cat."
+parent = 352
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well... yes. But how did you know that?"
+parent = 352
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Cats act as guardians against the Devourer. I'm surprised the Sphinx didn't tell you this. As such, only a cat can open the pyramid door."
+parent = 352
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see. I guess that makes sense."
+parent = 352
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 352
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "option"
+text = "Why is it so important that the jar be returned?"
+parent = 352
+children = [378]
+
+[[nodes]]
+id = 378
+depth = 3
+kind = "act"
+text = "below"
+parent = 377
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "option"
+text = "Can you tell me more about the plagues."
+parent = 352
+children = [380]
+
+[[nodes]]
+id = 380
+depth = 3
+kind = "act"
+text = "below"
+parent = 379
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "option"
+text = "Can you tell me more about Icthlarin."
+parent = 352
+children = [382]
+
+[[nodes]]
+id = 382
+depth = 3
+kind = "act"
+text = "below"
+parent = 381
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "option"
+text = "Can you tell me more about the Devourer."
+parent = 352
+children = [384]
+
+[[nodes]]
+id = 384
+depth = 3
+kind = "act"
+text = "below"
+parent = 383
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "option"
+text = "I'd better get going."
+parent = 352
+children = [386, 387]
+
+[[nodes]]
+id = 386
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 3
+kind = "act"
+text = "end"
+parent = 385
+is_terminal = true
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "cond"
+text = "If the player does not have the canopic jar:"
+parent = -1
+children = [390, 391, 392, 393]
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "One of my priests found this lying outside the pyramid. Please try to be more respectful of our dead."
+parent = 389
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "box"
+text = "pic=Canopic_jar_(Het)_detail.png|The High Priest gives you a burial jar."
+parent = 389
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oops. I'll make sure I look after it this time. Sorry."
+parent = 389
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "act"
+text = "continue"
+parent = 389
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "cond"
+text = "If the player has the jar:"
+parent = -1
+children = [395, 396, 397, 398, 399, 400, 401]
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = 394
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Have you managed to return the jar yet?"
+parent = 394
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = 394
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Please hurry. The people are beginning to... well..."
+parent = 394
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What? Question your sanity?"
+parent = 394
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "No, just my authority. Don't forget that to enter the pyramid, you'll need a cat."
+parent = 394
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "act"
+text = "continue"
+parent = 394
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "option"
+text = "Why is it so important that the jar be returned?"
+parent = -1
+children = [404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416]
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why is it so important that the jar be returned?"
+parent = 403
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Well those jars are a key part of our burial practices. To remove one is to directly insult not just Icthlarin, but all those that have passed on to the next life."
+parent = 403
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Not to mention, it wasn't just any jar you took. You stole a jar from the tomb of our former High Priest! Why do you think his ghost is now wandering the city once more?"
+parent = 403
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But what will happen if I don't return the jar?"
+parent = 403
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Have you not noticed the plagues already filling our city? How long before Klenter calls upon Icthlarin to send a few more?"
+parent = 403
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "For all we know, the plagues we already have could be punishment for your grave robbing!"
+parent = 403
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hey, don't go blaming me for that. Those plagues were here before I even met that wanderer!"
+parent = 403
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Perhaps Icthlarin foresaw what would happen and sent the plagues as a pre-emptive punishment?"
+parent = 403
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You really think he'd do that?"
+parent = 403
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "I don't know... Icthlarin is a patient and forgiving god. It does not make sense to me that he would do this to us."
+parent = 403
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe he's not the one responsible."
+parent = 403
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Perhaps. Either way, that jar needs to be returned."
+parent = 403
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "act"
+text = "other"
+parent = 403
+is_terminal = true
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "option"
+text = "Can you tell me more about the plagues."
+parent = -1
+children = [418, 419, 420, 421, 422, 423, 424, 425, 426, 427]
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about the plagues."
+parent = 417
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "They started a few days ago. We have locusts in the east of the city and frogs in the west. The cows have started to produce sour milk, and all of us have become infected with some sort of pox."
+parent = 417
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Once it became clear how bad it was, Menaphos, our neighbouring city, closed their gates to us and everyone else. We closed our own gates soon after."
+parent = 417
+
+[[nodes]]
+id = 421
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That can't have been an easy choice to make."
+parent = 417
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = """
+I didn't want to, but the other priests insisted. We had to stop the plagues from spreading. It seems that our choice was the right one. So far, the plagues have remained contained, but at a great cost.
+"""
+parent = 417
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Many of our citizens are trapped outside the city. Some are stuck in Menaphos, with more in other parts of the desert."
+parent = 417
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "However, that may well be for the best. Without trade from other settlements, we've been struggling to even feed the few of us left in the city."
+parent = 417
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How much longer do you think you can last?"
+parent = 417
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Not long. We need to find a way to stop the plagues soon."
+parent = 417
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "act"
+text = "other"
+parent = 417
+is_terminal = true
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "option"
+text = "Can you tell me more about Icthlarin."
+parent = -1
+children = [429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441]
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about Icthlarin."
+parent = 428
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Icthlarin is the son of Tumeken and Elidinis and brother to the Devourer. He is the Menaphite god of the dead. He is responsible for ensuring the safe passage of all souls from this life to the next."
+parent = 428
+
+[[nodes]]
+id = 431
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Here in Sophanem, we support Icthlarin in his role by making sure the dead are suitably prepared for their journey."
+parent = 428
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So is Icthlarin only responsible for those that die in the desert?"
+parent = 428
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "No. While Icthlarin is only worshipped here, his responsibilities stretch across all of Gielinor. He cares not for an individual's beliefs. All who pass on, enter his care."
+parent = 428
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I imagine there are plenty of people out there who have a different take on things."
+parent = 428
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Which they are welcome to. It does not change the facts."
+parent = 428
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You seem very sure in these 'facts'."
+parent = 428
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "While most of the gods, Tumeken and Elidinis included, may be long gone from Gielinor, Icthlarin remains. His important role in caring for the dead means that he is still able to interact with us."
+parent = 428
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you've met him?"
+parent = 428
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Well... no. While he is able to walk among us if he desires, he chooses not to so as to respect our way of life. Not to mention, his role requires his constant attention."
+parent = 428
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see. Fair enough."
+parent = 428
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "act"
+text = "other"
+parent = 428
+is_terminal = true
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "option"
+text = "Can you tell me more about the Devourer."
+parent = -1
+children = [443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454]
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about the Devourer."
+parent = 442
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Long ago, back when Tumeken and Elidinis still walked these lands, they had two children. Icthlarin, god of the dead, was one. The other was Amascut, the goddess of rebirth."
+parent = 442
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "For a time, Icthlarin and Amascut worked together in harmony. Icthlarin would ensure most souls are safely guided to the next life, while Amascut would select a small number to be reborn."
+parent = 442
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But something happened?"
+parent = 442
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Yes. During a great war over these lands, Amascut became corrupted. She was warped into the Devourer, becoming the goddess of destruction."
+parent = 442
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Since then, her only goal has been to devour every soul in existence, both living and dead."
+parent = 442
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Sphinx told me something similar, but her interpretation was a bit different."
+parent = 442
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "We here have a lot of respect for the Sphinx. However, you should be careful of her words. She does not know the gods like we priests do."
+parent = 442
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So is the Devourer still around?"
+parent = 442
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Unfortunately so. Most gods have long since left this world. However, the Devourer was able to find a way to remain."
+parent = 442
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "speaker"
+speaker = "High Priest"
+text = "Luckily for us, some of her former priestesses were able to weaken her, but she still poses a great threat."
+parent = 442
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "act"
+text = "other"
+parent = 442
+is_terminal = true
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "option"
+text = "I'd better get going."
+parent = -1
+children = [456, 457]
+
+[[nodes]]
+id = 456
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = 455
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "act"
+text = "end"
+parent = 455
+is_terminal = true
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "Cursed one, why have you not yet returned the burial jar of our old leader?"
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm working on that still."
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "I wonder how someone as insignificant as you even managed to get inside the pyramid, never mind reach its heart."
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "speaker"
+speaker = "Jex"
+text = "Hello there. Welcome to the Temple of the Lesser Gods."
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "option"
+text = "Could you tell me more about the lesser gods?"
+parent = -1
+children = [467]
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "act"
+text = "(Continues in [[Transcript:Jex]])"
+parent = 466
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "option"
+text = "I'd better get going."
+parent = -1
+children = [469, 470]
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 2
+kind = "act"
+text = "end"
+parent = 468
+is_terminal = true
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "cond"
+text = "If the player does not have a cat follower or in the inventory:"
+parent = -1
+children = [472, 473]
+
+[[nodes]]
+id = 472
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "I have no interest in speaking with you. You should bring your cat to me again. The two of us have much to discuss."
+parent = 471
+
+[[nodes]]
+id = 473
+depth = 2
+kind = "act"
+text = "end"
+parent = 471
+is_terminal = true
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower or in the inventory:"
+parent = -1
+children = [475, 476, 477, 478, 479, 480, 481, 482, 483, 484]
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "box"
+text = "The Sphinx ignores you."
+parent = 474
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "Ah, how interesting... a cat. Come here to me, kitty."
+parent = 474
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meow."
+parent = 474
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "box"
+text = "Your cat and the Sphinx converse in a yeowling language for a short time."
+parent = 474
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "Ah, human. How go things, great guardian of cats?"
+parent = 474
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you mocking me?"
+parent = 474
+
+[[nodes]]
+id = 481
+depth = 2
+kind = "speaker"
+speaker = "Sphinx"
+text = "I don't need to mock you, human. You're doing a good enough job of that on your own."
+parent = 474
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fine. Come on, cat. Lets leave the nasty Sphinx alone."
+parent = 474
+
+[[nodes]]
+id = 483
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meow!"
+parent = 474
+
+[[nodes]]
+id = 484
+depth = 2
+kind = "act"
+text = "end"
+parent = 474
+is_terminal = true
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "cond"
+text = "If the player does not have a cat follower or in the inventory:"
+parent = -1
+children = [486, 487]
+
+[[nodes]]
+id = 486
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think the High Priest mentioned something about needing a cat to enter the pyramid."
+parent = 485
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "act"
+text = "end"
+parent = 485
+is_terminal = true
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower or in the inventory:"
+parent = -1
+children = [489, 492, 493, 494, 495]
+
+[[nodes]]
+id = 489
+depth = 2
+kind = "cond"
+text = "If the player does not have the canopic jar:"
+parent = 488
+children = [490, 491]
+
+[[nodes]]
+id = 490
+depth = 3
+kind = "box"
+text = "pic=Canopic_jar_(Het)_detail.png|You notice an oddly familiar decorative jar lying nearby and pick it up."
+parent = 489
+
+[[nodes]]
+id = 491
+depth = 3
+kind = "act"
+text = "continue"
+parent = 489
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hey puss! What do you reckon about that cat on the door? Do you think you can open it?"
+parent = 488
+
+[[nodes]]
+id = 493
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meeeow."
+parent = 488
+
+[[nodes]]
+id = 494
+depth = 2
+kind = "other"
+text = "{{qact|The player enters the pyramid}}"
+parent = 488
+
+[[nodes]]
+id = 495
+depth = 2
+kind = "act"
+text = "end"
+parent = 488
+is_terminal = true
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "cond"
+text = "If the player does not have a cat follower or in the inventory:"
+parent = -1
+children = [497, 498]
+
+[[nodes]]
+id = 497
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think the High Priest mentioned something about needing a cat to enter the pyramid."
+parent = 496
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "act"
+text = "end"
+parent = 496
+is_terminal = true
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower or in the inventory:"
+parent = -1
+children = [500, 503, 504, 505, 506]
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "cond"
+text = "If the player does not have the canopic jar:"
+parent = 499
+children = [501, 502]
+
+[[nodes]]
+id = 501
+depth = 3
+kind = "box"
+text = "pic=Canopic_jar_(Het)_detail.png|You notice an oddly familiar decorative jar lying nearby and pick it up."
+parent = 500
+
+[[nodes]]
+id = 502
+depth = 3
+kind = "act"
+text = "continue"
+parent = 500
+
+[[nodes]]
+id = 503
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hey puss! Think you can open this door again?"
+parent = 499
+
+[[nodes]]
+id = 504
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meeeow."
+parent = 499
+
+[[nodes]]
+id = 505
+depth = 2
+kind = "act"
+text = "The player enters the pyramid"
+parent = 499
+
+[[nodes]]
+id = 506
+depth = 2
+kind = "act"
+text = "end"
+parent = 499
+is_terminal = true
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "box"
+text = "As you go to make the jump, another sense of deja-vu sweeps over you..."
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "other"
+text = "{{qact|The player has a flashback of being at the door to the west chamber inside the pyramid}}"
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "act"
+text = "(The canopic jar is replaced with an unholy symbol)"
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to get the burial jar for the mistress..."
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't want this jar."
+parent = -1
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "act"
+text = "(A ghostly apparition appears!)"
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "speaker"
+speaker = "Apparition"
+text = "{{overhead|You will not defile this place!}}"
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "act"
+text = "(The player defeats the apparition.)"
+parent = -1
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "box"
+text = "pic=Canopic_jar_(Het)_detail.png|You take the burial jar."
+parent = -1
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "other"
+text = "{{qact|The flashback ends}}"
+parent = -1
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So I really did steal the jar. I need to return it as fast as I can."
+parent = -1
+
+[[nodes]]
+id = 520
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "box"
+text = "pic=Canopic_jar_(Het)_detail.png|You return the burial jar."
+parent = -1
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've already caused enough trouble over these jars. I'll just leave them alone."
+parent = -1
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "Bother me not. I am preparing for the ceremony. I'm sure even you can curb your trivial demands until after that."
+parent = -1
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Have you managed to return the jar yet?"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's done."
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Wonderful! Now we can prepare for the ceremony."
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Er... ceremony?"
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "The ceremony to reconsecrate Klenter's tomb of course!"
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It would have been nice for you to mention this earlier."
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Sorry, with all this plague business, it must have slipped my mind."
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're the High Priest of Icthlarin, but you forgot a key ceremony?"
+parent = -1
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Well if you want to try running a city with multiple plagues, you're welcome to take over."
+parent = -1
+
+[[nodes]]
+id = 537
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's not what I... Never mind."
+parent = -1
+
+[[nodes]]
+id = 538
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Good. Now, this ceremony is very dangerous, so we must ensure everything is done correctly."
+parent = -1
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Dangerous? How?"
+parent = -1
+
+[[nodes]]
+id = 540
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Well the pyramid has these magical seals on it..."
+parent = -1
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "... to protect it from the Devourer. Yes, you told me earlier."
+parent = -1
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Right! Of course I did. Well for us to properly reconsecrate the tomb, we must first remove those seals. That means that once we begin, the pyramid will be vulnerable until the ceremony is complete."
+parent = -1
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ah, I see."
+parent = -1
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Now, we made many of the preparations while you were gone, but the carpenter and the embalmer could both use a hand. Could you go and speak with them?"
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why do I have to help?"
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Did you forget that this is all your fault?"
+parent = -1
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I guess I assumed that by returning the jar I stole, my job would be done."
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "The job will be done when Klenter is at rest once more."
+parent = -1
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Besides, thanks to the plagues, we're not allowing people to leave the city. However, as you seem to be unaffected, I've told the guards to make an exception for you."
+parent = -1
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And that means I'm best placed to help. Fine. The carpenter and the embalmer, did you say?"
+parent = -1
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "That's right. We need the carpenter to create a new holy symbol for the ceremony. He lives over to the east. The embalmer also needs help gathering some supplies. He lives just south of here."
+parent = -1
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "option"
+text = "Can you tell me more about the plagues."
+parent = -1
+children = [554]
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "act"
+text = "above"
+parent = 553
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "option"
+text = "Can you tell me more about Icthlarin."
+parent = -1
+children = [556]
+
+[[nodes]]
+id = 556
+depth = 2
+kind = "act"
+text = "above"
+parent = 555
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "option"
+text = "Can you tell me more about the Devourer."
+parent = -1
+children = [558]
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "act"
+text = "above"
+parent = 557
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "option"
+text = "I'd better get going."
+parent = -1
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = -1
+
+[[nodes]]
+id = 561
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 563
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Have you helped the embalmer and the carpenter yet?"
+parent = -1
+
+[[nodes]]
+id = 564
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "The embalmer lives just south of here and the carpenter lives over to the east. Please hurry. We need to get this ceremony performed before some other bad thing happens."
+parent = -1
+
+[[nodes]]
+id = 566
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 567
+depth = 1
+kind = "option"
+text = "Can you tell me more about the plagues."
+parent = -1
+children = [568]
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "act"
+text = "above"
+parent = 567
+
+[[nodes]]
+id = 569
+depth = 1
+kind = "option"
+text = "Can you tell me more about Icthlarin."
+parent = -1
+children = [570]
+
+[[nodes]]
+id = 570
+depth = 2
+kind = "act"
+text = "above"
+parent = 569
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "option"
+text = "Can you tell me more about the Devourer."
+parent = -1
+children = [572]
+
+[[nodes]]
+id = 572
+depth = 2
+kind = "act"
+text = "above"
+parent = 571
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "option"
+text = "I'd better get going."
+parent = -1
+children = [574, 575]
+
+[[nodes]]
+id = 574
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = 573
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "act"
+text = "end"
+parent = 573
+is_terminal = true
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Can I go through this gate?"
+parent = -1
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "Yes. The High Priest has given you permission to come and go as you please."
+parent = -1
+
+[[nodes]]
+id = 578
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 579
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there."
+parent = -1
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Oh, it's you. I hear you're helping us now. To be honest, I'm still not thrilled to have you around, but so be it."
+parent = -1
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I guess that's probably the best I can ask for, given the situation. Anyway, the High Priest said you needed help gathering some supplies for the ceremony."
+parent = -1
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "That's right. I need three things, but the quarantine is making some of them hard to obtain."
+parent = -1
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "First, I need some salt. Normally I get mine from the salt lake just north of the city. Just fill a bucket from the lake and then use the suntrap outside to separate the salt from the water."
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Next, I need some tree sap. You can use a knife to extract some from a tree, but make sure you have a bucket ready. Most coniferous evergreen trees should have some. They're the cone-shaped ones."
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Finally, I need some linen. That one shouldn't be too hard. The local cloth salesman should have some."
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "cond"
+text = "If the player has a bucket of sap:"
+parent = -1
+children = [587, 588]
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "box"
+text = "pic=Bucket_of_sap_detail.png|You hand a bucket of sap to the embalmer."
+parent = 586
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "act"
+text = "continue"
+parent = 586
+
+[[nodes]]
+id = 589
+depth = 1
+kind = "cond"
+text = "If the player has salt:"
+parent = -1
+children = [590, 591]
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "box"
+text = "pic=Pile_of_salt_detail.png|You hand some salt to the embalmer."
+parent = 589
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "act"
+text = "continue"
+parent = 589
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "cond"
+text = "If the player has linen:"
+parent = -1
+children = [593, 594]
+
+[[nodes]]
+id = 593
+depth = 2
+kind = "box"
+text = "pic=Linen (Icthlarin's Little Helper) detail.png|You hand a sheet of linen to the embalmer."
+parent = 592
+
+[[nodes]]
+id = 594
+depth = 2
+kind = "act"
+text = "continue"
+parent = 592
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "cond"
+text = "If the player gave an item to the Embalmer:"
+parent = -1
+children = [596, 597]
+
+[[nodes]]
+id = 596
+depth = 2
+kind = "speaker"
+speaker = "Embalmer"
+text = "Well that was unexpected. Thank you."
+parent = 595
+
+[[nodes]]
+id = 597
+depth = 2
+kind = "act"
+text = "continue"
+parent = 595
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "box"
+text = "pic=Bucket of sap detail.png|You cut the tree and allow some sap to drip into your bucket."
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "cond"
+text = "If the player does not have a bucket of saltwater:"
+parent = -1
+children = [601, 602]
+
+[[nodes]]
+id = 601
+depth = 2
+kind = "box"
+text = "You don't have anything suitable to use with the suntrap"
+parent = 600
+
+[[nodes]]
+id = 602
+depth = 2
+kind = "act"
+text = "end"
+parent = 600
+is_terminal = true
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "cond"
+text = "If the player has a bucket of saltwater:"
+parent = -1
+children = [604, 605, 606]
+
+[[nodes]]
+id = 604
+depth = 2
+kind = "box"
+text = "pic=Pile_of_salt_detail.png|You pour the water into the suntrap and it quickly evaporates, leaving you with a pile of salt."
+parent = 603
+
+[[nodes]]
+id = 605
+depth = 2
+kind = "act"
+text = "receives=pile of salt"
+parent = 603
+
+[[nodes]]
+id = 606
+depth = 2
+kind = "act"
+text = "end"
+parent = 603
+is_terminal = true
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "Raetul"
+text = "Good afternoon."
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is it?"
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "speaker"
+speaker = "Raetul"
+text = "It's hot and sunny, which is good enough for me. So can I help you with anything?"
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've met with the town's embalmer and he mentioned that he needed a few things, linen being one of them."
+parent = -1
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "cond"
+text = "If the player does not have 30 coins:"
+parent = -1
+children = [613, 614, 615]
+
+[[nodes]]
+id = 613
+depth = 2
+kind = "speaker"
+speaker = "Raetul"
+text = "Well I can sell you a sheet of linen for 30 coins."
+parent = 612
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have that much on me. I'll be back."
+parent = 612
+
+[[nodes]]
+id = 615
+depth = 2
+kind = "act"
+text = "end"
+parent = 612
+is_terminal = true
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "cond"
+text = "If the player has 30 coins:"
+parent = -1
+children = [617, 618, 619, 620, 621]
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Raetul"
+text = "Of course. That will be 30 coins please and thank you."
+parent = 616
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "box"
+text = "pic=Linen_detail.png|The merchant takes your money and hands you a sheet of linen before you realise that a transaction has been agreed."
+parent = 616
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What the..."
+parent = 616
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "speaker"
+speaker = "Raetul"
+text = "Do come again."
+parent = 616
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "act"
+text = "end"
+parent = 616
+is_terminal = true
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there."
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Oh, it's you. Any luck obtaining those items?"
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "cond"
+text = "If the player has a bucket of sap and the Embalmer still needs sap:"
+parent = -1
+children = [625, 626]
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "act"
+text = "continue"
+parent = 624
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "box"
+text = "pic=Bucket_of_sap_detail.png|You hand a bucket of sap to the embalmer."
+parent = 624
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "cond"
+text = "If the player has salt and the Embalmer still needs salt:"
+parent = -1
+children = [628, 629]
+
+[[nodes]]
+id = 628
+depth = 2
+kind = "box"
+text = "pic=Pile_of_salt_detail.png|You hand some salt to the embalmer."
+parent = 627
+
+[[nodes]]
+id = 629
+depth = 2
+kind = "act"
+text = "continue"
+parent = 627
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "cond"
+text = "If the player has linen and the Embalmer still needs linen:"
+parent = -1
+children = [631, 632]
+
+[[nodes]]
+id = 631
+depth = 2
+kind = "box"
+text = "pic=Linen_detail.png|You hand a sheet of linen to the embalmer."
+parent = 630
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "act"
+text = "continue"
+parent = 630
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "cond"
+text = "If the Embalmer now has all the items:"
+parent = -1
+children = [634, 635, 636]
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "speaker"
+speaker = "Embalmer"
+text = "Thank you. I think that's everything I need."
+parent = 633
+
+[[nodes]]
+id = 635
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great. I guess I should go and see how the carpenter is getting on."
+parent = 633
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "act"
+text = "end"
+parent = 633
+is_terminal = true
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "cond"
+text = "If the player gave an item but the Embalmer still needs more:"
+parent = -1
+children = [638, 639]
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "speaker"
+speaker = "Embalmer"
+text = "Thank you."
+parent = 637
+
+[[nodes]]
+id = 639
+depth = 2
+kind = "act"
+text = "continue"
+parent = 637
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "cond"
+text = "If the player did not have any items the Embalmer needs:"
+parent = -1
+children = [641, 642, 643]
+
+[[nodes]]
+id = 641
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = 640
+
+[[nodes]]
+id = 642
+depth = 2
+kind = "speaker"
+speaker = "Embalmer"
+text = "Well you'd better get a move on."
+parent = 640
+
+[[nodes]]
+id = 643
+depth = 2
+kind = "act"
+text = "continue"
+parent = 640
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "option"
+text = "cond=If the Embalmer still needs tree sap|Where do I get tree sap?"
+parent = -1
+children = [646, 647, 648]
+
+[[nodes]]
+id = 646
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get tree sap?"
+parent = 645
+
+[[nodes]]
+id = 647
+depth = 2
+kind = "speaker"
+speaker = "Embalmer"
+text = "You can use a knife to extract some from a tree, but make sure you have a bucket ready. Most coniferous evergreen trees should have some. They're the cone- shaped ones."
+parent = 645
+
+[[nodes]]
+id = 648
+depth = 2
+kind = "act"
+text = "other"
+parent = 645
+is_terminal = true
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "option"
+text = "cond=If the Embalmer still needs salt|Where do I get salt?"
+parent = -1
+children = [650, 651, 652]
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get salt?"
+parent = 649
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "speaker"
+speaker = "Embalmer"
+text = "Normally I get mine from the salt lake just north of the city. Just fill a bucket from the lake and then use the suntrap outside to separate the salt from the water."
+parent = 649
+
+[[nodes]]
+id = 652
+depth = 2
+kind = "act"
+text = "other"
+parent = 649
+is_terminal = true
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "option"
+text = "cond=If the Embalmer still needs linen|Where do I get linen?"
+parent = -1
+children = [654, 655, 656]
+
+[[nodes]]
+id = 654
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get linen?"
+parent = 653
+
+[[nodes]]
+id = 655
+depth = 2
+kind = "speaker"
+speaker = "Embalmer"
+text = "The local cloth salesman should have some for sale."
+parent = 653
+
+[[nodes]]
+id = 656
+depth = 2
+kind = "act"
+text = "other"
+parent = 653
+is_terminal = true
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "option"
+text = "Okay, I'll get going."
+parent = -1
+children = [658, 659]
+
+[[nodes]]
+id = 658
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll get going."
+parent = 657
+
+[[nodes]]
+id = 659
+depth = 2
+kind = "act"
+text = "end"
+parent = 657
+is_terminal = true
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there."
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Oh, it's you. You've already gathered everything I need. I'm sure you have plenty of other things to be doing."
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I guess I do still need to speak to the carpenter."
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Hello, adventurer. The High Priest says that you're here to help us."
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right. He asked me to come and speak to you about a holy symbol for the ceremony."
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Ah yes, it needs to be made from willow. Thing is, there's a small problem with that."
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is this the part where you need me to get you something?"
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Wow, you're quick. I'm all out of willow, and due to the quarantine, I'm unable to leave the city to get more. However, the High Priest mentioned that a special exception has been made for you."
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "cond"
+text = "If the player does not have willow logs:"
+parent = -1
+children = [671, 672]
+
+[[nodes]]
+id = 671
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Meaning I can leave the city and get you some. Alright, I'll be back soon."
+parent = 670
+
+[[nodes]]
+id = 672
+depth = 2
+kind = "act"
+text = "end"
+parent = 670
+is_terminal = true
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "cond"
+text = "If the player has willow logs:"
+parent = -1
+children = [674, 675, 676, 677, 678, 679, 680, 681]
+
+[[nodes]]
+id = 674
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well there's actually no need for me to go anywhere. I already have some willow logs here."
+parent = 673
+
+[[nodes]]
+id = 675
+depth = 2
+kind = "box"
+text = "pic=Willow_logs_detail.png|You give the carpenter some willow logs."
+parent = 673
+
+[[nodes]]
+id = 676
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "Thank you. Now, just give me a moment..."
+parent = 673
+
+[[nodes]]
+id = 677
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "There we go. All done."
+parent = 673
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "box"
+text = "pic=Holy_symbol_(Icthlarin's_Little_Helper)_detail.png|The carpenter gives you a holy symbol."
+parent = 673
+
+[[nodes]]
+id = 679
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "I imagine the High Priest will be down in the pyramid by now. You should take that to him as soon as possible."
+parent = 673
+
+[[nodes]]
+id = 680
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will do. Thanks."
+parent = 673
+
+[[nodes]]
+id = 681
+depth = 2
+kind = "act"
+text = "end"
+parent = 673
+is_terminal = true
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Do you have that wood for me?"
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "cond"
+text = "If the player has willow logs:"
+parent = -1
+children = [685, 686, 687, 688, 689]
+
+[[nodes]]
+id = 685
+depth = 2
+kind = "box"
+text = "pic=Willow_logs_detail.png|You give the carpenter some willow logs."
+parent = 684
+
+[[nodes]]
+id = 686
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "Thank you. Now, just give me a moment..."
+parent = 684
+
+[[nodes]]
+id = 687
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "There we go. All done."
+parent = 684
+
+[[nodes]]
+id = 688
+depth = 2
+kind = "box"
+text = "pic=Holy_symbol_(Icthlarin's_Little_Helper)_detail.png|The carpenter gives you a holy symbol."
+parent = 684
+
+[[nodes]]
+id = 689
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "I imagine the High Priest will be down in the pyramid by now. You should take that to him as soon as possible."
+parent = 684
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "cond"
+text = "If the player does not have willow logs:"
+parent = -1
+children = [691, 692, 693]
+
+[[nodes]]
+id = 691
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 690
+
+[[nodes]]
+id = 692
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "I'll be here when you do."
+parent = 690
+
+[[nodes]]
+id = 693
+depth = 2
+kind = "act"
+text = "end"
+parent = 690
+is_terminal = true
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Hello, adventurer. I'm still working on that symbol. Do you have something else you can do in the meantime?"
+parent = -1
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I need to help out the embalmer."
+parent = -1
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Well you're probably best off doing that then. I'm sure I'll have it ready by the time you're done."
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Hello, adventurer. The symbol is all finished now."
+parent = -1
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "box"
+text = "pic=Holy symbol detail.png|The carpenter gives you a holy symbol."
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "I imagine the High Priest will be down in the pyramid by now. You should take that to him as soon as possible."
+parent = -1
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Will do. Thanks."
+parent = -1
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Do you need something?"
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = -1
+
+[[nodes]]
+id = 708
+depth = 1
+kind = "speaker"
+speaker = "Embalmer"
+text = "Well I have lots to do, so good day."
+parent = -1
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 710
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "speaker"
+speaker = "Carpenter"
+text = "Hello. Have you given the symbol to the High Priest yet?"
+parent = -1
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "cond"
+text = "If the player still has the holy symbol:"
+parent = -1
+children = [713, 714, 715]
+
+[[nodes]]
+id = 713
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 712
+
+[[nodes]]
+id = 714
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "Well you should as soon as possible. He'll be down in the pyramid by now."
+parent = 712
+
+[[nodes]]
+id = 715
+depth = 2
+kind = "act"
+text = "end"
+parent = 712
+is_terminal = true
+
+[[nodes]]
+id = 716
+depth = 1
+kind = "cond"
+text = "If the player lost the holy symbol:"
+parent = -1
+children = [717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727]
+
+[[nodes]]
+id = 717
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually, there's a slight problem with the symbol."
+parent = 716
+
+[[nodes]]
+id = 718
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "What? But I made it to exactly match the drawings from the High Priest. I can't believe this!"
+parent = 716
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I'm sure the symbol itself is fine. The problem is... I lost it."
+parent = 716
+
+[[nodes]]
+id = 720
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "Agh, you fool! Is stupidity the newest plague in town?"
+parent = 716
+
+[[nodes]]
+id = 721
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you please calm down? I gave you plenty of willow. I'm sure there's some left over for another symbol."
+parent = 716
+
+[[nodes]]
+id = 722
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "Fine. Just give me a moment..."
+parent = 716
+
+[[nodes]]
+id = 723
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "There we go. All done. Try not to lose this one."
+parent = 716
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "box"
+text = "pic=Holy_symbol_(Icthlarin's_Little_Helper)_detail.png|The carpenter gives you a holy symbol."
+parent = 716
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "speaker"
+speaker = "Carpenter"
+text = "Now you should take that to the High Priest as soon as possible. He'll be down in the pyramid by now."
+parent = 716
+
+[[nodes]]
+id = 726
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will do."
+parent = 716
+
+[[nodes]]
+id = 727
+depth = 2
+kind = "act"
+text = "end"
+parent = 716
+is_terminal = true
+
+[[nodes]]
+id = 728
+depth = 1
+kind = "cond"
+text = "If the player does not have a cat follower or in the inventory:"
+parent = -1
+children = [729, 730]
+
+[[nodes]]
+id = 729
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think the High Priest mentioned something about needing a cat to enter the pyramid."
+parent = 728
+
+[[nodes]]
+id = 730
+depth = 2
+kind = "act"
+text = "end"
+parent = 728
+is_terminal = true
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "cond"
+text = "If the player has a cat follower or in the inventory:"
+parent = -1
+children = [732, 733, 734, 735]
+
+[[nodes]]
+id = 732
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hey puss! Think you can open this door again?"
+parent = 731
+
+[[nodes]]
+id = 733
+depth = 2
+kind = "speaker"
+speaker = "Cat"
+text = "Meeeow."
+parent = 731
+
+[[nodes]]
+id = 734
+depth = 2
+kind = "other"
+text = "{{qact|The player enters the pyramid}}"
+parent = 731
+
+[[nodes]]
+id = 735
+depth = 2
+kind = "act"
+text = "end"
+parent = 731
+is_terminal = true
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "box"
+text = "As you go to make the jump, another sense of deja-vu sweeps over you..."
+parent = -1
+
+[[nodes]]
+id = 737
+depth = 1
+kind = "other"
+text = "{{qact|The player has a flashback of being at the other side of the pit inside the pyramid}}"
+parent = -1
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to hide the mistress's symbol in the ceremonial room..."
+parent = -1
+
+[[nodes]]
+id = 739
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to hide the mistress's symbol in the ceremonial room..."
+parent = -1
+
+[[nodes]]
+id = 741
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No... It must be somewhere more secret..."
+parent = -1
+
+[[nodes]]
+id = 743
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 744
+depth = 1
+kind = "box"
+text = "pic=Unholy_symbol_(Icthlarin's_Little_Helper)_detail.png|You hide the unholy symbol in the sarcophagus."
+parent = -1
+
+[[nodes]]
+id = 745
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes... Now the mistress can enter the pyramid whenever she pleases..."
+parent = -1
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "other"
+text = "{{qact|The flashback ends}}"
+parent = -1
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The wanderer! She's going to attack the ceremony! I need to warn them!"
+parent = -1
+
+[[nodes]]
+id = 748
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene begins of the ceremony}}"
+parent = -1
+
+[[nodes]]
+id = 750
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Ah there you are. Do you have the holy symbol?"
+parent = -1
+
+[[nodes]]
+id = 751
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait! We can't begin the ceremony!"
+parent = -1
+
+[[nodes]]
+id = 752
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "What? But we've already started."
+parent = -1
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But the wanderer is coming!"
+parent = -1
+
+[[nodes]]
+id = 754
+depth = 1
+kind = "act"
+text = "(The wanderer teleports into the chamber)"
+parent = -1
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "What the..."
+parent = -1
+
+[[nodes]]
+id = 756
+depth = 1
+kind = "speaker"
+speaker = "Wanderer"
+text = "You have done well, adventurer. All my brother's dogs in one place, with no one around to save them."
+parent = -1
+
+[[nodes]]
+id = 757
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "It can't be... It's the Devourer!"
+parent = -1
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "speaker"
+speaker = "Amascut"
+text = "Adventurer, kill these pathetic priests."
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not your slave any more!"
+parent = -1
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "speaker"
+speaker = "Amascut"
+text = "Shame. Not to worry though, I have plenty more."
+parent = -1
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "speaker"
+speaker = "Amascut"
+text = "You! Priest of the dog lord. You are now mine. Kill your brethren!"
+parent = -1
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "speaker"
+speaker = "Possessed Priest"
+text = "Yes mistress..."
+parent = -1
+
+[[nodes]]
+id = 763
+depth = 1
+kind = "speaker"
+speaker = "Amascut"
+text = "Have fun..."
+parent = -1
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "act"
+text = "(The Devourer teleports away)"
+parent = -1
+
+[[nodes]]
+id = 765
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Protect us, adventurer! We must complete the ceremony!"
+parent = -1
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene ends}}"
+parent = -1
+
+[[nodes]]
+id = 767
+depth = 1
+kind = "act"
+text = "(The player defeats the posessed priest)"
+parent = -1
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "other"
+text = "{{mes|The priest seems to recover from the Devourer's spell}}"
+parent = -1
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "speaker"
+speaker = "Priest"
+text = "You have surprised me... I commend you for your efforts."
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Thank you so much, adventurer. Thanks to you, we were able to complete the ceremony."
+parent = -1
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well it was the least I could do. After all, it was sort of my fault all this happened."
+parent = -1
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Well on that note, what exactly did happen there? That was the Devourer!"
+parent = -1
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It seems the wanderer that hypnotised me was actually the Devourer all along."
+parent = -1
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm guessing the reason she had me steal that burial jar was because she knew you'd have to gather here to reconsecrate the tomb again."
+parent = -1
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "She wanted to kill us all in one go?"
+parent = -1
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and she had me plant an unholy symbol here to allow her to teleport right in."
+parent = -1
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Well once again, thank you. Without you, the Devourer would have struck a devastating blow against Icthlarin."
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here's that holy symbol, by the way."
+parent = -1
+
+[[nodes]]
+id = 781
+depth = 1
+kind = "box"
+text = "pic=Holy_symbol_(Icthlarin's_Little_Helper)_detail.png|You give the holy symbol to the High Priest."
+parent = -1
+
+[[nodes]]
+id = 782
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Thank you. We wouldn't have been able to complete the ceremony without that in our presence."
+parent = -1
+
+[[nodes]]
+id = 783
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what now?"
+parent = -1
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "We have a few things to finish here, but then we'll head back up into the city. Please join us there."
+parent = -1
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "box"
+text = "All of a sudden, a final sense of deja-vu sweeps over you..."
+parent = -1
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "other"
+text = "{{qact|The player has a flashback of meeting Icthlarin in the pyramid}}"
+parent = -1
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "speaker"
+speaker = "Icthlarin"
+text = "And what do we have here?"
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I must do as the mistress commands..."
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "speaker"
+speaker = "Icthlarin"
+text = "Did my sister really think that I would not sense her presence here?"
+parent = -1
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "speaker"
+speaker = "Icthlarin"
+text = "Amascut! Release your hold on this human!"
+parent = -1
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Argh..."
+parent = -1
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "other"
+text = "{{qact|The flashback ends}}"
+parent = -1
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I guess that explains why Amascut's control over me was broken. Not every day the god of the dead comes to your rescue."
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Ah, there you are. You were gone for quite a while. As a thank you for what you've done, I have a little trinket for you. I'm sure you'll get a huge amount of enjoyment out of it."
+parent = -1
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "act"
+text = "receives=amulet of catspeak"
+parent = -1
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "act"
+text = "(Continues in [[Transcript:Contact!#Talking to the High Priest|Contact!]])"
+parent = -1
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think it would be best if I stayed out of this tomb after what happened last time."
+parent = -1
+
+[[nodes]]
+id = 800
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

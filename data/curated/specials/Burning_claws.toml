@@ -1,0 +1,17 @@
+name = "Burning claws"
+item_ids = [29577, 33200]
+
+[special]
+"Special attack" = """
+[[File:Burning barrage.gif|thumb|250px|A player performing the burning claws' special attack, ''Burning barrage''.]]
+The burning claws have a [[special attack]], ''Burning barrage'', which drains 30% of the player's special attack energy. ''Burning barrage'' hits an enemy three times in succession, rolling against the opponent's slash or stab defence (depending on the combat style used). 
+
+Each of the three hits also has a chance to inflict a [[burn]] on the target, dealing a total of 10 damage over the course of 40 ticks (24 seconds). Burn effects can be stacked with each other up to a cap of five active burns. One spec can inflict 0, 10, 19, 20, or 29 burn damage, taking 40-44 ticks depending on the case. The chance to inflict a burn on each hitsplat scales based on which of the attack's three accuracy rolls is the first to succeed: 15% if the first roll succeeds, 30% if the second roll succeeds, and 45% if the third rolls succeeds. 
+
+''Burning barrage'' works as follows:
+# Roll accuracy. If successful, roll total damage between 75% and 175% of the maximum hit. Divide the damage into three hitsplats as 25%-25%-50%. Each hitsplat has a 15% chance to inflict burn.
+# If first roll misses, reroll accuracy. If successful,  roll total damage between 50% and 150% of the maximum hit. Divide the damage into three hitsplats as 50%-50%-0%, then subtract 1 from the first two hitsplats and add that damage to the third hitsplat (e.g., a total roll of 16 becomes 7-7-2). Each hitsplat has a 30% chance to inflict burn.
+# If the second roll misses, reroll accuracy. If successful, roll total damage between 25% and 125% of the maximum hit. Divide the damage into three hitsplats as 0%-0%-100%, then subtract 2 from the third hitsplat and add 1 to each of the other two hitsplats (e.g., a total roll of 9 becomes 1-1-7). Each hitsplat has a 45% chance to inflict burn.
+# If all three accuracy rolls miss, there is a 20% chance of dealing 0 damage, a 40% chance of dealing 1 damage, and a 40% chance of dealing 2 damage. These hits cannot inflict burn.
+All of the minimum and maximum hit calculations are rounded down, and the individual hitsplats are rounded down as well. For example, for a normal maximum hit of 39, the minimum and maximum hits for the first accuracy roll case are calculated as floor(0.75 * 39) and floor(1.75 * 39), resulting in a damage range of 29-68. If 29 damage is rolled, the hitsplats are calculated as floor(0.25 * 29), floor(0.25 * 29), and floor(0.5 * 29), resulting in a hit of 7-7-14—a total of 28 actual damage, despite originally rolling for 29 damage.
+"""

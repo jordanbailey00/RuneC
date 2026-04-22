@@ -1,0 +1,42 @@
+name = "Sol Heredit"
+source_pages = ["Sol Heredit", "Sol Heredit/Strategies"]
+npc_ids = [12821]
+
+[sections]
+"Fight overview" = """
+{{Main|Fortis Colosseum/Strategies#Sol Heredit}}
+
+As the climax of the Fortis Colosseum, Sol Heredit presents a great challenge to most players, and focuses much more on mechanics and memorization in comparison to [[TzKal-Zuk]], the final boss of the [[Inferno]].
+
+Sol primarily uses AoE attacks that are unaffected by prayer, forcing the player to dodge his attacks to avoid taking up to 45 [[Typeless|typeless melee]] damage. Heredit’s attacks are dodged by reacting to the cues corresponding to his attacks.
+
+The attack patterns follow a rule in which if 2 of the same style, Spear attack or Shield attack, are used in a row, the second one will use a different pattern. Using a single Spear attack and following up with a Shield attack, or vice-versa, will reset the pattern back to its first one. Sol will remember his previous attack during a phase transition, but will reset if a special attack (grapple or combo) was used. '''Sol Heredit will always use a Spear attack first after phase transitions; if his previous attack was Spear 1, his next attack will be Spear 2.'''
+
+Sol Heredit has 4 main AoE attacks, all of which will create a 6x6 dust hazard under the boss, making the attacks avoidable only by stepping out. (See [[Fortis Colosseum/Strategies#Sol Heredit|''Fortis Colosseum/Strategies § Sol Heredit'']] for a diagram)
+
+* '''Spear 1''': Sol will always begin the fight with this attack. Dodged by moving back from his centre or edge tiles.
+
+* '''Spear 2''': Dodged by moving to any of his off-centre tiles.
+
+* '''Shield 1''': Sol Heredit will create a 7x7 hazard under him, with a 1 tile gap between the next line of hazards which will cover the entire arena. Dodged by moving 1 tile back.
+
+* '''Shield 2''': Same as shield 1, however increasing the middle hazard’s area to 9x9, which is dodged by moving 2 tiles back.
+
+Sol Heredit transitions phases at 90%, 75%, 50%, 25% and 10% HP respectively. Each phase starts with 6 beams of light randomly placed in a 9x9 area around the player, which will spawn [[molten sand]] after 2 ticks. Each new phase will spawn a crystal which will rotate around the edges of the arena which will stop periodically and shoot a harmless beam of light, after 4 ticks a sphere of light will be launched, dealing up to 75 damage. '''These lasers must be avoided at all costs, as they are by far the most dangerous hazard during the fight.'''
+
+Sol Heredit has 2 special attacks, a '''Grapple''' and a '''Triple Parry'''. 
+
+His grapple attack can only be performed below 75% HP; he will drop his shield and call out a body part, the player will have 4 ticks to click on the item in the respective slot to parry the attack. Defending a body part on the last possible tick will result in a '''perfect parry''', which makes the player’s next attack within 5 ticks be a guaranteed max hit. 
+
+The triple parry can be performed under 90% HP, and requires the player to precisely activate [[Protect from Melee]] on the tick before he lands his spear. The timing to pray is as follows:
+
+* '''1st attack:''' 3 ticks after the start of his animation
+
+* '''2nd attack:''' 3 ticks after first
+
+* '''3rd attack:''' 3 ticks after the second (delayed to 4 ticks if under 50%)
+
+Turning on your prayer early before Sol Heredit lands his attack will turn it off, forcing the player to take a hit. Since each hit deals progressively increasing damage, '''not panicking after a missed prayer is important to prevent further hits'''. 
+
+Once Sol Heredit reaches 10% of his HP, he will enter his '''enrage phase''', molten sand will spawn every 3 game ticks on a random tile around the arena, lasers will fire much more often, and give less time to react. It is crucial to finish off the fight as quickly as possible to prevent the arena from filling up with molten sand and lower the chance of being hit by a laser.
+"""

@@ -1,0 +1,114 @@
+quest = "Throne of Miscellania"
+step_count = 7
+
+[[steps]]
+index = 0
+name = "Gaining trust"
+links = ["bow", "cake", "chocolate cake", "Flowers"]
+text = """
+You can choose either person to complete the next step of the quest. Each has unique dialogue, with the Princess Astrid path allowing you to use a [[bow]] to speed up the process, and the Prince Brand path allowing you to use a [[cake]] or [[chocolate cake]]. [[Flowers]] may be used for both. At the end of this process you may choose to marry them - this is optional, and the quest will progress the same if you decline.
+
+{{Bug|It is possible to be unable to progress with one path if the player impresses the prince/princess too much without talking to them. You may reset your progress by talking with King Vargas to switch your path to the opposite child. You may switch as many times as you want despite the king saying otherwise.}}
+"""
+
+[[steps]]
+index = 1
+name = "=Princess Astrid="
+links = ["Princess Astrid", "Miscellania", "flowers", "Mixed flowers", "coins", "Flower Girl", "Dance", "Emotes", "bow", "Composite bow", "Seercull", "Blow Kiss", "King Vargas"]
+text = """
+[[File:Dancing for Astrid.png|thumb|Impressing Princess Astrid with a dance.]]
+Enter [[Princess Astrid]]'s room, which is north of the throne room, and speak with the Princess of [[Miscellania]]. Start to tell her about your desire to become regent. She interrupts you to say she has many suitors. She will, however, give you a chance to impress her.
+
+Speak to the princess a few times, and agree with whatever she says. Once she stops asking new questions, you can use [[flowers]] on her to increase her approval. [[Mixed flowers]] can be bought for 15 [[coins]] from the [[Flower Girl]] in the marketplace just outside the building from where the king presides. Then, use the [[Dance]] [[Emotes|emote]] (or any other jester row emote, or the goblin salute) in her room until she starts asking new questions again.
+
+Speak to her a few more times, responding with agreeable answers. Once she has nothing left for you to agree with, you can use a [[bow]]<ref>[[Composite bow]]s and the [[Seercull]] will not work.</ref> (the item, not the emote) on her if you've brought one.
+
+'''Note:''' The bow and flowers speed up the process, but neither are necessary to gain her affection. Simply using jester row emotes and answering her questions works too. 
+
+Again, speak to her a few more times. When she calls you "dear" and you call her "darling" or "princess", select the [[Blow Kiss]] emote.
+
+Once she has nothing left for you to agree with, use the ring on her. She will ask "Is this for me? Really?". After saying "Yes", you will be prompted with "Would you like to ask Princess Astrid to marry you?".
+
+Selecting "Yes" will result in her finally agreeing to marry you. She says you two will have to put off the actual ceremony until you can find a priest but you can tell her [[King Vargas|father]] of the marriage.
+
+Selecting "No" will instead result in her saying she thinks you will make a great Thane for the realm and you can tell her [[King Vargas|father]] that you have earned her trust.
+"""
+
+[[steps]]
+index = 2
+name = "=Prince Brand="
+links = ["Prince Brand", "Miscellania", "Clap", "Cheer", "Emotes", "flowers", "cake", "chocolate cake", "Blow Kiss", "ring", "King Vargas"]
+text = """
+Enter [[Prince Brand]]'s room, which is south of the throne room, and speak with the Prince of [[Miscellania]]. Start to tell him about your goal of becoming ruler of the kingdom. He interrupts you and asks why he would be interested in a "crass adventurer like yourself?" He will, however, give you a chance to impress him.
+
+Continue to talk with the prince, selecting the most flattering answers, until he asks if you would like to hear his poem. Tell him, of course, you would love to. After he recites his poem, select "Be still, my heart" and use the [[Clap]] or [[Cheer]] [[Emotes|emote]] (Must be standing inside the room, and not the doorway for both emotes). He thanks you. Use your [[flowers]] on him to continue the dialogue. When he asks if they are for him, say, "Yes".
+
+Continue to talk with the prince (he will ask you your name), providing him with flattering answers, until he asks if you would like to hear his saga. You wonder if you have the time to hear a whole saga, but he launches into it anyway. Continue to flatter and talk with the prince, give him the [[cake]] or [[chocolate cake]], and tell him it is for him (be careful not to eat it).
+
+When he calls you "my [darling/dear]", select the [[Blow Kiss]] emote and use the [[ring]] on him. If he says he could not possibly accept the ring, keep talking to and flattering him. Eventually, after you blow him a kiss and use the ring on him, he says, "Is this for me? Really?". After saying "Yes", you will be prompted with "Would you like to ask Prince Brand to marry you?".
+
+Selecting "Yes" will result in you asking the prince to marry you, and he says "Yes!" He says that you two love birds will have to put off the actual ceremony until you can find a priest but you can tell his [[King Vargas|father]] he has agreed to marry you.
+
+Selecting "No" will instead result in him saying he thinks you will make a great Thane for the realm and you can tell his [[King Vargas|father]] that you have earned his trust.
+"""
+
+[[steps]]
+index = 3
+name = "Peace deal"
+links = ["Advisor Ghrim", "Etceteria", "Queen Sigrid", "King Vargas", "Miscellania", "Prince Brand", "awful anthem", "good anthem", "treaty", "Derrik", "anvil", "giant nib", "iron bar", "logs", "giant pen", "evergreen tree"]
+text = """
+Talk with [[Advisor Ghrim]], who is off to the side behind the king, and ask him how to make peace with [[Etceteria]]. He tells you to talk with [[Queen Sigrid]] of Etceteria. Head east, cross the bridge over into Etceteria, enter the large building in the east side of town, go upstairs, and enter the centre room, where you will find Queen Sigrid.
+
+Speak to Queen Sigrid. After you tell her you have been sent by [[King Vargas]] to negotiate a treaty, she says she will agree to a peace deal if King Vargas will accept Etceteria officially as a sovereign nation. Return to Vargas, and tell him what the queen said. He says he will recognise her country if she changes Etceteria's national anthem.
+{{Listen
+|title = Awful anthem
+|desc = The awful anthem's music, which plays when obtaining the lyric sheet from Prince Brand.
+|filename = Awful Anthem.ogg
+}}
+[[File:Queen Sigrid singing.png|thumb|Sigrid singing the current version of the Etceterian anthem.]]
+Dash back to Queen Sigrid, and speak with her. Although she, at first, says it is a great anthem and that she composed it herself, she eventually agrees but requests that you come up with a new anthem. Return to [[Miscellania]], enter the room to the south of King Vargas's throne room, and speak to [[Prince Brand]]. You tell him you need a new anthem, and he agrees to write you one immediately. It is, however, terrible. He gives you the [[awful anthem]].
+
+Enter the throne room next door, and talk to Advisor Ghrim about the anthem. You give the advisor the awful anthem, and he makes a few adjustments, turning it into a [[good anthem]]. Return to Queen Sigrid, and tell her you have a new anthem. She is pleased with her new anthem and hands you a [[treaty]] - which she has already signed - to be signed by King Vargas.
+
+Take the treaty back to King Vargas, and tell him it is awaiting his signature. He says he cannot sign it with an ordinary pen. He needs a pen large enough for him to hold. Head to the northern shore of Miscellania, to the east of the mining icon, where you will find [[Derrik]]. He is in the house with the [[anvil]]. Talk to Derrik, and tell him you have a strange request. He says he can make a [[giant nib]] if you have an [[iron bar]].
+
+Give him your iron bar, and he gives you the giant nib. Use the nib on [[logs]], and you end up with a [[giant pen]]. There are a few [[evergreen tree]]s around the islands, so you don't need to go to the mainland if you have not brought logs. Take the giant pen to King Vargas, who then signs the treaty, bringing an end to the rivalry between the two kingdoms.
+"""
+
+[[steps]]
+index = 4
+name = "Public support"
+links = ["treaty", "Miscellania"]
+text = """
+After the [[treaty]], you must get the support of the people to be the new ruler. You will need the support of 75% of [[Miscellania]] to finish the quest. You will start with 25% (you will start with less if you killed any of the villagers or stole from the stalls) and you gain 0.33% with each action you do. Roughly 152 actions to go from 25% to 75%.
+
+You can check your approval rating by speaking with Advisor Ghrim. You won't be able to check your progress with the local laborers until you finish the quest - they will ask, "Who are you?"
+
+If you aim to gain 100% approval rating, you can continue working until the person receiving the items stops you. (Your chat box also tells you that you've completed a hard task for your Fremennik achievement diaries.)
+"""
+
+[[steps]]
+index = 5
+name = "=Ways to lose support="
+links = []
+text = """
+*Kill villagers. ('''<u>Do not do this before starting unless you want to lose reputation</u>''')
+*Steal from stalls.
+"""
+
+[[steps]]
+index = 6
+name = "=Good ways to get support="
+links = ["maple tree", "Mixed flowers", "Flower Girl", "Rake", "herb", "flax", "coal", "Miscellania", "tuna", "lobster", "swordfish", "Barehand fishing", "Advisor Ghrim", "King Vargas"]
+text = """
+[[File:Throne of Miscellania - Gaining public support.png|thumb|220px|Gaining support by chopping [[maple tree]]s.]]
+*Buy [[Mixed flowers]] from [[Flower Girl]]. (This is the fastest but most click-intensive method, as each flower must be bought individually through dialogue. Exactly 1,875 GP is needed to go from the base 25% approval to the 75% minimum)
+*[[Rake]] the [[herb]]s and [[flax]] outside the palace walls.
+*Mine [[coal]] on the north side of [[Miscellania]].
+*Chop [[maple tree]]s in the centre of Miscellania.  
+*Fish [[tuna]], [[lobster]]s, or [[swordfish]] by the docks of Miscellania ([[Barehand fishing|Barehanded fishing]] works, but does not provide Strength nor Agility experience).
+
+Talk to [[Advisor Ghrim]] to keep track of how much support you have. After you have 75% of the public support, talk to [[King Vargas]] to complete the quest.
+
+'''Congratulations, quest complete!'''
+"""

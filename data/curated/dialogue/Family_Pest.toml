@@ -1,0 +1,1372 @@
+title = "Transcript:Family Pest"
+npcs = ["Dimintheis", "Avan", "Caleb", "Johnathon"]
+node_count = 175
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "option"
+text = "Have you got any quests for me?"
+parent = -1
+children = [1, 2, 3, 4, 5, 6, 11]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any quests for me? I really want one. I really want to help out!"
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "box"
+text = "You murmur under your breath something about how great the rewards were last time you did a quest for Dimintheis."
+parent = 0
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "My family consider what you did for us a great service. We couldn't possibly trouble you further."
+parent = 0
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There must be SOMETHING you need help with. I am a great adventurer after all."
+parent = 0
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "There really isn't anything, I am very content with life right now."
+parent = 0
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "I guess money does buy happiness."
+parent = 0
+children = [7, 8, 9, 10]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I guess money really does buy happiness."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "What was that? I didn't quite catch that."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Nothing..."
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "act"
+text = "end"
+parent = 6
+is_terminal = true
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "Oh come on, however menial, I want to help!"
+parent = 0
+children = [12, 13, 14, 15]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh come on, surely there's something I can help out with! I want to help, however menial it is."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Okay okay. Fine then. Whilst I don't have anything for you, how about you try my sons, they are always wanting something done."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fantastic! I'll get straight to it!"
+parent = 11
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "box"
+text = "You smell the sweet smell of the great rewards that may soon come."
+parent = 11
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "option"
+text = "quest=No|Other"
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [18, 19, 20]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Have you spoke to Avan, Caleb and Johnathon yet?"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nope, not yet!"
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "quest=No|Other"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [23, 24, 25, 26, 27, 31]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello there Avan, I've had a bit of spare time lately, and I was wondering whether you had anything I could help you out with, like a quest or something?"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Avan"
+text = "Honestly [player name], everything is fantastic! What you did for me and my family is amazing. My lady was very impressed with the perfect jewellery you obtained for me!"
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You know, I really have a LOT of spare time right now. Anything, I will help out with anything."
+parent = 22
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Avan"
+text = "I couldn't bring myself to trouble you any further [player name]. Thank you for everything, but I am content."
+parent = 22
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "cond"
+text = "If Avan is not the last brother the player talks to:"
+parent = 22
+children = [28, 29, 30]
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Very well, I'll go and see if your other brothers need anything..."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "box"
+text = "The sweet smell of the great rewards that may come fades slightly."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "cond"
+text = "If Avan is the last brother the player talks to:"
+parent = 22
+children = [32, 33, 34]
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I do one quest for you all and it solves all of your problems? Amazing... I'll go and tell your father how happy you all are!"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "box"
+text = "The sweet smell of the great rewards that may come has almost faded completely."
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "quest=No|Gauntlets"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [37, 38, 39]
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you absolutely sure there is nothing I can help you out with?"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Avan"
+text = "Look, I really just want to get on with my life, your insistence on wanting another quest is getting annoying!"
+parent = 36
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "act"
+text = "end"
+parent = 36
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "option"
+text = "quest=No|Other"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [42, 43, 44, 45, 46, 47, 48, 49, 53]
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Caleb! As an adventurer, I am ready to help you with whatever you need... again! What can I help you with?"
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "box"
+text = "You daydream briefly of what the rich family could offer you this time as a reward."
+parent = 41
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "... and that's when I found the broken lamping stick. Maybe you could help me investigate?"
+parent = 41
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I didn't quite catch that, my mind was erm... elsewhere."
+parent = 41
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "Well if you aren't going to listen to the problem, it's fine, don't worry about it. Nothing an experienced chef can't solve himself!"
+parent = 41
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry! Please let me help."
+parent = 41
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "No! Not every problem in my life needs an adventurer to come solve it for me anyway. I'm happy and there's nothing else either!"
+parent = 41
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "cond"
+text = "If Caleb is not the last brother the player talks to:"
+parent = 41
+children = [50, 51, 52]
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Very well, I'll go and see if your other brothers need anything..."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "box"
+text = "The sweet smell of the great rewards that may come fades even more."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "cond"
+text = "If Caleb is the last brother the player talks to:"
+parent = 41
+children = [54, 55, 56]
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I do one quest for you all and it solves all of your problems? Amazing... I'll go and tell your father how happy you all are!"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "box"
+text = "The sweet smell of the great rewards that may come has almost faded completely."
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "act"
+text = "end"
+parent = 53
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "quest=No|Gauntlets"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [59, 60, 61]
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure there's nothing I can do, a chef can always do with help in their kitchen right?"
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "I'm a very competent cook! I do not need your assistance [player name]. Please leave me be."
+parent = 58
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "act"
+text = "end"
+parent = 58
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "option"
+text = "quest=No|Other"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 80]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I killed demons, I cured your poison and restored your family's honour! What can I help you with next Johnathon?"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "Actually, come to think of it..."
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "box"
+text = "Your eyes light up."
+parent = 63
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes..."
+parent = 63
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "I've been having this issue. You see the lady I seek is trapped up the top of a very large tower of a very large castle, and has been for all of her life so far."
+parent = 63
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "There is but one problem, a fierce dragon circles the castle, breathing fire at anyone who dares go near."
+parent = 63
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "box"
+text = "The sweet smell of the great rewards sweeps over you with incredible speed."
+parent = 63
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This is sounding like a great opportunity to be heroic, shall I go get her for you?"
+parent = 63
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "Ha ha! You would believe anything. That was just a children's story!"
+parent = 63
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Very funny Johnathon, I can't help but laugh..."
+parent = 63
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So do you actually have any problems I can help you with?"
+parent = 63
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "Everything is fantastic [player name]! You adventurers really do seem to love quests, but I do not have one for you today."
+parent = 63
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "cond"
+text = "If Johnathon is not the last brother the player talks to:"
+parent = 63
+children = [77, 78, 79]
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Very well, I'll go and see if your other brothers need anything..."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "box"
+text = "The sweet smell of the great rewards that may come fades even more."
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "act"
+text = "end"
+parent = 76
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "cond"
+text = "If Johnathon is the last brother the player talks to:"
+parent = 63
+children = [81, 82, 83]
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I do one quest for you all and it solves all of your problems? Amazing... I'll go and tell your father how happy you all are!"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "box"
+text = "The sweet smell of the great rewards that may come has almost faded completely."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "option"
+text = "quest=No|Gauntlets"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [86, 87, 88]
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure there's nothing I can do, perhaps even teach you about Death Rune magicks, where your skills do not live up to mine."
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "I find that very insulting [player name]. You do not need to remind me of your superior skills. Leave me be."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "option"
+text = "quest=No|Other"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 109, 110, 115]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have been and spoken to Avan, Caleb and Johnathon and none of them need anything from me!"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "That is excellent news [player name]. It's good to hear they are doing well."
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "box"
+text = "The sweet smell of the great rewards is a distant memory."
+parent = 90
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah... you're welcome."
+parent = 90
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Come to think of it, there is something you can help me out with!"
+parent = 90
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes! I accept your quest!"
+parent = 90
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Slow down. I haven't told you what it is yet!"
+parent = 90
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I need 500,000 coins. Can you help me out with that?"
+parent = 90
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You just want coins?! Aren't you wealthy! Why do you need coins from me?"
+parent = 90
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Okay, I suppose there will be no time better than this to tell you the truth."
+parent = 90
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Go on..."
+parent = 90
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Our family just pretends to be rich [player name]. We gave ourselves a fancy surname, pretended the gauntlets are a family heirloom and asked adventurers to solve our family issues."
+parent = 90
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Wait, so all of this was for nothing? You just lied to me!"
+parent = 90
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "No no, your work was indeed very helpful, the crest is important to us, it helps to portray that we are indeed wealthy, despite the fact we are not."
+parent = 90
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I mean, if you were wealthy, would you live in a tiny house in the darkest corner of Varrock? Not a chance. This is your chance to do us a final favour, may I have 500,000 coins from you?"
+parent = 90
+children = [106, 107, 108]
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "cond"
+text = "If the player does not have enough coins:"
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have enough coins on me."
+parent = 105
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "act"
+text = "end"
+parent = 105
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "select"
+text = "Hand Dimintheis 500,000 coins?"
+parent = 90
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 90
+children = [111, 112, 113, 114]
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "box"
+text = "pic=Coins_detail.png|You hand over 500,000 coins to Dimintheis."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Thank you very much. In appreciation, I will inform Avan, Caleb and Johnathon that you did yet another great deed for the family, and that you would find more pairs of those gauntlets useful."
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well this didn't feel very heroic..."
+parent = 110
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "act"
+text = "end"
+parent = 110
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "option"
+text = "Refuse"
+parent = 90
+children = [116, 117, 118]
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You don't need 500,000 coins from me! I don't believe you! You can keep your rewards."
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I will be here if you change your mind."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "option"
+text = "quest=No|Other"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "Family Pest"
+parent = -1
+children = [121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 132]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I need 500,000 coins. Can you help me out with that?"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You just want coins?! Aren't you wealthy! Why do you need coins from me?"
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Okay, I suppose there will be no time better than this to tell you the truth."
+parent = 120
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Go on..."
+parent = 120
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Our family just pretends to be rich [player name]. We gave ourselves a fancy surname, pretended the gauntlets are a family heirloom and asked adventurers to solve our family issues."
+parent = 120
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Wait, so all of this was for nothing? You just lied to me!"
+parent = 120
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "No no, your work was indeed very helpful, the crest is important to us, it helps to portray that we are indeed wealthy, despite the fact we are not."
+parent = 120
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I mean, if you were wealthy, would you live in a tiny house in the darkest corner of Varrock? Not a chance. This is your chance to do us a final favour, may I have 500,000 coins from you?"
+parent = 120
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "select"
+text = "Hand Dimintheis 500,000 coins?"
+parent = 120
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 120
+children = [131]
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "act"
+text = "above"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "option"
+text = "Refuse"
+parent = 120
+children = [133]
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "act"
+text = "above"
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "option"
+text = "quest=No|Other"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Dimintheis."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I will not forget what you did for my family [player name]. Those 500,000 coins have allowed us to put food on the table."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's no problem."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "Could I get another pair of gauntlets?"
+parent = -1
+children = [139, 140, 141, 146]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Anyway, I was wondering if I could get more of those gauntlets?"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "You may, but you'll have to ask my sons for them, unless you just want a pair of the Steel gauntlets."
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "option"
+text = "Yes please!"
+parent = 138
+children = [142, 143, 144, 145]
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I do want a pair of steel gauntlets please."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "box"
+text = "Dimintheis hands you a pair of Steel gauntlets."
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Here you go."
+parent = 141
+
+[[nodes]]
+id = 145
+depth = 3
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "option"
+text = "No thanks!"
+parent = 138
+children = [147, 148]
+
+[[nodes]]
+id = 147
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No thanks Dimintheis."
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 3
+kind = "act"
+text = "end"
+parent = 146
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "The gauntlets are a family heirloom?"
+parent = -1
+children = [150, 151, 152, 153, 154, 155, 156]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I thought these gauntlets were a family heirloom, how come you have several of them?"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I'm sorry for lying to you [player name], it was just all part of the ploy to make our family seem wealthy."
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "They're not heirlooms at all, we have crates full of the things hidden away in the basement."
+parent = 149
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you still think that these are an acceptable reward for what I have done for your family?"
+parent = 149
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "It's all I have to give..."
+parent = 149
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Very well, I do admit, they are useful."
+parent = 149
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "end"
+parent = 149
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "I have received word from my father that you assisted us again! I get the feeling you weren't going to stop trying until you did though."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "As a token of my appreciation, I will happily forge you as many pairs of Goldsmith gauntlets as you desire."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "box"
+text = "Avan hands you a pair of Goldsmith gauntlets."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "You will find the rate you gain experience when smelting gold much improved whilst wearing these gauntlets."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "I have received word from my father that you assisted us again! I get the feeling you weren't going to stop trying until you did though."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "As thanks, I'll provide you with as many pairs of Cooking gauntlets as you wish."
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "box"
+text = "Caleb hands you a pair of Cooking gauntlets."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "You will find the rate you burn certain foods is much reduced whilst wearing these gauntlets."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "I have received word from my father that you assisted us again! I get the feeling you weren't going to stop trying until you did though."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "If you want, I'll provide you with as many pairs of Chaos gauntlets as you wish to say thanks!"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "box"
+text = "Johnathon hands you a pair of Chaos gauntlets."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "You will find the power of bolt spells increases substantially whilst wearing these gauntlets."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

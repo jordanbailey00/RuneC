@@ -5,6 +5,7 @@
 #ifndef RC_OBJECTS_H
 #define RC_OBJECTS_H
 
+#include "../rc-core/io.h"
 #include "raylib.h"
 #include "rlgl.h"
 #include <math.h>
@@ -31,14 +32,25 @@ static Texture2D objects_load_atlas(const char *atlas_path) {
     if (!f) { fprintf(stderr, "atlas: can't open %s\n", atlas_path); return tex; }
 
     uint32_t magic, width, height;
-    fread(&magic, 4, 1, f);
-    if (magic != ATLS_MAGIC) { fclose(f); return tex; }
-    fread(&width, 4, 1, f);
-    fread(&height, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, atlas_path, "atlas magic")
+            || magic != ATLS_MAGIC) {
+        fclose(f);
+        return tex;
+    }
+    if (!rc_read_exact(f, &width, sizeof(width), 1, atlas_path, "atlas width")
+            || !rc_read_exact(f, &height, sizeof(height), 1, atlas_path, "atlas height")) {
+        fclose(f);
+        return tex;
+    }
 
     size_t sz = (size_t)width * height * 4;
     unsigned char *pixels = malloc(sz);
-    fread(pixels, 1, sz, f);
+    if (!pixels
+            || !rc_read_exact(f, pixels, sizeof(unsigned char), sz, atlas_path, "atlas pixels")) {
+        free(pixels);
+        fclose(f);
+        return tex;
+    }
     fclose(f);
 
     Image img = { .data = pixels, .width = (int)width, .height = (int)height,
@@ -56,28 +68,52 @@ static ObjectMesh *objects_load(const char *path) {
 
     uint32_t magic, placement_count, total_verts;
     int32_t min_wx, min_wy;
-    fread(&magic, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "object magic")) {
+        fclose(f);
+        return NULL;
+    }
 
     int has_tex = (magic == OBJ2_MAGIC);
     if (!has_tex && magic != OBJS_MAGIC) { fprintf(stderr, "objects: bad magic\n"); fclose(f); return NULL; }
 
-    fread(&placement_count, 4, 1, f);
-    fread(&min_wx, 4, 1, f);
-    fread(&min_wy, 4, 1, f);
-    fread(&total_verts, 4, 1, f);
+    if (!rc_read_exact(f, &placement_count, sizeof(placement_count), 1, path, "object placement count")
+            || !rc_read_exact(f, &min_wx, sizeof(min_wx), 1, path, "object min world x")
+            || !rc_read_exact(f, &min_wy, sizeof(min_wy), 1, path, "object min world y")
+            || !rc_read_exact(f, &total_verts, sizeof(total_verts), 1, path, "object vertex count")) {
+        fclose(f);
+        return NULL;
+    }
     fprintf(stderr, "objects: %u placements, %u verts, %s\n",
             placement_count, total_verts, has_tex ? "OBJ2" : "OBJS");
 
     float *raw_verts = malloc(total_verts * 3 * sizeof(float));
-    fread(raw_verts, sizeof(float), total_verts * 3, f);
+    if (!raw_verts
+            || !rc_read_exact(f, raw_verts, sizeof(float), total_verts * 3, path, "object vertices")) {
+        free(raw_verts);
+        fclose(f);
+        return NULL;
+    }
 
     unsigned char *raw_colors = malloc(total_verts * 4);
-    fread(raw_colors, 1, total_verts * 4, f);
+    if (!raw_colors
+            || !rc_read_exact(f, raw_colors, sizeof(unsigned char), total_verts * 4, path, "object colors")) {
+        free(raw_verts);
+        free(raw_colors);
+        fclose(f);
+        return NULL;
+    }
 
     float *raw_tc = NULL;
     if (has_tex) {
         raw_tc = malloc(total_verts * 2 * sizeof(float));
-        fread(raw_tc, sizeof(float), total_verts * 2, f);
+        if (!raw_tc
+                || !rc_read_exact(f, raw_tc, sizeof(float), total_verts * 2, path, "object texcoords")) {
+            free(raw_verts);
+            free(raw_colors);
+            free(raw_tc);
+            fclose(f);
+            return NULL;
+        }
     }
     fclose(f);
 

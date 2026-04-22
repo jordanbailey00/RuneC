@@ -1,0 +1,109 @@
+name = "Yama"
+source_pages = ["Yama", "Yama/Strategies"]
+npc_ids = [14176]
+
+[sections]
+"= Phase 1 and 2 =" = """
+Begin the kill by using two [[eye of ayak]] special attacks, optionally first attacking the boss with regular attacks until missing once for the passive accuracy increase from the [[confliction gauntlets]]. It is important throughout the phase to be aware of which special Yama will use next: as specials happen much more frequently than the base fight, it is easy to lose track. It can be useful to look at in-game messages beginning with {{mes|Yama conjures|colour=#A53FFF}}, as the colour of these messages indicate the previous special used by Yama ({{mes|purple|colour=#A53FFF}} for shadow, and {{mes|orange|colour=#FF8E32}} for fire).
+
+It is often useful to kill both [[Void Flare|void flares]] that Yama spawns, as although they can be skipped using the glyphs, the extra special attack can be used for more eye of ayak or [[Saradomin godsword]] special attacks. The [[surge potion]] is useful in Phase 1, as the player will not have regenerated 25% special attack for the [[purging staff]] in time.  A common mistake is forgetting about the first fire special after Yama summons void flares, which is sometimes casued by the player using both fire and shadow glyphs to skip the void flares and losing track of the next special.
+
+Avoid waiting until the Judge of Yama to heal, and remain high HP throughout the fight.
+
+In Phase 2, there is a significant threat posed by Meteor Strike specials that occur after Yama has spawned void flares: these overlap with Shadow Waves, which can be difficult to skip over as the player is forced to walk. It can be helpful to proactively activate a fire glyph, and then skip over a nearby shadow wave before the player's run is disabled. It is not recommended to skip the Meteor Strike special over using a glyph of fire: this is often more dangerous as the player is forced to walk in a straight line, and may be unable to dodge nearby Shadow Waves.
+"""
+
+"= Phase 3 =" = """
+{{Tile markers box|Module:Tile markers/Yama mage contract.json}}One key change in Phase 3 of the fight is the increased frequency and somewhat random nature of the Shadow Waves that spawn. In the base version of Yama, the vertical column where Shadow Waves intersect is the same for the entirety of Phase 3. However, in all contract fights the column where the waves intersect is random for the 2nd and 3rd waves in each set, as it can be shifted either one tile to the east, west, or not at all. Furthermore the hitbox of the wave changes if it is shifted east or west: it is moved 1 tile south, which can be disorienting as this causes the correct timing to skip over waves to change.
+
+The following procedure using the provided tile markers is effective for dealing with the Shadow Waves in this phase:
+
+# Move to the northernmost green tile when Shadow Waves appear in the south of the arena.
+# When the three fireballs appear from the Shadow Crash special that Yama uses, click to the southernmost green tile. This will skip the 1st waves (which are always consistent), and also the 1st and 2nd parts of the Shadow Crash AOE.
+# After the Shadow Crash special ends, move to the northernmost grey tile. The column where the 2nd and 3rd waves intersect will align with one of the three white 2x1 rectangles marked.
+# When the intersection point of the shadow waves enters the white 2x1 rectangle, click to move to the grey tile in the same vertical column as the 2x1 rectangle. Then return north and repeat to dodge the 3rd wave.
+It is important to be very consistent at this wave cycle, as it is fundamental to all of Yama's contracts and being hit by a Shadow Wave can cause significant damage to the player, due to the increased damage of the special and the prayer disabling effect potentially causing the player to tank a mage or ranged attack off-prayer.
+
+After the set of shadow waves, Yama will spawn orbs, and then another set of Shadow Waves will enter the room. This cycle of waves -> orbs -> waves repeats for the entire phase.
+
+
+{{Yama}}
+"""
+
+"=Phase 1=" = """
+Yama's first attack is determined by the colour of the Glyphs nearest the throne (being the opposite of his regular attack colours), with red Glyphs of Fire indicating Yama will use one ranged attack first, and purple Glyphs of Shadow indicating Yama will use one magic attack first. After the first magic/ranged attack, Yama will use his first special attack, swap combat styles, and continue attacking. After three regular attacks (either magic, ranged, or melee), Yama uses another special attack, and repeats this pattern for the rest of the phase.
+
+Yama's special attacks in the first two phases require the player to stand on the centre of the matching glyph to negate the attack's damage and effects. The player will take 2, 6, 9 or 12 damage upon stepping on a Glyph of Fire depending on how close Yama was to it when stepped on; 2 damage if Yama was four or more tiles away, 6 if three tiles, 9 if two tiles and 12 if one or adjacent to it. The Glyph of Shadow will drain 2-12 prayer points, and like the Glyph of Fire, drains more if Yama is closer to it.
+
+In duo encounters, only one player needs to stand on the glyphs for both to be protected. These glyphs can also be used to block damage from the corresponding attack, but this is not recommended unless a special attack is incoming.
+
+It is important not to step on the glyphs before the special attacks are performed, as the glyphs are extinguished temporarily after being used. Otherwise, players can take up to 60 damage; if hit by the fire-based attack, the player will also be temporarily inflicted with a [[burn]]. Glyphs can be consumed to boost certain special attacks. The shadow glyph can be consumed to boost the prayer restoration capabilities of the [[Saradomin godsword]], [[ancient mace]] or [[eldritch nightmare staff]] special attacks. The fire glyph can be used the same way to boost the damage/accuracy of the [[volatile nightmare staff]] special attack. However, consuming a glyph in this way ends the protective capabilities of the glyph.
+
+After a special attack, Yama will switch combat styles and special attacks, unless void flares are used, in which case he will remain with the same combat style. The flares can only be used on the second and or third shadow attack (if the phase started with a shadow special attack first) or the first or second shadow attack (if a fire special attack is first). Their appearance is consistent across both phase 1 and 2, so players should take note of this to make sure their Mark of Darkness is active when they spawn.
+
+Lastly, Yama uses several arena hazards to keep players on their toes and will spawn these right before doing a special attack:
+* '''Shadow Waves''' - Waves of shadowy flames will spawn from the south-east or south-west and move across the entire arena, which the player must "skip" over to avoid taking up to 20 damage and having their protection prayers disabled briefly, leaving them open to Yama's attacks.
+* '''Fire Streaks''' - Fires are ignited at the east and west edges of the arena before moving across the entire arena at running speed. If not avoided, the player will take damage and be seared to the ground, temporarily binding them in place and potentially unable to move towards a Glyph to negate Yama's special attacks.
+* '''Void Flares''' - Yama will summon a fire and shadow [[void flare]] in the arena. These orbs must be destroyed before the yellow bar fills up (in roughly ~15 seconds) or they will explode. The amount of damage dealt, along with health restored to Yama, scales on their remaining health at the time of explosion. At full health, they will hit between 42-44 damage.
+** They have 200% demonbane vulnerability and using magic attacks or the [[scorching bow]] will always deal their max hit. The [[purging staff]] is most useful for this, as its special attack coupled with the [[Dark Demonbane]] and [[Mark of Darkness]] spells can reduce the player's attack cooldown upon dealing the finishing blow. [[Death Charge]] works against the flares.
+** Players can choose to destroy only one void flare and stand on the matching Glyph before it fully charges to block the explosion damage and healing to Yama.
+
+<gallery mode="packed" heights="300" style="text-align:left">
+Yama - dealing with void flares.mp4|A pair of players destroy the void flares with the [[purging staff]], taking advantage of its special attack to resume attacking Yama earlier than usual.
+Yama - dodging shadow flame wall.mp4|A pair of players skip over the shadow waves.
+</gallery>
+"""
+
+"=Phase 2=" = """
+The second phase of the fight is similar to the first, except that two Shadow Waves spawn instead of one, and more Fire Streaks spawn when they appear. Yama will reset to his melee combat behaviour at the start of this phase, so maging players should attack him immediately to set him in place.
+
+Additionally, Yama's attacks are enhanced:
+
+[[File:Yama - Meteor Strike.mp4|thumb|400px|Yama launches a Meteor Strike against their target. While both players were in range to be instantly killed, the non-target player steps on the Glyph of Fire in time to negate the damage.]]
+* '''Meteor Strike''' - Yama's fire-based special attack now drops a large meteor on his target, which has a 5x5 area-of-effect. The target's actions are cancelled for one tick, and their run is disabled (including {{Key press|Ctrl}}-clicking). Failing to move at least two tiles away from the centre of the meteor will instantly kill the player.
+** Being at the edge of the blast radius (two tiles away from centre) will deal 80 damage. If the player is one tile away (three tiles from centre) they will take 40 damage. Getting hit by this attack without protection will additionally inflict a burn value of 8.
+***If the player somehow manages to get two tiles away from the looming shadow (four tiles from centre), they will take no damage. This can be achieved by using melee and being at least six spaces away from Yama, rapidly clicking him when the fireball is launched. It is possible to do it in five or four tiles, but this requires more precise clicking.
+* '''Shadow Stomp''' - Yama stomps the ground and sends a shadow-based attack towards players, dealing up to 60 damage, rooting the player in place for 2 ticks and draining prayer.
+
+As with phase 1, Yama will make use of void flares, which follow the same spawning mechanics.
+
+Upon reaching 33.3% of his health, the second phase of the fight ends and players will once again be teleported away to defeat the Judge of Yama.
+"""
+
+"=Phase 3=" = """
+Upon returning, Yama will position himself in the centre of the arena and increase his defence bonuses, though drained stats still remain. His attack speed will also increase from 8 ticks (4.8 seconds) to 7 (4.2 seconds). Unlike the previous phases in which he chases melee players, he will remain in place in the centre of the arena. All glyphs in the arena are now disabled.
+
+Yama will alternate between ranged and magic each standard attack, and he will start with the style of the more abundant glyph in the previous phase; e.g if the glyphs closest to the throne were shadow, he will open with a ranged (shadow) attack. Note that this is the '''opposite''' of what he started with in phases 1 and 2. In this phase, Yama's prayer piercing effects are stronger; the melee attack can now hit up to 22 through prayer, whereas magic and ranged attacks, which are normally blocked with prayer, now hit up to 3.
+
+Players may continue to use melee or mage, depending on their primary style. If players are meleeing, they may either flinch Yama or use the Donofly method (see below). Due to the slightly increased magic defence, maging players may opt to bring a [[Tumeken's shadow]] switch, as it is slightly more accurate compared to a purging staff while sacrificing negligible damage.[[File:Yama - phase 3 dodging.mp4|thumb|400px|Players avoiding both the shadow crash and shadow wave during the final phase of the fight.]]
+Yama's only special attack is '''Shadow Crash''', which he only uses when the player is outside melee distance. Shadow Crash is a set of three fireballs in a line which fall upon the player. The side fireballs will spawn shadows after impact that converge toward where the centre fireball landed (forming a bowtie shape). Yama will perform this attack three times, each one centred on the player at a cardinal, diagonal, and cardinal angle respectively. Getting caught in this attack will deal up to 20 damage per explosion. Players can dodge this by moving at least one tile from the centre fireball perpendicular to the line (ex. one tile horizontal from the centre fireball if they fall vertically).
+
+The Shadow Crash fireballs will always require the player to step north/south or east/west, diagonally across and then east/west or north/south (depending on which one was used first, if the player is required to step north/south for the first, the third one will require the player to step east/west instead). Additionally, if the player only moves one tile away from the crash and has [[Mark of Darkness]] active, their next attack will be used one tick faster than usual. Each crash is individual to the player themselves and they will not take damage from another player's crash.
+
+Note that Yama will still use his standard attack while the fireballs drop, so pray accordingly.
+
+As with the previous phases, Yama will summon void flares into the arena. Two are summoned intermittently during the fight, but one will always spawn if Yama attacks with melee. Up to four flares may be present at any given time. Unlike the previous phases, the flares spawn with half (71) health and reduced damage of 23-25 if allowed to charge. In order to one-shot void flares during this phase, the player must use the [[purging staff]] to cast [[Dark Demonbane]] while under the effects of the [[Mark of Darkness]], with a 20% magic damage bonus (including the staff's 10%). If more than eight are allowed to spawn, Yama will summon three flares at a time, though this should be highly unlikely in any scenario with decent gear.
+
+A set of two shadow waves will first appear shortly after the final set of fireballs drop. Another set of two will appear shortly after void flares, and a final set of four will appear right after this set of two waves, which is combined with Shadow Crash and an auto-attack. This will continually repeat until the encounter ends.
+
+In duo encounters, using the donofly method is highly recommended. If this is not feasible, one player should stand east of Yama and the other west to handle shadow flares that appear, if they do.
+"""
+
+"Fight overview" = """
+The fight with Yama begins when a player uses the "Challenge" option. Yama will then disappear from his throne and reappear in the arena in a much larger form. He will randomly target a player and begin attacking; in duo encounters, he can also periodically change targets. He will usually accompany the aggression change with a quote. Unlike other [[Demon (attribute)|demons]], he has 120% demonbane vulnerability instead of the normal 100%, meaning that Emberlight has 84% increased damage and accuracy against him rather than 70%.
+
+Yama has a unique combat behaviour in which he will adjust his combat stance depending on what he was recently attacked with. If his primary target last attacked him with melee, Yama will act like most normal NPCs would, chasing after them until he gets in melee distance. If he cannot attack with melee due to his target being away from him, he will attack with ranged and magic until he closes the distance. If his primary target last attacked him with magic, Yama will stay still and attack with ranged or magic (depending on the special attack in line) and will only use melee if the target is next to him. If his primary target attacks him with magic, his magic defence will significantly increase from -30 to +60.
+
+Yama's basic attacks cover all three combat styles, all of which can hit up to 46 without prayer:
+* '''Melee''' - Yama swings his axe at his target. This is only used if the target is adjacent to him, and will hit everyone within three tiles of his main target. Activating [[Protect from Melee]] before the attack is used will block a majority of the damage, reducing its max hit to 6.
+* '''Magic''' - Flames begin to envelop the player, after which Yama will snap his fingers to deal damage. Activating [[Protect from Magic]] before his fingers snap will fully protect the player.
+* '''Ranged''' - Shadowy swirls begin to engulf the player, after which Yama will snap his fingers to deal damage. Activating [[Protect from Missiles]] before his fingers snap will fully protect the player.
+
+Yama can also [[poison]] the player starting at 20 poison damage, and this will deal significant damage if not cured. Curing poison at Yama is primarily done through [[sanfew serum]]s, as these also restore prayer. If resupplying with alt accounts, [[araxyte venom sack]]s are preferred as these are stackable at the cost of taking 4 damage per sack when used.
+
+Additionally, Yama's Defence level can only be reduced by 80 (from 225 down to 145). The closest option to reach this cap is one [[elder maul]] special, which reduces his Defence to 147. Alternatively, three [[emberlight]] specials will hit the cap. Yama's Attack and Strength levels can be lowered by 120 and 150 (from 320 and 350 respectively) by emberlight, after which further drains must be performed with other weapons. A [[bandos godsword]] may be used (if both attacks hit an average of 40 or more) over an emberlight, but this will take away one inventory space and an emberlight additionally drains his offensive stats.
+
+If using magic, an [[accursed sceptre]]'s special attack will drain Yama's Defence level by 34 (from 225 to 191) and Magic level by 38 (from 250 to 212). This will slightly improve accuracy with magic, and is the only way to consistently drain his Magic level, since any damage from a special attack will drain the maximum amount, something which a [[seercull]] is unable to match. An [[eye of ayak]] can also be used to drain Yama's magic defence and should be used in conjunction with the sceptre to make him easier to hit, since Yama has +60 magic defence if maging, or +81 in phase 3.
+
+Yama restores stats normally like most other NPCs, and these drained levels will maintain fairly well for the entire fight.
+"""

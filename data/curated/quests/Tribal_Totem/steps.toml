@@ -1,0 +1,62 @@
+quest = "Tribal Totem"
+step_count = 4
+
+[[steps]]
+index = 0
+name = "Stolen totem"
+links = ["Kangai Mau", "Brimhaven", "the Shrimp and Parrot", "Ardougne", "Rantuki tribe"]
+text = """
+[[File:Tribal Totem - Kangai.png|thumb|220px|Kangai in the Shrimp and Parrot shop.]]
+[[File:Kangai Mau chathead.png|left]]
+Talk to [[Kangai Mau]] in [[Brimhaven]], in the [[the Shrimp and Parrot|Shrimp and Parrot]] food shop. Tell him you are in search of adventure, and he will say that he needs someone to go on a mission to [[Ardougne]]. Lord Handelmort has stolen the [[Rantuki tribe]] tribal totem for his private museum, and he wants you to get it back.
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 1
+name = "Rerouting a magical delivery"
+links = ["Ardougne", "Gielinor Parcel Delivery Team", "bank", "crate (Tribal Totem)", "address label", "Wizards' Tower", "Wizard Cromperty", "GPDT employee"]
+text = """
+[[File:GPDT employee chathead.png|left|80px|frameless]]
+[[File:Tribal Totem - GPDT.png|thumb|220px|right|G.P.D.T.]]
+If you were to head to Lord Handelmort's mansion in [[Ardougne]], you would find that the door is locked. You need to find a method to get past the front door.
+
+Instead, head to the [[Gielinor Parcel Delivery Team|GPDT depot]], just west of the [[Ardougne]] docks and just south of the eastern [[bank]]. Investigate the [[crate (Tribal Totem)#Double|north-eastern crate]] to find an [[address label]], addressed to Lord Handelmort. South of this crate is another crate, intended for delivery to the [[Wizards' Tower]]. This crate contains a teleport block, [[Wizard Cromperty]]'s new invention. Use the [[address label]] on this crate to mark it for delivery to the mansion instead.
+
+Ask a nearby [[GPDT employee]] when the crate will be delivered, and he will agree to deliver it now.
+"""
+
+[[steps]]
+index = 2
+name = "Sneaky teleportation"
+links = ["Wizard Cromperty", "Ardougne market", "Rune essence mine"]
+text = """
+{{Needed|skills={{SCP|Thieving|21}} {{Boostable|yes}} to disable a trap in the following section}}
+[[File:Wizard Cromperty chathead.png|left|80px|frameless]]
+Talk to [[Wizard Cromperty]], found in the house north-east of the [[Ardougne market]]. '''Do not use the right-click 'Teleport' option,''' or you will be sent to the [[Rune essence mine]]. Ask him what he has invented, and he will tell you about his new teleportation block. Ask to be teleported, then confirm that it sounds good when he says you will end up by the teleportation block. You will find yourself inside Handelmort's mansion.
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 3
+name = "Retrieving the totem"
+links = ["Guide book", "Horacio", "stairs (Tribal Totem)", "Ardougne Sewers", "drop trick", "totem", "Brimhaven", "swordfish"]
+text = """
+[[File:Totem detail.png|left|frameless|80px]]
+[[File:Tribal Totem - Chest.png|thumb|200px|The chest that contains the Totem.]]
+Go west through two doors. The second door is locked; the password is Lord Handelmort's middle name, which is '''K U R T'''. You would have found this out by reading the [[Guide book]] in the Estate Agent's house, after some clues from [[Horacio]] the gardener, but this was not necessary to progress the quest.
+
+Enter the code using the left and right arrows (K=10 right, U=6 left, R=9 left, T=7 left). When the password is set, click enter to unlock the door. 
+
+:'''Note:''' If the password K U R T does not work and it states "This combination is incorrect", try entering the letters very slowly and only clicking the right arrow, as the game may not register the letters if clicking too quickly.
+
+The [[stairs (Tribal Totem)|stairs]] are booby trapped; '''Do not use the "climb-up" option first!''' Instead, '''investigate''' the stairs ({{SCP|Thieving|21}}), then climb up. If {{Mes|You don't find anything interesting}} appears, you don't have the required level.
+
+:'''Note''': If you trigger the trap, you will end up in the [[Ardougne Sewers]]. Go south-west and climb up the ladder, then return to Cromperty for another teleport. You will not need to enter the door code again.
+
+Exit the southern door onto the balcony and enter the room to the east. Open the chest and search it to find the tribal totem.
+
+:'''Note''': You can use the [[drop trick]] if you want more totems as a souvenir.
+
+Return the [[totem]] to Kangai Mau in [[Brimhaven]]. He will give you 5 [[swordfish]] as thanks.
+"""

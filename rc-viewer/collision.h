@@ -6,6 +6,7 @@
 #define RC_COLLISION_H
 
 #include "../rc-core/types.h"
+#include "../rc-core/io.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,15 +19,25 @@ static int collision_load(RcWorldMap *map, const char *path) {
     if (!f) { fprintf(stderr, "collision: can't open %s\n", path); return -1; }
 
     uint32_t magic, version, count;
-    fread(&magic, 4, 1, f);
-    if (magic != CMAP_MAGIC) { fprintf(stderr, "collision: bad magic\n"); fclose(f); return -1; }
-    fread(&version, 4, 1, f);
-    fread(&count, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "collision magic")
+            || magic != CMAP_MAGIC) {
+        fprintf(stderr, "collision: bad magic\n");
+        fclose(f);
+        return -1;
+    }
+    if (!rc_read_exact(f, &version, sizeof(version), 1, path, "collision version")
+            || !rc_read_exact(f, &count, sizeof(count), 1, path, "collision region count")) {
+        fclose(f);
+        return -1;
+    }
 
     int loaded = 0;
     for (uint32_t i = 0; i < count && map->region_count < RC_MAX_REGIONS; i++) {
         int32_t mapsquare;
-        fread(&mapsquare, 4, 1, f);
+        if (!rc_read_exact(f, &mapsquare, sizeof(mapsquare), 1, path, "collision mapsquare")) {
+            fclose(f);
+            return -1;
+        }
         int rx = (mapsquare >> 8) & 0xFF;
         int ry = mapsquare & 0xFF;
 
@@ -39,7 +50,10 @@ static int collision_load(RcWorldMap *map, const char *path) {
             for (int x = 0; x < RC_REGION_SIZE; x++) {
                 for (int y = 0; y < RC_REGION_SIZE; y++) {
                     int32_t flags;
-                    fread(&flags, 4, 1, f);
+                    if (!rc_read_exact(f, &flags, sizeof(flags), 1, path, "collision tile flags")) {
+                        fclose(f);
+                        return -1;
+                    }
                     reg->tiles[h][x][y].collision_flags = (uint32_t)flags;
                 }
             }

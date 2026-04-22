@@ -1,0 +1,207 @@
+quest = "The Dig Site"
+step_count = 13
+
+[[steps]]
+index = 0
+name = "The first exam"
+links = ["Varrock teleport", "energy potion", "Exam Centre", "Digsite", "Examiner", "Curator Haig Halen", "Varrock Museum", "cup of tea", "tea stall", "Panning point", "Winch"]
+text = """
+{{Needed|recommended=A [[Varrock teleport]], and [[energy potion]]s.}}
+[[File:Examiner (1) chathead.png|left]]
+Go to the [[Exam Centre]], south of the [[Digsite]]. Talk to an [[Examiner]] and ask her about taking an exam, and she will give you an unstamped letter to take to [[Curator Haig Halen]] in the [[Varrock Museum]], located in the east of the city. Talk to him and he will use his seal on the letter, authorising you to take part in the exam. If you don't have a [[cup of tea]], you can obtain one now from the Varrock [[tea stall]].
+
+Speak to an Examiner again who will test you. Answer anything, the answers do not matter as they are all wrong. When you fail, the examiner suggests you ask the other students for help.
+
+{{Map|x=3360|y=3388|height=500|width=300|zoom=2|align=right
+|mtype:media,3357:3372,title:Teddy,img:Teddy.png
+|mtype:media,3369:3378,title:Panning tray,img:Panning tray.png
+|mtype:media,3374:3378,title:Chest (Chemical Powder),img:Chemical powder.png
+|mtype:media,3364:3378,title:Barrel (Nitroglycerin),img:Unidentified liquid.png
+
+|mtype:media,size:x40px,3376:3379,title:Panning guide,img:Panning guide chathead.png
+|mtype:media,size:x40px,3348:3424,title:Student 1 (Teddy),img:Student (Teddy) chathead.png
+|mtype:media,size:x40px,3363:3397,title:Student 2 (Animal Skull),img:Student (Animal skull) chathead.png
+|mtype:media,size:x40px,3370:3416,title:Student 3 (Special cup),img:Student (Special cup) chathead.png
+
+|mtype:polygon, 3348:3332, 3368:3332, 3368:3349, 3357:3349, 3357:3338, 3348:3338, desc:Exam Centre
+|mtype:polygon,3350:3404,3358:3404,3358:3413,3350:3413,desc:Level 3 Dig,stroke:#FF0000,fill:#FF0000
+|mtype:polygon,3370:3437,3370:3438,3371:3438,3371:3442,3373:3442,3373:3443,3375:3443,3375:3442,3377:3442,3377:3440,3378:3440,3378:3437,desc:Level 3 Dig,stroke:#FF0000,fill:#FF0000
+|mtype:dot,3376:3372,3378:3374,3378:3375,3379:3377,3381:3378,3384:3381,stroke:#FFDE21,fill:#FFDE21,desc:Panning point
+|mtype:dot,3370:3428,3353:3417,desc:Winches,stroke:#6B3CAA,fill:#6B3CAA
+|caption=
+{{Legend|#3388ff|caption=[[Exam Centre]]}}
+{{Legend|#FFDE21|caption=[[Panning point]]}}
+{{Legend|#6B3CAA|caption=[[Winch]]}}
+{{Legend|#FF0000|caption=Level 3 Dig}}
+}}
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 1
+name = "The study group"
+links = ["cup of tea", "Digsite"]
+text = """
+{{Needed|A [[cup of tea]]}}
+There are three students in the [[Digsite]] who can help you with the exam answers, but they each have a lost item they want retrieved first. To save time, gather these items before visting the students.
+"""
+
+[[steps]]
+index = 2
+name = "Teddy"
+links = ["Bush (The Dig Site)", "Large urn", "teddy bear"]
+text = """
+[[File:Student (Teddy) chathead.png|left|frameless]]
+Head north of the Exam centre until you come upon two wooden walkways. Follow the eastern walkway to the top of the small hill and search the easternmost [[Bush (The Dig Site)|bush]] by the [[Large urn|large blue urn]] to find the missing [[teddy bear]]. 
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 3
+name = "Special cup"
+links = ["panning tray", "cup of tea", "panning guide", "panning point", "special cup", "uncut opal"]
+text = """
+[[File:Student (Special cup) chathead.png|left|frameless]]
+Enter the tent at the end of the walkway and pick up the [[panning tray]] from the table. Use the [[cup of tea]] on the nearby [[panning guide]] and he will thank you and allow you to pan in the river to the east. Using the [[panning point]]s, pan in the river until you get the [[special cup]]. You may also receive an [[uncut opal]], keep it for later in the quest.
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 4
+name = "Animal skull"
+links = ["Digsite workman", "specimen brush"]
+text = """
+[[File:Student (Animal skull) chathead.png|left|frameless]]
+
+"Steal-from" nearby [[Digsite workman|Digsite workmen]] until {{Mes|You steal an animal skull}} appears. If you obtain a [[specimen brush]] whilst stealing from the workmen, keep it as you'll need it later in the quest.
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 5
+name = "Learning the answers"
+links = ["Student"]
+text = """
+Once you have all three lost items, return them to each student (you will need to talk to each person twice).
+
+The [[Student#Animal skull|first student]] who lost the animal skull has blonde hair and is wearing a green shirt, north of the tent.
+
+Further north-east is the [[Student#Special cup|second student]] who lost their special cup, wearing an orange shirt, with short black hair and darker skin.
+
+The [[Student#Teddy|female student]] who lost their teddy bear is further north-west, wearing all purple with blonde hair.
+"""
+
+[[steps]]
+index = 6
+name = "Retaking the exams"
+links = ["uncut opal"]
+text = """
+{{Needed|An [[uncut opal|opal]] (cut or uncut).}}
+
+'''Note''': If the correct answer is not present in the selection given, you must have missed talking to a student. Check the quest log to find out which one, speak to them, and then try again.
+"""
+
+[[steps]]
+index = 7
+name = "=Level 1="
+links = ["Exam Centre", "Level 1 certificate", "trowel"]
+text = """
+[[File:The Dig Site - Level 1 certificate.png|thumb|right|220px|The first certificate.]]
+After helping out all three students, return to the [[Exam Centre]] and speak to an Examiner. Speak to her to retake the exam. To pass it, use the answers that the students gave you:
+#Can you tell me what Earth Sciences is? - '''The study of the earth, its contents and history.'''
+#Can you tell me which people are allowed to use the digsite? - '''All that have passed the appropriate Earth Sciences exam.'''
+#Can you tell me the proper safety points when working on a digsite? - '''Gloves and boots to be worn at all times; proper tools must be used.'''
+
+If done correctly, players will receive a [[Level 1 certificate]] and a [[trowel]].
+"""
+
+[[steps]]
+index = 8
+name = "=Level 2="
+links = ["Level 2 certificate"]
+text = """
+To pass the level 2 test, speak to the three students again to get the answers and return to the Examiner. The questions and answers are:
+#Can you tell me how we transport samples? - '''Samples taken in rough form; kept only in sealed containers.'''
+#What is the proper way to handle finds? - '''Finds must be carefully handled, and gloves worn.'''
+#Can you tell me the proper use for a rock pick? - '''Always handle with care; strike cleanly on its cleaving point.'''
+
+Upon passing, players receive a [[Level 2 certificate]].
+"""
+
+[[steps]]
+index = 9
+name = "=Level 3="
+links = ["uncut opal", "opal", "Level 3 certificate", "Museum Curator", "chocolate cake", "fruit blast", "Desert Treasure I", "Recipe for Disaster"]
+text = """
+To pass the level 3 test, you need to speak to the three students again to obtain the answers. '''However''', the female student will ask for an [[uncut opal]] or [[opal]] this time. If you still need one, pan in the river until you obtain it. Talk to her twice, she will first request the opal, then give it to her in the second conversation. Return to the examiner and take the last test:
+
+#Can you tell me how we prepare samples? - '''Samples cleaned, and carried only in specimen jars.'''
+#What is the proper way to use a specimen brush? - '''Brush carefully and slowly using short strokes.'''
+#Can you describe the technique for handling bones? - '''Handle bones very carefully and keep them away from other samples.'''
+
+Upon passing, players receive a [[Level 3 certificate]] and permission to dig in all levels. You may choose to keep the certificate to later exchange with the [[Museum Curator]] for a [[chocolate cake]] or [[fruit blast]], which may be used for other quests like [[Desert Treasure I]] and [[Recipe for Disaster]].
+"""
+
+[[steps]]
+index = 10
+name = "Ancient discovery"
+links = ["trowel", "specimen brush", "specimen jar", "Digsite workman", "cupboard (specimen jar)", "Exam Centre", "Terry Balando", "ancient talisman", "Zaros", "invitation letter"]
+text = """
+{{Needed|A [[trowel]], a [[specimen brush]], and a [[specimen jar]].|skills={{SCP|Thieving|25}} {{Boostable|yes}} to pickpocket a [[Digsite workman]]}}
+[[File:Ancient talisman detail.png|left|85px]]
+Grab a [[specimen jar]] from the [[cupboard (specimen jar)|cupboard]] on the south wall inside the [[Exam Centre]]. If there is no search option, speak to [[Terry Balando]] about the tools first. Head back to the Digsite and pickpocket a [[Digsite workman]] ({{SCP|Thieving|25}}) until you get a [[specimen brush]] if you didn't get one earlier.
+
+Head to a dig site marked by a level 3 sign, either the south-westernmost dig site or the northernmost dig site (see map above). Use your [[trowel]] on the soil until you find an [[ancient talisman]]. '''This often takes many tries and can easily take several minutes to find.''' {{Mes|You find a strange talisman}} will appear in a dialogue box when found.
+
+Bring the talisman to [[Terry Balando]] in the Exam Centre, who identifies it as a talisman of [[Zaros]], a pagan god little is known of. As a reward he will allow you to use the private dig shafts, giving you an [[invitation letter]] to show a [[Digsite workman]] as proof.
+{{Clear|left}}
+"""
+
+[[steps]]
+index = 11
+name = "The Digsite Dungeon"
+links = ["Rope", "trowel", "vial", "specimen jar", "pestle and mortar", "tinderbox", "Winch", "Digsite", "Invitation letter", "Digsite workman", "rope", "Digsite Dungeon", "arcenia root", "Doug Deeping", "chest key (Digsite)"]
+text = """
+{{Needed|{{SCP|Agility|10}} {{Boostable|yes}} to operate a winch}}
+[[File:Doug Deeping chathead.png|left|frameless]]
+{{Needed|2 [[Rope]]s, [[trowel]], [[vial]], [[specimen jar]], [[pestle and mortar]], invitation letter and a [[tinderbox]].}}
+[[File:The Dig Site - Using the winch.png|thumb|220px|The north-eastern digsite, just below the level 3 digsite.]]
+There are two [[Winch|winches]] in the [[Digsite]] (see map above). Use your [[Invitation letter]] on a [[Digsite workman]] ('''not''' the 'Dig site workman' which lacks a pickpocket option) that's working near a winch, and then use a [[rope]] on the west winch to gain access to the sublevels of the Digsite.
+[[File:The Dig Site - Digsite Dungeon map.png|thumb|200px|[[Digsite Dungeon]]]]
+Climb down the rope by operating the winch ({{SCP|Agility|10}}). Grab an [[arcenia root]] just north of the rope, then head south-east where there are bricks blocking the way. "Search" the bricks, and the player will muse about asking someone to help move them.
+
+Return to the surface and head towards the north-east winch. Use another rope and go down, there you will find [[Doug Deeping]]. Speak to him and ask him how you can move a large pile of rocks. He will give you a [[chest key (Digsite)|chest key]].
+"""
+
+[[steps]]
+index = 12
+name = "An explosive compound"
+links = ["chemical compound", "book on chemicals", "Exam Centre", "chest key (Digsite)", "chest (Chemical powder)", "panning tray", "chemical powder", "trowel", "vial", "unidentified liquid", "charcoal", "specimen tray", "specimen jar", "Terry Balando", "ammonium nitrate", "nitroglycerin", "Book on chemicals", "mixed chemicals", "pestle and mortar", "ground charcoal", "tinderbox", "Stone tablet (The Dig Site)", "Skeleton", "Combat Level", "Zaros", "Varrock", "gold bars"]
+text = """
+{{Needed|skills={{SCP|Herblore|10}} {{Boostable|yes}} to create a [[chemical compound]]}}
+[[File:Chemical compound detail.png|left|frameless|50px]] 
+
+There is a [[book on chemicals]] found in the bookshelves of the [[Exam Centre]] detailing the creation of an explosive compound that you will need to use to clear the bricks, but you do not need to read it to progress in the quest.
+
+Use the [[chest key (Digsite)|chest key]] on the [[chest (Chemical powder)|chest]] in the tent where you got your [[panning tray]] to get [[chemical powder]]. Use your [[trowel]] on the centre barrel just west of the tent to open it, then use a [[vial]] on it to fill it with an [[unidentified liquid]]. '''{{Color|red|Do not drop it}} or you will take 25 non-fatal damage and must re-retrieve the ingredients.'''
+
+If you didn't bring [[charcoal]], you may search the [[specimen tray]] north of the tent with a [[specimen jar]] in your inventory until you find some.
+
+{{Checklist|
+*Use the [[chemical powder]] on [[Terry Balando]] in the [[Exam Centre]] to learn that it's [[ammonium nitrate]], then '''use''' ({{Color|red|do not empty/drop}}) the [[unidentified liquid]] on him to learn that it's [[nitroglycerin]]. If he won't identify the liquid, find and read the [[Book on chemicals]] on a nearby bookshelf, then try again.
+*Use the ammonium nitrate on the nitroglycerin to make [[mixed chemicals]] ({{SCP|Herblore|6}}).
+*Grind your charcoal with a [[pestle and mortar]] to get [[ground charcoal]].
+*Use the ground charcoal on the mixed chemicals ({{SCP|Herblore|8}}).
+*Use the arcenia root on the mixed chemicals to create a [[chemical compound]]  ({{SCP|Herblore|10}}).
+}}
+
+{{Color|red|Warning:}} If you drop the [[chemical compound]] now, you will take 65 non-fatal damage.
+
+[[File:The Dig Site - Senntisten.png|thumb|220px|left|The Zarosian altar found after blowing up the rocks.]]
+Once you have the chemical compound, go down the western winch to use the [[chemical compound]] on the bricks (not the rocks), and then use a [[tinderbox]] on the bricks. Your character will run away as the bricks explode, clearing the path. Pick up the [[Stone tablet (The Dig Site)|stone tablet]] in the room, avoiding the level 22 [[Skeleton]]s if below 45 [[Combat Level]]. 
+
+Bring the tablet to Terry Balando, who remarks that the tablet shows that the followers of Saradomin must have tried to cover up the evidence of the [[Zaros]] altar when building [[Varrock]]. He gives you two [[gold bars]] as a reward.
+
+'''Congratulations, quest complete!'''
+{{Clear}}
+"""
