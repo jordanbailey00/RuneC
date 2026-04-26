@@ -4,6 +4,7 @@
 #include "config.h"
 #include "events.h"
 #include "encounter.h"
+#include "npc.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -53,6 +54,12 @@ RcWorld *rc_world_create_config(const RcWorldConfig *cfg) {
     world->enabled = cfg->subsystems;
 
     rc_events_init(&world->events);
+    uint32_t npc_users = RC_SUB_COMBAT | RC_SUB_DIALOGUE | RC_SUB_SHOPS
+                       | RC_SUB_SLAYER | RC_SUB_ENCOUNTER;
+    if ((cfg->subsystems & npc_users) && cfg->npc_defs_path
+            && g_npc_def_count == 0) {
+        rc_load_npc_defs(cfg->npc_defs_path);
+    }
     // Only enabled subsystems subscribe to the event bus — keeps
     // disabled-subsystem worlds event-free (README §7 + §8).
     if (cfg->subsystems & RC_SUB_ENCOUNTER) {

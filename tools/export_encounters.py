@@ -9,7 +9,7 @@ Output: `data/defs/encounters.bin` with 'ENCT' magic. Loaded at
         `rc_world_create_config` time by `rc-core/encounter.c` when
         `RC_SUB_ENCOUNTER` is enabled.
 
-Binary format (pass-2.2 — param blocks + simple phase triggers):
+Binary format (pass-2.2 — param blocks + bounded trigger plumbing):
   magic u32 ('ENCT') | version u32 | encounter_count u32
   per encounter:
     slug_len u8 + slug[]
@@ -42,7 +42,9 @@ Still not consumed in pass 2 (pass 3+ work):
   - encounter_type flag (skipping skilling bosses)
   - rotations (tick-driven phases — Zulrah)
   - richer trigger DSL (`phase_in`, `while_in_phase`, `after_attack`,
-    `during_mechanic`, unions like `a|b`)
+    `during_mechanic`, unions like `a|b`) beyond the current
+    phase-enter / phase-exit handling plus the primitive-specific
+    `while_alive:<npc_name>` packing used by `periodic_heal_boss`
   - per-phase `script = "..."`
 """
 from __future__ import annotations
@@ -186,6 +188,22 @@ PRIMITIVE_IDS = {
     "damage_reduction_until_vented":          91,
 }
 
+EQUIP_SLOTS = {
+    "head": 0,
+    "cape": 1,
+    "amulet": 2,
+    "weapon": 3,
+    "body": 4,
+    "shield": 5,
+    "legs": 6,
+    "gloves": 7,
+    "hands": 7,
+    "boots": 8,
+    "feet": 8,
+    "ring": 9,
+    "ammo": 10,
+}
+
 
 def pack_short(s: str, maxlen: int = 255) -> bytes:
     return (s or "").encode("utf-8", errors="replace")[:maxlen]
@@ -199,7 +217,16 @@ def pack_cstr(s: str, size: int) -> bytes:
     return b + b"\x00" * (size - len(b))
 
 
-def pack_param_block(primitive_id: int, params: dict) -> bytes:
+def slot_mask_from_names(names) -> int:
+    mask = 0
+    for name in names or []:
+        idx = EQUIP_SLOTS.get(str(name).strip().lower())
+        if idx is not None:
+            mask |= (1 << idx)
+    return mask
+
+
+def pack_param_block(primitive_id: int, params: dict, trigger_text: str = "") -> bytes:
     """Pack primitive-specific param struct to a fixed 64-byte block.
     Layouts must match the packed structs in rc-core/encounter.h."""
     if params is None:
@@ -215,11 +242,19 @@ def pack_param_block(primitive_id: int, params: dict) -> bytes:
             int(params.get("extra_random_tiles", 0)) & 0xFF,
             1 if params.get("target_current_tile") else 0,
         )
-    elif primitive_id == 2:  # spawn_npcs
+    elif primitive_id in (2, 3):  # spawn_npcs, spawn_npcs_once
         body = pack_cstr(str(params.get("npc_name", "")), 32) + struct.pack(
             "<BB",
             int(params.get("count", 0)) & 0xFF,
             1 if params.get("persist_after_death") else 0,
+        )
+    elif primitive_id == 5:  # periodic_heal_boss
+        alive_npc = ""
+        if trigger_text.startswith("while_alive:"):
+            alive_npc = trigger_text.split(":", 1)[1].strip()
+        body = pack_cstr(alive_npc, 32) + struct.pack(
+            "<B",
+            int(params.get("heal_per_tick", 0)) & 0xFF,
         )
     elif primitive_id == 4:  # heal_at_object
         body = struct.pack(
@@ -238,6 +273,20 @@ def pack_param_block(primitive_id: int, params: dict) -> bytes:
         body = struct.pack("<B", int(params.get("max_bounces", 0)) & 0xFF)
     elif primitive_id == 8:  # preserve_stat_drains_across_transition
         body = struct.pack("<B", 1)
+    elif primitive_id == 10:  # teleport_player_nearby
+        body = struct.pack(
+            "<BBB",
+            int(params.get("min_distance", 0)) & 0xFF,
+            int(params.get("max_distance", 0)) & 0xFF,
+            1 if params.get("constrain_to_arena") else 0,
+        )
+    elif primitive_id == 11:  # unequip_player_items
+        body = struct.pack(
+            "<BBH",
+            int(params.get("count", 0)) & 0xFF,
+            1 if params.get("weapon_priority") else 0,
+            slot_mask_from_names(params.get("affects_slots")) & 0xFFFF,
+        )
     # Pad to fixed size. Truncate if the struct ever exceeds (guarded).
     if len(body) > PARAM_BLOCK_SIZE:
         body = body[:PARAM_BLOCK_SIZE]
@@ -292,10 +341,15 @@ def parse_hp_pct(val) -> tuple[int, bool]:
     return 100, False
 
 
-def parse_mechanic_trigger(raw, phase_index: dict[str, int]
+def parse_mechanic_trigger(raw, phase_index: dict[str, int], primitive_id: int
                            ) -> tuple[int, int, str | None]:
     text = str(raw or "").strip()
     if not text:
+        return TRIGGER_PERIODIC, 0xFF, None
+    if primitive_id == 5 and text.startswith("while_alive:"):
+        alive_name = text.split(":", 1)[1].strip()
+        if not alive_name:
+            return TRIGGER_NONE, 0xFF, f"missing npc name in '{text}'"
         return TRIGGER_PERIODIC, 0xFF, None
     if "|" in text:
         return TRIGGER_NONE, 0xFF, f"unsupported trigger union '{text}'"
@@ -363,9 +417,13 @@ def encode_encounter(doc: dict) -> tuple[bytes, list[str]]:
     for m in mechanics:
         name_b = pack_short(str(m.get("name") or ""))
         prim = PRIMITIVE_IDS.get(str(m.get("primitive") or "").lower(), 0)
+        params = m.get("params") or {}
         period = int(m.get("period_ticks") or 0)
+        if prim == 5 and period == 0:
+            period = int(params.get("period_ticks") or 0)
+        trigger_text = str(m.get("trigger") or "")
         trigger_type, phase_idx, warning = parse_mechanic_trigger(
-            m.get("trigger"), phase_index
+            trigger_text, phase_index, prim
         )
         if warning:
             warnings.append(f"{m.get('name')}: {warning}")
@@ -375,7 +433,7 @@ def encode_encounter(doc: dict) -> tuple[bytes, list[str]]:
                            max(0, min(65535, period)),
                            trigger_type & 0xFF,
                            phase_idx & 0xFF)
-        buf += pack_param_block(prim, m.get("params") or {})
+        buf += pack_param_block(prim, params, trigger_text)
 
     return bytes(buf), warnings
 

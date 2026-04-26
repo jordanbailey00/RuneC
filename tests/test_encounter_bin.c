@@ -129,6 +129,43 @@ int main(void) {
            == RC_ENC_TRIGGER_PHASE_EXIT);
     assert(kq->mechanics[preserve].phase_idx == grounded_phase);
 
+    const RcEncounterSpec *scorpia =
+        &w->encounter.registry[rc_encounter_find_spec(w, 6615)];
+    int guarded_phase = find_phase(scorpia, "guarded");
+    int summon = find_mech(scorpia, "Summon Guardians");
+    int guardian_heal = find_mech(scorpia, "Guardian Heal");
+    assert(guarded_phase >= 0 && summon >= 0 && guardian_heal >= 0);
+    assert(scorpia->mechanics[summon].primitive_id == RC_PRIM_SPAWN_NPCS_ONCE);
+    assert(scorpia->mechanics[summon].trigger_type
+           == RC_ENC_TRIGGER_PHASE_ENTER);
+    assert(scorpia->mechanics[summon].phase_idx == guarded_phase);
+    assert(scorpia->mechanics[guardian_heal].primitive_id
+           == RC_PRIM_PERIODIC_HEAL_BOSS);
+    assert(scorpia->mechanics[guardian_heal].trigger_type
+           == RC_ENC_TRIGGER_PERIODIC);
+    assert(scorpia->mechanics[guardian_heal].period_ticks == 1);
+    const RcPrimParamsPeriodicHealBoss *heal_params =
+        (const RcPrimParamsPeriodicHealBoss *)
+        scorpia->mechanics[guardian_heal].param_block;
+    assert(strcmp(heal_params->alive_npc_name, "Scorpia's guardian") == 0);
+    assert(heal_params->heal_per_tick == 4);
+
+    const RcEncounterSpec *chaos =
+        &w->encounter.registry[rc_encounter_find_spec(w, 2054)];
+    int confusion = find_mech(chaos, "Confusion");
+    int madness = find_mech(chaos, "Madness");
+    assert(confusion >= 0 && madness >= 0);
+    assert(chaos->mechanics[confusion].primitive_id
+           == RC_PRIM_TELEPORT_PLAYER_NEARBY);
+    assert(chaos->mechanics[madness].primitive_id
+           == RC_PRIM_UNEQUIP_PLAYER_ITEMS);
+    const RcPrimParamsUnequipPlayerItems *madness_params =
+        (const RcPrimParamsUnequipPlayerItems *)
+        chaos->mechanics[madness].param_block;
+    assert(madness_params->count == 4);
+    assert(madness_params->weapon_priority == 1);
+    assert((madness_params->slot_mask & (1u << EQUIP_WEAPON)) != 0u);
+
     // Aggregate stats across the registry — sanity that attacks /
     // phases / mechanics actually got compiled in (not just empty
     // shells).

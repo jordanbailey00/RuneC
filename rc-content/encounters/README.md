@@ -27,7 +27,7 @@ Use this file for:
 **Out of scope (goes elsewhere):**
 - Generic primitives used by ≥2 bosses — `rc-core/encounter_prims.c`.
 - NPC stat data (hp, max_hit, attack_types) — `data/defs/npc_defs.bin`
-  via `tools/export_npcs.py`.
+  via `tools/export_npc_defs_full.py`.
 - Attack / phase / mechanic *data* — `data/curated/encounters/<boss>.toml`
   → `data/defs/encounters.bin` via `tools/export_encounters.py`.
 - Drops — `data/defs/drops.bin`.

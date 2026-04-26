@@ -1,0 +1,85 @@
+NPC reconciliation report
+
+npc_defs: 15182
+runelite non-excluded missing: 0
+aliases in data_osrs name collection: 3711
+
+Model coverage
+defs with model ID links: 12950
+renderable NPC mesh entries: 12945
+model-linked defs without renderable mesh: 5
+oversized / unsupported by current MDL2 path: 0
+defs with at least one missing model part: 0
+
+Drop / spawn coverage
+drop tables: 909
+drop table IDs missing npc_defs: 0
+world spawn rows: 24110
+world spawn NPC IDs: 5695
+world spawn IDs missing npc_defs: 0
+instance-flagged spawn NPC IDs: 384
+
+Morph / state coverage
+morph parent IDs: 1162
+morph target IDs: 1581
+non-excluded morph parent IDs missing npc_defs: 0
+non-excluded morph target IDs missing npc_defs: 0
+NPCList rows with varbitId: 1325
+NPCList rows with varpId: 206
+
+Mechanics coverage
+combat defs: 5972
+mechanics TOMLs: 96
+executable encounter TOMLs: 50
+regular special-mechanics families tracked: 9
+name-normalized mechanics TOMLs unmatched to encounter TOML: 67
+
+Remaining blockers
+- model decode/render coverage still misses linked NPC meshes
+- boss mechanics conversion and explicit name/group mapping from mechanics TOMLs into executable encounter/activity data
+- complete regular monster special-mechanics family details and runtime owner
+- exact Nex and Sol Heredit activity-spawn extraction from cache/server-script/activity configs
+
+Non-excluded RuneLite ID coverage: complete
+
+Sample name-normalized mechanics TOMLs unmatched to encounter TOML:
+  ahrim the blighted
+  akkha
+  araxxor
+  artio
+  ba-ba
+  blood moon
+  blue moon
+  brutus
+  callisto
+  calvar ion
+  corrupted hunllef
+  crystalline hunllef
+  dagannoth mother
+  dawn
+  demonic brutus
+  deranged archaeologist
+  dharok the wretched
+  doom of mokhaiotl
+  dusk
+  eclipse moon
+  elidinis warden
+  elvarg
+  evil spirit
+  galvek
+  gelatinnoth mother
+  gemstone crab
+  general khazard
+  great olm
+  grotesque guardians
+  guthan the infested
+  k ril tsutsaroth
+  karil the tainted
+  kephri
+  kree arra
+  moons of peril
+  muttadile
+  nylocas vasilias
+  penance queen
+  pestilent bloat
+  phosani s nightmare

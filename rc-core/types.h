@@ -8,12 +8,14 @@
 #include "encounter.h"
 
 // Limits
-#define RC_MAX_NPCS         256
+#define RC_MAX_NPCS         30000
 #define RC_MAX_GROUND_ITEMS 512
 #define RC_MAX_REGIONS      32
 #define RC_MAX_PENDING_HITS 8
 #define RC_MAX_ROUTE        64
-#define RC_MAX_NPC_DEFS     512
+#define RC_MAX_NPC_DEFS     20000
+#define RC_MAX_NPC_ID       20000
+#define RC_NPC_MAX_MODELS   12
 #define RC_MAX_ITEM_DEFS    4096
 #define RC_MAX_SHOPS        32
 #define RC_INVENTORY_SIZE   28

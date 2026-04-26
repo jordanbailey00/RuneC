@@ -29,6 +29,7 @@
 #define WINDOW_W 1280
 #define WINDOW_H 720
 #define TPS 1.667f
+#define NPC_MODEL_SCALE 1.0f
 
 // Player animation sequence IDs (from FC — xbows_human variants)
 #define ANIM_IDLE 4591
@@ -86,6 +87,25 @@ static float ground_y(ViewerState *v, int world_x, int world_y) {
     if (v->terrain && v->terrain->loaded)
         return terrain_height_avg(v->terrain, LOCAL_X(world_x), LOCAL_Y(world_y)) + 0.05f;
     return 0.0f;
+}
+
+static int append_unique_model_id(uint32_t *ids, int count, uint32_t id) {
+    for (int i = 0; i < count; i++)
+        if (ids[i] == id) return count;
+    ids[count++] = id;
+    return count;
+}
+
+static int collect_spawned_npc_model_ids(RcWorld *world, uint32_t *ids,
+                                         int max_ids, int plane) {
+    int count = 0;
+    for (int i = 0; i < world->npc_count && count < max_ids; i++) {
+        const RcNpc *npc = &world->npcs[i];
+        if (!npc->active || npc->plane != plane
+                || npc->def_id >= (uint32_t)g_npc_def_count) continue;
+        count = append_unique_model_id(ids, count, (uint32_t)g_npc_defs[npc->def_id].id);
+    }
+    return count;
 }
 
 // Returns world tile coordinates
@@ -235,7 +255,8 @@ static void update_player_anim(ViewerState *v) {
     if (fb && pe->loaded) {
         anim_apply_frame(v->anim_state, pe->base_verts, &sf->frame, fb);
         anim_update_mesh(pe->model.meshes[0].vertices, v->anim_state,
-                         pe->face_indices, pe->face_count);
+                         pe->face_indices, pe->face_priorities,
+                         pe->face_count);
         // anim_update_mesh writes raw OSRS int16 units — scale to tile units
         float *mv = pe->model.meshes[0].vertices;
         int vc = pe->model.meshes[0].vertexCount;
@@ -299,7 +320,8 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
     // (applying raylib Y-flip), scale OSRS→tile units, re-upload.
     anim_apply_frame(state, me->base_verts, &sf->frame, fb);
     anim_update_mesh(me->model.meshes[0].vertices, state,
-                     me->face_indices, me->face_count);
+                     me->face_indices, me->face_priorities,
+                     me->face_count);
     float *mv = me->model.meshes[0].vertices;
     int vc   = me->model.meshes[0].vertexCount;
     for (int i = 0; i < vc; i++) {
@@ -353,6 +375,7 @@ static void draw_scene(ViewerState *v) {
     for (int i = 0; i < npc_count; i++) {
         const RcNpc *n = &npcs[i];
         if (!n->active || n->is_dead) continue;
+        if (n->plane != p->plane) continue;
 
         RcNpcDef *def = &g_npc_defs[n->def_id];
 
@@ -382,12 +405,9 @@ static void draw_scene(ViewerState *v) {
             // or frames because each draw re-applies from base_verts.
             update_npc_anim(v, i, ne);
             DrawModelEx(ne->model, (Vector3){nx_r, ny_r, nz_r},
-                        (Vector3){0, 1, 0}, face_angle, (Vector3){1, 1, 1}, WHITE);
-        } else {
-            // Fallback cube for NPCs without a model
-            DrawCube((Vector3){nx_r, ny_r + 1.0f, nz_r},
-                     0.6f * (float)def->size, 2.0f, 0.6f * (float)def->size,
-                     (Color){200, 100, 100, 255});
+                        (Vector3){0, 1, 0}, face_angle,
+                        (Vector3){NPC_MODEL_SCALE, NPC_MODEL_SCALE, NPC_MODEL_SCALE},
+                        WHITE);
         }
     }
 
@@ -451,7 +471,9 @@ static void draw_scene(ViewerState *v) {
 int main(void) {
     ViewerState v = {0};
 
-    v.world = rc_world_create(12345);
+    RcWorldConfig cfg = rc_preset_base_only();
+    cfg.seed = 12345;
+    v.world = rc_world_create_config(&cfg);
     if (!v.world) { fprintf(stderr, "Failed to create world\n"); return 1; }
     // Register all OSRS content modules (boss scripts, etc.). See
     // rc-content/README.md for the engine/content split.
@@ -492,7 +514,17 @@ int main(void) {
     rc_load_npc_spawns(v.world, "data/regions/varrock.npc-spawns.bin");
 
     // Load NPC models (combined body parts per NPC, one MDL2 entry per NPC def)
-    v.npc_models = models_load("data/models/npcs.models");
+    uint32_t *npc_model_ids = calloc((size_t)v.world->npc_count, sizeof(uint32_t));
+    int npc_model_id_count = 0;
+    if (npc_model_ids) {
+        npc_model_id_count = collect_spawned_npc_model_ids(
+            v.world, npc_model_ids, v.world->npc_count, v.world->player.plane);
+    }
+    uint32_t empty_model_ids[1] = {0};
+    const uint32_t *model_filter = npc_model_ids ? npc_model_ids : empty_model_ids;
+    v.npc_models = models_load_filtered(
+        "data/models/npcs.models", model_filter, npc_model_id_count);
+    free(npc_model_ids);
 
     // NPC animations (separate cache — player.anims has combat/player anims,
     // npcs.anims has the subset referenced by our loaded NPC defs). Each
@@ -544,6 +576,11 @@ int main(void) {
             v.world->player.x, v.world->player.y,
             LOCAL_X(v.world->player.x), LOCAL_Y(v.world->player.y));
 
+    int max_frames = 0;
+    const char *exit_frames = getenv("RC_VIEWER_EXIT_FRAMES");
+    if (exit_frames) max_frames = atoi(exit_frames);
+    int frame_count = 0;
+
     while (!WindowShouldClose()) {
         handle_input(&v);
 
@@ -580,9 +617,9 @@ int main(void) {
         ClearBackground((Color){40, 45, 55, 255});
         draw_scene(&v);
         EndDrawing();
+        if (max_frames > 0 && ++frame_count >= max_frames) break;
     }
 
-    CloseWindow();
     terrain_free(v.terrain);
     objects_free(v.objects);
     models_free(v.player_model);
@@ -593,5 +630,6 @@ int main(void) {
     anim_cache_free(v.anims);
     anim_cache_free(v.npc_anims);
     rc_world_destroy(v.world);
+    CloseWindow();
     return 0;
 }

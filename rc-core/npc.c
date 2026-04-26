@@ -8,8 +8,15 @@
 
 RcNpcDef g_npc_defs[RC_MAX_NPC_DEFS];
 int g_npc_def_count = 0;
+static int g_npc_def_by_id[RC_MAX_NPC_ID];
+static bool g_npc_def_index_ready = false;
 
-// NDEF binary — v1 (cache only) and v2 (cache + osrsreboxed merge).
+static void rc_npc_def_index_reset(void) {
+    for (int i = 0; i < RC_MAX_NPC_ID; i++) g_npc_def_by_id[i] = -1;
+    g_npc_def_index_ready = true;
+}
+
+// NDEF binary — v1 (cache only), v2 (combat merge), v3 (model ID links).
 // v1 layout: magic u32 | version u32 | count u32 |
 //   per NPC: id u32, size u8, combat_level i16, hitpoints u16,
 //            stats[6] u16, anims[5] i32,
@@ -18,14 +25,18 @@ int g_npc_def_count = 0;
 //            aggressive u8, max_hit u16, attack_speed u8, aggro_range u8,
 //            slayer_level u16, attack_types_bitfield u8, weakness_bitfield u8,
 //            immunities u8 (bit0=poison, bit1=venom)
+// v3 appends after v2:
+//            model_count u8, model_ids[model_count] u32
 #define NDEF_MAGIC 0x4E444546
 #define NDEF_V1 1
 #define NDEF_V2 2
+#define NDEF_V3 3
 
 int rc_load_npc_defs(const char *path) {
     FILE *f = fopen(path, "rb");
     if (!f) { fprintf(stderr, "npc_defs: can't open %s\n", path); return -1; }
     int orig_count = g_npc_def_count;
+    if (orig_count == 0) rc_npc_def_index_reset();
 
     uint32_t magic, version, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "npc defs magic")
@@ -40,7 +51,7 @@ int rc_load_npc_defs(const char *path) {
         g_npc_def_count = orig_count;
         return -1;
     }
-    if (version != NDEF_V1 && version != NDEF_V2) {
+    if (version != NDEF_V1 && version != NDEF_V2 && version != NDEF_V3) {
         fclose(f);
         fprintf(stderr, "npc_defs: unsupported version %u\n", version);
         return -1;
@@ -91,7 +102,7 @@ int rc_load_npc_defs(const char *path) {
         d->aggressive = false;
         d->aggro_range = 0;
 
-        if (version == NDEF_V2) {
+        if (version >= NDEF_V2) {
             uint8_t aggr, atk_spd, aggro_r, atk_types, weak, immu;
             uint16_t max_hit, slayer_lvl;
             if (!rc_read_exact(f, &aggr, sizeof(aggr), 1, path, "npc aggression")
@@ -116,8 +127,31 @@ int rc_load_npc_defs(const char *path) {
             d->poison_immune     = (immu & 1) != 0;
             d->venom_immune      = (immu & 2) != 0;
         }
+        if (version >= NDEF_V3) {
+            uint8_t model_count;
+            if (!rc_read_exact(f, &model_count, sizeof(model_count), 1,
+                               path, "npc model count")) {
+                fclose(f);
+                g_npc_def_count = orig_count;
+                return -1;
+            }
+            for (uint8_t j = 0; j < model_count; j++) {
+                uint32_t model_id;
+                if (!rc_read_exact(f, &model_id, sizeof(model_id), 1,
+                                   path, "npc model id")) {
+                    fclose(f);
+                    g_npc_def_count = orig_count;
+                    return -1;
+                }
+                if (j < RC_NPC_MAX_MODELS) {
+                    d->model_ids[j] = (int)model_id;
+                    d->model_count++;
+                }
+            }
+        }
 
         g_npc_def_count++;
+        if (id < RC_MAX_NPC_ID) g_npc_def_by_id[id] = g_npc_def_count - 1;
         loaded++;
     }
     fclose(f);
@@ -127,8 +161,13 @@ int rc_load_npc_defs(const char *path) {
 }
 
 int rc_npc_def_find(int npc_id) {
-    // Linear scan — defs are sparse sorted by ID.
-    // ~300 defs, called once per spawn at startup, so no binary search needed.
+    if (npc_id >= 0 && npc_id < RC_MAX_NPC_ID && g_npc_def_index_ready) {
+        int idx = g_npc_def_by_id[npc_id];
+        if (idx >= 0 && idx < g_npc_def_count && g_npc_defs[idx].id == npc_id) {
+            return idx;
+        }
+    }
+    // Tests may inject synthetic defs without rebuilding the ID index.
     for (int i = 0; i < g_npc_def_count; i++) {
         if (g_npc_defs[i].id == npc_id) return i;
     }

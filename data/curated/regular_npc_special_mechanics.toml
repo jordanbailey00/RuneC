@@ -1,0 +1,58 @@
+# Regular combat NPC families that need mechanics beyond generic autos.
+# This is a data ownership list, not an implementation plan.
+
+schema_version = 1
+
+[[families]]
+key = "dragonfire_users"
+status = "missing_runtime"
+examples = ["Green dragon", "Blue dragon", "Red dragon", "Black dragon", "Metal dragons", "King Black Dragon"]
+mechanics = ["dragonfire attack", "antifire mitigation", "dragonfire shield mitigation", "Protect from Magic interaction"]
+
+[[families]]
+key = "wyverns"
+status = "missing_runtime"
+examples = ["Skeletal Wyvern", "Fossil Island wyverns", "Ancient Wyvern"]
+mechanics = ["icy breath", "elemental/dragonfire shield mitigation", "freezing or high special max-hit metadata"]
+
+[[families]]
+key = "slayer_mask_required"
+status = "missing_runtime"
+examples = ["Aberrant spectre", "Banshee", "Dust devil", "Cave horror"]
+mechanics = ["equipment protection check", "stat drain or special-damage prevention"]
+
+[[families]]
+key = "mirror_shield_required"
+status = "missing_runtime"
+examples = ["Basilisk", "Cockatrice"]
+mechanics = ["mirror shield/slayer helm protection check", "stat drain prevention"]
+
+[[families]]
+key = "weapon_restricted_damage"
+status = "missing_runtime"
+examples = ["Kurask", "Turoth"]
+mechanics = ["leaf-bladed/broad weapon damage gate", "invalid weapon zero-damage rule"]
+
+[[families]]
+key = "slayer_finisher_items"
+status = "missing_runtime"
+examples = ["Gargoyle", "Rockslug", "Desert lizard", "Zygomite"]
+mechanics = ["low-HP finisher item requirement", "auto-smash/auto-use variants where applicable"]
+
+[[families]]
+key = "ambush_or_spawn_on_interaction"
+status = "missing_runtime"
+examples = ["Wall beast", "Tentacle", "Nechryael death spawn"]
+mechanics = ["spawn/ambush trigger", "equipment protection where applicable", "child NPC spawn/death behavior"]
+
+[[families]]
+key = "poison_venom_disease_users"
+status = "missing_runtime"
+examples = ["Poison spiders", "Zulrah snakelings", "Kalphites", "Zogres"]
+mechanics = ["poison application", "venom application", "disease application", "immunity and cure interactions"]
+
+[[families]]
+key = "revenants"
+status = "missing_runtime"
+examples = ["Revenant imp", "Revenant dragon", "Revenant maledictus"]
+mechanics = ["wilderness PvM-only behavior", "healing", "teleblock/freeze-like attacks where applicable"]

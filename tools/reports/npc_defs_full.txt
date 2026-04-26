@@ -1,0 +1,39 @@
+Full NPC definition export
+
+defs exported: 15182
+combat defs: 5972
+defs with model ids: 12950
+defs with stand anim: 13525
+defs with walk anim: 13059
+model-dump Sailing NPCs skipped by v1 scope: 498
+
+source contribution:
+  activity_spawns: 30
+  data_osrs: 5695
+  model_dump: 15119
+  osrsreboxed: 1192
+  wiki_monster: 4149
+
+known edge IDs:
+  2042: Zulrah (activity_spawns,model_dump,osrsreboxed,wiki_monster)
+  3127: TzTok-Jad (activity_spawns,model_dump,osrsreboxed,wiki_monster)
+  7706: TzKal-Zuk (activity_spawns,model_dump,wiki_monster)
+  7707: Ancestral Glyph (activity_spawns,model_dump)
+  7708: Jal-MejJak (activity_spawns,model_dump,wiki_monster)
+  10572: Tempoross (activity_spawns,model_dump)
+  10574: Tempoross (activity_spawns,model_dump)
+  10575: Tempoross (activity_spawns,model_dump)
+  11278: Nex (activity_spawns,model_dump,wiki_monster)
+  12821: Sol Heredit (activity_spawns,model_dump,wiki_monster)
+
+RuneLite NpcID constants absent after v1 exclusions: 0
+RuneLite NpcID constants skipped as v1-excluded Sailing: 391
+Sample missing RuneLite IDs:
+  none
+
+Remaining blockers:
+- NPC definition export is whole-game for current in-scope ID sources.
+- Model rendering parity is tracked by tools/reports/npc_models_full.txt.
+- NPC semantic parity is tracked by tools/reports/npc_semantics.txt.
+- Attack/death/run animation coverage remains sparse until a deeper
+  cache-backed definition pass resolves those sequence links.

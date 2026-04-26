@@ -76,6 +76,9 @@ enum {
     RC_PRIM_DRAIN_PRAYER_ON_HIT            = 6,
     RC_PRIM_CHAIN_MAGIC_TO_NEAREST         = 7,
     RC_PRIM_PRESERVE_STAT_DRAINS           = 8,
+    RC_PRIM_TELEPORT_ON_INCOMING_ATTACK    = 9,
+    RC_PRIM_TELEPORT_PLAYER_NEARBY         = 10,
+    RC_PRIM_UNEQUIP_PLAYER_ITEMS           = 11,
     // ... pass-2+ primitives added incrementally as implemented.
     RC_PRIM_MAX                            = 92,
 };
@@ -99,6 +102,11 @@ typedef struct __attribute__((packed)) {
 } RcPrimParamsSpawnNpcs;
 
 typedef struct __attribute__((packed)) {
+    char alive_npc_name[32];       // heal only while any matching NPC is alive
+    uint8_t heal_per_tick;
+} RcPrimParamsPeriodicHealBoss;
+
+typedef struct __attribute__((packed)) {
     uint8_t heal_per_player;
     uint8_t heal_ticks_cap;
     uint8_t tick_period;
@@ -116,6 +124,18 @@ typedef struct __attribute__((packed)) {
 typedef struct __attribute__((packed)) {
     uint8_t marker;                // just confirms spec existence
 } RcPrimParamsPreserveStatDrains;
+
+typedef struct __attribute__((packed)) {
+    uint8_t min_distance;
+    uint8_t max_distance;
+    uint8_t constrain_to_arena;
+} RcPrimParamsTeleportPlayerNearby;
+
+typedef struct __attribute__((packed)) {
+    uint8_t count;
+    uint8_t weapon_priority;
+    uint16_t slot_mask;            // bit i => RcEquipSlot i may be unequipped
+} RcPrimParamsUnequipPlayerItems;
 
 // Encounter spec — built once at startup from TOML, lives in the
 // registry keyed by `npc_ids[]`.

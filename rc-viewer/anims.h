@@ -628,8 +628,8 @@ static void anim_apply_frame_interleaved(
 
 /**
  * Re-expand animated base vertices into the raylib mesh's expanded vertex buffer.
- * This mirrors expand_model from the Python exporter but in-place, using
- * face_indices to map from base to expanded vertices.
+ * This mirrors the NPC exporter expansion without priority displacement.
+ * Face priorities are draw-order metadata; moving faces creates visible seams.
  *
  * The mesh has face_count*3 expanded vertices. Each triplet (i*3, i*3+1, i*3+2)
  * corresponds to face_indices[i*3], face_indices[i*3+1], face_indices[i*3+2]
@@ -641,8 +641,11 @@ static void anim_update_mesh(
     float* mesh_vertices,
     const AnimModelState* state,
     const uint16_t* face_indices,
+    const uint8_t* face_priorities,
     int face_count
 ) {
+    (void)face_priorities;
+
     for (int fi = 0; fi < face_count; fi++) {
         int a = face_indices[fi * 3];
         int b = face_indices[fi * 3 + 1];

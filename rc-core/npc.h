@@ -17,6 +17,8 @@ typedef struct {
     int run_anim;
     int attack_anim;
     int death_anim;
+    int model_count;        // body model IDs used by the render asset pipeline
+    int model_ids[RC_NPC_MAX_MODELS];
     // Per-NPC AI parameters (set from def + Void data)
     int wander_range;       // max tiles from spawn (default 5)
     int respawn_ticks;      // ticks before respawn after death (default 25)

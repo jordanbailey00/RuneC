@@ -1,0 +1,732 @@
+# Activity-local spawns and object anchors that are not represented by
+# global NPC spawns. Coordinates are OSRS world x/y/plane unless a
+# field is explicitly named local_*.
+
+[[activities]]
+slug = "zulrah"
+name = "Zulrah"
+class = "arena_local"
+source_status = "resolved_from_reference"
+npc_ids = [2042, 2043, 2044, 2045]
+source_paths = [
+  "/home/joe/projects/runescape-rl-reference/valo_envs/ocean/osrs/encounters/encounter_zulrah.h",
+  "/home/joe/projects/runescape-rl-reference/valo_envs/config/ocean/osrs_zulrah.ini",
+]
+notes = [
+  "Full four-rotation script exists in the reference source; current RuneC encounter TOML is abridged.",
+  "Safe-tile entries are reference-derived and still need cache/wiki/plugin validation before parity sign-off.",
+]
+
+[activities.grid]
+world_offset_x = 2256
+world_offset_y = 3061
+arena_size = 28
+npc_size = 5
+platform_min_x = 2261
+platform_max_x = 2278
+platform_min_y = 3066
+platform_max_y = 3083
+player_start = { x = 2267, y = 3068, plane = 0, local_x = 11, local_y = 7 }
+
+[[activities.spawn_points]]
+key = "north"
+entity = "Zulrah"
+x = 2266
+y = 3073
+plane = 0
+local_x = 10
+local_y = 12
+
+[[activities.spawn_points]]
+key = "south"
+entity = "Zulrah"
+x = 2266
+y = 3062
+plane = 0
+local_x = 10
+local_y = 1
+
+[[activities.spawn_points]]
+key = "east"
+entity = "Zulrah"
+x = 2276
+y = 3071
+plane = 0
+local_x = 20
+local_y = 10
+
+[[activities.spawn_points]]
+key = "west"
+entity = "Zulrah"
+x = 2256
+y = 3071
+plane = 0
+local_x = 0
+local_y = 10
+
+[[activities.dynamic_spawns]]
+key = "snakeling_spawn_pool"
+entity = "Snakeling"
+points = [
+  { x = 2263, y = 3075, plane = 0, local_x = 7, local_y = 14 },
+  { x = 2263, y = 3071, plane = 0, local_x = 7, local_y = 10 },
+  { x = 2268, y = 3069, plane = 0, local_x = 12, local_y = 8 },
+  { x = 2273, y = 3071, plane = 0, local_x = 17, local_y = 10 },
+  { x = 2273, y = 3077, plane = 0, local_x = 17, local_y = 16 },
+]
+
+[[activities.safe_tiles]]
+key = "zulrah_reference_safe_tiles"
+needs_verification = true
+points = [
+  { label = "southwest", x = 2264, y = 3069, plane = 0, local_x = 8, local_y = 8 },
+  { label = "west", x = 2262, y = 3075, plane = 0, local_x = 6, local_y = 14 },
+  { label = "center", x = 2269, y = 3070, plane = 0, local_x = 13, local_y = 9 },
+  { label = "northeast_top", x = 2274, y = 3077, plane = 0, local_x = 18, local_y = 16 },
+  { label = "northeast_bottom", x = 2273, y = 3077, plane = 0, local_x = 17, local_y = 16 },
+  { label = "northwest_top", x = 2262, y = 3076, plane = 0, local_x = 6, local_y = 15 },
+  { label = "northwest_bottom", x = 2264, y = 3077, plane = 0, local_x = 8, local_y = 16 },
+]
+
+[[activities]]
+slug = "tzhaar_fight_cave"
+name = "TzHaar Fight Cave"
+class = "wave_regions"
+source_status = "resolved_from_reference"
+npc_ids = [3127]
+source_paths = [
+  "/home/joe/projects/runescape-rl-reference/current_fightcaves_demo/data/minigame/tzhaar_fight_cave/tzhaar_fight_cave.areas.toml",
+  "/home/joe/projects/runescape-rl-reference/current_fightcaves_demo/data/minigame/tzhaar_fight_cave/tzhaar_fight_cave_waves.toml",
+]
+notes = [
+  "TzTok-Jad is wave 63; its exact tile is selected from named spawn regions by wave rotation.",
+]
+
+[activities.grid]
+arena_min_x = 2368
+arena_max_x = 2559
+arena_min_y = 5056
+arena_max_y = 5183
+center = { x = 2400, y = 5088, plane = 0 }
+entrance = { x = 2413, y = 5117, plane = 0 }
+outside = { x = 2436, y = 5170, plane = 0 }
+
+[[activities.spawn_regions]]
+key = "north_west"
+min_x = 2378
+max_x = 2385
+min_y = 5102
+max_y = 5109
+plane = 0
+
+[[activities.spawn_regions]]
+key = "south_west"
+min_x = 2379
+max_x = 2385
+min_y = 5070
+max_y = 5076
+plane = 0
+
+[[activities.spawn_regions]]
+key = "south"
+min_x = 2402
+max_x = 2408
+min_y = 5070
+max_y = 5076
+plane = 0
+
+[[activities.spawn_regions]]
+key = "south_east"
+min_x = 2416
+max_x = 2422
+min_y = 5080
+max_y = 5086
+plane = 0
+
+[[activities.spawn_regions]]
+key = "none"
+min_x = 2397
+max_x = 2403
+min_y = 5085
+max_y = 5091
+plane = 0
+
+[[activities.wave_spawns]]
+wave = 63
+entity = "TzTok-Jad"
+rotation_regions = [
+  "south_west",
+  "south_east",
+  "south_west",
+  "south",
+  "south_east",
+  "south_east",
+  "none",
+  "none",
+  "south_west",
+  "north_west",
+  "none",
+  "south",
+  "north_west",
+  "north_west",
+  "south",
+]
+
+[[activities]]
+slug = "inferno"
+name = "The Inferno"
+class = "wave_table"
+source_status = "resolved_from_reference"
+npc_ids = [7706, 7707, 7708]
+source_paths = [
+  "/home/joe/projects/runescape-rl-reference/valo_envs/ocean/osrs/encounters/encounter_inferno.h",
+  "/home/joe/projects/runescape-rl-reference/valo_envs/ocean/osrs/scripts/export_inferno_npcs.py",
+]
+notes = [
+  "Zuk's fixed spawn sits outside the reachable player arena; do not clamp it to arena bounds.",
+  "Current RuneC inferno.toml lists 7707 as TzKal-Zuk, but RuneLite IDs show 7706 = TzKal-Zuk and 7707 = Ancestral Glyph.",
+]
+
+[activities.grid]
+world_offset_x = 2246
+world_offset_y = 5315
+arena_min_x = 2257
+arena_max_x = 2285
+arena_min_y = 5329
+arena_max_y = 5358
+player_start = { x = 2271, y = 5331, plane = 0, local_x = 25, local_y = 16 }
+zuk_player_start = { x = 2271, y = 5357, plane = 0, local_x = 25, local_y = 42 }
+
+[[activities.object_anchors]]
+key = "south_pillar"
+entity = "pillar"
+x = 2267
+y = 5335
+plane = 0
+local_x = 21
+local_y = 20
+
+[[activities.object_anchors]]
+key = "west_pillar"
+entity = "pillar"
+x = 2257
+y = 5349
+plane = 0
+local_x = 11
+local_y = 34
+
+[[activities.object_anchors]]
+key = "north_pillar"
+entity = "pillar"
+x = 2274
+y = 5351
+plane = 0
+local_x = 28
+local_y = 36
+
+[[activities.spawn_points]]
+key = "wave_spawn_1"
+x = 2258
+y = 5353
+plane = 0
+local_x = 12
+local_y = 38
+
+[[activities.spawn_points]]
+key = "wave_spawn_2"
+x = 2279
+y = 5353
+plane = 0
+local_x = 33
+local_y = 38
+
+[[activities.spawn_points]]
+key = "wave_spawn_3"
+x = 2260
+y = 5347
+plane = 0
+local_x = 14
+local_y = 32
+
+[[activities.spawn_points]]
+key = "wave_spawn_4"
+x = 2280
+y = 5346
+plane = 0
+local_x = 34
+local_y = 31
+
+[[activities.spawn_points]]
+key = "wave_spawn_5"
+x = 2273
+y = 5341
+plane = 0
+local_x = 27
+local_y = 26
+
+[[activities.spawn_points]]
+key = "wave_spawn_6"
+x = 2262
+y = 5335
+plane = 0
+local_x = 16
+local_y = 20
+
+[[activities.spawn_points]]
+key = "wave_spawn_7"
+x = 2280
+y = 5333
+plane = 0
+local_x = 34
+local_y = 18
+
+[[activities.spawn_points]]
+key = "wave_spawn_8"
+x = 2258
+y = 5330
+plane = 0
+local_x = 12
+local_y = 15
+
+[[activities.spawn_points]]
+key = "wave_spawn_9"
+x = 2272
+y = 5330
+plane = 0
+local_x = 26
+local_y = 15
+
+[[activities.dynamic_spawns]]
+key = "nibbler_spawn"
+entity = "Jal-Nib-Rek"
+x = 2266
+y = 5347
+plane = 0
+local_x = 20
+local_y = 32
+random_offset = 1
+
+[[activities.wave_spawns]]
+wave = 69
+entity = "TzKal-Zuk"
+npc_id = 7706
+x = 2266
+y = 5367
+plane = 0
+local_x = 20
+local_y = 52
+
+[[activities.wave_spawns]]
+wave = 69
+entity = "Ancestral Glyph"
+npc_id = 7707
+x = 2269
+y = 5359
+plane = 0
+local_x = 23
+local_y = 44
+
+[[activities.wave_spawns]]
+wave = 69
+entity = "Zuk mager set"
+x = 2266
+y = 5351
+plane = 0
+local_x = 20
+local_y = 36
+
+[[activities.wave_spawns]]
+wave = 69
+entity = "Zuk ranger set"
+x = 2275
+y = 5351
+plane = 0
+local_x = 29
+local_y = 36
+
+[[activities.wave_spawns]]
+wave = 69
+entity = "Zuk Jad"
+x = 2270
+y = 5347
+plane = 0
+local_x = 24
+local_y = 32
+
+[[activities.wave_spawns]]
+wave = 69
+entity = "Jal-MejJak"
+npc_id = 7708
+points = [
+  { x = 2262, y = 5363, plane = 0, local_x = 16, local_y = 48 },
+  { x = 2266, y = 5363, plane = 0, local_x = 20, local_y = 48 },
+  { x = 2276, y = 5363, plane = 0, local_x = 30, local_y = 48 },
+  { x = 2280, y = 5363, plane = 0, local_x = 34, local_y = 48 },
+]
+
+[[activities]]
+slug = "tempoross"
+name = "Tempoross"
+class = "object_activity"
+source_status = "resolved_object_anchors"
+npc_ids = [10572, 10574, 10575]
+source_paths = [
+  "tools/wiki_cache/pages/Tempoross.json",
+  "/home/joe/projects/runescape-rl-reference/data_osrs/locations",
+  "/home/joe/projects/runescape-rl-reference/runelite/runelite-api/src/main/java/net/runelite/api/NpcID.java",
+]
+notes = [
+  "Tempoross is activity/object driven; current global NPC spawns do not contain a boss row.",
+  "Current RuneC tempoross.toml uses npc_id 10569, which RuneLite gameval names as a special Harpoonfish fishing spot, not the boss form.",
+]
+
+[activities.grid]
+map_anchor = { x = 3035, y = 2850, plane = 0 }
+
+[[activities.object_anchors]]
+key = "west_cannon_north"
+entity = "Harpoonfish cannon"
+object_id = 41239
+x = 3038
+y = 2846
+plane = 0
+rotation = 3
+
+[[activities.object_anchors]]
+key = "west_cannon_south"
+entity = "Harpoonfish cannon"
+object_id = 41238
+x = 3038
+y = 2851
+plane = 0
+rotation = 3
+
+[[activities.object_anchors]]
+key = "east_cannon_north"
+entity = "Harpoonfish cannon"
+object_id = 41241
+x = 3054
+y = 2846
+plane = 0
+rotation = 1
+
+[[activities.object_anchors]]
+key = "east_cannon_south"
+entity = "Harpoonfish cannon"
+object_id = 41240
+x = 3054
+y = 2851
+plane = 0
+rotation = 1
+
+[[activities.object_anchors]]
+key = "west_shrine"
+entity = "Shrine"
+object_id = 41236
+x = 3035
+y = 2827
+plane = 0
+rotation = 3
+
+[[activities.object_anchors]]
+key = "north_shrine"
+entity = "Shrine"
+object_id = 41236
+x = 3039
+y = 2873
+plane = 0
+rotation = 3
+
+[[activities.object_anchors]]
+key = "west_mast"
+entity = "Mast"
+object_id = 41234
+x = 3033
+y = 2848
+plane = 1
+rotation = 2
+
+[[activities.object_anchors]]
+key = "east_mast"
+entity = "Mast"
+object_id = 41234
+x = 3055
+y = 2849
+plane = 1
+rotation = 0
+
+[[activities]]
+slug = "wintertodt"
+name = "Wintertodt"
+class = "object_activity"
+source_status = "resolved_object_anchors"
+npc_ids = []
+object_ids = [29308, 29309]
+source_paths = [
+  "tools/wiki_cache/pages/Wintertodt.json",
+  "/home/joe/projects/runescape-rl-reference/data_osrs/locations",
+  "/home/joe/projects/runescape-rl-reference/runelite/runelite-api/src/main/java/net/runelite/api/ObjectID.java",
+]
+notes = [
+  "Wintertodt is scenery/object driven, not a normal NPC spawn.",
+  "Current RuneC wintertodt.toml uses npc_id 7936; local NPCList names that ID as Revenant demon.",
+]
+
+[activities.grid]
+map_anchor = { x = 1630, y = 3981, plane = 0 }
+
+[[activities.object_anchors]]
+key = "howling_snow_storm"
+entity = "Howling Snow Storm"
+object_id = 29308
+x = 1627
+y = 4004
+plane = 0
+
+[[activities.object_anchors]]
+key = "brazier_south_west"
+entity = "Brazier"
+object_id = 29312
+x = 1620
+y = 3997
+plane = 0
+
+[[activities.object_anchors]]
+key = "brazier_north_west"
+entity = "Brazier"
+object_id = 29312
+x = 1620
+y = 4015
+plane = 0
+
+[[activities.object_anchors]]
+key = "brazier_south_east"
+entity = "Brazier"
+object_id = 29312
+x = 1638
+y = 3997
+plane = 0
+
+[[activities.object_anchors]]
+key = "brazier_north_east"
+entity = "Brazier"
+object_id = 29312
+x = 1638
+y = 4015
+plane = 0
+
+[[activities.object_anchors]]
+key = "bruma_roots_south_west"
+entity = "Bruma roots"
+object_id = 29311
+x = 1620
+y = 3988
+plane = 0
+
+[[activities.object_anchors]]
+key = "bruma_roots_north_west"
+entity = "Bruma roots"
+object_id = 29311
+x = 1621
+y = 4025
+plane = 0
+
+[[activities.object_anchors]]
+key = "bruma_roots_north_east"
+entity = "Bruma roots"
+object_id = 29311
+x = 1638
+y = 4025
+plane = 0
+
+[[activities.object_anchors]]
+key = "bruma_roots_south_east"
+entity = "Bruma roots"
+object_id = 29311
+x = 1639
+y = 3988
+plane = 0
+
+[[activities.spawn_points]]
+key = "pyromancer_south_west"
+entity = "Pyromancer"
+npc_id = 7371
+x = 1619
+y = 3996
+plane = 0
+
+[[activities.spawn_points]]
+key = "pyromancer_north_west"
+entity = "Pyromancer"
+npc_id = 7371
+x = 1619
+y = 4018
+plane = 0
+
+[[activities.spawn_points]]
+key = "pyromancer_south_east"
+entity = "Pyromancer"
+npc_id = 7371
+x = 1641
+y = 3996
+plane = 0
+
+[[activities.spawn_points]]
+key = "pyromancer_north_east"
+entity = "Pyromancer"
+npc_id = 7371
+x = 1641
+y = 4018
+plane = 0
+
+[[activities.spawn_points]]
+key = "snow_npc_ring"
+entity = "Snow"
+npc_id = 7383
+points = [
+  { x = 1614, y = 4001, plane = 0 },
+  { x = 1614, y = 4008, plane = 0 },
+  { x = 1614, y = 4015, plane = 0 },
+  { x = 1617, y = 3994, plane = 0 },
+  { x = 1618, y = 4020, plane = 0 },
+  { x = 1623, y = 4023, plane = 0 },
+  { x = 1625, y = 3991, plane = 0 },
+  { x = 1635, y = 3991, plane = 0 },
+  { x = 1637, y = 4023, plane = 0 },
+  { x = 1642, y = 4020, plane = 0 },
+  { x = 1643, y = 3994, plane = 0 },
+  { x = 1646, y = 4001, plane = 0 },
+  { x = 1646, y = 4008, plane = 0 },
+  { x = 1646, y = 4015, plane = 0 },
+]
+
+[[activities]]
+slug = "nex"
+name = "Nex"
+class = "script_spawn_arena"
+source_status = "partial_needs_cache_or_script_extraction"
+npc_ids = [11278, 11279, 11280, 11281, 11282]
+related_npc_ids = [11283, 11284, 11285, 11286, 11287, 11290, 11291, 11292, 11293, 11294]
+source_paths = [
+  "tools/wiki_cache/pages/Nex.json",
+  "/home/joe/projects/runescape-rl-reference/data_osrs/locations",
+  "/home/joe/projects/runescape-rl-reference/runelite/runelite-api/src/main/java/net/runelite/api/NpcID.java",
+]
+notes = [
+  "Local static spawn and locline surfaces do not expose Nex or bodyguard runtime spawn tiles by exact name.",
+  "Do not substitute inferred chamber-center coordinates for parity data; extract boss/bodyguard script spawns from cache/scripts.",
+]
+
+[activities.grid]
+known_chamber_anchor = { x = 2939, y = 5202, plane = 0, object_id = 42965, entity = "Altar" }
+
+[[activities.object_anchors]]
+key = "altar"
+entity = "Altar"
+object_id = 42965
+x = 2939
+y = 5202
+plane = 0
+
+[[activities.object_anchors]]
+key = "door"
+entity = "Door"
+object_id = 42934
+x = 2899
+y = 5203
+plane = 0
+
+[[activities.object_anchors]]
+key = "chest"
+entity = "Chest"
+object_id = 42854
+x = 2901
+y = 5200
+plane = 0
+
+[[activities.unresolved_spawns]]
+key = "nex_spawn_tile"
+entity = "Nex"
+required = true
+reason = "not present in current NPCList/locline/static object surfaces"
+needed_source = "cache script or authoritative encounter config"
+
+[[activities.unresolved_spawns]]
+key = "bodyguard_spawn_tiles"
+entity = "Fumus/Umbra/Cruor/Glacies"
+required = true
+reason = "phase bodyguard tiles are scripted and absent from current static sources"
+needed_source = "cache script or authoritative encounter config"
+
+[[activities]]
+slug = "fortis_colosseum_sol_heredit"
+name = "Sol Heredit"
+class = "wave_boss"
+source_status = "partial_needs_cache_or_script_extraction"
+npc_ids = [12821, 12827]
+source_paths = [
+  "tools/wiki_cache/pages/Sol_Heredit.json",
+  "/home/joe/projects/runescape-rl-reference/data_osrs/locations",
+  "/home/joe/projects/runescape-rl-reference/runelite/runelite-api/src/main/java/net/runelite/api/NpcID.java",
+]
+notes = [
+  "Wiki/cache object data gives throne/pillar anchors, but not the exact wave-12 combat spawn tile or reduced arena bounds.",
+  "Do not treat the throne pin as the combat spawn without script/cache confirmation.",
+]
+
+[activities.grid]
+map_anchor = { x = 1823, y = 3123, plane = 0 }
+
+[[activities.object_anchors]]
+key = "sol_throne"
+entity = "Throne"
+object_id = 52514
+x = 1823
+y = 3123
+plane = 0
+
+[[activities.object_anchors]]
+key = "pillar_south_west"
+entity = "Pillar"
+object_id = 52490
+x = 1816
+y = 3098
+plane = 0
+
+[[activities.object_anchors]]
+key = "pillar_north_west"
+entity = "Pillar"
+object_id = 52490
+x = 1816
+y = 3113
+plane = 0
+
+[[activities.object_anchors]]
+key = "pillar_south_east"
+entity = "Pillar"
+object_id = 52490
+x = 1831
+y = 3098
+plane = 0
+
+[[activities.object_anchors]]
+key = "pillar_north_east"
+entity = "Pillar"
+object_id = 52490
+x = 1831
+y = 3113
+plane = 0
+
+[[activities.unresolved_spawns]]
+key = "wave_12_sol_spawn_tile"
+entity = "Sol Heredit"
+required = true
+reason = "current local object/NPC sources expose anchors, not the runtime combat spawn"
+needed_source = "cache script or authoritative Colosseum wave config"
+
+[[activities.unresolved_spawns]]
+key = "wave_12_reduced_arena_bounds"
+entity = "Fortis Colosseum"
+required = true
+reason = "reduced arena after Sol enters is mechanics/activity metadata, not a static spawn"
+needed_source = "cache script or authoritative Colosseum wave config"

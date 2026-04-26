@@ -1,0 +1,930 @@
+RuneC database audit
+Snapshot: 2026-04-23
+Latest NPC closure update: 2026-04-24
+
+Legend:
+- READY
+- READY_WITH_ACCEPTED_SIMPLIFICATIONS
+- BLOCKS_PARITY
+- NOT_YET_AUDITED
+
+Audit execution order:
+1. Items
+2. NPCs / monsters / bosses
+3. Drops
+4. Spawns
+5. Mechanics coverage
+6. World objects / interactables
+7. Tile / region / area / collision data
+8. Varbit / varp / state-transform data
+9. Prayer / spellbook / player-action data
+10. Shops / banks / storage / non-drop acquisition
+11. Transportation / traversal
+12. Skills / gathering / recipes / production chains
+13. Content activity schemas
+14. Normalization / canonicalization / form-mapping
+
+Cross-cutting runtime blocker:
+- rc_world_create_config originally only wired events + encounters.
+- NPC defs now load during world bring-up when configured, but most other
+  compiled datasets still do not.
+- It does not load world.npc-spawns.bin, items.bin, varbits,
+  regions, drops, recipes, shops, quests, dialogue, spells, or other core
+  runtime datasets during world bring-up.
+- This is a parity blocker independent of source-data breadth.
+
+Inventory surface snapshot:
+- Items
+  raw source: osrsreboxed-db/docs/items-json/*.json
+  exporter: tools/export_items.py
+  runtime: data/defs/items.bin
+  validation: tools/reports/xvalidate_bonuses.txt
+  status: BLOCKS_PARITY
+- NPCs / monsters / bosses
+  raw sources: b237 cache defs + osrsreboxed monster JSON + wiki infobox_monster
+  + data_osrs NPCList for spawn placement
+  exporters: tools/export_npc_defs_full.py, tools/export_npc_models_full.py,
+  tools/export_spawns.py
+  runtime: data/defs/npc_defs.bin, data/spawns/world.npc-spawns.bin
+  validation: tools/reports/npc_defs_full.txt, tools/reports/npc_models_full.txt,
+  tools/reports/npc_reconciliation.txt, tools/reports/npc_semantics.txt,
+  tools/reports/xvalidate_monsters.txt, tools/reports/spawn_coverage.txt
+  status: BLOCKS_PARITY
+- Drops
+  raw source: wiki dropsline + infobox joins
+  exporter: tools/export_drops.py, tools/export_skill_drops.py, tools/scrape_rdt.py
+  runtime: data/defs/drops.bin, skill_drops.bin, rdt.bin, gdt.bin, mrdt.bin
+  validation: tools/reports/drops.txt, skill_drops.txt, rdt_gdt.txt
+  status: BLOCKS_PARITY
+- Spawns
+  raw source: data_osrs/NPCList_OSRS.json + wiki locline cross-check
+  exporter: tools/export_spawns.py
+  runtime: data/spawns/world.npc-spawns.bin, data/regions/varrock.npc-spawns.bin
+  validation: tools/reports/spawn_coverage.txt
+  status: BLOCKS_PARITY
+- Mechanics coverage
+  raw source: data/curated/encounters/*.toml + data/curated/mechanics/*.toml
+  exporter: tools/export_encounters.py, tools/extract_mechanics.py
+  runtime: data/defs/encounters.bin
+  validation: tools/reports/encounters.txt, mechanics_extract.txt
+  status: BLOCKS_PARITY
+- World objects / interactables
+  raw source: b237 cache + wiki scenery/object buckets
+  exporter: tools/export_objects_bridge.py, tools/export_objects_all_planes.sh
+  runtime: data/regions/*.objects
+  validation: no consolidated audit yet
+  status: BLOCKS_PARITY
+- Tile / region / area / collision data
+  raw source: b237 cache terrain/collision
+  exporter: tools/export_collision.py and external b237 terrain/object exports
+  runtime: data/regions/*.terrain, *.cmap
+  validation: viewer/manual validation only
+  status: BLOCKS_PARITY
+- Varbit / varp / state-transform data
+  raw source: wiki varbit buckets + OpenRS2 OSRS cache build 237 +
+  data_osrs varbit-adjacent dumps
+  exporter: tools/export_varbits.py, tools/export_varps.py
+  runtime: data/defs/varbits.bin, data/defs/varps.bin
+  validation: no consolidated state-transform audit yet
+  status: BLOCKS_PARITY
+- Prayer / spellbook / player-action data
+  raw source: osrsreboxed prayers + wiki spell buckets
+  exporter: tools/export_spells.py
+  runtime: data/defs/spells.bin, teleports.bin
+  validation: no consolidated prayer/action audit yet
+  status: BLOCKS_PARITY
+- Shops / banks / storage / non-drop acquisition
+  raw source: wiki infobox_shop + storeline
+  exporter: tools/export_shops.py
+  runtime: data/defs/shops.bin
+  validation: no consolidated acquisition audit yet
+  status: BLOCKS_PARITY
+- Transportation / traversal
+  raw source: data_osrs teleports/transports + spell teleports
+  exporter: tools/export_spells.py plus future transport audit path
+  runtime: data/defs/teleports.bin
+  validation: no consolidated traversal audit yet
+  status: BLOCKS_PARITY
+- Skills / gathering / recipes / production chains
+  raw source: wiki recipe buckets + dropsline-derived skilling sources
+  exporter: tools/export_recipes.py, export_skill_drops.py
+  runtime: data/defs/recipes.bin, skill_drops.bin, slayer.bin
+  validation: tools/reports/skill_drops.txt, slayer.txt
+  status: BLOCKS_PARITY
+- Content activity schemas
+  raw source: curated encounters + future curated activity schemas
+  exporter: export_encounters.py today, export_quests.py for thin quest metadata
+  runtime: encounters.bin today; quests.bin and dialogue.bin adjacent;
+  wider schemas still absent
+  validation: no consolidated activity-schema audit yet
+  status: BLOCKS_PARITY
+- Normalization / canonicalization / form-mapping
+  raw source: spread across exporters and wiki/repo joins
+  exporter: ad hoc today, not centralized
+  runtime: partial only
+  validation: unresolved-name reports, xvalidate reports, varbit collisions
+  only
+  status: BLOCKS_PARITY
+
+Initial tranche: items
+Status: BLOCKS_PARITY
+
+Current evidence:
+- osrsreboxed item source files present: 28744
+- export_items.py scan on 2026-04-22:
+  scanned 28744
+  skipped duplicates 15077
+  skipped incomplete 647
+  exported records 13020
+- data/defs/items.bin header count: 13020
+- tools/reports/xvalidate_bonuses.txt:
+  items matched 3898
+  mismatches 458
+  name resolution misses 1001
+
+What is good:
+- The raw source corpus is broad enough to plausibly target the full item set.
+- items.bin is not limited to only currently obtainable v1 items.
+- The pipeline already preserves core identity/flag/equipment/weapon data for
+  many items.
+
+Blockers:
+- rc-core does not load items.bin at all; rc_load_item_defs() is still TODO.
+- RC_MAX_ITEM_DEFS is 4096, far below the current exported 13020-item corpus.
+- The current runtime item struct/export path is missing several fields required
+  by the audit target:
+  category/type taxonomy, richer use metadata, full canonical form links,
+  explicit asset/model linkage, and broader normalization metadata.
+- export_items.py currently drops 15077 duplicate-marked rows and 647
+  incomplete rows; whether those rows are safe to collapse or need preserved
+  canonical/form mappings is not yet audited.
+- xvalidate_bonuses still shows 458 mismatches and 1001 unresolved name joins.
+
+Immediate item follow-up:
+- Determine whether duplicate/incomplete skips are acceptable for parity.
+- Define the required canonical form mapping surface:
+  noted/unnoted, placeholder/canonical, linked base item, charged/degraded/
+  broken/ornamented/kit variants.
+- Define the item asset/model linkage fields RuneC actually needs at runtime.
+- Implement runtime loading/capacity before claiming item parity.
+
+Initial tranche: NPCs / monsters / bosses
+Status: BLOCKS_PARITY
+
+Current evidence:
+- osrsreboxed monster source files present: 1192
+- tools/reports/xvalidate_monsters.txt:
+  monsters checked 1175
+  mismatches 236
+- local runtime data/defs/npc_defs.bin header count: 79
+- OSRS Wiki NPC IDs page currently states total NPCs in table: 10160
+  (checked 2026-04-22)
+
+What is good:
+- The repo has a meaningful monster-combat metadata pipeline:
+  b237 cache defs + osrsreboxed monster stats + wiki max-hit/immunity overlay.
+- The validation report is already surfacing the known mismatch set instead of
+  hiding it.
+- Global spawn data has a separate exporter path via data_osrs.
+
+Blockers:
+- The current local npc_defs.bin is only a small slice (79 defs), not a
+  whole-game NPC definition dataset.
+- export_npcs.py is still a region-bounded export path with Varrock-default
+  bounds, so it cannot serve as the full-game NPC-def completeness proof.
+- RC_MAX_NPC_DEFS is 512, far below the current OSRS NPC-ID universe and below
+  the likely first-version full-scope target.
+- rc_world_create_config does not currently load npc_defs.bin or world spawns.
+- The monster validation surface is only for combat monsters; the repo does not
+  yet have a proven completeness audit for all non-combat NPC definitions.
+- xvalidate_monsters still shows 236 mismatches, including dragonfire/max-hit
+  semantics and immunity differences that need explicit resolution rules.
+
+Important distinction:
+- osrsreboxed monster JSON (~1192 rows) is not the same thing as the full NPC
+  universe. Full NPC coverage must come from the cache-backed NPC-def pipeline,
+  with combat overlays applied where relevant.
+
+Immediate NPC follow-up:
+- Define the intended full NPC-def export path for the whole game, not just a
+  region slice.
+- Separate full NPC-definition completeness from monster-combat-field
+  completeness.
+- Resolve whether RuneC wants one full npc_defs.bin or a modular per-slice
+  loading strategy with full source coverage behind it.
+
+NPC closure update 2026-04-24:
+- The initial `79`-def snapshot above is preserved as pre-closure audit
+  history. The authoritative current NPC state is this closure update
+  plus `tools/reports/npc_defs_full.txt` and
+  `tools/reports/npc_reconciliation.txt`.
+- Full NPC-def export path now exists: tools/export_npc_defs_full.py.
+- data/defs/npc_defs.bin is NDEF v3 with 15182 definitions.
+- NDEF v3 preserves up to 12 model ID links per NPC.
+- Source merge: model_dump 15119 defs, data_osrs 5695 IDs,
+  osrsreboxed 1192 combat monsters, wiki monster overlays 4149 IDs,
+  plus curated activity-spawn edge IDs.
+- V1 Sailing exclusion applied: 498 model-dump entries skipped, 391
+  RuneLite constants skipped as Sailing-linked, 0 non-excluded RuneLite
+  constants missing.
+- Runtime capacity/loading landed: RC_MAX_NPC_DEFS 20000,
+  RC_MAX_NPC_ID 20000, RC_MAX_NPCS 30000, ID-indexed rc_npc_def_find,
+  NPC defs loaded during rc_world_create_config for NPC-using subsystem
+  configs, and manual full static-spawn loading validated.
+- Reconciliation reports added: tools/reports/npc_reconciliation.txt
+  and tools/reports/npc_semantics.txt.
+  Current result: 0 non-excluded RuneLite IDs missing, 0 drop-table IDs
+  missing NPC defs, 0 world-spawn IDs missing NPC defs, 0 non-excluded
+  morph parent/target IDs missing NPC defs, 12950 renderable NPC mesh
+  entries for 12950 model-linked defs, and 0 wiki-backed semantic
+  field conflicts.
+- Regular non-boss special-mechanics ownership seed added:
+  data/curated/regular_npc_special_mechanics.toml with 9 families.
+- Still BLOCKS_PARITY because attack/death/run animation coverage is
+  sparse, NPC morph state still needs runtime transform evaluation,
+  boss mechanics still need executable conversion, and regular-monster
+  special mechanics still need detailed data + runtime support.
+- Current next NPC-lane closure order:
+  - boss mechanics conversion beyond the current encounter TOMLs
+  - exact Nex and Sol Heredit activity-spawn extraction
+  - runtime compile/load path for the remaining NPC-side support data
+
+Audit tranche: Drops
+Status: BLOCKS_PARITY
+
+Current evidence:
+- tools/reports/drops.txt:
+  total dropsline rows 38638
+  bad drop_json 0
+  unresolved NPC names 9202
+  unresolved item names 29
+  unparseable rarity 45
+  unparseable quantity 3
+  rare_drop_table flagged 5263
+  distinct NPC drop tables 909
+  total drop entries 24144
+- data/defs/drops.bin header count: 909
+- tools/reports/skill_drops.txt:
+  sources 961
+  entries 9202
+- data/defs/skill_drops.bin header count: 961
+- tools/reports/rdt_gdt.txt:
+  RDT entries 33 unresolved 4
+  GDT entries 15 unresolved 3
+  MRDT entries 0 unresolved 0
+- data/defs/rdt.bin header count: 33
+- data/defs/gdt.bin header count: 15
+- data/defs/mrdt.bin header count: 0
+
+What is good:
+- The repo already separates NPC drop tables from non-NPC source drops.
+- Shared drop tables have explicit binaries rather than only raw wiki text.
+- The raw dropsline parse is mechanically healthy: 38638 rows, 0 bad JSON.
+
+Blockers:
+- 9202 unresolved "NPC" names are not yet triaged into valid NPC sources,
+  normalization/alias issues, or correctly non-NPC sources.
+- The unresolved sample clearly mixes categories:
+  Apothecary / H.A.M. Member / Hazelmere (NPC-like),
+  Ava's accumulator / Crystal chest / Mystery box (containers/rewards),
+  Gem rocks / Oak tree / Yew tree (skilling nodes).
+- 29 unresolved item names still remain in the drop pipeline.
+- Shared-table semantics are not fully closed:
+  "Nothing" and "Mega-rare drop table" still resolve as item_id=0 placeholders,
+  and MRDT is currently empty.
+- rc-core world bring-up does not load drops.bin, skill_drops.bin, rdt.bin,
+  gdt.bin, or mrdt.bin.
+- There is no consolidated completeness proof yet that 909 NPC drop tables
+  covers every in-scope NPC/boss source that should have drops.
+
+Immediate drop follow-up:
+- Triage unresolved NPC/source names into:
+  valid NPC source, normalization issue, or non-NPC source.
+- Audit the 29 unresolved item names.
+- Decide how nested/shared-table rows like "Nothing" and
+  "Mega-rare drop table" should live in runtime data.
+- Add a completeness check that compares in-scope NPC/boss lists against
+  drops.bin coverage.
+
+Audit tranche: Spawns
+Status: BLOCKS_PARITY
+
+Current evidence:
+- data_osrs/NPCList_OSRS.json:
+  rows 24110
+  unique NPC IDs 5695
+  unique names 2852
+  rows with models 22579
+  rows with actions 18668
+  rows with morphs 1446
+  rows with varbitId 1531
+  rows with varpId 1531
+- cached wiki locline:
+  rows 10344
+  distinct names 2343
+  rows with coordinates 10333
+  rows mapid > 0 1556
+  rows mapid <= 0 or missing 8788
+- compiled/runtime outputs:
+  world.npc-spawns.bin rows 24110
+  varrock.npc-spawns.bin rows 235
+- monster-like locline names with parsed coordinates: 831
+  also in NPCList by exact name: 566
+  missing from NPCList by exact name: 265
+  overlapping names with at least one exact coord match: 486 / 566
+- current exporter instance-only surface:
+  derived names 404
+  flagged spawns 3314
+  flagged distinct names 214
+
+What is good:
+- The primary spawn source is cache-id keyed, so the broad static-world export
+  path does not depend on fuzzy name resolution.
+- Full-world and Varrock slice binaries both exist.
+- data_osrs already includes many arena/isolated bosses with concrete coords.
+- cached wiki locline already carries concrete arena coordinates for many
+  instance-like bosses that NPCList misses by exact name.
+
+Blockers:
+- The current locline cross-check is too noisy to serve as a parity proof by
+  itself; raw wiki-only names still include scenery and other non-NPC pages.
+- export_spawns.py does not parse or preserve locline coordinates even though
+  the cache holds them.
+- Source conflicts are reported but not resolved.
+- NPCList_OSRS does not carry direction or wander range; the exporter writes
+  default direction/wander values, so exact spawn orientation/roam fidelity is
+  not yet proven.
+- The current `mapid > 0` only instance-only heuristic misses many
+  arena-local bosses that still have valid coords with mapid -1 or 0.
+- Some important bosses/activities are absent from both current local spawn
+  surfaces by exact name, including examples checked during closure:
+  Nex, Zulrah, TzTok-Jad, TzKal-Zuk, Tempoross, Wintertodt, and Sol Heredit.
+- Not every one of those is purely an NPC-spawn problem; some activity/object
+  driven content like Wintertodt will need closure jointly with the
+  object/activity-schema work.
+- rc-core world bring-up does not load world.npc-spawns.bin.
+
+Activity-spawn edge-case closure added 2026-04-23:
+- New curated owner: data/curated/activity_spawns.toml
+- Resolved from local reference/cache sources:
+  Zulrah arena positions, snakeling spawn pool, and reference safe tiles
+  marked for validation.
+  TzHaar Fight Cave / TzTok-Jad cave bounds, named spawn regions, and wave 63
+  rotation-to-region table.
+  Inferno / TzKal-Zuk arena bounds, pillars, regular wave spawn points,
+  nibbler spawn, and wave-69 Zuk/glyph/set/Jad/healer spawns.
+  Tempoross boss IDs plus harpoonfish cannon, shrine, and mast anchors.
+  Wintertodt storm/brazier/root anchors plus pyromancer and snow NPC support
+  points.
+- Source-correctness issues found:
+  data/curated/encounters/inferno.toml uses 7707 as TzKal-Zuk, but RuneLite
+  IDs show 7706 = TzKal-Zuk and 7707 = Ancestral Glyph.
+  data/curated/encounters/tempoross.toml uses 10569, which RuneLite gameval
+  names as a special Harpoonfish fishing spot, not the boss form.
+  data/curated/encounters/wintertodt.toml uses 7936, which local NPCList names
+  as Revenant demon; Wintertodt is scenery/object-driven.
+- Remaining explicit source blockers:
+  Nex boss/bodyguard runtime spawn tiles need cache-script or authoritative
+  encounter-config extraction.
+  Sol Heredit wave-12 combat spawn and reduced-arena bounds need cache-script
+  or authoritative Colosseum wave-config extraction.
+  activity_spawns.toml is curated-only today and is not compiled or loaded by
+  runtime.
+
+Immediate spawn follow-up:
+- Treat data_osrs/NPCList_OSRS.json as the current primary static-world source.
+- Parse and preserve locline coordinates instead of discarding them.
+- Build a cleaned spawn audit keyed by canonical NPC identity, not raw
+  locline page_name equality.
+- Replace the current instance-only heuristic with a clearer spawn-class model:
+  open-world static, arena-local static, and dynamic/encounter-spawned.
+- Compile/load data/curated/activity_spawns.toml through the future activity
+  runtime owner.
+- Fix encounter TOML identity issues found for Inferno/Zuk, Tempoross, and
+  Wintertodt.
+- Extract Nex and Sol Heredit exact runtime spawn/activity bounds from cache
+  scripts or equivalent authoritative activity configs.
+
+Audit tranche: Mechanics coverage
+Status: BLOCKS_PARITY
+
+Current evidence:
+- data/curated/encounters/*.toml: 50 encounter specs
+- data/curated/mechanics/*.toml: 96 mechanics extracts
+- tools/reports/encounters.txt:
+  encounters encoded 50
+  skipped 0
+  warnings 44
+- tools/reports/mechanics_extract.txt:
+  bosses emitted 96
+  no fight sections 74
+  no NPC-id resolution 5
+  sections kept 255
+  sections cut 2134
+- rc-core encounter primitive enum reserves 92 ids, but the current PRIM_TABLE
+  only wires a small implemented subset.
+- The repo contains many authored `script = "..."` fields in encounter TOMLs,
+  but no live script registry/runtime dispatch path yet.
+
+What is good:
+- There is a real boss-mechanics extraction pipeline backed by cached wiki
+  pages gathered through the repo's MediaWiki tooling.
+- There is a real executable encounter pipeline: 50 curated encounter TOMLs
+  compile into encounters.bin and load into the encounter subsystem.
+- The engine now supports bounded phase-enter / phase-exit trigger dispatch for
+  the currently implemented trigger slice.
+
+Blockers:
+- Mechanics extraction is overwhelmingly boss-focused; there is no comparable
+  dedicated mechanics dataset today for regular combat NPC families with
+  special behavior.
+- 96 extracted boss prose files are not the same thing as normalized executable
+  mechanics coverage.
+- The encounter exporter/runtime still defers 44 authored trigger bindings.
+- 74 boss pages produced no in-scope fight sections after extraction, and 5
+  extracted bosses still have no NPC-id resolution.
+- Many encounter TOMLs rely on authored `script = "..."` hooks that do not
+  currently execute.
+- The primitive surface is still much narrower than the authored/reference
+  mechanics surface.
+
+Immediate mechanics follow-up:
+- Separate three layers explicitly:
+  boss prose extracts, executable encounter TOMLs, and regular combat NPC
+  mechanics coverage.
+- Build a dedicated audit for regular combat NPC families with real mechanics.
+- Triage the 44 deferred trigger bindings by:
+  normalization issue, missing DSL support, or missing script/runtime support.
+- Audit the 74 "no fight sections" boss pages to distinguish true no-op pages
+  from extractor misses or out-of-scope content.
+
+Audit tranche: World objects / interactables
+Status: BLOCKS_PARITY
+
+Current evidence:
+- cached wiki scenery source:
+  files 54
+  rows 26350
+  distinct page names 5708
+- cached locline source:
+  files 21
+  rows 10344
+  distinct page names 2343
+- runtime object assets:
+  data/regions/*.objects = 1 file
+  data/regions/*.atlas = 1 file
+- data/regions/varrock.objects header:
+  placements 61387
+  origin (3072, 3264)
+  total verts 18649539
+  file size 447588956
+- export_objects_bridge.py resolves visual level via LINK_BELOW and emits
+  placed objects for rendering only.
+- rc-viewer currently loads only data/regions/varrock.objects.
+
+What is good:
+- Raw scenery/object source breadth is large.
+- The Varrock slice already has a dense baked object mesh with atlas support.
+- The current object exporter handles bridge / LINK_BELOW visual-level
+  resolution.
+
+Blockers:
+- The live runtime object corpus is still effectively a single-region Varrock
+  slice, not a full in-scope world-object dataset.
+- The current .objects asset is a baked render mesh, not a first-class
+  gameplay object-definition/interactable dataset.
+- There is no dedicated runtime dataset today for object definitions,
+  action verbs, interaction types, or object-state / transform hooks.
+- rc-core does not load or own world objects/interactables.
+- database.md already records that object definitions and object interaction
+  metadata are not yet first-class datasets.
+
+Immediate object/interactable follow-up:
+- Define a first-class object/interactable dataset.
+- Decide source-merge rules for object actions and transforms.
+- Separate render mesh assets from gameplay object metadata.
+- Define full-world object-placement coverage requirements.
+
+Audit tranche: Tile / region / area / collision data
+Status: BLOCKS_PARITY
+
+Current evidence:
+- current region assets on disk:
+  *.terrain = 2 files (test_varrock.terrain, varrock.terrain)
+  *.cmap = 1 file (varrock.cmap)
+- data/regions/varrock.terrain header:
+  verts 608118
+  regions 25
+  origin (3072, 3264)
+  file size 10139524
+- data/regions/varrock.cmap header:
+  version 1
+  regions 25
+  file size 1638512
+- rc-viewer currently hardcodes data/regions/varrock.terrain and
+  data/regions/varrock.cmap.
+- rc-core/pathfinding.c treats unloaded regions as fully walkable.
+- RcWorldMap capacity is still RC_MAX_REGIONS = 32.
+- rc_world_create_config() still does not load cfg->regions_dir.
+
+What is good:
+- There is a real collision exporter using the reference cache path.
+- Terrain and collision assets exist and are internally aligned for the
+  Varrock slice (25 regions in both major files).
+- Core pathfinding already consumes collision flags once regions are loaded.
+
+Blockers:
+- The live region/collision asset corpus is still a narrow Varrock slice, not
+  a full in-scope area dataset.
+- Region loading is not wired through RcWorldConfig; the viewer still loads
+  terrain/collision manually by hardcoded path.
+- Unloaded regions are currently treated as walkable, which means missing
+  collision data degrades into false-positive traversal.
+- RC_MAX_REGIONS = 32 is still slice-sized for whole-world or even moderately
+  broad multi-region coverage.
+- There is no first-class dataset yet for region-area flags, safe zones,
+  wilderness / multi-combat flags, or broader area-boundary metadata.
+- Current validation is mostly viewer/manual, not a consolidated parity report.
+
+Immediate tile/region/collision follow-up:
+- Wire region loading through RcWorldConfig.
+- Stop treating unloaded regions as implicitly walkable.
+- Define the target whole-world or modular region corpus.
+- Define first-class area-flag metadata.
+
+Audit tranche: Varbit / varp / state-transform data
+Status: BLOCKS_PARITY
+
+Current evidence:
+- cached/cache-backed varbit source:
+  files 12
+  rows 5794
+  cache varbit defs 18570
+  unique exported varbits 18639
+  collisions 52
+  skipped rows 0
+- data/defs/varbits.bin header:
+  version 2
+  count 18639
+  file size 397177
+- data/defs/varps.bin header:
+  version 1
+  count 5546
+  file size 76546
+- export_varbits.py emits varbit numeric index, symbolic name, base varp,
+  and least/most significant bit range.
+- export_varps.py emits varp numeric index, cache type, and synthetic
+  symbolic name.
+- default configs point at data/defs/varbits.bin.
+- rc_world_create_config() does not load varbits.bin.
+- RcWorld currently has no varbit/varp state storage.
+- there is now a separate varp / varplayer export dataset.
+- there is no first-class object/NPC transform dataset keyed by
+  varbit/varp state.
+
+What is good:
+- The repo already has a meaningful semantic varbit lookup corpus.
+- The current varbit export is broad enough to cover thousands of named state
+  hooks.
+- The exporter dedupes overlapping cached bucket pages into a compact runtime
+  map.
+
+Blockers:
+- The current varbit binary includes cache bit-range metadata, but it is not
+  a full runtime state/transform dataset.
+- There is still no runtime varbit state on RcWorld, despite config and docs
+  treating varbits as base data.
+- The varp / varplayer export dataset exists; runtime loading is not
+  implemented yet.
+- There is no first-class dataset for object/NPC transforms driven by
+  varbits/varps.
+- 52 duplicate-index collisions still need normalization review.
+- World bring-up does not load or use varbits.bin.
+
+Immediate varbit/state follow-up:
+- Add runtime varbit state loading/ownership.
+- Wire first-class varp/varplayer runtime loading.
+- Define state-transform mapping dataset.
+- Audit the 52 varbit collisions for alias/normalization behavior.
+
+Audit tranche: Prayer / spellbook / player-action data
+Status: BLOCKS_PARITY
+
+Current evidence:
+- osrsreboxed prayer source dump:
+  entries 29
+- cached infobox_spell source:
+  files 2
+  rows 402
+  distinct page names 201
+- data/defs/spells.bin header:
+  version 1
+  count 201
+  file size 7660
+- data/defs/teleports.bin header:
+  version 1
+  count 58
+  file size 2366
+- runtime prayer surface today is a hardcoded 16-bit prayer flag set with
+  drain + melee-stat bonus logic only.
+- rc_world_create_config() does not load spells.bin.
+- rc_player_set_prayer() and the broader player-action entry points in tick.c
+  are still stubs.
+
+What is good:
+- There is real spell metadata export breadth already on disk.
+- The repo already has a prayer source corpus separate from the spell corpus.
+- Core runtime already has partial prayer behavior:
+  drain math, protection prayer state, and melee stat-bonus effects.
+
+Blockers:
+- There is no first-class prayer-definition dataset in RuneC today.
+- The runtime prayer surface is still a hardcoded subset and does not consume
+  the 29-entry prayer source dump.
+- spells.bin exists, but world bring-up does not load it and combat still
+  defaults to a hardcoded spell max-hit path.
+- The current spell export is metadata-only; there is no proven runtime
+  spell-selection / spell-effect data path.
+- There is no first-class player-action dataset or action-definition layer.
+- The core player-action API surface is still mostly stubs.
+
+Immediate prayer/spellbook/action follow-up:
+- Define/export a first-class prayer dataset.
+- Load/use spells.bin in the combat/magic path.
+- Define the player-action data boundary.
+- Replace stubbed action entry points with data-backed or explicit runtime
+  behavior.
+
+Audit tranche: Shops / banks / storage / non-drop acquisition
+Status: BLOCKS_PARITY
+
+Current evidence:
+- cached shop sources:
+  infobox_shop files 4 rows 1006 pages 448
+  storeline files 26 rows 12506 pages 581
+- data/defs/shops.bin header:
+  version 1
+  count 597
+  file size 135458
+- runtime shop surface today:
+  RC_MAX_SHOPS = 32
+  g_shops[RC_MAX_SHOPS]
+  buy/sell/restock all TODO stubs
+- RcPlayer exposes RC_BANK_SIZE = 800 as a constant but has no bank storage
+  array/state.
+- rc_world_create_config() does not load shops.bin.
+
+What is good:
+- There is already a broad compiled shop-stock dataset.
+- The current shop export preserves meaningful economics metadata:
+  buy/sell prices, base stock, multipliers, and restock ticks.
+- Shop data is clearly separated from item defs and drop tables.
+
+Blockers:
+- Runtime shop capacity is drastically undersized:
+  RC_MAX_SHOPS = 32 vs shops.bin count 597.
+- The runtime shop system is still stubbed and does not load/use the
+  compiled dataset.
+- There is no first-class bank/storage runtime state today.
+- There is no dedicated non-drop acquisition dataset beyond shops and whatever
+  is implicitly scattered across other sources.
+- Item availability via stores/banks/storage cannot be signed off for parity
+  with the current runtime surface.
+
+Immediate shops/storage follow-up:
+- Wire shops.bin into runtime.
+- Redesign shop capacity/loading strategy.
+- Define bank/storage runtime state.
+- Define the broader non-drop acquisition data model.
+
+Audit tranche: Transportation / traversal
+Status: BLOCKS_PARITY
+
+Current evidence:
+- data_osrs/teleports_osrs.json:
+  entries 2320
+  includes category/type/menu metadata and explicit destinations
+- data_osrs/transports_osrs.json:
+  entries 12154
+  includes start tile, destinations, menu action/option, and object/NPC ids
+- data/defs/teleports.bin header:
+  version 1
+  count 58
+  file size 2366
+- current teleports.bin is exported only from spell infobox rows.
+- database.md already notes that non-spell transports are not yet a
+  first-class runtime dataset.
+- rc_world_create_config() does not load teleports.bin.
+- local pathfinding covers tile movement only; no traversal-edge dataset.
+
+What is good:
+- Strong external source breadth already exists for both teleports and
+  non-spell transports.
+- RuneC already has a spell-teleport subset compiled into teleports.bin.
+- The external transport source already carries explicit destination and
+  interaction metadata.
+
+Blockers:
+- RuneC is not exporting or loading the non-spell transport corpus at all.
+- Current teleports.bin is only a spell-derived subset and is too small for
+  full traversal parity.
+- The current teleport export does not represent the broader transport graph
+  RuneC needs for ladders, stairs, boats, portals, fairy rings, shortcuts,
+  and other traversal actions.
+- Traversal edges, restrictions, and destination mappings are not yet a
+  first-class runtime dataset.
+- Transport/traversal parity is also blocked by the missing object
+  interaction dataset from tranche 6.
+
+Immediate transportation/traversal follow-up:
+- Export the data_osrs transport corpus into runtime data.
+- Define a first-class traversal-edge dataset.
+- Unify spell teleports with non-spell transports at the runtime layer.
+- Connect traversal data to object/NPC interaction metadata.
+
+Audit tranche: Skills / gathering / recipes / production chains
+Status: BLOCKS_PARITY
+
+Current evidence:
+- cached recipe source:
+  files 15
+  rows 7182
+- recipe corpus profile:
+  kept rows 3413
+  non-recipe rows skipped 1912
+  missing-skills rows skipped 1857
+  unique skill names represented in kept rows 21
+- data/defs/recipes.bin header:
+  version 1
+  count 3413
+  file size 179848
+- data/defs/skill_drops.bin header:
+  version 1
+  count 961
+  file size 130093
+- tools/reports/skill_drops.txt:
+  sources 961
+  entries 9202
+- data/defs/slayer.bin header:
+  version 1
+  count 12
+  file size 6372
+- tools/reports/slayer.txt shows broad task tables for the current
+  slayer-master corpus.
+- runtime skill surface today:
+  RcSkill enum models 23 pre-Sailing skills,
+  rc-core/skills.c only provides XP/level helpers,
+  RcPlayer only has generic skill_action/timer fields.
+- world bring-up does not load recipes.bin, skill_drops.bin, or slayer.bin.
+- there is no rc-core recipes/slayer runtime owner today.
+- live OSRS has 24 skills as of 2026-04-23, including Sailing;
+  RuneC v1 intentionally still scopes to 23.
+
+What is good:
+- Meaningful structured data already exists for production loops,
+  residual skilling sources, and Slayer.
+- recipes.bin preserves skill reqs, materials, tools, facility, output,
+  and ticks.
+- The repo's intended v1 skill scope is explicit and still internally
+  consistent in rc-core.
+
+Blockers:
+- There is no first-class gathering-node dataset for trees, rocks,
+  fishing spots, farming patches, hunter targets, stalls, or other skill
+  action sources.
+- recipes.bin, skill_drops.bin, and slayer.bin are not loaded at runtime.
+- There is no runtime recipe/production system owner today.
+- There is no runtime slayer subsystem owner today.
+- The current skill runtime is generic XP/timer scaffolding, not
+  data-backed per-skill action logic.
+- skill_drops.bin is only a source->loot dataset, not an end-to-end
+  skill activity schema.
+- Live-skill source scope now includes Sailing, which RuneC v1 still
+  intentionally excludes.
+
+Immediate skills/recipes follow-up:
+- Define the gathering-node dataset.
+- Wire recipes.bin, skill_drops.bin, and slayer.bin into runtime.
+- Add runtime owners for recipes/slayer or choose a different
+  ownership boundary.
+- Decide how out-of-scope live-skill data is filtered or tagged.
+
+Audit tranche: Content activity schemas
+Status: BLOCKS_PARITY
+
+Current evidence:
+- curated content counts:
+  encounters 50
+  mechanics 96
+  dialogue 380
+  quests 0
+  specials 120
+- compiled binaries:
+  encounters.bin version 2 count 50 size 17162
+  quests.bin version 1 count 215 size 5451
+  dialogue.bin version 1 count 380 size 10281363
+- encounter authoring includes waves, wave_range, post-wave modifier
+  choice, enter_after, quest_required, room-wide flags, and
+  encounter_type.
+- export_encounters.py explicitly does not currently compile:
+  multi-boss arrays, rooms, waves, damage_modifiers, protections,
+  encounter_type, richer trigger DSL, rotations, or per-phase scripts.
+- rc-core encounter runtime only consumes npc ids, attacks, phases,
+  and mechanics.
+- export_quests.py currently compiles only name, difficulty, length,
+  and skill requirements.
+
+What is good:
+- RuneC already has a real structured encounter schema and compiled
+  encounter binary.
+- Dialogue and quest metadata already exist as adjacent structured
+  content.
+- The curated source surface is broad enough to prove the repo is
+  using structured content authoring, not only hardcoded logic.
+
+Blockers:
+- The only first-class compiled activity schema today is the bounded
+  encounter binary.
+- Important authored activity fields are still dropped by the exporter:
+  room data, wave progression, requirements, rewards, completion
+  conditions, instance templates, encounter_type, and richer phase/config
+  state.
+- There is no generic activity-schema layer for non-encounter content
+  such as skilling activities, minigames, raids, prep phases, room
+  chains, or reward-container flows.
+- quests.bin is only a thin metadata table and there are 0 curated quest
+  TOMLs.
+- dialogue.bin is a dialogue tree corpus, not a generalized activity
+  schema.
+- data/curated/specials exists as structured source, but there is no
+  compiled runtime special-attack schema yet.
+
+Immediate content-activity follow-up:
+- Define the typed activity-schema boundary for v1.
+- Promote required authored encounter fields into compiled/runtime data.
+- Add non-encounter activity schemas where v1 needs them.
+- Decide how quest/special/dialogue sources integrate with the broader
+  activity model.
+
+Audit tranche: Normalization / canonicalization / form-mapping
+Status: BLOCKS_PARITY
+
+Current evidence:
+- tools/database_sources.py exposes upstream item fields:
+  linked_id_item, linked_id_noted, linked_id_placeholder, noted,
+  placeholder.
+- export_items.py:
+  skips duplicate rows outright,
+  skips incomplete rows outright,
+  preserves linked_id_noted only,
+  preserves noted/placeholder as flags.
+- export_drops.py:
+  strips #variant suffixes,
+  strips trailing (...) location variants on source names when matching,
+  and chooses the lowest item/NPC id as the canonical target.
+- export_skill_drops.py, export_recipes.py, and export_shops.py all use
+  lowercased item names and # stripping.
+- export_spawns.py cross-checks locline rows via simple
+  case-insensitive name equality.
+- export_npcs.py has an ad hoc Kotlin-name normalization bridge for
+  2011Scape helper matching.
+- earlier audit signals still active:
+  item duplicate skips 15077,
+  item incomplete skips 647,
+  item unresolved joins 1001,
+  drop unresolved source names 9202,
+  drop unresolved item names 29,
+  varbit collisions 77.
+- runtime normalization surface is still partial: item flags plus
+  linked_id_noted and scattered exporter heuristics only.
+
+What is good:
+- The repo already recognizes several real normalization cases:
+  noted forms, placeholders, duplicate item forms, wiki # variants,
+  location variants, and helper-name cleanup.
+- The current reports make normalization debt visible.
+- Upstream source data already exposes richer link fields than RuneC
+  currently compiles.
+
+Blockers:
+- There is no centralized normalization/canonicalization layer today.
+- Important item form mappings are only partially preserved.
+- Charged / degraded / broken / ornamented / kit / inactive variant
+  handling is not represented as an explicit mapping surface.
+- NPC/source/wiki-title normalization is exporter-specific and not shared
+  across the pipeline.
+- Existing unresolved-name and collision counts remain too high for
+  parity sign-off.
+- Current canonical rules often default to "lowest id wins", which is
+  pragmatic but not a proven repo-wide policy.
+
+Immediate normalization follow-up:
+- Define the canonical mapping model by category.
+- Stop relying on purely ad hoc exporter heuristics.
+- Decide where "lowest id wins" is acceptable and where explicit
+  mappings are required.
+- Add focused validation for unresolved-name and collision classes.
+
+Next audit tranche:
+- audit write-up complete; fold blocker list back into work.md before
+  resuming feature work
