@@ -1,0 +1,41 @@
+Activity spawn export
+
+activity spawn rows: 117
+activities: 7
+npc-spawnable rows: 30
+object-anchor rows: 28
+unresolved required rows: 0
+output: data/defs/activity_spawns.bin (8590 bytes)
+elapsed_ms: 3.554
+
+Status
+READY rows are loadable activity-local points, regions, dynamic pools, wave refs, or object anchors.
+Unresolved rows are explicit parity blockers; the exporter does not infer Nex/Sol coordinates from arena geometry.
+Provisional rows are runtime-usable only when their source_status explicitly says so; they are not authoritative OSRS sign-off.
+
+Source status
+- provisional_private_server_verified: 2
+- resolved_from_reference: 3
+- resolved_object_anchors: 2
+
+Rows by kind
+- point: 36
+- region: 15
+- dynamic: 6
+- wave_point: 10
+- wave_region_ref: 15
+- object_anchor: 28
+- safe_tile: 7
+- unresolved: 0
+
+Unresolved rows
+- none
+
+Activities
+- fortis_colosseum_sol_heredit: 16 rows (region=10, wave_point=1, object_anchor=5)
+- inferno: 22 rows (point=9, dynamic=1, wave_point=9, object_anchor=3)
+- nex: 8 rows (point=5, object_anchor=3)
+- tempoross: 8 rows (object_anchor=8)
+- tzhaar_fight_cave: 20 rows (region=5, wave_region_ref=15)
+- wintertodt: 27 rows (point=18, object_anchor=9)
+- zulrah: 16 rows (point=4, dynamic=5, safe_tile=7)

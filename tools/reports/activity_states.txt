@@ -1,0 +1,38 @@
+Activity state-machine export
+
+activity rows: 16
+v1-required rows: 16
+states: 47
+transitions: 32
+params: 55
+output: data/defs/activity_states.bin
+elapsed_ms: 1.942
+
+Status
+READY_WITH_ACCEPTED_SIMPLIFICATIONS: rows load into RcActivityRun state flow; exact per-tick attack/object consumers land per activity.
+
+Rows
+- barrows kind=crypt_activity npcs=6 states=3 transitions=2
+- tzhaar_fight_cave kind=wave_activity npcs=1 states=3 transitions=2
+- inferno kind=wave_activity npcs=3 states=3 transitions=2
+- grotesque_guardians kind=dual_boss npcs=13 states=3 transitions=2
+- moons_of_peril kind=multi_boss npcs=3 states=3 transitions=1
+- royal_titans kind=dual_boss npcs=2 states=3 transitions=2
+- tempoross kind=skilling_boss npcs=0 states=4 transitions=3
+- wintertodt kind=skilling_boss npcs=0 states=3 transitions=1
+- araxxor kind=single_boss npcs=1 states=3 transitions=2
+- doom_of_mokhaiotl kind=single_boss npcs=3 states=4 transitions=5
+- gemstone_crab kind=single_boss npcs=1 states=2 transitions=1
+- penance_queen kind=wave_activity npcs=1 states=3 transitions=2
+- phosanis_nightmare kind=single_boss npcs=11 states=3 transitions=3
+- revenant_maledictus kind=single_boss npcs=1 states=2 transitions=1
+- shellbane_gryphon kind=single_boss npcs=1 states=2 transitions=1
+- vanguard kind=multi_boss npcs=4 states=3 transitions=2
+
+Kinds
+- crypt_activity: 1
+- dual_boss: 2
+- multi_boss: 2
+- single_boss: 6
+- skilling_boss: 2
+- wave_activity: 3

@@ -1,20 +1,36 @@
 build/
+build_cov/
 *.o
 *.so
 *.dylib
+*.gcda
+*.gcno
+*.gcov
 .cache/
 compile_commands.json
 __pycache__/
 *.pyc
+.codex
+typescript
 # Large asset files
+data/
 data/regions/varrock.objects
 data/regions/varrock.atlas
 data/regions/varrock.terrain
 data/regions/varrock.cmap
 data/regions/test_varrock.terrain
 collision_log.txt
-# Internal docs (not public facing) — only README.md tracks
+# Local raw source corpora used by exporters; keep these out of git.
+data/source/
+# Local-only docs. Keep only the repo root README and component READMEs
+# tracked on GitHub.
 *.md
-!README.md
+!/README.md
+!/rc-core/README.md
+!/rc-viewer/README.md
+!/rc-content/README.md
+!/rc-content/encounters/README.md
+!/rc-content/quests/README.md
+!/rc-content/regions/README.md
 # Local claude-code settings
 .claude/

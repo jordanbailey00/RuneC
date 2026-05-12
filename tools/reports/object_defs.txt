@@ -1,0 +1,76 @@
+Object definition / interactable catalog
+
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+output binary: data/defs/object_defs.bin (4537247 bytes)
+cache source: tools/cache_pipeline/source/current_fightcaves_demo/data/cache
+OpenRS2 layout reference: https://archive.openrs2.org/api
+elapsed_ms: 781.05
+
+counts:
+  cache object defs:             60568
+  wiki object_id rows/pages:     26680/6085
+  wiki object_id unique ids:     15896
+  wiki scenery rows/pages:       26350/5708
+  wiki scenery unique ids:       14220
+  wiki ids missing cache defs:   0
+  cache ids missing wiki ids:    44672
+
+cache feature coverage:
+  named defs:                    29119
+  model-linked defs:             56013
+  action-bearing defs:           16354
+  interactive defs:              55114
+  transform/morph defs:          4555
+  map-icon defs:                 517
+  category defs:                 8063
+  param-bearing defs:            1054
+  total int params:              1673
+  ambient-sound defs:            1491
+  model-clipped defs:            484
+  hollow defs:                   62
+
+top actions:
+  Inspect                  2853
+  Search                   2010
+  Guide                    1803
+  Remove                   1436
+  Open                     1411
+  Enter                    750
+  Climb-up                 576
+  Climb-down               560
+  Clear                    490
+  Build                    483
+  Take                     458
+  Dump                     440
+  Close                    436
+  Climb                    344
+  Prune                    272
+  Use                      255
+  Remove-trophy            252
+  Mine                     230
+  Cross                    202
+  Check                    187
+  Add to                   185
+  Repair                   152
+  Pick                     147
+  Exit                     144
+  Read                     133
+  Modify                   132
+  Dig-up                   129
+  Rotate-clockwise         128
+  Rotate-anticlockwise     128
+  Change                   127
+
+unknown opcode warnings:
+  none
+
+scope:
+  - binary is a definition/interactable catalog, not full region placement ownership
+  - int params, clip flags, ambient sound ids, transforms, actions, and model ids are retained for interaction scripts
+  - string params and full sound variant lists remain exporter/report-only until a runtime consumer needs them
+  - region render meshes remain in data/regions/*.objects and are not duplicated here
+
+remaining object/interactable parity work:
+  - refine uncommon object-specific consumers as exact source data lands
+  - add source-backed door replacement pairing when an authoritative pair table is available
+  - keep object definition metadata separate from renderer mesh ownership

@@ -1,21 +1,68 @@
 #include "pathfinding.h"
+#include "collision.h"
 #include <stdlib.h>
+#include <string.h>
+
+static const RcRegion *map_region_at(const RcWorldMap *map, int region_x,
+                                     int region_y) {
+    if (!map || map->region_count <= 0)
+        return NULL;
+
+    enum { CACHE_SIZE = 8 };
+    typedef struct {
+        const RcWorldMap *map;
+        int region_x;
+        int region_y;
+        int index;
+    } RegionCacheEntry;
+    static _Thread_local RegionCacheEntry cache[CACHE_SIZE];
+
+    unsigned slot = ((unsigned)region_x * 31u + (unsigned)region_y)
+                  & (CACHE_SIZE - 1u);
+    RegionCacheEntry *entry = &cache[slot];
+    if (entry->map == map && entry->region_x == region_x
+            && entry->region_y == region_y
+            && entry->index >= 0 && entry->index < map->region_count) {
+        const RcRegion *reg = &map->regions[entry->index];
+        if (reg->loaded && reg->region_x == region_x
+                && reg->region_y == region_y) {
+            return reg;
+        }
+    }
+
+    for (int i = 0; i < map->region_count; i++) {
+        const RcRegion *reg = &map->regions[i];
+        if (reg->loaded && reg->region_x == region_x
+                && reg->region_y == region_y) {
+            *entry = (RegionCacheEntry){map, region_x, region_y, i};
+            return reg;
+        }
+    }
+    entry->map = map;
+    entry->region_x = region_x;
+    entry->region_y = region_y;
+    entry->index = -1;
+    return NULL;
+}
 
 uint32_t rc_get_flags(const RcWorldMap *map, int x, int y, int plane) {
+    if (x < 0 || y < 0 || plane < 0 || plane >= RC_MAX_PLANES) {
+        return COL_BLOCK_WALK;
+    }
     // Convert world coords to region + local coords
     int region_x = x / RC_REGION_SIZE;
     int region_y = y / RC_REGION_SIZE;
     int local_x = x % RC_REGION_SIZE;
     int local_y = y % RC_REGION_SIZE;
 
-    for (int i = 0; i < map->region_count; i++) {
-        if (map->regions[i].loaded &&
-            map->regions[i].region_x == region_x &&
-            map->regions[i].region_y == region_y) {
-            return map->regions[i].tiles[plane][local_x][local_y].collision_flags;
-        }
-    }
-    return 0; // unloaded region = fully walkable (no collision data loaded)
+    const RcRegion *reg = map_region_at(map, region_x, region_y);
+    if (reg)
+        return reg->tiles[plane][local_x][local_y].collision_flags;
+
+    int found = 0;
+    uint32_t flags = rc_collision_flags_at(x, y, plane, &found);
+    if (found) return flags;
+    return rc_collision_is_loaded() ? COL_BLOCK_WALK : 0;
 }
 
 bool rc_tile_blocked(const RcWorldMap *map, int x, int y, int plane) {
@@ -86,22 +133,22 @@ RcRoute rc_find_path(const RcWorldMap *map, int start_x, int start_y,
     RcRoute route = {0};
 
     // BFS on collision grid
-    // Search area: 128x128 centered on start
-    #define SEARCH_SIZE 128
-    #define SEARCH_HALF 64
+    // Search area: 512x512 centered on start. The viewer streams a 320x320
+    // local slice, so a visible clicked tile can be more than 128 tiles away.
+    #define SEARCH_SIZE 512
+    #define SEARCH_HALF 256
 
-    static int visited[SEARCH_SIZE][SEARCH_SIZE];
-    static int dir_x[SEARCH_SIZE][SEARCH_SIZE];
-    static int dir_y[SEARCH_SIZE][SEARCH_SIZE];
-    static int queue_x[SEARCH_SIZE * SEARCH_SIZE];
-    static int queue_y[SEARCH_SIZE * SEARCH_SIZE];
+    // Thread-local scratch — each thread has its own copy, so the RL
+    // use case (one env per thread, thousands in parallel) is
+    // race-free. Reused across every pathfind call
+    // on that thread (no per-call alloc).
+    static _Thread_local uint8_t visited[SEARCH_SIZE][SEARCH_SIZE];
+    static _Thread_local int8_t dir_x[SEARCH_SIZE][SEARCH_SIZE];
+    static _Thread_local int8_t dir_y[SEARCH_SIZE][SEARCH_SIZE];
+    static _Thread_local uint16_t queue_x[SEARCH_SIZE * SEARCH_SIZE];
+    static _Thread_local uint16_t queue_y[SEARCH_SIZE * SEARCH_SIZE];
 
-    // NOTE: these statics are fine for single-player (one caller).
-    // For multi-threaded use, make them stack-local or per-state.
-
-    for (int i = 0; i < SEARCH_SIZE; i++)
-        for (int j = 0; j < SEARCH_SIZE; j++)
-            visited[i][j] = 0;
+    memset(visited, 0, sizeof(visited));
 
     int origin_x = start_x - SEARCH_HALF;
     int origin_y = start_y - SEARCH_HALF;
@@ -147,10 +194,10 @@ RcRoute rc_find_path(const RcWorldMap *map, int start_x, int start_y,
             if (!rc_can_move(map, world_x, world_y, dirs_x[d], dirs_y[d], plane)) continue;
 
             visited[nx][ny] = 1;
-            dir_x[nx][ny] = -dirs_x[d];
-            dir_y[nx][ny] = -dirs_y[d];
-            queue_x[tail] = nx;
-            queue_y[tail] = ny;
+            dir_x[nx][ny] = (int8_t)-dirs_x[d];
+            dir_y[nx][ny] = (int8_t)-dirs_y[d];
+            queue_x[tail] = (uint16_t)nx;
+            queue_y[tail] = (uint16_t)ny;
             tail++;
 
             int dist = abs(dx - nx) + abs(dy - ny);
@@ -175,18 +222,32 @@ RcRoute rc_find_path(const RcWorldMap *map, int start_x, int start_y,
         return route;
     }
 
-    // Trace path backwards
+    // Trace backwards and keep only direction changes. Runtime movement
+    // walks one tile at a time toward each waypoint, so a long straight
+    // segment only needs its end tile.
     int path_x[RC_MAX_ROUTE], path_y[RC_MAX_ROUTE];
     int path_len = 0;
     int tx = end_x, ty = end_y;
-    while ((tx != sx || ty != sy) && path_len < RC_MAX_ROUTE) {
+    if (tx != sx || ty != sy) {
         path_x[path_len] = tx + origin_x;
         path_y[path_len] = ty + origin_y;
         path_len++;
+    }
+    while ((tx != sx || ty != sy) && path_len < RC_MAX_ROUTE) {
         int bx = dir_x[tx][ty];
         int by = dir_y[tx][ty];
-        tx += bx;
-        ty += by;
+        int px = tx + bx;
+        int py = ty + by;
+        if (px == sx && py == sy) break;
+        int nbx = dir_x[px][py];
+        int nby = dir_y[px][py];
+        if (nbx != bx || nby != by) {
+            path_x[path_len] = px + origin_x;
+            path_y[path_len] = py + origin_y;
+            path_len++;
+        }
+        tx = px;
+        ty = py;
     }
 
     // Reverse into route

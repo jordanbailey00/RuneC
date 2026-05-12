@@ -11,24 +11,34 @@
  *   3 = scale (relative to pivot, 128 = 1.0x identity)
  *   5 = alpha (face transparency, not used in our viewer)
  *
- * Binary format (.anims) produced by scripts/export_animations.py:
- *   header: uint32 magic ("ANIM"), uint16 framebase_count, uint16 sequence_count
- *   framebases section, sequences section with inlined frame data.
+ * Binary format (.anims) produced by tools/cache_pipeline/export_animations.py:
+ *   v2 header: char[4] "ANM2", uint16 version, uint16 header_size,
+ *              uint32 framebase_count, uint32 sequence_count,
+ *              uint32 sequence_frame_count, uint32 flags
+ *   followed by framebases and sequences with inlined normal-frame transforms.
+ * Legacy v1 files with the old little-endian "MINA" magic are still accepted
+ * so stale local data fails gracefully during transitions.
  */
 
 #ifndef OSRS_PVP_ANIM_H
 #define OSRS_PVP_ANIM_H
 
+#include "../rc-core/io.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define ANIM_MAGIC 0x414E494D /* "ANIM" */
+#define ANIM_LEGACY_MAGIC 0x414E494D /* legacy bytes are "MINA" */
+#define ANIM2_MAGIC 0x324D4E41       /* bytes are "ANM2" */
+#define ANIM_FORMAT_VERSION 2
+#define ANIM_HEADER_SIZE_V2 24
 #define ANIM_MAX_SLOTS 256
 #define ANIM_MAX_LABELS 256
 #define ANIM_SINE_COUNT 2048
+#define ANIM_MAX_BASES 65535
+#define ANIM_MAX_SEQUENCES 65535
 
 /* ======================================================================== */
 /* sine/cosine table (matches OSRS Rasterizer3D, fixed-point scale 65536)     */
@@ -105,34 +115,63 @@ typedef struct {
     int*     group_counts;      /* [ANIM_MAX_LABELS] count per group */
 } AnimModelState;
 
+static void anim_cache_free(AnimCache* cache);
+
 /* ======================================================================== */
 /* loading                                                                    */
 /* ======================================================================== */
 
-static uint8_t anim_read_u8(const uint8_t** p) {
-    uint8_t v = **p; (*p)++;
+typedef struct {
+    const uint8_t* p;
+    const uint8_t* end;
+    const char* path;
+    int ok;
+} AnimReader;
+
+static int anim_reader_need(AnimReader* r, size_t n) {
+    if (!r->ok) return 0;
+    if ((size_t)(r->end - r->p) < n) {
+        fprintf(stderr, "anim_cache_load: truncated %s\n", r->path);
+        r->ok = 0;
+        return 0;
+    }
+    return 1;
+}
+
+static uint8_t anim_read_u8(AnimReader* r) {
+    if (!anim_reader_need(r, 1)) return 0;
+    uint8_t v = r->p[0];
+    r->p++;
     return v;
 }
 
-static uint16_t anim_read_u16(const uint8_t** p) {
-    uint16_t v = (uint16_t)((*p)[0]) | ((uint16_t)((*p)[1]) << 8);
-    *p += 2;
+static int8_t anim_read_i8(AnimReader* r) {
+    return (int8_t)anim_read_u8(r);
+}
+
+static uint16_t anim_read_u16(AnimReader* r) {
+    if (!anim_reader_need(r, 2)) return 0;
+    uint16_t v = (uint16_t)(r->p[0]) | ((uint16_t)(r->p[1]) << 8);
+    r->p += 2;
     return v;
 }
 
-static int16_t anim_read_i16(const uint8_t** p) {
-    int16_t v = (int16_t)((uint16_t)((*p)[0]) | ((uint16_t)((*p)[1]) << 8));
-    *p += 2;
+static int16_t anim_read_i16(AnimReader* r) {
+    return (int16_t)anim_read_u16(r);
+}
+
+static uint32_t anim_read_u32(AnimReader* r) {
+    if (!anim_reader_need(r, 4)) return 0;
+    uint32_t v = (uint32_t)(r->p[0])
+              | ((uint32_t)(r->p[1]) << 8)
+              | ((uint32_t)(r->p[2]) << 16)
+              | ((uint32_t)(r->p[3]) << 24);
+    r->p += 4;
     return v;
 }
 
-static uint32_t anim_read_u32(const uint8_t** p) {
-    uint32_t v = (uint32_t)((*p)[0])
-              | ((uint32_t)((*p)[1]) << 8)
-              | ((uint32_t)((*p)[2]) << 16)
-              | ((uint32_t)((*p)[3]) << 24);
-    *p += 4;
-    return v;
+static void anim_skip(AnimReader* r, size_t n) {
+    if (anim_reader_need(r, n)) r->p += n;
 }
 
 static AnimCache* anim_cache_load(const char* path) {
@@ -142,96 +181,193 @@ static AnimCache* anim_cache_load(const char* path) {
         return NULL;
     }
 
-    fseek(f, 0, SEEK_END);
-    long size = ftell(f);
-    fseek(f, 0, SEEK_SET);
+    long size = rc_file_size(f, path, "animation cache");
+    if (size <= 0) {
+        fclose(f);
+        return NULL;
+    }
 
     uint8_t* buf = (uint8_t*)malloc(size);
-    fread(buf, 1, size, f);
+    if (!buf
+            || !rc_read_exact(f, buf, sizeof(uint8_t), (size_t)size, path, "animation cache bytes")) {
+        free(buf);
+        fclose(f);
+        return NULL;
+    }
     fclose(f);
 
-    const uint8_t* p = buf;
+    AnimReader r = { buf, buf + size, path, 1 };
+    uint32_t magic = anim_read_u32(&r);
+    uint32_t base_count = 0;
+    uint32_t seq_count = 0;
+    uint32_t declared_sequence_frames = 0;
+    uint32_t flags = 0;
+    int format_version = 1;
 
-    uint32_t magic = anim_read_u32(&p);
-    if (magic != ANIM_MAGIC) {
-        fprintf(stderr, "anim_cache_load: bad magic 0x%08X\n", magic);
+    if (magic == ANIM2_MAGIC) {
+        uint16_t version = anim_read_u16(&r);
+        uint16_t header_size = anim_read_u16(&r);
+        if (version != ANIM_FORMAT_VERSION || header_size < ANIM_HEADER_SIZE_V2) {
+            fprintf(stderr,
+                    "anim_cache_load: unsupported ANM2 header version=%u size=%u in %s\n",
+                    version, header_size, path);
+            free(buf);
+            return NULL;
+        }
+        format_version = version;
+        base_count = anim_read_u32(&r);
+        seq_count = anim_read_u32(&r);
+        declared_sequence_frames = anim_read_u32(&r);
+        flags = anim_read_u32(&r);
+        if (header_size > ANIM_HEADER_SIZE_V2)
+            anim_skip(&r, (size_t)(header_size - ANIM_HEADER_SIZE_V2));
+    } else if (magic == ANIM_LEGACY_MAGIC) {
+        base_count = anim_read_u16(&r);
+        seq_count = anim_read_u16(&r);
+    } else {
+        fprintf(stderr, "anim_cache_load: bad magic 0x%08X in %s\n", magic, path);
+        free(buf);
+        return NULL;
+    }
+
+    if (!r.ok || base_count > ANIM_MAX_BASES || seq_count > ANIM_MAX_SEQUENCES) {
+        fprintf(stderr,
+                "anim_cache_load: invalid counts bases=%u sequences=%u in %s\n",
+                base_count, seq_count, path);
         free(buf);
         return NULL;
     }
 
     AnimCache* cache = (AnimCache*)calloc(1, sizeof(AnimCache));
-    cache->base_count = anim_read_u16(&p);
-    cache->seq_count = anim_read_u16(&p);
+    if (!cache) {
+        free(buf);
+        return NULL;
+    }
+    cache->base_count = (int)base_count;
+    cache->seq_count = (int)seq_count;
 
     /* load framebases */
     cache->bases = (AnimFrameBase*)calloc(cache->base_count, sizeof(AnimFrameBase));
     cache->base_ids = (uint16_t*)malloc(cache->base_count * sizeof(uint16_t));
+    if ((cache->base_count > 0 && (!cache->bases || !cache->base_ids))) {
+        anim_cache_free(cache);
+        free(buf);
+        return NULL;
+    }
 
     for (int i = 0; i < cache->base_count; i++) {
         AnimFrameBase* fb = &cache->bases[i];
-        fb->base_id = anim_read_u16(&p);
+        fb->base_id = anim_read_u16(&r);
         cache->base_ids[i] = fb->base_id;
-        fb->slot_count = anim_read_u8(&p);
+        fb->slot_count = anim_read_u8(&r);
 
         fb->types = (uint8_t*)malloc(fb->slot_count);
         for (int s = 0; s < fb->slot_count; s++) {
-            fb->types[s] = anim_read_u8(&p);
+            fb->types[s] = anim_read_u8(&r);
         }
 
         fb->map_lengths = (uint8_t*)malloc(fb->slot_count);
-        fb->frame_maps = (uint8_t**)malloc(fb->slot_count * sizeof(uint8_t*));
+        fb->frame_maps = (uint8_t**)calloc(fb->slot_count, sizeof(uint8_t*));
+        if (fb->slot_count > 0 && (!fb->types || !fb->map_lengths || !fb->frame_maps)) {
+            r.ok = 0;
+            break;
+        }
         for (int s = 0; s < fb->slot_count; s++) {
-            uint8_t ml = anim_read_u8(&p);
+            uint8_t ml = anim_read_u8(&r);
             fb->map_lengths[s] = ml;
             fb->frame_maps[s] = (uint8_t*)malloc(ml);
-            for (int j = 0; j < ml; j++) {
-                fb->frame_maps[s][j] = anim_read_u8(&p);
+            if (ml > 0 && !fb->frame_maps[s]) {
+                r.ok = 0;
+                break;
             }
+            for (int j = 0; j < ml; j++) {
+                fb->frame_maps[s][j] = anim_read_u8(&r);
+            }
+            if (!r.ok) break;
         }
+        if (!r.ok) break;
     }
 
     /* load sequences */
     cache->sequences = (AnimSequence*)calloc(cache->seq_count, sizeof(AnimSequence));
+    if (cache->seq_count > 0 && !cache->sequences)
+        r.ok = 0;
+    uint32_t sequence_frames_read = 0;
     for (int i = 0; i < cache->seq_count; i++) {
         AnimSequence* seq = &cache->sequences[i];
-        seq->seq_id = anim_read_u16(&p);
-        seq->frame_count = anim_read_u16(&p);
+        seq->seq_id = anim_read_u16(&r);
+        seq->frame_count = anim_read_u16(&r);
 
-        seq->interleave_count = anim_read_u8(&p);
+        seq->interleave_count = anim_read_u8(&r);
         if (seq->interleave_count > 0) {
             seq->interleave_order = (uint8_t*)malloc(seq->interleave_count);
+            if (!seq->interleave_order) {
+                r.ok = 0;
+                break;
+            }
             for (int j = 0; j < seq->interleave_count; j++) {
-                seq->interleave_order[j] = anim_read_u8(&p);
+                seq->interleave_order[j] = anim_read_u8(&r);
             }
         }
 
-        seq->walk_flag = (int8_t)anim_read_u8(&p);
+        seq->walk_flag = anim_read_i8(&r);
 
         seq->frames = (AnimSequenceFrame*)calloc(seq->frame_count, sizeof(AnimSequenceFrame));
+        if (seq->frame_count > 0 && !seq->frames) {
+            r.ok = 0;
+            break;
+        }
         for (int fi = 0; fi < seq->frame_count; fi++) {
             AnimSequenceFrame* sf = &seq->frames[fi];
-            sf->delay = anim_read_u16(&p);
-            sf->frame.framebase_id = anim_read_u16(&p);
-            sf->frame.transform_count = anim_read_u8(&p);
+            sf->delay = anim_read_u16(&r);
+            sf->frame.framebase_id = anim_read_u16(&r);
+            sf->frame.transform_count = anim_read_u8(&r);
+            sequence_frames_read++;
 
             if (sf->frame.transform_count > 0) {
                 sf->frame.transforms = (AnimTransform*)malloc(
                     sf->frame.transform_count * sizeof(AnimTransform));
+                if (!sf->frame.transforms) {
+                    r.ok = 0;
+                    break;
+                }
                 for (int t = 0; t < sf->frame.transform_count; t++) {
-                    sf->frame.transforms[t].slot_index = anim_read_u8(&p);
-                    sf->frame.transforms[t].dx = anim_read_i16(&p);
-                    sf->frame.transforms[t].dy = anim_read_i16(&p);
-                    sf->frame.transforms[t].dz = anim_read_i16(&p);
+                    sf->frame.transforms[t].slot_index = anim_read_u8(&r);
+                    sf->frame.transforms[t].dx = anim_read_i16(&r);
+                    sf->frame.transforms[t].dy = anim_read_i16(&r);
+                    sf->frame.transforms[t].dz = anim_read_i16(&r);
                 }
             }
+            if (!r.ok) break;
         }
+        if (!r.ok) break;
+    }
+
+    if (!r.ok || (format_version == ANIM_FORMAT_VERSION
+            && declared_sequence_frames != sequence_frames_read)) {
+        if (r.ok) {
+            fprintf(stderr,
+                    "anim_cache_load: ANM2 frame count mismatch declared=%u read=%u in %s\n",
+                    declared_sequence_frames, sequence_frames_read, path);
+        }
+        anim_cache_free(cache);
+        free(buf);
+        return NULL;
+    }
+
+    if (r.p != r.end) {
+        fprintf(stderr, "anim_cache_load: ignored %ld trailing bytes in %s\n",
+                (long)(r.end - r.p), path);
     }
 
     free(buf);
     anim_init_trig();
 
-    fprintf(stderr, "anim_cache_load: loaded %d framebases, %d sequences from %s\n",
-            cache->base_count, cache->seq_count, path);
+    fprintf(stderr,
+            "anim_cache_load: loaded ANM%d flags=0x%08X %d framebases, "
+            "%d sequences, %u sequence frames from %s\n",
+            format_version, flags, cache->base_count, cache->seq_count,
+            sequence_frames_read, path);
     return cache;
 }
 
@@ -620,8 +756,8 @@ static void anim_apply_frame_interleaved(
 
 /**
  * Re-expand animated base vertices into the raylib mesh's expanded vertex buffer.
- * This mirrors expand_model from the Python exporter but in-place, using
- * face_indices to map from base to expanded vertices.
+ * This mirrors the NPC exporter expansion without priority displacement.
+ * Face priorities are draw-order metadata; moving faces creates visible seams.
  *
  * The mesh has face_count*3 expanded vertices. Each triplet (i*3, i*3+1, i*3+2)
  * corresponds to face_indices[i*3], face_indices[i*3+1], face_indices[i*3+2]
@@ -633,8 +769,11 @@ static void anim_update_mesh(
     float* mesh_vertices,
     const AnimModelState* state,
     const uint16_t* face_indices,
+    const uint8_t* face_priorities,
     int face_count
 ) {
+    (void)face_priorities;
+
     for (int fi = 0; fi < face_count; fi++) {
         int a = face_indices[fi * 3];
         int b = face_indices[fi * 3 + 1];
@@ -662,25 +801,33 @@ static void anim_update_mesh(
 static void anim_cache_free(AnimCache* cache) {
     if (!cache) return;
 
-    for (int i = 0; i < cache->base_count; i++) {
-        AnimFrameBase* fb = &cache->bases[i];
-        free(fb->types);
-        free(fb->map_lengths);
-        for (int s = 0; s < fb->slot_count; s++) {
-            free(fb->frame_maps[s]);
+    if (cache->bases) {
+        for (int i = 0; i < cache->base_count; i++) {
+            AnimFrameBase* fb = &cache->bases[i];
+            free(fb->types);
+            free(fb->map_lengths);
+            if (fb->frame_maps) {
+                for (int s = 0; s < fb->slot_count; s++) {
+                    free(fb->frame_maps[s]);
+                }
+            }
+            free(fb->frame_maps);
         }
-        free(fb->frame_maps);
     }
     free(cache->bases);
     free(cache->base_ids);
 
-    for (int i = 0; i < cache->seq_count; i++) {
-        AnimSequence* seq = &cache->sequences[i];
-        free(seq->interleave_order);
-        for (int fi = 0; fi < seq->frame_count; fi++) {
-            free(seq->frames[fi].frame.transforms);
+    if (cache->sequences) {
+        for (int i = 0; i < cache->seq_count; i++) {
+            AnimSequence* seq = &cache->sequences[i];
+            free(seq->interleave_order);
+            if (seq->frames) {
+                for (int fi = 0; fi < seq->frame_count; fi++) {
+                    free(seq->frames[fi].frame.transforms);
+                }
+            }
+            free(seq->frames);
         }
-        free(seq->frames);
     }
     free(cache->sequences);
     free(cache);

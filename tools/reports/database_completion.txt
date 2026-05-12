@@ -1,0 +1,67 @@
+RuneC database completion closure
+
+status: DATABASE_COMPLETE_V1_WITH_ACCEPTED_SOURCE_LIMITATIONS
+scope: exported database coverage, source catalog coverage, and loadable schema/index coverage
+excludes: exact encounter logic parity, exact tick timing, UI behavior, and full runtime gameplay parity
+
+Closure criteria
+- all required database-category reports are present
+- report statuses are READY or READY_WITH_ACCEPTED_SIMPLIFICATIONS where a status is emitted
+- activity schemas have 0 BLOCKS_PARITY rows
+- activity schemas have 0 unresolved required data rows
+- remaining gaps are source-authority or runtime-consumer limitations, not missing database categories
+
+Key metrics
+- activity schemas: 66
+- activity BLOCKS_PARITY rows: 0
+- activity unresolved required data: 0
+- area flag rows: 1419
+- area flag authoritative_osrs: false for every row
+- compiled static spawn source rows: 46710
+- object behavior rows: 8112
+- gathering nodes: 34096
+- traversal edges: 45771
+
+Dataset checks
+- NPC definitions and reconciliation: PRESENT (npc_defs_full.txt)
+- Items, equipment, item forms, and item effects: PRESENT (items_full.txt)
+- Object definitions: READY_WITH_ACCEPTED_SIMPLIFICATIONS (object_defs.txt)
+- Object placements: READY_WITH_ACCEPTED_SIMPLIFICATIONS (object_placements.txt)
+- Object behavior rules: READY_WITH_ACCEPTED_SIMPLIFICATIONS (object_behaviors.txt)
+- Collision tiles: READY_WITH_ACCEPTED_SIMPLIFICATIONS (collision_tiles.txt)
+- Area flags: READY_WITH_ACCEPTED_SIMPLIFICATIONS (area_flags.txt)
+- World and activity spawn sources: PRESENT (spawn_sources.txt)
+- Spawn coverage: PRESENT (spawn_coverage.txt)
+- Drops and shared drop tables: PRESENT (drops.txt)
+- RDT/GDT/MRDT: PRESENT (rdt_gdt.txt)
+- Non-drop acquisition sources: PRESENT (acquisition_sources.txt)
+- Skill drops: PRESENT (skill_drops.txt)
+- Gathering nodes: READY_WITH_ACCEPTED_SIMPLIFICATIONS (gathering_nodes.txt)
+- Traversal edges: READY_WITH_ACCEPTED_SIMPLIFICATIONS (traversal_edges.txt)
+- Recipes: BINARY_PRESENT (data/defs/recipes.bin)
+- Shops: READY_WITH_ACCEPTED_SIMPLIFICATIONS (shops.txt)
+- Prayers: READY_WITH_ACCEPTED_SIMPLIFICATIONS (prayers.txt)
+- Spells: READY_WITH_ACCEPTED_SIMPLIFICATIONS (spells.txt)
+- Player actions: READY_WITH_ACCEPTED_SIMPLIFICATIONS (player_actions.txt)
+- Quests: PRESENT (quest_steps.txt)
+- Dialogue transcripts: PRESENT (dialogue.txt)
+- Varbits/varps: BINARY_PRESENT (data/defs/varbits.bin, data/defs/varps.bin)
+- Music: BINARY_PRESENT (data/defs/music.bin)
+- Teleports: BINARY_PRESENT (data/defs/teleports.bin)
+- Slayer: PRESENT (slayer.txt)
+- Regular NPC mechanics: PRESENT (regular_npc_mechanics.txt)
+- Activity mechanics: PRESENT (activity_mechanics.txt)
+- Activity schemas: PRESENT (activity_schemas.txt)
+- Normalization: READY_WITH_ACCEPTED_SIMPLIFICATIONS (normalization.txt)
+
+Accepted source limitations
+- Area flags use Near-Reality/Zenyte geometry with authoritative_osrs=false; this is accepted for database-complete v1 because official Jagex server polygons are not available in the current source corpus.
+- Wilderness-level values are generated from the local b237 clientscript path and remain source-backed within the local corpus.
+- Static spawn direction/wander fidelity is not closed as exact live-server behavior; spawn identity, coordinates, instance/activity markers, and activity-local anchors are database-covered.
+- Object/interactable coverage is category-complete, but uncommon object-specific effects and exact door-pair replacement rules remain focused runtime-consumer work.
+- Per-skill rules are database-indexed through recipes, gathering nodes, skill drops, object behaviors, and traversal/action indexes; exact rolls, tool checks, and uncommon activity-local skilling behavior remain runtime-consumer work.
+- Nex/Sol and other activity fixtures have loadable schemas with unresolved required data at 0; exact arena geometry/timing remains encounter/activity parity work.
+
+Conclusion
+- Database completion v1 is closed.
+- Future work should treat new data additions as targeted parity/deepening work, not as blockers to the database-completion milestone.

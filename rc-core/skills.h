@@ -3,8 +3,75 @@
 
 #include "types.h"
 
+#define RC_RECIPE_MAX_REQS 8
+#define RC_RECIPE_MAX_INPUTS 16
+#define RC_RECIPE_MAX_TOOLS 8
+
+typedef struct {
+    uint8_t skill, level;
+    uint16_t xp_q1;
+} RcRecipeReq;
+
+typedef struct {
+    uint32_t item_id;
+    uint16_t quantity;
+} RcRecipeItemQty;
+
+typedef struct {
+    char name[64];
+    char facility[48];
+    RcRecipeReq reqs[RC_RECIPE_MAX_REQS];
+    RcRecipeItemQty inputs[RC_RECIPE_MAX_INPUTS];
+    uint32_t tools[RC_RECIPE_MAX_TOOLS];
+    uint32_t output_item;
+    uint16_t output_qty, ticks;
+    uint8_t req_count, input_count, tool_count, flags;
+} RcRecipe;
+
+typedef struct {
+    uint32_t item_id, rarity_inv;
+    uint16_t qmin, qmax;
+} RcSkillDrop;
+
+typedef struct {
+    char name[64];
+    uint32_t first_drop;
+    uint16_t drop_count;
+} RcSkillDropSource;
+
+typedef struct {
+    uint32_t obj_id;
+    uint16_t x, y, mapsquare;
+    uint8_t plane, skill, action_mask, type, rotation, flags;
+} RcGatheringNode;
+
+extern RcRecipe *g_rc_recipes;
+extern RcSkillDropSource *g_rc_skill_drop_sources;
+extern RcSkillDrop *g_rc_skill_drops;
+extern RcGatheringNode *g_rc_gathering_nodes;
+extern int g_rc_recipe_count;
+extern int g_rc_skill_drop_source_count;
+extern int g_rc_skill_drop_count;
+extern int g_rc_gathering_node_count;
+
 // Precomputed XP table (xp_table[level] = xp required for that level)
 extern const int RC_XP_TABLE[100];
+
+int rc_load_recipes(const char *path);
+int rc_load_skill_drops(const char *path);
+int rc_load_gathering_nodes(const char *path);
+
+const RcRecipe *rc_recipe_get(int idx);
+const RcRecipe *rc_recipe_find_output(int item_id);
+const RcSkillDropSource *rc_skill_drop_source_find(const char *name);
+const RcSkillDrop *rc_skill_drops_for(const RcSkillDropSource *source,
+                                      int *count);
+const RcGatheringNode *rc_gathering_nodes_in_region(uint16_t mapsquare,
+                                                    int *count);
+const RcGatheringNode *rc_gathering_node_find(int obj_id, int x, int y,
+                                              int plane);
+int rc_recipe_player_can_make(const RcWorld *world, const RcRecipe *recipe);
+int rc_player_apply_recipe(RcWorld *world, const RcRecipe *recipe);
 
 // Level from XP (binary search)
 int rc_level_for_xp(int xp);

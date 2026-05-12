@@ -1,4 +1,5 @@
 // Diagnostic: load actual varrock.cmap and verify collision works
+#include "../rc-core/io.h"
 #include "../rc-core/types.h"
 #include "../rc-core/pathfinding.h"
 #include <stdio.h>
@@ -6,20 +7,27 @@
 #include <string.h>
 
 #define CMAP_MAGIC 0x434D4150
+#define RC_TEST_VARROCK_CMAP RC_TEST_SOURCE_DIR "/data/regions/varrock.cmap"
 
 static int load_cmap(RcWorldMap *map, const char *path) {
     FILE *f = fopen(path, "rb");
     if (!f) { printf("FAIL: can't open %s\n", path); return -1; }
     uint32_t magic, version, count;
-    fread(&magic, 4, 1, f);
-    fread(&version, 4, 1, f);
-    fread(&count, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "collision magic")
+            || !rc_read_exact(f, &version, sizeof(version), 1, path, "collision version")
+            || !rc_read_exact(f, &count, sizeof(count), 1, path, "collision region count")) {
+        fclose(f);
+        return -1;
+    }
     if (magic != CMAP_MAGIC) { printf("FAIL: bad magic\n"); fclose(f); return -1; }
     printf("cmap: %u regions\n", count);
 
     for (uint32_t i = 0; i < count && map->region_count < RC_MAX_REGIONS; i++) {
         int32_t ms;
-        fread(&ms, 4, 1, f);
+        if (!rc_read_exact(f, &ms, sizeof(ms), 1, path, "collision mapsquare")) {
+            fclose(f);
+            return -1;
+        }
         int rx = (ms >> 8) & 0xFF, ry = ms & 0xFF;
         RcRegion *reg = &map->regions[map->region_count];
         reg->region_x = rx;
@@ -29,7 +37,10 @@ static int load_cmap(RcWorldMap *map, const char *path) {
             for (int x = 0; x < 64; x++)
                 for (int y = 0; y < 64; y++) {
                     int32_t flags;
-                    fread(&flags, 4, 1, f);
+                    if (!rc_read_exact(f, &flags, sizeof(flags), 1, path, "collision tile flags")) {
+                        fclose(f);
+                        return -1;
+                    }
                     reg->tiles[h][x][y].collision_flags = (uint32_t)flags;
                 }
         map->region_count++;
@@ -41,7 +52,7 @@ static int load_cmap(RcWorldMap *map, const char *path) {
 
 int main(void) {
     RcWorldMap map = {0};
-    if (load_cmap(&map, "data/regions/varrock.cmap") < 0) return 1;
+    if (load_cmap(&map, RC_TEST_VARROCK_CMAP) < 0) return 1;
 
     // Test 1: Check region lookup
     printf("\n--- Region Lookup ---\n");

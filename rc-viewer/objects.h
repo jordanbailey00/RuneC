@@ -1,10 +1,11 @@
 // Loads placed map objects from .objects binary into raylib Model.
 // Supports OBJS (vertex colors only) and OBJ2 (+ texcoords with .atlas companion).
-// Ported from runescape-rl/claude fc_objects_loader.h
+// RuneC raylib object loader.
 
-#ifndef RC_OBJECTS_H
-#define RC_OBJECTS_H
+#ifndef RC_VIEWER_OBJECTS_H
+#define RC_VIEWER_OBJECTS_H
 
+#include "../rc-core/io.h"
 #include "raylib.h"
 #include "rlgl.h"
 #include <math.h>
@@ -15,39 +16,274 @@
 #define OBJS_MAGIC 0x4F424A53
 #define OBJ2_MAGIC 0x4F424A32
 #define ATLS_MAGIC 0x41544C53
+#define TANM_MAGIC 0x4D4E4154
+#define TANM_VERSION 1
+#define OANM_MAGIC 0x4D4E414F
+#define OANM_VERSION 1
+#define OANM_FLAG_DYNAMIC_BASE (1u << 0)
+#define OANM_FLAG_DYNAMIC_REPLACEMENT (1u << 1)
+
+typedef struct {
+    uint32_t texture_id;
+    uint16_t x, y, w, h;
+    uint8_t direction;
+    uint8_t speed;
+    uint16_t pad;
+} TextureAnimRow;
+
+typedef struct {
+    uint32_t model_id;
+    uint32_t obj_id;
+    int32_t animation_id;
+    int32_t world_x;
+    int32_t world_y;
+    uint8_t plane;
+    uint8_t obj_type;
+    uint8_t rotation;
+    uint8_t pad;
+    float pos_x;
+    float pos_y;
+    float pos_z;
+    float phase_ticks;
+} ObjectAnimRow;
 
 typedef struct {
     Model model;
     Texture2D atlas_texture;
+    unsigned char *atlas_base_pixels;
+    unsigned char *atlas_pixels;
+    int atlas_width;
+    int atlas_height;
+    TextureAnimRow *texture_anims;
+    int texture_anim_count;
+    float texture_anim_ticks;
+    ObjectAnimRow *object_anims;
+    int object_anim_count;
     int total_vertex_count;
     int min_world_x, min_world_y;
     int has_textures;
     int loaded;
 } ObjectMesh;
 
-static Texture2D objects_load_atlas(const char *atlas_path) {
+static int objects_companion_path(char *out, size_t cap, const char *path,
+                                  const char *suffix) {
+    if (!out || cap == 0 || !path || !suffix) return 0;
+    const char *dot = strrchr(path, '.');
+    size_t stem_len = dot ? (size_t)(dot - path) : strlen(path);
+    int n = snprintf(out, cap, "%.*s%s", (int)stem_len, path, suffix);
+    return n > 0 && (size_t)n < cap;
+}
+
+static void objects_load_texture_anims(ObjectMesh *om, const char *atlas_path) {
+    if (!om) return;
+    char tanm_path[1024];
+    strncpy(tanm_path, atlas_path, sizeof(tanm_path) - 1);
+    tanm_path[sizeof(tanm_path) - 1] = '\0';
+    char *dot = strrchr(tanm_path, '.');
+    if (dot) strcpy(dot, ".tanim");
+
+    FILE *f = fopen(tanm_path, "rb");
+    if (!f) return;
+    uint32_t magic, version, count;
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, tanm_path, "tanim magic")
+            || !rc_read_exact(f, &version, sizeof(version), 1, tanm_path,
+                              "tanim version")
+            || !rc_read_exact(f, &count, sizeof(count), 1, tanm_path,
+                              "tanim count")
+            || magic != TANM_MAGIC || version != TANM_VERSION) {
+        fclose(f);
+        return;
+    }
+    om->texture_anims = calloc(count, sizeof(*om->texture_anims));
+    if (count > 0 && !om->texture_anims) {
+        fclose(f);
+        return;
+    }
+    om->texture_anim_count = (int)count;
+    for (uint32_t i = 0; i < count; i++) {
+        if (!rc_read_exact(f, &om->texture_anims[i],
+                           sizeof(om->texture_anims[i]), 1, tanm_path,
+                           "tanim row")) {
+            free(om->texture_anims);
+            om->texture_anims = NULL;
+            om->texture_anim_count = 0;
+            fclose(f);
+            return;
+        }
+    }
+    fclose(f);
+    fprintf(stderr, "atlas anim: %d animated cells loaded\n",
+            om->texture_anim_count);
+}
+
+static void objects_load_object_anims(ObjectMesh *om, const char *objects_path) {
+    if (!om || !objects_path) return;
+    char path[1024];
+    if (!objects_companion_path(path, sizeof(path), objects_path, ".oanim"))
+        return;
+    FILE *f = fopen(path, "rb");
+    if (!f) return;
+    uint32_t magic, version, count;
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "object anim magic")
+            || !rc_read_exact(f, &version, sizeof(version), 1, path,
+                              "object anim version")
+            || !rc_read_exact(f, &count, sizeof(count), 1, path,
+                              "object anim count")
+            || magic != OANM_MAGIC || version != OANM_VERSION) {
+        fclose(f);
+        return;
+    }
+    om->object_anims = calloc(count, sizeof(*om->object_anims));
+    if (count > 0 && !om->object_anims) {
+        fclose(f);
+        return;
+    }
+    om->object_anim_count = (int)count;
+    for (uint32_t i = 0; i < count; i++) {
+        ObjectAnimRow *row = &om->object_anims[i];
+        if (!rc_read_exact(f, &row->model_id, sizeof(row->model_id), 1, path,
+                           "object anim model id")
+                || !rc_read_exact(f, &row->obj_id, sizeof(row->obj_id), 1,
+                                  path, "object anim obj id")
+                || !rc_read_exact(f, &row->animation_id,
+                                  sizeof(row->animation_id), 1, path,
+                                  "object anim sequence")
+                || !rc_read_exact(f, &row->world_x, sizeof(row->world_x), 1,
+                                  path, "object anim x")
+                || !rc_read_exact(f, &row->world_y, sizeof(row->world_y), 1,
+                                  path, "object anim y")
+                || !rc_read_exact(f, &row->plane, sizeof(row->plane), 1,
+                                  path, "object anim plane")
+                || !rc_read_exact(f, &row->obj_type, sizeof(row->obj_type), 1,
+                                  path, "object anim type")
+                || !rc_read_exact(f, &row->rotation, sizeof(row->rotation), 1,
+                                  path, "object anim rotation")
+                || !rc_read_exact(f, &row->pad, sizeof(row->pad), 1, path,
+                                  "object anim pad")
+                || !rc_read_exact(f, &row->pos_x, sizeof(row->pos_x), 1, path,
+                                  "object anim pos x")
+                || !rc_read_exact(f, &row->pos_y, sizeof(row->pos_y), 1, path,
+                                  "object anim pos y")
+                || !rc_read_exact(f, &row->pos_z, sizeof(row->pos_z), 1, path,
+                                  "object anim pos z")
+                || !rc_read_exact(f, &row->phase_ticks,
+                                  sizeof(row->phase_ticks), 1, path,
+                                  "object anim phase")) {
+            free(om->object_anims);
+            om->object_anims = NULL;
+            om->object_anim_count = 0;
+            fclose(f);
+            return;
+        }
+    }
+    fclose(f);
+    fprintf(stderr, "object anim: %d placements loaded\n",
+            om->object_anim_count);
+}
+
+static Texture2D objects_load_atlas(ObjectMesh *om, const char *atlas_path) {
     Texture2D tex = {0};
     FILE *f = fopen(atlas_path, "rb");
     if (!f) { fprintf(stderr, "atlas: can't open %s\n", atlas_path); return tex; }
 
     uint32_t magic, width, height;
-    fread(&magic, 4, 1, f);
-    if (magic != ATLS_MAGIC) { fclose(f); return tex; }
-    fread(&width, 4, 1, f);
-    fread(&height, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, atlas_path, "atlas magic")
+            || magic != ATLS_MAGIC) {
+        fclose(f);
+        return tex;
+    }
+    if (!rc_read_exact(f, &width, sizeof(width), 1, atlas_path, "atlas width")
+            || !rc_read_exact(f, &height, sizeof(height), 1, atlas_path, "atlas height")) {
+        fclose(f);
+        return tex;
+    }
 
     size_t sz = (size_t)width * height * 4;
     unsigned char *pixels = malloc(sz);
-    fread(pixels, 1, sz, f);
+    if (!pixels
+            || !rc_read_exact(f, pixels, sizeof(unsigned char), sz, atlas_path, "atlas pixels")) {
+        free(pixels);
+        fclose(f);
+        return tex;
+    }
     fclose(f);
 
     Image img = { .data = pixels, .width = (int)width, .height = (int)height,
                   .mipmaps = 1, .format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 };
     tex = LoadTextureFromImage(img);
-    SetTextureFilter(tex, TEXTURE_FILTER_BILINEAR);
+    SetTextureFilter(tex, TEXTURE_FILTER_POINT);
+    if (om && tex.id > 0) {
+        size_t sz = (size_t)width * height * 4;
+        om->atlas_width = (int)width;
+        om->atlas_height = (int)height;
+        om->atlas_base_pixels = malloc(sz);
+        om->atlas_pixels = malloc(sz);
+        if (om->atlas_base_pixels && om->atlas_pixels) {
+            memcpy(om->atlas_base_pixels, pixels, sz);
+            memcpy(om->atlas_pixels, pixels, sz);
+            objects_load_texture_anims(om, atlas_path);
+        } else {
+            free(om->atlas_base_pixels);
+            free(om->atlas_pixels);
+            om->atlas_base_pixels = NULL;
+            om->atlas_pixels = NULL;
+        }
+    }
     free(pixels);
     fprintf(stderr, "atlas: %ux%u loaded\n", width, height);
     return tex;
+}
+
+static void objects_update_texture_anims(ObjectMesh *om, float dt) {
+    if (!om || !om->atlas_pixels || !om->atlas_base_pixels
+            || om->atlas_texture.id <= 0 || om->texture_anim_count <= 0)
+        return;
+    om->texture_anim_ticks += dt * 50.0f;
+    size_t total = (size_t)om->atlas_width * om->atlas_height * 4;
+    memcpy(om->atlas_pixels, om->atlas_base_pixels, total);
+
+    for (int r = 0; r < om->texture_anim_count; r++) {
+        TextureAnimRow *row = &om->texture_anims[r];
+        if (row->w == 0 || row->h == 0 || row->x + row->w > om->atlas_width
+                || row->y + row->h > om->atlas_height || row->speed == 0)
+            continue;
+        int shift = (int)(om->texture_anim_ticks * (float)row->speed);
+        if (row->direction == 1 || row->direction == 3) {
+            int pad = row->pad;
+            if (pad * 2 >= row->h) pad = 0;
+            int center_h = row->h - pad * 2;
+            if (center_h <= 0) center_h = row->h;
+            shift %= center_h;
+            if (row->direction == 1) shift = -shift;
+            for (int y = 0; y < row->h; y++) {
+                int sy = (y - pad + shift) % center_h;
+                if (sy < 0) sy += center_h;
+                sy += pad;
+                for (int x = 0; x < row->w; x++) {
+                    size_t di = ((size_t)(row->y + y) * om->atlas_width
+                               + (row->x + x)) * 4;
+                    size_t si = ((size_t)(row->y + sy) * om->atlas_width
+                               + (row->x + x)) * 4;
+                    memcpy(&om->atlas_pixels[di], &om->atlas_base_pixels[si], 4);
+                }
+            }
+        } else if (row->direction == 2 || row->direction == 4) {
+            shift %= row->w;
+            if (row->direction == 2) shift = -shift;
+            for (int y = 0; y < row->h; y++) {
+                for (int x = 0; x < row->w; x++) {
+                    int sx = (x + shift) % row->w;
+                    if (sx < 0) sx += row->w;
+                    size_t di = ((size_t)(row->y + y) * om->atlas_width
+                               + (row->x + x)) * 4;
+                    size_t si = ((size_t)(row->y + y) * om->atlas_width
+                               + (row->x + sx)) * 4;
+                    memcpy(&om->atlas_pixels[di], &om->atlas_base_pixels[si], 4);
+                }
+            }
+        }
+    }
+    UpdateTexture(om->atlas_texture, om->atlas_pixels);
 }
 
 static ObjectMesh *objects_load(const char *path) {
@@ -56,28 +292,52 @@ static ObjectMesh *objects_load(const char *path) {
 
     uint32_t magic, placement_count, total_verts;
     int32_t min_wx, min_wy;
-    fread(&magic, 4, 1, f);
+    if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "object magic")) {
+        fclose(f);
+        return NULL;
+    }
 
     int has_tex = (magic == OBJ2_MAGIC);
     if (!has_tex && magic != OBJS_MAGIC) { fprintf(stderr, "objects: bad magic\n"); fclose(f); return NULL; }
 
-    fread(&placement_count, 4, 1, f);
-    fread(&min_wx, 4, 1, f);
-    fread(&min_wy, 4, 1, f);
-    fread(&total_verts, 4, 1, f);
+    if (!rc_read_exact(f, &placement_count, sizeof(placement_count), 1, path, "object placement count")
+            || !rc_read_exact(f, &min_wx, sizeof(min_wx), 1, path, "object min world x")
+            || !rc_read_exact(f, &min_wy, sizeof(min_wy), 1, path, "object min world y")
+            || !rc_read_exact(f, &total_verts, sizeof(total_verts), 1, path, "object vertex count")) {
+        fclose(f);
+        return NULL;
+    }
     fprintf(stderr, "objects: %u placements, %u verts, %s\n",
             placement_count, total_verts, has_tex ? "OBJ2" : "OBJS");
 
     float *raw_verts = malloc(total_verts * 3 * sizeof(float));
-    fread(raw_verts, sizeof(float), total_verts * 3, f);
+    if (!raw_verts
+            || !rc_read_exact(f, raw_verts, sizeof(float), total_verts * 3, path, "object vertices")) {
+        free(raw_verts);
+        fclose(f);
+        return NULL;
+    }
 
     unsigned char *raw_colors = malloc(total_verts * 4);
-    fread(raw_colors, 1, total_verts * 4, f);
+    if (!raw_colors
+            || !rc_read_exact(f, raw_colors, sizeof(unsigned char), total_verts * 4, path, "object colors")) {
+        free(raw_verts);
+        free(raw_colors);
+        fclose(f);
+        return NULL;
+    }
 
     float *raw_tc = NULL;
     if (has_tex) {
         raw_tc = malloc(total_verts * 2 * sizeof(float));
-        fread(raw_tc, sizeof(float), total_verts * 2, f);
+        if (!raw_tc
+                || !rc_read_exact(f, raw_tc, sizeof(float), total_verts * 2, path, "object texcoords")) {
+            free(raw_verts);
+            free(raw_colors);
+            free(raw_tc);
+            fclose(f);
+            return NULL;
+        }
     }
     fclose(f);
 
@@ -115,10 +375,11 @@ static ObjectMesh *objects_load(const char *path) {
         strncpy(atlas_path, path, sizeof(atlas_path) - 1);
         char *dot = strrchr(atlas_path, '.');
         if (dot) strcpy(dot, ".atlas");
-        om->atlas_texture = objects_load_atlas(atlas_path);
+        om->atlas_texture = objects_load_atlas(om, atlas_path);
         if (om->atlas_texture.id > 0)
             om->model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = om->atlas_texture;
     }
+    objects_load_object_anims(om, path);
     return om;
 }
 
@@ -131,12 +392,22 @@ static void objects_offset(ObjectMesh *om, int wx, int wy) {
     om->min_world_x -= wx; om->min_world_y -= wy;
 }
 
+static void objects_set_shader(ObjectMesh *om, Shader shader) {
+    if (!om || !om->loaded || shader.id <= 0) return;
+    for (int i = 0; i < om->model.materialCount; i++)
+        om->model.materials[i].shader = shader;
+}
+
 static void objects_free(ObjectMesh *om) {
     if (!om) return;
     if (om->loaded) {
         if (om->atlas_texture.id > 0) UnloadTexture(om->atlas_texture);
         UnloadModel(om->model);
     }
+    free(om->atlas_base_pixels);
+    free(om->atlas_pixels);
+    free(om->texture_anims);
+    free(om->object_anims);
     free(om);
 }
 

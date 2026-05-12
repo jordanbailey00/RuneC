@@ -1,0 +1,36 @@
+Object behavior rules
+
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+output binary: data/defs/object_behaviors.bin (228996 bytes)
+source object defs: data/defs/object_defs.bin
+source transports: data/source/data_osrs/transports_osrs.json
+behavior rows: 8178
+next_loc_stage rows: 1003
+climb_anim rows: 1207
+paired dynamic loc rows: 262
+
+by behavior:
+  door         2486
+  ladder       578
+  stair        629
+  bank         128
+  altar        157
+  resource     1509
+  transport    4141
+  storage      135
+  pair_left    137
+  pair_right   125
+
+resource skills:
+  woodcutting  181
+  mining       230
+  fishing      31
+  farming      1067
+
+accepted simplifications:
+  - behavior rows classify object capabilities and carry generic dynamic loc metadata
+  - next_loc_stage is derived from source dump symbols plus RSMod-style generic door/gate pairs
+  - open/close sound fields are reserved until a local synth-name source is available
+  - generic altar prayer restore, door state, and gathering-node action start/depletion/respawn are runtime-owned
+  - level/tool requirements and exact skilling success rolls land in the per-skill action rules
+  - paired door/gate state is derived from source dump symbols and applied placement-locally at runtime

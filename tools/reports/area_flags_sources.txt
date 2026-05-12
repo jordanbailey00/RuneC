@@ -1,0 +1,149 @@
+Area flag source review
+
+status: PROVISIONAL_RUNTIME_DATASET_READY / AUTHORITATIVE_SIGNOFF_DEFERRED
+
+goal:
+  source-backed tile/area semantics for wilderness, multi-combat,
+  safe zones, bank/storage zones, activity bounds, and other
+  behavior-changing area metadata
+
+checked local sources:
+  data/source/model_dump/osrs-dumps/config/dump.area
+    result: cache area IDs are present, but this dump has labels only
+    and no usable coordinate/bounds metadata
+
+  data/source/model_dump/osrs-dumps/script/*.cs2
+    result: scripts expose client UI/var transmit surfaces such as
+    multiway_indicator and deadman_insidesafezone, but no static
+    authoritative world-shape table was found in the checked surface
+
+  data/source/runelite/runelite-api
+    result: exposes client state varbits/constants:
+      INSIDE_WILDERNESS = 5963
+      PVP_AREA_CLIENT = 8121
+      MULTICOMBAT_AREA = 4605
+    These prove runtime state surfaces, not static coordinate coverage.
+
+  data/source/runelite/runelite-client
+    result: contains helper rectangles such as:
+      WILDERNESS_ABOVE_GROUND = WorldArea(2944, 3523, 448, 448, 0)
+      WILDERNESS_UNDERGROUND = WorldArea(2944, 9918, 320, 442, 0)
+    These are plugin helper bounds and are too broad for exact parity.
+
+second source pass:
+  Rechecked script dumps, RuneLite API/client constants, curated data,
+  and existing reports for static wilderness, multi-combat, safe-zone,
+  bank-zone, and activity-bound geometry. The available local sources
+  still expose client state signals and helper rectangles, not an
+  authoritative static area-shape table.
+
+third source pass:
+  Rechecked the remaining database/runtime blocker list while adding
+  activity_spawns.bin. The new activity-spawn runtime index covers
+  activity-local coordinates and anchors, but it does not solve static
+  wilderness, multi-combat, safe-zone, bank-zone, or area-flag geometry.
+  OpenRS2 exposes cache archives and map/cache downloads, not a ready
+  server-side authoritative area-shape table in the current RuneC
+  source mirror.
+
+fourth source pass:
+  Checked OpenRS2 oldschool/live b237 cache 2523 flat map archive. Map
+  file 0/1 surfaces terrain and locations for the existing exporters,
+  but the checked area-like map files are empty or non-useful for
+  static area geometry. The cache pass did not expose wilderness,
+  multi-combat, safe-zone, bank-zone, or activity-bound shapes.
+
+  Checked live OSRS Wiki Bucket locline queries for Nex, Fumus, Umbra,
+  Cruor, Glacies, and Sol Heredit while reviewing spawn blockers. They
+  returned no authoritative spawn/bounds rows.
+
+  Checked clientscript `proc,wilderness_level`, which provides a
+  source-backed wilderness-level formula. RuneC now exports this into
+  wilderness-level rows consumed by `rc_wilderness_level_at()`, but it
+  is not a full static area-flag dataset and does not resolve
+  multi-combat, safe-zone, bank-zone, or activity geometry.
+
+fifth source pass:
+  Checked live OSRS Wiki pages for multicombat areas, Wilderness, Sol
+  Heredit, and the Colosseum tile-marker guide. The multicombat and
+  Wilderness pages provide textual/visual guidance, not machine-precise
+  polygons. The Colosseum tile-marker page provides player strategy
+  markers/deadzones, not authoritative wave-12 spawn/reduced-arena
+  geometry.
+
+sixth source pass:
+  Checked the local b237 cache object-placement surface and the cloned
+  data_osrs/osrsreboxed-db mirrors for the carried Nex/Sol blockers.
+  The cache confirms static object anchors, including Nex chamber
+  altar/door/chest, Sol pillars on plane 0, and Sol throne object 52514
+  on plane 1. It does not expose server-authored NPC spawn or map-area
+  groups.
+
+  Checked RSMod cache encoder sources. MapNpcListEncoder documents map
+  NPC spawns as a server-only group, and MapAreaEncoder documents map
+  areas as a server-only group. This confirms the current client-cache
+  mirror is not expected to contain authoritative Nex/bodyguard spawn
+  tiles, Sol wave-12 spawn/reduced bounds, or static area geometry.
+
+seventh source pass:
+  Verified the Near-Reality/Zenyte MapLocations source referenced by
+  /home/joe/Downloads/osrs_parity_source_data_notes.md:
+    Ecoscape16/near-reality-server-new
+    cache/src/main/java/com/zenyte/utils/MapLocations.java
+
+  The file exposes machine-usable provisional geometry for:
+    MULTICOMBAT with NOT_MULTICOMBAT subtraction
+    ROUGH_WILDERNESS
+    WILDERNESS_LEVEL_LINES
+    DEADMAN_SAFE_ZONES
+    PVP_WORLD_SAFE_ZONES
+    SINGLES_PLUS_LIST
+
+  Verified examples include the Ancient Prison multicombat rectangle
+  2834/5184..2944/5244 plane 0 and the main Wilderness multicombat
+  polygon listed in the source. This is more useful than screenshots or
+  broad RuneLite helper rectangles, but it is still private-server /
+  overlay-derived geometry and must not be marked authoritative OSRS.
+
+current decision:
+  Do not treat helper rectangles or private-server geometry as
+  authoritative OSRS data. area_flags.bin now exists as a provisional
+  dataset generated from Near-Reality/Zenyte MapLocations.java, with
+  every row retaining source provenance and authoritative_osrs=false.
+  Final parity sign-off still requires authoritative server-side
+  area/zone data or live runtime capture.
+
+required fields for the eventual dataset:
+  area_id
+  area_type
+  name/source label
+  plane
+  min_x, min_y, max_x, max_y or polygon/raster reference
+  behavior flags
+  source/provenance reference
+
+required behavior flags:
+  wilderness
+  wilderness_level or level formula reference
+  pvp_area
+  multi_combat
+  singles_plus
+  safe_zone
+  bank_or_storage
+  activity_bounds
+  instanced_area
+
+exported provisional dataset:
+  exporter: tools/export_area_flags.py
+  output: data/defs/area_flags.bin
+  report: tools/reports/area_flags.txt
+  row count: 1419
+  vertex count: 11281
+  runtime: rc-core/area_flags.c under RC_SUB_REGIONS, including
+    rc_wilderness_level_at() for clientscript-derived level rows
+
+next source work:
+  extract authoritative server-side area/zone tables if present in
+  cache scripts/configs
+  cross-check provisional wilderness and multi-combat boundaries against
+  OSRS Wiki and RuneLite client state observations

@@ -1,4 +1,5 @@
 #include "../rc-core/api.h"
+#include "../rc-core/config.h"
 #include <stdio.h>
 #include <assert.h>
 
@@ -18,9 +19,11 @@ static uint32_t hash_world(const RcWorld *world) {
 }
 
 int main(void) {
+    RcWorldConfig cfg = rc_preset_base_only();
     // Two worlds with same seed should produce identical state
-    RcWorld *w1 = rc_world_create(42);
-    RcWorld *w2 = rc_world_create(42);
+    cfg.seed = 42;
+    RcWorld *w1 = rc_world_create_config(&cfg);
+    RcWorld *w2 = rc_world_create_config(&cfg);
 
     for (int i = 0; i < 100; i++) {
         rc_world_tick(w1);
@@ -32,7 +35,8 @@ int main(void) {
     assert(h1 == h2);
 
     // Different seed should produce different state
-    RcWorld *w3 = rc_world_create(99);
+    cfg.seed = 99;
+    RcWorld *w3 = rc_world_create_config(&cfg);
     for (int i = 0; i < 100; i++) {
         rc_world_tick(w3);
     }

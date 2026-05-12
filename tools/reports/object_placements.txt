@@ -1,0 +1,104 @@
+Object placement gameplay index
+
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+output binary: data/defs/object_placements.bin (104897688 bytes)
+cache source: tools/cache_pipeline/source/current_fightcaves_demo/data/cache
+OpenRS2 layout reference: https://archive.openrs2.org/api
+elapsed_ms: 25810.41
+
+counts:
+  placements:              4768076
+  unique object ids:        39098
+  regions scanned:          2870
+  regions with loc data:    2870
+  regions with placements:  2448
+  loc read errors:          0
+  terrain read errors:      0
+  linked-below plane adjustments: 265865
+  linked-below skipped raw plane 0 rows: 114971
+  duplicate placement ordinals: 0
+  placement rows missing object_defs.bin ids: 0
+
+by plane:
+  0: 3258387
+  1: 935094
+  2: 452230
+  3: 122365
+
+by object type:
+   0: 497559
+   1: 122231
+   2: 23079
+   3: 26390
+   4: 29118
+   5: 11011
+   6: 1840
+   7: 2701
+   8: 388
+   9: 136173
+  10: 2249681
+  11: 35829
+  12: 25662
+  13: 1834
+  14: 1012
+  15: 589
+  16: 3679
+  17: 27323
+  18: 21318
+  19: 3472
+  20: 454
+  21: 1256
+  22: 1545477
+
+top placed objects:
+   168689  1434
+    78946  60382
+    68794  34527
+    65673  28747
+    55994  42260
+    48975  25057
+    45317  1460
+    39123  17902
+    35503  41480
+    35033  51461
+    34988  85
+    31894  320
+    30509  43231
+    27896  26657
+    26463  53532
+    25860  17664
+    25523  14501
+    24863  11971
+    24465  29787
+    24320  12185
+    23769  28885
+    23529  31560
+    23001  325
+    22912  37491
+    22711  5335
+    21892  20737
+    21515  754
+    21481  336
+    20989  33462
+    20756  185
+    20581  37860
+    20464  46649
+    20358  42251
+    20186  38670
+    19808  43913
+    19763  51462
+    18128  5915
+    17910  15804
+    17305  4736
+    16897  60376
+
+accepted simplifications:
+  - rows store placement identity only, not mesh vertices or atlas data
+  - planes are gameplay/collision planes after LINK_BELOW lowering, not raw cache planes
+  - initial object state rules are runtime-owned; placement rows remain immutable source anchors
+  - instance/activity-local dynamic object spawns remain activity-schema work
+
+remaining object/interactable parity work:
+  - refine uncommon object-specific consumers as exact source data lands
+  - pair-specific dynamic state lives in object behavior/runtime exports
+  - keep viewer mesh export separate from gameplay placement ownership

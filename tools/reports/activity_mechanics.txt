@@ -1,0 +1,66 @@
+Activity mechanics export
+
+mechanics TOMLs: 96
+encounter-backed rows: 64
+owner-executable rows: 32
+owner-mapped behavior-incomplete rows: 0
+activity-indexed rows: 0
+rows missing NPC IDs: 0
+owner-only rows: 2
+derived NPC ID rows: 2
+section descriptors: 223
+output: data/defs/activity_mechanics.bin
+elapsed_ms: 53.062
+
+Status
+READY: all mechanics extracts are represented in a loadable binary index.
+READY_WITH_ACCEPTED_SIMPLIFICATIONS: owner-executable rows have generic/profile runtime effects; full state machines can still refine them.
+BLOCKS_PARITY: activity-indexed rows preserve mechanics coverage but have no owner or executable behavior.
+
+Owner-executable rows
+- Ahrim_the_Blighted -> barrows bits=0x1 profile=1
+- Araxxor -> araxxor bits=0x73 profile=7
+- Blood_Moon -> moons_of_peril bits=0xc4 profile=8
+- Blue_Moon -> moons_of_peril bits=0xc1 profile=9
+- Brutus -> the_ides_of_milk bits=0x360 profile=17
+- Dagannoth_mother -> quest_bosses bits=0x280 profile=0
+- Dawn -> grotesque_guardians bits=0x2c0 profile=14
+- Demonic_Brutus -> the_ides_of_milk bits=0x360 profile=18
+- Dharok_the_Wretched -> barrows bits=0x20 profile=2
+- Doom_of_Mokhaiotl -> doom_of_mokhaiotl bits=0x61 profile=0
+- Dusk -> grotesque_guardians bits=0x3c0 profile=15
+- Eclipse_Moon -> moons_of_peril bits=0x1c0 profile=10
+- Elvarg -> quest_bosses bits=0x800 profile=0
+- Evil_spirit -> quest_bosses bits=0x3 profile=0
+- Galvek -> quest_bosses bits=0xa40 profile=0
+- Gelatinnoth_Mother -> quest_bosses bits=0x280 profile=0
+- Gemstone_Crab -> gemstone_crab bits=0x280 profile=0
+- General_Khazard -> quest_bosses bits=0x40 profile=0
+- Grotesque_Guardians -> grotesque_guardians bits=0x2c0 profile=16
+- Guthan_the_Infested -> barrows bits=0x4 profile=3
+- Karil_the_Tainted -> barrows bits=0x1 profile=4
+- Moons_of_Peril -> moons_of_peril bits=0x2c0 profile=20
+- Penance_Queen -> barbarian_assault bits=0x44 profile=0
+- Revenant_maledictus -> revenant_maledictus bits=0x2044 profile=11
+- Shellbane_gryphon -> shellbane_gryphon bits=0x60 profile=12
+- Torag_the_Corrupted -> barrows bits=0x1 profile=5
+- Tree_spirit_Lost_City -> quest_bosses bits=0x40 profile=0
+- Treus_Dayth -> quest_bosses bits=0x41 profile=0
+- TzTok-Jad -> fight_caves bits=0x540 profile=13
+- Vanguard -> chambers_of_xeric bits=0x280 profile=0
+- Verac_the_Defiled -> barrows bits=0x100 profile=6
+- Xamphur -> quest_bosses bits=0x41 profile=0
+
+Owner-mapped behavior-incomplete rows
+- none
+
+Activity-indexed mechanics-only rows
+- none
+
+Owner-only rows
+- Tempoross: object/activity-driven skilling boss; no normal NPC combat row
+- Wintertodt: scenery/object-driven skilling boss; no normal NPC combat row
+
+Derived NPC ID rows
+- Grotesque_Guardians: 13 IDs from Dawn,Dusk
+- Moons_of_Peril: 3 IDs from Blood_Moon,Blue_Moon,Eclipse_Moon

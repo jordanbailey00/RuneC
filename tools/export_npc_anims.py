@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
-"""Export animations referenced by our NPC definitions.
-
-Scans data/defs/npc_defs.bin, collects every non-(-1) value of the five anim
-slots (stand / walk / run / attack / death), merges them with the reference
-exporter's NEEDED_ANIMATIONS set, and invokes the exporter's main(). Writes
-a single .anims file containing every framebase + frame + sequence needed
-to animate all NPCs in the current defs file.
-"""
+"""Export animations referenced by our NPC definitions."""
 import argparse, struct, sys
 from pathlib import Path
 
-REF = Path("/home/joe/projects/runescape-rl-reference/valo_envs/ocean/osrs/scripts")
-sys.path.insert(0, str(REF))
+PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
+sys.path.insert(0, str(PIPELINE))
 
 import export_animations as ea
 
@@ -33,6 +26,15 @@ def scan_npc_anim_ids(ndef_path):
             for a in anims:
                 if a >= 0:
                     ids.add(a)
+            if ver >= 2:
+                f.read(10)               # combat metadata
+            if ver >= 3:
+                mc, = struct.unpack("<B", f.read(1))
+                f.read(4 * mc)           # model ids
+            if ver >= 4:
+                for _ in range(5):
+                    ol, = struct.unpack("<B", f.read(1))
+                    f.read(ol)           # option text
     return ids
 
 
@@ -48,17 +50,9 @@ def main():
     npc_ids = scan_npc_anim_ids(args.npc_defs)
     print(f"NPC defs reference {len(npc_ids)} unique anim IDs")
 
-    if args.include_player:
-        ea.NEEDED_ANIMATIONS = set(ea.NEEDED_ANIMATIONS) | npc_ids
-    else:
-        ea.NEEDED_ANIMATIONS = set(npc_ids)
-    print(f"total NEEDED_ANIMATIONS now: {len(ea.NEEDED_ANIMATIONS)}")
-
-    # Hand off to the reference exporter via sys.argv so it takes our paths.
-    sys.argv = ["export_animations.py",
-                "--modern-cache", str(args.cache),
-                "--output", str(args.output)]
-    ea.main()
+    needed = (set(ea.NEEDED_ANIMATIONS) | npc_ids) if args.include_player else npc_ids
+    print(f"total animation IDs to export: {len(needed)}")
+    ea.export_animations_from_modern_cache(args.cache, args.output, set(needed))
 
 
 if __name__ == "__main__":

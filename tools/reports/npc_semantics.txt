@@ -1,0 +1,63 @@
+NPC semantic audit
+
+npc_defs rows: 15182
+wiki monster IDs: 4149
+wiki monster IDs missing npc_defs: 0
+combat npc_defs IDs missing wiki monster infobox: 2051
+wiki-backed field mismatches: 0
+
+Morph state hooks
+data_osrs NPCList rows: 24110
+unique NPC morph varbit IDs: 286
+unique NPC morph varp IDs: 25
+NPC morph varbits missing data/defs/varbits.bin: 0
+NPC morph varps missing data/defs/varps.bin: 0
+
+Status
+READY: broad NPC ID/export coverage
+READY_WITH_ACCEPTED_SIMPLIFICATIONS: combat fields are compact NDEF fields, not full wiki bonuses yet
+READY: NPC morph varp IDs are exported
+READY: NPC morph varbit IDs are exported
+BLOCKS_PARITY: NPC morph state still needs runtime transform evaluation
+
+Sample combat npc_defs IDs missing wiki monster infobox:
+  21: Rug Merchant
+  33: Zombie
+  35: Zombie
+  36: Zombie
+  53: Zombie
+  94: Ghost
+  96: Ghost
+  98: Ghost
+  116: Wolf
+  117: Wolf
+  122: npc_122
+  222: Rick
+  224: Maid
+  226: Cook
+  228: Butler
+  230: Demon butler
+  231: Wolf
+  377: Phosani's Nightmare
+  378: The Nightmare
+  384: npc_384
+  401: Turael
+  402: Mazchna
+  426: Turoth
+  431: Turoth
+  432: Turoth
+  471: Ancient Fungi
+  490: Steve
+  533: Fungi
+  535: Fungi
+  536: Fungi
+  538: Fungi
+  539: Elfinlocks
+  636: Karamthulhu
+  637: Fungi
+  638: Lord Iorwerth
+  644: Ug
+  674: Goblin
+  684: Archaeologist
+  716: npc_716
+  718: Mummy ashes

@@ -1,0 +1,22 @@
+Collision tile catalog
+
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+output binary: data/defs/collision_tiles.bin (63106646 bytes)
+source cache: tools/cache_pipeline/source/current_fightcaves_demo/data/cache
+source object defs: b237 cache index 2 group 6
+cache map groups: 2870
+exported map groups: 2870
+regions with collision: 2331
+non-zero collision tiles: 6310663
+collision-marked objects: 2790456
+region parse/read errors: 0
+
+by plane:
+  plane 0: 3748754
+  plane 1: 1410824
+  plane 2: 767805
+  plane 3: 383280
+
+accepted simplifications:
+  - sparse rows store non-zero collision flags only; runtime expands them to shared dense lookup
+  - area semantics such as wilderness/multi/safe-zone are a separate area-flag dataset

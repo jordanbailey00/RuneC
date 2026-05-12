@@ -1,0 +1,82 @@
+Mechanics coverage audit
+
+Boss mechanics prose
+- extracted mechanics TOMLs: 96
+- bosses with no fight sections in extract report: 74
+- bosses with no NPC-id resolution in extract report: 5
+- status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+
+Executable boss encounters
+- encounter TOMLs: 50
+- encoded encounters report count: 50
+- boss mechanics TOMLs without encounter TOML: 33
+- mechanics-only rows covered by typed activity states: 22
+- mechanics-only rows deferred as quest/nice-to-have: 11
+- v1 mechanics-only rows still lacking encounter or typed state: 0
+- encounter TOMLs without mechanics extract: 19
+- unresolved trigger bindings: 0
+- authored script fields: 51
+- distinct authored script names: 50
+- script names routed through rc-content registry: 50
+- script names not routed: 0
+- owner-executable TOMLs: 32
+- owner-mapped behavior-incomplete TOMLs: 0
+- activity-indexed mechanics-only TOMLs: 0
+- activity-backed mechanics TOMLs: 96
+- activity mechanics binary rows: 96
+- activity rows missing NPC IDs: 0
+- owner-only activity rows: 2
+- derived NPC ID rows: 2
+- typed activity state-machine rows: 16
+- v1-required typed activity rows: 16
+- typed activity states: 46
+- typed activity transitions: 31
+- status: READY
+
+Regular combat NPC mechanics
+- runtime-indexed families: 11
+- family NPC ID links: 422
+- status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+- live consumers: damage gates, finisher gates, breath mitigation, poison/venom/disease status, revenant heal/teleblock/freeze, lizardman shaman jump/area/minion pressure, slayer protection checks, auto-finisher unlock, activity owner generic/profile effects, and slayer task kill-credit decrement
+- slayer consumers: SLAY v3 task amounts, extended amounts, level gates, reward unlocks, exact progression gates, Konar location rolls, boss-task second rolls, block/prefer filters, and regular/boss alternative kill-credit decrement
+
+Next closure work
+- Keep expanding bespoke encounter/activity consumers where typed state-machine flow or AMCH profiles are still too broad.
+- Continue non-mechanics database lanes: objects/interactables, collision/area flags, prayers/spells/actions, shops/storage, transportation, skills/gathering, activity schemas, and normalization.
+
+Mechanics-only rows covered by typed activity states
+- Ahrim_the_Blighted
+- Araxxor
+- Blood_Moon
+- Blue_Moon
+- Dawn
+- Dharok_the_Wretched
+- Doom_of_Mokhaiotl
+- Dusk
+- Eclipse_Moon
+- Gemstone_Crab
+- Grotesque_Guardians
+- Guthan_the_Infested
+- Karil_the_Tainted
+- Moons_of_Peril
+- Penance_Queen
+- Phosani_s_Nightmare
+- Revenant_maledictus
+- Shellbane_gryphon
+- Torag_the_Corrupted
+- TzTok-Jad
+- Vanguard
+- Verac_the_Defiled
+
+Mechanics-only rows deferred as quest/nice-to-have
+- Brutus
+- Dagannoth_mother
+- Demonic_Brutus
+- Elvarg
+- Evil_spirit
+- Galvek
+- Gelatinnoth_Mother
+- General_Khazard
+- Tree_spirit_Lost_City
+- Treus_Dayth
+- Xamphur
