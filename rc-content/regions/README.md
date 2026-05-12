@@ -1,4 +1,4 @@
-# rc-content/regions — region-specific code
+# rc-content/regions
 
 This directory holds region-specific runtime code that cannot be
 expressed cleanly as generic data or generic object interaction rules.
@@ -6,8 +6,8 @@ expressed cleanly as generic data or generic object interaction rules.
 The region subsystem in `rc-core` loads terrain,
 collision, objects, and NPC spawns generically via binary formats
 (`data/regions/<region>.terrain/.objects/.cmap` and
-`data/regions/<region>.npc-spawns.bin`). Most region-specific behavior
-is expressible as data.
+`data/regions/<region>.npc-spawns.bin`) from the local `RuneC-DB` checkout.
+Most region-specific behavior is expressible as data.
 
 Use this file for:
 - what region modules are for
@@ -37,9 +37,9 @@ void rc_content_varrock_register(struct RcWorld *world) {
 }
 ```
 
-Same rules as `encounters/`: one file per region, static internals,
-single public register fn, reference repos (Void for Varrock,
-2011Scape for overlap areas) are valid sources.
+Same rules as `encounters/`: one file per region, static internals, single
+public register fn, and reference repos are audit sources only. Use modern OSRS
+sources where available; use VoidPS/2011Scape only for older overlap behavior.
 
 ## When code belongs here
 

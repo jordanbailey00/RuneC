@@ -1,8 +1,8 @@
 #define _POSIX_C_SOURCE 200809L
 
-#include "../rc-core/api.h"
-#include "../rc-core/combat.h"
-#include "../rc-core/npc.h"
+#include "../../rc-core/api.h"
+#include "../../rc-core/combat.h"
+#include "../../rc-core/npc.h"
 
 #include <stdint.h>
 #include <stdio.h>

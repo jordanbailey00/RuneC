@@ -1,4 +1,4 @@
-# rc-content/encounters — per-boss modules
+# rc-content/encounters
 
 One `.c` file per boss encounter. Holds the **boss-specific scripts**
 referenced by the encounter's TOML `script = "..."` fields. Does NOT
@@ -27,7 +27,7 @@ Use this file for:
 **Out of scope (goes elsewhere):**
 - Generic primitives used by ≥2 bosses — `rc-core/encounter_prims.c`.
 - NPC stat data (hp, max_hit, attack_types) — `data/defs/npc_defs.bin`
-  via `tools/export_npc_defs_full.py`.
+  via `tools/export_npc_defs_full.py` into the local `RuneC-DB` checkout.
 - Attack / phase / mechanic *data* — `data/curated/encounters/<boss>.toml`
   → `data/defs/encounters.bin` via `tools/export_encounters.py`.
 - Drops — `data/defs/drops.bin`.
@@ -40,7 +40,7 @@ Only *genuinely one-off* code lives in these files.
 
 Encounter behavior is split across three layers:
 - `data/curated/encounters/<boss>.toml`
-  - boss data: attacks, phases, mechanics, params
+  - boss data: attacks, phases, mechanics, params; owned by `RuneC-DB`
 - `rc-core/encounter_prims.c`
   - reusable generic mechanic implementations referenced by
     `primitive = "..."`

@@ -1,4 +1,4 @@
-# rc-core — architecture principles
+# rc-core
 
 `rc-core` is the headless game backend for RuneC. Its job is to power
 the playable game while also serving as the high-performance baseline
@@ -13,8 +13,8 @@ Use this file for:
 - tick-path and determinism rules
 - the `rc-core` / `rc-content` split
 
-Planning lives in `work.md`. This file is about architecture and
-component behavior, not roadmap sequencing.
+Planning lives in the root `work.md`. This file is a technical overview of
+the component boundary, architecture rules, and runtime invariants.
 
 This document is **normative**. Every design and refactor decision
 must honor it. If a change requires relaxing a rule, update this
@@ -82,8 +82,10 @@ subsystems**.
 - **regions** — source-backed collision shared by movement/action
   systems; provisional area-flag lookup for wilderness, wilderness
   level, multicombat, singles-plus, and safe-zone checks
-- **audio** — track selection / region music (lives in rc-viewer;
-  listed here so base doesn't accidentally hold audio state)
+
+Audio and music selection are presentation concerns owned by `rc-viewer`.
+`rc-core` may expose area/region state that the viewer can observe, but it
+must not hold audio playback state.
 
 A Colosseum / Inferno simulator needs: **base + combat + prayer +
 equipment + inventory + consumables + encounter**. Nothing else.
@@ -300,6 +302,11 @@ a one-line config change instead of a month-long refactor.
 ---
 
 ## 9. Binary loading — per-subsystem, lazy
+
+All runtime data paths resolve under the local `data/` directory, which is a
+separate `RuneC-DB` checkout. The main RuneC repository owns loaders and
+runtime code; `RuneC-DB` owns generated binaries, curated DB inputs, generated
+sprites/models/regions, and local source corpora.
 
 Each subsystem owns its binary(s):
 

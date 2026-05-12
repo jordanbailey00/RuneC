@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 BUILD_DIR="${RC_BUILD_DIR:-$ROOT/build}"
 JOBS="${RC_BUILD_JOBS:-2}"
 OUT="$BUILD_DIR/runec_sps_benchmark"
@@ -15,7 +15,7 @@ cmake --build "$BUILD_DIR" -j "$JOBS" --target rc-core rc-content
 cc -O3 -DNDEBUG -std=c11 \
     -I"$ROOT/rc-core" \
     -I"$ROOT/rc-content" \
-    "$ROOT/testing/sps_benchmark.c" \
+    "$ROOT/tests/benchmarks/sps_benchmark.c" \
     "$BUILD_DIR/librc-core.a" \
     "$BUILD_DIR/librc-content.a" \
     -lm \

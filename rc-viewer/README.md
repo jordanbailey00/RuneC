@@ -1,4 +1,4 @@
-# rc-viewer — interactive frontend
+# rc-viewer
 
 `rc-viewer` is the playable client for RuneC. It renders world state
 produced by `rc-core` + `rc-content` and handles presentation concerns
@@ -15,8 +15,8 @@ Use this file for:
 - what code lives in this directory
 - what the viewer is and is not responsible for
 
-Planning lives in `work.md`. Manual viewer QA lives in
-`viewer_validation.md`.
+Planning lives in the root `work.md`. This file is a technical overview of
+the viewer boundary, runtime assets, and presentation responsibilities.
 
 ## Role
 
@@ -30,6 +30,8 @@ Planning lives in `work.md`. Manual viewer QA lives in
 - May choose which content modules to register at startup.
 - Must not own gameplay rules, combat formulas, encounter mechanics,
   quest state machines, or other simulation logic.
+- Must treat `data/` as local generated/runtime assets owned by the
+  separate `RuneC-DB` repository, not as source files in the main RuneC repo.
 
 ## Key files
 
@@ -89,8 +91,16 @@ Planning lives in `work.md`. Manual viewer QA lives in
     `RUNEC_WORLD_W`, `RUNEC_WORLD_H`
   - `RUNEC_PLAYER_START_X`, `RUNEC_PLAYER_START_Y`
 - Those runtime assets are expected to be local in the RuneC working
-  tree. Large assets may be distributed outside Git, but the viewer
-  must never read them from another local repository checkout.
+  tree under `data/`. In normal development `data/` is a nested
+  `RuneC-DB` checkout:
+
+```bash
+git clone https://github.com/jordanbailey00/RuneC-DB.git data
+```
+
+- The viewer must not read runtime assets from a sibling reference checkout.
+  Reference repos are audit material; generated viewer assets are loaded from
+  the local `data/` tree.
 - It links both `rc-core` and `rc-content`, but it should still behave
   as a presentation shell rather than a second gameplay engine.
 
@@ -126,6 +136,8 @@ Today `rc-viewer` is primarily:
 - current-cache OpenRS2 b237 OSRS widget art for the native compass,
   minimap cover/masks, side icons, orb frames/fillers/icons, and skill
   icons; RuneLite gameval sprite IDs are the naming authority
+- a renderer for core-owned dynamic object state, linked-below scenes,
+  streamed region slices, projectiles, spot animations, and equipment visuals
 
 That means it is useful for presentation validation and the first
 inventory/equipment runtime checks, but it is not yet the authority for

@@ -1,120 +1,113 @@
 # RuneC
 
-![RuneC - Varrock](data/header.png)
+RuneC is a C implementation of Old School RuneScape-style game systems. It is
+built to support two modes from the same backend:
 
-RuneC is a C implementation of Old School RuneScape systems with two
-primary goals:
+- a playable local client through a Raylib viewer
+- fast, deterministic headless simulation for testing, evaluation, and RL-style
+  workloads
 
-- Run as a playable OSRS-style game through a Raylib viewer.
-- Run headlessly as a fast, modular simulation backend for RL training
-  and evaluation.
+The project is currently focused on correctness and runtime foundations: cache
+derived world assets, object interaction, UI/runtime state, combat, traversal,
+and modular content systems.
 
-The same backend powers both use cases. A full game build can load the
-world, renderer, data, UI-facing state, combat, skills, items, NPCs,
-and encounters. A focused simulation can enable only the systems needed
-for a task, such as movement + combat + equipment + prayer + one boss
-arena, or movement + tools + inventory + one skilling loop.
+## Current Status
 
-The current viewer renders the Varrock area with terrain, buildings,
-objects, animated NPCs, animated player movement, and tile collision
-from OSRS cache-derived data. The engine includes modular subsystem
-loading, OSRS-style combat math, data-backed items/NPCs/drops, and a
-boss encounter pipeline.
+RuneC can currently run a playable OSRS-style viewer slice with:
 
-## Architecture
+- cache-derived terrain, objects, collision, models, textures, sprites, fonts,
+  animations, NPC spawns, and object traversal data
+- an OSRS-style gameframe shell with inventory, equipment, combat tab, prayer,
+  spellbook, chatbox, minimap/orbs, and context menu surfaces
+- player/NPC rendering, equipment rendering, object animation, projectile
+  foundations, and dynamic object state such as doors, gates, ladders, stairs,
+  portals, caves, manholes, and same-plane transports
+- modular `rc-core` gameplay systems for movement, combat, prayer, inventory,
+  equipment, item actions, loot, skills, quests, dialogue, shops, storage,
+  traversal, objects, regions, slayer, and encounters
 
+The current active work is combat fidelity: broader projectile/spotanim
+coverage, spellbook/autocast state, staff default behavior, special attacks,
+combat presentation, and OSRS-style interaction feel.
+
+## Repository Layout
+
+```text
+rc-core/       Headless C game engine. Tick loop, pathfinding, combat,
+               inventory, equipment, objects, traversal, data loading, and
+               subsystem state. No rendering or OSRS-specific content.
+
+rc-content/    OSRS-specific content hooks. Boss scripts, quest state machines,
+               and region-specific behavior that sits on top of rc-core.
+
+rc-viewer/     Raylib frontend. Rendering, camera, input translation, UI,
+               animation playback, and presentation-only state.
+
+tools/         Python exporters and cache/data tooling. These generate compact
+               runtime assets from the local b237 cache, curated data, and
+               reference sources.
+
+tests/         C runtime tests, regression tests, and benchmark helpers.
+
+data/          Separate local RuneC-DB checkout. Generated assets, generated
+               data, curated DB inputs, and large source corpora live there,
+               not in this repository.
 ```
-rc-core/      Generic game engine (pure C, no render deps).
-              Tick loop, pathfinding, combat, prayer, skills, items,
-              object interaction, traversal, data loading, encounter
-              subsystem, event bus. Content-agnostic: no boss-specific
-              or renderer-specific logic belongs here.
 
-rc-content/   OSRS-specific content modules.
-              Encounter scripts, region behavior, and other content
-              that should stay outside the generic engine.
+## Data Setup
 
-rc-viewer/    Raylib frontend.
-              3D rendering, camera, input, asset loading, animation.
+The main RuneC repository intentionally does not track generated data or cache
+assets. Use the separate database repository for `data/`:
 
-tools/        Python data/export utilities.
-              Used to produce compact runtime datasets from OSRS
-              reference data and curated content definitions.
-
-data/         Runtime data and curated content definitions.
-              regions/ (per-region terrain/objects/collision),
-              defs/ (NPCs, items, drops, encounters, etc.),
-              curated/ (hand-authored content definitions).
+```bash
+git clone https://github.com/jordanbailey00/RuneC-DB.git data
 ```
 
-The backend exposes a small C API centered on world creation, ticks,
-and queued player inputs. The viewer reads state from the backend each
-frame. Simulation targets can skip the viewer entirely and run only the
-subsystems needed for the task.
+The local checkout used by the viewer expects `data/` to exist at the project
+root. `data/` may be a nested Git repo; the parent RuneC repo ignores it.
 
-## Current State
-
-**World + Rendering:**
-- 25-region Varrock world (320x320 tiles) with terrain, buildings, trees, objects
-- 79 Varrock NPC types rendering with stand/walk animations
-- Player model with idle/walk/run animations
-- Click-to-move with BFS pathfinding (respects directional collision flags)
-- Orbit camera with zoom, follow mode, presets
-
-**Game Engine:**
-- Subsystem-based architecture with runtime bitmask toggles (combat,
-  prayer, equipment, inventory, consumables, loot, skills, quests,
-  dialogue, shops, storage, traversal, objects, regions, slayer,
-  encounters)
-- Combat engine with OSRS DPS formulas (melee/ranged/magic accuracy +
-  max hit), protection prayers, pending-hit queue with prayer snapshot
-- Encounter subsystem: 50 boss specs in a curated-data to binary to
-  registry pipeline; event-driven lifecycle; phase transitions;
-  periodic, attack-count, and event-driven mechanic dispatch
-- NPC wander AI, respawn, deterministic XORshift32 RNG
-
-**Data Pipeline:**
-- Compiled datasets currently include NPC definitions, items, varbits,
-  varps, drops, acquisition sources, shops, recipes,
-  spells, prayers, quests, dialogue, slayer data, encounters, object
-  definitions, object placements, traversal edges, collision, area
-  flags, and world/activity spawns.
-- Runtime render data includes regions, models, animations, collision,
-  object placement, and NPC placement data.
-- Runtime data is modular: disabled subsystems do not load their owned
-  datasets.
-
-**Tests:** use CTest for the built test suite.
+Runtime code and exporter code stay in this repository. Generated binaries,
+sprites, model files, region files, curated DB inputs, and local raw source
+corpora stay in `RuneC-DB`.
 
 ## Build
 
-Use an out-of-tree build. `RelWithDebInfo` is a good default for
-development; use `Release` when benchmarking.
+Requirements:
+
+- CMake 3.20+
+- C11 compiler
+- Python 3.10+ for exporter/tooling work
+- Raylib 5.5, provided under `lib/raylib/`
+
+Build out of tree:
 
 ```bash
-cmake -S . -B /tmp/runec_build -DCMAKE_BUILD_TYPE=RelWithDebInfo
-cmake --build /tmp/runec_build -j"$(nproc)"
+cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build -j"$(nproc)"
 ```
 
 Run the viewer:
 
 ```bash
-/tmp/runec_build/rc-viewer
+./build/rc-viewer
 ```
 
 Run tests:
 
 ```bash
-ctest --test-dir /tmp/runec_build --output-on-failure
+ctest --test-dir build --output-on-failure
 ```
 
-Requires CMake 3.20+, a C11 compiler, Raylib 5.5 (prebuilt in
-`lib/raylib/`), Python 3.10+ (for tools only, not runtime).
+Run the SPS benchmark:
 
-## Using The Engine
+```bash
+bash tests/benchmarks/run_sps_benchmark.sh
+```
 
-Create a world from a preset, tick it, and queue player actions through
-the public API:
+## Engine API
+
+`rc-core` exposes a small C API centered on world creation, queued player
+intent, and deterministic ticks:
 
 ```c
 RcWorldConfig cfg = rc_preset_combat_only();
@@ -126,7 +119,7 @@ rc_world_tick(world);
 rc_world_destroy(world);
 ```
 
-Common presets:
+Useful presets:
 
 ```c
 rc_preset_full_game();      // all gameplay systems
@@ -135,22 +128,34 @@ rc_preset_skilling_only();  // movement + inventory/equipment + skills
 rc_preset_base_only();      // minimal movement/tick baseline
 ```
 
+## Architecture Boundaries
+
+- `rc-core` owns gameplay state and rules.
+- `rc-content` owns OSRS-specific content hooks and scripts.
+- `rc-viewer` owns rendering, UI presentation, camera, animation playback, and
+  input-intent translation.
+- `tools/` owns export-time cache/data conversion.
+- `data/` is produced/owned by RuneC-DB.
+
+Gameplay rules should not live in the viewer. Cache decoding should not happen
+inside the runtime tick path. Generated data should not be committed to the
+main RuneC repository.
+
 ## References
 
-**Built with:**
-- [Raylib 5.5](https://www.raylib.com/) — rendering, input, windowing
-- C11 / CMake — build system
-- Python 3 — data-pipeline scripts
+RuneC uses local reference checkouts for audit and parity research. The runtime
+does not call those projects.
 
-**OSRS data and behavior references:**
-- [OpenRS2](https://archive.openrs2.org/) — OSRS cache archives (b237)
-- [RuneLite](https://github.com/runelite/runelite) — cache format, collision flags, coordinate system, item/NPC/object definitions
-- [RSMod](https://github.com/rsmod/rsmod) — tick processing order, BFS pathfinding, combat accuracy formulas, collision system (OSRS-accurate)
-- [Void RSPS](https://github.com/GregHib/void) — skill implementations, Varrock content, object interactions (pre-2013 RS — overlap source only)
-- [osrsreboxed-db](https://github.com/0xNeffarion/osrsreboxed-db) — item equipment bonuses, NPC combat stats, aggression
-- [OSRS Wiki](https://oldschool.runescape.wiki/) — authoritative for all OSRS content (drop tables, mechanics, quests)
-- [runescape-rl](https://github.com/jbaileydev/runescape-rl) — earlier Fight Caves C implementation
+- [OpenRS2](https://archive.openrs2.org/) for OSRS cache archives
+- [RuneLite](https://github.com/runelite/runelite) for cache/client behavior
+  reference
+- [RSMod](https://github.com/rsmod/rsmod) for OSRS server behavior reference
+- [VoidPS](https://github.com/GregHib/void) and 2011Scape for older overlap
+  behavior references
+- [OSRS Wiki](https://oldschool.runescape.wiki/) for content facts and
+  mechanics
 
 ## License
 
-This project is for educational and research purposes. OSRS content and cache data belong to Jagex Ltd.
+RuneC is for educational and research purposes. Old School RuneScape content,
+cache data, names, and assets belong to Jagex Ltd.

@@ -1,4 +1,4 @@
-# rc-content/quests — per-quest state machines
+# rc-content/quests
 
 This directory holds quest-specific state machines and helper code.
 
@@ -9,7 +9,8 @@ Use this file for:
 
 Quest data and quest code are separate:
 - `data/curated/quests/`
-  - human-authored quest structure and step data
+  - human-authored quest structure and step data in the local `RuneC-DB`
+    checkout
 - `data/defs/quests.bin`
   - compact quest metadata used by runtime systems
 - `rc-content/quests/`

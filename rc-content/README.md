@@ -1,4 +1,4 @@
-# rc-content — OSRS-specific content modules
+# rc-content
 
 `rc-content` holds the OSRS-specific game content: boss scripts, quest
 state machines, and region-specific NPC behavior. It links against
@@ -15,8 +15,8 @@ where new content goes must honor the rules here. See also
 `rc-core/README.md` for the engine-side rules; this file is its
 content-side counterpart.
 
-Planning and task tracking live in `work.md`; this README defines
-content boundaries and module structure only.
+Planning and task tracking live in the root `work.md`; this README is a
+technical overview of content boundaries and module structure.
 
 ---
 
@@ -153,11 +153,15 @@ should be data-driven or should move to content.
 
 ---
 
-## 5. Using reference repos for OSRS content
+## 5. Data and reference sources
 
-RuneC content logic should live in this repo. External codebases and
-data repos are source/provenance inputs only after being mirrored under
-`data/source/`:
+RuneC content logic lives in this repo. Generated data, generated assets,
+curated DB inputs, and local source corpora live in the nested `data/`
+directory backed by `https://github.com/jordanbailey00/RuneC-DB`.
+
+External codebases are reference material only. They are audited from local
+checkouts, normally under `/home/joe/projects/runescape-rl-reference`, and
+must not be called at runtime or during normal export/rendering:
 
 - **rsmod** — modern OSRS server emulator. Useful for combat formulas,
   tick order, pathing, and any encounter logic it actually implements.
