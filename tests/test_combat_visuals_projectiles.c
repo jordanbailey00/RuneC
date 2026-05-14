@@ -62,7 +62,7 @@ static void add_defs(void) {
     RcItemDef *air = add_item(TEST_AIR_RUNE, "Air rune");
     air->stackable = true;
 
-    g_rc_spell_count = 1;
+    g_rc_spell_count = 2;
     RcSpellDef *spell = &g_rc_spell_defs[0];
     memset(spell, 0, sizeof(*spell));
     strcpy(spell->name, "Fire Blast");
@@ -71,6 +71,13 @@ static void add_defs(void) {
     spell->rune_count = 2;
     spell->runes[0] = (RcSpellRune){TEST_FIRE_RUNE, 1};
     spell->runes[1] = (RcSpellRune){TEST_AIR_RUNE, 1};
+    spell->loaded = 1;
+
+    spell = &g_rc_spell_defs[1];
+    memset(spell, 0, sizeof(*spell));
+    strcpy(spell->name, "Saradomin Strike");
+    spell->type = RC_SPELL_TYPE_COMBAT;
+    spell->max_hit = 20;
     spell->loaded = 1;
 
     int idx = g_npc_def_count++;
@@ -99,7 +106,9 @@ static void write_visuals_file(const char *path) {
     fputs("item|861|ranged|426|-|-|-|-|-|3|3|163|146|41|15|5|11|5|bow\n", f);
     fputs("item|892|ranged|-|24|15|-|3136|-|2|2|-|-|-|-|-|-|-|arrow\n", f);
     fputs("spell|Fire Blast|magic|1162|129|130|131|3087|663|3|3|172|124|51|16|-5|64|10|spell\n", f);
+    fputs("spell|Saradomin Strike|magic|811|-|-|76|-|-|2|2|-|-|-|-|-|-|-|impact\n", f);
     fputs("npc|990001|magic|711|200|201|202|5555|777|3|3|172|124|51|16|-5|64|10|npc\n", f);
+    fputs("special|1305|slash|1058|248|-|-|-|-|-|-|-|-|-|-|-|-|-|special\n", f);
     fclose(f);
 }
 
@@ -129,7 +138,7 @@ static void test_ranged_attack_emits_data_backed_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 4);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     world->player.equipment[EQUIP_WEAPON] = (RcInvSlot){TEST_BOW, 1};
@@ -176,7 +185,7 @@ static void test_magic_attack_emits_spell_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 4);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     world->player.selected_spell = 0;
@@ -227,7 +236,7 @@ static void test_spell_on_npc_routes_to_magic_combat_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 4);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     RcNpc *npc = &world->npcs[npc_idx];
@@ -258,7 +267,7 @@ static void test_npc_attack_emits_data_backed_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 4);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     RcNpc *npc = &world->npcs[npc_idx];
@@ -291,6 +300,47 @@ static void test_npc_attack_emits_data_backed_projectile(void) {
     rc_world_destroy(world);
 }
 
+static void test_impact_only_spell_emits_timed_impact(void) {
+    reset_defs();
+    add_defs();
+    write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    RcWorld *world = make_world();
+    int npc_idx = spawn_target(world);
+    world->player.selected_spell = 1;
+    rc_refresh_player_combat_style(&world->player);
+    assert(rc_combat_start_player_vs_npc(world, 0, world->npcs[npc_idx].uid));
+
+    rc_combat_tick_player(world);
+
+    int count = 0;
+    const RcCombatProjectile *projectiles =
+        rc_combat_projectiles(world, &count);
+    assert(count == 1);
+    assert(projectiles[0].style == COMBAT_MAGIC);
+    assert(projectiles[0].spell_idx == 1);
+    assert(projectiles[0].travel_spotanim_id == -1);
+    assert(projectiles[0].impact_spotanim_id == 76);
+    assert(projectiles[0].duration_ticks == 2);
+    assert(projectiles[0].impact_duration_ticks == 3);
+    assert(world->player.combat.attack_animation_id == 811);
+    rc_world_destroy(world);
+}
+
+static void test_special_visual_lookup_uses_special_kind(void) {
+    reset_defs();
+    write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+
+    const RcCombatVisualDef *visual =
+        rc_combat_visual_for_special_item(1305, COMBAT_MELEE_SLASH);
+    assert(visual != NULL);
+    assert(visual->kind == RC_COMBAT_VISUAL_SPECIAL);
+    assert(visual->attack_anim_id == 1058);
+    assert(visual->launch_spotanim_id == 248);
+    assert(rc_combat_visual_for_item(1305, COMBAT_MELEE_SLASH) == NULL);
+}
+
 static void test_generated_visuals_include_spell_projectile_profiles(void) {
     FILE *f = fopen("data/defs/combat_visuals.tsv", "r");
     if (!f) return;
@@ -299,7 +349,7 @@ static void test_generated_visuals_include_spell_projectile_profiles(void) {
     memset(g_rc_combat_visual_defs, 0, sizeof(g_rc_combat_visual_defs));
     g_rc_combat_visual_count = 0;
     int count = rc_load_combat_visuals("data/defs/combat_visuals.tsv");
-    assert(count > 1024);
+    assert(count > 1200);
     const RcCombatVisualDef *fire_blast =
         rc_combat_visual_for_spell("Fire Blast", COMBAT_MAGIC);
     assert(fire_blast != NULL);
@@ -313,13 +363,52 @@ static void test_generated_visuals_include_spell_projectile_profiles(void) {
     assert(fire_blast->projectile_length_adjustment == -5);
     assert(fire_blast->projectile_progress == 64);
     assert(fire_blast->projectile_step_multiplier == 10);
+
+    const RcCombatVisualDef *iban =
+        rc_combat_visual_for_spell("Iban Blast", COMBAT_MAGIC);
+    assert(iban != NULL);
+    assert(iban->travel_spotanim_id == 88);
+    assert(iban->projectile_delay == 60);
+    assert(iban->projectile_length_adjustment == -14);
+
+    const RcCombatVisualDef *ice_barrage =
+        rc_combat_visual_for_spell("Ice Barrage", COMBAT_MAGIC);
+    assert(ice_barrage != NULL);
+    assert(ice_barrage->travel_spotanim_id == 368);
+    assert(ice_barrage->impact_spotanim_id == 369);
+    assert(ice_barrage->projectile_end_height == 0);
+
+    const RcCombatVisualDef *ghostly =
+        rc_combat_visual_for_spell("Ghostly Grasp", COMBAT_MAGIC);
+    assert(ghostly != NULL);
+    assert(ghostly->launch_spotanim_id == 1856);
+    assert(ghostly->impact_spotanim_id == 1857);
+
+    const RcCombatVisualDef *vorkath =
+        rc_combat_visual_for_npc(8061, COMBAT_MAGIC);
+    assert(vorkath != NULL);
+    assert(vorkath->travel_spotanim_id == 1479);
+    assert(vorkath->impact_spotanim_id == 1480);
+
+    const RcCombatVisualDef *graardor =
+        rc_combat_visual_for_npc(2215, COMBAT_RANGED);
+    assert(graardor != NULL);
+    assert(graardor->travel_spotanim_id == 1202);
+
+    const RcCombatVisualDef *dlong =
+        rc_combat_visual_for_special_item(1305, COMBAT_MELEE_SLASH);
+    assert(dlong != NULL);
+    assert(dlong->attack_anim_id == 1058);
+    assert(dlong->launch_spotanim_id == 248);
 }
 
 int main(void) {
     test_ranged_attack_emits_data_backed_projectile();
     test_magic_attack_emits_spell_projectile();
+    test_impact_only_spell_emits_timed_impact();
     test_spell_on_npc_routes_to_magic_combat_projectile();
     test_npc_attack_emits_data_backed_projectile();
+    test_special_visual_lookup_uses_special_kind();
     test_generated_visuals_include_spell_projectile_profiles();
     return 0;
 }

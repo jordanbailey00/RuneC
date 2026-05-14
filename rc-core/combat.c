@@ -310,7 +310,9 @@ static int player_ammo_item_id(const RcPlayer *p) {
 static int visual_has_projectile(const RcCombatVisualDef *visual) {
     return visual && (visual->travel_spotanim_id >= 0 ||
                       visual->projectile_model_id >= 0 ||
-                      visual->projectile_anim_id >= 0);
+                      visual->projectile_anim_id >= 0 ||
+                      (visual->kind != RC_COMBAT_VISUAL_SPECIAL &&
+                       visual->impact_spotanim_id >= 0));
 }
 
 static int visual_hit_delay(const RcCombatVisualDef *visual,
@@ -523,7 +525,8 @@ static void spawn_npc_attack_projectile(
 static RcPlayerAttackVisuals select_player_attack_visuals(
     const RcPlayer *p,
     const RcSpellDef *spell,
-    int weapon_id
+    int weapon_id,
+    bool use_special
 ) {
     RcPlayerAttackVisuals out = {
         .weapon = NULL,
@@ -535,6 +538,11 @@ static RcPlayerAttackVisuals select_player_attack_visuals(
     out.ammo_id = player_ammo_item_id(p);
     const RcCombatVisualDef *weapon_visual =
         rc_combat_visual_for_item(weapon_id, p->combat_style);
+    const RcCombatVisualDef *special_visual = use_special
+        ? rc_combat_visual_for_special_item(weapon_id, p->combat_style)
+        : NULL;
+    if (special_visual)
+        weapon_visual = special_visual;
     const RcCombatVisualDef *projectile_visual = NULL;
     if (p->combat_style == COMBAT_MAGIC && spell) {
         projectile_visual = rc_combat_visual_for_spell(spell->name,
@@ -545,6 +553,8 @@ static RcPlayerAttackVisuals select_player_attack_visuals(
         if (!projectile_visual)
             projectile_visual = weapon_visual;
     }
+    if (special_visual && visual_has_projectile(special_visual))
+        projectile_visual = special_visual;
 
     int attack_anim = -1;
     if (weapon_visual && weapon_visual->attack_anim_id >= 0)
@@ -1483,7 +1493,7 @@ static void combat_tick_player_legacy(struct RcWorld *world) {
     dmg = rc_encounter_scale_player_damage(world, (uint16_t)target->uid,
                                            p->combat_style, dmg);
     RcPlayerAttackVisuals visuals =
-        select_player_attack_visuals(p, spell, weapon_id);
+        select_player_attack_visuals(p, spell, weapon_id, use_special);
     const RcCombatVisualDef *timing_visual = visuals.projectile
         ? visual_projectile_timing_visual(visuals.projectile, visuals.weapon)
         : visuals.weapon;

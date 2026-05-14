@@ -56,6 +56,14 @@ typedef struct {
     int width, length;
 } ViewerPickedObject;
 
+typedef struct {
+    const char *key;
+    const char *label;
+    int target_x, target_y, plane;
+    int npc_id;
+    int npc_size;
+} ViewerDevTransport;
+
 // Player animation sequence IDs (from FC — xbows_human variants)
 #define ANIM_IDLE 808
 #define ANIM_WALK 819
@@ -181,6 +189,9 @@ static void create_object_anim_plane_states(ViewerState *v, int plane);
 static void free_object_anim_plane(ViewerState *v, int plane);
 static void reset_model_entry_to_base_pose(ModelEntry *entry);
 static void ensure_active_scene_plane(ViewerState *v, int plane);
+static void reset_viewer_context(ViewerState *v);
+static void handle_player_scene_transition(ViewerState *v, int old_x,
+                                           int old_y, int old_plane);
 
 static int g_world_origin_x = DEFAULT_WORLD_ORIGIN_X;
 static int g_world_origin_y = DEFAULT_WORLD_ORIGIN_Y;
@@ -1120,6 +1131,190 @@ static void ensure_active_scene_plane(ViewerState *v, int plane) {
     }
     if (load_generated_scene_plane_assets(v, v->active_scene_prefix, plane))
         build_minimap_tiles(v);
+}
+
+// Temporary combat-validation transports. Coordinates come from local
+// OSRS/VoidPS spawn-area data; boss NPC ids come from the b237 symbol dump.
+static const ViewerDevTransport g_dev_transports[] = {
+    {"varrock",  "Varrock",   DEFAULT_PLAYER_START_X, DEFAULT_PLAYER_START_Y, 0,   -1, 1},
+    {"graardor", "Graardor",  2872, 5358, 2, 2215, 4},
+    {"kbd",      "KBD",       2269, 4697, 0,  239, 5},
+    {"vorkath",  "Vorkath",   2269, 4062, 0, 8061, 7},
+    {"jad",      "Jad",       2400, 5088, 0, 3127, 5},
+};
+
+static int dev_transport_enabled(void) {
+    return env_bool("RUNEC_DEV_TRANSPORT_PANEL", 1);
+}
+
+static int dev_transport_count(void) {
+    return (int)(sizeof(g_dev_transports) / sizeof(g_dev_transports[0]));
+}
+
+static Rectangle dev_transport_button_rect(int idx) {
+    return (Rectangle){56.0f, 108.0f + (float)idx * 25.0f, 118.0f, 22.0f};
+}
+
+static const ViewerDevTransport *find_dev_transport(const char *key) {
+    if (!key || !key[0])
+        return NULL;
+    for (int i = 0; i < dev_transport_count(); i++) {
+        const ViewerDevTransport *d = &g_dev_transports[i];
+        if (strcmp(key, d->key) == 0 || strcmp(key, d->label) == 0)
+            return d;
+    }
+    return NULL;
+}
+
+static int viewer_has_npc_near(ViewerState *v, int npc_id, int x, int y,
+                               int plane, int radius) {
+    if (!v || !v->world || npc_id < 0)
+        return 0;
+    for (int i = 0; i < v->world->npc_count; i++) {
+        RcNpc *npc = &v->world->npcs[i];
+        if (!npc->active || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+            continue;
+        if (g_npc_defs[npc->def_id].id != npc_id || npc->plane != plane)
+            continue;
+        if (abs(npc->x - x) <= radius && abs(npc->y - y) <= radius)
+            return 1;
+    }
+    return 0;
+}
+
+static int viewer_spawn_focus_npc(ViewerState *v,
+                                  const ViewerDevTransport *d) {
+    if (!v || !v->world || !d || d->npc_id < 0)
+        return 0;
+    if (viewer_has_npc_near(v, d->npc_id, d->target_x, d->target_y,
+                            d->plane, 8)) {
+        return 0;
+    }
+    int def_idx = rc_npc_def_find(d->npc_id);
+    if (def_idx < 0) {
+        fprintf(stderr, "dev transport: missing NPC def %d for %s\n",
+                d->npc_id, d->label);
+        return 0;
+    }
+    int idx = rc_npc_spawn(v->world, def_idx, d->target_x, d->target_y,
+                           d->plane);
+    if (idx < 0)
+        return 0;
+    memset(&v->npc_render[idx], 0, sizeof(v->npc_render[idx]));
+    fprintf(stderr, "dev transport: spawned %s NPC %d at %d,%d,%d\n",
+            d->label, d->npc_id, d->target_x, d->target_y, d->plane);
+    return 1;
+}
+
+static void viewer_clear_player_activity(ViewerState *v) {
+    if (!v || !v->world)
+        return;
+    RcWorld *world = v->world;
+    RcPlayer *p = &world->player;
+    p->route_len = 0;
+    p->route_idx = 0;
+    p->interaction.active = false;
+    p->pending_traversal_active = 0;
+    p->pending_traversal_x = -1;
+    p->pending_traversal_y = -1;
+    p->pending_traversal_plane = -1;
+    p->action_lock_timer = 0;
+    p->action_anim_timer = 0;
+    p->attack_anim_timer = 0;
+    world->combat_projectile_count = 0;
+    rc_combat_stop_actor(world, (RcCombatActorRef){RC_COMBAT_ACTOR_PLAYER, 0},
+                         RC_COMBAT_STATE_CANCELLED);
+    for (int i = 0; i < world->npc_count; i++) {
+        if (world->npcs[i].active) {
+            rc_combat_stop_actor(
+                world, (RcCombatActorRef){RC_COMBAT_ACTOR_NPC,
+                                          world->npcs[i].uid},
+                RC_COMBAT_STATE_CANCELLED);
+        }
+    }
+    runec_ui_clear_selected_target(&v->ui);
+    v->ui.context_open = 0;
+    reset_viewer_context(v);
+}
+
+static void viewer_dev_transport_to(ViewerState *v,
+                                    const ViewerDevTransport *d) {
+    if (!v || !v->world || !d)
+        return;
+    RcPlayer *p = &v->world->player;
+    int old_x = p->x;
+    int old_y = p->y;
+    int old_plane = p->plane;
+    int player_x = d->target_x;
+    int player_y = d->target_y;
+    if (d->npc_id >= 0) {
+        int offset = d->npc_size > 0 ? d->npc_size + 4 : 6;
+        player_y -= offset;
+    }
+
+    viewer_clear_player_activity(v);
+    p->x = player_x;
+    p->y = player_y;
+    p->prev_x = player_x;
+    p->prev_y = player_y;
+    p->plane = clamp_plane(d->plane);
+    p->facing_entity = -1;
+    p->facing_x = d->target_x;
+    p->facing_y = d->target_y;
+    v->prev_player_x = (float)player_x;
+    v->prev_player_y = (float)player_y;
+    v->tick_acc = 0.0f;
+    v->tick_frac = 0.0f;
+    v->player_moving = 0;
+    v->scene_plane_override = -1;
+
+    if (!reload_scene_around_player(v, p->x, p->y))
+        handle_player_scene_transition(v, old_x, old_y, old_plane);
+    ensure_active_scene_plane(v, p->plane);
+    if (viewer_spawn_focus_npc(v, d))
+        reload_npc_models_for_scene(v);
+    fprintf(stderr, "dev transport: %s -> player %d,%d,%d target %d,%d,%d\n",
+            d->label, p->x, p->y, p->plane,
+            d->target_x, d->target_y, d->plane);
+}
+
+static void draw_dev_transport_controls(ViewerState *v) {
+    if (!v || !v->world || !dev_transport_enabled())
+        return;
+    Vector2 mouse = GetMousePosition();
+    Color panel = (Color){12, 14, 16, 175};
+    Color bg = (Color){20, 22, 24, 220};
+    Color hover = (Color){64, 70, 76, 240};
+    Color border = (Color){170, 145, 82, 245};
+    Color text = (Color){240, 225, 180, 255};
+    int count = dev_transport_count();
+    DrawRectangleRounded((Rectangle){52.0f, 84.0f, 126.0f,
+                                     30.0f + (float)count * 25.0f},
+                         0.08f, 6, panel);
+    DrawText("DEV BOSS", 62, 91, 12, text);
+    for (int i = 0; i < count; i++) {
+        Rectangle r = dev_transport_button_rect(i);
+        Color fill = CheckCollisionPointRec(mouse, r) ? hover : bg;
+        DrawRectangleRounded(r, 0.10f, 6, fill);
+        DrawRectangleRoundedLines(r, 0.10f, 6, border);
+        DrawText(g_dev_transports[i].label, (int)r.x + 8, (int)r.y + 5,
+                 12, text);
+    }
+}
+
+static int handle_dev_transport_buttons(ViewerState *v) {
+    if (!v || !v->world || !dev_transport_enabled()
+            || !IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        return 0;
+    }
+    Vector2 mouse = GetMousePosition();
+    for (int i = 0; i < dev_transport_count(); i++) {
+        if (CheckCollisionPointRec(mouse, dev_transport_button_rect(i))) {
+            viewer_dev_transport_to(v, &g_dev_transports[i]);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 static Color minimap_tile_color(const ViewerState *v, int wx, int wy) {
@@ -3506,6 +3701,8 @@ static void handle_input(ViewerState *v, int ui_capture) {
 
     if (handle_scene_plane_buttons(v))
         return;
+    if (handle_dev_transport_buttons(v))
+        return;
 
     if (!ui_capture && IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE)) {
         int npc_uid = pick_npc_at_mouse(v);
@@ -4353,6 +4550,15 @@ int main(void) {
             v.world->player.x, v.world->player.y,
             LOCAL_X(v.world->player.x), LOCAL_Y(v.world->player.y));
 
+    const char *dev_transport_dest = getenv("RUNEC_DEV_TRANSPORT_DEST");
+    const ViewerDevTransport *dev_transport =
+        find_dev_transport(dev_transport_dest);
+    if (dev_transport)
+        viewer_dev_transport_to(&v, dev_transport);
+    else if (dev_transport_dest && dev_transport_dest[0])
+        fprintf(stderr, "dev transport: unknown destination '%s'\n",
+                dev_transport_dest);
+
     const char *ui_selftest = getenv("RUNEC_UI_RUNTIME_SELFTEST");
     if (ui_selftest && ui_selftest[0] && strcmp(ui_selftest, "0") != 0) {
         char error[256] = {0};
@@ -4538,6 +4744,7 @@ int main(void) {
         sync_ui_minimap(&v);
         runec_ui_draw(&v.ui, GetScreenWidth(), GetScreenHeight());
         draw_scene_plane_controls(&v);
+        draw_dev_transport_controls(&v);
         EndDrawing();
         if (screenshot_path && screenshot_path[0] && !screenshot_taken) {
             Image screenshot = LoadImageFromScreen();

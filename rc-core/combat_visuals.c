@@ -28,6 +28,7 @@ static int parse_kind(const char *s) {
     if (strcmp(s, "item") == 0) return RC_COMBAT_VISUAL_ITEM;
     if (strcmp(s, "spell") == 0) return RC_COMBAT_VISUAL_SPELL;
     if (strcmp(s, "npc") == 0) return RC_COMBAT_VISUAL_NPC;
+    if (strcmp(s, "special") == 0) return RC_COMBAT_VISUAL_SPECIAL;
     return 0;
 }
 
@@ -80,7 +81,8 @@ int rc_load_combat_visuals(const char *path) {
         def->kind = (uint8_t)parse_kind(parts[0]);
         if (!def->kind) continue;
         def->key_id = def->kind == RC_COMBAT_VISUAL_ITEM ||
-                      def->kind == RC_COMBAT_VISUAL_NPC
+                      def->kind == RC_COMBAT_VISUAL_NPC ||
+                      def->kind == RC_COMBAT_VISUAL_SPECIAL
                     ? parse_int_field(parts[1]) : -1;
         strncpy(def->key_name, parts[1], sizeof(def->key_name) - 1);
         def->style = parse_style(parts[2]);
@@ -149,6 +151,19 @@ const RcCombatVisualDef *rc_combat_visual_for_npc(int npc_id,
     for (int i = 0; i < g_rc_combat_visual_count; i++) {
         const RcCombatVisualDef *def = &g_rc_combat_visual_defs[i];
         if (def->kind != RC_COMBAT_VISUAL_NPC || def->key_id != npc_id)
+            continue;
+        if (def->style == (int)style) return def;
+        if (!fallback && visual_style_matches(def, style)) fallback = def;
+    }
+    return fallback;
+}
+
+const RcCombatVisualDef *rc_combat_visual_for_special_item(int item_id,
+                                                           RcCombatStyle style) {
+    const RcCombatVisualDef *fallback = NULL;
+    for (int i = 0; i < g_rc_combat_visual_count; i++) {
+        const RcCombatVisualDef *def = &g_rc_combat_visual_defs[i];
+        if (def->kind != RC_COMBAT_VISUAL_SPECIAL || def->key_id != item_id)
             continue;
         if (def->style == (int)style) return def;
         if (!fallback && visual_style_matches(def, style)) fallback = def;

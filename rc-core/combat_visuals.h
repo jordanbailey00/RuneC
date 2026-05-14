@@ -10,6 +10,7 @@ enum {
     RC_COMBAT_VISUAL_ITEM = 1,
     RC_COMBAT_VISUAL_SPELL = 2,
     RC_COMBAT_VISUAL_NPC = 3,
+    RC_COMBAT_VISUAL_SPECIAL = 4,
 };
 
 typedef struct {
@@ -44,5 +45,7 @@ const RcCombatVisualDef *rc_combat_visual_for_spell(const char *spell_name,
                                                     RcCombatStyle style);
 const RcCombatVisualDef *rc_combat_visual_for_npc(int npc_id,
                                                   RcCombatStyle style);
+const RcCombatVisualDef *rc_combat_visual_for_special_item(int item_id,
+                                                           RcCombatStyle style);
 
 #endif
