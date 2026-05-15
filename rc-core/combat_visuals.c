@@ -1,4 +1,5 @@
 #include "combat_visuals.h"
+#include "assets.h"
 
 #include <ctype.h>
 #include <stdio.h>
@@ -62,7 +63,7 @@ static int split_pipe(char *line, char **parts, int max_parts) {
 int rc_load_combat_visuals(const char *path) {
     g_rc_combat_visual_count = 0;
     if (!path || !path[0]) return -1;
-    FILE *f = fopen(path, "r");
+    FILE *f = rc_asset_fopen(path, "r");
     if (!f) return -1;
 
     char line[1024];
@@ -106,7 +107,7 @@ int rc_load_combat_visuals(const char *path) {
         g_rc_combat_visual_count++;
     }
 
-    fclose(f);
+    rc_asset_close(f);
     return g_rc_combat_visual_count;
 }
 

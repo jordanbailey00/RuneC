@@ -25,7 +25,7 @@ typedef struct {
 static void terrain_free(TerrainMesh *tm);
 
 static TerrainMesh *terrain_load(const char *path) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "terrain_load: can't open %s\n", path); return NULL; }
 
     uint32_t magic, vert_count, region_count;
@@ -33,14 +33,14 @@ static TerrainMesh *terrain_load(const char *path) {
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "terrain magic")
             || magic != TERR_MAGIC) {
         fprintf(stderr, "terrain: bad magic\n");
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
     if (!rc_read_exact(f, &vert_count, sizeof(vert_count), 1, path, "terrain vertex count")
             || !rc_read_exact(f, &region_count, sizeof(region_count), 1, path, "terrain region count")
             || !rc_read_exact(f, &min_wx, sizeof(min_wx), 1, path, "terrain min world x")
             || !rc_read_exact(f, &min_wy, sizeof(min_wy), 1, path, "terrain min world y")) {
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
     fprintf(stderr, "terrain: %u verts, %u regions, origin (%d,%d)\n",
@@ -50,7 +50,7 @@ static TerrainMesh *terrain_load(const char *path) {
     if (!raw_verts
             || !rc_read_exact(f, raw_verts, sizeof(float), vert_count * 3, path, "terrain vertices")) {
         free(raw_verts);
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
@@ -59,7 +59,7 @@ static TerrainMesh *terrain_load(const char *path) {
             || !rc_read_exact(f, raw_colors, sizeof(unsigned char), vert_count * 4, path, "terrain colors")) {
         free(raw_verts);
         free(raw_colors);
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
@@ -103,13 +103,13 @@ static TerrainMesh *terrain_load(const char *path) {
         if (!tm->heightmap
                 || !rc_read_exact(f, tm->heightmap, sizeof(float), hw * hh,
                                   path, "terrain heightmap values")) {
-            fclose(f);
+            rc_asset_close(f);
             terrain_free(tm);
             return NULL;
         }
         fprintf(stderr, "terrain heightmap: %dx%d origin (%d,%d)\n", hw, hh, hx, hy);
     }
-    fclose(f);
+    rc_asset_close(f);
     return tm;
 }
 

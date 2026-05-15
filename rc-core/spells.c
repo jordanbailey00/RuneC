@@ -30,7 +30,7 @@ static int read_name(FILE *f, RcSpellDef *row, const char *path) {
 
 int rc_load_spells(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, count;
@@ -39,7 +39,7 @@ int rc_load_spells(const char *path) {
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")
             || (magic != SPEL_MAGIC && magic != TELE_MAGIC)
             || (version != SPEL_V1 && version != SPEL_V2)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -56,20 +56,20 @@ int rc_load_spells(const char *path) {
                                   1, path, "slayer level")
                 || !rc_read_exact(f, &row.xp_q1, sizeof(row.xp_q1), 1, path, "xp")
                 || !rc_read_exact(f, &row.flags, sizeof(row.flags), 1, path, "flags")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= SPEL_V2) {
             if (!rc_read_exact(f, &row.max_hit, sizeof(row.max_hit), 1, path, "max hit")
                     || !rc_read_exact(f, &row.effect_flags, sizeof(row.effect_flags),
                                       1, path, "effect flags")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
         }
         uint8_t rune_count;
         if (!rc_read_exact(f, &rune_count, sizeof(rune_count), 1, path, "rune count")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         row.rune_count = rune_count < RC_SPELL_MAX_RUNES
@@ -79,7 +79,7 @@ int rc_load_spells(const char *path) {
             uint8_t qty;
             if (!rc_read_exact(f, &item_id, sizeof(item_id), 1, path, "rune item")
                     || !rc_read_exact(f, &qty, sizeof(qty), 1, path, "rune qty")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (r < RC_SPELL_MAX_RUNES) {
@@ -91,7 +91,7 @@ int rc_load_spells(const char *path) {
             g_rc_spell_defs[loaded++] = row;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     g_rc_spell_count = loaded;
     return loaded;
 }

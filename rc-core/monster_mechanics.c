@@ -25,7 +25,7 @@ static int read_pstr(FILE *f, char *out, int cap,
 
 int rc_load_monster_mechanics(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "monster_mechanics: can't open %s\n", path);
         return -1;
@@ -35,11 +35,11 @@ int rc_load_monster_mechanics(const char *path) {
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "magic")
             || !rc_read_exact(f, &version, sizeof(version), 1, path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != RNME_MAGIC || version != RNME_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "monster_mechanics: bad header\n");
         return -1;
     }
@@ -64,7 +64,7 @@ int rc_load_monster_mechanics(const char *path) {
                                   1, path, "family system bits")
                 || !rc_read_exact(f, &fam.tag_bits, sizeof(fam.tag_bits), 1,
                                   path, "family tag bits")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
 
@@ -72,7 +72,7 @@ int rc_load_monster_mechanics(const char *path) {
             uint32_t npc_id;
             if (!rc_read_exact(f, &npc_id, sizeof(npc_id), 1,
                                path, "family npc id")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_MONSTER_MECH_MAX_NPC_IDS) {
@@ -96,7 +96,7 @@ int rc_load_monster_mechanics(const char *path) {
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "monster_mechanics: loaded %d families from %s\n",
             loaded, path);
     return loaded;

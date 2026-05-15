@@ -81,7 +81,7 @@ static void models_load_texture_anims(ModelSet *set, const char *atlas_path) {
     char *dot = strrchr(tanm_path, '.');
     if (dot) strcpy(dot, ".tanim");
 
-    FILE *f = fopen(tanm_path, "rb");
+    FILE *f = rc_asset_fopen(tanm_path, "rb");
     if (!f) return;
 
     uint32_t magic, version, count;
@@ -91,13 +91,13 @@ static void models_load_texture_anims(ModelSet *set, const char *atlas_path) {
             || !rc_read_exact(f, &count, sizeof(count), 1, tanm_path,
                               "tanim count")
             || magic != TANM_MAGIC || version != TANM_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return;
     }
 
     set->texture_anims = calloc(count, sizeof(*set->texture_anims));
     if (count > 0 && !set->texture_anims) {
-        fclose(f);
+        rc_asset_close(f);
         return;
     }
     set->texture_anim_count = (int)count;
@@ -108,11 +108,11 @@ static void models_load_texture_anims(ModelSet *set, const char *atlas_path) {
             free(set->texture_anims);
             set->texture_anims = NULL;
             set->texture_anim_count = 0;
-            fclose(f);
+            rc_asset_close(f);
             return;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "models atlas anim: %d animated cells loaded from %s\n",
             set->texture_anim_count, tanm_path);
 }
@@ -301,33 +301,33 @@ static void models_recompute_texture_uvs_from_vertices(ModelEntry *entry,
 }
 
 static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int id_count) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "models: can't open %s\n", path); return NULL; }
 
     uint32_t magic, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "model magic")
             || (magic != MDL2_MAGIC && magic != MDL3_MAGIC)) {
         fprintf(stderr, "models: bad magic\n");
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
     int has_tex = (magic == MDL3_MAGIC);
     if (!rc_read_exact(f, &count, sizeof(count), 1, path, "model count")) {
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
     uint32_t *offsets = malloc(count * 4);
     if (!offsets
             || !rc_read_exact(f, offsets, sizeof(offsets[0]), count, path, "model offsets")) {
         free(offsets);
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
     ModelSet *set = calloc(1, sizeof(ModelSet));
     if (!set) {
         free(offsets);
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
     set->entries = calloc(count, sizeof(ModelEntry));
@@ -335,7 +335,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
     set->index_by_id = malloc(sizeof(int) * set->index_limit);
     if (!set->entries || !set->index_by_id) {
         free(offsets);
-        fclose(f);
+        rc_asset_close(f);
         models_free(set);
         return NULL;
     }
@@ -350,7 +350,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
         char *dot = strrchr(atlas_path, '.');
         if (dot) strcpy(dot, ".atlas");
 
-        FILE *af = fopen(atlas_path, "rb");
+        FILE *af = rc_asset_fopen(atlas_path, "rb");
         if (af) {
             uint32_t atlas_magic, width, height;
             if (rc_read_exact(af, &atlas_magic, sizeof(atlas_magic), 1, atlas_path, "atlas magic")
@@ -392,7 +392,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                 }
                 free(pixels);
             }
-            fclose(af);
+            rc_asset_close(af);
         } else {
             fprintf(stderr, "models atlas: can't open %s\n", atlas_path);
         }
@@ -409,7 +409,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
     for (uint32_t m = 0; m < count; m++) {
         if (!rc_seek(f, offsets[m], SEEK_SET, path, "model offset table")) {
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -419,7 +419,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                 || !rc_read_exact(f, &fc, sizeof(fc), 1, path, "model face count")
                 || !rc_read_exact(f, &bvc, sizeof(bvc), 1, path, "model base vertex count")) {
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -431,7 +431,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                 || !rc_read_exact(f, verts, sizeof(float), vc * 3, path, "model vertices")) {
             free(verts);
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -441,7 +441,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
             free(verts);
             free(colors);
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -454,7 +454,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                 free(colors);
                 free(texcoords);
                 free(offsets);
-                fclose(f);
+                rc_asset_close(f);
                 models_free(set);
                 return NULL;
             }
@@ -471,7 +471,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
             free(verts);
             free(colors);
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -502,7 +502,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
         if (!bv
                 || !rc_read_exact(f, bv, sizeof(int16_t), bvc * 3, path, "model base vertices")) {
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -510,7 +510,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
         if (!skins
                 || !rc_read_exact(f, skins, sizeof(uint8_t), bvc, path, "model vertex skins")) {
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -518,7 +518,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
         if (!fi
                 || !rc_read_exact(f, fi, sizeof(uint16_t), tc * 3, path, "model face indices")) {
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -526,7 +526,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
         if (!pri
                 || !rc_read_exact(f, pri, sizeof(uint8_t), tc, path, "model priorities")) {
             free(offsets);
-            fclose(f);
+            rc_asset_close(f);
             models_free(set);
             return NULL;
         }
@@ -545,7 +545,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                 face_uvs = calloc(tc, sizeof(*face_uvs));
                 if (!face_uvs) {
                     free(offsets);
-                    fclose(f);
+                    rc_asset_close(f);
                     models_free(set);
                     return NULL;
                 }
@@ -582,7 +582,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                                               1, path, "model uv repeat v")) {
                         free(face_uvs);
                         free(offsets);
-                        fclose(f);
+                        rc_asset_close(f);
                         models_free(set);
                         return NULL;
                     }
@@ -613,7 +613,7 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
         loaded_count++;
         fprintf(stderr, "  model %u: %d tris, %d base verts\n", mid, tc, (int)bvc);
     }
-    free(offsets); fclose(f);
+    free(offsets); rc_asset_close(f);
     set->loaded = 1;
     fprintf(stderr, "models: loaded %d from %s\n", loaded_count, path);
     return set;

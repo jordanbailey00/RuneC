@@ -41,7 +41,7 @@ static int valid_key(int kind, uint32_t source_id) {
 
 int rc_load_traversal_edges(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, count;
@@ -49,13 +49,13 @@ int rc_load_traversal_edges(const char *path) {
             || !rc_read_exact(f, &version, sizeof(version), 1, path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")
             || magic != TRAV_MAGIC || version != TRAV_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
     RcTraversalEdge *rows = calloc(count ? count : 1u, sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     memset(g_traversal_index, 0xFF, sizeof(g_traversal_index));
@@ -91,7 +91,7 @@ int rc_load_traversal_edges(const char *path) {
                 || !read_str8(f, row->target, sizeof(row->target), path,
                               "target")) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         row->start_plane = (uint8_t)((planes >> 8) & 0xFF);
@@ -103,7 +103,7 @@ int rc_load_traversal_edges(const char *path) {
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_traversal_edges);
     g_rc_traversal_edges = rows;
     g_rc_traversal_edge_count = (int)count;

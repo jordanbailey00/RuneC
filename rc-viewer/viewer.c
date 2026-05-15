@@ -1,6 +1,7 @@
 // RuneC Raylib viewer.
 
 #include "../rc-core/api.h"
+#include "../rc-core/assets.h"
 #include "../rc-core/combat.h"
 #include "../rc-core/config.h"
 #include "../rc-core/items.h"
@@ -12,6 +13,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "rlgl.h"
+#include "asset_raylib.h"
 #include "terrain.h"
 #include "objects.h"
 #include "models.h"
@@ -209,6 +211,32 @@ static const char *env_path(const char *key, const char *fallback) {
     return value && value[0] ? value : fallback;
 }
 
+static int runtime_data_available(void) {
+    const char *required[] = {
+        "defs/items.bin",
+        "defs/npc_defs.bin",
+        "defs/object_defs.bin",
+        "regions/varrock.terrain",
+        "regions/varrock.objects",
+        "models/player.models",
+        "sprites/ui/side_icon_inventory.png",
+        "fonts/runescape.ttf",
+    };
+    int missing = 0;
+    for (size_t i = 0; i < sizeof(required) / sizeof(required[0]); i++) {
+        if (!rc_asset_exists(required[i])) {
+            fprintf(stderr, "missing runtime data asset: %s\n", required[i]);
+            missing = 1;
+        }
+    }
+    if (missing) {
+        fprintf(stderr,
+                "RuneC runtime data is missing. Run ./scripts/setup-data.sh "
+                "from the repository root, or set RUNEC_DATA_ROOT/RUNEC_PACK_DIR.\n");
+    }
+    return !missing;
+}
+
 static int env_int(const char *key, int fallback) {
     const char *value = getenv(key);
     return value && value[0] ? atoi(value) : fallback;
@@ -364,7 +392,7 @@ static void load_terrain_plane_assets(ViewerState *v, const char *base_path) {
                 path = base_path;
             } else if (plane_path_variant(variant, sizeof(variant), base_path,
                                           plane, ".terrain")
-                    && FileExists(variant)) {
+                    && rc_asset_exists(variant)) {
                 path = variant;
             } else {
                 continue;
@@ -399,7 +427,7 @@ static void load_object_plane_assets(ViewerState *v, const char *base_path) {
                 path = base_path;
             } else if (plane_path_variant(variant, sizeof(variant), base_path,
                                           plane, ".objects")
-                    && FileExists(variant)) {
+                    && rc_asset_exists(variant)) {
                 path = variant;
             } else {
                 continue;
@@ -415,7 +443,7 @@ static void load_object_plane_assets(ViewerState *v, const char *base_path) {
             char anim_models_path[1024];
             if (companion_path(anim_models_path, sizeof(anim_models_path), path,
                                ".object_anim.models")
-                    && FileExists(anim_models_path)) {
+                    && rc_asset_exists(anim_models_path)) {
                 v->object_anim_model_planes[plane] =
                     models_load(anim_models_path);
                 if (v->object_anim_model_planes[plane]) {
@@ -443,7 +471,7 @@ static void load_object_plane_assets(ViewerState *v, const char *base_path) {
 static void load_item_stack_variants(ViewerState *v, const char *path) {
     if (!v || !path || !path[0])
         return;
-    FILE *f = fopen(path, "r");
+    FILE *f = rc_asset_fopen(path, "r");
     if (!f) {
         fprintf(stderr, "item_stack_variants: unavailable at %s\n", path);
         return;
@@ -465,7 +493,7 @@ static void load_item_stack_variants(ViewerState *v, const char *path) {
         v->item_stack_variants[v->item_stack_variant_count++] = variant;
         loaded++;
     }
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "item_stack_variants: loaded %d display variants from %s\n",
             loaded, path);
 }
@@ -893,7 +921,7 @@ static int path_mtime(const char *path, time_t *out) {
 static int scene_objects_current(const char *objects_path) {
     time_t objects_mtime;
     if (!path_mtime(objects_path, &objects_mtime))
-        return 0;
+        return rc_asset_exists(objects_path);
     const char *deps[] = {
         "tools/cache_pipeline/export_scene_slice.py",
         "tools/cache_pipeline/export_terrain.py",
@@ -916,15 +944,15 @@ static int scene_plane_files_exist(const char *prefix, int plane) {
     char path[1024];
     plane = clamp_plane(plane);
     scene_plane_file(path, sizeof(path), prefix, plane, ".terrain");
-    if (!FileExists(path))
+    if (!rc_asset_exists(path))
         return 0;
     char objects_path[1024];
     scene_plane_file(objects_path, sizeof(objects_path), prefix, plane,
                      ".objects");
-    if (!FileExists(objects_path) || !scene_objects_current(objects_path))
+    if (!rc_asset_exists(objects_path) || !scene_objects_current(objects_path))
         return 0;
     scene_plane_file(path, sizeof(path), prefix, plane, ".atlas");
-    return FileExists(path);
+    return rc_asset_exists(path);
 }
 
 static int ensure_scene_slice_plane_assets(ViewerState *v, int center_x,
@@ -968,7 +996,7 @@ static int load_generated_scene_plane_assets(ViewerState *v,
                      ".terrain");
     scene_plane_file(objects_path, sizeof(objects_path), prefix, plane,
                      ".objects");
-    if (!FileExists(terrain_path) || !FileExists(objects_path))
+    if (!rc_asset_exists(terrain_path) || !rc_asset_exists(objects_path))
         return 0;
 
     terrain_free(v->terrain_planes[plane]);
@@ -995,7 +1023,7 @@ static int load_generated_scene_plane_assets(ViewerState *v,
             char anim_models_path[1024];
             if (companion_path(anim_models_path, sizeof(anim_models_path),
                                objects_path, ".object_anim.models")
-                    && FileExists(anim_models_path)) {
+                    && rc_asset_exists(anim_models_path)) {
                 v->object_anim_model_planes[plane] =
                     models_load(anim_models_path);
                 if (v->object_anim_model_planes[plane]) {
@@ -1334,10 +1362,10 @@ static void load_world_map_minimap(ViewerState *v) {
     const char *path = env_path("RUNEC_MINIMAP_MAP",
         "tools/cache_pipeline/source/current_fightcaves_demo/data/"
         "map-oldschool-live-en-b236-2026-03-18-11-45-07-openrs2#2499.png");
-    if (!FileExists(path))
+    if (!rc_asset_exists(path))
         return;
 
-    Image img = LoadImage(path);
+    Image img = runec_load_image_asset(path);
     if (!img.data)
         return;
     ImageFormat(&img, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
@@ -2187,10 +2215,10 @@ static Texture2D load_item_icon_texture_from_file(int icon_item_id) {
     Texture2D empty = {0};
     char path[256];
     snprintf(path, sizeof(path), "data/sprites/items/item_%d.png", icon_item_id);
-    if (!FileExists(path))
+    if (!rc_asset_exists(path))
         return empty;
 
-    Texture2D tex = LoadTexture(path);
+    Texture2D tex = runec_load_texture_asset(path);
     if (tex.id != 0)
         SetTextureFilter(tex, TEXTURE_FILTER_POINT);
     return tex;
@@ -4326,6 +4354,8 @@ int main(void) {
     v.scene_radius_regions = env_int("RUNEC_SCENE_RADIUS_REGIONS", 1);
     if (v.scene_radius_regions < 0)
         v.scene_radius_regions = 0;
+    if (!runtime_data_available())
+        return 1;
 
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_EQUIPMENT | RC_SUB_LOOT |

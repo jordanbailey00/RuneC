@@ -6,6 +6,8 @@
 #ifndef RUNEC_EQUIPMENT_RENDER_H
 #define RUNEC_EQUIPMENT_RENDER_H
 
+#include "../rc-core/assets.h"
+
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,7 +82,7 @@ static int runec_item_render_map_load(RuneCItemRenderMap *map, const char *path)
     for (int i = 0; i < RUNEC_RENDER_BODY_PART_COUNT; i++)
         map->body_model_ids[i] = RUNEC_RENDER_MODEL_MISSING;
 
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "item_render: can't open %s\n", path);
         return 0;
@@ -90,7 +92,7 @@ static int runec_item_render_map_load(RuneCItemRenderMap *map, const char *path)
     if (!runec_read_u32(f, &magic) || !runec_read_u32(f, &version)
             || !runec_read_u32(f, &record_count)
             || !runec_read_u32(f, &body_count)) {
-        fclose(f);
+        rc_asset_close(f);
         return 0;
     }
     if (magic != RUNEC_ITEM_RENDER_MAGIC
@@ -98,20 +100,20 @@ static int runec_item_render_map_load(RuneCItemRenderMap *map, const char *path)
                 && version != RUNEC_ITEM_RENDER_VERSION_1)
             || body_count > RUNEC_RENDER_BODY_PART_COUNT) {
         fprintf(stderr, "item_render: bad header in %s\n", path);
-        fclose(f);
+        rc_asset_close(f);
         return 0;
     }
 
     for (uint32_t i = 0; i < body_count; i++) {
         if (!runec_read_u32(f, &map->body_model_ids[i])) {
-            fclose(f);
+            rc_asset_close(f);
             return 0;
         }
     }
 
     map->records = calloc(record_count, sizeof(RuneCItemRenderRecord));
     if (!map->records) {
-        fclose(f);
+        rc_asset_close(f);
         return 0;
     }
     map->record_count = (int)record_count;
@@ -123,7 +125,7 @@ static int runec_item_render_map_load(RuneCItemRenderMap *map, const char *path)
                 || !runec_read_u32(f, &rec->male_model_id)
                 || !runec_read_u32(f, &rec->female_model_id)
                 || !runec_read_u32(f, &rec->hide_body_mask)) {
-            fclose(f);
+            rc_asset_close(f);
             runec_item_render_map_free(map);
             return 0;
         }
@@ -144,14 +146,14 @@ static int runec_item_render_map_load(RuneCItemRenderMap *map, const char *path)
                     || !runec_read_u32(f, &rec->ready_anim_id)
                     || !runec_read_u32(f, &rec->walk_anim_id)
                     || !runec_read_u32(f, &rec->run_anim_id)) {
-                fclose(f);
+                rc_asset_close(f);
                 runec_item_render_map_free(map);
                 return 0;
             }
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     map->loaded = 1;
     fprintf(stderr, "item_render: loaded %d records from %s\n",
             map->record_count, path);

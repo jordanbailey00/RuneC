@@ -65,7 +65,7 @@ void rc_activity_spawns_rebuild_index(void) {
 
 int rc_load_activity_spawns(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "activity_spawns: can't open %s\n", path);
         return -1;
@@ -77,18 +77,18 @@ int rc_load_activity_spawns(const char *path) {
                               path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1,
                               path, "count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != ASPN_MAGIC || version == 0 || version > ASPN_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "activity_spawns: bad header\n");
         return -1;
     }
 
     RcActivitySpawn *rows = calloc(count ? count : 1, sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -139,13 +139,13 @@ int rc_load_activity_spawns(const char *path) {
                               "entity")
                 || !read_pstr(f, row.ref, sizeof(row.ref), path, "ref")) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         rows[i] = row;
     }
 
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_activity_spawns);
     g_rc_activity_spawns = rows;
     g_rc_activity_spawn_count = (int)count;

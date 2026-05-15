@@ -42,12 +42,12 @@ static int read_name(FILE *f, char *out, int cap, uint8_t len,
 
 int rc_load_varbits(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t count;
     if (!read_header(f, path, VBIT_MAGIC, VBIT_VERSION, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     memset(g_rc_varbits, 0, sizeof(g_rc_varbits));
@@ -63,7 +63,7 @@ int rc_load_varbits(const char *path) {
                 || !rc_read_exact(f, &base, sizeof(base), 1, path, "base varp")
                 || !rc_read_exact(f, &lsb, sizeof(lsb), 1, path, "lsb")
                 || !rc_read_exact(f, &msb, sizeof(msb), 1, path, "msb")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (idx < RC_MAX_VARBITS) {
@@ -76,19 +76,19 @@ int rc_load_varbits(const char *path) {
             loaded++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     g_rc_varbit_count = loaded;
     return loaded;
 }
 
 int rc_load_varps(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t count;
     if (!read_header(f, path, VARP_MAGIC, VARP_VERSION, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     memset(g_rc_varps, 0, sizeof(g_rc_varps));
@@ -102,7 +102,7 @@ int rc_load_varps(const char *path) {
                 || !rc_read_exact(f, &type, sizeof(type), 1, path, "varp type")
                 || !rc_read_exact(f, &len, sizeof(len), 1, path, "name len")
                 || !read_name(f, name, sizeof(name), len, path)) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (idx < RC_MAX_VARPS) {
@@ -113,7 +113,7 @@ int rc_load_varps(const char *path) {
             loaded++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     g_rc_varp_count = loaded;
     return loaded;
 }

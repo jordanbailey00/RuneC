@@ -4,12 +4,14 @@ project(RuneC C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 enable_testing()
+find_package(ZLIB REQUIRED)
 
 # rc-core: generic game backend library (no render deps, no OSRS-specific
 # content). See rc-core/README.md for the engine/content split.
 file(GLOB RC_CORE_SOURCES rc-core/*.c)
 add_library(rc-core STATIC ${RC_CORE_SOURCES})
 target_include_directories(rc-core PUBLIC rc-core)
+target_link_libraries(rc-core PUBLIC ZLIB::ZLIB)
 
 # rc-content: OSRS-specific content (boss scripts, quests, region code).
 # Links against rc-core. Isolation targets select a subset of these .c

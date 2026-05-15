@@ -20,7 +20,7 @@ static void reset_index(int *index) {
 
 int rc_load_collision_tiles(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, row_count, region_count;
@@ -30,7 +30,7 @@ int rc_load_collision_tiles(const char *path) {
             || !rc_read_exact(f, &region_count, sizeof(region_count), 1,
                               path, "region count")
             || magic != CTIL_MAGIC || version != CTIL_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -39,7 +39,7 @@ int rc_load_collision_tiles(const char *path) {
     if (!regions || !index) {
         free(regions);
         free(index);
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     reset_index(index);
@@ -59,7 +59,7 @@ int rc_load_collision_tiles(const char *path) {
                 || !rc_read_exact(f, &flags, sizeof(flags), 1, path, "flags")) {
             free(regions);
             free(index);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (!have_ms || ms != last_ms) {
@@ -67,7 +67,7 @@ int rc_load_collision_tiles(const char *path) {
             if (current >= (int)region_count) {
                 free(regions);
                 free(index);
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             regions[current].mapsquare = ms;
@@ -79,7 +79,7 @@ int rc_load_collision_tiles(const char *path) {
             regions[current].flags[plane][lx][ly] = flags;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
 
     free(g_rc_collision_regions);
     g_rc_collision_regions = regions;

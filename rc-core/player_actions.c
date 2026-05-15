@@ -12,7 +12,7 @@ int g_rc_player_action_count = 0;
 
 int rc_load_player_actions(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, count;
@@ -20,7 +20,7 @@ int rc_load_player_actions(const char *path) {
             || !rc_read_exact(f, &version, sizeof(version), 1, path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")
             || magic != PACT_MAGIC || version != PACT_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -35,18 +35,18 @@ int rc_load_player_actions(const char *path) {
                 || !rc_read_exact(f, &name_len, sizeof(name_len), 1, path, "name len")
                 || !rc_read_exact(f, &subsystems, sizeof(subsystems), 1,
                                   path, "subsystems")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         char name[32] = {0};
         uint16_t keep = name_len < sizeof(name) ? name_len : (uint16_t)sizeof(name) - 1;
         if (keep && !rc_read_exact(f, name, 1, keep, path, "name")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (name_len > keep && !rc_seek(f, name_len - keep, SEEK_CUR,
                                         path, "name")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (action_id < RC_MAX_PLAYER_ACTIONS) {
@@ -58,7 +58,7 @@ int rc_load_player_actions(const char *path) {
             loaded++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     g_rc_player_action_count = loaded;
     return loaded;
 }

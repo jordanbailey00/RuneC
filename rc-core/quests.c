@@ -28,7 +28,7 @@ static int read_name(FILE *f, char *out, int cap, const char *path) {
 
 int rc_load_quests(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, count;
@@ -37,12 +37,12 @@ int rc_load_quests(const char *path) {
                               "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")
             || magic != QEST_MAGIC || version != QEST_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     RcQuestDef *rows = calloc(count ? count : 1u, sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     for (uint32_t i = 0; i < count; i++) {
@@ -57,7 +57,7 @@ int rc_load_quests(const char *path) {
                 || !rc_read_exact(f, &req_count, sizeof(req_count), 1, path,
                                   "req count")) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         row->req_count = req_count < RC_QUEST_MAX_SKILL_REQS
@@ -69,7 +69,7 @@ int rc_load_quests(const char *path) {
                     || !rc_read_exact(f, &level, sizeof(level), 1, path,
                                       "level")) {
                 free(rows);
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (r < RC_QUEST_MAX_SKILL_REQS) {
@@ -77,7 +77,7 @@ int rc_load_quests(const char *path) {
             }
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_quest_defs);
     g_rc_quest_defs = rows;
     g_rc_quest_count = (int)count;

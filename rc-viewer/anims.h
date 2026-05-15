@@ -175,7 +175,7 @@ static void anim_skip(AnimReader* r, size_t n) {
 }
 
 static AnimCache* anim_cache_load(const char* path) {
-    FILE* f = fopen(path, "rb");
+    FILE* f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "anim_cache_load: cannot open %s\n", path);
         return NULL;
@@ -183,7 +183,7 @@ static AnimCache* anim_cache_load(const char* path) {
 
     long size = rc_file_size(f, path, "animation cache");
     if (size <= 0) {
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
@@ -191,10 +191,10 @@ static AnimCache* anim_cache_load(const char* path) {
     if (!buf
             || !rc_read_exact(f, buf, sizeof(uint8_t), (size_t)size, path, "animation cache bytes")) {
         free(buf);
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
-    fclose(f);
+    rc_asset_close(f);
 
     AnimReader r = { buf, buf + size, path, 1 };
     uint32_t magic = anim_read_u32(&r);

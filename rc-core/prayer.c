@@ -12,7 +12,7 @@ int g_rc_prayer_count = 0;
 
 int rc_load_prayers(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, count;
@@ -20,7 +20,7 @@ int rc_load_prayers(const char *path) {
             || !rc_read_exact(f, &version, sizeof(version), 1, path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")
             || magic != PRAY_MAGIC || version != PRAY_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -50,19 +50,19 @@ int rc_load_prayers(const char *path) {
                 || !rc_read_exact(f, &row.magic_damage, sizeof(row.magic_damage), 1,
                                   path, "magic damage")
                 || !rc_read_exact(f, &name_len, sizeof(name_len), 1, path, "name len")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         uint8_t keep = name_len < sizeof(row.name)
                      ? name_len : (uint8_t)sizeof(row.name) - 1;
         if (keep && !rc_read_exact(f, row.name, 1, keep, path, "name")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         row.name[keep] = '\0';
         if (name_len > keep &&
                 !rc_seek(f, name_len - keep, SEEK_CUR, path, "name")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (row.id < RC_MAX_PRAYER_DEFS) {
@@ -71,7 +71,7 @@ int rc_load_prayers(const char *path) {
             loaded++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     g_rc_prayer_count = loaded;
     return loaded;
 }

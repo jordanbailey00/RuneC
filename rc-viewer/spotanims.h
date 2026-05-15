@@ -29,7 +29,7 @@ typedef struct {
 static void spotanims_free(SpotAnimSet *set);
 
 static SpotAnimSet *spotanims_load(const char *path) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "spotanims: can't open %s\n", path);
         return NULL;
@@ -42,18 +42,18 @@ static SpotAnimSet *spotanims_load(const char *path) {
             || !rc_read_exact(f, &count, sizeof(count), 1, path,
                               "spotanim count")
             || magic != SPOTANIM_MAGIC || version != SPOTANIM_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
     SpotAnimSet *set = (SpotAnimSet *)calloc(1, sizeof(*set));
     if (!set) {
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
     set->defs = (SpotAnimDef *)calloc(count, sizeof(*set->defs));
     if (count > 0 && !set->defs) {
-        fclose(f);
+        rc_asset_close(f);
         spotanims_free(set);
         return NULL;
     }
@@ -61,12 +61,12 @@ static SpotAnimSet *spotanims_load(const char *path) {
     for (uint32_t i = 0; i < count; i++) {
         if (!rc_read_exact(f, &set->defs[i], sizeof(set->defs[i]), 1, path,
                            "spotanim row")) {
-            fclose(f);
+            rc_asset_close(f);
             spotanims_free(set);
             return NULL;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     set->loaded = 1;
     fprintf(stderr, "spotanims: loaded %d from %s\n", set->count, path);
     return set;

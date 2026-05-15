@@ -82,7 +82,7 @@ static void objects_load_texture_anims(ObjectMesh *om, const char *atlas_path) {
     char *dot = strrchr(tanm_path, '.');
     if (dot) strcpy(dot, ".tanim");
 
-    FILE *f = fopen(tanm_path, "rb");
+    FILE *f = rc_asset_fopen(tanm_path, "rb");
     if (!f) return;
     uint32_t magic, version, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, tanm_path, "tanim magic")
@@ -91,12 +91,12 @@ static void objects_load_texture_anims(ObjectMesh *om, const char *atlas_path) {
             || !rc_read_exact(f, &count, sizeof(count), 1, tanm_path,
                               "tanim count")
             || magic != TANM_MAGIC || version != TANM_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return;
     }
     om->texture_anims = calloc(count, sizeof(*om->texture_anims));
     if (count > 0 && !om->texture_anims) {
-        fclose(f);
+        rc_asset_close(f);
         return;
     }
     om->texture_anim_count = (int)count;
@@ -107,11 +107,11 @@ static void objects_load_texture_anims(ObjectMesh *om, const char *atlas_path) {
             free(om->texture_anims);
             om->texture_anims = NULL;
             om->texture_anim_count = 0;
-            fclose(f);
+            rc_asset_close(f);
             return;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "atlas anim: %d animated cells loaded\n",
             om->texture_anim_count);
 }
@@ -121,7 +121,7 @@ static void objects_load_object_anims(ObjectMesh *om, const char *objects_path) 
     char path[1024];
     if (!objects_companion_path(path, sizeof(path), objects_path, ".oanim"))
         return;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return;
     uint32_t magic, version, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "object anim magic")
@@ -130,12 +130,12 @@ static void objects_load_object_anims(ObjectMesh *om, const char *objects_path) 
             || !rc_read_exact(f, &count, sizeof(count), 1, path,
                               "object anim count")
             || magic != OANM_MAGIC || version != OANM_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return;
     }
     om->object_anims = calloc(count, sizeof(*om->object_anims));
     if (count > 0 && !om->object_anims) {
-        fclose(f);
+        rc_asset_close(f);
         return;
     }
     om->object_anim_count = (int)count;
@@ -172,29 +172,29 @@ static void objects_load_object_anims(ObjectMesh *om, const char *objects_path) 
             free(om->object_anims);
             om->object_anims = NULL;
             om->object_anim_count = 0;
-            fclose(f);
+            rc_asset_close(f);
             return;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "object anim: %d placements loaded\n",
             om->object_anim_count);
 }
 
 static Texture2D objects_load_atlas(ObjectMesh *om, const char *atlas_path) {
     Texture2D tex = {0};
-    FILE *f = fopen(atlas_path, "rb");
+    FILE *f = rc_asset_fopen(atlas_path, "rb");
     if (!f) { fprintf(stderr, "atlas: can't open %s\n", atlas_path); return tex; }
 
     uint32_t magic, width, height;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, atlas_path, "atlas magic")
             || magic != ATLS_MAGIC) {
-        fclose(f);
+        rc_asset_close(f);
         return tex;
     }
     if (!rc_read_exact(f, &width, sizeof(width), 1, atlas_path, "atlas width")
             || !rc_read_exact(f, &height, sizeof(height), 1, atlas_path, "atlas height")) {
-        fclose(f);
+        rc_asset_close(f);
         return tex;
     }
 
@@ -203,10 +203,10 @@ static Texture2D objects_load_atlas(ObjectMesh *om, const char *atlas_path) {
     if (!pixels
             || !rc_read_exact(f, pixels, sizeof(unsigned char), sz, atlas_path, "atlas pixels")) {
         free(pixels);
-        fclose(f);
+        rc_asset_close(f);
         return tex;
     }
-    fclose(f);
+    rc_asset_close(f);
 
     Image img = { .data = pixels, .width = (int)width, .height = (int)height,
                   .mipmaps = 1, .format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 };
@@ -287,24 +287,24 @@ static void objects_update_texture_anims(ObjectMesh *om, float dt) {
 }
 
 static ObjectMesh *objects_load(const char *path) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "objects: can't open %s\n", path); return NULL; }
 
     uint32_t magic, placement_count, total_verts;
     int32_t min_wx, min_wy;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "object magic")) {
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
     int has_tex = (magic == OBJ2_MAGIC);
-    if (!has_tex && magic != OBJS_MAGIC) { fprintf(stderr, "objects: bad magic\n"); fclose(f); return NULL; }
+    if (!has_tex && magic != OBJS_MAGIC) { fprintf(stderr, "objects: bad magic\n"); rc_asset_close(f); return NULL; }
 
     if (!rc_read_exact(f, &placement_count, sizeof(placement_count), 1, path, "object placement count")
             || !rc_read_exact(f, &min_wx, sizeof(min_wx), 1, path, "object min world x")
             || !rc_read_exact(f, &min_wy, sizeof(min_wy), 1, path, "object min world y")
             || !rc_read_exact(f, &total_verts, sizeof(total_verts), 1, path, "object vertex count")) {
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
     fprintf(stderr, "objects: %u placements, %u verts, %s\n",
@@ -314,7 +314,7 @@ static ObjectMesh *objects_load(const char *path) {
     if (!raw_verts
             || !rc_read_exact(f, raw_verts, sizeof(float), total_verts * 3, path, "object vertices")) {
         free(raw_verts);
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
@@ -323,7 +323,7 @@ static ObjectMesh *objects_load(const char *path) {
             || !rc_read_exact(f, raw_colors, sizeof(unsigned char), total_verts * 4, path, "object colors")) {
         free(raw_verts);
         free(raw_colors);
-        fclose(f);
+        rc_asset_close(f);
         return NULL;
     }
 
@@ -335,11 +335,11 @@ static ObjectMesh *objects_load(const char *path) {
             free(raw_verts);
             free(raw_colors);
             free(raw_tc);
-            fclose(f);
+            rc_asset_close(f);
             return NULL;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
 
     Mesh mesh = {0};
     mesh.vertexCount = (int)total_verts;

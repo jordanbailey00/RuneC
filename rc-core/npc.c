@@ -41,7 +41,7 @@ static void rc_npc_def_index_reset(void) {
 #define NDEF_V4 4
 
 int rc_load_npc_defs(const char *path) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "npc_defs: can't open %s\n", path); return -1; }
     int orig_count = g_npc_def_count;
     if (orig_count == 0) rc_npc_def_index_reset();
@@ -49,19 +49,19 @@ int rc_load_npc_defs(const char *path) {
     uint32_t magic, version, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "npc defs magic")
             || magic != NDEF_MAGIC) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "npc_defs: bad magic\n");
         return -1;
     }
     if (!rc_read_exact(f, &version, sizeof(version), 1, path, "npc defs version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "npc defs count")) {
-        fclose(f);
+        rc_asset_close(f);
         g_npc_def_count = orig_count;
         return -1;
     }
     if (version != NDEF_V1 && version != NDEF_V2
             && version != NDEF_V3 && version != NDEF_V4) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "npc_defs: unsupported version %u\n", version);
         return -1;
     }
@@ -84,13 +84,13 @@ int rc_load_npc_defs(const char *path) {
                 || !rc_read_exact(f, stats, sizeof(stats[0]), 6, path, "npc stats")
                 || !rc_read_exact(f, anims, sizeof(anims[0]), 5, path, "npc anims")
                 || !rc_read_exact(f, &name_len, sizeof(name_len), 1, path, "npc name length")) {
-            fclose(f);
+            rc_asset_close(f);
             g_npc_def_count = orig_count;
             return -1;
         }
         if (name_len > 63) name_len = 63;
         if (!rc_read_exact(f, d->name, sizeof(char), name_len, path, "npc name")) {
-            fclose(f);
+            rc_asset_close(f);
             g_npc_def_count = orig_count;
             return -1;
         }
@@ -122,7 +122,7 @@ int rc_load_npc_defs(const char *path) {
                     || !rc_read_exact(f, &atk_types, sizeof(atk_types), 1, path, "npc attack types")
                     || !rc_read_exact(f, &weak, sizeof(weak), 1, path, "npc weakness")
                     || !rc_read_exact(f, &immu, sizeof(immu), 1, path, "npc immunities")) {
-                fclose(f);
+                rc_asset_close(f);
                 g_npc_def_count = orig_count;
                 return -1;
             }
@@ -140,7 +140,7 @@ int rc_load_npc_defs(const char *path) {
             uint8_t model_count;
             if (!rc_read_exact(f, &model_count, sizeof(model_count), 1,
                                path, "npc model count")) {
-                fclose(f);
+                rc_asset_close(f);
                 g_npc_def_count = orig_count;
                 return -1;
             }
@@ -148,7 +148,7 @@ int rc_load_npc_defs(const char *path) {
                 uint32_t model_id;
                 if (!rc_read_exact(f, &model_id, sizeof(model_id), 1,
                                    path, "npc model id")) {
-                    fclose(f);
+                    rc_asset_close(f);
                     g_npc_def_count = orig_count;
                     return -1;
                 }
@@ -164,7 +164,7 @@ int rc_load_npc_defs(const char *path) {
                 char option_buf[256];
                 if (!rc_read_exact(f, &option_len, sizeof(option_len), 1,
                                    path, "npc option length")) {
-                    fclose(f);
+                    rc_asset_close(f);
                     g_npc_def_count = orig_count;
                     return -1;
                 }
@@ -174,7 +174,7 @@ int rc_load_npc_defs(const char *path) {
                 }
                 if (!rc_read_exact(f, option_buf, sizeof(char), option_len,
                                    path, "npc option")) {
-                    fclose(f);
+                    rc_asset_close(f);
                     g_npc_def_count = orig_count;
                     return -1;
                 }
@@ -190,7 +190,7 @@ int rc_load_npc_defs(const char *path) {
         if (id < RC_MAX_NPC_ID) g_npc_def_by_id[id] = g_npc_def_count - 1;
         loaded++;
     }
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "npc_defs: loaded %d defs (NDEF v%u) from %s\n",
             loaded, version, path);
     return loaded;
@@ -241,23 +241,23 @@ static int load_npc_spawns_filtered(RcWorld *world, const char *path,
                                     RcNpcSpawnLoadStats *stats) {
     if (!world || !path) return -1;
     if (stats) memset(stats, 0, sizeof(*stats));
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "npc_spawns: can't open %s\n", path); return -1; }
 
     uint32_t magic, version, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "npc spawn magic")
             || magic != NSPN_MAGIC) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "npc_spawns: bad magic\n");
         return -1;
     }
     if (!rc_read_exact(f, &version, sizeof(version), 1, path, "npc spawn version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "npc spawn count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (version < 1 || version > 2) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "npc_spawns: unsupported version %u\n", version);
         return -1;
     }
@@ -272,12 +272,12 @@ static int load_npc_spawns_filtered(RcWorld *world, const char *path,
                 || !rc_read_exact(f, &plane, sizeof(plane), 1, path, "spawn plane")
                 || !rc_read_exact(f, &direction, sizeof(direction), 1, path, "spawn direction")
                 || !rc_read_exact(f, &wander_range, sizeof(wander_range), 1, path, "spawn wander range")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= 2
                 && !rc_read_exact(f, &flags, sizeof(flags), 1, path, "spawn flags")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
 
@@ -324,7 +324,7 @@ static int load_npc_spawns_filtered(RcWorld *world, const char *path,
             stats->skipped_capacity++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "npc_spawns: spawned %d NPCs from %s"
             " (matched %d, skipped %d filtered, %d instance-only,"
             " %d missing-def, %d capacity)\n",

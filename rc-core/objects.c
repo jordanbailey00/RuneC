@@ -134,12 +134,12 @@ static uint64_t computed_placement_key(uint32_t obj_id, uint16_t x, uint16_t y,
 
 int rc_load_object_defs(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t version, count;
     if (!read_header_version(f, path, ODEF_MAGIC, ODEF_VERSION_MIN,
                              ODEF_VERSION_MAX, &version, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     memset(g_rc_object_defs, 0, sizeof(g_rc_object_defs));
@@ -180,7 +180,7 @@ int rc_load_object_defs(const char *path) {
                 || !rc_read_exact(f, &map_icon, sizeof(map_icon), 1,
                                   path, "map icon")
                 || !rc_read_exact(f, &flags, sizeof(flags), 1, path, "flags")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= 2u) {
@@ -199,7 +199,7 @@ int rc_load_object_defs(const char *path) {
                     || !rc_read_exact(f, &ambient_sound_retain,
                                       sizeof(ambient_sound_retain), 1, path,
                                       "ambient sound retain")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
         }
@@ -227,26 +227,26 @@ int rc_load_object_defs(const char *path) {
         row.ambient_sound_distance = ambient_sound_distance;
         row.ambient_sound_retain = ambient_sound_retain;
         if (!read_pstr(f, row.name, sizeof(row.name), path, "name")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         for (int a = 0; a < RC_OBJECT_ACTIONS; a++) {
             if (!read_pstr(f, row.actions[a], sizeof(row.actions[a]),
                            path, "action")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
         }
         long model_skip = (long)model_count * 4L;
         if (model_skip && !rc_seek(f, model_skip, SEEK_CUR, path, "models")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         for (int t = 0; t < transform_count; t++) {
             int32_t transform;
             if (!rc_read_exact(f, &transform, sizeof(transform), 1, path,
                                "transform")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (t < RC_OBJECT_MAX_TRANSFORMS) {
@@ -261,12 +261,12 @@ int rc_load_object_defs(const char *path) {
             if (!rc_read_exact(f, &key, sizeof(key), 1, path, "param key")
                     || !rc_read_exact(f, &value, sizeof(value), 1, path,
                                       "param value")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (obj_id < RC_MAX_OBJECT_ID
                     && !append_object_param(obj_id, key, value)) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
         }
@@ -279,19 +279,19 @@ int rc_load_object_defs(const char *path) {
             loaded++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     g_rc_object_def_count = loaded;
     return loaded;
 }
 
 int rc_load_object_behaviors(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t version, count;
     if (!read_header_version(f, path, OBHV_MAGIC, OBHV_VERSION_MIN,
                              OBHV_VERSION_MAX, &version, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     memset(g_rc_object_behaviors, 0, sizeof(g_rc_object_behaviors));
@@ -307,7 +307,7 @@ int rc_load_object_behaviors(const char *path) {
         uint16_t pad;
         if (!rc_read_exact(f, &obj_id, sizeof(obj_id), 1, path, "object id")
                 || !rc_read_exact(f, &flags, sizeof(flags), 1, path, "flags")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= 2u) {
@@ -319,7 +319,7 @@ int rc_load_object_behaviors(const char *path) {
                                       path, "close sound")
                     || !rc_read_exact(f, &climb_anim, sizeof(climb_anim), 1,
                                       path, "climb animation")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
         }
@@ -327,7 +327,7 @@ int rc_load_object_behaviors(const char *path) {
                            path, "action mask")
                 || !rc_read_exact(f, &skill, sizeof(skill), 1, path, "skill")
                 || !rc_read_exact(f, &pad, sizeof(pad), 1, path, "pad")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (obj_id < RC_MAX_OBJECT_ID) {
@@ -344,27 +344,27 @@ int rc_load_object_behaviors(const char *path) {
             loaded++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     g_rc_object_behavior_count = loaded;
     return loaded;
 }
 
 int rc_load_object_placements(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t version, count, region_count;
     if (!read_header_version(f, path, OPLC_MAGIC, OPLC_VERSION_MIN,
                              OPLC_VERSION_MAX, &version, &count)
             || !rc_read_exact(f, &region_count, sizeof(region_count), 1,
                               path, "region count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     (void)region_count;
     RcObjectPlacement *rows = malloc((size_t)count * sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     for (int i = 0; i < RC_MAX_OBJECT_ID; i++) {
@@ -376,14 +376,14 @@ int rc_load_object_placements(const char *path) {
         if (!rc_read_exact(f, &row->obj_id, sizeof(row->obj_id), 1, path,
                            "object id")) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= 2) {
             if (!rc_read_exact(f, &row->key, sizeof(row->key), 1, path,
                                "placement key")) {
                 free(rows);
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
         } else {
@@ -402,7 +402,7 @@ int rc_load_object_placements(const char *path) {
                 || !rc_read_exact(f, &row->flags, sizeof(row->flags), 1,
                                   path, "flags")) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (row->key == 0) {
@@ -415,7 +415,7 @@ int rc_load_object_placements(const char *path) {
         if (idx->first == UINT32_MAX) idx->first = i;
         idx->count++;
     }
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_object_placements);
     g_rc_object_placements = rows;
     g_rc_object_placement_count = (int)count;
@@ -424,16 +424,16 @@ int rc_load_object_placements(const char *path) {
 
 int rc_load_object_transports(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t count;
     if (!read_header(f, path, OTRP_MAGIC, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     RcObjectTransport *rows = malloc((size_t)count * sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     for (int i = 0; i < RC_MAX_OBJECT_ID; i++) {
@@ -467,7 +467,7 @@ int rc_load_object_transports(const char *path) {
                 || !read_pstr8(f, row->target, sizeof(row->target), path,
                                "target")) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         row->start_plane = (uint8_t)((planes >> 14) & 0x3);
@@ -478,7 +478,7 @@ int rc_load_object_transports(const char *path) {
             idx->count++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_object_transports);
     g_rc_object_transports = rows;
     g_rc_object_transport_count = (int)count;

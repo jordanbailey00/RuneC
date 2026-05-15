@@ -15,19 +15,19 @@
 // Loads collision regions as-is (world coordinates).
 // Player must use world coords for pathfinding, local coords for rendering.
 static int collision_load(RcWorldMap *map, const char *path) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "collision: can't open %s\n", path); return -1; }
 
     uint32_t magic, version, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "collision magic")
             || magic != CMAP_MAGIC) {
         fprintf(stderr, "collision: bad magic\n");
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (!rc_read_exact(f, &version, sizeof(version), 1, path, "collision version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "collision region count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -35,7 +35,7 @@ static int collision_load(RcWorldMap *map, const char *path) {
     for (uint32_t i = 0; i < count && map->region_count < RC_MAX_REGIONS; i++) {
         int32_t mapsquare;
         if (!rc_read_exact(f, &mapsquare, sizeof(mapsquare), 1, path, "collision mapsquare")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         int rx = (mapsquare >> 8) & 0xFF;
@@ -51,7 +51,7 @@ static int collision_load(RcWorldMap *map, const char *path) {
                 for (int y = 0; y < RC_REGION_SIZE; y++) {
                     int32_t flags;
                     if (!rc_read_exact(f, &flags, sizeof(flags), 1, path, "collision tile flags")) {
-                        fclose(f);
+                        rc_asset_close(f);
                         return -1;
                     }
                     reg->tiles[h][x][y].collision_flags = (uint32_t)flags;
@@ -61,7 +61,7 @@ static int collision_load(RcWorldMap *map, const char *path) {
         map->region_count++;
         loaded++;
     }
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "collision: loaded %d regions from %s\n", loaded, path);
     return loaded;
 }

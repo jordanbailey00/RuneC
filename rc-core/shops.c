@@ -42,7 +42,7 @@ static int push_stock(RcShopStock **rows, int *count, int *cap,
 
 int rc_load_shops(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, count;
@@ -50,7 +50,7 @@ int rc_load_shops(const char *path) {
             || !rc_read_exact(f, &version, sizeof(version), 1, path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")
             || magic != SHOP_MAGIC || version != SHOP_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -58,7 +58,7 @@ int rc_load_shops(const char *path) {
     RcShopStock *stock = NULL;
     int stock_count = 0, stock_cap = 0;
     if (!shops) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -74,7 +74,7 @@ int rc_load_shops(const char *path) {
                                   1, path, "stock count")) {
             free(shops);
             free(stock);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         shop->first_stock = (uint32_t)stock_count;
@@ -97,20 +97,20 @@ int rc_load_shops(const char *path) {
                                       "restock")) {
                 free(shops);
                 free(stock);
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             row.item_id = (int)item_id;
             if (!push_stock(&stock, &stock_count, &stock_cap, row)) {
                 free(shops);
                 free(stock);
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     free(g_shops);
     free(g_shop_stock);
     g_shops = shops;

@@ -1,4 +1,5 @@
 #include "items.h"
+#include "assets.h"
 #include "combat.h"
 #include "config.h"
 #include "events.h"
@@ -226,18 +227,18 @@ static int parse_record(RcItemDef *def, const unsigned char *buf,
 
 int rc_load_item_defs(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, count;
     if (fread(&magic, sizeof(magic), 1, f) != 1
             || fread(&version, sizeof(version), 1, f) != 1
             || fread(&count, sizeof(count), 1, f) != 1) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != IDEF_MAGIC || (version != IDEF_V1 && version != IDEF_V2)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -248,23 +249,23 @@ int rc_load_item_defs(const char *path) {
     for (uint32_t i = 0; i < count; i++) {
         uint32_t len;
         if (fread(&len, sizeof(len), 1, f) != 1) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         unsigned char *buf = malloc(len);
         if (!buf) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (fread(buf, 1, len, f) != len) {
             free(buf);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         RcItemDef def;
         if (!parse_record(&def, buf, len, version)) {
             free(buf);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         free(buf);
@@ -275,7 +276,7 @@ int rc_load_item_defs(const char *path) {
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     g_item_def_count = loaded;
     return loaded;
 }

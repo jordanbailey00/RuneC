@@ -1,4 +1,5 @@
 #include "encounter.h"
+#include "assets.h"
 #include "types.h"
 #include "events.h"
 #include "config.h"
@@ -1575,23 +1576,23 @@ static int read_pstr(FILE *f, char *out, int cap) {
 }
 
 int rc_encounter_load(RcWorld *world, const char *path) {
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "encounter_load: can't open %s\n", path);
         return -1;
     }
     uint32_t magic, version, count;
     if (!RD(&magic, 4) || !RD(&version, 4) || !RD(&count, 4)) {
-        fprintf(stderr, "encounter_load: bad header\n"); fclose(f);
+        fprintf(stderr, "encounter_load: bad header\n"); rc_asset_close(f);
         return -1;
     }
     if (magic != ENCT_MAGIC) {
         fprintf(stderr, "encounter_load: bad magic %08x\n", magic);
-        fclose(f); return -1;
+        rc_asset_close(f); return -1;
     }
     if (version == 0 || version > 12) {
         fprintf(stderr, "encounter_load: unsupported version %u\n", version);
-        fclose(f); return -1;
+        rc_asset_close(f); return -1;
     }
 
     int loaded = 0;
@@ -1607,7 +1608,7 @@ int rc_encounter_load(RcWorld *world, const char *path) {
                          ? RC_ENC_MAX_NPC_IDS : nid_count;
         for (uint8_t j = 0; j < nid_count; j++) {
             uint32_t nid;
-            if (!RD(&nid, 4)) { fclose(f); return loaded; }
+            if (!RD(&nid, 4)) { rc_asset_close(f); return loaded; }
             if (j < RC_ENC_MAX_NPC_IDS) s.npc_ids[j] = nid;
         }
 
@@ -1617,11 +1618,11 @@ int rc_encounter_load(RcWorld *world, const char *path) {
                          ? RC_ENC_MAX_ATTACKS : atk_count;
         for (uint8_t j = 0; j < atk_count; j++) {
             RcEncounterAttack a; memset(&a, 0, sizeof(a));
-            if (!read_pstr(f, a.name, sizeof(a.name))) { fclose(f); return loaded; }
+            if (!read_pstr(f, a.name, sizeof(a.name))) { rc_asset_close(f); return loaded; }
             uint8_t style, warn;
             uint16_t maxhit;
             if (!RD(&style, 1) || !RD(&maxhit, 2) || !RD(&warn, 1)) {
-                fclose(f); return loaded;
+                rc_asset_close(f); return loaded;
             }
             a.style = style;
             a.max_hit = maxhit;
@@ -1629,14 +1630,14 @@ int rc_encounter_load(RcWorld *world, const char *path) {
             if (version >= 5) {
                 if (!RD(&a.npc_id, 4) || !RD(&a.min_hit, 2) ||
                     !RD(&a.flags, 4)) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
             }
             if (version >= 8) {
                 if (!RD(&a.effect_id, 1) || !RD(&a.effect_min, 1) ||
                     !RD(&a.effect_max, 1) || !RD(&a.effect_pct, 1) ||
                     !RD(&a.effect_flags, 1)) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
             }
             if (j < RC_ENC_MAX_ATTACKS) s.attacks[j] = a;
@@ -1649,14 +1650,14 @@ int rc_encounter_load(RcWorld *world, const char *path) {
         for (uint8_t j = 0; j < ph_count; j++) {
             RcEncounterPhase p; memset(&p, 0, sizeof(p));
             p.player_targetable = true;
-            if (!read_pstr(f, p.id, sizeof(p.id))) { fclose(f); return loaded; }
+            if (!read_pstr(f, p.id, sizeof(p.id))) { rc_asset_close(f); return loaded; }
             uint8_t pct, hard;
-            if (!RD(&pct, 1) || !RD(&hard, 1)) { fclose(f); return loaded; }
+            if (!RD(&pct, 1) || !RD(&hard, 1)) { rc_asset_close(f); return loaded; }
             p.enter_at_hp_pct = pct;
             p.hard_hp_trigger = (bool)hard;
             if (version >= 3) {
                 if (!read_pstr(f, p.script, sizeof(p.script))) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
             }
             if (version >= 4) {
@@ -1665,17 +1666,17 @@ int rc_encounter_load(RcWorld *world, const char *path) {
                         sizeof(p.adjacent_style_weights)) ||
                     !RD(p.distant_style_weights,
                         sizeof(p.distant_style_weights))) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
             }
             if (version >= 7) {
                 uint8_t targetable;
-                if (!RD(&targetable, 1)) { fclose(f); return loaded; }
+                if (!RD(&targetable, 1)) { rc_asset_close(f); return loaded; }
                 p.player_targetable = targetable != 0;
             }
             if (version >= 9) {
                 uint8_t explicit_mask;
-                if (!RD(&explicit_mask, 1)) { fclose(f); return loaded; }
+                if (!RD(&explicit_mask, 1)) { rc_asset_close(f); return loaded; }
                 p.allowed_attack_mask_explicit = explicit_mask != 0;
             } else {
                 p.allowed_attack_mask_explicit = p.allowed_attack_mask != 0;
@@ -1689,13 +1690,13 @@ int rc_encounter_load(RcWorld *world, const char *path) {
                            ? RC_ENC_MAX_MECHANICS : mech_count;
         for (uint8_t j = 0; j < mech_count; j++) {
             RcEncounterMechanic m; memset(&m, 0, sizeof(m));
-            if (!read_pstr(f, m.name, sizeof(m.name))) { fclose(f); return loaded; }
+            if (!read_pstr(f, m.name, sizeof(m.name))) { rc_asset_close(f); return loaded; }
             uint8_t prim;
             uint16_t period;
-            if (!RD(&prim, 1) || !RD(&period, 2)) { fclose(f); return loaded; }
+            if (!RD(&prim, 1) || !RD(&period, 2)) { rc_asset_close(f); return loaded; }
             if (version >= 2) {
                 if (!RD(&m.trigger_type, 1) || !RD(&m.phase_idx, 1)) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
             } else {
                 m.trigger_type = RC_ENC_TRIGGER_PERIODIC;
@@ -1704,13 +1705,13 @@ int rc_encounter_load(RcWorld *world, const char *path) {
             if (version >= 3) {
                 if (!RD(&m.phase_mask, 4) ||
                     !read_pstr(f, m.trigger_ref, sizeof(m.trigger_ref))) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
             } else if (m.phase_idx < 32) {
                 m.phase_mask = 1u << m.phase_idx;
             }
             if (!RD(m.param_block, sizeof(m.param_block))) {
-                fclose(f); return loaded;
+                rc_asset_close(f); return loaded;
             }
             m.primitive_id = prim;
             m.prim = rc_encounter_prim_lookup(prim);
@@ -1729,7 +1730,7 @@ int rc_encounter_load(RcWorld *world, const char *path) {
                 memset(&p, 0, sizeof(p));
                 if (!RD(&p.attack_idx, 1) || !RD(&p.style, 1) ||
                     !RD(&p.prayer_flag, 4) || !RD(&p.damage_pct, 1)) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
                 if (j < RC_ENC_MAX_PROTECTIONS) s.protections[j] = p;
             }
@@ -1746,7 +1747,7 @@ int rc_encounter_load(RcWorld *world, const char *path) {
                 if (!RD(&m.npc_id, 4) || !RD(&m.condition, 1) ||
                     !RD(&m.style, 1) || !RD(&m.damage_pct, 1) ||
                     !RD(&m.flags, 1)) {
-                    fclose(f); return loaded;
+                    rc_asset_close(f); return loaded;
                 }
                 if (j < RC_ENC_MAX_DAMAGE_MODS) s.damage_mods[j] = m;
             }
@@ -1755,7 +1756,7 @@ int rc_encounter_load(RcWorld *world, const char *path) {
         if (rc_encounter_register(world, &s) >= 0) loaded++;
     }
 
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "encounter_load: loaded %d / %u encounters from %s\n",
             loaded, count, path);
     return loaded;

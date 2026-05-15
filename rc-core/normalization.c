@@ -53,7 +53,7 @@ uint32_t rc_normalization_hash_key(const char *name) {
 
 int rc_load_normalization(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "normalization: can't open %s\n", path);
         return -1;
@@ -69,11 +69,11 @@ int rc_load_normalization(const char *path) {
                               path, "npc count")
             || !rc_read_exact(f, &source_count, sizeof(source_count), 1,
                               path, "source count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != NORM_MAGIC || version == 0 || version > NORM_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "normalization: bad header\n");
         return -1;
     }
@@ -101,7 +101,7 @@ int rc_load_normalization(const char *path) {
                                   path, "item key")
                 || !rc_read_exact(f, &flags, sizeof(flags), 1,
                                   path, "item flags")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (item_id < RC_MAX_ITEM_DEFS) {
@@ -127,7 +127,7 @@ int rc_load_normalization(const char *path) {
                                   path, "npc key")
                 || !rc_read_exact(f, &flags, sizeof(flags), 1,
                                   path, "npc flags")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (npc_id < RC_MAX_NPC_ID) {
@@ -145,7 +145,7 @@ int rc_load_normalization(const char *path) {
         g_rc_source_normalization = calloc(source_count,
                                            sizeof(*g_rc_source_normalization));
         if (!g_rc_source_normalization) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
     }
@@ -157,13 +157,13 @@ int rc_load_normalization(const char *path) {
                                   path, "source key")
                 || !rc_read_exact(f, &row.ref_id, sizeof(row.ref_id), 1,
                                   path, "source ref")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         g_rc_source_normalization[g_rc_source_normalization_count++] = row;
     }
 
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "normalization: loaded %d item, %d npc, %d source rows from %s\n",
             g_rc_item_normalization_count, g_rc_npc_normalization_count,
             g_rc_source_normalization_count, path);

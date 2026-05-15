@@ -87,11 +87,11 @@ static int inv_can_add(const RcInvSlot *inv, int item_id, int quantity) {
 
 int rc_load_recipes(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t count;
     if (!read_header(f, path, RCIP_MAGIC, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     RcRecipe *rows = calloc(count ? count : 1u, sizeof(*rows));
@@ -99,7 +99,7 @@ int rc_load_recipes(const char *path) {
     if (!rows || !next) {
         free(rows);
         free(next);
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     for (uint32_t i = 0; i < count; i++) {
@@ -108,7 +108,7 @@ int rc_load_recipes(const char *path) {
         uint8_t n;
         if (!read_str8(f, row->name, sizeof(row->name), path, "name")
                 || !rc_read_exact(f, &n, sizeof(n), 1, path, "req count")) {
-            free(rows); free(next); fclose(f); return -1;
+            free(rows); free(next); rc_asset_close(f); return -1;
         }
         row->req_count = n < RC_RECIPE_MAX_REQS ? n : RC_RECIPE_MAX_REQS;
         for (int j = 0; j < n; j++) {
@@ -117,14 +117,14 @@ int rc_load_recipes(const char *path) {
             if (!rc_read_exact(f, &skill, sizeof(skill), 1, path, "skill")
                     || !rc_read_exact(f, &level, sizeof(level), 1, path, "level")
                     || !rc_read_exact(f, &xp_q1, sizeof(xp_q1), 1, path, "xp")) {
-                free(rows); free(next); fclose(f); return -1;
+                free(rows); free(next); rc_asset_close(f); return -1;
             }
             if (j < RC_RECIPE_MAX_REQS) row->reqs[j] = (RcRecipeReq){
                 .skill = skill, .level = level, .xp_q1 = xp_q1,
             };
         }
         if (!rc_read_exact(f, &n, sizeof(n), 1, path, "input count")) {
-            free(rows); free(next); fclose(f); return -1;
+            free(rows); free(next); rc_asset_close(f); return -1;
         }
         row->input_count = n < RC_RECIPE_MAX_INPUTS ? n : RC_RECIPE_MAX_INPUTS;
         for (int j = 0; j < n; j++) {
@@ -132,20 +132,20 @@ int rc_load_recipes(const char *path) {
             uint16_t qty;
             if (!rc_read_exact(f, &item_id, sizeof(item_id), 1, path, "input")
                     || !rc_read_exact(f, &qty, sizeof(qty), 1, path, "qty")) {
-                free(rows); free(next); fclose(f); return -1;
+                free(rows); free(next); rc_asset_close(f); return -1;
             }
             if (j < RC_RECIPE_MAX_INPUTS) row->inputs[j] = (RcRecipeItemQty){
                 .item_id = item_id, .quantity = qty,
             };
         }
         if (!rc_read_exact(f, &n, sizeof(n), 1, path, "tool count")) {
-            free(rows); free(next); fclose(f); return -1;
+            free(rows); free(next); rc_asset_close(f); return -1;
         }
         row->tool_count = n < RC_RECIPE_MAX_TOOLS ? n : RC_RECIPE_MAX_TOOLS;
         for (int j = 0; j < n; j++) {
             uint32_t item_id;
             if (!rc_read_exact(f, &item_id, sizeof(item_id), 1, path, "tool")) {
-                free(rows); free(next); fclose(f); return -1;
+                free(rows); free(next); rc_asset_close(f); return -1;
             }
             if (j < RC_RECIPE_MAX_TOOLS) row->tools[j] = item_id;
         }
@@ -158,10 +158,10 @@ int rc_load_recipes(const char *path) {
                                   path, "ticks")
                 || !rc_read_exact(f, &row->flags, sizeof(row->flags), 1,
                                   path, "flags")) {
-            free(rows); free(next); fclose(f); return -1;
+            free(rows); free(next); rc_asset_close(f); return -1;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     for (int i = 0; i < RC_MAX_ITEM_DEFS; i++) g_recipe_by_output[i] = -1;
     for (int i = (int)count - 1; i >= 0; i--) {
         uint32_t item_id = rows[i].output_item;
@@ -180,18 +180,18 @@ int rc_load_recipes(const char *path) {
 
 int rc_load_skill_drops(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t count;
     if (!read_header(f, path, SDRP_MAGIC, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     RcSkillDropSource *sources = calloc(count ? count : 1u, sizeof(*sources));
     RcSkillDrop *drops = NULL;
     int drop_count = 0;
     if (!sources) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     for (uint32_t i = 0; i < count; i++) {
@@ -199,11 +199,11 @@ int rc_load_skill_drops(const char *path) {
         uint16_t n;
         if (!read_str8(f, src->name, sizeof(src->name), path, "source")
                 || !rc_read_exact(f, &n, sizeof(n), 1, path, "drop count")) {
-            free(sources); free(drops); fclose(f); return -1;
+            free(sources); free(drops); rc_asset_close(f); return -1;
         }
         RcSkillDrop *next = realloc(drops, (size_t)(drop_count + n) * sizeof(*drops));
         if (n && !next) {
-            free(sources); free(drops); fclose(f); return -1;
+            free(sources); free(drops); rc_asset_close(f); return -1;
         }
         drops = next;
         src->first_drop = (uint32_t)drop_count;
@@ -219,11 +219,11 @@ int rc_load_skill_drops(const char *path) {
                     || !rc_read_exact(f, &drop->rarity_inv,
                                       sizeof(drop->rarity_inv), 1,
                                       path, "rarity")) {
-                free(sources); free(drops); fclose(f); return -1;
+                free(sources); free(drops); rc_asset_close(f); return -1;
             }
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_skill_drop_sources);
     free(g_rc_skill_drops);
     g_rc_skill_drop_sources = sources;
@@ -235,16 +235,16 @@ int rc_load_skill_drops(const char *path) {
 
 int rc_load_gathering_nodes(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t count;
     if (!read_header(f, path, GNOD_MAGIC, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     RcGatheringNode *rows = malloc((count ? count : 1u) * sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     for (int i = 0; i < MAX_NODE_REGION; i++) {
@@ -273,13 +273,13 @@ int rc_load_gathering_nodes(const char *path) {
                 || !rc_read_exact(f, &row->flags, sizeof(row->flags), 1,
                                   path, "flags")
                 || !rc_read_exact(f, &pad, sizeof(pad), 1, path, "pad")) {
-            free(rows); fclose(f); return -1;
+            free(rows); rc_asset_close(f); return -1;
         }
         RcSkillIndex *idx = &g_gathering_region_index[row->mapsquare];
         if (idx->first == UINT32_MAX) idx->first = i;
         idx->count++;
     }
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_gathering_nodes);
     g_rc_gathering_nodes = rows;
     g_rc_gathering_node_count = (int)count;

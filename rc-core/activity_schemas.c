@@ -26,7 +26,7 @@ static int read_pstr(FILE *f, char *out, int cap,
 
 int rc_load_activity_schemas(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "activity_schemas: can't open %s\n", path);
         return -1;
@@ -37,18 +37,18 @@ int rc_load_activity_schemas(const char *path) {
             || !rc_read_exact(f, &version, sizeof(version), 1,
                               path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != ASCH_MAGIC || version == 0 || version > ASCH_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "activity_schemas: bad header\n");
         return -1;
     }
 
     RcActivitySchema *rows = calloc(count ? count : 1, sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -135,7 +135,7 @@ int rc_load_activity_schemas(const char *path) {
                 || !read_pstr(f, row.slug, sizeof(row.slug), path, "slug")
                 || !read_pstr(f, row.name, sizeof(row.name), path, "name")) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         for (uint16_t j = 0; j < npc_count; j++) {
@@ -143,7 +143,7 @@ int rc_load_activity_schemas(const char *path) {
             if (!rc_read_exact(f, &npc_id, sizeof(npc_id), 1,
                                path, "npc id")) {
                 free(rows);
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_ACTIVITY_SCHEMA_MAX_NPCS) {
@@ -156,7 +156,7 @@ int rc_load_activity_schemas(const char *path) {
                 if (!rc_read_exact(f, &object_id, sizeof(object_id), 1,
                                    path, "object id")) {
                     free(rows);
-                    fclose(f);
+                    rc_asset_close(f);
                     return -1;
                 }
                 if (j < RC_ACTIVITY_SCHEMA_MAX_OBJECTS) {
@@ -167,7 +167,7 @@ int rc_load_activity_schemas(const char *path) {
         rows[loaded++] = row;
     }
 
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_activity_schemas);
     g_rc_activity_schemas = rows;
     g_rc_activity_schema_count = loaded;

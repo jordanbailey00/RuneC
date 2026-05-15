@@ -64,12 +64,12 @@ static int read_entry(FILE *f, const char *path, RcDropEntry *row,
 
 int rc_load_drops(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t count;
     if (!read_header(f, path, DROP_MAGIC, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -77,7 +77,7 @@ int rc_load_drops(const char *path) {
     RcDropEntry *entries = NULL;
     int entry_count = 0, entry_cap = 0;
     if (!tables) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -86,11 +86,11 @@ int rc_load_drops(const char *path) {
         uint8_t n;
         if (!rc_read_exact(f, &table->npc_id, sizeof(table->npc_id), 1, path,
                            "npc id")) {
-            free(tables); free(entries); fclose(f); return -1;
+            free(tables); free(entries); rc_asset_close(f); return -1;
         }
         for (int kind = RC_DROP_ALWAYS; kind <= RC_DROP_TERTIARY; kind++) {
             if (!rc_read_exact(f, &n, sizeof(n), 1, path, "drop count")) {
-                free(tables); free(entries); fclose(f); return -1;
+                free(tables); free(entries); rc_asset_close(f); return -1;
             }
             table->first[kind] = (uint32_t)entry_count;
             table->count[kind] = n;
@@ -99,17 +99,17 @@ int rc_load_drops(const char *path) {
                 if (!read_entry(f, path, &row, kind != RC_DROP_ALWAYS)
                         || !append_entry(&entries, &entry_count, &entry_cap,
                                          row)) {
-                    free(tables); free(entries); fclose(f); return -1;
+                    free(tables); free(entries); rc_asset_close(f); return -1;
                 }
             }
         }
         if (!rc_read_exact(f, &table->rare_table_weight,
                            sizeof(table->rare_table_weight), 1, path,
                            "rare table weight")) {
-            free(tables); free(entries); fclose(f); return -1;
+            free(tables); free(entries); rc_asset_close(f); return -1;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
 
     free(g_rc_drop_tables);
     free(g_rc_drop_entries);
@@ -128,27 +128,27 @@ int rc_load_drops(const char *path) {
 static int load_shared(const char *path, uint32_t magic, RcDropEntry **dst,
                        int *dst_count) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t count;
     if (!read_header(f, path, magic, &count)) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     RcDropEntry *rows = calloc(count ? count : 1u, sizeof(*rows));
     if (!rows) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     for (uint32_t i = 0; i < count; i++) {
         if (!read_entry(f, path, &rows[i], 1)) {
             free(rows);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     free(*dst);
     *dst = rows;
     *dst_count = (int)count;

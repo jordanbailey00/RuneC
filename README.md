@@ -49,26 +49,45 @@ tools/         Python exporters and cache/data tooling. These generate compact
 
 tests/         C runtime tests, regression tests, and benchmark helpers.
 
-data/          Separate local RuneC-DB checkout. Generated assets, generated
-               data, curated DB inputs, and large source corpora live there,
-               not in this repository.
+data/          Local runtime data install. User clones populate this with
+               scripts/setup-data.sh; data-factory work can also use a loose
+               RuneC-DB checkout here.
 ```
 
 ## Data Setup
 
 The main RuneC repository intentionally does not track generated data or cache
-assets. Use the separate database repository for `data/`:
+assets. For normal use, download the release data packs:
 
 ```bash
-git clone https://github.com/jordanbailey00/RuneC-DB.git data
+./scripts/setup-data.sh
 ```
 
-The local checkout used by the viewer expects `data/` to exist at the project
-root. `data/` may be a nested Git repo; the parent RuneC repo ignores it.
+This installs:
 
-Runtime code and exporter code stay in this repository. Generated binaries,
-sprites, model files, region files, curated DB inputs, and local raw source
-corpora stay in `RuneC-DB`.
+```text
+data/
+  manifest.json
+  packs/
+    *.pak
+```
+
+By default the script downloads from the `RuneC` GitHub Release named
+`data-v1`. Override with `RUNEC_DATA_VERSION`, `RUNEC_DATA_BASE_URL`, or
+`RUNEC_DATA_MANIFEST_URL`.
+
+For data-factory work, keep loose generated data in `data/` and build packs
+with:
+
+```bash
+./tools/pack_runtime_data.py --dry-run --version v1
+./tools/pack_runtime_data.py --version v1 --output dist-data --force
+```
+
+Runtime asset loading supports both loose files and release packs. The default
+backend is `auto`: loose `data/...` files are used when present, otherwise
+`data/packs/*.pak` is used. Override with `RUNEC_ASSET_BACKEND=loose` or
+`RUNEC_ASSET_BACKEND=pack`.
 
 ## Build
 
@@ -134,8 +153,8 @@ rc_preset_base_only();      // minimal movement/tick baseline
 - `rc-content` owns OSRS-specific content hooks and scripts.
 - `rc-viewer` owns rendering, UI presentation, camera, animation playback, and
   input-intent translation.
-- `tools/` owns export-time cache/data conversion.
-- `data/` is produced/owned by RuneC-DB.
+- `tools/` owns export-time cache/data conversion and runtime pack creation.
+- `data/` is local-only runtime/data-factory output.
 
 Gameplay rules should not live in the viewer. Cache decoding should not happen
 inside the runtime tick path. Generated data should not be committed to the

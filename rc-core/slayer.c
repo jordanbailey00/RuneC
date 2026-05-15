@@ -145,7 +145,7 @@ static bool npc_matches_task_def(int def_idx, const RcSlayerTaskDef *task,
 
 int rc_load_slayer(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "slayer: can't open %s\n", path);
         return -1;
@@ -155,11 +155,11 @@ int rc_load_slayer(const char *path) {
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "magic") ||
             !rc_read_exact(f, &version, sizeof(version), 1, path, "version") ||
             !rc_read_exact(f, &count, sizeof(count), 1, path, "count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != SLAY_MAGIC || version == 0 || version > SLAY_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "slayer: bad header\n");
         return -1;
     }
@@ -174,7 +174,7 @@ int rc_load_slayer(const char *path) {
         if (!read_pstr(f, master.name, sizeof(master.name), path, "master") ||
                 !rc_read_exact(f, &task_count, sizeof(task_count), 1,
                                path, "task count")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= 2 &&
@@ -184,7 +184,7 @@ int rc_load_slayer(const char *path) {
                  !rc_read_exact(f, &master.req_combat,
                                 sizeof(master.req_combat), 1,
                                 path, "master combat req"))) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         for (uint16_t j = 0; j < task_count; j++) {
@@ -192,7 +192,7 @@ int rc_load_slayer(const char *path) {
             char name[64];
             if (!rc_read_exact(f, &weight, sizeof(weight), 1,
                                path, "task weight")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             uint16_t amount_min = 0, amount_max = 0;
@@ -221,11 +221,11 @@ int rc_load_slayer(const char *path) {
                                     path, "task slayer req") ||
                      !rc_read_exact(f, &req_combat, sizeof(req_combat), 1,
                                     path, "task combat req"))) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (!read_pstr(f, name, sizeof(name), path, "task")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (version >= 2 &&
@@ -234,7 +234,7 @@ int rc_load_slayer(const char *path) {
                      !read_pstr(f, requirement_text,
                                 sizeof(requirement_text),
                                 path, "task requirements"))) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (version >= 3 &&
@@ -251,7 +251,7 @@ int rc_load_slayer(const char *path) {
                      !read_str16(f, boss_candidates,
                                  sizeof(boss_candidates),
                                  path, "task boss candidates"))) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (master.task_count < RC_SLAYER_MAX_TASKS) {
@@ -286,7 +286,7 @@ int rc_load_slayer(const char *path) {
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     fprintf(stderr, "slayer: loaded %d masters from %s\n",
             g_rc_slayer_master_count, path);
     return g_rc_slayer_master_count;

@@ -186,7 +186,7 @@ static void raster_area_flags(void) {
 
 int rc_load_area_flags(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, row_count, point_count;
@@ -196,7 +196,7 @@ int rc_load_area_flags(const char *path) {
             || !rc_read_exact(f, &point_count, sizeof(point_count), 1, path,
                               "points")
             || magic != AFLG_MAGIC || version != AFLG_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -205,7 +205,7 @@ int rc_load_area_flags(const char *path) {
                                  sizeof(*points));
     if (!rows || !points) {
         free_area_data(rows, points);
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -237,25 +237,25 @@ int rc_load_area_flags(const char *path) {
                 || !rc_read_exact(f, &row->source_id, sizeof(row->source_id),
                                   1, path, "source id")) {
             free_area_data(rows, points);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (point_pos + row->vertex_count > point_count
                 || row->plane >= 4 || row->vertex_count < 3) {
             free_area_data(rows, points);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         row->points = &points[point_pos];
         if (!rc_read_exact(f, row->points, sizeof(*points), row->vertex_count,
                            path, "points")) {
             free_area_data(rows, points);
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         point_pos += row->vertex_count;
     }
-    fclose(f);
+    rc_asset_close(f);
     if (point_pos != point_count) {
         free_area_data(rows, points);
         return -1;

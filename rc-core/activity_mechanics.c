@@ -26,7 +26,7 @@ static int read_pstr(FILE *f, char *out, int cap,
 
 int rc_load_activity_mechanics(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "activity_mechanics: can't open %s\n", path);
         return -1;
@@ -36,11 +36,11 @@ int rc_load_activity_mechanics(const char *path) {
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "magic")
             || !rc_read_exact(f, &version, sizeof(version), 1, path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != AMCH_MAGIC || version == 0 || version > AMCH_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "activity_mechanics: bad header\n");
         return -1;
     }
@@ -68,21 +68,21 @@ int rc_load_activity_mechanics(const char *path) {
                 || !read_pstr(f, row.encounter_slug,
                               sizeof(row.encounter_slug),
                               path, "encounter slug")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= 2 &&
                 !rc_read_exact(f, &row.behavior_bits,
                                sizeof(row.behavior_bits), 1,
                                path, "behavior bits")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         if (version >= 3 &&
                 !rc_read_exact(f, &row.profile_id,
                                sizeof(row.profile_id), 1,
                                path, "profile id")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
 
@@ -90,7 +90,7 @@ int rc_load_activity_mechanics(const char *path) {
             uint32_t npc_id;
             if (!rc_read_exact(f, &npc_id, sizeof(npc_id), 1,
                                path, "npc id")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_ACTIVITY_MECH_MAX_NPC_IDS) {
@@ -109,7 +109,7 @@ int rc_load_activity_mechanics(const char *path) {
                     || !rc_read_exact(f, &sec.text_len,
                                       sizeof(sec.text_len), 1,
                                       path, "section length")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_ACTIVITY_MECH_MAX_SECTIONS) {
@@ -123,7 +123,7 @@ int rc_load_activity_mechanics(const char *path) {
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     rc_activity_mechanics_rebuild_index();
     fprintf(stderr, "activity_mechanics: loaded %d rows from %s\n",
             loaded, path);

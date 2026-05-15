@@ -26,7 +26,7 @@ static int read_pstr(FILE *f, char *out, int cap,
 
 int rc_load_activity_states(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "activity_states: can't open %s\n", path);
         return -1;
@@ -36,11 +36,11 @@ int rc_load_activity_states(const char *path) {
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "magic")
             || !rc_read_exact(f, &version, sizeof(version), 1, path, "version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "count")) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
     if (magic != ASTA_MAGIC || version == 0 || version > ASTA_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         fprintf(stderr, "activity_states: bad header\n");
         return -1;
     }
@@ -75,14 +75,14 @@ int rc_load_activity_states(const char *path) {
                               path, "source rows")
                 || !read_pstr(f, row.source_pages, sizeof(row.source_pages),
                               path, "source pages")) {
-            fclose(f);
+            rc_asset_close(f);
             return -1;
         }
         for (uint16_t j = 0; j < npc_count; j++) {
             uint32_t npc_id;
             if (!rc_read_exact(f, &npc_id, sizeof(npc_id), 1,
                                path, "npc id")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_ACTIVITY_STATE_MAX_NPC_IDS) {
@@ -103,7 +103,7 @@ int rc_load_activity_states(const char *path) {
                                       path, "state value")
                     || !read_pstr(f, state.id, sizeof(state.id),
                                   path, "state id")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_ACTIVITY_STATE_MAX_STATES) {
@@ -121,7 +121,7 @@ int rc_load_activity_states(const char *path) {
                                   "transition from")
                     || !read_pstr(f, tr.to, sizeof(tr.to), path,
                                   "transition to")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_ACTIVITY_STATE_MAX_TRANSITIONS) {
@@ -135,7 +135,7 @@ int rc_load_activity_states(const char *path) {
                            "param key")
                     || !rc_read_exact(f, &param.value, sizeof(param.value), 1,
                                       path, "param value")) {
-                fclose(f);
+                rc_asset_close(f);
                 return -1;
             }
             if (j < RC_ACTIVITY_STATE_MAX_PARAMS) {
@@ -148,7 +148,7 @@ int rc_load_activity_states(const char *path) {
         }
     }
 
-    fclose(f);
+    rc_asset_close(f);
     rc_activity_states_rebuild_index();
     fprintf(stderr, "activity_states: loaded %d rows from %s\n",
             loaded, path);

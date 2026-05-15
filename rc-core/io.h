@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#include "assets.h"
+
 static inline bool rc_read_exact(FILE *f, void *dst, size_t elem_size,
                                  size_t elem_count, const char *path,
                                  const char *what) {

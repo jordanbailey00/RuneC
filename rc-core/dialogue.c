@@ -109,7 +109,7 @@ static void free_dialogue_load(RcDialogueTranscriptDef *transcripts,
 
 int rc_load_dialogue(const char *path) {
     if (!path) return -1;
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
     uint32_t magic, version, transcript_count;
@@ -119,7 +119,7 @@ int rc_load_dialogue(const char *path) {
             || !rc_read_exact(f, &transcript_count, sizeof(transcript_count),
                               1, path, "transcript count")
             || magic != DLGX_MAGIC || version != DLGX_VERSION) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -133,7 +133,7 @@ int rc_load_dialogue(const char *path) {
     int npc_count = 0, npc_cap = 0;
     RcDialogueStringBlob strings = {0};
     if (!transcripts) {
-        fclose(f);
+        rc_asset_close(f);
         return -1;
     }
 
@@ -142,13 +142,13 @@ int rc_load_dialogue(const char *path) {
         if (!read_short_name(f, path, &strings, t->slug, sizeof(t->slug))) {
             free_dialogue_load(transcripts, nodes, children, npc_names,
                                &strings);
-            fclose(f); return -1;
+            rc_asset_close(f); return -1;
         }
         uint8_t n_npcs;
         if (!rc_read_exact(f, &n_npcs, sizeof(n_npcs), 1, path, "npc count")) {
             free_dialogue_load(transcripts, nodes, children, npc_names,
                                &strings);
-            fclose(f); return -1;
+            rc_asset_close(f); return -1;
         }
         if (npc_count + n_npcs > npc_cap) {
             int next_cap = npc_cap ? npc_cap * 2 : 512;
@@ -158,7 +158,7 @@ int rc_load_dialogue(const char *path) {
             if (!next) {
                 free_dialogue_load(transcripts, nodes, children, npc_names,
                                    &strings);
-                fclose(f); return -1;
+                rc_asset_close(f); return -1;
             }
             npc_names = next;
             npc_cap = next_cap;
@@ -170,7 +170,7 @@ int rc_load_dialogue(const char *path) {
                                   &npc_names[npc_count++])) {
                 free_dialogue_load(transcripts, nodes, children, npc_names,
                                    &strings);
-                fclose(f); return -1;
+                rc_asset_close(f); return -1;
             }
         }
         uint16_t n_nodes;
@@ -178,7 +178,7 @@ int rc_load_dialogue(const char *path) {
                            "node count")) {
             free_dialogue_load(transcripts, nodes, children, npc_names,
                                &strings);
-            fclose(f); return -1;
+            rc_asset_close(f); return -1;
         }
         if (node_count + n_nodes > node_cap) {
             int next_cap = node_cap ? node_cap * 2 : 4096;
@@ -188,7 +188,7 @@ int rc_load_dialogue(const char *path) {
             if (!next) {
                 free_dialogue_load(transcripts, nodes, children, npc_names,
                                    &strings);
-                fclose(f); return -1;
+                rc_asset_close(f); return -1;
             }
             nodes = next;
             node_cap = next_cap;
@@ -217,7 +217,7 @@ int rc_load_dialogue(const char *path) {
                                       "child count")) {
                 free_dialogue_load(transcripts, nodes, children, npc_names,
                                    &strings);
-                fclose(f); return -1;
+                rc_asset_close(f); return -1;
             }
             if (child_count + node->child_count > child_cap) {
                 int next_cap = child_cap ? child_cap * 2 : 4096;
@@ -229,7 +229,7 @@ int rc_load_dialogue(const char *path) {
                 if (!next) {
                     free_dialogue_load(transcripts, nodes, children,
                                        npc_names, &strings);
-                    fclose(f); return -1;
+                    rc_asset_close(f); return -1;
                 }
                 children = next;
                 child_cap = next_cap;
@@ -240,12 +240,12 @@ int rc_load_dialogue(const char *path) {
                                    sizeof(*children), 1, path, "child id")) {
                     free_dialogue_load(transcripts, nodes, children,
                                        npc_names, &strings);
-                    fclose(f); return -1;
+                    rc_asset_close(f); return -1;
                 }
             }
         }
     }
-    fclose(f);
+    rc_asset_close(f);
     free(g_rc_dialogue_transcripts);
     free(g_rc_dialogue_nodes);
     free(g_rc_dialogue_child_ids);
