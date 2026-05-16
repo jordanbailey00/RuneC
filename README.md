@@ -11,6 +11,21 @@ The project is currently focused on correctness and runtime foundations: cache
 derived world assets, object interaction, UI/runtime state, combat, traversal,
 and modular content systems.
 
+## Quick Start
+
+```bash
+git clone https://github.com/jordanbailey00/RuneC.git
+cd RuneC
+./scripts/setup-data.sh
+cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build -j"$(nproc)"
+./build/rc-viewer
+```
+
+`./scripts/setup-data.sh` downloads the published runtime data packs, verifies
+them, and expands them into local loose files under `data/` so the viewer starts
+from the fast runtime path.
+
 ## Current Status
 
 RuneC can currently run a playable OSRS-style viewer slice with:
@@ -56,8 +71,7 @@ data/          Local runtime data install. User clones populate this with
 
 ## Data Setup
 
-The main RuneC repository intentionally does not track generated data or cache
-assets. For normal use, download the release data packs:
+RuneC does not track generated runtime data in Git. Run this once after cloning:
 
 ```bash
 ./scripts/setup-data.sh
@@ -84,14 +98,6 @@ By default the script downloads from the `RuneC` GitHub Release named
 files so the viewer uses the fast file-loading path. Set `RUNEC_DATA_UNPACK=0`
 to keep only the manifest and packs, or `RUNEC_DATA_UNPACK_FORCE=1` to rewrite
 already extracted files.
-
-For data-factory work, keep loose generated data in `data/` and build packs
-with:
-
-```bash
-./tools/pack_runtime_data.py --dry-run --version v1
-./tools/pack_runtime_data.py --version v1 --output dist-data --force
-```
 
 Runtime asset loading supports both loose files and release packs. The default
 backend is `auto`: loose `data/...` files are used when present, otherwise
@@ -124,6 +130,13 @@ Run tests:
 
 ```bash
 ctest --test-dir build --output-on-failure
+```
+
+Data maintainers can rebuild release packs from loose `data/` with:
+
+```bash
+./tools/pack_runtime_data.py --dry-run --version v1
+./tools/pack_runtime_data.py --version v1 --output dist-data --force
 ```
 
 Run the SPS benchmark:
