@@ -70,11 +70,20 @@ data/
   manifest.json
   packs/
     *.pak
+  defs/
+  models/
+  regions/
+  sprites/
+  fonts/
+  ui/
 ```
 
 By default the script downloads from the `RuneC` GitHub Release named
 `data-v1`. Override with `RUNEC_DATA_VERSION`, `RUNEC_DATA_BASE_URL`, or
-`RUNEC_DATA_MANIFEST_URL`.
+`RUNEC_DATA_MANIFEST_URL`. It also expands the packs into loose local runtime
+files so the viewer uses the fast file-loading path. Set `RUNEC_DATA_UNPACK=0`
+to keep only the manifest and packs, or `RUNEC_DATA_UNPACK_FORCE=1` to rewrite
+already extracted files.
 
 For data-factory work, keep loose generated data in `data/` and build packs
 with:

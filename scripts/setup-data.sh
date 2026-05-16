@@ -9,6 +9,8 @@ DATA_DIR="${RUNEC_DATA_DIR:-${ROOT}/data}"
 DOWNLOAD_DIR="${DATA_DIR}/.download"
 PACK_DIR="${DATA_DIR}/packs"
 MANIFEST_TMP="${DOWNLOAD_DIR}/manifest.json"
+UNPACK_DATA="${RUNEC_DATA_UNPACK:-1}"
+UNPACK_FORCE="${RUNEC_DATA_UNPACK_FORCE:-0}"
 
 need() {
     if ! command -v "$1" >/dev/null 2>&1; then
@@ -76,3 +78,19 @@ done < "${DOWNLOAD_DIR}/packs.tsv"
 
 cp "${MANIFEST_TMP}" "${DATA_DIR}/manifest.json"
 echo "setup-data: installed manifest and packs into ${DATA_DIR}"
+
+if [ "${UNPACK_DATA}" != "0" ]; then
+    unpack_args=(
+        "${ROOT}/tools/unpack_runtime_data.py"
+        --data-dir "${DATA_DIR}"
+        --manifest "${DATA_DIR}/manifest.json"
+        --packs-dir "${PACK_DIR}"
+    )
+    if [ "${UNPACK_FORCE}" != "0" ]; then
+        unpack_args+=(--force)
+    fi
+    echo "setup-data: expanding packs into loose runtime data"
+    python3 "${unpack_args[@]}"
+else
+    echo "setup-data: skipping loose runtime data extraction because RUNEC_DATA_UNPACK=0"
+fi
