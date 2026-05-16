@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "assets.h"
+
 #ifndef RC_TEST_SOURCE_DIR
 #define RC_TEST_SOURCE_DIR "."
 #endif
@@ -34,7 +36,7 @@ int main(void) {
     char path[512];
     snprintf(path, sizeof(path), "%s/data/defs/spawn_sources.bin",
              RC_TEST_SOURCE_DIR);
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) abort();
 
     if (read_u32(f) != SSPR_MAGIC) abort();
@@ -74,6 +76,6 @@ int main(void) {
     if (kind_counts[9] < 10u) abort();     /* encounter_dynamic */
     if (instance_rows <= 3000u) abort();
 
-    fclose(f);
+    rc_asset_close(f);
     return 0;
 }

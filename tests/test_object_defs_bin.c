@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "assets.h"
+
 #ifndef RC_TEST_SOURCE_DIR
 #define RC_TEST_SOURCE_DIR "."
 #endif
@@ -55,7 +57,7 @@ int main(void) {
     char path[512];
     snprintf(path, sizeof(path), "%s/data/defs/object_defs.bin",
              RC_TEST_SOURCE_DIR);
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) abort();
 
     if (read_u32(f) != ODEF_MAGIC) abort();
@@ -131,7 +133,7 @@ int main(void) {
             saw_fairy_tree = 1;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
 
     if (named < 29000u) abort();
     if (model_rows < 55000u) abort();

@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "assets.h"
+
 #ifndef RC_TEST_SOURCE_DIR
 #define RC_TEST_SOURCE_DIR "."
 #endif
@@ -30,7 +32,7 @@ int main(void) {
     char path[512];
     snprintf(path, sizeof(path), "%s/data/defs/acquisition_sources.bin",
              RC_TEST_SOURCE_DIR);
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) abort();
 
     if (read_u32(f) != ACQS_MAGIC) abort();
@@ -58,6 +60,6 @@ int main(void) {
     if (kind_counts[4] <= 1000) abort(); /* recipes */
     if (kind_counts[5] != 3) abort();    /* RDT/GDT/MRDT */
 
-    fclose(f);
+    rc_asset_close(f);
     return 0;
 }

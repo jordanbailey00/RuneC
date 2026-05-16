@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "assets.h"
+
 #ifndef RC_TEST_SOURCE_DIR
 #define RC_TEST_SOURCE_DIR "."
 #endif
@@ -37,7 +39,7 @@ int main(void) {
     char path[512];
     snprintf(path, sizeof(path), "%s/data/defs/object_placements.bin",
              RC_TEST_SOURCE_DIR);
-    FILE *f = fopen(path, "rb");
+    FILE *f = rc_asset_fopen(path, "rb");
     if (!f) abort();
 
     if (read_u32(f) != OPLC_MAGIC) abort();
@@ -85,7 +87,7 @@ int main(void) {
             if (plane == 1u) museum_stair_raw_plane1++;
         }
     }
-    fclose(f);
+    rc_asset_close(f);
 
     if (unique_ids < 39000u) abort();
     if (plane_counts[0] < 3200000u) abort();
