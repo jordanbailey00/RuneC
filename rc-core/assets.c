@@ -646,15 +646,16 @@ FILE *rc_asset_fopen(const char *path, const char *mode) {
     if (!mode || strchr(mode, 'w') || strchr(mode, 'a') || strchr(mode, '+'))
         return fopen(path, mode);
 
+    const char *logical = rc_asset_logical_path(path);
     char loose[2048];
     if (rc_asset_try_loose_first() && rc_loose_path(loose, sizeof(loose), path)) {
         FILE *f = fopen(loose, mode);
         if (f) return f;
-        if (rc_path_is_absolute(path)) return NULL;
+        if (rc_path_is_absolute(path) && logical == path) return NULL;
     }
 
     if (rc_asset_try_pack()) {
-        const RcPackEntry *entry = rc_find_pack_entry(rc_asset_logical_path(path));
+        const RcPackEntry *entry = rc_find_pack_entry(logical);
         if (entry) return rc_asset_extract_to_tmp(entry);
     }
 
