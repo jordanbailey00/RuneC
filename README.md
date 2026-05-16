@@ -11,6 +11,21 @@ The project is currently focused on correctness and runtime foundations: cache
 derived world assets, object interaction, UI/runtime state, combat, traversal,
 and modular content systems.
 
+## Dependencies
+
+The current clone-and-run path is tested on Linux.
+
+On Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install git build-essential cmake python3 curl zlib1g-dev libgl1-mesa-dev
+```
+
+You also need Bash, `sha256sum`, and a working desktop/OpenGL environment to
+run the Raylib viewer. Raylib itself is vendored in `lib/raylib/`, so normal
+builds do not require a separate Raylib install.
+
 ## Quick Start
 
 ```bash
@@ -18,7 +33,7 @@ git clone https://github.com/jordanbailey00/RuneC.git
 cd RuneC
 ./scripts/setup-data.sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
-cmake --build build -j"$(nproc)"
+cmake --build build --parallel
 ./build/rc-viewer
 ```
 
@@ -41,10 +56,6 @@ RuneC can currently run a playable OSRS-style viewer slice with:
   equipment, item actions, loot, skills, quests, dialogue, shops, storage,
   traversal, objects, regions, slayer, and encounters
 
-The current active work is combat fidelity: broader projectile/spotanim
-coverage, spellbook/autocast state, staff default behavior, special attacks,
-combat presentation, and OSRS-style interaction feel.
-
 ## Repository Layout
 
 ```text
@@ -58,15 +69,13 @@ rc-content/    OSRS-specific content hooks. Boss scripts, quest state machines,
 rc-viewer/     Raylib frontend. Rendering, camera, input translation, UI,
                animation playback, and presentation-only state.
 
-tools/         Python exporters and cache/data tooling. These generate compact
-               runtime assets from the local b237 cache, curated data, and
-               reference sources.
+tools/         Python data tooling for packing, unpacking, validating, and
+               exporting runtime assets.
 
 tests/         C runtime tests, regression tests, and benchmark helpers.
 
-data/          Local runtime data install. User clones populate this with
-               scripts/setup-data.sh; data-factory work can also use a loose
-               RuneC-DB checkout here.
+data/          Local runtime data install populated by scripts/setup-data.sh.
+               This directory is ignored by Git.
 ```
 
 ## Data Setup
@@ -106,18 +115,11 @@ backend is `auto`: loose `data/...` files are used when present, otherwise
 
 ## Build
 
-Requirements:
-
-- CMake 3.20+
-- C11 compiler
-- Python 3.10+ for exporter/tooling work
-- Raylib 5.5, provided under `lib/raylib/`
-
 Build out of tree:
 
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
-cmake --build build -j"$(nproc)"
+cmake --build build --parallel
 ```
 
 Run the viewer:
@@ -180,7 +182,7 @@ rc_preset_base_only();      // minimal movement/tick baseline
 
 Gameplay rules should not live in the viewer. Cache decoding should not happen
 inside the runtime tick path. Generated data should not be committed to the
-main RuneC repository.
+RuneC repository.
 
 ## References
 
