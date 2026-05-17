@@ -101,6 +101,8 @@ int main(void) {
 
     rc_player_select_spell(world, fire_blast);
     assert(world->player.selected_spell == fire_blast);
+    rc_refresh_player_combat_style(&world->player);
+    assert(world->player.combat_style != COMBAT_MAGIC);
     const RcSpellDef *fire_blast_def = rc_spell_def_get(fire_blast);
     assert(fire_blast_def != NULL);
     for (int i = 0; i < fire_blast_def->rune_count; i++) {
@@ -121,7 +123,7 @@ int main(void) {
     int npc_idx = rc_npc_spawn(world, jad_def, world->player.x, world->player.y, 0);
     assert(npc_idx >= 0);
     world->player.attack_target = world->npcs[npc_idx].uid;
-    world->player.combat_style = COMBAT_MAGIC;
+    world->player.manual_spell_cast = fire_blast;
     world->player.skills.boosted_level[SKILL_MAGIC] = 99;
     world->player.active_prayers = PRAYER_AUGURY;
     rc_combat_tick_player(world);

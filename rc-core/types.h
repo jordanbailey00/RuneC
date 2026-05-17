@@ -374,6 +374,8 @@ typedef struct {
     int age_ticks;
     int hit_delay;
     int client_delay;
+    int launch_spotanim_height;
+    int impact_spotanim_height;
     int projectile_start_height;
     int projectile_end_height;
     int projectile_start_time;
@@ -448,8 +450,12 @@ typedef struct {
     int combat_xp_mask;
     int special_energy;     // 0-10000
     int special_recover_counter;
+    int current_spellbook;
     int selected_spell;
     int manual_spell_cast;
+    int autocast_spell;
+    bool defensive_autocast;
+    RcInvSlot rune_pouch[4];
     int attack_anim_timer;
     int last_hit;
     int last_hit_timer;
@@ -605,6 +611,7 @@ enum {
 };
 
 struct RcWorld;
+struct RcSpellDef;
 
 typedef struct {
     int (*apply_player_damage)(const struct RcWorld *world,
@@ -634,6 +641,12 @@ typedef struct {
                                         const RcNpc *target, int weapon_id,
                                         RcCombatStyle style, int damage,
                                         int max_hit);
+    int (*player_has_spell_runes)(const struct RcWorld *world,
+                                  const RcPlayer *player,
+                                  const struct RcSpellDef *spell);
+    int (*player_consume_spell_runes)(struct RcWorld *world,
+                                      RcPlayer *player,
+                                      const struct RcSpellDef *spell);
 } RcCombatContentHooks;
 
 // World (top-level game state). Named struct tag so other subsystem

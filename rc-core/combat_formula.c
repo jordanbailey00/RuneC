@@ -4,6 +4,7 @@
 #include "npc.h"
 #include "prayer.h"
 #include "rng.h"
+#include "spells.h"
 #include <stddef.h>
 
 // ---- Hit chance (OSRS DPS formula) ------------------------------------
@@ -107,13 +108,12 @@ static int weapon_type_is_magic(int weapon_type) {
            weapon_type == RC_WEAPON_TYPE_POWERED_WAND;
 }
 
-static int weapon_type_uses_selected_spell(int weapon_type) {
+static int weapon_type_can_autocast(int weapon_type) {
     return weapon_type == RC_WEAPON_TYPE_STAFF ||
            weapon_type == RC_WEAPON_TYPE_POLESTAFF ||
            weapon_type == RC_WEAPON_TYPE_POWERED_STAFF ||
            weapon_type == RC_WEAPON_TYPE_POWERED_WAND ||
-           weapon_type == RC_WEAPON_TYPE_FIXED_DEVICE ||
-           weapon_type == RC_WEAPON_TYPE_UNARMED;
+           weapon_type == RC_WEAPON_TYPE_FIXED_DEVICE;
 }
 
 static RcCombatAttackType attack_type_from_style(RcCombatStyle style) {
@@ -157,8 +157,9 @@ static void set_player_style_state(RcPlayer *p, RcCombatStyle style,
     p->combat.combat_class = combat_class_from_style(style);
 }
 
-static void set_magic_style(RcPlayer *p, int weapon_type) {
-    if (p->attack_style_idx == 3) {
+static void set_magic_style_state(RcPlayer *p, int weapon_type,
+                                  int defensive) {
+    if (defensive) {
         set_player_style_state(p, COMBAT_MAGIC,
                                RC_ATTACK_STANCE_DEFENSIVE_CAST,
                                RC_COMBAT_XP_MAGIC | RC_COMBAT_XP_DEFENCE,
@@ -169,6 +170,28 @@ static void set_magic_style(RcPlayer *p, int weapon_type) {
                                RC_COMBAT_XP_MAGIC,
                                weapon_type);
     }
+}
+
+static void set_magic_style(RcPlayer *p, int weapon_type) {
+    set_magic_style_state(p, weapon_type, p->attack_style_idx == 3);
+}
+
+static int player_has_active_autocast(const RcPlayer *p, int weapon_type) {
+    if (!p || p->autocast_spell < 0 ||
+            !weapon_type_can_autocast(weapon_type)) {
+        return 0;
+    }
+    const RcSpellDef *spell = rc_spell_def_get(p->autocast_spell);
+    return spell && spell->loaded &&
+           spell->book == p->current_spellbook &&
+           spell->type == RC_SPELL_TYPE_COMBAT &&
+           spell->max_hit > 0;
+}
+
+int rc_player_weapon_can_autocast(const RcPlayer *p) {
+    if (!p) return 0;
+    return weapon_type_can_autocast(
+        weapon_type_for_style(equipped_weapon_def(p)));
 }
 
 static void set_ranged_style(RcPlayer *p, int weapon_type) {
@@ -333,9 +356,8 @@ void rc_refresh_player_combat_style(RcPlayer *p) {
 
     if (p->manual_spell_cast >= 0) {
         set_magic_style(p, weapon_type);
-    } else if (p->selected_spell >= 0 &&
-               weapon_type_uses_selected_spell(weapon_type)) {
-        set_magic_style(p, weapon_type);
+    } else if (player_has_active_autocast(p, weapon_type)) {
+        set_magic_style_state(p, weapon_type, p->defensive_autocast);
     } else if (weapon_type_is_magic(weapon_type)) {
         set_magic_style(p, weapon_type);
     } else if (weapon_type_is_ranged(weapon_type)) {

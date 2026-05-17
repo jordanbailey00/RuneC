@@ -2,6 +2,7 @@
 #include "../rc-core/combat.h"
 #include "../rc-core/items.h"
 #include "../rc-core/npc.h"
+#include "../rc-core/spells.h"
 
 #include <assert.h>
 #include <string.h>
@@ -12,6 +13,7 @@ enum {
     TEST_POWERED_STAFF = 1003,
     TEST_BONUS_TRAP_BOW = 1004,
     TEST_ARROW = 1005,
+    TEST_STAFF = 1006,
 };
 
 static RcWorld *phase4_world(void) {
@@ -65,6 +67,7 @@ static void ensure_fake_weapons(void) {
     fake_weapon(TEST_BOW, "Phase 4 bow", 25, 5, 1, 0, 80, 0);
     fake_weapon(TEST_POWERED_STAFF, "Phase 4 powered staff", 16, 4, 1,
                 0, 0, 80);
+    fake_weapon(TEST_STAFF, "Phase 4 staff", 22, 5, 1, 0, 0, 80);
     fake_weapon(TEST_BONUS_TRAP_BOW, "Phase 4 weird bow", 25, 5, 1,
                 10000, 1, 0);
     RcItemDef *arrow = &g_item_defs[TEST_ARROW];
@@ -77,6 +80,17 @@ static void ensure_fake_weapons(void) {
     arrow->equipable_by_player = true;
     arrow->equip_slot = EQUIP_AMMO;
     arrow->ranged_strength = 80;
+}
+
+static void add_phase4_spell(void) {
+    memset(g_rc_spell_defs, 0, sizeof(g_rc_spell_defs));
+    g_rc_spell_count = 1;
+    RcSpellDef *spell = &g_rc_spell_defs[0];
+    strcpy(spell->name, "Phase 4 Fire Spell");
+    spell->book = RC_SPELL_BOOK_STANDARD;
+    spell->type = RC_SPELL_TYPE_COMBAT;
+    spell->max_hit = 16;
+    spell->loaded = 1;
 }
 
 static void test_slash_sword_table_sets_style_stance_xp_and_metadata(void) {
@@ -154,6 +168,45 @@ static void test_magic_table_uses_powered_staff_without_bonus_guessing(void) {
     rc_world_destroy(world);
 }
 
+static void test_staff_selected_spell_does_not_override_default_attack(void) {
+    RcWorld *world = phase4_world();
+    ensure_fake_weapons();
+    add_phase4_spell();
+
+    rc_player_set_autocast_spell(world, 0, 0);
+    assert(world->player.autocast_spell == -1);
+
+    equip_weapon(world, TEST_STAFF);
+
+    rc_player_select_spell(world, 0);
+    assert(world->player.selected_spell == 0);
+    rc_player_set_attack_style(world, 0);
+    assert(world->player.combat_style == COMBAT_MELEE_CRUSH);
+    assert(world->player.attack_stance == RC_ATTACK_STANCE_ACCURATE);
+    assert(rc_player_attack_range(&world->player) == 1);
+
+    rc_player_set_autocast_spell(world, 0, 0);
+    assert(world->player.autocast_spell == 0);
+    assert(!world->player.defensive_autocast);
+    assert(world->player.combat_style == COMBAT_MAGIC);
+    assert(world->player.attack_stance == RC_ATTACK_STANCE_CAST);
+    assert(rc_player_attack_range(&world->player) == 10);
+
+    rc_player_set_autocast_spell(world, 0, 1);
+    assert(world->player.autocast_spell == 0);
+    assert(world->player.defensive_autocast);
+    assert(world->player.combat_style == COMBAT_MAGIC);
+    assert(world->player.attack_stance == RC_ATTACK_STANCE_DEFENSIVE_CAST);
+
+    rc_player_set_autocast_spell(world, -1, 0);
+    world->player.manual_spell_cast = 0;
+    rc_refresh_player_combat_style(&world->player);
+    assert(world->player.combat_style == COMBAT_MAGIC);
+    assert(world->player.attack_stance == RC_ATTACK_STANCE_CAST);
+
+    rc_world_destroy(world);
+}
+
 static void test_weapon_type_beats_bonus_guessing_for_loaded_weapons(void) {
     RcWorld *world = phase4_world();
     ensure_fake_weapons();
@@ -213,6 +266,7 @@ int main(void) {
     test_slash_sword_table_sets_style_stance_xp_and_metadata();
     test_ranged_table_applies_rapid_and_longrange_modifiers();
     test_magic_table_uses_powered_staff_without_bonus_guessing();
+    test_staff_selected_spell_does_not_override_default_attack();
     test_weapon_type_beats_bonus_guessing_for_loaded_weapons();
     test_attack_cycle_uses_selected_style_speed_for_cooldown();
     return 0;

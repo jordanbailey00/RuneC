@@ -24,7 +24,10 @@ void rc_player_run_to(RcWorld *world, int tile_x, int tile_y);
 void rc_player_attack_npc(RcWorld *world, int npc_uid);
 void rc_player_set_attack_style(RcWorld *world, int style_idx);
 void rc_player_set_prayer(RcWorld *world, int prayer_id);
+void rc_player_set_spellbook(RcWorld *world, int spellbook);
 void rc_player_select_spell(RcWorld *world, int spell_idx);
+void rc_player_set_autocast_spell(RcWorld *world, int spell_idx,
+                                  int defensive);
 void rc_player_eat(RcWorld *world, int inv_slot);
 void rc_player_drink(RcWorld *world, int inv_slot);
 int  rc_player_move_inventory_item(RcWorld *world, int from_slot,

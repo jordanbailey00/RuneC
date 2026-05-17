@@ -255,8 +255,8 @@ static int inventory_quantity(const RcInvSlot *inv, int item_id) {
     return total;
 }
 
-static int player_has_spell_runes(const RcPlayer *p,
-                                  const RcSpellDef *spell) {
+static int fallback_player_has_spell_runes(const RcPlayer *p,
+                                           const RcSpellDef *spell) {
     if (!p || !spell) return 0;
     for (int i = 0; i < spell->rune_count; i++) {
         int item_id = (int)spell->runes[i].item_id;
@@ -268,8 +268,19 @@ static int player_has_spell_runes(const RcPlayer *p,
     return 1;
 }
 
-static int player_consume_spell_runes(RcPlayer *p, const RcSpellDef *spell) {
-    if (!p || !spell || !player_has_spell_runes(p, spell)) return 0;
+static int content_player_has_spell_runes(const RcWorld *world,
+                                          const RcPlayer *p,
+                                          const RcSpellDef *spell) {
+    if (!world || !p || !spell) return 0;
+    if (world->combat_hooks.player_has_spell_runes) {
+        return world->combat_hooks.player_has_spell_runes(world, p, spell);
+    }
+    return fallback_player_has_spell_runes(p, spell);
+}
+
+static int fallback_player_consume_spell_runes(RcPlayer *p,
+                                               const RcSpellDef *spell) {
+    if (!p || !spell || !fallback_player_has_spell_runes(p, spell)) return 0;
     for (int i = 0; i < spell->rune_count; i++) {
         int item_id = (int)spell->runes[i].item_id;
         int left = (int)spell->runes[i].qty;
@@ -284,16 +295,38 @@ static int player_consume_spell_runes(RcPlayer *p, const RcSpellDef *spell) {
     return 1;
 }
 
+static int content_player_consume_spell_runes(RcWorld *world, RcPlayer *p,
+                                              const RcSpellDef *spell) {
+    if (!world || !p || !spell) return 0;
+    if (world->combat_hooks.player_consume_spell_runes) {
+        return world->combat_hooks.player_consume_spell_runes(world, p,
+                                                              spell);
+    }
+    return fallback_player_consume_spell_runes(p, spell);
+}
+
 static const RcSpellDef *player_selected_combat_spell(const RcPlayer *p) {
     if (!p || p->combat_style != COMBAT_MAGIC) return NULL;
     int spell_idx = p->manual_spell_cast >= 0
-                  ? p->manual_spell_cast : p->selected_spell;
+                  ? p->manual_spell_cast : p->autocast_spell;
     const RcSpellDef *spell = rc_spell_def_get(spell_idx);
     if (!spell || spell->type != RC_SPELL_TYPE_COMBAT ||
-            spell->max_hit <= 0) {
+            spell->max_hit <= 0 ||
+            spell->book != p->current_spellbook) {
         return NULL;
     }
     return spell;
+}
+
+static void clear_failed_player_spell_attack(RcPlayer *p) {
+    if (!p) return;
+    if (p->manual_spell_cast >= 0) {
+        p->manual_spell_cast = -1;
+    } else if (p->autocast_spell >= 0) {
+        p->autocast_spell = -1;
+        p->defensive_autocast = false;
+    }
+    rc_refresh_player_combat_style(p);
 }
 
 static int player_ammo_item_id(const RcPlayer *p) {
@@ -434,6 +467,16 @@ static void apply_projectile_profile(RcCombatProjectile *proj,
         proj->duration_ticks = 1;
 }
 
+static int projectile_impact_height(const RcCombatProjectile *proj,
+                                    const RcCombatVisualDef *visual,
+                                    RcCombatStyle style) {
+    if (proj && proj->projectile_end_height >= 0)
+        return proj->projectile_end_height;
+    if (visual && visual->projectile_end_height >= 0)
+        return visual->projectile_end_height;
+    return style == COMBAT_MAGIC ? 124 : 0;
+}
+
 static void spawn_player_attack_projectile(
     RcWorld *world,
     const RcPlayer *p,
@@ -470,12 +513,15 @@ static void spawn_player_attack_projectile(
     proj->launch_spotanim_id = visual->launch_spotanim_id;
     proj->travel_spotanim_id = visual->travel_spotanim_id;
     proj->impact_spotanim_id = visual->impact_spotanim_id;
+    proj->launch_spotanim_height = style == COMBAT_MAGIC ? 92 : 96;
     proj->projectile_model_id = visual->projectile_model_id;
     proj->projectile_anim_id = visual->projectile_anim_id;
     apply_projectile_profile(proj, profile_visual ? profile_visual : visual,
                              chebyshev(proj->source_x, proj->source_y,
                                        proj->target_x, proj->target_y),
                              hit_delay);
+    proj->impact_spotanim_height = projectile_impact_height(proj, visual,
+                                                            style);
     proj->start_tick = world->tick;
     proj->age_ticks = 0;
 }
@@ -512,12 +558,15 @@ static void spawn_npc_attack_projectile(
     proj->launch_spotanim_id = visual->launch_spotanim_id;
     proj->travel_spotanim_id = visual->travel_spotanim_id;
     proj->impact_spotanim_id = visual->impact_spotanim_id;
+    proj->launch_spotanim_height = style == COMBAT_MAGIC ? 92 : 96;
     proj->projectile_model_id = visual->projectile_model_id;
     proj->projectile_anim_id = visual->projectile_anim_id;
     apply_projectile_profile(proj, visual,
                              chebyshev(proj->source_x, proj->source_y,
                                        proj->target_x, proj->target_y),
                              hit_delay);
+    proj->impact_spotanim_height = projectile_impact_height(proj, visual,
+                                                            style);
     proj->start_tick = world->tick;
     proj->age_ticks = 0;
 }
@@ -586,7 +635,7 @@ static void prepare_player_attack_visuals(
                                    timing_visual,
                                    weapon_id, visuals->ammo_id,
                                    p->manual_spell_cast >= 0
-                                   ? p->manual_spell_cast : p->selected_spell,
+                                   ? p->manual_spell_cast : p->autocast_spell,
                                    p->combat_style, hit_delay);
 }
 
@@ -1447,8 +1496,8 @@ static void combat_tick_player_legacy(struct RcWorld *world) {
     }
     if (p->combat_style == COMBAT_MAGIC) {
         spell = player_selected_combat_spell(p);
-        if (!spell || !player_has_spell_runes(p, spell)) {
-            p->manual_spell_cast = -1;
+        if (!spell || !content_player_has_spell_runes(world, p, spell)) {
+            clear_failed_player_spell_attack(p);
             return;
         }
     }
@@ -1509,8 +1558,8 @@ static void combat_tick_player_legacy(struct RcWorld *world) {
         return;
     }
     if (p->combat_style == COMBAT_MAGIC &&
-            !player_consume_spell_runes(p, spell)) {
-        p->manual_spell_cast = -1;
+            !content_player_consume_spell_runes(world, p, spell)) {
+        clear_failed_player_spell_attack(p);
         return;
     }
 

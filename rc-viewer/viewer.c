@@ -1210,6 +1210,24 @@ static int viewer_has_npc_near(ViewerState *v, int npc_id, int x, int y,
     return 0;
 }
 
+static int viewer_focus_npc_idx(ViewerState *v,
+                                const ViewerDevTransport *d) {
+    if (!v || !v->world || !d || d->npc_id < 0)
+        return -1;
+    for (int i = 0; i < v->world->npc_count; i++) {
+        RcNpc *npc = &v->world->npcs[i];
+        if (!npc->active || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+            continue;
+        if (g_npc_defs[npc->def_id].id != d->npc_id || npc->plane != d->plane)
+            continue;
+        if (abs(npc->x - d->target_x) <= 8 &&
+                abs(npc->y - d->target_y) <= 8) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 static int viewer_spawn_focus_npc(ViewerState *v,
                                   const ViewerDevTransport *d) {
     if (!v || !v->world || !d || d->npc_id < 0)
@@ -1232,6 +1250,24 @@ static int viewer_spawn_focus_npc(ViewerState *v,
     fprintf(stderr, "dev transport: spawned %s NPC %d at %d,%d,%d\n",
             d->label, d->npc_id, d->target_x, d->target_y, d->plane);
     return 1;
+}
+
+static void viewer_start_dev_boss_combat(ViewerState *v,
+                                         const ViewerDevTransport *d) {
+    if (!v || !v->world || !d || d->npc_id < 0 ||
+            !env_bool("RUNEC_DEV_BOSS_ATTACKS", 1)) {
+        return;
+    }
+    int idx = viewer_focus_npc_idx(v, d);
+    if (idx < 0)
+        return;
+    RcNpc *npc = &v->world->npcs[idx];
+    if (rc_combat_start_npc_vs_player(v->world, npc->uid, 0)) {
+        npc->attack_timer = 0;
+        npc->combat.attack_animation_id =
+            npc->def_id >= 0 && npc->def_id < g_npc_def_count
+            ? g_npc_defs[npc->def_id].attack_anim : 0;
+    }
 }
 
 static void viewer_clear_player_activity(ViewerState *v) {
@@ -1265,6 +1301,57 @@ static void viewer_clear_player_activity(ViewerState *v) {
     reset_viewer_context(v);
 }
 
+static int viewer_dev_tile_safe(const ViewerState *v, int x, int y,
+                                int plane, const ViewerDevTransport *d) {
+    if (!v || !v->world || !d || rc_tile_blocked(&v->world->map, x, y, plane))
+        return 0;
+    if (d->npc_id < 0)
+        return 1;
+    int size = d->npc_size > 0 ? d->npc_size : 1;
+    int max_x = d->target_x + size - 1;
+    int max_y = d->target_y + size - 1;
+    return x < d->target_x || x > max_x || y < d->target_y || y > max_y;
+}
+
+static void viewer_dev_player_tile(const ViewerState *v,
+                                   const ViewerDevTransport *d,
+                                   int *out_x, int *out_y) {
+    int size = d->npc_size > 0 ? d->npc_size : 1;
+    int desired_x = d->target_x;
+    int desired_y = d->npc_id >= 0 ? d->target_y - (size + 4) : d->target_y;
+    int plane = clamp_plane(d->plane);
+    int best_x = desired_x;
+    int best_y = desired_y;
+    int best_score = 0x3fffffff;
+
+    for (int dx = -20; dx <= 20; dx++) {
+        for (int dy = -20; dy <= 20; dy++) {
+            int x = d->target_x + dx;
+            int y = d->target_y + dy;
+            if (!viewer_dev_tile_safe(v, x, y, plane, d))
+                continue;
+            int dist = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
+            if (d->npc_id >= 0 && dist < size + 1)
+                continue;
+            int score = abs(x - desired_x) * 4 + abs(y - desired_y) * 4;
+            if (d->npc_id >= 0) {
+                score += abs(dist - (size + 4));
+                if (!rc_has_los(&v->world->map, x, y,
+                                d->target_x, d->target_y, plane))
+                    score += 16;
+            }
+            if (score < best_score) {
+                best_score = score;
+                best_x = x;
+                best_y = y;
+            }
+        }
+    }
+
+    *out_x = best_x;
+    *out_y = best_y;
+}
+
 static void viewer_dev_transport_to(ViewerState *v,
                                     const ViewerDevTransport *d) {
     if (!v || !v->world || !d)
@@ -1275,10 +1362,7 @@ static void viewer_dev_transport_to(ViewerState *v,
     int old_plane = p->plane;
     int player_x = d->target_x;
     int player_y = d->target_y;
-    if (d->npc_id >= 0) {
-        int offset = d->npc_size > 0 ? d->npc_size + 4 : 6;
-        player_y -= offset;
-    }
+    viewer_dev_player_tile(v, d, &player_x, &player_y);
 
     viewer_clear_player_activity(v);
     p->x = player_x;
@@ -1301,6 +1385,7 @@ static void viewer_dev_transport_to(ViewerState *v,
     ensure_active_scene_plane(v, p->plane);
     if (viewer_spawn_focus_npc(v, d))
         reload_npc_models_for_scene(v);
+    viewer_start_dev_boss_combat(v, d);
     fprintf(stderr, "dev transport: %s -> player %d,%d,%d target %d,%d,%d\n",
             d->label, p->x, p->y, p->plane,
             d->target_x, d->target_y, d->plane);
@@ -1592,23 +1677,42 @@ static void sync_ui_player_status(ViewerState *v) {
 }
 
 static void seed_viewer_inventory(RcWorld *world) {
-    static const int item_ids[] = {
-        6570, 21295, 1042, 1044, 1046, 1048, 4151, 11802, 11832,
-        11834, 26382, 26384, 26386, 10350, 10348, 10346, 10352,
+    typedef struct {
+        int item_id;
+        int quantity;
+    } SeedItem;
+    static const SeedItem items[] = {
+        {6570, 1},     // Fire cape
+        {21295, 1},    // Infernal cape
+        {4151, 1},     // Abyssal whip
+        {11802, 1},    // Armadyl godsword
+        {11832, 1},    // Saradomin godsword
+        {11834, 1},    // Bandos godsword
+        {861, 1},      // Magic shortbow
+        {892, 10000},  // Rune arrows
+        {1381, 1},     // Staff of fire
+        {995, 10000000},
+        {556, 100000}, // Air rune
+        {555, 100000}, // Water rune
+        {557, 100000}, // Earth rune
+        {554, 100000}, // Fire rune
+        {558, 100000}, // Mind rune
+        {559, 100000}, // Body rune
+        {564, 100000}, // Cosmic rune
+        {562, 100000}, // Chaos rune
+        {561, 100000}, // Nature rune
+        {563, 100000}, // Law rune
+        {560, 100000}, // Death rune
+        {565, 100000}, // Blood rune
+        {566, 100000}, // Soul rune
+        {21880, 100000}, // Wrath rune
+        {10350, 1},    // 3rd age full helmet
+        {10348, 1},    // 3rd age platebody
+        {10346, 1},    // 3rd age platelegs
+        {10352, 1},    // 3rd age kiteshield
     };
-    for (int i = 0; i < (int)(sizeof(item_ids) / sizeof(item_ids[0])); i++)
-        rc_inv_add(world->player.inventory, item_ids[i], 1);
-    rc_inv_add(world->player.inventory, 995, 10000000);
-    rc_inv_add(world->player.inventory, 861, 1);
-    rc_inv_add(world->player.inventory, 892, 10000);
-    rc_inv_add(world->player.inventory, 1381, 1);
-    rc_inv_add(world->player.inventory, 556, 10000);
-    rc_inv_add(world->player.inventory, 555, 10000);
-    rc_inv_add(world->player.inventory, 557, 10000);
-    rc_inv_add(world->player.inventory, 554, 10000);
-    rc_inv_add(world->player.inventory, 558, 10000);
-    rc_inv_add(world->player.inventory, 562, 10000);
-    rc_inv_add(world->player.inventory, 560, 10000);
+    for (int i = 0; i < (int)(sizeof(items) / sizeof(items[0])); i++)
+        rc_inv_add(world->player.inventory, items[i].item_id, items[i].quantity);
     int fire_blast = rc_spell_find("Fire Blast");
     if (fire_blast >= 0)
         world->player.selected_spell = fire_blast;
@@ -3061,8 +3165,7 @@ static Color projectile_color(const RcCombatProjectile *proj) {
 }
 
 static float projectile_model_scale(const RcCombatProjectile *proj) {
-    if (proj && proj->style == COMBAT_MAGIC)
-        return 1.5f;
+    (void)proj;
     return 1.0f;
 }
 
@@ -3089,6 +3192,13 @@ static const SpotAnimDef *projectile_travel_spotanim(ViewerState *v,
     if (!v || !proj || proj->travel_spotanim_id < 0)
         return NULL;
     return spotanim_find(v->spotanims, proj->travel_spotanim_id);
+}
+
+static const SpotAnimDef *projectile_launch_spotanim(ViewerState *v,
+                                                     const RcCombatProjectile *proj) {
+    if (!v || !proj || proj->launch_spotanim_id < 0)
+        return NULL;
+    return spotanim_find(v->spotanims, proj->launch_spotanim_id);
 }
 
 static const SpotAnimDef *projectile_impact_spotanim(ViewerState *v,
@@ -3233,9 +3343,10 @@ static Vector3 combat_projectile_position(ViewerState *v,
     float start_h = proj->projectile_start_height >= 0
                   ? (float)proj->projectile_start_height / 128.0f
                   : 1.45f;
-    float end_h = proj->projectile_end_height >= 0
-                ? (float)proj->projectile_end_height / 128.0f
-                : 1.05f;
+    float end_h = proj->impact_spotanim_height >= 0
+                ? (float)proj->impact_spotanim_height / 128.0f
+                : (proj->projectile_end_height >= 0
+                   ? (float)proj->projectile_end_height / 128.0f : 1.05f);
     float sy = ground_y_plane(v, scene_plane, proj->source_x,
                               proj->source_y) + start_h;
     float ty = target_ground + end_h;
@@ -3367,6 +3478,49 @@ static int draw_projectile_impact(ViewerState *v,
     return 1;
 }
 
+static int draw_projectile_launch(ViewerState *v,
+                                  const RcCombatProjectile *proj,
+                                  int scene_plane,
+                                  float client_time) {
+    if (!v || !proj || proj->launch_spotanim_id < 0 ||
+            proj->plane != scene_plane) {
+        return 0;
+    }
+    const SpotAnimDef *spot = projectile_launch_spotanim(v, proj);
+    int anim_id = spot && spot->animation_id >= 0 ? spot->animation_id : -1;
+    int anim_duration = projectile_sequence_duration(v->anims, anim_id);
+    float retain = proj->projectile_start_time > 0
+                 ? (float)proj->projectile_start_time : 30.0f;
+    if (retain < 30.0f) retain = 30.0f;
+    if (retain > (float)anim_duration) retain = (float)anim_duration;
+    if (client_time >= retain)
+        return 0;
+
+    float height = proj->launch_spotanim_height >= 0
+                 ? (float)proj->launch_spotanim_height / 128.0f : 0.75f;
+    Vector3 pos = {
+        (float)LOCAL_X(proj->source_x) + 0.5f,
+        ground_y_plane(v, scene_plane, proj->source_x, proj->source_y) + height,
+        -((float)LOCAL_Y(proj->source_y) + 0.5f),
+    };
+    ModelEntry *entry = projectile_spotanim_model_entry(v, spot, -1);
+    if (entry) {
+        float angle = spot ? (float)spot->rotation : 0.0f;
+        Vector3 scale = projectile_spotanim_scale(proj, spot);
+        AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
+        if (!animate_model_entry_sequence(entry, anim_state, v->anims,
+                                          anim_id, client_time)) {
+            reset_model_entry_to_base_pose(entry);
+        }
+        DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, angle,
+                    scale, WHITE);
+        return 1;
+    }
+    DrawSphere(pos, proj->style == COMBAT_MAGIC ? 0.18f : 0.08f,
+               projectile_color(proj));
+    return 1;
+}
+
 static void draw_combat_projectiles(ViewerState *v) {
     int count = 0;
     const RcCombatProjectile *projectiles =
@@ -3382,6 +3536,7 @@ static void draw_combat_projectiles(ViewerState *v) {
                        : (float)(proj->duration_ticks > 0
                                  ? proj->duration_ticks * 30 : 30);
         float client_time = ((float)proj->age_ticks + v->tick_frac) * 30.0f;
+        draw_projectile_launch(v, proj, scene_plane, client_time);
         float angle = 0.0f;
         int visible = 0;
         Vector3 pos = combat_projectile_position(v, proj, scene_plane,
@@ -4695,7 +4850,7 @@ int main(void) {
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_AUTOCAST_SPELL) {
             int spell_idx = rc_spell_find(v.ui.last_intent.text);
             if (spell_idx >= 0)
-                rc_player_select_spell(v.world, spell_idx);
+                rc_player_set_autocast_spell(v.world, spell_idx, 0);
             fprintf(stderr, "ui autocast hook: %s\n", v.ui.last_intent.text);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_SELECTED_ITEM_ON_ITEM) {
             rc_player_use_inventory_item_on_inventory_item(

@@ -151,7 +151,7 @@ static void test_los_block_prevents_magic_swing_without_consuming_runes(void) {
     int npc_idx = spawn_target(world);
     block_projectile_line(world);
 
-    world->player.selected_spell = 0;
+    world->player.manual_spell_cast = 0;
     world->player.inventory[0] = (RcInvSlot){TEST_FIRE_RUNE, 4};
     world->player.inventory[1] = (RcInvSlot){TEST_AIR_RUNE, 3};
     rc_refresh_player_combat_style(&world->player);

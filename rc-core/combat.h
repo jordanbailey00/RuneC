@@ -86,6 +86,7 @@ RcCombatCalc rc_calc_magic(const RcPlayer *attacker, int npc_def_id,
 // Refresh selected combat style/stance/XP routing from equipped item
 // data plus the player's selected style index.
 void rc_refresh_player_combat_style(RcPlayer *player);
+int  rc_player_weapon_can_autocast(const RcPlayer *player);
 void rc_player_set_attack_style(struct RcWorld *world, int style_idx);
 int  rc_player_attack_speed(const RcPlayer *player);
 int  rc_player_attack_range(const RcPlayer *player);

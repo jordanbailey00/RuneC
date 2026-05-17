@@ -1,5 +1,6 @@
 #include "../rc-core/api.h"
 #include "../rc-core/combat.h"
+#include "../rc-core/items.h"
 #include "../rc-core/npc.h"
 #include "../rc-core/spells.h"
 
@@ -18,6 +19,10 @@ typedef struct {
     int last_player_max_hp;
     int last_player_attack_target;
 } Phase6Events;
+
+enum {
+    TEST_PHASE6_STAFF = 9020,
+};
 
 static void phase6_event_handler(RcWorld *world, int evt,
                                  const void *payload, void *ctx) {
@@ -96,6 +101,22 @@ static RcWorld *phase6_world(Phase6Events *events) {
     return world;
 }
 
+static void add_phase6_staff(void) {
+    RcItemDef *def = &g_item_defs[TEST_PHASE6_STAFF];
+    memset(def, 0, sizeof(*def));
+    def->id = TEST_PHASE6_STAFF;
+    def->loaded = true;
+    strcpy(def->name, "Phase 6 staff");
+    def->equippable = true;
+    def->equipable_by_player = true;
+    def->equipable_weapon = true;
+    def->equip_slot = EQUIP_WEAPON;
+    def->attack_speed = 5;
+    def->attack_range = 1;
+    def->weapon_type = 22;
+    def->attack_magic = 100;
+}
+
 static void test_interaction_attack_enters_repeating_combat(void) {
     rc_interaction_clear_handlers();
     Phase6Events events = {0};
@@ -134,8 +155,10 @@ static void test_magic_attack_queues_delayed_hit_and_npc_retaliates(void) {
     g_rc_spell_defs[0].type = RC_SPELL_TYPE_COMBAT;
     g_rc_spell_defs[0].max_hit = 13;
     g_rc_spell_defs[0].loaded = 1;
-    world->player.selected_spell = 0;
-    rc_refresh_player_combat_style(&world->player);
+    add_phase6_staff();
+    world->player.equipment[EQUIP_WEAPON] = (RcInvSlot){TEST_PHASE6_STAFF, 1};
+    rc_recalc_bonuses(&world->player);
+    rc_player_set_autocast_spell(world, 0, 0);
     int npc_idx = spawn_phase6_npc(world, 901601, 4, 200);
 
     rc_player_interact_npc(world, world->npcs[npc_idx].uid, 1);

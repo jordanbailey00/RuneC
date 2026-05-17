@@ -160,6 +160,8 @@ static void test_ranged_attack_emits_data_backed_projectile(void) {
     assert(projectiles[0].launch_spotanim_id == 24);
     assert(projectiles[0].travel_spotanim_id == 15);
     assert(projectiles[0].projectile_model_id == 3136);
+    assert(projectiles[0].launch_spotanim_height == 96);
+    assert(projectiles[0].impact_spotanim_height == 146);
     assert(projectiles[0].duration_ticks == 3);
     assert(projectiles[0].impact_duration_ticks == 0);
     assert(projectiles[0].projectile_start_height == 163);
@@ -188,9 +190,9 @@ static void test_magic_attack_emits_spell_projectile(void) {
     assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
-    world->player.selected_spell = 0;
     world->player.inventory[0] = (RcInvSlot){TEST_FIRE_RUNE, 5};
     world->player.inventory[1] = (RcInvSlot){TEST_AIR_RUNE, 5};
+    world->player.manual_spell_cast = 0;
     rc_refresh_player_combat_style(&world->player);
     assert(rc_combat_start_player_vs_npc(world, 0, world->npcs[npc_idx].uid));
 
@@ -207,6 +209,8 @@ static void test_magic_attack_emits_spell_projectile(void) {
     assert(projectiles[0].impact_spotanim_id == 131);
     assert(projectiles[0].projectile_model_id == 3087);
     assert(projectiles[0].projectile_anim_id == 663);
+    assert(projectiles[0].launch_spotanim_height == 92);
+    assert(projectiles[0].impact_spotanim_height == 124);
     assert(projectiles[0].duration_ticks == 3);
     assert(projectiles[0].impact_duration_ticks == 3);
     assert(projectiles[0].projectile_start_height == 172);
@@ -258,7 +262,7 @@ static void test_spell_on_npc_routes_to_magic_combat_projectile(void) {
     assert(projectiles[0].spell_idx == 0);
     assert(projectiles[0].travel_spotanim_id == 130);
     assert(projectiles[0].projectile_model_id == 3087);
-    assert(world->player.selected_spell == 0);
+    assert(world->player.manual_spell_cast == -1);
     assert(world->player.combat_style == COMBAT_MAGIC);
     rc_world_destroy(world);
 }
@@ -290,6 +294,8 @@ static void test_npc_attack_emits_data_backed_projectile(void) {
     assert(projectiles[0].impact_spotanim_id == 202);
     assert(projectiles[0].projectile_model_id == 5555);
     assert(projectiles[0].projectile_anim_id == 777);
+    assert(projectiles[0].launch_spotanim_height == 92);
+    assert(projectiles[0].impact_spotanim_height == 124);
     assert(projectiles[0].hit_delay == 3);
     assert(projectiles[0].client_delay == 3);
     assert(projectiles[0].duration_ticks == 3);
@@ -307,7 +313,7 @@ static void test_impact_only_spell_emits_timed_impact(void) {
     assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
-    world->player.selected_spell = 1;
+    world->player.manual_spell_cast = 1;
     rc_refresh_player_combat_style(&world->player);
     assert(rc_combat_start_player_vs_npc(world, 0, world->npcs[npc_idx].uid));
 

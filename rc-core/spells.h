@@ -36,7 +36,7 @@ typedef struct {
     uint8_t qty;
 } RcSpellRune;
 
-typedef struct {
+typedef struct RcSpellDef {
     char name[64];
     uint8_t book, type, level, slayer_level, flags, rune_count;
     uint16_t xp_q1, max_hit, effect_flags;

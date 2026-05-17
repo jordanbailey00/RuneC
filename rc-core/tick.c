@@ -1174,6 +1174,24 @@ static void api_stop_player_combat(RcWorld *world) {
     }
 }
 
+static int spellbook_valid(int spellbook) {
+    return spellbook >= RC_SPELL_BOOK_STANDARD &&
+           spellbook <= RC_SPELL_BOOK_ARCEUUS;
+}
+
+static int spell_usable_on_current_book(const RcPlayer *player,
+                                        const RcSpellDef *spell) {
+    return player && spell && spell->loaded &&
+           spell->book == player->current_spellbook;
+}
+
+static int spell_is_autocast_candidate(const RcPlayer *player,
+                                       const RcSpellDef *spell) {
+    return spell_usable_on_current_book(player, spell) &&
+           spell->type == RC_SPELL_TYPE_COMBAT &&
+           spell->max_hit > 0;
+}
+
 static RcInteractionHandlerResult api_default_npc_attack_handler(
     RcWorld *world, RcPlayer *player, const RcPendingInteraction *pending,
     void *ctx) {
@@ -1196,7 +1214,6 @@ static RcInteractionHandlerResult api_default_npc_attack_handler(
                 RC_INTERACTION_FAIL_INVALID_SOURCE,
                 "Invalid combat spell");
         }
-        player->selected_spell = pending->source_spell_id;
         player->manual_spell_cast = pending->source_spell_id;
         rc_refresh_player_combat_style(player);
         if (!rc_combat_start_player_vs_npc(world, 0, npc->uid)) {
@@ -1397,14 +1414,47 @@ void rc_player_set_prayer(RcWorld *world, int prayer_id) {
     if (!def || world->player.skills.base_level[SKILL_PRAYER] < def->level) return;
     rc_prayer_toggle(&world->player, prayer_id);
 }
+void rc_player_set_spellbook(RcWorld *world, int spellbook) {
+    if (!world || !spellbook_valid(spellbook)) return;
+    RcPlayer *p = &world->player;
+    if (p->current_spellbook == spellbook) return;
+    p->current_spellbook = spellbook;
+    p->selected_spell = -1;
+    p->manual_spell_cast = -1;
+    p->autocast_spell = -1;
+    p->defensive_autocast = false;
+    rc_refresh_player_combat_style(p);
+}
 void rc_player_select_spell(RcWorld *world, int spell_idx) {
     if (!world || !rc_player_action_allowed(world->enabled,
                                             RC_PLAYER_ACTION_SELECT_SPELL)) {
         return;
     }
-    if (!rc_spell_def_get(spell_idx)) return;
+    const RcSpellDef *spell = rc_spell_def_get(spell_idx);
+    if (!spell_usable_on_current_book(&world->player, spell)) return;
     world->player.selected_spell = spell_idx;
-    world->player.manual_spell_cast = -1;
+}
+void rc_player_set_autocast_spell(RcWorld *world, int spell_idx,
+                                  int defensive) {
+    if (!world || !rc_player_action_allowed(world->enabled,
+                                            RC_PLAYER_ACTION_SELECT_SPELL)) {
+        return;
+    }
+    RcPlayer *p = &world->player;
+    if (spell_idx < 0) {
+        p->autocast_spell = -1;
+        p->defensive_autocast = false;
+        rc_refresh_player_combat_style(p);
+        return;
+    }
+    const RcSpellDef *spell = rc_spell_def_get(spell_idx);
+    if (!spell_is_autocast_candidate(p, spell) ||
+            !rc_player_weapon_can_autocast(p)) {
+        return;
+    }
+    p->autocast_spell = spell_idx;
+    p->defensive_autocast = defensive != 0;
+    rc_refresh_player_combat_style(p);
 }
 void rc_player_eat(RcWorld *world, int inv_slot) { (void)world; (void)inv_slot; }
 void rc_player_drink(RcWorld *world, int inv_slot) { (void)world; (void)inv_slot; }

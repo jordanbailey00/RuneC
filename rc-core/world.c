@@ -58,8 +58,15 @@ static void init_player_defaults(RcPlayer *p) {
     p->attack_stance = RC_ATTACK_STANCE_ACCURATE;
     p->combat_xp_mask = RC_COMBAT_XP_ATTACK;
     p->special_energy = 10000;
+    p->current_spellbook = RC_SPELL_BOOK_STANDARD;
     p->selected_spell = -1;
     p->manual_spell_cast = -1;
+    p->autocast_spell = -1;
+    p->defensive_autocast = false;
+    for (int i = 0; i < 4; i++) {
+        p->rune_pouch[i].item_id = -1;
+        p->rune_pouch[i].quantity = 0;
+    }
     p->last_hit = -1;
     p->facing_entity = -1;
     p->facing_x = -1;
