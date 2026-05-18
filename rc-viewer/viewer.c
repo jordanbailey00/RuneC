@@ -3262,6 +3262,10 @@ static Vector3 projectile_spotanim_scale(const RcCombatProjectile *proj,
     return (Vector3){xy, y, xy};
 }
 
+static float projectile_yaw_degrees(float sx, float sz, float tx, float tz) {
+    return atan2f(tx - sx, tz - sz) * (180.0f / 3.14159265f);
+}
+
 static int projectile_target_point(ViewerState *v,
                                    const RcCombatProjectile *proj,
                                    int scene_plane,
@@ -3399,8 +3403,7 @@ static Vector3 combat_projectile_position(ViewerState *v,
         sz + speed_z * t,
     };
     if (out_angle) {
-        *out_angle = atan2f(tx - sx, tz - sz) * (180.0f / 3.14159265f)
-                   + 180.0f;
+        *out_angle = projectile_yaw_degrees(sx, sz, tx, tz);
     }
     *out_visible = 1;
     return pos;
@@ -3506,6 +3509,13 @@ static int draw_projectile_launch(ViewerState *v,
     ModelEntry *entry = projectile_spotanim_model_entry(v, spot, -1);
     if (entry) {
         float angle = spot ? (float)spot->rotation : 0.0f;
+        float tx = 0.0f;
+        float tz = 0.0f;
+        float target_ground = 0.0f;
+        if (projectile_target_point(v, proj, scene_plane, &tx, &tz,
+                                    &target_ground, NULL, NULL)) {
+            angle += projectile_yaw_degrees(pos.x, pos.z, tx, tz);
+        }
         Vector3 scale = projectile_spotanim_scale(proj, spot);
         AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
         if (!animate_model_entry_sequence(entry, anim_state, v->anims,
@@ -3558,8 +3568,6 @@ static void draw_combat_projectiles(ViewerState *v) {
         int anim_id = projectile_effect_anim_id(proj, spot);
         ModelEntry *entry = projectile_effect_model_entry(v, proj, spot);
         if (entry) {
-            if (spot)
-                angle += (float)spot->rotation;
             Vector3 scale = projectile_spotanim_scale(proj, spot);
             AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
             float client_ticks = ((float)proj->age_ticks + v->tick_frac) * 30.0f;
