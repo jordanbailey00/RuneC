@@ -1,15 +1,32 @@
+![RuneC Varrock overview](assets/readme/varrock-overview.png)
+
 # RuneC
 
-RuneC is a C implementation of Old School RuneScape-style game systems. It is
-built to support two modes from the same backend:
+RuneC is a local C implementation of Old School RuneScape-style gameplay. It
+currently runs as a playable desktop viewer and uses the same backend for
+deterministic headless simulation.
 
-- a playable local client through a Raylib viewer
-- fast, deterministic headless simulation for testing, evaluation, and RL-style
-  workloads
+The goal is simple: make an OSRS-like game that can be played locally, tested
+quickly, and reused for fast simulation workloads without needing a live server.
 
-The project is currently focused on correctness and runtime foundations: cache
-derived world assets, object interaction, UI/runtime state, combat, traversal,
-and modular content systems.
+## Features
+
+RuneC currently includes:
+
+- a playable local world slice with cache-backed terrain, objects, collision,
+  models, textures, sprites, fonts, animations, and NPC spawns
+- an OSRS-style fixed gameframe with inventory, equipment, combat styles,
+  prayer, spellbook, chatbox, minimap, orbs, tabs, and context menus
+- click-to-walk, right-click camera panning, middle-click context menus, and a
+  top-left hover label showing the current left-click action
+- doors, gates, ladders, stairs, caves, portals, manholes, object transports,
+  and plane changes for tested areas
+- player, NPC, equipment, projectile, object, and item rendering from the local
+  cache/data pipeline
+- inventory, equipment, bank/storage, spell selection, rune checks, ranged and
+  magic projectile foundations, and combat validation helpers
+- a modular C backend intended for both playable runs and fast headless
+  simulation
 
 ## Dependencies
 
@@ -41,20 +58,65 @@ cmake --build build --parallel
 them, and expands them into local loose files under `data/` so the viewer starts
 from the fast runtime path.
 
+## Validation Tools
+
+RuneC includes temporary in-game validation tools so combat, movement, planes,
+and asset rendering can be tested without running across the world.
+
+![RuneC validation tools](assets/readme/validation-tools.png)
+
+Open the Clan Chat side tab to use the validation panel:
+
+- `Follow` returns the scene view to the player's current plane.
+- `0`, `1`, `2`, and `3` force the viewer to inspect a specific scene level.
+- `Varrock`, `Graardor`, `KBD`, `Vorkath`, and `Jad` move the player to common
+  validation locations.
+
+These helpers are for development and testing. To run without them:
+
+```bash
+RUNEC_DEV_VALIDATION=0 ./build/rc-viewer
+```
+
+You can also start directly at a validation destination:
+
+```bash
+RUNEC_DEV_TRANSPORT_DEST=graardor ./build/rc-viewer
+```
+
+## Validation Bank
+
+The Varrock bank is seeded with high-level gear and supplies for combat testing.
+
+![RuneC validation bank](assets/readme/validation-bank.png)
+
+The bank is split into simple testing tabs:
+
+- `Ranged`
+- `Mage`
+- `Melee`
+- `PvP`
+- `Special`
+
+It includes weapons, armor, ammunition, runes, capes, offhands, jewelry, and
+other items used to validate combat animations, projectiles, equipment models,
+special attacks, and item behavior. Stackable supplies are loaded in bulk, and
+withdrawals leave one copy behind so the bank order stays stable while testing.
+
+The Varrock-bank combat dummy is also temporary validation content. Disable just
+the dummy with:
+
+```bash
+RUNEC_DEV_BANK_DUMMY=0 ./build/rc-viewer
+```
+
 ## Current Status
 
-RuneC can currently run a playable OSRS-style viewer slice with:
-
-- cache-derived terrain, objects, collision, models, textures, sprites, fonts,
-  animations, NPC spawns, and object traversal data
-- an OSRS-style gameframe shell with inventory, equipment, combat tab, prayer,
-  spellbook, chatbox, minimap/orbs, and context menu surfaces
-- player/NPC rendering, equipment rendering, object animation, projectile
-  foundations, and dynamic object state such as doors, gates, ladders, stairs,
-  portals, caves, manholes, and same-plane transports
-- modular `rc-core` gameplay systems for movement, combat, prayer, inventory,
-  equipment, item actions, loot, skills, quests, dialogue, shops, storage,
-  traversal, objects, regions, slayer, and encounters
+RuneC is still in active development. The current build is good for local
+exploration, UI validation, combat visual testing, object/transport testing,
+and backend regression work. Some game systems and content are still incomplete,
+including full combat parity, all special attacks, full boss behavior, exact
+minimap parity, and long-tail item/object edge cases.
 
 ## Repository Layout
 
