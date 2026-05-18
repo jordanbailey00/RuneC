@@ -29,7 +29,17 @@
 #include "traversal.h"
 #include "varbits.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+
+static void copy_world_path(char *dst, size_t cap, const char *src) {
+    if (!dst || cap == 0) return;
+    if (!src) {
+        dst[0] = '\0';
+        return;
+    }
+    snprintf(dst, cap, "%s", src);
+}
 
 static void init_player_defaults(RcPlayer *p) {
     // Varrock centre start for legacy-seeded worlds. RL configs
@@ -112,6 +122,8 @@ RcWorld *rc_world_create_config(const RcWorldConfig *cfg) {
     world->rng_state = cfg->seed;
     world->tick = 0;
     world->enabled = cfg->subsystems;
+    copy_world_path(world->npc_spawns_path, sizeof(world->npc_spawns_path),
+                    cfg->spawns_path);
 
     rc_events_init(&world->events);
     if (cfg->varbits_path && g_rc_varbit_count == 0) {
@@ -283,4 +295,86 @@ const RcPlayer *rc_get_player(const RcWorld *world) {
 const RcNpc *rc_get_npcs(const RcWorld *world, int *count) {
     if (count) *count = world->npc_count;
     return world->npcs;
+}
+
+static int valid_active_area_request(const RcActiveAreaRequest *request) {
+    return request && request->width > 0 && request->height > 0
+        && request->min_plane >= 0 && request->max_plane < RC_MAX_PLANES
+        && request->min_plane <= request->max_plane;
+}
+
+static void clear_active_npcs(RcWorld *world) {
+    memset(world->npcs, 0, sizeof(world->npcs));
+    world->npc_count = 0;
+    world->combat_projectile_count = 0;
+}
+
+int rc_world_activate_area(RcWorld *world, const RcActiveAreaRequest *request,
+                           RcActiveAreaStats *stats) {
+    if (stats) memset(stats, 0, sizeof(*stats));
+    if (!world || !valid_active_area_request(request))
+        return -1;
+
+    uint32_t flags = request->flags;
+    if (flags == 0) {
+        flags = RC_ACTIVE_AREA_LOAD_COLLISION
+              | RC_ACTIVE_AREA_LOAD_NPCS
+              | RC_ACTIVE_AREA_CLEAR_NPCS;
+    }
+
+    int min_x = request->origin_x;
+    int min_y = request->origin_y;
+    int max_x = request->origin_x + request->width - 1;
+    int max_y = request->origin_y + request->height - 1;
+
+    int collision_regions = world->map.region_count;
+    if (flags & RC_ACTIVE_AREA_LOAD_COLLISION) {
+        collision_regions = rc_collision_populate_map_rect(&world->map,
+                                                           min_x, min_y,
+                                                           max_x, max_y);
+        if (collision_regions < 0)
+            return -1;
+    }
+
+    if (flags & RC_ACTIVE_AREA_CLEAR_NPCS)
+        clear_active_npcs(world);
+
+    RcNpcSpawnLoadStats npc_stats;
+    memset(&npc_stats, 0, sizeof(npc_stats));
+    int spawned = 0;
+    if (flags & RC_ACTIVE_AREA_LOAD_NPCS) {
+        const char *path = request->npc_spawns_path && request->npc_spawns_path[0]
+                         ? request->npc_spawns_path : world->npc_spawns_path;
+        if (path && path[0]) {
+            spawned = rc_load_npc_spawns_rect_stats(
+                world, path, min_x, min_y, max_x, max_y,
+                request->min_plane, request->max_plane, &npc_stats);
+            if (spawned < 0)
+                return -1;
+        }
+    }
+
+    uint32_t generation = world->active_area.generation + 1;
+    world->active_area = (RcActiveArea){
+        .active = true,
+        .origin_x = request->origin_x,
+        .origin_y = request->origin_y,
+        .width = request->width,
+        .height = request->height,
+        .min_plane = request->min_plane,
+        .max_plane = request->max_plane,
+        .generation = generation ? generation : 1,
+    };
+
+    if (stats) {
+        stats->collision_regions = collision_regions;
+        stats->spawned_npcs = spawned;
+        stats->npc_stats = npc_stats;
+        stats->active_area = world->active_area;
+    }
+    return 1;
+}
+
+const RcActiveArea *rc_world_get_active_area(const RcWorld *world) {
+    return world ? &world->active_area : NULL;
 }

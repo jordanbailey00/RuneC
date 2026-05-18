@@ -51,6 +51,7 @@ subsystems**.
 ### Base (always on, always loaded)
 - World position/grid semantics
 - Region/collision query API
+- Active-area activation for collision windows and NPC spawn slices
 - Player position + route
 - NPC position + route
 - Pathfinding (BFS + LOS)
@@ -109,6 +110,25 @@ RcWorldConfig rc_preset_full_game(void);
 RcWorldConfig rc_preset_combat_only(void);   // Colosseum / Inferno sim
 RcWorldConfig rc_preset_skilling_only(void);
 ```
+
+Gameplay area activation is explicit and backend-owned:
+
+```c
+RcActiveAreaRequest req = {
+    .origin_x = 3072,
+    .origin_y = 3264,
+    .width = 320,
+    .height = 320,
+    .min_plane = 0,
+    .max_plane = RC_MAX_PLANES - 1,
+};
+rc_world_activate_area(world, &req, NULL);
+```
+
+`rc_world_activate_area` populates `RcWorld.map` from `collision_tiles.bin`,
+clears/reloads the active NPC spawn slice from `world.npc-spawns.bin`, and
+records the active area generation on `RcWorld`. The viewer and headless agents
+use the same API before issuing gameplay actions.
 
 Config is consumed **once** at world creation. After that, no
 config-driven branching appears on the tick path. The enabled
@@ -328,7 +348,7 @@ Each subsystem owns its binary(s):
 | combat / slayer / encounter | `regular_npc_mechanics.bin` |
 | encounter | `encounters.bin` (ENCT v12), `activity_schemas.bin`, `activity_spawns.bin`, `activity_mechanics.bin`, `activity_states.bin`, curated encounter TOMLs |
 | slayer | `slayer.bin` |
-| explicit/sliced load | world NPC spawns via rect/near loaders |
+| active area | world NPC spawns via `rc_world_activate_area`; lower-level rect/near loaders remain available for tools/tests |
 | (audio → rc-viewer) | `music.bin` |
 
 If a subsystem is disabled in the config, its binaries are never

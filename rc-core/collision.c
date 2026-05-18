@@ -93,6 +93,47 @@ int rc_collision_is_loaded(void) {
     return g_rc_collision_regions && g_rc_collision_region_count > 0;
 }
 
+int rc_collision_populate_map_rect(RcWorldMap *map, int min_x, int min_y,
+                                   int max_x, int max_y) {
+    if (!map || min_x > max_x || min_y > max_y || !rc_collision_is_loaded())
+        return -1;
+
+    int min_rx = min_x / RC_REGION_SIZE;
+    int max_rx = max_x / RC_REGION_SIZE;
+    int min_ry = min_y / RC_REGION_SIZE;
+    int max_ry = max_y / RC_REGION_SIZE;
+
+    memset(map, 0, sizeof(*map));
+    map->base_region_x = min_rx;
+    map->base_region_y = min_ry;
+
+    for (int rx = min_rx; rx <= max_rx; rx++) {
+        for (int ry = min_ry; ry <= max_ry; ry++) {
+            if (map->region_count >= RC_MAX_REGIONS)
+                return -1;
+
+            uint16_t ms = (uint16_t)((rx << 8) | (ry & 0xFF));
+            int idx = g_collision_index[ms];
+            if (idx < 0 || idx >= g_rc_collision_region_count)
+                continue;
+
+            RcRegion *dst = &map->regions[map->region_count++];
+            dst->region_x = rx;
+            dst->region_y = ry;
+            dst->loaded = 1;
+            for (int plane = 0; plane < RC_MAX_PLANES; plane++) {
+                for (int x = 0; x < RC_REGION_SIZE; x++) {
+                    for (int y = 0; y < RC_REGION_SIZE; y++) {
+                        dst->tiles[plane][x][y].collision_flags =
+                            g_rc_collision_regions[idx].flags[plane][x][y];
+                    }
+                }
+            }
+        }
+    }
+    return map->region_count;
+}
+
 uint32_t rc_collision_flags_at(int x, int y, int plane, int *found) {
     if (found) *found = 0;
     if (!rc_collision_is_loaded() || x < 0 || y < 0

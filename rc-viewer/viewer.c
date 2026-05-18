@@ -18,7 +18,6 @@
 #include "objects.h"
 #include "models.h"
 #include "anims.h"
-#include "collision.h"
 #include "ui.h"
 #include "equipment_render.h"
 #include "spotanims.h"
@@ -1046,30 +1045,45 @@ static int load_generated_scene_plane_assets(ViewerState *v,
     return v->terrain_planes[plane] || v->object_planes[plane];
 }
 
-static void reload_npc_spawns_for_scene(ViewerState *v) {
+static int activate_core_area_for_loaded_scene(ViewerState *v) {
     if (!v || !v->world)
-        return;
-    const char *path = env_path("RUNEC_NPC_SPAWNS",
-        "data/spawns/world.npc-spawns.bin");
-    memset(v->world->npcs, 0, sizeof(v->world->npcs));
-    v->world->npc_count = 0;
+        return 0;
     memset(v->npc_render, 0, sizeof(v->npc_render));
 
-    RcNpcSpawnLoadStats stats;
-    int spawned = rc_load_npc_spawns_rect_stats(
-        v->world, path, g_world_origin_x, g_world_origin_y,
-        g_world_origin_x + g_world_w - 1,
-        g_world_origin_y + g_world_h - 1,
-        0, RC_MAX_PLANES - 1, &stats);
-    if (spawned >= 0) {
+    RcActiveAreaRequest request = {
+        .origin_x = g_world_origin_x,
+        .origin_y = g_world_origin_y,
+        .width = g_world_w,
+        .height = g_world_h,
+        .min_plane = 0,
+        .max_plane = RC_MAX_PLANES - 1,
+        .flags = RC_ACTIVE_AREA_LOAD_COLLISION
+               | RC_ACTIVE_AREA_LOAD_NPCS
+               | RC_ACTIVE_AREA_CLEAR_NPCS,
+        .npc_spawns_path = env_path("RUNEC_NPC_SPAWNS",
+                                    "data/spawns/world.npc-spawns.bin"),
+    };
+    RcActiveAreaStats stats;
+    int ok = rc_world_activate_area(v->world, &request, &stats);
+    if (ok > 0) {
         fprintf(stderr,
-                "viewer npc slice reload: rows=%d matched=%d spawned=%d"
-                " planes=[%d,%d,%d,%d]\n",
-                stats.total_rows, stats.matched_filter, stats.spawned,
-                stats.spawned_plane_counts[0], stats.spawned_plane_counts[1],
-                stats.spawned_plane_counts[2], stats.spawned_plane_counts[3]);
+                "core active area: origin=%d,%d size=%dx%d collision=%d"
+                " npc_rows=%d matched=%d spawned=%d planes=[%d,%d,%d,%d]\n",
+                stats.active_area.origin_x, stats.active_area.origin_y,
+                stats.active_area.width, stats.active_area.height,
+                stats.collision_regions, stats.npc_stats.total_rows,
+                stats.npc_stats.matched_filter, stats.npc_stats.spawned,
+                stats.npc_stats.spawned_plane_counts[0],
+                stats.npc_stats.spawned_plane_counts[1],
+                stats.npc_stats.spawned_plane_counts[2],
+                stats.npc_stats.spawned_plane_counts[3]);
+        if (v->npc_models || v->npc_anims || v->npc_fallback_anims)
+            reload_npc_models_for_scene(v);
+        return 1;
     }
-    reload_npc_models_for_scene(v);
+    fprintf(stderr, "core active area: activation failed for %d,%d %dx%d\n",
+            g_world_origin_x, g_world_origin_y, g_world_w, g_world_h);
+    return 0;
 }
 
 static int scene_tile_in_initial_scene(const ViewerState *v, int x, int y) {
@@ -1090,8 +1104,9 @@ static int reload_initial_scene(ViewerState *v) {
     g_world_h = v->initial_scene_h;
     load_terrain_plane_assets(v, v->initial_terrain_path);
     load_object_plane_assets(v, v->initial_objects_path);
+    if (!activate_core_area_for_loaded_scene(v))
+        return 0;
     build_minimap_tiles(v);
-    reload_npc_spawns_for_scene(v);
     v->active_scene_prefix[0] = '\0';
     fprintf(stderr,
             "viewer scene: reloaded initial scene origin %d,%d size %dx%d\n",
@@ -1136,8 +1151,9 @@ static int reload_scene_around_player(ViewerState *v, int center_x,
     g_world_h = world_h;
     load_terrain_plane_assets(v, terrain_path);
     load_object_plane_assets(v, objects_path);
+    if (!activate_core_area_for_loaded_scene(v))
+        return 0;
     build_minimap_tiles(v);
-    reload_npc_spawns_for_scene(v);
     strncpy(v->active_scene_prefix, prefix, sizeof(v->active_scene_prefix) - 1);
     v->active_scene_prefix[sizeof(v->active_scene_prefix) - 1] = '\0';
     fprintf(stderr,
@@ -1360,11 +1376,15 @@ static void viewer_dev_transport_to(ViewerState *v,
     int old_x = p->x;
     int old_y = p->y;
     int old_plane = p->plane;
+
+    viewer_clear_player_activity(v);
+    p->plane = clamp_plane(d->plane);
+    if (!reload_scene_around_player(v, d->target_x, d->target_y))
+        handle_player_scene_transition(v, old_x, old_y, old_plane);
+
     int player_x = d->target_x;
     int player_y = d->target_y;
     viewer_dev_player_tile(v, d, &player_x, &player_y);
-
-    viewer_clear_player_activity(v);
     p->x = player_x;
     p->y = player_y;
     p->prev_x = player_x;
@@ -1380,8 +1400,6 @@ static void viewer_dev_transport_to(ViewerState *v,
     v->player_moving = 0;
     v->scene_plane_override = -1;
 
-    if (!reload_scene_around_player(v, p->x, p->y))
-        handle_player_scene_transition(v, old_x, old_y, old_plane);
     ensure_active_scene_plane(v, p->plane);
     if (viewer_spawn_focus_npc(v, d))
         reload_npc_models_for_scene(v);
@@ -4524,6 +4542,7 @@ int main(void) {
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_EQUIPMENT | RC_SUB_LOOT |
                      RC_SUB_COMBAT | RC_SUB_PRAYER | RC_SUB_OBJECTS |
                      RC_SUB_REGIONS | RC_SUB_TRAVERSAL;
+    cfg.npc_defs_path = env_path("RUNEC_NPC_DEFS", "data/defs/npc_defs.bin");
     cfg.items_path = env_path("RUNEC_ITEMS", "data/defs/items.bin");
     cfg.prayers_path = env_path("RUNEC_PRAYERS", "data/defs/prayers.bin");
     cfg.spells_path = env_path("RUNEC_SPELLS", "data/defs/spells.bin");
@@ -4541,6 +4560,8 @@ int main(void) {
         "data/defs/object_transports.bin");
     cfg.collision_tiles_path = env_path("RUNEC_COLLISION_TILES",
         "data/defs/collision_tiles.bin");
+    cfg.spawns_path = env_path("RUNEC_NPC_SPAWNS",
+        "data/spawns/world.npc-spawns.bin");
     cfg.area_flags_path = env_path("RUNEC_AREA_FLAGS",
         "data/defs/area_flags.bin");
     cfg.traversal_edges_path = env_path("RUNEC_TRAVERSAL_EDGES",
@@ -4612,41 +4633,12 @@ int main(void) {
     load_terrain_plane_assets(&v, initial_terrain);
     load_object_plane_assets(&v, initial_objects);
 
-    // Load collision
-    collision_load(&v.world->map, env_path("RUNEC_CMAP",
-        "data/regions/varrock.cmap"));
+    if (!activate_core_area_for_loaded_scene(&v)) {
+        fprintf(stderr, "Failed to activate initial gameplay area\n");
+        return 1;
+    }
     build_minimap_tiles(&v);
     load_world_map_minimap(&v);
-
-    // Load NPC definitions + spawns (must be before model loading since spawns
-    // tell us which NPCs exist in the world)
-    rc_load_npc_defs(env_path("RUNEC_NPC_DEFS", "data/defs/npc_defs.bin"));
-    const char *npc_spawns_path = env_path("RUNEC_NPC_SPAWNS",
-        "data/spawns/world.npc-spawns.bin");
-    RcNpcSpawnLoadStats spawn_stats;
-    if (env_bool("RUNEC_NPC_SPAWNS_SLICE", 1)) {
-        int spawned = rc_load_npc_spawns_rect_stats(
-            v.world, npc_spawns_path,
-            g_world_origin_x, g_world_origin_y,
-            g_world_origin_x + g_world_w - 1,
-            g_world_origin_y + g_world_h - 1,
-            0, RC_MAX_PLANES - 1, &spawn_stats);
-        if (spawned < 0 && !getenv("RUNEC_NPC_SPAWNS")) {
-            rc_load_npc_spawns(v.world, "data/regions/varrock.npc-spawns.bin");
-        } else if (spawned >= 0) {
-            fprintf(stderr,
-                    "viewer npc slice: rows=%d matched=%d spawned=%d"
-                    " planes=[%d,%d,%d,%d]\n",
-                    spawn_stats.total_rows, spawn_stats.matched_filter,
-                    spawn_stats.spawned,
-                    spawn_stats.spawned_plane_counts[0],
-                    spawn_stats.spawned_plane_counts[1],
-                    spawn_stats.spawned_plane_counts[2],
-                    spawn_stats.spawned_plane_counts[3]);
-        }
-    } else {
-        rc_load_npc_spawns(v.world, npc_spawns_path);
-    }
 
     // Load NPC models (combined body parts per NPC, one model entry per NPC def)
     uint32_t *npc_model_ids = calloc((size_t)v.world->npc_count, sizeof(uint32_t));

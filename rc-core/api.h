@@ -4,8 +4,30 @@
 #include "types.h"
 #include "config.h"
 #include "interaction.h"
+#include "npc.h"
 #include "skills.h"
 #include "traversal.h"
+
+enum {
+    RC_ACTIVE_AREA_LOAD_COLLISION = 1u << 0,
+    RC_ACTIVE_AREA_LOAD_NPCS      = 1u << 1,
+    RC_ACTIVE_AREA_CLEAR_NPCS     = 1u << 2,
+};
+
+typedef struct {
+    int origin_x, origin_y;
+    int width, height;
+    int min_plane, max_plane;
+    uint32_t flags;
+    const char *npc_spawns_path;
+} RcActiveAreaRequest;
+
+typedef struct {
+    int collision_regions;
+    int spawned_npcs;
+    RcNpcSpawnLoadStats npc_stats;
+    RcActiveArea active_area;
+} RcActiveAreaStats;
 
 // Lifecycle. Prefer `rc_world_create_config` for new code — it lets
 // you pick a subsystem preset (full game, combat-only sim,
@@ -14,6 +36,12 @@
 RcWorld *rc_world_create_config(const RcWorldConfig *cfg);
 RcWorld *rc_world_create(uint32_t seed);
 void     rc_world_destroy(RcWorld *world);
+
+// Backend-owned gameplay area activation. The viewer may choose which visual
+// scene to display, but core owns the collision window and active NPC slice.
+int rc_world_activate_area(RcWorld *world, const RcActiveAreaRequest *request,
+                           RcActiveAreaStats *stats);
+const RcActiveArea *rc_world_get_active_area(const RcWorld *world);
 
 // Tick
 void rc_world_tick(RcWorld *world);

@@ -610,6 +610,14 @@ enum {
     RC_OBJECT_STATE_DYNAMIC   = 1u << 2,
 };
 
+typedef struct {
+    bool active;
+    int origin_x, origin_y;
+    int width, height;
+    int min_plane, max_plane;
+    uint32_t generation;
+} RcActiveArea;
+
 struct RcWorld;
 struct RcSpellDef;
 
@@ -666,6 +674,7 @@ typedef struct RcWorld {
     int next_object_respawn_tick;
     int32_t varps[RC_MAX_VARPS];
     RcWorldMap map;
+    RcActiveArea active_area;
     int tick;
     uint32_t rng_state;
     bool multi_combat;
@@ -685,6 +694,8 @@ typedef struct RcWorld {
     // Encounter subsystem state (inline arena layout per README §4).
     // Only exercised when RC_SUB_ENCOUNTER is enabled.
     RcEncounterState encounter;
+
+    char npc_spawns_path[512];
 } RcWorld;
 
 #endif

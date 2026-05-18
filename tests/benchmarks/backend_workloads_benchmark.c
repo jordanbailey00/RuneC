@@ -476,8 +476,10 @@ static void bench_mixed_agent(int envs, int ops, int warmup) {
 static RcWorld *make_spawn_world(uint32_t seed) {
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.seed = seed;
-    cfg.subsystems = RC_SUB_COMBAT;
+    cfg.subsystems = RC_SUB_COMBAT | RC_SUB_REGIONS;
     cfg.npc_defs_path = NPC_PATH;
+    cfg.spawns_path = SPAWN_PATH;
+    cfg.collision_tiles_path = CTIL_PATH;
     RcWorld *world = rc_world_create_config(&cfg);
     if (!world) {
         fprintf(stderr, "failed to create spawn benchmark world\n");
@@ -488,26 +490,35 @@ static RcWorld *make_spawn_world(uint32_t seed) {
 
 static void bench_spawn_slice(int ops) {
     RcWorld *world = make_spawn_world(3000u);
-    RcNpcSpawnLoadStats stats = {0};
+    RcActiveAreaRequest req = {
+        .origin_x = 3072,
+        .origin_y = 3264,
+        .width = 320,
+        .height = 320,
+        .min_plane = 0,
+        .max_plane = RC_MAX_PLANES - 1,
+        .flags = RC_ACTIVE_AREA_LOAD_COLLISION
+               | RC_ACTIVE_AREA_LOAD_NPCS
+               | RC_ACTIVE_AREA_CLEAR_NPCS,
+    };
+    RcActiveAreaStats stats = {0};
 
     double start = now_seconds();
     int spawned_total = 0;
     for (int i = 0; i < ops; i++) {
-        world->npc_count = 0;
-        int spawned = rc_load_npc_spawns_rect_stats(
-            world, SPAWN_PATH, 3072, 3264, 3391, 3583, 0, 3, &stats);
-        if (spawned < 0) {
-            fprintf(stderr, "spawn slice load failed\n");
+        if (rc_world_activate_area(world, &req, &stats) < 0) {
+            fprintf(stderr, "active area load failed\n");
             exit(1);
         }
-        spawned_total += spawned;
+        spawned_total += stats.spawned_npcs;
     }
     double elapsed = now_seconds() - start;
-    print_rate("spawn-slice-loads", ops, elapsed);
+    print_rate("active-area-loads", ops, elapsed);
     printf("spawned_total: %d\n", spawned_total);
-    printf("last_total_rows: %d\n", stats.total_rows);
-    printf("last_matched_filter: %d\n", stats.matched_filter);
-    printf("last_spawned: %d\n", stats.spawned);
+    printf("last_collision_regions: %d\n", stats.collision_regions);
+    printf("last_total_rows: %d\n", stats.npc_stats.total_rows);
+    printf("last_matched_filter: %d\n", stats.npc_stats.matched_filter);
+    printf("last_spawned: %d\n", stats.npc_stats.spawned);
     rc_world_destroy(world);
 }
 

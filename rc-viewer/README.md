@@ -39,6 +39,8 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   - main window lifecycle
   - input handling
   - camera control
+  - visual scene selection/generation followed by backend active-area
+    activation through `rc_world_activate_area`
   - world ticking for the current viewer path
 - `ui.c` / `ui.h`
   - cache-sprite-backed OSRS viewer UI shell
@@ -65,8 +67,6 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   - viewer-only generated item render map loader
   - maps item IDs to cache-composed ground/equipped render model IDs
     and default body-part hide masks
-- `collision.h`
-  - collision-map loading for viewer-side debugging and movement checks
 
 ## Runtime expectations
 
@@ -74,8 +74,9 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   working directory because it loads data by relative path.
 - It depends on runtime assets such as:
   - `data/regions/varrock.*`
+  - `data/defs/collision_tiles.bin`
   - `data/defs/npc_defs.bin`
-  - `data/regions/varrock.npc-spawns.bin`
+  - `data/spawns/world.npc-spawns.bin`
   - `data/models/*.models`
   - `data/models/item_render.map`
   - `data/anims/*.anims`

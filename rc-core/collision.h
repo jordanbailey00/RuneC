@@ -14,5 +14,7 @@ extern int g_rc_collision_region_count;
 int rc_load_collision_tiles(const char *path);
 int rc_collision_is_loaded(void);
 uint32_t rc_collision_flags_at(int x, int y, int plane, int *found);
+int rc_collision_populate_map_rect(RcWorldMap *map, int min_x, int min_y,
+                                   int max_x, int max_y);
 
 #endif
