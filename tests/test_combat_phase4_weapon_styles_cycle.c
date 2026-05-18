@@ -262,6 +262,35 @@ static void test_attack_cycle_uses_selected_style_speed_for_cooldown(void) {
     rc_world_destroy(world);
 }
 
+static void test_attack_cycle_does_not_queue_hits_during_cooldown(void) {
+    RcWorld *world = phase4_world();
+    ensure_fake_weapons();
+    equip_weapon(world, TEST_SLASH_SWORD);
+    rc_player_set_attack_style(world, 0);
+    int expected_speed = rc_player_attack_speed(&world->player);
+    int npc_idx = spawn_phase4_npc(world, 1, 0);
+    RcNpc *npc = &world->npcs[npc_idx];
+    npc->force_player_max_hit = true;
+    int start_hp = npc->current_hp;
+
+    assert(rc_combat_start_player_vs_npc(world, 0, npc->uid));
+    rc_world_tick(world);
+    int hp_after_first = npc->current_hp;
+    assert(hp_after_first < start_hp);
+    assert(world->player.attack_timer == expected_speed);
+
+    for (int i = 1; i < expected_speed; i++) {
+        rc_world_tick(world);
+        assert(npc->current_hp == hp_after_first);
+        assert(world->player.attack_timer == expected_speed - i);
+    }
+
+    rc_world_tick(world);
+    assert(npc->current_hp < hp_after_first);
+
+    rc_world_destroy(world);
+}
+
 int main(void) {
     test_slash_sword_table_sets_style_stance_xp_and_metadata();
     test_ranged_table_applies_rapid_and_longrange_modifiers();
@@ -269,5 +298,6 @@ int main(void) {
     test_staff_selected_spell_does_not_override_default_attack();
     test_weapon_type_beats_bonus_guessing_for_loaded_weapons();
     test_attack_cycle_uses_selected_style_speed_for_cooldown();
+    test_attack_cycle_does_not_queue_hits_during_cooldown();
     return 0;
 }

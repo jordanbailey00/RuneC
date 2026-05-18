@@ -163,6 +163,9 @@ typedef struct {
     int cur_anim_id;
     int anim_frame_idx;
     float anim_frame_timer;
+    int player_one_shot_finished;
+    int player_attack_timer_seen;
+    int player_attack_anim_suppressed;
     int player_moving;
     float player_facing_angle;   // viewer-side; rc-core doesn't store
 
@@ -3763,6 +3766,13 @@ static int player_core_attack_anim_or_fallback(ViewerState *v, int fallback) {
     return fallback;
 }
 
+static int player_attack_anim_timer(const RcPlayer *p) {
+    int timer = p->attack_anim_timer;
+    if (p->combat.attack_animation_timer > timer)
+        timer = p->combat.attack_animation_timer;
+    return timer;
+}
+
 static float face_angle_between_tiles(int from_x, int from_y,
                                       int to_x, int to_y, float fallback) {
     int dx = to_x - from_x;
@@ -3789,28 +3799,9 @@ static float npc_core_facing_angle(const RcNpc *n, float fallback) {
     return fallback;
 }
 
-static int player_target_anim_id(ViewerState *v) {
+static int player_base_anim_id(ViewerState *v) {
     const RcPlayer *p = &v->world->player;
     const RuneCItemRenderRecord *weapon = equipped_weapon_render_record(v, p);
-    if (p->action_anim_timer > 0 && p->action_anim_id > 0)
-        return player_anim_or_fallback(v, (uint32_t)p->action_anim_id,
-                                       ANIM_IDLE);
-    if (p->attack_anim_timer > 0 || p->combat.attack_animation_timer > 0) {
-        int weapon_id = p->equipment[EQUIP_WEAPON].item_id;
-        int attack_anim = ANIM_ATTACK_UNARMED;
-        if (p->combat.combat_class == RC_COMBAT_CLASS_MAGIC)
-            attack_anim = ANIM_ATTACK_CAST;
-        else if (p->combat.combat_class == RC_COMBAT_CLASS_RANGED)
-            attack_anim = ANIM_ATTACK_BOW;
-        else if (weapon_id == 4151)
-            attack_anim = ANIM_ATTACK_WHIP;
-        else if (weapon_id == 11802)
-            attack_anim = ANIM_ATTACK_GODSWORD;
-        else if (weapon_id == 1381)
-            attack_anim = ANIM_ATTACK_STAFF;
-        return player_core_attack_anim_or_fallback(
-            v, player_anim_or_fallback(v, attack_anim, ANIM_IDLE));
-    }
     if (v->player_moving) {
         if (p->running) {
             return weapon
@@ -3824,6 +3815,41 @@ static int player_target_anim_id(ViewerState *v) {
     return weapon
          ? player_anim_or_fallback(v, weapon->ready_anim_id, ANIM_IDLE)
          : ANIM_IDLE;
+}
+
+enum {
+    PLAYER_ONE_SHOT_NONE = 0,
+    PLAYER_ONE_SHOT_ACTION = 1,
+    PLAYER_ONE_SHOT_ATTACK = 2
+};
+
+static int player_target_anim_id(ViewerState *v, int *one_shot_kind) {
+    const RcPlayer *p = &v->world->player;
+    if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_NONE;
+    if (p->action_anim_timer > 0 && p->action_anim_id > 0)
+    {
+        if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_ACTION;
+        return player_anim_or_fallback(v, (uint32_t)p->action_anim_id,
+                                       ANIM_IDLE);
+    }
+    if (player_attack_anim_timer(p) > 0 && !v->player_attack_anim_suppressed) {
+        int weapon_id = p->equipment[EQUIP_WEAPON].item_id;
+        int attack_anim = ANIM_ATTACK_UNARMED;
+        if (p->combat.combat_class == RC_COMBAT_CLASS_MAGIC)
+            attack_anim = ANIM_ATTACK_CAST;
+        else if (p->combat.combat_class == RC_COMBAT_CLASS_RANGED)
+            attack_anim = ANIM_ATTACK_BOW;
+        else if (weapon_id == 4151)
+            attack_anim = ANIM_ATTACK_WHIP;
+        else if (weapon_id == 11802)
+            attack_anim = ANIM_ATTACK_GODSWORD;
+        else if (weapon_id == 1381)
+            attack_anim = ANIM_ATTACK_STAFF;
+        if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_ATTACK;
+        return player_core_attack_anim_or_fallback(
+            v, player_anim_or_fallback(v, attack_anim, ANIM_IDLE));
+    }
+    return player_base_anim_id(v);
 }
 
 static void snap_npc_render_state(ViewerState *v, int idx, const RcNpc *npc) {
@@ -4233,14 +4259,32 @@ static void process_movement(ViewerState *v, int *moved) {
 static void update_player_anim(ViewerState *v) {
     if (!v->anims) return;
 
+    const RcPlayer *p = &v->world->player;
+    int attack_timer = player_attack_anim_timer(p);
+    if (attack_timer <= 0) {
+        v->player_attack_timer_seen = 0;
+        v->player_attack_anim_suppressed = 0;
+    } else if (attack_timer > v->player_attack_timer_seen) {
+        v->player_attack_anim_suppressed = 0;
+    }
+
     // Pick animation based on movement plus weapon BAS metadata when present.
-    int target_anim = player_target_anim_id(v);
+    int one_shot_kind = PLAYER_ONE_SHOT_NONE;
+    int target_anim = player_target_anim_id(v, &one_shot_kind);
+    if (one_shot_kind != PLAYER_ONE_SHOT_NONE && v->player_one_shot_finished &&
+            target_anim == v->cur_anim_id) {
+        if (one_shot_kind == PLAYER_ONE_SHOT_ATTACK)
+            v->player_attack_anim_suppressed = 1;
+        target_anim = player_base_anim_id(v);
+        one_shot_kind = PLAYER_ONE_SHOT_NONE;
+    }
 
     // Switch animation
     if (target_anim != v->cur_anim_id) {
         v->cur_anim_id = target_anim;
         v->anim_frame_idx = 0;
         v->anim_frame_timer = 0;
+        v->player_one_shot_finished = 0;
     }
 
     AnimSequence *seq = anim_get_sequence(v->anims, (uint16_t)v->cur_anim_id);
@@ -4252,10 +4296,21 @@ static void update_player_anim(ViewerState *v) {
     float delay = (float)(sf->delay > 0 ? sf->delay : 1);
     while (v->anim_frame_timer >= delay) {
         v->anim_frame_timer -= delay;
+        if (one_shot_kind != PLAYER_ONE_SHOT_NONE &&
+                v->anim_frame_idx + 1 >= seq->frame_count) {
+            v->anim_frame_idx = seq->frame_count - 1;
+            v->anim_frame_timer = 0.0f;
+            v->player_one_shot_finished = 1;
+            if (one_shot_kind == PLAYER_ONE_SHOT_ATTACK)
+                v->player_attack_anim_suppressed = 1;
+            break;
+        }
         v->anim_frame_idx = (v->anim_frame_idx + 1) % seq->frame_count;
         sf = &seq->frames[v->anim_frame_idx];
         delay = (float)(sf->delay > 0 ? sf->delay : 1);
     }
+    if (attack_timer > 0)
+        v->player_attack_timer_seen = attack_timer;
 
     // Apply frame transforms
     AnimFrameBase *fb = anim_get_framebase(v->anims, sf->frame.framebase_id);
