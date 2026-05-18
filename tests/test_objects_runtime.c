@@ -33,6 +33,19 @@ static int has_object_at(int obj_id, int x, int y, int plane) {
     return 0;
 }
 
+static int object_at(int obj_id, int x, int y, int plane,
+                     RcObjectPlacement *out) {
+    RcObjectPlacement rows[16];
+    int n = rc_object_placements_at(x, y, plane, rows, 16);
+    for (int i = 0; i < n; i++) {
+        if ((int)rows[i].obj_id != obj_id)
+            continue;
+        if (out) *out = rows[i];
+        return 1;
+    }
+    return 0;
+}
+
 static void pair_delta(int rotation, int *dx, int *dy) {
     int r = rotation & 3;
     *dx = 0;
@@ -211,9 +224,13 @@ int main(void) {
     door_cfg.object_behaviors_path = OBHV_PATH;
     RcWorld *door = rc_world_create_config(&door_cfg);
     assert(door != NULL);
-    assert(has_object_at(11780, 3196, 3384, 0));
+    RcObjectPlacement door_placement;
+    assert(object_at(11780, 3196, 3384, 0, &door_placement));
     place_player_adjacent(door, 3196, 3384, 0);
-    assert(rc_player_interact_object_at(door, 11780, 3196, 3384, 0, 0) == 1);
+    assert(rc_player_interact_object_placement(
+        door, 11780, 3196, 3384, 0, UINT64_MAX, 0) == 0);
+    assert(rc_player_interact_object_placement(
+        door, 11780, 3196, 3384, 0, door_placement.key, 0) == 1);
     for (int i = 0; i < 4 && door->object_state_count == 0; i++) {
         rc_world_tick(door);
     }
@@ -230,17 +247,20 @@ int main(void) {
     RcObjectState active_state;
     assert(rc_world_object_active_state(door, 11780, 3196, 3384, 0,
                                         &active_state) == 1);
+    assert(rc_world_object_active_state_by_key(
+        door, door_placement.key, &active_state) == 1);
     assert(active_state.placement_key != 0);
+    assert(active_state.placement_key == door_placement.key);
     assert(active_state.base_obj_id == 11780);
     assert(active_state.active_obj_id == 11778);
     rc_world_tick(door);
     door->player.x = active_state.active_x;
     door->player.y = active_state.active_y + 1;
     door->player.plane = active_state.active_plane;
-    assert(rc_player_interact_object_at(door, active_state.active_obj_id,
-                                        active_state.active_x,
-                                        active_state.active_y,
-                                        active_state.active_plane, 0) == 1);
+    assert(rc_player_interact_object_placement(
+        door, active_state.active_obj_id, active_state.active_x,
+        active_state.active_y, active_state.active_plane,
+        active_state.placement_key, 0) == 1);
     rc_world_tick(door);
     assert(rc_world_object_active_state(door, 11780, 3196, 3384, 0,
                                         &active_state) == 1);

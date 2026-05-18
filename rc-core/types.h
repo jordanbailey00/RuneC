@@ -140,6 +140,7 @@ typedef struct {
     int entity_uid;
     int entity_generation;
     int definition_id;
+    uint64_t placement_key;
     int content_group;
     int tile_x, tile_y, plane;
     int footprint_width, footprint_height;

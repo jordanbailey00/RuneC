@@ -55,6 +55,7 @@ typedef struct {
     int obj_id;
     int x, y, plane;
     int width, length;
+    uint64_t placement_key;
 } ViewerPickedObject;
 
 typedef struct {
@@ -1210,60 +1211,32 @@ static const ViewerDevTransport *find_dev_transport(const char *key) {
     return NULL;
 }
 
-static int viewer_has_npc_near(ViewerState *v, int npc_id, int x, int y,
-                               int plane, int radius) {
-    if (!v || !v->world || npc_id < 0)
-        return 0;
-    for (int i = 0; i < v->world->npc_count; i++) {
-        RcNpc *npc = &v->world->npcs[i];
-        if (!npc->active || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
-            continue;
-        if (g_npc_defs[npc->def_id].id != npc_id || npc->plane != plane)
-            continue;
-        if (abs(npc->x - x) <= radius && abs(npc->y - y) <= radius)
-            return 1;
-    }
-    return 0;
-}
-
 static int viewer_focus_npc_idx(ViewerState *v,
                                 const ViewerDevTransport *d) {
     if (!v || !v->world || !d || d->npc_id < 0)
         return -1;
-    for (int i = 0; i < v->world->npc_count; i++) {
-        RcNpc *npc = &v->world->npcs[i];
-        if (!npc->active || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
-            continue;
-        if (g_npc_defs[npc->def_id].id != d->npc_id || npc->plane != d->plane)
-            continue;
-        if (abs(npc->x - d->target_x) <= 8 &&
-                abs(npc->y - d->target_y) <= 8) {
-            return i;
-        }
-    }
-    return -1;
+    return rc_world_find_npc_near(v->world, d->npc_id, d->target_x,
+                                  d->target_y, d->plane, 8);
 }
 
-static int viewer_spawn_focus_npc(ViewerState *v,
-                                  const ViewerDevTransport *d) {
+static int viewer_ensure_focus_npc(ViewerState *v,
+                                   const ViewerDevTransport *d) {
     if (!v || !v->world || !d || d->npc_id < 0)
         return 0;
-    if (viewer_has_npc_near(v, d->npc_id, d->target_x, d->target_y,
-                            d->plane, 8)) {
-        return 0;
-    }
-    int def_idx = rc_npc_def_find(d->npc_id);
-    if (def_idx < 0) {
-        fprintf(stderr, "dev transport: missing NPC def %d for %s\n",
+    RcNpcEnsureResult result;
+    int idx = rc_world_ensure_npc_near(v->world, d->npc_id, d->target_x,
+                                       d->target_y, d->plane, 8, &result);
+    if (idx < 0) {
+        fprintf(stderr, "dev transport: missing or unspawnable NPC %d for %s\n",
                 d->npc_id, d->label);
         return 0;
     }
-    int idx = rc_npc_spawn(v->world, def_idx, d->target_x, d->target_y,
-                           d->plane);
-    if (idx < 0)
+    if (!result.spawned)
         return 0;
-    memset(&v->npc_render[idx], 0, sizeof(v->npc_render[idx]));
-    fprintf(stderr, "dev transport: spawned %s NPC %d at %d,%d,%d\n",
+    if (result.index >= 0 && result.index < RC_MAX_NPCS)
+        memset(&v->npc_render[result.index], 0,
+               sizeof(v->npc_render[result.index]));
+    fprintf(stderr, "dev transport: core spawned %s NPC %d at %d,%d,%d\n",
             d->label, d->npc_id, d->target_x, d->target_y, d->plane);
     return 1;
 }
@@ -1401,7 +1374,7 @@ static void viewer_dev_transport_to(ViewerState *v,
     v->scene_plane_override = -1;
 
     ensure_active_scene_plane(v, p->plane);
-    if (viewer_spawn_focus_npc(v, d))
+    if (viewer_ensure_focus_npc(v, d))
         reload_npc_models_for_scene(v);
     viewer_start_dev_boss_combat(v, d);
     fprintf(stderr, "dev transport: %s -> player %d,%d,%d target %d,%d,%d\n",
@@ -1962,13 +1935,18 @@ static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
 
     RcObjectPlacement pick_row = *row;
     int obj_id = (int)row->obj_id;
+    uint64_t placement_key = row->key;
     RcObjectState active_state;
     if (v->world && v->world->object_state_count > 0
-            && rc_world_object_active_state(v->world, obj_id, row->x, row->y,
-                                            row->plane, &active_state)) {
+            && ((row->key && rc_world_object_active_state_by_key(
+                    v->world, row->key, &active_state))
+                || rc_world_object_active_state(v->world, obj_id, row->x,
+                                                row->y, row->plane,
+                                                &active_state))) {
         int active_id = active_state.active_obj_id;
         if (active_id != obj_id && rc_object_def_get(active_id))
             obj_id = active_id;
+        placement_key = active_state.placement_key;
         pick_row.obj_id = (uint32_t)obj_id;
         pick_row.x = (uint16_t)active_state.active_x;
         pick_row.y = (uint16_t)active_state.active_y;
@@ -1993,6 +1971,7 @@ static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
         .plane = pick_row.plane,
         .width = w,
         .length = l,
+        .placement_key = placement_key,
     };
     int option = object_first_pick_option(candidate);
     if (!def || (option < 0 && !def->name[0]))
@@ -2240,8 +2219,9 @@ static void handle_context_intent(ViewerState *v) {
         ViewerPickedObject object = v->context_object;
         int option = v->context_action_option[action_idx];
         if (option >= 0) {
-            rc_player_interact_object_at(v->world, object.obj_id, object.x,
-                                         object.y, object.plane, option);
+            rc_player_interact_object_placement(
+                v->world, object.obj_id, object.x, object.y, object.plane,
+                object.placement_key, option);
         } else if (option == VIEWER_CONTEXT_WALK_HERE) {
             route_player_to(v, object.x, object.y);
         }
@@ -3982,18 +3962,18 @@ static void handle_input(ViewerState *v, int ui_capture) {
             ViewerPickedObject object;
             if (pick_object_at_mouse_tile(v, &object)) {
                 if (v->ui.selected_target.kind == RUNEC_UI_SELECTED_ITEM) {
-                    rc_player_use_inventory_item_on_object(
+                    rc_player_use_inventory_item_on_object_placement(
                         v->world, v->ui.selected_target.source_slot,
-                        object.obj_id, object.x, object.y, object.plane);
+                        object.obj_id, object.x, object.y, object.plane,
+                        object.placement_key);
                 } else {
                     int spell_id = selected_spell_id_for_viewer(v);
                     if (spell_id < 0)
                         spell_id = rc_spell_find(v->ui.selected_target.label);
                     if (spell_id >= 0) {
-                        rc_player_cast_spell_on_object(v->world, spell_id,
-                                                       object.obj_id,
-                                                       object.x, object.y,
-                                                       object.plane);
+                        rc_player_cast_spell_on_object_placement(
+                            v->world, spell_id, object.obj_id, object.x,
+                            object.y, object.plane, object.placement_key);
                     }
                 }
                 runec_ui_clear_selected_target(&v->ui);
@@ -4032,9 +4012,9 @@ static void handle_input(ViewerState *v, int ui_capture) {
         if (pick_object_at_mouse_tile(v, &object)) {
             int option = object_first_action_option(object);
             if (option >= 0) {
-                rc_player_interact_object_at(v->world, object.obj_id,
-                                             object.x, object.y,
-                                             object.plane, option);
+                rc_player_interact_object_placement(
+                    v->world, object.obj_id, object.x, object.y,
+                    object.plane, object.placement_key, option);
             } else {
                 route_player_to(v, object.x, object.y);
             }

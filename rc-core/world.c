@@ -378,3 +378,54 @@ int rc_world_activate_area(RcWorld *world, const RcActiveAreaRequest *request,
 const RcActiveArea *rc_world_get_active_area(const RcWorld *world) {
     return world ? &world->active_area : NULL;
 }
+
+int rc_world_find_npc_near(const RcWorld *world, int npc_id, int x, int y,
+                           int plane, int radius) {
+    if (!world || npc_id < 0 || plane < 0 || plane >= RC_MAX_PLANES
+            || radius < 0)
+        return -1;
+    for (int i = 0; i < world->npc_count; i++) {
+        const RcNpc *npc = &world->npcs[i];
+        if (!npc->active || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+            continue;
+        if (npc->plane != plane || g_npc_defs[npc->def_id].id != npc_id)
+            continue;
+        if (abs(npc->x - x) <= radius && abs(npc->y - y) <= radius)
+            return i;
+    }
+    return -1;
+}
+
+int rc_world_ensure_npc_near(RcWorld *world, int npc_id, int x, int y,
+                             int plane, int radius,
+                             RcNpcEnsureResult *result) {
+    if (result) {
+        result->index = -1;
+        result->uid = -1;
+        result->spawned = 0;
+    }
+    if (!world)
+        return -1;
+
+    int idx = rc_world_find_npc_near(world, npc_id, x, y, plane, radius);
+    if (idx >= 0) {
+        if (result) {
+            result->index = idx;
+            result->uid = world->npcs[idx].uid;
+        }
+        return idx;
+    }
+
+    int def_idx = rc_npc_def_find(npc_id);
+    if (def_idx < 0)
+        return -1;
+    idx = rc_npc_spawn(world, def_idx, x, y, plane);
+    if (idx < 0)
+        return -1;
+    if (result) {
+        result->index = idx;
+        result->uid = world->npcs[idx].uid;
+        result->spawned = 1;
+    }
+    return idx;
+}

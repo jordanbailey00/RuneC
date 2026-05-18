@@ -58,16 +58,33 @@ static RcObjectState *object_state_find(RcWorld *world, int obj_id,
 static const RcObjectState *object_state_find_const(const RcWorld *world,
                                                     int obj_id, int x, int y,
                                                     int plane);
+static RcObjectState *object_state_find_by_key(RcWorld *world,
+                                               uint64_t placement_key);
+static const RcObjectState *object_state_find_by_key_const(
+    const RcWorld *world, uint64_t placement_key);
+static int object_state_matches_target(const RcObjectState *st, int obj_id,
+                                       int x, int y, int plane);
 static int object_exact_placement(int obj_id, int x, int y, int plane,
                                   RcObjectPlacement *out);
+static int object_exact_placement_key(int obj_id, int x, int y, int plane,
+                                      uint64_t placement_key,
+                                      RcObjectPlacement *out);
 static int current_object_placement(const RcWorld *world, int obj_id,
                                     int x, int y, int plane,
                                     RcObjectPlacement *out);
+static int current_object_placement_key(const RcWorld *world, int obj_id,
+                                        int x, int y, int plane,
+                                        uint64_t placement_key,
+                                        RcObjectPlacement *out);
+static int placement_dimensions(const RcObjectDef *def,
+                                const RcObjectPlacement *placement,
+                                int *out_w, int *out_l);
 static int tile_reaches_object_target(const RcWorld *world,
                                       const RcInteractionTarget *target,
                                       int tx, int ty);
 static const RcTraversalEdge *object_traversal_edge(
-    const RcWorld *world, int obj_id, int x, int y, int plane, int opt);
+    const RcWorld *world, int obj_id, int x, int y, int plane, int opt,
+    uint64_t placement_key);
 static int object_option_available(const RcObjectDef *def,
                                    const RcObjectBehavior *behavior,
                                    const RcTraversalEdge *edge, int opt);
@@ -269,7 +286,8 @@ static int route_player_toward_interaction_target(RcWorld *world, RcPlayer *p,
     if (t->kind == RC_INTERACTION_OBJECT) {
         int opt = api_option_from_interaction_op(p->interaction.op);
         const RcTraversalEdge *edge = object_traversal_edge(
-            world, t->definition_id, t->tile_x, t->tile_y, t->plane, opt);
+            world, t->definition_id, t->tile_x, t->tile_y, t->plane, opt,
+            t->placement_key);
         if (edge && edge->start_plane == p->plane
                 && edge->start_x != 0xFFFFu && edge->start_y != 0xFFFFu) {
             if (p->x == (int)edge->start_x && p->y == (int)edge->start_y)
@@ -304,9 +322,10 @@ static int route_player_toward_interaction_target(RcWorld *world, RcPlayer *p,
                 int allow_inside = 0;
                 if (t->kind == RC_INTERACTION_OBJECT) {
                     RcObjectPlacement placement;
-                    allow_inside = current_object_placement(
+                    allow_inside = current_object_placement_key(
                         world, t->definition_id, t->tile_x, t->tile_y,
-                        t->plane, &placement) && placement.type <= 3;
+                        t->plane, t->placement_key, &placement)
+                        && placement.type <= 3;
                 }
                 if (!allow_inside)
                     continue;
@@ -413,7 +432,8 @@ static int validate_pending_object_interaction(RcWorld *world,
         rc_object_behavior_get(pending->target.definition_id);
     const RcTraversalEdge *edge = object_traversal_edge(
         world, pending->target.definition_id, pending->target.tile_x,
-        pending->target.tile_y, pending->target.plane, opt);
+        pending->target.tile_y, pending->target.plane, opt,
+        pending->target.placement_key);
     if (!def) {
         pending->last_failure = RC_INTERACTION_FAIL_INVALID_TARGET;
         return 0;
@@ -421,21 +441,28 @@ static int validate_pending_object_interaction(RcWorld *world,
     if (pending->target.tile_x >= 0 && pending->target.tile_y >= 0
             && pending->target.plane >= 0
             && g_rc_object_placement_count > 0
-            && !current_object_placement(world,
-                                         pending->target.definition_id,
-                                         pending->target.tile_x,
-                                         pending->target.tile_y,
-                                         pending->target.plane, NULL)) {
+            && !current_object_placement_key(
+                world, pending->target.definition_id,
+                pending->target.tile_x, pending->target.tile_y,
+                pending->target.plane, pending->target.placement_key, NULL)) {
         pending->last_failure = RC_INTERACTION_FAIL_TARGET_MISSING;
         return 0;
     }
     RcObjectState *state = NULL;
     if (pending->target.tile_x >= 0 && pending->target.tile_y >= 0 &&
             pending->target.plane >= 0) {
-        state = object_state_find(world, pending->target.definition_id,
-                                  pending->target.tile_x,
-                                  pending->target.tile_y,
-                                  pending->target.plane);
+        state = pending->target.placement_key
+            ? object_state_find_by_key(world, pending->target.placement_key)
+            : object_state_find(world, pending->target.definition_id,
+                                pending->target.tile_x,
+                                pending->target.tile_y,
+                                pending->target.plane);
+        if (state && !object_state_matches_target(
+                state, pending->target.definition_id, pending->target.tile_x,
+                pending->target.tile_y, pending->target.plane)) {
+            pending->last_failure = RC_INTERACTION_FAIL_TARGET_MISSING;
+            return 0;
+        }
         if (state) {
             const RcObjectBehavior *base_behavior =
                 rc_object_behavior_get(state->base_obj_id);
@@ -465,8 +492,23 @@ static int validate_pending_object_interaction(RcWorld *world,
         pending->last_failure = RC_INTERACTION_FAIL_TARGET_VERSION_CHANGED;
         return 0;
     }
-    pending->target.footprint_width = def->width > 0 ? def->width : 1;
-    pending->target.footprint_height = def->length > 0 ? def->length : 1;
+    RcObjectPlacement placement;
+    if (current_object_placement_key(world, pending->target.definition_id,
+                                     pending->target.tile_x,
+                                     pending->target.tile_y,
+                                     pending->target.plane,
+                                     pending->target.placement_key,
+                                     &placement)) {
+        int w = 1, l = 1;
+        placement_dimensions(def, &placement, &w, &l);
+        pending->target.footprint_width = w;
+        pending->target.footprint_height = l;
+        if (pending->target.placement_key == 0)
+            pending->target.placement_key = placement.key;
+    } else {
+        pending->target.footprint_width = def->width > 0 ? def->width : 1;
+        pending->target.footprint_height = def->length > 0 ? def->length : 1;
+    }
     return 1;
 }
 
@@ -571,7 +613,8 @@ static void process_player_interaction(RcWorld *world, int dispatch_ready) {
         const RcTraversalEdge *edge = object_traversal_edge(
             world, p->interaction.target.definition_id,
             p->interaction.target.tile_x, p->interaction.target.tile_y,
-            p->interaction.target.plane, opt);
+            p->interaction.target.plane, opt,
+            p->interaction.target.placement_key);
         if (edge && edge->start_plane == p->plane
                 && edge->start_x != 0xFFFFu && edge->start_y != 0xFFFFu) {
             in_range = p->x == (int)edge->start_x
@@ -987,6 +1030,7 @@ static RcInteractionTarget api_npc_interaction_target(const RcNpc *npc) {
     target.entity_uid = npc ? npc->uid : -1;
     target.entity_generation = 0;
     target.definition_id = -1;
+    target.placement_key = 0;
     target.content_group = -1;
     target.tile_x = npc ? npc->x : -1;
     target.tile_y = npc ? npc->y : -1;
@@ -1015,6 +1059,7 @@ static RcInteractionTarget api_object_interaction_target(
     target.entity_uid = -1;
     target.entity_generation = 0;
     target.definition_id = obj_id;
+    target.placement_key = 0;
     target.content_group = -1;
     target.tile_x = x;
     target.tile_y = y;
@@ -1030,15 +1075,20 @@ static RcInteractionTarget api_object_interaction_target(
 }
 
 static RcInteractionTarget api_placed_object_interaction_target(
-    const RcObjectDef *def, int obj_id, int x, int y, int plane) {
+    const RcWorld *world, const RcObjectDef *def, int obj_id, int x, int y,
+    int plane, uint64_t placement_key) {
     RcInteractionTarget target =
         api_object_interaction_target(def, obj_id, x, y, plane);
+    target.placement_key = placement_key;
     if (x < 0 || y < 0 || plane < 0)
         return target;
 
     RcObjectPlacement placement;
-    if (current_object_placement(NULL, obj_id, x, y, plane, &placement)
-            && (placement.rotation & 1u)) {
+    if (current_object_placement_key(world, obj_id, x, y, plane,
+                                     placement_key, &placement)) {
+        target.placement_key = placement.key;
+        if (!(placement.rotation & 1u))
+            return target;
         int width = target.footprint_width;
         target.footprint_width = target.footprint_height;
         target.footprint_height = width;
@@ -1053,6 +1103,7 @@ static RcInteractionTarget api_ground_item_interaction_target(
     target.entity_uid = item ? item->uid : -1;
     target.entity_generation = item ? item->version : 0;
     target.definition_id = item ? item->item_id : -1;
+    target.placement_key = 0;
     target.content_group = -1;
     target.tile_x = item ? item->x : -1;
     target.tile_y = item ? item->y : -1;
@@ -1075,6 +1126,7 @@ static RcInteractionTarget api_inventory_item_interaction_target(
     target.entity_generation = 0;
     target.definition_id = slot >= 0 && slot < RC_INVENTORY_SIZE
                          ? player->inventory[slot].item_id : -1;
+    target.placement_key = 0;
     target.content_group = -1;
     target.tile_x = -1;
     target.tile_y = -1;
@@ -1097,6 +1149,7 @@ static RcInteractionTarget api_equipment_item_interaction_target(
     target.entity_generation = 0;
     target.definition_id = slot >= 0 && slot < RC_EQUIP_COUNT
                          ? player->equipment[slot].item_id : -1;
+    target.placement_key = 0;
     target.content_group = -1;
     target.tile_x = -1;
     target.tile_y = -1;
@@ -1118,6 +1171,7 @@ static RcInteractionTarget api_widget_interaction_target(
     target.entity_uid = -1;
     target.entity_generation = 0;
     target.definition_id = action;
+    target.placement_key = 0;
     target.content_group = -1;
     target.tile_x = -1;
     target.tile_y = -1;
@@ -1519,9 +1573,68 @@ static const RcObjectState *object_state_find_const(const RcWorld *world,
     return NULL;
 }
 
-static RcObjectState *object_state_get(RcWorld *world, int obj_id,
+static RcObjectState *object_state_find_by_key(RcWorld *world,
+                                               uint64_t placement_key) {
+    if (!world || placement_key == 0) return NULL;
+    for (int i = 0; i < world->object_state_count; i++) {
+        RcObjectState *st = &world->object_states[i];
+        if (st->placement_key == placement_key)
+            return st;
+    }
+    return NULL;
+}
+
+static const RcObjectState *object_state_find_by_key_const(
+    const RcWorld *world, uint64_t placement_key) {
+    if (!world || placement_key == 0) return NULL;
+    for (int i = 0; i < world->object_state_count; i++) {
+        const RcObjectState *st = &world->object_states[i];
+        if (st->placement_key == placement_key)
+            return st;
+    }
+    return NULL;
+}
+
+static void object_state_to_placement(const RcObjectState *st,
+                                      RcObjectPlacement *out) {
+    if (!st || !out) return;
+    memset(out, 0, sizeof(*out));
+    out->obj_id = (uint32_t)st->active_obj_id;
+    out->key = st->placement_key;
+    out->x = (uint16_t)st->active_x;
+    out->y = (uint16_t)st->active_y;
+    out->mapsquare =
+        (uint16_t)(((st->active_x >> 6) << 8) | (st->active_y >> 6));
+    out->plane = (uint8_t)st->active_plane;
+    out->type = st->active_type;
+    out->rotation = st->active_rotation;
+}
+
+static int object_state_matches_target(const RcObjectState *st, int obj_id,
                                        int x, int y, int plane) {
-    RcObjectState *st = object_state_find(world, obj_id, x, y, plane);
+    if (!st) return 0;
+    if (obj_id >= 0 && st->base_obj_id != obj_id
+            && st->active_obj_id != obj_id) {
+        return 0;
+    }
+    if (x < 0 || y < 0 || plane < 0)
+        return 1;
+    int base_match = st->x == x && st->y == y && st->plane == plane;
+    int active_match = st->active_x == x && st->active_y == y
+                     && st->active_plane == plane;
+    return base_match || active_match;
+}
+
+static RcObjectState *object_state_get_key(RcWorld *world, int obj_id,
+                                           int x, int y, int plane,
+                                           uint64_t placement_key) {
+    RcObjectState *st = placement_key
+        ? object_state_find_by_key(world, placement_key)
+        : object_state_find(world, obj_id, x, y, plane);
+    if (st && placement_key
+            && !object_state_matches_target(st, obj_id, x, y, plane)) {
+        return NULL;
+    }
     if (st || !world || world->object_state_count >= RC_MAX_OBJECT_STATES) {
         return st;
     }
@@ -1545,7 +1658,8 @@ static RcObjectState *object_state_get(RcWorld *world, int obj_id,
     st->animation_timer = 0;
     st->flags = 0;
     RcObjectPlacement placement;
-    if (object_exact_placement(obj_id, x, y, plane, &placement)) {
+    if (object_exact_placement_key(obj_id, x, y, plane, placement_key,
+                                   &placement)) {
         st->placement_key = placement.key;
         st->base_type = placement.type;
         st->base_rotation = placement.rotation;
@@ -1555,6 +1669,11 @@ static RcObjectState *object_state_get(RcWorld *world, int obj_id,
     return st;
 }
 
+static RcObjectState *object_state_get(RcWorld *world, int obj_id,
+                                       int x, int y, int plane) {
+    return object_state_get_key(world, obj_id, x, y, plane, 0);
+}
+
 static int object_exact_placement(int obj_id, int x, int y, int plane,
                                   RcObjectPlacement *out) {
     if (obj_id < 0 || x < 0 || y < 0 || plane < 0) return 0;
@@ -1562,6 +1681,26 @@ static int object_exact_placement(int obj_id, int x, int y, int plane,
     int count = rc_object_placements_at(x, y, plane, rows, 32);
     for (int i = 0; i < count; i++) {
         if ((int)rows[i].obj_id != obj_id) continue;
+        if (out) *out = rows[i];
+        return 1;
+    }
+    return 0;
+}
+
+static int object_exact_placement_key(int obj_id, int x, int y, int plane,
+                                      uint64_t placement_key,
+                                      RcObjectPlacement *out) {
+    if (placement_key == 0)
+        return object_exact_placement(obj_id, x, y, plane, out);
+    if (x < 0 || y < 0 || plane < 0)
+        return 0;
+    RcObjectPlacement rows[32];
+    int count = rc_object_placements_at(x, y, plane, rows, 32);
+    for (int i = 0; i < count; i++) {
+        if (rows[i].key != placement_key)
+            continue;
+        if (obj_id >= 0 && (int)rows[i].obj_id != obj_id)
+            continue;
         if (out) *out = rows[i];
         return 1;
     }
@@ -1587,22 +1726,31 @@ static int placement_dimensions(const RcObjectDef *def,
 static int current_object_placement(const RcWorld *world, int obj_id,
                                     int x, int y, int plane,
                                     RcObjectPlacement *out) {
+    return current_object_placement_key(world, obj_id, x, y, plane, 0, out);
+}
+
+static int current_object_placement_key(const RcWorld *world, int obj_id,
+                                        int x, int y, int plane,
+                                        uint64_t placement_key,
+                                        RcObjectPlacement *out) {
+    if (placement_key != 0) {
+        const RcObjectState *st =
+            object_state_find_by_key_const(world, placement_key);
+        if (st) {
+            if (!object_state_matches_target(st, obj_id, x, y, plane))
+                return 0;
+            if (out) object_state_to_placement(st, out);
+            return 1;
+        }
+        return object_exact_placement_key(obj_id, x, y, plane, placement_key,
+                                          out);
+    }
     if (object_exact_placement(obj_id, x, y, plane, out))
         return 1;
     const RcObjectState *st = object_state_find_const(world, obj_id, x, y,
                                                       plane);
     if (!st) return 0;
-    if (out) {
-        memset(out, 0, sizeof(*out));
-        out->obj_id = (uint32_t)st->active_obj_id;
-        out->x = (uint16_t)st->active_x;
-        out->y = (uint16_t)st->active_y;
-        out->mapsquare =
-            (uint16_t)(((st->active_x >> 6) << 8) | (st->active_y >> 6));
-        out->plane = (uint8_t)st->active_plane;
-        out->type = st->active_type;
-        out->rotation = st->active_rotation;
-    }
+    if (out) object_state_to_placement(st, out);
     return 1;
 }
 
@@ -1678,9 +1826,10 @@ static int tile_reaches_object_target(const RcWorld *world,
     if (!target || target->kind != RC_INTERACTION_OBJECT)
         return 0;
     RcObjectPlacement placement;
-    if (!current_object_placement(world, target->definition_id,
-                                  target->tile_x, target->tile_y,
-                                  target->plane, &placement)) {
+    if (!current_object_placement_key(world, target->definition_id,
+                                      target->tile_x, target->tile_y,
+                                      target->plane,
+                                      target->placement_key, &placement)) {
         int min_x = target->tile_x;
         int min_y = target->tile_y;
         int max_x = target->tile_x + target->footprint_width - 1;
@@ -1768,14 +1917,15 @@ static int traversal_edge_better(const RcTraversalEdge *candidate,
 }
 
 static const RcTraversalEdge *object_traversal_edge(
-    const RcWorld *world, int obj_id, int x, int y, int plane, int opt) {
+    const RcWorld *world, int obj_id, int x, int y, int plane, int opt,
+    uint64_t placement_key) {
     if (!world || !(world->enabled & RC_SUB_TRAVERSAL)
             || x < 0 || y < 0 || plane < 0 || opt < 0) {
         return NULL;
     }
     RcObjectPlacement placement;
-    int have_placement = current_object_placement(world, obj_id, x, y, plane,
-                                                  &placement);
+    int have_placement = current_object_placement_key(
+        world, obj_id, x, y, plane, placement_key, &placement);
     if (g_rc_object_placement_count > 0 && !have_placement) {
         return NULL;
     }
@@ -2275,6 +2425,17 @@ int rc_world_object_active_state(const RcWorld *world, int obj_id, int x,
     return 1;
 }
 
+int rc_world_object_active_state_by_key(const RcWorld *world,
+                                        uint64_t placement_key,
+                                        RcObjectState *out) {
+    if (!out) return 0;
+    const RcObjectState *st =
+        object_state_find_by_key_const(world, placement_key);
+    if (!st) return 0;
+    *out = *st;
+    return 1;
+}
+
 static void apply_dynamic_object_state(RcWorld *world, RcObjectState *st,
                                        int open,
                                        const RcObjectBehavior *behavior) {
@@ -2310,10 +2471,11 @@ static void apply_dynamic_object_state(RcWorld *world, RcObjectState *st,
 }
 
 static void apply_door_state(RcWorld *world, int obj_id, int x, int y,
-                             int plane, int opt,
+                             int plane, uint64_t placement_key, int opt,
                              const RcObjectBehavior *behavior) {
     if (x < 0 || y < 0 || plane < 0) return;
-    RcObjectState *st = object_state_get(world, obj_id, x, y, plane);
+    RcObjectState *st =
+        object_state_get_key(world, obj_id, x, y, plane, placement_key);
     if (!st) return;
     const RcObjectDef *base_def = rc_object_def_get(st->base_obj_id);
     const RcObjectDef *clicked_def = rc_object_def_get(obj_id);
@@ -2354,9 +2516,15 @@ static void apply_altar_effect(RcWorld *world, const RcObjectDef *def,
 static int api_apply_object_interaction(RcWorld *world, const RcObjectDef *def,
                                         const RcObjectBehavior *behavior,
                                         int obj_id, int x, int y, int plane,
-                                        int opt) {
+                                        uint64_t placement_key, int opt) {
     if (!world || opt < 0 || opt >= RC_OBJECT_ACTIONS) return 0;
-    RcObjectState *state = object_state_find(world, obj_id, x, y, plane);
+    RcObjectState *state = placement_key
+        ? object_state_find_by_key(world, placement_key)
+        : object_state_find(world, obj_id, x, y, plane);
+    if (state && placement_key
+            && !object_state_matches_target(state, obj_id, x, y, plane)) {
+        return 0;
+    }
     const RcObjectBehavior *effective_behavior = behavior;
     if (state) {
         const RcObjectBehavior *base_behavior =
@@ -2366,7 +2534,8 @@ static int api_apply_object_interaction(RcWorld *world, const RcObjectDef *def,
     }
     RcTraversalEdge inferred_edge;
     const RcTraversalEdge *edge =
-        object_traversal_edge(world, obj_id, x, y, plane, opt);
+        object_traversal_edge(world, obj_id, x, y, plane, opt,
+                              placement_key);
     if (!edge && infer_vertical_climb_edge(obj_id, x, y, plane, opt,
                                            &inferred_edge)) {
         edge = &inferred_edge;
@@ -2387,13 +2556,15 @@ static int api_apply_object_interaction(RcWorld *world, const RcObjectDef *def,
     if (effective_behavior
             && (effective_behavior->flags & RC_OBJ_BEHAVIOR_DOOR)
             && object_action_mutates_dynamic(action)) {
-        apply_door_state(world, obj_id, x, y, plane, opt, effective_behavior);
+        apply_door_state(world, obj_id, x, y, plane, placement_key, opt,
+                         effective_behavior);
         start_player_action_anim(world, -1, 0, 1);
     }
     if (x >= 0 && y >= 0 && plane >= 0 && def && def->animation_id >= 0
             && !(effective_behavior
                  && (effective_behavior->flags & RC_OBJ_BEHAVIOR_DOOR))) {
-        RcObjectState *anim_state = object_state_get(world, obj_id, x, y, plane);
+        RcObjectState *anim_state =
+            object_state_get_key(world, obj_id, x, y, plane, placement_key);
         start_object_action_anim(anim_state, def->animation_id, 6);
     }
     if (effective_behavior && (effective_behavior->flags & RC_OBJ_BEHAVIOR_ALTAR)
@@ -2453,7 +2624,8 @@ static RcInteractionHandlerResult api_default_object_handler(
                                       pending->target.definition_id,
                                       pending->target.tile_x,
                                       pending->target.tile_y,
-                                      pending->target.plane, opt)) {
+                                      pending->target.plane,
+                                      pending->target.placement_key, opt)) {
         return rc_interaction_result_failure(
             RC_INTERACTION_FAIL_OPTION_UNAVAILABLE,
             "Object option unavailable");
@@ -2552,6 +2724,13 @@ static void api_register_default_ground_item_handlers(void) {
 
 int rc_player_interact_object_at(RcWorld *world, int obj_id, int x, int y,
                                  int plane, int opt) {
+    return rc_player_interact_object_placement(world, obj_id, x, y, plane, 0,
+                                               opt);
+}
+
+int rc_player_interact_object_placement(RcWorld *world, int obj_id, int x,
+                                        int y, int plane,
+                                        uint64_t placement_key, int opt) {
     if (!world || !rc_player_action_allowed(world->enabled,
                                             RC_PLAYER_ACTION_INTERACT_OBJECT)) {
         return 0;
@@ -2563,7 +2742,8 @@ int rc_player_interact_object_at(RcWorld *world, int obj_id, int x, int y,
     }
     if (x >= 0 && y >= 0 && plane >= 0
             && g_rc_object_placement_count > 0
-            && !current_object_placement(world, obj_id, x, y, plane, NULL)) {
+            && !current_object_placement_key(world, obj_id, x, y, plane,
+                                             placement_key, NULL)) {
         return 0;
     }
     const RcObjectDef *def = rc_object_def_get(obj_id);
@@ -2574,7 +2754,8 @@ int rc_player_interact_object_at(RcWorld *world, int obj_id, int x, int y,
     }
     const RcObjectBehavior *behavior = rc_object_behavior_get(obj_id);
     const RcTraversalEdge *edge =
-        object_traversal_edge(world, obj_id, x, y, plane, opt);
+        object_traversal_edge(world, obj_id, x, y, plane, opt,
+                              placement_key);
     if (opt < 0 || opt >= RC_OBJECT_ACTIONS) return 0;
     if (!object_option_available(def, behavior, edge, opt)) {
         return 0;
@@ -2587,7 +2768,8 @@ int rc_player_interact_object_at(RcWorld *world, int obj_id, int x, int y,
     if (state && (state->flags & RC_OBJECT_STATE_DEPLETED)) return 0;
     if (x >= 0 && y >= 0 && plane >= 0) {
         RcInteractionTarget target =
-            api_placed_object_interaction_target(def, obj_id, x, y, plane);
+            api_placed_object_interaction_target(world, def, obj_id, x, y,
+                                                 plane, placement_key);
         const char *option = def ? def->actions[opt] : "";
         if ((!option || !option[0]) && edge)
             option = edge->action;
@@ -2600,7 +2782,7 @@ int rc_player_interact_object_at(RcWorld *world, int obj_id, int x, int y,
         return api_prepare_spatial_interaction(world);
     }
     int applied = api_apply_object_interaction(world, def, behavior, obj_id,
-                                               x, y, plane, opt);
+                                               x, y, plane, 0, opt);
     if (applied) api_stop_player_combat(world);
     return applied;
 }
@@ -2702,6 +2884,13 @@ int rc_player_use_inventory_item_on_inventory_item(RcWorld *world,
 int rc_player_use_inventory_item_on_object(RcWorld *world, int inv_slot,
                                            int obj_id, int x, int y,
                                            int plane) {
+    return rc_player_use_inventory_item_on_object_placement(
+        world, inv_slot, obj_id, x, y, plane, 0);
+}
+
+int rc_player_use_inventory_item_on_object_placement(
+    RcWorld *world, int inv_slot, int obj_id, int x, int y, int plane,
+    uint64_t placement_key) {
     if (!world || inv_slot < 0 || inv_slot >= RC_INVENTORY_SIZE) return 0;
     RcPlayer *p = &world->player;
     int item_id = p->inventory[inv_slot].item_id;
@@ -2709,7 +2898,8 @@ int rc_player_use_inventory_item_on_object(RcWorld *world, int inv_slot,
     if (x >= 0 && y >= 0 && plane >= 0 && plane != p->plane) return 0;
     const RcObjectDef *def = rc_object_def_get(obj_id);
     RcInteractionTarget target =
-        api_placed_object_interaction_target(def, obj_id, x, y, plane);
+        api_placed_object_interaction_target(world, def, obj_id, x, y, plane,
+                                             placement_key);
     int begun = rc_interaction_begin_with_source(
         p, 0, RC_INTERACTION_USE_ON, "Use", &target, 1, item_id,
         RC_INTERACTION_KEY_ANY, RC_INTERACTION_KEY_ANY,
@@ -2800,6 +2990,13 @@ int rc_player_cast_spell_on_inventory_item(RcWorld *world, int spell_id,
 
 int rc_player_cast_spell_on_object(RcWorld *world, int spell_id,
                                    int obj_id, int x, int y, int plane) {
+    return rc_player_cast_spell_on_object_placement(
+        world, spell_id, obj_id, x, y, plane, 0);
+}
+
+int rc_player_cast_spell_on_object_placement(
+    RcWorld *world, int spell_id, int obj_id, int x, int y, int plane,
+    uint64_t placement_key) {
     if (!world || spell_id < 0) return 0;
     if (x >= 0 && y >= 0 && plane >= 0
             && plane != world->player.plane) {
@@ -2807,7 +3004,8 @@ int rc_player_cast_spell_on_object(RcWorld *world, int spell_id,
     }
     const RcObjectDef *def = rc_object_def_get(obj_id);
     RcInteractionTarget target =
-        api_placed_object_interaction_target(def, obj_id, x, y, plane);
+        api_placed_object_interaction_target(world, def, obj_id, x, y, plane,
+                                             placement_key);
     int begun = rc_interaction_begin_with_source(
         &world->player, 0, RC_INTERACTION_SPELL_ON, "Cast", &target, 10,
         RC_INTERACTION_KEY_ANY, spell_id, RC_INTERACTION_KEY_ANY,

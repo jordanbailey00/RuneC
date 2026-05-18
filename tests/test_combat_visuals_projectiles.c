@@ -188,6 +188,11 @@ static void test_magic_attack_emits_spell_projectile(void) {
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
     assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    strcpy(g_rc_spell_defs[0].name, "Renamed Fire Blast");
+    assert(rc_combat_visual_for_spell("Renamed Fire Blast",
+                                      COMBAT_MAGIC) == NULL);
+    assert(rc_combat_visual_for_spell_id(0, "Renamed Fire Blast",
+                                         COMBAT_MAGIC) != NULL);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     world->player.inventory[0] = (RcInvSlot){TEST_FIRE_RUNE, 5};

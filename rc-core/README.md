@@ -60,7 +60,7 @@ subsystems**.
 
 ### Subsystems (individually opt-in)
 - **combat** — hit rolls, damage, pending-hit queue, protection
-  prayers, selected spell max-hit hints
+  prayers, selected spell max-hit hints, and stable-id combat visual lookup
 - **prayer** — data-backed active prayers, drain, conflicts, boosts
 - **equipment** — worn items, equipment bonuses, weapon stance
 - **inventory** — 28-slot inventory, stacks, item ops
@@ -76,8 +76,8 @@ subsystems**.
   task progress
 - **encounter** — boss phase/rotation dispatcher + primitive registry
 - **objects** — object definitions, placed-object lookup, typed object
-  behavior tags, coordinate-explicit object interaction, altar restore,
-  door state, and gathering-node action/depletion/respawn
+  behavior tags, placement-key object interaction, altar restore, dynamic door
+  state, and gathering-node action/depletion/respawn
 - **traversal** — unified object/item/spell traversal-edge lookup and
   player relocation helper
 - **regions** — source-backed collision shared by movement/action
@@ -128,7 +128,14 @@ rc_world_activate_area(world, &req, NULL);
 `rc_world_activate_area` populates `RcWorld.map` from `collision_tiles.bin`,
 clears/reloads the active NPC spawn slice from `world.npc-spawns.bin`, and
 records the active area generation on `RcWorld`. The viewer and headless agents
-use the same API before issuing gameplay actions.
+use the same API before issuing gameplay actions. Scenario/dev validation code
+that needs a guaranteed target uses `rc_world_ensure_npc_near`; presentation
+frontends should not resolve NPC definitions or mutate `world->npcs` directly.
+
+Object interactions that originate from placed scene data should pass the
+placement key into core. Placement-key APIs make dynamic loc state local to one
+exact placed object; tile/id APIs are compatibility paths for tests and tools
+that do not have placement identity.
 
 Config is consumed **once** at world creation. After that, no
 config-driven branching appears on the tick path. The enabled

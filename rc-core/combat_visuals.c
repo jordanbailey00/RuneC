@@ -1,5 +1,6 @@
 #include "combat_visuals.h"
 #include "assets.h"
+#include "spells.h"
 
 #include <ctype.h>
 #include <stdio.h>
@@ -22,6 +23,13 @@ static char *trim(char *s) {
 static int parse_int_field(const char *s) {
     if (!s || !s[0] || strcmp(s, "-") == 0) return -1;
     return atoi(s);
+}
+
+static int parse_strict_int_field(const char *s) {
+    if (!s || !s[0] || strcmp(s, "-") == 0) return -1;
+    char *end = NULL;
+    long value = strtol(s, &end, 10);
+    return end && *end == '\0' ? (int)value : -1;
 }
 
 static int parse_kind(const char *s) {
@@ -86,6 +94,11 @@ int rc_load_combat_visuals(const char *path) {
                       def->kind == RC_COMBAT_VISUAL_SPECIAL
                     ? parse_int_field(parts[1]) : -1;
         strncpy(def->key_name, parts[1], sizeof(def->key_name) - 1);
+        if (def->kind == RC_COMBAT_VISUAL_SPELL) {
+            def->key_id = parse_strict_int_field(parts[1]);
+            if (def->key_id < 0)
+                def->key_id = rc_spell_find(def->key_name);
+        }
         def->style = parse_style(parts[2]);
         def->attack_anim_id = parse_int_field(parts[3]);
         def->launch_spotanim_id = parse_int_field(parts[4]);
@@ -132,18 +145,33 @@ const RcCombatVisualDef *rc_combat_visual_for_item(int item_id,
 
 const RcCombatVisualDef *rc_combat_visual_for_spell(const char *spell_name,
                                                     RcCombatStyle style) {
-    if (!spell_name || !spell_name[0]) return NULL;
+    return rc_combat_visual_for_spell_id(-1, spell_name, style);
+}
+
+const RcCombatVisualDef *rc_combat_visual_for_spell_id(
+    int spell_idx, const char *fallback_name, RcCombatStyle style) {
+    if (spell_idx < 0 && (!fallback_name || !fallback_name[0])) return NULL;
     const RcCombatVisualDef *fallback = NULL;
+    const RcCombatVisualDef *name_fallback = NULL;
     for (int i = 0; i < g_rc_combat_visual_count; i++) {
         const RcCombatVisualDef *def = &g_rc_combat_visual_defs[i];
-        if (def->kind != RC_COMBAT_VISUAL_SPELL ||
-                strcmp(def->key_name, spell_name) != 0) {
+        if (def->kind != RC_COMBAT_VISUAL_SPELL)
+            continue;
+        if (spell_idx >= 0 && def->key_id == spell_idx) {
+            if (def->style == (int)style) return def;
+            if (!fallback && visual_style_matches(def, style))
+                fallback = def;
             continue;
         }
-        if (def->style == (int)style) return def;
-        if (!fallback && visual_style_matches(def, style)) fallback = def;
+        if (fallback_name && fallback_name[0] &&
+                strcmp(def->key_name, fallback_name) == 0) {
+            if (def->style == (int)style)
+                name_fallback = def;
+            if (!name_fallback && visual_style_matches(def, style))
+                name_fallback = def;
+        }
     }
-    return fallback;
+    return fallback ? fallback : name_fallback;
 }
 
 const RcCombatVisualDef *rc_combat_visual_for_npc(int npc_id,

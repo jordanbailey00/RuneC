@@ -61,11 +61,30 @@ int main(void) {
            == rc_collision_flags_at(3213, 3428, 0, NULL));
 
     uint32_t first_gen = world->active_area.generation;
-    int graardor_def = rc_npc_def_find(2215);
-    if (graardor_def >= 0) {
-        assert(rc_npc_spawn(world, graardor_def, 2872, 5358, 2) >= 0);
-        assert(world->npc_count == 838);
-    }
+    RcNpcEnsureResult ensured;
+    assert(rc_world_find_npc_near(NULL, 2215, 2872, 5358, 2, 8) == -1);
+    assert(rc_world_ensure_npc_near(NULL, 2215, 2872, 5358, 2, 8,
+                                    &ensured) == -1);
+    assert(ensured.index == -1 && ensured.uid == -1 && ensured.spawned == 0);
+    assert(rc_world_find_npc_near(world, 2215, 2872, 5358, 2, 8) == -1);
+    assert(rc_world_ensure_npc_near(world, 2215, 2872, 5358, 2, 8,
+                                    &ensured) >= 0);
+    assert(ensured.index >= 0);
+    assert(ensured.uid >= 0);
+    assert(ensured.spawned == 1);
+    assert(world->npc_count == 838);
+    assert(rc_world_find_npc_near(world, 2215, 2872, 5358, 2, 8)
+           == ensured.index);
+    RcNpcEnsureResult reused;
+    assert(rc_world_ensure_npc_near(world, 2215, 2872, 5358, 2, 8,
+                                    &reused) >= 0);
+    assert(reused.index == ensured.index);
+    assert(reused.uid == ensured.uid);
+    assert(reused.spawned == 0);
+    assert(world->npc_count == 838);
+    assert(rc_world_ensure_npc_near(world, -1, 2872, 5358, 2, 8,
+                                    &reused) == -1);
+    assert(reused.index == -1 && reused.uid == -1 && reused.spawned == 0);
     assert(rc_world_activate_area(world, &req, &stats) == 1);
     assert(world->active_area.generation == first_gen + 1);
     assert(world->npc_count == 837);

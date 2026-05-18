@@ -43,6 +43,8 @@ const RcCombatVisualDef *rc_combat_visual_for_item(int item_id,
                                                    RcCombatStyle style);
 const RcCombatVisualDef *rc_combat_visual_for_spell(const char *spell_name,
                                                     RcCombatStyle style);
+const RcCombatVisualDef *rc_combat_visual_for_spell_id(
+    int spell_idx, const char *fallback_name, RcCombatStyle style);
 const RcCombatVisualDef *rc_combat_visual_for_npc(int npc_id,
                                                   RcCombatStyle style);
 const RcCombatVisualDef *rc_combat_visual_for_special_item(int item_id,

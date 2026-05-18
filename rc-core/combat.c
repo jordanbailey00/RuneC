@@ -574,6 +574,7 @@ static void spawn_npc_attack_projectile(
 static RcPlayerAttackVisuals select_player_attack_visuals(
     const RcPlayer *p,
     const RcSpellDef *spell,
+    int spell_idx,
     int weapon_id,
     bool use_special
 ) {
@@ -594,8 +595,9 @@ static RcPlayerAttackVisuals select_player_attack_visuals(
         weapon_visual = special_visual;
     const RcCombatVisualDef *projectile_visual = NULL;
     if (p->combat_style == COMBAT_MAGIC && spell) {
-        projectile_visual = rc_combat_visual_for_spell(spell->name,
-                                                       p->combat_style);
+        projectile_visual =
+            rc_combat_visual_for_spell_id(spell_idx, spell->name,
+                                          p->combat_style);
     } else if (p->combat_style == COMBAT_RANGED) {
         projectile_visual = rc_combat_visual_for_item(out.ammo_id,
                                                       p->combat_style);
@@ -1541,8 +1543,11 @@ static void combat_tick_player_legacy(struct RcWorld *world) {
     dmg = rc_combat_apply_regular_npc_player_damage_rules(world, target, dmg);
     dmg = rc_encounter_scale_player_damage(world, (uint16_t)target->uid,
                                            p->combat_style, dmg);
+    int spell_idx = p->manual_spell_cast >= 0
+                  ? p->manual_spell_cast : p->autocast_spell;
     RcPlayerAttackVisuals visuals =
-        select_player_attack_visuals(p, spell, weapon_id, use_special);
+        select_player_attack_visuals(p, spell, spell_idx, weapon_id,
+                                     use_special);
     const RcCombatVisualDef *timing_visual = visuals.projectile
         ? visual_projectile_timing_visual(visuals.projectile, visuals.weapon)
         : visuals.weapon;
