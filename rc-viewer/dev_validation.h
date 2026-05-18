@@ -11,6 +11,12 @@ typedef struct RuneCDevTransport {
     int npc_size;
 } RuneCDevTransport;
 
+typedef struct RuneCDevEncounterNpc {
+    int npc_id;
+    int x, y, plane;
+    int size;
+} RuneCDevEncounterNpc;
+
 enum {
     RUNEC_DEV_BANK_TAB_RANGED = 0,
     RUNEC_DEV_BANK_TAB_MAGE = 1,
@@ -27,6 +33,10 @@ enum {
 int runec_dev_validation_enabled(void);
 const RuneCDevTransport *runec_dev_validation_transports(int *count);
 const RuneCDevTransport *runec_dev_validation_find_transport(const char *key);
+const RuneCDevEncounterNpc *runec_dev_validation_encounter_npcs(
+    const RuneCDevTransport *transport, int *count);
+int runec_dev_validation_prepare_encounter(RcWorld *world,
+                                           const RuneCDevTransport *transport);
 void runec_dev_validation_seed_bank(RcWorld *world);
 int runec_dev_validation_spawn_varrock_bank_dummy(RcWorld *world);
 int runec_dev_validation_bank_withdraw_quantity(const RcWorld *world,

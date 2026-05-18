@@ -28,9 +28,28 @@ int runec_dev_validation_enabled(void) {
 static const RuneCDevTransport g_dev_transports[] = {
     {"varrock",  "Varrock",   RUNEC_DEV_VARROCK_BANK_X, RUNEC_DEV_VARROCK_BANK_Y, 0,   -1, 1},
     {"graardor", "Graardor",  2872, 5358, 2, 2215, 4},
-    {"kbd",      "KBD",       2269, 4697, 0,  239, 5},
+    {"kbd",      "KBD",       2269, 4697, 0, 2266, 5},
     {"vorkath",  "Vorkath",   2269, 4062, 0, 8061, 7},
     {"jad",      "Jad",       2400, 5088, 0, 3127, 5},
+};
+
+static const RuneCDevEncounterNpc g_graardor_encounter[] = {
+    {2215, 2872, 5358, 2, 4}, /* General Graardor */
+    {2216, 2866, 5358, 2, 1}, /* Sergeant Strongstack */
+    {2217, 2872, 5352, 2, 1}, /* Sergeant Steelwill */
+    {2218, 2868, 5362, 2, 1}, /* Sergeant Grimspike */
+};
+
+static const RuneCDevEncounterNpc g_kbd_encounter[] = {
+    {2266, 2269, 4697, 0, 5},
+};
+
+static const RuneCDevEncounterNpc g_vorkath_encounter[] = {
+    {8061, 2269, 4062, 0, 7},
+};
+
+static const RuneCDevEncounterNpc g_jad_encounter[] = {
+    {3127, 2400, 5088, 0, 5},
 };
 
 const RuneCDevTransport *runec_dev_validation_transports(int *count) {
@@ -71,6 +90,81 @@ const RuneCDevTransport *runec_dev_validation_find_transport(const char *key) {
             return d;
     }
     return NULL;
+}
+
+const RuneCDevEncounterNpc *runec_dev_validation_encounter_npcs(
+    const RuneCDevTransport *transport, int *count) {
+    if (count)
+        *count = 0;
+    if (!transport || !runec_dev_validation_enabled())
+        return NULL;
+    const RuneCDevEncounterNpc *rows = NULL;
+    int row_count = 0;
+    if (strcmp(transport->key, "graardor") == 0) {
+        rows = g_graardor_encounter;
+        row_count = ARRAY_COUNT(g_graardor_encounter);
+    } else if (strcmp(transport->key, "kbd") == 0) {
+        rows = g_kbd_encounter;
+        row_count = ARRAY_COUNT(g_kbd_encounter);
+    } else if (strcmp(transport->key, "vorkath") == 0) {
+        rows = g_vorkath_encounter;
+        row_count = ARRAY_COUNT(g_vorkath_encounter);
+    } else if (strcmp(transport->key, "jad") == 0) {
+        rows = g_jad_encounter;
+        row_count = ARRAY_COUNT(g_jad_encounter);
+    }
+    if (count)
+        *count = row_count;
+    return rows;
+}
+
+int runec_dev_validation_prepare_encounter(RcWorld *world,
+                                           const RuneCDevTransport *transport) {
+    if (!world || !transport || !runec_dev_validation_enabled())
+        return 0;
+    int count = 0;
+    const RuneCDevEncounterNpc *rows =
+        runec_dev_validation_encounter_npcs(transport, &count);
+    if (!rows || count <= 0)
+        return 0;
+
+    rc_combat_set_multi_combat(world, count > 1);
+    int prepared = 0;
+    for (int i = 0; i < count; i++) {
+        const RuneCDevEncounterNpc *row = &rows[i];
+        RcNpcEnsureResult result;
+        int idx = rc_world_ensure_npc_near(world, row->npc_id, row->x,
+                                           row->y, row->plane, 2, &result);
+        if (idx < 0 || idx >= world->npc_count) {
+            fprintf(stderr,
+                    "dev transport: missing or unspawnable NPC %d for %s\n",
+                    row->npc_id, transport->label);
+            continue;
+        }
+        RcNpc *npc = &world->npcs[idx];
+        npc->x = row->x;
+        npc->y = row->y;
+        npc->prev_x = row->x;
+        npc->prev_y = row->y;
+        npc->plane = row->plane;
+        npc->spawn_x = row->x;
+        npc->spawn_y = row->y;
+        npc->disable_wander = true;
+        npc->player_untargetable = false;
+        npc->is_dead = false;
+        npc->death_timer = 0;
+        npc->respawn_timer = 0;
+        if (npc->def_id >= 0 && npc->def_id < g_npc_def_count) {
+            npc->current_hp = g_npc_defs[npc->def_id].hitpoints;
+        }
+        if (env_bool_local("RUNEC_DEV_BOSS_ATTACKS", 1)) {
+            rc_combat_start_npc_vs_player(world, npc->uid, 0);
+            npc->attack_timer = 0;
+            npc->attack_anim_timer = 0;
+        }
+        prepared++;
+    }
+    return prepared;
 }
 
 static int find_unnoted_item_id_by_name(const char *name) {

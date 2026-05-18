@@ -1306,11 +1306,15 @@ static void viewer_dev_transport_to(ViewerState *v,
     ensure_active_scene_plane(v, p->plane);
     if (strcmp(d->key, "varrock") == 0)
         runec_dev_validation_spawn_varrock_bank_dummy(v->world);
-    if (viewer_ensure_focus_npc(v, d))
+    int prepared = runec_dev_validation_prepare_encounter(v->world, d);
+    if (prepared > 0)
+        reload_npc_models_for_scene(v);
+    else if (viewer_ensure_focus_npc(v, d))
         reload_npc_models_for_scene(v);
     else if (strcmp(d->key, "varrock") == 0)
         reload_npc_models_for_scene(v);
-    viewer_start_dev_boss_combat(v, d);
+    if (prepared <= 0)
+        viewer_start_dev_boss_combat(v, d);
     fprintf(stderr, "dev transport: %s -> player %d,%d,%d target %d,%d,%d\n",
             d->label, p->x, p->y, p->plane,
             d->target_x, d->target_y, d->plane);
@@ -4717,13 +4721,26 @@ int main(void) {
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_EQUIPMENT | RC_SUB_LOOT |
                      RC_SUB_COMBAT | RC_SUB_PRAYER | RC_SUB_OBJECTS |
-                     RC_SUB_REGIONS | RC_SUB_TRAVERSAL | RC_SUB_STORAGE;
+                     RC_SUB_REGIONS | RC_SUB_TRAVERSAL | RC_SUB_STORAGE |
+                     RC_SUB_ENCOUNTER;
     cfg.npc_defs_path = env_path("RUNEC_NPC_DEFS", "data/defs/npc_defs.bin");
     cfg.items_path = env_path("RUNEC_ITEMS", "data/defs/items.bin");
     cfg.prayers_path = env_path("RUNEC_PRAYERS", "data/defs/prayers.bin");
     cfg.spells_path = env_path("RUNEC_SPELLS", "data/defs/spells.bin");
     cfg.combat_visuals_path = env_path("RUNEC_COMBAT_VISUALS",
         "data/defs/combat_visuals.tsv");
+    cfg.monster_mechanics_path = env_path("RUNEC_MONSTER_MECHANICS",
+        "data/defs/regular_npc_mechanics.bin");
+    cfg.activity_schemas_path = env_path("RUNEC_ACTIVITY_SCHEMAS",
+        "data/defs/activity_schemas.bin");
+    cfg.activity_spawns_path = env_path("RUNEC_ACTIVITY_SPAWNS",
+        "data/defs/activity_spawns.bin");
+    cfg.activity_mechanics_path = env_path("RUNEC_ACTIVITY_MECHANICS",
+        "data/defs/activity_mechanics.bin");
+    cfg.activity_states_path = env_path("RUNEC_ACTIVITY_STATES",
+        "data/defs/activity_states.bin");
+    cfg.encounters_path = env_path("RUNEC_ENCOUNTERS",
+        "data/defs/encounters.bin");
     cfg.player_actions_path = env_path("RUNEC_PLAYER_ACTIONS",
         "data/defs/player_actions.bin");
     cfg.object_defs_path = env_path("RUNEC_OBJECT_DEFS",

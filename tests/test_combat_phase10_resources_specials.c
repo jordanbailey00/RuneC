@@ -18,6 +18,9 @@ enum {
     OSRS_AIR_RUNE = 556,
     OSRS_SMOKE_RUNE = 4697,
     OSRS_STAFF_OF_FIRE = 1387,
+    OSRS_DRAGON_ARROW = 11212,
+    OSRS_DARK_BOW = 11235,
+    OSRS_ARMADYL_GODSWORD = 11802,
 };
 
 static void reset_defs(void) {
@@ -119,6 +122,36 @@ static void add_special_weapon_def(void) {
     weapon->attack_speed = 4;
     weapon->attack_range = 1;
     weapon->weapon_type = 4;
+}
+
+static void add_osrs_special_weapon_defs(void) {
+    RcItemDef *ags = add_item(OSRS_ARMADYL_GODSWORD, "Armadyl godsword");
+    ags->equippable = true;
+    ags->equipable_by_player = true;
+    ags->equipable_weapon = true;
+    ags->equip_slot = EQUIP_WEAPON;
+    ags->attack_slash = 1000;
+    ags->strength_bonus = 120;
+    ags->attack_speed = 6;
+    ags->attack_range = 1;
+    ags->weapon_type = 1;
+
+    RcItemDef *darkbow = add_item(OSRS_DARK_BOW, "Dark bow");
+    darkbow->equippable = true;
+    darkbow->equipable_by_player = true;
+    darkbow->equipable_weapon = true;
+    darkbow->equip_slot = EQUIP_WEAPON;
+    darkbow->attack_ranged = 1000;
+    darkbow->attack_speed = 9;
+    darkbow->attack_range = 10;
+    darkbow->weapon_type = 25;
+
+    RcItemDef *arrow = add_item(OSRS_DRAGON_ARROW, "Dragon arrows");
+    arrow->stackable = true;
+    arrow->equippable = true;
+    arrow->equipable_by_player = true;
+    arrow->equip_slot = EQUIP_AMMO;
+    arrow->ranged_strength = 60;
 }
 
 static int add_npc_def(void) {
@@ -308,10 +341,56 @@ static void test_special_spends_energy_and_recovers(void) {
     rc_world_destroy(world);
 }
 
+static void test_content_specials_spend_energy_and_modify_damage(void) {
+    reset_defs();
+    add_osrs_special_weapon_defs();
+    RcWorld *world = make_world();
+    rc_content_combat_register(world);
+    int npc_idx = spawn_target(world, 1);
+    world->npcs[npc_idx].force_player_max_hit = true;
+    world->player.equipment[EQUIP_WEAPON] =
+        (RcInvSlot){OSRS_ARMADYL_GODSWORD, 1};
+    rc_recalc_bonuses(&world->player);
+    rc_refresh_player_combat_style(&world->player);
+    assert(rc_combat_start_player_vs_npc(world, 0,
+                                         world->npcs[npc_idx].uid));
+    rc_combat_toggle_special(world);
+    rc_combat_tick_player(world);
+    assert(world->player.special_energy == 5000);
+    assert(!world->player.combat.special_pending);
+    assert(world->npcs[npc_idx].num_pending_hits == 1);
+    assert(world->npcs[npc_idx].pending_hits[0].damage >
+           world->npcs[npc_idx].pending_hits[0].max_hit);
+    rc_world_destroy(world);
+
+    world = make_world();
+    rc_content_combat_register(world);
+    npc_idx = spawn_target(world, 4);
+    world->npcs[npc_idx].force_player_max_hit = true;
+    world->player.equipment[EQUIP_WEAPON] =
+        (RcInvSlot){OSRS_DARK_BOW, 1};
+    world->player.equipment[EQUIP_AMMO] =
+        (RcInvSlot){OSRS_DRAGON_ARROW, 3};
+    rc_recalc_bonuses(&world->player);
+    rc_refresh_player_combat_style(&world->player);
+    assert(world->player.combat_style == COMBAT_RANGED);
+    assert(rc_combat_start_player_vs_npc(world, 0,
+                                         world->npcs[npc_idx].uid));
+    rc_combat_toggle_special(world);
+    rc_combat_tick_player(world);
+    assert(world->player.special_energy == 4500);
+    assert(world->player.equipment[EQUIP_AMMO].quantity == 1);
+    assert(world->npcs[npc_idx].num_pending_hits == 1);
+    assert(world->npcs[npc_idx].pending_hits[0].damage >= 8);
+    assert(world->npcs[npc_idx].pending_hits[0].damage <= 48);
+    rc_world_destroy(world);
+}
+
 int main(void) {
     test_ranged_requires_and_consumes_ammo();
     test_magic_requires_spell_and_consumes_runes();
     test_osrs_rune_sources_cover_staff_pouch_and_combos();
     test_special_spends_energy_and_recovers();
+    test_content_specials_spend_energy_and_modify_damage();
     return 0;
 }

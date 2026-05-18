@@ -595,6 +595,178 @@ static int regular_modify_incoming_after_protection(RcWorld *world,
 }
 
 enum {
+    RC_SPEC_FLAG_MIN_HIT = 1u << 0,
+    RC_SPEC_FLAG_CAP = 1u << 1,
+    RC_SPEC_FLAG_CONSUME_EXTRA_AMMO = 1u << 2,
+    RC_SPEC_FLAG_SGS_RESTORE = 1u << 3,
+    RC_SPEC_FLAG_VOIDWAKER_ROLL = 1u << 4,
+};
+
+typedef struct {
+    int item_id;
+    int cost;
+    int damage_pct;
+    int min_hit;
+    int max_cap;
+    uint8_t flags;
+} RcPlayerSpecialDef;
+
+static const RcPlayerSpecialDef g_player_specials[] = {
+    {1215, 2500, 115, 0, 0, 0},      // Dragon dagger
+    {1231, 2500, 115, 0, 0, 0},
+    {5680, 2500, 115, 0, 0, 0},
+    {5698, 2500, 115, 0, 0, 0},
+    {1305, 2500, 125, 0, 0, 0},      // Dragon longsword
+    {4153, 6000, 100, 0, 0, 0},      // Granite maul
+    {12848, 6000, 100, 0, 0, 0},
+    {24225, 5000, 100, 0, 0, 0},
+    {24227, 5000, 100, 0, 0, 0},
+    {11235, 5500, 130, 5, 0,
+     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
+    {12765, 5500, 130, 5, 0,
+     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
+    {12766, 5500, 130, 5, 0,
+     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
+    {12767, 5500, 130, 5, 0,
+     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
+    {12768, 5500, 130, 5, 0,
+     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
+    {20408, 5500, 130, 5, 0,
+     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
+    {27853, 5500, 130, 7, 0,
+     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
+    {11802, 5000, 137, 0, 0, 0},     // Armadyl godsword
+    {11804, 5000, 121, 0, 0, 0},     // Bandos godsword
+    {11806, 5000, 110, 0, 0, RC_SPEC_FLAG_SGS_RESTORE},
+    {11808, 5000, 110, 0, 0, 0},     // Zamorak godsword
+    {20368, 5000, 137, 0, 0, 0},
+    {20370, 5000, 121, 0, 0, 0},
+    {20372, 5000, 110, 0, 0, RC_SPEC_FLAG_SGS_RESTORE},
+    {20374, 5000, 110, 0, 0, 0},
+    {26233, 5000, 110, 0, 0, 0},     // Ancient godsword
+    {12926, 5000, 150, 0, 0, 0},     // Toxic blowpipe
+    {28688, 5000, 150, 0, 0, 0},
+    {13265, 2500, 85, 0, 0, 0},      // Abyssal dagger
+    {13267, 2500, 85, 0, 0, 0},
+    {13269, 2500, 85, 0, 0, 0},
+    {13271, 2500, 85, 0, 0, 0},
+    {13652, 5000, 150, 0, 0, 0},     // Dragon claws, first-pass
+    {20784, 5000, 150, 0, 0, 0},
+    {28039, 5000, 150, 0, 0, 0},
+    {28534, 5000, 150, 0, 0, 0},
+    {13576, 5000, 150, 0, 0, 0},     // Dragon warhammer
+    {26710, 5000, 150, 0, 0, 0},
+    {19478, 6500, 125, 0, 0, 0},     // Light ballista
+    {19481, 6500, 125, 0, 0, 0},     // Heavy ballista
+    {26712, 6500, 125, 0, 0, 0},
+    {21902, 6000, 120, 0, 0, 0},     // Dragon crossbow
+    {11785, 5000, 100, 0, 0, 0},     // Armadyl crossbow
+    {26374, 7500, 100, 0, 0, 0},     // Zaryte crossbow
+    {27690, 5000, 100, 0, 0, RC_SPEC_FLAG_VOIDWAKER_ROLL},
+    {27869, 5000, 100, 0, 0, RC_SPEC_FLAG_VOIDWAKER_ROLL},
+};
+
+static const RcPlayerSpecialDef *player_special_def(int item_id) {
+    for (unsigned i = 0;
+            i < sizeof(g_player_specials) / sizeof(g_player_specials[0]);
+            i++) {
+        if (g_player_specials[i].item_id == item_id)
+            return &g_player_specials[i];
+    }
+    return NULL;
+}
+
+static bool is_dragon_arrow_id(int item_id) {
+    return item_id == 11212;
+}
+
+static int regular_player_special_energy_cost(const RcWorld *world,
+                                              const RcPlayer *player,
+                                              const RcNpc *target,
+                                              int weapon_id) {
+    (void)world;
+    (void)target;
+    const RcPlayerSpecialDef *def = player_special_def(weapon_id);
+    if (!def) return 0;
+    if ((def->flags & RC_SPEC_FLAG_CONSUME_EXTRA_AMMO) != 0) {
+        int qty = player ? player->equipment[EQUIP_AMMO].quantity : 0;
+        if (qty < 2) return 0;
+    }
+    return def->cost;
+}
+
+static void consume_extra_ammo_for_special(RcWorld *world) {
+    if (!world) return;
+    RcInvSlot *ammo = &world->player.equipment[EQUIP_AMMO];
+    if (ammo->item_id < 0 || ammo->quantity <= 0) return;
+    ammo->quantity--;
+    if (ammo->quantity <= 0) {
+        ammo->item_id = -1;
+        ammo->quantity = 0;
+    }
+}
+
+static void restore_saradomin_godsword(RcWorld *world, int damage) {
+    if (!world || damage <= 0) return;
+    RcPlayer *p = &world->player;
+    int hp = (damage + 1) / 2;
+    if (hp < 10) hp = 10;
+    p->current_hp += hp;
+    if (p->current_hp > p->max_hp) p->current_hp = p->max_hp;
+    int prayer = (damage + 3) / 4;
+    if (prayer < 5) prayer = 5;
+    int cap = p->skills.base_level[SKILL_PRAYER];
+    if (cap <= 0) cap = 99;
+    p->current_prayer_points += prayer;
+    if (p->current_prayer_points > cap) p->current_prayer_points = cap;
+}
+
+static int regular_modify_player_special_damage(RcWorld *world,
+                                                const RcPlayer *player,
+                                                const RcNpc *target,
+                                                int weapon_id,
+                                                RcCombatStyle style,
+                                                int damage,
+                                                int max_hit) {
+    (void)target;
+    (void)style;
+    const RcPlayerSpecialDef *def = player_special_def(weapon_id);
+    if (!def) return damage;
+    int out = damage;
+    if ((def->flags & RC_SPEC_FLAG_VOIDWAKER_ROLL) != 0) {
+        int low = (max_hit + 1) / 2;
+        int high = (max_hit * 3) / 2;
+        if (target && target->force_player_max_hit) {
+            out = high;
+        } else if (high > low && world) {
+            out = low + rc_rng_range(&world->rng_state, high - low);
+        } else {
+            out = low;
+        }
+    } else if (out > 0 && def->damage_pct != 100) {
+        out = (out * def->damage_pct) / 100;
+    }
+    if ((def->flags & RC_SPEC_FLAG_MIN_HIT) != 0 && out > 0) {
+        int min_hit = def->min_hit;
+        if (player && is_dragon_arrow_id(player->equipment[EQUIP_AMMO].item_id)) {
+            min_hit = min_hit < 8 ? 8 : min_hit;
+            if (def->item_id != 27853) out = (damage * 150) / 100;
+            if (out > 48) out = 48;
+        }
+        if (out < min_hit) out = min_hit;
+    }
+    if ((def->flags & RC_SPEC_FLAG_CAP) != 0 && def->max_cap > 0 &&
+            out > def->max_cap) {
+        out = def->max_cap;
+    }
+    if ((def->flags & RC_SPEC_FLAG_CONSUME_EXTRA_AMMO) != 0)
+        consume_extra_ammo_for_special(world);
+    if ((def->flags & RC_SPEC_FLAG_SGS_RESTORE) != 0)
+        restore_saradomin_godsword(world, out);
+    return out;
+}
+
+enum {
     RUNE_AIR = 556,
     RUNE_WATER = 555,
     RUNE_EARTH = 557,
@@ -896,6 +1068,8 @@ void rc_content_combat_register(struct RcWorld *world) {
         .modify_npc_attack_speed = regular_modify_npc_attack_speed,
         .modify_incoming_damage_after_protection =
             regular_modify_incoming_after_protection,
+        .player_special_energy_cost = regular_player_special_energy_cost,
+        .modify_player_special_damage = regular_modify_player_special_damage,
         .player_has_spell_runes = regular_player_has_spell_runes,
         .player_consume_spell_runes = regular_player_consume_spell_runes,
     };

@@ -6,6 +6,7 @@
 
 #define ITEM_PATH RC_TEST_SOURCE_DIR "/data/defs/items.bin"
 #define SPELL_PATH RC_TEST_SOURCE_DIR "/data/defs/spells.bin"
+#define VISUALS_PATH RC_TEST_SOURCE_DIR "/data/defs/combat_visuals.tsv"
 
 static int find_item_by_name(const char *name) {
     for (int i = 0; i < RC_MAX_ITEM_DEFS; i++) {
@@ -40,6 +41,7 @@ int main(void) {
                      RC_SUB_STORAGE | RC_SUB_COMBAT;
     cfg.items_path = ITEM_PATH;
     cfg.spells_path = SPELL_PATH;
+    cfg.combat_visuals_path = VISUALS_PATH;
     cfg.seed = 12345;
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
@@ -111,6 +113,39 @@ int main(void) {
         rc_npc_tick(world, dummy);
     assert(dummy->x == dummy_x);
     assert(dummy->y == dummy_y);
+
+    const RuneCDevTransport *kbd =
+        runec_dev_validation_find_transport("kbd");
+    assert(kbd && kbd->npc_id == 2266);
+
+    const RuneCDevTransport *graardor =
+        runec_dev_validation_find_transport("graardor");
+    assert(graardor);
+    int encounter_count = 0;
+    const RuneCDevEncounterNpc *encounter =
+        runec_dev_validation_encounter_npcs(graardor, &encounter_count);
+    assert(encounter && encounter_count == 4);
+    assert(encounter[0].npc_id == 2215);
+    assert(encounter[1].npc_id == 2216);
+    assert(encounter[2].npc_id == 2217);
+    assert(encounter[3].npc_id == 2218);
+
+    world->player.x = 2872;
+    world->player.y = 5350;
+    world->player.plane = 2;
+    int prepared = runec_dev_validation_prepare_encounter(world, graardor);
+    assert(prepared == 4);
+    assert(rc_combat_is_multi_combat(world));
+    for (int i = 0; i < encounter_count; i++) {
+        int idx = rc_world_find_npc_near(world, encounter[i].npc_id,
+                                         encounter[i].x, encounter[i].y,
+                                         encounter[i].plane, 0);
+        assert(idx >= 0);
+        RcNpc *npc = &world->npcs[idx];
+        assert(npc->disable_wander);
+        assert(npc->target_uid == 0);
+        assert(npc->attack_timer == 0);
+    }
 
     rc_world_destroy(world);
     return 0;
