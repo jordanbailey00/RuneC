@@ -771,7 +771,8 @@ static RcPlayerAttackVisuals select_player_attack_visuals(
     if (!p) return out;
     out.ammo_id = player_ammo_item_id(p);
     const RcCombatVisualDef *weapon_visual =
-        rc_combat_visual_for_item(weapon_id, p->combat_style);
+        rc_combat_visual_for_item_stance(weapon_id, p->combat_style,
+                                         p->attack_style_idx);
     const RcCombatVisualDef *special_visual = use_special
         ? rc_combat_visual_for_special_item(weapon_id, p->combat_style)
         : NULL;

@@ -55,6 +55,9 @@ MODERN_FRAME_INDEX = 0  # modern cache: frame archives
 MODERN_FRAMEBASE_INDEX = 1  # modern cache: frame bases
 SPOTANIM_BIN_MAGIC = 0x544F5053
 OBJECT_ANIM_BIN_MAGIC = 0x4D4E414F
+ITEM_RENDER_BIN_MAGIC = 0x4D455249
+ITEM_RENDER_V2 = 2
+MISSING_U32 = 0xFFFFFFFF
 
 
 # --- binary reading helpers ---
@@ -886,6 +889,53 @@ def read_object_anim_sequence_ids(paths: list[Path]) -> set[int]:
     return out
 
 
+def read_item_render_sequence_ids(path: Path) -> set[int]:
+    out: set[int] = set()
+    if not path.exists():
+        return out
+    data = path.read_bytes()
+    if len(data) < 16:
+        raise ValueError(f"item render map too small: {path}")
+    magic, version, count, body_count = struct.unpack_from("<IIII", data, 0)
+    if magic != ITEM_RENDER_BIN_MAGIC or version < ITEM_RENDER_V2:
+        raise ValueError(f"bad item render map header in {path}")
+    pos = 16 + body_count * 4
+    row_size = struct.calcsize("<IIIIIIIIIIIII")
+    for _ in range(count):
+        if pos + row_size > len(data):
+            raise ValueError(f"truncated item render row in {path}")
+        fields = struct.unpack_from("<IIIIIIIIIIIII", data, pos)
+        pos += row_size
+        for anim_id in fields[10:13]:
+            if anim_id != MISSING_U32 and 0 < anim_id <= 0xFFFF:
+                out.add(int(anim_id))
+    return out
+
+
+def read_combat_visual_sequence_ids(path: Path) -> set[int]:
+    out: set[int] = set()
+    if not path.exists():
+        return out
+    for raw in path.read_text().splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or line.startswith("kind|"):
+            continue
+        parts = line.split("|")
+        for idx in (3, 8, 30):
+            if idx >= len(parts):
+                continue
+            value = parts[idx].strip()
+            if not value or value == "-":
+                continue
+            try:
+                anim_id = int(value)
+            except ValueError:
+                continue
+            if 0 < anim_id <= 0xFFFF:
+                out.add(anim_id)
+    return out
+
+
 def main() -> None:
     """Export animation data from OSRS cache."""
     parser = argparse.ArgumentParser(description="export OSRS animations from cache")
@@ -897,6 +947,10 @@ def main() -> None:
                         help="include sequence ids referenced by a SPOT binary")
     parser.add_argument("--object-anims", type=Path, nargs="*",
                         help="include sequence ids referenced by OANM binaries")
+    parser.add_argument("--item-render-map", type=Path,
+                        help="include BAS sequence ids referenced by item_render.map")
+    parser.add_argument("--combat-visuals", type=Path,
+                        help="include attack/projectile sequence ids from combat_visuals.tsv")
     args = parser.parse_args()
 
     output_path = Path(args.output)
@@ -913,6 +967,14 @@ def main() -> None:
             object_anim_ids = read_object_anim_sequence_ids(args.object_anims)
             needed |= object_anim_ids
             print(f"including {len(object_anim_ids)} object animation sequence IDs")
+        if args.item_render_map:
+            item_render_ids = read_item_render_sequence_ids(args.item_render_map)
+            needed |= item_render_ids
+            print(f"including {len(item_render_ids)} item render BAS sequence IDs")
+        if args.combat_visuals:
+            combat_visual_ids = read_combat_visual_sequence_ids(args.combat_visuals)
+            needed |= combat_visual_ids
+            print(f"including {len(combat_visual_ids)} combat visual sequence IDs")
         export_animations_from_modern_cache(
             cache_path,
             output_path,

@@ -118,6 +118,26 @@ static void write_visuals_file(const char *path) {
     fclose(f);
 }
 
+static void write_stance_visuals_file(const char *path) {
+    FILE *f = fopen(path, "w");
+    assert(f != NULL);
+    fputs("kind|key|style|attack_anim|launch_spotanim|travel_spotanim|"
+          "impact_spotanim|projectile_model|projectile_anim|hit_delay|"
+          "client_delay|proj_start_height|proj_end_height|proj_delay|"
+          "proj_angle|proj_length_adjustment|proj_progress|"
+          "proj_step_multiplier|note|projectile_count|alt_proj_start_height|"
+          "alt_proj_end_height|alt_proj_delay|alt_proj_angle|"
+          "alt_proj_length_adjustment|alt_proj_progress|"
+          "alt_proj_step_multiplier|aux_travel_spotanim|aux_impact_spotanim|"
+          "aux_projectile_model|aux_projectile_anim|impact_on_last_only|"
+          "double_launch_spotanim|stance_idx\n", f);
+    fputs("item|11804|slash|7045|-|-|-|-|-|-|-|-|-|-|-|-|-|-|bgs stance 1|-|-|-|-|-|-|-|-|-|-|-|-|-|-|0\n", f);
+    fputs("item|11804|slash|7055|-|-|-|-|-|-|-|-|-|-|-|-|-|-|bgs stance 4|-|-|-|-|-|-|-|-|-|-|-|-|-|-|3\n", f);
+    fputs("item|11804|crush|7054|-|-|-|-|-|-|-|-|-|-|-|-|-|-|bgs stance 3|-|-|-|-|-|-|-|-|-|-|-|-|-|-|2\n", f);
+    fputs("item|11804|any|7045|-|-|-|-|-|-|-|-|-|-|-|-|-|-|bgs fallback\n", f);
+    fclose(f);
+}
+
 static int test_visual_special_cost(const RcWorld *world,
                                     const RcPlayer *player,
                                     const RcNpc *target,
@@ -417,6 +437,25 @@ static void test_special_visual_lookup_uses_special_kind(void) {
     assert(rc_combat_visual_for_item(1305, COMBAT_MELEE_SLASH) == NULL);
 }
 
+static void test_item_visual_lookup_uses_combat_stance(void) {
+    reset_defs();
+    write_stance_visuals_file("/tmp/runec_combat_visuals_stance_test.tsv");
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_stance_test.tsv") == 4);
+
+    const RcCombatVisualDef *slash_one =
+        rc_combat_visual_for_item_stance(11804, COMBAT_MELEE_SLASH, 0);
+    const RcCombatVisualDef *slash_four =
+        rc_combat_visual_for_item_stance(11804, COMBAT_MELEE_SLASH, 3);
+    const RcCombatVisualDef *crush =
+        rc_combat_visual_for_item_stance(11804, COMBAT_MELEE_CRUSH, 2);
+    const RcCombatVisualDef *fallback =
+        rc_combat_visual_for_item(11804, COMBAT_MELEE_STAB);
+    assert(slash_one && slash_one->attack_anim_id == 7045);
+    assert(slash_four && slash_four->attack_anim_id == 7055);
+    assert(crush && crush->attack_anim_id == 7054);
+    assert(fallback && fallback->attack_anim_id == 7045);
+}
+
 static void test_generated_visuals_include_spell_projectile_profiles(void) {
     FILE *f = fopen("data/defs/combat_visuals.tsv", "r");
     if (!f) return;
@@ -503,6 +542,7 @@ int main(void) {
     test_spell_on_npc_routes_to_magic_combat_projectile();
     test_npc_attack_emits_data_backed_projectile();
     test_special_visual_lookup_uses_special_kind();
+    test_item_visual_lookup_uses_combat_stance();
     test_generated_visuals_include_spell_projectile_profiles();
     return 0;
 }

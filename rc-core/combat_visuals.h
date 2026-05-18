@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-#define RC_MAX_COMBAT_VISUAL_DEFS 8192
+#define RC_MAX_COMBAT_VISUAL_DEFS 16384
 
 enum {
     RC_COMBAT_VISUAL_ANY = -1,
@@ -18,6 +18,7 @@ typedef struct {
     int key_id;
     char key_name[64];
     int style;
+    int stance_idx;
     int attack_anim_id;
     int launch_spotanim_id;
     int double_launch_spotanim_id;
@@ -55,6 +56,8 @@ extern int g_rc_combat_visual_count;
 int rc_load_combat_visuals(const char *path);
 const RcCombatVisualDef *rc_combat_visual_for_item(int item_id,
                                                    RcCombatStyle style);
+const RcCombatVisualDef *rc_combat_visual_for_item_stance(
+    int item_id, RcCombatStyle style, int stance_idx);
 const RcCombatVisualDef *rc_combat_visual_for_spell(const char *spell_name,
                                                     RcCombatStyle style);
 const RcCombatVisualDef *rc_combat_visual_for_spell_id(

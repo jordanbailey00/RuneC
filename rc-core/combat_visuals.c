@@ -78,8 +78,8 @@ int rc_load_combat_visuals(const char *path) {
     while (fgets(line, sizeof(line), f)) {
         char *s = trim(line);
         if (!s[0] || s[0] == '#') continue;
-        char *parts[33] = {0};
-        int n = split_pipe(s, parts, 33);
+        char *parts[34] = {0};
+        int n = split_pipe(s, parts, 34);
         if (n < 11) continue;
         if (strcmp(parts[0], "kind") == 0) continue;
         if (g_rc_combat_visual_count >= RC_MAX_COMBAT_VISUAL_DEFS) break;
@@ -100,6 +100,7 @@ int rc_load_combat_visuals(const char *path) {
                 def->key_id = rc_spell_find(def->key_name);
         }
         def->style = parse_style(parts[2]);
+        def->stance_idx = n > 33 ? parse_int_field(parts[33]) : -1;
         def->attack_anim_id = parse_int_field(parts[3]);
         def->launch_spotanim_id = parse_int_field(parts[4]);
         def->double_launch_spotanim_id = -1;
@@ -159,15 +160,33 @@ static int visual_style_matches(const RcCombatVisualDef *def,
 
 const RcCombatVisualDef *rc_combat_visual_for_item(int item_id,
                                                    RcCombatStyle style) {
+    return rc_combat_visual_for_item_stance(item_id, style, -1);
+}
+
+const RcCombatVisualDef *rc_combat_visual_for_item_stance(
+    int item_id, RcCombatStyle style, int stance_idx
+) {
     const RcCombatVisualDef *fallback = NULL;
+    const RcCombatVisualDef *style_fallback = NULL;
+    const RcCombatVisualDef *stance_fallback = NULL;
     for (int i = 0; i < g_rc_combat_visual_count; i++) {
         const RcCombatVisualDef *def = &g_rc_combat_visual_defs[i];
         if (def->kind != RC_COMBAT_VISUAL_ITEM || def->key_id != item_id)
             continue;
-        if (def->style == (int)style) return def;
-        if (!fallback && visual_style_matches(def, style)) fallback = def;
+        int exact_style = def->style == (int)style;
+        int any_style = def->style == RC_COMBAT_VISUAL_ANY;
+        int exact_stance = stance_idx >= 0 && def->stance_idx == stance_idx;
+        int any_stance = def->stance_idx < 0;
+        if (exact_style && exact_stance) return def;
+        if (!style_fallback && exact_style && any_stance)
+            style_fallback = def;
+        if (!stance_fallback && any_style && exact_stance)
+            stance_fallback = def;
+        if (!fallback && visual_style_matches(def, style) && any_stance)
+            fallback = def;
     }
-    return fallback;
+    return style_fallback ? style_fallback
+         : (stance_fallback ? stance_fallback : fallback);
 }
 
 const RcCombatVisualDef *rc_combat_visual_for_spell(const char *spell_name,

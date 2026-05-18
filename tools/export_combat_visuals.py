@@ -39,9 +39,39 @@ HEADER = (
     "alt_proj_delay|alt_proj_angle|alt_proj_length_adjustment|"
     "alt_proj_progress|alt_proj_step_multiplier|aux_travel_spotanim|"
     "aux_impact_spotanim|aux_projectile_model|aux_projectile_anim|"
-    "impact_on_last_only|double_launch_spotanim"
+    "impact_on_last_only|double_launch_spotanim|stance_idx"
 )
 HEADER_COLS = HEADER.split("|")
+
+RSMOD_ATTACK_TYPES: dict[str, tuple[str | None, str | None, str | None, str | None]] = {
+    "Unarmed": ("crush", "crush", None, "crush"),
+    "Axe": ("slash", "slash", "crush", "slash"),
+    "Blunt": ("crush", "crush", None, "crush"),
+    "Bow": ("ranged", "ranged", None, "ranged"),
+    "Claw": ("slash", "slash", "stab", "slash"),
+    "Crossbow": ("ranged", "ranged", None, "ranged"),
+    "Salamander": ("slash", "ranged", "magic", None),
+    "Chinchompas": ("ranged", "ranged", None, "ranged"),
+    "Gun": (None, "crush", None, None),
+    "SlashSword": ("slash", "slash", "stab", "slash"),
+    "TwoHandedSword": ("slash", "slash", "crush", "slash"),
+    "Pickaxe": ("stab", "stab", "crush", "stab"),
+    "Polearm": ("stab", "slash", None, "stab"),
+    "Polestaff": ("crush", "crush", None, "crush"),
+    "Scythe": ("slash", "slash", "crush", "slash"),
+    "Spear": ("stab", "slash", "crush", "stab"),
+    "Spiked": ("crush", "crush", "stab", "crush"),
+    "StabSword": ("stab", "stab", "slash", "stab"),
+    "Staff": ("crush", "crush", None, "crush"),
+    "Thrown": ("ranged", "ranged", None, "ranged"),
+    "Whip": ("slash", "slash", None, "slash"),
+    "BladedStaff": ("stab", "slash", None, "crush"),
+    "Banner": ("slash", "slash", "crush", "slash"),
+    "GodSword": ("slash", "slash", "crush", "slash"),
+    "PoweredStaff": ("magic", "magic", None, "magic"),
+    "Bludgeon": ("crush", "crush", None, "crush"),
+    "Bulwark": ("crush", None, None, "crush"),
+}
 
 
 @dataclass(frozen=True)
@@ -200,6 +230,16 @@ def projectile_columns(spec: ProjAnimSpec | None) -> list[str]:
     ]
 
 
+def rsmod_attack_type_for_stance(category: str | None,
+                                 stance_idx: int) -> str | None:
+    if not category or stance_idx < 0 or stance_idx > 3:
+        return None
+    types = RSMOD_ATTACK_TYPES.get(category)
+    if not types:
+        return None
+    return types[stance_idx]
+
+
 def append_cache_row(
     rows: list[list[str]],
     *,
@@ -266,15 +306,20 @@ def export_item_rows(
         if item_id is None:
             continue
 
-        attack_anim = config.get("anim_stance1")
-        if isinstance(attack_anim, int):
-            spec = projanims.get(str(config.get("proj_anim")))
-            hit_delay = spec.server_cycles(4) if spec else "-"
-            client_delay = hit_delay
+        weapon_category = config.get("weapon_category")
+        spec = projanims.get(str(config.get("proj_anim")))
+        hit_delay = spec.server_cycles(4) if spec else "-"
+        client_delay = hit_delay
+        for stance_idx in range(4):
+            attack_anim = config.get(f"anim_stance{stance_idx + 1}")
+            style = rsmod_attack_type_for_stance(weapon_category, stance_idx)
+            if not isinstance(attack_anim, int) or style is None:
+                continue
             append_row(
-                rows, "item", item_id, "any", attack_anim, "-", "-", "-",
+                rows, "item", item_id, style, attack_anim, "-", "-", "-",
                 "-", "-", hit_delay, client_delay, *projectile_columns(spec),
-                f"rsmod:{obj_name}:attack",
+                f"rsmod:{obj_name}:attack:stance{stance_idx + 1}",
+                *["-"] * 14, str(stance_idx),
             )
 
         launch = config.get("projectile_launch")
@@ -587,7 +632,8 @@ def write_tsv(path: Path, rows: list[list[str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     dedup: dict[tuple[str, str, str, str], list[str]] = {}
     for row in rows:
-        key = (row[0], row[1], row[2], row[3])
+        stance = row[33] if len(row) > 33 else "-"
+        key = (row[0], row[1], row[2], row[3], stance)
         dedup.setdefault(key, row)
     ordered = sorted(
         dedup.values(),

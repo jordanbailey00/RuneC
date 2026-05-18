@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import io
 import struct
+import tomllib
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -49,6 +50,13 @@ MISSING_U32 = 0xFFFFFFFF
 BODY_MODEL_BASE = 0xF0000
 ITEM_EQUIP_MODEL_BASE = 0xE00000
 ITEM_GROUND_MODEL_BASE = 0xD00000
+
+DEFAULT_DUMP = Path("tools/cache_pipeline/source/osrs-dumps")
+DEFAULT_RSMOD = Path("/home/joe/projects/runescape-rl-reference/rsmod")
+RSMOD_OBJ_ENRICHER = (
+    "api/cache-enricher/src/main/resources/org/rsmod/api/cache/enricher/"
+    "obj/objs.toml"
+)
 
 IDEF_HAS_EQUIPMENT = 1 << 4
 IDEF_STACKABLE = 1 << 0
@@ -91,9 +99,7 @@ BODY_FEET = 1 << 6
 RENDER_FLAG_TWO_HANDED = 1 << 0
 RENDER_FLAG_WEARPOS_AUTHORITY = 1 << 1
 
-# RSMod cache-enricher authority for the current showcase weapon. These fields
-# mirror the params.bas_readyanim / params.bas_walk_f / params.bas_running
-# values a real server syncs to the client for weapon-dependent appearance.
+# Fallbacks used if the local RSMod cache-enricher source is unavailable.
 KNOWN_PLAYER_BAS = {
     11802: (7053, 7052, 7043),  # Armadyl godsword
 }
@@ -648,6 +654,50 @@ def normalize_lookup_name(value: str) -> str:
     )
 
 
+def read_symbol_map(path: Path) -> dict[str, int]:
+    out: dict[str, int] = {}
+    if not path.is_file():
+        return out
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split(None, 1)
+        if len(parts) != 2:
+            continue
+        try:
+            out[parts[1].strip()] = int(parts[0])
+        except ValueError:
+            continue
+    return out
+
+
+def load_rsmod_bas(rsmod_root: Path, dump_root: Path) -> dict[int, tuple[int, int, int]]:
+    obj_file = rsmod_root / RSMOD_OBJ_ENRICHER
+    obj_symbols = read_symbol_map(dump_root / "symbols" / "obj.sym")
+    if not obj_file.is_file() or not obj_symbols:
+        return dict(KNOWN_PLAYER_BAS)
+
+    data = tomllib.loads(obj_file.read_text())
+    out: dict[int, tuple[int, int, int]] = dict(KNOWN_PLAYER_BAS)
+    for config in data.get("config", []):
+        obj_name = config.get("obj")
+        item_id = obj_symbols.get(obj_name or "")
+        if item_id is None:
+            continue
+        ready = config.get("ready_anim", -1)
+        walk = config.get("walk_anim", -1)
+        run = config.get("run_anim", -1)
+        if not any(isinstance(v, int) for v in (ready, walk, run)):
+            continue
+        out[item_id] = (
+            ready if isinstance(ready, int) else -1,
+            walk if isinstance(walk, int) else -1,
+            run if isinstance(run, int) else -1,
+        )
+    return out
+
+
 def item_name_matches(a: str, b: str) -> bool:
     return normalize_lookup_name(a) == normalize_lookup_name(b)
 
@@ -773,10 +823,15 @@ def main() -> None:
     parser.add_argument("--dev-validation-source", type=Path,
                         default=Path("rc-viewer/dev_validation.c"),
                         help="source file containing combat-validation bank names")
+    parser.add_argument("--dump", type=Path, default=DEFAULT_DUMP,
+                        help="local Joshua-F dump root with symbols/obj.sym")
+    parser.add_argument("--rsmod-root", type=Path, default=DEFAULT_RSMOD,
+                        help="local RSMod checkout for cache-enricher BAS data")
     args = parser.parse_args()
 
     items = parse_items_bin(args.items)
     item_ids = parse_item_ids(args.item_ids, items, args.dev_validation_source)
+    bas_anims = load_rsmod_bas(args.rsmod_root, args.dump)
     store = RcCacheStore(args.cache)
 
     print("loading cache appearance definitions...")
@@ -874,7 +929,7 @@ def main() -> None:
 
         hide_mask = render_hide_mask(item, appearance)
         flags = render_flags(item, appearance)
-        ready_anim, walk_anim, run_anim = KNOWN_PLAYER_BAS.get(item_id, (-1, -1, -1))
+        ready_anim, walk_anim, run_anim = bas_anims.get(item_id, (-1, -1, -1))
         records.append((
             item_id,
             ground_synth,
