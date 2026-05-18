@@ -21,6 +21,12 @@
 #define RUNEC_UI_SPELL_STEP_X 23
 #define RUNEC_UI_SPELL_STEP_Y 24
 #define RUNEC_UI_SPELL_ICON_SIZE 22
+#define RUNEC_UI_BANK_COLS 10
+#define RUNEC_UI_BANK_ROWS 8
+#define RUNEC_UI_BANK_VISIBLE_SLOTS (RUNEC_UI_BANK_COLS * RUNEC_UI_BANK_ROWS)
+#define RUNEC_UI_BANK_SLOT_W 36
+#define RUNEC_UI_BANK_SLOT_H 32
+#define RUNEC_UI_BANK_SLOT_STEP 42
 #define RUNEC_UI_COMPONENT_ID(group_id, file_id) \
     ((((uint32_t)(group_id)) << 16) | ((uint32_t)(file_id) & 0xffffu))
 #define RUNEC_UI_GROUP_TOPLEVEL 161u
@@ -55,7 +61,6 @@ typedef struct RuneCUiLayout {
     Rectangle compass;
     Rectangle xp_orb;
     Rectangle worldmap_button;
-    Rectangle wiki_button;
     Rectangle hp_orb;
     Rectangle prayer_orb;
     Rectangle run_orb;
@@ -98,6 +103,7 @@ static const char *g_tab_icon[RUNEC_UI_TAB_COUNT] = {
     "side_icon_prayer",
     "side_icon_magic",
     "side_icon_options",
+    "side_icon_clan",
 };
 
 static const char *g_prayer_names[25] = {
@@ -237,6 +243,7 @@ static const char *decoded_group_for_tab(RuneCUiTab tab) {
     case RUNEC_UI_TAB_PRAYER: return "prayerbook";
     case RUNEC_UI_TAB_SPELLBOOK: return "magic_spellbook";
     case RUNEC_UI_TAB_SETTINGS: return "settings_side";
+    case RUNEC_UI_TAB_CLAN: return NULL;
     default: return NULL;
     }
 }
@@ -818,6 +825,7 @@ const char *runec_ui_tab_name(RuneCUiTab tab) {
     case RUNEC_UI_TAB_PRAYER: return "Prayer";
     case RUNEC_UI_TAB_SPELLBOOK: return "Spellbook";
     case RUNEC_UI_TAB_SETTINGS: return "Settings";
+    case RUNEC_UI_TAB_CLAN: return "Clan";
     default: return "Unknown";
     }
 }
@@ -852,10 +860,6 @@ static void ui_layout(int screen_w, int screen_h, RuneCUiLayout *out) {
     out->worldmap_button = (Rectangle){out->map.x + RUNEC_OSRS_ORBS_X + RUNEC_OSRS_WORLDMAP_X,
                                        out->map.y + RUNEC_OSRS_ORBS_Y + RUNEC_OSRS_WORLDMAP_Y,
                                        30, 30};
-    out->wiki_button = (Rectangle){out->map.x + RUNEC_OSRS_ORBS_X + RUNEC_OSRS_WIKI_X,
-                                   out->map.y + RUNEC_OSRS_ORBS_Y + RUNEC_OSRS_WIKI_Y,
-                                   40, 34};
-
     out->side = (Rectangle){(float)screen_w - RUNEC_OSRS_SIDE_MENU_W,
                             (float)screen_h - RUNEC_OSRS_SIDE_MENU_H,
                             RUNEC_OSRS_SIDE_MENU_W, RUNEC_OSRS_SIDE_MENU_H};
@@ -917,9 +921,6 @@ static void apply_decoded_mounts(RuneCUiState *ui, int screen_w, int screen_h,
         layout->worldmap_button =
             (Rectangle){rect.x + RUNEC_OSRS_ORBS_X + RUNEC_OSRS_WORLDMAP_X,
                         rect.y + RUNEC_OSRS_ORBS_Y + RUNEC_OSRS_WORLDMAP_Y, 30, 30};
-        layout->wiki_button =
-            (Rectangle){rect.x + RUNEC_OSRS_ORBS_X + RUNEC_OSRS_WIKI_X,
-                        rect.y + RUNEC_OSRS_ORBS_Y + RUNEC_OSRS_WIKI_Y, 40, 34};
     }
     if (runec_ui_interfaces_component_rect(&ui->interfaces, top_group,
             "side_menu", screen, &rect)) {
@@ -1309,6 +1310,48 @@ int runec_ui_open_modal(RuneCUiState *ui, const char *group) {
                                       RUNEC_UI_TAB_NONE, 0, group);
 }
 
+void runec_ui_set_active_tab(RuneCUiState *ui, RuneCUiTab tab) {
+    if (!ui || tab < 0 || tab >= RUNEC_UI_TAB_COUNT)
+        return;
+    ui->active_tab = tab;
+    runec_ui_open_subinterface(ui, RUNEC_UI_MOUNT_SIDE_CONTENT,
+                               ui->active_tab,
+                               RUNEC_UI_TOP_SIDE_CONTAINER,
+                               decoded_group_for_tab(ui->active_tab));
+}
+
+void runec_ui_set_dev_transport_options(RuneCUiState *ui,
+                                        const char *const *labels,
+                                        int count) {
+    if (!ui)
+        return;
+    if (count < 0) count = 0;
+    if (count > RUNEC_UI_DEV_TRANSPORT_MAX)
+        count = RUNEC_UI_DEV_TRANSPORT_MAX;
+    ui->dev_transport_count = count;
+    for (int i = 0; i < count; i++) {
+        snprintf(ui->dev_transport_labels[i],
+                 sizeof(ui->dev_transport_labels[i]), "%.23s",
+                 labels && labels[i] ? labels[i] : "");
+    }
+}
+
+static int clamp_ui_scene_plane(int plane) {
+    if (plane < 0) return 0;
+    if (plane >= RUNEC_UI_SCENE_PLANE_COUNT)
+        return RUNEC_UI_SCENE_PLANE_COUNT - 1;
+    return plane;
+}
+
+void runec_ui_set_scene_plane_state(RuneCUiState *ui, int scene_plane,
+                                    int player_plane, int override_active) {
+    if (!ui)
+        return;
+    ui->scene_plane = clamp_ui_scene_plane(scene_plane);
+    ui->player_plane = clamp_ui_scene_plane(player_plane);
+    ui->scene_plane_override_active = override_active ? 1 : 0;
+}
+
 int runec_ui_move_interface(RuneCUiState *ui, RuneCUiOpenMount from_mount,
                             RuneCUiTab from_tab, RuneCUiOpenMount to_mount,
                             RuneCUiTab to_tab, uint32_t target_component_id) {
@@ -1349,6 +1392,15 @@ void runec_ui_init(RuneCUiState *ui) {
     ui->auto_retaliate = 1;
     ui->special_attack_enabled = 0;
     ui->special_attack_energy = 100;
+    ui->active_chat_tab = 0;
+    ui->bank_active_tab = 0;
+    static const char *bank_tabs[RUNEC_UI_BANK_TAB_COUNT] = {
+        "Ranged", "Mage", "Melee", "PvP", "Special",
+    };
+    for (int i = 0; i < RUNEC_UI_BANK_TAB_COUNT; i++) {
+        snprintf(ui->bank_tab_labels[i], sizeof(ui->bank_tab_labels[i]),
+                 "%.15s", bank_tabs[i]);
+    }
     runec_ui_set_combat_weapon_name(ui, "Abyssal whip");
     runec_ui_set_combat_style_profile(ui, 10);
     ui->hitpoints = 99;
@@ -1774,6 +1826,99 @@ static int ui_inventory_slot_at(const RuneCUiState *ui,
             return slot;
     }
     return inv_slot_at(layout, mouse);
+}
+
+static Rectangle bank_panel_rect(int screen_w, int screen_h,
+                                 const RuneCUiLayout *layout) {
+    float right_limit = layout->side.x > 0.0f ? layout->side.x : (float)screen_w;
+    float bottom_limit = layout->chat.y > 0.0f ? layout->chat.y : (float)screen_h;
+    float w = right_limit - 64.0f;
+    if (w > 760.0f) w = 760.0f;
+    if (w < 470.0f) w = right_limit - 24.0f;
+    float h = 420.0f;
+    if (h > bottom_limit - 76.0f) h = bottom_limit - 76.0f;
+    if (h < 300.0f) h = 300.0f;
+    return (Rectangle){32.0f, 58.0f, w, h};
+}
+
+static Rectangle bank_close_rect(Rectangle panel) {
+    return (Rectangle){panel.x + panel.width - 70.0f, panel.y + 8.0f,
+                       56.0f, 22.0f};
+}
+
+static int bank_slot_visible_in_tab(const RuneCUiState *ui, int slot) {
+    return ui && slot >= 0 && slot < RUNEC_UI_BANK_SLOT_COUNT
+        && ui->bank[slot].enabled
+        && ui->bank[slot].category == ui->bank_active_tab;
+}
+
+static int bank_tab_item_count(const RuneCUiState *ui) {
+    int count = 0;
+    if (!ui)
+        return 0;
+    for (int i = 0; i < RUNEC_UI_BANK_SLOT_COUNT; i++)
+        if (bank_slot_visible_in_tab(ui, i))
+            count++;
+    return count;
+}
+
+static int bank_scroll_max(const RuneCUiState *ui) {
+    int max = bank_tab_item_count(ui) - RUNEC_UI_BANK_VISIBLE_SLOTS;
+    return max > 0 ? max : 0;
+}
+
+static void clamp_bank_scroll(RuneCUiState *ui) {
+    int max = bank_scroll_max(ui);
+    if (ui->bank_scroll < 0) ui->bank_scroll = 0;
+    if (ui->bank_scroll > max) ui->bank_scroll = max;
+}
+
+static int bank_slot_for_visible_index(const RuneCUiState *ui,
+                                       int visible_index) {
+    if (!ui || visible_index < 0)
+        return -1;
+    int seen = 0;
+    for (int i = 0; i < RUNEC_UI_BANK_SLOT_COUNT; i++) {
+        if (!bank_slot_visible_in_tab(ui, i))
+            continue;
+        if (seen == visible_index)
+            return i;
+        seen++;
+    }
+    return -1;
+}
+
+static Rectangle bank_tab_rect(Rectangle panel, int tab) {
+    float w = 76.0f;
+    return (Rectangle){
+        panel.x + 12.0f + (float)tab * (w + 4.0f),
+        panel.y + 35.0f,
+        w,
+        22.0f,
+    };
+}
+
+static Rectangle bank_slot_rect(Rectangle panel, int visible_slot) {
+    int col = visible_slot % RUNEC_UI_BANK_COLS;
+    int row = visible_slot / RUNEC_UI_BANK_COLS;
+    return (Rectangle){
+        panel.x + 18.0f + col * RUNEC_UI_BANK_SLOT_STEP,
+        panel.y + 70.0f + row * RUNEC_UI_BANK_SLOT_STEP,
+        RUNEC_UI_BANK_SLOT_W,
+        RUNEC_UI_BANK_SLOT_H,
+    };
+}
+
+static int bank_slot_at(RuneCUiState *ui, Rectangle panel, Vector2 mouse) {
+    clamp_bank_scroll(ui);
+    for (int i = 0; i < RUNEC_UI_BANK_VISIBLE_SLOTS; i++) {
+        int slot = bank_slot_for_visible_index(ui, ui->bank_scroll + i);
+        if (slot < 0)
+            break;
+        if (CheckCollisionPointRec(mouse, bank_slot_rect(panel, i)))
+            return slot;
+    }
+    return -1;
 }
 
 static int ui_equipment_slot_at(const RuneCUiState *ui,
@@ -2425,6 +2570,172 @@ static int open_decoded_context(RuneCUiState *ui, Vector2 mouse,
     return 1;
 }
 
+static int handle_bank_input(RuneCUiState *ui, const RuneCUiLayout *layout,
+                             int screen_w, int screen_h, Vector2 mouse) {
+    if (!ui->bank_open)
+        return 0;
+
+    Rectangle panel = bank_panel_rect(screen_w, screen_h, layout);
+    Rectangle close = bank_close_rect(panel);
+    float wheel = GetMouseWheelMove();
+    if (wheel != 0.0f && CheckCollisionPointRec(mouse, panel)) {
+        ui->bank_scroll -= (int)(wheel * RUNEC_UI_BANK_COLS);
+        clamp_bank_scroll(ui);
+        return 1;
+    }
+
+    if (IsKeyPressed(KEY_ESCAPE)) {
+        ui->last_intent.kind = RUNEC_UI_INTENT_BANK_CLOSE;
+        ui->last_intent.position = mouse;
+        return 1;
+    }
+
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        if (CheckCollisionPointRec(mouse, close)) {
+            ui->last_intent.kind = RUNEC_UI_INTENT_BANK_CLOSE;
+            ui->last_intent.position = mouse;
+            return 1;
+        }
+
+        for (int i = 0; i < RUNEC_UI_BANK_TAB_COUNT; i++) {
+            if (CheckCollisionPointRec(mouse, bank_tab_rect(panel, i))) {
+                if (ui->bank_active_tab != i) {
+                    ui->bank_active_tab = i;
+                    ui->bank_scroll = 0;
+                }
+                return 1;
+            }
+        }
+
+        int bank_slot = bank_slot_at(ui, panel, mouse);
+        if (bank_slot >= 0) {
+            if (ui->bank[bank_slot].enabled) {
+                ui->last_intent.kind = RUNEC_UI_INTENT_BANK_WITHDRAW;
+                ui->last_intent.primary = bank_slot;
+                ui->last_intent.secondary =
+                    (IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT))
+                        ? 0 : 1;
+                ui->last_intent.position = mouse;
+            }
+            return 1;
+        }
+
+        if (ui->active_tab == RUNEC_UI_TAB_INVENTORY) {
+            int inv_slot = ui_inventory_slot_at(ui, layout, mouse);
+            if (inv_slot >= 0) {
+                if (ui->inventory[inv_slot].enabled) {
+                    ui->last_intent.kind = RUNEC_UI_INTENT_BANK_DEPOSIT;
+                    ui->last_intent.primary = inv_slot;
+                    ui->last_intent.secondary =
+                        (IsKeyDown(KEY_LEFT_SHIFT) ||
+                         IsKeyDown(KEY_RIGHT_SHIFT)) ? 0 : 1;
+                    ui->last_intent.position = mouse;
+                }
+                return 1;
+            }
+        }
+
+        if (CheckCollisionPointRec(mouse, panel))
+            return 1;
+    }
+
+    if ((IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE) ||
+         IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) &&
+            CheckCollisionPointRec(mouse, panel)) {
+        return 1;
+    }
+    return 0;
+}
+
+static Rectangle side_clan_plane_follow_rect(const RuneCUiLayout *layout) {
+    return (Rectangle){
+        layout->side_content.x + 8.0f,
+        layout->side_content.y + 38.0f,
+        58.0f,
+        22.0f,
+    };
+}
+
+static Rectangle side_clan_plane_button_rect(const RuneCUiLayout *layout,
+                                             int plane) {
+    return (Rectangle){
+        layout->side_content.x + 72.0f + (float)plane * 28.0f,
+        layout->side_content.y + 38.0f,
+        24.0f,
+        22.0f,
+    };
+}
+
+static Rectangle side_clan_dev_transport_rect(const RuneCUiLayout *layout,
+                                              int idx) {
+    int col = idx % 2;
+    int row = idx / 2;
+    return (Rectangle){
+        layout->side_content.x + 8.0f + (float)col * 88.0f,
+        layout->side_content.y + 100.0f + (float)row * 25.0f,
+        82.0f,
+        22.0f,
+    };
+}
+
+static int handle_side_clan_input(RuneCUiState *ui,
+                                  const RuneCUiLayout *layout,
+                                  Vector2 mouse) {
+    if (!ui || !layout || ui->active_tab != RUNEC_UI_TAB_CLAN)
+        return 0;
+    if (CheckCollisionPointRec(mouse, side_clan_plane_follow_rect(layout))) {
+        ui->last_intent.kind = RUNEC_UI_INTENT_SCENE_PLANE;
+        ui->last_intent.primary = -1;
+        ui->last_intent.position = mouse;
+        copy_text(ui->last_intent.text, sizeof(ui->last_intent.text),
+                  "Follow plane");
+        return 1;
+    }
+    for (int plane = 0; plane < RUNEC_UI_SCENE_PLANE_COUNT; plane++) {
+        if (CheckCollisionPointRec(mouse,
+                                   side_clan_plane_button_rect(layout,
+                                                               plane))) {
+            ui->last_intent.kind = RUNEC_UI_INTENT_SCENE_PLANE;
+            ui->last_intent.primary = plane;
+            ui->last_intent.position = mouse;
+            snprintf(ui->last_intent.text, sizeof(ui->last_intent.text),
+                     "Plane %d", plane);
+            return 1;
+        }
+    }
+    for (int i = 0; i < ui->dev_transport_count; i++) {
+        if (CheckCollisionPointRec(mouse,
+                                   side_clan_dev_transport_rect(layout, i))) {
+            ui->last_intent.kind = RUNEC_UI_INTENT_DEV_TRANSPORT;
+            ui->last_intent.primary = i;
+            ui->last_intent.position = mouse;
+            return 1;
+        }
+    }
+    return CheckCollisionPointRec(mouse, layout->side_content);
+}
+
+static int handle_chat_tab_input(RuneCUiState *ui, const RuneCUiLayout *layout,
+                                 Vector2 mouse) {
+    if (!ui || !layout)
+        return 0;
+    if (!IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+        return 0;
+    for (int i = 0; i < RUNEC_UI_CHAT_TAB_COUNT; i++) {
+        Rectangle r = {
+            layout->chat.x + 6 + i * 72.0f,
+            layout->chat_controls.y + 1,
+            68,
+            21,
+        };
+        if (CheckCollisionPointRec(mouse, r)) {
+            ui->active_chat_tab = i;
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int runec_ui_handle_input(RuneCUiState *ui, int screen_w, int screen_h) {
     RuneCUiLayout layout;
     ui_layout(screen_w, screen_h, &layout);
@@ -2483,6 +2794,12 @@ int runec_ui_handle_input(RuneCUiState *ui, int screen_w, int screen_h) {
         return 1;
     }
 
+    if (handle_chat_tab_input(ui, &layout, mouse))
+        return 1;
+
+    if (handle_bank_input(ui, &layout, screen_w, screen_h, mouse))
+        return 1;
+
     if (ui->drag.active && IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
         RuneCUiDragState drag = ui->drag;
         ui->drag.active = 0;
@@ -2540,11 +2857,7 @@ int runec_ui_handle_input(RuneCUiState *ui, int screen_w, int screen_h) {
 
         for (int i = 0; i < RUNEC_UI_TAB_COUNT; i++) {
             if (CheckCollisionPointRec(mouse, layout.tab[i])) {
-                ui->active_tab = (RuneCUiTab)i;
-                runec_ui_open_subinterface(ui, RUNEC_UI_MOUNT_SIDE_CONTENT,
-                                           ui->active_tab,
-                                           RUNEC_UI_TOP_SIDE_CONTAINER,
-                                           decoded_group_for_tab(ui->active_tab));
+                runec_ui_set_active_tab(ui, (RuneCUiTab)i);
                 ui->tab_press_timer[i] = OSRS_TAB_PRESS_SECONDS;
                 ui->last_intent.kind = RUNEC_UI_INTENT_TAB;
                 ui->last_intent.primary = i;
@@ -2585,6 +2898,9 @@ int runec_ui_handle_input(RuneCUiState *ui, int screen_w, int screen_h) {
             ui->last_intent.position = mouse;
             return 1;
         }
+
+        if (handle_side_clan_input(ui, &layout, mouse))
+            return 1;
 
         RuneCUiHitResult decoded_hit = {0};
         if (decoded_side_hit(ui, &layout, mouse, &decoded_hit)
@@ -2992,9 +3308,6 @@ static void draw_minimap(const RuneCUiState *ui, const RuneCUiLayout *layout) {
     draw_asset_centered(ui, "worldmap_icon_0", layout->worldmap_button, 22, 22, WHITE);
     if (!runec_ui_asset_ready(&ui->assets, "worldmap_icon_0"))
         draw_centered_text(ui, "?", layout->worldmap_button, 14, OSRS_YELLOW);
-    runec_ui_draw_asset(&ui->assets, "wiki_icon_0", layout->wiki_button, WHITE);
-    if (!runec_ui_asset_ready(&ui->assets, "wiki_icon_0"))
-        draw_centered_text(ui, "wiki", layout->wiki_button, 10, OSRS_ORANGE);
 }
 
 static void draw_chat(RuneCUiState *ui, const RuneCUiLayout *layout) {
@@ -3018,8 +3331,10 @@ static void draw_chat(RuneCUiState *ui, const RuneCUiLayout *layout) {
 
     for (int i = ui->chat_line_count - 1; i >= 0; i--) {
         int row = ui->chat_line_count - 1 - i;
-        draw_text_shadow(ui, ui->chat_lines[i], layout->chat_messages.x + 3,
-                         layout->chat_messages.y + row * 17.0f, 14, OSRS_ORANGE);
+        draw_text_shadow(ui, ui->chat_lines[i],
+                         layout->chat_messages.x + 3,
+                         layout->chat_messages.y + row * 17.0f, 14,
+                         OSRS_ORANGE);
     }
 
     const char *prompt = ui->chat_focused ? ">" : "Click here to chat";
@@ -3038,7 +3353,8 @@ static void draw_chat(RuneCUiState *ui, const RuneCUiLayout *layout) {
             runec_ui_draw_asset(&ui->assets, "chat_tab_button_0", r, WHITE);
         if (!decoded_chat && !runec_ui_asset_ready(&ui->assets, "chat_tab_button_0"))
             DrawRectangleRec(r, (Color){52, 44, 35, 230});
-        draw_centered_text(ui, tabs[i], r, 12, i == 0 ? OSRS_YELLOW : OSRS_ORANGE);
+        draw_centered_text(ui, tabs[i], r, 12,
+                           i == ui->active_chat_tab ? OSRS_YELLOW : OSRS_ORANGE);
     }
 }
 
@@ -3172,6 +3488,73 @@ static void draw_inventory(const RuneCUiState *ui, const RuneCUiLayout *layout) 
                                  stack_text_color(ui->inventory[i].quantity));
             }
         }
+    }
+}
+
+static void draw_bank(RuneCUiState *ui, int screen_w, int screen_h,
+                      const RuneCUiLayout *layout) {
+    if (!ui->bank_open)
+        return;
+    clamp_bank_scroll(ui);
+    Rectangle panel = bank_panel_rect(screen_w, screen_h, layout);
+    DrawRectangleRec(panel, (Color){34, 27, 19, 246});
+    DrawRectangleLinesEx(panel, 2.0f, (Color){134, 105, 62, 255});
+    DrawRectangleRec((Rectangle){panel.x + 2, panel.y + 2,
+                                 panel.width - 4, 30},
+                     (Color){64, 48, 31, 245});
+    draw_centered_text(ui, "Bank", (Rectangle){panel.x, panel.y + 6,
+                                               panel.width, 18},
+                       14, OSRS_YELLOW);
+
+    Rectangle close = bank_close_rect(panel);
+    DrawRectangleRec(close, (Color){78, 56, 34, 245});
+    DrawRectangleLinesEx(close, 1.0f, (Color){170, 130, 76, 255});
+    draw_centered_text(ui, "Close", close, 12, OSRS_ORANGE);
+
+    for (int i = 0; i < RUNEC_UI_BANK_TAB_COUNT; i++) {
+        Rectangle r = bank_tab_rect(panel, i);
+        Color fill = i == ui->bank_active_tab
+            ? (Color){92, 67, 39, 255}
+            : (Color){49, 38, 26, 245};
+        DrawRectangleRec(r, fill);
+        DrawRectangleLinesEx(r, 1.0f, (Color){150, 112, 61, 255});
+        draw_centered_text(ui, ui->bank_tab_labels[i], r, 11,
+                           i == ui->bank_active_tab ? OSRS_YELLOW : OSRS_ORANGE);
+    }
+
+    for (int i = 0; i < RUNEC_UI_BANK_VISIBLE_SLOTS; i++) {
+        Rectangle r = bank_slot_rect(panel, i);
+        DrawRectangleRec(r, (Color){13, 11, 9, 150});
+        DrawRectangleLinesEx(r, 1.0f, (Color){74, 60, 41, 255});
+        int slot = bank_slot_for_visible_index(ui, ui->bank_scroll + i);
+        if (slot < 0)
+            continue;
+        if (!ui->bank[slot].enabled)
+            continue;
+        draw_inventory_item(ui, &ui->bank[slot], r);
+        if (ui->bank[slot].quantity > 1) {
+            char q[16];
+            format_stack_quantity(ui->bank[slot].quantity, q, sizeof(q));
+            draw_text_shadow(ui, q, r.x + 1, r.y - 1, 10,
+                             stack_text_color(ui->bank[slot].quantity));
+        }
+    }
+
+    int scroll_max = bank_scroll_max(ui);
+    if (scroll_max > 0) {
+        Rectangle track = {panel.x + panel.width - 15.0f, panel.y + 70.0f,
+                           5.0f, panel.height - 84.0f};
+        DrawRectangleRec(track, (Color){14, 11, 8, 220});
+        float frac = (float)ui->bank_scroll / (float)scroll_max;
+        int tab_count = bank_tab_item_count(ui);
+        if (tab_count < RUNEC_UI_BANK_VISIBLE_SLOTS)
+            tab_count = RUNEC_UI_BANK_VISIBLE_SLOTS;
+        float thumb_h = track.height *
+            ((float)RUNEC_UI_BANK_VISIBLE_SLOTS / (float)tab_count);
+        if (thumb_h < 24.0f) thumb_h = 24.0f;
+        Rectangle thumb = {track.x, track.y + frac * (track.height - thumb_h),
+                           track.width, thumb_h};
+        DrawRectangleRec(thumb, (Color){166, 127, 69, 255});
     }
 }
 
@@ -3383,6 +3766,68 @@ static void draw_placeholder_tab(const RuneCUiState *ui, const RuneCUiLayout *la
                        12, OSRS_ORANGE);
 }
 
+static void draw_clan_validation_tab(const RuneCUiState *ui,
+                                     const RuneCUiLayout *layout) {
+    Vector2 mouse = GetMousePosition();
+    draw_centered_text(ui, "Validation", (Rectangle){layout->side_content.x,
+                                                     layout->side_content.y + 10,
+                                                     190, 18},
+                       14, OSRS_YELLOW);
+    draw_text_shadow(ui, "Scene level", layout->side_content.x + 8.0f,
+                     layout->side_content.y + 24.0f, 12, OSRS_ORANGE);
+
+    Rectangle follow = side_clan_plane_follow_rect(layout);
+    Color follow_fill = !ui->scene_plane_override_active
+        ? (Color){92, 70, 38, 245}
+        : (CheckCollisionPointRec(mouse, follow)
+           ? (Color){72, 62, 47, 240}
+           : (Color){42, 34, 25, 230});
+    DrawRectangleRec(follow, follow_fill);
+    DrawRectangleLinesEx(follow, 1.0f, (Color){155, 122, 66, 255});
+    draw_centered_text(ui, "Follow", follow, 12,
+                       !ui->scene_plane_override_active
+                       ? OSRS_YELLOW : OSRS_ORANGE);
+
+    for (int plane = 0; plane < RUNEC_UI_SCENE_PLANE_COUNT; plane++) {
+        Rectangle r = side_clan_plane_button_rect(layout, plane);
+        int active = ui->scene_plane_override_active
+                  && ui->scene_plane == plane;
+        Color fill = active
+            ? (Color){92, 70, 38, 245}
+            : (CheckCollisionPointRec(mouse, r)
+               ? (Color){72, 62, 47, 240}
+               : (Color){42, 34, 25, 230});
+        DrawRectangleRec(r, fill);
+        DrawRectangleLinesEx(r, 1.0f, (Color){155, 122, 66, 255});
+        char label[4];
+        snprintf(label, sizeof(label), "%d", plane);
+        draw_centered_text(ui, label, r, 12,
+                           active ? OSRS_YELLOW : OSRS_ORANGE);
+    }
+
+    char plane_label[48];
+    snprintf(plane_label, sizeof(plane_label), "View %d  Player %d",
+             ui->scene_plane, ui->player_plane);
+    draw_centered_text(ui, plane_label,
+                       (Rectangle){layout->side_content.x + 8.0f,
+                                   layout->side_content.y + 64.0f,
+                                   174.0f, 18.0f},
+                       12, OSRS_ORANGE);
+
+    draw_text_shadow(ui, "Teleports", layout->side_content.x + 8.0f,
+                     layout->side_content.y + 86.0f, 12, OSRS_ORANGE);
+    for (int i = 0; i < ui->dev_transport_count; i++) {
+        Rectangle r = side_clan_dev_transport_rect(layout, i);
+        Color fill = CheckCollisionPointRec(mouse, r)
+            ? (Color){72, 62, 47, 240}
+            : (Color){42, 34, 25, 230};
+        DrawRectangleRec(r, fill);
+        DrawRectangleLinesEx(r, 1.0f, (Color){155, 122, 66, 255});
+        draw_centered_text(ui, ui->dev_transport_labels[i], r, 12,
+                           OSRS_ORANGE);
+    }
+}
+
 static void draw_decoded_dynamic_tab_overlay(const RuneCUiState *ui,
                                              const RuneCUiLayout *layout) {
     switch (ui->active_tab) {
@@ -3401,6 +3846,9 @@ static void draw_decoded_dynamic_tab_overlay(const RuneCUiState *ui,
         break;
     case RUNEC_UI_TAB_COMBAT:
         draw_combat(ui, layout);
+        break;
+    case RUNEC_UI_TAB_CLAN:
+        draw_clan_validation_tab(ui, layout);
         break;
     default:
         break;
@@ -3450,6 +3898,9 @@ static void draw_side(RuneCUiState *ui, const RuneCUiLayout *layout) {
         break;
     case RUNEC_UI_TAB_SETTINGS:
         draw_placeholder_tab(ui, layout, "Settings", "Viewer options surface.");
+        break;
+    case RUNEC_UI_TAB_CLAN:
+        draw_clan_validation_tab(ui, layout);
         break;
     default:
         break;
@@ -3561,6 +4012,7 @@ void runec_ui_draw(RuneCUiState *ui, int screen_w, int screen_h) {
     draw_chat(ui, &layout);
     draw_side(ui, &layout);
     draw_open_overlay_interfaces(ui, &layout, screen_w, screen_h);
+    draw_bank(ui, screen_w, screen_h, &layout);
     draw_selected_target(ui);
     draw_context(ui);
 }

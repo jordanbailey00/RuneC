@@ -426,6 +426,20 @@ static int requirements_met(const RcPlayer *player, const RcItemDef *def) {
     return 1;
 }
 
+static int item_has_player_wear_model(const RcItemDef *def) {
+    if (!def) return 0;
+    for (int i = 0; i < 3; i++) {
+        if (def->male_model_ids[i] >= 0 || def->female_model_ids[i] >= 0)
+            return 1;
+    }
+    return 0;
+}
+
+static int item_player_equippable(const RcItemDef *def) {
+    return def && def->equippable && valid_equip_slot(def->equip_slot)
+        && (def->equipable_by_player || item_has_player_wear_model(def));
+}
+
 static int item_two_handed(const RcItemDef *def) {
     if (!def || def->equip_slot != EQUIP_WEAPON) return 0;
     return def->weapon_type == 1   /* 2h_sword */
@@ -476,9 +490,7 @@ void rc_player_equip(RcWorld *world, int inv_slot) {
     RcInvSlot item = player->inventory[inv_slot];
     if (item.item_id < 0 || item.quantity <= 0) return;
     const RcItemDef *def = rc_item_def_get(item.item_id);
-    if (!def || !def->equippable || !def->equipable_by_player
-            || !valid_equip_slot(def->equip_slot)
-            || !requirements_met(player, def)) {
+    if (!item_player_equippable(def) || !requirements_met(player, def)) {
         return;
     }
 

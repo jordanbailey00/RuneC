@@ -78,8 +78,8 @@ int rc_load_combat_visuals(const char *path) {
     while (fgets(line, sizeof(line), f)) {
         char *s = trim(line);
         if (!s[0] || s[0] == '#') continue;
-        char *parts[20] = {0};
-        int n = split_pipe(s, parts, 20);
+        char *parts[33] = {0};
+        int n = split_pipe(s, parts, 33);
         if (n < 11) continue;
         if (strcmp(parts[0], "kind") == 0) continue;
         if (g_rc_combat_visual_count >= RC_MAX_COMBAT_VISUAL_DEFS) break;
@@ -102,6 +102,7 @@ int rc_load_combat_visuals(const char *path) {
         def->style = parse_style(parts[2]);
         def->attack_anim_id = parse_int_field(parts[3]);
         def->launch_spotanim_id = parse_int_field(parts[4]);
+        def->double_launch_spotanim_id = -1;
         def->travel_spotanim_id = parse_int_field(parts[5]);
         def->impact_spotanim_id = parse_int_field(parts[6]);
         def->projectile_model_id = parse_int_field(parts[7]);
@@ -117,6 +118,32 @@ int rc_load_combat_visuals(const char *path) {
         def->projectile_progress = n > 16 ? parse_int_field(parts[16]) : -1;
         def->projectile_step_multiplier = n > 17
                                         ? parse_int_field(parts[17]) : -1;
+        def->projectile_count = n > 19 ? parse_int_field(parts[19]) : 1;
+        if (def->projectile_count < 1) def->projectile_count = 1;
+        if (def->projectile_count > 4) def->projectile_count = 4;
+        def->alt_projectile_start_height =
+            n > 20 ? parse_int_field(parts[20]) : -1;
+        def->alt_projectile_end_height =
+            n > 21 ? parse_int_field(parts[21]) : -1;
+        def->alt_projectile_delay = n > 22 ? parse_int_field(parts[22]) : -1;
+        def->alt_projectile_angle = n > 23 ? parse_int_field(parts[23]) : -1;
+        def->alt_projectile_length_adjustment =
+            n > 24 ? parse_int_field(parts[24]) : -1;
+        def->alt_projectile_progress =
+            n > 25 ? parse_int_field(parts[25]) : -1;
+        def->alt_projectile_step_multiplier =
+            n > 26 ? parse_int_field(parts[26]) : -1;
+        def->aux_travel_spotanim_id =
+            n > 27 ? parse_int_field(parts[27]) : -1;
+        def->aux_impact_spotanim_id =
+            n > 28 ? parse_int_field(parts[28]) : -1;
+        def->aux_projectile_model_id =
+            n > 29 ? parse_int_field(parts[29]) : -1;
+        def->aux_projectile_anim_id =
+            n > 30 ? parse_int_field(parts[30]) : -1;
+        def->impact_on_last_only = n > 31 ? parse_int_field(parts[31]) : 0;
+        def->double_launch_spotanim_id =
+            n > 32 ? parse_int_field(parts[32]) : -1;
         g_rc_combat_visual_count++;
     }
 

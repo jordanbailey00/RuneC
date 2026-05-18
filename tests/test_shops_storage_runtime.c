@@ -6,6 +6,7 @@
 #include "api.h"
 #include "config.h"
 #include "items.h"
+#include "npc.h"
 #include "objects.h"
 #include "shops.h"
 #include "storage.h"
@@ -99,12 +100,22 @@ int main(void) {
     assert(world->player.inventory[0].item_id == -1);
     assert(world->player.bank[0].item_id == 1351);
     assert(world->player.bank[0].quantity == 1);
+    assert(world->player.bank_tab[0] == 0);
     assert(rc_bank_withdraw_slot(world, 0, 1) == 1);
     assert(world->player.bank[0].item_id == -1);
+    assert(world->player.bank_tab[0] == 0);
     world->player.bank[5].item_id = 995;
     world->player.bank[5].quantity = 10;
     assert(rc_bank_withdraw_slot(world, 5, 4) == 4);
     assert(world->player.bank[5].quantity == 6);
+    int tab_slot = rc_bank_add_item_tab(world, 995, 10, 1);
+    assert(tab_slot >= 0);
+    assert(world->player.bank_tab[tab_slot] == 1);
+    assert(rc_bank_add_item_tab(world, 995, 5, 1) == tab_slot);
+    assert(world->player.bank[tab_slot].quantity == 15);
+    int other_tab_slot = rc_bank_add_item_tab(world, 995, 7, 2);
+    assert(other_tab_slot >= 0 && other_tab_slot != tab_slot);
+    assert(world->player.bank_tab[other_tab_slot] == 2);
 
     rc_player_interact_object(world, 10529, 0);
     assert(world->player.storage_kind == RC_STORAGE_DEPOSIT_BOX);
@@ -115,7 +126,35 @@ int main(void) {
     assert(world->player.inventory[1].item_id == -1);
     assert(rc_bank_deposit_slot(world, 2, 0) == 1);
     assert(world->player.inventory[2].item_id == -1);
-    assert(world->player.bank[0].quantity == 3);
+    int axe_bank_slot = -1;
+    for (int i = 0; i < RC_BANK_SIZE; i++) {
+        if (world->player.bank[i].item_id == 1351) {
+            axe_bank_slot = i;
+            break;
+        }
+    }
+    assert(axe_bank_slot >= 0);
+    assert(world->player.bank[axe_bank_slot].quantity == 3);
+    assert(rc_bank_add_item(world, 4151, 1) >= 0);
+    assert(rc_player_close_storage(world) == 1);
+    assert(world->player.storage_kind == RC_STORAGE_NONE);
+
+    int def_idx = g_npc_def_count++;
+    assert(def_idx < RC_MAX_NPC_DEFS);
+    memset(&g_npc_defs[def_idx], 0, sizeof(g_npc_defs[def_idx]));
+    g_npc_defs[def_idx].id = 990001;
+    strcpy(g_npc_defs[def_idx].name, "Storage Banker");
+    g_npc_defs[def_idx].size = 1;
+    strcpy(g_npc_defs[def_idx].options[1], "Bank");
+    assert(rc_storage_kind_for_npc(&g_npc_defs[def_idx], 1)
+           == RC_STORAGE_BANK);
+    int npc_idx = rc_npc_spawn(world, def_idx, world->player.x + 1,
+                               world->player.y, world->player.plane);
+    assert(npc_idx >= 0);
+    rc_player_interact_npc(world, world->npcs[npc_idx].uid, 1);
+    rc_world_tick(world);
+    assert(world->player.storage_kind == RC_STORAGE_BANK);
+    assert(world->player.storage_target == world->npcs[npc_idx].uid);
     rc_world_destroy(world);
 
     RcWorldConfig base_cfg = rc_preset_base_only();

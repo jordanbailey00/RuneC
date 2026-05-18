@@ -9,6 +9,7 @@
 #include "../rc-core/pathfinding.h"
 #include "../rc-core/npc.h"
 #include "../rc-core/spells.h"
+#include "../rc-core/storage.h"
 #include "../rc-content/content.h"
 #include "raylib.h"
 #include "raymath.h"
@@ -21,6 +22,7 @@
 #include "ui.h"
 #include "equipment_render.h"
 #include "spotanims.h"
+#include "dev_validation.h"
 #include <math.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -31,8 +33,8 @@
 
 #define DEFAULT_WORLD_ORIGIN_X 3072
 #define DEFAULT_WORLD_ORIGIN_Y 3264
-#define DEFAULT_PLAYER_START_X 3213
-#define DEFAULT_PLAYER_START_Y 3428
+#define DEFAULT_PLAYER_START_X RUNEC_DEV_VARROCK_BANK_X
+#define DEFAULT_PLAYER_START_Y RUNEC_DEV_VARROCK_BANK_Y
 #define DEFAULT_WORLD_W 320
 #define DEFAULT_WORLD_H 320
 #define WINDOW_W 1280
@@ -47,6 +49,11 @@
 #define VIEWER_CONTEXT_WALK_HERE -10
 #define VIEWER_CONTEXT_EXAMINE -11
 #define VIEWER_CONTEXT_CANCEL -12
+#define VIEWER_HOVER_NONE 0
+#define VIEWER_HOVER_NPC 1
+#define VIEWER_HOVER_OBJECT 2
+#define VIEWER_HOVER_GROUND_ITEM 3
+#define VIEWER_HOVER_TILE 4
 #define RUNEC_ITEM_STACK_VARIANT_MAX 4096
 #define MODEL_ID_SPOTANIM_BASE 0xA2000000u
 #define OBJECT_PICK_TILE_RADIUS 1
@@ -59,12 +66,19 @@ typedef struct {
 } ViewerPickedObject;
 
 typedef struct {
-    const char *key;
-    const char *label;
-    int target_x, target_y, plane;
-    int npc_id;
-    int npc_size;
-} ViewerDevTransport;
+    int kind;
+    int npc_uid;
+    ViewerPickedObject object;
+    int ground_item_idx;
+    int tile_x;
+    int tile_y;
+    int option;
+    float score;
+    char action_text[128];
+} ViewerHoverTarget;
+
+static const char *object_action_label(const ViewerPickedObject *object,
+                                       const RcObjectDef *def, int opt);
 
 // Player animation sequence IDs (from FC — xbows_human variants)
 #define ANIM_IDLE 808
@@ -304,80 +318,6 @@ static int companion_path(char *out, size_t cap, const char *base,
     size_t stem_len = dot ? (size_t)(dot - base) : strlen(base);
     int n = snprintf(out, cap, "%.*s%s", (int)stem_len, base, suffix);
     return n > 0 && (size_t)n < cap;
-}
-
-static Rectangle scene_plane_up_button_rect(void) {
-    return (Rectangle){14.0f, 88.0f, 32.0f, 26.0f};
-}
-
-static Rectangle scene_plane_down_button_rect(void) {
-    return (Rectangle){14.0f, 146.0f, 32.0f, 26.0f};
-}
-
-static Rectangle scene_plane_reset_button_rect(void) {
-    return (Rectangle){14.0f, 116.0f, 32.0f, 28.0f};
-}
-
-static void draw_triangle_button_icon(Rectangle r, int up, Color color) {
-    float cx = r.x + r.width * 0.5f;
-    float cy = r.y + r.height * 0.5f;
-    if (up) {
-        DrawTriangle((Vector2){cx, cy - 6.0f},
-                     (Vector2){cx - 7.0f, cy + 5.0f},
-                     (Vector2){cx + 7.0f, cy + 5.0f}, color);
-    } else {
-        DrawTriangle((Vector2){cx, cy + 6.0f},
-                     (Vector2){cx + 7.0f, cy - 5.0f},
-                     (Vector2){cx - 7.0f, cy - 5.0f}, color);
-    }
-}
-
-static void draw_scene_plane_controls(ViewerState *v) {
-    if (!v || !v->world) return;
-    Rectangle up = scene_plane_up_button_rect();
-    Rectangle reset = scene_plane_reset_button_rect();
-    Rectangle down = scene_plane_down_button_rect();
-    Vector2 mouse = GetMousePosition();
-    Color bg = (Color){20, 22, 24, 210};
-    Color hover = (Color){64, 70, 76, 235};
-    Color border = (Color){170, 145, 82, 245};
-    Color icon = (Color){240, 225, 180, 255};
-
-    DrawRectangleRounded((Rectangle){10.0f, 84.0f, 40.0f, 92.0f}, 0.12f, 6,
-                         (Color){12, 14, 16, 175});
-    Rectangle buttons[3] = {up, reset, down};
-    for (int i = 0; i < 3; i++) {
-        Color fill = CheckCollisionPointRec(mouse, buttons[i]) ? hover : bg;
-        DrawRectangleRounded(buttons[i], 0.12f, 6, fill);
-        DrawRectangleRoundedLines(buttons[i], 0.12f, 6, border);
-    }
-    draw_triangle_button_icon(up, 1, icon);
-    draw_triangle_button_icon(down, 0, icon);
-
-    char label[8];
-    snprintf(label, sizeof(label), "P%d", viewer_scene_plane(v));
-    int text_w = MeasureText(label, 14);
-    DrawText(label, (int)(reset.x + (reset.width - (float)text_w) * 0.5f),
-             (int)(reset.y + 7.0f), 14, icon);
-}
-
-static int handle_scene_plane_buttons(ViewerState *v) {
-    if (!v || !v->world || !IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-        return 0;
-    Vector2 mouse = GetMousePosition();
-    if (CheckCollisionPointRec(mouse, scene_plane_up_button_rect())) {
-        viewer_set_scene_plane_delta(v, 1);
-        return 1;
-    }
-    if (CheckCollisionPointRec(mouse, scene_plane_down_button_rect())) {
-        viewer_set_scene_plane_delta(v, -1);
-        return 1;
-    }
-    if (CheckCollisionPointRec(mouse, scene_plane_reset_button_rect())) {
-        v->scene_plane_override = -1;
-        return 1;
-    }
-    return 0;
 }
 
 static void load_terrain_plane_assets(ViewerState *v, const char *base_path) {
@@ -1178,41 +1118,28 @@ static void ensure_active_scene_plane(ViewerState *v, int plane) {
         build_minimap_tiles(v);
 }
 
-// Temporary combat-validation transports. Coordinates come from local
-// OSRS/VoidPS spawn-area data; boss NPC ids come from the b237 symbol dump.
-static const ViewerDevTransport g_dev_transports[] = {
-    {"varrock",  "Varrock",   DEFAULT_PLAYER_START_X, DEFAULT_PLAYER_START_Y, 0,   -1, 1},
-    {"graardor", "Graardor",  2872, 5358, 2, 2215, 4},
-    {"kbd",      "KBD",       2269, 4697, 0,  239, 5},
-    {"vorkath",  "Vorkath",   2269, 4062, 0, 8061, 7},
-    {"jad",      "Jad",       2400, 5088, 0, 3127, 5},
-};
-
-static int dev_transport_enabled(void) {
-    return env_bool("RUNEC_DEV_TRANSPORT_PANEL", 1);
+static void viewer_sync_dev_transport_labels(RuneCUiState *ui) {
+    const char *labels[RUNEC_UI_DEV_TRANSPORT_MAX] = {0};
+    int count = 0;
+    const RuneCDevTransport *transports =
+        runec_dev_validation_transports(&count);
+    if (count > RUNEC_UI_DEV_TRANSPORT_MAX)
+        count = RUNEC_UI_DEV_TRANSPORT_MAX;
+    for (int i = 0; i < count; i++)
+        labels[i] = transports[i].label;
+    runec_ui_set_dev_transport_options(ui, labels, count);
 }
 
-static int dev_transport_count(void) {
-    return (int)(sizeof(g_dev_transports) / sizeof(g_dev_transports[0]));
-}
-
-static Rectangle dev_transport_button_rect(int idx) {
-    return (Rectangle){56.0f, 108.0f + (float)idx * 25.0f, 118.0f, 22.0f};
-}
-
-static const ViewerDevTransport *find_dev_transport(const char *key) {
-    if (!key || !key[0])
-        return NULL;
-    for (int i = 0; i < dev_transport_count(); i++) {
-        const ViewerDevTransport *d = &g_dev_transports[i];
-        if (strcmp(key, d->key) == 0 || strcmp(key, d->label) == 0)
-            return d;
-    }
-    return NULL;
+static void viewer_sync_scene_plane_ui(ViewerState *v) {
+    if (!v || !v->world)
+        return;
+    runec_ui_set_scene_plane_state(&v->ui, viewer_scene_plane(v),
+                                   v->world->player.plane,
+                                   v->scene_plane_override >= 0);
 }
 
 static int viewer_focus_npc_idx(ViewerState *v,
-                                const ViewerDevTransport *d) {
+                                const RuneCDevTransport *d) {
     if (!v || !v->world || !d || d->npc_id < 0)
         return -1;
     return rc_world_find_npc_near(v->world, d->npc_id, d->target_x,
@@ -1220,7 +1147,7 @@ static int viewer_focus_npc_idx(ViewerState *v,
 }
 
 static int viewer_ensure_focus_npc(ViewerState *v,
-                                   const ViewerDevTransport *d) {
+                                   const RuneCDevTransport *d) {
     if (!v || !v->world || !d || d->npc_id < 0)
         return 0;
     RcNpcEnsureResult result;
@@ -1242,7 +1169,7 @@ static int viewer_ensure_focus_npc(ViewerState *v,
 }
 
 static void viewer_start_dev_boss_combat(ViewerState *v,
-                                         const ViewerDevTransport *d) {
+                                         const RuneCDevTransport *d) {
     if (!v || !v->world || !d || d->npc_id < 0 ||
             !env_bool("RUNEC_DEV_BOSS_ATTACKS", 1)) {
         return;
@@ -1291,7 +1218,7 @@ static void viewer_clear_player_activity(ViewerState *v) {
 }
 
 static int viewer_dev_tile_safe(const ViewerState *v, int x, int y,
-                                int plane, const ViewerDevTransport *d) {
+                                int plane, const RuneCDevTransport *d) {
     if (!v || !v->world || !d || rc_tile_blocked(&v->world->map, x, y, plane))
         return 0;
     if (d->npc_id < 0)
@@ -1303,7 +1230,7 @@ static int viewer_dev_tile_safe(const ViewerState *v, int x, int y,
 }
 
 static void viewer_dev_player_tile(const ViewerState *v,
-                                   const ViewerDevTransport *d,
+                                   const RuneCDevTransport *d,
                                    int *out_x, int *out_y) {
     int size = d->npc_size > 0 ? d->npc_size : 1;
     int desired_x = d->target_x;
@@ -1342,7 +1269,7 @@ static void viewer_dev_player_tile(const ViewerState *v,
 }
 
 static void viewer_dev_transport_to(ViewerState *v,
-                                    const ViewerDevTransport *d) {
+                                    const RuneCDevTransport *d) {
     if (!v || !v->world || !d)
         return;
     RcPlayer *p = &v->world->player;
@@ -1374,51 +1301,16 @@ static void viewer_dev_transport_to(ViewerState *v,
     v->scene_plane_override = -1;
 
     ensure_active_scene_plane(v, p->plane);
+    if (strcmp(d->key, "varrock") == 0)
+        runec_dev_validation_spawn_varrock_bank_dummy(v->world);
     if (viewer_ensure_focus_npc(v, d))
+        reload_npc_models_for_scene(v);
+    else if (strcmp(d->key, "varrock") == 0)
         reload_npc_models_for_scene(v);
     viewer_start_dev_boss_combat(v, d);
     fprintf(stderr, "dev transport: %s -> player %d,%d,%d target %d,%d,%d\n",
             d->label, p->x, p->y, p->plane,
             d->target_x, d->target_y, d->plane);
-}
-
-static void draw_dev_transport_controls(ViewerState *v) {
-    if (!v || !v->world || !dev_transport_enabled())
-        return;
-    Vector2 mouse = GetMousePosition();
-    Color panel = (Color){12, 14, 16, 175};
-    Color bg = (Color){20, 22, 24, 220};
-    Color hover = (Color){64, 70, 76, 240};
-    Color border = (Color){170, 145, 82, 245};
-    Color text = (Color){240, 225, 180, 255};
-    int count = dev_transport_count();
-    DrawRectangleRounded((Rectangle){52.0f, 84.0f, 126.0f,
-                                     30.0f + (float)count * 25.0f},
-                         0.08f, 6, panel);
-    DrawText("DEV BOSS", 62, 91, 12, text);
-    for (int i = 0; i < count; i++) {
-        Rectangle r = dev_transport_button_rect(i);
-        Color fill = CheckCollisionPointRec(mouse, r) ? hover : bg;
-        DrawRectangleRounded(r, 0.10f, 6, fill);
-        DrawRectangleRoundedLines(r, 0.10f, 6, border);
-        DrawText(g_dev_transports[i].label, (int)r.x + 8, (int)r.y + 5,
-                 12, text);
-    }
-}
-
-static int handle_dev_transport_buttons(ViewerState *v) {
-    if (!v || !v->world || !dev_transport_enabled()
-            || !IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        return 0;
-    }
-    Vector2 mouse = GetMousePosition();
-    for (int i = 0; i < dev_transport_count(); i++) {
-        if (CheckCollisionPointRec(mouse, dev_transport_button_rect(i))) {
-            viewer_dev_transport_to(v, &g_dev_transports[i]);
-            return 1;
-        }
-    }
-    return 0;
 }
 
 static Color minimap_tile_color(const ViewerState *v, int wx, int wy) {
@@ -1574,6 +1466,7 @@ static void sync_ui_slot(const ViewerState *v, RuneCUiSlot *dst, const RcInvSlot
             dst->quantity = 0;
             dst->label[0] = '\0';
             dst->enabled = 0;
+            dst->category = 0;
         }
         return;
     }
@@ -1611,6 +1504,18 @@ static void sync_ui_items(ViewerState *v) {
     if (v->ui.selected_equipment_slot >= 0
             && !v->ui.equipment[v->ui.selected_equipment_slot].enabled) {
         v->ui.selected_equipment_slot = -1;
+    }
+
+    v->ui.bank_open = p->storage_kind == RC_STORAGE_BANK ||
+                      p->storage_kind == RC_STORAGE_CONTAINER;
+    v->ui.bank_kind = p->storage_kind;
+    if (v->ui.bank_open && v->ui.active_tab != RUNEC_UI_TAB_INVENTORY)
+        runec_ui_set_active_tab(&v->ui, RUNEC_UI_TAB_INVENTORY);
+    if (!v->ui.bank_open)
+        v->ui.bank_scroll = 0;
+    for (int i = 0; i < RUNEC_UI_BANK_SLOT_COUNT; i++) {
+        sync_ui_slot(v, &v->ui.bank[i], &p->bank[i]);
+        v->ui.bank[i].category = p->bank_tab[i];
     }
 }
 
@@ -1667,50 +1572,6 @@ static void sync_ui_player_status(ViewerState *v) {
     v->ui.skill_total = total_level;
 }
 
-static void seed_viewer_inventory(RcWorld *world) {
-    typedef struct {
-        int item_id;
-        int quantity;
-    } SeedItem;
-    static const SeedItem items[] = {
-        {6570, 1},     // Fire cape
-        {21295, 1},    // Infernal cape
-        {4151, 1},     // Abyssal whip
-        {11802, 1},    // Armadyl godsword
-        {11832, 1},    // Saradomin godsword
-        {11834, 1},    // Bandos godsword
-        {861, 1},      // Magic shortbow
-        {892, 10000},  // Rune arrows
-        {1381, 1},     // Staff of fire
-        {995, 10000000},
-        {556, 100000}, // Air rune
-        {555, 100000}, // Water rune
-        {557, 100000}, // Earth rune
-        {554, 100000}, // Fire rune
-        {558, 100000}, // Mind rune
-        {559, 100000}, // Body rune
-        {564, 100000}, // Cosmic rune
-        {562, 100000}, // Chaos rune
-        {561, 100000}, // Nature rune
-        {563, 100000}, // Law rune
-        {560, 100000}, // Death rune
-        {565, 100000}, // Blood rune
-        {566, 100000}, // Soul rune
-        {21880, 100000}, // Wrath rune
-        {10350, 1},    // 3rd age full helmet
-        {10348, 1},    // 3rd age platebody
-        {10346, 1},    // 3rd age platelegs
-        {10352, 1},    // 3rd age kiteshield
-    };
-    for (int i = 0; i < (int)(sizeof(items) / sizeof(items[0])); i++)
-        rc_inv_add(world->player.inventory, items[i].item_id, items[i].quantity);
-    int fire_blast = rc_spell_find("Fire Blast");
-    if (fire_blast >= 0)
-        world->player.selected_spell = fire_blast;
-    rc_recalc_bonuses(&world->player);
-    rc_refresh_player_combat_style(&world->player);
-}
-
 static void set_viewer_demo_stats(RcPlayer *p) {
     for (int i = 0; i < SKILL_COUNT; i++) {
         p->skills.base_level[i] = 99;
@@ -1755,7 +1616,38 @@ static float npc_pick_height(int size) {
     return 1.9f + 0.45f * (float)(size - 1);
 }
 
-static int pick_npc_at_mouse(ViewerState *v) {
+static int npc_default_left_click_option(const RcNpcDef *def) {
+    if (!def)
+        return -1;
+    int attack_opt = -1;
+    int first_opt = -1;
+    for (int opt = 0; opt < RC_NPC_OPTION_COUNT; opt++) {
+        const char *option = rc_npc_def_option(def, opt);
+        if (!option || !option[0])
+            continue;
+        if (first_opt < 0)
+            first_opt = opt;
+        if (rc_storage_kind_for_npc(def, opt) != RC_STORAGE_NONE)
+            return opt;
+        if (attack_opt < 0 && rc_npc_def_option_is_attack(def, opt))
+            attack_opt = opt;
+    }
+    return attack_opt >= 0 ? attack_opt : first_opt;
+}
+
+static float npc_pick_padding(const RcNpcDef *def) {
+    (void)def;
+    return 0.05f;
+}
+
+static float npc_pick_box_height(const RcNpcDef *def, int size) {
+    (void)def;
+    float height = npc_pick_height(size);
+    return height;
+}
+
+static int pick_npc_at_mouse_score(ViewerState *v, int *out_uid,
+                                   float *out_score) {
     int best_uid = -1;
     float best_distance = 1000000000.0f;
     int scene_plane = viewer_scene_plane(v);
@@ -1771,16 +1663,125 @@ static int pick_npc_at_mouse(ViewerState *v) {
         float npc_y = v->npc_render[i].initialized
                     ? v->npc_render[i].render_y : (float)n->y;
         float base_y = ground_yf_plane(v, scene_plane, npc_x, npc_y);
-        BoundingBox box = viewer_tile_box(npc_x, npc_y, (float)size,
-                                          (float)size, base_y,
-                                          npc_pick_height(size));
+        float pad = npc_pick_padding(def);
+        BoundingBox box = viewer_tile_box(npc_x - pad, npc_y - pad,
+                                          (float)size + pad * 2.0f,
+                                          (float)size + pad * 2.0f, base_y,
+                                          npc_pick_box_height(def, size));
         RayCollision hit = GetRayCollisionBox(ray, box);
         if (hit.hit && hit.distance < best_distance) {
             best_distance = hit.distance;
             best_uid = n->uid;
         }
     }
-    return best_uid;
+    if (best_uid < 0)
+        return 0;
+    if (out_uid)
+        *out_uid = best_uid;
+    if (out_score)
+        *out_score = best_distance;
+    return 1;
+}
+
+static int pick_npc_at_mouse(ViewerState *v) {
+    int uid = -1;
+    if (!pick_npc_at_mouse_score(v, &uid, NULL))
+        return -1;
+    return uid;
+}
+
+static const RcNpc *viewer_find_npc_const_by_uid(const ViewerState *v,
+                                                 int npc_uid) {
+    if (!v || !v->world)
+        return NULL;
+    for (int i = 0; i < v->world->npc_count; i++) {
+        const RcNpc *npc = &v->world->npcs[i];
+        if (npc->active && npc->uid == npc_uid)
+            return npc;
+    }
+    return NULL;
+}
+
+static const char *viewer_npc_name_by_uid(const ViewerState *v, int npc_uid) {
+    const RcNpc *npc = viewer_find_npc_const_by_uid(v, npc_uid);
+    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+        return "NPC";
+    const RcNpcDef *def = &g_npc_defs[npc->def_id];
+    return def->name[0] ? def->name : "NPC";
+}
+
+static int viewer_npc_default_option_by_uid(const ViewerState *v,
+                                            int npc_uid) {
+    const RcNpc *npc = viewer_find_npc_const_by_uid(v, npc_uid);
+    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+        return -1;
+    return npc_default_left_click_option(&g_npc_defs[npc->def_id]);
+}
+
+static const char *viewer_npc_option_label_by_uid(const ViewerState *v,
+                                                  int npc_uid, int option) {
+    const RcNpc *npc = viewer_find_npc_const_by_uid(v, npc_uid);
+    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+        return "";
+    return rc_npc_def_option(&g_npc_defs[npc->def_id], option);
+}
+
+static const char *viewer_ground_item_name(const ViewerState *v, int idx) {
+    if (!v || !v->world || idx < 0 || idx >= v->world->ground_item_count)
+        return "item";
+    const RcGroundItem *g = &v->world->ground_items[idx];
+    const RcItemDef *def = rc_item_def_get(g->item_id);
+    return def && def->name[0] ? def->name : "item";
+}
+
+static void viewer_selected_target_text(const ViewerState *v, const char *name,
+                                        char *dst, size_t dst_cap) {
+    if (!v || !dst || dst_cap == 0)
+        return;
+    const RuneCUiSelectedTarget *selected = &v->ui.selected_target;
+    snprintf(dst, dst_cap, "%s %.40s -> %.54s",
+             selected->verb[0] ? selected->verb : "Use",
+             selected->label, name && name[0] ? name : "target");
+}
+
+static void viewer_default_npc_text(const ViewerState *v, int npc_uid,
+                                    int option, char *dst, size_t dst_cap) {
+    const char *label = viewer_npc_option_label_by_uid(v, npc_uid, option);
+    const char *name = viewer_npc_name_by_uid(v, npc_uid);
+    if (!label || !label[0])
+        label = "Walk here";
+    snprintf(dst, dst_cap, "%s %.64s", label, name);
+}
+
+static void viewer_default_object_text(const ViewerPickedObject *object,
+                                       int option, char *dst, size_t dst_cap) {
+    const RcObjectDef *def = rc_object_def_get(object ? object->obj_id : -1);
+    const char *name = def && def->name[0] ? def->name : "object";
+    const char *label = object_action_label(object, def, option);
+    if (!label || !label[0])
+        label = "Walk here";
+    snprintf(dst, dst_cap, "%s %.64s", label, name);
+}
+
+static int pick_npc_candidate(ViewerState *v, ViewerHoverTarget *out) {
+    int uid = -1;
+    float score = 0.0f;
+    if (!pick_npc_at_mouse_score(v, &uid, &score))
+        return 0;
+    out->kind = VIEWER_HOVER_NPC;
+    out->npc_uid = uid;
+    out->ground_item_idx = -1;
+    out->option = viewer_npc_default_option_by_uid(v, uid);
+    out->score = score;
+    if (v->ui.selected_target.kind != RUNEC_UI_SELECTED_NONE) {
+        viewer_selected_target_text(v, viewer_npc_name_by_uid(v, uid),
+                                    out->action_text,
+                                    sizeof(out->action_text));
+    } else {
+        viewer_default_npc_text(v, uid, out->option, out->action_text,
+                                sizeof(out->action_text));
+    }
+    return 1;
 }
 
 static const RcTraversalEdge *viewer_object_traversal_edge(
@@ -1923,6 +1924,14 @@ static float object_pick_height(const RcObjectPlacement *placement,
     return 2.4f + 0.35f * (float)(max_dim - 1);
 }
 
+static float object_pick_padding(int obj_id, int option,
+                                 const RcObjectBehavior *behavior) {
+    (void)obj_id;
+    (void)option;
+    (void)behavior;
+    return 0.05f;
+}
+
 static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
                                  int tile_x, int tile_y, int has_tile,
                                  Ray ray, ViewerPickedObject *out,
@@ -1976,11 +1985,15 @@ static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
     int option = object_first_pick_option(candidate);
     if (!def || (option < 0 && !def->name[0]))
         return 0;
+    const RcObjectBehavior *behavior = rc_object_behavior_get(obj_id);
+    float pad = object_pick_padding(obj_id, option, behavior);
 
     float base_y = ground_yf_plane(v, scene_plane, (float)pick_row.x,
                                    (float)pick_row.y);
-    BoundingBox box = viewer_tile_box((float)pick_row.x, (float)pick_row.y,
-                                      (float)w, (float)l, base_y,
+    BoundingBox box = viewer_tile_box((float)pick_row.x - pad,
+                                      (float)pick_row.y - pad,
+                                      (float)w + pad * 2.0f,
+                                      (float)l + pad * 2.0f, base_y,
                                       object_pick_height(&pick_row, def, w, l));
     RayCollision hit = GetRayCollisionBox(ray, box);
     if (!contains && !hit.hit)
@@ -1991,15 +2004,19 @@ static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
         score -= 0.75f;
     if (option >= 0)
         score -= 0.25f;
-    const RcObjectBehavior *behavior = rc_object_behavior_get(obj_id);
     if (behavior && (behavior->flags & RC_OBJ_BEHAVIOR_TRANSPORT))
         score -= 0.25f;
+    if (option >= 0 && rc_storage_kind_for_object(obj_id, option) !=
+            RC_STORAGE_NONE) {
+        score -= 0.35f;
+    }
     *out = candidate;
     *out_score = score;
     return 1;
 }
 
 static int pick_object_from_regions(ViewerState *v, ViewerPickedObject *out,
+                                    float *out_score,
                                     int has_tile, int tile_x, int tile_y,
                                     int min_rx, int min_ry,
                                     int max_rx, int max_ry,
@@ -2039,10 +2056,13 @@ static int pick_object_from_regions(ViewerState *v, ViewerPickedObject *out,
     if (best_score >= 1000000000.0f)
         return 0;
     *out = best;
+    if (out_score)
+        *out_score = best_score;
     return 1;
 }
 
 static int pick_object_near_tile(ViewerState *v, ViewerPickedObject *out,
+                                 float *out_score,
                                  int tile_x, int tile_y) {
     int min_x = tile_x - OBJECT_PICK_TILE_RADIUS;
     int min_y = tile_y - OBJECT_PICK_TILE_RADIUS;
@@ -2052,36 +2072,106 @@ static int pick_object_near_tile(ViewerState *v, ViewerPickedObject *out,
     int min_ry = min_y >> 6;
     int max_rx = max_x >> 6;
     int max_ry = max_y >> 6;
-    return pick_object_from_regions(v, out, 1, tile_x, tile_y,
+    return pick_object_from_regions(v, out, out_score, 1, tile_x, tile_y,
                                     min_rx, min_ry, max_rx, max_ry,
                                     min_x, min_y, max_x, max_y);
 }
 
-static int pick_object_at_mouse(ViewerState *v, ViewerPickedObject *out) {
+static int pick_object_at_mouse_score(ViewerState *v, ViewerPickedObject *out,
+                                      float *out_score) {
     if (!v || !out)
         return 0;
     int tile_x = -1, tile_y = -1;
     int has_tile = raycast_tile(v, &tile_x, &tile_y);
     if (has_tile)
-        return pick_object_near_tile(v, out, tile_x, tile_y);
+        return pick_object_near_tile(v, out, out_score, tile_x, tile_y);
     int min_rx = g_world_origin_x >> 6;
     int min_ry = g_world_origin_y >> 6;
     int max_rx = (g_world_origin_x + g_world_w - 1) >> 6;
     int max_ry = (g_world_origin_y + g_world_h - 1) >> 6;
-    return pick_object_from_regions(v, out, has_tile, tile_x, tile_y,
+    return pick_object_from_regions(v, out, out_score, has_tile, tile_x, tile_y,
                                     min_rx, min_ry, max_rx, max_ry,
                                     g_world_origin_x, g_world_origin_y,
                                     g_world_origin_x + g_world_w - 1,
                                     g_world_origin_y + g_world_h - 1);
 }
 
-static int pick_object_at_mouse_tile(ViewerState *v, ViewerPickedObject *out) {
+static int pick_object_at_mouse(ViewerState *v, ViewerPickedObject *out) {
+    return pick_object_at_mouse_score(v, out, NULL);
+}
+
+static int pick_object_candidate(ViewerState *v, ViewerHoverTarget *out) {
+    ViewerPickedObject object;
+    float score = 0.0f;
+    if (!pick_object_at_mouse_score(v, &object, &score))
+        return 0;
+    out->kind = VIEWER_HOVER_OBJECT;
+    out->object = object;
+    out->npc_uid = -1;
+    out->ground_item_idx = -1;
+    out->option = object_first_action_option(object);
+    out->score = score;
+    const RcObjectDef *def = rc_object_def_get(object.obj_id);
+    const char *name = def && def->name[0] ? def->name : "object";
+    if (v->ui.selected_target.kind != RUNEC_UI_SELECTED_NONE) {
+        viewer_selected_target_text(v, name, out->action_text,
+                                    sizeof(out->action_text));
+    } else {
+        viewer_default_object_text(&object, out->option, out->action_text,
+                                   sizeof(out->action_text));
+    }
+    return 1;
+}
+
+static int resolve_scene_hover_target(ViewerState *v, ViewerHoverTarget *out) {
     if (!v || !out)
         return 0;
-    int tile_x = -1, tile_y = -1;
-    if (!raycast_tile(v, &tile_x, &tile_y))
+    memset(out, 0, sizeof(*out));
+    out->kind = VIEWER_HOVER_NONE;
+    out->npc_uid = -1;
+    out->ground_item_idx = -1;
+    out->option = -1;
+    out->score = 1000000000.0f;
+
+    ViewerHoverTarget npc = {0};
+    ViewerHoverTarget object = {0};
+    int have_npc = pick_npc_candidate(v, &npc);
+    int have_object = pick_object_candidate(v, &object);
+    if (have_npc && (!have_object || npc.score <= object.score)) {
+        *out = npc;
+        return 1;
+    }
+    if (have_object) {
+        *out = object;
+        return 1;
+    }
+
+    int tx = -1, ty = -1;
+    if (!raycast_tile(v, &tx, &ty))
         return 0;
-    return pick_object_near_tile(v, out, tile_x, tile_y);
+    int ground_idx = ground_item_at_tile(v, tx, ty);
+    if (ground_idx >= 0) {
+        out->kind = VIEWER_HOVER_GROUND_ITEM;
+        out->ground_item_idx = ground_idx;
+        out->tile_x = tx;
+        out->tile_y = ty;
+        if (v->ui.selected_target.kind != RUNEC_UI_SELECTED_NONE) {
+            viewer_selected_target_text(v, viewer_ground_item_name(v, ground_idx),
+                                        out->action_text,
+                                        sizeof(out->action_text));
+        } else if (v->world->player.x == tx && v->world->player.y == ty) {
+            snprintf(out->action_text, sizeof(out->action_text), "Take %.64s",
+                     viewer_ground_item_name(v, ground_idx));
+        } else {
+            snprintf(out->action_text, sizeof(out->action_text), "Walk here");
+        }
+        return 1;
+    }
+    out->kind = VIEWER_HOVER_TILE;
+    out->tile_x = tx;
+    out->tile_y = ty;
+    snprintf(out->action_text, sizeof(out->action_text), "Walk here");
+    return 1;
 }
 
 static RcNpc *viewer_find_npc_by_uid(ViewerState *v, int npc_uid) {
@@ -2093,6 +2183,20 @@ static RcNpc *viewer_find_npc_by_uid(ViewerState *v, int npc_uid) {
             return npc;
     }
     return NULL;
+}
+
+static void viewer_left_click_npc(ViewerState *v, int npc_uid) {
+    RcNpc *npc = viewer_find_npc_by_uid(v, npc_uid);
+    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+        return;
+    const RcNpcDef *def = &g_npc_defs[npc->def_id];
+    int opt = npc_default_left_click_option(def);
+    if (opt < 0)
+        return;
+    if (rc_npc_def_option_is_attack(def, opt))
+        rc_player_attack_npc(v->world, npc_uid);
+    else
+        rc_player_interact_npc(v->world, npc_uid, opt);
 }
 
 static void reset_viewer_context(ViewerState *v) {
@@ -2227,6 +2331,18 @@ static void handle_context_intent(ViewerState *v) {
         }
     }
     reset_viewer_context(v);
+}
+
+static void draw_hover_action_label(ViewerState *v, int ui_capture) {
+    if (!v || ui_capture || v->ui.context_open)
+        return;
+    ViewerHoverTarget hover;
+    if (!resolve_scene_hover_target(v, &hover) || !hover.action_text[0])
+        return;
+    Color shadow = (Color){0, 0, 0, 220};
+    Color text = (Color){255, 255, 0, 255};
+    DrawText(hover.action_text, 5, 6, 16, shadow);
+    DrawText(hover.action_text, 4, 5, 16, text);
 }
 
 static void pickup_current_tile(ViewerState *v) {
@@ -2392,8 +2508,8 @@ static void build_ui_icon_for_item(ViewerState *v, int item_id, int quantity) {
     }
 
     const char *model_icon_env = getenv("RUNEC_UI_MODEL_ITEM_ICONS");
-    int allow_model_fallback = model_icon_env && model_icon_env[0]
-        && strcmp(model_icon_env, "0") != 0;
+    int allow_model_fallback = !model_icon_env || !model_icon_env[0]
+        || strcmp(model_icon_env, "0") != 0;
     if (!allow_model_fallback)
         return;
 
@@ -2439,6 +2555,16 @@ static void build_ui_item_icons(ViewerState *v) {
         if (p->equipment[i].item_id >= 0 && p->equipment[i].quantity > 0)
             build_ui_icon_for_item(v, p->equipment[i].item_id,
                                    p->equipment[i].quantity);
+    }
+    if (p->storage_kind == RC_STORAGE_BANK ||
+            p->storage_kind == RC_STORAGE_CONTAINER) {
+        for (int i = 0; i < RUNEC_UI_BANK_SLOT_COUNT; i++) {
+            if (p->bank[i].item_id >= 0 && p->bank[i].quantity > 0
+                    && p->bank_tab[i] == v->ui.bank_active_tab) {
+                build_ui_icon_for_item(v, p->bank[i].item_id,
+                                       p->bank[i].quantity);
+            }
+        }
     }
     if (v->ui.item_icon_count != before_count)
         fprintf(stderr, "ui_icons: cached %d item icons\n", v->ui.item_icon_count);
@@ -3264,6 +3390,18 @@ static float projectile_yaw_degrees(float sx, float sz, float tx, float tz) {
     return atan2f(tx - sx, tz - sz) * (180.0f / 3.14159265f);
 }
 
+static void draw_oriented_projectile_model(Model model, Vector3 pos,
+                                           float yaw, float pitch,
+                                           Vector3 scale, Color tint) {
+    rlPushMatrix();
+    rlTranslatef(pos.x, pos.y, pos.z);
+    rlRotatef(yaw, 0.0f, 1.0f, 0.0f);
+    rlRotatef(pitch, 1.0f, 0.0f, 0.0f);
+    rlScalef(scale.x, scale.y, scale.z);
+    DrawModel(model, (Vector3){0.0f, 0.0f, 0.0f}, 1.0f, tint);
+    rlPopMatrix();
+}
+
 static int projectile_target_point(ViewerState *v,
                                    const RcCombatProjectile *proj,
                                    int scene_plane,
@@ -3330,6 +3468,7 @@ static Vector3 combat_projectile_position(ViewerState *v,
                                           const RcCombatProjectile *proj,
                                           int scene_plane,
                                           float *out_angle,
+                                          float *out_pitch,
                                           int *out_visible) {
     *out_visible = 0;
     float sx = (float)LOCAL_X(proj->source_x) + 0.5f;
@@ -3402,6 +3541,12 @@ static Vector3 combat_projectile_position(ViewerState *v,
     };
     if (out_angle) {
         *out_angle = projectile_yaw_degrees(sx, sz, tx, tz);
+    }
+    if (out_pitch) {
+        float vy = speed_y + accel_y * t;
+        *out_pitch = horizontal_speed > 1e-5f
+                   ? -atan2f(vy, horizontal_speed) * (180.0f / 3.14159265f)
+                   : 0.0f;
     }
     *out_visible = 1;
     return pos;
@@ -3546,9 +3691,10 @@ static void draw_combat_projectiles(ViewerState *v) {
         float client_time = ((float)proj->age_ticks + v->tick_frac) * 30.0f;
         draw_projectile_launch(v, proj, scene_plane, client_time);
         float angle = 0.0f;
+        float pitch = 0.0f;
         int visible = 0;
         Vector3 pos = combat_projectile_position(v, proj, scene_plane,
-                                                 &angle, &visible);
+                                                 &angle, &pitch, &visible);
         if (!visible) {
             draw_projectile_impact(v, proj, scene_plane, client_time,
                                    end_time);
@@ -3577,8 +3723,8 @@ static void draw_combat_projectiles(ViewerState *v) {
                                               anim_id, client_ticks)) {
                 reset_model_entry_to_base_pose(entry);
             }
-            DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, angle,
-                        scale, WHITE);
+            draw_oriented_projectile_model(entry->model, pos, angle, pitch,
+                                           scale, WHITE);
             continue;
         }
         float radius = proj->style == COMBAT_MAGIC ? 0.16f : 0.07f;
@@ -3888,20 +4034,15 @@ static void sync_ui_minimap(ViewerState *v) {
 static void handle_input(ViewerState *v, int ui_capture) {
     RcPlayer *p = &v->world->player;
 
-    if (handle_scene_plane_buttons(v))
-        return;
-    if (handle_dev_transport_buttons(v))
-        return;
-
     if (!ui_capture && IsMouseButtonPressed(MOUSE_BUTTON_MIDDLE)) {
-        int npc_uid = pick_npc_at_mouse(v);
-        if (npc_uid >= 0) {
-            open_npc_context_menu(v, npc_uid);
+        ViewerHoverTarget hover;
+        int have_hover = resolve_scene_hover_target(v, &hover);
+        if (have_hover && hover.kind == VIEWER_HOVER_NPC) {
+            open_npc_context_menu(v, hover.npc_uid);
             return;
         }
-        ViewerPickedObject object;
-        if (pick_object_at_mouse(v, &object)) {
-            open_object_context_menu(v, object);
+        if (have_hover && hover.kind == VIEWER_HOVER_OBJECT) {
+            open_object_context_menu(v, hover.object);
             return;
         }
         reset_viewer_context(v);
@@ -3943,74 +4084,72 @@ static void handle_input(ViewerState *v, int ui_capture) {
     if (!ui_capture && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)
             && !IsMouseButtonDown(MOUSE_BUTTON_RIGHT)
             && !IsMouseButtonDown(MOUSE_BUTTON_MIDDLE)) {
+        ViewerHoverTarget hover;
+        int have_hover = resolve_scene_hover_target(v, &hover);
         if (v->ui.selected_target.kind != RUNEC_UI_SELECTED_NONE) {
-            int npc_uid = pick_npc_at_mouse(v);
-            if (npc_uid >= 0) {
+            if (have_hover && hover.kind == VIEWER_HOVER_NPC) {
                 if (v->ui.selected_target.kind == RUNEC_UI_SELECTED_ITEM) {
                     rc_player_use_inventory_item_on_npc(
-                        v->world, v->ui.selected_target.source_slot, npc_uid);
+                        v->world, v->ui.selected_target.source_slot,
+                        hover.npc_uid);
                 } else {
                     int spell_id = selected_spell_id_for_viewer(v);
                     if (spell_id < 0)
                         spell_id = rc_spell_find(v->ui.selected_target.label);
                     if (spell_id >= 0)
-                        rc_player_cast_spell_on_npc(v->world, spell_id, npc_uid);
+                        rc_player_cast_spell_on_npc(v->world, spell_id,
+                                                    hover.npc_uid);
                 }
                 runec_ui_clear_selected_target(&v->ui);
                 return;
             }
-            ViewerPickedObject object;
-            if (pick_object_at_mouse_tile(v, &object)) {
+            if (have_hover && hover.kind == VIEWER_HOVER_OBJECT) {
                 if (v->ui.selected_target.kind == RUNEC_UI_SELECTED_ITEM) {
                     rc_player_use_inventory_item_on_object_placement(
                         v->world, v->ui.selected_target.source_slot,
-                        object.obj_id, object.x, object.y, object.plane,
-                        object.placement_key);
+                        hover.object.obj_id, hover.object.x, hover.object.y,
+                        hover.object.plane, hover.object.placement_key);
                 } else {
                     int spell_id = selected_spell_id_for_viewer(v);
                     if (spell_id < 0)
                         spell_id = rc_spell_find(v->ui.selected_target.label);
                     if (spell_id >= 0) {
                         rc_player_cast_spell_on_object_placement(
-                            v->world, spell_id, object.obj_id, object.x,
-                            object.y, object.plane, object.placement_key);
+                            v->world, spell_id, hover.object.obj_id,
+                            hover.object.x, hover.object.y, hover.object.plane,
+                            hover.object.placement_key);
                     }
                 }
                 runec_ui_clear_selected_target(&v->ui);
                 return;
             }
-            int tx, ty;
-            if (raycast_tile(v, &tx, &ty)) {
-                int ground_idx = ground_item_at_tile(v, tx, ty);
-                if (ground_idx >= 0) {
-                    if (v->ui.selected_target.kind == RUNEC_UI_SELECTED_ITEM) {
-                        rc_player_use_inventory_item_on_ground_item(
-                            v->world, v->ui.selected_target.source_slot,
-                            ground_idx);
-                    } else {
-                        int spell_id = selected_spell_id_for_viewer(v);
-                        if (spell_id < 0)
-                            spell_id = rc_spell_find(v->ui.selected_target.label);
-                        if (spell_id >= 0) {
-                            rc_player_cast_spell_on_ground_item(v->world,
-                                                                spell_id,
-                                                                ground_idx);
-                        }
+            if (have_hover && hover.kind == VIEWER_HOVER_GROUND_ITEM) {
+                if (v->ui.selected_target.kind == RUNEC_UI_SELECTED_ITEM) {
+                    rc_player_use_inventory_item_on_ground_item(
+                        v->world, v->ui.selected_target.source_slot,
+                        hover.ground_item_idx);
+                } else {
+                    int spell_id = selected_spell_id_for_viewer(v);
+                    if (spell_id < 0)
+                        spell_id = rc_spell_find(v->ui.selected_target.label);
+                    if (spell_id >= 0) {
+                        rc_player_cast_spell_on_ground_item(v->world, spell_id,
+                                                            hover.ground_item_idx);
                     }
-                    runec_ui_clear_selected_target(&v->ui);
-                    return;
                 }
+                runec_ui_clear_selected_target(&v->ui);
+                return;
             }
         }
 
-        int npc_uid = pick_npc_at_mouse(v);
-        if (npc_uid >= 0) {
-            rc_player_attack_npc(v->world, npc_uid);
+        if (have_hover && hover.kind == VIEWER_HOVER_NPC) {
+            viewer_left_click_npc(v, hover.npc_uid);
             return;
         }
-        ViewerPickedObject object;
-        if (pick_object_at_mouse_tile(v, &object)) {
-            int option = object_first_action_option(object);
+        if (have_hover && hover.kind == VIEWER_HOVER_OBJECT) {
+            ViewerPickedObject object = hover.object;
+            int option = hover.option >= 0 ? hover.option
+                                           : object_first_action_option(object);
             if (option >= 0) {
                 rc_player_interact_object_placement(
                     v->world, object.obj_id, object.x, object.y,
@@ -4020,9 +4159,11 @@ static void handle_input(ViewerState *v, int ui_capture) {
             }
             return;
         }
-        int tx, ty;
-        if (raycast_tile(v, &tx, &ty)) {
-            int ground_idx = ground_item_at_tile(v, tx, ty);
+        if (have_hover && (hover.kind == VIEWER_HOVER_GROUND_ITEM
+                    || hover.kind == VIEWER_HOVER_TILE)) {
+            int tx = hover.tile_x;
+            int ty = hover.tile_y;
+            int ground_idx = hover.ground_item_idx;
             if (ground_idx >= 0 && p->x == tx && p->y == ty)
                 rc_player_pickup_item(v->world, ground_idx);
             else
@@ -4521,7 +4662,7 @@ int main(void) {
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_EQUIPMENT | RC_SUB_LOOT |
                      RC_SUB_COMBAT | RC_SUB_PRAYER | RC_SUB_OBJECTS |
-                     RC_SUB_REGIONS | RC_SUB_TRAVERSAL;
+                     RC_SUB_REGIONS | RC_SUB_TRAVERSAL | RC_SUB_STORAGE;
     cfg.npc_defs_path = env_path("RUNEC_NPC_DEFS", "data/defs/npc_defs.bin");
     cfg.items_path = env_path("RUNEC_ITEMS", "data/defs/items.bin");
     cfg.prayers_path = env_path("RUNEC_PRAYERS", "data/defs/prayers.bin");
@@ -4560,7 +4701,7 @@ int main(void) {
     v.prev_player_x = (float)g_player_start_x;
     v.prev_player_y = (float)g_player_start_y;
     set_viewer_demo_stats(&v.world->player);
-    seed_viewer_inventory(v.world);
+    runec_dev_validation_seed_bank(v.world);
 
     const char *quiet_log = getenv("RC_VIEWER_QUIET");
     if (quiet_log && quiet_log[0] && strcmp(quiet_log, "0") != 0)
@@ -4570,6 +4711,7 @@ int main(void) {
                env_path("RUNEC_VIEWER_TITLE", "RuneC Viewer"));
     SetTargetFPS(60);
     runec_ui_init(&v.ui);
+    viewer_sync_dev_transport_labels(&v.ui);
 
     int dynamic_model_shader_enabled =
         env_bool("RUNEC_DYNAMIC_MODEL_SHADER", 1);
@@ -4617,6 +4759,7 @@ int main(void) {
         fprintf(stderr, "Failed to activate initial gameplay area\n");
         return 1;
     }
+    runec_dev_validation_spawn_varrock_bank_dummy(v.world);
     build_minimap_tiles(&v);
     load_world_map_minimap(&v);
 
@@ -4716,8 +4859,8 @@ int main(void) {
             LOCAL_X(v.world->player.x), LOCAL_Y(v.world->player.y));
 
     const char *dev_transport_dest = getenv("RUNEC_DEV_TRANSPORT_DEST");
-    const ViewerDevTransport *dev_transport =
-        find_dev_transport(dev_transport_dest);
+    const RuneCDevTransport *dev_transport =
+        runec_dev_validation_find_transport(dev_transport_dest);
     if (dev_transport)
         viewer_dev_transport_to(&v, dev_transport);
     else if (dev_transport_dest && dev_transport_dest[0])
@@ -4752,9 +4895,37 @@ int main(void) {
                              (uint32_t)v.world->tick, p->running, v.paused);
         sync_ui_items(&v);
         sync_ui_player_status(&v);
+        viewer_sync_scene_plane_ui(&v);
         int ui_capture = runec_ui_handle_input(&v.ui, GetScreenWidth(), GetScreenHeight());
         if (v.ui.last_intent.kind == RUNEC_UI_INTENT_RUN_TOGGLE) {
             p->running = !p->running;
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_BANK_WITHDRAW) {
+            int quantity = runec_dev_validation_bank_withdraw_quantity(
+                v.world, v.ui.last_intent.primary);
+            if (quantity < 0)
+                quantity = v.ui.last_intent.secondary;
+            if (quantity > 0)
+                rc_bank_withdraw_slot(v.world, v.ui.last_intent.primary,
+                                      quantity);
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_BANK_DEPOSIT) {
+            rc_bank_deposit_slot(v.world, v.ui.last_intent.primary,
+                                 v.ui.last_intent.secondary);
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_BANK_CLOSE) {
+            rc_player_close_storage(v.world);
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_SCENE_PLANE) {
+            if (v.ui.last_intent.primary < 0) {
+                v.scene_plane_override = -1;
+            } else {
+                v.scene_plane_override = clamp_plane(v.ui.last_intent.primary);
+            }
+            ensure_active_scene_plane(&v, viewer_scene_plane(&v));
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_DEV_TRANSPORT) {
+            int idx = v.ui.last_intent.primary;
+            int count = 0;
+            const RuneCDevTransport *transports =
+                runec_dev_validation_transports(&count);
+            if (transports && idx >= 0 && idx < count)
+                viewer_dev_transport_to(&v, &transports[idx]);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_MINIMAP_CLICK) {
             int dx = (v.ui.last_intent.primary - 72) / 4;
             int dy = (75 - v.ui.last_intent.secondary) / 4;
@@ -4906,10 +5077,10 @@ int main(void) {
         sync_ui_items(&v);
         build_ui_item_icons(&v);
         sync_ui_player_status(&v);
+        viewer_sync_scene_plane_ui(&v);
         sync_ui_minimap(&v);
         runec_ui_draw(&v.ui, GetScreenWidth(), GetScreenHeight());
-        draw_scene_plane_controls(&v);
-        draw_dev_transport_controls(&v);
+        draw_hover_action_label(&v, ui_capture);
         EndDrawing();
         if (screenshot_path && screenshot_path[0] && !screenshot_taken) {
             Image screenshot = LoadImageFromScreen();

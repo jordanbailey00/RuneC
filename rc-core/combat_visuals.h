@@ -20,6 +20,7 @@ typedef struct {
     int style;
     int attack_anim_id;
     int launch_spotanim_id;
+    int double_launch_spotanim_id;
     int travel_spotanim_id;
     int impact_spotanim_id;
     int projectile_model_id;
@@ -33,6 +34,19 @@ typedef struct {
     int projectile_length_adjustment;
     int projectile_progress;
     int projectile_step_multiplier;
+    int projectile_count;
+    int alt_projectile_start_height;
+    int alt_projectile_end_height;
+    int alt_projectile_delay;
+    int alt_projectile_angle;
+    int alt_projectile_length_adjustment;
+    int alt_projectile_progress;
+    int alt_projectile_step_multiplier;
+    int aux_travel_spotanim_id;
+    int aux_impact_spotanim_id;
+    int aux_projectile_model_id;
+    int aux_projectile_anim_id;
+    int impact_on_last_only;
 } RcCombatVisualDef;
 
 extern RcCombatVisualDef g_rc_combat_visual_defs[RC_MAX_COMBAT_VISUAL_DEFS];

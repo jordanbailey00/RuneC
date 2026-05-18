@@ -105,6 +105,7 @@ static void init_player_defaults(RcPlayer *p) {
     }
     for (int i = 0; i < RC_BANK_SIZE; i++) {
         p->bank[i].item_id = -1;
+        p->bank_tab[i] = 0;
     }
     for (int i = 0; i < RC_EQUIP_COUNT; i++) {
         p->equipment[i].item_id = -1;

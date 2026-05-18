@@ -34,8 +34,14 @@ HEADER = (
     "kind|key|style|attack_anim|launch_spotanim|travel_spotanim|"
     "impact_spotanim|projectile_model|projectile_anim|hit_delay|"
     "client_delay|proj_start_height|proj_end_height|proj_delay|proj_angle|"
-    "proj_length_adjustment|proj_progress|proj_step_multiplier|note"
+    "proj_length_adjustment|proj_progress|proj_step_multiplier|note|"
+    "projectile_count|alt_proj_start_height|alt_proj_end_height|"
+    "alt_proj_delay|alt_proj_angle|alt_proj_length_adjustment|"
+    "alt_proj_progress|alt_proj_step_multiplier|aux_travel_spotanim|"
+    "aux_impact_spotanim|aux_projectile_model|aux_projectile_anim|"
+    "impact_on_last_only|double_launch_spotanim"
 )
+HEADER_COLS = HEADER.split("|")
 
 
 @dataclass(frozen=True)
@@ -210,6 +216,7 @@ def append_cache_row(
     impact: str | int | None = None,
     proj_anim: str | ProjAnimSpec | None = None,
     note: str = "",
+    extra: list[str] | None = None,
 ) -> bool:
     required = (
         ("attack", attack, seq_ids),
@@ -240,7 +247,7 @@ def append_cache_row(
         value_or_dash(launch_id), value_or_dash(travel_id),
         value_or_dash(impact_id), value_or_dash(model_id),
         value_or_dash(anim_id), hit_delay, client_delay,
-        *projectile_columns(spec), note,
+        *projectile_columns(spec), note, *(extra or []),
     )
     return True
 
@@ -271,6 +278,7 @@ def export_item_rows(
             )
 
         launch = config.get("projectile_launch")
+        launch_double = config.get("projectile_launch_double")
         travel = config.get("projectile_travel")
         if not isinstance(launch, int) and not isinstance(travel, int):
             continue
@@ -285,7 +293,8 @@ def export_item_rows(
             value_or_dash(travel), "-", value_or_dash(model_id),
             value_or_dash(anim_id), hit_delay, client_delay,
             *projectile_columns(spec),
-            f"rsmod:{obj_name}:projectile",
+            f"rsmod:{obj_name}:projectile", *["-"] * 13,
+            value_or_dash(launch_double),
         )
 
 
@@ -537,6 +546,42 @@ def export_curated_special_rows(
             note=note,
         )
 
+    darkbow_weapons = [
+        "darkbow",
+        "darkbow_green",
+        "darkbow_blue",
+        "darkbow_yellow",
+        "darkbow_white",
+        "br_darkbow",
+        "bh_darkbow_imbue",
+    ]
+    aux_travel = spot_ids.get("darkbow_generic_smoke_arrow_flight", -1)
+    aux_impact = spot_ids.get("darkbow_smoke_arrow_impact", -1)
+    aux_model, aux_anim = spot_defs.get(aux_travel, (-1, -1))
+    base = named_spec(projanims, "doublearrow_one")
+    alt = named_spec(projanims, "doublearrow_two")
+    if base and alt:
+        extra = [
+            "2",
+            *projectile_columns(alt),
+            value_or_dash(aux_travel),
+            value_or_dash(aux_impact),
+            value_or_dash(aux_model),
+            value_or_dash(aux_anim),
+            "1",
+        ]
+        for obj_name in darkbow_weapons:
+            obj_id = obj_ids.get(obj_name)
+            if obj_id is None:
+                continue
+            append_cache_row(
+                rows, kind="special", key=obj_id, style="ranged",
+                seq_ids=seq_ids, spot_ids=spot_ids, spot_defs=spot_defs,
+                projanims=projanims, attack="human_bow",
+                proj_anim=base, note=f"rsmod:special:{obj_name}:darkbow",
+                extra=extra,
+            )
+
 
 def write_tsv(path: Path, rows: list[list[str]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -548,7 +593,9 @@ def write_tsv(path: Path, rows: list[list[str]]) -> None:
         dedup.values(),
         key=lambda r: (r[0], int(r[1]) if r[1].isdigit() else 1 << 30, r[1], r[2], r[3]),
     )
-    path.write_text(HEADER + "\n" + "\n".join("|".join(r) for r in ordered) + "\n")
+    width = len(HEADER_COLS)
+    padded = [r + ["-"] * max(0, width - len(r)) for r in ordered]
+    path.write_text(HEADER + "\n" + "\n".join("|".join(r[:width]) for r in padded) + "\n")
 
 
 def main() -> int:

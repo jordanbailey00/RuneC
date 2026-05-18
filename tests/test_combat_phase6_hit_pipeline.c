@@ -201,8 +201,41 @@ static void test_player_hit_pipeline_records_miss_and_damage_state(void) {
     rc_world_destroy(world);
 }
 
+static void test_force_max_hit_dummy_queues_max_player_damage(void) {
+    RcWorld *world = phase6_world(RC_SUB_COMBAT);
+    int def_idx = add_phase6_npc_def(9603, 1000000, 0);
+    RcNpc *dummy = NULL;
+    int npc_idx = rc_npc_spawn(world, def_idx, world->player.x + 1,
+                               world->player.y, world->player.plane);
+    assert(npc_idx >= 0);
+    dummy = &world->npcs[npc_idx];
+    dummy->force_player_max_hit = true;
+    dummy->current_hp = 1000000;
+
+    rc_player_attack_npc(world, dummy->uid);
+    for (int i = 0; i < 8 && dummy->num_pending_hits == 0
+            && dummy->combat.recent_hit_count == 0; i++) {
+        rc_world_tick(world);
+    }
+
+    int damage = -1;
+    int max_hit = -1;
+    if (dummy->num_pending_hits > 0) {
+        damage = dummy->pending_hits[0].damage;
+        max_hit = dummy->pending_hits[0].max_hit;
+    } else if (dummy->combat.recent_hit_count > 0) {
+        int idx = dummy->combat.recent_hit_count - 1;
+        damage = dummy->combat.recent_hits[idx].damage;
+        max_hit = dummy->combat.recent_hits[idx].max_hit;
+    }
+    assert(max_hit > 0);
+    assert(damage == max_hit);
+    rc_world_destroy(world);
+}
+
 int main(void) {
     test_npc_hit_pipeline_records_damage_hp_xp_death_and_loot();
     test_player_hit_pipeline_records_miss_and_damage_state();
+    test_force_max_hit_dummy_queues_max_player_damage();
     return 0;
 }

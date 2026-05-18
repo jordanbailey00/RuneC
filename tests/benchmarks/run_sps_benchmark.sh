@@ -18,7 +18,7 @@ cc -O3 -DNDEBUG -std=c11 \
     "$ROOT/tests/benchmarks/sps_benchmark.c" \
     "$BUILD_DIR/librc-core.a" \
     "$BUILD_DIR/librc-content.a" \
-    -lm \
+    -lm -lz \
     -o "$OUT"
 
 "$OUT" "$@"

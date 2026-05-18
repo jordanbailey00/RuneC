@@ -67,6 +67,11 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   - viewer-only generated item render map loader
   - maps item IDs to cache-composed ground/equipped render model IDs
     and default body-part hide masks
+- `dev_validation.c` / `dev_validation.h`
+  - viewer-only combat testing helpers
+  - owns the temporary validation bank seed, Clan-tab boss transports,
+    Varrock-bank combat dummy spawn, and leave-one validation withdraw policy
+  - can be disabled with `RUNEC_DEV_VALIDATION=0`
 
 ## Runtime expectations
 
@@ -91,6 +96,8 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   - `RUNEC_WORLD_ORIGIN_X`, `RUNEC_WORLD_ORIGIN_Y`,
     `RUNEC_WORLD_W`, `RUNEC_WORLD_H`
   - `RUNEC_PLAYER_START_X`, `RUNEC_PLAYER_START_Y`
+  - `RUNEC_DEV_VALIDATION`, `RUNEC_DEV_BANK_DUMMY`,
+    `RUNEC_DEV_TRANSPORT_DEST`, `RUNEC_DEV_BOSS_ATTACKS`
 - Those runtime assets are expected to be local in the RuneC working
   tree under `data/`. In normal development `data/` is a nested
   `RuneC-DB` checkout:
@@ -139,6 +146,9 @@ Today `rc-viewer` is primarily:
   icons; RuneLite gameval sprite IDs are the naming authority
 - a renderer for core-owned dynamic object state, linked-below scenes,
   streamed region slices, projectiles, spot animations, and equipment visuals
+- isolated combat-validation helpers for local manual testing, kept out of
+  `rc-core` so they can be disabled or removed without changing simulation
+  rules
 
 That means it is useful for presentation validation and the first
 inventory/equipment runtime checks, but it is not yet the authority for

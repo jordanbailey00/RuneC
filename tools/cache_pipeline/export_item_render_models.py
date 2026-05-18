@@ -51,6 +51,9 @@ ITEM_EQUIP_MODEL_BASE = 0xE00000
 ITEM_GROUND_MODEL_BASE = 0xD00000
 
 IDEF_HAS_EQUIPMENT = 1 << 4
+IDEF_STACKABLE = 1 << 0
+IDEF_NOTED = 1 << 6
+IDEF_PLACEHOLDER = 1 << 7
 
 EQUIP_HEAD = 0
 EQUIP_CAPE = 1
@@ -104,6 +107,9 @@ class ItemRenderDef:
     item_id: int
     name: str
     flags: int
+    linked_id_item: int
+    linked_id_noted: int
+    linked_id_placeholder: int
     ground_model_id: int
     male_model_ids: tuple[int, int, int]
     female_model_ids: tuple[int, int, int]
@@ -200,9 +206,9 @@ def parse_items_bin(path: Path) -> dict[int, ItemRenderDef]:
         rpos += 4  # highalch
         rpos += 4  # lowalch
         rpos += 4  # value
-        rpos += 4  # linked_id_item
-        rpos += 4  # linked_id_noted
-        rpos += 4  # linked_id_placeholder
+        linked_id_item, rpos = _u32(rec, rpos)
+        linked_id_noted, rpos = _u32(rec, rpos)
+        linked_id_placeholder, rpos = _u32(rec, rpos)
         rpos += 4  # buy_limit
 
         models: list[int] = []
@@ -222,6 +228,9 @@ def parse_items_bin(path: Path) -> dict[int, ItemRenderDef]:
             item_id=int(item_id),
             name=name,
             flags=flags,
+            linked_id_item=_id(linked_id_item),
+            linked_id_noted=_id(linked_id_noted),
+            linked_id_placeholder=_id(linked_id_placeholder),
             ground_model_id=models[0],
             male_model_ids=(models[1], models[2], models[3]),
             female_model_ids=(models[4], models[5], models[6]),
@@ -631,11 +640,116 @@ def write_item_render_map(
             ))
 
 
-def parse_item_ids(raw: str | None) -> list[int]:
+def normalize_lookup_name(value: str) -> str:
+    return "".join(
+        ch.lower()
+        for ch in value
+        if ch not in {"'", " ", "-", "_"}
+    )
+
+
+def item_name_matches(a: str, b: str) -> bool:
+    return normalize_lookup_name(a) == normalize_lookup_name(b)
+
+
+def resolve_unnoted_item_id(
+    items: dict[int, ItemRenderDef],
+    name: str,
+) -> int | None:
+    aliases: dict[str, tuple[str | None, int | None]] = {
+        "Rune arrows": ("Rune arrow", None),
+        "Dragon arrows": ("Dragon arrow", None),
+        "Amethyst arrows": ("Amethyst arrow", None),
+        "Dragon darts": ("Dragon dart", None),
+        "Amethyst darts": ("Amethyst dart", None),
+        "Sunfire splinter": ("Sunfire splinters", None),
+        "Granite maul (ornate handle)": (None, 12848),
+    }
+    for query, (actual, forced_id) in aliases.items():
+        if not item_name_matches(name, query):
+            continue
+        if forced_id is not None:
+            forced = items.get(forced_id)
+            if forced and not (forced.flags & (IDEF_NOTED | IDEF_PLACEHOLDER)):
+                return forced.item_id
+        if actual:
+            name = actual
+        break
+
+    fallback: int | None = None
+    for item in items.values():
+        if not item.name or not item_name_matches(item.name, name):
+            continue
+        if not (item.flags & (IDEF_NOTED | IDEF_PLACEHOLDER)):
+            return item.item_id
+        if item.flags & IDEF_NOTED and item.linked_id_item >= 0:
+            linked = items.get(item.linked_id_item)
+            if linked and not (linked.flags & (IDEF_NOTED | IDEF_PLACEHOLDER)):
+                fallback = linked.item_id
+    return fallback
+
+
+def parse_dev_validation_item_names(path: Path) -> list[str]:
+    src = path.read_text()
+    arrays = (
+        "ranged_items", "ranged_ammo", "mage_items", "melee_items",
+        "pvp_items", "special_items", "special_stacks",
+    )
+    names: list[str] = []
+    for name in arrays:
+        marker = f"static const char *const {name}[] = {{"
+        start = src.find(marker)
+        if start < 0:
+            continue
+        start += len(marker)
+        end = src.find("};", start)
+        if end < 0:
+            continue
+        block = src[start:end]
+        pos = 0
+        while True:
+            q0 = block.find('"', pos)
+            if q0 < 0:
+                break
+            q1 = block.find('"', q0 + 1)
+            if q1 < 0:
+                break
+            names.append(block[q0 + 1:q1])
+            pos = q1 + 1
+    return names
+
+
+def parse_item_ids(
+    raw: str | None,
+    items: dict[int, ItemRenderDef],
+    dev_validation_source: Path,
+) -> list[int]:
     if not raw:
         return DEFAULT_ITEM_IDS
     if raw.strip().lower() == "default":
         return DEFAULT_ITEM_IDS
+    if raw.strip().lower() == "all-equippable":
+        return sorted(
+            item.item_id
+            for item in items.values()
+            if item.flags & IDEF_HAS_EQUIPMENT
+            and not (item.flags & (IDEF_NOTED | IDEF_PLACEHOLDER))
+        )
+    if raw.strip().lower() == "combat-validation":
+        ids = set(DEFAULT_ITEM_IDS)
+        missing: list[str] = []
+        for name in parse_dev_validation_item_names(dev_validation_source):
+            item_id = resolve_unnoted_item_id(items, name)
+            if item_id is None:
+                missing.append(name)
+                continue
+            ids.add(item_id)
+        if missing:
+            raise SystemExit(
+                "combat-validation item names missing from items.bin: "
+                + ", ".join(sorted(set(missing)))
+            )
+        return sorted(ids)
     return [int(part.strip()) for part in raw.split(",") if part.strip()]
 
 
@@ -654,11 +768,15 @@ def main() -> None:
                         default=Path("data/models/item_render.map"),
                         help="output viewer item render mapping file")
     parser.add_argument("--item-ids", type=str, default="default",
-                        help="comma-separated item IDs, or 'default'")
+                        help="comma-separated item IDs, 'default', "
+                             "'combat-validation', or 'all-equippable'")
+    parser.add_argument("--dev-validation-source", type=Path,
+                        default=Path("rc-viewer/dev_validation.c"),
+                        help="source file containing combat-validation bank names")
     args = parser.parse_args()
 
     items = parse_items_bin(args.items)
-    item_ids = parse_item_ids(args.item_ids)
+    item_ids = parse_item_ids(args.item_ids, items, args.dev_validation_source)
     store = RcCacheStore(args.cache)
 
     print("loading cache appearance definitions...")

@@ -9,17 +9,23 @@
 
 #define RUNEC_UI_INV_SLOT_COUNT 28
 #define RUNEC_UI_EQUIP_SLOT_COUNT 14
+#define RUNEC_UI_BANK_SLOT_COUNT 800
+#define RUNEC_UI_BANK_TAB_COUNT 5
+#define RUNEC_UI_BANK_TAB_LABEL_LEN 16
 #define RUNEC_UI_CHAT_LINES 7
+#define RUNEC_UI_CHAT_TAB_COUNT 7
 #define RUNEC_UI_CHAT_INPUT_MAX 128
 #define RUNEC_UI_CONTEXT_ACTIONS 5
 #define RUNEC_UI_MINIMAP_DOTS 256
-#define RUNEC_UI_ITEM_ICON_CACHE 512
+#define RUNEC_UI_ITEM_ICON_CACHE 1024
 #define RUNEC_UI_SKILL_COUNT 24
 #define RUNEC_UI_OPEN_INTERFACES 32
 #define RUNEC_UI_COMPONENT_OVERRIDES 256
 #define RUNEC_UI_ITEM_CONTAINER_OVERRIDES 8
 #define RUNEC_UI_EVENT_MASKS 512
 #define RUNEC_UI_COMBAT_STYLE_COUNT 4
+#define RUNEC_UI_DEV_TRANSPORT_MAX 8
+#define RUNEC_UI_SCENE_PLANE_COUNT 4
 
 typedef enum RuneCUiTab {
     RUNEC_UI_TAB_NONE = -1,
@@ -31,6 +37,7 @@ typedef enum RuneCUiTab {
     RUNEC_UI_TAB_PRAYER,
     RUNEC_UI_TAB_SPELLBOOK,
     RUNEC_UI_TAB_SETTINGS,
+    RUNEC_UI_TAB_CLAN,
     RUNEC_UI_TAB_COUNT
 } RuneCUiTab;
 
@@ -63,7 +70,12 @@ typedef enum RuneCUiIntentKind {
     RUNEC_UI_INTENT_SELECTED_ITEM_ON_COMPONENT,
     RUNEC_UI_INTENT_SELECTED_SPELL_ON_COMPONENT,
     RUNEC_UI_INTENT_COMPONENT_ACTION,
-    RUNEC_UI_INTENT_SELECTED_TARGET_CANCEL
+    RUNEC_UI_INTENT_SELECTED_TARGET_CANCEL,
+    RUNEC_UI_INTENT_BANK_WITHDRAW,
+    RUNEC_UI_INTENT_BANK_DEPOSIT,
+    RUNEC_UI_INTENT_BANK_CLOSE,
+    RUNEC_UI_INTENT_SCENE_PLANE,
+    RUNEC_UI_INTENT_DEV_TRANSPORT
 } RuneCUiIntentKind;
 
 typedef struct RuneCUiIntent {
@@ -80,6 +92,7 @@ typedef struct RuneCUiSlot {
     int quantity;
     char label[24];
     int enabled;
+    int category;
 } RuneCUiSlot;
 
 typedef enum RuneCUiMinimapDotKind {
@@ -170,6 +183,12 @@ typedef struct RuneCUiState {
 
     RuneCUiSlot inventory[RUNEC_UI_INV_SLOT_COUNT];
     RuneCUiSlot equipment[RUNEC_UI_EQUIP_SLOT_COUNT];
+    RuneCUiSlot bank[RUNEC_UI_BANK_SLOT_COUNT];
+    int bank_open;
+    int bank_kind;
+    int bank_scroll;
+    int bank_active_tab;
+    char bank_tab_labels[RUNEC_UI_BANK_TAB_COUNT][RUNEC_UI_BANK_TAB_LABEL_LEN];
     int selected_inventory_slot;
     int selected_equipment_slot;
     int selected_combat_style;
@@ -200,6 +219,7 @@ typedef struct RuneCUiState {
     int paused;
 
     int chat_focused;
+    int active_chat_tab;
     char chat_input[RUNEC_UI_CHAT_INPUT_MAX];
     char chat_lines[RUNEC_UI_CHAT_LINES][96];
     int chat_line_count;
@@ -230,6 +250,11 @@ typedef struct RuneCUiState {
     RuneCUiInterfaceStore interfaces;
     int decoded_ui_enabled;
     int decoded_ui_ready;
+    char dev_transport_labels[RUNEC_UI_DEV_TRANSPORT_MAX][24];
+    int dev_transport_count;
+    int scene_plane;
+    int player_plane;
+    int scene_plane_override_active;
     RuneCUiOpenInterface open_interfaces[RUNEC_UI_OPEN_INTERFACES];
     int open_interface_count;
     RuneCUiComponentOverride component_overrides[RUNEC_UI_COMPONENT_OVERRIDES];
@@ -250,6 +275,12 @@ void runec_ui_update_minimap(RuneCUiState *ui, const Color *pixels,
 void runec_ui_set_item_icon(RuneCUiState *ui, uint32_t icon_item_id, Texture2D texture);
 void runec_ui_set_combat_weapon_name(RuneCUiState *ui, const char *name);
 void runec_ui_set_combat_style_profile(RuneCUiState *ui, int core_weapon_category);
+void runec_ui_set_active_tab(RuneCUiState *ui, RuneCUiTab tab);
+void runec_ui_set_dev_transport_options(RuneCUiState *ui,
+                                        const char *const *labels,
+                                        int count);
+void runec_ui_set_scene_plane_state(RuneCUiState *ui, int scene_plane,
+                                    int player_plane, int override_active);
 void runec_ui_sync_status(RuneCUiState *ui, int world_x, int world_y,
                           int local_x, int local_y, uint32_t tick,
                           int running, int paused);

@@ -1325,6 +1325,9 @@ static RcInteractionHandlerResult api_default_npc_option_handler(
             RC_INTERACTION_FAIL_NO_HANDLER, "NPC attack handler unavailable");
     }
     api_stop_player_combat(world);
+    if (rc_player_open_storage_npc(world, npc->uid, opt)) {
+        return rc_interaction_result_complete();
+    }
     player->interact_type = RC_INTERACT_NPC;
     player->interact_target = npc->uid;
     player->interact_option = opt;

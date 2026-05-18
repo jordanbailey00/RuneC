@@ -57,8 +57,6 @@
 #define RUNEC_OSRS_SPEC_Y 128.0f
 #define RUNEC_OSRS_WORLDMAP_X 177.0f
 #define RUNEC_OSRS_WORLDMAP_Y 137.0f
-#define RUNEC_OSRS_WIKI_X 166.0f
-#define RUNEC_OSRS_WIKI_Y 163.0f
 
 #define RUNEC_OSRS_CHAT_W 519.0f
 #define RUNEC_OSRS_CHAT_H 165.0f
@@ -96,7 +94,7 @@ static const RuneCUiStoneRef RUNEC_OSRS_SIDE_STONES[] = {
     {4, "side_stone_highlights_4", "side_icon_equipment", {137, 0, 33, 36}, {137, 0, 33, 36}},
     {5, "side_stone_highlights_4", "side_icon_prayer",    {170, 0, 33, 36}, {170, 0, 33, 36}},
     {6, "side_stone_highlights_1", "side_icon_magic",     {203, 0, 38, 36}, {204, 0, 33, 36}},
-    {-1, "side_stone_highlights_2", "side_icon_clan",     {0,   0, 38, 36}, {4,   0, 33, 36}},
+    {8, "side_stone_highlights_2", "side_icon_clan",     {0,   0, 38, 36}, {4,   0, 33, 36}},
     {-1, "side_stone_highlights_4", "side_icon_friends",  {38,  0, 33, 36}, {38,  0, 33, 36}},
     {-1, "side_stone_highlights_4", "side_icon_grouping", {71,  0, 33, 36}, {71,  0, 33, 36}},
     {-1, "side_stone_highlights_4", "side_icon_logout",   {104, 0, 33, 36}, {104, 0, 33, 36}},

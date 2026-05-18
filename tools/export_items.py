@@ -429,6 +429,18 @@ def build_record(rec: dict, model_links: dict[int, list[int]]) -> bytes | None:
     if rec.get("incomplete"):
         return None
 
+    item_id = int(rec["id"])
+    models = model_links.get(item_id, [0xFFFFFFFF] * 7)
+    has_wear_model = any(m != 0xFFFFFFFF for m in models[1:])
+    eq = rec.get("equipment")
+    wp = rec.get("weapon")
+    equip_player = bool(rec.get("equipable_by_player"))
+    equip_weapon = bool(rec.get("equipable_weapon"))
+    if eq and has_wear_model and not rec.get("noted") and not rec.get("placeholder"):
+        equip_player = True
+        if eq.get("slot") == "weapon":
+            equip_weapon = True
+
     flags = 0
     if rec.get("stackable"):       flags |= F_STACKABLE
     if rec.get("tradeable"):       flags |= F_TRADEABLE
@@ -437,11 +449,9 @@ def build_record(rec: dict, model_links: dict[int, list[int]]) -> bytes | None:
     if rec.get("noted"):           flags |= F_NOTED
     if rec.get("noteable"):        flags |= F_NOTEABLE
     if rec.get("placeholder"):     flags |= F_PLACEHOLDER
-    if rec.get("equipable_by_player"): flags |= F_EQUIP_PLAYER
-    if rec.get("equipable_weapon"):    flags |= F_EQUIP_WEAPON
+    if equip_player:               flags |= F_EQUIP_PLAYER
+    if equip_weapon:               flags |= F_EQUIP_WEAPON
     if rec.get("duplicate"):       flags |= F_DUPLICATE
-    eq = rec.get("equipment")
-    wp = rec.get("weapon")
     if eq:                         flags |= F_HAS_EQUIPMENT
     if wp:                         flags |= F_HAS_WEAPON
 
@@ -463,7 +473,7 @@ def build_record(rec: dict, model_links: dict[int, list[int]]) -> bytes | None:
     buf += struct.pack("<I", id_or_missing(rec.get("linked_id_noted")))
     buf += struct.pack("<I", id_or_missing(rec.get("linked_id_placeholder")))
     buf += struct.pack("<I", id_or_missing(rec.get("buy_limit")))
-    for model_id in model_links.get(int(rec["id"]), [0xFFFFFFFF] * 7):
+    for model_id in models:
         buf += struct.pack("<I", id_or_missing(model_id))
 
     if eq:

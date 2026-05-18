@@ -383,6 +383,8 @@ typedef struct {
     int projectile_end_time;
     int projectile_angle;
     int projectile_progress;
+    int sequence_index;
+    int sequence_count;
 } RcCombatProjectile;
 
 // Inventory slot
@@ -486,6 +488,7 @@ typedef struct {
     RcSkills skills;
     RcInvSlot inventory[RC_INVENTORY_SIZE];
     RcInvSlot bank[RC_BANK_SIZE];
+    uint8_t bank_tab[RC_BANK_SIZE];
     RcInvSlot equipment[RC_EQUIP_COUNT];
     int equipment_bonuses[14];
 
@@ -560,6 +563,8 @@ typedef struct {
     int prev_x, prev_y;
     int poison_damage;
     int poison_tick_counter;
+    bool disable_wander;
+    bool force_player_max_hit;
     bool player_untargetable;
     bool active;
 } RcNpc;

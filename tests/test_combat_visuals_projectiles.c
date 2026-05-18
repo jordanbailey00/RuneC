@@ -102,14 +102,30 @@ static void write_visuals_file(const char *path) {
           "impact_spotanim|projectile_model|projectile_anim|hit_delay|"
           "client_delay|proj_start_height|proj_end_height|proj_delay|"
           "proj_angle|proj_length_adjustment|proj_progress|"
-          "proj_step_multiplier|note\n", f);
+          "proj_step_multiplier|note|projectile_count|alt_proj_start_height|"
+          "alt_proj_end_height|alt_proj_delay|alt_proj_angle|"
+          "alt_proj_length_adjustment|alt_proj_progress|"
+          "alt_proj_step_multiplier|aux_travel_spotanim|aux_impact_spotanim|"
+          "aux_projectile_model|aux_projectile_anim|impact_on_last_only|"
+          "double_launch_spotanim\n", f);
     fputs("item|861|ranged|426|-|-|-|-|-|3|3|163|146|41|15|5|11|5|bow\n", f);
-    fputs("item|892|ranged|-|24|15|-|3136|-|2|2|-|-|-|-|-|-|-|arrow\n", f);
+    fputs("item|892|ranged|-|24|15|-|3136|-|2|2|-|-|-|-|-|-|-|arrow|-|-|-|-|-|-|-|-|-|-|-|-|-|1109\n", f);
     fputs("spell|Fire Blast|magic|1162|129|130|131|3087|663|3|3|172|124|51|16|-5|64|10|spell\n", f);
     fputs("spell|Saradomin Strike|magic|811|-|-|76|-|-|2|2|-|-|-|-|-|-|-|impact\n", f);
     fputs("npc|990001|magic|711|200|201|202|5555|777|3|3|172|124|51|16|-5|64|10|npc\n", f);
     fputs("special|1305|slash|1058|248|-|-|-|-|-|-|-|-|-|-|-|-|-|special\n", f);
+    fputs("special|861|ranged|426|-|-|-|-|-|3|3|163|146|41|5|5|11|5|darkbow|2|163|146|41|25|14|11|10|880|881|9900|9901|1\n", f);
     fclose(f);
+}
+
+static int test_visual_special_cost(const RcWorld *world,
+                                    const RcPlayer *player,
+                                    const RcNpc *target,
+                                    int weapon_id) {
+    (void)world;
+    (void)player;
+    (void)target;
+    return weapon_id == TEST_BOW ? 5000 : 0;
 }
 
 static RcWorld *make_world(void) {
@@ -138,7 +154,7 @@ static void test_ranged_attack_emits_data_backed_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 7);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     world->player.equipment[EQUIP_WEAPON] = (RcInvSlot){TEST_BOW, 1};
@@ -183,11 +199,60 @@ static void test_ranged_attack_emits_data_backed_projectile(void) {
     rc_world_destroy(world);
 }
 
+static void test_ranged_special_emits_multi_projectile_visual_events(void) {
+    reset_defs();
+    add_defs();
+    write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 7);
+    RcWorld *world = make_world();
+    RcCombatContentHooks hooks = {
+        .player_special_energy_cost = test_visual_special_cost,
+    };
+    rc_combat_register_content_hooks(world, &hooks);
+    int npc_idx = spawn_target(world);
+    world->player.equipment[EQUIP_WEAPON] = (RcInvSlot){TEST_BOW, 1};
+    world->player.equipment[EQUIP_AMMO] = (RcInvSlot){TEST_ARROW, 5};
+    rc_recalc_bonuses(&world->player);
+    rc_refresh_player_combat_style(&world->player);
+    rc_combat_toggle_special(world);
+    assert(rc_combat_start_player_vs_npc(world, 0, world->npcs[npc_idx].uid));
+
+    rc_combat_tick_player(world);
+
+    int count = 0;
+    const RcCombatProjectile *projectiles =
+        rc_combat_projectiles(world, &count);
+    assert(count == 4);
+    assert(projectiles[0].launch_spotanim_id == -1);
+    assert(projectiles[0].travel_spotanim_id == 880);
+    assert(projectiles[0].projectile_model_id == 9900);
+    assert(projectiles[0].projectile_anim_id == 9901);
+    assert(projectiles[0].impact_spotanim_id == -1);
+    assert(projectiles[0].sequence_index == 0);
+    assert(projectiles[0].sequence_count == 2);
+    assert(projectiles[1].launch_spotanim_id == 1109);
+    assert(projectiles[1].travel_spotanim_id == 15);
+    assert(projectiles[1].projectile_model_id == 3136);
+    assert(projectiles[1].projectile_angle == 5);
+    assert(projectiles[1].sequence_index == 0);
+    assert(projectiles[2].launch_spotanim_id == -1);
+    assert(projectiles[2].travel_spotanim_id == 880);
+    assert(projectiles[2].impact_spotanim_id == 881);
+    assert(projectiles[2].projectile_angle == 25);
+    assert(projectiles[2].projectile_end_time > projectiles[0].projectile_end_time);
+    assert(projectiles[2].sequence_index == 1);
+    assert(projectiles[3].travel_spotanim_id == 15);
+    assert(projectiles[3].projectile_angle == 25);
+    assert(projectiles[3].sequence_index == 1);
+    assert(world->player.special_energy == 5000);
+    rc_world_destroy(world);
+}
+
 static void test_magic_attack_emits_spell_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 7);
     strcpy(g_rc_spell_defs[0].name, "Renamed Fire Blast");
     assert(rc_combat_visual_for_spell("Renamed Fire Blast",
                                       COMBAT_MAGIC) == NULL);
@@ -245,7 +310,7 @@ static void test_spell_on_npc_routes_to_magic_combat_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 7);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     RcNpc *npc = &world->npcs[npc_idx];
@@ -276,7 +341,7 @@ static void test_npc_attack_emits_data_backed_projectile(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 7);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     RcNpc *npc = &world->npcs[npc_idx];
@@ -315,7 +380,7 @@ static void test_impact_only_spell_emits_timed_impact(void) {
     reset_defs();
     add_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 7);
     RcWorld *world = make_world();
     int npc_idx = spawn_target(world);
     world->player.manual_spell_cast = 1;
@@ -341,7 +406,7 @@ static void test_impact_only_spell_emits_timed_impact(void) {
 static void test_special_visual_lookup_uses_special_kind(void) {
     reset_defs();
     write_visuals_file("/tmp/runec_combat_visuals_test.tsv");
-    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 6);
+    assert(rc_load_combat_visuals("/tmp/runec_combat_visuals_test.tsv") == 7);
 
     const RcCombatVisualDef *visual =
         rc_combat_visual_for_special_item(1305, COMBAT_MELEE_SLASH);
@@ -411,10 +476,28 @@ static void test_generated_visuals_include_spell_projectile_profiles(void) {
     assert(dlong != NULL);
     assert(dlong->attack_anim_id == 1058);
     assert(dlong->launch_spotanim_id == 248);
+
+    const RcCombatVisualDef *darkbow =
+        rc_combat_visual_for_special_item(11235, COMBAT_RANGED);
+    assert(darkbow != NULL);
+    assert(darkbow->attack_anim_id == 426);
+    assert(darkbow->projectile_count == 2);
+    assert(darkbow->projectile_angle == 5);
+    assert(darkbow->alt_projectile_angle == 25);
+    assert(darkbow->aux_travel_spotanim_id == 1101);
+    assert(darkbow->aux_impact_spotanim_id == 1103);
+    assert(darkbow->impact_on_last_only == 1);
+
+    const RcCombatVisualDef *rune_arrow =
+        rc_combat_visual_for_item(892, COMBAT_RANGED);
+    assert(rune_arrow != NULL);
+    assert(rune_arrow->launch_spotanim_id == 24);
+    assert(rune_arrow->double_launch_spotanim_id == 1109);
 }
 
 int main(void) {
     test_ranged_attack_emits_data_backed_projectile();
+    test_ranged_special_emits_multi_projectile_visual_events();
     test_magic_attack_emits_spell_projectile();
     test_impact_only_spell_emits_timed_impact();
     test_spell_on_npc_routes_to_magic_combat_projectile();

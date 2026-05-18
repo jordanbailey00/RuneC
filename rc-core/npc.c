@@ -460,7 +460,8 @@ void rc_npc_tick(RcWorld *world, RcNpc *npc) {
     // (tick.c calls it per-NPC after the position pass).
 
     // Wander AI matches RSMod NpcWanderModeProcessor.
-    int wander_range = def->wander_range > 0 ? def->wander_range : 5;
+    int wander_range = npc->disable_wander ? 0
+                     : (def->wander_range > 0 ? def->wander_range : 5);
     if (wander_range > 0 && npc->target_uid < 0) {
         if (moved_last) {
             npc->wander_timer = 0;
