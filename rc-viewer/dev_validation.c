@@ -28,7 +28,7 @@ int runec_dev_validation_enabled(void) {
 static const RuneCDevTransport g_dev_transports[] = {
     {"varrock",  "Varrock",   RUNEC_DEV_VARROCK_BANK_X, RUNEC_DEV_VARROCK_BANK_Y, 0,   -1, 1},
     {"graardor", "Graardor",  2872, 5358, 2, 2215, 4},
-    {"kbd",      "KBD",       2269, 4697, 0, 2266, 5},
+    {"kbd",      "KBD",       2269, 4697, 0,  239, 5},
     {"vorkath",  "Vorkath",   2269, 4062, 0, 8061, 7},
     {"jad",      "Jad",       2400, 5088, 0, 3127, 5},
 };
@@ -41,7 +41,7 @@ static const RuneCDevEncounterNpc g_graardor_encounter[] = {
 };
 
 static const RuneCDevEncounterNpc g_kbd_encounter[] = {
-    {2266, 2269, 4697, 0, 5},
+    {239, 2269, 4697, 0, 5},
 };
 
 static const RuneCDevEncounterNpc g_vorkath_encounter[] = {

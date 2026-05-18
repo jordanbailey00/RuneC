@@ -527,7 +527,7 @@ def export_curated_npc_rows(
          "godwars_sergeant_goblin3_ranged", "godwars_sergeant_goblin3_ranged",
          "godwars_goblin3_handaxe_proj", None, "thrown",
          "voidps:bandos:grimspike_ranged"),
-        ("dagcave_magic_boss", "magic", "dragon_firebreath_attack",
+        ("king_dragon", "any", "dragon_firebreath_attack",
          "firebreath_attack", "firebreath_travel", None,
          custom_profiles["dragonfire"], "voidps:kbd:dragonfire"),
         ("vorkath", "ranged", "ds2_vorkath_ranged", None,

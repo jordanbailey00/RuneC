@@ -1237,7 +1237,7 @@ static void viewer_dev_player_tile(const ViewerState *v,
                                    int *out_x, int *out_y) {
     int size = d->npc_size > 0 ? d->npc_size : 1;
     int desired_x = d->target_x;
-    int desired_y = d->npc_id >= 0 ? d->target_y - (size + 4) : d->target_y;
+    int desired_y = d->npc_id >= 0 ? d->target_y - (size + 2) : d->target_y;
     int plane = clamp_plane(d->plane);
     int best_x = desired_x;
     int best_y = desired_y;

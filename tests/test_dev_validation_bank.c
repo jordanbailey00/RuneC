@@ -1,12 +1,17 @@
 #include <assert.h>
+#include <stdio.h>
 #include <string.h>
 
+#include "../rc-content/content.h"
 #include "../rc-core/storage.h"
 #include "../rc-viewer/dev_validation.c"
 
 #define ITEM_PATH RC_TEST_SOURCE_DIR "/data/defs/items.bin"
 #define SPELL_PATH RC_TEST_SOURCE_DIR "/data/defs/spells.bin"
 #define VISUALS_PATH RC_TEST_SOURCE_DIR "/data/defs/combat_visuals.tsv"
+#define MONSTER_MECHANICS_PATH RC_TEST_SOURCE_DIR "/data/defs/regular_npc_mechanics.bin"
+#define ACTIVITY_MECHANICS_PATH RC_TEST_SOURCE_DIR "/data/defs/activity_mechanics.bin"
+#define ENCOUNTERS_PATH RC_TEST_SOURCE_DIR "/data/defs/encounters.bin"
 
 static int find_item_by_name(const char *name) {
     for (int i = 0; i < RC_MAX_ITEM_DEFS; i++) {
@@ -35,16 +40,78 @@ static void assert_validation_item_equips(RcWorld *world, const char *name,
     assert(world->player.equipment[equip_slot].item_id == item_id);
 }
 
+static void assert_dev_encounter_attack_projectile(RcWorld *world,
+                                                   const char *transport_key,
+                                                   int attacker_npc_id,
+                                                   int player_x,
+                                                   int player_y,
+                                                   int plane) {
+    const RuneCDevTransport *transport =
+        runec_dev_validation_find_transport(transport_key);
+    assert(transport);
+    world->player.x = player_x;
+    world->player.y = player_y;
+    world->player.prev_x = player_x;
+    world->player.prev_y = player_y;
+    world->player.plane = plane;
+    RcCombatActorRef player_actor = {
+        .kind = RC_COMBAT_ACTOR_PLAYER,
+        .uid = 0,
+    };
+    rc_combat_stop_actor(world, player_actor, 0);
+    int prepared = runec_dev_validation_prepare_encounter(world, transport);
+    assert(prepared > 0);
+    int attacker_idx = rc_world_find_npc_near(world, attacker_npc_id,
+                                             transport->target_x,
+                                             transport->target_y,
+                                             plane, 16);
+    assert(attacker_idx >= 0);
+    RcNpc *attacker = &world->npcs[attacker_idx];
+    attacker->attack_timer = 0;
+    int before = 0;
+    rc_combat_projectiles(world, &before);
+    rc_combat_tick_npc(world, attacker);
+    int after = 0;
+    const RcCombatProjectile *projectiles =
+        rc_combat_projectiles(world, &after);
+    if (after <= before) {
+        const RcNpcDef *def = attacker->def_id >= 0
+                            ? &g_npc_defs[attacker->def_id] : NULL;
+        uint8_t enc_style = COMBAT_NONE;
+        uint16_t enc_min = 0, enc_max = 0;
+        uint32_t enc_flags = 0;
+        int enc_attack = rc_encounter_select_npc_attack(world,
+            (uint16_t)attacker->uid, 8, &enc_style, &enc_min, &enc_max,
+            &enc_flags);
+        fprintf(stderr,
+                "missing dev encounter projectile for %s npc %d uid %d "
+                "target %d timer %d enc_attack %d enc_style %u "
+                "def_style_mask %d\n",
+                transport_key, attacker_npc_id, attacker->uid,
+                attacker->target_uid, attacker->attack_timer, enc_attack,
+                enc_style, def ? def->attack_types : -1);
+    }
+    assert(after > before);
+    const RcCombatProjectile *p = &projectiles[after - 1];
+    assert(p->source_uid == attacker->uid);
+    assert(p->target_uid == 0);
+    assert(p->projectile_model_id >= 0 || p->travel_spotanim_id >= 0);
+}
+
 int main(void) {
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_EQUIPMENT |
-                     RC_SUB_STORAGE | RC_SUB_COMBAT;
+                     RC_SUB_STORAGE | RC_SUB_COMBAT | RC_SUB_ENCOUNTER;
     cfg.items_path = ITEM_PATH;
     cfg.spells_path = SPELL_PATH;
     cfg.combat_visuals_path = VISUALS_PATH;
+    cfg.monster_mechanics_path = MONSTER_MECHANICS_PATH;
+    cfg.activity_mechanics_path = ACTIVITY_MECHANICS_PATH;
+    cfg.encounters_path = ENCOUNTERS_PATH;
     cfg.seed = 12345;
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
+    rc_content_register_all(world);
     for (int i = 0; i < SKILL_COUNT; i++)
         world->player.skills.base_level[i] = 99;
 
@@ -116,7 +183,7 @@ int main(void) {
 
     const RuneCDevTransport *kbd =
         runec_dev_validation_find_transport("kbd");
-    assert(kbd && kbd->npc_id == 2266);
+    assert(kbd && kbd->npc_id == 239);
 
     const RuneCDevTransport *graardor =
         runec_dev_validation_find_transport("graardor");
@@ -136,6 +203,7 @@ int main(void) {
     int prepared = runec_dev_validation_prepare_encounter(world, graardor);
     assert(prepared == 4);
     assert(rc_combat_is_multi_combat(world));
+    int steelwill_idx = -1;
     for (int i = 0; i < encounter_count; i++) {
         int idx = rc_world_find_npc_near(world, encounter[i].npc_id,
                                          encounter[i].x, encounter[i].y,
@@ -145,7 +213,26 @@ int main(void) {
         assert(npc->disable_wander);
         assert(npc->target_uid == 0);
         assert(npc->attack_timer == 0);
+        if (encounter[i].npc_id == 2217)
+            steelwill_idx = idx;
     }
+    assert(steelwill_idx >= 0);
+    rc_combat_tick_npc(world, &world->npcs[steelwill_idx]);
+    int projectile_count = 0;
+    const RcCombatProjectile *projectiles =
+        rc_combat_projectiles(world, &projectile_count);
+    assert(projectile_count > 0);
+    assert(projectiles[0].source_uid == world->npcs[steelwill_idx].uid);
+    assert(projectiles[0].target_uid == 0);
+    assert(projectiles[0].style == COMBAT_MAGIC);
+    assert(projectiles[0].travel_spotanim_id == 1217);
+
+    assert_dev_encounter_attack_projectile(world, "kbd", 239,
+                                           2269, 4690, 0);
+    assert_dev_encounter_attack_projectile(world, "vorkath", 8061,
+                                           2269, 4053, 0);
+    assert_dev_encounter_attack_projectile(world, "jad", 3127,
+                                           2400, 5081, 0);
 
     rc_world_destroy(world);
     return 0;
