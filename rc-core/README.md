@@ -13,7 +13,7 @@ Use this file for:
 - tick-path and determinism rules
 - the `rc-core` / `rc-content` split
 
-Planning lives in the root `work.md`. This file is a technical overview of
+Planning lives in `docs/work.md`. This file is a technical overview of
 the component boundary, architecture rules, and runtime invariants.
 
 This document is **normative**. Every design and refactor decision

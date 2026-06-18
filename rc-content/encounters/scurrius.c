@@ -10,7 +10,7 @@
 //   - heal_at_object        (Food Pile heal)      — generic
 //
 // This file exists to hold the *boss-specific* scripts listed in
-// the TOML's `script = "..."` fields. Per work.md §1.1 pass 2
+// the TOML's `script = "..."` fields. Per docs/work.md §1.1 pass 2
 // roster:
 //
 //   - scurrius_heal_at_food_pile   (phase=heal walk-to-pile logic)

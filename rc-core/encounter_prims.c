@@ -10,7 +10,7 @@
 #include <stddef.h>
 
 // Generic encounter primitives — mechanism only, never content-specific.
-// See data/curated/encounters/_primitives.md for semantics.
+// See docs/encounter_primitives.md for semantics.
 //
 // This file holds ONLY primitives that are reusable across multiple
 // bosses. Boss-specific scripts (one-offs like scurrius_heal_at_food_pile

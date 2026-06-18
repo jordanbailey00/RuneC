@@ -7,7 +7,6 @@ build_cov/
 *.gcno
 *.gcov
 .cache/
-archive/
 dist-data/
 compile_commands.json
 __pycache__/
@@ -24,9 +23,11 @@ data/regions/test_varrock.terrain
 collision_log.txt
 # Local raw source corpora used by exporters; keep these out of git.
 data/source/
-# Local-only docs. Keep only the repo root README and component READMEs
-# tracked on GitHub.
+# Local docs and arbitrary scratch Markdown stay out of git unless explicitly
+# unignored below.
+docs/
 *.md
+!/AGENT.md
 !/README.md
 !/rc-core/README.md
 !/rc-viewer/README.md

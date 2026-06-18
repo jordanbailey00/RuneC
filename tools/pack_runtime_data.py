@@ -545,7 +545,7 @@ def build_manifest(
         .replace("+00:00", "Z"),
         "source": {
             "data_root": str(data_root.resolve()),
-            "runtime_subset_doc": "data/data_runtime_subsets.md",
+            "runtime_subset_doc": "docs/archive/data_runtime_subsets.md",
         },
         "target_max_pack_bytes": max_pack_bytes,
         "packs": packs,
@@ -561,8 +561,8 @@ def build_manifest(
         "explicit_excludes": [
             "data/source/**",
             "data/curated/**",
-            "data/database_cleanup.md",
-            "data/data_runtime_subsets.md",
+            "docs/archive/database_cleanup.md",
+            "docs/archive/data_runtime_subsets.md",
             "data/ui/interface_debug.txt",
             "**/*.md",
             "**/*.log",

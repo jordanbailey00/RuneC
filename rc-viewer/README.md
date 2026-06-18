@@ -15,7 +15,7 @@ Use this file for:
 - what code lives in this directory
 - what the viewer is and is not responsible for
 
-Planning lives in the root `work.md`. This file is a technical overview of
+Planning lives in `docs/work.md`. This file is a technical overview of
 the viewer boundary, runtime assets, and presentation responsibilities.
 
 ## Role

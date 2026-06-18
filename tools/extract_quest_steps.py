@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract `==Walkthrough==` section text from each quest's wiki page.
 
-Scope per `work.md` Phase 6: produce reference TOML per quest with
+Scope per `docs/work.md` Phase 6: produce reference TOML per quest with
 the walkthrough split into sub-section steps. NOT a runnable state
 machine — those are per-quest hand-authored in Phase 4 territory.
 

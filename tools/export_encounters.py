@@ -3,7 +3,7 @@
 
 Input:  `data/curated/encounters/*.toml` — 50 hand-authored encounter
         specs, schema described in `database.md`, with field catalog in
-        `data/curated/encounters/_primitives.md`.
+        `docs/encounter_primitives.md`.
 
 Output: `data/defs/encounters.bin` with 'ENCT' magic. Loaded at
         `rc_world_create_config` time by `rc-core/encounter.c` when
@@ -179,7 +179,7 @@ DAMAGE_MODIFIER_CONDITIONS = {
 }
 
 # Primitive-name → enum id mapping. Matches the table in
-# data/curated/encounters/_primitives.md. Unknown primitives → 0
+# docs/encounter_primitives.md. Unknown primitives → 0
 # (no-op) so the binary stays loadable even for mechanics the
 # engine doesn't yet implement.
 PRIMITIVE_IDS = {

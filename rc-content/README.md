@@ -15,7 +15,7 @@ where new content goes must honor the rules here. See also
 `rc-core/README.md` for the engine-side rules; this file is its
 content-side counterpart.
 
-Planning and task tracking live in the root `work.md`; this README is a
+Planning and task tracking live in `docs/work.md`; this README is a
 technical overview of content boundaries and module structure.
 
 ---

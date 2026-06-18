@@ -9,7 +9,7 @@
 //   - preserve_stat_drains_across_transition  — generic
 //
 // This file exists to hold the *boss-specific* scripts listed in
-// the TOML's `script = "..."` fields. Per work.md §1.1 pass 2
+// the TOML's `script = "..."` fields. Per docs/work.md §1.1 pass 2
 // roster:
 //
 //   - kq_shed_exoskeleton

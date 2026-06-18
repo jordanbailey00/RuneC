@@ -121,7 +121,7 @@ enum {
 typedef struct {
     char name[48];
     RcEncounterPrimFn prim;        // resolved from primitive_id at load
-    uint8_t primitive_id;          // enum — see _primitives.md PRIMITIVE_IDS
+    uint8_t primitive_id;          // enum — see docs/encounter_primitives.md PRIMITIVE_IDS
     uint8_t trigger_type;          // RC_ENC_TRIGGER_*
     uint8_t phase_idx;             // index into phases[], or 0xFF
     uint32_t phase_mask;           // union trigger phase bitmask; 0 = phase_idx
