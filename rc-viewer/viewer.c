@@ -275,6 +275,81 @@ static int env_bool(const char *key, int fallback) {
     return 1;
 }
 
+static float env_float(const char *key, float fallback) {
+    const char *value = getenv(key);
+    if (!value || !value[0])
+        return fallback;
+    char *end = NULL;
+    float parsed = strtof(value, &end);
+    return end && *end == '\0' ? parsed : fallback;
+}
+
+typedef enum {
+    RUNEC_RENDER_PROFILE_LEGACY = 0,
+    RUNEC_RENDER_PROFILE_OSRS,
+    RUNEC_RENDER_PROFILE_DEBUG
+} RuneCRenderProfile;
+
+typedef struct {
+    const char *profile_name;
+    int color_lift_enabled;
+    int msaa_enabled;
+    float camera_pitch;
+    float camera_dist;
+    float camera_fovy;
+} RuneCRenderSettings;
+
+static RuneCRenderProfile render_profile_from_env(const char **out_name) {
+    const char *profile = env_path("RUNEC_RENDER_PROFILE", "osrs");
+    if (strcmp(profile, "osrs") == 0 || strcmp(profile, "OSRS") == 0) {
+        if (out_name) *out_name = "osrs";
+        return RUNEC_RENDER_PROFILE_OSRS;
+    }
+    if (strcmp(profile, "debug") == 0 || strcmp(profile, "DEBUG") == 0) {
+        if (out_name) *out_name = "debug";
+        return RUNEC_RENDER_PROFILE_DEBUG;
+    }
+    if (strcmp(profile, "legacy") != 0 && strcmp(profile, "LEGACY") != 0) {
+        fprintf(stderr,
+                "unknown RUNEC_RENDER_PROFILE=%s; using legacy\n",
+                profile);
+    }
+    if (out_name) *out_name = "legacy";
+    return RUNEC_RENDER_PROFILE_LEGACY;
+}
+
+static float clamp_float(float value, float min_value, float max_value) {
+    if (value < min_value) return min_value;
+    if (value > max_value) return max_value;
+    return value;
+}
+
+static RuneCRenderSettings render_settings_from_env(void) {
+    const char *profile_name = "legacy";
+    RuneCRenderProfile profile = render_profile_from_env(&profile_name);
+    RuneCRenderSettings settings = {
+        .profile_name = profile_name,
+        .color_lift_enabled = profile == RUNEC_RENDER_PROFILE_OSRS ? 0 : 1,
+        .msaa_enabled = profile == RUNEC_RENDER_PROFILE_OSRS ? 1 : 0,
+        .camera_pitch = 0.6f,
+        .camera_dist = 50.0f,
+        .camera_fovy = 45.0f,
+    };
+    settings.color_lift_enabled =
+        env_bool("RUNEC_COLOR_LIFT", settings.color_lift_enabled);
+    settings.msaa_enabled = env_bool("RUNEC_MSAA", settings.msaa_enabled);
+    settings.camera_pitch =
+        env_float("RUNEC_CAMERA_PITCH", settings.camera_pitch);
+    settings.camera_dist =
+        env_float("RUNEC_CAMERA_DIST", settings.camera_dist);
+    settings.camera_fovy =
+        env_float("RUNEC_CAMERA_FOV", settings.camera_fovy);
+    settings.camera_pitch = clamp_float(settings.camera_pitch, 0.1f, 1.4f);
+    settings.camera_dist = clamp_float(settings.camera_dist, 5.0f, 300.0f);
+    settings.camera_fovy = clamp_float(settings.camera_fovy, 10.0f, 120.0f);
+    return settings;
+}
+
 static int clamp_plane(int plane) {
     if (plane < 0) return 0;
     if (plane >= RC_MAX_PLANES) return RC_MAX_PLANES - 1;
@@ -4967,32 +5042,53 @@ int main(void) {
     const char *quiet_log = getenv("RC_VIEWER_QUIET");
     if (quiet_log && quiet_log[0] && strcmp(quiet_log, "0") != 0)
         SetTraceLogLevel(LOG_WARNING);
-    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    RuneCRenderSettings render_settings = render_settings_from_env();
+    unsigned int window_flags = FLAG_WINDOW_RESIZABLE;
+    if (render_settings.msaa_enabled)
+        window_flags |= FLAG_MSAA_4X_HINT;
+    SetConfigFlags(window_flags);
     InitWindow(WINDOW_W, WINDOW_H,
                env_path("RUNEC_VIEWER_TITLE", "RuneC Viewer"));
     SetTargetFPS(60);
     runec_ui_init(&v.ui);
     viewer_sync_dev_transport_labels(&v.ui);
+    fprintf(stderr,
+            "render profile: %s color_lift=%s msaa=%s camera_pitch=%.3f "
+            "camera_dist=%.1f camera_fov=%.1f\n",
+            render_settings.profile_name,
+            render_settings.color_lift_enabled ? "on" : "off",
+            render_settings.msaa_enabled ? "on" : "off",
+            render_settings.camera_pitch, render_settings.camera_dist,
+            render_settings.camera_fovy);
 
     int dynamic_model_shader_enabled =
         env_bool("RUNEC_DYNAMIC_MODEL_SHADER", 1);
+    float static_brightness = render_settings.color_lift_enabled ? 1.16f : 1.0f;
+    float static_lift = render_settings.color_lift_enabled ? 0.04f : 0.0f;
+    float dynamic_brightness = render_settings.color_lift_enabled ? 1.10f : 1.0f;
+    float dynamic_lift = render_settings.color_lift_enabled ? 0.09f : 0.0f;
 
-    v.alpha_cutout_shader_static = load_alpha_cutout_shader(1.16f, 0.04f);
+    v.alpha_cutout_shader_static =
+        load_alpha_cutout_shader(static_brightness, static_lift);
     v.alpha_cutout_shader_static_loaded = v.alpha_cutout_shader_static.id > 0;
-    v.projectile_effect_shader = load_projectile_effect_shader(1.16f, 0.04f);
+    v.projectile_effect_shader =
+        load_projectile_effect_shader(static_brightness, static_lift);
     v.projectile_effect_shader_loaded = v.projectile_effect_shader.id > 0;
     if (dynamic_model_shader_enabled) {
-        v.alpha_cutout_shader_dynamic = load_alpha_cutout_shader(1.10f, 0.09f);
+        v.alpha_cutout_shader_dynamic =
+            load_alpha_cutout_shader(dynamic_brightness, dynamic_lift);
         v.alpha_cutout_shader_dynamic_loaded = v.alpha_cutout_shader_dynamic.id > 0;
     } else {
         fprintf(stderr,
                 "dynamic model shader disabled by RUNEC_DYNAMIC_MODEL_SHADER=0\n");
     }
 
-    v.cam_yaw = 0; v.cam_pitch = 0.6f; v.cam_dist = 50;
+    v.cam_yaw = 0;
+    v.cam_pitch = render_settings.camera_pitch;
+    v.cam_dist = render_settings.camera_dist;
     v.camera_locked = 1;
     v.camera.up = (Vector3){0, 1, 0};
-    v.camera.fovy = 45;
+    v.camera.fovy = render_settings.camera_fovy;
     v.camera.projection = CAMERA_PERSPECTIVE;
 
     // No custom lighting shader — the export scripts already bake directional
