@@ -15,6 +15,7 @@ enum {
     TEST_FIRE_RUNE = 554,
     TEST_AIR_RUNE = 556,
     TEST_NPC_ID = 990001,
+    TEST_JAD_ID = 3127,
 };
 
 static void reset_defs(void) {
@@ -95,6 +96,26 @@ static void add_defs(void) {
     strcpy(npc->options[1], "Attack");
 }
 
+static int add_jad_def(int attack_types) {
+    int idx = g_npc_def_count++;
+    RcNpcDef *npc = &g_npc_defs[idx];
+    memset(npc, 0, sizeof(*npc));
+    npc->id = TEST_JAD_ID;
+    strcpy(npc->name, "TzTok-Jad");
+    npc->size = 5;
+    npc->hitpoints = 250;
+    npc->stats[0] = 640;
+    npc->stats[1] = 960;
+    npc->stats[3] = 480;
+    npc->stats[4] = 960;
+    npc->stats[5] = 480;
+    npc->max_hit = 1;
+    npc->attack_speed = 8;
+    npc->attack_types = attack_types;
+    strcpy(npc->options[1], "Attack");
+    return idx;
+}
+
 static void write_visuals_file(const char *path) {
     FILE *f = fopen(path, "w");
     assert(f != NULL);
@@ -115,6 +136,25 @@ static void write_visuals_file(const char *path) {
     fputs("npc|990001|magic|711|200|201|202|5555|777|3|3|172|124|51|16|-5|64|10|npc\n", f);
     fputs("special|1305|slash|1058|248|-|-|-|-|-|-|-|-|-|-|-|-|-|special\n", f);
     fputs("special|861|ranged|426|-|-|-|-|-|3|3|163|146|41|5|5|11|5|darkbow|2|163|146|41|25|14|11|10|880|881|9900|9901|1\n", f);
+    fclose(f);
+}
+
+static void write_jad_visuals_file(const char *path) {
+    FILE *f = fopen(path, "w");
+    assert(f != NULL);
+    fputs("kind|key|style|attack_anim|launch_spotanim|travel_spotanim|"
+          "impact_spotanim|projectile_model|projectile_anim|hit_delay|"
+          "client_delay|proj_start_height|proj_end_height|proj_delay|"
+          "proj_angle|proj_length_adjustment|proj_progress|"
+          "proj_step_multiplier|note|projectile_count|alt_proj_start_height|"
+          "alt_proj_end_height|alt_proj_delay|alt_proj_angle|"
+          "alt_proj_length_adjustment|alt_proj_progress|"
+          "alt_proj_step_multiplier|aux_travel_spotanim|aux_impact_spotanim|"
+          "aux_projectile_model|aux_projectile_anim|impact_on_last_only|"
+          "double_launch_spotanim\n", f);
+    fputs("npc|3127|magic|2656|439|445|446|9335|2648|3|3|172|124|41|16|0|64|5|jad_magic\n", f);
+    fputs("npc|3127|melee|2655|-|-|-|-|-|-|-|-|-|-|-|-|-|-|jad_melee\n", f);
+    fputs("npc|3127|ranged|2652|440|-|451|-|-|3|3|768|52|60|0|0|0|0|jad_ranged\n", f);
     fclose(f);
 }
 
@@ -396,6 +436,118 @@ static void test_npc_attack_emits_data_backed_projectile(void) {
     rc_world_destroy(world);
 }
 
+static RcNpc *spawn_jad_attacker(RcWorld *world, int def_idx) {
+    int npc_idx = rc_npc_spawn(world, def_idx, 3204, 3200, 0);
+    assert(npc_idx >= 0);
+    RcNpc *npc = &world->npcs[npc_idx];
+    assert(rc_combat_start_npc_vs_player(world, npc->uid, 0));
+    return npc;
+}
+
+static void test_jad_magic_projectile_starts_from_jad_center(void) {
+    reset_defs();
+    int jad_def = add_jad_def(0x08);
+    write_jad_visuals_file("/tmp/runec_jad_visuals_test.tsv");
+    assert(rc_load_combat_visuals("/tmp/runec_jad_visuals_test.tsv") == 3);
+    RcWorld *world = make_world();
+    RcNpc *jad = spawn_jad_attacker(world, jad_def);
+
+    rc_combat_tick_npc(world, jad);
+
+    int count = 0;
+    const RcCombatProjectile *projectiles =
+        rc_combat_projectiles(world, &count);
+    assert(count == 1);
+    assert(projectiles[0].style == COMBAT_MAGIC);
+    assert(projectiles[0].source_x == jad->x + 2);
+    assert(projectiles[0].source_y == jad->y + 2);
+    assert(projectiles[0].target_x == world->player.x);
+    assert(projectiles[0].target_y == world->player.y);
+    assert(projectiles[0].launch_spotanim_id == 439);
+    assert(projectiles[0].travel_spotanim_id == 445);
+    assert(projectiles[0].impact_spotanim_id == 446);
+    assert(projectiles[0].projectile_model_id == 9335);
+    assert(projectiles[0].projectile_anim_id == 2648);
+    assert(projectiles[0].launch_spotanim_height == 172);
+    assert(projectiles[0].projectile_start_height == 172);
+    assert(projectiles[0].projectile_end_height == 124);
+    assert(projectiles[0].projectile_start_time == 41);
+    assert(projectiles[0].projectile_end_time == 71);
+    assert(jad->combat.attack_animation_id == 2656);
+    assert(jad->attack_anim_timer == 5);
+    assert(jad->combat.attack_animation_timer == 5);
+    rc_world_destroy(world);
+}
+
+static void test_jad_ranged_projectile_drops_from_ceiling(void) {
+    reset_defs();
+    int jad_def = add_jad_def(0x10);
+    write_jad_visuals_file("/tmp/runec_jad_visuals_test.tsv");
+    assert(rc_load_combat_visuals("/tmp/runec_jad_visuals_test.tsv") == 3);
+    RcWorld *world = make_world();
+    RcNpc *jad = spawn_jad_attacker(world, jad_def);
+
+    rc_combat_tick_npc(world, jad);
+
+    int count = 0;
+    const RcCombatProjectile *projectiles =
+        rc_combat_projectiles(world, &count);
+    assert(count == 1);
+    assert(projectiles[0].style == COMBAT_RANGED);
+    assert(projectiles[0].source_x == world->player.x);
+    assert(projectiles[0].source_y == world->player.y);
+    assert(projectiles[0].target_x == world->player.x);
+    assert(projectiles[0].target_y == world->player.y);
+    assert(projectiles[0].launch_spotanim_id == -1);
+    assert(projectiles[0].travel_spotanim_id == -1);
+    assert(projectiles[0].impact_spotanim_id == 451);
+    assert(projectiles[0].projectile_model_id == -1);
+    assert(projectiles[0].projectile_anim_id == -1);
+    assert(projectiles[0].projectile_start_height == 768);
+    assert(projectiles[0].projectile_end_height == 52);
+    assert(projectiles[0].projectile_start_time == 0);
+    assert(projectiles[0].projectile_end_time == 60);
+    assert(projectiles[0].projectile_angle == 0);
+    assert(projectiles[0].projectile_progress == 0);
+    assert(projectiles[0].impact_spotanim_height == 52);
+    assert(projectiles[0].duration_ticks == 3);
+    assert(projectiles[0].impact_duration_ticks == 3);
+    assert(jad->combat.attack_animation_id == 2652);
+    assert(jad->attack_anim_timer == 5);
+    assert(jad->combat.attack_animation_timer == 5);
+    for (int i = 0; i < 6; i++) {
+        world->tick++;
+        rc_combat_tick_projectiles(world);
+        rc_combat_tick_npc(world, jad);
+        projectiles = rc_combat_projectiles(world, &count);
+        assert(count <= 1);
+        assert(jad->attack_count == 1);
+    }
+    rc_world_destroy(world);
+}
+
+static void test_jad_melee_uses_bite_animation_without_projectile(void) {
+    reset_defs();
+    int jad_def = add_jad_def(0x04);
+    write_jad_visuals_file("/tmp/runec_jad_visuals_test.tsv");
+    assert(rc_load_combat_visuals("/tmp/runec_jad_visuals_test.tsv") == 3);
+    RcWorld *world = make_world();
+    int npc_idx = rc_npc_spawn(world, jad_def, 3201, 3200, 0);
+    assert(npc_idx >= 0);
+    RcNpc *jad = &world->npcs[npc_idx];
+    assert(rc_combat_start_npc_vs_player(world, jad->uid, 0));
+
+    rc_combat_tick_npc(world, jad);
+
+    int count = 0;
+    (void)rc_combat_projectiles(world, &count);
+    assert(count == 0);
+    assert(jad->combat.attack_animation_id == 2655);
+    assert(jad->attack_anim_timer == 3);
+    assert(jad->combat.attack_animation_timer == 3);
+    rc_world_destroy(world);
+}
+
 static void test_impact_only_spell_emits_timed_impact(void) {
     reset_defs();
     add_defs();
@@ -541,6 +693,9 @@ int main(void) {
     test_impact_only_spell_emits_timed_impact();
     test_spell_on_npc_routes_to_magic_combat_projectile();
     test_npc_attack_emits_data_backed_projectile();
+    test_jad_magic_projectile_starts_from_jad_center();
+    test_jad_ranged_projectile_drops_from_ceiling();
+    test_jad_melee_uses_bite_animation_without_projectile();
     test_special_visual_lookup_uses_special_kind();
     test_item_visual_lookup_uses_combat_stance();
     test_generated_visuals_include_spell_projectile_profiles();

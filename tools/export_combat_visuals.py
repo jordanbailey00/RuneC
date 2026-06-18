@@ -17,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DUMP = ROOT / "tools/cache_pipeline/source/osrs-dumps"
-DEFAULT_RSMOD = Path("/home/joe/projects/runescape-rl-reference/rsmod")
+DEFAULT_RSMOD = Path("/home/joe/projects/runescape-reference/rsmod")
 DEFAULT_OUT = ROOT / "data/defs/combat_visuals.tsv"
 
 OBJ_ENRICHER = (
@@ -513,6 +513,7 @@ def export_curated_npc_rows(
         "graardor_slam": ProjAnimSpec(163, 146, 31, 16, 29, 11, 5),
         "steelwill_sonic": ProjAnimSpec(144, 124, 30, 16, 6, 64, 10),
         "dragonfire": ProjAnimSpec(172, 124, 41, 16, 0, 64, 5),
+        "jad_ranged_impact": ProjAnimSpec(768, 52, 60, 0, 0, 0, 0),
     }
 
     npc_rows = [
@@ -539,10 +540,10 @@ def export_curated_npc_rows(
         ("tzhaar_fightcave_swarm_boss", "magic", 2656,
          "tzhaar_firebreath_attack", "tzhaar_fire_launch_travel",
          "tzhaar_fire_launch_impact", custom_profiles["dragonfire"],
-         "runelite:jad_magic"),
+         "b237:jad_magic"),
         ("tzhaar_fightcave_swarm_boss", "ranged", 2652,
-         "tzhaar_ranged_fire_attack", "tzhaar_fire_spit_travel",
-         "tzhaar_rock_smash", "thrown", "runelite:jad_ranged"),
+         "tzhaar_ranged_fire_attack", None, "tzhaar_rock_smash",
+         custom_profiles["jad_ranged_impact"], "b237:jad_ranged"),
     ]
     for npc_name, style, attack, launch, travel, impact, profile, note in npc_rows:
         npc_id = npc_ids.get(npc_name)

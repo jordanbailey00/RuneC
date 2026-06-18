@@ -890,28 +890,51 @@ def write_objects_binary(
     total_verts = sum(p.vertex_count for p in placements)
     magic = OBJ2_MAGIC if has_textures else OBJS_MAGIC
 
-    with open(output_path, "wb") as f:
-        f.write(struct.pack("<I", magic))
-        f.write(struct.pack("<I", len(placements)))
-        f.write(struct.pack("<i", min_world_x))
-        f.write(struct.pack("<i", min_world_y))
-        f.write(struct.pack("<I", total_verts))
+    for p in placements:
+        if len(p.vertices) != p.vertex_count * 3:
+            raise ValueError(
+                f"object placement at {p.world_x},{p.world_y} has "
+                f"{len(p.vertices)} vertex floats for {p.vertex_count} vertices"
+            )
+        if len(p.colors) != p.vertex_count:
+            raise ValueError(
+                f"object placement at {p.world_x},{p.world_y} has "
+                f"{len(p.colors)} colors for {p.vertex_count} vertices"
+            )
+        if has_textures and len(p.uvs) != p.vertex_count * 2:
+            raise ValueError(
+                f"object placement at {p.world_x},{p.world_y} has "
+                f"{len(p.uvs)} UV floats for {p.vertex_count} vertices"
+            )
 
-        # write all vertices concatenated
-        for p in placements:
-            for v in p.vertices:
-                f.write(struct.pack("<f", v))
+    tmp_path = output_path.with_name(f"{output_path.name}.tmp")
+    try:
+        with open(tmp_path, "wb") as f:
+            f.write(struct.pack("<I", magic))
+            f.write(struct.pack("<I", len(placements)))
+            f.write(struct.pack("<i", min_world_x))
+            f.write(struct.pack("<i", min_world_y))
+            f.write(struct.pack("<I", total_verts))
 
-        # write all colors concatenated
-        for p in placements:
-            for r, g, b, a in p.colors:
-                f.write(struct.pack("4B", r, g, b, a))
-
-        # write texture coordinates (v2 only)
-        if has_textures:
+            # write all vertices concatenated
             for p in placements:
-                for uv in p.uvs:
-                    f.write(struct.pack("<f", uv))
+                for v in p.vertices:
+                    f.write(struct.pack("<f", v))
+
+            # write all colors concatenated
+            for p in placements:
+                for r, g, b, a in p.colors:
+                    f.write(struct.pack("4B", r, g, b, a))
+
+            # write texture coordinates (v2 only)
+            if has_textures:
+                for p in placements:
+                    for uv in p.uvs:
+                        f.write(struct.pack("<f", uv))
+        tmp_path.replace(output_path)
+    except Exception:
+        tmp_path.unlink(missing_ok=True)
+        raise
 
 
 @dataclass
@@ -1070,6 +1093,7 @@ def _clone_model_data(src: ModelData) -> ModelData:
         vertex_skins=list(src.vertex_skins),
         face_priorities=list(src.face_priorities),
         face_alphas=list(src.face_alphas),
+        face_skins=list(src.face_skins),
         face_render_types=list(src.face_render_types),
         face_tex_coords=list(src.face_tex_coords),
         tex_u=list(src.tex_u),

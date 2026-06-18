@@ -22,6 +22,7 @@
 #define TANM_VERSION 1
 #endif
 #define MUV1_MAGIC 0x3156554D
+#define MFA1_MAGIC 0x3141464D
 #define MODEL_ID_INDEX_MAX 20000
 
 typedef struct {
@@ -44,10 +45,13 @@ typedef struct {
     int loaded;
     float *rest_verts;
     float *rest_texcoords;
+    unsigned char *rest_colors;
     int16_t *base_verts;
     uint8_t *vertex_skins;
     uint16_t *face_indices;
     uint8_t *face_priorities;
+    uint8_t *face_alphas;
+    uint8_t *face_skins;
     ModelFaceUvInfo *face_uvs;
     int base_vert_count;
     int face_count;
@@ -476,6 +480,17 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
             return NULL;
         }
         memcpy(rest_verts, verts, vc * 3 * sizeof(float));
+        unsigned char *rest_colors = malloc((size_t)vc * 4);
+        if (!rest_colors) {
+            free(verts);
+            free(colors);
+            free(rest_verts);
+            free(offsets);
+            rc_asset_close(f);
+            models_free(set);
+            return NULL;
+        }
+        memcpy(rest_colors, colors, (size_t)vc * 4);
 
         Mesh mesh = {0};
         mesh.vertexCount = vc;
@@ -532,16 +547,23 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
         }
 
         ModelFaceUvInfo *face_uvs = NULL;
+        uint8_t *face_alphas = NULL;
+        uint8_t *face_skins = NULL;
         long next_off = (m + 1 < count) ? (long)offsets[m + 1] : model_file_end;
-        long opt_pos = ftell(f);
-        if (has_tex && opt_pos >= 0 && next_off >= opt_pos + 8) {
-            uint32_t uv_magic = 0;
-            uint32_t uv_count = 0;
-            if (rc_read_exact(f, &uv_magic, sizeof(uv_magic), 1, path,
-                              "model uv magic")
-                    && rc_read_exact(f, &uv_count, sizeof(uv_count), 1, path,
-                                     "model uv count")
-                    && uv_magic == MUV1_MAGIC && uv_count == (uint32_t)tc) {
+        while (1) {
+            long opt_pos = ftell(f);
+            if (opt_pos < 0 || next_off < opt_pos + 8)
+                break;
+            uint32_t opt_magic = 0;
+            uint32_t opt_count = 0;
+            if (!rc_read_exact(f, &opt_magic, sizeof(opt_magic), 1, path,
+                               "model optional magic")
+                    || !rc_read_exact(f, &opt_count, sizeof(opt_count), 1,
+                                      path, "model optional count")) {
+                break;
+            }
+            if (has_tex && opt_magic == MUV1_MAGIC
+                    && opt_count == (uint32_t)tc) {
                 face_uvs = calloc(tc, sizeof(*face_uvs));
                 if (!face_uvs) {
                     free(offsets);
@@ -588,8 +610,41 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                     }
                     face_uvs[i].textured = textured != 0;
                 }
+                continue;
+            } else if (opt_magic == MFA1_MAGIC && opt_count == (uint32_t)tc) {
+                face_alphas = calloc(tc, sizeof(*face_alphas));
+                face_skins = calloc(tc, sizeof(*face_skins));
+                if ((tc > 0 && (!face_alphas || !face_skins))) {
+                    free(face_alphas);
+                    free(face_skins);
+                    free(offsets);
+                    rc_asset_close(f);
+                    models_free(set);
+                    return NULL;
+                }
+                for (int i = 0; i < tc; i++) {
+                    uint16_t pad = 0;
+                    if (!rc_read_exact(f, &face_alphas[i],
+                                       sizeof(face_alphas[i]), 1, path,
+                                       "model face alpha")
+                            || !rc_read_exact(f, &face_skins[i],
+                                              sizeof(face_skins[i]), 1, path,
+                                              "model face skin")
+                            || !rc_read_exact(f, &pad, sizeof(pad), 1, path,
+                                              "model face alpha pad")) {
+                        free(face_alphas);
+                        free(face_skins);
+                        free(face_uvs);
+                        free(offsets);
+                        rc_asset_close(f);
+                        models_free(set);
+                        return NULL;
+                    }
+                }
+                continue;
             } else {
                 fseek(f, opt_pos, SEEK_SET);
+                break;
             }
         }
 
@@ -602,8 +657,10 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
             .rest_verts = rest_verts,
             .rest_texcoords = texcoords && vc > 0
                 ? malloc((size_t)vc * 2 * sizeof(float)) : NULL,
+            .rest_colors = rest_colors,
             .base_verts = bv, .vertex_skins = skins, .face_indices = fi,
-            .face_priorities = pri, .face_uvs = face_uvs,
+            .face_priorities = pri, .face_alphas = face_alphas,
+            .face_skins = face_skins, .face_uvs = face_uvs,
             .base_vert_count = (int)bvc, .face_count = tc,
         };
         if (texcoords && set->entries[m].rest_texcoords)
@@ -641,9 +698,12 @@ static void models_free(ModelSet *set) {
         free(set->entries[i].base_verts);
         free(set->entries[i].rest_verts);
         free(set->entries[i].rest_texcoords);
+            free(set->entries[i].rest_colors);
             free(set->entries[i].vertex_skins);
             free(set->entries[i].face_indices);
             free(set->entries[i].face_priorities);
+            free(set->entries[i].face_alphas);
+            free(set->entries[i].face_skins);
             free(set->entries[i].face_uvs);
         }
     }

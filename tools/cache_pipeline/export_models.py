@@ -786,6 +786,7 @@ class ModelData:
     vertex_skins: list[int] = field(default_factory=list)  # label group per vertex (for animation)
     face_priorities: list[int] = field(default_factory=list)  # per-face render priority (0-11)
     face_alphas: list[int] = field(default_factory=list)  # per-face alpha (0=opaque)
+    face_skins: list[int] = field(default_factory=list)  # label group per face (for alpha animation)
     face_render_types: list[int] = field(default_factory=list)
     face_tex_coords: list[int] = field(default_factory=list)
     tex_u: list[int] = field(default_factory=list)
@@ -937,6 +938,13 @@ def _decode_face_alphas(data: bytes, offset: int, count: int, has_alphas: int) -
     if has_alphas == 1:
         return [_read_ubyte(data, offset + i) for i in range(count)]
     return [0] * count
+
+
+def _decode_face_skins(data: bytes, offset: int, count: int, has_skins: int) -> list[int]:
+    """Read per-face skin labels for transform type 5 alpha animation."""
+    if has_skins == 1:
+        return [_read_ubyte(data, offset + i) for i in range(count)]
+    return []
 
 
 def _decode_face_render_types(data: bytes, offset: int, count: int, has_types: bool) -> list[int]:
@@ -1199,7 +1207,8 @@ def _decode_type2(model_id: int, data: bytes) -> ModelData | None:
 
     priorities = _decode_face_priorities(data, var26, var10, var13)
     alphas = _decode_face_alphas(data, var30, var10, var14)
-    skins = _decode_vertex_skins(data, var29, var9, var16)
+    face_skins = _decode_face_skins(data, var27, var10, var15)
+    vertex_skins = _decode_vertex_skins(data, var29, var9, var16)
 
     return ModelData(
         model_id=model_id,
@@ -1211,8 +1220,9 @@ def _decode_type2(model_id: int, data: bytes) -> ModelData | None:
         face_textures=face_textures,
         face_priorities=priorities,
         face_alphas=alphas,
+        face_skins=face_skins,
         face_render_types=face_render_types,
-        vertex_skins=skins,
+        vertex_skins=vertex_skins,
         face_tex_coords=face_tex_coords,
         tex_u=tex_u,
         tex_v=tex_v,
@@ -1304,7 +1314,8 @@ def _decode_old_format(model_id: int, data: bytes) -> ModelData | None:
 
     priorities = _decode_face_priorities(data, var24, var10, var13)
     alphas = _decode_face_alphas(data, var28, var10, var14)
-    skins = _decode_vertex_skins(data, var27, var9, var16)
+    face_skins = _decode_face_skins(data, var25, var10, var15)
+    vertex_skins = _decode_vertex_skins(data, var27, var9, var16)
 
     return ModelData(
         model_id=model_id,
@@ -1316,8 +1327,9 @@ def _decode_old_format(model_id: int, data: bytes) -> ModelData | None:
         face_textures=face_textures,
         face_priorities=priorities,
         face_alphas=alphas,
+        face_skins=face_skins,
         face_render_types=face_render_types,
-        vertex_skins=skins,
+        vertex_skins=vertex_skins,
         face_tex_coords=face_tex_coords,
         tex_u=tex_u,
         tex_v=tex_v,
@@ -1436,7 +1448,8 @@ def _decode_type1(model_id: int, data: bytes) -> ModelData | None:
 
     priorities = _decode_face_priorities(data, var29, var10, var13)
     alphas = _decode_face_alphas(data, var32, var10, var14)
-    skins = _decode_vertex_skins(data, var31, var9, var17)
+    face_skins = _decode_face_skins(data, var30, var10, var15)
+    vertex_skins = _decode_vertex_skins(data, var31, var9, var17)
 
     return ModelData(
         model_id=model_id,
@@ -1448,8 +1461,9 @@ def _decode_type1(model_id: int, data: bytes) -> ModelData | None:
         face_textures=face_textures,
         face_priorities=priorities,
         face_alphas=alphas,
+        face_skins=face_skins,
         face_render_types=face_render_types,
-        vertex_skins=skins,
+        vertex_skins=vertex_skins,
         face_tex_coords=face_tex_coords,
         tex_u=tex_u,
         tex_v=tex_v,
@@ -1569,7 +1583,8 @@ def _decode_type3(model_id: int, data: bytes) -> ModelData | None:
 
     priorities = _decode_face_priorities(data, var31, var10, var13)
     alphas = _decode_face_alphas(data, var34, var10, var14)
-    skins = _decode_vertex_skins(data, var33, var9, var17)
+    face_skins = _decode_face_skins(data, var32, var10, var15)
+    vertex_skins = _decode_vertex_skins(data, var33, var9, var17)
 
     return ModelData(
         model_id=model_id,
@@ -1581,8 +1596,9 @@ def _decode_type3(model_id: int, data: bytes) -> ModelData | None:
         face_textures=face_textures,
         face_priorities=priorities,
         face_alphas=alphas,
+        face_skins=face_skins,
         face_render_types=face_render_types,
-        vertex_skins=skins,
+        vertex_skins=vertex_skins,
         face_tex_coords=face_tex_coords,
         tex_u=tex_u,
         tex_v=tex_v,
@@ -1656,6 +1672,7 @@ MDLS_MAGIC = 0x4D444C53  # "MDLS" (v1)
 MDL2_MAGIC = 0x4D444C32  # "MDL2" (v2, adds animation data)
 MDL3_MAGIC = 0x4D444C33  # "MDL3" (v3, MDL2 + expanded texcoords)
 MUV1_MAGIC = 0x3156554D  # "MUV1" optional dynamic texture projection block
+MFA1_MAGIC = 0x3141464D  # "MFA1" optional face-alpha animation block
 
 
 def _merge_models(models: list[ModelData]) -> ModelData:
@@ -1668,6 +1685,7 @@ def _merge_models(models: list[ModelData]) -> ModelData:
 
     vert_offset = 0
     tex_offset = 0
+    has_face_skins = any(md.face_skins for md in models)
     for md in models:
         merged.vertices_x.extend(md.vertices_x)
         merged.vertices_y.extend(md.vertices_y)
@@ -1686,6 +1704,11 @@ def _merge_models(models: list[ModelData]) -> ModelData:
                 md.face_alphas[face_idx]
                 if face_idx < len(md.face_alphas) else 0
             )
+            if has_face_skins:
+                merged.face_skins.append(
+                    md.face_skins[face_idx]
+                    if face_idx < len(md.face_skins) else 0
+                )
             merged.face_render_types.append(
                 md.face_render_types[face_idx]
                 if face_idx < len(md.face_render_types) else 0
@@ -1952,6 +1975,7 @@ def _lit_face_vertex_colors(
     alpha: int,
     ambient: int,
     contrast: int,
+    light_vector: tuple[int, int, int],
     vertex_normals: list[tuple[int, int, int, int]],
     face_normals: list[tuple[int, int, int] | None],
 ) -> list[tuple[int, int, int, int]] | None:
@@ -1971,7 +1995,7 @@ def _lit_face_vertex_colors(
 
     tex_id = _face_texture(model, face_idx)
     hsl = model.face_colors[face_idx] if face_idx < len(model.face_colors) else 0
-    light_x, light_y, light_z = -50, -10, -50
+    light_x, light_y, light_z = light_vector
     magnitude = int(math.sqrt(light_x * light_x + light_y * light_y + light_z * light_z))
     light_scale = max(1, magnitude * contrast >> 8)
 
@@ -2062,6 +2086,7 @@ def expand_model(
     skip_fully_transparent: bool = False,
     ambient: int = 64,
     contrast: int = 768,
+    light_vector: tuple[int, int, int] = (-50, -10, -50),
     model_lighting: str = "client",
 ) -> tuple[list[float], list[tuple[int, int, int, int]], list[float]]:
     """Expand indexed model to per-vertex (3 verts per face, no index buffer).
@@ -2104,7 +2129,8 @@ def expand_model(
             lit_colors = _unlit_face_vertex_colors(model, fi, alpha)
         else:
             lit_colors = _lit_face_vertex_colors(
-                model, fi, alpha, ambient, contrast, vertex_normals, face_normals,
+                model, fi, alpha, ambient, contrast, light_vector,
+                vertex_normals, face_normals,
             )
         if lit_colors is None:
             alpha = 0
@@ -2210,6 +2236,9 @@ def write_models_binary(
     atlas_path: Path | None = None,
     bake_priority_offsets: bool = True,
     model_lighting: str = "client",
+    ambient: int = 64,
+    contrast: int = 768,
+    light_vector: tuple[int, int, int] = (-50, -10, -50),
 ) -> None:
     """Write models to .models binary format.
 
@@ -2233,6 +2262,10 @@ def write_models_binary(
       int16  base_verts[base_vert_count * 3]            (x,y,z — original OSRS coords, y NOT negated)
       uint8  vertex_skins[base_vert_count]              (label group per vertex)
       uint16 face_indices[face_count * 3]               (a,b,c per face)
+      uint8  face_priorities[face_count]
+      optional blocks:
+        "MUV1" texture projection metadata (MDL3)
+        "MFA1" face alpha + face skin metadata for transform type 5
     """
     output_path.parent.mkdir(parents=True, exist_ok=True)
     has_textures = atlas is not None
@@ -2254,11 +2287,17 @@ def write_models_binary(
         for model in models:
             offsets.append(f.tell())
 
+            model_ambient = getattr(model, "_export_ambient", ambient)
+            model_contrast = getattr(model, "_export_contrast", contrast)
+            model_light_vector = getattr(model, "_export_light_vector", light_vector)
             verts, colors, uvs = expand_model(
                 model,
                 tex_colors=tex_colors,
                 atlas=atlas,
                 bake_priority_offsets=bake_priority_offsets,
+                ambient=model_ambient,
+                contrast=model_contrast,
+                light_vector=model_light_vector,
                 model_lighting=model_lighting,
             )
             expanded_vert_count = model.face_count * 3
@@ -2357,6 +2396,19 @@ def write_models_binary(
                         v_scale,
                         repeat_v_margin,
                     ))
+
+            if model.face_skins:
+                f.write(struct.pack("<II", MFA1_MAGIC, model.face_count))
+                for i in range(model.face_count):
+                    alpha = (
+                        model.face_alphas[i]
+                        if i < len(model.face_alphas) else 0
+                    )
+                    skin = (
+                        model.face_skins[i]
+                        if i < len(model.face_skins) else 0
+                    )
+                    f.write(struct.pack("<BBH", alpha & 0xFF, skin & 0xFF, 0))
 
         # go back and write offsets
         f.seek(offsets_pos)

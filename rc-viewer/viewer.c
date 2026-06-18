@@ -171,12 +171,15 @@ typedef struct {
 
     int show_grid;
     int show_collision;
+    int god_mode;
     RuneCUiState ui;
     RcCombatViewState combat_view;
     Shader alpha_cutout_shader_static;
     Shader alpha_cutout_shader_dynamic;
+    Shader projectile_effect_shader;
     int alpha_cutout_shader_static_loaded;
     int alpha_cutout_shader_dynamic_loaded;
+    int projectile_effect_shader_loaded;
     int context_kind;
     int context_npc_uid;
     ViewerPickedObject context_object;
@@ -488,6 +491,52 @@ static Shader load_alpha_cutout_shader(float brightness, float lift) {
     return shader;
 }
 
+static Shader load_projectile_effect_shader(float brightness, float lift) {
+    const char *vs =
+        "#version 330\n"
+        "in vec3 vertexPosition;\n"
+        "in vec2 vertexTexCoord;\n"
+        "in vec4 vertexColor;\n"
+        "uniform mat4 mvp;\n"
+        "out vec2 fragTexCoord;\n"
+        "out vec4 fragColor;\n"
+        "void main() {\n"
+        "    fragTexCoord = vertexTexCoord;\n"
+        "    fragColor = vertexColor;\n"
+        "    gl_Position = mvp*vec4(vertexPosition, 1.0);\n"
+        "}\n";
+    char fs[1024];
+    snprintf(fs, sizeof(fs),
+        "#version 330\n"
+        "in vec2 fragTexCoord;\n"
+        "in vec4 fragColor;\n"
+        "uniform sampler2D texture0;\n"
+        "uniform vec4 colDiffuse;\n"
+        "out vec4 finalColor;\n"
+        "void main() {\n"
+        "    vec4 texel = texture(texture0, fragTexCoord);\n"
+        "    vec4 color = texel*fragColor*colDiffuse;\n"
+        "    color.rgb = min(color.rgb * %.3ff + vec3(%.3ff), vec3(1.0));\n"
+        "    finalColor = color;\n"
+        "}\n",
+        brightness, lift);
+
+    Shader shader = LoadShaderFromMemory(vs, fs);
+    if (shader.id <= 0)
+        return shader;
+    shader.locs[SHADER_LOC_VERTEX_POSITION] =
+        GetShaderLocationAttrib(shader, "vertexPosition");
+    shader.locs[SHADER_LOC_VERTEX_TEXCOORD01] =
+        GetShaderLocationAttrib(shader, "vertexTexCoord");
+    shader.locs[SHADER_LOC_VERTEX_COLOR] =
+        GetShaderLocationAttrib(shader, "vertexColor");
+    shader.locs[SHADER_LOC_MATRIX_MVP] = GetShaderLocation(shader, "mvp");
+    shader.locs[SHADER_LOC_COLOR_DIFFUSE] =
+        GetShaderLocation(shader, "colDiffuse");
+    shader.locs[SHADER_LOC_MAP_DIFFUSE] = GetShaderLocation(shader, "texture0");
+    return shader;
+}
+
 static float ground_y_plane(ViewerState *v, int plane, int world_x,
                             int world_y) {
     TerrainMesh *terrain = viewer_terrain_for_plane(v, plane);
@@ -561,8 +610,9 @@ static void create_npc_anim_states(ViewerState *v) {
     for (int i = 0; i < g_npc_def_count; i++) {
         ModelEntry *me = model_find(v->npc_models, (uint32_t)g_npc_defs[i].id);
         if (me && me->loaded && me->vertex_skins && me->base_vert_count > 0) {
-            v->npc_anim_state[i] = anim_model_state_create(
-                me->vertex_skins, me->base_vert_count);
+            v->npc_anim_state[i] = anim_model_state_create_with_faces(
+                me->vertex_skins, me->base_vert_count,
+                me->face_skins, me->face_count, me->face_alphas);
             created++;
         }
     }
@@ -861,10 +911,58 @@ static int path_mtime(const char *path, time_t *out) {
     return 1;
 }
 
+static int scene_objects_file_complete(const char *objects_path) {
+    struct stat st;
+    if (!objects_path || stat(objects_path, &st) != 0)
+        return 0;
+
+    FILE *f = rc_asset_fopen(objects_path, "rb");
+    if (!f)
+        return 0;
+
+    uint32_t magic = 0;
+    uint32_t placement_count = 0;
+    int32_t min_wx = 0;
+    int32_t min_wy = 0;
+    uint32_t total_verts = 0;
+    int ok = rc_read_exact(f, &magic, sizeof(magic), 1, objects_path,
+                           "object magic")
+          && rc_read_exact(f, &placement_count, sizeof(placement_count), 1,
+                           objects_path, "object placement count")
+          && rc_read_exact(f, &min_wx, sizeof(min_wx), 1, objects_path,
+                           "object min world x")
+          && rc_read_exact(f, &min_wy, sizeof(min_wy), 1, objects_path,
+                           "object min world y")
+          && rc_read_exact(f, &total_verts, sizeof(total_verts), 1,
+                           objects_path, "object vertex count");
+    rc_asset_close(f);
+    (void)placement_count;
+    (void)min_wx;
+    (void)min_wy;
+
+    if (!ok || (magic != OBJS_MAGIC && magic != OBJ2_MAGIC))
+        return 0;
+
+    uint64_t expected = 20ull + (uint64_t)total_verts * 3ull * sizeof(float)
+                      + (uint64_t)total_verts * 4ull;
+    if (magic == OBJ2_MAGIC)
+        expected += (uint64_t)total_verts * 2ull * sizeof(float);
+    if ((uint64_t)st.st_size < expected) {
+        fprintf(stderr,
+                "viewer scene: incomplete object cache %s (%lld < %llu)\n",
+                objects_path, (long long)st.st_size,
+                (unsigned long long)expected);
+        return 0;
+    }
+    return 1;
+}
+
 static int scene_objects_current(const char *objects_path) {
     time_t objects_mtime;
     if (!path_mtime(objects_path, &objects_mtime))
         return rc_asset_exists(objects_path);
+    if (!scene_objects_file_complete(objects_path))
+        return 0;
     const char *deps[] = {
         "tools/cache_pipeline/export_scene_slice.py",
         "tools/cache_pipeline/export_terrain.py",
@@ -910,7 +1008,7 @@ static int ensure_scene_slice_plane_assets(ViewerState *v, int center_x,
     const char *cache = env_path("RUNEC_CACHE",
         "tools/cache_pipeline/source/current_fightcaves_demo/data/cache");
     char cmd[4096];
-    int timeout_seconds = env_int("RUNEC_SCENE_EXPORT_TIMEOUT_SECONDS", 20);
+    int timeout_seconds = env_int("RUNEC_SCENE_EXPORT_TIMEOUT_SECONDS", 120);
     if (timeout_seconds < 1)
         timeout_seconds = 1;
     int n = snprintf(cmd, sizeof(cmd),
@@ -940,6 +1038,8 @@ static int load_generated_scene_plane_assets(ViewerState *v,
     scene_plane_file(objects_path, sizeof(objects_path), prefix, plane,
                      ".objects");
     if (!rc_asset_exists(terrain_path) || !rc_asset_exists(objects_path))
+        return 0;
+    if (!scene_objects_file_complete(objects_path))
         return 0;
 
     terrain_free(v->terrain_planes[plane]);
@@ -1588,6 +1688,17 @@ static void set_viewer_demo_stats(RcPlayer *p) {
     p->current_hp = 990;
     p->max_hp = 990;
     p->current_prayer_points = 990;
+}
+
+static void viewer_apply_god_mode(ViewerState *v) {
+    if (!v || !v->god_mode) return;
+    RcPlayer *p = &v->world->player;
+    if (p->current_hp < 10)
+        p->current_hp = 10;
+    if (p->combat.hp_current < p->current_hp)
+        p->combat.hp_current = p->current_hp;
+    if (p->combat.hp_max < p->max_hp)
+        p->combat.hp_max = p->max_hp;
 }
 
 static int ground_item_at_tile_plane(const ViewerState *v, int x, int y,
@@ -2594,8 +2705,9 @@ static void create_model_anim_states(ModelSet *models,
         ModelEntry *entry = &models->entries[i];
         if (!entry->loaded || !entry->vertex_skins || entry->base_vert_count <= 0)
             continue;
-        (*states_out)[i] = anim_model_state_create(
-            entry->vertex_skins, entry->base_vert_count);
+        (*states_out)[i] = anim_model_state_create_with_faces(
+            entry->vertex_skins, entry->base_vert_count,
+            entry->face_skins, entry->face_count, entry->face_alphas);
     }
 }
 
@@ -2655,8 +2767,9 @@ static void create_object_anim_plane_states(ViewerState *v, int plane) {
         if (!entry || !entry->loaded || !entry->vertex_skins
                 || entry->base_vert_count <= 0)
             continue;
-        v->object_anim_states[plane][i] = anim_model_state_create(
-            entry->vertex_skins, entry->base_vert_count);
+        v->object_anim_states[plane][i] = anim_model_state_create_with_faces(
+            entry->vertex_skins, entry->base_vert_count,
+            entry->face_skins, entry->face_count, entry->face_alphas);
     }
 }
 
@@ -2685,6 +2798,18 @@ static AnimModelState *projectile_anim_state_for_entry(ViewerState *v,
                                       v->projectile_anim_state_count, entry);
 }
 
+static void update_model_entry_colors_from_anim(ModelEntry *entry,
+                                                AnimModelState *state) {
+    if (!entry || !entry->loaded || !state || !entry->rest_colors)
+        return;
+    Mesh *mesh = &entry->model.meshes[0];
+    if (!mesh->colors || mesh->vertexCount <= 0)
+        return;
+    anim_update_mesh_colors(mesh->colors, entry->rest_colors, state,
+                            entry->face_count, mesh->vertexCount);
+    UpdateMeshBuffer(*mesh, 3, mesh->colors, mesh->vertexCount * 4, 0);
+}
+
 static void animate_model_entry_to_player_frame(ViewerState *v,
                                                 ModelEntry *entry,
                                                 AnimModelState *state) {
@@ -2711,6 +2836,7 @@ static void animate_model_entry_to_player_frame(ViewerState *v,
         mv[i*3+2] /= -128.0f;
     }
     UpdateMeshBuffer(entry->model.meshes[0], 0, mv, vc * 3 * sizeof(float), 0);
+    update_model_entry_colors_from_anim(entry, state);
     models_recompute_texture_uvs_from_vertices(entry, state->verts);
 }
 
@@ -2761,6 +2887,7 @@ static int animate_model_entry_sequence(ModelEntry *entry,
     }
     UpdateMeshBuffer(entry->model.meshes[0], 0, mv,
                      vc * 3 * sizeof(float), 0);
+    update_model_entry_colors_from_anim(entry, state);
     models_recompute_texture_uvs_from_vertices(entry, state->verts);
     return 1;
 }
@@ -2846,10 +2973,13 @@ static void free_generated_model_entry(ModelEntry *entry) {
     UnloadModel(entry->model);
     free(entry->rest_verts);
     free(entry->rest_texcoords);
+    free(entry->rest_colors);
     free(entry->base_verts);
     free(entry->vertex_skins);
     free(entry->face_indices);
     free(entry->face_priorities);
+    free(entry->face_alphas);
+    free(entry->face_skins);
     free(entry->face_uvs);
     memset(entry, 0, sizeof(*entry));
 }
@@ -2983,6 +3113,7 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
     float *rest = calloc((size_t)total_vc * 3, sizeof(float));
     float *normals = calloc((size_t)total_vc * 3, sizeof(float));
     unsigned char *colors = calloc((size_t)total_vc * 4, sizeof(unsigned char));
+    unsigned char *rest_colors = calloc((size_t)total_vc * 4, sizeof(unsigned char));
     float *texcoords = v->item_models->has_textures
         ? calloc((size_t)total_vc * 2, sizeof(float))
         : NULL;
@@ -2993,9 +3124,10 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
     ModelFaceUvInfo *face_uvs = v->item_models->has_textures
         ? calloc((size_t)total_fc, sizeof(ModelFaceUvInfo))
         : NULL;
-    if (!verts || !rest || !normals || !colors || !base || !skins
+    if (!verts || !rest || !normals || !colors || !rest_colors || !base || !skins
             || !faces || !priorities || (v->item_models->has_textures && (!texcoords || !face_uvs))) {
         free(verts); free(rest); free(normals); free(colors);
+        free(rest_colors);
         free(texcoords); free(base); free(skins); free(faces); free(priorities);
         free(face_uvs);
         return 0;
@@ -3013,8 +3145,13 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
 
         memcpy(&verts[vc_off * 3], src->rest_verts, (size_t)vc * 3 * sizeof(float));
         memcpy(&rest[vc_off * 3], src->rest_verts, (size_t)vc * 3 * sizeof(float));
-        if (mesh->colors)
+        if (src->rest_colors) {
+            memcpy(&colors[vc_off * 4], src->rest_colors, (size_t)vc * 4);
+            memcpy(&rest_colors[vc_off * 4], src->rest_colors, (size_t)vc * 4);
+        } else if (mesh->colors) {
             memcpy(&colors[vc_off * 4], mesh->colors, (size_t)vc * 4);
+            memcpy(&rest_colors[vc_off * 4], mesh->colors, (size_t)vc * 4);
+        }
         if (texcoords && mesh->texcoords)
             memcpy(&texcoords[vc_off * 2], mesh->texcoords, (size_t)vc * 2 * sizeof(float));
         memcpy(&base[bvc_off * 3], src->base_verts, (size_t)bvc * 3 * sizeof(int16_t));
@@ -3067,6 +3204,7 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
         .rest_verts = rest,
         .rest_texcoords = texcoords && total_vc > 0
             ? malloc((size_t)total_vc * 2 * sizeof(float)) : NULL,
+        .rest_colors = rest_colors,
         .base_verts = base,
         .vertex_skins = skins,
         .face_indices = faces,
@@ -3151,6 +3289,10 @@ static void reset_model_entry_to_base_pose(ModelEntry *entry) {
                (size_t)vc * 2 * sizeof(float));
         UpdateMeshBuffer(mesh[0], 1, mesh->texcoords,
                          vc * 2 * sizeof(float), 0);
+    }
+    if (mesh->colors && entry->rest_colors) {
+        memcpy(mesh->colors, entry->rest_colors, (size_t)vc * 4);
+        UpdateMeshBuffer(mesh[0], 3, mesh->colors, vc * 4, 0);
     }
 }
 
@@ -3397,6 +3539,22 @@ static float projectile_yaw_degrees(float sx, float sz, float tx, float tz) {
     return atan2f(tx - sx, tz - sz) * (180.0f / 3.14159265f);
 }
 
+static int projectile_uses_fixed_target_tile(const RcCombatProjectile *proj) {
+    return proj && proj->source_kind == RC_COMBAT_ACTOR_NPC &&
+           proj->target_kind == RC_COMBAT_ACTOR_PLAYER &&
+           proj->style == COMBAT_RANGED &&
+           proj->projectile_model_id < 0 &&
+           proj->projectile_start_height >= 512 &&
+           proj->source_x == proj->target_x &&
+           proj->source_y == proj->target_y;
+}
+
+static int projectile_has_travel_visual(const RcCombatProjectile *proj) {
+    return proj && (proj->travel_spotanim_id >= 0 ||
+                    proj->projectile_model_id >= 0 ||
+                    proj->projectile_anim_id >= 0);
+}
+
 static void draw_oriented_projectile_model(Model model, Vector3 pos,
                                            float yaw, float pitch,
                                            Vector3 scale, Color tint) {
@@ -3425,7 +3583,10 @@ static int projectile_target_point(ViewerState *v,
     int tile_y = proj->target_y;
     int target_plane = proj->plane;
 
-    if (proj->target_kind == RC_COMBAT_ACTOR_NPC) {
+    if (projectile_uses_fixed_target_tile(proj)) {
+        if (target_plane != scene_plane)
+            return 0;
+    } else if (proj->target_kind == RC_COMBAT_ACTOR_NPC) {
         for (int i = 0; i < v->world->npc_count; i++) {
             const RcNpc *npc = &v->world->npcs[i];
             if (!npc->active || npc->uid != proj->target_uid)
@@ -3687,6 +3848,8 @@ static void draw_combat_projectiles(ViewerState *v) {
         rc_combat_projectiles(v->world, &count);
     if (!projectiles || count <= 0) return;
     int scene_plane = viewer_scene_plane(v);
+    BeginBlendMode(BLEND_ALPHA);
+    rlDisableDepthMask();
     for (int i = 0; i < count; i++) {
         const RcCombatProjectile *proj = &projectiles[i];
         if (!proj->active || proj->plane != scene_plane)
@@ -3697,6 +3860,11 @@ static void draw_combat_projectiles(ViewerState *v) {
                                  ? proj->duration_ticks * 30 : 30);
         float client_time = ((float)proj->age_ticks + v->tick_frac) * 30.0f;
         draw_projectile_launch(v, proj, scene_plane, client_time);
+        if (!projectile_has_travel_visual(proj)) {
+            draw_projectile_impact(v, proj, scene_plane, client_time,
+                                   end_time);
+            continue;
+        }
         float angle = 0.0f;
         float pitch = 0.0f;
         int visible = 0;
@@ -3738,6 +3906,8 @@ static void draw_combat_projectiles(ViewerState *v) {
         DrawSphere(pos, radius, c);
         DrawLine3D(start, pos, (Color){c.r, c.g, c.b, 80});
     }
+    rlEnableDepthMask();
+    EndBlendMode();
 }
 
 static const RuneCItemRenderRecord *equipped_weapon_render_record(
@@ -4097,7 +4267,13 @@ static void handle_input(ViewerState *v, int ui_capture) {
         if (IsKeyPressed(KEY_FOUR)) { v->cam_yaw = 0; v->cam_pitch = 1.35f; v->cam_dist = 120; }
         if (IsKeyPressed(KEY_FIVE)) { v->cam_yaw = 0; v->cam_pitch = 0.6f; v->cam_dist = 50; }
         if (IsKeyPressed(KEY_L)) v->camera_locked = !v->camera_locked;
-        if (IsKeyPressed(KEY_G)) v->show_grid = !v->show_grid;
+        if (IsKeyPressed(KEY_G)) {
+            v->god_mode = !v->god_mode;
+            viewer_apply_god_mode(v);
+            fprintf(stderr, "viewer god mode: %s\n",
+                    v->god_mode ? "on" : "off");
+        }
+        if (IsKeyPressed(KEY_F3)) v->show_grid = !v->show_grid;
         if (IsKeyPressed(KEY_C)) v->show_collision = !v->show_collision;
         if (IsKeyPressed(KEY_SPACE)) v->paused = !v->paused;
         if (IsKeyPressed(KEY_R)) p->running = !p->running;
@@ -4335,6 +4511,7 @@ static void update_player_anim(ViewerState *v) {
             mv[i*3+2] /= -128.0f;
         }
         UpdateMeshBuffer(pe->model.meshes[0], 0, mv, vc * 3 * sizeof(float), 0);
+        update_model_entry_colors_from_anim(pe, v->anim_state);
     }
 }
 
@@ -4358,8 +4535,10 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
     int moved_last_tick = v->npc_render[npc_idx].moving
                         || v->npc_render[npc_idx].move_anim_timer > 0.0f;
     int target = def->stand_anim;
+    int attack_anim_active = 0;
     if (n->is_dead && def->death_anim >= 0)       target = def->death_anim;
     else if (n->attack_anim_timer > 0) {
+        attack_anim_active = 1;
         if (n->combat.attack_animation_id > 0)
             target = n->combat.attack_animation_id;
         else
@@ -4385,11 +4564,20 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
 
     // Advance frame timer (20ms per client tick = GetFrameTime() * 50).
     v->npc_render[npc_idx].frame_timer += GetFrameTime() * 50.0f;
-    AnimSequenceFrame *sf = &seq->frames[v->npc_render[npc_idx].frame_idx % seq->frame_count];
+    if (v->npc_render[npc_idx].frame_idx >= seq->frame_count)
+        v->npc_render[npc_idx].frame_idx = seq->frame_count - 1;
+    AnimSequenceFrame *sf = &seq->frames[v->npc_render[npc_idx].frame_idx];
     float delay = (float)(sf->delay > 0 ? sf->delay : 1);
     while (v->npc_render[npc_idx].frame_timer >= delay) {
         v->npc_render[npc_idx].frame_timer -= delay;
-        v->npc_render[npc_idx].frame_idx = (v->npc_render[npc_idx].frame_idx + 1) % seq->frame_count;
+        if (attack_anim_active &&
+                v->npc_render[npc_idx].frame_idx + 1 >= seq->frame_count) {
+            v->npc_render[npc_idx].frame_idx = seq->frame_count - 1;
+            v->npc_render[npc_idx].frame_timer = 0.0f;
+            break;
+        }
+        v->npc_render[npc_idx].frame_idx =
+            (v->npc_render[npc_idx].frame_idx + 1) % seq->frame_count;
         sf = &seq->frames[v->npc_render[npc_idx].frame_idx];
         delay = (float)(sf->delay > 0 ? sf->delay : 1);
     }
@@ -4412,6 +4600,7 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
         mv[i*3+2] /= -128.0f;
     }
     UpdateMeshBuffer(me->model.meshes[0], 0, mv, vc * 3 * sizeof(float), 0);
+    update_model_entry_colors_from_anim(me, state);
     return 1;
 }
 
@@ -4790,6 +4979,8 @@ int main(void) {
 
     v.alpha_cutout_shader_static = load_alpha_cutout_shader(1.16f, 0.04f);
     v.alpha_cutout_shader_static_loaded = v.alpha_cutout_shader_static.id > 0;
+    v.projectile_effect_shader = load_projectile_effect_shader(1.16f, 0.04f);
+    v.projectile_effect_shader_loaded = v.projectile_effect_shader.id > 0;
     if (dynamic_model_shader_enabled) {
         v.alpha_cutout_shader_dynamic = load_alpha_cutout_shader(1.10f, 0.09f);
         v.alpha_cutout_shader_dynamic_loaded = v.alpha_cutout_shader_dynamic.id > 0;
@@ -4865,8 +5056,9 @@ int main(void) {
         for (int i = 0; i < g_npc_def_count; i++) {
             ModelEntry *me = model_find(v.npc_models, (uint32_t)g_npc_defs[i].id);
             if (me && me->loaded && me->vertex_skins && me->base_vert_count > 0) {
-                v.npc_anim_state[i] = anim_model_state_create(
-                    me->vertex_skins, me->base_vert_count);
+                v.npc_anim_state[i] = anim_model_state_create_with_faces(
+                    me->vertex_skins, me->base_vert_count,
+                    me->face_skins, me->face_count, me->face_alphas);
                 created++;
             }
         }
@@ -4884,8 +5076,8 @@ int main(void) {
         models_set_shader(v.item_models, v.alpha_cutout_shader_dynamic);
     v.projectile_models = models_load(env_path("RUNEC_PROJECTILE_MODELS",
         "data/models/projectiles.models"));
-    if (v.projectile_models && v.alpha_cutout_shader_static_loaded)
-        models_set_shader(v.projectile_models, v.alpha_cutout_shader_static);
+    if (v.projectile_models && v.projectile_effect_shader_loaded)
+        models_set_shader(v.projectile_models, v.projectile_effect_shader);
     create_projectile_anim_states(&v);
     v.spotanims = spotanims_load(env_path("RUNEC_SPOTANIMS",
         "data/defs/spotanims.bin"));
@@ -4907,7 +5099,9 @@ int main(void) {
         // Don't apply lighting shader to player — the animation system rewrites
         // mesh vertices each frame in OSRS units, then the shader's mvp transforms
         // them. The default shader handles this correctly.
-        v.anim_state = anim_model_state_create(pe->vertex_skins, pe->base_vert_count);
+        v.anim_state = anim_model_state_create_with_faces(
+            pe->vertex_skins, pe->base_vert_count,
+            pe->face_skins, pe->face_count, pe->face_alphas);
         v.cur_anim_id = ANIM_IDLE;
     }
 
@@ -5124,7 +5318,9 @@ int main(void) {
                 int old_x = v.world->player.x;
                 int old_y = v.world->player.y;
                 int old_plane = v.world->player.plane;
+                viewer_apply_god_mode(&v);
                 rc_world_tick(v.world);
+                viewer_apply_god_mode(&v);
                 v.player_moving = old_x != v.world->player.x ||
                                   old_y != v.world->player.y;
                 if (v.player_moving) {
@@ -5195,6 +5391,8 @@ cleanup:
         UnloadShader(v.alpha_cutout_shader_static);
     if (v.alpha_cutout_shader_dynamic_loaded)
         UnloadShader(v.alpha_cutout_shader_dynamic);
+    if (v.projectile_effect_shader_loaded)
+        UnloadShader(v.projectile_effect_shader);
     CloseWindow();
     return exit_status;
 }

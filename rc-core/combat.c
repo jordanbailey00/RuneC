@@ -60,6 +60,24 @@ static int chebyshev(int x1, int y1, int x2, int y2) {
     return dx > dy ? dx : dy;
 }
 
+enum {
+    RC_NPC_TZTOK_JAD = 3127,
+    RC_JAD_MELEE_ANIM_TICKS = 3,
+    RC_JAD_WARNING_ANIM_TICKS = 5,
+    RC_JAD_RANGED_CEILING_HEIGHT = 768,
+    RC_JAD_RANGED_IMPACT_HEIGHT = 52,
+};
+
+static int npc_config_id(const RcNpc *npc) {
+    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+        return -1;
+    return g_npc_defs[npc->def_id].id;
+}
+
+static bool npc_is_tztok_jad(const RcNpc *npc) {
+    return npc_config_id(npc) == RC_NPC_TZTOK_JAD;
+}
+
 static void nearest_npc_tile_to_point(const RcNpc *npc, int px, int py,
                                       int *tx, int *ty) {
     const RcNpcDef *def = npc->def_id >= 0 && npc->def_id < g_npc_def_count
@@ -78,6 +96,36 @@ static void nearest_npc_tile_to_point(const RcNpc *npc, int px, int py,
 }
 
 static int npc_footprint_size(const RcNpc *npc);
+
+static void npc_projectile_source_tile(const RcNpc *npc,
+                                       const RcPlayer *target,
+                                       RcCombatStyle style,
+                                       int *sx,
+                                       int *sy) {
+    if (!npc || !target || !sx || !sy)
+        return;
+    if (npc_is_tztok_jad(npc) && style == COMBAT_RANGED) {
+        *sx = target->x;
+        *sy = target->y;
+        return;
+    }
+    if (npc_is_tztok_jad(npc) && style == COMBAT_MAGIC) {
+        int size = npc_footprint_size(npc);
+        *sx = npc->x + size / 2;
+        *sy = npc->y + size / 2;
+        return;
+    }
+    nearest_npc_tile_to_point(npc, target->x, target->y, sx, sy);
+}
+
+static int npc_attack_animation_ticks(const RcNpc *npc,
+                                      RcCombatStyle style) {
+    if (!npc_is_tztok_jad(npc))
+        return 2;
+    if (style == COMBAT_MAGIC || style == COMBAT_RANGED)
+        return RC_JAD_WARNING_ANIM_TICKS;
+    return RC_JAD_MELEE_ANIM_TICKS;
+}
 
 static int point_in_npc_footprint(const RcNpc *npc, int x, int y) {
     if (!npc) return 0;
@@ -697,7 +745,7 @@ static void spawn_npc_projectile_instance(
     RcCombatProjectile *proj = next_projectile_slot(world);
     if (!proj) return;
     int sx, sy;
-    nearest_npc_tile_to_point(npc, target->x, target->y, &sx, &sy);
+    npc_projectile_source_tile(npc, target, style, &sx, &sy);
     memset(proj, 0, sizeof(*proj));
     proj->active = true;
     proj->source_kind = RC_COMBAT_ACTOR_NPC;
@@ -727,6 +775,36 @@ static void spawn_npc_projectile_instance(
         chebyshev(proj->source_x, proj->source_y,
                   proj->target_x, proj->target_y),
         hit_delay);
+    if (npc_is_tztok_jad(npc) && style == COMBAT_MAGIC &&
+            proj->projectile_start_height >= 0) {
+        proj->launch_spotanim_height = proj->projectile_start_height;
+    }
+    if (npc_is_tztok_jad(npc) && style == COMBAT_RANGED) {
+        // Jad's ranged attack has no travel projectile; the target tile gets
+        // a delayed falling-rock impact graphic.
+        int impact_time = visual_projectile_end_time(
+            visual, chebyshev(proj->source_x, proj->source_y,
+                              proj->target_x, proj->target_y));
+        if (impact_time <= 0)
+            impact_time = (hit_delay > 0 ? hit_delay : 1) * 30;
+        proj->launch_spotanim_id = -1;
+        proj->travel_spotanim_id = -1;
+        proj->impact_spotanim_id = impact_spotanim_id;
+        proj->projectile_model_id = -1;
+        proj->projectile_anim_id = -1;
+        proj->projectile_start_height = RC_JAD_RANGED_CEILING_HEIGHT;
+        proj->projectile_end_height = RC_JAD_RANGED_IMPACT_HEIGHT;
+        proj->projectile_start_time = 0;
+        proj->projectile_end_time = impact_time;
+        proj->projectile_angle = 0;
+        proj->projectile_progress = 0;
+        proj->client_delay = hit_delay > 0 ? hit_delay : proj->client_delay;
+        proj->duration_ticks = proj->client_delay > 0 ? proj->client_delay : 1;
+        int min_duration = 1 + impact_time / 30;
+        if (proj->duration_ticks < min_duration)
+            proj->duration_ticks = min_duration;
+        proj->impact_duration_ticks = 3;
+    }
     proj->impact_spotanim_height = projectile_impact_height(proj, visual,
                                                             style);
     proj->start_tick = world->tick;
@@ -1873,7 +1951,7 @@ static void combat_tick_npc_legacy(struct RcWorld *world, RcNpc *npc) {
     else
         npc->combat.attack_animation_id = d->attack_anim >= 0
                                         ? d->attack_anim : 0;
-    npc->attack_anim_timer = 2;
+    npc->attack_anim_timer = npc_attack_animation_ticks(npc, style);
     RcPayloadNpcAttack payload = {
         .npc_id = (uint16_t)npc->uid,
         .style = (uint8_t)style,
