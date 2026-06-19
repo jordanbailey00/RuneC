@@ -6,6 +6,7 @@
 
 #include "../rc-core/io.h"
 #include "raylib.h"
+#include "viewer_logging.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -668,7 +669,10 @@ static ModelSet *models_load_filtered(const char *path, const uint32_t *ids, int
                    (size_t)vc * 2 * sizeof(float));
         if (mid < (uint32_t)set->index_limit) set->index_by_id[mid] = (int)m;
         loaded_count++;
-        fprintf(stderr, "  model %u: %d tris, %d base verts\n", mid, tc, (int)bvc);
+        if (runec_viewer_verbose_asset_logs()) {
+            fprintf(stderr, "  model %u: %d tris, %d base verts\n",
+                    mid, tc, (int)bvc);
+        }
     }
     free(offsets); rc_asset_close(f);
     set->loaded = 1;

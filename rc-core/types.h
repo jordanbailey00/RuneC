@@ -348,6 +348,15 @@ typedef struct {
 } RcCombatActorState;
 
 #define RC_MAX_COMBAT_PROJECTILES 64
+#define RC_MAX_COMBAT_VISUAL_EVENTS 64
+
+typedef enum {
+    RC_COMBAT_VISUAL_ACTION_NONE = 0,
+    RC_COMBAT_VISUAL_ACTION_ITEM = 1,
+    RC_COMBAT_VISUAL_ACTION_SPELL = 2,
+    RC_COMBAT_VISUAL_ACTION_NPC = 3,
+    RC_COMBAT_VISUAL_ACTION_SPECIAL = 4,
+} RcCombatVisualActionKind;
 
 typedef struct {
     bool active;
@@ -386,6 +395,34 @@ typedef struct {
     int sequence_index;
     int sequence_count;
 } RcCombatProjectile;
+
+typedef struct {
+    bool active;
+    uint8_t source_kind;
+    uint8_t target_kind;
+    uint8_t style;
+    uint8_t action_kind;
+    int source_uid;
+    int target_uid;
+    int source_definition_id;
+    int target_definition_id;
+    int source_x, source_y;
+    int target_x, target_y;
+    int plane;
+    int action_key_id;
+    char action_key_name[64];
+    int profile_kind;
+    int profile_key_id;
+    char profile_key_name[64];
+    int selected_attack_anim_id;
+    int hit_delay;
+    int client_delay;
+    int weapon_item_id;
+    int ammo_item_id;
+    int spell_idx;
+    int stance_idx;
+    int world_tick;
+} RcCombatVisualEvent;
 
 // Inventory slot
 typedef struct {
@@ -687,6 +724,8 @@ typedef struct RcWorld {
     RcCombatContentHooks combat_hooks;
     RcCombatProjectile combat_projectiles[RC_MAX_COMBAT_PROJECTILES];
     int combat_projectile_count;
+    RcCombatVisualEvent combat_visual_events[RC_MAX_COMBAT_VISUAL_EVENTS];
+    int combat_visual_event_count;
 
     // Subsystem bitmask — see config.h for RC_SUB_* flags. Checked
     // only by the base tick dispatcher; subsystem code assumes its

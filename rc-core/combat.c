@@ -499,6 +499,178 @@ static RcCombatProjectile *next_projectile_slot(RcWorld *world) {
     return &world->combat_projectiles[oldest];
 }
 
+static RcCombatVisualEvent *next_visual_event_slot(RcWorld *world) {
+    if (!world) return NULL;
+    if (world->combat_visual_event_count >= RC_MAX_COMBAT_VISUAL_EVENTS)
+        return NULL;
+    return &world->combat_visual_events[world->combat_visual_event_count++];
+}
+
+static void copy_event_name(char dst[64], const char *src) {
+    if (!dst) return;
+    dst[0] = '\0';
+    if (!src) return;
+    strncpy(dst, src, 63);
+    dst[63] = '\0';
+}
+
+static int event_name_is_numeric_id(const char *name, int id) {
+    if (!name || !name[0] || id < 0)
+        return 0;
+    long value = 0;
+    for (const char *p = name; *p; p++) {
+        if (*p < '0' || *p > '9')
+            return 0;
+        value = value * 10 + (*p - '0');
+        if (value > 2147483647L)
+            return 0;
+    }
+    return value == id;
+}
+
+static void set_event_profile_key(RcCombatVisualEvent *event,
+                                  const RcCombatVisualDef *profile) {
+    if (!event) return;
+    event->profile_kind = RC_COMBAT_VISUAL_ACTION_NONE;
+    event->profile_key_id = -1;
+    event->profile_key_name[0] = '\0';
+    if (!profile) return;
+    event->profile_kind = profile->kind;
+    event->profile_key_id = profile->key_id;
+    copy_event_name(event->profile_key_name, profile->key_name);
+}
+
+static const RcCombatVisualDef *player_event_profile(
+    const RcPlayerAttackVisuals *visuals,
+    bool use_special
+) {
+    if (!visuals) return NULL;
+    if (use_special && visuals->effect) return visuals->effect;
+    if (visuals->projectile) return visuals->projectile;
+    return visuals->weapon;
+}
+
+static void emit_player_visual_event(
+    RcWorld *world,
+    const RcPlayer *p,
+    const RcNpc *target,
+    const RcSpellDef *spell,
+    int spell_idx,
+    int weapon_id,
+    bool use_special,
+    const RcPlayerAttackVisuals *visuals,
+    int hit_delay,
+    int client_delay
+) {
+    if (!world || !p || !target || !visuals) return;
+    RcCombatVisualEvent *event = next_visual_event_slot(world);
+    if (!event) return;
+    memset(event, 0, sizeof(*event));
+    event->active = true;
+    event->source_kind = RC_COMBAT_ACTOR_PLAYER;
+    event->target_kind = RC_COMBAT_ACTOR_NPC;
+    event->style = (uint8_t)p->combat_style;
+    event->source_uid = 0;
+    event->target_uid = target->uid;
+    event->source_definition_id = -1;
+    event->target_definition_id =
+        target->def_id >= 0 && target->def_id < g_npc_def_count
+        ? g_npc_defs[target->def_id].id : -1;
+    event->source_x = p->x;
+    event->source_y = p->y;
+    nearest_npc_tile_to_point(target, p->x, p->y,
+                              &event->target_x, &event->target_y);
+    event->plane = p->plane;
+    event->selected_attack_anim_id = visuals->attack_anim_id >= 0
+                                   ? visuals->attack_anim_id : 0;
+    event->hit_delay = hit_delay;
+    event->client_delay = client_delay;
+    event->weapon_item_id = weapon_id;
+    event->ammo_item_id = visuals->ammo_id;
+    event->spell_idx = spell_idx;
+    event->stance_idx = p->attack_style_idx;
+    event->world_tick = world->tick;
+
+    if (use_special) {
+        event->action_kind = RC_COMBAT_VISUAL_ACTION_SPECIAL;
+        event->action_key_id = weapon_id;
+        const RcItemDef *item = rc_item_def_get(weapon_id);
+        copy_event_name(event->action_key_name, item ? item->name : "");
+    } else if (p->combat_style == COMBAT_MAGIC && spell) {
+        event->action_kind = RC_COMBAT_VISUAL_ACTION_SPELL;
+        event->action_key_id = spell_idx;
+        copy_event_name(event->action_key_name, spell->name);
+    } else {
+        event->action_kind = RC_COMBAT_VISUAL_ACTION_ITEM;
+        event->action_key_id = weapon_id;
+        const RcItemDef *item = rc_item_def_get(weapon_id);
+        copy_event_name(event->action_key_name, item ? item->name : "");
+    }
+
+    const RcCombatVisualDef *profile =
+        player_event_profile(visuals, use_special);
+    set_event_profile_key(event, profile);
+    if (event->profile_kind == RC_COMBAT_VISUAL_ACTION_NONE) {
+        event->profile_kind = event->action_kind;
+        event->profile_key_id = event->action_key_id;
+        copy_event_name(event->profile_key_name, event->action_key_name);
+    }
+}
+
+static void emit_npc_visual_event(
+    RcWorld *world,
+    const RcNpc *npc,
+    const RcNpcDef *def,
+    const RcPlayer *target,
+    const RcCombatVisualDef *visual,
+    RcCombatStyle style,
+    int selected_attack_anim_id,
+    int hit_delay,
+    int client_delay
+) {
+    if (!world || !npc || !def || !target) return;
+    RcCombatVisualEvent *event = next_visual_event_slot(world);
+    if (!event) return;
+    memset(event, 0, sizeof(*event));
+    event->active = true;
+    event->source_kind = RC_COMBAT_ACTOR_NPC;
+    event->target_kind = RC_COMBAT_ACTOR_PLAYER;
+    event->style = (uint8_t)style;
+    event->source_uid = npc->uid;
+    event->target_uid = 0;
+    event->source_definition_id = def->id;
+    event->target_definition_id = -1;
+    npc_projectile_source_tile(npc, target, style,
+                               &event->source_x, &event->source_y);
+    event->target_x = target->x;
+    event->target_y = target->y;
+    event->plane = npc->plane;
+    event->action_kind = RC_COMBAT_VISUAL_ACTION_NPC;
+    event->action_key_id = def->id;
+    copy_event_name(event->action_key_name, def->name);
+    set_event_profile_key(event, visual);
+    if (event->profile_kind == RC_COMBAT_VISUAL_NPC
+            && event->profile_key_id == def->id
+            && (!event->profile_key_name[0]
+                || event_name_is_numeric_id(event->profile_key_name,
+                                            def->id))) {
+        copy_event_name(event->profile_key_name, def->name);
+    }
+    if (event->profile_kind == RC_COMBAT_VISUAL_ACTION_NONE) {
+        event->profile_kind = RC_COMBAT_VISUAL_ACTION_NPC;
+        event->profile_key_id = def->id;
+        copy_event_name(event->profile_key_name, def->name);
+    }
+    event->selected_attack_anim_id = selected_attack_anim_id;
+    event->hit_delay = hit_delay;
+    event->client_delay = client_delay;
+    event->weapon_item_id = -1;
+    event->ammo_item_id = -1;
+    event->spell_idx = -1;
+    event->stance_idx = -1;
+    event->world_tick = world->tick;
+}
+
 static void apply_projectile_profile(RcCombatProjectile *proj,
                                      const RcCombatVisualDef *visual,
                                      int distance,
@@ -1662,6 +1834,17 @@ const RcCombatProjectile *rc_combat_projectiles(const struct RcWorld *world,
     return world ? world->combat_projectiles : NULL;
 }
 
+const RcCombatVisualEvent *rc_combat_visual_events(
+    const struct RcWorld *world, int *count) {
+    if (count) *count = world ? world->combat_visual_event_count : 0;
+    return world ? world->combat_visual_events : NULL;
+}
+
+void rc_combat_clear_visual_events(struct RcWorld *world) {
+    if (!world) return;
+    world->combat_visual_event_count = 0;
+}
+
 void rc_combat_tick_projectiles(struct RcWorld *world) {
     if (!world) return;
     int w = 0;
@@ -1836,6 +2019,9 @@ static void combat_tick_player_legacy(struct RcWorld *world) {
         return;
     }
 
+    emit_player_visual_event(world, p, target, spell, spell_idx, weapon_id,
+                             use_special, &visuals, delay, client_delay);
+
     // NPCs don't flick prayer (overhead prayer is static per phase),
     // so the snapshot is the NPC's phase prayer flags. For now,
     // NPC overhead prayer is not modelled — snapshot = 0.
@@ -1942,15 +2128,16 @@ static void combat_tick_npc_legacy(struct RcWorld *world, RcNpc *npc) {
                       (enc_flags & RC_ENC_ATTACK_PRAYER_IGNORABLE)
                       ? 0u : p->active_prayers,
                       world->tick, 0, calc.max_hit, client_delay);
+    int npc_attack_anim_id = npc_visual && npc_visual->attack_anim_id >= 0
+                           ? npc_visual->attack_anim_id
+                           : (d->attack_anim >= 0 ? d->attack_anim : 0);
+    emit_npc_visual_event(world, npc, d, p, npc_visual, style,
+                          npc_attack_anim_id, delay, client_delay);
     spawn_npc_attack_projectile(world, npc, p, npc_visual, style, delay);
 
     int speed = d->attack_speed;
     npc->attack_timer = content_modify_npc_attack_speed(world, npc, speed);
-    if (npc_visual && npc_visual->attack_anim_id >= 0)
-        npc->combat.attack_animation_id = npc_visual->attack_anim_id;
-    else
-        npc->combat.attack_animation_id = d->attack_anim >= 0
-                                        ? d->attack_anim : 0;
+    npc->combat.attack_animation_id = npc_attack_anim_id;
     npc->attack_anim_timer = npc_attack_animation_ticks(npc, style);
     RcPayloadNpcAttack payload = {
         .npc_id = (uint16_t)npc->uid,

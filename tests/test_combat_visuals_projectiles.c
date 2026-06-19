@@ -247,6 +247,21 @@ static void test_ranged_attack_emits_data_backed_projectile(void) {
     assert(projectiles[0].projectile_angle == 15);
     assert(projectiles[0].projectile_progress == 11);
     assert(world->player.combat.attack_animation_id == 426);
+    const RcCombatVisualEvent *events =
+        rc_combat_visual_events(world, &count);
+    assert(count == 1);
+    assert(events[0].source_kind == RC_COMBAT_ACTOR_PLAYER);
+    assert(events[0].target_kind == RC_COMBAT_ACTOR_NPC);
+    assert(events[0].target_uid == world->npcs[npc_idx].uid);
+    assert(events[0].style == COMBAT_RANGED);
+    assert(events[0].action_kind == RC_COMBAT_VISUAL_ACTION_ITEM);
+    assert(events[0].action_key_id == TEST_BOW);
+    assert(strcmp(events[0].action_key_name, "Magic shortbow") == 0);
+    assert(events[0].profile_kind == RC_COMBAT_VISUAL_ITEM);
+    assert(events[0].profile_key_id == TEST_ARROW);
+    assert(events[0].selected_attack_anim_id == 426);
+    assert(events[0].hit_delay == 3);
+    assert(events[0].client_delay == 3);
     rc_combat_tick_projectiles(world);
     projectiles = rc_combat_projectiles(world, &count);
     assert(count == 1);
@@ -305,6 +320,16 @@ static void test_ranged_special_emits_multi_projectile_visual_events(void) {
     assert(projectiles[3].projectile_angle == 25);
     assert(projectiles[3].sequence_index == 1);
     assert(world->player.special_energy == 5000);
+    const RcCombatVisualEvent *events =
+        rc_combat_visual_events(world, &count);
+    assert(count == 1);
+    assert(events[0].action_kind == RC_COMBAT_VISUAL_ACTION_SPECIAL);
+    assert(events[0].action_key_id == TEST_BOW);
+    assert(events[0].profile_kind == RC_COMBAT_VISUAL_SPECIAL);
+    assert(events[0].profile_key_id == TEST_BOW);
+    assert(events[0].style == COMBAT_RANGED);
+    assert(events[0].hit_delay == 3);
+    assert(events[0].client_delay == 3);
     rc_world_destroy(world);
 }
 
@@ -350,6 +375,21 @@ static void test_magic_attack_emits_spell_projectile(void) {
     assert(projectiles[0].projectile_angle == 16);
     assert(projectiles[0].projectile_progress == 64);
     assert(world->player.combat.attack_animation_id == 1162);
+    const RcCombatVisualEvent *events =
+        rc_combat_visual_events(world, &count);
+    assert(count == 1);
+    assert(events[0].source_kind == RC_COMBAT_ACTOR_PLAYER);
+    assert(events[0].target_kind == RC_COMBAT_ACTOR_NPC);
+    assert(events[0].style == COMBAT_MAGIC);
+    assert(events[0].action_kind == RC_COMBAT_VISUAL_ACTION_SPELL);
+    assert(events[0].action_key_id == 0);
+    assert(strcmp(events[0].action_key_name, "Renamed Fire Blast") == 0);
+    assert(events[0].profile_kind == RC_COMBAT_VISUAL_SPELL);
+    assert(events[0].profile_key_id == 0);
+    assert(strcmp(events[0].profile_key_name, "Fire Blast") == 0);
+    assert(events[0].selected_attack_anim_id == 1162);
+    assert(events[0].hit_delay == 3);
+    assert(events[0].client_delay == 3);
     for (int i = 0; i < 5; i++) {
         world->tick++;
         rc_combat_tick_projectiles(world);
@@ -394,6 +434,14 @@ static void test_spell_on_npc_routes_to_magic_combat_projectile(void) {
     assert(projectiles[0].projectile_model_id == 3087);
     assert(world->player.manual_spell_cast == -1);
     assert(world->player.combat_style == COMBAT_MAGIC);
+    const RcCombatVisualEvent *events =
+        rc_combat_visual_events(world, &count);
+    assert(count == 1);
+    assert(events[0].action_kind == RC_COMBAT_VISUAL_ACTION_SPELL);
+    assert(events[0].action_key_id == 0);
+    assert(events[0].style == COMBAT_MAGIC);
+    assert(events[0].hit_delay == projectiles[0].hit_delay);
+    assert(events[0].client_delay == projectiles[0].client_delay);
     rc_world_destroy(world);
 }
 
@@ -433,6 +481,23 @@ static void test_npc_attack_emits_data_backed_projectile(void) {
     assert(world->player.pending_hits[0].ticks_remaining == 3);
     assert(world->player.pending_hits[0].client_delay == 3);
     assert(npc->combat.attack_animation_id == 711);
+    const RcCombatVisualEvent *events =
+        rc_combat_visual_events(world, &count);
+    assert(count == 1);
+    assert(events[0].source_kind == RC_COMBAT_ACTOR_NPC);
+    assert(events[0].target_kind == RC_COMBAT_ACTOR_PLAYER);
+    assert(events[0].source_uid == npc->uid);
+    assert(events[0].target_uid == 0);
+    assert(events[0].style == COMBAT_MAGIC);
+    assert(events[0].action_kind == RC_COMBAT_VISUAL_ACTION_NPC);
+    assert(events[0].action_key_id == TEST_NPC_ID);
+    assert(strcmp(events[0].action_key_name, "Projectile Target") == 0);
+    assert(events[0].profile_kind == RC_COMBAT_VISUAL_NPC);
+    assert(events[0].profile_key_id == TEST_NPC_ID);
+    assert(strcmp(events[0].profile_key_name, "Projectile Target") == 0);
+    assert(events[0].selected_attack_anim_id == 711);
+    assert(events[0].hit_delay == 3);
+    assert(events[0].client_delay == 3);
     rc_world_destroy(world);
 }
 
@@ -545,6 +610,21 @@ static void test_jad_melee_uses_bite_animation_without_projectile(void) {
     assert(jad->combat.attack_animation_id == 2655);
     assert(jad->attack_anim_timer == 3);
     assert(jad->combat.attack_animation_timer == 3);
+    const RcCombatVisualEvent *events =
+        rc_combat_visual_events(world, &count);
+    assert(count == 1);
+    assert(events[0].source_kind == RC_COMBAT_ACTOR_NPC);
+    assert(events[0].target_kind == RC_COMBAT_ACTOR_PLAYER);
+    assert(events[0].style == COMBAT_MELEE_CRUSH);
+    assert(events[0].action_kind == RC_COMBAT_VISUAL_ACTION_NPC);
+    assert(events[0].action_key_id == TEST_JAD_ID);
+    assert(strcmp(events[0].action_key_name, "TzTok-Jad") == 0);
+    assert(events[0].profile_kind == RC_COMBAT_VISUAL_NPC);
+    assert(events[0].profile_key_id == TEST_JAD_ID);
+    assert(strcmp(events[0].profile_key_name, "TzTok-Jad") == 0);
+    assert(events[0].selected_attack_anim_id == 2655);
+    assert(events[0].hit_delay == 0);
+    assert(events[0].client_delay == 1);
     rc_world_destroy(world);
 }
 

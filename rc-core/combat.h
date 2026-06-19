@@ -122,6 +122,9 @@ int  rc_combat_get_player_view(const struct RcWorld *world,
 const RcCombatProjectile *rc_combat_projectiles(const struct RcWorld *world,
                                                 int *count);
 void rc_combat_tick_projectiles(struct RcWorld *world);
+const RcCombatVisualEvent *rc_combat_visual_events(
+    const struct RcWorld *world, int *count);
+void rc_combat_clear_visual_events(struct RcWorld *world);
 
 // NPC vs Player — picks the NPC's highest-weighted attack style from
 // its attack_types bitfield.

@@ -275,6 +275,49 @@ static int env_bool(const char *key, int fallback) {
     return 1;
 }
 
+static int string_equal_fold_ascii(const char *a, const char *b) {
+    if (!a || !b)
+        return 0;
+    while (*a && *b) {
+        char ca = *a++;
+        char cb = *b++;
+        if (ca >= 'A' && ca <= 'Z')
+            ca = (char)(ca - 'A' + 'a');
+        if (cb >= 'A' && cb <= 'Z')
+            cb = (char)(cb - 'A' + 'a');
+        if (ca != cb)
+            return 0;
+    }
+    return *a == '\0' && *b == '\0';
+}
+
+static int viewer_trace_log_level_from_env(void) {
+    const char *value = getenv("RC_VIEWER_LOG_LEVEL");
+    if (!value || !value[0])
+        return LOG_WARNING;
+    if (string_equal_fold_ascii(value, "all"))
+        return LOG_ALL;
+    if (string_equal_fold_ascii(value, "trace"))
+        return LOG_TRACE;
+    if (string_equal_fold_ascii(value, "debug"))
+        return LOG_DEBUG;
+    if (string_equal_fold_ascii(value, "info"))
+        return LOG_INFO;
+    if (string_equal_fold_ascii(value, "warning")
+            || string_equal_fold_ascii(value, "warn"))
+        return LOG_WARNING;
+    if (string_equal_fold_ascii(value, "error"))
+        return LOG_ERROR;
+    if (string_equal_fold_ascii(value, "fatal"))
+        return LOG_FATAL;
+    if (string_equal_fold_ascii(value, "none")
+            || string_equal_fold_ascii(value, "off"))
+        return LOG_NONE;
+    fprintf(stderr,
+            "unknown RC_VIEWER_LOG_LEVEL '%s'; using warning\n", value);
+    return LOG_WARNING;
+}
+
 static float env_float(const char *key, float fallback) {
     const char *value = getenv(key);
     if (!value || !value[0])
@@ -3505,6 +3548,63 @@ static int draw_ground_item_model(ViewerState *v, const RcGroundItem *ground,
     return 1;
 }
 
+static const char *combat_actor_kind_name(int kind) {
+    switch (kind) {
+        case RC_COMBAT_ACTOR_PLAYER: return "player";
+        case RC_COMBAT_ACTOR_NPC: return "npc";
+        default: return "none";
+    }
+}
+
+static const char *combat_action_kind_name(int kind) {
+    switch (kind) {
+        case RC_COMBAT_VISUAL_ACTION_ITEM: return "item";
+        case RC_COMBAT_VISUAL_ACTION_SPELL: return "spell";
+        case RC_COMBAT_VISUAL_ACTION_NPC: return "npc";
+        case RC_COMBAT_VISUAL_ACTION_SPECIAL: return "special";
+        default: return "none";
+    }
+}
+
+static const char *combat_style_name(int style) {
+    switch (style) {
+        case COMBAT_MELEE_STAB: return "stab";
+        case COMBAT_MELEE_SLASH: return "slash";
+        case COMBAT_MELEE_CRUSH: return "crush";
+        case COMBAT_RANGED: return "ranged";
+        case COMBAT_MAGIC: return "magic";
+        default: return "unknown";
+    }
+}
+
+static void debug_log_combat_visual_events(ViewerState *v) {
+    if (!v || !v->world || !env_bool("RUNEC_DEBUG_COMBAT_VISUAL_EVENTS", 0))
+        return;
+    int count = 0;
+    const RcCombatVisualEvent *events =
+        rc_combat_visual_events(v->world, &count);
+    for (int i = 0; events && i < count; i++) {
+        const RcCombatVisualEvent *e = &events[i];
+        if (!e->active) continue;
+        fprintf(stderr,
+                "combat visual event: tick=%d source=%s:%d target=%s:%d "
+                "style=%s action=%s:%d:%s profile=%s:%d:%s "
+                "anim=%d hit_delay=%d client_delay=%d "
+                "src=(%d,%d,%d) dst=(%d,%d,%d)\n",
+                e->world_tick,
+                combat_actor_kind_name(e->source_kind), e->source_uid,
+                combat_actor_kind_name(e->target_kind), e->target_uid,
+                combat_style_name(e->style),
+                combat_action_kind_name(e->action_kind),
+                e->action_key_id, e->action_key_name,
+                combat_action_kind_name(e->profile_kind),
+                e->profile_key_id, e->profile_key_name,
+                e->selected_attack_anim_id, e->hit_delay, e->client_delay,
+                e->source_x, e->source_y, e->plane,
+                e->target_x, e->target_y, e->plane);
+    }
+}
+
 static Color projectile_color(const RcCombatProjectile *proj) {
     if (!proj) return WHITE;
     if (proj->style == COMBAT_MAGIC) return (Color){255, 104, 36, 235};
@@ -5039,9 +5139,7 @@ int main(void) {
     set_viewer_demo_stats(&v.world->player);
     runec_dev_validation_seed_bank(v.world);
 
-    const char *quiet_log = getenv("RC_VIEWER_QUIET");
-    if (quiet_log && quiet_log[0] && strcmp(quiet_log, "0") != 0)
-        SetTraceLogLevel(LOG_WARNING);
+    SetTraceLogLevel(viewer_trace_log_level_from_env());
     RuneCRenderSettings render_settings = render_settings_from_env();
     unsigned int window_flags = FLAG_WINDOW_RESIZABLE;
     if (render_settings.msaa_enabled)
@@ -5416,6 +5514,7 @@ int main(void) {
                 int old_plane = v.world->player.plane;
                 viewer_apply_god_mode(&v);
                 rc_world_tick(v.world);
+                debug_log_combat_visual_events(&v);
                 viewer_apply_god_mode(&v);
                 v.player_moving = old_x != v.world->player.x ||
                                   old_y != v.world->player.y;

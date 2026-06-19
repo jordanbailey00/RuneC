@@ -948,6 +948,7 @@ static void tick_ground_items(RcWorld *world) {
 // NPC position, pathfinding, tick counter) always runs.
 void rc_world_tick(RcWorld *world) {
     const uint32_t on = world->enabled;
+    rc_combat_clear_visual_events(world);
 
     // Phase 1 — input (base): always runs.
     process_player_input(world);
