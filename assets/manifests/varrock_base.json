@@ -1,0 +1,39 @@
+{
+  "schema": "runec.asset_manifest.v1",
+  "name": "varrock_base",
+  "description": "Scoped validation/viewer bundle for the default Varrock world scene.",
+  "lighting": "client",
+  "scene": {
+    "prefix": "data/regions/varrock",
+    "origin": [3072, 3264],
+    "size": [320, 320],
+    "planes": [0, 1, 2, 3],
+    "player_start": [3184, 3440, 0],
+    "dev_transport": "varrock",
+    "scene_radius_regions": 2
+  },
+  "npc_ids": [],
+  "spotanim_ids": [],
+  "item_ids": [35, 13576, 26219],
+  "animation_ids": [386, 390, 401, 9471],
+  "player_loadouts": [],
+  "visual_profiles": [
+    {"kind": "item", "key": "35", "styles": ["slash", "stab"]},
+    {"kind": "item", "key": "13576", "styles": ["crush"]},
+    {"kind": "item", "key": "26219", "styles": ["slash", "stab"]}
+  ],
+  "validation": {
+    "mode": "strict",
+    "require_rows": [
+      "item:35:slash",
+      "item:13576:crush",
+      "item:26219:stab"
+    ]
+  },
+  "viewer": {
+    "render_profile": "osrs",
+    "debug_combat_visual_events": true,
+    "dev_boss_attacks": true,
+    "scene_auto_export": false
+  }
+}

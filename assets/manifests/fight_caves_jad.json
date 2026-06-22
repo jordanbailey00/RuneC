@@ -1,0 +1,37 @@
+{
+  "schema": "runec.asset_manifest.v1",
+  "name": "fight_caves_jad",
+  "description": "Scoped validation/viewer bundle for the TzTok-Jad Fight Caves scene.",
+  "lighting": "client",
+  "scene": {
+    "prefix": "data/regions/scene_cache/scene_2304_4992_r1",
+    "origin": [2304, 4992],
+    "size": [192, 192],
+    "planes": [0],
+    "player_start": [2400, 5079, 0],
+    "dev_transport": "jad",
+    "scene_radius_regions": 1
+  },
+  "npc_ids": [3127],
+  "spotanim_ids": [439, 440, 445, 446, 451],
+  "item_ids": [],
+  "animation_ids": [2648, 2652, 2655, 2656],
+  "player_loadouts": [],
+  "visual_profiles": [
+    {"kind": "npc", "key": "3127", "styles": ["magic", "ranged", "melee"]}
+  ],
+  "validation": {
+    "mode": "strict",
+    "require_rows": [
+      "npc:3127:magic",
+      "npc:3127:ranged",
+      "npc:3127:melee"
+    ]
+  },
+  "viewer": {
+    "render_profile": "osrs",
+    "debug_combat_visual_events": true,
+    "dev_boss_attacks": true,
+    "scene_auto_export": false
+  }
+}
