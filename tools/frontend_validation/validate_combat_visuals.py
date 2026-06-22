@@ -9,7 +9,7 @@ from pathlib import Path
 import struct
 import sys
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 DEFAULT_VISUALS = ROOT / "data/defs/combat_visuals.tsv"
 DEFAULT_SPOTANIMS = ROOT / "data/defs/spotanims.bin"

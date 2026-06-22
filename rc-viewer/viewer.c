@@ -4993,6 +4993,8 @@ static void draw_scene(ViewerState *v) {
         int hp_now = is_target ? combat_view->target_hp_current : n->combat.hp_current;
         int hp_max = is_target ? combat_view->target_hp_max : n->combat.hp_max;
         if (hp_max <= 0) hp_max = def->hitpoints;
+        if (hp_now <= 0 && n->current_hp > 0)
+            hp_now = n->current_hp;
         if (hp_max > 0 && (is_target || hp_now < hp_max)) {
             float w = 42.0f;
             float h = 5.0f;
