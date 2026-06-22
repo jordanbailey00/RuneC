@@ -827,6 +827,11 @@ def main() -> None:
                         help="local Joshua-F dump root with symbols/obj.sym")
     parser.add_argument("--rsmod-root", type=Path, default=DEFAULT_RSMOD,
                         help="local RSMod checkout for cache-enricher BAS data")
+    parser.add_argument("--model-lighting", choices=("client", "unlit"),
+                        default="unlit",
+                        help=("vertex color lighting mode for exported item "
+                              "models; default stays unlit until client-lit "
+                              "broad exports are visually approved"))
     args = parser.parse_args()
 
     items = parse_items_bin(args.items)
@@ -965,7 +970,7 @@ def main() -> None:
         tex_colors=tex_colors,
         atlas=atlas,
         bake_priority_offsets=False,
-        model_lighting="unlit",
+        model_lighting=args.model_lighting,
     )
     write_texture_anim_binary(args.output.with_suffix(".tanim"), atlas,
                               texture_defs)

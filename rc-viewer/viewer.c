@@ -353,13 +353,15 @@ static RuneCRenderProfile render_profile_from_env(const char **out_name) {
         if (out_name) *out_name = "debug";
         return RUNEC_RENDER_PROFILE_DEBUG;
     }
-    if (strcmp(profile, "legacy") != 0 && strcmp(profile, "LEGACY") != 0) {
-        fprintf(stderr,
-                "unknown RUNEC_RENDER_PROFILE=%s; using legacy\n",
-                profile);
+    if (strcmp(profile, "legacy") == 0 || strcmp(profile, "LEGACY") == 0) {
+        if (out_name) *out_name = "legacy";
+        return RUNEC_RENDER_PROFILE_LEGACY;
     }
-    if (out_name) *out_name = "legacy";
-    return RUNEC_RENDER_PROFILE_LEGACY;
+    fprintf(stderr,
+            "unknown RUNEC_RENDER_PROFILE=%s; using osrs\n",
+            profile);
+    if (out_name) *out_name = "osrs";
+    return RUNEC_RENDER_PROFILE_OSRS;
 }
 
 static float clamp_float(float value, float min_value, float max_value) {

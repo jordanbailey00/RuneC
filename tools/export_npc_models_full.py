@@ -220,6 +220,11 @@ def main() -> int:
                     default=ROOT / "tools/reports/npc_models_full.txt")
     ap.add_argument("--limit", type=int, default=0,
                     help="debug limit; 0 exports all linked NPCs")
+    ap.add_argument("--model-lighting", choices=("client", "unlit"),
+                    default="unlit",
+                    help=("vertex color lighting mode for exported NPC models; "
+                          "default stays unlit until client-lit broad exports "
+                          "are visually approved"))
     args = ap.parse_args()
 
     defs = read_ndef_models(args.defs)
@@ -257,7 +262,7 @@ def main() -> int:
         tex_colors=tex_colors,
         atlas=atlas,
         bake_priority_offsets=False,
-        model_lighting="unlit",
+        model_lighting=args.model_lighting,
     )
     lines = [
         "Full NPC model export",
