@@ -64,8 +64,6 @@ enum {
     RC_NPC_TZTOK_JAD = 3127,
     RC_JAD_MELEE_ANIM_TICKS = 3,
     RC_JAD_WARNING_ANIM_TICKS = 5,
-    RC_JAD_RANGED_CEILING_HEIGHT = 768,
-    RC_JAD_RANGED_IMPACT_HEIGHT = 52,
 };
 
 static int npc_config_id(const RcNpc *npc) {
@@ -104,11 +102,6 @@ static void npc_projectile_source_tile(const RcNpc *npc,
                                        int *sy) {
     if (!npc || !target || !sx || !sy)
         return;
-    if (npc_is_tztok_jad(npc) && style == COMBAT_RANGED) {
-        *sx = target->x;
-        *sy = target->y;
-        return;
-    }
     if (npc_is_tztok_jad(npc) && style == COMBAT_MAGIC) {
         int size = npc_footprint_size(npc);
         *sx = npc->x + size / 2;
@@ -116,6 +109,32 @@ static void npc_projectile_source_tile(const RcNpc *npc,
         return;
     }
     nearest_npc_tile_to_point(npc, target->x, target->y, sx, sy);
+}
+
+static void npc_visual_source_tile(const RcNpc *npc,
+                                   const RcPlayer *target,
+                                   RcCombatStyle style,
+                                   const RcCombatVisualDef *visual,
+                                   int *sx,
+                                   int *sy) {
+    if (!npc || !target || !sx || !sy)
+        return;
+    if (visual && (visual->source_attachment ==
+                   RC_COMBAT_VISUAL_ATTACH_TARGET_TILE ||
+                   visual->source_attachment ==
+                   RC_COMBAT_VISUAL_ATTACH_FIXED_TILE)) {
+        *sx = target->x;
+        *sy = target->y;
+        return;
+    }
+    if (visual && visual->source_attachment ==
+            RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER) {
+        int size = npc_footprint_size(npc);
+        *sx = npc->x + size / 2;
+        *sy = npc->y + size / 2;
+        return;
+    }
+    npc_projectile_source_tile(npc, target, style, sx, sy);
 }
 
 static int npc_attack_animation_ticks(const RcNpc *npc,
@@ -404,6 +423,11 @@ static int visual_has_travel_projectile(const RcCombatVisualDef *visual) {
                       visual->projectile_anim_id >= 0);
 }
 
+static int visual_is_fixed_tile_impact(const RcCombatVisualDef *visual) {
+    return visual && visual->primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT;
+}
+
 static int visual_hit_delay(const RcCombatVisualDef *visual,
                             int default_delay) {
     return visual && visual->hit_delay >= 0 ? visual->hit_delay
@@ -534,10 +558,20 @@ static void set_event_profile_key(RcCombatVisualEvent *event,
     event->profile_kind = RC_COMBAT_VISUAL_ACTION_NONE;
     event->profile_key_id = -1;
     event->profile_key_name[0] = '\0';
+    event->primitive_type = RC_COMBAT_VISUAL_PRIMITIVE_NONE;
+    event->source_attachment = RC_COMBAT_VISUAL_ATTACH_NONE;
+    event->target_attachment = RC_COMBAT_VISUAL_ATTACH_NONE;
+    event->launch_attachment = RC_COMBAT_VISUAL_ATTACH_NONE;
+    event->impact_attachment = RC_COMBAT_VISUAL_ATTACH_NONE;
     if (!profile) return;
     event->profile_kind = profile->kind;
     event->profile_key_id = profile->key_id;
     copy_event_name(event->profile_key_name, profile->key_name);
+    event->primitive_type = profile->primitive_type;
+    event->source_attachment = profile->source_attachment;
+    event->target_attachment = profile->target_attachment;
+    event->launch_attachment = profile->launch_attachment;
+    event->impact_attachment = profile->impact_attachment;
 }
 
 static const RcCombatVisualDef *player_event_profile(
@@ -640,8 +674,8 @@ static void emit_npc_visual_event(
     event->target_uid = 0;
     event->source_definition_id = def->id;
     event->target_definition_id = -1;
-    npc_projectile_source_tile(npc, target, style,
-                               &event->source_x, &event->source_y);
+    npc_visual_source_tile(npc, target, style, visual,
+                           &event->source_x, &event->source_y);
     event->target_x = target->x;
     event->target_y = target->y;
     event->plane = npc->plane;
@@ -805,6 +839,16 @@ static void spawn_player_projectile_instance(
     proj->source_kind = RC_COMBAT_ACTOR_PLAYER;
     proj->target_kind = RC_COMBAT_ACTOR_NPC;
     proj->style = (uint8_t)style;
+    proj->primitive_type = visual ? visual->primitive_type
+                                  : RC_COMBAT_VISUAL_PRIMITIVE_NONE;
+    proj->source_attachment = visual ? visual->source_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->target_attachment = visual ? visual->target_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->launch_attachment = visual ? visual->launch_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->impact_attachment = visual ? visual->impact_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
     proj->source_uid = 0;
     proj->target_uid = target->uid;
     proj->source_x = p->x;
@@ -917,12 +961,22 @@ static void spawn_npc_projectile_instance(
     RcCombatProjectile *proj = next_projectile_slot(world);
     if (!proj) return;
     int sx, sy;
-    npc_projectile_source_tile(npc, target, style, &sx, &sy);
+    npc_visual_source_tile(npc, target, style, visual, &sx, &sy);
     memset(proj, 0, sizeof(*proj));
     proj->active = true;
     proj->source_kind = RC_COMBAT_ACTOR_NPC;
     proj->target_kind = RC_COMBAT_ACTOR_PLAYER;
     proj->style = (uint8_t)style;
+    proj->primitive_type = visual ? visual->primitive_type
+                                  : RC_COMBAT_VISUAL_PRIMITIVE_NONE;
+    proj->source_attachment = visual ? visual->source_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->target_attachment = visual ? visual->target_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->launch_attachment = visual ? visual->launch_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->impact_attachment = visual ? visual->impact_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
     proj->source_uid = npc->uid;
     proj->target_uid = 0;
     proj->source_x = sx;
@@ -951,9 +1005,7 @@ static void spawn_npc_projectile_instance(
             proj->projectile_start_height >= 0) {
         proj->launch_spotanim_height = proj->projectile_start_height;
     }
-    if (npc_is_tztok_jad(npc) && style == COMBAT_RANGED) {
-        // Jad's ranged attack has no travel projectile; the target tile gets
-        // a delayed falling-rock impact graphic.
+    if (visual_is_fixed_tile_impact(visual)) {
         int impact_time = visual_projectile_end_time(
             visual, chebyshev(proj->source_x, proj->source_y,
                               proj->target_x, proj->target_y));
@@ -964,8 +1016,12 @@ static void spawn_npc_projectile_instance(
         proj->impact_spotanim_id = impact_spotanim_id;
         proj->projectile_model_id = -1;
         proj->projectile_anim_id = -1;
-        proj->projectile_start_height = RC_JAD_RANGED_CEILING_HEIGHT;
-        proj->projectile_end_height = RC_JAD_RANGED_IMPACT_HEIGHT;
+        proj->projectile_start_height = visual &&
+            visual->projectile_start_height >= 0
+            ? visual->projectile_start_height : proj->projectile_start_height;
+        proj->projectile_end_height = visual &&
+            visual->projectile_end_height >= 0
+            ? visual->projectile_end_height : proj->projectile_end_height;
         proj->projectile_start_time = 0;
         proj->projectile_end_time = impact_time;
         proj->projectile_angle = 0;

@@ -358,12 +358,38 @@ typedef enum {
     RC_COMBAT_VISUAL_ACTION_SPECIAL = 4,
 } RcCombatVisualActionKind;
 
+typedef enum {
+    RC_COMBAT_VISUAL_PRIMITIVE_NONE = 0,
+    RC_COMBAT_VISUAL_PRIMITIVE_LAUNCH_EFFECT = 1,
+    RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE = 2,
+    RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT = 3,
+    RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT = 4,
+    RC_COMBAT_VISUAL_PRIMITIVE_GROUND_EFFECT = 5,
+    RC_COMBAT_VISUAL_PRIMITIVE_AREA_EFFECT = 6,
+    RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE = 7,
+} RcCombatVisualPrimitiveType;
+
+typedef enum {
+    RC_COMBAT_VISUAL_ATTACH_NONE = 0,
+    RC_COMBAT_VISUAL_ATTACH_SOURCE_ACTOR = 1,
+    RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER = 2,
+    RC_COMBAT_VISUAL_ATTACH_SOURCE_TILE = 3,
+    RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR = 4,
+    RC_COMBAT_VISUAL_ATTACH_TARGET_TILE = 5,
+    RC_COMBAT_VISUAL_ATTACH_FIXED_TILE = 6,
+    RC_COMBAT_VISUAL_ATTACH_GROUND_TILE = 7,
+} RcCombatVisualAttachmentRule;
+
 typedef struct {
     bool active;
     uint8_t source_kind;
     uint8_t target_kind;
     uint8_t style;
-    uint8_t reserved;
+    uint8_t primitive_type;
+    uint8_t source_attachment;
+    uint8_t target_attachment;
+    uint8_t launch_attachment;
+    uint8_t impact_attachment;
     int source_uid;
     int target_uid;
     int source_x, source_y;
@@ -402,6 +428,11 @@ typedef struct {
     uint8_t target_kind;
     uint8_t style;
     uint8_t action_kind;
+    uint8_t primitive_type;
+    uint8_t source_attachment;
+    uint8_t target_attachment;
+    uint8_t launch_attachment;
+    uint8_t impact_attachment;
     int source_uid;
     int target_uid;
     int source_definition_id;

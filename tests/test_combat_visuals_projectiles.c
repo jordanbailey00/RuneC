@@ -151,10 +151,12 @@ static void write_jad_visuals_file(const char *path) {
           "alt_proj_length_adjustment|alt_proj_progress|"
           "alt_proj_step_multiplier|aux_travel_spotanim|aux_impact_spotanim|"
           "aux_projectile_model|aux_projectile_anim|impact_on_last_only|"
-          "double_launch_spotanim\n", f);
-    fputs("npc|3127|magic|2656|439|445|446|9335|2648|3|3|172|124|41|16|0|64|5|jad_magic\n", f);
-    fputs("npc|3127|melee|2655|-|-|-|-|-|-|-|-|-|-|-|-|-|-|jad_melee\n", f);
-    fputs("npc|3127|ranged|2652|440|-|451|-|-|3|3|768|52|60|0|0|0|0|jad_ranged\n", f);
+          "double_launch_spotanim|stance_idx|primitive_type|"
+          "source_attachment|target_attachment|launch_attachment|"
+          "impact_attachment|authority\n", f);
+    fputs("npc|3127|magic|2656|439|445|446|9335|2648|3|3|172|124|41|16|0|64|5|jad_magic|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|travel_projectile|source_center|target_actor|source_actor|target_actor|test\n", f);
+    fputs("npc|3127|melee|2655|-|-|-|-|-|-|-|-|-|-|-|-|-|-|jad_melee|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|none|none|none|none|none|test\n", f);
+    fputs("npc|3127|ranged|2652|440|-|451|-|-|3|3|768|52|60|0|0|0|0|jad_ranged|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|fixed_tile_impact|target_tile|target_tile|none|fixed_tile|test\n", f);
     fclose(f);
 }
 
@@ -524,6 +526,12 @@ static void test_jad_magic_projectile_starts_from_jad_center(void) {
         rc_combat_projectiles(world, &count);
     assert(count == 1);
     assert(projectiles[0].style == COMBAT_MAGIC);
+    assert(projectiles[0].primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE);
+    assert(projectiles[0].source_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER);
+    assert(projectiles[0].impact_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR);
     assert(projectiles[0].source_x == jad->x + 2);
     assert(projectiles[0].source_y == jad->y + 2);
     assert(projectiles[0].target_x == world->player.x);
@@ -559,6 +567,14 @@ static void test_jad_ranged_projectile_drops_from_ceiling(void) {
         rc_combat_projectiles(world, &count);
     assert(count == 1);
     assert(projectiles[0].style == COMBAT_RANGED);
+    assert(projectiles[0].primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT);
+    assert(projectiles[0].source_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_TARGET_TILE);
+    assert(projectiles[0].target_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_TARGET_TILE);
+    assert(projectiles[0].impact_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_FIXED_TILE);
     assert(projectiles[0].source_x == world->player.x);
     assert(projectiles[0].source_y == world->player.y);
     assert(projectiles[0].target_x == world->player.x);
@@ -622,6 +638,7 @@ static void test_jad_melee_uses_bite_animation_without_projectile(void) {
     assert(events[0].profile_kind == RC_COMBAT_VISUAL_NPC);
     assert(events[0].profile_key_id == TEST_JAD_ID);
     assert(strcmp(events[0].profile_key_name, "TzTok-Jad") == 0);
+    assert(events[0].primitive_type == RC_COMBAT_VISUAL_PRIMITIVE_NONE);
     assert(events[0].selected_attack_anim_id == 2655);
     assert(events[0].hit_delay == 0);
     assert(events[0].client_delay == 1);
@@ -710,6 +727,9 @@ static void test_generated_visuals_include_spell_projectile_profiles(void) {
     assert(fire_blast->projectile_length_adjustment == -5);
     assert(fire_blast->projectile_progress == 64);
     assert(fire_blast->projectile_step_multiplier == 10);
+    assert(fire_blast->primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE);
+    assert(strcmp(fire_blast->authority, "rsmod") == 0);
 
     const RcCombatVisualDef *iban =
         rc_combat_visual_for_spell("Iban Blast", COMBAT_MAGIC);
@@ -730,6 +750,8 @@ static void test_generated_visuals_include_spell_projectile_profiles(void) {
     assert(ghostly != NULL);
     assert(ghostly->launch_spotanim_id == 1856);
     assert(ghostly->impact_spotanim_id == 1857);
+    assert(ghostly->primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT);
 
     const RcCombatVisualDef *vorkath =
         rc_combat_visual_for_npc(8061, COMBAT_MAGIC);
@@ -741,6 +763,24 @@ static void test_generated_visuals_include_spell_projectile_profiles(void) {
         rc_combat_visual_for_npc(2215, COMBAT_RANGED);
     assert(graardor != NULL);
     assert(graardor->travel_spotanim_id == 1202);
+
+    const RcCombatVisualDef *jad_ranged =
+        rc_combat_visual_for_npc(TEST_JAD_ID, COMBAT_RANGED);
+    assert(jad_ranged != NULL);
+    assert(jad_ranged->primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT);
+    assert(jad_ranged->source_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_TARGET_TILE);
+    assert(jad_ranged->impact_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_FIXED_TILE);
+
+    const RcCombatVisualDef *jad_magic =
+        rc_combat_visual_for_npc(TEST_JAD_ID, COMBAT_MAGIC);
+    assert(jad_magic != NULL);
+    assert(jad_magic->primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE);
+    assert(jad_magic->source_attachment ==
+           RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER);
 
     const RcCombatVisualDef *dlong =
         rc_combat_visual_for_special_item(1305, COMBAT_MELEE_SLASH);
@@ -758,6 +798,8 @@ static void test_generated_visuals_include_spell_projectile_profiles(void) {
     assert(darkbow->aux_travel_spotanim_id == 1101);
     assert(darkbow->aux_impact_spotanim_id == 1103);
     assert(darkbow->impact_on_last_only == 1);
+    assert(darkbow->primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE);
 
     const RcCombatVisualDef *rune_arrow =
         rc_combat_visual_for_item(892, COMBAT_RANGED);

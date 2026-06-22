@@ -39,9 +39,13 @@ HEADER = (
     "alt_proj_delay|alt_proj_angle|alt_proj_length_adjustment|"
     "alt_proj_progress|alt_proj_step_multiplier|aux_travel_spotanim|"
     "aux_impact_spotanim|aux_projectile_model|aux_projectile_anim|"
-    "impact_on_last_only|double_launch_spotanim|stance_idx"
+    "impact_on_last_only|double_launch_spotanim|stance_idx|attack_key|"
+    "launch_gfx_height|impact_gfx_height|impact_gfx_delay|"
+    "impact_gfx_rotation|primitive_type|source_attachment|"
+    "target_attachment|launch_attachment|impact_attachment|authority"
 )
 HEADER_COLS = HEADER.split("|")
+COL = {name: idx for idx, name in enumerate(HEADER_COLS)}
 
 RSMOD_ATTACK_TYPES: dict[str, tuple[str | None, str | None, str | None, str | None]] = {
     "Unarmed": ("crush", "crush", None, "crush"),
@@ -214,6 +218,124 @@ def named_spec(
 
 def append_row(rows: list[list[str]], *values: object) -> None:
     rows.append([str(v) for v in values])
+
+
+def row_value(row: list[str], name: str) -> str:
+    idx = COL[name]
+    return row[idx] if idx < len(row) and row[idx] else "-"
+
+
+def row_int(row: list[str], name: str) -> int:
+    value = row_value(row, name)
+    if value == "-":
+        return -1
+    try:
+        return int(value)
+    except ValueError:
+        return -1
+
+
+def row_has_travel_asset(row: list[str]) -> bool:
+    return (
+        row_int(row, "travel_spotanim") >= 0
+        or row_int(row, "projectile_model") >= 0
+        or row_int(row, "projectile_anim") >= 0
+    )
+
+
+def row_has_aux_projectile(row: list[str]) -> bool:
+    return (
+        row_int(row, "aux_travel_spotanim") >= 0
+        or row_int(row, "aux_projectile_model") >= 0
+        or row_int(row, "aux_projectile_anim") >= 0
+    )
+
+
+def infer_primitive_type(row: list[str]) -> str:
+    if row_int(row, "projectile_count") > 1 or row_has_aux_projectile(row):
+        return "multi_projectile"
+    if (
+        not row_has_travel_asset(row)
+        and row_int(row, "impact_spotanim") >= 0
+        and row_int(row, "proj_start_height") >= 256
+        and row_int(row, "proj_end_height") >= 0
+    ):
+        return "fixed_tile_impact"
+    if row_has_travel_asset(row):
+        return "travel_projectile"
+    if row_int(row, "impact_spotanim") >= 0:
+        return "target_impact"
+    if (
+        row_int(row, "launch_spotanim") >= 0
+        or row_int(row, "double_launch_spotanim") >= 0
+    ):
+        return "launch_effect"
+    return "none"
+
+
+def infer_source_attachment(row: list[str], primitive: str) -> str:
+    note = row_value(row, "note")
+    if primitive == "none":
+        return "none"
+    if primitive == "fixed_tile_impact":
+        return "target_tile"
+    if note.endswith("jad_magic"):
+        return "source_center"
+    return "source_actor"
+
+
+def infer_target_attachment(_row: list[str], primitive: str) -> str:
+    if primitive in {"none", "launch_effect"}:
+        return "none"
+    if primitive == "fixed_tile_impact":
+        return "target_tile"
+    return "target_actor"
+
+
+def infer_launch_attachment(row: list[str], primitive: str) -> str:
+    if primitive == "fixed_tile_impact":
+        return "none"
+    if row_int(row, "launch_spotanim") >= 0:
+        return "source_actor"
+    return "none"
+
+
+def infer_impact_attachment(_row: list[str], primitive: str) -> str:
+    if primitive == "fixed_tile_impact":
+        return "fixed_tile"
+    if primitive in {"travel_projectile", "target_impact", "multi_projectile"}:
+        return "target_actor"
+    if primitive == "ground_effect":
+        return "ground_tile"
+    if primitive == "area_effect":
+        return "target_tile"
+    return "none"
+
+
+def infer_authority(row: list[str]) -> str:
+    note = row_value(row, "note")
+    if note == "-" or ":" not in note:
+        return "-"
+    return note.split(":", 1)[0] or "-"
+
+
+def enrich_rich_profile_columns(row: list[str]) -> list[str]:
+    row = row + ["-"] * max(0, len(HEADER_COLS) - len(row))
+    primitive = row_value(row, "primitive_type")
+    if primitive == "-":
+        primitive = infer_primitive_type(row)
+        row[COL["primitive_type"]] = primitive
+    if row_value(row, "source_attachment") == "-":
+        row[COL["source_attachment"]] = infer_source_attachment(row, primitive)
+    if row_value(row, "target_attachment") == "-":
+        row[COL["target_attachment"]] = infer_target_attachment(row, primitive)
+    if row_value(row, "launch_attachment") == "-":
+        row[COL["launch_attachment"]] = infer_launch_attachment(row, primitive)
+    if row_value(row, "impact_attachment") == "-":
+        row[COL["impact_attachment"]] = infer_impact_attachment(row, primitive)
+    if row_value(row, "authority") == "-":
+        row[COL["authority"]] = infer_authority(row)
+    return row
 
 
 def projectile_columns(spec: ProjAnimSpec | None) -> list[str]:
@@ -727,7 +849,7 @@ def write_tsv(path: Path, rows: list[list[str]]) -> None:
         key=lambda r: (r[0], int(r[1]) if r[1].isdigit() else 1 << 30, r[1], r[2], r[3]),
     )
     width = len(HEADER_COLS)
-    padded = [r + ["-"] * max(0, width - len(r)) for r in ordered]
+    padded = [enrich_rich_profile_columns(r) for r in ordered]
     path.write_text(HEADER + "\n" + "\n".join("|".join(r[:width]) for r in padded) + "\n")
 
 

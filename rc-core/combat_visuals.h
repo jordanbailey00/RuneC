@@ -48,11 +48,19 @@ typedef struct {
     int aux_projectile_model_id;
     int aux_projectile_anim_id;
     int impact_on_last_only;
+    uint8_t primitive_type;
+    uint8_t source_attachment;
+    uint8_t target_attachment;
+    uint8_t launch_attachment;
+    uint8_t impact_attachment;
+    char authority[64];
 } RcCombatVisualDef;
 
 extern RcCombatVisualDef g_rc_combat_visual_defs[RC_MAX_COMBAT_VISUAL_DEFS];
 extern int g_rc_combat_visual_count;
 
+const char *rc_combat_visual_primitive_name(int primitive_type);
+const char *rc_combat_visual_attachment_name(int attachment_rule);
 int rc_load_combat_visuals(const char *path);
 const RcCombatVisualDef *rc_combat_visual_for_item(int item_id,
                                                    RcCombatStyle style);

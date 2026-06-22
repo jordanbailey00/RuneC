@@ -10,6 +10,15 @@
 RcCombatVisualDef g_rc_combat_visual_defs[RC_MAX_COMBAT_VISUAL_DEFS];
 int g_rc_combat_visual_count = 0;
 
+typedef struct {
+    int primitive_type;
+    int source_attachment;
+    int target_attachment;
+    int launch_attachment;
+    int impact_attachment;
+    int authority;
+} RcCombatVisualRichColumns;
+
 static char *trim(char *s) {
     if (!s) return s;
     while (*s && isspace((unsigned char)*s)) s++;
@@ -41,6 +50,77 @@ static int parse_kind(const char *s) {
     return 0;
 }
 
+static int parse_primitive_type(const char *s) {
+    if (!s || !s[0] || strcmp(s, "-") == 0) return -1;
+    if (strcmp(s, "none") == 0) return RC_COMBAT_VISUAL_PRIMITIVE_NONE;
+    if (strcmp(s, "launch_effect") == 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_LAUNCH_EFFECT;
+    if (strcmp(s, "travel_projectile") == 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE;
+    if (strcmp(s, "target_impact") == 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT;
+    if (strcmp(s, "fixed_tile_impact") == 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT;
+    if (strcmp(s, "ground_effect") == 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_GROUND_EFFECT;
+    if (strcmp(s, "area_effect") == 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_AREA_EFFECT;
+    if (strcmp(s, "multi_projectile") == 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE;
+    return -1;
+}
+
+const char *rc_combat_visual_primitive_name(int primitive_type) {
+    switch (primitive_type) {
+        case RC_COMBAT_VISUAL_PRIMITIVE_NONE: return "none";
+        case RC_COMBAT_VISUAL_PRIMITIVE_LAUNCH_EFFECT: return "launch_effect";
+        case RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE:
+            return "travel_projectile";
+        case RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT: return "target_impact";
+        case RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT:
+            return "fixed_tile_impact";
+        case RC_COMBAT_VISUAL_PRIMITIVE_GROUND_EFFECT: return "ground_effect";
+        case RC_COMBAT_VISUAL_PRIMITIVE_AREA_EFFECT: return "area_effect";
+        case RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE:
+            return "multi_projectile";
+        default: return "unknown";
+    }
+}
+
+static int parse_attachment_rule(const char *s) {
+    if (!s || !s[0] || strcmp(s, "-") == 0) return -1;
+    if (strcmp(s, "none") == 0) return RC_COMBAT_VISUAL_ATTACH_NONE;
+    if (strcmp(s, "source_actor") == 0)
+        return RC_COMBAT_VISUAL_ATTACH_SOURCE_ACTOR;
+    if (strcmp(s, "source_center") == 0)
+        return RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER;
+    if (strcmp(s, "source_tile") == 0)
+        return RC_COMBAT_VISUAL_ATTACH_SOURCE_TILE;
+    if (strcmp(s, "target_actor") == 0)
+        return RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR;
+    if (strcmp(s, "target_tile") == 0)
+        return RC_COMBAT_VISUAL_ATTACH_TARGET_TILE;
+    if (strcmp(s, "fixed_tile") == 0)
+        return RC_COMBAT_VISUAL_ATTACH_FIXED_TILE;
+    if (strcmp(s, "ground_tile") == 0)
+        return RC_COMBAT_VISUAL_ATTACH_GROUND_TILE;
+    return -1;
+}
+
+const char *rc_combat_visual_attachment_name(int attachment_rule) {
+    switch (attachment_rule) {
+        case RC_COMBAT_VISUAL_ATTACH_NONE: return "none";
+        case RC_COMBAT_VISUAL_ATTACH_SOURCE_ACTOR: return "source_actor";
+        case RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER: return "source_center";
+        case RC_COMBAT_VISUAL_ATTACH_SOURCE_TILE: return "source_tile";
+        case RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR: return "target_actor";
+        case RC_COMBAT_VISUAL_ATTACH_TARGET_TILE: return "target_tile";
+        case RC_COMBAT_VISUAL_ATTACH_FIXED_TILE: return "fixed_tile";
+        case RC_COMBAT_VISUAL_ATTACH_GROUND_TILE: return "ground_tile";
+        default: return "unknown";
+    }
+}
+
 static int parse_style(const char *s) {
     if (!s || !s[0] || strcmp(s, "any") == 0 || strcmp(s, "-") == 0)
         return RC_COMBAT_VISUAL_ANY;
@@ -68,20 +148,162 @@ static int split_pipe(char *line, char **parts, int max_parts) {
     return count;
 }
 
+static int find_header_col(char **parts, int count, const char *name) {
+    for (int i = 0; i < count; i++) {
+        if (strcmp(parts[i], name) == 0)
+            return i;
+    }
+    return -1;
+}
+
+static void capture_rich_columns(RcCombatVisualRichColumns *cols,
+                                 char **parts,
+                                 int count) {
+    if (!cols) return;
+    cols->primitive_type = find_header_col(parts, count, "primitive_type");
+    cols->source_attachment =
+        find_header_col(parts, count, "source_attachment");
+    cols->target_attachment =
+        find_header_col(parts, count, "target_attachment");
+    cols->launch_attachment =
+        find_header_col(parts, count, "launch_attachment");
+    cols->impact_attachment =
+        find_header_col(parts, count, "impact_attachment");
+    cols->authority = find_header_col(parts, count, "authority");
+}
+
+static const char *optional_col(char **parts, int count, int col) {
+    if (col < 0 || col >= count)
+        return NULL;
+    return parts[col];
+}
+
+static int visual_has_aux_projectile(const RcCombatVisualDef *def) {
+    return def && (def->aux_travel_spotanim_id >= 0 ||
+                   def->aux_projectile_model_id >= 0 ||
+                   def->aux_projectile_anim_id >= 0);
+}
+
+static int visual_has_travel_asset(const RcCombatVisualDef *def) {
+    return def && (def->travel_spotanim_id >= 0 ||
+                   def->projectile_model_id >= 0 ||
+                   def->projectile_anim_id >= 0);
+}
+
+static int visual_looks_like_fixed_tile_impact(
+    const RcCombatVisualDef *def
+) {
+    return def && !visual_has_travel_asset(def) &&
+           def->impact_spotanim_id >= 0 &&
+           def->projectile_start_height >= 256 &&
+           def->projectile_end_height >= 0;
+}
+
+static int infer_primitive_type(const RcCombatVisualDef *def) {
+    if (!def) return RC_COMBAT_VISUAL_PRIMITIVE_NONE;
+    if (def->projectile_count > 1 || visual_has_aux_projectile(def))
+        return RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE;
+    if (visual_looks_like_fixed_tile_impact(def))
+        return RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT;
+    if (visual_has_travel_asset(def))
+        return RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE;
+    if (def->impact_spotanim_id >= 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT;
+    if (def->launch_spotanim_id >= 0 || def->double_launch_spotanim_id >= 0)
+        return RC_COMBAT_VISUAL_PRIMITIVE_LAUNCH_EFFECT;
+    return RC_COMBAT_VISUAL_PRIMITIVE_NONE;
+}
+
+static int default_source_attachment(int primitive_type) {
+    if (primitive_type == RC_COMBAT_VISUAL_PRIMITIVE_NONE)
+        return RC_COMBAT_VISUAL_ATTACH_NONE;
+    if (primitive_type == RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT)
+        return RC_COMBAT_VISUAL_ATTACH_TARGET_TILE;
+    return RC_COMBAT_VISUAL_ATTACH_SOURCE_ACTOR;
+}
+
+static int default_target_attachment(int primitive_type) {
+    switch (primitive_type) {
+        case RC_COMBAT_VISUAL_PRIMITIVE_NONE:
+        case RC_COMBAT_VISUAL_PRIMITIVE_LAUNCH_EFFECT:
+            return RC_COMBAT_VISUAL_ATTACH_NONE;
+        case RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT:
+            return RC_COMBAT_VISUAL_ATTACH_TARGET_TILE;
+        default:
+            return RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR;
+    }
+}
+
+static int default_launch_attachment(const RcCombatVisualDef *def) {
+    if (!def || def->launch_spotanim_id < 0 ||
+            def->primitive_type == RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT) {
+        return RC_COMBAT_VISUAL_ATTACH_NONE;
+    }
+    return RC_COMBAT_VISUAL_ATTACH_SOURCE_ACTOR;
+}
+
+static int default_impact_attachment(int primitive_type) {
+    switch (primitive_type) {
+        case RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT:
+            return RC_COMBAT_VISUAL_ATTACH_FIXED_TILE;
+        case RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE:
+        case RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT:
+        case RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE:
+            return RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR;
+        case RC_COMBAT_VISUAL_PRIMITIVE_GROUND_EFFECT:
+            return RC_COMBAT_VISUAL_ATTACH_GROUND_TILE;
+        case RC_COMBAT_VISUAL_PRIMITIVE_AREA_EFFECT:
+            return RC_COMBAT_VISUAL_ATTACH_TARGET_TILE;
+        default:
+            return RC_COMBAT_VISUAL_ATTACH_NONE;
+    }
+}
+
+static void copy_field(char dst[64], const char *src) {
+    if (!dst) return;
+    dst[0] = '\0';
+    if (!src || !src[0] || strcmp(src, "-") == 0) return;
+    strncpy(dst, src, 63);
+    dst[63] = '\0';
+}
+
+static void infer_authority(char dst[64], const char *note) {
+    if (!dst) return;
+    dst[0] = '\0';
+    if (!note || !note[0] || strcmp(note, "-") == 0) return;
+    size_t len = 0;
+    while (note[len] && note[len] != ':' && len < 63)
+        len++;
+    if (len == 0) return;
+    memcpy(dst, note, len);
+    dst[len] = '\0';
+}
+
 int rc_load_combat_visuals(const char *path) {
     g_rc_combat_visual_count = 0;
     if (!path || !path[0]) return -1;
     FILE *f = rc_asset_fopen(path, "r");
     if (!f) return -1;
 
-    char line[1024];
+    RcCombatVisualRichColumns rich_cols = {
+        .primitive_type = -1,
+        .source_attachment = -1,
+        .target_attachment = -1,
+        .launch_attachment = -1,
+        .impact_attachment = -1,
+        .authority = -1,
+    };
+    char line[2048];
     while (fgets(line, sizeof(line), f)) {
         char *s = trim(line);
         if (!s[0] || s[0] == '#') continue;
-        char *parts[34] = {0};
-        int n = split_pipe(s, parts, 34);
+        char *parts[64] = {0};
+        int n = split_pipe(s, parts, 64);
         if (n < 11) continue;
-        if (strcmp(parts[0], "kind") == 0) continue;
+        if (strcmp(parts[0], "kind") == 0) {
+            capture_rich_columns(&rich_cols, parts, n);
+            continue;
+        }
         if (g_rc_combat_visual_count >= RC_MAX_COMBAT_VISUAL_DEFS) break;
 
         RcCombatVisualDef *def =
@@ -145,6 +367,37 @@ int rc_load_combat_visuals(const char *path) {
         def->impact_on_last_only = n > 31 ? parse_int_field(parts[31]) : 0;
         def->double_launch_spotanim_id =
             n > 32 ? parse_int_field(parts[32]) : -1;
+        int primitive_type = parse_primitive_type(
+            optional_col(parts, n, rich_cols.primitive_type));
+        if (primitive_type < 0)
+            primitive_type = infer_primitive_type(def);
+        def->primitive_type = (uint8_t)primitive_type;
+
+        int source_attachment = parse_attachment_rule(
+            optional_col(parts, n, rich_cols.source_attachment));
+        int target_attachment = parse_attachment_rule(
+            optional_col(parts, n, rich_cols.target_attachment));
+        int launch_attachment = parse_attachment_rule(
+            optional_col(parts, n, rich_cols.launch_attachment));
+        int impact_attachment = parse_attachment_rule(
+            optional_col(parts, n, rich_cols.impact_attachment));
+        if (source_attachment < 0)
+            source_attachment = default_source_attachment(primitive_type);
+        if (target_attachment < 0)
+            target_attachment = default_target_attachment(primitive_type);
+        if (launch_attachment < 0)
+            launch_attachment = default_launch_attachment(def);
+        if (impact_attachment < 0)
+            impact_attachment = default_impact_attachment(primitive_type);
+        def->source_attachment = (uint8_t)source_attachment;
+        def->target_attachment = (uint8_t)target_attachment;
+        def->launch_attachment = (uint8_t)launch_attachment;
+        def->impact_attachment = (uint8_t)impact_attachment;
+
+        copy_field(def->authority, optional_col(parts, n,
+                                                rich_cols.authority));
+        if (!def->authority[0])
+            infer_authority(def->authority, n > 18 ? parts[18] : NULL);
         g_rc_combat_visual_count++;
     }
 

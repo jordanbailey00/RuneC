@@ -3,6 +3,7 @@
 #include "../rc-core/api.h"
 #include "../rc-core/assets.h"
 #include "../rc-core/combat.h"
+#include "../rc-core/combat_visuals.h"
 #include "../rc-core/config.h"
 #include "../rc-core/items.h"
 #include "../rc-core/objects.h"
@@ -3589,6 +3590,7 @@ static void debug_log_combat_visual_events(ViewerState *v) {
         fprintf(stderr,
                 "combat visual event: tick=%d source=%s:%d target=%s:%d "
                 "style=%s action=%s:%d:%s profile=%s:%d:%s "
+                "primitive=%s "
                 "anim=%d hit_delay=%d client_delay=%d "
                 "src=(%d,%d,%d) dst=(%d,%d,%d)\n",
                 e->world_tick,
@@ -3599,6 +3601,7 @@ static void debug_log_combat_visual_events(ViewerState *v) {
                 e->action_key_id, e->action_key_name,
                 combat_action_kind_name(e->profile_kind),
                 e->profile_key_id, e->profile_key_name,
+                rc_combat_visual_primitive_name(e->primitive_type),
                 e->selected_attack_anim_id, e->hit_delay, e->client_delay,
                 e->source_x, e->source_y, e->plane,
                 e->target_x, e->target_y, e->plane);
