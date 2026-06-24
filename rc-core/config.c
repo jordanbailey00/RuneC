@@ -24,7 +24,7 @@
 #define DEFAULT_SLAYER      "data/defs/slayer.bin"
 #define DEFAULT_PRAYERS     "data/defs/prayers.bin"
 #define DEFAULT_SPELLS      "data/defs/spells.bin"
-#define DEFAULT_VISUALS     "data/defs/combat_visuals.tsv"
+#define DEFAULT_COMBAT_PROFILES "data/defs/combat_visuals.tsv"
 #define DEFAULT_ACTIONS     "data/defs/player_actions.bin"
 #define DEFAULT_MON_MECH    "data/defs/regular_npc_mechanics.bin"
 #define DEFAULT_ACT_SCHEMA  "data/defs/activity_schemas.bin"
@@ -70,7 +70,7 @@ RcWorldConfig rc_preset_full_game(void) {
         .slayer_path     = DEFAULT_SLAYER,
         .prayers_path    = DEFAULT_PRAYERS,
         .spells_path     = DEFAULT_SPELLS,
-        .combat_visuals_path = DEFAULT_VISUALS,
+        .combat_profiles_path = DEFAULT_COMBAT_PROFILES,
         .player_actions_path = DEFAULT_ACTIONS,
         .monster_mechanics_path = DEFAULT_MON_MECH,
         .activity_schemas_path = DEFAULT_ACT_SCHEMA,
@@ -102,7 +102,7 @@ RcWorldConfig rc_preset_combat_only(void) {
         .normalization_path = DEFAULT_NORM,
         .prayers_path    = DEFAULT_PRAYERS,
         .spells_path     = DEFAULT_SPELLS,
-        .combat_visuals_path = DEFAULT_VISUALS,
+        .combat_profiles_path = DEFAULT_COMBAT_PROFILES,
         .player_actions_path = DEFAULT_ACTIONS,
         .monster_mechanics_path = DEFAULT_MON_MECH,
         .activity_schemas_path = DEFAULT_ACT_SCHEMA,

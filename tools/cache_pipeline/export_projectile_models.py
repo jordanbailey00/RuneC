@@ -154,9 +154,6 @@ def main() -> None:
             model = copy.deepcopy(model)
             model.model_id = SPOTANIM_MODEL_BASE + gfx_id
             apply_spotanim_recolors(model, spot)
-            model._export_ambient = 64 + int(spot.brightness)
-            model._export_contrast = 850 + int(spot.shadow)
-            model._export_light_vector = (-30, -50, -30)
             models.append(model)
             print(
                 f"spotanim {gfx_id}: model {spot.model_id} -> synthetic "

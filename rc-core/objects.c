@@ -213,19 +213,13 @@ int rc_load_object_defs(const char *path) {
         row.length = length;
         row.interact_type = interact_type;
         row.action_count = action_count;
-        row.model_count = model_count;
         row.transform_count = transform_count;
         row.force_approach = force_approach;
         row.varbit = varbit;
         row.varp = varp;
-        row.animation_id = animation_id;
-        row.map_icon = (int)map_icon;
         row.flags = flags;
         row.supports_items = supports_items;
         row.clip_flags = clip_flags;
-        row.ambient_sound_id = ambient_sound_id;
-        row.ambient_sound_distance = ambient_sound_distance;
-        row.ambient_sound_retain = ambient_sound_retain;
         if (!read_pstr(f, row.name, sizeof(row.name), path, "name")) {
             rc_asset_close(f);
             return -1;
@@ -334,9 +328,6 @@ int rc_load_object_behaviors(const char *path) {
             g_rc_object_behaviors[obj_id] = (RcObjectBehavior){
                 .flags = flags,
                 .next_loc_stage = next_loc_stage,
-                .open_sound = open_sound,
-                .close_sound = close_sound,
-                .climb_anim = climb_anim,
                 .action_mask = action_mask,
                 .skill = skill,
                 .loaded = 1,

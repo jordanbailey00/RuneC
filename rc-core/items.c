@@ -138,11 +138,6 @@ static int parse_record(RcItemDef *def, const unsigned char *buf,
     def->linked_id_item = -1;
     def->linked_id_noted = -1;
     def->linked_id_placeholder = -1;
-    def->ground_model_id = -1;
-    for (int i = 0; i < 3; i++) {
-        def->male_model_ids[i] = -1;
-        def->female_model_ids[i] = -1;
-    }
 
     if (!read_u32(&p, end, &id)) return 0;
     uint32_t flags;
@@ -191,17 +186,14 @@ static int parse_record(RcItemDef *def, const unsigned char *buf,
         if (!read_u32(&p, end, &tmp)) return 0;
         def->buy_limit = id_or_missing(tmp);
 
-        int *models[] = {
-            &def->ground_model_id,
-            &def->male_model_ids[0], &def->male_model_ids[1],
-            &def->male_model_ids[2],
-            &def->female_model_ids[0], &def->female_model_ids[1],
-            &def->female_model_ids[2],
-        };
+        int has_player_wear_model = 0;
         for (int i = 0; i < 7; i++) {
             if (!read_u32(&p, end, &tmp)) return 0;
-            *models[i] = id_or_missing(tmp);
+            if (i > 0 && id_or_missing(tmp) >= 0)
+                has_player_wear_model = 1;
         }
+        if (has_player_wear_model)
+            def->equipable_by_player = true;
     }
 
     def->stackable = (flags & IDEF_STACKABLE) != 0;
@@ -212,7 +204,8 @@ static int parse_record(RcItemDef *def, const unsigned char *buf,
     def->noteable = (flags & IDEF_NOTEABLE) != 0;
     def->placeholder = (flags & IDEF_PLACEHOLDER) != 0;
     def->equippable = (flags & IDEF_HAS_EQUIPMENT) != 0;
-    def->equipable_by_player = (flags & IDEF_EQUIP_PLAYER) != 0;
+    if (flags & IDEF_EQUIP_PLAYER)
+        def->equipable_by_player = true;
     def->equipable_weapon = (flags & IDEF_EQUIP_WEAPON) != 0;
 
     if ((flags & IDEF_HAS_EQUIPMENT) && !parse_equipment(def, &p, end)) {
@@ -426,18 +419,9 @@ static int requirements_met(const RcPlayer *player, const RcItemDef *def) {
     return 1;
 }
 
-static int item_has_player_wear_model(const RcItemDef *def) {
-    if (!def) return 0;
-    for (int i = 0; i < 3; i++) {
-        if (def->male_model_ids[i] >= 0 || def->female_model_ids[i] >= 0)
-            return 1;
-    }
-    return 0;
-}
-
 static int item_player_equippable(const RcItemDef *def) {
     return def && def->equippable && valid_equip_slot(def->equip_slot)
-        && (def->equipable_by_player || item_has_player_wear_model(def));
+        && def->equipable_by_player;
 }
 
 static int item_two_handed(const RcItemDef *def) {

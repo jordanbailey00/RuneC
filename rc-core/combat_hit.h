@@ -12,8 +12,7 @@ int rc_combat_resolve_hit_damage(const RcPendingHit *hit,
                                  bool is_player_defender);
 void rc_queue_hit_meta(RcPendingHit *hits, int *count, int damage, int delay,
                        int style, int source_idx, uint32_t prayer_snapshot,
-                       int world_tick, uint8_t flags, int max_hit,
-                       int client_delay);
+                       int world_tick, uint8_t flags, int max_hit);
 void rc_combat_actor_record_hit(RcCombatActorState *state, int damage,
                                 int max_hit, int style, int source_uid,
                                 uint8_t hit_type, uint8_t flags, int timer);

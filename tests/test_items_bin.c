@@ -5,6 +5,7 @@
 #include "api.h"
 #include "config.h"
 #include "items.h"
+#include "item_render_defs.h"
 
 static void path_join(char *out, size_t out_sz, const char *rel) {
 #ifdef RC_TEST_SOURCE_DIR
@@ -37,7 +38,6 @@ int main(void) {
     assert(high_id && wiki_equipment && wiki_only);
     assert(strcmp(coins->name, "Coins") == 0);
     assert(coins->stackable);
-    assert(coins->ground_model_id >= 0);
     assert(strcmp(whip->name, "Abyssal whip") == 0);
     assert(whip->equippable);
     assert(whip->equip_slot == EQUIP_WEAPON);
@@ -49,9 +49,6 @@ int main(void) {
     assert(whip->attack_speed == 4);
     assert(whip->linked_id_noted == 4152);
     assert(whip->linked_id_placeholder == 14032);
-    assert(whip->ground_model_id > 0);
-    assert(whip->male_model_ids[0] > 0);
-    assert(whip->female_model_ids[0] > 0);
     assert(adamant_javelin->ranged_strength == 102);
     assert(agility_cape->prayer_bonus == 4);
     assert(wiki_equipment->equippable);
@@ -60,8 +57,25 @@ int main(void) {
     assert(strcmp(wiki_only->name, "Demonic pacts demon butler scroll") == 0);
     assert(wiki_only->members);
     assert(wiki_only->value == 25000);
-    assert(wiki_only->ground_model_id == 60186);
-    assert(wiki_only->male_model_ids[0] == 60287);
+
+    RuneCItemDefRenderMap render_map = {0};
+    assert(runec_item_def_render_map_load(&render_map, path) > 30000);
+    const RuneCItemDefRenderRecord *coins_render =
+        runec_item_def_render_find(&render_map, 995);
+    const RuneCItemDefRenderRecord *whip_render =
+        runec_item_def_render_find(&render_map, 4151);
+    const RuneCItemDefRenderRecord *wiki_render =
+        runec_item_def_render_find(&render_map, 33368);
+    assert(coins_render);
+    assert(coins_render->ground_model_id != RUNEC_RENDER_MODEL_MISSING);
+    assert(whip_render);
+    assert(whip_render->ground_model_id != RUNEC_RENDER_MODEL_MISSING);
+    assert(whip_render->male_model_ids[0] != RUNEC_RENDER_MODEL_MISSING);
+    assert(whip_render->female_model_ids[0] != RUNEC_RENDER_MODEL_MISSING);
+    assert(wiki_render);
+    assert(wiki_render->ground_model_id == 60186);
+    assert(wiki_render->male_model_ids[0] == 60287);
+    runec_item_def_render_map_free(&render_map);
 
     RcInvSlot inv[RC_INVENTORY_SIZE];
     for (int i = 0; i < RC_INVENTORY_SIZE; i++) {

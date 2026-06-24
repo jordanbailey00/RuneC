@@ -160,7 +160,6 @@ int runec_dev_validation_prepare_encounter(RcWorld *world,
         if (env_bool_local("RUNEC_DEV_BOSS_ATTACKS", 1)) {
             rc_combat_start_npc_vs_player(world, npc->uid, 0);
             npc->attack_timer = 0;
-            npc->attack_anim_timer = 0;
         }
         prepared++;
     }

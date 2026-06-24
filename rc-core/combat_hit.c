@@ -15,13 +15,12 @@ void rc_queue_hit(RcPendingHit *hits, int *count, int damage, int delay,
                   int style, int source_idx, uint32_t prayer_snapshot,
                   int world_tick) {
     rc_queue_hit_meta(hits, count, damage, delay, style, source_idx,
-                      prayer_snapshot, world_tick, 0, damage, delay);
+                      prayer_snapshot, world_tick, 0, damage);
 }
 
 void rc_queue_hit_meta(RcPendingHit *hits, int *count, int damage, int delay,
                        int style, int source_idx, uint32_t prayer_snapshot,
-                       int world_tick, uint8_t flags, int max_hit,
-                       int client_delay) {
+                       int world_tick, uint8_t flags, int max_hit) {
     if (*count >= RC_MAX_PENDING_HITS) return;
     RcPendingHit *h = &hits[*count];
     h->active = 1;
@@ -29,7 +28,6 @@ void rc_queue_hit_meta(RcPendingHit *hits, int *count, int damage, int delay,
     h->max_hit = max_hit;
     h->ticks_remaining = delay;
     h->apply_tick = world_tick + delay;
-    h->client_delay = client_delay;
     h->attack_style = style;
     h->source_idx = source_idx;
     h->prayer_snapshot = (int)prayer_snapshot;
@@ -46,7 +44,7 @@ void rc_queue_hit_flags(RcPendingHit *hits, int *count, int damage, int delay,
                         int world_tick, uint8_t flags) {
     int before = *count;
     rc_queue_hit_meta(hits, count, damage, delay, style, source_idx,
-                      prayer_snapshot, world_tick, flags, damage, delay);
+                      prayer_snapshot, world_tick, flags, damage);
     if (*count <= before) return;
 }
 

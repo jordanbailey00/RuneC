@@ -5,6 +5,7 @@
 #include "api.h"
 #include "config.h"
 #include "npc.h"
+#include "npc_render_defs.h"
 
 static void path_join(char *out, size_t out_sz, const char *rel) {
 #ifdef RC_TEST_SOURCE_DIR
@@ -41,9 +42,17 @@ int main(void) {
     assert(strcmp(g_npc_defs[glyph].name, "Ancestral Glyph") == 0);
     assert(g_npc_defs[nex].hitpoints >= 3400);
     assert(g_npc_defs[sol].hitpoints > 0);
-    assert(g_npc_defs[jad].model_count > 0);
-    assert(g_npc_defs[zuk].model_count > 0);
-    assert(g_npc_defs[nex].model_count > 0);
+    RuneCNpcRenderDefs render_defs;
+    assert(runec_npc_render_defs_load(&render_defs, path) > 10000);
+    const RuneCNpcRenderDef *jad_render =
+        runec_npc_render_find(&render_defs, 3127);
+    const RuneCNpcRenderDef *zuk_render =
+        runec_npc_render_find(&render_defs, 7706);
+    const RuneCNpcRenderDef *nex_render =
+        runec_npc_render_find(&render_defs, 11278);
+    assert(jad_render && jad_render->model_count > 0);
+    assert(zuk_render && zuk_render->model_count > 0);
+    assert(nex_render && nex_render->model_count > 0);
 
     char spawns_path[512];
     path_join(spawns_path, sizeof(spawns_path), "data/spawns/world.npc-spawns.bin");

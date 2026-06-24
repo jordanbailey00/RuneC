@@ -61,7 +61,7 @@ typedef struct {
     const char *slayer_path;         // RC_SUB_SLAYER: slayer.bin
     const char *prayers_path;        // RC_SUB_PRAYER: prayers.bin
     const char *spells_path;         // RC_SUB_COMBAT magic casts
-    const char *combat_visuals_path; // RC_SUB_COMBAT attack anim/projectile tokens
+    const char *combat_profiles_path; // RC_SUB_COMBAT hit-delay profile rows
     const char *player_actions_path; // base input action gates
     const char *monster_mechanics_path; // RC_SUB_COMBAT/_SLAYER: regular_npc_mechanics.bin
     const char *activity_schemas_path; // RC_SUB_ENCOUNTER: activity_schemas.bin

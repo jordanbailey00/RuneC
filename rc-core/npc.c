@@ -101,11 +101,6 @@ int rc_load_npc_defs(const char *path) {
         d->combat_level = cl;
         d->hitpoints = hp;
         for (int j = 0; j < 6; j++) d->stats[j] = stats[j];
-        d->stand_anim = anims[0];
-        d->walk_anim = anims[1];
-        d->run_anim = anims[2];
-        d->attack_anim = anims[3];
-        d->death_anim = anims[4];
         d->wander_range = 5;
         d->respawn_ticks = 25;
         d->aggressive = false;
@@ -151,10 +146,6 @@ int rc_load_npc_defs(const char *path) {
                     rc_asset_close(f);
                     g_npc_def_count = orig_count;
                     return -1;
-                }
-                if (j < RC_NPC_MAX_MODELS) {
-                    d->model_ids[j] = (int)model_id;
-                    d->model_count++;
                 }
             }
         }
@@ -427,7 +418,6 @@ void rc_npc_tick(RcWorld *world, RcNpc *npc) {
     if (npc->last_hit_timer > 0) npc->last_hit_timer--;
     rc_combat_actor_tick_recent_hits(&npc->combat);
     rc_combat_tick_actor_threat(&npc->combat);
-    if (npc->attack_anim_timer > 0) npc->attack_anim_timer--;
 
     RcNpcDef *def = &g_npc_defs[npc->def_id];
 
@@ -451,7 +441,6 @@ void rc_npc_tick(RcWorld *world, RcNpc *npc) {
             npc->poison_tick_counter = 0;
             npc->last_hit = -1;
             npc->last_hit_timer = 0;
-            npc->attack_anim_timer = 0;
         }
         return;
     }

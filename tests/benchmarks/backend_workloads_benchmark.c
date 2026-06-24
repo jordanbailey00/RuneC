@@ -35,7 +35,6 @@ typedef enum RcWorkloadMode {
     RC_WORKLOAD_MIXED_AGENT,
     RC_WORKLOAD_NPC_IDLE,
     RC_WORKLOAD_NPC_COMBAT,
-    RC_WORKLOAD_PROJECTILES,
 } RcWorkloadMode;
 
 typedef struct RcBenchConfig {
@@ -75,7 +74,6 @@ static const char *mode_name(RcWorkloadMode mode) {
     case RC_WORKLOAD_MIXED_AGENT: return "mixed-agent";
     case RC_WORKLOAD_NPC_IDLE: return "npc-idle";
     case RC_WORKLOAD_NPC_COMBAT: return "npc-combat";
-    case RC_WORKLOAD_PROJECTILES: return "projectiles";
     }
     return "unknown";
 }
@@ -98,7 +96,6 @@ static RcWorkloadMode parse_mode(const char *s) {
         return RC_WORKLOAD_MIXED_AGENT;
     if (strcmp(s, "npc-idle") == 0) return RC_WORKLOAD_NPC_IDLE;
     if (strcmp(s, "npc-combat") == 0) return RC_WORKLOAD_NPC_COMBAT;
-    if (strcmp(s, "projectiles") == 0) return RC_WORKLOAD_PROJECTILES;
     fprintf(stderr, "unknown mode: %s\n", s);
     exit(2);
 }
@@ -106,7 +103,7 @@ static RcWorkloadMode parse_mode(const char *s) {
 static void print_usage(const char *argv0) {
     fprintf(stderr,
             "usage: %s [--mode all|path|object|spawn|load|reset|edge|mixed|"
-            "npc-idle|npc-combat|projectiles]"
+            "npc-idle|npc-combat]"
             " [--envs N] [--ops N] [--warmup N] [--active N]\n",
             argv0);
 }
@@ -612,62 +609,6 @@ static void bench_many_npc(int envs, int ticks, int active, int combat) {
     free(worlds);
 }
 
-static RcWorld *make_projectile_world(uint32_t seed, int active) {
-    RcWorldConfig cfg = rc_preset_base_only();
-    cfg.seed = seed;
-    cfg.subsystems = RC_SUB_COMBAT;
-    RcWorld *world = rc_world_create_config(&cfg);
-    if (!world) {
-        fprintf(stderr, "failed to create projectile world\n");
-        exit(1);
-    }
-    if (active > RC_MAX_COMBAT_PROJECTILES)
-        active = RC_MAX_COMBAT_PROJECTILES;
-    world->combat_projectile_count = active;
-    for (int i = 0; i < active; i++) {
-        RcCombatProjectile *p = &world->combat_projectiles[i];
-        memset(p, 0, sizeof(*p));
-        p->active = true;
-        p->source_kind = RC_COMBAT_ACTOR_PLAYER;
-        p->target_kind = RC_COMBAT_ACTOR_NPC;
-        p->source_uid = 0;
-        p->target_uid = i + 1;
-        p->start_tick = 0;
-        p->duration_ticks = 1000000;
-        p->impact_duration_ticks = 3;
-        p->style = COMBAT_MAGIC;
-    }
-    return world;
-}
-
-static void bench_projectiles(int envs, int ticks, int active) {
-    RcWorld **worlds = calloc((size_t)envs, sizeof(*worlds));
-    if (!worlds) {
-        fprintf(stderr, "failed to allocate projectile worlds\n");
-        exit(1);
-    }
-    for (int i = 0; i < envs; i++)
-        worlds[i] = make_projectile_world(10000u + (uint32_t)i, active);
-
-    double start = now_seconds();
-    for (int step = 0; step < ticks; step++) {
-        for (int env = 0; env < envs; env++) {
-            rc_combat_tick_projectiles(worlds[env]);
-            worlds[env]->tick++;
-        }
-    }
-    double elapsed = now_seconds() - start;
-    int units = envs * ticks;
-    print_rate("projectile-heavy-ticks", units, elapsed);
-    printf("envs: %d\nticks_per_env: %d\nactive_projectiles_per_env: %d\n",
-           envs, ticks, active > RC_MAX_COMBAT_PROJECTILES
-                         ? RC_MAX_COMBAT_PROJECTILES : active);
-
-    for (int i = 0; i < envs; i++)
-        rc_world_destroy(worlds[i]);
-    free(worlds);
-}
-
 static void run_all(const RcBenchConfig *cfg) {
     bench_load_full();
     bench_path_actions(cfg->envs, cfg->ops, cfg->warmup);
@@ -676,7 +617,6 @@ static void run_all(const RcBenchConfig *cfg) {
     bench_mixed_agent(cfg->envs, cfg->ops, cfg->warmup);
     bench_many_npc(cfg->envs, cfg->ops, cfg->active, 0);
     bench_many_npc(cfg->envs, cfg->ops, cfg->active, 1);
-    bench_projectiles(cfg->envs, cfg->ops, cfg->active);
     bench_spawn_slice(cfg->ops);
     bench_reset_full(cfg->ops);
 }
@@ -742,9 +682,6 @@ int main(int argc, char **argv) {
         break;
     case RC_WORKLOAD_NPC_COMBAT:
         bench_many_npc(cfg.envs, cfg.ops, cfg.active, 1);
-        break;
-    case RC_WORKLOAD_PROJECTILES:
-        bench_projectiles(cfg.envs, cfg.ops, cfg.active);
         break;
     }
     return 0;

@@ -41,7 +41,7 @@ int main(void) {
                      RC_SUB_STORAGE | RC_SUB_COMBAT;
     cfg.items_path = ITEM_PATH;
     cfg.spells_path = SPELL_PATH;
-    cfg.combat_visuals_path = VISUALS_PATH;
+    cfg.combat_profiles_path = VISUALS_PATH;
     cfg.seed = 12345;
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);

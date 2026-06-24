@@ -130,7 +130,7 @@ static void test_npc_hit_pipeline_records_damage_hp_xp_death_and_loot(void) {
 
     rc_queue_hit_meta(npc->pending_hits, &npc->num_pending_hits,
                       15, 0, COMBAT_MELEE_CRUSH, -1, 0u,
-                      world->tick, 0, 15, 0);
+                      world->tick, 0, 15);
     rc_world_tick(world);
 
     assert(npc->is_dead);
@@ -171,7 +171,7 @@ static void test_player_hit_pipeline_records_miss_and_damage_state(void) {
     rc_queue_hit_meta(world->player.pending_hits,
                       &world->player.num_pending_hits,
                       0, 0, COMBAT_RANGED, npc->uid, 0u,
-                      world->tick, 0, 10, 0);
+                      world->tick, 0, 10);
     rc_world_tick(world);
 
     assert(world->player.current_hp == 100);
@@ -187,7 +187,7 @@ static void test_player_hit_pipeline_records_miss_and_damage_state(void) {
     rc_queue_hit_meta(world->player.pending_hits,
                       &world->player.num_pending_hits,
                       4, 0, COMBAT_MAGIC, npc->uid, 0u,
-                      world->tick, 0, 10, 0);
+                      world->tick, 0, 10);
     rc_world_tick(world);
 
     assert(world->player.current_hp == 60);

@@ -15,7 +15,6 @@
 #define RC_MAX_ROUTE        64
 #define RC_MAX_NPC_DEFS     20000
 #define RC_MAX_NPC_ID       20000
-#define RC_NPC_MAX_MODELS   12
 #define RC_MAX_OBJECT_STATES 512
 #define RC_MAX_ITEM_DEFS    65536
 #define RC_MAX_VARBITS      32768
@@ -256,7 +255,6 @@ typedef struct {
     int max_hit;
     int ticks_remaining;
     int apply_tick;
-    int client_delay;
     int attack_style;       // RcCombatStyle
     int source_idx;         // -1 for player attacks on NPCs
     int prayer_snapshot;    // locked prayer at snapshot tick
@@ -321,9 +319,6 @@ typedef struct {
     int attacker_count;
     int under_attack_timer;
     int last_hit_timer;
-    int attack_animation_timer;
-    int attack_animation_id;
-    int block_animation_timer;
     int selected_style_idx;
     int weapon_category;
     int attack_type;
@@ -347,80 +342,15 @@ typedef struct {
     int recent_hit_count;
 } RcCombatActorState;
 
-#define RC_MAX_COMBAT_PROJECTILES 64
-#define RC_MAX_COMBAT_VISUAL_EVENTS 64
+#define RC_MAX_COMBAT_ATTACK_EVENTS 64
 
 typedef enum {
-    RC_COMBAT_VISUAL_ACTION_NONE = 0,
-    RC_COMBAT_VISUAL_ACTION_ITEM = 1,
-    RC_COMBAT_VISUAL_ACTION_SPELL = 2,
-    RC_COMBAT_VISUAL_ACTION_NPC = 3,
-    RC_COMBAT_VISUAL_ACTION_SPECIAL = 4,
-} RcCombatVisualActionKind;
-
-typedef enum {
-    RC_COMBAT_VISUAL_PRIMITIVE_NONE = 0,
-    RC_COMBAT_VISUAL_PRIMITIVE_LAUNCH_EFFECT = 1,
-    RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE = 2,
-    RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT = 3,
-    RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT = 4,
-    RC_COMBAT_VISUAL_PRIMITIVE_GROUND_EFFECT = 5,
-    RC_COMBAT_VISUAL_PRIMITIVE_AREA_EFFECT = 6,
-    RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE = 7,
-} RcCombatVisualPrimitiveType;
-
-typedef enum {
-    RC_COMBAT_VISUAL_ATTACH_NONE = 0,
-    RC_COMBAT_VISUAL_ATTACH_SOURCE_ACTOR = 1,
-    RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER = 2,
-    RC_COMBAT_VISUAL_ATTACH_SOURCE_TILE = 3,
-    RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR = 4,
-    RC_COMBAT_VISUAL_ATTACH_TARGET_TILE = 5,
-    RC_COMBAT_VISUAL_ATTACH_FIXED_TILE = 6,
-    RC_COMBAT_VISUAL_ATTACH_GROUND_TILE = 7,
-} RcCombatVisualAttachmentRule;
-
-typedef struct {
-    bool active;
-    uint8_t source_kind;
-    uint8_t target_kind;
-    uint8_t style;
-    uint8_t primitive_type;
-    uint8_t source_attachment;
-    uint8_t target_attachment;
-    uint8_t launch_attachment;
-    uint8_t impact_attachment;
-    int source_uid;
-    int target_uid;
-    int source_x, source_y;
-    int target_x, target_y;
-    int plane;
-    int weapon_item_id;
-    int ammo_item_id;
-    int spell_idx;
-    int attack_anim_id;
-    int launch_spotanim_id;
-    int travel_spotanim_id;
-    int impact_spotanim_id;
-    int projectile_model_id;
-    int projectile_anim_id;
-    int start_tick;
-    int duration_ticks;
-    int impact_duration_ticks;
-    int age_ticks;
-    int hit_delay;
-    int client_delay;
-    int launch_spotanim_height;
-    int impact_spotanim_height;
-    int projectile_start_height;
-    int projectile_end_height;
-    int projectile_start_time;
-    int projectile_end_time;
-    int projectile_angle;
-    int projectile_progress;
-    int sequence_index;
-    int sequence_count;
-} RcCombatProjectile;
+    RC_COMBAT_ACTION_NONE = 0,
+    RC_COMBAT_ACTION_ITEM = 1,
+    RC_COMBAT_ACTION_SPELL = 2,
+    RC_COMBAT_ACTION_NPC = 3,
+    RC_COMBAT_ACTION_SPECIAL = 4,
+} RcCombatActionKind;
 
 typedef struct {
     bool active;
@@ -428,11 +358,6 @@ typedef struct {
     uint8_t target_kind;
     uint8_t style;
     uint8_t action_kind;
-    uint8_t primitive_type;
-    uint8_t source_attachment;
-    uint8_t target_attachment;
-    uint8_t launch_attachment;
-    uint8_t impact_attachment;
     int source_uid;
     int target_uid;
     int source_definition_id;
@@ -442,18 +367,13 @@ typedef struct {
     int plane;
     int action_key_id;
     char action_key_name[64];
-    int profile_kind;
-    int profile_key_id;
-    char profile_key_name[64];
-    int selected_attack_anim_id;
     int hit_delay;
-    int client_delay;
     int weapon_item_id;
     int ammo_item_id;
     int spell_idx;
     int stance_idx;
     int world_tick;
-} RcCombatVisualEvent;
+} RcCombatAttackEvent;
 
 // Inventory slot
 typedef struct {
@@ -527,7 +447,6 @@ typedef struct {
     int autocast_spell;
     bool defensive_autocast;
     RcInvSlot rune_pouch[4];
-    int attack_anim_timer;
     int last_hit;
     int last_hit_timer;
     int facing_entity;
@@ -546,8 +465,6 @@ typedef struct {
     int combo_timer;
     int ward_of_arceuus_timer;
     int action_lock_timer;
-    int action_anim_id;
-    int action_anim_timer;
     int pending_traversal_active;
     int pending_traversal_tick;
     int pending_traversal_x, pending_traversal_y, pending_traversal_plane;
@@ -622,7 +539,6 @@ typedef struct {
     int num_pending_hits;
     int facing_entity;
     int facing_x, facing_y;
-    int attack_anim_timer;
     int last_hit;
     int last_hit_timer;
     bool is_dead;
@@ -673,8 +589,6 @@ typedef struct {
     uint8_t active_type, active_rotation;
     int respawn_tick;
     int revert_tick;
-    int animation_id;
-    int animation_timer;
     uint8_t flags;
 } RcObjectState;
 
@@ -753,10 +667,8 @@ typedef struct RcWorld {
     uint32_t rng_state;
     bool multi_combat;
     RcCombatContentHooks combat_hooks;
-    RcCombatProjectile combat_projectiles[RC_MAX_COMBAT_PROJECTILES];
-    int combat_projectile_count;
-    RcCombatVisualEvent combat_visual_events[RC_MAX_COMBAT_VISUAL_EVENTS];
-    int combat_visual_event_count;
+    RcCombatAttackEvent combat_attack_events[RC_MAX_COMBAT_ATTACK_EVENTS];
+    int combat_attack_event_count;
 
     // Subsystem bitmask — see config.h for RC_SUB_* flags. Checked
     // only by the base tick dispatcher; subsystem code assumes its

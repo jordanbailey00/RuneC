@@ -64,14 +64,10 @@ typedef struct {
     RcCombatTargetRef target;
     int target_hp_current;
     int target_hp_max;
-    int target_attack_animation_timer;
-    int target_attack_animation_id;
     int target_recent_hit_count;
     RcCombatHitView target_recent_hits[4];
     int player_hp_current;
     int player_hp_max;
-    int player_attack_animation_timer;
-    int player_attack_animation_id;
     int player_recent_hit_count;
     RcCombatHitView player_recent_hits[4];
 } RcCombatViewState;
@@ -119,12 +115,9 @@ void rc_combat_actor_register_attacker(RcCombatActorState *target,
 void rc_combat_tick_actor_threat(RcCombatActorState *state);
 int  rc_combat_get_player_view(const struct RcWorld *world,
                                RcCombatViewState *out);
-const RcCombatProjectile *rc_combat_projectiles(const struct RcWorld *world,
-                                                int *count);
-void rc_combat_tick_projectiles(struct RcWorld *world);
-const RcCombatVisualEvent *rc_combat_visual_events(
+const RcCombatAttackEvent *rc_combat_attack_events(
     const struct RcWorld *world, int *count);
-void rc_combat_clear_visual_events(struct RcWorld *world);
+void rc_combat_clear_attack_events(struct RcWorld *world);
 
 // NPC vs Player — picks the NPC's highest-weighted attack style from
 // its attack_types bitfield.

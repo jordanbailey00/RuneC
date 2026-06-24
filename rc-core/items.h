@@ -17,9 +17,6 @@ typedef struct {
     int linked_id_item;
     int linked_id_noted;
     int linked_id_placeholder;
-    int ground_model_id;
-    int male_model_ids[3];
-    int female_model_ids[3];
     int kind;
     bool stackable;
     bool tradeable;

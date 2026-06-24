@@ -11,6 +11,10 @@ RcCombatVisualDef g_rc_combat_visual_defs[RC_MAX_COMBAT_VISUAL_DEFS];
 int g_rc_combat_visual_count = 0;
 
 typedef struct {
+    int launch_gfx_height;
+    int impact_gfx_height;
+    int impact_gfx_delay;
+    int impact_gfx_rotation;
     int primitive_type;
     int source_attachment;
     int target_attachment;
@@ -160,6 +164,14 @@ static void capture_rich_columns(RcCombatVisualRichColumns *cols,
                                  char **parts,
                                  int count) {
     if (!cols) return;
+    cols->launch_gfx_height =
+        find_header_col(parts, count, "launch_gfx_height");
+    cols->impact_gfx_height =
+        find_header_col(parts, count, "impact_gfx_height");
+    cols->impact_gfx_delay =
+        find_header_col(parts, count, "impact_gfx_delay");
+    cols->impact_gfx_rotation =
+        find_header_col(parts, count, "impact_gfx_rotation");
     cols->primitive_type = find_header_col(parts, count, "primitive_type");
     cols->source_attachment =
         find_header_col(parts, count, "source_attachment");
@@ -286,6 +298,10 @@ int rc_load_combat_visuals(const char *path) {
     if (!f) return -1;
 
     RcCombatVisualRichColumns rich_cols = {
+        .launch_gfx_height = -1,
+        .impact_gfx_height = -1,
+        .impact_gfx_delay = -1,
+        .impact_gfx_rotation = -1,
         .primitive_type = -1,
         .source_attachment = -1,
         .target_attachment = -1,
@@ -367,6 +383,14 @@ int rc_load_combat_visuals(const char *path) {
         def->impact_on_last_only = n > 31 ? parse_int_field(parts[31]) : 0;
         def->double_launch_spotanim_id =
             n > 32 ? parse_int_field(parts[32]) : -1;
+        def->launch_spotanim_height = parse_int_field(
+            optional_col(parts, n, rich_cols.launch_gfx_height));
+        def->impact_spotanim_height = parse_int_field(
+            optional_col(parts, n, rich_cols.impact_gfx_height));
+        def->impact_spotanim_delay = parse_int_field(
+            optional_col(parts, n, rich_cols.impact_gfx_delay));
+        def->impact_spotanim_rotation = parse_int_field(
+            optional_col(parts, n, rich_cols.impact_gfx_rotation));
         int primitive_type = parse_primitive_type(
             optional_col(parts, n, rich_cols.primitive_type));
         if (primitive_type < 0)

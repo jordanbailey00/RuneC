@@ -312,6 +312,24 @@ def infer_impact_attachment(_row: list[str], primitive: str) -> str:
     return "none"
 
 
+def infer_launch_gfx_height(row: list[str], primitive: str) -> str:
+    if primitive == "fixed_tile_impact" or row_int(row, "launch_spotanim") < 0:
+        return "-"
+    style = row_value(row, "style")
+    if style == "magic":
+        return "92"
+    if style == "ranged":
+        return "96"
+    return "-"
+
+
+def infer_impact_gfx_height(row: list[str], primitive: str) -> str:
+    if primitive != "fixed_tile_impact" or row_int(row, "impact_spotanim") < 0:
+        return "-"
+    height = row_int(row, "proj_end_height")
+    return str(height) if height >= 0 else "-"
+
+
 def infer_authority(row: list[str]) -> str:
     note = row_value(row, "note")
     if note == "-" or ":" not in note:
@@ -325,6 +343,10 @@ def enrich_rich_profile_columns(row: list[str]) -> list[str]:
     if primitive == "-":
         primitive = infer_primitive_type(row)
         row[COL["primitive_type"]] = primitive
+    if row_value(row, "launch_gfx_height") == "-":
+        row[COL["launch_gfx_height"]] = infer_launch_gfx_height(row, primitive)
+    if row_value(row, "impact_gfx_height") == "-":
+        row[COL["impact_gfx_height"]] = infer_impact_gfx_height(row, primitive)
     if row_value(row, "source_attachment") == "-":
         row[COL["source_attachment"]] = infer_source_attachment(row, primitive)
     if row_value(row, "target_attachment") == "-":

@@ -67,6 +67,22 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   - viewer-only generated item render map loader
   - maps item IDs to cache-composed ground/equipped render model IDs
     and default body-part hide masks
+- `item_render_defs.c` / `item_render_defs.h`
+  - viewer-only fallback item-definition render metadata loader
+  - extracts ground/equipped model IDs from `items.bin` without exposing
+    those fields through `rc-core`
+- `npc_render_defs.c` / `npc_render_defs.h`
+  - viewer-only NPC animation/model metadata loader
+  - extracts NPC stand/walk/attack/death animation IDs and model links from
+    `npc_defs.bin` without exposing them through `rc-core`
+- `combat_visuals.c` / `combat_visuals.h`
+  - viewer-only combat presentation profile loader
+  - owns projectile, spotanim, animation, attachment, and visual timing
+    metadata; `rc-core` only consumes backend hit-delay profiles
+- `object_action_visuals.c` / `object_action_visuals.h`
+  - viewer-only object action presentation metadata loader
+  - extracts action animation IDs from `object_behaviors.bin` without
+    exposing them through `rc-core`
 - `dev_validation.c` / `dev_validation.h`
   - viewer-only combat testing helpers
   - owns the temporary validation bank seed, Clan-tab boss transports,
@@ -93,6 +109,7 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   - `RUNEC_NPC_ANIMS`, `RUNEC_PLAYER_MODELS`,
     `RUNEC_PLAYER_ANIMS`, `RUNEC_FALLBACK_ANIMS`
   - `RUNEC_ITEM_MODELS`, `RUNEC_ITEM_RENDER_MAP`
+  - `RUNEC_COMBAT_VISUALS`, `RUNEC_COMBAT_PROFILES`
   - `RUNEC_WORLD_ORIGIN_X`, `RUNEC_WORLD_ORIGIN_Y`,
     `RUNEC_WORLD_W`, `RUNEC_WORLD_H`
   - `RUNEC_PLAYER_START_X`, `RUNEC_PLAYER_START_Y`
@@ -133,8 +150,8 @@ Today `rc-viewer` is primarily:
 - cache-backed OSRS gameframe assets for the chatbox, minimap/orbs,
   side panel, side tabs, worn-slot icons, skill icons, prayer icons, and
   spell icons
-- cache/item-definition-backed first-pass item model overlays for worn
-  equipment and dropped ground items
+- cache-backed item model overlays for worn equipment and dropped ground
+  items, with fallback render metadata loaded in `rc-viewer`
 - a generated equipment render map that composes the player from
   default identity-kit body parts plus recolored/retextured equipped
   item models, with body-part hiding driven by viewer-only render
@@ -145,7 +162,8 @@ Today `rc-viewer` is primarily:
   minimap cover/masks, side icons, orb frames/fillers/icons, and skill
   icons; RuneLite gameval sprite IDs are the naming authority
 - a renderer for core-owned dynamic object state, linked-below scenes,
-  streamed region slices, projectiles, spot animations, and equipment visuals
+  streamed region slices, viewer-owned combat projectiles, spot animations,
+  combat attack animations, and equipment visuals
 - isolated combat-validation helpers for local manual testing, kept out of
   `rc-core` so they can be disabled or removed without changing simulation
   rules

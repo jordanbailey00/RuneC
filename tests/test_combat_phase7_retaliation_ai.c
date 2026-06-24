@@ -64,7 +64,7 @@ static void test_player_hit_causes_npc_retaliation_and_threat_tracking(void) {
 
     rc_queue_hit_meta(npc->pending_hits, &npc->num_pending_hits,
                       1, 0, COMBAT_MELEE_CRUSH, -1, 0u,
-                      world->tick, 0, 10, 0);
+                      world->tick, 0, 10);
     rc_world_tick(world);
 
     assert(npc->target_uid == 0);

@@ -73,3 +73,36 @@ foreach(TEST_SRC ${TEST_SOURCES})
         )
     endif()
 endforeach()
+
+if(TARGET test_combat_visuals_projectiles)
+    target_sources(test_combat_visuals_projectiles PRIVATE
+        rc-viewer/combat_visuals.c
+    )
+    target_include_directories(test_combat_visuals_projectiles PRIVATE
+        rc-viewer
+    )
+endif()
+
+if(TARGET test_items_bin)
+    target_sources(test_items_bin PRIVATE
+        rc-viewer/item_render_defs.c
+    )
+    target_include_directories(test_items_bin PRIVATE
+        rc-viewer
+    )
+endif()
+
+if(TARGET test_npc_defs_bin)
+    target_sources(test_npc_defs_bin PRIVATE
+        rc-viewer/npc_render_defs.c
+    )
+    target_include_directories(test_npc_defs_bin PRIVATE
+        rc-viewer
+    )
+endif()
+
+if(TARGET test_objects_runtime)
+    target_sources(test_objects_runtime PRIVATE
+        rc-viewer/object_action_visuals.c
+    )
+endif()

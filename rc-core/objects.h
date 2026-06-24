@@ -49,17 +49,14 @@ typedef struct {
     char actions[RC_OBJECT_ACTIONS][32];
     int transforms[RC_OBJECT_MAX_TRANSFORMS];
     uint16_t width, length;
-    uint8_t interact_type, action_count, model_count, transform_count;
+    uint8_t interact_type, action_count, transform_count;
     uint8_t force_approach;
-    int varbit, varp, animation_id, map_icon;
+    int varbit, varp;
     uint32_t flags;
     uint32_t param_first;
     uint16_t param_count;
     uint8_t supports_items;
     uint8_t clip_flags;
-    int ambient_sound_id;
-    uint16_t ambient_sound_distance;
-    uint16_t ambient_sound_retain;
     uint8_t loaded;
 } RcObjectDef;
 
@@ -73,9 +70,6 @@ typedef struct {
 typedef struct {
     uint32_t flags;
     int next_loc_stage;
-    int open_sound;
-    int close_sound;
-    int climb_anim;
     uint8_t action_mask;
     uint8_t skill;
     uint8_t loaded;

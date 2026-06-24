@@ -1,6 +1,6 @@
 #include "api.h"
 #include "combat.h"
-#include "combat_visuals.h"
+#include "combat_profiles.h"
 #include "area_flags.h"
 #include "activity_mechanics.h"
 #include "activity_schemas.h"
@@ -58,7 +58,6 @@ static void init_player_defaults(RcPlayer *p) {
     p->storage_option = -1;
     p->skill_target_x = -1;
     p->skill_target_y = -1;
-    p->action_anim_id = -1;
     p->pending_traversal_x = -1;
     p->pending_traversal_y = -1;
     p->pending_traversal_plane = -1;
@@ -183,9 +182,9 @@ RcWorld *rc_world_create_config(const RcWorldConfig *cfg) {
             && g_rc_spell_count == 0) {
         rc_load_spells(cfg->spells_path);
     }
-    if ((cfg->subsystems & RC_SUB_COMBAT) && cfg->combat_visuals_path
-            && g_rc_combat_visual_count == 0) {
-        rc_load_combat_visuals(cfg->combat_visuals_path);
+    if ((cfg->subsystems & RC_SUB_COMBAT) && cfg->combat_profiles_path
+            && g_rc_combat_profile_count == 0) {
+        rc_load_combat_profiles(cfg->combat_profiles_path);
     }
     if (cfg->subsystems & RC_SUB_SKILLS) {
         if (cfg->recipes_path && g_rc_recipe_count == 0) {
@@ -307,7 +306,6 @@ static int valid_active_area_request(const RcActiveAreaRequest *request) {
 static void clear_active_npcs(RcWorld *world) {
     memset(world->npcs, 0, sizeof(world->npcs));
     world->npc_count = 0;
-    world->combat_projectile_count = 0;
 }
 
 int rc_world_activate_area(RcWorld *world, const RcActiveAreaRequest *request,

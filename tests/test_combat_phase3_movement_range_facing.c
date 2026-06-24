@@ -101,7 +101,9 @@ static void test_player_under_large_target_steps_out_before_attacking(void) {
     assert(!(world->player.combat.flags & RC_COMBAT_STATE_IN_RANGE));
     assert(world->player.combat.distance_to_target == 0);
     assert(world->player.route_len > 0);
-    assert(world->player.attack_anim_timer == 0);
+    int attack_event_count = 0;
+    rc_combat_attack_events(world, &attack_event_count);
+    assert(attack_event_count == 0);
 
     rc_world_destroy(world);
 }

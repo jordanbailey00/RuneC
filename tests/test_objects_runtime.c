@@ -8,6 +8,7 @@
 #include "objects.h"
 #include "pathfinding.h"
 #include "traversal.h"
+#include "../rc-viewer/object_action_visuals.h"
 
 #define ODEF_PATH RC_TEST_SOURCE_DIR "/data/defs/object_defs.bin"
 #define OPLC_PATH RC_TEST_SOURCE_DIR "/data/defs/object_placements.bin"
@@ -133,6 +134,12 @@ int main(void) {
                                    -12345) == g_rc_object_params[0].value);
     assert(rc_object_def_param_int(1276, -1, 42) == 42);
     assert(rc_load_object_behaviors(OBHV_PATH) > 8000);
+    RuneCObjectActionVisualMap object_visuals;
+    assert(runec_object_action_visuals_load(&object_visuals, OBHV_PATH)
+           > 8000);
+    const RuneCObjectActionVisualRecord *ladder_visual =
+        runec_object_action_visual_find(&object_visuals, 42207);
+    assert(ladder_visual && ladder_visual->climb_anim == 828);
     assert(rc_load_object_placements(OPLC_PATH) > 4700000);
     assert(rc_load_object_transports(OTRP_PATH) > 29000);
 
@@ -170,7 +177,6 @@ int main(void) {
     assert(varrock_door_b->next_loc_stage == 11778);
     assert(ladder_b->flags & RC_OBJ_BEHAVIOR_LADDER);
     assert(ladder_b->flags & RC_OBJ_BEHAVIOR_TRANSPORT);
-    assert(ladder_b->climb_anim == 828);
     assert(lever_b && (lever_b->flags & RC_OBJ_BEHAVIOR_TRANSPORT));
     assert(lever_b->action_mask == 0);
 
@@ -269,34 +275,6 @@ int main(void) {
     assert(active_state.active_x == active_state.x);
     assert(active_state.active_y == active_state.y);
     rc_world_destroy(door);
-
-    RcWorldConfig anim_cfg = rc_preset_base_only();
-    anim_cfg.subsystems = RC_SUB_OBJECTS;
-    anim_cfg.object_defs_path = ODEF_PATH;
-    anim_cfg.object_placements_path = OPLC_PATH;
-    anim_cfg.object_behaviors_path = OBHV_PATH;
-    RcWorld *object_anim = rc_world_create_config(&anim_cfg);
-    assert(object_anim != NULL);
-    const int fire_obj = 43475;
-    const int fire_x = 3106;
-    const int fire_y = 3432;
-    const RcObjectDef *fire_def = rc_object_def_get(fire_obj);
-    assert(fire_def && fire_def->animation_id >= 0);
-    assert(has_object_at(fire_obj, fire_x, fire_y, 0));
-    place_player_adjacent(object_anim, fire_x, fire_y, 0);
-    assert(rc_player_interact_object_at(object_anim, fire_obj, fire_x,
-                                        fire_y, 0, 0) == 1);
-    rc_world_tick(object_anim);
-    RcObjectState *fire_state =
-        find_state(object_anim, fire_obj, fire_x, fire_y, 0);
-    assert(fire_state != NULL);
-    assert(fire_state->placement_key != 0);
-    assert(fire_state->animation_id == fire_def->animation_id);
-    assert(fire_state->animation_timer > 0);
-    for (int i = 0; i < 8; i++) rc_world_tick(object_anim);
-    assert(fire_state->animation_timer == 0);
-    assert(fire_state->animation_id == -1);
-    rc_world_destroy(object_anim);
 
     RcObjectPlacement gate_left, gate_right;
     assert(find_dynamic_pair(&gate_left, &gate_right));
@@ -686,7 +664,6 @@ int main(void) {
     assert(rc_player_interact_object_at(travel, 11794, 3214, 3410, 0, 0)
            == 1);
     rc_world_tick(travel);
-    assert(travel->player.action_anim_id == ladder_b->climb_anim);
     assert(travel->player.action_lock_timer > 0);
     assert(travel->player.pending_traversal_active);
     for (int i = 0; i < 4 && travel->player.plane != varrock_ladder->dest_plane; i++) {

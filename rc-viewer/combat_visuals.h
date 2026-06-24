@@ -1,7 +1,7 @@
-#ifndef RC_COMBAT_VISUALS_H
-#define RC_COMBAT_VISUALS_H
+#ifndef RUNEC_VIEWER_COMBAT_VISUALS_H
+#define RUNEC_VIEWER_COMBAT_VISUALS_H
 
-#include "types.h"
+#include "../rc-core/types.h"
 
 #define RC_MAX_COMBAT_VISUAL_DEFS 16384
 
@@ -12,6 +12,28 @@ enum {
     RC_COMBAT_VISUAL_NPC = 3,
     RC_COMBAT_VISUAL_SPECIAL = 4,
 };
+
+typedef enum {
+    RC_COMBAT_VISUAL_PRIMITIVE_NONE = 0,
+    RC_COMBAT_VISUAL_PRIMITIVE_LAUNCH_EFFECT = 1,
+    RC_COMBAT_VISUAL_PRIMITIVE_TRAVEL_PROJECTILE = 2,
+    RC_COMBAT_VISUAL_PRIMITIVE_TARGET_IMPACT = 3,
+    RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT = 4,
+    RC_COMBAT_VISUAL_PRIMITIVE_GROUND_EFFECT = 5,
+    RC_COMBAT_VISUAL_PRIMITIVE_AREA_EFFECT = 6,
+    RC_COMBAT_VISUAL_PRIMITIVE_MULTI_PROJECTILE = 7,
+} RcCombatVisualPrimitiveType;
+
+typedef enum {
+    RC_COMBAT_VISUAL_ATTACH_NONE = 0,
+    RC_COMBAT_VISUAL_ATTACH_SOURCE_ACTOR = 1,
+    RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER = 2,
+    RC_COMBAT_VISUAL_ATTACH_SOURCE_TILE = 3,
+    RC_COMBAT_VISUAL_ATTACH_TARGET_ACTOR = 4,
+    RC_COMBAT_VISUAL_ATTACH_TARGET_TILE = 5,
+    RC_COMBAT_VISUAL_ATTACH_FIXED_TILE = 6,
+    RC_COMBAT_VISUAL_ATTACH_GROUND_TILE = 7,
+} RcCombatVisualAttachmentRule;
 
 typedef struct {
     uint8_t kind;
@@ -48,6 +70,10 @@ typedef struct {
     int aux_projectile_model_id;
     int aux_projectile_anim_id;
     int impact_on_last_only;
+    int launch_spotanim_height;
+    int impact_spotanim_height;
+    int impact_spotanim_delay;
+    int impact_spotanim_rotation;
     uint8_t primitive_type;
     uint8_t source_attachment;
     uint8_t target_attachment;

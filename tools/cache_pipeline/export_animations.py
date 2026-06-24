@@ -865,10 +865,18 @@ def read_spotanim_sequence_ids(path: Path) -> set[int]:
     return out
 
 
+def iter_object_anim_paths(paths: list[Path]):
+    for path in paths:
+        if path.is_dir():
+            yield from sorted(path.rglob("*.oanim"))
+        else:
+            yield path
+
+
 def read_object_anim_sequence_ids(paths: list[Path]) -> set[int]:
     out: set[int] = set()
     row_size = struct.calcsize("<IIiiiBBBBffff")
-    for path in paths:
+    for path in iter_object_anim_paths(paths):
         if not path.exists():
             continue
         data = path.read_bytes()
@@ -946,7 +954,7 @@ def main() -> None:
     parser.add_argument("--spotanims", type=Path,
                         help="include sequence ids referenced by a SPOT binary")
     parser.add_argument("--object-anims", type=Path, nargs="*",
-                        help="include sequence ids referenced by OANM binaries")
+                        help="include sequence ids referenced by OANM binaries or directories")
     parser.add_argument("--item-render-map", type=Path,
                         help="include BAS sequence ids referenced by item_render.map")
     parser.add_argument("--combat-visuals", type=Path,

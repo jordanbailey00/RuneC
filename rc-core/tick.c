@@ -91,8 +91,7 @@ static int object_option_available(const RcObjectDef *def,
 static int string_has_ci(const char *s, const char *needle);
 static void apply_door_collision(RcWorld *world, int obj_id, int x, int y,
                                  int plane, int open);
-static void start_player_action_anim(RcWorld *world, int anim_id,
-                                     int duration, int lock_ticks);
+static void start_player_action_lock(RcWorld *world, int lock_ticks);
 static void schedule_player_traversal(RcWorld *world,
                                       const RcTraversalEdge *edge,
                                       int delay_ticks);
@@ -104,10 +103,6 @@ static void process_player_route(RcWorld *world) {
 static void process_player_action_timers(RcWorld *world) {
     if (!world) return;
     RcPlayer *p = &world->player;
-    if (p->action_anim_timer > 0) {
-        p->action_anim_timer--;
-        if (p->action_anim_timer <= 0) p->action_anim_id = -1;
-    }
     if (p->pending_traversal_active
             && world->tick >= p->pending_traversal_tick) {
         p->prev_x = p->x;
@@ -746,8 +741,6 @@ static void process_player_skilling(RcWorld *world) {
                 st->active_type = st->base_type;
                 st->active_rotation = st->base_rotation;
                 st->revert_tick = 0;
-                st->animation_id = -1;
-                st->animation_timer = 0;
                 st->flags = 0;
                 mark_object_depleted(world, st, world->tick + respawn);
             }
@@ -859,29 +852,8 @@ static void reset_object_state_active(RcObjectState *st) {
     st->active_plane = st->plane;
     st->active_type = st->base_type;
     st->active_rotation = st->base_rotation;
-    st->animation_id = -1;
-    st->animation_timer = 0;
     st->revert_tick = 0;
     st->flags &= (uint8_t)~(RC_OBJECT_STATE_OPEN | RC_OBJECT_STATE_DYNAMIC);
-}
-
-static void start_object_action_anim(RcObjectState *st, int anim_id,
-                                     int duration) {
-    if (!st || anim_id < 0 || duration <= 0) return;
-    st->animation_id = anim_id;
-    st->animation_timer = duration;
-}
-
-static void tick_object_action_anims(RcWorld *world) {
-    if (!world) return;
-    for (int i = 0; i < world->object_state_count; i++) {
-        RcObjectState *st = &world->object_states[i];
-        if (st->animation_timer <= 0) continue;
-        st->animation_timer--;
-        if (st->animation_timer <= 0) {
-            st->animation_id = -1;
-        }
-    }
 }
 
 static void tick_respawns(RcWorld *world) {
@@ -948,7 +920,7 @@ static void tick_ground_items(RcWorld *world) {
 // NPC position, pathfinding, tick counter) always runs.
 void rc_world_tick(RcWorld *world) {
     const uint32_t on = world->enabled;
-    rc_combat_clear_visual_events(world);
+    rc_combat_clear_attack_events(world);
 
     // Phase 1 — input (base): always runs.
     process_player_input(world);
@@ -1006,9 +978,7 @@ void rc_world_tick(RcWorld *world) {
 
     // Phase 8 — deaths / respawns / ground items.
     if (on & RC_SUB_COMBAT)   check_deaths(world);
-    if (on & RC_SUB_COMBAT)   rc_combat_tick_projectiles(world);
     tick_respawns(world);     // base — NPC wander reset clock
-    tick_object_action_anims(world);
     if (on & RC_SUB_LOOT)     tick_ground_items(world);
 
     world->tick++;
@@ -1383,19 +1353,11 @@ static void api_set_player_route(RcPlayer *p, const RcRoute *route) {
     p->route_idx = 0;
 }
 
-static void start_player_action_anim(RcWorld *world, int anim_id,
-                                     int duration, int lock_ticks) {
+static void start_player_action_lock(RcWorld *world, int lock_ticks) {
     if (!world) return;
     RcPlayer *p = &world->player;
-    if (duration <= 0) duration = 1;
     if (lock_ticks > p->action_lock_timer)
         p->action_lock_timer = lock_ticks;
-    if (anim_id < 0) return;
-    p->action_anim_id = anim_id;
-    p->action_anim_timer = duration;
-    p->attack_anim_timer = duration;
-    p->combat.attack_animation_id = anim_id;
-    p->combat.attack_animation_timer = duration;
 }
 
 static void schedule_player_traversal(RcWorld *world,
@@ -1658,8 +1620,6 @@ static RcObjectState *object_state_get_key(RcWorld *world, int obj_id,
     st->active_rotation = st->base_rotation;
     st->respawn_tick = 0;
     st->revert_tick = 0;
-    st->animation_id = -1;
-    st->animation_timer = 0;
     st->flags = 0;
     RcObjectPlacement placement;
     if (object_exact_placement_key(obj_id, x, y, plane, placement_key,
@@ -2449,8 +2409,6 @@ static void apply_dynamic_object_state(RcWorld *world, RcObjectState *st,
         int transform = behavior && behavior->next_loc_stage >= 0
             ? behavior->next_loc_stage
             : first_transform_id(base_def);
-        const RcObjectDef *active_def =
-            transform >= 0 ? rc_object_def_get(transform) : base_def;
         st->active_obj_id = transform >= 0 ? transform : st->base_obj_id;
         st->active_x = st->x;
         st->active_y = st->y;
@@ -2460,15 +2418,11 @@ static void apply_dynamic_object_state(RcWorld *world, RcObjectState *st,
             behavior, base_def, st->base_type, st->base_rotation);
         dynamic_open_tile(behavior, base_def, st->base_type,
                           st->base_rotation, &st->active_x, &st->active_y);
-        st->animation_id = active_def ? active_def->animation_id : -1;
-        st->animation_timer = st->animation_id >= 0 ? 6 : 0;
         st->revert_tick = world->tick + RC_OBJECT_DOOR_REVERT_TICKS;
         st->flags |= RC_OBJECT_STATE_OPEN | RC_OBJECT_STATE_DYNAMIC;
         schedule_object_state_tick(world, st->revert_tick);
     } else {
-        int close_anim = base_def ? base_def->animation_id : -1;
         reset_object_state_active(st);
-        start_object_action_anim(st, close_anim, 6);
     }
     apply_door_collision(world, st->base_obj_id, st->x, st->y, st->plane,
                          open);
@@ -2562,14 +2516,7 @@ static int api_apply_object_interaction(RcWorld *world, const RcObjectDef *def,
             && object_action_mutates_dynamic(action)) {
         apply_door_state(world, obj_id, x, y, plane, placement_key, opt,
                          effective_behavior);
-        start_player_action_anim(world, -1, 0, 1);
-    }
-    if (x >= 0 && y >= 0 && plane >= 0 && def && def->animation_id >= 0
-            && !(effective_behavior
-                 && (effective_behavior->flags & RC_OBJ_BEHAVIOR_DOOR))) {
-        RcObjectState *anim_state =
-            object_state_get_key(world, obj_id, x, y, plane, placement_key);
-        start_object_action_anim(anim_state, def->animation_id, 6);
+        start_player_action_lock(world, 1);
     }
     if (effective_behavior && (effective_behavior->flags & RC_OBJ_BEHAVIOR_ALTAR)
             && effective_behavior->skill == RC_OBJ_SKILL_PRAYER) {
@@ -2589,18 +2536,17 @@ static int api_apply_object_interaction(RcWorld *world, const RcObjectDef *def,
         }
     }
     if (edge) {
-        int climb = effective_behavior && effective_behavior->climb_anim >= 0
+        int climb = effective_behavior
             && (effective_behavior->flags & (RC_OBJ_BEHAVIOR_LADDER |
                                              RC_OBJ_BEHAVIOR_STAIR));
         int shortcut = !climb && traversal_edge_uses_shortcut_motion(edge);
         if (climb) {
-            start_player_action_anim(world, effective_behavior->climb_anim,
-                                     2, 2);
+            start_player_action_lock(world, 2);
             schedule_player_traversal(world, edge, 1);
         } else if (shortcut) {
             if (agility_like_shortcut)
                 award_agility_like_shortcut_xp(world);
-            start_player_action_anim(world, -1, 0, 1);
+            start_player_action_lock(world, 1);
             schedule_player_traversal(world, edge, 1);
         } else {
             rc_player_apply_traversal(world, edge);

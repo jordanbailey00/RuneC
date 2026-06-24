@@ -130,7 +130,6 @@ static void test_interaction_attack_enters_repeating_combat(void) {
     assert(world->player.attack_target == uid);
     assert(world->player.attack_target_def_id == 901600);
     assert(world->player.facing_entity == uid);
-    assert(world->player.attack_anim_timer > 0);
     assert(events.player_attacks == 1);
     assert(events.last_player_attack_target == uid);
     assert(events.npc_damaged >= 1);

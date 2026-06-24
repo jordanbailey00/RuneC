@@ -3,7 +3,6 @@
 #include "../rc-core/api.h"
 #include "../rc-core/assets.h"
 #include "../rc-core/combat.h"
-#include "../rc-core/combat_visuals.h"
 #include "../rc-core/config.h"
 #include "../rc-core/items.h"
 #include "../rc-core/objects.h"
@@ -22,7 +21,11 @@
 #include "anims.h"
 #include "ui.h"
 #include "equipment_render.h"
+#include "item_render_defs.h"
+#include "npc_render_defs.h"
+#include "object_action_visuals.h"
 #include "spotanims.h"
+#include "combat_visuals.h"
 #include "dev_validation.h"
 #include <math.h>
 #include <stddef.h>
@@ -44,6 +47,10 @@
 #define NPC_RENDER_QUEUE_MAX 8
 #define NPC_RENDER_MAX_DT 0.05f
 #define NPC_MODEL_SCALE 1.0f
+#define VIEWER_MAX_COMBAT_PROJECTILES 64
+#define VIEWER_NPC_TZTOK_JAD 3127
+#define VIEWER_JAD_MELEE_ANIM_TICKS 3
+#define VIEWER_JAD_WARNING_ANIM_TICKS 5
 #define VIEWER_CONTEXT_NONE 0
 #define VIEWER_CONTEXT_NPC 1
 #define VIEWER_CONTEXT_OBJECT 2
@@ -78,6 +85,50 @@ typedef struct {
     char action_text[128];
 } ViewerHoverTarget;
 
+typedef struct {
+    bool active;
+    uint8_t source_kind;
+    uint8_t target_kind;
+    uint8_t style;
+    uint8_t primitive_type;
+    uint8_t source_attachment;
+    uint8_t target_attachment;
+    uint8_t launch_attachment;
+    uint8_t impact_attachment;
+    int source_uid;
+    int target_uid;
+    int source_x, source_y;
+    int target_x, target_y;
+    int plane;
+    int weapon_item_id;
+    int ammo_item_id;
+    int spell_idx;
+    int attack_anim_id;
+    int launch_spotanim_id;
+    int travel_spotanim_id;
+    int impact_spotanim_id;
+    int projectile_model_id;
+    int projectile_anim_id;
+    int start_tick;
+    int duration_ticks;
+    int impact_duration_ticks;
+    int age_ticks;
+    int hit_delay;
+    int client_delay;
+    int launch_spotanim_height;
+    int impact_spotanim_height;
+    int impact_spotanim_delay;
+    int impact_spotanim_rotation;
+    int projectile_start_height;
+    int projectile_end_height;
+    int projectile_start_time;
+    int projectile_end_time;
+    int projectile_angle;
+    int projectile_progress;
+    int sequence_index;
+    int sequence_count;
+} ViewerCombatProjectile;
+
 static const char *object_action_label(const ViewerPickedObject *object,
                                        const RcObjectDef *def, int opt);
 
@@ -111,9 +162,13 @@ typedef struct {
     ModelSet *projectile_models;
     SpotAnimSet *spotanims;
     RuneCItemRenderMap item_render_map;
+    RuneCItemDefRenderMap item_def_render_map;
+    RuneCNpcRenderDefs npc_render_defs;
+    RuneCObjectActionVisualMap object_action_visuals;
     ItemStackVariant item_stack_variants[RUNEC_ITEM_STACK_VARIANT_MAX];
     int item_stack_variant_count;
     AnimCache *anims;           // player animations
+    AnimCache *object_anim_cache;
     AnimCache *npc_anims;       // NPC animations (separate cache; IDs don't overlap)
     AnimCache *npc_fallback_anims;
     AnimModelState *anim_state; // player
@@ -148,6 +203,8 @@ typedef struct {
         int moving;
         float move_anim_timer;
         int last_dx, last_dy;
+        int attack_anim_timer;
+        int attack_anim_id;
     } npc_render[RC_MAX_NPCS];
 
     // Camera
@@ -167,6 +224,10 @@ typedef struct {
     int player_one_shot_finished;
     int player_attack_timer_seen;
     int player_attack_anim_suppressed;
+    int player_attack_anim_timer;
+    int player_attack_anim_id;
+    int player_action_anim_timer;
+    int player_action_anim_id;
     int player_moving;
     float player_facing_angle;   // viewer-side; rc-core doesn't store
 
@@ -175,6 +236,8 @@ typedef struct {
     int god_mode;
     RuneCUiState ui;
     RcCombatViewState combat_view;
+    ViewerCombatProjectile combat_projectiles[VIEWER_MAX_COMBAT_PROJECTILES];
+    int combat_projectile_count;
     Shader alpha_cutout_shader_static;
     Shader alpha_cutout_shader_dynamic;
     Shader projectile_effect_shader;
@@ -1404,9 +1467,6 @@ static void viewer_start_dev_boss_combat(ViewerState *v,
     RcNpc *npc = &v->world->npcs[idx];
     if (rc_combat_start_npc_vs_player(v->world, npc->uid, 0)) {
         npc->attack_timer = 0;
-        npc->combat.attack_animation_id =
-            npc->def_id >= 0 && npc->def_id < g_npc_def_count
-            ? g_npc_defs[npc->def_id].attack_anim : 0;
     }
 }
 
@@ -1423,9 +1483,11 @@ static void viewer_clear_player_activity(ViewerState *v) {
     p->pending_traversal_y = -1;
     p->pending_traversal_plane = -1;
     p->action_lock_timer = 0;
-    p->action_anim_timer = 0;
-    p->attack_anim_timer = 0;
-    world->combat_projectile_count = 0;
+    v->player_action_anim_timer = 0;
+    v->player_action_anim_id = -1;
+    v->player_attack_anim_timer = 0;
+    v->player_attack_anim_id = -1;
+    v->combat_projectile_count = 0;
     rc_combat_stop_actor(world, (RcCombatActorRef){RC_COMBAT_ACTOR_PLAYER, 0},
                          RC_COMBAT_STATE_CANCELLED);
     for (int i = 0; i < world->npc_count; i++) {
@@ -2131,6 +2193,33 @@ static int object_first_pick_option(ViewerPickedObject object) {
     return -1;
 }
 
+static void viewer_start_player_action_anim(ViewerState *v, int anim_id,
+                                            int ticks) {
+    if (!v || anim_id < 0 || ticks <= 0)
+        return;
+    v->player_action_anim_id = anim_id;
+    v->player_action_anim_timer = ticks;
+    v->player_one_shot_finished = 0;
+}
+
+static void viewer_start_object_action_visual(ViewerState *v,
+                                              ViewerPickedObject object,
+                                              int option) {
+    (void)option;
+    if (!v)
+        return;
+    const RcObjectBehavior *behavior = rc_object_behavior_get(object.obj_id);
+    if (!behavior || !(behavior->flags & (RC_OBJ_BEHAVIOR_LADDER |
+                                          RC_OBJ_BEHAVIOR_STAIR))) {
+        return;
+    }
+    const RuneCObjectActionVisualRecord *visual =
+        runec_object_action_visual_find(&v->object_action_visuals,
+                                        object.obj_id);
+    if (visual && visual->climb_anim >= 0)
+        viewer_start_player_action_anim(v, visual->climb_anim, 2);
+}
+
 static int object_footprint_contains(const RcObjectPlacement *placement,
                                      int obj_id, int tile_x, int tile_y,
                                      int *out_w, int *out_l) {
@@ -2150,6 +2239,7 @@ static int object_footprint_contains(const RcObjectPlacement *placement,
 
 static float object_pick_height(const RcObjectPlacement *placement,
                                 const RcObjectDef *def, int w, int l) {
+    (void)def;
     int max_dim = w > l ? w : l;
     if (max_dim < 1) max_dim = 1;
     if (placement->type == 22)
@@ -2158,8 +2248,6 @@ static float object_pick_height(const RcObjectPlacement *placement,
         return 2.25f;
     if (placement->type >= 4 && placement->type <= 8)
         return 2.75f;
-    if (def && def->animation_id >= 0)
-        return 3.25f + 0.25f * (float)(max_dim - 1);
     return 2.4f + 0.35f * (float)(max_dim - 1);
 }
 
@@ -2424,6 +2512,17 @@ static RcNpc *viewer_find_npc_by_uid(ViewerState *v, int npc_uid) {
     return NULL;
 }
 
+static int viewer_find_npc_index_by_uid(ViewerState *v, int npc_uid) {
+    if (!v || !v->world)
+        return -1;
+    for (int i = 0; i < v->world->npc_count; i++) {
+        RcNpc *npc = &v->world->npcs[i];
+        if (npc->active && npc->uid == npc_uid)
+            return i;
+    }
+    return -1;
+}
+
 static void viewer_left_click_npc(ViewerState *v, int npc_uid) {
     RcNpc *npc = viewer_find_npc_by_uid(v, npc_uid);
     if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
@@ -2562,9 +2661,11 @@ static void handle_context_intent(ViewerState *v) {
         ViewerPickedObject object = v->context_object;
         int option = v->context_action_option[action_idx];
         if (option >= 0) {
-            rc_player_interact_object_placement(
+            if (rc_player_interact_object_placement(
                 v->world, object.obj_id, object.x, object.y, object.plane,
-                object.placement_key, option);
+                object.placement_key, option)) {
+                viewer_start_object_action_visual(v, object, option);
+            }
         } else if (option == VIEWER_CONTEXT_WALK_HERE) {
             route_player_to(v, object.x, object.y);
         }
@@ -2766,9 +2867,15 @@ static void build_ui_icon_for_item(ViewerState *v, int item_id, int quantity) {
     if (rec && rec->ground_model_id != RUNEC_RENDER_MODEL_MISSING) {
         model_id = rec->ground_model_id;
     } else {
-        const RcItemDef *def = rc_item_def_get(item_id);
-        if (def && def->ground_model_id >= 0)
-            model_id = (uint32_t)def->ground_model_id;
+        const RuneCItemDefRenderRecord *def_render =
+            runec_item_def_render_find(&v->item_def_render_map, render_item_id);
+        if (!def_render)
+            def_render =
+                runec_item_def_render_find(&v->item_def_render_map, item_id);
+        if (def_render &&
+                def_render->ground_model_id != RUNEC_RENDER_MODEL_MISSING) {
+            model_id = def_render->ground_model_id;
+        }
     }
     if (model_id == RUNEC_RENDER_MODEL_MISSING)
         return;
@@ -3052,18 +3159,10 @@ static void draw_animated_objects(ViewerState *v, int scene_plane,
         if (!entry || !entry->loaded || i >= state_count)
             continue;
         int anim_id = row->animation_id;
-        if (v->world) {
-            RcObjectState active;
-            if (rc_world_object_active_state(v->world, (int)row->obj_id,
-                                             row->world_x, row->world_y,
-                                             row->plane, &active)
-                    && active.animation_timer > 0
-                    && active.animation_id >= 0) {
-                anim_id = active.animation_id;
-            }
-        }
+        AnimCache *cache = v->object_anim_cache ? v->object_anim_cache
+                                                : v->anims;
         if (states[i]) {
-            if (!animate_model_entry_sequence(entry, states[i], v->anims,
+            if (!animate_model_entry_sequence(entry, states[i], cache,
                                               anim_id,
                                               client_ticks + row->phase_ticks)) {
                 reset_model_entry_to_base_pose(entry);
@@ -3441,14 +3540,15 @@ static int draw_raw_equipped_item_models(ViewerState *v, const RcPlayer *p,
         const RcInvSlot *eq = &p->equipment[slot];
         if (eq->item_id < 0 || eq->quantity <= 0)
             continue;
-        const RcItemDef *def = rc_item_def_get(eq->item_id);
-        if (!def)
+        const RuneCItemDefRenderRecord *render_def =
+            runec_item_def_render_find(&v->item_def_render_map, eq->item_id);
+        if (!render_def)
             continue;
         for (int i = 0; i < 3; i++) {
-            int model_id = def->male_model_ids[i];
-            if (model_id < 0)
+            uint32_t model_id = render_def->male_model_ids[i];
+            if (model_id == RUNEC_RENDER_MODEL_MISSING)
                 continue;
-            drawn += draw_item_model(v, (uint32_t)model_id, player_pos,
+            drawn += draw_item_model(v, model_id, player_pos,
                                      facing_angle, 1.0f, WHITE);
         }
     }
@@ -3535,14 +3635,17 @@ static int draw_ground_item_model(ViewerState *v, const RcGroundItem *ground,
                                WHITE);
     }
 
-    const RcItemDef *def = rc_item_def_get(render_item_id);
-    if (!def)
-        def = rc_item_def_get(ground->item_id);
-    if (!def || def->ground_model_id < 0)
+    const RuneCItemDefRenderRecord *def_render =
+        runec_item_def_render_find(&v->item_def_render_map, render_item_id);
+    if (!def_render)
+        def_render =
+            runec_item_def_render_find(&v->item_def_render_map, ground->item_id);
+    if (!def_render ||
+            def_render->ground_model_id == RUNEC_RENDER_MODEL_MISSING)
         return 0;
     if (!v->item_models || !v->item_models->loaded)
         return 0;
-    ModelEntry *entry = model_find(v->item_models, (uint32_t)def->ground_model_id);
+    ModelEntry *entry = model_find(v->item_models, def_render->ground_model_id);
     if (!entry || !entry->loaded)
         return 0;
     float scale = ground_item_scale(render_item_id, ground->quantity);
@@ -3561,10 +3664,10 @@ static const char *combat_actor_kind_name(int kind) {
 
 static const char *combat_action_kind_name(int kind) {
     switch (kind) {
-        case RC_COMBAT_VISUAL_ACTION_ITEM: return "item";
-        case RC_COMBAT_VISUAL_ACTION_SPELL: return "spell";
-        case RC_COMBAT_VISUAL_ACTION_NPC: return "npc";
-        case RC_COMBAT_VISUAL_ACTION_SPECIAL: return "special";
+        case RC_COMBAT_ACTION_ITEM: return "item";
+        case RC_COMBAT_ACTION_SPELL: return "spell";
+        case RC_COMBAT_ACTION_NPC: return "npc";
+        case RC_COMBAT_ACTION_SPECIAL: return "special";
         default: return "none";
     }
 }
@@ -3580,20 +3683,18 @@ static const char *combat_style_name(int style) {
     }
 }
 
-static void debug_log_combat_visual_events(ViewerState *v) {
+static void debug_log_combat_attack_events(ViewerState *v) {
     if (!v || !v->world || !env_bool("RUNEC_DEBUG_COMBAT_VISUAL_EVENTS", 0))
         return;
     int count = 0;
-    const RcCombatVisualEvent *events =
-        rc_combat_visual_events(v->world, &count);
+    const RcCombatAttackEvent *events =
+        rc_combat_attack_events(v->world, &count);
     for (int i = 0; events && i < count; i++) {
-        const RcCombatVisualEvent *e = &events[i];
+        const RcCombatAttackEvent *e = &events[i];
         if (!e->active) continue;
         fprintf(stderr,
-                "combat visual event: tick=%d source=%s:%d target=%s:%d "
-                "style=%s action=%s:%d:%s profile=%s:%d:%s "
-                "primitive=%s "
-                "anim=%d hit_delay=%d client_delay=%d "
+                "combat attack event: tick=%d source=%s:%d target=%s:%d "
+                "style=%s action=%s:%d:%s hit_delay=%d "
                 "src=(%d,%d,%d) dst=(%d,%d,%d)\n",
                 e->world_tick,
                 combat_actor_kind_name(e->source_kind), e->source_uid,
@@ -3601,23 +3702,594 @@ static void debug_log_combat_visual_events(ViewerState *v) {
                 combat_style_name(e->style),
                 combat_action_kind_name(e->action_kind),
                 e->action_key_id, e->action_key_name,
-                combat_action_kind_name(e->profile_kind),
-                e->profile_key_id, e->profile_key_name,
-                rc_combat_visual_primitive_name(e->primitive_type),
-                e->selected_attack_anim_id, e->hit_delay, e->client_delay,
+                e->hit_delay,
                 e->source_x, e->source_y, e->plane,
                 e->target_x, e->target_y, e->plane);
     }
 }
 
-static Color projectile_color(const RcCombatProjectile *proj) {
+static int viewer_visual_has_projectile(const RcCombatVisualDef *visual) {
+    return visual && (visual->travel_spotanim_id >= 0 ||
+                      visual->launch_spotanim_id >= 0 ||
+                      visual->aux_travel_spotanim_id >= 0 ||
+                      visual->projectile_model_id >= 0 ||
+                      visual->projectile_anim_id >= 0 ||
+                      (visual->kind != RC_COMBAT_VISUAL_SPECIAL &&
+                       visual->impact_spotanim_id >= 0));
+}
+
+static int viewer_visual_has_travel_projectile(
+    const RcCombatVisualDef *visual
+) {
+    return visual && (visual->travel_spotanim_id >= 0 ||
+                      visual->projectile_model_id >= 0 ||
+                      visual->projectile_anim_id >= 0);
+}
+
+static int viewer_visual_is_fixed_tile_impact(
+    const RcCombatVisualDef *visual
+) {
+    return visual && visual->primitive_type ==
+           RC_COMBAT_VISUAL_PRIMITIVE_FIXED_TILE_IMPACT;
+}
+
+static int viewer_visual_has_projectile_profile(
+    const RcCombatVisualDef *visual
+) {
+    return visual && visual->projectile_start_height >= 0 &&
+           visual->projectile_end_height >= 0 &&
+           visual->projectile_delay >= 0 &&
+           visual->projectile_angle >= 0 &&
+           visual->projectile_progress >= 0 &&
+           visual->projectile_step_multiplier >= 0;
+}
+
+static int viewer_visual_has_alt_projectile_profile(
+    const RcCombatVisualDef *visual
+) {
+    return visual && visual->alt_projectile_start_height >= 0 &&
+           visual->alt_projectile_end_height >= 0 &&
+           visual->alt_projectile_delay >= 0 &&
+           visual->alt_projectile_angle >= 0 &&
+           visual->alt_projectile_progress >= 0 &&
+           visual->alt_projectile_step_multiplier >= 0;
+}
+
+static int viewer_visual_projectile_end_time(
+    const RcCombatVisualDef *visual,
+    int distance
+) {
+    if (!viewer_visual_has_projectile_profile(visual)) return -1;
+    if (distance < 0) distance = 0;
+    return visual->projectile_delay +
+           visual->projectile_length_adjustment +
+           visual->projectile_step_multiplier * distance;
+}
+
+static const RcCombatVisualDef *viewer_projectile_timing_visual(
+    const RcCombatVisualDef *projectile,
+    const RcCombatVisualDef *weapon
+) {
+    if (viewer_visual_has_projectile_profile(projectile))
+        return projectile;
+    if (viewer_visual_has_projectile_profile(weapon))
+        return weapon;
+    return projectile ? projectile : weapon;
+}
+
+static int viewer_projectile_count(const RcCombatVisualDef *visual) {
+    if (!visual || visual->projectile_count < 1)
+        return 1;
+    return visual->projectile_count > 4 ? 4 : visual->projectile_count;
+}
+
+static int viewer_should_show_impact_for_index(
+    const RcCombatVisualDef *effect,
+    int index,
+    int count
+) {
+    if (!effect || !effect->impact_on_last_only)
+        return 1;
+    return index == count - 1;
+}
+
+static int viewer_launch_spotanim_for_sequence(
+    const RcCombatVisualDef *visual,
+    const RcCombatVisualDef *effect,
+    int sequence_index,
+    int sequence_count
+) {
+    if (!visual || sequence_index != 0) return -1;
+    if (effect && sequence_count > 1 && visual->double_launch_spotanim_id >= 0)
+        return visual->double_launch_spotanim_id;
+    return visual->launch_spotanim_id;
+}
+
+static ViewerCombatProjectile *viewer_next_projectile_slot(ViewerState *v) {
+    if (!v) return NULL;
+    for (int i = 0; i < v->combat_projectile_count; i++) {
+        if (!v->combat_projectiles[i].active)
+            return &v->combat_projectiles[i];
+    }
+    if (v->combat_projectile_count < VIEWER_MAX_COMBAT_PROJECTILES)
+        return &v->combat_projectiles[v->combat_projectile_count++];
+    int oldest = 0;
+    for (int i = 1; i < v->combat_projectile_count; i++) {
+        if (v->combat_projectiles[i].start_tick <
+                v->combat_projectiles[oldest].start_tick)
+            oldest = i;
+    }
+    return &v->combat_projectiles[oldest];
+}
+
+static void viewer_tick_combat_projectiles(ViewerState *v) {
+    if (!v) return;
+    int w = 0;
+    for (int i = 0; i < v->combat_projectile_count; i++) {
+        ViewerCombatProjectile proj = v->combat_projectiles[i];
+        if (!proj.active) continue;
+        if (proj.duration_ticks <= 0) proj.duration_ticks = 1;
+        proj.age_ticks++;
+        int retain_ticks = proj.duration_ticks + proj.impact_duration_ticks;
+        if (retain_ticks < proj.duration_ticks)
+            retain_ticks = proj.duration_ticks;
+        if (proj.age_ticks > retain_ticks)
+            continue;
+        v->combat_projectiles[w++] = proj;
+    }
+    v->combat_projectile_count = w;
+}
+
+static void viewer_tick_attack_anims(ViewerState *v) {
+    if (!v) return;
+    if (v->player_action_anim_timer > 0)
+        v->player_action_anim_timer--;
+    if (v->player_action_anim_timer <= 0)
+        v->player_action_anim_id = -1;
+    if (v->player_attack_anim_timer > 0)
+        v->player_attack_anim_timer--;
+    if (v->player_attack_anim_timer <= 0)
+        v->player_attack_anim_id = -1;
+    if (!v->world) return;
+    for (int i = 0; i < v->world->npc_count && i < RC_MAX_NPCS; i++) {
+        if (v->npc_render[i].attack_anim_timer > 0)
+            v->npc_render[i].attack_anim_timer--;
+        if (v->npc_render[i].attack_anim_timer <= 0)
+            v->npc_render[i].attack_anim_id = -1;
+    }
+}
+
+static int viewer_npc_attack_anim_ticks(
+    const RcCombatAttackEvent *event
+) {
+    if (!event || event->source_definition_id != VIEWER_NPC_TZTOK_JAD)
+        return 2;
+    if (event->style == COMBAT_MAGIC || event->style == COMBAT_RANGED)
+        return VIEWER_JAD_WARNING_ANIM_TICKS;
+    return VIEWER_JAD_MELEE_ANIM_TICKS;
+}
+
+static void viewer_start_player_attack_anim(
+    ViewerState *v,
+    const RcCombatVisualDef *visual
+) {
+    if (!v) return;
+    v->player_attack_anim_timer = 2;
+    v->player_attack_anim_id =
+        visual && visual->attack_anim_id >= 0 ? visual->attack_anim_id : -1;
+}
+
+static void viewer_start_npc_attack_anim(
+    ViewerState *v,
+    const RcCombatAttackEvent *event,
+    const RcCombatVisualDef *visual
+) {
+    int idx = viewer_find_npc_index_by_uid(v, event ? event->source_uid : -1);
+    if (idx < 0) return;
+    v->npc_render[idx].attack_anim_timer =
+        viewer_npc_attack_anim_ticks(event);
+    v->npc_render[idx].attack_anim_id =
+        visual && visual->attack_anim_id >= 0 ? visual->attack_anim_id : -1;
+}
+
+static void viewer_nearest_npc_tile_to_point(
+    const RcNpc *npc,
+    int px,
+    int py,
+    int *tx,
+    int *ty
+) {
+    int size = 1;
+    if (npc && npc->def_id >= 0 && npc->def_id < g_npc_def_count
+            && g_npc_defs[npc->def_id].size > 0) {
+        size = g_npc_defs[npc->def_id].size;
+    }
+    int min_x = npc ? npc->x : px;
+    int min_y = npc ? npc->y : py;
+    int max_x = min_x + size - 1;
+    int max_y = min_y + size - 1;
+    if (px < min_x) *tx = min_x;
+    else if (px > max_x) *tx = max_x;
+    else *tx = px;
+    if (py < min_y) *ty = min_y;
+    else if (py > max_y) *ty = max_y;
+    else *ty = py;
+}
+
+static int viewer_npc_size(const RcNpc *npc) {
+    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+        return 1;
+    return g_npc_defs[npc->def_id].size > 0 ? g_npc_defs[npc->def_id].size : 1;
+}
+
+static int viewer_distance_event_target(
+    const RcCombatAttackEvent *event
+) {
+    if (!event) return 0;
+    int dx = event->source_x > event->target_x
+           ? event->source_x - event->target_x
+           : event->target_x - event->source_x;
+    int dy = event->source_y > event->target_y
+           ? event->source_y - event->target_y
+           : event->target_y - event->source_y;
+    return dx > dy ? dx : dy;
+}
+
+static int viewer_projectile_launch_height(
+    const RcCombatVisualDef *visual,
+    RcCombatStyle style
+) {
+    if (visual && visual->launch_spotanim_height >= 0)
+        return visual->launch_spotanim_height;
+    return style == COMBAT_MAGIC ? 92 : 96;
+}
+
+static int viewer_projectile_impact_height(
+    const ViewerCombatProjectile *proj,
+    const RcCombatVisualDef *visual,
+    RcCombatStyle style
+) {
+    if (visual && visual->impact_spotanim_height >= 0)
+        return visual->impact_spotanim_height;
+    if (proj && proj->projectile_end_height >= 0)
+        return proj->projectile_end_height;
+    return style == COMBAT_MAGIC ? 124 : 0;
+}
+
+static void viewer_apply_projectile_profile(
+    ViewerCombatProjectile *proj,
+    const RcCombatVisualDef *visual,
+    int distance,
+    int hit_delay
+) {
+    if (!proj) return;
+    proj->hit_delay = hit_delay;
+    proj->client_delay = hit_delay > 0 ? hit_delay : 1;
+    proj->duration_ticks = proj->client_delay;
+    proj->impact_duration_ticks = proj->impact_spotanim_id >= 0 ? 3 : 0;
+    proj->projectile_start_height = -1;
+    proj->projectile_end_height = -1;
+    proj->projectile_start_time = 0;
+    proj->projectile_end_time = proj->duration_ticks * 30;
+    proj->projectile_angle = -1;
+    proj->projectile_progress = -1;
+    if (viewer_visual_has_projectile_profile(visual)) {
+        proj->projectile_start_height = visual->projectile_start_height;
+        proj->projectile_end_height = visual->projectile_end_height;
+        proj->projectile_start_time = visual->projectile_delay;
+        proj->projectile_end_time =
+            viewer_visual_projectile_end_time(visual, distance);
+        proj->projectile_angle = visual->projectile_angle;
+        proj->projectile_progress = visual->projectile_progress;
+        if (proj->projectile_end_time <= proj->projectile_start_time)
+            proj->projectile_end_time = proj->projectile_start_time + 1;
+        proj->duration_ticks = 1 + proj->projectile_end_time / 30;
+        proj->client_delay = proj->duration_ticks;
+    }
+    if (proj->duration_ticks < 1)
+        proj->duration_ticks = 1;
+}
+
+static void viewer_apply_projectile_profile_for_index(
+    ViewerCombatProjectile *proj,
+    const RcCombatVisualDef *base_visual,
+    const RcCombatVisualDef *effect_visual,
+    int sequence_index,
+    int distance,
+    int hit_delay
+) {
+    const RcCombatVisualDef *profile = base_visual;
+    RcCombatVisualDef alt;
+    if (sequence_index > 0 &&
+            viewer_visual_has_alt_projectile_profile(effect_visual)) {
+        alt = *effect_visual;
+        alt.projectile_start_height =
+            effect_visual->alt_projectile_start_height;
+        alt.projectile_end_height =
+            effect_visual->alt_projectile_end_height;
+        alt.projectile_delay = effect_visual->alt_projectile_delay;
+        alt.projectile_angle = effect_visual->alt_projectile_angle;
+        alt.projectile_length_adjustment =
+            effect_visual->alt_projectile_length_adjustment;
+        alt.projectile_progress = effect_visual->alt_projectile_progress;
+        alt.projectile_step_multiplier =
+            effect_visual->alt_projectile_step_multiplier;
+        profile = &alt;
+    }
+    viewer_apply_projectile_profile(proj, profile, distance, hit_delay);
+}
+
+static void viewer_npc_visual_source_tile(
+    ViewerState *v,
+    const RcCombatAttackEvent *event,
+    const RcCombatVisualDef *visual,
+    int *sx,
+    int *sy
+) {
+    if (!v || !event || !sx || !sy) return;
+    RcNpc *npc = viewer_find_npc_by_uid(v, event->source_uid);
+    if (!npc) {
+        *sx = event->source_x;
+        *sy = event->source_y;
+        return;
+    }
+    if (visual && (visual->source_attachment ==
+                   RC_COMBAT_VISUAL_ATTACH_TARGET_TILE ||
+                   visual->source_attachment ==
+                   RC_COMBAT_VISUAL_ATTACH_FIXED_TILE)) {
+        *sx = event->target_x;
+        *sy = event->target_y;
+        return;
+    }
+    if (visual && visual->source_attachment ==
+            RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER) {
+        int size = viewer_npc_size(npc);
+        *sx = npc->x + size / 2;
+        *sy = npc->y + size / 2;
+        return;
+    }
+    viewer_nearest_npc_tile_to_point(npc, event->target_x, event->target_y,
+                                     sx, sy);
+}
+
+static void viewer_spawn_projectile_instance(
+    ViewerState *v,
+    const RcCombatAttackEvent *event,
+    const RcCombatVisualDef *visual,
+    const RcCombatVisualDef *profile_visual,
+    const RcCombatVisualDef *effect_visual,
+    int sequence_index,
+    int sequence_count,
+    int launch_spotanim_id,
+    int travel_spotanim_id,
+    int impact_spotanim_id,
+    int projectile_model_id,
+    int projectile_anim_id
+) {
+    if (!v || !event ||
+            (launch_spotanim_id < 0 && travel_spotanim_id < 0 &&
+             impact_spotanim_id < 0 && projectile_model_id < 0 &&
+             projectile_anim_id < 0)) {
+        return;
+    }
+    ViewerCombatProjectile *proj = viewer_next_projectile_slot(v);
+    if (!proj) return;
+    memset(proj, 0, sizeof(*proj));
+    proj->active = true;
+    proj->source_kind = event->source_kind;
+    proj->target_kind = event->target_kind;
+    proj->style = event->style;
+    proj->primitive_type = visual ? visual->primitive_type
+                                  : RC_COMBAT_VISUAL_PRIMITIVE_NONE;
+    proj->source_attachment = visual ? visual->source_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->target_attachment = visual ? visual->target_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->launch_attachment = visual ? visual->launch_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->impact_attachment = visual ? visual->impact_attachment
+                                     : RC_COMBAT_VISUAL_ATTACH_NONE;
+    proj->source_uid = event->source_uid;
+    proj->target_uid = event->target_uid;
+    proj->source_x = event->source_x;
+    proj->source_y = event->source_y;
+    if (event->source_kind == RC_COMBAT_ACTOR_NPC)
+        viewer_npc_visual_source_tile(v, event, visual,
+                                      &proj->source_x, &proj->source_y);
+    proj->target_x = event->target_x;
+    proj->target_y = event->target_y;
+    proj->plane = event->plane;
+    proj->weapon_item_id = event->weapon_item_id;
+    proj->ammo_item_id = event->ammo_item_id;
+    proj->spell_idx = event->spell_idx;
+    proj->attack_anim_id = visual ? visual->attack_anim_id : -1;
+    proj->launch_spotanim_id = launch_spotanim_id;
+    proj->travel_spotanim_id = travel_spotanim_id;
+    proj->impact_spotanim_id = impact_spotanim_id;
+    proj->launch_spotanim_height =
+        viewer_projectile_launch_height(visual, (RcCombatStyle)event->style);
+    proj->projectile_model_id = projectile_model_id;
+    proj->projectile_anim_id = projectile_anim_id;
+    proj->sequence_index = sequence_index;
+    proj->sequence_count = sequence_count;
+    viewer_apply_projectile_profile_for_index(
+        proj, profile_visual ? profile_visual : visual, effect_visual,
+        sequence_index, viewer_distance_event_target(event), event->hit_delay);
+    if (viewer_visual_is_fixed_tile_impact(visual)) {
+        int impact_time = viewer_visual_projectile_end_time(
+            visual, viewer_distance_event_target(event));
+        if (impact_time <= 0)
+            impact_time = (event->hit_delay > 0 ? event->hit_delay : 1) * 30;
+        proj->launch_spotanim_id = -1;
+        proj->travel_spotanim_id = -1;
+        proj->impact_spotanim_id = impact_spotanim_id;
+        proj->projectile_model_id = -1;
+        proj->projectile_anim_id = -1;
+        proj->projectile_start_height =
+            visual && visual->projectile_start_height >= 0
+            ? visual->projectile_start_height : proj->projectile_start_height;
+        proj->projectile_end_height =
+            visual && visual->projectile_end_height >= 0
+            ? visual->projectile_end_height : proj->projectile_end_height;
+        proj->projectile_start_time = 0;
+        proj->projectile_end_time = impact_time;
+        proj->projectile_angle = 0;
+        proj->projectile_progress = 0;
+        proj->client_delay = event->hit_delay > 0 ? event->hit_delay
+                                                  : proj->client_delay;
+        proj->duration_ticks = proj->client_delay > 0 ? proj->client_delay : 1;
+        int min_duration = 1 + impact_time / 30;
+        if (proj->duration_ticks < min_duration)
+            proj->duration_ticks = min_duration;
+        proj->impact_duration_ticks = 3;
+    }
+    proj->impact_spotanim_height = viewer_projectile_impact_height(
+        proj, visual, (RcCombatStyle)event->style);
+    proj->impact_spotanim_delay =
+        visual ? visual->impact_spotanim_delay : -1;
+    proj->impact_spotanim_rotation =
+        visual ? visual->impact_spotanim_rotation : -1;
+    proj->start_tick = event->world_tick;
+    proj->age_ticks = 0;
+}
+
+static void viewer_spawn_player_attack_projectiles(
+    ViewerState *v,
+    const RcCombatAttackEvent *event,
+    const RcCombatVisualDef *visual,
+    const RcCombatVisualDef *effect_visual,
+    const RcCombatVisualDef *profile_visual
+) {
+    if (!v || !event) return;
+    const RcCombatVisualDef *event_visual = effect_visual ? effect_visual
+                                                          : visual;
+    if (!viewer_visual_has_projectile(visual) &&
+            !viewer_visual_has_projectile(event_visual)) {
+        return;
+    }
+    int count = viewer_projectile_count(event_visual);
+    for (int i = 0; i < count; i++) {
+        int show_impact = viewer_should_show_impact_for_index(
+            event_visual, i, count);
+        if (event_visual && event_visual->aux_travel_spotanim_id >= 0) {
+            viewer_spawn_projectile_instance(
+                v, event, event_visual, profile_visual, event_visual,
+                i, count, i == 0 ? event_visual->launch_spotanim_id : -1,
+                event_visual->aux_travel_spotanim_id,
+                show_impact ? event_visual->aux_impact_spotanim_id : -1,
+                event_visual->aux_projectile_model_id,
+                event_visual->aux_projectile_anim_id);
+        }
+        int launch_id = -1;
+        if (event_visual && i == 0 && event_visual->launch_spotanim_id >= 0 &&
+                event_visual->aux_travel_spotanim_id < 0) {
+            launch_id = event_visual->launch_spotanim_id;
+        } else if (visual && i == 0 &&
+                (!event_visual || event_visual->launch_spotanim_id < 0)) {
+            launch_id = viewer_launch_spotanim_for_sequence(
+                visual, event_visual, i, count);
+        } else if (visual && count == 1) {
+            launch_id = visual->launch_spotanim_id;
+        }
+        int travel_id = visual ? visual->travel_spotanim_id : -1;
+        int impact_id = show_impact && visual ? visual->impact_spotanim_id : -1;
+        int model_id = visual ? visual->projectile_model_id : -1;
+        int anim_id = visual ? visual->projectile_anim_id : -1;
+        if (travel_id < 0 && impact_id < 0 && model_id < 0 && anim_id < 0 &&
+                launch_id < 0) {
+            continue;
+        }
+        viewer_spawn_projectile_instance(
+            v, event, visual ? visual : event_visual, profile_visual,
+            event_visual, i, count, launch_id, travel_id, impact_id, model_id,
+            anim_id);
+    }
+}
+
+static void viewer_spawn_npc_attack_projectiles(
+    ViewerState *v,
+    const RcCombatAttackEvent *event,
+    const RcCombatVisualDef *visual
+) {
+    if (!v || !event || !viewer_visual_has_projectile(visual)) return;
+    int count = viewer_projectile_count(visual);
+    for (int i = 0; i < count; i++) {
+        int impact_id = viewer_should_show_impact_for_index(visual, i, count)
+                      ? visual->impact_spotanim_id : -1;
+        viewer_spawn_projectile_instance(
+            v, event, visual, visual, visual, i, count,
+            i == 0 ? visual->launch_spotanim_id : -1,
+            visual->travel_spotanim_id, impact_id,
+            visual->projectile_model_id, visual->projectile_anim_id);
+    }
+}
+
+static void viewer_handle_player_attack_event(
+    ViewerState *v,
+    const RcCombatAttackEvent *event
+) {
+    if (!v || !event) return;
+    const RcCombatVisualDef *weapon_visual =
+        rc_combat_visual_for_item_stance(event->weapon_item_id,
+                                         (RcCombatStyle)event->style,
+                                         event->stance_idx);
+    const RcCombatVisualDef *special_visual =
+        event->action_kind == RC_COMBAT_ACTION_SPECIAL
+        ? rc_combat_visual_for_special_item(event->weapon_item_id,
+                                            (RcCombatStyle)event->style)
+        : NULL;
+    if (special_visual)
+        weapon_visual = special_visual;
+    const RcCombatVisualDef *projectile_visual = NULL;
+    if (event->style == COMBAT_MAGIC) {
+        projectile_visual = rc_combat_visual_for_spell_id(
+            event->spell_idx, event->action_key_name,
+            (RcCombatStyle)event->style);
+    } else if (event->style == COMBAT_RANGED) {
+        projectile_visual = rc_combat_visual_for_item(
+            event->ammo_item_id, (RcCombatStyle)event->style);
+        if (!projectile_visual)
+            projectile_visual = weapon_visual;
+    }
+    if (special_visual && viewer_visual_has_travel_projectile(special_visual))
+        projectile_visual = special_visual;
+    const RcCombatVisualDef *anim_visual = special_visual ? special_visual
+                                      : (weapon_visual ? weapon_visual
+                                                       : projectile_visual);
+    viewer_start_player_attack_anim(v, anim_visual);
+    const RcCombatVisualDef *timing_visual =
+        viewer_projectile_timing_visual(projectile_visual, weapon_visual);
+    viewer_spawn_player_attack_projectiles(
+        v, event, projectile_visual, special_visual, timing_visual);
+}
+
+static void viewer_capture_combat_attack_events(ViewerState *v) {
+    if (!v || !v->world) return;
+    int count = 0;
+    const RcCombatAttackEvent *events =
+        rc_combat_attack_events(v->world, &count);
+    for (int i = 0; events && i < count; i++) {
+        const RcCombatAttackEvent *event = &events[i];
+        if (!event->active) continue;
+        if (event->source_kind == RC_COMBAT_ACTOR_PLAYER) {
+            viewer_handle_player_attack_event(v, event);
+        } else if (event->source_kind == RC_COMBAT_ACTOR_NPC) {
+            const RcCombatVisualDef *visual = rc_combat_visual_for_npc(
+                event->source_definition_id, (RcCombatStyle)event->style);
+            viewer_start_npc_attack_anim(v, event, visual);
+            viewer_spawn_npc_attack_projectiles(v, event, visual);
+        }
+    }
+}
+
+static Color projectile_color(const ViewerCombatProjectile *proj) {
     if (!proj) return WHITE;
     if (proj->style == COMBAT_MAGIC) return (Color){255, 104, 36, 235};
     if (proj->style == COMBAT_RANGED) return (Color){218, 178, 92, 235};
     return (Color){220, 220, 220, 235};
 }
 
-static float projectile_model_scale(const RcCombatProjectile *proj) {
+static float projectile_model_scale(const ViewerCombatProjectile *proj) {
     (void)proj;
     return 1.0f;
 }
@@ -3641,27 +4313,27 @@ static ModelEntry *projectile_model_find(ViewerState *v, uint32_t model_id) {
 }
 
 static const SpotAnimDef *projectile_travel_spotanim(ViewerState *v,
-                                                     const RcCombatProjectile *proj) {
+                                                     const ViewerCombatProjectile *proj) {
     if (!v || !proj || proj->travel_spotanim_id < 0)
         return NULL;
     return spotanim_find(v->spotanims, proj->travel_spotanim_id);
 }
 
 static const SpotAnimDef *projectile_launch_spotanim(ViewerState *v,
-                                                     const RcCombatProjectile *proj) {
+                                                     const ViewerCombatProjectile *proj) {
     if (!v || !proj || proj->launch_spotanim_id < 0)
         return NULL;
     return spotanim_find(v->spotanims, proj->launch_spotanim_id);
 }
 
 static const SpotAnimDef *projectile_impact_spotanim(ViewerState *v,
-                                                     const RcCombatProjectile *proj) {
+                                                     const ViewerCombatProjectile *proj) {
     if (!v || !proj || proj->impact_spotanim_id < 0)
         return NULL;
     return spotanim_find(v->spotanims, proj->impact_spotanim_id);
 }
 
-static int projectile_effect_model_id(const RcCombatProjectile *proj,
+static int projectile_effect_model_id(const ViewerCombatProjectile *proj,
                                       const SpotAnimDef *spot) {
     if (proj && proj->projectile_model_id >= 0)
         return proj->projectile_model_id;
@@ -3688,13 +4360,13 @@ static ModelEntry *projectile_spotanim_model_entry(ViewerState *v,
 }
 
 static ModelEntry *projectile_effect_model_entry(ViewerState *v,
-                                                 const RcCombatProjectile *proj,
+                                                 const ViewerCombatProjectile *proj,
                                                  const SpotAnimDef *spot) {
     return projectile_spotanim_model_entry(
         v, spot, projectile_effect_model_id(proj, spot));
 }
 
-static int projectile_effect_anim_id(const RcCombatProjectile *proj,
+static int projectile_effect_anim_id(const ViewerCombatProjectile *proj,
                                      const SpotAnimDef *spot) {
     if (proj && proj->projectile_anim_id >= 0)
         return proj->projectile_anim_id;
@@ -3703,7 +4375,7 @@ static int projectile_effect_anim_id(const RcCombatProjectile *proj,
     return -1;
 }
 
-static Vector3 projectile_spotanim_scale(const RcCombatProjectile *proj,
+static Vector3 projectile_spotanim_scale(const ViewerCombatProjectile *proj,
                                          const SpotAnimDef *spot) {
     float scale = projectile_model_scale(proj);
     float xy = scale;
@@ -3719,7 +4391,7 @@ static float projectile_yaw_degrees(float sx, float sz, float tx, float tz) {
     return atan2f(tx - sx, tz - sz) * (180.0f / 3.14159265f);
 }
 
-static int projectile_uses_fixed_target_tile(const RcCombatProjectile *proj) {
+static int projectile_uses_fixed_target_tile(const ViewerCombatProjectile *proj) {
     return proj && proj->source_kind == RC_COMBAT_ACTOR_NPC &&
            proj->target_kind == RC_COMBAT_ACTOR_PLAYER &&
            proj->style == COMBAT_RANGED &&
@@ -3729,7 +4401,7 @@ static int projectile_uses_fixed_target_tile(const RcCombatProjectile *proj) {
            proj->source_y == proj->target_y;
 }
 
-static int projectile_has_travel_visual(const RcCombatProjectile *proj) {
+static int projectile_has_travel_visual(const ViewerCombatProjectile *proj) {
     return proj && (proj->travel_spotanim_id >= 0 ||
                     proj->projectile_model_id >= 0 ||
                     proj->projectile_anim_id >= 0);
@@ -3748,7 +4420,7 @@ static void draw_oriented_projectile_model(Model model, Vector3 pos,
 }
 
 static int projectile_target_point(ViewerState *v,
-                                   const RcCombatProjectile *proj,
+                                   const ViewerCombatProjectile *proj,
                                    int scene_plane,
                                    float *out_x,
                                    float *out_z,
@@ -3813,7 +4485,7 @@ static int projectile_target_point(ViewerState *v,
 }
 
 static Vector3 combat_projectile_position(ViewerState *v,
-                                          const RcCombatProjectile *proj,
+                                          const ViewerCombatProjectile *proj,
                                           int scene_plane,
                                           float *out_angle,
                                           float *out_pitch,
@@ -3901,7 +4573,7 @@ static Vector3 combat_projectile_position(ViewerState *v,
 }
 
 static int combat_projectile_impact_position(ViewerState *v,
-                                             const RcCombatProjectile *proj,
+                                             const ViewerCombatProjectile *proj,
                                              int scene_plane,
                                              Vector3 *out_pos) {
     if (!out_pos)
@@ -3933,10 +4605,12 @@ static int projectile_sequence_duration(AnimCache *cache, int anim_id) {
 }
 
 static int draw_projectile_impact(ViewerState *v,
-                                  const RcCombatProjectile *proj,
+                                  const ViewerCombatProjectile *proj,
                                   int scene_plane,
                                   float client_time,
                                   float impact_start) {
+    if (proj->impact_spotanim_delay >= 0)
+        impact_start = (float)proj->impact_spotanim_delay;
     if (proj->impact_spotanim_id < 0 || client_time < impact_start)
         return 0;
     const SpotAnimDef *spot = projectile_impact_spotanim(v, proj);
@@ -3955,7 +4629,9 @@ static int draw_projectile_impact(ViewerState *v,
 
     ModelEntry *entry = projectile_spotanim_model_entry(v, spot, -1);
     if (entry) {
-        float angle = spot ? (float)spot->rotation : 0.0f;
+        float angle = proj->impact_spotanim_rotation >= 0
+                    ? (float)proj->impact_spotanim_rotation
+                    : (spot ? (float)spot->rotation : 0.0f);
         Vector3 scale = projectile_spotanim_scale(proj, spot);
         AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
         if (!animate_model_entry_sequence(entry, anim_state, v->anims,
@@ -3973,7 +4649,7 @@ static int draw_projectile_impact(ViewerState *v,
 }
 
 static int draw_projectile_launch(ViewerState *v,
-                                  const RcCombatProjectile *proj,
+                                  const ViewerCombatProjectile *proj,
                                   int scene_plane,
                                   float client_time) {
     if (!v || !proj || proj->launch_spotanim_id < 0 ||
@@ -4023,15 +4699,14 @@ static int draw_projectile_launch(ViewerState *v,
 }
 
 static void draw_combat_projectiles(ViewerState *v) {
-    int count = 0;
-    const RcCombatProjectile *projectiles =
-        rc_combat_projectiles(v->world, &count);
+    int count = v ? v->combat_projectile_count : 0;
+    const ViewerCombatProjectile *projectiles = v ? v->combat_projectiles : NULL;
     if (!projectiles || count <= 0) return;
     int scene_plane = viewer_scene_plane(v);
     BeginBlendMode(BLEND_ALPHA);
     rlDisableDepthMask();
     for (int i = 0; i < count; i++) {
-        const RcCombatProjectile *proj = &projectiles[i];
+        const ViewerCombatProjectile *proj = &projectiles[i];
         if (!proj->active || proj->plane != scene_plane)
             continue;
         float end_time = proj->projectile_end_time > proj->projectile_start_time
@@ -4078,7 +4753,8 @@ static void draw_combat_projectiles(ViewerState *v) {
                                               anim_id, client_ticks)) {
                 reset_model_entry_to_base_pose(entry);
             }
-            draw_oriented_projectile_model(entry->model, pos, angle, pitch,
+            float model_pitch = spot ? 0.0f : pitch;
+            draw_oriented_projectile_model(entry->model, pos, angle, model_pitch,
                                            scale, WHITE);
             continue;
         }
@@ -4110,21 +4786,6 @@ static int player_anim_or_fallback(ViewerState *v, uint32_t anim_id,
         return fallback;
     return anim_get_sequence(v->anims, (uint16_t)anim_id)
          ? (int)anim_id : fallback;
-}
-
-static int player_core_attack_anim_or_fallback(ViewerState *v, int fallback) {
-    const RcPlayer *p = &v->world->player;
-    int anim = p->combat.attack_animation_id;
-    if (anim > 0)
-        return player_anim_or_fallback(v, (uint32_t)anim, fallback);
-    return fallback;
-}
-
-static int player_attack_anim_timer(const RcPlayer *p) {
-    int timer = p->attack_anim_timer;
-    if (p->combat.attack_animation_timer > timer)
-        timer = p->combat.attack_animation_timer;
-    return timer;
 }
 
 static float face_angle_between_tiles(int from_x, int from_y,
@@ -4180,13 +4841,13 @@ enum {
 static int player_target_anim_id(ViewerState *v, int *one_shot_kind) {
     const RcPlayer *p = &v->world->player;
     if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_NONE;
-    if (p->action_anim_timer > 0 && p->action_anim_id > 0)
+    if (v->player_action_anim_timer > 0 && v->player_action_anim_id > 0)
     {
         if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_ACTION;
-        return player_anim_or_fallback(v, (uint32_t)p->action_anim_id,
+        return player_anim_or_fallback(v, (uint32_t)v->player_action_anim_id,
                                        ANIM_IDLE);
     }
-    if (player_attack_anim_timer(p) > 0 && !v->player_attack_anim_suppressed) {
+    if (v->player_attack_anim_timer > 0 && !v->player_attack_anim_suppressed) {
         int weapon_id = p->equipment[EQUIP_WEAPON].item_id;
         int attack_anim = ANIM_ATTACK_UNARMED;
         if (p->combat.combat_class == RC_COMBAT_CLASS_MAGIC)
@@ -4200,8 +4861,11 @@ static int player_target_anim_id(ViewerState *v, int *one_shot_kind) {
         else if (weapon_id == 1381)
             attack_anim = ANIM_ATTACK_STAFF;
         if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_ATTACK;
-        return player_core_attack_anim_or_fallback(
-            v, player_anim_or_fallback(v, attack_anim, ANIM_IDLE));
+        int fallback = player_anim_or_fallback(v, attack_anim, ANIM_IDLE);
+        return v->player_attack_anim_id > 0
+             ? player_anim_or_fallback(v, (uint32_t)v->player_attack_anim_id,
+                                       fallback)
+             : fallback;
     }
     return player_base_anim_id(v);
 }
@@ -4537,9 +5201,11 @@ static void handle_input(ViewerState *v, int ui_capture) {
             int option = hover.option >= 0 ? hover.option
                                            : object_first_action_option(object);
             if (option >= 0) {
-                rc_player_interact_object_placement(
+                if (rc_player_interact_object_placement(
                     v->world, object.obj_id, object.x, object.y,
-                    object.plane, object.placement_key, option);
+                    object.plane, object.placement_key, option)) {
+                    viewer_start_object_action_visual(v, object, option);
+                }
             } else {
                 route_player_to(v, object.x, object.y);
             }
@@ -4573,54 +5239,11 @@ static void handle_input(ViewerState *v, int ui_capture) {
     }
 }
 
-static void process_movement(ViewerState *v, int *moved) {
-    RcWorld *world = v->world;
-    static int logged = 0;
-    RcPlayer *p = &world->player;
-    *moved = 0;
-    if (p->route_idx >= p->route_len) return;
-
-    // One-time sanity check: is collision data actually present?
-    if (!logged) {
-        logged = 1;
-        fprintf(stderr, "DEBUG: map.region_count=%d\n", world->map.region_count);
-        // Check known blocked tile
-        uint32_t f = rc_get_flags(&world->map, 3210, 3426, p->plane);
-        fprintf(stderr, "DEBUG: flags at (3210,3426) = 0x%08X (expect non-zero)\n", f);
-    }
-
-    int steps = p->running ? 2 : 1;
-    for (int s = 0; s < steps && p->route_idx < p->route_len; s++) {
-        int nx = p->route_x[p->route_idx];
-        int ny = p->route_y[p->route_idx];
-        int dx = nx - p->x, dy = ny - p->y;
-        if (dx > 1) dx = 1; if (dx < -1) dx = -1;
-        if (dy > 1) dy = 1; if (dy < -1) dy = -1;
-
-        int can = rc_can_move(&world->map, p->x, p->y, dx, dy, p->plane);
-        if (can) {
-            p->x += dx; p->y += dy;
-            // atan2(dx, dy) gives world-space angle. Negate because Z is flipped in rendering.
-            v->player_facing_angle = atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
-            *moved = 1;
-        } else {
-            uint32_t dest_f = rc_get_flags(&world->map, p->x + dx, p->y + dy,
-                                           p->plane);
-            fprintf(stderr, "BLOCKED (%d,%d)->(%d,%d) dest=0x%08X\n",
-                    p->x, p->y, p->x+dx, p->y+dy, dest_f);
-            p->route_len = 0;
-            break;
-        }
-        if (p->x == nx && p->y == ny) p->route_idx++;
-    }
-}
-
 // Apply animation frame to player model
 static void update_player_anim(ViewerState *v) {
     if (!v->anims) return;
 
-    const RcPlayer *p = &v->world->player;
-    int attack_timer = player_attack_anim_timer(p);
+    int attack_timer = v->player_attack_anim_timer;
     if (attack_timer <= 0) {
         v->player_attack_timer_seen = 0;
         v->player_attack_anim_suppressed = 0;
@@ -4707,6 +5330,10 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
         return 0;
     const RcNpc *n = &v->world->npcs[npc_idx];
     const RcNpcDef *def = &g_npc_defs[n->def_id];
+    const RuneCNpcRenderDef *render_def =
+        runec_npc_render_find(&v->npc_render_defs, def->id);
+    if (!render_def)
+        return 0;
     AnimModelState *state = v->npc_anim_state[n->def_id];
     if (!state) return 0;
 
@@ -4714,17 +5341,22 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
     // attack, death are -1 on most non-combat NPCs, so fall back to walk/stand.
     int moved_last_tick = v->npc_render[npc_idx].moving
                         || v->npc_render[npc_idx].move_anim_timer > 0.0f;
-    int target = def->stand_anim;
+    int target = render_def->stand_anim;
     int attack_anim_active = 0;
-    if (n->is_dead && def->death_anim >= 0)       target = def->death_anim;
-    else if (n->attack_anim_timer > 0) {
-        attack_anim_active = 1;
-        if (n->combat.attack_animation_id > 0)
-            target = n->combat.attack_animation_id;
-        else
-            target = def->attack_anim >= 0 ? def->attack_anim : target;
+    if (n->is_dead && render_def->death_anim >= 0) {
+        target = render_def->death_anim;
     }
-    else if (moved_last_tick && def->walk_anim >= 0) target = def->walk_anim;
+    else if (v->npc_render[npc_idx].attack_anim_timer > 0) {
+        attack_anim_active = 1;
+        if (v->npc_render[npc_idx].attack_anim_id > 0)
+            target = v->npc_render[npc_idx].attack_anim_id;
+        else
+            target = render_def->attack_anim >= 0
+                ? render_def->attack_anim : target;
+    }
+    else if (moved_last_tick && render_def->walk_anim >= 0) {
+        target = render_def->walk_anim;
+    }
     if (target < 0) return 0;
 
     // Detect anim change → reset frame / timer.
@@ -5088,6 +5720,8 @@ int main(void) {
         v.scene_radius_regions = 0;
     if (!runtime_data_available())
         return 1;
+    const char *combat_visuals_path = env_path("RUNEC_COMBAT_VISUALS",
+        "data/defs/combat_visuals.tsv");
 
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_EQUIPMENT | RC_SUB_LOOT |
@@ -5098,8 +5732,8 @@ int main(void) {
     cfg.items_path = env_path("RUNEC_ITEMS", "data/defs/items.bin");
     cfg.prayers_path = env_path("RUNEC_PRAYERS", "data/defs/prayers.bin");
     cfg.spells_path = env_path("RUNEC_SPELLS", "data/defs/spells.bin");
-    cfg.combat_visuals_path = env_path("RUNEC_COMBAT_VISUALS",
-        "data/defs/combat_visuals.tsv");
+    cfg.combat_profiles_path = env_path("RUNEC_COMBAT_PROFILES",
+        combat_visuals_path);
     cfg.monster_mechanics_path = env_path("RUNEC_MONSTER_MECHANICS",
         "data/defs/regular_npc_mechanics.bin");
     cfg.activity_schemas_path = env_path("RUNEC_ACTIVITY_SCHEMAS",
@@ -5133,6 +5767,9 @@ int main(void) {
     cfg.seed = 12345;
     v.world = rc_world_create_config(&cfg);
     if (!v.world) { fprintf(stderr, "Failed to create world\n"); return 1; }
+    runec_npc_render_defs_load(&v.npc_render_defs, cfg.npc_defs_path);
+    runec_object_action_visuals_load(&v.object_action_visuals,
+                                     cfg.object_behaviors_path);
     // Register all OSRS content modules (boss scripts, etc.). See
     // rc-content/README.md for the engine/content split.
     rc_content_register_all(v.world);
@@ -5157,6 +5794,7 @@ int main(void) {
     SetTargetFPS(60);
     runec_ui_init(&v.ui);
     viewer_sync_dev_transport_labels(&v.ui);
+    rc_load_combat_visuals(combat_visuals_path);
     fprintf(stderr,
             "render profile: %s color_lift=%s msaa=%s camera_pitch=%.3f "
             "camera_dist=%.1f camera_fov=%.1f\n",
@@ -5284,6 +5922,7 @@ int main(void) {
         "data/defs/spotanims.bin"));
     runec_item_render_map_load(&v.item_render_map, env_path("RUNEC_ITEM_RENDER_MAP",
         "data/models/item_render.map"));
+    runec_item_def_render_map_load(&v.item_def_render_map, cfg.items_path);
     load_item_stack_variants(&v, env_path("RUNEC_ITEM_STACK_VARIANTS",
         "data/sprites/items/item_stack_variants.tsv"));
     create_item_anim_states(&v);
@@ -5293,6 +5932,12 @@ int main(void) {
     if (!v.anims) {
         v.anims = anim_cache_load(env_path("RUNEC_FALLBACK_ANIMS",
             "data/anims/all.anims"));
+    }
+    {
+        const char *object_anim_path = env_path("RUNEC_OBJECT_ANIMS",
+            "data/anims/object.anims");
+        if (rc_asset_exists(object_anim_path))
+            v.object_anim_cache = anim_cache_load(object_anim_path);
     }
 
     if (v.player_model && v.player_model->loaded && v.player_model->entries[0].loaded) {
@@ -5521,7 +6166,10 @@ int main(void) {
                 int old_plane = v.world->player.plane;
                 viewer_apply_god_mode(&v);
                 rc_world_tick(v.world);
-                debug_log_combat_visual_events(&v);
+                viewer_tick_combat_projectiles(&v);
+                viewer_tick_attack_anims(&v);
+                viewer_capture_combat_attack_events(&v);
+                debug_log_combat_attack_events(&v);
                 viewer_apply_god_mode(&v);
                 v.player_moving = old_x != v.world->player.x ||
                                   old_y != v.world->player.y;
@@ -5578,10 +6226,12 @@ cleanup:
     models_free(v.projectile_models);
     spotanims_free(v.spotanims);
     runec_item_render_map_free(&v.item_render_map);
+    runec_item_def_render_map_free(&v.item_def_render_map);
     anim_model_state_free(v.anim_state);
     for (int i = 0; i < RC_MAX_NPC_DEFS; i++)
         anim_model_state_free(v.npc_anim_state[i]);
     anim_cache_free(v.anims);
+    anim_cache_free(v.object_anim_cache);
     anim_cache_free(v.npc_anims);
     anim_cache_free(v.npc_fallback_anims);
     rc_world_destroy(v.world);

@@ -36,7 +36,12 @@ document first with the reasoning rather than quietly violating it.
 
 All three consume the same API. `rc-core` never knows which caller
 it has. If a feature requires the renderer to be present, it does
-not belong in `rc-core`.
+not belong in `rc-core`. Rendering, camera, UI, sprites, textures,
+model IDs, spotanim metadata, projectile visuals, and animation
+playback live in `rc-viewer`. When a generated gameplay binary also
+carries render metadata, core may consume and skip those bytes to
+preserve binary compatibility, but it must not expose them through
+core structs or APIs.
 
 The goal is one simulation implementation, not separate "game" and
 "sim" codepaths that drift apart.
@@ -60,7 +65,8 @@ subsystems**.
 
 ### Subsystems (individually opt-in)
 - **combat** — hit rolls, damage, pending-hit queue, protection
-  prayers, selected spell max-hit hints, and stable-id combat visual lookup
+  prayers, selected spell max-hit hints, hit-delay profiles, and logical
+  attack events for presentation consumers
 - **prayer** — data-backed active prayers, drain, conflicts, boosts
 - **equipment** — worn items, equipment bonuses, weapon stance
 - **inventory** — 28-slot inventory, stacks, item ops

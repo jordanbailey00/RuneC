@@ -72,7 +72,7 @@ static void test_player_view_exposes_ui_combat_state_and_target_hits(void) {
 
     rc_queue_hit_meta(npc->pending_hits, &npc->num_pending_hits,
                       5, 0, COMBAT_MELEE_CRUSH, -1, 0u,
-                      world->tick, 0, 10, 0);
+                      world->tick, 0, 10);
     rc_world_tick(world);
     assert(rc_combat_get_player_view(world, &view));
     assert(view.target_recent_hit_count == 1);
@@ -84,7 +84,7 @@ static void test_player_view_exposes_ui_combat_state_and_target_hits(void) {
     rc_queue_hit_meta(world->player.pending_hits,
                       &world->player.num_pending_hits,
                       2, 0, COMBAT_MELEE_CRUSH, npc->uid, 0u,
-                      world->tick, 0, 3, 0);
+                      world->tick, 0, 3);
     rc_world_tick(world);
     assert(rc_combat_get_player_view(world, &view));
     assert(view.player_recent_hit_count >= 1);
