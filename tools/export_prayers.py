@@ -1,22 +1,7 @@
 #!/usr/bin/env python3
-"""Emit data/defs/prayers.bin from current OSRS prayer metadata.
+"""Emit data/defs/prayers.bin from RuneC-owned prayer metadata.
 
-Sources:
-  - RuneLite PrayerType.java for ordering, drain units, overhead flags,
-    and live prayer set.
-  - RuneLite VarbitID.java for active-prayer varbit IDs.
-  - OSRS Wiki prayer pages for Deadeye/Mystic Vigour/Augury 2025+
-    effect details.
-
-Binary format — 'PRAY' magic:
-  magic u32 | version u32 | count u32
-  per prayer:
-    id u8 | level u8 | drain u8 | flags u8
-    varbit u16 | groups u16
-    attack i8 | strength i8 | defence i8
-    ranged_attack i8 | ranged_strength i8
-    magic_attack i8 | magic_defence i8 | magic_damage i8
-    name_len u8 + name[]
+Runtime schema: `schema/defs/prayers.schema.toml`.
 """
 from __future__ import annotations
 

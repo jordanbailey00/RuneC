@@ -183,7 +183,7 @@ static int rc_join_path(char *out, size_t cap, const char *a, const char *b) {
 
 static int rc_loose_path(char *out, size_t cap, const char *path) {
     if (!path || !path[0]) return 0;
-    if (rc_path_is_absolute(path) || rc_has_prefix(path, "data/")) {
+    if (rc_path_is_absolute(path)) {
         int n = snprintf(out, cap, "%s", path);
         return n > 0 && (size_t)n < cap;
     }
@@ -638,6 +638,42 @@ int rc_asset_exists(const char *path) {
     const char *logical = rc_asset_logical_path(path);
     if (rc_asset_try_pack() && rc_find_pack_entry(logical))
         return 1;
+    return 0;
+}
+
+int rc_asset_size(const char *path, uint64_t *out_size) {
+    if (out_size) *out_size = 0;
+    rc_asset_init();
+    char loose[2048];
+    if (rc_asset_try_loose_first()
+            && rc_loose_path(loose, sizeof(loose), path)) {
+        struct stat st;
+        if (stat(loose, &st) == 0 && S_ISREG(st.st_mode)) {
+            if (out_size) *out_size = (uint64_t)st.st_size;
+            return 1;
+        }
+        if (rc_path_is_absolute(path)
+                && rc_asset_logical_path(path) == path) {
+            return 0;
+        }
+    }
+
+    if (rc_asset_try_pack()) {
+        const RcPackEntry *entry = rc_find_pack_entry(rc_asset_logical_path(path));
+        if (entry) {
+            if (out_size) *out_size = entry->size;
+            return 1;
+        }
+    }
+
+    if (g_backend == RC_ASSET_BACKEND_PACK)
+        return 0;
+
+    struct stat st;
+    if (path && stat(path, &st) == 0 && S_ISREG(st.st_mode)) {
+        if (out_size) *out_size = (uint64_t)st.st_size;
+        return 1;
+    }
     return 0;
 }
 

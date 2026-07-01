@@ -13,7 +13,7 @@ Outputs:
   - data/regions/varrock.npc-spawns.bin         — NSPN, Varrock-only
   - tools/reports/spawn_coverage.txt            — cross-check report
 
-NSPN format (shared with export_npcs.py / rc-core/npc.c):
+NSPN format (loaded by rc-core/npc.c):
   magic(u32)='NSPN' version(u32) count(u32)
   per spawn: npc_id(u32) x(i32) y(i32) plane(u8) direction(u8) wander_range(u8)
 """
@@ -26,7 +26,7 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-from source_paths import DATA_OSRS
+from legacy_external_source_paths import DATA_OSRS
 
 NSPN_MAGIC = 0x4E53504E
 NSPN_VERSION = 2  # v2 adds flags byte (bit0=instance_only)
@@ -180,7 +180,7 @@ def main():
     # Varrock (drop-in for viewer)
     varrock = filter_bounds(spawns, VARROCK_BOUNDS)
     out_varrock = OUT / "regions/varrock.npc-spawns.bin"
-    # Keep current filename — replaces the 2011Scape-derived file.
+    # Keep the current filename for viewer/runtime compatibility.
     write_nspn(out_varrock, varrock)
     print(f"  Varrock: {len(varrock)} spawns → {out_varrock}",
           file=sys.stderr)

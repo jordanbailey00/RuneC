@@ -1,0 +1,70 @@
+# Yama — 2025 demonic boss. Hell-gate arena with lava-floor hazards,
+# fire orbs, and a charged voidwaker-grabbing mechanic.
+
+name = "Yama"
+slug = "yama"
+npc_ids = [14176]
+source_pages = ["Yama", "Yama/Strategies"]
+
+[[attacks]]
+name = "Sword Swing"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 45
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged Fireball"
+style = "ranged"
+max_hit = 35
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Shadowbolt"
+style = "magic"
+max_hit = 35
+warning_ticks = 2
+
+[[attacks]]
+name = "Flame Spew"
+# Cone-AoE flame breath.
+style = "dragonfire"
+max_hit = 50
+warning_ticks = 3
+aoe_shape = "cone_length_5"
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Sword Swing", "Ranged Fireball",
+                   "Magic Shadowbolt", "Flame Spew"]
+# Yama cycles through all three styles; player must pray-flick.
+
+[[phases]]
+id = "enraged"
+enter_at_hp_pct = 33
+script = "yama_enrage"
+allowed_attacks = ["Sword Swing", "Ranged Fireball",
+                   "Magic Shadowbolt", "Flame Spew", "Void Grab"]
+attack_cycle_ticks = 3            # faster in enrage
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Lava Pools"
+primitive = "dot_tile_placement"
+period_ticks = 10
+params.pool_count = 4
+params.pools_on_player = 1
+params.pools_random = 3
+params.dot_per_tick = 12
+
+[[mechanics]]
+name = "Void Grab"
+primitive = "telegraphed_aoe_tile"
+trigger = "phase_in:enraged"
+period_ticks = 15
+params.target_current_tile = true
+params.warning_ticks = 2
+params.damage_min = 40
+params.damage_max = 60

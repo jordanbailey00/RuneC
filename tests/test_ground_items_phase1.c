@@ -90,7 +90,6 @@ static void test_nonstackable_quantity_splits(void) {
 }
 
 static void test_stale_generation_cancels_pickup(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase1_world();
     RcPlayer *p = &world->player;
 

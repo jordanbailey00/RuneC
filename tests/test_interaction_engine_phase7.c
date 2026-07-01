@@ -58,7 +58,6 @@ static void tick_until_inactive(RcWorld *world, int max_ticks) {
 }
 
 static void test_object_routes_faces_and_dispatches_custom_handler(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = phase7_skilling_config();
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
@@ -73,8 +72,8 @@ static void test_object_routes_faces_and_dispatches_custom_handler(void) {
     key.kind = RC_INTERACTION_OBJECT;
     key.op = RC_INTERACTION_OP1;
     key.definition_id = obj_id;
-    assert(rc_interaction_register_handler(&key, phase7_complete_handler,
-                                           &state));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase7_complete_handler, &state));
 
     assert(rc_player_interact_object_at(world, obj_id, obj_x, obj_y,
                                         world->player.plane, 0));
@@ -97,7 +96,6 @@ static void test_object_routes_faces_and_dispatches_custom_handler(void) {
 }
 
 static void test_default_object_handler_runs_after_arrival(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = phase7_skilling_config();
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
@@ -120,7 +118,6 @@ static void test_default_object_handler_runs_after_arrival(void) {
 }
 
 static void test_ground_item_routes_faces_and_takes(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_LOOT;
     cfg.items_path = ITEM_PATH;
@@ -154,7 +151,6 @@ static void test_ground_item_routes_faces_and_takes(void) {
 }
 
 static void test_stale_ground_item_cancels_cleanly(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_INVENTORY | RC_SUB_LOOT;
     cfg.items_path = ITEM_PATH;
@@ -183,7 +179,6 @@ static void test_stale_ground_item_cancels_cleanly(void) {
 }
 
 static void test_object_no_handler_fallback_still_exists(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
@@ -219,6 +214,5 @@ int main(void) {
     test_ground_item_routes_faces_and_takes();
     test_stale_ground_item_cancels_cleanly();
     test_object_no_handler_fallback_still_exists();
-    rc_interaction_clear_handlers();
     return 0;
 }

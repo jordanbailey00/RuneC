@@ -4,7 +4,7 @@
 Confirms the reference repos cloned in Phase 0 are loadable and expose
 the fields our exporters need.
 
-Provides typed accessors that other exporters (`export_npcs.py`,
+Provides typed accessors that exporters (`export_npc_defs_full.py`,
 `export_items.py`, ...) consume:
 
     from database_sources import OsrsreboxedDB, DataOsrs
@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 from typing import Any
 
-from source_paths import DATA_OSRS, OSRSREBOXED
+from legacy_external_source_paths import DATA_OSRS, OSRSREBOXED
 
 
 class OsrsreboxedDB:
@@ -196,7 +196,7 @@ class DataOsrs:
 
     def npc_spawns(self) -> list[dict[str, Any]]:
         """All NPC spawn records. Each has id, name, x, y, p (plane).
-        Use as supplementary source alongside 2011Scape + wiki SpawnLines."""
+        Use as the active OSRS-native static spawn source with wiki cross-checks."""
         if self._npc_list is None:
             with self.npc_list_path.open() as f:
                 self._npc_list = json.load(f)

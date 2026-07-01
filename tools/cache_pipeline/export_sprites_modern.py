@@ -27,7 +27,6 @@ except ImportError:
     decompress_container = None
 
 SPRITE_INDEX = 8
-GRAPHIC_SYMBOLS = Path("tools/cache_pipeline/source/osrs-dumps/symbols/graphic.sym")
 
 
 def sanitize_name(name: str) -> str:
@@ -50,12 +49,15 @@ def _add(mapping: dict[int, list[str]], sprite_id: int, *names: str) -> None:
             bucket.append(safe)
 
 
-def add_graphic_symbol_aliases(mapping: dict[int, list[str]]) -> None:
+def add_graphic_symbol_aliases(
+    mapping: dict[int, list[str]],
+    graphic_symbols: Path | None,
+) -> None:
     """Add b237 dump aliases for dynamic UI sprites such as spell icons."""
 
-    if not GRAPHIC_SYMBOLS.exists():
+    if graphic_symbols is None or not graphic_symbols.exists():
         return
-    for raw_line in GRAPHIC_SYMBOLS.read_text(encoding="utf-8").splitlines():
+    for raw_line in graphic_symbols.read_text(encoding="utf-8").splitlines():
         line = raw_line.strip()
         if not line or "\t" not in line:
             continue
@@ -72,7 +74,7 @@ def add_graphic_symbol_aliases(mapping: dict[int, list[str]]) -> None:
             _add(mapping, sprite_id, f"standard_spell_off_{frame}")
 
 
-def build_sprite_map() -> dict[int, list[str]]:
+def build_sprite_map(graphic_symbols: Path | None = None) -> dict[int, list[str]]:
     sprites: dict[int, list[str]] = {}
 
     _add(sprites, 897, "tradebacking_dark")
@@ -238,7 +240,7 @@ def build_sprite_map() -> dict[int, list[str]]:
         _add(sprites, sprite_id, f"prayeroff_{frame}")
     _add(sprites, 944, "prayeron_24")
     _add(sprites, 948, "prayeroff_24")
-    add_graphic_symbol_aliases(sprites)
+    add_graphic_symbol_aliases(sprites, graphic_symbols)
 
     return sprites
 
@@ -375,11 +377,16 @@ def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--cache", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument(
+        "--graphic-symbols",
+        type=Path,
+        help="optional explicit graphic.sym path for additional sprite aliases",
+    )
     args = parser.parse_args(argv)
 
     args.output.mkdir(parents=True, exist_ok=True)
     reader = select_reader(args.cache)
-    sprites = build_sprite_map()
+    sprites = build_sprite_map(args.graphic_symbols)
 
     ok = 0
     failed = 0

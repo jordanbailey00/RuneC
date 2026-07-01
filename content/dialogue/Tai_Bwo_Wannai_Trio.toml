@@ -1,0 +1,8341 @@
+title = "Transcript:Tai Bwo Wannai Trio"
+npcs = ["Timfraku", "Tiadeche", "Tamayu", "Lubufu", "Tinsay"]
+node_count = 1071
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Timfraku"
+text = "I am the Chief of Tai Bwo Wannai Village! Who dares set foot in my hut?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "I am a roving adventurer."
+parent = -1
+children = [3, 4, 5]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am a roving adventurer."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Well then adventurer, you would do better to rove elsewhere."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "act"
+text = "continue"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "I am a travelling explorer."
+parent = -1
+children = [7, 8, 9]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am a travelling explorer."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Well then explorer, you would do better to travel elsewhere."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "act"
+text = "continue"
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "option"
+text = "I am a wandering wayfarer."
+parent = -1
+children = [11, 12, 13]
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am a wandering wayfarer."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Well then wayfarer, you would do better to wander elsewhere."
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "act"
+text = "continue"
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "Who me? Oh I'm just a nobody."
+parent = -1
+children = [15, 16, 17, 18, 34, 37]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who me? Oh I'm just a nobody."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Well then NoBody{{sic|Spelled Nobody?}}, you would do better to go elsewhere."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "option"
+text = "Why should I leave?"
+parent = 14
+children = [19, 20, 21, 22, 26, 30]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why should I leave?"
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "This place has been cursed. Our people have angered the gods and have fled the village."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 18
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "option"
+text = "Where is this place?"
+parent = 18
+children = [23, 24, 25]
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where is this place?"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Timfraku"
+text = "You ask too many questions. Now begone!"
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "option"
+text = "Who are the gods?"
+parent = 18
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who are the gods?"
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "speaker"
+speaker = "Timfraku"
+text = "You ask too many questions. Now begone!"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "option"
+text = "Where have your people fled to?"
+parent = 18
+children = [31, 32, 33]
+
+[[nodes]]
+id = 31
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where have your people fled to?"
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "speaker"
+speaker = "Timfraku"
+text = "You ask too many questions. Now begone!"
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "act"
+text = "end"
+parent = 30
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "option"
+text = "Right, I'm going then."
+parent = 14
+children = [35, 36]
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right, I'm going then."
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "Trufitus sent me."
+parent = 14
+children = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 64, 66, 70]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Trufitus sent me."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "Trufitus Shakaya? What news does he send?"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Trufitus has communed with the gods. Your village was never cursed and your people are free to return."
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "Bwana, do you speak the truth?"
+parent = 37
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I helped Trufitus gather ingredients for a commune potion."
+parent = 37
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "other"
+text = "{{mes|Timfraku appears to concentrate very deeply.}}"
+parent = 37
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "Then it must be true."
+parent = 37
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "I cannot thank you enough for what you have done so far."
+parent = 37
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 37
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "option"
+text = "Your gratitude is all I deserve."
+parent = 37
+children = [48, 49, 50, 51, 52, 53, 54, 60]
+
+[[nodes]]
+id = 48
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Your gratitude is all I deserve."
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 4
+kind = "speaker"
+speaker = "Timfraku"
+text = "No, Bwana, you deserve much more."
+parent = 47
+
+[[nodes]]
+id = 50
+depth = 4
+kind = "speaker"
+speaker = "Timfraku"
+text = "I now ask you to do one last thing for our village."
+parent = 47
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "And what is that?"
+parent = 47
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "speaker"
+speaker = "Timfraku"
+text = "I ask you to deliver the good news to my three sons Tamayu, Tinsay & Tiadeche, and then return them to the village."
+parent = 47
+
+[[nodes]]
+id = 53
+depth = 4
+kind = "select"
+text = "Start the Tai Bwo Wannai Trio quest?"
+parent = 47
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "option"
+text = "Yes."
+parent = 47
+children = [55, 56, 57, 58, 59]
+
+[[nodes]]
+id = 55
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll do it."
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 5
+kind = "speaker"
+speaker = "Timfraku"
+text = "Thank you very much. I shall reward you greatly if you succeed."
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "If I succeed? How hard can it be?"
+parent = 54
+
+[[nodes]]
+id = 58
+depth = 5
+kind = "speaker"
+speaker = "Timfraku"
+text = "We shall see, Bwana."
+parent = 54
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "option"
+text = "No."
+parent = 47
+children = [61, 62, 63]
+
+[[nodes]]
+id = 61
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "No, I've had quite enough of the jungle already."
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 5
+kind = "speaker"
+speaker = "Timfraku"
+text = "Very well. Return when you are ready."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 5
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "option"
+text = "Well, some gold would be nice."
+parent = 37
+children = [65]
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "act"
+text = "above"
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "option"
+text = "So far??"
+parent = 37
+children = [67, 68, 69]
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So far??"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "speaker"
+speaker = "Timfraku"
+text = "I now ask you to do one last thing for our village."
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 4
+kind = "act"
+text = "above"
+parent = 66
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "option"
+text = "Ask about Village."
+parent = 37
+children = [71, 72, 75, 80, 87]
+
+[[nodes]]
+id = 71
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "option"
+text = "What do you do here?"
+parent = 70
+children = [73, 74]
+
+[[nodes]]
+id = 73
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "What do you do here?"
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 5
+kind = "speaker"
+speaker = "Timfraku"
+text = "It should be clear to anyone that I am the chief of Tai Bwo Wannai. I ensure that things run smoothly in this village."
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "option"
+text = "Is there anything interesting to do here?"
+parent = 70
+children = [76, 77, 78, 79]
+
+[[nodes]]
+id = 76
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything interesting to do here?"
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 5
+kind = "speaker"
+speaker = "Timfraku"
+text = """
+Yes Bwana, plenty of interesting things to do. Firstly you could make an effort to tidy the place up a little. Equip yourself with a machete and start cutting down the jungle that seems to be growing all around here.
+"""
+parent = 75
+
+[[nodes]]
+id = 78
+depth = 5
+kind = "speaker"
+speaker = "Timfraku"
+text = "Go and have a chat with Murcaily for information, he's tending the hardwood grove to the east of here."
+parent = 75
+
+[[nodes]]
+id = 79
+depth = 5
+kind = "act"
+text = "initial"
+parent = 75
+
+[[nodes]]
+id = 80
+depth = 4
+kind = "option"
+text = "I've been doing some work around the village."
+parent = 70
+children = [81, 82, 85]
+
+[[nodes]]
+id = 81
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I've been doing some work around the village."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 5
+kind = "cond"
+text = "If the player has not been doing the [[Tai Bwo Wannai Cleanup]] tasks:"
+parent = 80
+children = [83, 84]
+
+[[nodes]]
+id = 83
+depth = 6
+kind = "speaker"
+speaker = "Timfraku"
+text = "That's good Bwana, I would hate to think that you were just being lazy while you're in my kingdom!"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 6
+kind = "act"
+text = "initial"
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 5
+kind = "cond"
+text = "If the player has completed at least one task from the Tai Bwo Wannai Cleanup task list:"
+parent = 80
+children = [86]
+
+[[nodes]]
+id = 86
+depth = 6
+kind = "other"
+text = "{{tmissing}}"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 4
+kind = "option"
+text = "Ok, thanks."
+parent = 70
+children = [88, 89]
+
+[[nodes]]
+id = 88
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Ok, thanks."
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 5
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Timfraku"
+text = "Are you ready to help me?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do I have to do?"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Timfraku"
+text = "I ask you to deliver the good news to my three sons Tamayu, Tinsay & Tiadeche, and then return them to the village."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "act"
+text = "Shows quest start confirmation"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "cond"
+text = "If the player says they are a roving adventurer:"
+parent = -1
+children = [95, 96]
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Welcome back, roving adventurer."
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "act"
+text = "continue"
+parent = 94
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "cond"
+text = "If the player says they are a travelling explorer:"
+parent = -1
+children = [98, 99]
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Welcome back, travelling explorer."
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "continue"
+parent = 97
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "cond"
+text = "If the player says they are a wandering wayfarer:"
+parent = -1
+children = [101, 102]
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Welcome back, wandering wayfarer."
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "act"
+text = "continue"
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "cond"
+text = "If the player says they are a \"Nobody\":"
+parent = -1
+children = [104, 105]
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Welcome back, Nobody."
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "act"
+text = "continue"
+parent = 103
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "Can you tell me more about your sons?"
+parent = -1
+children = [108, 109, 110, 111, 115, 121, 127]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about your sons?"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "My first son is Tamayu. After him was born Tinsay. And after him was born Tiadeche."
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 107
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "option"
+text = "Can you tell me more about Tamayu?"
+parent = 107
+children = [112, 113, 114]
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about Tamayu?"
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "Tamayu was a natural born hunter. He killed his first monkey at the age of three!"
+parent = 111
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "act"
+text = "Shows initial brother queries"
+parent = 111
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "option"
+text = "Can you tell me more about Tinsay?"
+parent = 107
+children = [116, 117, 118, 119, 120]
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about Tinsay?"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "Tinsay was brought up to be a priest. Be careful with him - he has acted strange since the accident."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What accident?"
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "It involved Jogres. We don't talk about it."
+parent = 115
+
+[[nodes]]
+id = 120
+depth = 3
+kind = "act"
+text = "Shows initial brother queries"
+parent = 115
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "option"
+text = "Can you tell me more about Tiadeche?"
+parent = 107
+children = [122, 123, 124, 125, 126]
+
+[[nodes]]
+id = 122
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about Tiadeche?"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "Tiadeche always wanted to hunt fish. However, he has not had much success."
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How come?"
+parent = 121
+
+[[nodes]]
+id = 125
+depth = 3
+kind = "speaker"
+speaker = "Timfraku"
+text = "He needs to improve his technique - but he does not heed my advice."
+parent = 121
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "act"
+text = "Shows initial brother queries"
+parent = 121
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "option"
+text = "{{colour|#0000ff|Return to previous menu"
+parent = 107
+children = [128]
+
+[[nodes]]
+id = 128
+depth = 3
+kind = "act"
+text = "initial"
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "Where can I find your sons?"
+parent = -1
+children = [130, 131, 132]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find your sons?"
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "On our island of Karamja. They will not have fled far."
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "initial"
+parent = 129
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "option"
+text = "Is there anything I need?"
+parent = -1
+children = [134, 135, 136, 137]
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything I need?"
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Patience, Bwana, patience."
+parent = 133
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "And good conversation skills."
+parent = 133
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "act"
+text = "initial"
+parent = 133
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "I'll be back later."
+parent = -1
+children = [139, 140]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back later."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "Ask about Village."
+parent = -1
+children = [142]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "act"
+text = "Shows previous village questions."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "other"
+text = "{{mes|You do not have permission to enter here{{sic|No full stop.}}}}"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you Tiadeche?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I am."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Tiadeche, I bring good news. Trufitus has communed with the gods -  your village is once again safe."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your father requests that you return to the village."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I will return only when I have caught a Karambwan."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "option"
+text = "What is a Karambwan?"
+parent = -1
+children = [152, 153, 154, 155]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is a Karambwan?"
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "You don't know? The Karambwan is a species of octopus native to these waters."
+parent = 151
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "They have a monopoly on its sale in the pirate town of Brimhaven."
+parent = 151
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "act"
+text = "initial"
+parent = 151
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "option"
+text = "When will you be finished?"
+parent = -1
+children = [157, 158, 159, 160, 161]
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "When will you be finished?"
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "At this rate, it could take forever."
+parent = 156
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "We don't have forever."
+parent = 156
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Sometimes, oblivion is all I crave..."
+parent = 156
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "act"
+text = "initial"
+parent = 156
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "option"
+text = "Is there anything I can do to help?"
+parent = -1
+children = [163, 164, 165, 166, 167]
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything I can do to help?"
+parent = 162
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I just don't know. You can try."
+parent = 162
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What would you have me do?"
+parent = 162
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Something ... helpful?"
+parent = 162
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "act"
+text = "end"
+parent = 162
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "option"
+text = "How are you fishing for the Karambwan?"
+parent = -1
+children = [169, 170, 171, 172, 173]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How are you fishing for the Karambwan?"
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I'm trying to catch them with a net as they swim by."
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And ... ?"
+parent = 168
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "They keep fighting loose of the twining."
+parent = 168
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "act"
+text = "initial"
+parent = 168
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "cond"
+text = "If the player uses a raw, cooked, or poisoned Karambwan on Tiadeche:"
+parent = -1
+children = [175, 176]
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I refuse to take your offerings. I must catch this Karambwan myself."
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "act"
+text = "end"
+parent = 174
+is_terminal = true
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "cond"
+text = "If the player gives Tiadeche an empty Karambwan vessel:"
+parent = -1
+children = [178, 179, 180, 181, 182, 183, 184, 185, 186]
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tiadeche, instead of using your net, try using this vessel."
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "box"
+text = "pic=Karambwan vessel detail.png|You hand over the Karambwan vessel to Tiadeche."
+parent = 177
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "What is it?"
+parent = 177
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It has been specially constructed to catch Karambwan. Once they enter it, they cannot return.."
+parent = 177
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "As you say, Bwana."
+parent = 177
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "other"
+text = "{{mes|Tiadeche attempts to use the Karambwan vessel.}}"
+parent = 177
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "This vessel is useless! The Karambwan are not even interested in entering it!"
+parent = 177
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "act"
+text = "receives=the Karambwan vessel back"
+parent = 177
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "act"
+text = "end"
+parent = 177
+is_terminal = true
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "cond"
+text = "If the player gives Tiadeche a raw Karambwanji:"
+parent = -1
+children = [188, 189, 190, 191, 192, 193, 194]
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've been told that the Karambwan feed only on the Karambwanji. This will make good bait."
+parent = 187
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "box"
+text = "pic=Raw karambwanji detail.png|You hand over a raw Karambwanji to Tiadeche."
+parent = 187
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "The Holy Friend? Bwana, it is sacrilege to feed these fish to Karambwan!"
+parent = 187
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Just try it."
+parent = 187
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "other"
+text = "{{mes|Tiadeche hesitates, then loads the Karambwanji in his net.}}"
+parent = 187
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "This attracts many more Karambwan, but they still break free of the net."
+parent = 187
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "act"
+text = "end"
+parent = 187
+is_terminal = true
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "cond"
+text = "If the player gives Tiadeche a Karambwan vessel with a raw Karambwanji inside:"
+parent = -1
+children = [196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 213, 217, 218, 219, 220, 221, 222, 223, 224, 225]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tiadeche, instead of using your net, try using this vessel."
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "box"
+text = "pic=Karambwan vessel (baited) detail.png|You hand over the Karambwan vessel to Tiadeche."
+parent = 195
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "What is it?"
+parent = 195
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It has been specially constructed to catch Karambwan. Once they enter it, they cannot return.."
+parent = 195
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Also, it has been loaded with Karambwanji. The Karambwan will not be able to resist this bait."
+parent = 195
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "As you say, Bwana."
+parent = 195
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Bwana! I cannot believe my eyes!"
+parent = 195
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I, Tiadeche, who would never amount to anything, have managed to trap a Karambwan!"
+parent = 195
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Let me offer to you my first catch as a sign of gratitude."
+parent = 195
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "select"
+text = "Accept Tiadeche's offer?"
+parent = 195
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 195
+children = [207, 208, 209, 210, 211, 212]
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "box"
+text = "pic=Raw karambwan detail.png|Tiadeche hands you his first catch!"
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "act"
+text = "receives=a Raw Karambwan (in the inventory or on the ground if no inventory space)"
+parent = 206
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Your father would be proud."
+parent = 206
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Hmph ... my father would not care."
+parent = 206
+
+[[nodes]]
+id = 211
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Speaking of your father, can we make way to the village? He awaits your return."
+parent = 206
+
+[[nodes]]
+id = 212
+depth = 3
+kind = "act"
+text = "Continues below"
+parent = 206
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "option"
+text = "No"
+parent = 195
+children = [214, 215, 216]
+
+[[nodes]]
+id = 214
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have no need for it, Tiadeche."
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We must return to the village now."
+parent = 213
+
+[[nodes]]
+id = 216
+depth = 3
+kind = "act"
+text = "Continues below"
+parent = 213
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I cannot return just yet. We witness the change of a turning tide. The secrets of the Karambwan are to be unlocked!"
+parent = 195
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 195
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Before I return, I must ask you to do one thing."
+parent = 195
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And that is?"
+parent = 195
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Take a Karambwan vessel to my brother Tinsay. He is the academic amongst us. Tell him I have asked him to study it so that we may craft more of its type."
+parent = 195
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have the vessel back then?"
+parent = 195
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I need this to practice with. Why don't you craft another one?"
+parent = 195
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I ... never mind."
+parent = 195
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "act"
+text = "end"
+parent = 195
+is_terminal = true
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "cond"
+text = "If the player has not received (another?) Karambwan"
+parent = -1
+children = [227, 228]
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I have caught another Karambwan! I think I ought to give it to you."
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "act"
+text = "receives=a raw Karambwan"
+parent = 226
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Have you taken the Karambwan vessel to Tinsay?"
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "cond"
+text = "If the player has done so:"
+parent = -1
+children = [231, 232, 233, 237]
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have."
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Did you ask for crafting instructions as I said?"
+parent = 230
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "cond"
+text = "If the player does not have the crafting manual:"
+parent = 230
+children = [234, 235, 236]
+
+[[nodes]]
+id = 234
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I did, but I think I've lost them..."
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 3
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Well go back and ask him to make another copy!"
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 3
+kind = "act"
+text = "end"
+parent = 233
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "cond"
+text = "If the player has the crafting manual:"
+parent = 230
+children = [238, 239, 240, 241, 242, 243, 244, 245, 246]
+
+[[nodes]]
+id = 238
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes. He gave me this."
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 3
+kind = "box"
+text = "pic=Crafting manual detail.png|You hand over the crafting manual to Tiadeche."
+parent = 237
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Thank you so much. You cannot understand what all of this means to me and our people."
+parent = 237
+
+[[nodes]]
+id = 241
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Will you return to the village now?"
+parent = 237
+
+[[nodes]]
+id = 242
+depth = 3
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Yes. I will do as I promised."
+parent = 237
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I am glad to hear this. Let us go."
+parent = 237
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Not yet. I will stay here a while to catch more Karambwan."
+parent = 237
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I will meet you in the village once you have helped my brothers and spoken to my father."
+parent = 237
+
+[[nodes]]
+id = 246
+depth = 3
+kind = "act"
+text = "end"
+parent = 237
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "cond"
+text = "If the player has not done so:"
+parent = -1
+children = [248, 249, 250]
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = 247
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Please hurry! Time is of the essence!"
+parent = 247
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "act"
+text = "end"
+parent = 247
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Tamayu, first son of Timfraku!"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "What do you want, stranger?"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Tamayu, I bring good news. Trufitus has communed with the gods -  your village is once again safe."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your father requests that you return to the village."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "Then know this, stranger."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "I vow upon the blood of my fallen kin that I shall not set foot in that godforsaken village till I have slain the Shaikahan."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You could slay it after we return to the village."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "No! Your pitiful whining tires me. Now let me prepare."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "Tell me more of the Shaikahan."
+parent = -1
+children = [262, 263, 267]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 261
+children = [264, 265, 266]
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more of the Shaikahan."
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "A source of indescribable evil. A beast more foul than your dreams could imagine. It hunts the jungle for anything foolish enough to cross its path."
+parent = 263
+
+[[nodes]]
+id = 266
+depth = 3
+kind = "act"
+text = "initial"
+parent = 263
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 261
+children = [268, 269, 270]
+
+[[nodes]]
+id = 268
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more of the Shaikahan."
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "It stands a full man's length in height. Its fore claws are sharp enough to rip through metal. In its eyes glow the embers of death."
+parent = 267
+
+[[nodes]]
+id = 270
+depth = 3
+kind = "act"
+text = "initial"
+parent = 267
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "option"
+text = "How long have you been hunting the Shaikahan?"
+parent = -1
+children = [272, 273]
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How long have you been hunting the Shaikahan?"
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "Since before I was born, stranger. It is my destiny."
+parent = 271
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "option"
+text = "When will you succeed?"
+parent = -1
+children = [275, 276, 277, 278, 285]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "When will you succeed?"
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "When the gods bless me with success. You may join me on my next hunt, but you may not take part."
+parent = 274
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "select"
+text = "Follow Tamayu on the next hunt?"
+parent = 274
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 274
+children = [279, 280, 281, 282, 283, 284]
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Lead the way."
+parent = 278
+
+[[nodes]]
+id = 280
+depth = 3
+kind = "act"
+text = "Tamayu attempts to defeat the [[Shahaikan]] with his bronze spear..."
+parent = 278
+
+[[nodes]]
+id = 281
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "Shaikhan is at present far too agile for me!"
+parent = 278
+
+[[nodes]]
+id = 282
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I cannot do enough damage with this spear..."
+parent = 278
+
+[[nodes]]
+id = 283
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "... and  it seems to be healing too quickly!"
+parent = 278
+
+[[nodes]]
+id = 284
+depth = 3
+kind = "act"
+text = "end"
+parent = 278
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "option"
+text = "No"
+parent = 274
+children = [286, 287]
+
+[[nodes]]
+id = 286
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps later, Tamayu, first son of Timfraku."
+parent = 285
+
+[[nodes]]
+id = 287
+depth = 3
+kind = "act"
+text = "end"
+parent = 285
+is_terminal = true
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "option"
+text = "I could slay the Shaikahan for you."
+parent = -1
+children = [289, 290, 291]
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I could slay the Shaikahan for you."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "You offer to kill the beast for me? Stop this nonsense, lest I kill you first. It is I who must avenge the death of my kin."
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "act"
+text = "end"
+parent = 288
+is_terminal = true
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "option"
+text = "Tell me more of the Shaikahan."
+parent = -1
+children = [294]
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "act"
+text = "above"
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "option"
+text = "How long have you been hunting the Shaikahan?"
+parent = -1
+children = [296]
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "act"
+text = "above"
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "option"
+text = "Take me on your next hunt for the Shaikahan."
+parent = -1
+children = [298, 299, 300]
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Take me on your next hunt for the Shaikahan."
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "Very well, but you must not interfere."
+parent = 297
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "act"
+text = "above"
+parent = 297
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "option"
+text = "I could slay the Shaikahan for you."
+parent = -1
+children = [302]
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "act"
+text = "above"
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "cond"
+text = "If the player uses the stuffed monkey or monkey corpse on Tamayu before he kills the Shaikahan:"
+parent = -1
+children = [304]
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "I'm not going to skin that! In the jungle, we help only those who help us."
+parent = 303
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "cond"
+text = "If the player hands a partially full agility potion on Tamayu before handing the better spear:"
+parent = -1
+children = [306, 307, 308, 309]
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've noticed you commenting on the Shaikahan's agility. Try drinking this potion."
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "cond"
+text = "If the Agility potion does not have four doses:"
+parent = 305
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "above"
+parent = 305
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "cond"
+text = "If the player asks to take them to his next battle:"
+parent = 305
+children = [310, 311, 312, 313]
+
+[[nodes]]
+id = 310
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I am beginning to match Shaikahan's agility!"
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I cannot do enough damage ..."
+parent = 309
+
+[[nodes]]
+id = 312
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "... and  it seems to be healing too quickly!"
+parent = 309
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "act"
+text = "end"
+parent = 309
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "cond"
+text = "If the player uses an iron or better spear on Tamayu:"
+parent = -1
+children = [315, 316, 317, 318, 319]
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tamayu, try using this weapon."
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "box"
+text = "pic=Iron spear detail.png|You hand the spear to Tamayu."
+parent = 314
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "Thank you Bwana. Now I must prepare for my next hunt."
+parent = 314
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "cond"
+text = "If the player asks to take them to their next hunt with the iron spear (or better):"
+parent = 314
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "other"
+text = "{{qact|A cutscene appears with Tamayu attacking the Shaikahan.}}"
+parent = 314
+children = [320, 321, 322, 323]
+
+[[nodes]]
+id = 320
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "Shaikhan is at present far too agile for me!"
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I can do enough damage ..."
+parent = 319
+
+[[nodes]]
+id = 322
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "... but  it seems to be healing too quickly!"
+parent = 319
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "act"
+text = "end"
+parent = 319
+is_terminal = true
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "cond"
+text = "If the player hands a partially full agility potion on Tamayu after handing the better spear:"
+parent = -1
+children = [325, 326, 331, 336, 341]
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've noticed you commenting on the Shaikahan's agility. Try drinking this potion."
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "cond"
+text = "If the Agility potion has one dose:"
+parent = 324
+children = [327, 328, 329, 330]
+
+[[nodes]]
+id = 327
+depth = 3
+kind = "box"
+text = "pic=Agility potion(1) detail.png|You hand over the agility potion to Tamayu."
+parent = 326
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "Thank you Bwana. Now I must prepare for my next hunt."
+parent = 326
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I feel much more agile, but I am not sure whether I can match the Shaikahan..."
+parent = 326
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "act"
+text = "end"
+parent = 326
+is_terminal = true
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "cond"
+text = "If the Agility potion has two doses:"
+parent = 324
+children = [332, 333, 334, 335]
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "box"
+text = "pic=Agility potion(2) detail.png|You hand over the agility potion to Tamayu."
+parent = 331
+
+[[nodes]]
+id = 333
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "Thank you Bwana. Now I must prepare for my next hunt."
+parent = 331
+
+[[nodes]]
+id = 334
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I feel much more agile, but I am not sure whether I can match the Shaikahan..."
+parent = 331
+
+[[nodes]]
+id = 335
+depth = 3
+kind = "act"
+text = "end"
+parent = 331
+is_terminal = true
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "cond"
+text = "If the Agility potion has three doses:"
+parent = 324
+children = [337, 338, 339, 340]
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "box"
+text = "pic=Agility potion(3) detail.png|You hand over the agility potion to Tamayu."
+parent = 336
+
+[[nodes]]
+id = 338
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "Thank you Bwana. Now I must prepare for my next hunt."
+parent = 336
+
+[[nodes]]
+id = 339
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I feel much more agile, but I am not sure whether I can match the Shaikahan..."
+parent = 336
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "act"
+text = "end"
+parent = 336
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "cond"
+text = "If the Agility potion has four doses:"
+parent = 324
+children = [342, 343, 344, 345]
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tamayu, I have brought you more{{sic|Should say ''a better'' agility potion}} agility potion."
+parent = 341
+
+[[nodes]]
+id = 343
+depth = 3
+kind = "box"
+text = "pic=Agility potion(4) detail.png|You hand over the agility potion to Tamayu."
+parent = 341
+
+[[nodes]]
+id = 344
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "Thank you Bwana. Now I must prepare for my next hunt."
+parent = 341
+
+[[nodes]]
+id = 345
+depth = 3
+kind = "speaker"
+speaker = "Tamayu"
+text = "I feel agile enough to finally match the Shaikahan!"
+parent = 341
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "cond"
+text = "If the player has brought a better spear and a four-dose Agility potion and wants to join the hunt again:"
+parent = -1
+children = [347, 348, 349, 350, 351]
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "other"
+text = "{{qact|A cutscene appears with Tamayu attacking the Shaikahan.}}"
+parent = 346
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "I have matched the Shaikahan in agility! He can no longer avoid my strikes!"
+parent = 346
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "I can do enough damage ..."
+parent = 346
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "... but  it seems to be healing too quickly!"
+parent = 346
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "act"
+text = "end"
+parent = 346
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "cond"
+text = "If the player brings a poisoned spear to Tamayu and joins the hunt:"
+parent = -1
+children = [353, 354, 355, 356, 357]
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "other"
+text = "{{qact|A cutscene appears with Tamayu attacking the Shaikahan.}}"
+parent = 352
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "I have matched the Shaikahan in agility! He can no longer avoid my strikes!"
+parent = 352
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "I can do enough damage ..."
+parent = 352
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "... and  it does seem quite sick! Perhaps another poison would be more effective?"
+parent = 352
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "act"
+text = "end"
+parent = 352
+is_terminal = true
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "cond"
+text = "If the player brings a poisoned Karambwan spear to Tamayu and joins the hunt:"
+parent = -1
+children = [359, 360, 361, 362, 363]
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "other"
+text = "{{qact|A cutscene appears with Tamayu attacking the Shaikahan.}}"
+parent = 358
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "{{overhead|The end approaches, Shaikahan!}}"
+parent = 358
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "{{overhead|Gods! Witness this triumph!}}"
+parent = 358
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "other"
+text = "{{qact|The cutscene ends as the Shaikahan is defeated.}}"
+parent = 358
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "act"
+text = "end"
+parent = 358
+is_terminal = true
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "I did it! I, Tamayu, first son of Timfraku, did slay the Shaikahan!"
+parent = -1
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "The deaths of my kin have been avenged. You are my witness."
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Worry not - I am your witness. Shall we return to the village now?"
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "Yes. Go on ahead without me. I have further matters to attend to here."
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "I will meet you in the village once you have helped my brothers and spoken to my father."
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "cond"
+text = "If the player uses the monkey corpse on Tamayu:"
+parent = -1
+children = [371, 372, 373, 374, 375]
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "Let me guess - you want me to skin that monkey. Very well: I shall, since you have assisted me."
+parent = 370
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "box"
+text = "pic=Monkey corpse detail.png|You hand over the monkey corpse to Tamayu."
+parent = 370
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "box"
+text = "pic=Monkey skin detail.png|Tamayu hands you some monkey skin and bones."
+parent = 370
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "act"
+text = "receives=Monkey skin and monkey bones"
+parent = 370
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "act"
+text = "end"
+parent = 370
+is_terminal = true
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "speaker"
+speaker = "Lubufu"
+text = "Watch where you're going, young whippersnapper!"
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "option"
+text = "I wasn't going anywhere..."
+parent = -1
+children = [378, 379, 380]
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I wasn't going anywhere..."
+parent = 377
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well then go away from here!"
+parent = 377
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "act"
+text = "end"
+parent = 377
+is_terminal = true
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "option"
+text = "What's a whippersnapper?"
+parent = -1
+children = [382, 383, 384]
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's a whippersnapper?"
+parent = 381
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "It's a whip. Which snaps. Like me. Now leave!"
+parent = 381
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "act"
+text = "end"
+parent = 381
+is_terminal = true
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [386, 387, 388, 389]
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "I am Lubufu - the only fisherman who knows the secret of the Karambwan!"
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's a Karambwan?"
+parent = 385
+
+[[nodes]]
+id = 388
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "What a foolish question! Now leave!"
+parent = 385
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "act"
+text = "end"
+parent = 385
+is_terminal = true
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "speaker"
+speaker = "Lubufu"
+text = "You again! I thought I told you to go away!"
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You did. I came back."
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Lubufu"
+text = "So I see. What would a fool like you want with me?"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "option"
+text = "Talk about him..."
+parent = -1
+children = [395, 396, 419, 428, 432, 475, 497, 521]
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 394
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "option"
+text = "Who are you?"
+parent = 394
+children = [397, 398, 399, 400, 404, 408, 412]
+
+[[nodes]]
+id = 397
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 396
+
+[[nodes]]
+id = 398
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "I am Lubufu, son of Kedoaba, brother of Kedenda and second cousin twice removed of Ibeli!"
+parent = 396
+
+[[nodes]]
+id = 399
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 396
+
+[[nodes]]
+id = 400
+depth = 3
+kind = "option"
+text = "Who is Kedoaba?"
+parent = 396
+children = [401, 402, 403]
+
+[[nodes]]
+id = 401
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who is Kedoaba?"
+parent = 400
+
+[[nodes]]
+id = 402
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Kedoaba is my father, the father of Kedenda and second uncle twice removed of Ibeli!"
+parent = 400
+
+[[nodes]]
+id = 403
+depth = 4
+kind = "act"
+text = "initial"
+parent = 400
+
+[[nodes]]
+id = 404
+depth = 3
+kind = "option"
+text = "Who is Kedenda?"
+parent = 396
+children = [405, 406, 407]
+
+[[nodes]]
+id = 405
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who is Kedenda?"
+parent = 404
+
+[[nodes]]
+id = 406
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Kedenda is the son of my father, my brother and second cousin twice removed of Ibeli!"
+parent = 404
+
+[[nodes]]
+id = 407
+depth = 4
+kind = "act"
+text = "initial"
+parent = 404
+
+[[nodes]]
+id = 408
+depth = 3
+kind = "option"
+text = "Who is Ibeli?"
+parent = 396
+children = [409, 410, 411]
+
+[[nodes]]
+id = 409
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who is Ibeli?"
+parent = 408
+
+[[nodes]]
+id = 410
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Ibeli is the second nephew twice removed of my father, and the second cousin twice removed of myself and my brother!"
+parent = 408
+
+[[nodes]]
+id = 411
+depth = 4
+kind = "act"
+text = "initial"
+parent = 408
+
+[[nodes]]
+id = 412
+depth = 3
+kind = "option"
+text = "Do you have any children?"
+parent = 396
+children = [413, 414, 415, 416, 417, 418]
+
+[[nodes]]
+id = 413
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any children?"
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Alas, no. Focussed and determined in my trade as I was, I never found a suitable wife."
+parent = 412
+
+[[nodes]]
+id = 415
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "It is a great shame that the secret of the Karambwan has to die with me."
+parent = 412
+
+[[nodes]]
+id = 416
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You could tell me the secret..."
+parent = 412
+
+[[nodes]]
+id = 417
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Hah! What a stupid thought! The secret is mine and mine alone!"
+parent = 412
+
+[[nodes]]
+id = 418
+depth = 4
+kind = "act"
+text = "initial"
+parent = 412
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "option"
+text = "Where are you from?"
+parent = 394
+children = [420, 421, 422, 423, 424, 425, 426, 427]
+
+[[nodes]]
+id = 420
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where are you from?"
+parent = 419
+
+[[nodes]]
+id = 421
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Our island of Karamja. Long ago, before you were even a thought in the back of a mind, I used to play on these beaches with the pebbles and stones."
+parent = 419
+
+[[nodes]]
+id = 422
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you didn't have many friends then?"
+parent = 419
+
+[[nodes]]
+id = 423
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Silence!"
+parent = 419
+
+[[nodes]]
+id = 424
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "As I grew older the ways of the world became apparent to me, and my attention turned from the rocks of the land to the fish in the sea."
+parent = 419
+
+[[nodes]]
+id = 425
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And ... ?"
+parent = 419
+
+[[nodes]]
+id = 426
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Despite what you might hear, there are plenty of fish in the sea! Especially when they can only be caught by me!"
+parent = 419
+
+[[nodes]]
+id = 427
+depth = 3
+kind = "act"
+text = "initial"
+parent = 419
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "option"
+text = "What do you do?"
+parent = 394
+children = [429, 430, 431]
+
+[[nodes]]
+id = 429
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do you do?"
+parent = 428
+
+[[nodes]]
+id = 430
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Nowadays I mostly fish for Karambwan and collect their bait. Collecting the bait has become increasingly tiresome, what with my age and health."
+parent = 428
+
+[[nodes]]
+id = 431
+depth = 3
+kind = "act"
+text = "initial"
+parent = 428
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "option"
+text = "How old are you?"
+parent = 394
+children = [433, 434, 435, 436, 440, 444]
+
+[[nodes]]
+id = 433
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How old are you?"
+parent = 432
+
+[[nodes]]
+id = 434
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "An order of magnitude older than you! What an impudent question! Collecting bait has become hard enough at this age as it is without having to endure the chiding of you young people!"
+parent = 432
+
+[[nodes]]
+id = 435
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 432
+
+[[nodes]]
+id = 436
+depth = 3
+kind = "option"
+text = "Which other young people come by here?"
+parent = 432
+children = [437, 438, 439]
+
+[[nodes]]
+id = 437
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Which other young people come by here?"
+parent = 436
+
+[[nodes]]
+id = 438
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Hmm ... nobody I can recall right now."
+parent = 436
+
+[[nodes]]
+id = 439
+depth = 4
+kind = "act"
+text = "previous"
+parent = 436
+
+[[nodes]]
+id = 440
+depth = 3
+kind = "option"
+text = "What do you use for bait?"
+parent = 432
+children = [441, 442, 443]
+
+[[nodes]]
+id = 441
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What do you use for bait?"
+parent = 440
+
+[[nodes]]
+id = 442
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "That is part of the secret! Why would I tell you?"
+parent = 440
+
+[[nodes]]
+id = 443
+depth = 4
+kind = "act"
+text = "previous"
+parent = 440
+
+[[nodes]]
+id = 444
+depth = 3
+kind = "option"
+text = "I could help collect the bait."
+parent = 432
+children = [445, 446, 447, 448, 463, 467, 471]
+
+[[nodes]]
+id = 445
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I could help collect the bait."
+parent = 444
+
+[[nodes]]
+id = 446
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "And why would you help me?"
+parent = 444
+
+[[nodes]]
+id = 447
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 444
+
+[[nodes]]
+id = 448
+depth = 4
+kind = "option"
+text = "You sound like you could do with the help."
+parent = 444
+children = [449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462]
+
+[[nodes]]
+id = 449
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "You sound like you could do with the help."
+parent = 448
+
+[[nodes]]
+id = 450
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well perhaps you're right. It's nigh time I could do with some help after all."
+parent = 448
+
+[[nodes]]
+id = 451
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "I have a fair amount of bait left over since last time I collected some, but I will be needing more shortly."
+parent = 448
+
+[[nodes]]
+id = 452
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Ok. Where can I find the bait? I don't even know what it is!"
+parent = 448
+
+[[nodes]]
+id = 453
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "Patience. I have kept the nature of the Karambwan a closely guarded secret. There is nobody alive who knows more about them than I do. Furthermore, there is nobody alive who even knows how they feed."
+parent = 448
+
+[[nodes]]
+id = 454
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "You must therefore understand that what I am about to tell you is given in complete trust, and that you are to tell nobody else."
+parent = 448
+
+[[nodes]]
+id = 455
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I understand."
+parent = 448
+
+[[nodes]]
+id = 456
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "Very well. The Karambwan are a form of octopus native to our island of Karamja. They feed solely on Karambwanji, a brightly coloured fish which also inhabits the coastal waters surrounding the island."
+parent = 448
+
+[[nodes]]
+id = 457
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "Karambwanji congregate in coastal shoals near the Holy Lake. You will find it easiest to fish for them there."
+parent = 448
+
+[[nodes]]
+id = 458
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Where is the Holy Lake?"
+parent = 448
+
+[[nodes]]
+id = 459
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "Just to the south of Tai Bwo Wannai Village. I'm sure you've met the locals already."
+parent = 448
+
+[[nodes]]
+id = 460
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "And what do I use to fish for the bait?"
+parent = 448
+
+[[nodes]]
+id = 461
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "Any small net will do. Return here as soon as you have caught 20 Karambwanji."
+parent = 448
+
+[[nodes]]
+id = 462
+depth = 5
+kind = "act"
+text = "end"
+parent = 448
+is_terminal = true
+
+[[nodes]]
+id = 463
+depth = 4
+kind = "option"
+text = "You sound like you need help."
+parent = 444
+children = [464, 465, 466]
+
+[[nodes]]
+id = 464
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "You sound like you need help."
+parent = 463
+
+[[nodes]]
+id = 465
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "How dare you say such a thing! Be off with you!"
+parent = 463
+
+[[nodes]]
+id = 466
+depth = 5
+kind = "act"
+text = "end"
+parent = 463
+is_terminal = true
+
+[[nodes]]
+id = 467
+depth = 4
+kind = "option"
+text = "I enjoy collecting meaningless items for people."
+parent = 444
+children = [468, 469, 470]
+
+[[nodes]]
+id = 468
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I enjoy collecting meaningless items for people."
+parent = 467
+
+[[nodes]]
+id = 469
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "Meaningless? You know nothing of the Karambwan! Now leave!"
+parent = 467
+
+[[nodes]]
+id = 470
+depth = 5
+kind = "act"
+text = "end"
+parent = 467
+is_terminal = true
+
+[[nodes]]
+id = 471
+depth = 4
+kind = "option"
+text = "You're right. I don't want to help."
+parent = 444
+children = [472, 473, 474]
+
+[[nodes]]
+id = 472
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "You're right. I don't want to help."
+parent = 471
+
+[[nodes]]
+id = 473
+depth = 5
+kind = "speaker"
+speaker = "Lubufu"
+text = "I didn't for one moment think you did."
+parent = 471
+
+[[nodes]]
+id = 474
+depth = 5
+kind = "act"
+text = "initial"
+parent = 471
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "option"
+text = "Talk about Karambwan..."
+parent = 394
+children = [476, 477, 481, 487, 491]
+
+[[nodes]]
+id = 476
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 475
+
+[[nodes]]
+id = 477
+depth = 3
+kind = "option"
+text = "What is a Karambwan?"
+parent = 475
+children = [478, 479, 480]
+
+[[nodes]]
+id = 478
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What is a Karambwan?"
+parent = 477
+
+[[nodes]]
+id = 479
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "A species of octopus native to the island which I and I alone know how to catch."
+parent = 477
+
+[[nodes]]
+id = 480
+depth = 4
+kind = "act"
+text = "initial"
+parent = 477
+
+[[nodes]]
+id = 481
+depth = 3
+kind = "option"
+text = "What do you do with your Karambwan?"
+parent = 475
+children = [482, 483, 484, 485, 486]
+
+[[nodes]]
+id = 482
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What do you do with your Karambwan?"
+parent = 481
+
+[[nodes]]
+id = 483
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "I eat what I need and sell the rest to the Shrimp and Parrot restaurant."
+parent = 481
+
+[[nodes]]
+id = 484
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where is the Shrimp and Parrot?"
+parent = 481
+
+[[nodes]]
+id = 485
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "You don't know anything do you? Just north of here, in Brimhaven!"
+parent = 481
+
+[[nodes]]
+id = 486
+depth = 4
+kind = "act"
+text = "initial"
+parent = 481
+
+[[nodes]]
+id = 487
+depth = 3
+kind = "option"
+text = "What do you use for bait?"
+parent = 475
+children = [488, 489, 490]
+
+[[nodes]]
+id = 488
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What do you use for bait?"
+parent = 487
+
+[[nodes]]
+id = 489
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "That is part of the secret! Why would I tell you?"
+parent = 487
+
+[[nodes]]
+id = 490
+depth = 4
+kind = "act"
+text = "initial"
+parent = 487
+
+[[nodes]]
+id = 491
+depth = 3
+kind = "option"
+text = "What does Karambwan taste like?"
+parent = 475
+children = [492, 493, 494, 495, 496]
+
+[[nodes]]
+id = 492
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What does Karambwan taste like?"
+parent = 491
+
+[[nodes]]
+id = 493
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "That depends entirely on how it is cooked..."
+parent = 491
+
+[[nodes]]
+id = 494
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = 491
+
+[[nodes]]
+id = 495
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Novicely cooked Karambwan is often poisonous to large mammals such as humans. If you buy some and cook it, be careful."
+parent = 491
+
+[[nodes]]
+id = 496
+depth = 4
+kind = "act"
+text = "initial"
+parent = 491
+
+[[nodes]]
+id = 497
+depth = 2
+kind = "option"
+text = "Talk about something else..."
+parent = 394
+children = [498, 499, 503, 510, 517]
+
+[[nodes]]
+id = 498
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 497
+
+[[nodes]]
+id = 499
+depth = 3
+kind = "option"
+text = "I have come for your soul."
+parent = 497
+children = [500, 501, 502]
+
+[[nodes]]
+id = 500
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have come for your soul."
+parent = 499
+
+[[nodes]]
+id = 501
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well you've wasted your time. My soul is long gone, along with my compassion."
+parent = 499
+
+[[nodes]]
+id = 502
+depth = 4
+kind = "act"
+text = "previous"
+parent = 499
+
+[[nodes]]
+id = 503
+depth = 3
+kind = "option"
+text = "I'm with the Fishing Guild Anti-Monopoly Department."
+parent = 497
+children = [504, 505, 506, 507, 508, 509]
+
+[[nodes]]
+id = 504
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm from the Fishing Guild Anti-Monopoly Department."
+parent = 503
+
+[[nodes]]
+id = 505
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "And I'm from the Island Karamja. What do you want?"
+parent = 503
+
+[[nodes]]
+id = 506
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "We demand that you hand over the secret of the Karambwan."
+parent = 503
+
+[[nodes]]
+id = 507
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Erm ... no."
+parent = 503
+
+[[nodes]]
+id = 508
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Oh, ok then. It was worth a try."
+parent = 503
+
+[[nodes]]
+id = 509
+depth = 4
+kind = "act"
+text = "previous"
+parent = 503
+
+[[nodes]]
+id = 510
+depth = 3
+kind = "option"
+text = "Do you have any spare monkey skin lying around?"
+parent = 497
+children = [511, 512, 513, 514, 515, 516]
+
+[[nodes]]
+id = 511
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any spare monkey skin lying around?"
+parent = 510
+
+[[nodes]]
+id = 512
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Funny you should say that..."
+parent = 510
+
+[[nodes]]
+id = 513
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why's that? Do you have any?"
+parent = 510
+
+[[nodes]]
+id = 514
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well, people have been asking me for monkey skins all day!"
+parent = 510
+
+[[nodes]]
+id = 515
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "But no, I'm out of monkey skin."
+parent = 510
+
+[[nodes]]
+id = 516
+depth = 4
+kind = "act"
+text = "previous"
+parent = 510
+
+[[nodes]]
+id = 517
+depth = 3
+kind = "option"
+text = "I've heard something about an accident."
+parent = 497
+children = [518, 519, 520]
+
+[[nodes]]
+id = 518
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I've heard something about an accident."
+parent = 517
+
+[[nodes]]
+id = 519
+depth = 4
+kind = "speaker"
+speaker = "Lubufu"
+text = "You will want to ask one of the tribesmen. I don't usually talk about it."
+parent = 517
+
+[[nodes]]
+id = 520
+depth = 4
+kind = "act"
+text = "previous"
+parent = 517
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "option"
+text = "Leave"
+parent = 394
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "speaker"
+speaker = "Lubufu"
+text = "Have you retrieved the Karambwanji yet?"
+parent = -1
+children = [523, 524, 528, 532, 536]
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have some here."
+parent = 522
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "cond"
+text = "If the player has all 20 raw Karambwanji:"
+parent = 522
+children = [525, 526, 527]
+
+[[nodes]]
+id = 525
+depth = 3
+kind = "box"
+text = "pic=Raw karambwanji detail.png|You hand Lubufu 20 raw Karambwanji."
+parent = 524
+
+[[nodes]]
+id = 526
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Thank you! This should tide me over for the next month."
+parent = 524
+
+[[nodes]]
+id = 527
+depth = 3
+kind = "act"
+text = "end"
+parent = 524
+is_terminal = true
+
+[[nodes]]
+id = 528
+depth = 2
+kind = "cond"
+text = "If the player has some raw Karambwanji:"
+parent = 522
+children = [529, 530, 531]
+
+[[nodes]]
+id = 529
+depth = 3
+kind = "box"
+text = "pic=Raw karambwanji detail.png|You hand Lubufu [#] raw Karambwanji."
+parent = 528
+
+[[nodes]]
+id = 530
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Hurry along now. I still need [#] more."
+parent = 528
+
+[[nodes]]
+id = 531
+depth = 3
+kind = "act"
+text = "end"
+parent = 528
+is_terminal = true
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "cond"
+text = "If the player does not have 20 Karambwanji:"
+parent = 522
+children = [533, 534, 535]
+
+[[nodes]]
+id = 533
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm still fishing for them."
+parent = 532
+
+[[nodes]]
+id = 534
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well hurry! My reserves are beginning to run low."
+parent = 532
+
+[[nodes]]
+id = 535
+depth = 3
+kind = "act"
+text = "end"
+parent = 532
+is_terminal = true
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "cond"
+text = "If the player has the rest of the Karambwanji:"
+parent = 522
+children = [537, 538, 539, 540, 541, 542]
+
+[[nodes]]
+id = 537
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Have you retrieved the Karambwanji yet?"
+parent = 536
+
+[[nodes]]
+id = 538
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "I still need [#] more."
+parent = 536
+
+[[nodes]]
+id = 539
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have some here."
+parent = 536
+
+[[nodes]]
+id = 540
+depth = 3
+kind = "box"
+text = "pic=Raw karambwanji detail.png|You hand Lubufu [#] raw Karambwanji."
+parent = 536
+
+[[nodes]]
+id = 541
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Thank you! This should tide me over for the next month."
+parent = 536
+
+[[nodes]]
+id = 542
+depth = 3
+kind = "act"
+text = "end"
+parent = 536
+is_terminal = true
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "option"
+text = "What is a Karambwan?"
+parent = -1
+children = [545, 546, 547, 548]
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is a Karambwan?"
+parent = 544
+
+[[nodes]]
+id = 546
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "A species of octopus native to the island which I and I alone know how to catch."
+parent = 544
+
+[[nodes]]
+id = 547
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "You should really ought to know that by now."
+parent = 544
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "act"
+text = "initial"
+parent = 544
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "option"
+text = "What do you do with your Karambwan?"
+parent = -1
+children = [550]
+
+[[nodes]]
+id = 550
+depth = 2
+kind = "act"
+text = "above"
+parent = 549
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "option"
+text = "What do you use to catch Karambwan?"
+parent = -1
+children = [552, 553, 554, 555, 556, 557, 558, 559, 560, 577]
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you use to catch Karambwan?"
+parent = 551
+
+[[nodes]]
+id = 553
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well ... since you ask, a specially constructed octopus pot. But don't tell anybody - that's part of the secret!"
+parent = 551
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "My, you're keen aren't you?"
+parent = 551
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "How would you feel about becoming my apprentice?"
+parent = 551
+
+[[nodes]]
+id = 556
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's a slight change in attitude..."
+parent = 551
+
+[[nodes]]
+id = 557
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "As much as I need to protect the secret, I should not carry it to the grave."
+parent = 551
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "You seem a trustworthy type of person. Do you want to train as my apprentice?"
+parent = 551
+
+[[nodes]]
+id = 559
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 551
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "option"
+text = "Yes!"
+parent = 551
+children = [561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576]
+
+[[nodes]]
+id = 561
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes!"
+parent = 560
+
+[[nodes]]
+id = 562
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "I'm glad to hear it. I'm sure the secrets of the Karambwan will be safe with you."
+parent = 560
+
+[[nodes]]
+id = 563
+depth = 3
+kind = "box"
+text = "pic=Raw karambwanji detail.png|Lubufu teaches you a new fishing technique."
+parent = 560
+
+[[nodes]]
+id = 564
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "In our language, Karambwan literally means 'Friend of Karamja.' As a friend of mine I will now show you how to fish for them."
+parent = 560
+
+[[nodes]]
+id = 565
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "There are two aspects to fishing for Karambwan. Firstly, you must have the correct bait. Secondly, you must have the correct equipment."
+parent = 560
+
+[[nodes]]
+id = 566
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "You already know of the Karambwanji, which shoal in the Holy Lake to the south. As I have explained, the Karambwan feed only on the Karambwanji, which are therefore the perfect bait."
+parent = 560
+
+[[nodes]]
+id = 567
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But what kind of equipment do you use?"
+parent = 560
+
+[[nodes]]
+id = 568
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "It is futile to attempt to catch Karambwan with something as basic as a net. They are too strong and vicious to be caught in such a fashion."
+parent = 560
+
+[[nodes]]
+id = 569
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "I have spent many years designing a specially shaped vessel, into which Karambwan may pass but from which they may not return."
+parent = 560
+
+[[nodes]]
+id = 570
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "If this vessel is loaded with Karambwanji, and then repeatedly lowered into a Karambwan shoal, then you should shortly find a Karambwan octopus trapped inside."
+parent = 560
+
+[[nodes]]
+id = 571
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "I will now give you a Karambwan fishing vessel with which you can practise. Make sure you do not lose it. Under no circumstance may you give or show this to anybody. Do you understand?"
+parent = 560
+
+[[nodes]]
+id = 572
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I understand."
+parent = 560
+
+[[nodes]]
+id = 573
+depth = 3
+kind = "box"
+text = "pic=Karambwan vessel detail.png|Lubufu hands you a Karambwan vessel."
+parent = 560
+
+[[nodes]]
+id = 574
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Feel free to practise on my fishing spot."
+parent = 560
+
+[[nodes]]
+id = 575
+depth = 3
+kind = "act"
+text = "receives=1500 [[Fishing]] experience and a Karambwan vessel (either on the ground with no inventory or in their inventory with one space)"
+parent = 560
+
+[[nodes]]
+id = 576
+depth = 3
+kind = "act"
+text = "end"
+parent = 560
+is_terminal = true
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "option"
+text = "No."
+parent = 551
+children = [578, 579, 580, 581]
+
+[[nodes]]
+id = 578
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 577
+
+[[nodes]]
+id = 579
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well the offer remains open. You're the most trustworthy person I have met in a long time."
+parent = 577
+
+[[nodes]]
+id = 580
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Let me know if you change your mind."
+parent = 577
+
+[[nodes]]
+id = 581
+depth = 3
+kind = "act"
+text = "end"
+parent = 577
+is_terminal = true
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "option"
+text = "What does Karambwan taste like?"
+parent = -1
+children = [583]
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "act"
+text = "above"
+parent = 582
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "speaker"
+speaker = "Lubufu"
+text = "How fares my apprentice?"
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "option"
+text = "I'm fine thanks."
+parent = -1
+children = [587, 588, 589]
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm fine thanks."
+parent = 586
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "And I'm glad to hear it!"
+parent = 586
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "act"
+text = "end"
+parent = 586
+is_terminal = true
+
+[[nodes]]
+id = 590
+depth = 1
+kind = "option"
+text = "I've been catching a whole load of Karambwan!"
+parent = -1
+children = [591, 592, 593]
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've been catching a whole load of Karambwan!"
+parent = 590
+
+[[nodes]]
+id = 592
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "Look at you - outgrowing your boots already!"
+parent = 590
+
+[[nodes]]
+id = 593
+depth = 2
+kind = "act"
+text = "end"
+parent = 590
+is_terminal = true
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "option"
+text = "Actually, I've lost my Karambwan vessel."
+parent = -1
+children = [595, 596, 597, 598, 599, 603, 607]
+
+[[nodes]]
+id = 595
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I've lost my Karambwan vessel."
+parent = 594
+
+[[nodes]]
+id = 596
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "You did what!? I hope nobody else has seen it..."
+parent = 594
+
+[[nodes]]
+id = 597
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry - nobody will find it..."
+parent = 594
+
+[[nodes]]
+id = 598
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 594
+
+[[nodes]]
+id = 599
+depth = 2
+kind = "option"
+text = "... a shark ate it!"
+parent = 594
+children = [600, 601, 602]
+
+[[nodes]]
+id = 600
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "... a shark ate it!"
+parent = 599
+
+[[nodes]]
+id = 601
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well you'd better hope for your sake that this shark is never caught!"
+parent = 599
+
+[[nodes]]
+id = 602
+depth = 3
+kind = "act"
+text = "continue"
+parent = 599
+
+[[nodes]]
+id = 603
+depth = 2
+kind = "option"
+text = "... a Karambwan stole it!"
+parent = 594
+children = [604, 605, 606]
+
+[[nodes]]
+id = 604
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "... a Karambwan stole it!"
+parent = 603
+
+[[nodes]]
+id = 605
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well you'd better hope for your sake that this Karambwan is never caught!"
+parent = 603
+
+[[nodes]]
+id = 606
+depth = 3
+kind = "act"
+text = "continue"
+parent = 603
+
+[[nodes]]
+id = 607
+depth = 2
+kind = "option"
+text = "... it floated away!"
+parent = 594
+children = [608, 609, 610, 611, 612, 613, 614, 615]
+
+[[nodes]]
+id = 608
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "... it floated away!"
+parent = 607
+
+[[nodes]]
+id = 609
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well you'd better hope for your sake that it never floats back!"
+parent = 607
+
+[[nodes]]
+id = 610
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "In the meantime, you can practise with this."
+parent = 607
+
+[[nodes]]
+id = 611
+depth = 3
+kind = "box"
+text = "pic=Karambwan vessel detail.png|Lubufu hands you a Karambwan vessel."
+parent = 607
+
+[[nodes]]
+id = 612
+depth = 3
+kind = "act"
+text = "receives=a Karambwan vessel either on the ground with no inventory or in their inventory with one space"
+parent = 607
+
+[[nodes]]
+id = 613
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thank you so much."
+parent = 607
+
+[[nodes]]
+id = 614
+depth = 3
+kind = "speaker"
+speaker = "Lubufu"
+text = "Don't mention it. I mean that."
+parent = 607
+
+[[nodes]]
+id = 615
+depth = 3
+kind = "act"
+text = "end"
+parent = 607
+is_terminal = true
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "option"
+text = "Awful!"
+parent = -1
+children = [617, 618, 619, 620, 621]
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Awful!"
+parent = 616
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "Why?"
+parent = 616
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Everybody keeps asking me to run around and do their errands!"
+parent = 616
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "Living the hard life of a fisherman now, eh."
+parent = 616
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "act"
+text = "end"
+parent = 616
+is_terminal = true
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "speaker"
+speaker = "Lubufu"
+text = "Ah ... you again. Have you changed your mind yet? Do you want to train as my apprentice?"
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "option"
+text = "Yes!"
+parent = -1
+children = [625]
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "act"
+text = "above"
+parent = 624
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [627, 628, 629, 630]
+
+[[nodes]]
+id = 627
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 626
+
+[[nodes]]
+id = 628
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "Well the offer remains open. You're the most trustworthy person I have met in a long time."
+parent = 626
+
+[[nodes]]
+id = 629
+depth = 2
+kind = "speaker"
+speaker = "Lubufu"
+text = "Let me know if you change your mind."
+parent = 626
+
+[[nodes]]
+id = 630
+depth = 2
+kind = "act"
+text = "end"
+parent = 626
+is_terminal = true
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "cond"
+text = "If the player attempts to climb the rocks from the sides:"
+parent = -1
+children = [632, 633]
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "other"
+text = "{{mes|You can't do that from here.}}"
+parent = 631
+
+[[nodes]]
+id = 633
+depth = 2
+kind = "act"
+text = "end"
+parent = 631
+is_terminal = true
+
+[[nodes]]
+id = 634
+depth = 1
+kind = "cond"
+text = "If the player falls on the rocks:"
+parent = -1
+children = [635, 636, 637, 638]
+
+[[nodes]]
+id = 635
+depth = 2
+kind = "other"
+text = "{{mes|You fall and hurt yourself.}}"
+parent = 634
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ouch}}"
+parent = 634
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "act"
+text = "The player loses 1-6 hitpoints."
+parent = 634
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "act"
+text = "end"
+parent = 634
+is_terminal = true
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "cond"
+text = "If the player keeps their balance on the bridge:"
+parent = -1
+children = [640, 641, 642]
+
+[[nodes]]
+id = 640
+depth = 2
+kind = "other"
+text = "{{mes|You manage to keep your balance on the bridge.}}"
+parent = 639
+
+[[nodes]]
+id = 641
+depth = 2
+kind = "act"
+text = "The player gains 10 Agility experience."
+parent = 639
+
+[[nodes]]
+id = 642
+depth = 2
+kind = "act"
+text = "end"
+parent = 639
+is_terminal = true
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "cond"
+text = "If the player loses their balance on the bridge:"
+parent = -1
+children = [644, 645, 646, 647, 648, 649, 650, 651, 652, 653]
+
+[[nodes]]
+id = 644
+depth = 2
+kind = "other"
+text = "{{mes|You fall!}}"
+parent = 643
+
+[[nodes]]
+id = 645
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ahhhhhhhhhh!}}"
+parent = 643
+
+[[nodes]]
+id = 646
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Choke!}}"
+parent = 643
+
+[[nodes]]
+id = 647
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Gulp!}}"
+parent = 643
+
+[[nodes]]
+id = 648
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Cough!}}"
+parent = 643
+
+[[nodes]]
+id = 649
+depth = 2
+kind = "other"
+text = "{{mes|You just manage to drag your pitiful frame onto the river bank.}}"
+parent = 643
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "other"
+text = "{{mes|Though you nearly drowned in the river!}}"
+parent = 643
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "act"
+text = "The player loses 3-15 hitpoints."
+parent = 643
+
+[[nodes]]
+id = 652
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Gasp!}}"
+parent = 643
+
+[[nodes]]
+id = 653
+depth = 2
+kind = "act"
+text = "end"
+parent = 643
+is_terminal = true
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Braaar! Tinsay's the name!"
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Tinsay, I bring good news. Trufitus has communed with the gods -  your village is once again safe."
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your father requests that you return to the village."
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "I will return only once I have repaired the tribal statue. Bones!!"
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where is the tribal statue?"
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Just near my father's hut."
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But that's {{colour|#800000|in}} the village!"
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "I know."
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "I'm ... er ... collecting materials to repair the statue with."
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And I suppose you want me to fetch them for you?"
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Good idea! Yes!"
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You mean you were just sitting here waiting for people to bring you things you need?"
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Yes..."
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And you don't see anything wrong with that?"
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "No..."
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right ... what do you need?"
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "other"
+text = "{{mes|Tinsay pauses and then mutters to himself.}}"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Hmm ... I think I need banana in Karamjan rum."
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. And you're going to use this to repair the statue?"
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "But of course! Bwahaha!"
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "... I'll be back later."
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "cond"
+text = "If the player uses a baited Karambwan vessel on Tinsay before helping him:"
+parent = -1
+children = [678, 679, 680]
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Your brother Tiadeche has sent me. He asks you to study this vessel and produce crafting instructions."
+parent = 677
+
+[[nodes]]
+id = 679
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "You first help me, then I'll help you."
+parent = 677
+
+[[nodes]]
+id = 680
+depth = 2
+kind = "act"
+text = "end"
+parent = 677
+is_terminal = true
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Have you found my banana in Karamjan rum yet?"
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [684, 685, 686, 697, 704, 720]
+
+[[nodes]]
+id = 684
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it right here."
+parent = 683
+
+[[nodes]]
+id = 685
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "Well, hand it here then."
+parent = 683
+
+[[nodes]]
+id = 686
+depth = 2
+kind = "cond"
+text = "If the player only has regular Karamjan rum or no rum:"
+parent = 683
+children = [687, 688, 691, 694]
+
+[[nodes]]
+id = 687
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 686
+
+[[nodes]]
+id = 688
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 686
+children = [689, 690]
+
+[[nodes]]
+id = 689
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Erm ... I think I lost it in the wash."
+parent = 688
+
+[[nodes]]
+id = 690
+depth = 4
+kind = "act"
+text = "continue"
+parent = 688
+
+[[nodes]]
+id = 691
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 686
+children = [692, 693]
+
+[[nodes]]
+id = 692
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Uh ... I think I left it in my other trousers."
+parent = 691
+
+[[nodes]]
+id = 693
+depth = 4
+kind = "act"
+text = "continue"
+parent = 691
+
+[[nodes]]
+id = 694
+depth = 3
+kind = "option"
+text = "Dialogue 3"
+parent = 686
+children = [695, 696]
+
+[[nodes]]
+id = 695
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Actually, my pet monkey ate it."
+parent = 694
+
+[[nodes]]
+id = 696
+depth = 4
+kind = "act"
+text = "continue"
+parent = 694
+
+[[nodes]]
+id = 697
+depth = 2
+kind = "cond"
+text = "If the player has the Karamjan rum with a whole banana inside:"
+parent = 683
+children = [698, 699, 700, 701, 702, 703]
+
+[[nodes]]
+id = 698
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this."
+parent = 697
+
+[[nodes]]
+id = 699
+depth = 3
+kind = "box"
+text = "pic=Karamjan rum (banana) detail.png|You hand Tinsay the banana stuffed into Karamjan rum."
+parent = 697
+
+[[nodes]]
+id = 700
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I can't use this - there is a banana blocking the bottle!"
+parent = 697
+
+[[nodes]]
+id = 701
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Find some way of actually getting the banana inside the bottle."
+parent = 697
+
+[[nodes]]
+id = 702
+depth = 3
+kind = "other"
+text = "{{mes|Tinsay hands you back the Karamjan rum.}}"
+parent = 697
+
+[[nodes]]
+id = 703
+depth = 3
+kind = "act"
+text = "end"
+parent = 697
+is_terminal = true
+
+[[nodes]]
+id = 704
+depth = 2
+kind = "cond"
+text = "If the player has the Karamjan rum with slices of banana inside it:"
+parent = 683
+children = [705, 706, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 719]
+
+[[nodes]]
+id = 705
+depth = 3
+kind = "box"
+text = "pic=Karamjan rum (sliced banana) detail.png|You hand Tinsay the sliced bananas in Karamjan rum."
+parent = 704
+
+[[nodes]]
+id = 706
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Yes ... that's it! Hits just the spot!"
+parent = 704
+
+[[nodes]]
+id = 707
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What? I thought you needed that for tribal statue repair!"
+parent = 704
+
+[[nodes]]
+id = 708
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I did!"
+parent = 704
+
+[[nodes]]
+id = 709
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can we return to the village now?"
+parent = 704
+
+[[nodes]]
+id = 710
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Not yet. I need one more thing..."
+parent = 704
+
+[[nodes]]
+id = 711
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = 704
+
+[[nodes]]
+id = 712
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I'm thinking..."
+parent = 704
+
+[[nodes]]
+id = 713
+depth = 3
+kind = "act"
+text = "Tinsay takes a second to ponder."
+parent = 704
+
+[[nodes]]
+id = 714
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Seaweed ... Yes - a seaweed sandwich will do the trick."
+parent = 704
+
+[[nodes]]
+id = 715
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Aha! A seaweed in monkey skin sandwich!"
+parent = 704
+
+[[nodes]]
+id = 716
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Is this really necessary?"
+parent = 704
+
+[[nodes]]
+id = 717
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Yes. Essential."
+parent = 704
+
+[[nodes]]
+id = 718
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back later."
+parent = 704
+
+[[nodes]]
+id = 719
+depth = 3
+kind = "act"
+text = "end"
+parent = 704
+is_terminal = true
+
+[[nodes]]
+id = 720
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the rum:"
+parent = 683
+children = [721, 722, 723, 737, 753, 759]
+
+[[nodes]]
+id = 721
+depth = 3
+kind = "act"
+text = "above"
+parent = 720
+
+[[nodes]]
+id = 722
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 720
+
+[[nodes]]
+id = 723
+depth = 3
+kind = "option"
+text = "How do I ..."
+parent = 720
+children = [724, 725, 729, 733]
+
+[[nodes]]
+id = 724
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 723
+
+[[nodes]]
+id = 725
+depth = 4
+kind = "option"
+text = "... find Karamjan rum?"
+parent = 723
+children = [726, 727, 728]
+
+[[nodes]]
+id = 726
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do I find Karamjan rum?"
+parent = 725
+
+[[nodes]]
+id = 727
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "It's available in any respectable drinking establishment."
+parent = 725
+
+[[nodes]]
+id = 728
+depth = 5
+kind = "act"
+text = "initial"
+parent = 725
+
+[[nodes]]
+id = 729
+depth = 4
+kind = "option"
+text = "... find bananas?"
+parent = 723
+children = [730, 731, 732]
+
+[[nodes]]
+id = 730
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do I find bananas?"
+parent = 729
+
+[[nodes]]
+id = 731
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "They grow everywhere!"
+parent = 729
+
+[[nodes]]
+id = 732
+depth = 5
+kind = "act"
+text = "initial"
+parent = 729
+
+[[nodes]]
+id = 733
+depth = 4
+kind = "option"
+text = "... convince you to return to the village?"
+parent = 723
+children = [734, 735, 736]
+
+[[nodes]]
+id = 734
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do I convince you to return to the village?"
+parent = 733
+
+[[nodes]]
+id = 735
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "Oblige me by fetching my drink."
+parent = 733
+
+[[nodes]]
+id = 736
+depth = 5
+kind = "act"
+text = "initial"
+parent = 733
+
+[[nodes]]
+id = 737
+depth = 3
+kind = "option"
+text = "Just how insane are you?"
+parent = 720
+children = [738, 739, 740, 743, 746, 749, 752]
+
+[[nodes]]
+id = 738
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Just how insane are you?"
+parent = 737
+
+[[nodes]]
+id = 739
+depth = 4
+kind = "other"
+text = "{{trandom}}"
+parent = 737
+
+[[nodes]]
+id = 740
+depth = 4
+kind = "option"
+text = "Dialogue 1"
+parent = 737
+children = [741, 742]
+
+[[nodes]]
+id = 741
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "On a scale of 1 to barmy {{sic|Unnecessary space}}, I'm about [#]."
+parent = 740
+
+[[nodes]]
+id = 742
+depth = 5
+kind = "act"
+text = "continue"
+parent = 740
+
+[[nodes]]
+id = 743
+depth = 4
+kind = "option"
+text = "Dialogue 2"
+parent = 737
+children = [744, 745]
+
+[[nodes]]
+id = 744
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "On a scale of 1 to kooky {{sic|Unnecessary space}}, I'm about [#]."
+parent = 743
+
+[[nodes]]
+id = 745
+depth = 5
+kind = "act"
+text = "continue"
+parent = 743
+
+[[nodes]]
+id = 746
+depth = 4
+kind = "option"
+text = "Dialogue 3"
+parent = 737
+children = [747, 748]
+
+[[nodes]]
+id = 747
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "On a scale of 1 to mad {{sic|Unnecessary space}}, I'm about [#]."
+parent = 746
+
+[[nodes]]
+id = 748
+depth = 5
+kind = "act"
+text = "continue"
+parent = 746
+
+[[nodes]]
+id = 749
+depth = 4
+kind = "option"
+text = "Dialogue 4"
+parent = 737
+children = [750, 751]
+
+[[nodes]]
+id = 750
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "On a scale of 1 to loopy {{sic|Unnecessary space}}, I'm about [#]."
+parent = 749
+
+[[nodes]]
+id = 751
+depth = 5
+kind = "act"
+text = "continue"
+parent = 749
+
+[[nodes]]
+id = 752
+depth = 4
+kind = "act"
+text = "previous"
+parent = 737
+
+[[nodes]]
+id = 753
+depth = 3
+kind = "option"
+text = "I've heard something about an accident."
+parent = 720
+children = [754, 755, 756, 757, 758]
+
+[[nodes]]
+id = 754
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I've heard something about an accident."
+parent = 753
+
+[[nodes]]
+id = 755
+depth = 4
+kind = "other"
+text = "{{qact|Tinsay performs the 'dance' emote.}}"
+parent = 753
+
+[[nodes]]
+id = 756
+depth = 4
+kind = "speaker"
+speaker = "Tinsay"
+text = "Maurhah!! Jooooogre bones!"
+parent = 753
+
+[[nodes]]
+id = 757
+depth = 4
+kind = "speaker"
+speaker = "Tinsay"
+text = "Ahem. Sorry. We don't usually talk about it."
+parent = 753
+
+[[nodes]]
+id = 758
+depth = 4
+kind = "act"
+text = "previous"
+parent = 753
+
+[[nodes]]
+id = 759
+depth = 3
+kind = "option"
+text = "I'll be back later."
+parent = 720
+children = [760, 761]
+
+[[nodes]]
+id = 760
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back later."
+parent = 759
+
+[[nodes]]
+id = 761
+depth = 4
+kind = "act"
+text = "end"
+parent = 759
+is_terminal = true
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [763, 764]
+
+[[nodes]]
+id = 763
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm still looking."
+parent = 762
+
+[[nodes]]
+id = 764
+depth = 2
+kind = "act"
+text = "above"
+parent = 762
+
+[[nodes]]
+id = 765
+depth = 1
+kind = "cond"
+text = "If the player puts the whole banana inside the Karamjan rum:"
+parent = -1
+children = [766, 767]
+
+[[nodes]]
+id = 766
+depth = 2
+kind = "other"
+text = "{{mes|You stuff the banana into the neck of the bottle. You begin to wonder why.}}"
+parent = 765
+
+[[nodes]]
+id = 767
+depth = 2
+kind = "act"
+text = "end"
+parent = 765
+is_terminal = true
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Have you found my seaweed in monkey skin sandwich yet?"
+parent = -1
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [771, 772, 773, 801, 808]
+
+[[nodes]]
+id = 771
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it right here."
+parent = 770
+
+[[nodes]]
+id = 772
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "Well, hand it here then."
+parent = 770
+
+[[nodes]]
+id = 773
+depth = 2
+kind = "cond"
+text = "If the player has the seaweed sandwich:"
+parent = 770
+children = [774, 775, 776, 777, 778, 779, 780, 781, 782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 796, 797, 798, 799, 800]
+
+[[nodes]]
+id = 774
+depth = 3
+kind = "box"
+text = "pic=Seaweed sandwich detail.png|You hand Tinsay the seaweed in monkey skin sandwich."
+parent = 773
+
+[[nodes]]
+id = 775
+depth = 3
+kind = "other"
+text = "{{qact|Tinsay eats the sandwich.}}"
+parent = 773
+
+[[nodes]]
+id = 776
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Yes ... perfect! You really do not understand how necessary that was."
+parent = 773
+
+[[nodes]]
+id = 777
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can we go now?"
+parent = 773
+
+[[nodes]]
+id = 778
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Erm..."
+parent = 773
+
+[[nodes]]
+id = 779
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 773
+
+[[nodes]]
+id = 780
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "..."
+parent = 773
+
+[[nodes]]
+id = 781
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 773
+
+[[nodes]]
+id = 782
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "..."
+parent = 773
+
+[[nodes]]
+id = 783
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Say something!"
+parent = 773
+
+[[nodes]]
+id = 784
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "No!"
+parent = 773
+
+[[nodes]]
+id = 785
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Does that mean you're not coming or not saying anything?"
+parent = 773
+
+[[nodes]]
+id = 786
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I'm not coming."
+parent = 773
+
+[[nodes]]
+id = 787
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = 773
+
+[[nodes]]
+id = 788
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I need one more thing... I need ... Jogre bones ..."
+parent = 773
+
+[[nodes]]
+id = 789
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Jogre bones? Why do you keep-"
+parent = 773
+
+[[nodes]]
+id = 790
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Yes ... {{colour|#800000|burnt}} Jogre bones."
+parent = 773
+
+[[nodes]]
+id = 791
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "... {{colour|#800000|burnt}} Jogre bones?? How am I-"
+parent = 773
+
+[[nodes]]
+id = 792
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Indeed. Burnt Jogre bones marinated in... Marinated in..."
+parent = 773
+
+[[nodes]]
+id = 793
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "{{colour|#800000|Marinated???}}"
+parent = 773
+
+[[nodes]]
+id = 794
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Marinated in Karambwanji!"
+parent = 773
+
+[[nodes]]
+id = 795
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 773
+
+[[nodes]]
+id = 796
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Mmm ... Yes ... That will be good ..."
+parent = 773
+
+[[nodes]]
+id = 797
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're just going to eat it, aren't you?"
+parent = 773
+
+[[nodes]]
+id = 798
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "No! Burnt Jogre bones marinated in Karambwanji are in fact essential in the trade of tribal statue repair!"
+parent = 773
+
+[[nodes]]
+id = 799
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back ... eventually."
+parent = 773
+
+[[nodes]]
+id = 800
+depth = 3
+kind = "act"
+text = "end"
+parent = 773
+is_terminal = true
+
+[[nodes]]
+id = 801
+depth = 2
+kind = "cond"
+text = "If the player gives the stuffed monkey to Tinsay:"
+parent = 770
+children = [802, 803, 804, 805, 806, 807]
+
+[[nodes]]
+id = 802
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this."
+parent = 801
+
+[[nodes]]
+id = 803
+depth = 3
+kind = "box"
+text = "pic=Stuffed monkey detail.png|You hand Tinsay the stuffed monkey."
+parent = 801
+
+[[nodes]]
+id = 804
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I can't use this - there is far too much monkey flesh in it."
+parent = 801
+
+[[nodes]]
+id = 805
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Try to find some way of removing the monkey flesh."
+parent = 801
+
+[[nodes]]
+id = 806
+depth = 3
+kind = "other"
+text = "{{mes|Tinsay hands you back the stuffed monkey.}}"
+parent = 801
+
+[[nodes]]
+id = 807
+depth = 3
+kind = "act"
+text = "end"
+parent = 801
+is_terminal = true
+
+[[nodes]]
+id = 808
+depth = 2
+kind = "cond"
+text = "If the player does not have the monkey skin sandwich:"
+parent = 770
+children = [809, 810]
+
+[[nodes]]
+id = 809
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Uh ... I think I left it in my other trousers."
+parent = 808
+
+[[nodes]]
+id = 810
+depth = 3
+kind = "act"
+text = "previous"
+parent = 808
+
+[[nodes]]
+id = 811
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [812, 813]
+
+[[nodes]]
+id = 812
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm still looking."
+parent = 811
+
+[[nodes]]
+id = 813
+depth = 2
+kind = "act"
+text = "previous"
+parent = 811
+
+[[nodes]]
+id = 814
+depth = 1
+kind = "cond"
+text = "If the player stuffs the seaweed into the monkey corpse:"
+parent = -1
+children = [815, 816]
+
+[[nodes]]
+id = 815
+depth = 2
+kind = "other"
+text = "{{mes|You stuff the seaweed into the monkey corpse, creating a stuffed monkey.}}"
+parent = 814
+
+[[nodes]]
+id = 816
+depth = 2
+kind = "act"
+text = "end"
+parent = 814
+is_terminal = true
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "cond"
+text = "If the player uses a knife on the monkey corpse without knowing how to skin it:"
+parent = -1
+children = [818, 819]
+
+[[nodes]]
+id = 818
+depth = 2
+kind = "other"
+text = "{{mes|You don't know how to skin a monkey ... yet.}}"
+parent = 817
+
+[[nodes]]
+id = 819
+depth = 2
+kind = "act"
+text = "end"
+parent = 817
+is_terminal = true
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Have you found my burnt Jogre bones marinated in Karambwanji yet?"
+parent = -1
+
+[[nodes]]
+id = 821
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 822
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [823, 824, 825, 830, 836, 842, 849, 855, 861]
+
+[[nodes]]
+id = 823
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it right here."
+parent = 822
+
+[[nodes]]
+id = 824
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "Well, hand it here then."
+parent = 822
+
+[[nodes]]
+id = 825
+depth = 2
+kind = "cond"
+text = "If the player gives him regular Jogre bones:"
+parent = 822
+children = [826, 827, 828, 829]
+
+[[nodes]]
+id = 826
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this."
+parent = 825
+
+[[nodes]]
+id = 827
+depth = 3
+kind = "box"
+text = "pic=Jogre bones detail.png|You hand Tinsay the Jogre Bones{{sic|No full stop"
+parent = 825
+
+[[nodes]]
+id = 828
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I think this needs a bit of Karambwanji. They also don't seem quite burnt enough.}}"
+parent = 825
+
+[[nodes]]
+id = 829
+depth = 3
+kind = "act"
+text = "end"
+parent = 825
+is_terminal = true
+
+[[nodes]]
+id = 830
+depth = 2
+kind = "cond"
+text = "If the player gives him uncooked Jogre bones smothered with cooked Karambwanji:"
+parent = 822
+children = [831, 832, 833, 834, 835]
+
+[[nodes]]
+id = 831
+depth = 3
+kind = "box"
+text = "pic=Pasty jogre bones (normal cooked) detail.png|You hand Tinsay the Jogre Bones in cooked Karambwanji paste."
+parent = 830
+
+[[nodes]]
+id = 832
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "That was awful! The Jogre bones were not nearly burnt enough."
+parent = 830
+
+[[nodes]]
+id = 833
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "And the Jogre bones were hardly even marinated!"
+parent = 830
+
+[[nodes]]
+id = 834
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "You'll have to make it again. Remember to burn the Jogre bones!"
+parent = 830
+
+[[nodes]]
+id = 835
+depth = 3
+kind = "act"
+text = "end"
+parent = 830
+is_terminal = true
+
+[[nodes]]
+id = 836
+depth = 2
+kind = "cond"
+text = "If the player gives him uncooked Jogre bones smothered with raw Karambwanji:"
+parent = 822
+children = [837, 838, 839, 840, 841]
+
+[[nodes]]
+id = 837
+depth = 3
+kind = "box"
+text = "pic=Pasty jogre bones (normal raw) detail.png|You hand Tinsay the Jogre Bones in raw Karambwanji paste."
+parent = 836
+
+[[nodes]]
+id = 838
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "That was awful! The Jogre bones were not nearly burnt enough."
+parent = 836
+
+[[nodes]]
+id = 839
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "And the Jogre bones were hardly even marinated!"
+parent = 836
+
+[[nodes]]
+id = 840
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "You'll have to make it again. Remember to burn the Jogre bones!"
+parent = 836
+
+[[nodes]]
+id = 841
+depth = 3
+kind = "act"
+text = "end"
+parent = 836
+is_terminal = true
+
+[[nodes]]
+id = 842
+depth = 2
+kind = "cond"
+text = "If the player gives him burnt Jogre bones:"
+parent = 822
+children = [843, 844, 845, 846, 847, 848]
+
+[[nodes]]
+id = 843
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this."
+parent = 842
+
+[[nodes]]
+id = 844
+depth = 3
+kind = "box"
+text = "pic=Burnt jogre bones detail.png|You hand Tinsay the burnt Jogre Bones{{sic|No full stop"
+parent = 842
+
+[[nodes]]
+id = 845
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "I think this needs a bit of Karambwanji."
+parent = 842
+
+[[nodes]]
+id = 846
+depth = 3
+kind = "other"
+text = "{{mes|Tinsay hands you back the burnt Jogre bones.}}"
+parent = 842
+
+[[nodes]]
+id = 847
+depth = 3
+kind = "act"
+text = "receives=Burnt jogre bones"
+parent = 842
+
+[[nodes]]
+id = 848
+depth = 3
+kind = "act"
+text = "end"
+parent = 842
+is_terminal = true
+
+[[nodes]]
+id = 849
+depth = 2
+kind = "cond"
+text = "If the player gives him burnt Jogre bones with raw Karambwanji paste:"
+parent = 822
+children = [850, 851, 852, 853, 854]
+
+[[nodes]]
+id = 850
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this."
+parent = 849
+
+[[nodes]]
+id = 851
+depth = 3
+kind = "box"
+text = "pic=Pasty jogre bones (burnt raw) detail.png|You hand Tinsay the burnt Jogre Bones in raw Karambwanji paste."
+parent = 849
+
+[[nodes]]
+id = 852
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "That was awful! The Jogre bones were hardly even marinated!"
+parent = 849
+
+[[nodes]]
+id = 853
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "You'll have to make it again. Remember to marinate the Jogre bones!"
+parent = 849
+
+[[nodes]]
+id = 854
+depth = 3
+kind = "act"
+text = "end"
+parent = 849
+is_terminal = true
+
+[[nodes]]
+id = 855
+depth = 2
+kind = "cond"
+text = "If the player gives him burnt Jogre bones with cooked Karambwanji paste:"
+parent = 822
+children = [856, 857, 858, 859, 860]
+
+[[nodes]]
+id = 856
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this."
+parent = 855
+
+[[nodes]]
+id = 857
+depth = 3
+kind = "box"
+text = "pic=Pasty jogre bones (burnt cooked) detail.png|You hand Tinsay the Jogre Bones marinated in Karambwanji."
+parent = 855
+
+[[nodes]]
+id = 858
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "That was awful! The Jogre bones were not nearly burnt enough."
+parent = 855
+
+[[nodes]]
+id = 859
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "You'll have to make it again. Remember to burn the Jogre bones!"
+parent = 855
+
+[[nodes]]
+id = 860
+depth = 3
+kind = "act"
+text = "end"
+parent = 855
+is_terminal = true
+
+[[nodes]]
+id = 861
+depth = 2
+kind = "cond"
+text = "If the player gives him cooked and marinated Jogre bones but was not burnt first:"
+parent = 822
+children = [862, 863, 864, 865, 866, 867, 868, 869, 887]
+
+[[nodes]]
+id = 862
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I have this."
+parent = 861
+
+[[nodes]]
+id = 863
+depth = 3
+kind = "box"
+text = "pic=Marinated j' bones (normal) detail.png|You hand Tinsay the Jogre Bones marinated in Karambwanji."
+parent = 861
+
+[[nodes]]
+id = 864
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "That was awful! The Jogre bones were not nearly burnt enough."
+parent = 861
+
+[[nodes]]
+id = 865
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "You'll have to make it again. Remember to burn the Jogre bones!"
+parent = 861
+
+[[nodes]]
+id = 866
+depth = 3
+kind = "act"
+text = "end"
+parent = 861
+is_terminal = true
+
+[[nodes]]
+id = 867
+depth = 3
+kind = "act"
+text = "above"
+parent = 861
+
+[[nodes]]
+id = 868
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 861
+
+[[nodes]]
+id = 869
+depth = 3
+kind = "option"
+text = "How do I ..."
+parent = 861
+children = [870, 871, 875, 879, 883]
+
+[[nodes]]
+id = 870
+depth = 4
+kind = "select"
+text = "Select an option"
+parent = 869
+
+[[nodes]]
+id = 871
+depth = 4
+kind = "option"
+text = "... burn Jogre bones?"
+parent = 869
+children = [872, 873, 874]
+
+[[nodes]]
+id = 872
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do I burn Jogre bones?"
+parent = 871
+
+[[nodes]]
+id = 873
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "You must either be very skilled or find a way to make them super hot."
+parent = 871
+
+[[nodes]]
+id = 874
+depth = 5
+kind = "act"
+text = "initial"
+parent = 871
+
+[[nodes]]
+id = 875
+depth = 4
+kind = "option"
+text = "... marinate something?"
+parent = 869
+children = [876, 877, 878]
+
+[[nodes]]
+id = 876
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do I marinate something?"
+parent = 875
+
+[[nodes]]
+id = 877
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "You cook it in a sauce, obviously."
+parent = 875
+
+[[nodes]]
+id = 878
+depth = 5
+kind = "act"
+text = "initial"
+parent = 875
+
+[[nodes]]
+id = 879
+depth = 4
+kind = "option"
+text = "... find Karambwanji?"
+parent = 869
+children = [880, 881, 882]
+
+[[nodes]]
+id = 880
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do I find Karambwanji?"
+parent = 879
+
+[[nodes]]
+id = 881
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "They're fish. Do I look like a fisherman?"
+parent = 879
+
+[[nodes]]
+id = 882
+depth = 5
+kind = "act"
+text = "initial"
+parent = 879
+
+[[nodes]]
+id = 883
+depth = 4
+kind = "option"
+text = "... end this silly quest?"
+parent = 869
+children = [884, 885, 886]
+
+[[nodes]]
+id = 884
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do I end this silly quest?"
+parent = 883
+
+[[nodes]]
+id = 885
+depth = 5
+kind = "speaker"
+speaker = "Tinsay"
+text = "Patience, Bwana, patience."
+parent = 883
+
+[[nodes]]
+id = 886
+depth = 5
+kind = "act"
+text = "initial"
+parent = 883
+
+[[nodes]]
+id = 887
+depth = 3
+kind = "option"
+text = "Just how insane are you?"
+parent = 861
+children = [888, 889]
+
+[[nodes]]
+id = 888
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Just how insane are you?"
+parent = 887
+
+[[nodes]]
+id = 889
+depth = 4
+kind = "act"
+text = "above"
+parent = 887
+
+[[nodes]]
+id = 890
+depth = 1
+kind = "option"
+text = "I've heard something about an accident."
+parent = -1
+children = [891, 892, 893]
+
+[[nodes]]
+id = 891
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've heard something about an accident."
+parent = 890
+
+[[nodes]]
+id = 892
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "Maurhah!! Jooooogre bones!"
+parent = 890
+
+[[nodes]]
+id = 893
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "Ahem. Sorry. We don't usually talk about it."
+parent = 890
+
+[[nodes]]
+id = 894
+depth = 1
+kind = "option"
+text = "I'll be back later."
+parent = -1
+children = [895, 896]
+
+[[nodes]]
+id = 895
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back later."
+parent = 894
+
+[[nodes]]
+id = 896
+depth = 2
+kind = "act"
+text = "end"
+parent = 894
+is_terminal = true
+
+[[nodes]]
+id = 897
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [898, 899]
+
+[[nodes]]
+id = 898
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm still looking."
+parent = 897
+
+[[nodes]]
+id = 899
+depth = 2
+kind = "act"
+text = "initial"
+parent = 897
+
+[[nodes]]
+id = 900
+depth = 1
+kind = "cond"
+text = "If the player uses poisoned or regular Karambwan paste on the bones:"
+parent = -1
+children = [901, 902]
+
+[[nodes]]
+id = 901
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sure Tinsay said to use Karambwanji paste, not Karambwan paste..."
+parent = 900
+
+[[nodes]]
+id = 902
+depth = 2
+kind = "act"
+text = "end"
+parent = 900
+is_terminal = true
+
+[[nodes]]
+id = 903
+depth = 1
+kind = "cond"
+text = "If the player attempts to cook the Jogre bones on a fire without level 30 Cooking:"
+parent = -1
+children = [904, 905]
+
+[[nodes]]
+id = 904
+depth = 2
+kind = "other"
+text = "{{mes|You need a firemaking level of 30 to burn Jogre bones. You could find some other way of burning them.}}"
+parent = 903
+
+[[nodes]]
+id = 905
+depth = 2
+kind = "act"
+text = "end"
+parent = 903
+is_terminal = true
+
+[[nodes]]
+id = 906
+depth = 1
+kind = "cond"
+text = "If the player uses the Jogre bones on a range (without level 30 Cooking) or fire (with level 30 Cooking):"
+parent = -1
+children = [907, 908]
+
+[[nodes]]
+id = 907
+depth = 2
+kind = "other"
+text = "{{mes|You heat the bones, but they don't look any different.}}"
+parent = 906
+
+[[nodes]]
+id = 908
+depth = 2
+kind = "act"
+text = "end"
+parent = 906
+is_terminal = true
+
+[[nodes]]
+id = 909
+depth = 1
+kind = "cond"
+text = "If the player grinds the cooked Karambwanji:"
+parent = -1
+children = [910, 911]
+
+[[nodes]]
+id = 910
+depth = 2
+kind = "other"
+text = "{{mes|You grind the cooked Karambwanji to form a sticky paste.}}"
+parent = 909
+
+[[nodes]]
+id = 911
+depth = 2
+kind = "act"
+text = "end"
+parent = 909
+is_terminal = true
+
+[[nodes]]
+id = 912
+depth = 1
+kind = "cond"
+text = "If the player smothers the ground cooked Karambwanji the Jogre bones:"
+parent = -1
+children = [913, 914]
+
+[[nodes]]
+id = 913
+depth = 2
+kind = "other"
+text = "{{mes|You smother the cooked Karambwanji paste over the Jogre bones.}}"
+parent = 912
+
+[[nodes]]
+id = 914
+depth = 2
+kind = "act"
+text = "end"
+parent = 912
+is_terminal = true
+
+[[nodes]]
+id = 915
+depth = 1
+kind = "cond"
+text = "If the player attempts to cook the smothered Jogre bones with cooked Karambwanji:"
+parent = -1
+children = [916, 917, 918, 919]
+
+[[nodes]]
+id = 916
+depth = 2
+kind = "other"
+text = "{{mes|You cooked the karambwanji paste catches fire and explodes.}}"
+parent = 915
+
+[[nodes]]
+id = 917
+depth = 2
+kind = "act"
+text = "The player loses 1-3 hitpoints."
+parent = 915
+
+[[nodes]]
+id = 918
+depth = 2
+kind = "act"
+text = "receives=some ashes"
+parent = 915
+
+[[nodes]]
+id = 919
+depth = 2
+kind = "act"
+text = "end"
+parent = 915
+is_terminal = true
+
+[[nodes]]
+id = 920
+depth = 1
+kind = "cond"
+text = "If the player grinds the raw Karambwanji:"
+parent = -1
+children = [921, 922]
+
+[[nodes]]
+id = 921
+depth = 2
+kind = "other"
+text = "{{mes|You grind the raw Karambwanji to form a sticky paste.}}"
+parent = 920
+
+[[nodes]]
+id = 922
+depth = 2
+kind = "act"
+text = "end"
+parent = 920
+is_terminal = true
+
+[[nodes]]
+id = 923
+depth = 1
+kind = "cond"
+text = "If the player uses the raw Karambwanji on the Jogre bones:"
+parent = -1
+children = [924, 925]
+
+[[nodes]]
+id = 924
+depth = 2
+kind = "other"
+text = "{{mes|You smother the raw Karambwanji paste over the Jogre bones.}}"
+parent = 923
+
+[[nodes]]
+id = 925
+depth = 2
+kind = "act"
+text = "end"
+parent = 923
+is_terminal = true
+
+[[nodes]]
+id = 926
+depth = 1
+kind = "cond"
+text = "If the player cooks the raw Karakbwanji paste-smothered Jogre bones:"
+parent = -1
+children = [927, 928]
+
+[[nodes]]
+id = 927
+depth = 2
+kind = "other"
+text = "{{mes|You marinate the burnt bones perfectly.}}"
+parent = 926
+
+[[nodes]]
+id = 928
+depth = 2
+kind = "act"
+text = "end"
+parent = 926
+is_terminal = true
+
+[[nodes]]
+id = 929
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Have you found my burnt Jogre bones marinated in Karambwanji yet?"
+parent = -1
+
+[[nodes]]
+id = 930
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 931
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [932]
+
+[[nodes]]
+id = 932
+depth = 2
+kind = "cond"
+text = "If the player gives him cooked and marinated Jogre bones as requested:"
+parent = 931
+children = [933, 934, 935, 936, 937, 938, 939, 940, 941, 942, 943, 944, 945, 946]
+
+[[nodes]]
+id = 933
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it right here."
+parent = 932
+
+[[nodes]]
+id = 934
+depth = 3
+kind = "box"
+text = "pic=Marinated j' bones (burnt) detail.png|You hand Tinsay the burnt Jogre bones marinated in Karambwanji."
+parent = 932
+
+[[nodes]]
+id = 935
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Finally! A near lifetime of craving satisfied!"
+parent = 932
+
+[[nodes]]
+id = 936
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I assume you're now able to repair the statue..."
+parent = 932
+
+[[nodes]]
+id = 937
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Perfectly able, my friend, thanks to your ministrations!"
+parent = 932
+
+[[nodes]]
+id = 938
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Probably best you don't go cooking any more Karambwanji from now on, they can be a bit volatile!"
+parent = 932
+
+[[nodes]]
+id = 939
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Will you return to the village now?"
+parent = 932
+
+[[nodes]]
+id = 940
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Must I ... ?"
+parent = 932
+
+[[nodes]]
+id = 941
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I insist - and so does your father."
+parent = 932
+
+[[nodes]]
+id = 942
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "He will not be pleased with me..."
+parent = 932
+
+[[nodes]]
+id = 943
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why?"
+parent = 932
+
+[[nodes]]
+id = 944
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "It's complicated - we don't really talk about it."
+parent = 932
+
+[[nodes]]
+id = 945
+depth = 3
+kind = "speaker"
+speaker = "Tinsay"
+text = "Very well. I will meet you in the village once you have helped my brothers and spoken to my father."
+parent = 932
+
+[[nodes]]
+id = 946
+depth = 3
+kind = "act"
+text = "end"
+parent = 932
+is_terminal = true
+
+[[nodes]]
+id = 947
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [948]
+
+[[nodes]]
+id = 948
+depth = 2
+kind = "act"
+text = "above"
+parent = 947
+
+[[nodes]]
+id = 949
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Will you return to the village now?"
+parent = -1
+
+[[nodes]]
+id = 950
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Must I ... ?"
+parent = -1
+
+[[nodes]]
+id = 951
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 952
+depth = 1
+kind = "cond"
+text = "If the player uses an empty karambwan vessel on Tinsay:"
+parent = -1
+children = [953, 954, 955, 958, 961, 962, 963, 964, 965]
+
+[[nodes]]
+id = 953
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Your brother Tiadeche has sent me. He asks you to study this vessel and produce crafting instructions."
+parent = 952
+
+[[nodes]]
+id = 954
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "Very well - hand it over."
+parent = 952
+
+[[nodes]]
+id = 955
+depth = 2
+kind = "cond"
+text = "If the vessel is empty:"
+parent = 952
+children = [956, 957]
+
+[[nodes]]
+id = 956
+depth = 3
+kind = "box"
+text = "pic=Karambwan vessel detail.png|You hand over the Karambwan vessel to Tinsay."
+parent = 955
+
+[[nodes]]
+id = 957
+depth = 3
+kind = "act"
+text = "continue"
+parent = 955
+
+[[nodes]]
+id = 958
+depth = 2
+kind = "cond"
+text = "If the vessel is filled with Karambwanji:"
+parent = 952
+children = [959, 960]
+
+[[nodes]]
+id = 959
+depth = 3
+kind = "box"
+text = "pic=Karambwan vessel (baited) detail.png|You hand over the Karambwan vessel to Tinsay."
+parent = 958
+
+[[nodes]]
+id = 960
+depth = 3
+kind = "act"
+text = "continue"
+parent = 958
+
+[[nodes]]
+id = 961
+depth = 2
+kind = "other"
+text = "{{mes|Tinsay studies it for a moment then quickly sketches some crafting instructions.}}"
+parent = 952
+
+[[nodes]]
+id = 962
+depth = 2
+kind = "box"
+text = "pic=Crafting manual detail.png|Tinsay hands you a Karambwan vessel crafting manual."
+parent = 952
+
+[[nodes]]
+id = 963
+depth = 2
+kind = "act"
+text = "receives=a crafting manual"
+parent = 952
+
+[[nodes]]
+id = 964
+depth = 2
+kind = "speaker"
+speaker = "Tinsay"
+text = "I hope that's what he wanted."
+parent = 952
+
+[[nodes]]
+id = 965
+depth = 2
+kind = "act"
+text = "end"
+parent = 952
+is_terminal = true
+
+[[nodes]]
+id = 966
+depth = 1
+kind = "speaker"
+speaker = "Timfraku"
+text = "My sons have returned to the village!"
+parent = -1
+
+[[nodes]]
+id = 967
+depth = 1
+kind = "cond"
+text = "If the player says they are a roving adventurer:"
+parent = -1
+children = [968, 969]
+
+[[nodes]]
+id = 968
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Roving adventurer, please accept my eternal gratitude!"
+parent = 967
+
+[[nodes]]
+id = 969
+depth = 2
+kind = "act"
+text = "continue"
+parent = 967
+
+[[nodes]]
+id = 970
+depth = 1
+kind = "cond"
+text = "If the player says they are a travelling explorer:"
+parent = -1
+children = [971, 972]
+
+[[nodes]]
+id = 971
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Travelling explorer, please accept my eternal gratitude!"
+parent = 970
+
+[[nodes]]
+id = 972
+depth = 2
+kind = "act"
+text = "continue"
+parent = 970
+
+[[nodes]]
+id = 973
+depth = 1
+kind = "cond"
+text = "If the player says they are a wandering wayfarer:"
+parent = -1
+children = [974, 975]
+
+[[nodes]]
+id = 974
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Wandering wayfarer, please accept my eternal gratitude!"
+parent = 973
+
+[[nodes]]
+id = 975
+depth = 2
+kind = "act"
+text = "continue"
+parent = 973
+
+[[nodes]]
+id = 976
+depth = 1
+kind = "cond"
+text = "If the player says they are a \"Nobody\":"
+parent = -1
+children = [977, 978]
+
+[[nodes]]
+id = 977
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Nobody, please accept my eternal gratitude!"
+parent = 976
+
+[[nodes]]
+id = 978
+depth = 2
+kind = "act"
+text = "continue"
+parent = 976
+
+[[nodes]]
+id = 979
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 980
+depth = 1
+kind = "option"
+text = "Oh it was nothing really."
+parent = -1
+children = [981, 982, 983, 984, 985, 986]
+
+[[nodes]]
+id = 981
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh it was nothing really."
+parent = 980
+
+[[nodes]]
+id = 982
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "It was? Very well. I still would that you accept my reward.}}"
+parent = 980
+
+[[nodes]]
+id = 983
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course."
+parent = 980
+
+[[nodes]]
+id = 984
+depth = 2
+kind = "box"
+text = "pic=Coins_1000_detail.png|Timfraku hands you a big stack of gold coins."
+parent = 980
+
+[[nodes]]
+id = 985
+depth = 2
+kind = "act"
+text = "receives=2000 coins"
+parent = 980
+
+[[nodes]]
+id = 986
+depth = 2
+kind = "act"
+text = "continue"
+parent = 980
+
+[[nodes]]
+id = 987
+depth = 1
+kind = "option"
+text = "I'd rather have some gold please."
+parent = -1
+children = [988, 989, 990, 991, 992]
+
+[[nodes]]
+id = 988
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd rather have some gold please."
+parent = 987
+
+[[nodes]]
+id = 989
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Of course. That is in your nature."
+parent = 987
+
+[[nodes]]
+id = 990
+depth = 2
+kind = "box"
+text = "pic=Coins_1000_detail.png|Timfraku hands you a big stack of gold coins."
+parent = 987
+
+[[nodes]]
+id = 991
+depth = 2
+kind = "act"
+text = "receives=2000 coins"
+parent = 987
+
+[[nodes]]
+id = 992
+depth = 2
+kind = "act"
+text = "continue"
+parent = 987
+
+[[nodes]]
+id = 993
+depth = 1
+kind = "option"
+text = "You know your sons have serious issues..."
+parent = -1
+children = [994, 995, 996, 997, 998]
+
+[[nodes]]
+id = 994
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You know your sons have serious issues..."
+parent = 993
+
+[[nodes]]
+id = 995
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Of course. I sometimes wonder if they know they have issues. Anyway, please accept also my reward."
+parent = 993
+
+[[nodes]]
+id = 996
+depth = 2
+kind = "box"
+text = "pic=Coins_1000_detail.png|Timfraku hands you a big stack of gold coins."
+parent = 993
+
+[[nodes]]
+id = 997
+depth = 2
+kind = "act"
+text = "receives=2000 coins"
+parent = 993
+
+[[nodes]]
+id = 998
+depth = 2
+kind = "act"
+text = "continue"
+parent = 993
+
+[[nodes]]
+id = 999
+depth = 1
+kind = "option"
+text = "Eternal gratitude accepted."
+parent = -1
+children = [1000, 1001, 1002, 1003, 1004]
+
+[[nodes]]
+id = 1000
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Eternal gratitude accepted."
+parent = 999
+
+[[nodes]]
+id = 1001
+depth = 2
+kind = "speaker"
+speaker = "Timfraku"
+text = "Very good. The spirits of my family will watch over you. And now, I would that you also accept a small token of my appreciation."
+parent = 999
+
+[[nodes]]
+id = 1002
+depth = 2
+kind = "box"
+text = "pic=Coins_1000_detail.png|Timfraku hands you a big stack of gold coins."
+parent = 999
+
+[[nodes]]
+id = 1003
+depth = 2
+kind = "act"
+text = "receives=2000 coins"
+parent = 999
+
+[[nodes]]
+id = 1004
+depth = 2
+kind = "act"
+text = "continue"
+parent = 999
+
+[[nodes]]
+id = 1005
+depth = 1
+kind = "option"
+text = "Ask about Village."
+parent = -1
+children = [1006]
+
+[[nodes]]
+id = 1006
+depth = 2
+kind = "act"
+text = "initial"
+parent = 1005
+
+[[nodes]]
+id = 1007
+depth = 1
+kind = "speaker"
+speaker = "Timfraku"
+text = "You should go and see my sons in the village. I think they have something for you."
+parent = -1
+
+[[nodes]]
+id = 1008
+depth = 1
+kind = "other"
+text = "{{mes|Congratulations, you have completed a quest: {{colour|#000080|Tai Bwo Wannai Trio}}}}"
+parent = -1
+
+[[nodes]]
+id = 1009
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1010
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Hello, Bwana! We three have finally returned to the village!"
+parent = -1
+
+[[nodes]]
+id = 1011
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So I see."
+parent = -1
+
+[[nodes]]
+id = 1012
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I wish to reward you in return for helping me."
+parent = -1
+
+[[nodes]]
+id = 1013
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "I have been attempting to cook the Karambwan. As we all know, they are poisonous if not cooked properly."
+parent = -1
+
+[[nodes]]
+id = 1014
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes. It's how I, or rather Tamayu, killed the Shaikahan."
+parent = -1
+
+[[nodes]]
+id = 1015
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Indeed. I have determined precisely how long to cook them for so that they are edible."
+parent = -1
+
+[[nodes]]
+id = 1016
+depth = 1
+kind = "box"
+text = "pic=Raw karambwan detail.png|Tiadeche trains you in fishing technique."
+parent = -1
+
+[[nodes]]
+id = 1017
+depth = 1
+kind = "box"
+text = "You gain knowledge of how to properly cook Karambwan.{{sic|supposed to be fish, not cook"
+parent = -1
+
+[[nodes]]
+id = 1018
+depth = 1
+kind = "act"
+text = "The player gains 5,000 Fishing experience."
+parent = -1
+
+[[nodes]]
+id = 1019
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Thanks to you, Lubufu's Karambwan monopoly is over. If you ever need some, then come to me and not the store in Brimhaven."
+parent = -1
+
+[[nodes]]
+id = 1020
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 1021
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1022
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Tiadeche."
+parent = -1
+
+[[nodes]]
+id = 1023
+depth = 1
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Hello, Bwana! Would you like to buy some Karambwan?"
+parent = -1
+
+[[nodes]]
+id = 1024
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 1025
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [1026, 1027]
+
+[[nodes]]
+id = 1026
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 1025
+
+[[nodes]]
+id = 1027
+depth = 2
+kind = "act"
+text = "opens=Tiadeche's Karambwan Stall"
+parent = 1025
+
+[[nodes]]
+id = 1028
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [1029, 1030, 1031]
+
+[[nodes]]
+id = 1029
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 1028
+
+[[nodes]]
+id = 1030
+depth = 2
+kind = "speaker"
+speaker = "Tiadeche"
+text = "Very well. Let me know if you change your mind."
+parent = 1028
+
+[[nodes]]
+id = 1031
+depth = 2
+kind = "act"
+text = "end"
+parent = 1028
+is_terminal = true
+
+[[nodes]]
+id = 1032
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Braaar! Your meals are truly excellent, Bwana ..."
+parent = -1
+
+[[nodes]]
+id = 1033
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm glad to hear it."
+parent = -1
+
+[[nodes]]
+id = 1034
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "... but there are some areas which could use some ... improvement."
+parent = -1
+
+[[nodes]]
+id = 1035
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Such as?"
+parent = -1
+
+[[nodes]]
+id = 1036
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Let me show you."
+parent = -1
+
+[[nodes]]
+id = 1037
+depth = 1
+kind = "box"
+text = "pic=Marinated j' bones (burnt) detail.png|Tinsay trains you in cooking technique{{sic|Supposed to be techniques?"
+parent = -1
+
+[[nodes]]
+id = 1038
+depth = 1
+kind = "act"
+text = "The player gains 5,000 Cooking experience."
+parent = -1
+
+[[nodes]]
+id = 1039
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 1040
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Oh, and before you go: I finally got around to repairing that statue. You might want to take a look. ... Jogre bones!"
+parent = -1
+
+[[nodes]]
+id = 1041
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok..."
+parent = -1
+
+[[nodes]]
+id = 1042
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1043
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Tinsay."
+parent = -1
+
+[[nodes]]
+id = 1044
+depth = 1
+kind = "speaker"
+speaker = "Tinsay"
+text = "Why hello there! What are you doing back here?"
+parent = -1
+
+[[nodes]]
+id = 1045
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Just passing through."
+parent = -1
+
+[[nodes]]
+id = 1046
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1047
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "Welcome back to Tai Bwo Wannai, stranger."
+parent = -1
+
+[[nodes]]
+id = 1048
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I no longer feel a stranger here."
+parent = -1
+
+[[nodes]]
+id = 1049
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "And neither do we, thanks to you. My father has requested I give you something of value."
+parent = -1
+
+[[nodes]]
+id = 1050
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "I have not much of worth to give, apart from my fighting technique."
+parent = -1
+
+[[nodes]]
+id = 1051
+depth = 1
+kind = "box"
+text = "Tamayu trains you in fighting technique."
+parent = -1
+
+[[nodes]]
+id = 1052
+depth = 1
+kind = "act"
+text = "receives=2,500 Attack and 2,500 Strength experience"
+parent = -1
+
+[[nodes]]
+id = 1053
+depth = 1
+kind = "box"
+text = "pic=Rune spear(kp) detail.png|Tamayu hands you some kind of spear."
+parent = -1
+
+[[nodes]]
+id = 1054
+depth = 1
+kind = "act"
+text = "receives=a Karambwan poisoned rune spear"
+parent = -1
+
+[[nodes]]
+id = 1055
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "This is the one thing I can give. My family have honoured me with this spear. But the honour is truly yours."
+parent = -1
+
+[[nodes]]
+id = 1056
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = -1
+
+[[nodes]]
+id = 1057
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "Take care, Bwana."
+parent = -1
+
+[[nodes]]
+id = 1058
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 1059
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Tamayu, first son of Timfraku."
+parent = -1
+
+[[nodes]]
+id = 1060
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "Stranger, why you have returned?"
+parent = -1
+
+[[nodes]]
+id = 1061
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm just passing through."
+parent = -1
+
+[[nodes]]
+id = 1062
+depth = 1
+kind = "speaker"
+speaker = "Tamayu"
+text = "Using your new found poison I have been creating spears. Would you like to buy some?"
+parent = -1
+
+[[nodes]]
+id = 1063
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 1064
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [1065, 1066]
+
+[[nodes]]
+id = 1065
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 1064
+
+[[nodes]]
+id = 1066
+depth = 2
+kind = "act"
+text = "opens=Tamayu's Spear Stall"
+parent = 1064
+
+[[nodes]]
+id = 1067
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [1068, 1069, 1070]
+
+[[nodes]]
+id = 1068
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 1067
+
+[[nodes]]
+id = 1069
+depth = 2
+kind = "speaker"
+speaker = "Tamayu"
+text = "As you wish, stranger."
+parent = 1067
+
+[[nodes]]
+id = 1070
+depth = 2
+kind = "act"
+text = "end"
+parent = 1067
+is_terminal = true

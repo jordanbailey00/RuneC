@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "config.h"
+#include "game_data.h"
 #include "interaction.h"
 #include "npc.h"
 #include "skills.h"
@@ -40,8 +41,11 @@ typedef struct {
 // skilling-only, base-only). `rc_world_create(seed)` is a
 // convenience wrapper for the full-game preset.
 RcWorld *rc_world_create_config(const RcWorldConfig *cfg);
+RcWorld *rc_world_create_with_data(RcGameData *data,
+                                   const RcWorldConfig *cfg);
 RcWorld *rc_world_create(uint32_t seed);
 void     rc_world_destroy(RcWorld *world);
+const RcGameData *rc_world_get_game_data(const RcWorld *world);
 
 // Backend-owned gameplay area activation. The viewer may choose which visual
 // scene to display, but core owns the collision window and active NPC slice.

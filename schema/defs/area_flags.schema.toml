@@ -1,0 +1,27 @@
+id = "area_flags"
+format = "binary"
+path = "data/defs/area_flags.bin"
+magic_label = "AFLG"
+magic_u32 = "0x474C4641"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 row_count", "u32 point_count"]
+producer = "tools/export_area_flags.py"
+consumers = ["rc-core/area_flags.c"]
+source_dataset = "source-gap only until approved OSRS-native area polygons exist"
+row_fields = [
+  "u8 plane",
+  "u8 authoritative_osrs",
+  "u16 vertex_count",
+  "u8 set_flags",
+  "u8 clear_flags",
+  "i32 min_x",
+  "i32 min_y",
+  "i32 max_x",
+  "i32 max_y",
+  "i32 value",
+  "u32 source_id",
+  "points[vertex_count]: i32 x, i32 y",
+]
+compatibility = "Loader accepts exactly current_version; current exporter emits source-gap reports instead of regenerating this binary."

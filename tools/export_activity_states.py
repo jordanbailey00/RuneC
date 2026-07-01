@@ -8,8 +8,10 @@ import time
 import tomllib
 from pathlib import Path
 
+from content_paths import content_read_path
+
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "data/curated/activity_state_machines.toml"
+SRC = content_read_path("activity_state_machines.toml")
 OUT = ROOT / "data/defs/activity_states.bin"
 REPORT = ROOT / "tools/reports/activity_states.txt"
 
@@ -160,7 +162,7 @@ def write_bin(rows: list[dict[str, object]]) -> None:
                 f.write(struct.pack("<i", int(value)))
 
 
-def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
+def write_report(rows: list[dict[str, object]]) -> None:
     by_kind: dict[str, int] = {}
     for row in rows:
         by_kind[str(row["kind_name"])] = by_kind.get(str(row["kind_name"]), 0) + 1
@@ -174,7 +176,6 @@ def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
         f"transitions: {sum(len(r['transitions']) for r in rows)}",
         f"params: {sum(len(r['params']) for r in rows)}",
         f"output: {OUT.relative_to(ROOT)}",
-        f"elapsed_ms: {elapsed_ms:.3f}",
         "",
         "Status",
         "READY_WITH_ACCEPTED_SIMPLIFICATIONS: rows load into RcActivityRun state flow; exact per-tick attack/object consumers land per activity.",
@@ -198,7 +199,7 @@ def main() -> int:
     rows = read_rows()
     write_bin(rows)
     elapsed_ms = (time.perf_counter() - start) * 1000.0
-    write_report(rows, elapsed_ms)
+    write_report(rows)
     print(f"exported {len(rows)} activity state-machine rows "
           f"in {elapsed_ms:.3f} ms")
     return 0

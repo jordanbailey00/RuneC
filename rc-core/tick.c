@@ -32,10 +32,15 @@ static void process_player_input(RcWorld *world) {
     (void)world;
 }
 
+static const RcNpcDef *npc_def_for(const RcNpc *npc) {
+    return npc ? rc_npc_def_get(npc->def_id) : NULL;
+}
+
 static void spawn_npc_loot(RcWorld *world, const RcNpc *npc) {
     if (!world || !npc || !(world->enabled & RC_SUB_LOOT)) return;
-    if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) return;
-    int npc_id = g_npc_defs[npc->def_id].id;
+    const RcNpcDef *def = npc_def_for(npc);
+    if (!def) return;
+    int npc_id = def->id;
     RcLootDrop drops[RC_MAX_LOOT_DROPS];
     int count = rc_roll_npc_loot(world, npc_id, drops, RC_MAX_LOOT_DROPS);
     for (int i = 0; i < count; i++) {
@@ -48,9 +53,9 @@ static void spawn_npc_loot(RcWorld *world, const RcNpc *npc) {
 static RcNpc *api_find_npc_by_uid(RcWorld *world, int uid);
 static int api_option_from_interaction_op(RcInteractionOp op);
 static int api_npc_attack_option_index(const RcNpcDef *def);
-static void api_register_default_npc_handlers(void);
-static void api_register_default_object_handlers(void);
-static void api_register_default_ground_item_handlers(void);
+static void api_register_default_npc_handlers(RcWorld *world);
+static void api_register_default_object_handlers(RcWorld *world);
+static void api_register_default_ground_item_handlers(RcWorld *world);
 static void api_set_player_route(RcPlayer *p, const RcRoute *route);
 static void process_player_interaction(RcWorld *world, int dispatch_ready);
 static RcObjectState *object_state_find(RcWorld *world, int obj_id,
@@ -157,8 +162,7 @@ static void process_player_movement(RcWorld *world) {
 
 static void nearest_npc_tile_to_player(const RcNpc *npc, const RcPlayer *p,
                                        int *tx, int *ty) {
-    const RcNpcDef *def = npc->def_id >= 0 && npc->def_id < g_npc_def_count
-                        ? &g_npc_defs[npc->def_id] : NULL;
+    const RcNpcDef *def = npc_def_for(npc);
     int size = def && def->size > 0 ? def->size : 1;
     int min_x = npc->x;
     int min_y = npc->y;
@@ -203,8 +207,7 @@ static int npc_interaction_has_los(const RcWorld *world, const RcPlayer *p,
 static void route_player_toward_interaction_npc(RcWorld *world, RcPlayer *p,
                                                 const RcNpc *npc, int range) {
     if (!p || !npc || p->plane != npc->plane) return;
-    const RcNpcDef *def = npc->def_id >= 0 && npc->def_id < g_npc_def_count
-                        ? &g_npc_defs[npc->def_id] : NULL;
+    const RcNpcDef *def = npc_def_for(npc);
     int size = def && def->size > 0 ? def->size : 1;
     int min_x = npc->x;
     int min_y = npc->y;
@@ -367,11 +370,11 @@ static RcNpc *validate_pending_npc_interaction(RcWorld *world,
         pending->last_failure = RC_INTERACTION_FAIL_TARGET_DEAD;
         return NULL;
     }
-    if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = npc_def_for(npc);
+    if (!def) {
         pending->last_failure = RC_INTERACTION_FAIL_INVALID_TARGET;
         return NULL;
     }
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     if (pending->target.definition_id >= 0 &&
             pending->target.definition_id != def->id) {
         pending->last_failure = RC_INTERACTION_FAIL_TARGET_VERSION_CHANGED;
@@ -435,7 +438,7 @@ static int validate_pending_object_interaction(RcWorld *world,
     }
     if (pending->target.tile_x >= 0 && pending->target.tile_y >= 0
             && pending->target.plane >= 0
-            && g_rc_object_placement_count > 0
+            && rc_object_has_placements()
             && !current_object_placement_key(
                 world, pending->target.definition_id,
                 pending->target.tile_x, pending->target.tile_y,
@@ -590,7 +593,7 @@ static void process_player_interaction(RcWorld *world, int dispatch_ready) {
             return;
         }
         face_player_to_npc(p, npc);
-        if (dispatch_ready) api_register_default_npc_handlers();
+        if (dispatch_ready) api_register_default_npc_handlers(world);
     } else if (p->interaction.target.kind == RC_INTERACTION_OBJECT) {
         if (!validate_pending_object_interaction(world, &p->interaction)) {
             rc_interaction_cancel(p, p->interaction.last_failure);
@@ -635,7 +638,7 @@ static void process_player_interaction(RcWorld *world, int dispatch_ready) {
             return;
         }
         face_player_to_target(p, &p->interaction.target);
-        if (dispatch_ready) api_register_default_object_handlers();
+        if (dispatch_ready) api_register_default_object_handlers(world);
     } else if (p->interaction.target.kind == RC_INTERACTION_GROUND_ITEM) {
         if (!validate_pending_ground_item_interaction(world,
                                                       &p->interaction)) {
@@ -657,7 +660,7 @@ static void process_player_interaction(RcWorld *world, int dispatch_ready) {
             return;
         }
         face_player_to_target(p, &p->interaction.target);
-        if (dispatch_ready) api_register_default_ground_item_handlers();
+        if (dispatch_ready) api_register_default_ground_item_handlers(world);
     } else if (p->interaction.target.kind == RC_INTERACTION_INVENTORY_ITEM ||
             p->interaction.target.kind == RC_INTERACTION_EQUIPMENT_ITEM ||
             p->interaction.target.kind == RC_INTERACTION_WIDGET) {
@@ -753,6 +756,7 @@ static void process_player_skilling(RcWorld *world) {
 // rc_resolve_player_hits — it fires RC_EVT_PLAYER_DAMAGED per hit.)
 
 static void resolve_npc_hits(RcWorld *world, RcNpc *npc) {
+    const RcNpcDef *def = npc_def_for(npc);
     bool was_alive = !npc->is_dead;
     int death_source = -1;
     int w = 0;
@@ -795,7 +799,7 @@ static void resolve_npc_hits(RcWorld *world, RcNpc *npc) {
             npc->current_hp = 0;
             npc->is_dead = true;
             npc->death_timer = 3;
-            int respawn = g_npc_defs[npc->def_id].respawn_ticks;
+            int respawn = def ? def->respawn_ticks : 0;
             npc->respawn_timer = respawn > 0 ? respawn : 25;
             npc->target_uid = -1;
             death_source = h->source_idx;
@@ -810,23 +814,20 @@ static void resolve_npc_hits(RcWorld *world, RcNpc *npc) {
                            ? (uint16_t)h->source_idx : 0xFFFFu,
             .damage = (uint16_t)(damage & 0xFFFF),
             .current_hp = (uint16_t)(npc->current_hp & 0xFFFF),
-            .max_hp = npc->def_id >= 0 && npc->def_id < g_npc_def_count
-                    ? (uint16_t)(g_npc_defs[npc->def_id].hitpoints & 0xFFFF)
-                    : 0,
+            .max_hp = def ? (uint16_t)(def->hitpoints & 0xFFFF) : 0,
             .style = (uint8_t)h->attack_style,
         };
         rc_event_fire(world, RC_EVT_NPC_DAMAGED, &damaged);
     }
     npc->num_pending_hits = w;
     npc->combat.hp_current = npc->current_hp;
-    npc->combat.hp_max = npc->def_id >= 0 && npc->def_id < g_npc_def_count
-                       ? g_npc_defs[npc->def_id].hitpoints : 0;
+    npc->combat.hp_max = def ? def->hitpoints : 0;
     // Fire death event once on the transition alive → dead.
     if (was_alive && npc->is_dead) {
         if (death_source < 0) spawn_npc_loot(world, npc);
         RcPayloadNpcEvent payload = {
             .npc_id = (uint16_t)npc->uid,
-            .def_id = (uint32_t)g_npc_defs[npc->def_id].id,
+            .def_id = def ? (uint32_t)def->id : 0,
         };
         rc_event_fire(world, RC_EVT_NPC_DIED, &payload);
     }
@@ -1013,8 +1014,8 @@ static RcInteractionTarget api_npc_interaction_target(const RcNpc *npc) {
     target.widget_id = -1;
     target.component_id = -1;
     target.ground_item_instance = -1;
-    if (npc && npc->def_id >= 0 && npc->def_id < g_npc_def_count) {
-        const RcNpcDef *def = &g_npc_defs[npc->def_id];
+    const RcNpcDef *def = npc_def_for(npc);
+    if (def) {
         int size = def->size > 0 ? def->size : 1;
         target.definition_id = def->id;
         target.footprint_width = size;
@@ -1227,8 +1228,8 @@ static RcInteractionHandlerResult api_default_npc_attack_handler(
             RC_INTERACTION_FAIL_INVALID_TARGET, "Invalid NPC attack");
     }
     RcNpc *npc = api_find_npc_by_uid(world, pending->target.entity_uid);
-    if (!npc || npc->is_dead || npc->def_id < 0 ||
-            npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = npc_def_for(npc);
+    if (!npc || npc->is_dead || !def) {
         return rc_interaction_result_failure(
             RC_INTERACTION_FAIL_TARGET_MISSING, "NPC target missing");
     }
@@ -1253,7 +1254,6 @@ static RcInteractionHandlerResult api_default_npc_attack_handler(
     }
 
     int opt = api_option_from_interaction_op(pending->op);
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     if (opt < 0 || !rc_npc_def_option_is_attack(def, opt)) {
         return rc_interaction_result_failure(
             RC_INTERACTION_FAIL_OPTION_UNAVAILABLE,
@@ -1280,8 +1280,8 @@ static RcInteractionHandlerResult api_default_npc_option_handler(
             RC_INTERACTION_FAIL_INVALID_TARGET, "Invalid NPC interaction");
     }
     RcNpc *npc = api_find_npc_by_uid(world, pending->target.entity_uid);
-    if (!npc || npc->is_dead || npc->def_id < 0 ||
-            npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = npc_def_for(npc);
+    if (!npc || npc->is_dead || !def) {
         return rc_interaction_result_failure(
             RC_INTERACTION_FAIL_TARGET_MISSING, "NPC target missing");
     }
@@ -1290,7 +1290,6 @@ static RcInteractionHandlerResult api_default_npc_option_handler(
         return rc_interaction_result_failure(
             RC_INTERACTION_FAIL_OPTION_UNAVAILABLE, "Invalid NPC option");
     }
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     if (rc_npc_def_option_is_attack(def, opt)) {
         return rc_interaction_result_failure(
             RC_INTERACTION_FAIL_NO_HANDLER, "NPC attack handler unavailable");
@@ -1305,32 +1304,30 @@ static RcInteractionHandlerResult api_default_npc_option_handler(
     return rc_interaction_result_complete();
 }
 
-static void api_register_default_npc_handlers(void) {
+static void api_register_default_npc_handlers(RcWorld *world) {
+    if (!world) return;
     for (int i = 0; i < 5; i++) {
         RcInteractionDispatchKey key = rc_interaction_dispatch_key_any();
         key.kind = RC_INTERACTION_NPC;
         key.op = rc_interaction_op_from_option(i);
         key.content_group = RC_INTERACTION_CONTENT_GROUP_NPC_ATTACK;
-        if (rc_interaction_find_handler(&key) < 0) {
-            rc_interaction_register_handler(&key,
-                                            api_default_npc_attack_handler,
-                                            NULL);
+        if (rc_interaction_find_world_handler(world, &key) < 0) {
+            rc_interaction_register_world_handler(
+                world, &key, api_default_npc_attack_handler, NULL);
         }
         key.content_group = RC_INTERACTION_KEY_ANY;
-        if (rc_interaction_find_handler(&key) < 0) {
-            rc_interaction_register_handler(&key,
-                                            api_default_npc_option_handler,
-                                            NULL);
+        if (rc_interaction_find_world_handler(world, &key) < 0) {
+            rc_interaction_register_world_handler(
+                world, &key, api_default_npc_option_handler, NULL);
         }
     }
     RcInteractionDispatchKey spell_key = rc_interaction_dispatch_key_any();
     spell_key.kind = RC_INTERACTION_NPC;
     spell_key.op = RC_INTERACTION_SPELL_ON;
     spell_key.content_group = RC_INTERACTION_CONTENT_GROUP_NPC_ATTACK;
-    if (rc_interaction_find_handler(&spell_key) < 0) {
-        rc_interaction_register_handler(&spell_key,
-                                        api_default_npc_attack_handler,
-                                        NULL);
+    if (rc_interaction_find_world_handler(world, &spell_key) < 0) {
+        rc_interaction_register_world_handler(
+            world, &spell_key, api_default_npc_attack_handler, NULL);
     }
 }
 
@@ -1410,8 +1407,8 @@ void rc_player_attack_npc(RcWorld *world, int npc_uid) {
     RcNpc *npc = api_find_npc_by_uid(world, npc_uid);
     if (!npc || npc->is_dead || npc->player_untargetable) return;
     if (npc->plane != world->player.plane) return;
-    if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) return;
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
+    const RcNpcDef *def = npc_def_for(npc);
+    if (!def) return;
     int opt = api_npc_attack_option_index(def);
     if (opt < 0) return;
     RcInteractionTarget target = api_npc_interaction_target(npc);
@@ -1484,8 +1481,8 @@ void rc_player_interact_npc(RcWorld *world, int npc_uid, int opt) {
     RcNpc *npc = api_find_npc_by_uid(world, npc_uid);
     if (!npc || npc->is_dead) return;
     if (npc->plane != world->player.plane) return;
-    if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) return;
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
+    const RcNpcDef *def = npc_def_for(npc);
+    if (!def) return;
     const char *option = rc_npc_def_option(def, opt);
     if (!option || !option[0]) return;
     RcInteractionTarget target = api_npc_interaction_target(npc);
@@ -1798,7 +1795,7 @@ static int tile_reaches_object_target(const RcWorld *world,
         int min_y = target->tile_y;
         int max_x = target->tile_x + target->footprint_width - 1;
         int max_y = target->tile_y + target->footprint_height - 1;
-        return g_rc_object_placement_count == 0
+        return !rc_object_has_placements()
             && tile_distance_to_target_rect(tx, ty, min_x, min_y, max_x,
                                             max_y) <= 1;
     }
@@ -1890,7 +1887,7 @@ static const RcTraversalEdge *object_traversal_edge(
     RcObjectPlacement placement;
     int have_placement = current_object_placement_key(
         world, obj_id, x, y, plane, placement_key, &placement);
-    if (g_rc_object_placement_count > 0 && !have_placement) {
+    if (rc_object_has_placements() && !have_placement) {
         return NULL;
     }
     const RcTraversalEdge *exact =
@@ -2227,8 +2224,10 @@ static int infer_vertical_climb_edge(int obj_id, int x, int y, int plane,
         int inferred_plane = -1;
         int inferred_x = -1;
         int inferred_y = -1;
-        for (int i = 0; g_rc_traversal_edges && i < g_rc_traversal_edge_count; i++) {
-            const RcTraversalEdge *row = &g_rc_traversal_edges[i];
+        int edge_count = 0;
+        const RcTraversalEdge *edges = rc_traversal_edges_all(&edge_count);
+        for (int i = 0; edges && i < edge_count; i++) {
+            const RcTraversalEdge *row = &edges[i];
             if (row->kind != RC_TRAVERSAL_OBJECT)
                 continue;
             int row_up = 0;
@@ -2637,38 +2636,37 @@ static RcInteractionHandlerResult api_default_ground_item_handler(
         RC_INTERACTION_FAIL_TARGET_MISSING, "Ground item missing");
 }
 
-static void api_register_default_object_handlers(void) {
+static void api_register_default_object_handlers(RcWorld *world) {
+    if (!world) return;
     for (int i = 0; i < 5; i++) {
         RcInteractionDispatchKey key = rc_interaction_dispatch_key_any();
         key.kind = RC_INTERACTION_OBJECT;
         key.op = rc_interaction_op_from_option(i);
-        if (rc_interaction_find_handler(&key) < 0) {
-            rc_interaction_register_handler(&key, api_default_object_handler,
-                                            NULL);
+        if (rc_interaction_find_world_handler(world, &key) < 0) {
+            rc_interaction_register_world_handler(
+                world, &key, api_default_object_handler, NULL);
         }
     }
 }
 
-static void api_register_default_ground_item_handlers(void) {
+static void api_register_default_ground_item_handlers(RcWorld *world) {
+    if (!world) return;
     RcInteractionDispatchKey key = rc_interaction_dispatch_key_any();
     key.kind = RC_INTERACTION_GROUND_ITEM;
     key.op = RC_INTERACTION_OP1;
-    if (rc_interaction_find_handler(&key) < 0) {
-        rc_interaction_register_handler(&key,
-                                        api_default_ground_item_handler,
-                                        NULL);
+    if (rc_interaction_find_world_handler(world, &key) < 0) {
+        rc_interaction_register_world_handler(
+            world, &key, api_default_ground_item_handler, NULL);
     }
     key.op = RC_INTERACTION_USE_ON;
-    if (rc_interaction_find_handler(&key) < 0) {
-        rc_interaction_register_handler(&key,
-                                        api_default_ground_item_handler,
-                                        NULL);
+    if (rc_interaction_find_world_handler(world, &key) < 0) {
+        rc_interaction_register_world_handler(
+            world, &key, api_default_ground_item_handler, NULL);
     }
     key.op = RC_INTERACTION_SPELL_ON;
-    if (rc_interaction_find_handler(&key) < 0) {
-        rc_interaction_register_handler(&key,
-                                        api_default_ground_item_handler,
-                                        NULL);
+    if (rc_interaction_find_world_handler(world, &key) < 0) {
+        rc_interaction_register_world_handler(
+            world, &key, api_default_ground_item_handler, NULL);
     }
 }
 
@@ -2691,7 +2689,7 @@ int rc_player_interact_object_placement(RcWorld *world, int obj_id, int x,
         return 0;
     }
     if (x >= 0 && y >= 0 && plane >= 0
-            && g_rc_object_placement_count > 0
+            && rc_object_has_placements()
             && !current_object_placement_key(world, obj_id, x, y, plane,
                                              placement_key, NULL)) {
         return 0;

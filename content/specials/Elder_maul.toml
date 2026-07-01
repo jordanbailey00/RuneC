@@ -1,0 +1,22 @@
+name = "Elder maul"
+item_ids = [21003, 21205]
+
+[special]
+"Special attack" = """
+The elder maul has a [[special attack]], ''Pulverize'', costing 50% special attack energy. Increasing the player's accuracy by 25%, a [[successful hit]] will reduce the target's '''current''' Defence level by 35%, effectively acting as a superior version of the [[dragon warhammer]]'s special attack. Even then, due to the maul's stats, it is slightly more accurate than a dragon warhammer with an [[avernic defender]], beating the pair by +12 crush bonus and +54 strength bonus.
+
+Depending on the player's weapons, the maul can be an upgrade or downgrade in terms of inventory spots. For example, if a player is using another two-handed weapon alongside the maul, their inventory space will not be affected. However, if the player is using a one-handed weapon and a shield/defender with a full inventory, one item must be dropped in order to equip the maul.
+
+When used against [[Tekton]], the first special attack from an elder maul is guaranteed to hit, however, if subsequent attacks were to fail to hit, it will instead reduce 5% of his Defence level.
+
+Defence level reductions '''will''' stack over multiple successful hits; each reduction is calculated from the current temporary level (so follow-up drains reduce fewer levels). The Defence level of the target after each respective hit, with no rounding, would be 65%, 42.25%, 27.5%, 17.85%, 11.6% then 7.5% of the original. However, fractional defence levels reduced by the special attack will be rounded down.
+
+For example, on a monster with 75 Defence, the first special attack will reduce 26 levels (rounded down from 26.25), leaving the enemy at 49 Defence. The next special attack will then reduce 17 levels (rounded down from 17.15), leaving the enemy at 32 Defence.
+
+'''Note:''' The special attack animation has a 1-tick delay over a regular attack, meaning if you are [[flinching]] a monster like [[Kalphite Queen]] you will be attacked.
+
+<gallery mode="packed" heights="250" style="text-align:left">
+Pulverize.gif|A player performs ''Pulverize'' without any other equipment.
+Pulverize (with cape).gif|A player performs ''Pulverize'' whilst wearing a cape.
+</gallery>
+"""

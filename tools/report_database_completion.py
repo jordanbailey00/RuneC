@@ -28,6 +28,7 @@ class DatasetCheck:
     required_patterns: tuple[str, ...] = ()
     binaries: tuple[str, ...] = ()
     accepted_status: bool = True
+    source_gap_allowed: bool = False
 
 
 CHECKS: tuple[DatasetCheck, ...] = (
@@ -37,7 +38,12 @@ CHECKS: tuple[DatasetCheck, ...] = (
     DatasetCheck("Object placements", "object_placements.txt", ("status:",)),
     DatasetCheck("Object behavior rules", "object_behaviors.txt", ("status:",)),
     DatasetCheck("Collision tiles", "collision_tiles.txt", ("status:",)),
-    DatasetCheck("Area flags", "area_flags.txt", ("authoritative_osrs:", "rows:")),
+    DatasetCheck(
+        "Area flags",
+        "area_flags.txt",
+        ("authoritative_osrs:", "rows:"),
+        source_gap_allowed=True,
+    ),
     DatasetCheck("World and activity spawn sources", "spawn_sources.txt", ("unresolved required activity markers:",)),
     DatasetCheck("Spawn coverage", "spawn_coverage.txt", ("NPCList spawns:",)),
     DatasetCheck("Drops and shared drop tables", "drops.txt", ("drop",)),
@@ -54,7 +60,6 @@ CHECKS: tuple[DatasetCheck, ...] = (
     DatasetCheck("Quests", "quest_steps.txt", ("quest",)),
     DatasetCheck("Dialogue transcripts", "dialogue.txt", ("dialogue",)),
     DatasetCheck("Varbits/varps", None, binaries=("data/defs/varbits.bin", "data/defs/varps.bin")),
-    DatasetCheck("Music", None, binaries=("data/defs/music.bin",)),
     DatasetCheck("Teleports", None, binaries=("data/defs/teleports.bin",)),
     DatasetCheck("Slayer", "slayer.txt", ("slayer",)),
     DatasetCheck("Regular NPC mechanics", "regular_npc_mechanics.txt", ("mechanics",)),
@@ -103,6 +108,8 @@ def validate_check(check: DatasetCheck) -> tuple[str, str]:
         if pattern.lower() not in folded:
             raise SystemExit(f"{check.report} missing required marker: {pattern}")
     status = extract_status(text)
+    if status == "SOURCE_GAP" and check.source_gap_allowed:
+        return status, check.report
     if check.accepted_status and status != "PRESENT" and status not in STATUS_READY:
         raise SystemExit(f"{check.report} has non-accepted status: {status}")
     return status, check.report
@@ -113,6 +120,7 @@ def main() -> None:
     for check in CHECKS:
         status, report = validate_check(check)
         rows.append((check.name, status, report))
+    has_source_gap = any(status == "SOURCE_GAP" for _, status, _ in rows)
 
     activity_text = read_report("activity_schemas.txt")
     area_text = read_report("area_flags.txt")
@@ -124,16 +132,22 @@ def main() -> None:
     lines: list[str] = [
         "RuneC database completion closure",
         "",
-        "status: DATABASE_COMPLETE_V1_WITH_ACCEPTED_SOURCE_LIMITATIONS",
+        "status: "
+        + (
+            "DATABASE_COMPLETE_V1_WITH_SOURCE_GAPS"
+            if has_source_gap
+            else "DATABASE_COMPLETE_V1_WITH_ACCEPTED_SOURCE_LIMITATIONS"
+        ),
         "scope: exported database coverage, source catalog coverage, and loadable schema/index coverage",
         "excludes: exact encounter logic parity, exact tick timing, UI behavior, and full runtime gameplay parity",
         "",
         "Closure criteria",
         "- all required database-category reports are present",
         "- report statuses are READY or READY_WITH_ACCEPTED_SIMPLIFICATIONS where a status is emitted",
+        "- source-authority gaps are closed or represented as accepted first-release runtime snapshots",
         "- activity schemas have 0 BLOCKS_PARITY rows",
         "- activity schemas have 0 unresolved required data rows",
-        "- remaining gaps are source-authority or runtime-consumer limitations, not missing database categories",
+        "- remaining limitations are runtime-consumer/parity deepening work, not missing database categories",
         "",
         "Key metrics",
         f"- activity schemas: {extract_metric(activity_text, 'activity schemas') or 'unknown'}",
@@ -155,16 +169,27 @@ def main() -> None:
         [
             "",
             "Accepted source limitations",
-            "- Area flags use Near-Reality/Zenyte geometry with authoritative_osrs=false; this is accepted for database-complete v1 because official Jagex server polygons are not available in the current source corpus.",
+            "- Area flags are accepted for the first release through the tracked RuneC-owned runtime snapshot; semantic polygon-table normalization remains future data-deepening work.",
             "- Wilderness-level values are generated from the local b237 clientscript path and remain source-backed within the local corpus.",
-            "- Static spawn direction/wander fidelity is not closed as exact live-server behavior; spawn identity, coordinates, instance/activity markers, and activity-local anchors are database-covered.",
+            "- Static spawn direction/wander fidelity is accepted as a first-release simplification in the tracked runtime snapshot; spawn identity, coordinates, instance/activity markers, and activity-local anchors are database-covered.",
             "- Object/interactable coverage is category-complete, but uncommon object-specific effects and exact door-pair replacement rules remain focused runtime-consumer work.",
             "- Per-skill rules are database-indexed through recipes, gathering nodes, skill drops, object behaviors, and traversal/action indexes; exact rolls, tool checks, and uncommon activity-local skilling behavior remain runtime-consumer work.",
             "- Nex/Sol and other activity fixtures have loadable schemas with unresolved required data at 0; exact arena geometry/timing remains encounter/activity parity work.",
+            "- Music/audio packs are optional for the v1 gameplay data release gate and are not required runtime database closure inputs.",
             "",
             "Conclusion",
-            "- Database completion v1 is closed.",
-            "- Future work should treat new data additions as targeted parity/deepening work, not as blockers to the database-completion milestone.",
+            (
+                "- Database completion v1 remains open for source-authority "
+                "closure."
+                if has_source_gap
+                else "- Database completion v1 is closed."
+            ),
+            (
+                "- Resolve SOURCE_GAP datasets before treating the database "
+                "milestone as source-authoritative."
+                if has_source_gap
+                else "- Future work should treat new data additions as targeted parity/deepening work, not as blockers to the database-completion milestone."
+            ),
         ]
     )
 

@@ -1,0 +1,3073 @@
+title = "Transcript:Fishing Contest"
+npcs = ["Vestri", "Austri", "Forester (McGrubor's Wood)", "Grandpa Jack", "Morris", "Bonzo", "Big Dave", "Joshua", "Sinister Stranger"]
+node_count = 389
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Hmmph. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "I was wondering what was down those stairs?"
+parent = -1
+children = [3, 4, 5, 6, 16, 62]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just wondering what was down those stairs?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Vestri"
+text = "You can't go down there!"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "I didn't want to anyway."
+parent = 2
+children = [7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I didn't want to anyway."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Vestri"
+text = "Good. Because you can't."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Because I don't want to."
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Vestri"
+text = "Because you can't. So that's fine."
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, it is."
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Vestri"
+text = "Yes. Fine."
+parent = 6
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely."
+parent = 6
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Vestri"
+text = "Well then."
+parent = 6
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "initial"
+parent = 6
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "option"
+text = "Why not?"
+parent = 2
+children = [17, 18, 19, 20, 24, 28]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why not?"
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Vestri"
+text = "This is the home of the Mountain Dwarves. How would you like it if I wanted to take a shortcut through your home?"
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 16
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "option"
+text = "Ooh... is this a shortcut to somewhere?"
+parent = 16
+children = [21, 22, 23]
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ooh... is this a shortcut to somewhere?"
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "speaker"
+speaker = "Vestri"
+text = "Well, it is a lot easier to go this way to get past White Wolf Mountain than through those wolf filled passes."
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "act"
+text = "end"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "option"
+text = "Oh, sorry, I hadn't realised it was private."
+parent = 16
+children = [25, 26, 27]
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Oh, sorry, I hadn't realised it was private."
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "speaker"
+speaker = "Vestri"
+text = "Well, it is."
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "act"
+text = "end"
+parent = 24
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "option"
+text = "If you were my friend I wouldn't mind it."
+parent = 16
+children = [29, 30, 31, 32, 58]
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "If you were my friend I wouldn't mind."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "speaker"
+speaker = "Vestri"
+text = "Yes, but I don't even know you."
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 28
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "option"
+text = "Well, let's be friends!"
+parent = 28
+children = [33, 34, 38, 42]
+
+[[nodes]]
+id = 33
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well, let's be friends!"
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 5
+kind = "cond"
+text = "If the player is on a Quest Speedrunning world:"
+parent = 32
+children = [35, 36, 37]
+
+[[nodes]]
+id = 35
+depth = 6
+kind = "speaker"
+speaker = "Vestri"
+text = "I'd rather not, thank you."
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 6
+kind = "box"
+text = "This quest is not available on Speedrunning Worlds."
+parent = 34
+
+[[nodes]]
+id = 37
+depth = 6
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 5
+kind = "cond"
+text = "If the player does not meet the requirements to begin [[Fishing Contest]]:"
+parent = 32
+children = [39, 40, 41]
+
+[[nodes]]
+id = 39
+depth = 6
+kind = "speaker"
+speaker = "Vestri"
+text = "I'd rather not, thank you."
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 6
+kind = "box"
+text = "You do not meet all of the requirements to start the Fishing Contest quest."
+parent = 38
+
+[[nodes]]
+id = 41
+depth = 6
+kind = "act"
+text = "end"
+parent = 38
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 5
+kind = "speaker"
+speaker = "Vestri"
+text = "I don't make friends easily. People need to earn my trust first."
+parent = 32
+children = [43, 44, 55]
+
+[[nodes]]
+id = 43
+depth = 6
+kind = "select"
+text = "Start the Fishing Contest quest?"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 6
+kind = "option"
+text = "Yes."
+parent = 42
+children = [45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+
+[[nodes]]
+id = 45
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "And how am I meant to do that?"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 7
+kind = "speaker"
+speaker = "Vestri"
+text = "My, we are the persistent one aren't we?"
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 7
+kind = "speaker"
+speaker = "Vestri"
+text = "Well, there's a certain gold artefact we're after. We dwarves are big fans of gold! This artefact is the first prize at the Hemenster fishing competition."
+parent = 44
+
+[[nodes]]
+id = 48
+depth = 7
+kind = "speaker"
+speaker = "Vestri"
+text = "Fortunately we have acquired a pass to enter that competition..."
+parent = 44
+
+[[nodes]]
+id = 49
+depth = 7
+kind = "speaker"
+speaker = "Vestri"
+text = "Unfortunately Dwarves don't make good fishermen."
+parent = 44
+
+[[nodes]]
+id = 50
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "Fortunately I'm alright at fishing!"
+parent = 44
+
+[[nodes]]
+id = 51
+depth = 7
+kind = "speaker"
+speaker = "Vestri"
+text = "Okay. I entrust you with our competition pass. Don't forget to take some gold with you for the entrance fee."
+parent = 44
+
+[[nodes]]
+id = 52
+depth = 7
+kind = "box"
+text = "pic=Fishing pass detail.png|You got the Fishing Contest Pass!"
+parent = 44
+
+[[nodes]]
+id = 53
+depth = 7
+kind = "speaker"
+speaker = "Vestri"
+text = "Go to Hemenster and do us proud!"
+parent = 44
+
+[[nodes]]
+id = 54
+depth = 7
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 6
+kind = "option"
+text = "No."
+parent = 42
+children = [56, 57]
+
+[[nodes]]
+id = 56
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "You're a grumpy little man aren't you?"
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 7
+kind = "speaker"
+speaker = "Vestri"
+text = "Don't you know it."
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "option"
+text = "You're a grumpy little man aren't you?"
+parent = 28
+children = [59, 60, 61]
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "You're a grumpy little man aren't you?"
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 5
+kind = "speaker"
+speaker = "Vestri"
+text = "Don't you know it."
+parent = 58
+
+[[nodes]]
+id = 61
+depth = 5
+kind = "act"
+text = "end"
+parent = 58
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "option"
+text = "I'm bigger than you. Let me by."
+parent = 2
+children = [63, 64, 65, 66]
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm bigger than you. Let me by!"
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "...stumpy."
+parent = 62
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Vestri"
+text = "Go away! You're not going to bully your way in HERE!"
+parent = 62
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "act"
+text = "initial"
+parent = 62
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "option"
+text = "I was just stopping to say hello!"
+parent = -1
+children = [68, 69, 70]
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just stopping to say hello!"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Vestri"
+text = "Hello then."
+parent = 67
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "act"
+text = "initial"
+parent = 67
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "option"
+text = "Do you have a brother?"
+parent = -1
+children = [72, 73, 74]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have a brother?"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Vestri"
+text = "What if I do! It's no business of yours."
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "initial"
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Hmmph. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "I was wondering what was down those stairs?"
+parent = -1
+children = [78, 79, 80, 81, 91, 137]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just wondering what was down those stairs?"
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Austri"
+text = "You can't go down there!"
+parent = 77
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 77
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "option"
+text = "I didn't want to anyway."
+parent = 77
+children = [82, 83, 84, 85, 86, 87, 88, 89, 90]
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I didn't want to anyway."
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Austri"
+text = "Good. Because you can't."
+parent = 81
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Because I don't want to."
+parent = 81
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "speaker"
+speaker = "Austri"
+text = "Because you can't. So that's fine."
+parent = 81
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, it is."
+parent = 81
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Austri"
+text = "Yes. Fine."
+parent = 81
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely."
+parent = 81
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Austri"
+text = "Well then."
+parent = 81
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "act"
+text = "initial"
+parent = 81
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "option"
+text = "Why not?"
+parent = 77
+children = [92, 93, 94, 95, 99, 103]
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why not?"
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "speaker"
+speaker = "Austri"
+text = "This is the home of the Mountain Dwarves. How would you like it if I wanted to take a shortcut through your home?"
+parent = 91
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 91
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "option"
+text = "Ooh... is this a shortcut to somewhere?"
+parent = 91
+children = [96, 97, 98]
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ooh... is this a shortcut to somewhere?"
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "speaker"
+speaker = "Austri"
+text = "Well, it is a lot easier to go this way to get past White Wolf Mountain than through those wolf filled passes."
+parent = 95
+
+[[nodes]]
+id = 98
+depth = 4
+kind = "act"
+text = "end"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "option"
+text = "Oh, sorry, I hadn't realised it was private."
+parent = 91
+children = [100, 101, 102]
+
+[[nodes]]
+id = 100
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Oh, sorry, I hadn't realised it was private."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 4
+kind = "speaker"
+speaker = "Austri"
+text = "Well, it is."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 4
+kind = "act"
+text = "end"
+parent = 99
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "option"
+text = "If you were my friend I wouldn't mind it."
+parent = 91
+children = [104, 105, 106, 107, 133]
+
+[[nodes]]
+id = 104
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "If you were my friend I wouldn't mind."
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 4
+kind = "speaker"
+speaker = "Austri"
+text = "Yes, but I don't even know you."
+parent = 103
+
+[[nodes]]
+id = 106
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 103
+
+[[nodes]]
+id = 107
+depth = 4
+kind = "option"
+text = "Well, let's be friends!"
+parent = 103
+children = [108, 109, 113, 117]
+
+[[nodes]]
+id = 108
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Well, let's be friends!"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 5
+kind = "cond"
+text = "If the player is on a Quest Speedrunning world:"
+parent = 107
+children = [110, 111, 112]
+
+[[nodes]]
+id = 110
+depth = 6
+kind = "speaker"
+speaker = "Austri"
+text = "I'd rather not, thank you."
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 6
+kind = "box"
+text = "This quest is not available on Speedrunning Worlds."
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 6
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 5
+kind = "cond"
+text = "If the player does not meet the requirements to begin [[Fishing Contest]]:"
+parent = 107
+children = [114, 115, 116]
+
+[[nodes]]
+id = 114
+depth = 6
+kind = "speaker"
+speaker = "Austri"
+text = "I'd rather not, thank you."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 6
+kind = "box"
+text = "You do not meet all of the requirements to start the Fishing Contest quest."
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 6
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 5
+kind = "speaker"
+speaker = "Austri"
+text = "I don't make friends easily. People need to earn my trust first."
+parent = 107
+children = [118, 119, 130]
+
+[[nodes]]
+id = 118
+depth = 6
+kind = "select"
+text = "Start the Fishing Contest quest?"
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 6
+kind = "option"
+text = "Yes."
+parent = 117
+children = [120, 121, 122, 123, 124, 125, 126, 127, 128, 129]
+
+[[nodes]]
+id = 120
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "And how am I meant to do that?"
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 7
+kind = "speaker"
+speaker = "Austri"
+text = "My, we are the persistent one aren't we?"
+parent = 119
+
+[[nodes]]
+id = 122
+depth = 7
+kind = "speaker"
+speaker = "Austri"
+text = "Well, there's a certain gold artefact we're after. We dwarves are big fans of gold! This artefact is the first prize at the Hemenster fishing competition."
+parent = 119
+
+[[nodes]]
+id = 123
+depth = 7
+kind = "speaker"
+speaker = "Austri"
+text = "Fortunately we have acquired a pass to enter that competition..."
+parent = 119
+
+[[nodes]]
+id = 124
+depth = 7
+kind = "speaker"
+speaker = "Austri"
+text = "Unfortunately Dwarves don't make good fishermen."
+parent = 119
+
+[[nodes]]
+id = 125
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "Fortunately I'm alright at fishing!"
+parent = 119
+
+[[nodes]]
+id = 126
+depth = 7
+kind = "speaker"
+speaker = "Austri"
+text = "Okay. I entrust you with our competition pass. Don't forget to take some gold with you for the entrance fee."
+parent = 119
+
+[[nodes]]
+id = 127
+depth = 7
+kind = "box"
+text = "pic=Fishing pass detail.png|You got the Fishing Contest Pass!"
+parent = 119
+
+[[nodes]]
+id = 128
+depth = 7
+kind = "speaker"
+speaker = "Austri"
+text = "Go to Hemenster and do us proud!"
+parent = 119
+
+[[nodes]]
+id = 129
+depth = 7
+kind = "act"
+text = "end"
+parent = 119
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 6
+kind = "option"
+text = "No."
+parent = 117
+children = [131, 132]
+
+[[nodes]]
+id = 131
+depth = 7
+kind = "speaker"
+speaker = "Player"
+text = "You're a grumpy little man aren't you?"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 7
+kind = "speaker"
+speaker = "Austri"
+text = "Don't you know it."
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 4
+kind = "option"
+text = "You're a grumpy little man aren't you?"
+parent = 103
+children = [134, 135, 136]
+
+[[nodes]]
+id = 134
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "You're a grumpy little man aren't you?"
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 5
+kind = "speaker"
+speaker = "Austri"
+text = "Don't you know it."
+parent = 133
+
+[[nodes]]
+id = 136
+depth = 5
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "option"
+text = "I'm bigger than you. Let me by."
+parent = 77
+children = [138, 139, 140, 141]
+
+[[nodes]]
+id = 138
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm bigger than you. Let me by!"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "...stumpy."
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "speaker"
+speaker = "Austri"
+text = "Go away! You're not going to bully your way in HERE!"
+parent = 137
+
+[[nodes]]
+id = 141
+depth = 3
+kind = "act"
+text = "initial"
+parent = 137
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "I was just stopping to say hello!"
+parent = -1
+children = [143, 144, 145]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was just stopping to say hello!"
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Austri"
+text = "Hello then."
+parent = 142
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "act"
+text = "initial"
+parent = 142
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "option"
+text = "Do you have a brother?"
+parent = -1
+children = [147, 148, 149]
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have a brother?"
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Austri"
+text = "What if I do! It's no business of yours."
+parent = 146
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "act"
+text = "initial"
+parent = 146
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Have you won yet?"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Well don't give up! Maybe old Jack can give you a few tips."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Have you won yet?"
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Well don't give up! Maybe old Jack can give you a few tips."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Have you won yet?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "option"
+text = "I need another competition pass."
+parent = -1
+children = [159, 160, 161, 162]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need another competition pass."
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Vestri"
+text = "Hmmm. It's a good job they sent us spares."
+parent = 158
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Vestri"
+text = "There you go. Try not to lose that one."
+parent = 158
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "act"
+text = "end"
+parent = 158
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "No, it takes preparation to win fishing competitions."
+parent = -1
+children = [164, 165, 166, 167, 168]
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, it takes preparation to win fishing competitions."
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Vestri"
+text = "Maybe that's where we are going wrong when we try fishing?"
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Probably."
+parent = 163
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Vestri"
+text = "Maybe we should talk to that old Jack fella near the competition, everyone seemed to be ranting about him."
+parent = 163
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Have you won yet?"
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "I need another competition pass."
+parent = -1
+children = [172, 173, 174, 175]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need another competition pass."
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Austri"
+text = "Hmmm. It's a good job they sent us spares."
+parent = 171
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Austri"
+text = "There you go. Try not to lose that one."
+parent = 171
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "act"
+text = "end"
+parent = 171
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "No, it takes preparation to win fishing competitions."
+parent = -1
+children = [177, 178, 179, 180, 181]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, it takes preparation to win fishing competitions."
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Austri"
+text = "Maybe that's where we are going wrong when we try fishing?"
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Probably."
+parent = 176
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "Austri"
+text = "Maybe we should talk to that old Jack fella near the competition, everyone seemed to be ranting about him."
+parent = 176
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "act"
+text = "end"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you sitting around here for?"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Morris"
+text = "I'm making sure only those with a competition pass enter the fishing contest."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have one here."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "box"
+text = "pic=Fishing pass detail.png|You show Morris your pass."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Morris"
+text = "Move on through. Talk to Bonzo to enter the competition."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Morris"
+text = "Competition pass please."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "box"
+text = "pic=Fishing pass detail.png|You show Morris your pass."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Morris"
+text = "Move on through. Talk to Bonzo to enter the competition."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "option"
+text = "...?"
+parent = -1
+children = [194, 195, 196, 197, 198]
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "...?"
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "..."
+parent = 193
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = ".....?"
+parent = 193
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "......"
+parent = 193
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "act"
+text = "end"
+parent = 193
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [200, 201, 202, 206, 218]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "My name iz Vlad. I come from far avay, vere the sun iz not so bright."
+parent = 199
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "option"
+text = "You're a vampyre aren't you?"
+parent = 199
+children = [203, 204, 205]
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're a vampyre aren't you?"
+parent = 202
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "Just because I can't stand ze smell ov garlic und I don't like bright sunlight doesn't necessarily mean I'm ein vampyre!"
+parent = 202
+
+[[nodes]]
+id = 205
+depth = 3
+kind = "act"
+text = "end"
+parent = 202
+is_terminal = true
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "option"
+text = "Is it nice there?"
+parent = 199
+children = [207, 208, 209, 210, 212, 214]
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Is it nice there?"
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "It is vonderful! Ze vomen are beautiful und ze nights are long!"
+parent = 206
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 206
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "option"
+text = "You're a vampyre aren't you?"
+parent = 206
+children = [211]
+
+[[nodes]]
+id = 211
+depth = 4
+kind = "act"
+text = "above"
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 3
+kind = "option"
+text = "So you like fishing?"
+parent = 206
+children = [213]
+
+[[nodes]]
+id = 213
+depth = 4
+kind = "act"
+text = "below"
+parent = 212
+
+[[nodes]]
+id = 214
+depth = 3
+kind = "option"
+text = "Well, good luck with the fishing."
+parent = 206
+children = [215, 216, 217]
+
+[[nodes]]
+id = 215
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Well, good luck with the fishing."
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 4
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "Luck haz notsing to do vith it it is all in ze technique."
+parent = 214
+
+[[nodes]]
+id = 217
+depth = 4
+kind = "act"
+text = "end"
+parent = 214
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "option"
+text = "So you like fishing?"
+parent = 199
+children = [219]
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "act"
+text = "below"
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "option"
+text = "So... you like fishing?"
+parent = -1
+children = [221, 222, 223, 224, 226, 230]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So... you like fishing?"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "My doctor told me to take up ein velaxing hobby. Vhen I am stressed I tend to get ein little.."
+parent = 220
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "..thirsty."
+parent = 220
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "option"
+text = "You're a vampyre aren't you?"
+parent = 220
+children = [225]
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "act"
+text = "above"
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "option"
+text = "If you get thirsty you should drink something."
+parent = 220
+children = [227, 228, 229]
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "If you get thirsty you should drink something."
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "I tsink I may do zat soon..."
+parent = 226
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "act"
+text = "end"
+parent = 226
+is_terminal = true
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "option"
+text = "Well, good luck with the fishing."
+parent = 220
+children = [231]
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "act"
+text = "above"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Big Dave"
+text = "Hey guy! Always nice to see a fresh face!"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "So you're the champ?"
+parent = -1
+children = [234, 235, 236]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you're the champ?"
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Big Dave"
+text = "That's right, guy! Ain't nobody better at fishing round here than me! That's for sure!"
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "act"
+text = "end"
+parent = 233
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "option"
+text = "Can I fish here instead of you?"
+parent = -1
+children = [238, 239, 240]
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I fish here instead of you?"
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "speaker"
+speaker = "Big Dave"
+text = "Sorry guy! This is my lucky spot!"
+parent = 237
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "act"
+text = "end"
+parent = 237
+is_terminal = true
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "option"
+text = "Do you have any tips for me?"
+parent = -1
+children = [242, 243, 244, 245, 246]
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any tips for me?"
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Big Dave"
+text = "Why would I help you? I wanna stay the best! I'm not givin' away my secrets like old Grampa Jack does!"
+parent = 241
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who's Grampa Jack?"
+parent = 241
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Big Dave"
+text = "You really have no clue do you! He won this competition four years in a row! He lives in the house just outside the gate."
+parent = 241
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "act"
+text = "end"
+parent = 241
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Joshua"
+text = "Yeah? What you want?"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "option"
+text = "Um... nothing really..."
+parent = -1
+children = [249, 250, 251]
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... nothing really..."
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "speaker"
+speaker = "Joshua"
+text = "Quit bugging me then! I got me some fish to catch!"
+parent = 248
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "act"
+text = "end"
+parent = 248
+is_terminal = true
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "option"
+text = "Can I fish here instead of you?"
+parent = -1
+children = [253, 254, 255]
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I fish here instead of you?"
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "speaker"
+speaker = "Joshua"
+text = "Nuh uh dude. Less talk, more fishing!"
+parent = 252
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "act"
+text = "end"
+parent = 252
+is_terminal = true
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "option"
+text = "Do you have any tips for me?"
+parent = -1
+children = [257, 258, 259, 260]
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Joshua"
+text = "Dude! Why should I help you? You like, might beat me! I'm not giving away my secrets like that dude Grampa Jack does!"
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who's Grampa Jack?"
+parent = 256
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Joshua"
+text = "Who's Grampa Jack [he says/she says/they say]! He won this competition four years in a row! He lives in the house just outside the gate."
+parent = 256
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "act"
+text = "end"
+parent = 256
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Hello young man! Come to visit old Grandpa Jack? I can tell ye stories for sure. I used to be the best fisherman these parts have seen!"
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "option"
+text = "Tell me a story then."
+parent = -1
+children = [263, 264, 265, 266]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me a story then."
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Well, when I were a young man we used to take fishing trips over to Catherby; The fishing over there - now that was something!"
+parent = 262
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Anyway, we decided to do a bit of fishing with our nets, I wasn't having the best of days turning up nothing but old boots and bits of seaweed. Then my net suddenly got really heavy!"
+parent = 262
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "To my amazement I'd caught this little chest thing!"
+parent = 262
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "option"
+text = "Are you entering the fishing competition?"
+parent = -1
+children = [268, 269, 270, 271, 280]
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you entering the fishing competition?"
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Ah... the Hemenster fishing competition..."
+parent = 267
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "I know all about that... I won that four years straight! I'm too old for that lark now though..."
+parent = 267
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "option"
+text = "I don't suppose you could give me any hints?"
+parent = 267
+children = [272, 273, 274, 275, 276, 277, 278, 279]
+
+[[nodes]]
+id = 272
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't suppose you could give me any hints?"
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Well, you sometimes get these really big fish in the water just by the outflow pipes."
+parent = 271
+
+[[nodes]]
+id = 274
+depth = 3
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "I think they're some kind of carp..."
+parent = 271
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "I used to get those from McGrubor's wood, north of here. Just dig around in the red vines up there but be careful of the guard dogs."
+parent = 271
+
+[[nodes]]
+id = 276
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "There's this weird creepy guy who says he's not a vampyre using that spot. He keeps winning too."
+parent = 271
+
+[[nodes]]
+id = 277
+depth = 3
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = """
+Ahh well, I'm sure you'll find something to put him off. After all, there must be a kitchen around here with some garlic in it, perhaps in Seers Village or Ardougne. If he's pretending to be a vampyre then he can pretend to be scared of garlic!
+"""
+parent = 271
+
+[[nodes]]
+id = 278
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're right! Thanks Jack!"
+parent = 271
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "act"
+text = "end"
+parent = 271
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "option"
+text = "That's less competition for me then."
+parent = 267
+children = [281, 282, 283]
+
+[[nodes]]
+id = 281
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's less competition for me then."
+parent = 280
+
+[[nodes]]
+id = 282
+depth = 3
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Why you young whippersnapper! If I was twenty years younger I'd show you something that's for sure!"
+parent = 280
+
+[[nodes]]
+id = 283
+depth = 3
+kind = "act"
+text = "end"
+parent = 280
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "option"
+text = "Sorry, I don't have time now."
+parent = -1
+children = [285, 286, 287, 288]
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I don't have time now."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Sigh..."
+parent = 284
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Young people - always in such a rush."
+parent = 284
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "act"
+text = "end"
+parent = 284
+is_terminal = true
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "option"
+text = "Can I buy one of your fishing rods?"
+parent = -1
+children = [290, 291, 292]
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I buy one of your fishing rods?"
+parent = 289
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "But young man, you have your own. I'll not sell you mine when you already have one!"
+parent = 289
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "act"
+text = "end"
+parent = 289
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "option"
+text = "I've forgotten how to fish, can you remind me?"
+parent = -1
+children = [294, 295, 296, 297, 298, 299, 300, 301]
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've forgotten how to fish, can you remind me?"
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Of course! Let me see now...You'll need a rod and bait. You can fish with a net too, but not in the competition."
+parent = 293
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok... I think I can get those at Catherby."
+parent = 293
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = """
+Then simply find yourself a fishing spot, either in the competition near here, or wherever you can - I recommend net fishing in Catherby. Net or Lure the fish in the fishing spot by clicking on it and then be
+"""
+parent = 293
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "patient..."
+parent = 293
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's that simple?"
+parent = 293
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Grandpa Jack"
+text = "Yep! Go get em tiger."
+parent = 293
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "act"
+text = "end"
+parent = 293
+is_terminal = true
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "Hey, you need to pay to enter the competition first! Only 5 gp entrance fee!"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "act"
+text = "The player is force walked to Bonzo"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "act"
+text = "below"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "Roll up, roll up!"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "Enter the great Hemenster fishing competition!"
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "Only 5gp entrance fee!"
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "option"
+text = "I'll enter the competition please."
+parent = -1
+children = [309, 310, 311, 316]
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll enter the competition please."
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "Ok, nearly everyone is in their place already. You fish in the spot by the willow tree, and the Sinister Stranger, you fish by the pipes."
+parent = 308
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "cond"
+text = "If garlic was placed in the pipes:"
+parent = 308
+children = [312, 313, 314, 315]
+
+[[nodes]]
+id = 312
+depth = 3
+kind = "speaker"
+speaker = "Sinister Stranger"
+text = "Arrgh! WHAT is that GHASTLY smell??? I think I will move over here instead..."
+parent = 311
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "speaker"
+speaker = "Bonzo"
+text = "Hmm. You'd better go and take the area by the pipes then."
+parent = 311
+
+[[nodes]]
+id = 314
+depth = 3
+kind = "act"
+text = "Your fishing competition spot is now beside the pipes."
+parent = 311
+
+[[nodes]]
+id = 315
+depth = 3
+kind = "act"
+text = "end"
+parent = 311
+is_terminal = true
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "act"
+text = "end"
+parent = 308
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "option"
+text = "No thanks, I'll just watch the fun."
+parent = -1
+children = [318, 319]
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thanks, I'll just watch the fun."
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "act"
+text = "end"
+parent = 317
+is_terminal = true
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "box"
+text = "pic=Coins 5 detail.png|You pay Bonzo 5 coins to enter the competition."
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "Ok, we've got all the fishermen! It's time to roll!"
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "You've already paid, you don't need to pay me again!"
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ewww - it's a smelly sewage pipe."
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "box"
+text = "pic=Garlic detail.png|You stash the garlic in the pipe."
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "So you're calling it quits here for now?"
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "option"
+text = "Yes I'll compete again another day."
+parent = -1
+children = [332, 333, 334]
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes I'll compete again another day."
+parent = 331
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "Ok, I'll see you again."
+parent = 331
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "act"
+text = "end"
+parent = 331
+is_terminal = true
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "option"
+text = "Actually I'll go back and catch some more."
+parent = -1
+children = [336, 337, 338]
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually I'll go back and catch some more."
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "Good luck!"
+parent = 335
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "act"
+text = "end"
+parent = 335
+is_terminal = true
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "So how are you doing so far?"
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "cond"
+text = "With a regular fish:"
+parent = -1
+children = [341, 342, 343, 344]
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I caught some fish! Here..."
+parent = 340
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "box"
+text = "You hand over your catch."
+parent = 340
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "And the winner is... The stranger in black!"
+parent = 340
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "act"
+text = "end"
+parent = 340
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "cond"
+text = "With the giant carp:"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "option"
+text = "I have this big fish. Is it enough to win?"
+parent = -1
+children = [347, 348, 349, 350, 351, 352, 353, 354]
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have this big fish."
+parent = 346
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is it enough to win?"
+parent = 346
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "Well, we'll just wait till time is up."
+parent = 346
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "box"
+text = "You wait"
+parent = 346
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "box"
+text = "You hand over your catch."
+parent = 346
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "We have a new winner! The heroic-looking person who was fishing by the pipes has caught the biggest carp I've seen since Grandpa Jack used to compete!"
+parent = 346
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "box"
+text = "pic=Fishing trophy detail.png|You are given the Hemenster fishing trophy!"
+parent = 346
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "act"
+text = "end"
+parent = 346
+is_terminal = true
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "option"
+text = "I think I might still be able to find a bigger fish."
+parent = -1
+children = [356, 357, 358]
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I might still be able to find a bigger fish."
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "Ok, good luck!"
+parent = 355
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "act"
+text = "end"
+parent = 355
+is_terminal = true
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "Hello champ!"
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "cond"
+text = "If the fishing trophy has been lost:"
+parent = -1
+children = [361, 362, 363, 364, 365]
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't feel like a champ..."
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "Why not champ?"
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost my fishing trophy..."
+parent = 360
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Bonzo"
+text = "Is that all chump? Don't worry, I have a spare!"
+parent = 360
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "act"
+text = "end"
+parent = 360
+is_terminal = true
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "speaker"
+speaker = "Bonzo"
+text = "So any hints on how to fish?"
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll keep them to myself."
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Have you won yet?"
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes I have!"
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Well done! That's brilliant! Do you have the trophy with you?"
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yep, I have it right here!"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Oh! It's even more shiny and gold than I thought possible..."
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "You've done us proud. Thank you [lad/lass]. I think we can now trust you enough to let you in..."
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "In where?"
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "speaker"
+speaker = "Vestri"
+text = "Why the tunnel of course! You may now come and go freely, avoiding the wolves and dangers of the cold, high mountain. You could even stop in for a beer or two!"
+parent = -1
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excellent. That will come in most handy."
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Have you won yet?"
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes I have!"
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Well done! That's brilliant! Do you have the trophy with you?"
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yep, I have it right here!"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Oh! It's even more shiny and gold than I thought possible..."
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Austri"
+text = "Welcome, oh great Fishing Champion! Feel free to pop by and use our tunnel any time."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you, I think I'll stop by for a beer one day."
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

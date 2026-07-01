@@ -56,8 +56,7 @@ from rc_cache import (
     iter_location_placements,
     read_map_region_file,
 )
-
-DEFAULT_MODERN_CACHE = Path(__file__).resolve().parent / "source/current_fightcaves_demo/data/cache"
+from source_inputs import B237_CACHE, require_path
 
 # object type IDs (same as 317)
 OBJ_STRAIGHT_WALL = 0
@@ -187,8 +186,8 @@ def main() -> None:
     parser.add_argument(
         "--cache",
         type=Path,
-        default=DEFAULT_MODERN_CACHE,
-        help="path to the repo-local b237 OpenRS2 cache directory",
+        default=B237_CACHE,
+        help="path to the b237 OpenRS2 cache directory",
     )
     parser.add_argument(
         "--output",
@@ -218,13 +217,14 @@ def main() -> None:
         help="print ASCII visualization of collision map",
     )
     args = parser.parse_args()
+    cache = require_path(args.cache, "--cache", "RUNEC_B237_CACHE")
 
-    if not args.cache.exists():
-        sys.exit(f"cache directory not found: {args.cache}")
+    if not cache.exists():
+        sys.exit(f"cache directory not found: {cache}")
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    print(f"reading modern cache from {args.cache}")
-    reader = RcCacheStore(args.cache)
+    print(f"reading modern cache from {cache}")
+    reader = RcCacheStore(cache)
 
     print("loading modern object definitions...")
     obj_defs = decode_modern_obj_defs_rc(reader)

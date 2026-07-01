@@ -1,0 +1,1346 @@
+title = "Transcript:Monk's Friend"
+npcs = ["Brother Omad", "Monk", "Brother Cedric"]
+node_count = 170
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, What's wrong?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "*yawn*...oh, hello...*yawn* I'm sorry! I'm just so tired! I haven't slept in a week!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "Why can't you sleep, what's wrong?"
+parent = -1
+children = [4, 5, 6, 7, 8, 9, 10, 16]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why can't you sleep, what's wrong?"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Brother Omad"
+text = "It's brother Androe's son! With his constant: Waaaaaah! Waaaaaaaaah! Androe said it's natural, but it's so annoying!"
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I suppose that's what kids do."
+parent = 3
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Brother Omad"
+text = "He was fine, up until last week! Thieves broke in! They stole his favourite sleeping blanket!"
+parent = 3
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Now he won't rest until it's returned... ...and that means neither can I!"
+parent = 3
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "select"
+text = "Start the Monk's Friend quest?"
+parent = 3
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 3
+children = [11, 12, 13, 14, 15]
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I help at all?"
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Please do. We won't be able to help you as we are peaceful men but we would be grateful for your help!"
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where are they?"
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Brother Omad"
+text = "They hide in a secret cave in the forest. It's hidden under a ring of stones. Please, bring back the blanket!"
+parent = 10
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "end"
+parent = 10
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "option"
+text = "No."
+parent = 3
+children = [17, 18]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry to hear that! I hope you find his blanket."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "option"
+text = "Sorry! I'm too busy to hear your problems!"
+parent = -1
+children = [20, 21]
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry! I'm too busy to hear your problems!"
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "end"
+parent = 19
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "*yawn*...oh, hello again...*yawn*"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Please tell me you have the blanket."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid not."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "I need some sleep!"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "{{overhead|*yawn*}}"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "other"
+text = "{{mes|A ladder mysteriously appears.}}"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "*yawn*...oh, hello again...*yawn*"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Please tell me you have the blanket."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes! I've recovered it from the clutches of the evil thieves!"
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "box"
+text = "pic=Child's blanket detail.png|You hand the monk the childs blanket."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Really, that's excellent, well done! Maybe now I will be able to get some rest."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "*yawn*..I'm off to bed! Farewell brave traveller! {{^|Here is where he actually takes the blanket.}}"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "Can't wait for the party!"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Honey, money, woman and wine!"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you ok?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Yesshh...hic up...beautiful!"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Take care old monk."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "La..di..da..hic..up!"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "other"
+text = "{{mes|The old monk has had too much to drink.}}"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, how are you?"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Much better now I'm sleeping well! Now I can organise the party."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ooh! What party?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "The son of Brother Androe's birthday party. He's going to be one year old!"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's sweet!"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "It's also a great excuse for a drink!"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "We just need Brother Cedric to return with the wine."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "Who's Brother Cedric?"
+parent = -1
+children = [58, 59, 60, 61, 62, 63, 67, 72]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who's Brother Cedric?"
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Cedric is a member of the order too. We sent him out three days ago to collect wine. But he didn't return!"
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Brother Omad"
+text = "He most probably got drunk and lost in the forest!"
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Brother Omad"
+text = "I don't suppose you could look for him?"
+parent = 57
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 57
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "option"
+text = "I've no time for that, sorry."
+parent = 57
+children = [64, 65, 66]
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've no time for that, sorry."
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Okay traveller, take care."
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "act"
+text = "end"
+parent = 63
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "option"
+text = "Where should I look?"
+parent = 57
+children = [68, 69, 70, 71]
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where should I look?"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Oh, he won't be far. Probably out in the forest."
+parent = 67
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll go and find him."
+parent = 67
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "act"
+text = "end"
+parent = 67
+is_terminal = true
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "option"
+text = "Can I come to the party?"
+parent = 57
+children = [73, 74, 75]
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I come to the party?"
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Of course, but we need the wine first."
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "act"
+text = "end"
+parent = 72
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "option"
+text = "Enjoy it! I'll see you soon!"
+parent = -1
+children = [77, 78, 79]
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Enjoy it! I'll see you soon!"
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Take care traveller."
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "act"
+text = "end"
+parent = 76
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello brother Omad."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Hello adventurer, have you found Brother Cedric?"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Well, keep looking, we need that wine!"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Brother Cedric are you okay?"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Yeesshhh, I'm very, very drunk..hic..up.."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Brother Omad needs the wine for the party."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Oh dear, oh dear, I knew I had to do something!"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Pleashhh, find me a jug of water. Once I'm sober I'll 'elp you take the wine back."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Hic up! Oh my head! I need a jug of water."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll see if I can get some."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Thanks! *hic*"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Hello adventurer, have you found Brother Cedric?"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes I've seen him, he's a bit drunk!"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Well, try your best to get him back here!"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay?"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Hic up! Oh my head! I need a jug of water."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Cedric! Here, drink! I have some water."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Good stuff, my head's spinning!"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "box"
+text = "pic=Jug of water detail.png|You hand the monk a jug of water."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "{{overhead|Gulp... gulp!}}"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Aah! That's better!"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Now I just need to fix this cart and we can go party."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Could you help?"
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "option"
+text = "No, I've helped enough monks today!"
+parent = -1
+children = [111, 112, 113]
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I've helped enough monks today!"
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "In that case I'd better drink more wine! It helps me think."
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "end"
+parent = 110
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "Yes, I'd be happy to!"
+parent = -1
+children = [115, 116, 117, 118]
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I'd be happy to!"
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Excellent, I just need some wood. Some plain logs, or maybe a basic plank."
+parent = 114
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "OK, I'll see what I can find."
+parent = 114
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "act"
+text = "end"
+parent = 114
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Now I just need to fix this cart and we can go party."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Could you help?"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "option"
+text = "No, I've helped enough monks today!"
+parent = -1
+children = [123]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "above"
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "option"
+text = "Yes, I'd be happy to!"
+parent = -1
+children = [125]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "act"
+text = "above"
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again brother Omad."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Hello adventurer, where's Brother Cedric?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He's having a bit of trouble with his cart."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Hmmm! Maybe you could help?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Did you manage to get some wood?"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet, I'm afraid."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Did you manage to get some wood?"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "cond"
+text = "If the player has logs:"
+parent = -1
+children = [136]
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "box"
+text = "pic=Logs detail.png|You show Cedric some logs."
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "cond"
+text = "If the player has a plank:"
+parent = -1
+children = [138]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "box"
+text = "pic=Plank detail.png|You show Cedric a wooden plank."
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here you go!"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Well done! Now I'll fix this cart. You head back to Brother Omad and tell him I'll be there soon."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok! I'll see you later!"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Cedric."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Brother Cedric"
+text = "Hi, I'm almost done here. Could you tell Omad that I'll be back soon?"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi Omad, Brother Cedric is on his way!"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Good! Good! Now we can party!"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "I have little to repay you with but please, take these runes."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "box"
+text = "pic=Law rune detail.png|Brother Omad gives you 8 Law Runes."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Brother Omad!"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "OK, let's party!"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "act"
+text = "Dancing cutscene begins"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "{{overhead|Party!}}"
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Woop!}}"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "{{overhead|Yeah!}}"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "{{overhead|Let's boogie!}}"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Oh baby!}}"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "{{overhead|GO!}}"
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "{{overhead|Get down!}}"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Feel the rhythm!}}"
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "{{overhead|Dance!}}"
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "{{overhead|Oh my!}}"
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Watch me go!}}"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "{{overhead|You go!}}"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Brother Omad"
+text = "Dum dee do la la! *hiccup* That was some party!"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "*hic* What a party! Wow!"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

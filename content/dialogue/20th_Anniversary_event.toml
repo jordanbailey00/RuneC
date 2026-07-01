@@ -1,0 +1,7583 @@
+title = "Transcript:20th Anniversary event"
+npcs = ["Wizard Grayzag", "Gnome Child (Realm of Memories)", "Wise Old Man", "Miss Schism", "Hans", "Cook (Lumbridge)", "Bob", "Professor Oddenstein", "Chuck (Realm of Memories)", "Big Mo", "Thrander", "Pious Pete (Realm of Memories)"]
+node_count = 969
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "How do you know my name?"
+parent = -1
+children = [2, 3, 4]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do you know my name?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "In my realm, we can observe all deeds, hear all secrets, learn all truths, understand all things. We also know your name, [player name]."
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "act"
+text = "other"
+parent = 1
+is_terminal = true
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "option"
+text = "Who are you and why are you here?"
+parent = -1
+children = [6, 7, 8, 9, 13]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you and why are you here?"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I am just a simple gnome. Perhaps to you I look unusual, but in my day all gnomes were green, like the trees where we live."
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I came here at the invitation of this friendly wizard, and soon he will help me depart again."
+parent = 5
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "option"
+text = "Can I help you?"
+parent = 5
+children = [10, 11, 12]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I help you?"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Your offer is kind, but for now I must direct you to the wizard, since he was the one who brought me here."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "You're saying all gnomes were green?"
+parent = 5
+children = [14, 15, 16]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're saying all gnomes were green?"
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Indeed. Even to this day, the Short Green Guy cocktail is so named because of this. In fact, Blurberry still instructs his apprentices not to bring him a gnome when he asks for a Short Green Guy."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "other"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "I'll leave you alone for now."
+parent = -1
+children = [18, 19]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll leave you alone for now."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "You're an adventurer, right? So you'll do errands for people?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "Running your errands doesn't sound like an adventure!"
+parent = -1
+children = [22, 23, 24, 28, 37]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Running your errands doesn't sound like an adventure!"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "I thought of a way around that. To all but the most stultified mind, life itself is an adventure. And you would be alive while helping me. Therefore you would be having an adventure. Okay?"
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "option"
+text = "You've got me convinced. How can I help you?"
+parent = 21
+children = [25, 26, 27]
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You've got me convinced. How can I help you?"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Great! See, I'm famous for summoning imps, but I'm trying to get something more interesting. More demons, like the one in the cage, for example."
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "act"
+text = "below"
+parent = 24
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "option"
+text = "By that logic, I can have adventures without helping you."
+parent = 21
+children = [29, 30, 31, 35]
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "By that logic, I can have adventures without helping you."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Look, can you just help me, please? I bet you wouldn't even be talking to me about this unless you were willing to help."
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "option"
+text = "Alright, how can I help you?"
+parent = 28
+children = [32, 33, 34]
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Alright, how can I help you?"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Great! See, I'm famous for summoning imps, but I'm trying to get something more interesting. More demons, like the one in the cage, for example."
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "act"
+text = "below"
+parent = 31
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "option"
+text = "I'm not interested in whatever this is."
+parent = 28
+children = [36]
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "act"
+text = "below"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "I'm not interested in whatever this is."
+parent = 21
+children = [38]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "act"
+text = "below"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "option"
+text = "How can I help you?"
+parent = -1
+children = [40, 41, 42, 43, 44, 45, 52, 63, 75]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How can I help you?"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Great! See, I'm famous for summoning imps, but I'm trying to get something more interesting. More demons, like the one in the cage, for example."
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "But in the past there were much bigger demons. Such as Thammaron, in the Third Age. Imagine if I could get control of something like that - that'd show Mizgog who's smart!"
+parent = 39
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "But it didn't work. Instead of inventing time travel to the Third Age of Gielinor, my portal reached something called the Realm of Memories. And instead of a mighty demon, I got this weird kid."
+parent = 39
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "He's creeping me out, standing there looking at me with that face. I need you to get the stuff he needs to reopen the portal to the Realm of Memories, so he can go away."
+parent = 39
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "option"
+text = "Tell me about this Realm of Memories."
+parent = 39
+children = [46, 47, 48, 49, 50, 51]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about this Realm of Memories."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Well, I wanted to access the Third Age of Gielinor, but that's not what this is. Instead, the Realm of Memories recalls how the world used to be, back when things were different."
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How is that different from accessing the past?"
+parent = 45
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "The kid tells me it's the exact same date in the Realm of Memories - it's still the Fifth Age, same as it is out here. It's not the history of Gielinor I've unlocked - it's the history of RuneScape."
+parent = 45
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Get the kid to explain it to you, if you care. All I know is that I can't get uber-powerful demons from there, so I'm no longer interested. Just make the kid go away."
+parent = 45
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "other"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "option"
+text = "Why don't you deal with the portal yourself?"
+parent = 39
+children = [53, 54, 55, 59]
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why don't you deal with the portal yourself?"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Well, the kid droned on and on about artefacts, and I think he wanted me to give him items, but it made no sense... honestly, his voice drives me mad, and I can't cope with him anymore."
+parent = 52
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "option"
+text = "Aren't you responsible for his predicament?"
+parent = 52
+children = [56, 57, 58]
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Aren't you responsible for his predicament?"
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "I didn't ask him to come through the portal! Anyway, he knows more about this stuff than I do. He's not a vulnerable innocent - and I'm not the archetypal Wise Old Man figure in this story."
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "act"
+text = "other"
+parent = 55
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "option"
+text = "Huh. So you want me to help him instead."
+parent = 52
+children = [60, 61, 62]
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Huh. So you want me to help him instead."
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "That's right. Off you go!"
+parent = 59
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "act"
+text = "other"
+parent = 59
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "option"
+text = "What am I supposed to do?"
+parent = 39
+children = [64, 65, 66, 69, 71, 73]
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What am I supposed to do?"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Talk to the kid. He'll tell you to get some stuff. Honestly, he knows more about this stuff than I do. Just do what he wants, and make him go away."
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "option"
+text = "Okay, I'll get on with it."
+parent = 63
+children = [67, 68]
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll get on with it."
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "act"
+text = "end"
+parent = 66
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "option"
+text = "Tell me about this Realm of Memories."
+parent = 63
+children = [70]
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "act"
+text = "above"
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "option"
+text = "Why don't you deal with the portal yourself?"
+parent = 63
+children = [72]
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "act"
+text = "above"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "option"
+text = "Maybe some other time."
+parent = 63
+children = [74]
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "act"
+text = "below"
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "option"
+text = "Maybe some other time."
+parent = 39
+children = [76, 77]
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Maybe some other time."
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "act"
+text = "end"
+parent = 75
+is_terminal = true
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "option"
+text = "I'm not interested in whatever this is."
+parent = -1
+children = [79, 80, 81]
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not interested in whatever this is."
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Oh. Well, maybe another time."
+parent = 78
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "act"
+text = "end"
+parent = 78
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "I was telling you about the problem."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, carry on."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Great! See, I'm famous for summoning imps, but I'm trying to get something more interesting. More demons, like the one in the cage, for example."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Like I said, I opened a portal to the Realm of Memories, by mistake, and this weird kid came through."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And you wanted me to help him with the portal?"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "He's creeping me out, standing there looking at me with that face. I need you to get the stuff he needs to reopen the portal to the Realm of Memories, so he can go away."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "option"
+text = "Tell me about this Realm of Memories."
+parent = -1
+children = [90]
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "above"
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "option"
+text = "Why don't you deal with the portal yourself?"
+parent = -1
+children = [92]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "above"
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "What am I supposed to do?"
+parent = -1
+children = [94]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "act"
+text = "above"
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "option"
+text = "Maybe some other time."
+parent = -1
+children = [96]
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "act"
+text = "above"
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "That kid is still hanging around you know. Hurry up and get him what he needs so that he'll go away for good!"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What am I supposed to do?"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Grayzag says I'm supposed to help you get some stuff for reopening the portal that brought you here."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = """
+Thank you. To return to the Realm of Memories, I need artefacts of great historical importance. But I must visit those historic sites myself, to experience their significance as I collect the artefacts.
+"""
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "cond"
+text = "If the player has a follower and {{tmissing|Unknown condition"
+parent = -1
+children = [103, 104]
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall need you as my guide and protector, to lead me to these places. But you appear to have a follower already - perhaps you can relieve yourself of this encumbrance."
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "act"
+text = "end"
+parent = 102
+is_terminal = true
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "cond"
+text = "If the player has a follower and {{tmissing|Unknown condition"
+parent = -1
+children = [106, 107, 115]
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall need you as my guide and protector, to lead me to these places. But you appear to have a follower already, and if I follow you now, it will be lost."
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "option"
+text = "Follow me - I understand I'll lose my existing follower."
+parent = 105
+children = [108, 109, 110, 113]
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Follow me - I understand I'll lose my existing follower."
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Are you really sure? Some followers are highly valuable and hard to replace. Are you really willing to lose it by letting me follow you now?"
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "option"
+text = "Yes, I am willing to lose my existing follower now."
+parent = 107
+children = [111, 112]
+
+[[nodes]]
+id = 111
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I am willing to lose my existing follower now."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "other"
+text = "{{tmissing}}<!--[[RuneScape:Crowdsourcing]] toolserver Chisel is a bit vague of what follows.-->"
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "option"
+text = "Don't follow me now - I'll deal with my follower first."
+parent = 107
+children = [114]
+
+[[nodes]]
+id = 114
+depth = 4
+kind = "act"
+text = "below"
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "option"
+text = "Don't follow me now - I'll deal with my follower first."
+parent = 105
+children = [116, 117, 118]
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Don't follow me now - I'll deal with my follower first."
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall wait."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "cond"
+text = "If the player does not have a follower:"
+parent = -1
+children = [120, 121, 125]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall need you as my guide and protector, to lead me to these places."
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "option"
+text = "Follow me and let's go!"
+parent = 119
+children = [122, 123, 124]
+
+[[nodes]]
+id = 122
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Follow me and let's go!"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "act"
+text = "below"
+parent = 121
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "option"
+text = "Maybe later."
+parent = 119
+children = [126, 127, 128]
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Maybe later."
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall wait."
+parent = 125
+
+[[nodes]]
+id = 128
+depth = 3
+kind = "act"
+text = "end"
+parent = 125
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "To return to the Realm of Memories, I need artefacts of great historical importance. But I must visit those historic sites myself, to experience their significance as I collect the artefacts."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "This does not feel like the route I had expected. I would prefer not to go much further."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "option"
+text = "Alright, we can turn back."
+parent = -1
+children = [133, 134]
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, we can turn back."
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "act"
+text = "end"
+parent = 132
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "option"
+text = "Stop following me if you don't want to be here!"
+parent = -1
+children = [136, 137, 138, 139]
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Stop following me if you don't want to be here!"
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall wait with that friendly wizard in his tower. Meet me there when you are ready to continue."
+parent = 135
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "other"
+text = "{{qact|The gnome child no longer follows the player.}}"
+parent = 135
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "act"
+text = "end"
+parent = 135
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall wait with that friendly wizard in his tower. Meet me there when you are ready to continue."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "other"
+text = "{{qact|The gnome child no longer follows the player.}}"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [145, 146]
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "My heart overflows with gratitude for your help, [player name]."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "act"
+text = "continue"
+parent = 144
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [148, 149]
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You are very kind to help me on this journey, [player name]."
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "act"
+text = "continue"
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [151, 152]
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I am very much enjoying our time together, [player name]."
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "act"
+text = "continue"
+parent = 150
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [154, 155]
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Do you need to ask me something, [player name]?"
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "act"
+text = "continue"
+parent = 153
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [158]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 157
+children = [159, 162, 166]
+
+[[nodes]]
+id = 159
+depth = 3
+kind = "cond"
+text = "If Wise Old Man is present at Draynor Village (not away during the [[Swan Song]] quest):"
+parent = 158
+children = [160, 161]
+
+[[nodes]]
+id = 160
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "We must visit Draynor Village and obtain the party hat of the Wise Old Man. Please take me to him."
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 4
+kind = "act"
+text = "continue"
+parent = 159
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "cond"
+text = "If Wise Old Man is not present at Draynor Village (away during the Swan Song quest):"
+parent = 158
+children = [163, 164, 165]
+
+[[nodes]]
+id = 163
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I had hoped to meet the Wise Old Man of Draynor Village. However I know he is away from home at the moment."
+parent = 162
+
+[[nodes]]
+id = 164
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "What I need is his party hat. Perhaps you can take me to the old woman who spies on his house. She may be able to help us instead."
+parent = 162
+
+[[nodes]]
+id = 165
+depth = 4
+kind = "act"
+text = "continue"
+parent = 162
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "option"
+text = "Why would you want the Wise Old Man's hat?"
+parent = 158
+children = [167, 168, 169, 170, 172, 173, 176, 181, 188, 205, 209]
+
+[[nodes]]
+id = 167
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why would you want the Wise Old Man's hat?"
+parent = 166
+
+[[nodes]]
+id = 168
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Long ago, there was a break-in at the Draynor Village bank. A man smashed through the wall and stole a lot of money."
+parent = 166
+
+[[nodes]]
+id = 169
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "In the course of the raid, a victim dropped her blue party hat, and the man took it. It is no secret that this was the Wise Old Man, though the bank remains discreet about it."
+parent = 166
+
+[[nodes]]
+id = 170
+depth = 4
+kind = "cond"
+text = "If the player has not bribed the guard: {{tmissing|This condition is unconfirmed."
+parent = 166
+children = [171]
+
+[[nodes]]
+id = 171
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The bank's security footage of the event can be watched, if you ever wish, by bribing the guard who now patrols the area."
+parent = 170
+
+[[nodes]]
+id = 172
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "As a memorial of that event, there can be no finer artefact than a blue party hat from the Wise Old Man."
+parent = 166
+
+[[nodes]]
+id = 173
+depth = 4
+kind = "option"
+text = "Okay, let's carry on."
+parent = 166
+children = [174, 175]
+
+[[nodes]]
+id = 174
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Okay, let's carry on."
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 5
+kind = "act"
+text = "end"
+parent = 173
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 4
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = 166
+children = [177, 178, 179, 180]
+
+[[nodes]]
+id = 177
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Gnomes aren't usually green. How come you are?"
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I am just a simple gnome. Perhaps to you I look unusual, but in my day all gnomes were green, like the trees where we live. In the Realm of Memories, the old days are remembered thus."
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Even to this day, the Short Green Guy cocktail is so named because of this. In fact, Blurberry still instructs his apprentices not to bring him a gnome when he asks for a Short Green Guy."
+parent = 176
+
+[[nodes]]
+id = 180
+depth = 5
+kind = "act"
+text = "other"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 4
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = 166
+children = [182, 183, 184, 185, 186, 187]
+
+[[nodes]]
+id = 182
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about the Realm of Memories."
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Over time, many people have come into the world and left it again. One such is Thrander, who used to perform armour conversion services in Varrock. Another is Chuck, the wood certificate trader."
+parent = 181
+
+[[nodes]]
+id = 184
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "When their services were no longer required, they moved on, but they were not all forgotten. Some linger still in the Realm of Memories."
+parent = 181
+
+[[nodes]]
+id = 185
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the Realm, we watch how the world changes. We see the happy moments, the sad times, the lucky events, the dry streaks. It is a wonderful existence."
+parent = 181
+
+[[nodes]]
+id = 186
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "There are monsters there too - demons and dragons as they looked in older days. Though they are not what Grayzag hoped to summon into the world, so he has no interest in the Realm."
+parent = 181
+
+[[nodes]]
+id = 187
+depth = 5
+kind = "act"
+text = "other"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 188
+depth = 4
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = 166
+children = [189, 190, 191, 192, 193, 194, 198]
+
+[[nodes]]
+id = 189
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = 188
+
+[[nodes]]
+id = 190
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "He surely did, though he may not understand the significance of whatever items he used. Sadly he seems reluctant to speak to me himself, so I cannot enlighten his mind with my wisdom."
+parent = 188
+
+[[nodes]]
+id = 191
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Grayzag acquires all kinds of items from his imps, without necessarily understanding what they are. After so many years, it is of no surprise that he has stumbled across something useful at last!"
+parent = 188
+
+[[nodes]]
+id = 192
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "You mentioned that you needed to experience the significance of the artefacts yourself, for them to work. How did Grayzag manage that if he didn't understand what his imps had brought him?"
+parent = 188
+
+[[nodes]]
+id = 193
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The artefacts would have been significant to the imps, in their own way. As their summoner, Grayzag's connection to the imps would convey the significance to him, whether or not he realised this."
+parent = 188
+
+[[nodes]]
+id = 194
+depth = 5
+kind = "option"
+text = "So Grayzag doesn't really know how the portal worked?"
+parent = 188
+children = [195, 196, 197]
+
+[[nodes]]
+id = 195
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "So Grayzag doesn't really know how the portal worked?"
+parent = 194
+
+[[nodes]]
+id = 196
+depth = 6
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I believe not, though I doubt he would ever acknowledge this! We shall have to acquire artefacts ourselves to reopen his portal. Best of all, I shall enjoy our walk together!"
+parent = 194
+
+[[nodes]]
+id = 197
+depth = 6
+kind = "act"
+text = "other"
+parent = 194
+is_terminal = true
+
+[[nodes]]
+id = 198
+depth = 5
+kind = "option"
+text = "This all sounds very far-fetched."
+parent = 188
+children = [199, 200, 201, 202, 203, 204]
+
+[[nodes]]
+id = 199
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "This all sounds very far-fetched."
+parent = 198
+
+[[nodes]]
+id = 200
+depth = 6
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Would you tell a mountain it is too tall? Would you tell the sea it is too wet? The world does not seek our approval or belief; accept that things are as they are."
+parent = 198
+
+[[nodes]]
+id = 201
+depth = 6
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Consider a world in which particles and waves were aspects of a single nebulous reality, and in which the passage of time could be dilated by gravitational effects. Is that not far-fetched?"
+parent = 198
+
+[[nodes]]
+id = 202
+depth = 6
+kind = "speaker"
+speaker = "Gnome Child"
+text = "But no, the world need not conform to our expectations. A leaf blowing in the wind must go where the wind takes it, and a human living in this world must accept magic. Things are as they are."
+parent = 198
+
+[[nodes]]
+id = 203
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "... I see."
+parent = 198
+
+[[nodes]]
+id = 204
+depth = 6
+kind = "act"
+text = "other"
+parent = 198
+is_terminal = true
+
+[[nodes]]
+id = 205
+depth = 4
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = 166
+children = [206, 207, 208]
+
+[[nodes]]
+id = 206
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Can you stop following me now, please?"
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall wait with that friendly wizard in his tower. Meet me there when you are ready to continue."
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 5
+kind = "act"
+text = "end"
+parent = 205
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 4
+kind = "option"
+text = "How are we supposed to get the old man's hat?"
+parent = 166
+children = [210, 213, 216, 219, 222, 224, 226, 228, 230]
+
+[[nodes]]
+id = 210
+depth = 5
+kind = "cond"
+text = "If the player has not completed [[Swan Song]]:"
+parent = 209
+children = [211, 212]
+
+[[nodes]]
+id = 211
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "How are we supposed to get the old man's hat?"
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 6
+kind = "act"
+text = "continue"
+parent = 210
+
+[[nodes]]
+id = 213
+depth = 5
+kind = "cond"
+text = "If the player has completed [[Swan Song]]:"
+parent = 209
+children = [214, 215]
+
+[[nodes]]
+id = 214
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "How are we supposed to get the old man's hat? He wouldn't give it to me when I helped him save that fishing colony!"
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 6
+kind = "act"
+text = "continue"
+parent = 213
+
+[[nodes]]
+id = 216
+depth = 5
+kind = "cond"
+text = "If Wise Old Man is present at Draynor Village (not away during the [[Swan Song]] quest):"
+parent = 209
+children = [217, 218]
+
+[[nodes]]
+id = 217
+depth = 6
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The world has changed since he first acquired that hat. I think I will get what I need."
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 6
+kind = "act"
+text = "continue"
+parent = 216
+
+[[nodes]]
+id = 219
+depth = 5
+kind = "cond"
+text = "If Wise Old Man is not present at Draynor Village (away during the Swan Song quest):"
+parent = 209
+children = [220, 221]
+
+[[nodes]]
+id = 220
+depth = 6
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I expect the old woman will help us."
+parent = 219
+
+[[nodes]]
+id = 221
+depth = 6
+kind = "act"
+text = "continue"
+parent = 219
+
+[[nodes]]
+id = 222
+depth = 5
+kind = "option"
+text = "Okay, let's carry on."
+parent = 209
+children = [223]
+
+[[nodes]]
+id = 223
+depth = 6
+kind = "act"
+text = "above"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 5
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = 209
+children = [225]
+
+[[nodes]]
+id = 225
+depth = 6
+kind = "act"
+text = "above"
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 5
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = 209
+children = [227]
+
+[[nodes]]
+id = 227
+depth = 6
+kind = "act"
+text = "above"
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 5
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = 209
+children = [229]
+
+[[nodes]]
+id = 229
+depth = 6
+kind = "act"
+text = "above"
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 5
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = 209
+children = [231]
+
+[[nodes]]
+id = 231
+depth = 6
+kind = "act"
+text = "above"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "cond"
+text = "If the player uses a [[Draynor cabbage]] or a [[cabbage]] too early:"
+parent = -1
+children = [233]
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "other"
+text = "{{mes|Nothing interesting happens.}}"
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "cond"
+text = "If the player uses any other item on Gnome Child:"
+parent = -1
+children = [235, 236]
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is kind of you to offer me your items, [player name], but that is not the way I need to acquire the artefacts to reopen the portal."
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "act"
+text = "end"
+parent = 234
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "cond"
+text = "If the player uses a [[Draynor cabbage]] or a [[cabbage]] on the quest for a Falador cabbage later:"
+parent = -1
+children = [238]
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "act"
+text = "below"
+parent = 237
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [241, 242, 245, 248, 250]
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "cond"
+text = "If Wise Old Man is present at Draynor Village (not away during the [[Swan Song]] quest):"
+parent = 240
+children = [243, 244]
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to Draynor Village, so we could obtain the party hat of the Wise Old Man."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "act"
+text = "continue"
+parent = 242
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "cond"
+text = "If Wise Old Man is not present at Draynor Village (away during the Swan Song quest):"
+parent = 240
+children = [246, 247]
+
+[[nodes]]
+id = 246
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to Draynor Village, to speak to the old woman who spies on the house of the Wise Old Man. I would have preferred to meet him, to ask for his party hat, but he is away from home."
+parent = 245
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "act"
+text = "continue"
+parent = 245
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "option"
+text = "Why would you want the Wise Old Man's hat?"
+parent = 240
+children = [249]
+
+[[nodes]]
+id = 249
+depth = 3
+kind = "act"
+text = "above"
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "option"
+text = "How are we supposed to get the old man's hat?"
+parent = 240
+children = [251]
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "act"
+text = "above"
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [253]
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "act"
+text = "above"
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [255]
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "act"
+text = "above"
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [257]
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "act"
+text = "above"
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [259]
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "act"
+text = "above"
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Miss Schism"
+text = "Oooh, my dear, have you heard the news?"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "cond=If the Wise Old Man is away from home during [[Swan Song]]:|Ask about the green Gnome Child."
+parent = -1
+children = [262, 267, 268, 269, 270, 271, 272, 273, 274, 276, 277, 281, 285]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "cond"
+text = "If the green Gnome Child is not following the player:"
+parent = 261
+children = [263, 264, 265, 266]
+
+[[nodes]]
+id = 263
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A gnome wants something from the Wise Old Man, and he said we should talk to you since the old man's gone away."
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "speaker"
+speaker = "Miss Schism"
+text = "Oooh, a gnome? Where is it?"
+parent = 262
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "He was going to follow me, but he must have got lost somewhere. I'll go and look for him."
+parent = 262
+
+[[nodes]]
+id = 266
+depth = 3
+kind = "act"
+text = "end"
+parent = 262
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This gnome needs your help."
+parent = 261
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Hello Miss Schism. Yes, as the Wise Old Man is away from home, I think you might be able to help me instead."
+parent = 261
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Miss Schism"
+text = "You don't look normal! Where did you come from, and why are you in my village? Are you staying long?"
+parent = 261
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I came through a portal from the Realm of Memories, where I reside with other creatures who have vanished from these lands. I think you can help me to return there."
+parent = 261
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the Realm of Memories, we observed the old man's bank heist, in which he obtained a blue party hat. I need such historic artefacts to reopen the portal. Can you help me get it?"
+parent = 261
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Miss Schism"
+text = "Oooh, yes, I can help you, my dear. I've been in that house, and I know all his dirty little secrets. I found his store of holiday items, long ago."
+parent = 261
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Miss Schism"
+text = "He'd been coming and going a lot, one Christmas, with some helpful idiot talking to him about filling in for Santa."
+parent = 261
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "cond"
+text = "If the player participated in the [[2017 Christmas event]]:"
+parent = 261
+children = [275]
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I observed that incident from the Realm of Memories, yes. Do not let her make you feel bad about your role in that event, [player name]."
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Miss Schism"
+text = "After that, I saw he'd got lots of holiday items hidden in his house, so of course I took some. So I've got blue party hats from the old man, and you can have one."
+parent = 261
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "option"
+text = "Will the hat work if it's not from the bank robbery?"
+parent = 261
+children = [278, 279, 280]
+
+[[nodes]]
+id = 278
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Will the hat work if it's not from the bank robbery?"
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It should suffice. It is still the Wise Old Man's blue party hat, after all."
+parent = 277
+
+[[nodes]]
+id = 280
+depth = 3
+kind = "act"
+text = "other"
+parent = 277
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "option"
+text = "Why did you take the items from his house?"
+parent = 261
+children = [282, 283, 284]
+
+[[nodes]]
+id = 282
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why did you take the items from his house?"
+parent = 281
+
+[[nodes]]
+id = 283
+depth = 3
+kind = "speaker"
+speaker = "Miss Schism"
+text = "He didn't deserve them, you know. So of course I took them. He's got plenty more, so don't go feeling sorry for that old man. And they're evidence of his crimes, anyway."
+parent = 281
+
+[[nodes]]
+id = 284
+depth = 3
+kind = "act"
+text = "other"
+parent = 281
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "option"
+text = "We'll take the hat!"
+parent = 261
+children = [286, 287, 288, 289, 290]
+
+[[nodes]]
+id = 286
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We'll take the hat!"
+parent = 285
+
+[[nodes]]
+id = 287
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 285
+
+[[nodes]]
+id = 288
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Thank you so much."
+parent = 285
+
+[[nodes]]
+id = 289
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 285
+
+[[nodes]]
+id = 290
+depth = 3
+kind = "act"
+text = "below"
+parent = 285
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "option"
+text = "event=No|Ok, tell me about the news."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "option"
+text = "event=No|Who are you?"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "option"
+text = "event=No|I'm not talking to you, you horrible woman."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "option"
+text = "Ask about the green Gnome Child."
+parent = -1
+children = [298, 303, 304, 305, 306, 307, 308, 309, 310, 311, 315, 319]
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "cond"
+text = "If the green Gnome Child is not following the player:"
+parent = 297
+children = [299, 300, 301, 302]
+
+[[nodes]]
+id = 299
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A gnome needs your help, and he sent me here."
+parent = 298
+
+[[nodes]]
+id = 300
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Could he not come here himself?"
+parent = 298
+
+[[nodes]]
+id = 301
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, yes, he was going to follow me, but must have got lost somewhere. I'll go and look for him."
+parent = 298
+
+[[nodes]]
+id = 302
+depth = 3
+kind = "act"
+text = "end"
+parent = 298
+is_terminal = true
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This gnome needs your help."
+parent = 297
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is an honour to meet you, Dionysius. As [player name] says, I do need your help."
+parent = 297
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "A green gnome? Now there's a blast from the past - even I wasn't around back in your day! Why are you here, you little marvel?"
+parent = 297
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I came through a portal from the Realm of Memories, where I reside with other creatures who have vanished from these lands. Now I need your help to return there."
+parent = 297
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the Realm of Memories, we observed your bank heist, in which you obtained the blue party hat. I need such historic artefacts to reopen the portal. May I have the hat, please?"
+parent = 297
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "My lovely blue hat is seen as an historic artefact? That is most gratifying! I had not expected that my... little shopping trip... would become such a renowned event in your culture."
+parent = 297
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Very much so. Furthermore, I know that the hats were very precious in that era, but they are different nowadays. May I please have it?"
+parent = 297
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh, alright. I've got plenty of spares from that time I filled in for Santa at Christmas."
+parent = 297
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "option"
+text = "cond=If the player has participated in the [[2017 Christmas event]]:|For you to be Santa, I had to illuminate a reindeer's nose."
+parent = 297
+children = [312, 313, 314]
+
+[[nodes]]
+id = 312
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "For you to be Santa, I had to illuminate a reindeer's nose."
+parent = 311
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I remember an extremely unpleasant reindeer called Dolph with a glowing nose, yes. The others called him Rude Dolph. Ah, the happy memories!"
+parent = 311
+
+[[nodes]]
+id = 314
+depth = 3
+kind = "act"
+text = "other"
+parent = 311
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "option"
+text = "cond=If the player has completed [[Swan Song]]:|You wouldn't give me the hat at that Fishing Colony!"
+parent = 297
+children = [316, 317, 318]
+
+[[nodes]]
+id = 316
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You wouldn't give me the hat at that Fishing Colony!"
+parent = 315
+
+[[nodes]]
+id = 317
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Maybe I was still using it as my emotional support hat at the time, and I couldn't bear to part with it. Or maybe I just see its value differently these days."
+parent = 315
+
+[[nodes]]
+id = 318
+depth = 3
+kind = "act"
+text = "other"
+parent = 315
+is_terminal = true
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "option"
+text = "We'll take the hat!"
+parent = 297
+children = [320, 321, 322, 323, 324, 325, 340]
+
+[[nodes]]
+id = 320
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We'll take the hat!<!--Like all other 1 option dialogues, skips here if the above options are unavailable.-->"
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "box"
+text = "pic=Blue partyhat detail.png|The Wise Old Man hands Gnome Child his blue party hat, and immediately puts a spare one on his own head."
+parent = 319
+
+[[nodes]]
+id = 322
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Thank you so much, old man!"
+parent = 319
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 319
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "We must visit Lumbridge, and obtain the navigational chart of a man named Hans. It is a unique chart that has steered his life for many years now."
+parent = 319
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "option"
+text = "What's special about this navigational chart?"
+parent = 319
+children = [326, 327, 328, 329, 332, 334, 336, 338]
+
+[[nodes]]
+id = 326
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What's special about this navigational chart?"
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Some forces in this world move in mysterious ways. Gravity, the Anima Mundi and the price of granite mauls are just three everyday examples."
+parent = 325
+
+[[nodes]]
+id = 328
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Hans may move more predictably, but his navigational chart will reveal the guiding principles that steer him, so that we can better understand this iconic facet of our world."
+parent = 325
+
+[[nodes]]
+id = 329
+depth = 4
+kind = "option"
+text = "Okay, let's carry on."
+parent = 325
+children = [330, 331]
+
+[[nodes]]
+id = 330
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Okay, let's carry on."
+parent = 329
+
+[[nodes]]
+id = 331
+depth = 5
+kind = "act"
+text = "end"
+parent = 329
+is_terminal = true
+
+[[nodes]]
+id = 332
+depth = 4
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = 325
+children = [333]
+
+[[nodes]]
+id = 333
+depth = 5
+kind = "act"
+text = "above"
+parent = 332
+
+[[nodes]]
+id = 334
+depth = 4
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = 325
+children = [335]
+
+[[nodes]]
+id = 335
+depth = 5
+kind = "act"
+text = "above"
+parent = 334
+
+[[nodes]]
+id = 336
+depth = 4
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = 325
+children = [337]
+
+[[nodes]]
+id = 337
+depth = 5
+kind = "act"
+text = "above"
+parent = 336
+
+[[nodes]]
+id = 338
+depth = 4
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = 325
+children = [339]
+
+[[nodes]]
+id = 339
+depth = 5
+kind = "act"
+text = "above"
+parent = 338
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "option"
+text = "Where can I find Hans?"
+parent = 319
+children = [341, 342, 343, 344]
+
+[[nodes]]
+id = 341
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find Hans?"
+parent = 340
+
+[[nodes]]
+id = 342
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Hans patrols the courtyard of Lumbridge Castle, as he has done for many years. Many people remember him as one of the first friendly faces they encountered in these lands."
+parent = 340
+
+[[nodes]]
+id = 343
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "His long-term contribution to our society renders him historically significant, and an artefact from Hans would be a precious gift."
+parent = 340
+
+[[nodes]]
+id = 344
+depth = 4
+kind = "act"
+text = "other"
+parent = 340
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "option"
+text = "event=No|More..."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "option"
+text = "Ask about the green Gnome Child."
+parent = -1
+children = [348, 349, 350, 351, 352, 354, 356]
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Regarding that hat of yours - this gnome thinks it can help him."
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "My lovely blue hat is seen as an historic artefact? That is most gratifying! I had not expected that my... little shopping trip... would become such a renowned event in your culture."
+parent = 347
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Very much so. Furthermore, I know that the hats were very precious in that era, but they are different nowadays. May I please have it?"
+parent = 347
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh, alright. I've got plenty of spares from that time I filled in for Santa at Christmas."
+parent = 347
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "option"
+text = "For you to be Santa, I had to illuminate a reindeer's nose."
+parent = 347
+children = [353]
+
+[[nodes]]
+id = 353
+depth = 3
+kind = "act"
+text = "above"
+parent = 352
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "option"
+text = "You wouldn't give me the hat at that Fishing Colony!"
+parent = 347
+children = [355]
+
+[[nodes]]
+id = 355
+depth = 3
+kind = "act"
+text = "above"
+parent = 354
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "option"
+text = "We'll take the hat!"
+parent = 347
+children = [357]
+
+[[nodes]]
+id = 357
+depth = 3
+kind = "act"
+text = "above"
+parent = 356
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "option"
+text = "event=No|More..."
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Greetings, [player name]."
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "option"
+text = "Ask about the green Gnome Child."
+parent = -1
+children = [361, 362, 363, 369, 371, 373]
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that gnome who wanted your hat..."
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Yes, [player name]?"
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "option"
+text = "We lost it. Can we have another?"
+parent = 360
+children = [364, 365, 367]
+
+[[nodes]]
+id = 364
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We lost it. Can we have another?"
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 3
+kind = "cond"
+text = "If the Gnome Child is following the player:"
+parent = 363
+children = [366]
+
+[[nodes]]
+id = 366
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Your little green friend still has it."
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 3
+kind = "cond"
+text = "If the Gnome Child is not following the player:"
+parent = 363
+children = [368]
+
+[[nodes]]
+id = 368
+depth = 4
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I think you'll find that your little green friend still has it."
+parent = 367
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "option"
+text = "For you to be Santa, I had to illuminate a reindeer's nose."
+parent = 360
+children = [370]
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "act"
+text = "above"
+parent = 369
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "option"
+text = "You wouldn't give me the hat at that Fishing Colony!"
+parent = 360
+children = [372]
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "act"
+text = "above"
+parent = 371
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "option"
+text = "Thanks for your help."
+parent = 360
+children = [374, 375, 377]
+
+[[nodes]]
+id = 374
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 373
+
+[[nodes]]
+id = 375
+depth = 3
+kind = "cond"
+text = "If the Gnome Child is following the player:"
+parent = 373
+children = [376]
+
+[[nodes]]
+id = 376
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Yes, thank you indeed!"
+parent = 375
+
+[[nodes]]
+id = 377
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Don't mention it."
+parent = 373
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "option"
+text = "event=No|More..."
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [381, 382, 383, 385]
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 380
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to Lumbridge, so we could obtain the navigational chart of Hans. It is a unique chart that has steered his life for many years now."
+parent = 380
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "option"
+text = "What's special about this navigational chart?"
+parent = 380
+children = [384]
+
+[[nodes]]
+id = 384
+depth = 3
+kind = "act"
+text = "above"
+parent = 383
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "option"
+text = "Where can I find Hans?"
+parent = 380
+children = [386]
+
+[[nodes]]
+id = 386
+depth = 3
+kind = "act"
+text = "above"
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [388]
+
+[[nodes]]
+id = 388
+depth = 2
+kind = "act"
+text = "above"
+parent = 387
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [390]
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "act"
+text = "above"
+parent = 389
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [392]
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "act"
+text = "above"
+parent = 391
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [394]
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "act"
+text = "above"
+parent = 393
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Hello. What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "option"
+text = "event=No|I'm looking for whoever is in charge of this place."
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "option"
+text = "event=No|I have come to kill everyone in this castle!"
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "option"
+text = "Can we talk about this Gnome Child?"
+parent = -1
+children = [399, 400, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 426]
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can we talk about this Gnome Child?"
+parent = 398
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "cond"
+text = "If the Gnome Child is not following the player:"
+parent = 398
+children = [401, 402, 403]
+
+[[nodes]]
+id = 401
+depth = 3
+kind = "speaker"
+speaker = "Hans"
+text = """
+That sounds interesting - I don't meet gnomes very often. In fact, I can't see one now.<!--ackchyually Hans doesn't need line of sight to the Gnome Child, only the Gnome Child has to be following the player (VarPlayer 447 == 692219893).-->
+"""
+parent = 400
+
+[[nodes]]
+id = 402
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "He was going to follow me, but he must have got lost somewhere. I'll go and look for him."
+parent = 400
+
+[[nodes]]
+id = 403
+depth = 3
+kind = "act"
+text = "end"
+parent = 400
+is_terminal = true
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Hans"
+text = "Can I help the gnome with something?"
+parent = 398
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Yes, Hans. I have long admired your faithful patrol around this castle, and your friendly greetings for new arrivals in the land."
+parent = 398
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Now I need your navigational chart to help me get home to the Realm of Memories."
+parent = 398
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Hans"
+text = "Well, I suppose I should be able to find my way without it, after all this time, so I don't mind letting you have it. But will it actually help? It's never led me to any other realms."
+parent = 398
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "As an artefact of historical importance, I can use its inherent powers to reopen the portal to the Realm of Memories, where I reside."
+parent = 398
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Furthermore, it may explain much about your own movements over the years."
+parent = 398
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Hans"
+text = "... okay, I suppose you know what you're doing. Here, take it!"
+parent = 398
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "other"
+text = "{{qact|A whimsical tune plays while the navigational chart is displayed, showing the compass moving erratically.}}"
+parent = 398
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Thank you so much, Hans."
+parent = 398
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 398
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Also in Lumbridge, we must visit the Cook in the castle kitchen. I would like to collect his recipe book."
+parent = 398
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "option"
+text = "What's special about this recipe book?"
+parent = 398
+children = [416, 417, 418, 421, 424, 425]
+
+[[nodes]]
+id = 416
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's special about this recipe book?"
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "For many new arrivals in Gielinor, their first adventure is helping the Cook to bake a cake. Indeed, it is one of the oldest adventures of all time!"
+parent = 415
+
+[[nodes]]
+id = 418
+depth = 3
+kind = "cond"
+text = "If [[Cook's Assistant]] is started and in progress:"
+parent = 415
+children = [419, 420]
+
+[[nodes]]
+id = 419
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, I'm supposed to be helping him myself."
+parent = 418
+
+[[nodes]]
+id = 420
+depth = 4
+kind = "act"
+text = "continue"
+parent = 418
+
+[[nodes]]
+id = 421
+depth = 3
+kind = "cond"
+text = "If the player has completed [[Cook's Assistant]]:"
+parent = 415
+children = [422, 423]
+
+[[nodes]]
+id = 422
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, I've done that for him myself."
+parent = 421
+
+[[nodes]]
+id = 423
+depth = 4
+kind = "act"
+text = "continue"
+parent = 421
+
+[[nodes]]
+id = 424
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "This recipe for cakes is famed among the many generations who have passed through Lumbridge, and I greatly desire the recipe book."
+parent = 415
+
+[[nodes]]
+id = 425
+depth = 3
+kind = "act"
+text = "other"
+parent = 415
+is_terminal = true
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "option"
+text = "Where can I find the Cook?"
+parent = 398
+children = [427, 428, 429]
+
+[[nodes]]
+id = 427
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find the Cook?"
+parent = 426
+
+[[nodes]]
+id = 428
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "In the kitchen, in Lumbridge Castle."
+parent = 426
+
+[[nodes]]
+id = 429
+depth = 3
+kind = "act"
+text = "other"
+parent = 426
+is_terminal = true
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "option"
+text = "event=No|Can you tell me how long I've been here?"
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "option"
+text = "event=No|Nothing."
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Hello. What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "option"
+text = "event=No|I'm looking for whoever is in charge of this place."
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "option"
+text = "event=No|I have come to kill everyone in this castle!"
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "option"
+text = "Can we talk about this Gnome Child?"
+parent = -1
+children = [436, 437, 438, 442, 446]
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can we talk about this Gnome Child?"
+parent = 435
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "Hans"
+text = "Oh, does he need help with something else?"
+parent = 435
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "option"
+text = "We lost the chart."
+parent = 435
+children = [439, 440, 441]
+
+[[nodes]]
+id = 439
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We lost the chart."
+parent = 438
+
+[[nodes]]
+id = 440
+depth = 3
+kind = "speaker"
+speaker = "Hans"
+text = "No, I don't think so. I'm sure the little fellow still has it."
+parent = 438
+
+[[nodes]]
+id = 441
+depth = 3
+kind = "act"
+text = "other"
+parent = 438
+is_terminal = true
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "option"
+text = "Why was your navigation chart spinning like that?"
+parent = 435
+children = [443, 444, 445]
+
+[[nodes]]
+id = 443
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why was your navigation chart spinning like that?"
+parent = 442
+
+[[nodes]]
+id = 444
+depth = 3
+kind = "speaker"
+speaker = "Hans"
+text = "Oh, I thought that was normal. I just followed where it was pointing, really. It's been a very big influence in my life."
+parent = 442
+
+[[nodes]]
+id = 445
+depth = 3
+kind = "act"
+text = "other"
+parent = 442
+is_terminal = true
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "option"
+text = "Thanks for your help."
+parent = 435
+children = [447, 448, 450, 451]
+
+[[nodes]]
+id = 447
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 446
+
+[[nodes]]
+id = 448
+depth = 3
+kind = "cond"
+text = "If Gnome Child is following the player:"
+parent = 446
+children = [449]
+
+[[nodes]]
+id = 449
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Yes, thank you very much!"
+parent = 448
+
+[[nodes]]
+id = 450
+depth = 3
+kind = "speaker"
+speaker = "Hans"
+text = "You're welcome."
+parent = 446
+
+[[nodes]]
+id = 451
+depth = 3
+kind = "act"
+text = "end"
+parent = 446
+is_terminal = true
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "option"
+text = "event=No|Can you tell me how long I've been here?"
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "option"
+text = "event=No|Nothing."
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [456, 457, 458, 460]
+
+[[nodes]]
+id = 456
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 455
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to the kitchen of Lumbridge Castle, where I seek the recipe book of the Cook."
+parent = 455
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "option"
+text = "What's special about this recipe book?"
+parent = 455
+children = [459]
+
+[[nodes]]
+id = 459
+depth = 3
+kind = "act"
+text = "above"
+parent = 458
+
+[[nodes]]
+id = 460
+depth = 2
+kind = "option"
+text = "Where can I find the Cook?"
+parent = 455
+children = [461]
+
+[[nodes]]
+id = 461
+depth = 3
+kind = "act"
+text = "above"
+parent = 460
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [463]
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "act"
+text = "above"
+parent = 462
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [465]
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "act"
+text = "above"
+parent = 464
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [467]
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "act"
+text = "above"
+parent = 466
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [469]
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "act"
+text = "above"
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "option"
+text = "event=No|What's wrong?"
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "option"
+text = "event=No|You're a cook, why don't you bake me a cake?"
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "option"
+text = "event=No|You don't look very happy."
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "option"
+text = "Can we talk about this Gnome Child?"
+parent = -1
+children = [474, 475, 479, 480, 488, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502]
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can we talk about this Gnome Child?"
+parent = 473
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "cond"
+text = "If the Gnome Child is not following the player:"
+parent = 473
+children = [476, 477, 478]
+
+[[nodes]]
+id = 476
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "What gnome child?"
+parent = 475
+
+[[nodes]]
+id = 477
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "He was following me earlier. I'll go look for him."
+parent = 475
+
+[[nodes]]
+id = 478
+depth = 3
+kind = "act"
+text = "end"
+parent = 475
+is_terminal = true
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Does he want a cake? Cakes are my most famous product."
+parent = 473
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "cond"
+text = "If the player has completed [[Cook's Assistant]]:"
+parent = 473
+children = [481, 484]
+
+[[nodes]]
+id = 481
+depth = 3
+kind = "option"
+text = "So why did you need me to fetch cake ingredients before?"
+parent = 480
+children = [482, 483]
+
+[[nodes]]
+id = 482
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So why did you need me to fetch cake ingredients before?"
+parent = 481
+
+[[nodes]]
+id = 483
+depth = 4
+kind = "act"
+text = "continues"
+parent = 481
+
+[[nodes]]
+id = 484
+depth = 3
+kind = "option"
+text = "It was a pleasure fetching ingredients for you."
+parent = 480
+children = [485, 486, 487]
+
+[[nodes]]
+id = 485
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It was a pleasure fetching ingredients for you."
+parent = 484
+
+[[nodes]]
+id = 486
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You are especially famous for asking adventurers to get cake ingredients for you."
+parent = 484
+
+[[nodes]]
+id = 487
+depth = 4
+kind = "act"
+text = "continues"
+parent = 484
+
+[[nodes]]
+id = 488
+depth = 2
+kind = "cond"
+text = "If the player has not completed Cook's Assistant:"
+parent = 473
+children = [489]
+
+[[nodes]]
+id = 489
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You are especially famous for asking adventurers to get cake ingredients for you."
+parent = 488
+
+[[nodes]]
+id = 490
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "I keep running out of supplies! There should be a Grand Exchange outlet in every town - that'd be a proper 'quality of life' improvement. How does anyone train like this?"
+parent = 473
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Also, shops should have instant restocking of items, and there ought to be an option to stop food ever burning - that'd make Cooking less frustrating. And a frustrating world is a badly designed one."
+parent = 473
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Really, people who just want to cook well immediately ought to be able to choose that, while people who want to train the skill slowly should be able to do that instead. Then everyone would be happy."
+parent = 473
+
+[[nodes]]
+id = 493
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I see some things have changed since my era! But no, I do not need a cake. What I need is your recipe book, the one you have been following for all the cakes you have made throughout the years."
+parent = 473
+
+[[nodes]]
+id = 494
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Why?"
+parent = 473
+
+[[nodes]]
+id = 495
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is an artefact of great historical importance. Even before my own time, you were here in Lumbridge sending adventurers out to bring you cake ingredients."
+parent = 473
+
+[[nodes]]
+id = 496
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "This recipe is one of the oldest legends in our world, and I would greatly appreciate the book from which it comes."
+parent = 473
+
+[[nodes]]
+id = 497
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = """
+Alright, I can work from memory now. I've tried this recipe so many times, you know. One day I'll get it right - so far, all the cakes just burn, so I have to send another adventurer to fetch more ingredients.
+"""
+parent = 473
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "other"
+text = "{{qact|The Cook's Recipe Book is shown.}}"
+parent = 473
+
+[[nodes]]
+id = 499
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Thank you so much."
+parent = 473
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 473
+
+[[nodes]]
+id = 501
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "We must visit Bob, who can be found in the Lumbridge axe shop. He is an incredibly important figure in Gielinor, and I seek his autograph."
+parent = 473
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "act"
+text = "end"
+parent = 473
+is_terminal = true
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "option"
+text = "event=No|What's wrong?"
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "option"
+text = "event=No|You're a cook, why don't you bake me a cake?"
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "option"
+text = "event=No|You don't look very happy."
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "option"
+text = "Can we talk about this Gnome Child?"
+parent = -1
+children = [507, 508, 509, 510]
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can we talk about this Gnome Child?"
+parent = 506
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Yes. He said he wants my recipe book, right?"
+parent = 506
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is an artefact of great historical importance. Even before my own time, you were here in Lumbridge sending adventurers out to bring you cake ingredients."
+parent = 506
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "act"
+text = "above"
+parent = 506
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "option"
+text = "event=No|What's wrong?"
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "option"
+text = "event=No|You're a cook, why don't you bake me a cake?"
+parent = -1
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "option"
+text = "event=No|You don't look very happy."
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "option"
+text = "Can we talk about this Gnome Child?"
+parent = -1
+children = [515, 516, 517, 521, 536]
+
+[[nodes]]
+id = 515
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can we talk about this Gnome Child?"
+parent = 514
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Oh, has he changed his mind about wanting a cake?"
+parent = 514
+
+[[nodes]]
+id = 517
+depth = 2
+kind = "option"
+text = "We lost the recipe book."
+parent = 514
+children = [518, 519, 520]
+
+[[nodes]]
+id = 518
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We lost the recipe book."
+parent = 517
+
+[[nodes]]
+id = 519
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "I'm sure the gnome still has it."
+parent = 517
+
+[[nodes]]
+id = 520
+depth = 3
+kind = "act"
+text = "other"
+parent = 517
+is_terminal = true
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "option"
+text = "Did you say your cakes always burn?"
+parent = 514
+children = [522, 523, 524, 529, 532, 535]
+
+[[nodes]]
+id = 522
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Did you say your cakes always burn?"
+parent = 521
+
+[[nodes]]
+id = 523
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "That's why I always need adventurers to bring me more ingredients, yes. It'd be so much easier if they'd just add a Grand Exchange outlet in here, for my 'quality of life'."
+parent = 521
+
+[[nodes]]
+id = 524
+depth = 3
+kind = "cond"
+text = "If the player has completed [[Cook's Assistant]]:"
+parent = 521
+children = [525, 526, 527]
+
+[[nodes]]
+id = 525
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So the ingredients I brought you myself were wasted?"
+parent = 524
+
+[[nodes]]
+id = 526
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "Don't worry - there are plenty more where they came from. I'll get it right one day."
+parent = 524
+
+[[nodes]]
+id = 527
+depth = 4
+kind = "cond"
+text = "If the player is on a [[members]]' world:"
+parent = 524
+children = [528]
+
+[[nodes]]
+id = 528
+depth = 5
+kind = "speaker"
+speaker = "Cook"
+text = "Also, it's a little-known fact that if you poison a chicken via combat, without it dying immediately, or changing its combat target, it might start laying more eggs."
+parent = 527
+
+[[nodes]]
+id = 529
+depth = 3
+kind = "cond"
+text = "If [[Cook's Assistant]] is started and in progress:"
+parent = 521
+children = [530, 531]
+
+[[nodes]]
+id = 530
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "But I'm helping you with that already! Will the ingredients I'm bringing you be wasted?"
+parent = 529
+
+[[nodes]]
+id = 531
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "I'm sure I'll have more success with your ingredients. I have a lucky feeling about it, this time."
+parent = 529
+
+[[nodes]]
+id = 532
+depth = 3
+kind = "cond"
+text = "If the player has not completed [[Cook's Assistant]]:"
+parent = 521
+children = [533, 534]
+
+[[nodes]]
+id = 533
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So when it's my turn to be sent on your errand, will the ingredients just be wasted?"
+parent = 532
+
+[[nodes]]
+id = 534
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "I'm sure I'll have more success with your ingredients. I have a lucky feeling about it, this time."
+parent = 532
+
+[[nodes]]
+id = 535
+depth = 3
+kind = "act"
+text = "other"
+parent = 521
+is_terminal = true
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "option"
+text = "Thanks for the book."
+parent = 514
+children = [537, 538, 540, 541]
+
+[[nodes]]
+id = 537
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the book."
+parent = 536
+
+[[nodes]]
+id = 538
+depth = 3
+kind = "cond"
+text = "If Gnome Child is following the player:"
+parent = 536
+children = [539]
+
+[[nodes]]
+id = 539
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It will be very helpful."
+parent = 538
+
+[[nodes]]
+id = 540
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "You're welcome. It wasn't helping me anymore."
+parent = 536
+
+[[nodes]]
+id = 541
+depth = 3
+kind = "act"
+text = "end"
+parent = 536
+is_terminal = true
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [544, 545, 546]
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 543
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to the Lumbridge axe shop, so I could request the autograph of the great Bob."
+parent = 543
+
+[[nodes]]
+id = 546
+depth = 2
+kind = "act"
+text = "other"
+parent = 543
+is_terminal = true
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [548]
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "act"
+text = "above"
+parent = 547
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [550]
+
+[[nodes]]
+id = 550
+depth = 2
+kind = "act"
+text = "above"
+parent = 549
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [552]
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "act"
+text = "above"
+parent = 551
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [554]
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "act"
+text = "above"
+parent = 553
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "option"
+text = "event=No|Give me a quest!"
+parent = -1
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "option"
+text = "event=No|Have you anything to sell?"
+parent = -1
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "option"
+text = "event=No|Can you repair my items for me?"
+parent = -1
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "option"
+text = "Can we talk about this Gnome Child?"
+parent = -1
+children = [559, 560, 564, 565, 566, 567, 568, 584, 595, 600]
+
+[[nodes]]
+id = 559
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can we talk about this Gnome Child?"
+parent = 558
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "cond"
+text = "If the Gnome Child is not following the player:"
+parent = 558
+children = [561, 562, 563]
+
+[[nodes]]
+id = 561
+depth = 3
+kind = "speaker"
+speaker = "Bob"
+text = "Why would I want to talk to you about a gnome?"
+parent = 560
+
+[[nodes]]
+id = 562
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "There was one was{{sic}} following me earlier. I'd better find him."
+parent = 560
+
+[[nodes]]
+id = 563
+depth = 3
+kind = "act"
+text = "end"
+parent = 560
+is_terminal = true
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "What does it want? We don't normally serve its kind in this shop."
+parent = 558
+
+[[nodes]]
+id = 565
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is a great honour for me to meet the mighty Bob. In my realm, you are hailed as one of Gielinor's most famous heroes."
+parent = 558
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Huh! That's very kind of you, I suppose. I guess I've served the people of Lumbridge faithfully for many years."
+parent = 558
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Oh, but you are too modest! Your defeat of the Dragonkin in ancient times was a truly historic achievement, and I am a great admirer of yours. May I have your autograph, please?"
+parent = 558
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "option"
+text = "cond=If Bob has died in [[Dragon Slayer II]]:|Sorry, Gnome Child - the Bob you want is a dead cat."
+parent = 558
+children = [569, 570, 571, 572, 576, 580]
+
+[[nodes]]
+id = 569
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, Gnome Child - the Bob you want is a dead cat. He fell in battle fighting another Dragonkin. This Bob is someone totally different."
+parent = 568
+
+[[nodes]]
+id = 570
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the Realm of Memories, we saw that Bob was disguised as a cat so effectively that even he forgot who he had been."
+parent = 568
+
+[[nodes]]
+id = 571
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Is it a mere coincidence that this man bears the same name? Or might his name reveal an underlying truth - that Bob is Bob?"
+parent = 568
+
+[[nodes]]
+id = 572
+depth = 3
+kind = "option"
+text = "THE CAT IS DEAD. ACCEPT IT."
+parent = 568
+children = [573, 574, 575]
+
+[[nodes]]
+id = 573
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "THE CAT IS DEAD. ACCEPT IT."
+parent = 572
+
+[[nodes]]
+id = 574
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Even when a story has ended on a sad note, there can always be a sequel. I shall continue believing that Bob is Bob, even if you think their names are just a coincidence."
+parent = 572
+
+[[nodes]]
+id = 575
+depth = 4
+kind = "act"
+text = "other"
+parent = 572
+is_terminal = true
+
+[[nodes]]
+id = 576
+depth = 3
+kind = "option"
+text = "It's a rather mundane coincidence."
+parent = 568
+children = [577, 578, 579]
+
+[[nodes]]
+id = 577
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It's a rather mundane coincidence."
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "With that attitude you may miss so many wonders in this world! But I desire Bob's autograph even if you do not believe in him."
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 4
+kind = "act"
+text = "other"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 580
+depth = 3
+kind = "option"
+text = "Let's agree that Bob is Bob, and move on."
+parent = 568
+children = [581, 582, 583]
+
+[[nodes]]
+id = 581
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Let's agree that Bob is Bob, and move on. Take his autograph if you want it."
+parent = 580
+
+[[nodes]]
+id = 582
+depth = 4
+kind = "speaker"
+speaker = "Bob"
+text = "Sure, I'll sign one of my flyers for the weird gnome person. I've got lots of the things - [player name] can have a flyer too."
+parent = 580
+
+[[nodes]]
+id = 583
+depth = 4
+kind = "act"
+text = "below"
+parent = 580
+
+[[nodes]]
+id = 584
+depth = 2
+kind = "option"
+text = "cond=If Bob is alive and the player has learned Bob is a cat from [[A Tail of Two Cats]]:|Sorry, Gnome Child - the Bob you want is a cat."
+parent = 558
+children = [585, 586, 587, 588, 593]
+
+[[nodes]]
+id = 585
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, Gnome Child - the Bob you want is a cat. This Bob is someone totally different."
+parent = 584
+
+[[nodes]]
+id = 586
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the Realm of Memories, we saw that Bob was disguised as a cat so effectively that even he forgot who he had been."
+parent = 584
+
+[[nodes]]
+id = 587
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Is it a mere coincidence that this man bears the same name? Or might his name reveal an underlying truth - that Bob is Bob?"
+parent = 584
+
+[[nodes]]
+id = 588
+depth = 3
+kind = "option"
+text = "Yes, it's a rather mundane coincidence."
+parent = 584
+children = [589, 590, 591, 592]
+
+[[nodes]]
+id = 589
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Yes, it's a rather mundane coincidence."
+parent = 588
+
+[[nodes]]
+id = 590
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "With that attitude you may miss so many wonders in this world! But I desire Bob's autograph even if you do not believe in him."
+parent = 588
+
+[[nodes]]
+id = 591
+depth = 4
+kind = "speaker"
+speaker = "Bob"
+text = "Sure, I'll sign one of my flyers for the weird gnome person. I've got lots of the things - [player name] can have a flyer too."
+parent = 588
+
+[[nodes]]
+id = 592
+depth = 4
+kind = "act"
+text = "below"
+parent = 588
+
+[[nodes]]
+id = 593
+depth = 3
+kind = "option"
+text = "Let's agree that Bob is Bob, and move on."
+parent = 584
+children = [594]
+
+[[nodes]]
+id = 594
+depth = 4
+kind = "act"
+text = "above"
+parent = 593
+
+[[nodes]]
+id = 595
+depth = 2
+kind = "option"
+text = "cond=If the player has not done [[A Tail of Two Cats]]:|It sounds like we're asking about the wrong Bob."
+parent = 558
+children = [596, 597, 598, 599]
+
+[[nodes]]
+id = 596
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It sounds like we're asking about the wrong Bob."
+parent = 595
+
+[[nodes]]
+id = 597
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You have not had extensive dealings with the mysterious Bob, I see, so you cannot possibly comprehend is enigmatic nature. I am confident that this man's autograph is what I need."
+parent = 595
+
+[[nodes]]
+id = 598
+depth = 3
+kind = "speaker"
+speaker = "Bob"
+text = "Sure, I'll sign one of my flyers for the weird gnome person. I've got lots of the things - [player name] can have a flyer too."
+parent = 595
+
+[[nodes]]
+id = 599
+depth = 3
+kind = "act"
+text = "below"
+parent = 595
+
+[[nodes]]
+id = 600
+depth = 2
+kind = "option"
+text = "Let's take the autograph and not ask awkward questions."
+parent = 558
+children = [601, 602, 603, 606, 607, 608, 609, 611, 615, 621]
+
+[[nodes]]
+id = 601
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Let's take the autograph and not ask awkward questions."
+parent = 600
+
+[[nodes]]
+id = 602
+depth = 3
+kind = "speaker"
+speaker = "Bob"
+text = "Sure, I'll sign one of my flyers for the weird gnome person. I've got lots of the things - [player name] can have a flyer too."
+parent = 600
+
+[[nodes]]
+id = 603
+depth = 3
+kind = "cond"
+text = "If the player's inventory is full:"
+parent = 600
+children = [604, 605]
+
+[[nodes]]
+id = 604
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I'd better free up an inventory slot."
+parent = 603
+
+[[nodes]]
+id = 605
+depth = 4
+kind = "act"
+text = "end"
+parent = 603
+is_terminal = true
+
+[[nodes]]
+id = 606
+depth = 3
+kind = "box"
+text = "pic=Flyer detail.png|pic2=Flyer detail.png|Bob gives you a flyer, and signs his autograph on another one for Gnome Child."
+parent = 600
+
+[[nodes]]
+id = 607
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You do me great honour, Bob!"
+parent = 600
+
+[[nodes]]
+id = 608
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 600
+
+[[nodes]]
+id = 609
+depth = 3
+kind = "cond"
+text = "If this is the player's first time asking about this:"
+parent = 600
+children = [610]
+
+[[nodes]]
+id = 610
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = """
+In the sheep field north of Lumbridge, there is a mysterious Thing. It looks like a sheep, but it is not a sheep. Bring some shears so we can get some of its wool.<!--This dialogue is from a player with shears in inventory.-->
+"""
+parent = 609
+
+[[nodes]]
+id = 611
+depth = 3
+kind = "option"
+text = "cond=If the player has not learned about the Thing from the quest [[Sheep Shearer]]:|Tell me about this Thing."
+parent = 600
+children = [612, 613, 614]
+
+[[nodes]]
+id = 612
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about this Thing."
+parent = 611
+
+[[nodes]]
+id = 613
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the earliest days of this world, Fred the Farmer was warning potential sheep shearers of a mysterious Thing that haunted his fields."
+parent = 611
+
+[[nodes]]
+id = 614
+depth = 4
+kind = "act"
+text = "below"
+parent = 611
+
+[[nodes]]
+id = 615
+depth = 3
+kind = "option"
+text = "cond=If the player has learned about the Thing from the quest Sheep Shearer:|I've seen that Thing - it's two penguins in a suit!"
+parent = 600
+children = [616, 617, 618, 619, 620]
+
+[[nodes]]
+id = 616
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I've seen that Thing - it's two penguins in a suit!"
+parent = 615
+
+[[nodes]]
+id = 617
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the earliest days of this world, Fred the Farmer was warning potential sheep shearers of a mysterious Thing that haunted his fields."
+parent = 615
+
+[[nodes]]
+id = 618
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "At first, there was no Thing - perhaps he just said it to make his sheep-shearing quest sound exciting!"
+parent = 615
+
+[[nodes]]
+id = 619
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Then, in later times, an actual Thing appeared, and it was even given a purpose. As it has been talked about for so long, I consider it to have historic significance."
+parent = 615
+
+[[nodes]]
+id = 620
+depth = 4
+kind = "act"
+text = "other"
+parent = 615
+is_terminal = true
+
+[[nodes]]
+id = 621
+depth = 3
+kind = "option"
+text = "Can you tell me exactly what to do?"
+parent = 600
+children = [622, 623, 625, 627]
+
+[[nodes]]
+id = 622
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me exactly what to do?"
+parent = 621
+
+[[nodes]]
+id = 623
+depth = 4
+kind = "cond"
+text = "If the player has [[shears]] in inventory:"
+parent = 621
+children = [624]
+
+[[nodes]]
+id = 624
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Go to the sheep field north of Lumbridge. Seek the Thing that looks like a sheep, but that is not a sheep. Use the shears on it."
+parent = 623
+
+[[nodes]]
+id = 625
+depth = 4
+kind = "cond"
+text = "If the player doesn't have [[shears]] in inventory:"
+parent = 621
+children = [626]
+
+[[nodes]]
+id = 626
+depth = 5
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Get some shears, maybe in a local shop. Then go to the sheep field north of Lumbridge. Seek the Thing that looks like a sheep, but that is not a sheep. Use the shears on it."
+parent = 625
+
+[[nodes]]
+id = 627
+depth = 4
+kind = "act"
+text = "other"
+parent = 621
+is_terminal = true
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "option"
+text = "event=No|Give me a quest!"
+parent = -1
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "option"
+text = "event=No|Have you anything to sell?"
+parent = -1
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "option"
+text = "event=No|Can you repair my items for me?"
+parent = -1
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "option"
+text = "Can we talk about this Gnome Child?"
+parent = -1
+children = [632, 633, 634, 638, 646]
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can we talk about this Gnome Child?"
+parent = 631
+
+[[nodes]]
+id = 633
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Does it still think I'm some kind of ancient hero?"
+parent = 631
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "option"
+text = "We lost the autographed flyer."
+parent = 631
+children = [635, 636, 637]
+
+[[nodes]]
+id = 635
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We lost the autographed flyer."
+parent = 634
+
+[[nodes]]
+id = 636
+depth = 3
+kind = "speaker"
+speaker = "Bob"
+text = "I bet your gnome friend has it still. You can have another flyer if you want one, though."
+parent = 634
+
+[[nodes]]
+id = 637
+depth = 3
+kind = "act"
+text = "other"
+parent = 634
+is_terminal = true
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "option"
+text = "Can I have another flyer?"
+parent = 631
+children = [639, 640, 643, 644, 645]
+
+[[nodes]]
+id = 639
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can I have another flyer?"
+parent = 638
+
+[[nodes]]
+id = 640
+depth = 3
+kind = "cond"
+text = "If the player's inventory is full:"
+parent = 638
+children = [641, 642]
+
+[[nodes]]
+id = 641
+depth = 4
+kind = "speaker"
+speaker = "Bob"
+text = "Not while your inventory is so full."
+parent = 640
+
+[[nodes]]
+id = 642
+depth = 4
+kind = "act"
+text = "other"
+parent = 640
+is_terminal = true
+
+[[nodes]]
+id = 643
+depth = 3
+kind = "speaker"
+speaker = "Bob"
+text = "Sure thing. More marketing reach for me!"
+parent = 638
+
+[[nodes]]
+id = 644
+depth = 3
+kind = "act"
+text = "receives=a Flyer"
+parent = 638
+
+[[nodes]]
+id = 645
+depth = 3
+kind = "act"
+text = "other"
+parent = 638
+is_terminal = true
+
+[[nodes]]
+id = 646
+depth = 2
+kind = "option"
+text = "Thanks for the autographed flyer."
+parent = 631
+children = [647, 648, 650, 651]
+
+[[nodes]]
+id = 647
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the autographed flyer."
+parent = 646
+
+[[nodes]]
+id = 648
+depth = 3
+kind = "cond"
+text = "If Gnome Child is following the player:"
+parent = 646
+children = [649]
+
+[[nodes]]
+id = 649
+depth = 4
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is so precious to me!"
+parent = 648
+
+[[nodes]]
+id = 650
+depth = 3
+kind = "speaker"
+speaker = "Bob"
+text = "Your gnome friend is weird, but he's welcome."
+parent = 646
+
+[[nodes]]
+id = 651
+depth = 3
+kind = "act"
+text = "end"
+parent = 646
+is_terminal = true
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, Gnome Child, you wanted to meet Bob, and here's Bob."
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "cond"
+text = "If the player doesn't have Bob (smith)'s autograph:"
+parent = -1
+children = [654]
+
+[[nodes]]
+id = 654
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 653
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "cond"
+text = "If the player has Bob (smith)'s autograph:"
+parent = -1
+children = [656, 657]
+
+[[nodes]]
+id = 656
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Let's not confuse matters, [player name]. I have the autograph of the mighty Bob, and I am satisfied with that."
+parent = 655
+
+[[nodes]]
+id = 657
+depth = 2
+kind = "act"
+text = "end"
+parent = 655
+is_terminal = true
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [660, 661, 663, 665, 667, 669]
+
+[[nodes]]
+id = 660
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 659
+
+[[nodes]]
+id = 661
+depth = 2
+kind = "cond"
+text = "If the player has [[shears]] in inventory:"
+parent = 659
+children = [662]
+
+[[nodes]]
+id = 662
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to the sheep field north of Lumbridge, to shear some wool from the mysterious Thing that looks like a sheep, but that is not a sheep."
+parent = 661
+
+[[nodes]]
+id = 663
+depth = 2
+kind = "cond"
+text = "If the player doesn't have [[shears]] in inventory:"
+parent = 659
+children = [664]
+
+[[nodes]]
+id = 664
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "First you must get some shears. Then you can continue leading me to the sheep field north of Lumbridge, to shear some wool from the mysterious Thing that looks like a sheep, but that is not a sheep."
+parent = 663
+
+[[nodes]]
+id = 665
+depth = 2
+kind = "option"
+text = "cond=If the player has not interacted with the Thing:|Tell me about this Thing."
+parent = 659
+children = [666]
+
+[[nodes]]
+id = 666
+depth = 3
+kind = "act"
+text = "above"
+parent = 665
+
+[[nodes]]
+id = 667
+depth = 2
+kind = "option"
+text = "cond=If the player has learned about the Thing from the quest [[Sheep Shearer]]:|I've seen that Thing - it's two penguins in a suit!"
+parent = 659
+children = [668]
+
+[[nodes]]
+id = 668
+depth = 3
+kind = "act"
+text = "above"
+parent = 667
+
+[[nodes]]
+id = 669
+depth = 2
+kind = "option"
+text = "Can you tell me exactly what to do?"
+parent = 659
+children = [670]
+
+[[nodes]]
+id = 670
+depth = 3
+kind = "act"
+text = "above"
+parent = 669
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [672]
+
+[[nodes]]
+id = 672
+depth = 2
+kind = "act"
+text = "above"
+parent = 671
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [674]
+
+[[nodes]]
+id = 674
+depth = 2
+kind = "act"
+text = "above"
+parent = 673
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [676]
+
+[[nodes]]
+id = 676
+depth = 2
+kind = "act"
+text = "above"
+parent = 675
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [678]
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "act"
+text = "above"
+parent = 677
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "cond"
+text = "If Gnome Child is not following the player:"
+parent = -1
+children = [680, 681, 682]
+
+[[nodes]]
+id = 680
+depth = 2
+kind = "act"
+text = "Player attempts to shear the Thing."
+parent = 679
+
+[[nodes]]
+id = 681
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This might go better if Gnome Child was here."
+parent = 679
+
+[[nodes]]
+id = 682
+depth = 2
+kind = "act"
+text = "end"
+parent = 679
+is_terminal = true
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "box"
+text = "Under Gnome Child's influence, you manage to shear a little wool off the Thing... ... before it flees."
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Excellent!"
+parent = -1
+
+[[nodes]]
+id = 685
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = -1
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "cond"
+text = "If the player has not met [[Professor Oddenstein]] and learned from him [[Ernest]] is a chicken:"
+parent = -1
+children = [687, 688, 692, 696]
+
+[[nodes]]
+id = 687
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I seek a feather from Ernest the Chicken. I do not believe you have met him yet, but you can find him on the top floor of Draynor Manor."
+parent = 686
+
+[[nodes]]
+id = 688
+depth = 2
+kind = "option"
+text = "Who is Ernest the Chicken?"
+parent = 686
+children = [689, 690, 691]
+
+[[nodes]]
+id = 689
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Who is Ernest the Chicken?"
+parent = 688
+
+[[nodes]]
+id = 690
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Ernest was a rather unfortunate man. Now he is a rather unfortunate chicken. I need not dwell on the details, but I greatly desire one of his feathers."
+parent = 688
+
+[[nodes]]
+id = 691
+depth = 3
+kind = "act"
+text = "other"
+parent = 688
+is_terminal = true
+
+[[nodes]]
+id = 692
+depth = 2
+kind = "option"
+text = "Tell me about Draynor Manor."
+parent = 686
+children = [693, 694, 695]
+
+[[nodes]]
+id = 693
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Draynor Manor is a haunted mansion, north of Draynor Village. We may enter freely through the front doors, though we must leave through the back door which is in the easternmost room."
+parent = 692
+
+[[nodes]]
+id = 694
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Try not to provoke the ghosts or trees."
+parent = 692
+
+[[nodes]]
+id = 695
+depth = 3
+kind = "act"
+text = "other"
+parent = 692
+is_terminal = true
+
+[[nodes]]
+id = 696
+depth = 2
+kind = "option"
+text = "More options..."
+parent = 686
+children = [697]
+
+[[nodes]]
+id = 697
+depth = 3
+kind = "act"
+text = "other"
+parent = 696
+is_terminal = true
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "cond"
+text = "If the player has met Professor Oddenstein and learned from him Ernest is a chicken:"
+parent = -1
+children = [699, 700, 704, 707]
+
+[[nodes]]
+id = 699
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I seek a feather from Ernest the Chicken. He is still on the top floor of Draynor Manor, as you have yet to find the Professor's missing items."
+parent = 698
+
+[[nodes]]
+id = 700
+depth = 2
+kind = "option"
+text = "So I'm supposed to pluck Ernest as well as save him?"
+parent = 698
+children = [701, 702, 703]
+
+[[nodes]]
+id = 701
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So I'm supposed to pluck Ernest as well as save him?"
+parent = 700
+
+[[nodes]]
+id = 702
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I trust you will complete that quest one day, so that Ernest can be reunited with Veronica. However, for now, I do indeed require you to help me pluck a feather from him."
+parent = 700
+
+[[nodes]]
+id = 703
+depth = 3
+kind = "act"
+text = "other"
+parent = 700
+is_terminal = true
+
+[[nodes]]
+id = 704
+depth = 2
+kind = "option"
+text = "Tell me about Draynor Manor."
+parent = 698
+children = [705, 706]
+
+[[nodes]]
+id = 705
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = """
+It is the haunted mansion where you met Professor Oddenstein. As you will recall, we may enter freely through the front doors, though we must leave through the back door which is in the easternmost room.
+"""
+parent = 704
+
+[[nodes]]
+id = 706
+depth = 3
+kind = "act"
+text = "other"
+parent = 704
+is_terminal = true
+
+[[nodes]]
+id = 707
+depth = 2
+kind = "option"
+text = "More options..."
+parent = 698
+children = [708]
+
+[[nodes]]
+id = 708
+depth = 3
+kind = "act"
+text = "other"
+parent = 707
+is_terminal = true
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "cond"
+text = "If Ernest is a human:"
+parent = -1
+children = [710, 711, 715]
+
+[[nodes]]
+id = 710
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I seek a feather from Ernest the Chicken. I am aware that Ernest is no longer a chicken, thanks to you, though we should still find what we need on the top floor of Draynor Manor."
+parent = 709
+
+[[nodes]]
+id = 711
+depth = 2
+kind = "option"
+text = "Now he's not a chicken, how do we get feathers?"
+parent = 709
+children = [712, 713, 714]
+
+[[nodes]]
+id = 712
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Now he's not a chicken, how do we get feathers?"
+parent = 711
+
+[[nodes]]
+id = 713
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I am sure we will find some in the laboratory if we try."
+parent = 711
+
+[[nodes]]
+id = 714
+depth = 3
+kind = "act"
+text = "other"
+parent = 711
+is_terminal = true
+
+[[nodes]]
+id = 715
+depth = 2
+kind = "option"
+text = "Tell me about Draynor Manor."
+parent = 709
+children = [716, 717, 718]
+
+[[nodes]]
+id = 716
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Draynor Manor."
+parent = 715
+
+[[nodes]]
+id = 717
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is the haunted mansion where you saved Ernest before. As you will recall, we may enter freely through the front doors, though we must leave through the back door which is in the easternmost room."
+parent = 715
+
+[[nodes]]
+id = 718
+depth = 3
+kind = "act"
+text = "other"
+parent = 715
+is_terminal = true
+
+[[nodes]]
+id = 719
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = """
+One piece of wool will suffice from this sheep-themed costume for penguins. Why would anyone need a second? That might become ridiculous.<!--Gnome Child will state \"penguins\", even if the player does not possess the knowledge of the penguins and otherwise says \"I can't talk to sheep\".-->
+"""
+parent = -1
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh yeah, we wouldn't want this to become ridiculous."
+parent = -1
+
+[[nodes]]
+id = 721
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [724, 725, 733, 741]
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 723
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "cond"
+text = "If the player has not met [[Professor Oddenstein]] and learned from him [[Ernest]] is a chicken:"
+parent = 723
+children = [726, 727, 729, 731]
+
+[[nodes]]
+id = 726
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to the top floor of Draynor Manor to collect a feather from Ernest the Chicken. I do not believe you have met him yet, but you can find him there."
+parent = 725
+
+[[nodes]]
+id = 727
+depth = 3
+kind = "option"
+text = "Who is Ernest the Chicken?"
+parent = 725
+children = [728]
+
+[[nodes]]
+id = 728
+depth = 4
+kind = "act"
+text = "above"
+parent = 727
+
+[[nodes]]
+id = 729
+depth = 3
+kind = "option"
+text = "Tell me about Draynor Manor."
+parent = 725
+children = [730]
+
+[[nodes]]
+id = 730
+depth = 4
+kind = "act"
+text = "above"
+parent = 729
+
+[[nodes]]
+id = 731
+depth = 3
+kind = "option"
+text = "More options..."
+parent = 725
+children = [732]
+
+[[nodes]]
+id = 732
+depth = 4
+kind = "act"
+text = "other"
+parent = 731
+is_terminal = true
+
+[[nodes]]
+id = 733
+depth = 2
+kind = "cond"
+text = "If the player has met Professor Oddenstein and learned from him Ernest is a chicken:"
+parent = 723
+children = [734, 735, 737, 739]
+
+[[nodes]]
+id = 734
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to the top floor of Draynor Manor to collect a feather from Ernest the Chicken."
+parent = 733
+
+[[nodes]]
+id = 735
+depth = 3
+kind = "option"
+text = "So I'm supposed to pluck Ernest as well as save him?"
+parent = 733
+children = [736]
+
+[[nodes]]
+id = 736
+depth = 4
+kind = "act"
+text = "above"
+parent = 735
+
+[[nodes]]
+id = 737
+depth = 3
+kind = "option"
+text = "Tell me about Draynor Manor."
+parent = 733
+children = [738]
+
+[[nodes]]
+id = 738
+depth = 4
+kind = "act"
+text = "above"
+parent = 737
+
+[[nodes]]
+id = 739
+depth = 3
+kind = "option"
+text = "More options..."
+parent = 733
+children = [740]
+
+[[nodes]]
+id = 740
+depth = 4
+kind = "act"
+text = "other"
+parent = 739
+is_terminal = true
+
+[[nodes]]
+id = 741
+depth = 2
+kind = "cond"
+text = "If Ernest is a human:"
+parent = 723
+children = [742, 743, 745]
+
+[[nodes]]
+id = 742
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to the top floor of Draynor Manor to collect a feather from Ernest the Chicken. Although he is no longer a chicken, thanks to you, we should still find what we need there."
+parent = 741
+
+[[nodes]]
+id = 743
+depth = 3
+kind = "option"
+text = "Now he's not a chicken, how do we get feathers?"
+parent = 741
+children = [744]
+
+[[nodes]]
+id = 744
+depth = 4
+kind = "act"
+text = "above"
+parent = 743
+
+[[nodes]]
+id = 745
+depth = 3
+kind = "option"
+text = "Tell me about Draynor Manor."
+parent = 741
+children = [746]
+
+[[nodes]]
+id = 746
+depth = 4
+kind = "act"
+text = "above"
+parent = 745
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [748]
+
+[[nodes]]
+id = 748
+depth = 2
+kind = "act"
+text = "above"
+parent = 747
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [750]
+
+[[nodes]]
+id = 750
+depth = 2
+kind = "act"
+text = "above"
+parent = 749
+
+[[nodes]]
+id = 751
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [752]
+
+[[nodes]]
+id = 752
+depth = 2
+kind = "act"
+text = "above"
+parent = 751
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [754]
+
+[[nodes]]
+id = 754
+depth = 2
+kind = "act"
+text = "above"
+parent = 753
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "cond"
+text = "If Gnome Child is not following the player:"
+parent = -1
+children = [756, 757]
+
+[[nodes]]
+id = 756
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It doesn't seem worth getting the feather if Gnome Child isn't here too."
+parent = 755
+
+[[nodes]]
+id = 757
+depth = 2
+kind = "act"
+text = "end"
+parent = 755
+is_terminal = true
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "speaker"
+speaker = "Professor Oddenstein"
+text = "What are you doing?"
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = """
+I'm plucking the chicken to help a gnome open a portal.<!--A reminder to the reader: There is a portal machine (to Killerwatts) in Professor Oddenstein's room. The portal is not active before Ernest the Chicken is completed.-->
+"""
+parent = -1
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "speaker"
+speaker = "Professor Oddenstein"
+text = "Portals, eh? That sounds like a top notch plan.<!--That's why praises the plan.-->"
+parent = -1
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "act"
+text = "Chicken makes a sound as its being plucked."
+parent = -1
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "box"
+text = "pic=Feather detail.png|You obtain a feather for Gnome Child."
+parent = -1
+
+[[nodes]]
+id = 763
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "cond"
+text = "If the player attempts to take odd feathers too early (before speaking to Gnome Child):"
+parent = -1
+children = [765, 766]
+
+[[nodes]]
+id = 765
+depth = 2
+kind = "other"
+text = "{{mes|You don't feel the need to take any feathers at the moment.}}<!--Shown with game chat filtered-->"
+parent = 764
+
+[[nodes]]
+id = 766
+depth = 2
+kind = "act"
+text = "end"
+parent = 764
+is_terminal = true
+
+[[nodes]]
+id = 767
+depth = 1
+kind = "cond"
+text = "If Gnome Child is not following the player:"
+parent = -1
+children = [768, 769]
+
+[[nodes]]
+id = 768
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It doesn't seem worth getting the feather if Gnome Child isn't here too."
+parent = 767
+
+[[nodes]]
+id = 769
+depth = 2
+kind = "act"
+text = "end"
+parent = 767
+is_terminal = true
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "box"
+text = "pic=Feather detail.png|You obtain a feather for Gnome Child."
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "cond"
+text = "If Gnome Child is not following the player:"
+parent = -1
+children = [773, 774]
+
+[[nodes]]
+id = 773
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I already got a feather for the gnome. He didn't say anything about wanting more of them."
+parent = 772
+
+[[nodes]]
+id = 774
+depth = 2
+kind = "act"
+text = "end"
+parent = 772
+is_terminal = true
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I do not require any more feathers, thank you."
+parent = -1
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [779, 780, 781, 786]
+
+[[nodes]]
+id = 779
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 778
+
+[[nodes]]
+id = 780
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Take me to the cabbage field south of Falador, so we can get a cabbage there together."
+parent = 778
+
+[[nodes]]
+id = 781
+depth = 2
+kind = "option"
+text = "What's so special about cabbages from there?"
+parent = 778
+children = [782, 783, 784, 785]
+
+[[nodes]]
+id = 782
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's so special about cabbages from there?"
+parent = 781
+
+[[nodes]]
+id = 783
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Since the earliest days of the world, the humble cabbage has been favoured above all other vegetables. All must know that cabbage is good for you!"
+parent = 781
+
+[[nodes]]
+id = 784
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The field south of Falador is renowned as a wondrous source of brassican goodness. Let us go there and pluck one from its earthy cradle."
+parent = 781
+
+[[nodes]]
+id = 785
+depth = 3
+kind = "act"
+text = "other"
+parent = 781
+is_terminal = true
+
+[[nodes]]
+id = 786
+depth = 2
+kind = "option"
+text = "Can't I just give you a cabbage of my own?"
+parent = 778
+children = [787, 788, 789]
+
+[[nodes]]
+id = 787
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can't I just give you a cabbage of my own?"
+parent = 786
+
+[[nodes]]
+id = 788
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "No, I wish to witness the moment when the individual cabbage's connection to the Anima Mundi is irreversibly severed, as you pluck it from the nurturing soil in the field south of Falador."
+parent = 786
+
+[[nodes]]
+id = 789
+depth = 3
+kind = "act"
+text = "other"
+parent = 786
+is_terminal = true
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [791]
+
+[[nodes]]
+id = 791
+depth = 2
+kind = "act"
+text = "above"
+parent = 790
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [793]
+
+[[nodes]]
+id = 793
+depth = 2
+kind = "act"
+text = "above"
+parent = 792
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [795]
+
+[[nodes]]
+id = 795
+depth = 2
+kind = "act"
+text = "above"
+parent = 794
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [797]
+
+[[nodes]]
+id = 797
+depth = 2
+kind = "act"
+text = "above"
+parent = 796
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [800, 801, 802, 804, 806]
+
+[[nodes]]
+id = 800
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 799
+
+[[nodes]]
+id = 801
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me to the cabbage field south of Falador so that we can get a cabbage there."
+parent = 799
+
+[[nodes]]
+id = 802
+depth = 2
+kind = "option"
+text = "What's so special about cabbages from there?"
+parent = 799
+children = [803]
+
+[[nodes]]
+id = 803
+depth = 3
+kind = "act"
+text = "above"
+parent = 802
+
+[[nodes]]
+id = 804
+depth = 2
+kind = "option"
+text = "Can't I just give you a cabbage of my own?"
+parent = 799
+children = [805]
+
+[[nodes]]
+id = 805
+depth = 3
+kind = "act"
+text = "above"
+parent = 804
+
+[[nodes]]
+id = 806
+depth = 2
+kind = "option"
+text = "More options..."
+parent = 799
+children = [807]
+
+[[nodes]]
+id = 807
+depth = 3
+kind = "act"
+text = "other"
+parent = 806
+is_terminal = true
+
+[[nodes]]
+id = 808
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [809]
+
+[[nodes]]
+id = 809
+depth = 2
+kind = "act"
+text = "above"
+parent = 808
+
+[[nodes]]
+id = 810
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [811]
+
+[[nodes]]
+id = 811
+depth = 2
+kind = "act"
+text = "above"
+parent = 810
+
+[[nodes]]
+id = 812
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [813]
+
+[[nodes]]
+id = 813
+depth = 2
+kind = "act"
+text = "above"
+parent = 812
+
+[[nodes]]
+id = 814
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [815]
+
+[[nodes]]
+id = 815
+depth = 2
+kind = "act"
+text = "above"
+parent = 814
+
+[[nodes]]
+id = 816
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "That is your cabbage, not my cabbage. My cabbage would have been plucked, in my presence, in the big cabbage field south of Falador."
+parent = -1
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 818
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Cabbage is good for you."
+parent = -1
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "This is not where I wanted to obtain a cabbage. I asked for one from the cabbage field south of Falador. The big field, perpetually laden with brassican goodness."
+parent = -1
+
+[[nodes]]
+id = 821
+depth = 1
+kind = "option"
+text = "This one's for me, not you."
+parent = -1
+children = [822, 823, 826]
+
+[[nodes]]
+id = 822
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This one's for me, not you."
+parent = 821
+
+[[nodes]]
+id = 823
+depth = 2
+kind = "cond"
+text = "If the player does not have free inventory space:"
+parent = 821
+children = [824, 825]
+
+[[nodes]]
+id = 824
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "In that case you should free up some inventory space so you can carry it."
+parent = 823
+
+[[nodes]]
+id = 825
+depth = 3
+kind = "act"
+text = "end"
+parent = 823
+is_terminal = true
+
+[[nodes]]
+id = 826
+depth = 2
+kind = "cond"
+text = "If the player has free inventory space:"
+parent = 821
+children = [827, 828, 829]
+
+[[nodes]]
+id = 827
+depth = 3
+kind = "act"
+text = "Player picks a cabbage."
+parent = 826
+
+[[nodes]]
+id = 828
+depth = 3
+kind = "act"
+text = "receives=a cabbage (or [[Draynor cabbage]])"
+parent = 826
+
+[[nodes]]
+id = 829
+depth = 3
+kind = "act"
+text = "end"
+parent = 826
+is_terminal = true
+
+[[nodes]]
+id = 830
+depth = 1
+kind = "option"
+text = "Okay, let's go there instead."
+parent = -1
+children = [831, 832]
+
+[[nodes]]
+id = 831
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, let's go there instead."
+parent = 830
+
+[[nodes]]
+id = 832
+depth = 2
+kind = "act"
+text = "end"
+parent = 830
+is_terminal = true
+
+[[nodes]]
+id = 833
+depth = 1
+kind = "cond"
+text = "If Gnome Child is not following the player:"
+parent = -1
+children = [834]
+
+[[nodes]]
+id = 834
+depth = 2
+kind = "act"
+text = "receives=a cabbage"
+parent = 833
+
+[[nodes]]
+id = 835
+depth = 1
+kind = "cond"
+text = "If Gnome Child is following the player:"
+parent = -1
+children = [836, 837]
+
+[[nodes]]
+id = 836
+depth = 2
+kind = "box"
+text = "pic=Cabbage detail.png|You obtain a cabbage for Gnome Child."
+parent = 835
+
+[[nodes]]
+id = 837
+depth = 2
+kind = "act"
+text = "end"
+parent = 835
+is_terminal = true
+
+[[nodes]]
+id = 838
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I do not need any more cabbages, thank you."
+parent = -1
+
+[[nodes]]
+id = 839
+depth = 1
+kind = "option"
+text = "This one's for me, not you."
+parent = -1
+children = [840]
+
+[[nodes]]
+id = 840
+depth = 2
+kind = "act"
+text = "above"
+parent = 839
+
+[[nodes]]
+id = 841
+depth = 1
+kind = "option"
+text = "Oh, I'll leave it alone."
+parent = -1
+children = [842, 843]
+
+[[nodes]]
+id = 842
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I'll leave it alone."
+parent = 841
+
+[[nodes]]
+id = 843
+depth = 2
+kind = "act"
+text = "end"
+parent = 841
+is_terminal = true
+
+[[nodes]]
+id = 844
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "While cabbage is good for you, one will suffice for me at this time."
+parent = -1
+
+[[nodes]]
+id = 845
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 846
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 847
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [848, 849, 850]
+
+[[nodes]]
+id = 848
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 847
+
+[[nodes]]
+id = 849
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "We have everything I need to reopen the portal to the Realm of Memories. Let us return to the top of the Wizards' Tower, where the portal is."
+parent = 847
+
+[[nodes]]
+id = 850
+depth = 2
+kind = "act"
+text = "other"
+parent = 847
+is_terminal = true
+
+[[nodes]]
+id = 851
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [852]
+
+[[nodes]]
+id = 852
+depth = 2
+kind = "act"
+text = "above"
+parent = 851
+
+[[nodes]]
+id = 853
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [854]
+
+[[nodes]]
+id = 854
+depth = 2
+kind = "act"
+text = "above"
+parent = 853
+
+[[nodes]]
+id = 855
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [856]
+
+[[nodes]]
+id = 856
+depth = 2
+kind = "act"
+text = "above"
+parent = 855
+
+[[nodes]]
+id = 857
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [858, 859, 860]
+
+[[nodes]]
+id = 858
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you stop following me now, please?"
+parent = 857
+
+[[nodes]]
+id = 859
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Meet me at the portal in the Wizards' Tower."
+parent = 857
+
+[[nodes]]
+id = 860
+depth = 2
+kind = "act"
+text = "end"
+parent = 857
+is_terminal = true
+
+[[nodes]]
+id = 861
+depth = 1
+kind = "act"
+text = "The gnome child says a random line from above."
+parent = -1
+
+[[nodes]]
+id = 862
+depth = 1
+kind = "option"
+text = "What do we need to do now?"
+parent = -1
+children = [863, 864, 865]
+
+[[nodes]]
+id = 863
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do we need to do now?"
+parent = 862
+
+[[nodes]]
+id = 864
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You were leading me back to the Wizards' Tower so that I can reopen the portal to the Realm of Memories, on the top floor of the tower."
+parent = 862
+
+[[nodes]]
+id = 865
+depth = 2
+kind = "act"
+text = "other"
+parent = 862
+is_terminal = true
+
+[[nodes]]
+id = 866
+depth = 1
+kind = "option"
+text = "Gnomes aren't usually green. How come you are?"
+parent = -1
+children = [867]
+
+[[nodes]]
+id = 867
+depth = 2
+kind = "act"
+text = "above"
+parent = 866
+
+[[nodes]]
+id = 868
+depth = 1
+kind = "option"
+text = "Tell me about the Realm of Memories."
+parent = -1
+children = [869]
+
+[[nodes]]
+id = 869
+depth = 2
+kind = "act"
+text = "above"
+parent = 868
+
+[[nodes]]
+id = 870
+depth = 1
+kind = "option"
+text = "Did Grayzag need historical artefacts to summon you?"
+parent = -1
+children = [871]
+
+[[nodes]]
+id = 871
+depth = 2
+kind = "act"
+text = "above"
+parent = 870
+
+[[nodes]]
+id = 872
+depth = 1
+kind = "option"
+text = "Can you stop following me now, please?"
+parent = -1
+children = [873, 874, 875]
+
+[[nodes]]
+id = 873
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you stop following me now, please?"
+parent = 872
+
+[[nodes]]
+id = 874
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Meet me at the portal in the Wizards' Tower."
+parent = 872
+
+[[nodes]]
+id = 875
+depth = 2
+kind = "act"
+text = "end"
+parent = 872
+is_terminal = true
+
+[[nodes]]
+id = 876
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "It is kind of you to offer me your items, [player name], but I already have the artefacts I require to reopen the portal."
+parent = -1
+
+[[nodes]]
+id = 877
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 878
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "This does not feel like the route I had expected. I would prefer not to go much further."
+parent = -1
+
+[[nodes]]
+id = 879
+depth = 1
+kind = "option"
+text = "Alright, we can turn back."
+parent = -1
+children = [880, 881]
+
+[[nodes]]
+id = 880
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, we can turn back."
+parent = 879
+
+[[nodes]]
+id = 881
+depth = 2
+kind = "act"
+text = "end"
+parent = 879
+is_terminal = true
+
+[[nodes]]
+id = 882
+depth = 1
+kind = "option"
+text = "Stop following me if you don't want to be here!"
+parent = -1
+children = [883, 884, 885, 886]
+
+[[nodes]]
+id = 883
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Stop following me if you don't want to be here!"
+parent = 882
+
+[[nodes]]
+id = 884
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Meet me at the portal in the Wizards' Tower."
+parent = 882
+
+[[nodes]]
+id = 885
+depth = 2
+kind = "other"
+text = "{{qact|The gnome child no longer follows the player.}}"
+parent = 882
+
+[[nodes]]
+id = 886
+depth = 2
+kind = "act"
+text = "end"
+parent = 882
+is_terminal = true
+
+[[nodes]]
+id = 887
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Meet me at the portal in the Wizards' Tower."
+parent = -1
+
+[[nodes]]
+id = 888
+depth = 1
+kind = "other"
+text = "{{qact|The gnome child no longer follows the player.}}"
+parent = -1
+
+[[nodes]]
+id = 889
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 890
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "How wonderful - I have everything I need to reopen the portal. I shall proceed with the spell when you are ready."
+parent = -1
+
+[[nodes]]
+id = 891
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 892
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I shall now perform a ritual to open the portal..."
+parent = -1
+
+[[nodes]]
+id = 893
+depth = 1
+kind = "box"
+text = "The gnome chants mysteriously."
+parent = -1
+
+[[nodes]]
+id = 894
+depth = 1
+kind = "other"
+text = "{{qact|The items that the player helped gather for Gnome Child are brought forth, causing the portal to sparkle.}}"
+parent = -1
+
+[[nodes]]
+id = 895
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The portal to the Realm of Memories is open! Please, step inside, where I shall be happy to reward you for all your wonderful help."
+parent = -1
+
+[[nodes]]
+id = 896
+depth = 1
+kind = "other"
+text = "{{qact|The player automatically enters the portal (unless the player interrupts the queue).}}"
+parent = -1
+
+[[nodes]]
+id = 897
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "I see you've got the portal open again. Make the weird kid go through it, so I don't have to see him again."
+parent = -1
+
+[[nodes]]
+id = 898
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you want to know more about how we did it?"
+parent = -1
+
+[[nodes]]
+id = 899
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Honestly, no."
+parent = -1
+
+[[nodes]]
+id = 900
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 901
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The portal to the Realm of Memories is open! Please, step inside, where I shall be happy to reward you for all your wonderful help."
+parent = -1
+
+[[nodes]]
+id = 902
+depth = 1
+kind = "other"
+text = "{{qact|The player automatically enters the portal (unless the player interrupts the queue).}}"
+parent = -1
+
+[[nodes]]
+id = 903
+depth = 1
+kind = "cond"
+text = "If the player's inventory is full:"
+parent = -1
+children = [904]
+
+[[nodes]]
+id = 904
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I am so grateful to you for your help, [player name]. If you could free up an inventory space, I wish to reward you with some items by which you may remember me."
+parent = 903
+
+[[nodes]]
+id = 905
+depth = 1
+kind = "cond"
+text = "If the player has at least 1 free inventory space:"
+parent = -1
+children = [906]
+
+[[nodes]]
+id = 906
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I am so grateful to you for your help, [player name]. Let me reward you with some items by which you may remember me..."
+parent = 905
+
+[[nodes]]
+id = 907
+depth = 1
+kind = "act"
+text = "continue"
+parent = -1
+
+[[nodes]]
+id = 908
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The creatures of this realm are neither truly canonical nor cannonable."
+parent = -1
+
+[[nodes]]
+id = 909
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 910
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "You made the weird kid go away! Nice one."
+parent = -1
+
+[[nodes]]
+id = 911
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you coming to the Realm of Memories?"
+parent = -1
+
+[[nodes]]
+id = 912
+depth = 1
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "The kid said they didn't have massive ancient demons in there, or anything particularly powerful, so I'm not interested. And I don't want to see his face again - it's haunting!"
+parent = -1
+
+[[nodes]]
+id = 913
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 914
+depth = 1
+kind = "cond"
+text = "If the player is on a [[members]]-only world:"
+parent = -1
+children = [915]
+
+[[nodes]]
+id = 915
+depth = 2
+kind = "box"
+text = "pic=20th anniversary cape detail.png|pic2=Half full wine jug detail.png|Gnome Child awards you a celebratory outfit. {{Colour|#7f0000|Happy"
+parent = 914
+
+[[nodes]]
+id = 916
+depth = 1
+kind = "cond"
+text = "If the player is on a [[free-to-play]] world:"
+parent = -1
+children = [917]
+
+[[nodes]]
+id = 917
+depth = 2
+kind = "box"
+text = "pic=20th anniversary cape detail.png|pic2=Half full wine jug detail.png|{{Colour|#7f0000|Happy"
+parent = 916
+
+[[nodes]]
+id = 918
+depth = 1
+kind = "act"
+text = "receives=2 [[Half full wine jug]]s"
+parent = -1
+
+[[nodes]]
+id = 919
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 920
+depth = 1
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Hello again, [player name]."
+parent = -1
+
+[[nodes]]
+id = 921
+depth = 1
+kind = "option"
+text = "Tell me about this place."
+parent = -1
+children = [922, 923, 924, 925, 926]
+
+[[nodes]]
+id = 922
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about this place."
+parent = 921
+
+[[nodes]]
+id = 923
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Over time, many people have come into the world and left it again. One such is Thrander, who used to perform armour conversion services in Varrock. Another is Chuck, the wood certificate trader."
+parent = 921
+
+[[nodes]]
+id = 924
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "When their services were no longer required, they moved on, but they were not all forgotten. Some linger still in the Realm of Memories."
+parent = 921
+
+[[nodes]]
+id = 925
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "From the Realm, we watch how the world changes. We see the happy moments, the sad times, the lucky events, the dry streaks. It is a wonderful existence."
+parent = 921
+
+[[nodes]]
+id = 926
+depth = 2
+kind = "act"
+text = "other"
+parent = 921
+is_terminal = true
+
+[[nodes]]
+id = 927
+depth = 1
+kind = "option"
+text = "Can you give me more reward items?"
+parent = -1
+children = [928, 929, 932, 935, 938]
+
+[[nodes]]
+id = 928
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you give me more reward items?"
+parent = 927
+
+[[nodes]]
+id = 929
+depth = 2
+kind = "cond"
+text = "If the player's inventory is full and there are more items to receive:"
+parent = 927
+children = [930, 931]
+
+[[nodes]]
+id = 930
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "You cannot hold any more items from me now. You may wish to visit Diango, in Draynor Village, to collect more rewards in a more convenient setting."
+parent = 929
+
+[[nodes]]
+id = 931
+depth = 3
+kind = "act"
+text = "other"
+parent = 929
+is_terminal = true
+
+[[nodes]]
+id = 932
+depth = 2
+kind = "cond"
+text = "If the player has inventory space for some more holiday items, but not all of them:"
+parent = 927
+children = [933, 934]
+
+[[nodes]]
+id = 933
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I have given you what you can hold. You may wish to visit Diango, in Draynor Village, to collect more rewards in a more convenient setting."
+parent = 932
+
+[[nodes]]
+id = 934
+depth = 3
+kind = "act"
+text = "other"
+parent = 932
+is_terminal = true
+
+[[nodes]]
+id = 935
+depth = 2
+kind = "cond"
+text = "If the player has all birthday items in inventory:"
+parent = 927
+children = [936, 937]
+
+[[nodes]]
+id = 936
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I think that is everything I have for you."
+parent = 935
+
+[[nodes]]
+id = 937
+depth = 3
+kind = "act"
+text = "other"
+parent = 935
+is_terminal = true
+
+[[nodes]]
+id = 938
+depth = 2
+kind = "cond"
+text = "If {{tmissing|Unknown condition"
+parent = 927
+children = [939, 940]
+
+[[nodes]]
+id = 939
+depth = 3
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I have nothing more for you."
+parent = 938
+
+[[nodes]]
+id = 940
+depth = 3
+kind = "act"
+text = "other"
+parent = 938
+is_terminal = true
+
+[[nodes]]
+id = 941
+depth = 1
+kind = "option"
+text = "Who are the people here?"
+parent = -1
+children = [942, 943, 944, 945]
+
+[[nodes]]
+id = 942
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are the people here?"
+parent = 941
+
+[[nodes]]
+id = 943
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Like me, they dwelt in the world as it used to be, in various different eras. Many such people have faded away into the mists of time, but a lucky few are remembered."
+parent = 941
+
+[[nodes]]
+id = 944
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "They would be glad to meet you, I am sure."
+parent = 941
+
+[[nodes]]
+id = 945
+depth = 2
+kind = "act"
+text = "other"
+parent = 941
+is_terminal = true
+
+[[nodes]]
+id = 946
+depth = 1
+kind = "option"
+text = "Can I see more stuff from your era?"
+parent = -1
+children = [947, 948, 949, 950, 951]
+
+[[nodes]]
+id = 947
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I see more stuff from your era?"
+parent = 946
+
+[[nodes]]
+id = 948
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "I would have dearly loved that. However we are limited to this hall, where the more aggressive creatures can play in safety."
+parent = 946
+
+[[nodes]]
+id = 949
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Furthermore, the dimensional shifts would not allow it - a two-dimensional entity would be incomprehensible to your three-dimensional mind."
+parent = 946
+
+[[nodes]]
+id = 950
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "No, some things must be left to the memory, even here in the Realm of Memories."
+parent = 946
+
+[[nodes]]
+id = 951
+depth = 2
+kind = "act"
+text = "other"
+parent = 946
+is_terminal = true
+
+[[nodes]]
+id = 952
+depth = 1
+kind = "cond"
+text = "If the player has completed Imp Catcher:"
+parent = -1
+children = [953, 954, 955, 956]
+
+[[nodes]]
+id = 953
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "So you think finding those beads makes you clever, do you?"
+parent = 952
+
+[[nodes]]
+id = 954
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well yes, actually."
+parent = 952
+
+[[nodes]]
+id = 955
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Well you'd better just watch your back, because when you least expect it I'll be there. You shouldn't go sticking your nose into other people's affairs, meddler."
+parent = 952
+
+[[nodes]]
+id = 956
+depth = 2
+kind = "act"
+text = "continue"
+parent = 952
+
+[[nodes]]
+id = 957
+depth = 1
+kind = "cond"
+text = "If the player has started Imp Catcher:"
+parent = -1
+children = [958, 959]
+
+[[nodes]]
+id = 958
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "You're a fool, [player name]. Do you really think you'll find four imps out of thousands? Good luck. Ha!"
+parent = 957
+
+[[nodes]]
+id = 959
+depth = 2
+kind = "act"
+text = "continue"
+parent = 957
+
+[[nodes]]
+id = 960
+depth = 1
+kind = "cond"
+text = "If the player has not started Imp Catcher:"
+parent = -1
+children = [961, 962]
+
+[[nodes]]
+id = 961
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Not now, I'm trying to concentrate on a very difficult spell!"
+parent = 960
+
+[[nodes]]
+id = 962
+depth = 2
+kind = "act"
+text = "continue"
+parent = 960
+
+[[nodes]]
+id = 963
+depth = 1
+kind = "cond"
+text = "If the player has started or completed the 20th Anniversary event:"
+parent = -1
+children = [964, 965, 966]
+
+[[nodes]]
+id = 964
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You were nicer to me when you had that little gnome wandering around here before."
+parent = 963
+
+[[nodes]]
+id = 965
+depth = 2
+kind = "speaker"
+speaker = "Wizard Grayzag"
+text = "Well he's not bothering me anymore, is he? And you don't need to bother me either!"
+parent = 963
+
+[[nodes]]
+id = 966
+depth = 2
+kind = "act"
+text = "end"
+parent = 963
+is_terminal = true
+
+[[nodes]]
+id = 967
+depth = 1
+kind = "cond"
+text = "If the player has not started the 20th Anniversary event:"
+parent = -1
+children = [968]
+
+[[nodes]]
+id = 968
+depth = 2
+kind = "act"
+text = "end"
+parent = 967
+is_terminal = true

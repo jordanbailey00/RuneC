@@ -1,0 +1,16 @@
+id = "mrdt"
+format = "binary"
+path = "data/defs/mrdt.bin"
+magic_label = "MRDT"
+magic_u32 = "0x5444524D"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/scrape_rdt.py"
+consumers = ["rc-core/drops.c"]
+source_dataset = "RuneC-owned shared drop table rows"
+row_fields = [
+  "entries[count]: u32 item_id, u16 qmin, u16 qmax, u32 rarity_inv",
+]
+compatibility = "Loader accepts exactly current_version."

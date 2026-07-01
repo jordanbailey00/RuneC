@@ -51,8 +51,6 @@ BODY_MODEL_BASE = 0xF0000
 ITEM_EQUIP_MODEL_BASE = 0xE00000
 ITEM_GROUND_MODEL_BASE = 0xD00000
 
-DEFAULT_DUMP = Path("tools/cache_pipeline/source/osrs-dumps")
-DEFAULT_RSMOD = Path("/home/joe/projects/runescape-rl-reference/rsmod")
 RSMOD_OBJ_ENRICHER = (
     "api/cache-enricher/src/main/resources/org/rsmod/api/cache/enricher/"
     "obj/objs.toml"
@@ -672,7 +670,12 @@ def read_symbol_map(path: Path) -> dict[str, int]:
     return out
 
 
-def load_rsmod_bas(rsmod_root: Path, dump_root: Path) -> dict[int, tuple[int, int, int]]:
+def load_rsmod_bas(
+    rsmod_root: Path | None,
+    dump_root: Path | None,
+) -> dict[int, tuple[int, int, int]]:
+    if rsmod_root is None or dump_root is None:
+        return dict(KNOWN_PLAYER_BAS)
     obj_file = rsmod_root / RSMOD_OBJ_ENRICHER
     obj_symbols = read_symbol_map(dump_root / "symbols" / "obj.sym")
     if not obj_file.is_file() or not obj_symbols:
@@ -823,10 +826,10 @@ def main() -> None:
     parser.add_argument("--dev-validation-source", type=Path,
                         default=Path("rc-viewer/dev_validation.c"),
                         help="source file containing combat-validation bank names")
-    parser.add_argument("--dump", type=Path, default=DEFAULT_DUMP,
-                        help="local Joshua-F dump root with symbols/obj.sym")
-    parser.add_argument("--rsmod-root", type=Path, default=DEFAULT_RSMOD,
-                        help="local RSMod checkout for cache-enricher BAS data")
+    parser.add_argument("--dump", type=Path,
+                        help="optional explicit dump root with symbols/obj.sym")
+    parser.add_argument("--rsmod-root", type=Path,
+                        help="optional off-repo RSMod checkout for research-only BAS data")
     parser.add_argument("--model-lighting", choices=("client", "unlit"),
                         default="unlit",
                         help=("vertex color lighting mode for exported item "

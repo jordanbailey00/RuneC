@@ -10,8 +10,24 @@
 RcPrayerDef g_rc_prayer_defs[RC_MAX_PRAYER_DEFS];
 int g_rc_prayer_count = 0;
 
-int rc_load_prayers(const char *path) {
-    if (!path) return -1;
+static const RcPrayerDef *g_active_prayer_defs = g_rc_prayer_defs;
+static int g_active_prayer_count = 0;
+
+void rc_prayer_use_defs(const RcPrayerDef *defs, int count) {
+    g_active_prayer_defs = defs ? defs : g_rc_prayer_defs;
+    g_active_prayer_count = defs ? count : 0;
+}
+
+void rc_prayer_reset_defs_if_active(const RcPrayerDef *defs) {
+    if (defs && g_active_prayer_defs == defs) {
+        rc_prayer_use_defs(g_rc_prayer_defs, g_rc_prayer_count);
+    }
+}
+
+int rc_load_prayers_into(const char *path, RcPrayerDef *defs, int max_defs,
+                         int *out_count) {
+    if (out_count) *out_count = 0;
+    if (!path || !defs || max_defs <= 0) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
@@ -24,7 +40,7 @@ int rc_load_prayers(const char *path) {
         return -1;
     }
 
-    memset(g_rc_prayer_defs, 0, sizeof(g_rc_prayer_defs));
+    memset(defs, 0, (size_t)max_defs * sizeof(*defs));
     int loaded = 0;
     for (uint32_t i = 0; i < count; i++) {
         RcPrayerDef row;
@@ -65,21 +81,33 @@ int rc_load_prayers(const char *path) {
             rc_asset_close(f);
             return -1;
         }
-        if (row.id < RC_MAX_PRAYER_DEFS) {
+        if (row.id < max_defs) {
             row.loaded = 1;
-            g_rc_prayer_defs[row.id] = row;
+            defs[row.id] = row;
             loaded++;
         }
     }
     rc_asset_close(f);
-    g_rc_prayer_count = loaded;
+    if (out_count) *out_count = loaded;
     return loaded;
+}
+
+int rc_load_prayers(const char *path) {
+    int loaded = 0;
+    int result = rc_load_prayers_into(path, g_rc_prayer_defs,
+                                      RC_MAX_PRAYER_DEFS, &loaded);
+    if (result >= 0) {
+        g_rc_prayer_count = loaded;
+        rc_prayer_use_defs(g_rc_prayer_defs, g_rc_prayer_count);
+    }
+    return result;
 }
 
 const RcPrayerDef *rc_prayer_def_get(int prayer_id) {
     if (prayer_id < 0 || prayer_id >= RC_MAX_PRAYER_DEFS) return NULL;
-    return g_rc_prayer_defs[prayer_id].loaded
-         ? &g_rc_prayer_defs[prayer_id] : NULL;
+    const RcPrayerDef *defs = g_active_prayer_defs
+                            ? g_active_prayer_defs : g_rc_prayer_defs;
+    return defs[prayer_id].loaded ? &defs[prayer_id] : NULL;
 }
 
 uint32_t rc_prayer_bit(int prayer_id) {

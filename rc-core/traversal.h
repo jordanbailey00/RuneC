@@ -21,12 +21,30 @@ typedef struct {
     char target[48];
 } RcTraversalEdge;
 
+typedef struct {
+    uint32_t first, count;
+} RcTraversalRange;
+
+typedef struct {
+    RcTraversalEdge *edges;
+    int edge_count;
+    RcTraversalRange index[RC_TRAVERSAL_KIND_COUNT]
+                           [RC_TRAVERSAL_MAX_SOURCE_ID];
+} RcTraversalData;
+
 extern RcTraversalEdge *g_rc_traversal_edges;
 extern int g_rc_traversal_edge_count;
 
 int rc_load_traversal_edges(const char *path);
+void rc_traversal_data_init(RcTraversalData *data);
+void rc_traversal_data_free(RcTraversalData *data);
+int rc_load_traversal_edges_into(const char *path, RcTraversalData *data);
+int rc_traversal_mirror_to_globals(const RcTraversalData *data);
+void rc_traversal_use_data(const RcTraversalData *data);
+void rc_traversal_reset_data_if_active(const RcTraversalData *data);
 const RcTraversalEdge *rc_traversal_edges_for(int kind, int source_id,
                                               int *count);
+const RcTraversalEdge *rc_traversal_edges_all(int *count);
 const RcTraversalEdge *rc_traversal_find(int kind, int source_id,
                                          int x, int y, int plane, int option);
 const RcTraversalEdge *rc_traversal_find_target(int kind, const char *target);

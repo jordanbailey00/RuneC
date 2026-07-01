@@ -5,11 +5,28 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 enable_testing()
 find_package(ZLIB REQUIRED)
+find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 # rc-core: generic game backend library (no render deps, no OSRS-specific
 # content). See rc-core/README.md for the engine/content split.
+add_custom_target(validate-direct-global-access
+    COMMAND ${Python3_EXECUTABLE}
+            ${CMAKE_SOURCE_DIR}/tools/validate_direct_global_access.py
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Validating migrated runtime global access"
+)
+add_test(
+    NAME validate_direct_global_access
+    COMMAND ${Python3_EXECUTABLE}
+            ${CMAKE_SOURCE_DIR}/tools/validate_direct_global_access.py
+)
+set_tests_properties(validate_direct_global_access PROPERTIES
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
+
 file(GLOB RC_CORE_SOURCES rc-core/*.c)
 add_library(rc-core STATIC ${RC_CORE_SOURCES})
+add_dependencies(rc-core validate-direct-global-access)
 target_include_directories(rc-core PUBLIC rc-core)
 target_link_libraries(rc-core PUBLIC ZLIB::ZLIB)
 
@@ -17,15 +34,25 @@ target_link_libraries(rc-core PUBLIC ZLIB::ZLIB)
 # Links against rc-core. Isolation targets select a subset of these .c
 # files. See rc-content/README.md.
 file(GLOB_RECURSE RC_CONTENT_SOURCES CONFIGURE_DEPENDS rc-content/*.c)
-add_library(rc-content STATIC ${RC_CONTENT_SOURCES})
+add_library(rc-content-objects OBJECT ${RC_CONTENT_SOURCES})
+target_include_directories(rc-content-objects PUBLIC rc-content)
+target_link_libraries(rc-content-objects PUBLIC rc-core)
+
+add_library(rc-content STATIC $<TARGET_OBJECTS:rc-content-objects>)
 target_include_directories(rc-content PUBLIC rc-content)
 target_link_libraries(rc-content PUBLIC rc-core)
+
+add_library(rc-content-link INTERFACE)
+add_dependencies(rc-content-link rc-content-objects)
+target_include_directories(rc-content-link INTERFACE rc-content)
+target_link_libraries(rc-content-link INTERFACE
+    "$<TARGET_OBJECTS:rc-content-objects>" rc-core)
 
 # rc-viewer: raylib frontend (links both libraries).
 if(EXISTS "${CMAKE_SOURCE_DIR}/lib/raylib/lib/libraylib.a")
     file(GLOB RC_VIEWER_SOURCES CONFIGURE_DEPENDS rc-viewer/*.c)
     add_executable(rc-viewer ${RC_VIEWER_SOURCES})
-    target_link_libraries(rc-viewer rc-core rc-content)
+    target_link_libraries(rc-viewer rc-core rc-content-link)
     target_include_directories(rc-viewer PRIVATE
         ${CMAKE_SOURCE_DIR}/lib/raylib/include
     )
@@ -53,7 +80,7 @@ file(GLOB TEST_SOURCES CONFIGURE_DEPENDS tests/*.c)
 foreach(TEST_SRC ${TEST_SOURCES})
     get_filename_component(TEST_NAME ${TEST_SRC} NAME_WE)
     add_executable(${TEST_NAME} ${TEST_SRC})
-    target_link_libraries(${TEST_NAME} rc-core rc-content m)
+    target_link_libraries(${TEST_NAME} rc-core rc-content-link m)
     target_compile_definitions(${TEST_NAME} PRIVATE
         RC_TEST_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
     )

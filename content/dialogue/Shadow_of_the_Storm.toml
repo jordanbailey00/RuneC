@@ -1,0 +1,6334 @@
+title = "Transcript:Shadow of the Storm"
+npcs = ["Agrith Naar", "Clay golem", "Denath", "Eric", "Evil Dave", "Father Badden", "Father Reen", "Jennifer", "Matthew", "Patrick", "Tanya"]
+node_count = 805
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "Excuse me, I'm looking for [player name]. I have an urgent job for [him/her]."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Start the Shadow of the Storm quest?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [3, 4, 5, 8, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's me!"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Thank Saradomin I found you!"
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "cond"
+text = "If the player still has Silverlight:"
+parent = 2
+children = [6, 7]
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "speaker"
+speaker = "Father Reen"
+text = "I believe you still have the magical sword Silverlight?"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The sword I used to defeat the demon Delrith? Yes, I still have it."
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "cond"
+text = "If the player lost Silverlight:"
+parent = 2
+children = [9, 10, 11]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Father Reen"
+text = "Now, do you recognise this sword?"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "box"
+text = "pic=Silverlight detail.png|Reen hands you a shining silver sword."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Silverlight! That's the sword I used to defeat the demon Delrith!"
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "There is an urgent task that only you can do - and only with Silverlight!"
+parent = 2
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "My partner Badden and I have been observing the dark wizard Denath, who we believe has been preparing to summon the powerful demon Agrith-Naar."
+parent = 2
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "A week ago he took a group of apprentice dark wizards and moved to Uzer, the lost city in the desert. We think he's going to use the city's ancient temple to summon the demon!"
+parent = 2
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you want me to stop him?"
+parent = 2
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Stop him? No! We want you to wait until Agrith-Naar is summoned and then kill him once and for all!"
+parent = 2
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Let me explain. Agrith-Naar is not an ordinary demon. He has immense magical powers, and he can use these powers to influence the mortal plane."
+parent = 2
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "This summoning is our chance to rid the world of his evil influence!"
+parent = 2
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "You should go to Uzer and find Badden at once. I'll follow once I've finished some business here."
+parent = 2
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [22, 23]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll let you know if I see [him/her]."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "act"
+text = "end"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "cond"
+text = "If the player still has Silverlight:"
+parent = -1
+children = [25, 26, 27, 28]
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Did you go to Uzer to see Badden?"
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 24
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "You must hurry!"
+parent = 24
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "act"
+text = "end"
+parent = 24
+is_terminal = true
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "cond"
+text = "If the player lost Silverlight:"
+parent = -1
+children = [30, 31, 32]
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "You idiot! You lost Silverlight! I found it on the sand!"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "You need to take it with you and see Badden in Uzer."
+parent = 29
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "act"
+text = "end"
+parent = 29
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "It is good to see a friendly face here. The priest has said nothing to me but 'Get ye away, foul construct!'"
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "Why does Badden hate you?"
+parent = -1
+children = [36, 37, 38, 39, 40, 41]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why does Badden hate you?"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "I do not know. I heard him say that Saradomin hates all artificial creatures."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "It was not always so. When I was new, the priests of Saradomin praised the ingenuity of the golem-builders."
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "I paraded through the city with my siblings, all painted in bright colours, and they blessed us with holy water as we prepared for battle."
+parent = 35
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "He should know that I could never hurt him. The first command in a golem's mind is that it cannot allow a human being to come to harm."
+parent = 35
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "act"
+text = "end"
+parent = 35
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Do you know anything about the dark wizards who arrived here?"
+parent = -1
+children = [43, 44, 45, 46]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know anything about the dark wizards who arrived here?"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "Some of them were curious about me when they arrived, but since then they have ignored me."
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "As they passed me I felt a sense of dark foreboding, something I have not felt since the great enemy was nearby. I fear they are planning some great evil."
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "What do you want?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "I want to go through the portal."
+parent = -1
+children = [50, 51, 52]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to go through the portal."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Go away! This is OUR portal now!"
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "option"
+text = "Oh, nothing."
+parent = -1
+children = [54, 55, 56]
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, nothing."
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Go away then!"
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "act"
+text = "end"
+parent = 53
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "Where did you get those robes?"
+parent = -1
+children = [58, 59, 60]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where did you get those robes?"
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Yeah, evil, aren't they? One of the group made them. He said he found some mushrooms in the ruins that could dye things really black."
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "What brings you to this godsforsaken desert?"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "Reen sent me."
+parent = -1
+children = [64, 65, 124]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Reen sent me."
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "cond"
+text = "If the player still has Silverlight:"
+parent = 63
+children = [66, 67, 68, 74, 110]
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "speaker"
+speaker = "Father Badden"
+text = "Saradomin be praised! And you have Silverlight! You're willing to help us, then?"
+parent = 65
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 65
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "option"
+text = "Tell me more about Agrith-Naar."
+parent = 65
+children = [69, 70, 71, 72, 73]
+
+[[nodes]]
+id = 69
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more about Agrith-Naar."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "speaker"
+speaker = "Father Badden"
+text = "Agrith-Naar is not so much a demon as a force of nature. While he is in his own dimension his evil magics can reach everywhere in the world."
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 4
+kind = "speaker"
+speaker = "Father Badden"
+text = "No one knows how far his power extends, but Reen and I believe that much of the suffering in the world is due to him."
+parent = 68
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "speaker"
+speaker = "Father Badden"
+text = "The accident that cripples a man, the storm that sweeps a ship under the sea, the sudden fire in the blood that makes a wolf pack attack a town - all that is Agrith- Naar!"
+parent = 68
+
+[[nodes]]
+id = 73
+depth = 4
+kind = "act"
+text = "other"
+parent = 68
+is_terminal = true
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "option"
+text = "Tell me more about Denath."
+parent = 65
+children = [75, 76, 77, 78, 79, 80, 82, 108]
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more about Denath."
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "speaker"
+speaker = "Father Badden"
+text = "We've been keeping an eye on Denath for some years now, but we've never been able to move against him."
+parent = 74
+
+[[nodes]]
+id = 77
+depth = 4
+kind = "speaker"
+speaker = "Father Badden"
+text = "He was part of the group that summoned Delrith, but he left Varrock before you arrived and defeated the demon."
+parent = 74
+
+[[nodes]]
+id = 78
+depth = 4
+kind = "speaker"
+speaker = "Father Badden"
+text = "He's been studying Agrith-Naar for years, but when he brought his group here we knew he was about to make his move."
+parent = 74
+
+[[nodes]]
+id = 79
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 74
+
+[[nodes]]
+id = 80
+depth = 4
+kind = "option"
+text = "Tell me more about Agrith-Naar."
+parent = 74
+children = [81]
+
+[[nodes]]
+id = 81
+depth = 5
+kind = "act"
+text = "above"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 4
+kind = "option"
+text = "Why has he come to Uzer?"
+parent = 74
+children = [83, 84, 85, 86, 87, 88, 90, 100, 106]
+
+[[nodes]]
+id = 83
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Why has he come to Uzer?"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 5
+kind = "speaker"
+speaker = "Father Badden"
+text = "I'm not sure. This city is very ancient, and its builders were powerful workers of evil magic."
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 5
+kind = "speaker"
+speaker = "Father Badden"
+text = "As that foul construct over there proves."
+parent = 82
+
+[[nodes]]
+id = 86
+depth = 5
+kind = "speaker"
+speaker = "Father Badden"
+text = "Perhaps there's something here he needs. Do you know what happened here?"
+parent = 82
+
+[[nodes]]
+id = 87
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 82
+
+[[nodes]]
+id = 88
+depth = 5
+kind = "option"
+text = "Tell me more about Agrith-Naar."
+parent = 82
+children = [89]
+
+[[nodes]]
+id = 89
+depth = 6
+kind = "act"
+text = "above"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 5
+kind = "option"
+text = "Foul construct? Do you mean the golem?"
+parent = 82
+children = [91, 92, 93, 94, 95, 96, 97, 98, 99]
+
+[[nodes]]
+id = 91
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Foul construct? Do you mean the golem?"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 6
+kind = "speaker"
+speaker = "Father Badden"
+text = "The golem, yes! An abomination in the eyes of holy Saradomin! A mockery of life! Right now Denath is more important, but once he is dealt with I should find some way to destroy it."
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "But the golem was created to fight a demon! You're on the same side!"
+parent = 90
+
+[[nodes]]
+id = 94
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Thousands of years ago a demon attacked this city, but the golem army drove it off."
+parent = 90
+
+[[nodes]]
+id = 95
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "When I last came here I opened the portal, and the demon was already dead - it had died of the wounds the golems inflicted."
+parent = 90
+
+[[nodes]]
+id = 96
+depth = 6
+kind = "speaker"
+speaker = "Father Badden"
+text = "You opened a portal to a demon's realm? That must be why Denath is here!"
+parent = 90
+
+[[nodes]]
+id = 97
+depth = 6
+kind = "speaker"
+speaker = "Father Badden"
+text = "It would be much easier to reach Agrith-Naar's realm from another demon's realm than from the mortal plane."
+parent = 90
+
+[[nodes]]
+id = 98
+depth = 6
+kind = "speaker"
+speaker = "Father Badden"
+text = "Denath must have heard that the portal here was open and decided to make his move!"
+parent = 90
+
+[[nodes]]
+id = 99
+depth = 6
+kind = "act"
+text = "initial"
+parent = 90
+
+[[nodes]]
+id = 100
+depth = 5
+kind = "option"
+text = "Well I came here and opened a portal to a demon's realm."
+parent = 82
+children = [101, 102, 103, 104, 105]
+
+[[nodes]]
+id = 101
+depth = 6
+kind = "speaker"
+speaker = "Player"
+text = "Well I came here and opened a portal to a demon's realm..."
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 6
+kind = "speaker"
+speaker = "Father Badden"
+text = "You opened a portal to a demon's realm? That must be why Denath is here!"
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 6
+kind = "speaker"
+speaker = "Father Badden"
+text = "It would be much easier to reach Agrith-Naar's realm from another demon's realm than from the mortal plane."
+parent = 100
+
+[[nodes]]
+id = 104
+depth = 6
+kind = "speaker"
+speaker = "Father Badden"
+text = "Denath must have heard that the portal here was open and decided to make his move!"
+parent = 100
+
+[[nodes]]
+id = 105
+depth = 6
+kind = "act"
+text = "initial"
+parent = 100
+
+[[nodes]]
+id = 106
+depth = 5
+kind = "option"
+text = "So what do you want me to do?"
+parent = 82
+children = [107]
+
+[[nodes]]
+id = 107
+depth = 6
+kind = "act"
+text = "below"
+parent = 106
+
+[[nodes]]
+id = 108
+depth = 4
+kind = "option"
+text = "So what do you want me to do?"
+parent = 74
+children = [109]
+
+[[nodes]]
+id = 109
+depth = 5
+kind = "act"
+text = "below"
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "option"
+text = "So what do you want me to do?"
+parent = 65
+children = [111, 112, 113, 114, 118]
+
+[[nodes]]
+id = 111
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what do you want me to do?"
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "speaker"
+speaker = "Father Badden"
+text = "You have to be in position to kill Agrith-Naar as soon as he is summoned. The best way to do that is to infiltrate the group that is summoning him!"
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 110
+
+[[nodes]]
+id = 114
+depth = 4
+kind = "option"
+text = "How can I do that?"
+parent = 110
+children = [115, 116, 117]
+
+[[nodes]]
+id = 115
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How can I do that?"
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 5
+kind = "speaker"
+speaker = "Father Badden"
+text = "I don't know. You'll have to find some way to convince them you're one of them."
+parent = 114
+
+[[nodes]]
+id = 117
+depth = 5
+kind = "act"
+text = "end"
+parent = 114
+is_terminal = true
+
+[[nodes]]
+id = 118
+depth = 4
+kind = "option"
+text = "I'd never take part in a demonic ritual!"
+parent = 110
+children = [119, 120, 121, 122, 123]
+
+[[nodes]]
+id = 119
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I'd never take part in a demonic ritual!"
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 5
+kind = "speaker"
+speaker = "Father Badden"
+text = "Oh, don't be so simple-minded! You'll be summoning a demon in order to kill it, to rid the world of great evil! You won't really be joining the group, just infiltrating it."
+parent = 118
+
+[[nodes]]
+id = 121
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How can I do that?"
+parent = 118
+
+[[nodes]]
+id = 122
+depth = 5
+kind = "speaker"
+speaker = "Father Badden"
+text = "I don't know. You'll have to find some way to convince them you're one of them."
+parent = 118
+
+[[nodes]]
+id = 123
+depth = 5
+kind = "act"
+text = "end"
+parent = 118
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "cond"
+text = "If the player lost Silverlight:"
+parent = 63
+children = [125, 126, 127]
+
+[[nodes]]
+id = 125
+depth = 3
+kind = "speaker"
+speaker = "Father Badden"
+text = "Saradomin be praised!"
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "speaker"
+speaker = "Father Badden"
+text = "But you will need Silverlight for this task. You should go back and get it."
+parent = 124
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "act"
+text = "end"
+parent = 124
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "option"
+text = "Just passing through."
+parent = -1
+children = [129, 130, 131]
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Just passing through."
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "Oh dear. I was hoping [player name] would arrive."
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "act"
+text = "end"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "How is it going?"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "option"
+text = "I haven't managed to infiltrate the group yet."
+parent = -1
+children = [135, 136, 137]
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't managed to infiltrate the group yet."
+parent = 134
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "Oh dear. Do try again. You must be in place when they summon the demon!"
+parent = 134
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "act"
+text = "end"
+parent = 134
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "Tell me more about Agrith-Naar."
+parent = -1
+children = [139]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "act"
+text = "above"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "option"
+text = "Tell me more about Denath."
+parent = -1
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "act"
+text = "above"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "I'd never take part in a demonic ritual!"
+parent = -1
+children = [143]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "act"
+text = "above"
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "box"
+text = "pic=Black mushroom detail.png|You pick a mushroom."
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "box"
+text = "pic=Silverlight (dyed) detail.png|You slice the mushroom with Silverlight, and it stains the blade black."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "What do you want?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "option"
+text = "I want to go through the portal."
+parent = -1
+children = [149]
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "act"
+text = "above"
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "option"
+text = "I want to join your group."
+parent = -1
+children = [151, 152, 153, 154, 155, 200]
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to join your group."
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Well we do need one more person now, since... um."
+parent = 150
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "But we're an evil group! To join, you have to be evil!"
+parent = 150
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 150
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "option"
+text = "I'm evil!"
+parent = 150
+children = [156, 162, 167]
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "cond"
+text = "While not wearing enough black items:"
+parent = 155
+children = [157, 158, 159, 160, 161]
+
+[[nodes]]
+id = 157
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm evil!"
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "You don't look evil. You certainly don't dress evil!"
+parent = 156
+
+[[nodes]]
+id = 159
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm evil in disguise?"
+parent = 156
+
+[[nodes]]
+id = 160
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "There's no need for the disguise here! We're all evil!"
+parent = 156
+
+[[nodes]]
+id = 161
+depth = 4
+kind = "act"
+text = "end"
+parent = 156
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "cond"
+text = "While wearing 3 black items but Silverlight is undyed:"
+parent = 155
+children = [163, 164, 165, 166]
+
+[[nodes]]
+id = 163
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm evil!"
+parent = 162
+
+[[nodes]]
+id = 164
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Yeah, I can see that. That outfit is totally evil!"
+parent = 162
+
+[[nodes]]
+id = 165
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "But what's that sword? It's far too shiny to be evil. We won't have any silver glowing swords in here!"
+parent = 162
+
+[[nodes]]
+id = 166
+depth = 4
+kind = "act"
+text = "end"
+parent = 162
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "cond"
+text = "While wearing 3 black items and having dyed Silverlight:"
+parent = 155
+children = [168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 185, 189, 193]
+
+[[nodes]]
+id = 168
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm evil!"
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Yeah, I can see that. That outfit is totally evil!"
+parent = 167
+
+[[nodes]]
+id = 170
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Okay, I'll take you through to see Denath."
+parent = 167
+
+[[nodes]]
+id = 171
+depth = 4
+kind = "box"
+text = "Evil Dave escorts you into the demonic throne room."
+parent = 167
+
+[[nodes]]
+id = 172
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Master! This person wants to join us!"
+parent = 167
+
+[[nodes]]
+id = 173
+depth = 4
+kind = "speaker"
+speaker = "Denath"
+text = "Indeed? Well we are one wizard short since Josef ran away. Can you vouch for [him/her]?"
+parent = 167
+
+[[nodes]]
+id = 174
+depth = 4
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Yeah! [He/She]'s totally evil!"
+parent = 167
+
+[[nodes]]
+id = 175
+depth = 4
+kind = "speaker"
+speaker = "Denath"
+text = "Thank you, Dave."
+parent = 167
+
+[[nodes]]
+id = 176
+depth = 4
+kind = "speaker"
+speaker = "Denath"
+text = "So you wish to join us? You have made a wise choice. When we summon the demon Agrith-Naar, he will grant all our worldly desires."
+parent = 167
+
+[[nodes]]
+id = 177
+depth = 4
+kind = "speaker"
+speaker = "Denath"
+text = "An abyssal whip, a dragon chain mail? To conjure these items is trivial for Agrith-Naar."
+parent = 167
+
+[[nodes]]
+id = 178
+depth = 4
+kind = "speaker"
+speaker = "Denath"
+text = "But you will not need such weapons or armour, for Agrith-Naar will grant you the power of life and death over all creatures!"
+parent = 167
+
+[[nodes]]
+id = 179
+depth = 4
+kind = "speaker"
+speaker = "Denath"
+text = "You shall have every wish granted, and everyone who has ever wronged you will burn in a hell of your own devising!"
+parent = 167
+
+[[nodes]]
+id = 180
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 167
+
+[[nodes]]
+id = 181
+depth = 4
+kind = "option"
+text = "Isn't this, you know, wrong?"
+parent = 167
+children = [182, 183, 184]
+
+[[nodes]]
+id = 182
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Isn't this, you know, wrong?"
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 5
+kind = "speaker"
+speaker = "Denath"
+text = "Right and wrong are for the weak! This is your chance to choose to be on the side of the strong, and have all your desires granted, while the weak are crushed beneath Agrith-Naar's demonic feet!"
+parent = 181
+
+[[nodes]]
+id = 184
+depth = 5
+kind = "act"
+text = "other"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 185
+depth = 4
+kind = "option"
+text = "How do you know Agrith-Naar will do all this for us?"
+parent = 167
+children = [186, 187, 188]
+
+[[nodes]]
+id = 186
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "How do you know Agrith-Naar will do all this for us?"
+parent = 185
+
+[[nodes]]
+id = 187
+depth = 5
+kind = "speaker"
+speaker = "Denath"
+text = "My binding spells will make Agrith-Naar my slave! You would be wise not to question my powers again, lest I turn the same spells on you!"
+parent = 185
+
+[[nodes]]
+id = 188
+depth = 5
+kind = "act"
+text = "other"
+parent = 185
+is_terminal = true
+
+[[nodes]]
+id = 189
+depth = 4
+kind = "option"
+text = "Why did Josef run away?"
+parent = 167
+children = [190, 191, 192]
+
+[[nodes]]
+id = 190
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Why did Josef run away?"
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 5
+kind = "speaker"
+speaker = "Denath"
+text = "Obviously he was a coward who did not have the strength to abandon his old-fashioned morality. I hope you will not be a similar disappointment."
+parent = 189
+
+[[nodes]]
+id = 192
+depth = 5
+kind = "act"
+text = "other"
+parent = 189
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 4
+kind = "option"
+text = "What do I have to do?"
+parent = 167
+children = [194, 195, 196, 197, 198, 199]
+
+[[nodes]]
+id = 194
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "What do I have to do?"
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 5
+kind = "speaker"
+speaker = "Denath"
+text = "When I have finished preparing the magic circle, we will all recite the incantation that will summon Agrith-Naar."
+parent = 193
+
+[[nodes]]
+id = 196
+depth = 5
+kind = "speaker"
+speaker = "Denath"
+text = "You must memorize the incantation carefully. It is Nahudu Camerinthum Caldar Agrith-Naar Tarren."
+parent = 193
+
+[[nodes]]
+id = 197
+depth = 5
+kind = "speaker"
+speaker = "Denath"
+text = "You will also need to make yourself a demonic sigil to act as a focus of power. One of the group has the mould you need to make it."
+parent = 193
+
+[[nodes]]
+id = 198
+depth = 5
+kind = "speaker"
+speaker = "Denath"
+text = "Now let me continue with my preparations!"
+parent = 193
+
+[[nodes]]
+id = 199
+depth = 5
+kind = "act"
+text = "end"
+parent = 193
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "option"
+text = "Never mind, I'm not evil."
+parent = 150
+children = [201, 202, 203]
+
+[[nodes]]
+id = 201
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Never mind, I'm not evil."
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 3
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Well get out of our evil temple then!"
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "Oh, nothing."
+parent = -1
+children = [205]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "act"
+text = "above"
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "option"
+text = "Where did you get those robes?"
+parent = -1
+children = [207]
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "act"
+text = "above"
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "How is it going?"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "option"
+text = "I managed to get into the group."
+parent = -1
+children = [211, 212, 213]
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I managed to get into the group."
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "Oh, that is good! Make sure you are in place when they summon the demon!"
+parent = 210
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "act"
+text = "end"
+parent = 210
+is_terminal = true
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "option"
+text = "Tell me more about Agrith-Naar."
+parent = -1
+children = [215]
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "act"
+text = "above"
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "option"
+text = "Tell me more about Denath."
+parent = -1
+children = [217]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "above"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "Phew! It's too hot for me out here. But at least I found my way through the desert!"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "option"
+text = "Why didn't you take the magic carpet?"
+parent = -1
+children = [221, 222, 223]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why didn't you take the magic carpet?"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Oh dear no, you won't get me up in one of those things! What if the magic failed?"
+parent = 220
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "act"
+text = "end"
+parent = 220
+is_terminal = true
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "option"
+text = "Why don't you change out of your heavy robes?"
+parent = -1
+children = [225, 226, 227, 228, 229]
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why don't you change out of your heavy robes?"
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "But the rules of my order say I must wear them!"
+parent = 224
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps the rules were made in a colder place than this?"
+parent = 224
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Saradomin's rules are once and for all! It is not our place to question them!"
+parent = 224
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "act"
+text = "end"
+parent = 224
+is_terminal = true
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "option"
+text = "Don't worry, soon I'll have killed the demon and we can all go home!"
+parent = -1
+children = [231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244]
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, soon I'll have killed the demon and we can all go home!"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Summoning a demon! Those wizards make me sick! What kind of sad people would call on a supernatural being to solve their problems for them?"
+parent = 230
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um, isn't that like what you do when you pray?"
+parent = 230
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "What? No, that's totally different, because... um... because we always give thanks to Saradomin, even when he doesn't do anything!"
+parent = 230
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Not like those wizards! They're so full of themselves, with their fancy robes and their rituals!"
+parent = 230
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um, isn't that like..."
+parent = 230
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "No, it's totally different!"
+parent = 230
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Anyway, there must be something wrong with the way they live in their little group and separate themselves from the rest of society. It can't be healthy."
+parent = 230
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And that's *nothing* like you being a monk, of course."
+parent = 230
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "No, nothing like that."
+parent = 230
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Wait, are you being sarcastic? Because you should know that sarcasm is specifically forbidden in the holy book of Saradomin!"
+parent = 230
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure Saradomin was being serious about that bit?"
+parent = 230
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "Shut up!"
+parent = 230
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "act"
+text = "end"
+parent = 230
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "Leave me alone! I am preparing for the summoning ritual. You should make yourself a demonic sigil and practice the incantation with the other wizards."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "option"
+text = "Isn't this, you know, wrong?"
+parent = -1
+children = [248]
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "act"
+text = "above"
+parent = 247
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "option"
+text = "How do you know Agrith-Naar will do all this for us?"
+parent = -1
+children = [250]
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "act"
+text = "above"
+parent = 249
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "Why did Josef run away?"
+parent = -1
+children = [252]
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "act"
+text = "above"
+parent = 251
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "option"
+text = "I forgot the incantation."
+parent = -1
+children = [254, 255, 256]
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I forgot the incantation."
+parent = 253
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "speaker"
+speaker = "Denath"
+text = "Ignoramus! Are you incapable of even the simplest task? The incantation is Nahudu Camerinthum Caldar Agrith- Naar Tarren."
+parent = 253
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "act"
+text = "end"
+parent = 253
+is_terminal = true
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Welcome, sister! Soon we'll summon the great demon! Aren't we evil?"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "option"
+text = "Yeah!"
+parent = -1
+children = [260, 261, 262, 266]
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah!"
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Yeah!"
+parent = 259
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "cond"
+text = "If the gems were removed from the throne:"
+parent = 259
+children = [263, 264, 265]
+
+[[nodes]]
+id = 263
+depth = 3
+kind = "speaker"
+speaker = "Evil Dave"
+text = "And we've got such an evil throne room to do our ritual in!"
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "speaker"
+speaker = "Evil Dave"
+text = "It's just a pity someone's removed the gems from the throne. That kind of vandalism is TOTALLY NOT EVIL."
+parent = 262
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Um... Yeah, who would do a thing like that?"
+parent = 262
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "act"
+text = "end"
+parent = 259
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "option"
+text = "But isn't evil, you know, bad?"
+parent = -1
+children = [268, 269, 270]
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But isn't evil, you know, bad?"
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Yeah! We're BAD!"
+parent = 267
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "act"
+text = "end"
+parent = 267
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = -1
+children = [272, 273, 274]
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have the demonic sigil mould?"
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "No. Last I heard, Matthew had it."
+parent = 271
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "act"
+text = "end"
+parent = 271
+is_terminal = true
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = -1
+children = [276, 277, 278]
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened to Josef?"
+parent = 275
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "I didn't see anything. He left last night, and Denath only posted me here this morning."
+parent = 275
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "act"
+text = "end"
+parent = 275
+is_terminal = true
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "Huh."
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "option"
+text = "What?"
+parent = -1
+children = [282, 283, 284, 285, 297, 299]
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = 281
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "speaker"
+speaker = "Jennifer"
+text = "You don't understand."
+parent = 281
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 281
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "option"
+text = "Understand what?"
+parent = 281
+children = [286, 287, 288, 289, 293, 295]
+
+[[nodes]]
+id = 286
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Understand what?"
+parent = 285
+
+[[nodes]]
+id = 287
+depth = 3
+kind = "speaker"
+speaker = "Jennifer"
+text = "Nobody understands."
+parent = 285
+
+[[nodes]]
+id = 288
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 285
+
+[[nodes]]
+id = 289
+depth = 3
+kind = "option"
+text = "What don't we understand?"
+parent = 285
+children = [290, 291, 292]
+
+[[nodes]]
+id = 290
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What don't we understand?"
+parent = 289
+
+[[nodes]]
+id = 291
+depth = 4
+kind = "speaker"
+speaker = "Jennifer"
+text = "Oh, it doesn't matter. You don't understand. Go away."
+parent = 289
+
+[[nodes]]
+id = 292
+depth = 4
+kind = "act"
+text = "end"
+parent = 289
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = 285
+children = [294]
+
+[[nodes]]
+id = 294
+depth = 4
+kind = "act"
+text = "below"
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = 285
+children = [296]
+
+[[nodes]]
+id = 296
+depth = 4
+kind = "act"
+text = "below"
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = 281
+children = [298]
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "act"
+text = "below"
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = 281
+children = [300]
+
+[[nodes]]
+id = 300
+depth = 3
+kind = "act"
+text = "below"
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = -1
+children = [302, 303, 308, 312]
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have the demonic sigil mould?"
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "cond"
+text = "Without already having it and while having free inventory space:"
+parent = 301
+children = [304, 305, 306, 307]
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "speaker"
+speaker = "Jennifer"
+text = "Huh. So that's all you want. Here it is."
+parent = 303
+
+[[nodes]]
+id = 305
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = 303
+
+[[nodes]]
+id = 306
+depth = 3
+kind = "speaker"
+speaker = "Jennifer"
+text = "Huh."
+parent = 303
+
+[[nodes]]
+id = 307
+depth = 3
+kind = "act"
+text = "end"
+parent = 303
+is_terminal = true
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "cond"
+text = "Without already having it or free inventory space:"
+parent = 301
+children = [309, 310, 311]
+
+[[nodes]]
+id = 309
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you have the demonic sigil mould?"
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 3
+kind = "speaker"
+speaker = "Jennifer"
+text = "Come back when you've got free space."
+parent = 308
+
+[[nodes]]
+id = 311
+depth = 3
+kind = "act"
+text = "end"
+parent = 308
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "cond"
+text = "While already having the sigil mould:"
+parent = 301
+children = [313, 314]
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "speaker"
+speaker = "Jennifer"
+text = "I already gave that to you! Go away!"
+parent = 312
+
+[[nodes]]
+id = 314
+depth = 3
+kind = "act"
+text = "end"
+parent = 312
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = -1
+children = [316, 317, 318, 319]
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened to Josef?"
+parent = 315
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Jennifer"
+text = "He didn't understand!"
+parent = 315
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't suppose he did."
+parent = 315
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "act"
+text = "end"
+parent = 315
+is_terminal = true
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "Agrith-Naar is going to make us all sooo rich!"
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "option"
+text = "Yeah! We'll all be rich!"
+parent = -1
+children = [323, 324, 325, 326, 328]
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah! We'll all be rich!"
+parent = 322
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "speaker"
+speaker = "Patrick"
+text = "Yeah! I'm going to get myself a dragon longsword! And a million rune ores! And a small piece of coloured paper to put on my head!"
+parent = 322
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... if you like."
+parent = 322
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "cond"
+text = "If the gems haven't yet been taken from the throne:"
+parent = 322
+children = [327]
+
+[[nodes]]
+id = 327
+depth = 3
+kind = "speaker"
+speaker = "Patrick"
+text = "Those gems on the demon's throne look valuable. I just wish I had some way to remove them."
+parent = 326
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "act"
+text = "end"
+parent = 322
+is_terminal = true
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "option"
+text = "Isn't it more satisfying to earn riches yourself?"
+parent = -1
+children = [330, 331, 332]
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Isn't it more satisfying to earn riches yourself?"
+parent = 329
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Patrick"
+text = "I don't want to be satisfied, I want to be rich!"
+parent = 329
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "act"
+text = "end"
+parent = 329
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = -1
+children = [334, 335, 336]
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have the demonic sigil mould?"
+parent = 333
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Patrick"
+text = "Right now I don't have anything. But soon, I will have everything!"
+parent = 333
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "act"
+text = "end"
+parent = 333
+is_terminal = true
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = -1
+children = [338, 339, 340]
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened to Josef?"
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Patrick"
+text = "Denath says he ran away. I don't know why. Who would want to run away from what Agrith-Naar is going to do for us?"
+parent = 337
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "end"
+parent = 337
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Eric"
+text = "They won't ignore me for much longer!"
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "Who?"
+parent = -1
+children = [344, 345, 346, 347, 348, 349]
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who?"
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "Everyone!"
+parent = 343
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "When I have demonic powers, they'll all have to pay attention to me!"
+parent = 343
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "And SHE won't ignore me then. I'll be able to show her how I feel."
+parent = 343
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "I will make everyone like me!"
+parent = 343
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "act"
+text = "end"
+parent = 343
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = -1
+children = [351, 352, 353]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have the demonic sigil mould?"
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "No. I gave it to Matthew."
+parent = 350
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "act"
+text = "end"
+parent = 350
+is_terminal = true
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = -1
+children = [355, 356, 357]
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened to Josef?"
+parent = 354
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "He went away and left us. He probably didn't like me."
+parent = 354
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "act"
+text = "end"
+parent = 354
+is_terminal = true
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "cond"
+text = "Walking away from Eric mid-conversation:"
+parent = -1
+children = [359, 360]
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "{{overhead|Don't ignore me!}}"
+parent = 358
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "act"
+text = "end"
+parent = 358
+is_terminal = true
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "speaker"
+speaker = "Tanya"
+text = "Soon, all will bow down before me!"
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "option"
+text = "Oh?"
+parent = -1
+children = [364, 365, 366, 367, 368, 369, 370, 371]
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh?"
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "Agrith-Naar will make us the rulers of the world! I shall be a dark queen over all Gielinor! All shall love me and despair!"
+parent = 363
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "Ha ha ha ha!"
+parent = 363
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "Ah ha ha ha ha ha!!"
+parent = 363
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "AAH HA HA HA HA HA HAAAAA!!!!"
+parent = 363
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "speaker"
+speaker = "Patrick"
+text = "Look, we've told you not to do that. It makes everyone uncomfortable."
+parent = 363
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "Sorry."
+parent = 363
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "act"
+text = "end"
+parent = 363
+is_terminal = true
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = -1
+children = [373, 374, 375]
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have the demonic sigil mould?"
+parent = 372
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "Hah! Carrying such humble implements is beneath me!"
+parent = 372
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "act"
+text = "end"
+parent = 372
+is_terminal = true
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = -1
+children = [377, 378, 379]
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened to Josef?"
+parent = 376
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "He was a fool who could not cope with power! When Agrith-Naar makes us rulers of continents, I will find him and crush him!"
+parent = 376
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "act"
+text = "end"
+parent = 376
+is_terminal = true
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Matthew"
+text = "Hello. Are you Josef's replacement?"
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "option"
+text = "Yes, I suppose I am."
+parent = -1
+children = [383, 384, 385, 386, 387]
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I suppose I am."
+parent = 382
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "It just goes to show how little Denath values us."
+parent = 382
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = 382
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Denath told us we would learn the secrets of demonic magic, but all we've done is memorize one incantation. And now he replaces poor Josef with the next person who comes along!"
+parent = 382
+
+[[nodes]]
+id = 387
+depth = 2
+kind = "act"
+text = "other"
+parent = 382
+is_terminal = true
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = -1
+children = [389, 390, 391]
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have the demonic sigil mould?"
+parent = 388
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "No, I think Jennifer has it."
+parent = 388
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "act"
+text = "end"
+parent = 388
+is_terminal = true
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "option"
+text = "Do you know what happened to Josef?"
+parent = -1
+children = [393, 394, 395, 396, 397, 398, 399, 400, 401, 402]
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what happened to Josef?"
+parent = 392
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Shh! Listen, Denath doesn't know this..."
+parent = 392
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "When we joined him, Denath told us we were going to learn all the secrets of demonic magic, but we still don't know anything."
+parent = 392
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "The others, they just think they're terribly evil, with their sigils and the incantation they learned by rote. But Josef and I wanted more - we wanted to know how it worked."
+parent = 392
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Josef was more curious than me. Last night, he secretly read a book that Denath was keeping from us. He didn't know I was awake, but I saw what happened."
+parent = 392
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "I saw him read it, and then his face turned white, and he took the book and ran through the portal."
+parent = 392
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "But Denath was waking up, and when he saw Josef was gone he went through the portal to look for him. A bit later Denath returned, without Josef or the book."
+parent = 392
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Josef didn't have money for the magic carpet, and he can't have got far in the desert at night with that heavy book."
+parent = 392
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Josef must have hidden the book somewhere in the ruins, before Denath followed him. If you could find it, we'd know what it was that frightened him. We'd know what Denath is really up to!"
+parent = 392
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "act"
+text = "end"
+parent = 392
+is_terminal = true
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "How is it going?"
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "option"
+text = "Did you see anything happen here last night?"
+parent = -1
+children = [406, 407, 408, 409]
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you see anything happen last night?"
+parent = 405
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "I was sleeping last night. I'm only human after all!"
+parent = 405
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "But I had this odd dream, about fear and panic, and... fire..."
+parent = 405
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "act"
+text = "end"
+parent = 405
+is_terminal = true
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "option"
+text = "Tell me more about Agrith-Naar."
+parent = -1
+children = [411]
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "act"
+text = "above"
+parent = 410
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "option"
+text = "Tell me more about Denath."
+parent = -1
+children = [413]
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "act"
+text = "above"
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "It is good to see a friendly face here. The priest has said nothing to me but 'Get ye away, foul construct!'"
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "option"
+text = "Why does Badden hate you?"
+parent = -1
+children = [417]
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "act"
+text = "above"
+parent = 416
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "option"
+text = "Do you know anything about the dark wizards who arrived here?"
+parent = -1
+children = [419]
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "act"
+text = "above"
+parent = 418
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "option"
+text = "Did you see anything happen last night?"
+parent = -1
+children = [421, 422, 423, 424, 425, 426, 427]
+
+[[nodes]]
+id = 421
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "I saw one of the men in dark robes run out of the temple. He looked very frightened and I feared for his safety."
+parent = 420
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "He was carrying a large book. He started to head out into the desert, but then turned back and hid the book in one of the broken kilns in which my kind were created long ago."
+parent = 420
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "Then another man came out of the temple. He said magical words and threw a fireball at the first man, turning him to dust!"
+parent = 420
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "I should have saved him, but I was not fast enough to throw myself in the path of the fireball."
+parent = 420
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Which kiln did he hide the book in?"
+parent = 420
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "I cannot remember. The shock of seeing a human being killed wiped the details of the incident from my memory."
+parent = 420
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "act"
+text = "end"
+parent = 420
+is_terminal = true
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "cond"
+text = "Searching the incorrect kiln:"
+parent = -1
+children = [429, 430]
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "box"
+text = "You look in the kiln but you see only sand and fragments of ancient golems."
+parent = 428
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "act"
+text = "end"
+parent = 428
+is_terminal = true
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "cond"
+text = "Searching the correct kiln:"
+parent = -1
+children = [432, 433]
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "box"
+text = "pic=Demonic tome detail.png|You find a book in the kiln."
+parent = 431
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "act"
+text = "end"
+parent = 431
+is_terminal = true
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "cond"
+text = "Searching the correct kiln while already having the book:"
+parent = -1
+children = [435, 436]
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "box"
+text = "You have already found the book."
+parent = 434
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "act"
+text = "end"
+parent = 434
+is_terminal = true
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "cond"
+text = "Without the book in your inventory:"
+parent = -1
+children = [438, 439, 440, 444]
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Did you find that book?"
+parent = 437
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 437
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "option"
+text = "Not yet."
+parent = 437
+children = [441, 442, 443]
+
+[[nodes]]
+id = 441
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 440
+
+[[nodes]]
+id = 442
+depth = 3
+kind = "speaker"
+speaker = "Matthew"
+text = "I really want to know what's in it. I think Denath is hiding something from us, but we won't know what unless we read that book!"
+parent = 440
+
+[[nodes]]
+id = 443
+depth = 3
+kind = "act"
+text = "end"
+parent = 440
+is_terminal = true
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "option"
+text = "Do you have the demonic sigil mould?"
+parent = 437
+children = [445]
+
+[[nodes]]
+id = 445
+depth = 3
+kind = "act"
+text = "above"
+parent = 444
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "cond"
+text = "With the book in your inventory:"
+parent = -1
+children = [447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 465]
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Did you find that book?"
+parent = 446
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes. The golem saw Josef hide it in one of the broken kilns in the city."
+parent = 446
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Did the golem see what happened to Josef?"
+parent = 446
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It said Denath killed him."
+parent = 446
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Oh no!"
+parent = 446
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "I knew Denath was a dark wizard but I didn't think he'd kill one of his disciples."
+parent = 446
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Let me look at the book then."
+parent = 446
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "box"
+text = "pic=Demonic tome detail.png|Matthew quickly reads the book then hands it back to you."
+parent = 446
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "I don't understand. What's in here that Denath thought was worth killing over? Josef must have worked something out - but what?"
+parent = 446
+
+[[nodes]]
+id = 456
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "But look at the incantation in the book. The words are in the reverse order to the order that Denath taught us."
+parent = 446
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The incantation in the book is backwards?"
+parent = 446
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "More likely the book has the correct incantation and the one Denath taught us was backwards. But what does that mean?"
+parent = 446
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = """
+[Player name], I'm not happy about this ritual. I don't think Agrith-Naar is going to grant all our wishes, I think he's going to kill us all. But if I try to stop it, Denath will kill me like he did Josef!
+"""
+parent = 446
+
+[[nodes]]
+id = 460
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry. I'm here to kill the demon!"
+parent = 446
+
+[[nodes]]
+id = 461
+depth = 2
+kind = "cond"
+text = "Without a dyed Silverlight in your inventory:"
+parent = 446
+children = [462, 463, 464]
+
+[[nodes]]
+id = 462
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But I need find a way to smuggle Silverlight in here. It's the only weapon that can defeat Agrith-Naar!"
+parent = 461
+
+[[nodes]]
+id = 463
+depth = 3
+kind = "speaker"
+speaker = "Matthew"
+text = "Thank goodness! I will try to stall the ritual until you have Silverlight. Hurry!"
+parent = 461
+
+[[nodes]]
+id = 464
+depth = 3
+kind = "act"
+text = "end"
+parent = 461
+is_terminal = true
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "cond"
+text = "With a dyed Silverlight in your inventory:"
+parent = 446
+children = [466, 467, 468]
+
+[[nodes]]
+id = 466
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "This is the demon-slaying sword Silverlight, the only weapon that can kill Agrith-Naar!"
+parent = 465
+
+[[nodes]]
+id = 467
+depth = 3
+kind = "speaker"
+speaker = "Matthew"
+text = "Thank goodness! I think Denath is nearly ready for the ritual. We must prepare!"
+parent = 465
+
+[[nodes]]
+id = 468
+depth = 3
+kind = "act"
+text = "end"
+parent = 465
+is_terminal = true
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "speaker"
+speaker = "Matthew"
+text = "Are you prepared for the ritual? You must be ready to slay Agrith-Naar when he appears."
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "How is it going?"
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "option"
+text = "I don't think Denath is being honest with his wizards."
+parent = -1
+children = [474, 475, 476]
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't think Denath is being honest with his wizards."
+parent = 473
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "Of course he isn't! You expect an evil sorcerer to be honest with anyone?"
+parent = 473
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "act"
+text = "end"
+parent = 473
+is_terminal = true
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "option"
+text = "Tell me more about Agrith-Naar."
+parent = -1
+children = [478]
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "act"
+text = "above"
+parent = 477
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "option"
+text = "Tell me more about Denath."
+parent = -1
+children = [480]
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "act"
+text = "above"
+parent = 479
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "It is time for the ritual to commence!"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "other"
+text = "{{Qact|Denath and the disciples assemble around the center of the room.}}"
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "{{overhead|Player, please take your place in the circle!}}"
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Our evil moment is at hand! You should get to your place in the circle so the ritual can start!"
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Eric"
+text = "We'd better do the ritual!"
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "You ought to get to your place in the circle. Denath wants YOU to lead the ritual."
+parent = -1
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "speaker"
+speaker = "Matthew"
+text = "This is it! Get to your place in the circle and say the words!"
+parent = -1
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "Get to your place in the circle and lead the ritual! I'm so excited!"
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "speaker"
+speaker = "Tanya"
+text = "Get to your place in the circle and lead the ritual! I'm so excited!"
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "speaker"
+speaker = "Denath"
+text = "{{overhead|[Player name] will lead us in the incantation.}}"
+parent = -1
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "select"
+text = "Select a word."
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "option"
+text = "Caldar"
+parent = -1
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "option"
+text = "Nahudu"
+parent = -1
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "option"
+text = "Agrith-Naar"
+parent = -1
+
+[[nodes]]
+id = 502
+depth = 1
+kind = "option"
+text = "Camerinthum"
+parent = -1
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "option"
+text = "Tarren"
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 1]..."
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 1]...}}"
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 2]..."
+parent = -1
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 2]...}}"
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 3]..."
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 3]...}}"
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 4]..."
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 4]...}}"
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 5]!"
+parent = -1
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 5!]}}"
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "cond"
+text = "If you got the incantation wrong:"
+parent = -1
+children = [515, 516]
+
+[[nodes]]
+id = 515
+depth = 2
+kind = "speaker"
+speaker = "Denath"
+text = "You fool! Do it again, and get it right!"
+parent = 514
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "act"
+text = "end"
+parent = 514
+is_terminal = true
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "cond"
+text = "If you got the incantation correct:"
+parent = -1
+children = [518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534]
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "box"
+text = "A magic circle appears in the floor..."
+parent = 517
+
+[[nodes]]
+id = 519
+depth = 2
+kind = "speaker"
+speaker = "Jennifer"
+text = "Oh my gods!"
+parent = 517
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "speaker"
+speaker = "Eric"
+text = "He disappeared!"
+parent = 517
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "speaker"
+speaker = "Patrick"
+text = "Where'd he go?"
+parent = 517
+
+[[nodes]]
+id = 522
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Of course! How could we be so stupid?"
+parent = 517
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happened?"
+parent = 517
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "What do you get when you perform a summoning ritual backwards?"
+parent = 517
+
+[[nodes]]
+id = 525
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Denath was Agrith-Naar all along! We've just helped him return to his own dimension!"
+parent = 517
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "other"
+text = "{{Colour|#800000|BOOM!}}"
+parent = 517
+
+[[nodes]]
+id = 527
+depth = 2
+kind = "speaker"
+speaker = "Jennifer"
+text = "What was that?!"
+parent = 517
+
+[[nodes]]
+id = 528
+depth = 2
+kind = "speaker"
+speaker = "Tanya"
+text = "Look! The portal's closing!"
+parent = 517
+
+[[nodes]]
+id = 529
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "I'm getting out of here!"
+parent = 517
+
+[[nodes]]
+id = 530
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "No, don't leave!"
+parent = 517
+
+[[nodes]]
+id = 531
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Who knows what Denath could do now?"
+parent = 517
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "We've got to perform the ritual again so you can kill Agrith-Naar. But we need eight people!"
+parent = 517
+
+[[nodes]]
+id = 533
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Quick, Snotra, you've got to get those three to come back! And you'd better take Denath's sigil and find one more person to help."
+parent = 517
+
+[[nodes]]
+id = 534
+depth = 2
+kind = "act"
+text = "end"
+parent = 517
+is_terminal = true
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "speaker"
+speaker = "Matthew"
+text = "We've got to perform the ritual again, forwards this time, so you can kill Agrith-Naar. I'll prepare for it here while you find four more people."
+parent = -1
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 537
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [538, 539, 540]
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay!"
+parent = 537
+
+[[nodes]]
+id = 539
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Hurry!"
+parent = 537
+
+[[nodes]]
+id = 540
+depth = 2
+kind = "act"
+text = "end"
+parent = 537
+is_terminal = true
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "option"
+text = "I don't understand what happened!"
+parent = -1
+children = [542, 543, 544, 545, 546, 547, 548, 549]
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't understand what happened!"
+parent = 541
+
+[[nodes]]
+id = 543
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Denath must have been Agrith-Naar all along!"
+parent = 541
+
+[[nodes]]
+id = 544
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Ellemar's book said that Agrith-Naar can only use his powerful magics from the demon plane."
+parent = 541
+
+[[nodes]]
+id = 545
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Ellemar must have trapped him in human form to stop him using his magics. That must be what the last pages of the book said."
+parent = 541
+
+[[nodes]]
+id = 546
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "So the reason he assembled us was to send him back to his own plane, where he would be much more powerful! That's why the ritual was backwards!"
+parent = 541
+
+[[nodes]]
+id = 547
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "He's already started to close the portal to trap us. Who knows what else he could do?"
+parent = 541
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "But if we can perform the ritual forwards then you can kill him using Silverlight and end his evil magics once and for all!"
+parent = 541
+
+[[nodes]]
+id = 549
+depth = 2
+kind = "act"
+text = "end"
+parent = 541
+is_terminal = true
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "We should have known it was too good to be true."
+parent = -1
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "It's always the same, everyone want to use you. Even demons."
+parent = -1
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "Oh no!"
+parent = -1
+
+[[nodes]]
+id = 554
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "What are we going to do?"
+parent = -1
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "What are we going to do?!!!"
+parent = -1
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "other"
+text = "{{mes|You see Tanya killed by ghosts!}}"
+parent = -1
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "I guess none of us are going to get rich now. Let's do what needs to be done!"
+parent = -1
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "cond"
+text = "Four people left"
+parent = -1
+children = [561]
+
+[[nodes]]
+id = 561
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "We need to get everyone back in here! We need four more people to perform the ritual!"
+parent = 560
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "cond"
+text = "Three people left"
+parent = -1
+children = [563]
+
+[[nodes]]
+id = 563
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "We need to get everyone back in here! We need three more people to perform the ritual!"
+parent = 562
+
+[[nodes]]
+id = 564
+depth = 1
+kind = "cond"
+text = "Two people left"
+parent = -1
+children = [565]
+
+[[nodes]]
+id = 565
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "We'll be ready to perform the ritual soon, but you need to find two more people."
+parent = 564
+
+[[nodes]]
+id = 566
+depth = 1
+kind = "cond"
+text = "One person left"
+parent = -1
+children = [567]
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "We're ready to perform the ritual. We just need one more person!"
+parent = 566
+
+[[nodes]]
+id = 568
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 569
+depth = 1
+kind = "option"
+text = "Okay."
+parent = -1
+children = [570]
+
+[[nodes]]
+id = 570
+depth = 2
+kind = "act"
+text = "above"
+parent = 569
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "option"
+text = "I don't understand what happened!"
+parent = -1
+children = [572]
+
+[[nodes]]
+id = 572
+depth = 2
+kind = "act"
+text = "above"
+parent = 571
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Eric's dead! Agrith-Naar killed him! That's EVIL!"
+parent = -1
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "I mean, it's bad! In a BAD way!"
+parent = -1
+
+[[nodes]]
+id = 575
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "option"
+text = "What happened?"
+parent = -1
+children = [577, 578, 579, 580]
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happened?"
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "The ceiling collapsed without warning! When I moved towards the staircase the walls started to shake."
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "I'm scared of what will happen to me if I try to leave!"
+parent = 576
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "act"
+text = "other"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "option"
+text = "You've got to get back to the throne room!"
+parent = -1
+children = [582, 583, 584, 585, 586, 587]
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You've got to get back to the throne room!"
+parent = 581
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "But the portal is closing! We'll be trapped!"
+parent = 581
+
+[[nodes]]
+id = 584
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Our only hope is to summon Agrith-Naar again so I can kill him! But I need eight people."
+parent = 581
+
+[[nodes]]
+id = 585
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "You can kill him?"
+parent = 581
+
+[[nodes]]
+id = 586
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "You'd better take this then. It was Eric's sigil. Everyone in the ritual will need one!"
+parent = 581
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "other"
+text = "{{qact|Evil Dave re-enters the portal into the throne room}}"
+parent = 581
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "option"
+text = "By using 'evil' as a term of praise..."
+parent = -1
+children = [589, 590, 591]
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "By using 'evil' as a term of praise you have left yourself without a word to describe real evil!"
+parent = 588
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "Evil Dave"
+text = "There's no time for that! Eric's DEAD!"
+parent = 588
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "act"
+text = "other"
+parent = 588
+is_terminal = true
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "That demon killed Eric! When are you going to start the ritual and slay him?"
+parent = -1
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "speaker"
+speaker = "Rug Merchant"
+text = "Good heavens! I've never seen a weather like this before! It looks like a real sandstorm is coming up!"
+parent = -1
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "speaker"
+speaker = "Rug Merchant"
+text = "Ali Morrisane's carpet fleet flies in any weather, though! Do you require our services?"
+parent = -1
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "option"
+text = "Yes please.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "option"
+text = "Tell me about Ali Morrisane.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "option"
+text = "Tell me about this magic carpet fleet.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "option"
+text = "I have some questions.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "option"
+text = "No thanks.|quest=no"
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "What's happening? The wind suddenly picked up! It's a desert sandstorm!"
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Denath was Agrith-Naar all along! We've just sent him back to his own dimension!"
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "Saradomin protect us! From his own dimension he'll be able to wreak havoc!"
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You've got to help me summon him again, so I can slay him with Silverlight!"
+parent = -1
+children = [607]
+
+[[nodes]]
+id = 607
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "All right!"
+parent = 606
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "cond"
+text = "Without a demonic sigil:"
+parent = -1
+children = [609, 610, 611]
+
+[[nodes]]
+id = 609
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But first I'll need to get you a demonic sigil."
+parent = 608
+
+[[nodes]]
+id = 610
+depth = 2
+kind = "speaker"
+speaker = "Father Badden"
+text = "All right, I'll wait here."
+parent = 608
+
+[[nodes]]
+id = 611
+depth = 2
+kind = "act"
+text = "end"
+parent = 608
+is_terminal = true
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "cond"
+text = "While having a demonic sigil for him:"
+parent = -1
+children = [613, 614]
+
+[[nodes]]
+id = 613
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You'll need to hold this sigil for the ritual."
+parent = 612
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "act"
+text = "end"
+parent = 612
+is_terminal = true
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "What's happening? This sandstorm came out of nowhere!"
+parent = -1
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Denath was Agrith-Naar all along! Now he's back in his own dimension!"
+parent = -1
+
+[[nodes]]
+id = 617
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "Oh no! What can we do?"
+parent = -1
+
+[[nodes]]
+id = 618
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You've got to help me perform the ritual again so I can kill him!"
+parent = -1
+
+[[nodes]]
+id = 619
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "Oh! Oh dear! I don't think I could take part in a demonic ritual!"
+parent = -1
+
+[[nodes]]
+id = 620
+depth = 1
+kind = "cond"
+text = "Without a demonic sigil:"
+parent = -1
+children = [621, 622, 623]
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll need to get you a demonic sigil anyway."
+parent = 620
+
+[[nodes]]
+id = 622
+depth = 2
+kind = "speaker"
+speaker = "Father Reen"
+text = "A demonic sigil?!"
+parent = 620
+
+[[nodes]]
+id = 623
+depth = 2
+kind = "act"
+text = "end"
+parent = 620
+is_terminal = true
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "cond"
+text = "While having a demonic sigil for him:"
+parent = -1
+children = [625, 626, 630, 634]
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 624
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "option"
+text = "But isn't that what you and Badden asked me to do?"
+parent = 624
+children = [627, 628, 629]
+
+[[nodes]]
+id = 627
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But isn't that what you and Badden asked me to do?"
+parent = 626
+
+[[nodes]]
+id = 628
+depth = 3
+kind = "speaker"
+speaker = "Father Reen"
+text = "But things are different for me! I'm a monk! What if my order found out?"
+parent = 626
+
+[[nodes]]
+id = 629
+depth = 3
+kind = "act"
+text = "other"
+parent = 626
+is_terminal = true
+
+[[nodes]]
+id = 630
+depth = 2
+kind = "option"
+text = "But the wizards will all die!"
+parent = 624
+children = [631, 632, 633]
+
+[[nodes]]
+id = 631
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But the wizards will all die! Now Agrith-Naar is in his own dimension he's killing them one by one!"
+parent = 630
+
+[[nodes]]
+id = 632
+depth = 3
+kind = "speaker"
+speaker = "Father Reen"
+text = "They should have known better than to join Denath in his evil schemes!"
+parent = 630
+
+[[nodes]]
+id = 633
+depth = 3
+kind = "act"
+text = "other"
+parent = 630
+is_terminal = true
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "option"
+text = "Oh, don't be so simple-minded!"
+parent = 624
+children = [635, 636, 637, 638]
+
+[[nodes]]
+id = 635
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, don't be so simple-minded! You'll be summoning a demon in order to kill it, to rid the world of great evil!"
+parent = 634
+
+[[nodes]]
+id = 636
+depth = 3
+kind = "speaker"
+speaker = "Father Reen"
+text = "Well... all right."
+parent = 634
+
+[[nodes]]
+id = 637
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Now take this demonic sigil, and hurry inside!"
+parent = 634
+
+[[nodes]]
+id = 638
+depth = 3
+kind = "act"
+text = "end"
+parent = 634
+is_terminal = true
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "I sensed a great darkness, as of a demon revelling in its moment of triumph."
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "And now this sandstorm appears, the likes of which I have not seen in three thousand years. What can it mean?"
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Denath was Agrith-Naar all along! We've accidentally helped him get back to his own dimension!"
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "It is a terrible thing for a demon to be victorious. I wish there was something I could do to rectify the situation."
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You could help me summon the demon again so I could kill him!"
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "I cannot do that. It is forbidden for a golem to enter the portal."
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "option"
+text = "But I really need you to."
+parent = -1
+children = [647, 648, 649]
+
+[[nodes]]
+id = 647
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I really need you to!"
+parent = 646
+
+[[nodes]]
+id = 648
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "A golem cannot disobey the commands in its mind!"
+parent = 646
+
+[[nodes]]
+id = 649
+depth = 2
+kind = "act"
+text = "other"
+parent = 646
+is_terminal = true
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "option"
+text = "Why is it forbidden?"
+parent = -1
+children = [651, 652, 653]
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why is it forbidden?"
+parent = 650
+
+[[nodes]]
+id = 652
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "I do not know. I was not privy to the thoughts of my designers, and now they cannot be asked."
+parent = 650
+
+[[nodes]]
+id = 653
+depth = 2
+kind = "act"
+text = "other"
+parent = 650
+is_terminal = true
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "option"
+text = "I could just reprogram you again."
+parent = -1
+children = [655, 656, 657, 658]
+
+[[nodes]]
+id = 655
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I could just reprogram you again."
+parent = 654
+
+[[nodes]]
+id = 656
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "That is true. Perhaps if you opened my head and removed the instruction concerning the portal I would be able to help you."
+parent = 654
+
+[[nodes]]
+id = 657
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "But there must have been a reason why my builders imposed this restriction. I do not know what would happen to me if I went through the portal."
+parent = 654
+
+[[nodes]]
+id = 658
+depth = 2
+kind = "act"
+text = "other"
+parent = 654
+is_terminal = true
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "box"
+text = "You open the golem's head and search through the dusty scrolls inside..."
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "box"
+text = "You find one that says {{Colour|#800000|'THOU SHALT NOT ENTER THE PORTAL OF THAMMARON'"
+parent = -1
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "I sensed a great darkness, as of a demon revelling in its moment of triumph."
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "And now this sandstorm appears, the likes of which I have not seen in three thousand years. What can it mean?"
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Denath was Agrith-Naar all along! We've accidentally helped him get back to his own dimension!"
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "It is a terrible thing for a demon to be victorious. I wish there was something I could do to rectify the situation."
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You could help me summon the demon again so I could kill him!"
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "What are we waiting for? What do I need to do?"
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to get you a demonic sigil."
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "I will wait."
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "I sensed a great darkness, as of a demon revelling in its moment of triumph."
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "And now this sandstorm appears, the likes of which I have not seen in three thousand years. What can it mean?"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Denath was Agrith-Naar all along! We've accidentally helped him get back to his own dimension!"
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "It is a terrible thing for a demon to be victorious. I wish there was something I could do to rectify the situation."
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You could help me summon the demon again so I could kill him!"
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "What are we waiting for? What do I need to do?"
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "cond"
+text = "While having a demonic sigil:"
+parent = -1
+children = [677, 678]
+
+[[nodes]]
+id = 677
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Take this demonic sigil and go through the portal."
+parent = 676
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "act"
+text = "end"
+parent = 676
+is_terminal = true
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "cond"
+text = "Without a demonic sigil:"
+parent = -1
+children = [680, 681, 682]
+
+[[nodes]]
+id = 680
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to get you a demonic sigil."
+parent = 679
+
+[[nodes]]
+id = 681
+depth = 2
+kind = "speaker"
+speaker = "Clay golem"
+text = "I will wait."
+parent = 679
+
+[[nodes]]
+id = 682
+depth = 2
+kind = "act"
+text = "end"
+parent = 679
+is_terminal = true
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "Strength low..."
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "This realm... sapping strength... combat capability impaired..."
+parent = -1
+
+[[nodes]]
+id = 685
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "This must be... reason... portal forbidden..."
+parent = -1
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I just need your help with the ritual. Do you think you can do that?"
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "Speech functions not impaired."
+parent = -1
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "Let's get this ritual over with! I don't want to spend any more time with that golem than I have to!"
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's your problem with the golem? It doesn't mind you!"
+parent = -1
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "Bah!"
+parent = -1
+
+[[nodes]]
+id = 692
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "So Agrith-Naar was trapped in our dimension all along, and didn't have any influence until the wizards un- summoned him?"
+parent = -1
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "I thought slaying him would make the world better, but now we're fighting to return it to how it was before!"
+parent = -1
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps we can't blame demons for everything that's wrong with the world. Sometimes it's just not that simple."
+parent = -1
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Matthew"
+text = "We've got eight people now. Are you ready to summon Agrith-Naar and slay him?"
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [700, 704, 708]
+
+[[nodes]]
+id = 700
+depth = 2
+kind = "cond"
+text = "Without a demonic sigil:"
+parent = 699
+children = [701, 702, 703]
+
+[[nodes]]
+id = 701
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 700
+
+[[nodes]]
+id = 702
+depth = 3
+kind = "speaker"
+speaker = "Matthew"
+text = "Where's your demonic sigil? You'll need that in order to lead the ritual."
+parent = 700
+
+[[nodes]]
+id = 703
+depth = 3
+kind = "act"
+text = "end"
+parent = 700
+is_terminal = true
+
+[[nodes]]
+id = 704
+depth = 2
+kind = "cond"
+text = "With a demonic sigil but without Silverlight:"
+parent = 699
+children = [705, 706, 707]
+
+[[nodes]]
+id = 705
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 704
+
+[[nodes]]
+id = 706
+depth = 3
+kind = "speaker"
+speaker = "Matthew"
+text = "Where is Silverlight? It's impossible to kill Agrith-Naar without that magic sword!"
+parent = 704
+
+[[nodes]]
+id = 707
+depth = 3
+kind = "act"
+text = "end"
+parent = 704
+is_terminal = true
+
+[[nodes]]
+id = 708
+depth = 2
+kind = "cond"
+text = "With a demonic sigil and Silverlight:"
+parent = 699
+children = [709, 710]
+
+[[nodes]]
+id = 709
+depth = 3
+kind = "speaker"
+speaker = "Matthew"
+text = "*gulp*  Okay, here we go..."
+parent = 708
+
+[[nodes]]
+id = 710
+depth = 3
+kind = "act"
+text = "end"
+parent = 708
+is_terminal = true
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [712, 713, 714]
+
+[[nodes]]
+id = 712
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 711
+
+[[nodes]]
+id = 713
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Do hurry! We haven't got much time!"
+parent = 711
+
+[[nodes]]
+id = 714
+depth = 2
+kind = "act"
+text = "end"
+parent = 711
+is_terminal = true
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "option"
+text = "I don't understand what happened!"
+parent = -1
+children = [716]
+
+[[nodes]]
+id = 716
+depth = 2
+kind = "act"
+text = "above"
+parent = 715
+
+[[nodes]]
+id = 717
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "Strength low..."
+parent = -1
+
+[[nodes]]
+id = 719
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "This realm... sapping strength... combat capability impaired..."
+parent = -1
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 721
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "We'd better get on with the ritual. Let's get this over with!"
+parent = -1
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Hurry up with the ritual! That demon killed Eric!"
+parent = -1
+
+[[nodes]]
+id = 724
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 725
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "I guess none of us are going to get rich now. Let's do what needs to be done!"
+parent = -1
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "You ought to get to the head of the circle and lead the incantation. Let's get this over with."
+parent = -1
+
+[[nodes]]
+id = 728
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 729
+depth = 1
+kind = "speaker"
+speaker = "Matthew"
+text = "What are we waiting for? You must lead the ritual and kill Agrith-Naar! We're all counting on you!"
+parent = -1
+
+[[nodes]]
+id = 730
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "select"
+text = "Select a word."
+parent = -1
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "option"
+text = "Caldar"
+parent = -1
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "option"
+text = "Nahudu"
+parent = -1
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "option"
+text = "Agrith-Naar"
+parent = -1
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "option"
+text = "Camerinthum"
+parent = -1
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "option"
+text = "Tarren"
+parent = -1
+
+[[nodes]]
+id = 737
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 1]..."
+parent = -1
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 1]...}}"
+parent = -1
+
+[[nodes]]
+id = 739
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 2]..."
+parent = -1
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 2]...}}"
+parent = -1
+
+[[nodes]]
+id = 741
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 3]..."
+parent = -1
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 3]...}}"
+parent = -1
+
+[[nodes]]
+id = 743
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 4]..."
+parent = -1
+
+[[nodes]]
+id = 744
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 4]...}}"
+parent = -1
+
+[[nodes]]
+id = 745
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "[Word 5]!"
+parent = -1
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "speaker"
+speaker = "[Everyone]"
+text = "{{overhead|[Word 5!]}}"
+parent = -1
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "cond"
+text = "If you did the incantation backwards:"
+parent = -1
+children = [748, 749]
+
+[[nodes]]
+id = 748
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "No, we need to perform the ritual forwards, as it appears in the book!"
+parent = 747
+
+[[nodes]]
+id = 749
+depth = 2
+kind = "act"
+text = "end"
+parent = 747
+is_terminal = true
+
+[[nodes]]
+id = 750
+depth = 1
+kind = "cond"
+text = "If you got the incantation correct:"
+parent = -1
+children = [751, 752, 753, 754, 755, 756, 757, 758, 759]
+
+[[nodes]]
+id = 751
+depth = 2
+kind = "speaker"
+speaker = "Agrith Naar"
+text = "Matthew!"
+parent = 750
+
+[[nodes]]
+id = 752
+depth = 2
+kind = "speaker"
+speaker = "Agrith Naar"
+text = "How dare you summon me?"
+parent = 750
+
+[[nodes]]
+id = 753
+depth = 2
+kind = "other"
+text = "{{qact|Agrith-Naar kills Matthew}}"
+parent = 750
+
+[[nodes]]
+id = 754
+depth = 2
+kind = "speaker"
+speaker = "Matthew"
+text = "Aaaargh!"
+parent = 750
+
+[[nodes]]
+id = 755
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "He didn't summon you."
+parent = 750
+
+[[nodes]]
+id = 756
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I did!"
+parent = 750
+
+[[nodes]]
+id = 757
+depth = 2
+kind = "speaker"
+speaker = "Agrith Naar"
+text = "Then prepare to die!"
+parent = 750
+
+[[nodes]]
+id = 758
+depth = 2
+kind = "other"
+text = "{{qact|Agrith-Naar attacks the player}}"
+parent = 750
+
+[[nodes]]
+id = 759
+depth = 2
+kind = "act"
+text = "end"
+parent = 750
+is_terminal = true
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "So that's Agrith-Naar's true form! Quickly, slay him with Silverlight!"
+parent = -1
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "Strength low..."
+parent = -1
+
+[[nodes]]
+id = 763
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "This realm... sapping strength... combat capability impaired..."
+parent = -1
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "This must be... reason... portal forbidden..."
+parent = -1
+
+[[nodes]]
+id = 765
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "Help! Quickly, use Silverlight!"
+parent = -1
+
+[[nodes]]
+id = 767
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Kill him, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "Help! Save me from the demon!"
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "Help!"
+parent = -1
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "box"
+text = "pic=Darklight detail.png|You try to wipe Silverlight clean, but Agrith-Naar's blood has fused with the blade. You heft the sword and sense that it has become more powerful."
+parent = -1
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "box"
+text = "You feel the power flowing up into your arm. You can direct it into any combat skill..."
+parent = -1
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "select"
+text = "Select a skill to advance"
+parent = -1
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "option"
+text = "* Strength *"
+parent = -1
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "option"
+text = "* Attack *"
+parent = -1
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "option"
+text = "* Defence *"
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "option"
+text = "--- More ---"
+parent = -1
+children = [781, 782, 783, 784, 785]
+
+[[nodes]]
+id = 781
+depth = 2
+kind = "select"
+text = "Select a skill to advance"
+parent = 780
+
+[[nodes]]
+id = 782
+depth = 2
+kind = "option"
+text = "* Hitpoints *"
+parent = 780
+
+[[nodes]]
+id = 783
+depth = 2
+kind = "option"
+text = "* Magic *"
+parent = 780
+
+[[nodes]]
+id = 784
+depth = 2
+kind = "option"
+text = "* Ranged *"
+parent = 780
+
+[[nodes]]
+id = 785
+depth = 2
+kind = "option"
+text = "--- Previous ---"
+parent = 780
+children = [786]
+
+[[nodes]]
+id = 786
+depth = 3
+kind = "act"
+text = "initial"
+parent = 785
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "speaker"
+speaker = "Clay golem"
+text = "Demon is dead... regret... could not assist."
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, Golem, you've done enough demon- slaying!"
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "speaker"
+speaker = "Patrick"
+text = "So Agrith-Naar was never going to do anything for us. I suppose I'll have to make my fortune the hard way!"
+parent = -1
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "So Agrith-Naar was trapped in our dimension all along, and didn't have any influence until the wizards un- summoned him?"
+parent = -1
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "speaker"
+speaker = "Father Reen"
+text = "I thought slaying him would make the world better, but we've just returned it to how it was before!"
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps we can't blame demons for everything that's wrong with the world. Sometimes it's just not that simple."
+parent = -1
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "speaker"
+speaker = "Father Badden"
+text = "I thought golems were servants of evil, but that one helped us to slay a demon. Perhaps golems aren't so bad after all!"
+parent = -1
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "speaker"
+speaker = "Jennifer"
+text = "At least that's all over."
+parent = -1
+
+[[nodes]]
+id = 800
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 801
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Thank goodness that's over!"
+parent = -1
+
+[[nodes]]
+id = 802
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Goodness?"
+parent = -1
+
+[[nodes]]
+id = 803
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "I'm not going to try to be evil any more. From now on I'm going to be good!"
+parent = -1
+
+[[nodes]]
+id = 804
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

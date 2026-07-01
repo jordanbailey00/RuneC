@@ -1,0 +1,1778 @@
+title = "Transcript:2026 Easter event"
+npcs = ["Easter Bunny", "Archibald"]
+node_count = 226
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, Easter Bunny. Is everything alright?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh my, oh my!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's wrong?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "No, no. This can't be happening!"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Take a deep breath, calm down. Tell me what's wrong."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I thought for once everything would run as smooth as milk chocolate."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I had everything prepared! The eggs, the baskets - I even straightened my ears before I got here."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Straightened your ears? How would you even-"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "And then disaster struck! I counted my eggs backwards, forwards, upside-down and up, but alas... One is missing."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure you brought the right amount?"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Absolutely! I have an entire year to plan for Easter. What do you think I do when I'm not here celebrating with you?"
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I suppose I never thought about that."
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I'm at home, painting and counting eggs, of course! And tending to my chickens."
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh, I can't stomach this. [player name], won't you help me find the missing egg?"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "select"
+text = "Start the Easter event?"
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [16, 17, 18, 19, 20, 21, 22, 23, 24]
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thank you! Archibald left a note before he left. It may help you find him. It's on a table just over there."
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "He is a curious one. Whenever he hears of interesting places, he tends to want to go there."
+parent = 15
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Archibald? You named the egg?"
+parent = 15
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Of course. I name all my eggs. There's also Eggward, Eggon, Leggolas and Greggory, to name a few."
+parent = 15
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you teach them to write, too?"
+parent = 15
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "{{colour|#0000b2|--The Easter Bunny winks at you.--}}"
+parent = 15
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Go on now, before he travels too far!"
+parent = 15
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Guess I'm off to chase an egg."
+parent = 15
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "act"
+text = "end"
+parent = 15
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [26, 27, 28]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have time at the moment, sorry."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh Archibald, oh Archibald. Wheresoever art thou, Archibald?"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should probably talk to the Easter Bunny before I take anything."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [32, 33]
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up the note."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "box"
+text = "pic=Scribbled notes detail.png|You pick up the note left by Archibald."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Did you have a look at the note?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet, no."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "It's on a table just over there, you should take it and give it a read."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ok!"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I lost the notes."
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [43, 44]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thats{{sic}} okay, I made some copies but you'll need to make some space to be able to take them."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thats{{sic}} okay, I made some copies so here you go."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [50, 51]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You should read the note Archibald left you."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [53, 54]
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "It sounds like you must seek out a potion maker. Try in west Varrock."
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "act"
+text = "end"
+parent = 52
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "cond"
+text = "If the player does not have both hands free:"
+parent = -1
+children = [56, 57]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "box"
+text = "You need both hands free to catch Archibald."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "act"
+text = "end"
+parent = 55
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [59, 60]
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up Archibald."
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "end"
+parent = 58
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "box"
+text = "As you reach for Archibald, he tumbles away. You pick up the note he left behind."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [66, 67]
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "A bendy stick? Sounds like some sort of weapon. Try one of the shops near the centre of Varrock."
+parent = 65
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "act"
+text = "end"
+parent = 65
+is_terminal = true
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [69, 70]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Ah, an egg box. The solution is usually near where you found it. Try searching the Archery shop for clues."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "act"
+text = "end"
+parent = 68
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "cond"
+text = "If the player does not have both hands free:"
+parent = -1
+children = [72, 73]
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "box"
+text = "You need both hands free to catch Archibald."
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [75, 76]
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up Archibald."
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "end"
+parent = 74
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "box"
+text = "pic=Egg box detail.png|You find a wooden egg that needs to be unlocked."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "other"
+text = "{{mes|That didn't seem to work.}}"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "box"
+text = "pic=Scribbled notes detail.png|You manage to open the egg and inside you find a note."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [85, 86]
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You should read the note Archibald left you. It came from the egg box in the Archery shop in west Varrock."
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "end"
+parent = 84
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [88, 89]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Archibald always liked a good view and the sound of church bells. I hear north east Varrock may be good."
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "cond"
+text = "If the player isn't holding the scribbled notes:"
+parent = -1
+children = [91, 92]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "box"
+text = "pic=Scribbled notes detail.png|I should bring my notes with me incase{{sic"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "end"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "cond"
+text = "If the player is holding the scribbled notes:"
+parent = -1
+children = [94, 95, 96, 97, 98]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aha, this time I got you."
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "other"
+text = "{{qact|Archibald tips slowly off the wall}}"
+parent = 93
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here we go again."
+parent = 93
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "box"
+text = "You pick up the note left behind by Archibald after his escape."
+parent = 93
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "act"
+text = "end"
+parent = 93
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You should read the note Archibald left you at the top of the church in north east Varrock."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [105, 106]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "A shiny, pointy stick is likely another weapon. Try the shops in central Varrock."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "cond"
+text = "If the player does not have both hands free:"
+parent = -1
+children = [108, 109]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "box"
+text = "You need both hands free to catch Archibald."
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "act"
+text = "end"
+parent = 107
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [111, 112]
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up Archibald."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "act"
+text = "end"
+parent = 110
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "box"
+text = "You find Archibald, but before you could grab him, he tumbles away once more. You grab the note he left behind."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [118, 119]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You should read the note Archibald left you at the sword shop in central Varrock."
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [121, 122]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Rumours say Zamorakians hang out in south east Varrock. Maybe try there?"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "act"
+text = "end"
+parent = 120
+is_terminal = true
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "cond"
+text = "If the player does not have both hands free:"
+parent = -1
+children = [124, 125]
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "box"
+text = "You need both hands free to catch Archibald."
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "act"
+text = "end"
+parent = 123
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [127, 128]
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up Archibald."
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "act"
+text = "end"
+parent = 126
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "box"
+text = "You find Archibald, but he swiftly tumbles out of your hands. You spot an anagram he left behind and pick it up."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [134, 135]
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You should read the note Archibald left you at the Zamorakian chapel in south east Varrock."
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [137, 138]
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "An anagram, huh? I bet it's a location in Varrock. Probably an inn - that's where I would go."
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "act"
+text = "end"
+parent = 136
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "cond"
+text = "If the player does not have both hands free:"
+parent = -1
+children = [140, 141]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "box"
+text = "You need both hands free to catch Archibald."
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "act"
+text = "end"
+parent = 139
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [143, 144]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up Archibald."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "end"
+parent = 142
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "box"
+text = "pic=Egg box detail.png|You find a decoy egg."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "box"
+text = "pic=Scribbled notes detail.png|You open the egg and inside you find a note."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [152, 153]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You should read the note Archibald left you at the Blue Moon Inn in the south of Varrock."
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "act"
+text = "end"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [155, 156]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "There's only one king around these parts. He lives in Varrock Palace."
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "end"
+parent = 154
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "cond"
+text = "If the player does not have both hands free:"
+parent = -1
+children = [158, 159]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "box"
+text = "You need both hands free to catch Archibald."
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "act"
+text = "end"
+parent = 157
+is_terminal = true
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [161, 162]
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up Archibald."
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "act"
+text = "end"
+parent = 160
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "box"
+text = "You find Archibald. You look away for a split second, but he's gone again. You grab the note he left behind."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you help me understand where Archibald is?"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Certainly, let me see what Archibald has left you with..."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "cond"
+text = "If the player has not read the note yet:"
+parent = -1
+children = [168, 169]
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "You should read the note Archibald left you at the throne room in Varrock Palace."
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "act"
+text = "end"
+parent = 167
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "cond"
+text = "If the player has already read the note:"
+parent = -1
+children = [171, 172]
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I remember seeing a massive vault under the bank here in west Varrock."
+parent = 170
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "act"
+text = "end"
+parent = 170
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "cond"
+text = "If the player does not have both hands free:"
+parent = -1
+children = [174, 175]
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "box"
+text = "You need both hands free to catch Archibald."
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "act"
+text = "end"
+parent = 173
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [177, 178]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "box"
+text = "You don't have enough space to pick up Archibald."
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "act"
+text = "end"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Got you! You're not getting away this time!"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Did you find Archibald yet?"
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found the e- I mean, Archibald."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Amazing! Archibald, my beloved. Didn't I tell you not to go running off like that?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Archibald"
+text = "{{Colour|#0000b2|--Archibald appears to whisper something intangible to the Easter Bunny.--}}"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Really? Is that so?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Archibald"
+text = "{{Colour|#0000b2|--Archibald nods to the Easter Bunny.--}}"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thank you for finding Archibald, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "I have something fun for you."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "cond"
+text = "If the player has insufficient inventory space:"
+parent = -1
+children = [192, 193, 194]
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "box"
+text = "You need [{{color|#ff0000|1"
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Come back when you have more space in your inventory."
+parent = 191
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "act"
+text = "end"
+parent = 191
+is_terminal = true
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "other"
+text = "{{qact|Event completion screen pops up.}}"
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Archibald enjoyed your adventure so much that he'd like to travel with you."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thank you for finding Archibald, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Thank you again for finding Archibald, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're very welcome."
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "option"
+text = "What are you going to do now?"
+parent = -1
+children = [204, 205, 206, 207, 208]
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you going to do now?"
+parent = 203
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "My eggs and I are going to spread the Easter cheer to the fine city of Varrock."
+parent = 203
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Many people grow up without chocolate, you know. It's just not right."
+parent = 203
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So true. What has the world come to?"
+parent = 203
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "act"
+text = "other"
+parent = 203
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "option"
+text = "Why did you decide to celebrate Easter in Varrock?"
+parent = -1
+children = [210, 211, 212, 213, 214, 215, 216, 217]
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why did you decide to celebrate Easter in Varrock?"
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "All of Gielinor deserve to celebrate Easter. I figured Varrock is a particularly busy place."
+parent = 209
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "By positioning myself here I maximise my CTPOTR."
+parent = 209
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "C.. T.. what?"
+parent = 209
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "CTPOTR. Chocolate to person over time ratio. You need to maximise your reach and minimise time spent, to optimise value."
+parent = 209
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see. I never realised how seriously you took this."
+parent = 209
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Of course. Easter only happens once a year. I have to make the most out of it."
+parent = 209
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "other"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "option"
+text = "Can you tell me more about the Easter eggs?"
+parent = -1
+children = [219, 220, 221, 222, 223, 224, 225]
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about the Easter eggs?"
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "The eggs are a family tradition. Hatching them, caring for them, watching them develop. This is the job of an Easter Bunny."
+parent = 218
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hold on. Are you saying there are more Easter bunnies?"
+parent = 218
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Oh yes, my mother was one. And my father. And their parents before them."
+parent = 218
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Easter Bunny"
+text = "Maybe one day you can become one too!"
+parent = 218
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm more of an adventurer-type person, myself."
+parent = 218
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "act"
+text = "other"
+parent = 218
+is_terminal = true

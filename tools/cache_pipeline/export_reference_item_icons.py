@@ -11,16 +11,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 from pathlib import Path
 
 
-DEFAULT_REFERENCE = Path(
-    "/home/joe/projects/runescape-rl-reference/osrsreboxed-db/docs/items-icons"
+DEFAULT_REFERENCE = (
+    Path(raw) if (raw := os.environ.get("RUNEC_REFERENCE_ITEM_ICONS")) else None
 )
 DEFAULT_OUTPUT = Path("data/sprites/items")
-DEFAULT_STACKED_ITEMS = Path(
-    "/home/joe/projects/runescape-rl-reference/osrsreboxed-db/data/items/items-stacked.json"
+DEFAULT_STACKED_ITEMS = (
+    Path(raw) if (raw := os.environ.get("RUNEC_REFERENCE_STACKED_ITEMS")) else None
 )
 DEFAULT_VARIANTS_OUTPUT = DEFAULT_OUTPUT / "item_stack_variants.tsv"
 
@@ -125,6 +126,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--variants-output", type=Path, default=DEFAULT_VARIANTS_OUTPUT)
     args = parser.parse_args(argv)
 
+    if args.reference is None:
+        raise SystemExit(
+            "reference item icon directory required; pass --reference or set "
+            "RUNEC_REFERENCE_ITEM_ICONS"
+        )
     if not args.reference.is_dir():
         raise SystemExit(f"reference item icon directory not found: {args.reference}")
     args.output.mkdir(parents=True, exist_ok=True)
@@ -140,7 +146,10 @@ def main(argv: list[str] | None = None) -> int:
         for quantity in COIN_VISUAL_QUANTITIES:
             shutil.copy2(coin, args.output / f"item_995_{quantity}.png")
 
-    variants = write_stack_variants(args.stacked_items, args.variants_output)
+    variants = (
+        write_stack_variants(args.stacked_items, args.variants_output)
+        if args.stacked_items is not None else 0
+    )
     print(f"copied {copied} item icons to {args.output}")
     if variants:
         print(f"wrote {variants} stack icon variants to {args.variants_output}")

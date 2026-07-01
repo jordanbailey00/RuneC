@@ -1,0 +1,18 @@
+id = "normalization"
+format = "binary"
+path = "data/defs/normalization.bin"
+magic_label = "NORM"
+magic_u32 = "0x4D524F4E"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 item_count", "u32 npc_count", "u32 source_count"]
+producer = "tools/export_normalization.py"
+consumers = ["rc-core/normalization.c"]
+source_dataset = "data/defs/items.bin, data/defs/npc_defs.bin, acquisition index data"
+row_fields = [
+  "item rows[item_count]: u32 item_id, u32 canonical_id, u32 noted_id, u32 placeholder_id, u32 key_hash, u16 flags",
+  "npc rows[npc_count]: u32 npc_id, u32 canonical_id, u32 key_hash, u16 flags",
+  "source rows[source_count]: u8 kind, u32 key_hash, u32 ref_id",
+]
+compatibility = "Loader accepts versions 1 through current_version and rejects version 0 or newer versions."

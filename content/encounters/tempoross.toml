@@ -1,0 +1,59 @@
+# Tempoross — Fishing skilling boss. Group encounter: fish harpoonfish
+# from ponds, feed to cannons, fire cannons at Tempoross. Manage
+# storm damage + water-rising mechanic.
+
+name = "Tempoross"
+slug = "tempoross"
+npc_ids = [10569]
+source_pages = ["Tempoross", "Tempoross/Strategies"]
+encounter_type = "skilling_boss"
+
+[[phases]]
+id = "active"
+enter_at_hp_pct = 100
+script = "tempoross_skilling_loop"
+
+[[mechanics]]
+name = "Storm Damage"
+primitive = "periodic_tile_damage_all_players"
+period_ticks = 10
+params.damage_min = 5
+params.damage_max = 15
+params.room_wide = true
+
+[[mechanics]]
+name = "Water Rising"
+# Water level rises over time; fully-submerged tiles damage + slow.
+primitive = "periodic_water_rise"
+period_ticks = 15
+params.tile_damage_per_tick = 3
+params.submerge_starts_at_tick = 60
+
+[[mechanics]]
+name = "Lightning Strikes"
+primitive = "telegraphed_aoe_tile"
+period_ticks = 8
+params.target_current_tile = true
+params.warning_ticks = 2
+params.damage_min = 15
+params.damage_max = 25
+
+[[mechanics]]
+name = "Harpoonfish Pools"
+primitive = "interactive_resource_nodes"
+# Player fishes from pools; harpoonfish fed to cannons.
+params.resource_name = "Harpoonfish pool"
+params.count = 4
+params.action = "Fish"
+
+[[mechanics]]
+name = "Cannons"
+primitive = "interactive_object_with_feed"
+# Player feeds harpoonfish to cannons; firing cannons deals damage
+# to Tempoross.
+params.object_name = "Ammunition crate"
+params.feed_item = "Harpoonfish"
+params.damage_per_fire = 40
+
+[entry_requirement]
+fishing_level = 35

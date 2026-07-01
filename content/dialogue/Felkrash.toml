@@ -1,0 +1,2353 @@
+title = "Transcript:Felkrash"
+npcs = ["Felkrash", "Cat"]
+node_count = 299
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "Can you train my cat for me?"
+parent = -1
+children = [2, 3, 15, 18]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you train my cat to be a wily cat?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "cond"
+text = "If the player has an overgrown cat:"
+parent = 1
+children = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+[[nodes]]
+id = 4
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you train my cat to be a wily cat?"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 3
+kind = "box"
+text = "Your overgrown cat has grown into a lean mean hunting cat."
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "speaker"
+speaker = "Cat"
+text = "{{overhead|Meeow Meeeoow!}}"
+parent = 3
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "A heroic cat like yours needs a heroic name, don't you think?"
+parent = 3
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "Shall we rename it?"
+parent = 3
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "act"
+text = "opens2=Cat naming"
+parent = 3
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So cat, what do you think of the name?"
+parent = 3
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Kitty"
+text = "Miaaow! {{tmissing|Catspeak amulet}}"
+parent = 3
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about wily cats?"
+parent = 3
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "Of course!"
+parent = 3
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "below"
+parent = 3
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "cond"
+text = "If the player has a wily cat:"
+parent = 1
+children = [16, 17]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "You already have a mature cat, look after that first."
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "act"
+text = "end"
+parent = 15
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "cond"
+text = "If the player does not have a wily or overgrown cat:"
+parent = 1
+children = [19, 20]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "I can only train overgrown cats into wily cats."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "Can you rename my cat?"
+parent = -1
+children = [22, 23, 33]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you rename my cat?"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "cond"
+text = "If the player has a wily or lazy cat:"
+parent = 21
+children = [24, 25, 29]
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "act"
+text = "opens2=Cat naming"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "cond"
+text = "Upon pressing enter on the interface with a cat out on the ground and cat-speak ability:"
+parent = 23
+children = [26, 27, 28]
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "speaker"
+speaker = "Cat"
+text = "Hey [player name], you finally got around to naming me."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sorry I took so long, [cat name], it took a while to come up with a name for you."
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "cond"
+text = "Upon pressing enter on the interface with a cat out on the ground without cat-speak ability:"
+parent = 23
+children = [30, 31, 32]
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "speaker"
+speaker = "Cat"
+text = "Miaaow!"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about wily cats?"
+parent = 29
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "act"
+text = "below"
+parent = 29
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "cond"
+text = "If the player does not have a wily or lazy cat:"
+parent = 21
+children = [34, 35]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "I'll only help you name wily or lazy cats. Bring me one and I'll help you out."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "option"
+text = "Can you tell me more about the pits?"
+parent = -1
+children = [37, 38, 42, 43, 44, 102]
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about the pits?"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "cond"
+text = "If the player does not have a [[Book (Ratpits)|book]] in their inventory:"
+parent = 36
+children = [39, 40, 41]
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "Here take this, you might find it useful."
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "box"
+text = "pic=Book_(Ratpits).png|You are handed the rat pits manual."
+parent = 38
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "act"
+text = "continue"
+parent = 38
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "What do you want to know?"
+parent = 36
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 36
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "option"
+text = "Do you have any pointers for me and my cat?"
+parent = 36
+children = [45, 46, 47, 48, 49, 50, 76]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any pointers for me and my cat?"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "You should wear an Amulet of Catspeak. It will allow you to organise tactics with your cat."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What would be the best tactic to adopt then?"
+parent = 44
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "Well, that depends on your outlook, whether you're ready to risk your cat's life or not and how defensive or aggressive you want your cat to be."
+parent = 44
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 44
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "option"
+text = "I will not risk my cat's life."
+parent = 44
+children = [51, 52, 53, 54, 55, 56, 66]
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I will not risk my cat's life."
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "Well if that's the case then you're left with two choices."
+parent = 50
+
+[[nodes]]
+id = 53
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "You can adopt an ultra defensive strategy, which increases your cat's hitpoints and defence but causes it to flee sooner."
+parent = 50
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "Or you can adopt a less defensive strategy, which will allow your cat to stay in the pit for longer."
+parent = 50
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 50
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "option"
+text = "I think I would adopt an ultra defensive strategy."
+parent = 50
+children = [57, 58, 59, 60, 61, 62, 64]
+
+[[nodes]]
+id = 57
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a very defensive strategy{{sic}}"
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell your cat: 'Just take care of yourself, cat.'"
+parent = 56
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 56
+
+[[nodes]]
+id = 60
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 56
+
+[[nodes]]
+id = 61
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 56
+
+[[nodes]]
+id = 62
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 56
+children = [63]
+
+[[nodes]]
+id = 63
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 56
+children = [65]
+
+[[nodes]]
+id = 65
+depth = 6
+kind = "act"
+text = "below"
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 4
+kind = "option"
+text = "I think I would adopt a less defensive strategy."
+parent = 50
+children = [67, 68, 69, 70, 71, 72, 74]
+
+[[nodes]]
+id = 67
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a less defensive strategy."
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell your cat: 'Stay in for as long as you can.'"
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 66
+
+[[nodes]]
+id = 70
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 66
+
+[[nodes]]
+id = 71
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 66
+
+[[nodes]]
+id = 72
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 66
+children = [73]
+
+[[nodes]]
+id = 73
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 66
+children = [75]
+
+[[nodes]]
+id = 75
+depth = 6
+kind = "act"
+text = "below"
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "option"
+text = "I am willing to risk my cat if it improves my chances."
+parent = 44
+children = [77, 78, 79, 80, 81, 82, 92]
+
+[[nodes]]
+id = 77
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I am willing to risk my cat, if it increases my chances of victory."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you are left with two choices."
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "You could go for all out attack which will boost your cat's attack and strength, but weaken it."
+parent = 76
+
+[[nodes]]
+id = 80
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "Or, go for a less aggressive stance, which will increase your cat's strength and attack to a lesser degree, but carries no defensive penalties."
+parent = 76
+
+[[nodes]]
+id = 81
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 76
+
+[[nodes]]
+id = 82
+depth = 4
+kind = "option"
+text = "I think I would adopt a very aggressive strategy."
+parent = 76
+children = [83, 84, 85, 86, 87, 88, 90]
+
+[[nodes]]
+id = 83
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a very aggressive strategy."
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell your cat: 'Go berserk!'"
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 82
+
+[[nodes]]
+id = 86
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 82
+
+[[nodes]]
+id = 87
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 82
+
+[[nodes]]
+id = 88
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 82
+children = [89]
+
+[[nodes]]
+id = 89
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 82
+children = [91]
+
+[[nodes]]
+id = 91
+depth = 6
+kind = "act"
+text = "below"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "option"
+text = "I think I would adopt a less aggressive strategy."
+parent = 76
+children = [93, 94, 95, 96, 97, 98, 100]
+
+[[nodes]]
+id = 93
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a less aggressive strategy."
+parent = 92
+
+[[nodes]]
+id = 94
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell your cat: 'No guts, no glory!'"
+parent = 92
+
+[[nodes]]
+id = 95
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 92
+
+[[nodes]]
+id = 96
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 92
+
+[[nodes]]
+id = 97
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 92
+
+[[nodes]]
+id = 98
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 92
+children = [99]
+
+[[nodes]]
+id = 99
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 92
+children = [101]
+
+[[nodes]]
+id = 101
+depth = 6
+kind = "act"
+text = "below"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "option"
+text = "What benefits does my cat get from training in the pits?"
+parent = 36
+children = [103, 104, 105, 106, 107, 108, 109, 111]
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What benefits does my cat get from training in the pits?"
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "It depends on what kind of cat you have."
+parent = 102
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "In the Port Sarim pits, your cat will become happier and fitter after fighting."
+parent = 102
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 102
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 102
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 102
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "option"
+text = "I'd like to ask you..."
+parent = 102
+children = [110]
+
+[[nodes]]
+id = 110
+depth = 4
+kind = "act"
+text = "previous"
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "option"
+text = "No thanks"
+parent = 102
+children = [112, 113]
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 4
+kind = "act"
+text = "end"
+parent = 111
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "Can you tell me more about wily cats?"
+parent = -1
+children = [115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127]
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about Wily cats?"
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Of course!"
+parent = 114
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "They're tougher, stronger and faster than other kinds of cats. They have superior hunting skills and can even catch butterflies and kalphite larvae."
+parent = 114
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So are there any drawbacks to owning them?"
+parent = 114
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Wily cats need lots more exercise, otherwise they'll get fat and lazy."
+parent = 114
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's the best way to exercise them?"
+parent = 114
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Bring it hunting or take it to the Rat Pits regularly."
+parent = 114
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Try and keep it happy too, wily cats can be a little nasty when they're cranky."
+parent = 114
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happens if I neglect my cat? Not that I would!"
+parent = 114
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "It'll get fat and lazy and become much worse at hunting. Plus, everyone will know you're a bad cat trainer."
+parent = 114
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I retrain my lazy cat?"
+parent = 114
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Yes, you can get your lazy cat back in shape with lots of rat catching. But you really shouldn't let things get that bad."
+parent = 114
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "end"
+parent = 114
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "option"
+text = "How's the poem going?"
+parent = -1
+children = [129, 130, 131, 132]
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How's the poem going?"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Ah yes, the poem... your performance was incredibly inspiring. I think it'll be a real masterpiece..."
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Just as soon as I get around to writing it all down."
+parent = 128
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "end"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, the face{{sic}} said that you were looking to talk with me."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Indeed, word has gotten to me from our other ratcatcher chapters that you are quite a talent."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I can't take all the credit, I've had more than a little help from my cat."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Modesty, a trait seldom displayed by adventurers these days."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Too many more like you and I'll lose half of my business."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why is that?"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Epic poems of bravery and heroics aren't usually commissioned by the shy and retiring."
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Smokin' Joe said that you know lots about training wily cats."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Indeed I do. It's for this very reason that I requested to talk to you."
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you will show me how to turn my cat into a wily cat?"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "No, not yet."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "*Sighs.*"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "No I need you to carry out just one task for me."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well experience has taught me to expect as much, what must I do?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Nothing too difficult, just rid the port of every single rat, with just one action."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you serious?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Deadly."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "act"
+text = "You see a manic glint in her eye which you had previously missed."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But why? Why one stroke, why not a slow eradication?"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "I want to write a new poem."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But..."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am touched that you want to write an epic poem about me, but why can't you write the poem about seagulls or daffodils or something?"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Well seagulls rarely make good central characters. They're a bit too ... uhm.... flighty."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Besides the poem is about me not you."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sorry I don't follow."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "I myself carried out the very same feat once upon a time."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So why do you need me to repeat your most heroic of feats?"
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "It's all about objectivity and integrity. I need to be utterly divorced from the process."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Umm... ok, I suppose."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So can you tell me how you went about achieving this?"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "No. Therein lies the challenge."
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "*Sigh* Why does it always have to be like this?"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "You haven't completed the task yet."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do I have to do again?"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Rid the port of all its rats with one action."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get to it then."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I know how to carry out the task."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Has the face{{sic}} being{{sic}} telling tall tales again?"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh no, she didn't say a word."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really she didn't."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ha! I did it. Did you see me?"
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Felkrash"
+text = "Yes I saw that, now what can I do for you? Don't keep me overly long, I'm trying to complete my poem."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you show me how to train my cat into a wily cat?"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "cond"
+text = "If the player does not have a lazy cat:"
+parent = -1
+children = [181, 182]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "I can only train overgrown cats into wilycats{{sic}}."
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "act"
+text = "end"
+parent = 180
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "cond"
+text = "If the player does not have a lazy cat:"
+parent = -1
+children = [184, 185]
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "You already have a mature cat, look after that first."
+parent = 183
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "act"
+text = "end"
+parent = 183
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "cond"
+text = "{{tmissing|Unknown condition"
+parent = -1
+children = [187, 188]
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "You should really name your cat."
+parent = 186
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 186
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "Can you train my cat for me?"
+parent = -1
+children = [190, 191, 194, 197]
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you show me how to train my cat into a wily cat?"
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "cond"
+text = "If the player has an overgrown cat:"
+parent = 189
+children = [192, 193]
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "act"
+text = "Your overgrown cat has grown into a lean mean hunting cat."
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 3
+kind = "act"
+text = "end"
+parent = 191
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "cond"
+text = "If the player has a wily cat:"
+parent = 189
+children = [195, 196]
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "You already have a mature cat, look after that first."
+parent = 194
+
+[[nodes]]
+id = 196
+depth = 3
+kind = "act"
+text = "end"
+parent = 194
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "cond"
+text = "If the player does not have a wily or lazy cat:"
+parent = 189
+children = [198, 199]
+
+[[nodes]]
+id = 198
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "I can only train overgrown cats into wilycats{{sic}}."
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 3
+kind = "act"
+text = "end"
+parent = 197
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "option"
+text = "Can you rename my cat?"
+parent = -1
+children = [201, 202, 212]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you rename my cat?"
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "cond"
+text = "If the player has a wily or lazy cat:"
+parent = 200
+children = [203, 204, 208]
+
+[[nodes]]
+id = 203
+depth = 3
+kind = "act"
+text = "Cat naming interface opens."
+parent = 202
+
+[[nodes]]
+id = 204
+depth = 3
+kind = "cond"
+text = "Upon pressing enter on the interface with a cat out on the ground and cat-speak ability:"
+parent = 202
+children = [205, 206, 207]
+
+[[nodes]]
+id = 205
+depth = 4
+kind = "speaker"
+speaker = "Cat"
+text = "Hey [username], you finally got around to naming me."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sorry I took so long, [catname], it took a while to come up with a name for you."
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 4
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "cond"
+text = "Upon pressing enter on the interface with a cat out on the ground without cat-speak ability:"
+parent = 202
+children = [209, 210, 211]
+
+[[nodes]]
+id = 209
+depth = 4
+kind = "speaker"
+speaker = "Cat"
+text = "Miaaow!"
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about Wily cats?"
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 4
+kind = "act"
+text = "below"
+parent = 208
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "cond"
+text = "If the player does not have a wily or lazy cat:"
+parent = 200
+children = [213, 214]
+
+[[nodes]]
+id = 213
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "I'll only help you name wily or lazy cats. Bring me one and I'll help you out."
+parent = 212
+
+[[nodes]]
+id = 214
+depth = 3
+kind = "act"
+text = "end"
+parent = 212
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "Can you tell me more about the pits?"
+parent = -1
+children = [216, 222, 223, 274]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about the pits?"
+parent = 215
+children = [217]
+
+[[nodes]]
+id = 217
+depth = 3
+kind = "cond"
+text = "If the player does not have a [[book (Ratpits)|book]] in their inventory:"
+parent = 216
+children = [218, 219, 220, 221]
+
+[[nodes]]
+id = 218
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "Here take this, you might find it useful{{sic}}"
+parent = 217
+
+[[nodes]]
+id = 219
+depth = 4
+kind = "act"
+text = "receives=a [[book (Ratpits)|book]]"
+parent = 217
+
+[[nodes]]
+id = 220
+depth = 4
+kind = "act"
+text = "You are handed a manual concerning the ratpits."
+parent = 217
+
+[[nodes]]
+id = 221
+depth = 4
+kind = "act"
+text = "continue"
+parent = 217
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Well what do you want to know?"
+parent = 215
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "option"
+text = "Do you have any pointers for me and my cat?"
+parent = 215
+children = [224, 225, 226, 227, 228, 251]
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any pointers for me and my cat?"
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "You should wear an amulet of catspeak. It will allow you to organise tactics with your cat."
+parent = 223
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What would be the best tactic to adopt then?"
+parent = 223
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "Well, that depends on your outlook, whether you're ready to risk your cat's life or not and how defensive or aggressive you want your cat to be."
+parent = 223
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "option"
+text = "I will not risk my cat's life."
+parent = 223
+children = [229, 230, 231, 232, 233, 242]
+
+[[nodes]]
+id = 229
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I will not risk my cat's life."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "Well if that's the case then your{{sic}} are left with two choices."
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "You can adopt an ultra defensive strategy, which increases your cat's hitpoints and defence, the drawback to this is that your cat will flee sooner."
+parent = 228
+
+[[nodes]]
+id = 232
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "Your other option is to adopt a less defensive strategy which will allow your cat to stay in the pit for longer."
+parent = 228
+
+[[nodes]]
+id = 233
+depth = 4
+kind = "option"
+text = "I think I would adopt a very defensive strategy."
+parent = 228
+children = [234, 235, 236, 237, 238, 240]
+
+[[nodes]]
+id = 234
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a very defensive strategy{{sic}}"
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell your cat, 'Just take care of yourself cat.'"
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 233
+
+[[nodes]]
+id = 237
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 233
+
+[[nodes]]
+id = 238
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 233
+children = [239]
+
+[[nodes]]
+id = 239
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 233
+children = [241]
+
+[[nodes]]
+id = 241
+depth = 6
+kind = "act"
+text = "below"
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 4
+kind = "option"
+text = "I think I would adopt a less defensive strategy."
+parent = 228
+children = [243, 244, 245, 246, 247, 249]
+
+[[nodes]]
+id = 243
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a less defensive strategy."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell your cat, 'Stay in for as long as you can.'"
+parent = 242
+
+[[nodes]]
+id = 245
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 242
+
+[[nodes]]
+id = 246
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 242
+
+[[nodes]]
+id = 247
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 242
+children = [248]
+
+[[nodes]]
+id = 248
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 247
+
+[[nodes]]
+id = 249
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 242
+children = [250]
+
+[[nodes]]
+id = 250
+depth = 6
+kind = "act"
+text = "below"
+parent = 249
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "option"
+text = "I am willing to risk my cat if it improves my chances."
+parent = 223
+children = [252, 253, 254, 255, 256, 265]
+
+[[nodes]]
+id = 252
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I am willing to risk my cat, if it increases my chances of victory."
+parent = 251
+
+[[nodes]]
+id = 253
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you are left with two choices."
+parent = 251
+
+[[nodes]]
+id = 254
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "You could go for all out attack which will boost your cat's attack and strength, but weaken it"
+parent = 251
+
+[[nodes]]
+id = 255
+depth = 4
+kind = "speaker"
+speaker = "Felkrash"
+text = "or go for a less aggressive stance which will increase your cat's strength and attack to a lesser degree, but carries no defensive penalties."
+parent = 251
+
+[[nodes]]
+id = 256
+depth = 4
+kind = "option"
+text = "I think I would adopt a very aggressive strategy."
+parent = 251
+children = [257, 258, 259, 260, 261, 263]
+
+[[nodes]]
+id = 257
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a very aggressive strategy{{sic}}"
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell your cat, 'Go berserk!'"
+parent = 256
+
+[[nodes]]
+id = 259
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 256
+
+[[nodes]]
+id = 260
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 256
+
+[[nodes]]
+id = 261
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 256
+children = [262]
+
+[[nodes]]
+id = 262
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 256
+children = [264]
+
+[[nodes]]
+id = 264
+depth = 6
+kind = "act"
+text = "below"
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 4
+kind = "option"
+text = "I think I would adopt a less aggressive strategy."
+parent = 251
+children = [266, 267, 268, 269, 270, 272]
+
+[[nodes]]
+id = 266
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I think I would adopt a less aggressive strategy."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "In that case you should tell this to your cat, 'No guts, no glory!'"
+parent = 265
+
+[[nodes]]
+id = 268
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 265
+
+[[nodes]]
+id = 269
+depth = 5
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 265
+
+[[nodes]]
+id = 270
+depth = 5
+kind = "option"
+text = "I'd like to ask you..."
+parent = 265
+children = [271]
+
+[[nodes]]
+id = 271
+depth = 6
+kind = "act"
+text = "previous3"
+parent = 270
+
+[[nodes]]
+id = 272
+depth = 5
+kind = "option"
+text = "No thanks"
+parent = 265
+children = [273]
+
+[[nodes]]
+id = 273
+depth = 6
+kind = "act"
+text = "below"
+parent = 272
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "option"
+text = "What benefits does my cat get from training in the pits?"
+parent = 215
+children = [275, 276, 277, 278, 279, 280, 282]
+
+[[nodes]]
+id = 275
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What benefits does my cat get from training in the pits?"
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "It depends on what kind of cat you have."
+parent = 274
+
+[[nodes]]
+id = 277
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "In the Port Sarim pits, your cat will become happier and fitter after fighting."
+parent = 274
+
+[[nodes]]
+id = 278
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help."
+parent = 274
+
+[[nodes]]
+id = 279
+depth = 3
+kind = "speaker"
+speaker = "Felkrash"
+text = "Do you have any other questions about the pits?"
+parent = 274
+
+[[nodes]]
+id = 280
+depth = 3
+kind = "option"
+text = "I'd like to ask you..."
+parent = 274
+children = [281]
+
+[[nodes]]
+id = 281
+depth = 4
+kind = "act"
+text = "previous"
+parent = 280
+
+[[nodes]]
+id = 282
+depth = 3
+kind = "option"
+text = "No thanks"
+parent = 274
+children = [283, 284]
+
+[[nodes]]
+id = 283
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 282
+
+[[nodes]]
+id = 284
+depth = 4
+kind = "act"
+text = "end"
+parent = 282
+is_terminal = true
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "option"
+text = "Can you tell me more about wily cats?"
+parent = -1
+children = [286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298]
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me more about Wily cats?"
+parent = 285
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Of course, of course, they're the highest form of cat that I know of."
+parent = 285
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "They're tougher, stronger and faster than other variations of cat, they can catch butterflies and kalphite larva and are far superior to any other type of cat at hunting."
+parent = 285
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So is there any drawbacks to owning them?"
+parent = 285
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Wily cats need looking after or else they get fat and lazy."
+parent = 285
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So how do I look after them then?"
+parent = 285
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "The key is to keep it active, bring it hunting or to the ratpits regularly."
+parent = 285
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Try keep it happy too, they can be a little nasty when they're cranky."
+parent = 285
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What happens if I neglect my cat.. not that I would or anything?"
+parent = 285
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "They would get fat and lazy, be much worse at hunting and would show you up as a really poor cat trainer."
+parent = 285
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I retrain my lazy cat?"
+parent = 285
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Felkrash"
+text = "Yes you can get your lazy cat back in shape with a lot of rat catching, but you really shouldn't let it get into that state in the first place."
+parent = 285
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "act"
+text = "end"
+parent = 285
+is_terminal = true

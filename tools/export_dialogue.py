@@ -1,28 +1,7 @@
 #!/usr/bin/env python3
 """Emit `data/defs/dialogue.bin` from per-transcript TOMLs.
 
-Consumes `data/curated/dialogue/*.toml` (from extract_dialogue.py)
-and flattens them into a single binary file indexable by
-(transcript_id, node_id).
-
-Binary format — 'DLGX' magic:
-  magic u32 | version u32 | transcript_count u32
-  per transcript:
-    slug_len u8 + slug[]                      — sanitized page key
-    npc_count u8 + (npc_name_len u8 + npc_name[])[npc_count]
-    node_count u16
-    per node:
-      id u16
-      parent i16                               — -1 for root
-      depth u8
-      kind u8                                  — 0=speaker 1=option
-                                                  2=select 3=cond
-                                                  4=box 5=act
-                                                  6=other
-      is_terminal u8
-      speaker_len u8 + speaker[]
-      text_len u16 + text[]
-      child_count u16 + child_id[child_count]  — u16 each
+Runtime schema: `schema/defs/dialogue.schema.toml`.
 """
 from __future__ import annotations
 
@@ -31,9 +10,11 @@ import sys
 import tomllib
 from pathlib import Path
 
+from content_paths import content_read_path
+
 ROOT = Path(__file__).resolve().parents[1]
 
-CURATED = ROOT / "data/curated/dialogue"
+CURATED = content_read_path("dialogue")
 OUT = ROOT / "data/defs/dialogue.bin"
 
 DLGX_MAGIC = 0x58474C44  # 'DLGX'

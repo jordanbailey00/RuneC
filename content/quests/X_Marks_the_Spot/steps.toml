@@ -1,0 +1,58 @@
+quest = "X Marks the Spot"
+step_count = 5
+
+[[steps]]
+index = 0
+name = "The first clue"
+links = ["Bob's Brilliant Axes"]
+text = """
+[[File:X Marks the Spot - first clue.png|thumb|left|The spot to dig for the first clue.]]
+The first clue on the treasure scroll will state: "Within the town of Lumbridge lives a man named Bob. He walks out of his door and takes 1 step east, 7 steps north, 5 steps west and 1 step south. Once he arrives, he digs a hole and buries his treasure."
+
+From [[Bob's Brilliant Axes]] (indicated by the [[File:Axe shop icon.png]] icon), follow the directions in the treasure scroll and then dig with a spade. The correct spot is the tile north of the north-western window of the house connected to Bob's Brilliant Axes, directly west of the plant. You will receive the next treasure scroll step.
+{{clear}}
+"""
+
+[[steps]]
+index = 1
+name = "The second clue"
+links = ["Lumbridge Castle", "Cook (Lumbridge)", "Mysterious orb (X Marks the Spot)"]
+text = """
+[[File:X Marks the Spot - second clue.png|thumb|right|The spot to dig for the second clue.]]
+The second clue on the treasure scroll is a map. This will lead to the door behind the [[Lumbridge Castle]] by the [[Cook (Lumbridge)|Cook's]] kitchen. Dig on the tile directly south-west of the large crate and you will receive a [[Mysterious orb (X Marks the Spot)|mysterious orb]].
+"""
+
+[[steps]]
+index = 2
+name = "The third clue"
+links = ["Treasure Trails/Guide/Hot Cold", "The Enchanted Key", "Draynor Village", "Leela", "amulet of glory", "jail guard"]
+text = """
+[[File:X Marks the Spot - third clue.png|thumb|left|The spot to dig for the third clue.]]
+The mysterious orb is used to locate the next clue. Based on an {{wp|Hunt the Thimble|older children's game}}, feel the mysterious orb and it will tell you how close you are to the treasure. Its temperature is based on the distance of the treasure from the player, measured in the number of steps it would take to reach the treasure, ignoring any obstacles (this is the {{wp|Chebyshev distance}} between the player and treasure). Teleport or walk to another location, feel the mysterious orb and see if it has gotten warmer.
+
+The orb works in much the same way as the [[Treasure Trails/Guide/Hot Cold|Hot Cold Treasure Trails]] or [[The Enchanted Key]] miniquest.
+
+The location to dig is just east of [[Draynor Village]], north-west of the jail and south of the wheat field, near [[Leela]]. Dig four steps to the north of the bush there. An [[amulet of glory]] will teleport the player close to the final location, requiring only a short walk north-east. If you are a lower level, watch out for the aggressive [[jail guard]]s nearby. You will obtain another treasure scroll.
+{{clear}}
+"""
+
+[[steps]]
+index = 3
+name = "The fourth clue"
+links = ["Treasure Trails/Guide/Ciphers", "Draynor Village", "ancient casket"]
+text = """
+[[File:X Marks the Spot - fourth clue.png|thumb|right|The spot to dig for the final clue.]]
+The fourth clue is a {{wp|Caesar shift}} that encrypts a location. In order to decode a Caesar-shifted message, you must first count the number of times a letter appears within the cipher. [[Treasure Trails/Guide/Ciphers|See here]] on how to solve a Caesar shift.
+
+The cipher, ESBZOPS QJH QFO, when decoded, is DRAYNOR PIG PEN. Dig in the centre of the pig pen just north of the market in [[Draynor Village]] and you will receive an [[ancient casket]]. As you dig it up, you hear a faint whispering, though you can't make out what it says.
+"""
+
+[[steps]]
+index = 4
+name = "Finishing Up"
+links = ["Port Sarim", "Rusty Anchor Inn", "Great Kourend"]
+text = """
+After obtaining the casket, go to the northernmost dock in [[Port Sarim]], on the docks, outside [[Rusty Anchor Inn]], and give Veos the treasure. When asked what was in it, he will shiftily state it was nothing important, just something that might be useful to him back in [[Great Kourend]].
+
+'''Congratulations, quest complete!'''
+"""

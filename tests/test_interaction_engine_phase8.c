@@ -97,7 +97,6 @@ static RcInteractionDispatchKey key_for(RcInteractionKind kind,
 }
 
 static void test_inventory_equipment_and_widget_hooks(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
@@ -120,47 +119,47 @@ static void test_inventory_equipment_and_widget_hooks(void) {
         key_for(RC_INTERACTION_INVENTORY_ITEM, RC_INTERACTION_OP2);
     key.definition_id = 995;
     key.source_item_id = 995;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &inv));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &inv));
 
     key = key_for(RC_INTERACTION_INVENTORY_ITEM, RC_INTERACTION_USE_ON);
     key.definition_id = 995;
     key.source_item_id = 556;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &item_on_inv));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &item_on_inv));
 
     key = key_for(RC_INTERACTION_INVENTORY_ITEM, RC_INTERACTION_SPELL_ON);
     key.definition_id = 995;
     key.source_spell_id = 321;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &spell_on_inv));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &spell_on_inv));
 
     key = key_for(RC_INTERACTION_EQUIPMENT_ITEM, RC_INTERACTION_OP1);
     key.definition_id = 4151;
     key.source_item_id = 4151;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &equip));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &equip));
 
     key = key_for(RC_INTERACTION_WIDGET, RC_INTERACTION_WIDGET_ACTION);
     key.definition_id = 3;
     key.widget_id = 548;
     key.component_id = 44;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &widget));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &widget));
 
     key = key_for(RC_INTERACTION_WIDGET, RC_INTERACTION_USE_ON);
     key.widget_id = 548;
     key.component_id = 45;
     key.source_item_id = 556;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &item_on_widget));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &item_on_widget));
 
     key = key_for(RC_INTERACTION_WIDGET, RC_INTERACTION_SPELL_ON);
     key.widget_id = 548;
     key.component_id = 46;
     key.source_spell_id = 321;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &spell_on_widget));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &spell_on_widget));
 
     assert(rc_player_interact_inventory_item(world, 4, 1));
     rc_world_tick(world);
@@ -223,7 +222,6 @@ static void test_inventory_equipment_and_widget_hooks(void) {
 }
 
 static void test_item_on_npc_and_spell_on_object_hooks(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
@@ -239,8 +237,8 @@ static void test_item_on_npc_and_spell_on_object_hooks(void) {
         key_for(RC_INTERACTION_NPC, RC_INTERACTION_USE_ON);
     key.definition_id = 901800;
     key.source_item_id = 995;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &item));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &item));
 
     assert(rc_player_use_inventory_item_on_npc(world, 2, uid));
     rc_world_tick(world);
@@ -255,8 +253,8 @@ static void test_item_on_npc_and_spell_on_object_hooks(void) {
     key = key_for(RC_INTERACTION_OBJECT, RC_INTERACTION_SPELL_ON);
     key.definition_id = obj_id;
     key.source_spell_id = 321;
-    assert(rc_interaction_register_handler(&key, phase8_complete_handler,
-                                           &spell));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_complete_handler, &spell));
 
     assert(rc_player_cast_spell_on_object(world, 321, obj_id,
                                           world->player.x + 1,
@@ -273,7 +271,6 @@ static void test_item_on_npc_and_spell_on_object_hooks(void) {
 }
 
 static void test_system_handoff_result_and_no_handler_fallback(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     RcWorld *world = rc_world_create_config(&cfg);
     assert(world);
@@ -285,8 +282,8 @@ static void test_system_handoff_result_and_no_handler_fallback(void) {
         key_for(RC_INTERACTION_OBJECT, RC_INTERACTION_SPELL_ON);
     key.definition_id = obj_id;
     key.source_spell_id = 900;
-    assert(rc_interaction_register_handler(&key, phase8_system_handler,
-                                           &bank));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase8_system_handler, &bank));
     assert(rc_player_cast_spell_on_object(world, 900, obj_id,
                                           world->player.x + 1,
                                           world->player.y,
@@ -311,6 +308,5 @@ int main(void) {
     test_inventory_equipment_and_widget_hooks();
     test_item_on_npc_and_spell_on_object_hooks();
     test_system_handoff_result_and_no_handler_fallback();
-    rc_interaction_clear_handlers();
     return 0;
 }

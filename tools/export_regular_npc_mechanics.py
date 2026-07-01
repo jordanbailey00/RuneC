@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compile regular NPC special-mechanics family data.
 
-Input:  data/curated/regular_npc_special_mechanics.toml
+Input:  content/regular_npc_special_mechanics.toml
 Output: data/defs/regular_npc_mechanics.bin ('RNME' magic)
 Report: tools/reports/regular_npc_mechanics.txt
 """
@@ -14,13 +14,15 @@ import struct
 from pathlib import Path
 from typing import Any
 
+from content_paths import content_read_path
+
 try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover
     tomllib = None
 
 ROOT = Path(__file__).resolve().parents[1]
-CURATED = ROOT / "data/curated/regular_npc_special_mechanics.toml"
+CURATED = content_read_path("regular_npc_special_mechanics.toml")
 NDEF = ROOT / "data/defs/npc_defs.bin"
 OUT = ROOT / "data/defs/regular_npc_mechanics.bin"
 REPORT = ROOT / "tools/reports/regular_npc_mechanics.txt"

@@ -1,0 +1,1428 @@
+title = "Transcript:Mage Arena II"
+npcs = ["Kolodion"]
+node_count = 183
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Kolodion."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Hey there, how are you? Are you enjoying the bloodshed?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "I think I've had enough for now."
+parent = -1
+children = [4, 5, 6]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I've had enough for now."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "A shame. You're a good battle mage. I hope to see you soon."
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "end"
+parent = 3
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "How can I use my new spells outside of the arena?"
+parent = -1
+children = [8, 9, 10, 11, 12, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How can I use my new spells outside of the arena?"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "Experience, my friend, experience. Once you've used the spell enough times in the arena, you'll be able to use them in the rest of Gielinor."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Good stuff."
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "Not so good for the citizens; they won't stand a chance."
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How am I doing so far?"
+parent = 7
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] (unknown) times:"
+parent = 7
+children = [14]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to train with the strike spell inside the arena before you can use it outside."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] (unknown) times:"
+parent = 7
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have completed over half of the training needed to use the strike spell outside of the arena."
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] (unknown) times:"
+parent = 7
+children = [18]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You are almost ready to use the strike spell outside of the arena."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] at least 100 times:"
+parent = 7
+children = [20]
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You're experienced enough to use the strike spell anywhere."
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] (unknown) times:"
+parent = 7
+children = [22]
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to train with the claw spell inside the arena before you can use it outside."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] (unknown) times:"
+parent = 7
+children = [24]
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have completed over half of the training needed to use the claw spell outside of the arena."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] (unknown) times:"
+parent = 7
+children = [26]
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You are almost ready to use the claw spell outside of the arena."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] at least 100 times:"
+parent = 7
+children = [28]
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You're experienced enough to use the claw spell anywhere."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] (unknown) times:"
+parent = 7
+children = [30]
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to train with the flame spell inside the arena before you can use it outside."
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] (unknown) times:"
+parent = 7
+children = [32]
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have completed over half of the training needed to use the flame spell outside of the arena."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] (unknown) times:"
+parent = 7
+children = [34]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You are almost ready to use the flame spell outside of the arena."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] at least 100 times:"
+parent = 7
+children = [36]
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You're experienced enough to use the flame spell anywhere."
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "option"
+text = "Are there any more challenges available?"
+parent = -1
+children = [39, 40, 44, 48]
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are there any more challenges available?"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "cond"
+text = "If player hasn't mastered all the god spells yet:"
+parent = 38
+children = [41, 42, 43]
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to learn how to cast all god spells outside of the arena."
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "I've made a note of the spells you still need to learn in your journal."
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "act"
+text = "end"
+parent = 40
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "cond"
+text = "If player doesn't have 75 Magic:"
+parent = 38
+children = [45, 46, 47]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have indeed shown potential, [player name]."
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "However, a wizard of your level wouldn't stand a chance."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "cond"
+text = "If player has mastered all the god spells and is 75 Magic:"
+parent = 38
+children = [49, 50, 51, 52, 53, 74]
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "I am one of the most powerful mages in existence. But even my power has limitations. There are some beings however that have power exceeding even my own."
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "I have detected three life forces within the Wilderness, each of them giving out a strange magical power, one unlike any I have ever felt before."
+parent = 48
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "If we could harness the power of these beings, I could imbue your god cape with that power, greatly increasing its potential."
+parent = 48
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 48
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "option"
+text = "Great, I've been waiting for an improvement!"
+parent = 48
+children = [54, 55, 56, 57, 58, 71]
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Great, I've been waiting for an improvement!"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What do you need me to do?"
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "speaker"
+speaker = "Kolodion"
+text = "I will need you to kill these three beings and bring me their remains. Even in death, their power should be great enough for me to harness it for our own uses."
+parent = 53
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Where am I supposed to find these beings?"
+parent = 53
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "cond"
+text = "If the player has room in their inventory for the symbol:"
+parent = 53
+children = [59, 60, 61, 62, 63, 65, 67, 69]
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "speaker"
+speaker = "Kolodion"
+text = "Here, take this enchanted symbol of the gods. It will guide you to the creatures."
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 5
+kind = "box"
+text = "pic=Enchanted symbol detail.png|Kolodion hands you an enchanted symbol."
+parent = 58
+
+[[nodes]]
+id = 61
+depth = 5
+kind = "speaker"
+speaker = "Kolodion"
+text = "Bring me the remains of all three magical beings. Do this and I will imbue their combined power into a single god cape of your choice."
+parent = 58
+
+[[nodes]]
+id = 62
+depth = 5
+kind = "select"
+text = "Select an Option"
+parent = 58
+
+[[nodes]]
+id = 63
+depth = 5
+kind = "option"
+text = "Where can I find these beings?"
+parent = 58
+children = [64]
+
+[[nodes]]
+id = 64
+depth = 6
+kind = "act"
+text = "below"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 5
+kind = "option"
+text = "Any advice on fighting the beings?"
+parent = 58
+children = [66]
+
+[[nodes]]
+id = 66
+depth = 6
+kind = "act"
+text = "below"
+parent = 65
+
+[[nodes]]
+id = 67
+depth = 5
+kind = "option"
+text = "Tell me more about these beings."
+parent = 58
+children = [68]
+
+[[nodes]]
+id = 68
+depth = 6
+kind = "act"
+text = "below"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 5
+kind = "option"
+text = "Thanks, bye."
+parent = 58
+children = [70]
+
+[[nodes]]
+id = 70
+depth = 6
+kind = "act"
+text = "below"
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 4
+kind = "cond"
+text = "If the player doesn't have room in their inventory for the symbol:"
+parent = 53
+children = [72, 73]
+
+[[nodes]]
+id = 72
+depth = 5
+kind = "speaker"
+speaker = "Kolodion"
+text = "You'll need to free up an inventory space before we continue."
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 5
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "option"
+text = "Actually, my current cape is fine."
+parent = 48
+children = [75, 76]
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "speaker"
+speaker = "Kolodion"
+text = "I see... If you ever change your mind, you know where to find me."
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "act"
+text = "end"
+parent = 74
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "cond"
+text = "If the player doesn't have an enchanted symbol:"
+parent = -1
+children = [78, 79, 80]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "Here, take this enchanted symbol of the gods. It will guide you to the creatures."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "box"
+text = "pic=Enchanted symbol detail.png|Kolodion hands you an enchanted symbol."
+parent = 77
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "act"
+text = "continues"
+parent = 77
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "cond"
+text = "If the player doesn't have an enchanted symbol and their inventory is full:"
+parent = -1
+children = [82, 83, 84, 85, 90, 94, 105]
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "You'll need to free up an inventory space before we continue."
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "continues"
+parent = 81
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 81
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "option"
+text = "Where can I find these beings?"
+parent = 81
+children = [86, 87, 88, 89]
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find these beings?"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "They can all be found in the Wilderness. The enchanted symbol can track their unique magical energies, leading you to their exact locations."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "Be warned though, the symbol will take a blood sacrifice every time it's used."
+parent = 85
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "act"
+text = "other"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "option"
+text = "Any advice on fighting the beings?"
+parent = 81
+children = [91, 92, 93]
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any advice on fighting the beings?"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "They can't be harmed by normal magic, melee or ranged attacks, you will need to use the god combat spell corresponding to the creature you are fighting."
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "act"
+text = "other"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "option"
+text = "Tell me more about these beings."
+parent = 81
+children = [95, 96, 97, 98, 99, 100, 101, 102, 103, 104]
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more about these beings."
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = """
+One is a justiciar. According to legend, the justiciars were the elite of Saradomin's forces. Some worked alone, operating as assassins behind enemy lines. Others led entire armies in Saradomin's name.
+"""
+parent = 94
+
+[[nodes]]
+id = 97
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "I couldn't tell you why this one wanders the Wilderness, but I suspect he has good reason."
+parent = 94
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "The second is a Demon of Zamorak. From what I can tell, he is completely mad. He roams the Wilderness, killing all who he comes across without mercy. Even his own kind do not escape his fury."
+parent = 94
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "He's known to battle the justiciar quite regularly, perhaps they are old enemies."
+parent = 94
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "The final being is a Guthixian Ent. Like most followers of Guthix, he will avoid combat if possible. Make no mistake though, he is deadly when threatened."
+parent = 94
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "He seems to take great interest in the other two creatures. Maybe he is trying to keep a balance between them."
+parent = 94
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "All three of them give off a unique magical energy, one unlike any I have ever felt before. The fact that the three of them are so different, yet possess powers so similar, is very odd indeed."
+parent = 94
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "I'd be very interested in learning more about the source of their power."
+parent = 94
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "act"
+text = "other"
+parent = 94
+is_terminal = true
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "option"
+text = "Thanks, bye."
+parent = 81
+children = [106, 107, 108]
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, bye."
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "Farewell, [player name]."
+parent = 105
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "act"
+text = "end"
+parent = 105
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "cond"
+text = "If their positions have changed:"
+parent = -1
+children = [110, 111]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "box"
+text = "It appears the creatures have moved locations, the symbol glows slightly as it locates their new positions."
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "act"
+text = "continues"
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "option"
+text = "Saradomin"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "Guthix"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "Zamorak"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "Cancel"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got the remains of the Saradominist justiciar."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "box"
+text = "pic=Justiciar's hand detail.png|Kolodion takes the Justiciar's remains."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Excellent work, [player name], but we aren't finished yet."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Bring me the remains of all three magical beings. Do this and I will imbue their combined power into a single god cape of your choice."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got the remains of the Guthixian Ent."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "box"
+text = "pic=Ent's roots detail.png|Kolodion takes the Ent's remains."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Excellent work, [player name], but we aren't finished yet."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Bring me the remains of all three magical beings. Do this and I will imbue their combined power into a single god cape of your choice."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got the remains of the Zamorakian Demon."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "box"
+text = "pic=Demon's heart detail.png|Kolodion takes the Demon's heart."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Excellent work, [player name], but we aren't finished yet."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Bring me the remains of all three magical beings. Do this and I will imbue their combined power into a single god cape of your choice."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Excellent work, [player name], now you just need to hand me the god cape you wish to have imbued with great power."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "select"
+text = "Imbue your Guthix cape?"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [136, 137, 138]
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "box"
+text = "pic=Imbued guthix cape detail.png|Kolodion takes your cape and imbues it with the power of the gods before handing it back."
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "If you would like me to imbue any more capes, just bring me the remains of the respective creature."
+parent = 135
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "act"
+text = "end"
+parent = 135
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [140]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "cond"
+text = "After already imbuing a cape and without having brought him another Ent's roots:"
+parent = -1
+children = [142, 143]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "You'll have to bring me the Guthix creature's remains to imbue this cape."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "select"
+text = "Imbue your Saradomin cape?"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [146, 147, 148]
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "box"
+text = "pic=Imbued saradomin cape detail.png|Kolodion takes your cape and imbues it with the power of the gods before handing it back."
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "If you would like me to imbue any more capes, just bring me the remains of the respective creature."
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [150]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "cond"
+text = "After already imbuing a cape and without having brought him another Justiciar's hand:"
+parent = -1
+children = [152, 153]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "You'll have to bring me the Saradomin creature's remains to imbue this cape."
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "act"
+text = "end"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "select"
+text = "Imbue your Zamorak cape?"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [156, 157, 158]
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "box"
+text = "pic=Imbued zamorak cape detail.png|Kolodion takes your cape and imbues it with the power of the gods before handing it back."
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "If you would like me to imbue any more capes, just bring me the remains of the respective creature."
+parent = 155
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "act"
+text = "end"
+parent = 155
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [160]
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "cond"
+text = "After already imbuing a cape and without having brought him another Demon's heart:"
+parent = -1
+children = [162, 163]
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "You'll have to bring me the Zamorak creature's remains to imbue this cape."
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "act"
+text = "end"
+parent = 161
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "cond"
+text = "If the player doesn't have an enchanted symbol:"
+parent = -1
+children = [165, 166, 167]
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "Here, take this enchanted symbol of the gods. It will guide you to the creatures."
+parent = 164
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "box"
+text = "pic=Enchanted symbol detail.png|Kolodion hands you an enchanted symbol."
+parent = 164
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "act"
+text = "continues"
+parent = 164
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "cond"
+text = "If the player doesn't have an enchanted symbol and their inventory is full:"
+parent = -1
+children = [169, 170]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "You'll need to free up an inventory space before we continue."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "act"
+text = "continues"
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "If you would like me to imbue any more capes, just bring me the remains of the respective creature."
+parent = -1
+children = [172, 173, 175, 177, 179]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "option"
+text = "Where can I find these beings?"
+parent = 171
+children = [174]
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "act"
+text = "above"
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "option"
+text = "Any advice on fighting the beings?"
+parent = 171
+children = [176]
+
+[[nodes]]
+id = 176
+depth = 3
+kind = "act"
+text = "above"
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "option"
+text = "Tell me more about these beings."
+parent = 171
+children = [178]
+
+[[nodes]]
+id = 178
+depth = 3
+kind = "act"
+text = "above"
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "option"
+text = "Thanks, bye."
+parent = 171
+children = [180]
+
+[[nodes]]
+id = 180
+depth = 3
+kind = "act"
+text = "above"
+parent = 179
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "You may currently have a Saradomin cape, a Guthix cape and a Zamorak cape imbued, just hand over the cape when you're ready."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

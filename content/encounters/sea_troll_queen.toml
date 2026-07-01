@@ -1,0 +1,28 @@
+# Sea Troll Queen — quest boss from Royal Trouble (accessed via
+# Waterbirth / Rellekka shore). Ranged attacks + slam mechanic.
+
+name = "Sea Troll Queen"
+slug = "sea_troll_queen"
+npc_ids = [5126]
+source_pages = ["Sea Troll Queen"]
+
+[[attacks]]
+name = "Melee Slam"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 28
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged Spit"
+style = "ranged"
+max_hit = 24
+warning_ticks = 2
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Slam", "Ranged Spit"]
+
+[entry_requirement]
+quest_required = "Royal Trouble"  # partial completion gates access

@@ -62,8 +62,7 @@ static int chebyshev(int x1, int y1, int x2, int y2) {
 
 static void nearest_npc_tile_to_point(const RcNpc *npc, int px, int py,
                                       int *tx, int *ty) {
-    const RcNpcDef *def = npc->def_id >= 0 && npc->def_id < g_npc_def_count
-                        ? &g_npc_defs[npc->def_id] : NULL;
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
     int size = def && def->size > 0 ? def->size : 1;
     int min_x = npc->x;
     int min_y = npc->y;
@@ -426,9 +425,8 @@ static void emit_player_attack_event(
     event->source_uid = 0;
     event->target_uid = target->uid;
     event->source_definition_id = -1;
-    event->target_definition_id =
-        target->def_id >= 0 && target->def_id < g_npc_def_count
-        ? g_npc_defs[target->def_id].id : -1;
+    const RcNpcDef *target_def = rc_npc_def_for_npc(target);
+    event->target_definition_id = target_def ? target_def->id : -1;
     event->source_x = p->x;
     event->source_y = p->y;
     nearest_npc_tile_to_point(target, p->x, p->y,
@@ -843,11 +841,10 @@ static RcCombatActorState *combat_state_for_actor(RcWorld *world,
 }
 
 static int npc_can_retaliate(const RcNpc *npc) {
-    if (!npc || npc->is_dead || npc->player_untargetable ||
-            npc->def_id < 0 || npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || npc->is_dead || npc->player_untargetable || !def) {
         return 0;
     }
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     return def->attack_speed > 0 && def->max_hit > 0;
 }
 
@@ -923,20 +920,22 @@ static RcCombatTargetRef combat_target_none(void) {
 }
 
 static int npc_footprint_size(const RcNpc *npc) {
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count) return 1;
-    int size = g_npc_defs[npc->def_id].size;
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!def) return 1;
+    int size = def->size;
     return size > 0 ? size : 1;
 }
 
 static RcCombatTargetRef combat_target_from_npc(const RcNpc *npc) {
     RcCombatTargetRef target = combat_target_none();
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || !def) {
         return target;
     }
     int size = npc_footprint_size(npc);
     target.kind = RC_COMBAT_ACTOR_NPC;
     target.uid = npc->uid;
-    target.definition_id = g_npc_defs[npc->def_id].id;
+    target.definition_id = def->id;
     target.tile_x = npc->x;
     target.tile_y = npc->y;
     target.plane = npc->plane;
@@ -1024,7 +1023,7 @@ static void sync_player_combat_state_from_legacy(RcWorld *world,
                              player->num_pending_hits);
     if (player->attack_target >= 0) {
         RcNpc *target = find_npc_by_uid(world, player->attack_target);
-        if (!target || target->def_id < 0 || target->def_id >= g_npc_def_count) {
+        if (!target || !rc_npc_def_for_npc(target)) {
             flags |= RC_COMBAT_STATE_INVALID_TARGET;
         } else if (target->is_dead) {
             player->combat.target = combat_target_from_npc(target);
@@ -1063,8 +1062,8 @@ static void sync_npc_combat_state_from_legacy(RcWorld *world, RcNpc *npc) {
     npc->combat.distance_to_target = -1;
     npc->combat.line_of_sight = 0;
     npc->combat.hp_current = npc->current_hp;
-    npc->combat.hp_max = npc->def_id >= 0 && npc->def_id < g_npc_def_count
-                       ? g_npc_defs[npc->def_id].hitpoints : 0;
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    npc->combat.hp_max = def ? def->hitpoints : 0;
     npc->combat.retaliates = npc_can_retaliate(npc);
     npc->combat.in_multi_combat = world->multi_combat;
     npc->combat.last_hit_timer = npc->last_hit_timer;
@@ -1077,8 +1076,9 @@ static void sync_npc_combat_state_from_legacy(RcWorld *world, RcNpc *npc) {
         } else if (world->player.current_hp <= 0) {
             npc->combat.target = combat_target_from_player(&world->player);
             flags |= RC_COMBAT_STATE_DEAD_TARGET;
+        } else if (!def) {
+            flags |= RC_COMBAT_STATE_INVALID_TARGET;
         } else {
-            const RcNpcDef *def = &g_npc_defs[npc->def_id];
             RcCombatStyle style = npc->combat.selected_npc_style;
             if (style == COMBAT_NONE) {
                 style = rc_combat_npc_preferred_style(def->attack_types);
@@ -1110,8 +1110,8 @@ int rc_combat_start_player_vs_npc(struct RcWorld *world, int player_uid,
                                   int npc_uid) {
     if (!world || player_uid != 0) return 0;
     RcNpc *npc = find_npc_by_uid(world, npc_uid);
-    if (!npc || npc->is_dead || npc->player_untargetable ||
-            npc->def_id < 0 || npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || npc->is_dead || npc->player_untargetable || !def) {
         return 0;
     }
     if (player_locked_by_other_npc(world, npc->uid)) return 0;
@@ -1125,7 +1125,6 @@ int rc_combat_start_player_vs_npc(struct RcWorld *world, int player_uid,
     };
     if (!combat_can_attack_target(world, player_actor, npc_actor)) return 0;
     RcPlayer *player = &world->player;
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     player->attack_target = npc->uid;
     player->attack_target_def_id = def->id;
     if (npc_can_retaliate(npc) &&
@@ -1147,7 +1146,7 @@ int rc_combat_start_npc_vs_player(struct RcWorld *world, int npc_uid,
     if (!world || player_uid != 0) return 0;
     RcNpc *npc = find_npc_by_uid(world, npc_uid);
     if (!npc || npc->is_dead || npc->player_untargetable ||
-            npc->def_id < 0 || npc->def_id >= g_npc_def_count) {
+            !rc_npc_def_for_npc(npc)) {
         return 0;
     }
     if (!npc_can_retaliate(npc)) return 0;
@@ -1333,12 +1332,12 @@ static void combat_tick_player_legacy(struct RcWorld *world) {
         p->attack_target_def_id = -1;
         return;
     }
-    if (target->def_id < 0 || target->def_id >= g_npc_def_count) {
+    const RcNpcDef *target_def = rc_npc_def_for_npc(target);
+    if (!target_def) {
         p->attack_target = -1;
         p->attack_target_def_id = -1;
         return;
     }
-    const RcNpcDef *target_def = &g_npc_defs[target->def_id];
     if (p->attack_target_def_id >= 0 &&
             p->attack_target_def_id != target_def->id) {
         p->attack_target = -1;
@@ -1458,7 +1457,8 @@ static void combat_tick_player_legacy(struct RcWorld *world) {
 static void combat_tick_npc_legacy(struct RcWorld *world, RcNpc *npc) {
     if (npc->is_dead || !npc->active) return;
     if (npc->player_untargetable) return;
-    const RcNpcDef *d = &g_npc_defs[npc->def_id];
+    const RcNpcDef *d = rc_npc_def_for_npc(npc);
+    if (!d) return;
     if (npc->target_uid < 0) {
         if (npc_should_auto_attack_player(world, npc, d)) {
             rc_combat_start_npc_vs_player(world, npc->uid, 0);

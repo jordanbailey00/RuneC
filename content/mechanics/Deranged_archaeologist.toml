@@ -1,0 +1,21 @@
+name = "Deranged archaeologist"
+source_pages = ["Deranged archaeologist", "Deranged archaeologist/Strategies"]
+npc_ids = [7806]
+
+[sections]
+"Special Attack" = """
+[[File:Deranged Archaeologist Special Attack Maximum distance.png|thumb|The 5x5 area where most secondary books will land (green), and the 9x9 area indicating the maximum distance for books to land (red). One book will always hit the central square and produce two more books.]]
+The archaeologist will shout {{overhead|Learn to Read!}} (except on mobile, there in non advanced warning) and throw three orange books which explode on impact with the ground, four ticks (2.4 seconds) after he speaks. One book always hits exactly where the player was standing when the books were thrown. This book will burst into two additional books which also explode on impact. It can be easily dodged by reacting to his overhead text, and then click to an opposite diagonal corner of the arena, at least 9 tiles away.
+
+The two other books from the initial attack, as well as the two additional books originating from the central book's impact, will typically hit somewhere in a 5x5 area surrounding the original location of the player. On rare occasions, some of these four books may hit up to a 9x9 area around the player's original location.
+
+[[File:Deranged Archaeologist Special Attack damage.png|thumb|left|Each book's maximum hit, based on its impact location (the middle square).]]
+'''The damage from the explosions ignores all defence (including armour bonuses{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1389899288466100227|date=5 May 2021|archiveurl=https://reldo.runescape.wiki/i/106825|archivedate=5 May 2021|quote=The elysian would help, I think. But otherwise not as far as I know.}}) and protection prayers.''' Each explosion deals maximum damage (up to 56{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1383758002528800771|date=18 April 2021|archiveurl=https://reldo.runescape.wiki/i/103395|archivedate=18 April 2021|quote=56, I believe.}}) on the tile where it impacts, but it will deal reduced damage (up to 18{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1415628316472659970|date=15 July 2021|archiveurl=https://reldo.runescape.wiki/i/104111|archivedate=18 April 2021|quote=At least 25, yeah. After that, he has a 1/3 chance of doing it on each attack chance. The max hit of his AoE is 2x his standard ranged damage, and its 'near-miss' max hit is 1/3 of that.|name=ash15jul2021}}) to all immediately adjacent tiles.
+
+It is impossible for two books to target the same square. This means the maximum possible damage taken from the three initial books is 92: a direct hit for 56 plus twice 18 from the two indirect hits on surrounding tiles. The two subsequent books originating in the central square could then deal an additional 74 damage, again through one direct hit and one indirect hit. Do note that this series of events is highly unlikely, not only requiring all books to land in the most unfortunate locations, but also requiring the player to stand still and the books to all deal their maximum damage.
+
+The attack has a 25-tick (15 second) internal cooldown and has a 1/3rd chance to be used instead of a normal attack.{{NamedRef|ash15jul2021}} He '''can''' use this as his first attack against players initiating a fight. This means that players can relax after each special attack, knowing the Deranged archaelogist won't use it for the next 15 seconds — which with relatively good gear, he will be defeated before getting to use it again.
+
+'''Note:''' The attack '''will''' deal damage on impact even if the archaeologist dies before the books explode.
+{{clear|right}}
+"""

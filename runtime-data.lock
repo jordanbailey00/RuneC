@@ -1,0 +1,36 @@
+# Draft runtime data lock format for Phase 6.
+#
+# This file documents the intended release-data contract. It is not an official
+# runtime-data release pointer yet; concrete release URLs/checksums still need
+# to be filled after official artifact publication.
+
+format = "runec-runtime-data-lock-v1"
+status = "draft"
+official_release = false
+data_version = "v1"
+release_status = "publishable"
+pipeline_command = "python3 tools/data_pipeline.py all"
+check_command = "python3 tools/data_pipeline.py --check"
+
+[local_outputs]
+data_manifest = "data/manifest.json"
+dist_manifest = "dist-data/manifest.json"
+packs_dir = "dist-data/packs"
+pipeline_record = "generated/pipeline/build.json"
+reports_dir = "generated/reports"
+local_setup_command = "scripts/setup-data.sh --offline dist-data"
+local_verify_command = "scripts/setup-data.sh --verify"
+
+[release]
+manifest_url = ""
+manifest_sha256 = ""
+packs_base_url = ""
+release_tag = ""
+
+[source_gaps]
+datasets = []
+
+[notes]
+phase = "data-cleanup-official-release-pending"
+official_release_note = "Do not treat this draft as a published data release until official artifact URLs and checksums are recorded."
+source_gap_note = "No formal source-authority gaps remain; official release metadata is still pending Step 1 artifact publication."

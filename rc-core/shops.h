@@ -23,12 +23,26 @@ typedef struct {
     uint16_t restock_ticks;
 } RcShopStock;
 
+typedef struct {
+    RcShop *shops;
+    RcShopStock *stock;
+    int shop_count;
+    int stock_count;
+} RcShopData;
+
 extern RcShop *g_shops;
 extern RcShopStock *g_shop_stock;
 extern int g_shop_count;
 extern int g_shop_stock_count;
 
 int rc_load_shops(const char *path);
+void rc_shop_data_init(RcShopData *data);
+void rc_shop_data_free(RcShopData *data);
+int rc_load_shops_into(const char *path, RcShopData *out);
+int rc_shop_data_import_globals(RcShopData *out);
+int rc_shops_mirror_to_globals(const RcShopData *data);
+void rc_shops_use_data(const RcShopData *data);
+void rc_shops_reset_data_if_active(const RcShopData *data);
 const RcShop *rc_shop_get(int shop_idx);
 const RcShopStock *rc_shop_stock_rows(const RcShop *shop, int *count);
 int rc_shop_find_by_name(const char *name);

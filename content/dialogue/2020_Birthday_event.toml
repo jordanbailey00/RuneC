@@ -1,0 +1,2785 @@
+title = "Transcript:2020 Birthday event"
+npcs = ["Draul Leptoc", "Ellamaria", "Gertrude", "Gnome child", "Hans", "Horacio (2020 Birthday event)", "Duke Horacio", "Iffie", "Juliet", "Kanel", "King Roald", "Phillipa", "Philop", "Romeo", "Wise Old Man"]
+node_count = 354
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [1, 2, 3, 4, 5, 6, 12, 17, 18, 19, 20, 21, 22, 23]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "Oh, I just can't be bothered."
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's the matter Juliet?"
+parent = 0
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "I've been told I have to throw the birthday party at my place this year, but I don't feel like it, my life is just tragic."
+parent = 0
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "I don't care about this party."
+parent = 0
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sometimes I think my life's nothing but a comedy, but I don't let it get me down. Why so glum chum?"
+parent = 0
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "cond"
+text = "If the player has not completed [[Romeo & Juliet]]:"
+parent = 0
+children = [7, 8, 9, 10, 11]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "I have no-one in my life, I can't be with my love, Romeo. There is nothing for me to wake up to each day, I feel like my life is a repeat of the same day over and over."
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You need to get out and enjoy life Juliet, slay some dragons and explore the world."
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "I wouldn't go that far! I'm just tired of being locked in this house with just my cousin, Phillipa."
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "The only thing that cheers me up is looking over to Gertrude's house and seeing her kittens playing."
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "act"
+text = "continue"
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "cond"
+text = "If the player has completed [[Romeo & Juliet]]:"
+parent = 0
+children = [13, 14, 15, 16]
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Romeo doesn't care for me anymore, the minute he saw Phillipa, he's been all over her. I have no one anymore."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh come on, it can't be that bad. Is Romeo really worth getting this upset over? He's a bit empty headed if you ask me."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "He was all I had, now the only thing keeping me going is the soft sounds of Gertrude's Cats."
+parent = 12
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "continue"
+parent = 12
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like you need a new friend, would you like me to see if Gertrude will give you one of her kittens?"
+parent = 0
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "I've asked her before, but we aren't on good standing anymore, ever since I planted lilies in our garden."
+parent = 0
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why would she be upset about lilies?"
+parent = 0
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "They're quite poisonous to cats, how was I supposed to know, I'm not a cat doctor..."
+parent = 0
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe getting you a pet isn't a good idea then, perhaps I should go talk to your cousin for some ideas."
+parent = 0
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "I'll be here...alone, waiting for the next adventurer to come along and try to help."
+parent = 0
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "act"
+text = "end"
+parent = 0
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [26, 27, 30, 33, 37, 40, 43, 46, 47, 48, 49]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 25
+children = [28, 29]
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Love's stories written in love's richest books. To fan the moonbeams from his sleeping eyes."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "act"
+text = "continues"
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 25
+children = [31, 32]
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Did my heart love till now? Forswear it, sight! For I ne'er saw true beauty till this night."
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "act"
+text = "continues"
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 25
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "All the world's a stage, And all the men and women merely players. They have their exits and their entrances. And one man in his time plays many parts,"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "His acts being seven ages."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "continues"
+parent = 33
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 25
+children = [38, 39]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Double, double, toil and trouble. Fire burn, and cauldron bubble!"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "act"
+text = "continues"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 25
+children = [41, 42]
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Doubt thou the stars are fire. Doubt that the sun doth move. Doubt truth to be a liar. But never doubt I love."
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "act"
+text = "continues"
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 25
+children = [44, 45]
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "All that glitters is not platinum."
+parent = 43
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "act"
+text = "continues"
+parent = 43
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you mumbling to yourself Juliet?"
+parent = 25
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "Oh, I've just been reading a book, it helps me get through the day."
+parent = 25
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to find a way to cheer her up, Phillipa should be able to help, I just can't stand to see her like this."
+parent = 25
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [52, 59, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82]
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "cond"
+text = "If the player has not completed [[Romeo & Juliet]]:"
+parent = 51
+children = [53, 54, 55, 56, 57, 58]
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hi, could you help me cheer up Juliet?"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Phillipa"
+text = "Sure, I'll be happy to, what's wrong with her?"
+parent = 52
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well she's been feeling down, she mentioned not being able to be with some guy called Romeo and her father has put her in charge of this years birthday party."
+parent = 52
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "speaker"
+speaker = "Phillipa"
+text = "Romeo! Oh, he's so dreamy, a little bit annoying, but dreamy."
+parent = 52
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks for sharing, but I need to get her started on the birthday party or there won't be one this year."
+parent = 52
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "act"
+text = "continue"
+parent = 52
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "cond"
+text = "If the player has completed [[Romeo & Juliet]]:"
+parent = 51
+children = [60, 61, 62, 63, 64, 65, 66, 67]
+
+[[nodes]]
+id = 60
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hey Phillipa, we need to do something about Juliet."
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 3
+kind = "speaker"
+speaker = "Phillipa"
+text = "Hi [player name], good to see you again, how are you?"
+parent = 59
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hi... I'm good thanks."
+parent = 59
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Phillipa"
+text = "Oh that's great! Romeo and I are also doing great thanks for asking, we've been having the best time since you introduced me to him."
+parent = 59
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm not here to find out how you and Romeo are getting on, I'm here to help Juliet."
+parent = 59
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Phillipa"
+text = "Typical, what is she upset about this time?"
+parent = 59
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Her father put her in charge of the birthday party this year, but she's not feeling up to it, recent events have got her feeling quite down."
+parent = 59
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "act"
+text = "continue"
+parent = 59
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Why don't you try cheering her up?"
+parent = 51
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I offered to get her one of Gertrude's cats, but she told me there's little chance of that happening."
+parent = 51
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Hmm, why don't you try dressing up as one, you could be her emotional support human."
+parent = 51
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That sounds like a terrible idea..."
+parent = 51
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Surely there's something less... weird... I can do instead?"
+parent = 51
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Got any better ideas?"
+parent = 51
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "... no."
+parent = 51
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Thought not, so since she loves cats, why don't you dress up as one and dance for her."
+parent = 51
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not going to dress up as a cat..."
+parent = 51
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Fine, but what about just the ears?"
+parent = 51
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "... I suppose I can do that."
+parent = 51
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where am I supposed to find some? I'm not about to take some off a cat."
+parent = 51
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "I'm sure Iffie in town could put something together for you, she stays in the clothing store by Varrock Square."
+parent = 51
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fine, I'll go have a word."
+parent = 51
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "act"
+text = "end"
+parent = 51
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [85, 86, 87, 88]
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "How are you getting on with your cat costume?"
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Still working on it, who did you say could help me with it?"
+parent = 84
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Iffie should be able to help, she runs the clothing store by Varrock Square."
+parent = 84
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "end"
+parent = 84
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Did Juliet not invite you to her party?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "No, me and her aren't friends anymore, she tried to poison my cats."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should go before I make things worse."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Ma'am, are you Iffie?"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Yes dearie, what can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Phillipa told me that you could make me a pair of cat ears."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Cat ears? That's a bit cringe isn't it dearie?"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not for me...it's for a friend."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Well I never...back in my day..."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't like it either, but I don't have much choice. Do you think you could make some for me?"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "I suppose I could, but you'll need to help me dear."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Of course, what do you need me to do?"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "To make them properly, I'll need you to get me some cat fur."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No way, I did not sign up for this so I could skin a cat."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Hehehe, no dearie, there's more than one way to shave a cat."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "The most obvious place that comes to mind, is Miss, oh... what's her name... ... Gertrude's house in West Varrock."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "She should be able to help you, might confuse the poor girl if you ask her directly though."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Iffie, I'll see what I can find."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm struggling to find some cat hair."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "I have better things to do than help you all day."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Check Getrude's{{sic}} house, opposite Juliet's, she must have plenty left on her clothes over the years."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks again Iffie, sorry for taking up your precious time."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [116, 117, 118, 119]
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hi Gertrude, do you have any cat hair I can borrow?"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Gertrude"
+text = "Do I look like I collect cat hairs? It may collect onto my clothes like no tomorrow, but I don't hoard it."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry for asking...maybe there's another way I can get it off her..."
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "box"
+text = "You take Gertrude's comb."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "act"
+text = "receives=Gertrude's comb"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "box"
+text = "You already have one of Gertrude's combs, it would be rude to take more."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "box"
+text = "You run the comb through Gertrude's cardigan."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "box"
+text = "You find some loose cat hairs, you take them and store them in your pocket."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "act"
+text = "receives=loose cat hair"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Oi! What do you think you're doing?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, uh...nothing! I'll be going now!"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "box"
+text = "You already have some cat hair, best leave it there."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "box"
+text = "You run your comb through the [kitten/grown cat/overgrown cat]'s fur, you collect some loose fur."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "act"
+text = "receives=loose cat hair"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "box"
+text = "You already have some cat hair, best leave it there."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [140, 141, 142]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found some cat hair."
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Gertrude"
+text = "Wow, that's very impressive."
+parent = 139
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "act"
+text = "end"
+parent = 139
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello little guy, do you know where I can get some cat hair?"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Philop/Kanel"
+text = "Why."
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need it to make some cat ears for someone."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Philop/Kanel"
+text = "Why."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Because Juliet is sad and I need to cheer her up."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Philop/Kanel"
+text = "Why."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't have time for this."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Philop/Kanel"
+text = "M-mummy said she always has cat hwair on her cardigwan, she's always gwumpy about it."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great, thanks kid, do you know how I can get it off her cardigan?"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Philop/Kanel"
+text = "She's always compwaining about not bewing able to find her cwomb, I think she uses it to get the hwair off."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again Iffie, I managed to find some cat hair."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Hello dearie, have you now? I'm surprised you even bothered."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not like I have much else to do."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "You young'uns are an odd bunch."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Hand it over and I'll get to work."
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "act"
+text = "Player gives Iffie the cat hair."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "box"
+text = "Iffie starts to work on the cat ears..."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "...if I just..."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "...then I can attach this here..."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "...ouch!..."
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "...almost there..."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "...and there we go, here you go dearie, one hand made pair of cat ears."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "box"
+text = "Iffie hands you a pair of cat ears."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "act"
+text = "receives=cat ears"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wow...these look...purrfect."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Good, don't ask me to make another pair."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should go back to Juliet and see if I can cheer her up now."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Not now dear, I've had enough excitement for one day."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi Iffie, I'm really sorry, but I lost my cat ears."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "What did I tell you, I said don't ask me for another pair and now you're back."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know and I'm sorry, could you please make me another pair."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "What in tarnation, fine, give me a minute..."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "box"
+text = "Iffie angrily makes another pair of cat ears for you."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "act"
+text = "receives=cat ears"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "...here you go, don't go losing these ones as well."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [184, 185, 186, 187, 188, 193]
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "Gertrude"
+text = "Hello little kitty, are you lost?"
+parent = 183
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Eeeerrrr..."
+parent = 183
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Gertrude"
+text = "Come here little fella, I've got a tasty sardine for you."
+parent = 183
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "select"
+text = "Take Sardine?"
+parent = 183
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 183
+children = [189, 190, 191, 192]
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "other"
+text = "You take the sardine from Gertrude and quickly eat it."
+parent = 188
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "speaker"
+speaker = "Gertrude"
+text = "Who's a good fluff ball."
+parent = 188
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Meooow!"
+parent = 188
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "act"
+text = "end"
+parent = 188
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "option"
+text = "No."
+parent = 183
+children = [194, 195]
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I should go..."
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "act"
+text = "end"
+parent = 193
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [198, 199, 200, 201, 202, 203]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright Phillipa, I've got the cat ears, now what do you want me to do?"
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Aww, they're so adorable!"
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 197
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Okay, you need to go talk to Juliet and try cheer her up, do a dance for her or something, do you have any good moves?"
+parent = 197
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know a couple, okay let me try."
+parent = 197
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "act"
+text = "end"
+parent = 197
+is_terminal = true
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [206, 207, 208, 209, 210, 211]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello again Juliet, I've got a surprise that might cheer you up."
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "Where is it? I don't see anything?"
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh damn, where did I put them?"
+parent = 205
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "Come back when you have something for me..."
+parent = 205
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "box"
+text = "You should put a pair of cat ears on before trying to cheer her up."
+parent = 205
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "act"
+text = "end"
+parent = 205
+is_terminal = true
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [214, 215, 216, 217, 218, 219, 220]
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Juliet, I've got something for you."
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "Oh my! What's that on your head?"
+parent = 213
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Since you can't have a cat, I thought I'd be one for you. Meeeeooow..."
+parent = 213
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "Oh wonderful! Are you going to dance for me then?"
+parent = 213
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course!"
+parent = 213
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "box"
+text = "Try performing an emote to cheer up Juliet."
+parent = 213
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "act"
+text = "Emote tab opens"
+parent = 213
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "cond"
+text = "Correct emotes:"
+parent = -1
+children = [223, 224, 226, 228, 230, 232, 234, 236, 238, 240]
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 222
+children = [225]
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "I love it!"
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 222
+children = [227]
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Wow..."
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 222
+children = [229]
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Wow shred it dude!"
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 222
+children = [231]
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Oh that's absolutely marvellous!"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "option"
+text = "Dialogue 5"
+parent = 222
+children = [233]
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Bit oldschool, but I like it!"
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "option"
+text = "Dialogue 6"
+parent = 222
+children = [235]
+
+[[nodes]]
+id = 235
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Hehehe."
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "option"
+text = "Dialogue 7"
+parent = 222
+children = [237]
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "You're so silly."
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "option"
+text = "Dialogue 8"
+parent = 222
+children = [239]
+
+[[nodes]]
+id = 239
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Wonderful."
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "option"
+text = "Dialogue 9"
+parent = 222
+children = [241]
+
+[[nodes]]
+id = 241
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "That's delightful."
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "cond"
+text = "Skillcape emotes:"
+parent = -1
+children = [243]
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "That's really impressive! You must of{{sic}} trained very hard to pull that off."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "cond"
+text = "Blow kiss emote:"
+parent = -1
+children = [245]
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "That's cute, but sorry, you're not my type."
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "cond"
+text = "Smooth dance emote:"
+parent = -1
+children = [247]
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "Never seen dance moves so fresh!"
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "cond"
+text = "Incorrect emotes:"
+parent = -1
+children = [249, 250, 252, 254]
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 248
+children = [251]
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Why would you do that?"
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 248
+children = [253]
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "Uhm..."
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 248
+children = [255]
+
+[[nodes]]
+id = 255
+depth = 3
+kind = "speaker"
+speaker = "Juliet"
+text = "..."
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "act"
+text = "(Continues below if Juliet has cheered up.)"
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Juliet"
+text = "Wow, thanks [player name], I feel a lot better."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh Saradomin, that was embarrassing{{sic}}"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Juliet"
+text = "Don't be embarrassed, you've made me feel better. I'm going to throw a big party to say thanks."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Juliet"
+text = "Maybe I don't need Romeo after all."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Juliet"
+text = "Head downstairs when you're ready. Oh, you can keep the ears as well."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [264, 265]
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "speaker"
+speaker = "Draul Leptoc"
+text = "My house is going to be ruined, why did I agree to throwing this blasted party?"
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "act"
+text = "end"
+parent = 263
+is_terminal = true
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Ellamaria"
+text = "These parties are always a bore."
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Come on, it's not too bad, you just need to loosen up!"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Ellamaria"
+text = "No thank you, I don't want to make a fool of myself, one has to keep up appearances."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [273, 274]
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "In the depths she has sealed them. Their power becomes hers."
+parent = 272
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "act"
+text = "end"
+parent = 272
+is_terminal = true
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [276, 277]
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The father lives on. Alas, he's not the man he once was."
+parent = 275
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "act"
+text = "end"
+parent = 275
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [279, 280]
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "A door will finally open. A body lies within."
+parent = 278
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "act"
+text = "end"
+parent = 278
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [282, 283]
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The fate of the future, it lies in the past. He will save us all."
+parent = 281
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "act"
+text = "end"
+parent = 281
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [285, 286]
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "A new evil rises in an unlikely place. But the rhythm will be her undoing."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "act"
+text = "end"
+parent = 284
+is_terminal = true
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "option"
+text = "Dialogue 6"
+parent = -1
+children = [288, 289]
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Before sacrificing to the mighty Zulrah, comes the dawn."
+parent = 287
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "act"
+text = "end"
+parent = 287
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "option"
+text = "Dialogue 7"
+parent = -1
+children = [291, 292]
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "When they say you're going off the rails, they're jealous that you can fly."
+parent = 290
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "act"
+text = "end"
+parent = 290
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "option"
+text = "Dialogue 8"
+parent = -1
+children = [294, 295]
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "So many symbols, so many signs. What do they mean? The answer is written in blood."
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "act"
+text = "end"
+parent = 293
+is_terminal = true
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "option"
+text = "Dialogue 9"
+parent = -1
+children = [297, 298]
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "The city of gold they call it. Alas, the gold is that of fools."
+parent = 296
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "act"
+text = "end"
+parent = 296
+is_terminal = true
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "option"
+text = "Dialogue 10"
+parent = -1
+children = [300, 301]
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Long he has waited. At last, the most loyal servant will make his move."
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "act"
+text = "end"
+parent = 299
+is_terminal = true
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "option"
+text = "Dialogue 11"
+parent = -1
+children = [303, 304]
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "A horn was hidden in the sand, sealed away by the forgotten four."
+parent = 302
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "act"
+text = "end"
+parent = 302
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "option"
+text = "Dialogue 12"
+parent = -1
+children = [306, 307]
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Gnome Child"
+text = "Those things which I am saying now may be obscure, yet they will be made clearer in the proper place."
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "act"
+text = "end"
+parent = 305
+is_terminal = true
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey Hans, you look like you're enjoying the party!"
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Oh course *hic* I love a good *hic* party."
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "I have a *hic* great party trick *hic*"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Does it include guessing my age?"
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Exactly *burp* that!"
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "You've probably spent *hic* {{sic}}[amount] days, [amount] hours, [amount] minutes in the world since you arrived [amount] days ago."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Horacio"
+text = "It's not often I get to leave Lumbridge, but when I do, I like to go a little wild."
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [318, 319, 320, 321]
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hi Juliet, why aren't you downstairs enjoying the party?"
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Juliet"
+text = "It's a little too loud for me down there, I'd rather stay up here and relax."
+parent = 317
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "To each their own, you've thrown a truly amazing party this year."
+parent = 317
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "act"
+text = "end"
+parent = 317
+is_terminal = true
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello your majesty, I hope you're enjoying the party."
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "Ah, my loyal subject, yes, this is excellent."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "I heard you played a hand in helping to make it happen."
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I might have done a thing or two to push Juliet into throwing it."
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "You have my thanks, I'd give you a reward, but I left my coin purse in the castle."
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I could go fetch it if you'd like?"
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "That's quite alright, we're here for a good time!"
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, if you say so."
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [333, 334, 335]
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "speaker"
+speaker = "Phillipa"
+text = "Thanks for cheering up Juliet, you've saved the party."
+parent = 332
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's okay, I'm used to it at this point."
+parent = 332
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "act"
+text = "end"
+parent = 332
+is_terminal = true
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "option"
+text = "Ask about the birthday party."
+parent = -1
+children = [338, 344]
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "cond"
+text = "If the player has not completed [[Romeo & Juliet]]:"
+parent = 337
+children = [339, 340, 341, 342, 343]
+
+[[nodes]]
+id = 339
+depth = 3
+kind = "speaker"
+speaker = "Romeo"
+text = "Alas friend, another day of hopelessness for me."
+parent = 338
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What's got you feeling down?"
+parent = 338
+
+[[nodes]]
+id = 341
+depth = 3
+kind = "speaker"
+speaker = "Romeo"
+text = "My love has thrown a birthday party this year, but I cannot go, for her father keeps us apart."
+parent = 338
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's a shame, hopefully someone will come along and help sort it out for you."
+parent = 338
+
+[[nodes]]
+id = 343
+depth = 3
+kind = "act"
+text = "end"
+parent = 338
+is_terminal = true
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "cond"
+text = "If the player has completed [[Romeo & Juliet]]:"
+parent = 337
+children = [345, 346, 347, 348, 349, 350]
+
+[[nodes]]
+id = 345
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hey Romeo, why aren't you at the birthday event?"
+parent = 344
+
+[[nodes]]
+id = 346
+depth = 3
+kind = "speaker"
+speaker = "Romeo"
+text = "Woe is me, Draul won't let me in...not after everything that happened with Juliet."
+parent = 344
+
+[[nodes]]
+id = 347
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh right yes, when you left Juliet for dead and went off with her cousin."
+parent = 344
+
+[[nodes]]
+id = 348
+depth = 3
+kind = "speaker"
+speaker = "Romeo"
+text = "Love took over, the minute I saw Phillipa, I knew she was the one for me."
+parent = 344
+
+[[nodes]]
+id = 349
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Wow Romeo, you're a really classy guy, keep it up."
+parent = 344
+
+[[nodes]]
+id = 350
+depth = 3
+kind = "act"
+text = "end"
+parent = 344
+is_terminal = true
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "option"
+text = "event=No|Something else."
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Sorry young one! I'm too busy to help you out!"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

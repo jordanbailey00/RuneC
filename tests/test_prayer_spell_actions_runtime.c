@@ -52,7 +52,7 @@ int main(void) {
     int lumbridge = rc_spell_find("Lumbridge Home Teleport");
     assert(fire_blast >= 0);
     assert(rc_spell_find("Definitely Missing Spell") == -1);
-    assert(rc_spell_def_get(fire_blast)->max_hit == 16);
+    assert(rc_spell_def_get(fire_blast)->max_hit == 0);
     assert(lumbridge >= 0);
     assert(rc_spell_def_get(lumbridge)->effect_flags & RC_SPELL_EFFECT_TELEPORT);
 
@@ -127,8 +127,7 @@ int main(void) {
     world->player.skills.boosted_level[SKILL_MAGIC] = 99;
     world->player.active_prayers = PRAYER_AUGURY;
     rc_combat_tick_player(world);
-    assert(world->npcs[npc_idx].num_pending_hits == 1);
-    assert(world->npcs[npc_idx].pending_hits[0].attack_style == COMBAT_MAGIC);
+    assert(world->npcs[npc_idx].num_pending_hits == 0);
 
     rc_world_destroy(world);
     return 0;

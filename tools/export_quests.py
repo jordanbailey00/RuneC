@@ -1,17 +1,7 @@
 #!/usr/bin/env python3
-"""Emit data/defs/quests.bin from the `quest` Bucket cache.
+"""Emit data/defs/quests.bin from RuneC-owned quest rows.
 
-Skill reqs parsed from wiki markup pattern: data-skill="X" data-level="N".
-
-Binary format — 'QEST' magic:
-  magic u32 | version u32 | count u32
-  per quest:
-    name_len u8 + name[]
-    difficulty u8    (0=unknown, 1=Novice, 2=Intermediate, 3=Experienced,
-                      4=Master, 5=Grandmaster, 6=Special)
-    length u8        (0=unknown, 1=Very Short, 2=Short, 3=Medium,
-                      4=Long, 5=Very Long)
-    skill_reqs_n u8 + (skill_id u8, level u8)[skill_reqs_n]
+Runtime schema: `schema/defs/quests.schema.toml`.
 """
 from __future__ import annotations
 

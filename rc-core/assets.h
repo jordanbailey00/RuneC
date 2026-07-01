@@ -2,6 +2,7 @@
 #define RC_ASSETS_H
 
 #include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
 
 typedef enum {
@@ -21,6 +22,7 @@ void rc_asset_set_pack_dir(const char *dir);
 void rc_asset_reset(void);
 
 int rc_asset_exists(const char *path);
+int rc_asset_size(const char *path, uint64_t *out_size);
 FILE *rc_asset_fopen(const char *path, const char *mode);
 int rc_asset_close(FILE *f);
 RcAssetBytes rc_asset_read_all(const char *path);

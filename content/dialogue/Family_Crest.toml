@@ -1,0 +1,2875 @@
+title = "Transcript:Family Crest"
+npcs = ["Dimintheis", "Caleb", "Avan", "Gem Trader", "Johnathon", "Boot", "Silk trader", "Zeke", "Karim", "Gem trader", "Louie Legs", "Ranael", "Shop keeper (Al Kharid)"]
+node_count = 364
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Hello. My name is Dimintheis, of the noble family Fitzharmon."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "Why would a nobleman live in a dump like this?"
+parent = -1
+children = [3, 4, 5, 6, 14]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why would a nobleman live in a dump like this?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "The King has taken my estate from me until such time as I can show my family crest to him."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "Why would he do that?"
+parent = 2
+children = [7, 8, 9, 10, 11, 12, 13]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why would he do that?"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = """
+Well, there is a long standing rule of chivalry amongst the Varrockian aristocracy, where each noble family is in possession of a unique crest, which signifies the honour and lineage of the family. More than this
+"""
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = """
+however, it also represents the lawful rights of each family to prove their ownership of their wealth and lands. If the family crest is lost, then the family's estate is handed over to the current monarch until the crest is
+"""
+parent = 6
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "restored."
+parent = 6
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = """
+This dates back to the times when there was much in- fighting amongst the noble families and their clans, and was introduced as a way of reducing the bloodshed that was devestating the ranks of the ruling classes at that
+"""
+parent = 6
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "time. When you captured a rival family's clan, you also captured their lands and wealth."
+parent = 6
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "act"
+text = "Continues from \"So where is this crest?\""
+parent = 6
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "option"
+text = "So where is this crest?"
+parent = 2
+children = [15, 16, 17, 18, 19, 22, 23, 27]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So where is this crest?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Well, my three sons took it with them many years ago when they rode out to fight in the war against the undead necromancer and his army in the battle to save Varrock."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = """
+For many years I had assumed them all dead, as I had heard no word from them, but recently I heard word that my son Caleb is alive and well, and trying to earn his fortune as a great chef in the lands beyond White
+"""
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Wolf Mountain, although I know not where."
+parent = 14
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "cond"
+text = "If the player lacks one or more requirements of the quest and has a combat level lower than 55:"
+parent = 14
+children = [20, 21]
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "box"
+text = "Before starting this quest, be aware that one or more of your skill levels are lower than what is required to fully complete it. Your combat level is also lower than the recommended level of 55."
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "act"
+text = "continues"
+parent = 19
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 14
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "option"
+text = "Ok, I will help you."
+parent = 14
+children = [24, 25, 26]
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I will help you."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I thank you greatly adventurer! Also... if you find Caleb... please... let him know his father still loves him..."
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "option"
+text = "I'm not interested in that adventure right now."
+parent = 14
+children = [28, 29, 30]
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm not interested in that adventure right now."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I realise it was a lot to ask of a stranger."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "option"
+text = "You're rich then? Can I have some money?"
+parent = -1
+children = [32, 33, 34]
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're rich then? Can I have some money?"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Gah! Lousy Beggar! Your sort is what's ruining this great land! Why don't you just go and get a job if you need the money so badly?"
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "Hi, I am a bold adventurer."
+parent = -1
+children = [36, 37, 38, 39, 42, 44]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hi, I am a bold adventurer."
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "An adventurer hmmm? How lucky. I may have an adventure for you. I desperately need my family crest returning to me. It is of utmost importance."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "option"
+text = "Why are you so desperate for it?"
+parent = 35
+children = [40, 41]
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why are you so desperate for it?"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "act"
+text = "Continues above from \"Well, there is a long standing rule\""
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "option"
+text = "So where is this crest?"
+parent = 35
+children = [43]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "act"
+text = "above"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "option"
+text = "I'm not interested in that adventure right now."
+parent = 35
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "act"
+text = "above"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where did you say I could find your son Caleb again?"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "The only thing I have heard of my son Caleb is that he is trying to earn his fortune as a great chef in the lands beyond White Wolf Mountain."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Have you any news on my crest yet?"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking for it."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "Who are you? What are you after?"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "option"
+text = "Are you Caleb Fitzharmon?"
+parent = -1
+children = [55, 56, 57, 58, 59, 60, 70]
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are you Caleb Fitzharmon?"
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "Why... yes I am, but I don't believe I know you... how did you know my name?"
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have been sent by your father. He wishes the Fitzharmon Crest be restored."
+parent = 54
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "Ah... well... hmmm... yes... I do have a piece of it anyway..."
+parent = 54
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 54
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "option"
+text = "Uh... what happened to the rest of it?"
+parent = 54
+children = [61, 62, 63, 64, 65, 66, 67, 68, 69]
+
+[[nodes]]
+id = 61
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Uh... what happened to the rest of it?"
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "Well... my brothers and I had a slight disagreement about it... we all wanted to be heir to my fathers' lands, and we each ended up with a piece of the crest."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "None of us wanted to give up our rights to our brothers, so we didn't want to give up our pieces of the crest, but none of us wanted to face our father by"
+parent = 60
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "returning to him with an incomplete crest... We each went our seperate ways many years past, none of us seeing our father or willing to give up our fragments."
+parent = 60
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So do you know where I could find any of your brothers?"
+parent = 60
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "Well, we haven't really kept in touch... what with the dispute over the crest and all... I did hear from my brother Avan a while ago though."
+parent = 60
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "He said he was on some kind of search for treasure, or gold, or something out in the desert east of Lumbridge. You might want to ask the traders there about him."
+parent = 60
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "Avan always did have expensive tastes however. You may find he is not prepared to hand over his crest piece to you as easily as I have."
+parent = 60
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "option"
+text = "So can I have your bit?"
+parent = 54
+children = [71, 72, 73, 74, 75, 76, 77, 78, 79, 83]
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So can I have your bit?"
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "Well, I am the oldest son, so by the rules of chivalry, I am most entitled to be rightful bearer of the crest."
+parent = 70
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It's not really much use without the other fragments is it though?"
+parent = 70
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "Well that is true... perhaps it is time to put my pride aside... I'll tell you what: I'm struggling to complete this fish salad of mine,"
+parent = 70
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "so if you will assist me in my search for the ingredients, then I will let you take my piece as reward for your assistance."
+parent = 70
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what ingredients are you missing?"
+parent = 70
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "I require the following cooked fish: Swordfish, Bass, Tuna, Salmon and Shrimp."
+parent = 70
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 70
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "option"
+text = "Ok, I will get those."
+parent = 70
+children = [80, 81, 82]
+
+[[nodes]]
+id = 80
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I will get those."
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 4
+kind = "speaker"
+speaker = "Caleb"
+text = "You will? It would help me a lot!"
+parent = 79
+
+[[nodes]]
+id = 82
+depth = 4
+kind = "act"
+text = "end"
+parent = 79
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "option"
+text = "Why don't you just give me the crest?"
+parent = 70
+children = [84, 85, 86]
+
+[[nodes]]
+id = 84
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why don't you just give me the crest?"
+parent = 83
+
+[[nodes]]
+id = 85
+depth = 4
+kind = "speaker"
+speaker = "Caleb"
+text = "It's a valuable family heirloom. I think the least you can do is prove you're worthy of it before I hand it over."
+parent = 83
+
+[[nodes]]
+id = 86
+depth = 4
+kind = "act"
+text = "end"
+parent = 83
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "Nothing, I will be on my way."
+parent = -1
+children = [88, 89]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing, I will be on my way."
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "option"
+text = "I see you are a chef, will you cook me anything?"
+parent = -1
+children = [91, 92, 93]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see you are a chef, will you cook me anything?"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "I would, but I am very busy. I am trying to increase my reknown{{sic}} as one of the world's leading chefs by preparing a special and unique fish salad."
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "act"
+text = "end"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "How is the fish collecting going?"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "cond"
+text = "If the player does not have all the fish in their inventory:"
+parent = -1
+children = [96, 97, 98]
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I didn't manage to get them all yet..."
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "Remember, I want the following cooked fish: Swordfish, Bass, Tuna, Salmon, and Shrimp."
+parent = 95
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "act"
+text = "end"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "cond"
+text = "If the player has all the fish in their inventory:"
+parent = -1
+children = [100, 101, 102, 103, 105]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Got them all with me."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "box"
+text = "You exchange the fish for Caleb's piece of the crest."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 99
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "option"
+text = "Uh... what happened to the rest of it?"
+parent = 99
+children = [104]
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "act"
+text = "above"
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "option"
+text = "Thank you very much!"
+parent = 99
+children = [106, 107, 108]
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thank you very much."
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "You're welcome."
+parent = 105
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "act"
+text = "end"
+parent = 105
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where did you say I could find Avan again?"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "Last I heard he was on some stupid hunt for gold or treasure, somewhere in the desert east of Lumbridge. You might want to ask the traders there about him."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "How are you doing getting the crest pieces?"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "cond"
+text = "If the player has the first piece"
+parent = -1
+children = [113, 114, 115]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am still working on it."
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "Then why are you wasting your time here?"
+parent = 112
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "act"
+text = "end"
+parent = 112
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "cond"
+text = "If the player has lost the crest piece"
+parent = -1
+children = [117, 119]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "option"
+text = "I am still working on it."
+parent = 116
+children = [118]
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "act"
+text = "above"
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "option"
+text = "I have lost the piece you gave me."
+parent = 116
+children = [120, 121, 122, 123, 124]
+
+[[nodes]]
+id = 120
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the piece you gave me..."
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "I have some good news for you then. One of my customers found this on their travels and recognised it as mine and returned it to me here."
+parent = 119
+
+[[nodes]]
+id = 122
+depth = 3
+kind = "other"
+text = "Caleb hands over his crest piece again."
+parent = 119
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "speaker"
+speaker = "Caleb"
+text = "I suggest you be less careless in the future. The crest is extremely valuable, and utterly irreplaceable."
+parent = 119
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "act"
+text = "end"
+parent = 119
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "Hello again. I'm just putting the finishing touches to my masterful salad."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "option"
+text = "Uh.. what happened to the rest of the crest?"
+parent = -1
+children = [128]
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "act"
+text = "above"
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "Good luck with that then."
+parent = -1
+children = [130, 131, 132]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Good luck with that then."
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "Luck? LUCK? With my cooking skill, I don't really need LUCK."
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "end"
+parent = 129
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "How are you doing getting the crest pieces?"
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got it right here!"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "Excellent work! Please take it to my father immediately."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Silk trader"
+text = "Do you want to buy any fine silks?"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "quest=No|How much are they?"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "quest=No|No. Silk doesn't suit me."
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "option"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = -1
+children = [141, 142, 143]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Silk trader"
+text = "Can't say as I've seen him... I'm sure if he's been to Al Kharid recently someone around here will have though."
+parent = 140
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "act"
+text = "end"
+parent = 140
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Zeke"
+text = "A thousand greetings, sir."
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "quest=No|Do you want to trade?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "option"
+text = "quest=No|Could you sell me a dragon scimitar?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "option"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = -1
+children = [148, 149, 150]
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Zeke"
+text = "Can't say as I've seen him... I'm sure if he's been to Al Kharid recently someone around here will have though."
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "act"
+text = "end"
+parent = 147
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Karim"
+text = "Would you like to buy a nice kebab? Only one gold."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "option"
+text = "quest=No|I think I'll give it a miss."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "quest=No|Yes please."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = -1
+children = [155, 156, 157]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Karim"
+text = "Can't say as I've seen him... I'm sure if he's been to Al Kharid recently someone around here will have though."
+parent = 154
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "act"
+text = "end"
+parent = 154
+is_terminal = true
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Shop keeper"
+text = "Can I help you at all?"
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "quest=no|Yes please. What are you selling?"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "option"
+text = "quest=no|No thanks."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "option"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = -1
+children = [162, 163, 164]
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Shop keeper"
+text = "Can't say as I've seen him... I'm sure if he's been to Al Kharid recently someone around here will have though."
+parent = 161
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "act"
+text = "end"
+parent = 161
+is_terminal = true
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Louie Legs"
+text = "Hey, wanna buy some armour?"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "option"
+text = "quest=no|What have you got?"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "option"
+text = "quest=no|No, thank you."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "option"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = -1
+children = [169, 170, 171]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Louie Legs"
+text = "Can't say as I've seen him... I'm sure if he's been to Al Kharid recently someone around here will have though."
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Ranael"
+text = "Do you want to buy any armoured skirts? Designed especially for ladies who like to fight."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "option"
+text = "quest=no|Yes please."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "quest=no|No thank you, that's not my scene."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "option"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = -1
+children = [176, 177, 178]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Ranael"
+text = "Can't say as I've seen him... I'm sure if he's been to Al Kharid recently someone around here will have though."
+parent = 175
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "act"
+text = "end"
+parent = 175
+is_terminal = true
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Man"
+text = "What? Can't you see I'm busy?"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, sooooorry..."
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Gem trader"
+text = "Good day to you traveller. Would you be interested in buying some gems?"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "option"
+text = "quest=No|Yes please."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "option"
+text = "quest=No|No thank you."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "option"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = -1
+children = [187, 188, 189, 190, 191, 192, 193]
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm in search of a man named Avan Fitzharmon."
+parent = 186
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Gem trader"
+text = "Fitzharmon eh? Hmmm.... If I'm not mistaken that's the family name of a member of the Varrockian nobility. You know, I HAVE seen someone of that"
+parent = 186
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Gem trader"
+text = "persuasion around here recently... Wearing a poncey yellow cape he was! Came in here all la-di-dah, high and mighty, asking for jewelry{{sic}} made"
+parent = 186
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Gem trader"
+text = "from 'perfect gold' - whatever that is - like 'normal' golds just not good enough for little lord fancy pants there! I told him to head to the desert"
+parent = 186
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Gem trader"
+text = "'Cos I know theres gold out there, in them there sand dunes... and if it's not up to his lordships high standards of 'gold perfection'..."
+parent = 186
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Gem trader"
+text = "Maybe we'll all get lucky and the scorpions will deal with him."
+parent = 186
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "act"
+text = "end"
+parent = 186
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "Why are you hanging around a in a scorpion pit?"
+parent = -1
+children = [196, 197, 198]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why are you lurking around a scorpion pit?"
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "It's a good place to find gold..."
+parent = 195
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "act"
+text = "end"
+parent = 195
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "option"
+text = "I'm looking for a man named Avan Fitzharmon"
+parent = -1
+children = [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for a man... his name is Avan Fitzharmon."
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "Then you have found him. My name is Avan Fitzharmon."
+parent = 199
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You have a part of your family crest. I am on a quest to retrieve all of the fragmented pieces and restore the crest."
+parent = 199
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "Ha! I suppose one of my worthless brothers has sent you on this quest then?"
+parent = 199
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, it was your father who has asked me to do this for him."
+parent = 199
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "My... my father wishes this? Then that is a different matter. I will let you have my crest shard, adventurer, but you must first do something for me."
+parent = 199
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "There is a certain lady I am trying to impress. As a man of noble birth, I can not give her just any old trinket to show my devotion. What I intend to give her,"
+parent = 199
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "is a golden ring, embedded with the finest precious red stone available, and a necklace to match this ring. The problem however for me, is that"
+parent = 199
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "not just any old gold will be suitable. I seek only the purest, the most high quality of gold - what I seek, if you will, is perfect gold."
+parent = 199
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "None of the gold around here is even remotely suitable in terms of quality. I have searched far and wide for the perfect gold I desire, but have had no success so"
+parent = 199
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "in finding it I am afraid. If you can find me my perfect gold, make a ring and necklace from it, and add rubies to them, I will"
+parent = 199
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "gladly hand over my fragment of the family crest to you."
+parent = 199
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you give me any help on finding this 'perfect gold'?"
+parent = 199
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "I thought I had found a solid lead on its whereabouts when I heard of a dwarf who is an expert on gold who goes by the name of 'Boot'."
+parent = 199
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Man"
+text = "Unfortunately he has apparently returned to his home, somewhere in the mountains, and I have no idea how to find him."
+parent = 199
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'll see what I can do."
+parent = 199
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "act"
+text = "end"
+parent = 199
+is_terminal = true
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "So how are you doing getting me my perfect gold jewelry{{sic}}?"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still after that 'perfect gold'."
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "I know how you feel... for such a long time I have searched and searched for the elusive perfect gold... I thought I had gotten a good lead on finding it"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "when I heard talk of a dwarven expert on gold named Boot some time back, but unfortunately for me, he has returned to his mountain home, which I cannot find."
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Boot"
+text = "Hello tall person."
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "option"
+text = "Hello. I'm in search of very high quality gold."
+parent = -1
+children = [224, 225, 226, 227]
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello. I'm in search of very high quality gold."
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "speaker"
+speaker = "Boot"
+text = "High quality gold eh? Hmmm... Well, the very best quality gold that I know of, is just East of the large city Ardougne, underground somewhere."
+parent = 223
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Boot"
+text = "I don't believe it's exactly easy to get to though..."
+parent = 223
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "act"
+text = "end"
+parent = 223
+is_terminal = true
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "option"
+text = "Hello short person"
+parent = -1
+children = [229, 230]
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello short person."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "option"
+text = "Why are you called boot?"
+parent = -1
+children = [232, 233, 234, 235]
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why are you called boot?"
+parent = 231
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Boot"
+text = "I'm called Boot, because when I was very young, I used to sleep, in a large boot."
+parent = 231
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, great, I didn't want your life story."
+parent = 231
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "act"
+text = "end"
+parent = 231
+is_terminal = true
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "So how are you doing making me my perfect gold jewelry{{sic}}?"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have spoken to Boot the dwarf about the location of 'perfect gold' but haven't managed to make you your jewelry{{sic}} yet."
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Well, I won't entrust you with my piece of the crest until you have brought me a necklace of perfect gold with a red precious stone, and a perfect gold ring to match."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "So how are you doing making me my perfect gold jewelry{{sic}}?"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have the ring and necklace right here."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "box"
+text = "You hand Avan the perfect gold ring and necklace."
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "These... these are exquisite! EXACTLY what I was searching for all of this time! Please, take my crest fragment!"
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Now, I suppose you will be wanting to find my brother Johnathon who is in possession of the final piece of the family's crest?"
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's correct."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Well, the last I heard of my brother Johnathon, he was studying the magical arts, and trying to hunt some demon or other out in The Wilderness."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Unsurprisingly, I do not believe he is doing a particularly good job of things, and spends most of his time recovering from his injuries in"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "some tavern or other near the edge of The Wilderness. You'll probably find him still there."
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Avan."
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where did you say I could find your brother Johnathon again?"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Well, the last I heard of my brother Johnathon, he was studying the magical arts, and trying to hunt some demon or other out in The Wilderness."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Unsurprisingly, I do not believe he is doing a particularly good job of things, and spends most of his time recovering from his injuries in"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "some tavern or other near the edge of The Wilderness. You'll probably find him still there."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Avan."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Greetings again, adventurer. How are you doing on retrieving the crest pieces?"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "cond"
+text = "If the player has all the crest pieces:"
+parent = -1
+children = [259, 260, 261]
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am still working on it."
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "speaker"
+speaker = "Avan"
+text = "I hope you succeed for my father's sake."
+parent = 258
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "act"
+text = "end"
+parent = 258
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "cond"
+text = "If the player has lost Avan's crest piece:"
+parent = -1
+children = [263, 265]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "option"
+text = "I am still working on it."
+parent = 262
+children = [264]
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "act"
+text = "above"
+parent = 263
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "option"
+text = "I have lost the fragment you gave me..."
+parent = 262
+children = [266, 267, 268, 269]
+
+[[nodes]]
+id = 266
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the fragment you gave me..."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 3
+kind = "speaker"
+speaker = "Avan"
+text = "I have a confession myself adventurer... I did not fully trust you with the actual part of my family's crest before, and gave you a worthless replica before..."
+parent = 265
+
+[[nodes]]
+id = 268
+depth = 3
+kind = "speaker"
+speaker = "Avan"
+text = "In hindsight, it seems I was right. I will give you the real piece now, but PLEASE try not to lose it; it is a priceless family heirloom."
+parent = 265
+
+[[nodes]]
+id = 269
+depth = 3
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Greetings again, adventurer. How are you doing on retrieving the crest pieces?"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have assembled all of the pieces!"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Very well done adventurer! Now please return it to my father!"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Greetings. Would you happen to be Johnathon Fitzharmon?"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "That... I am..."
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am here to retrieve your fragment of the Fitzharmon family crest."
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "The.. poison.. it is all.. too much... My head... will not... stop spinning..."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "box"
+text = "Sweat is pouring down Johnathons' face."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "What... what did that spider... DO to me? I... I feel so weak... I can hardly... think at all..."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "Ooooh... thank you... Wow! That's completely cured me!"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "How can I reward you?"
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've come here for your piece of the Fitzharmon family crest."
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "You have? Unfortunately I don't have it any more... in my attempts to slay the fiendish Chronozon, the blood demon, I lost a lot of equipment in"
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "our last battle when he bested me and forced me away from his den. He probably still has it now."
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "option"
+text = "So is this Chronozon hard to defeat?"
+parent = -1
+children = [289, 290, 291, 292]
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So is this Chronozon hard to defeat?"
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "Well... you will have to be a skilled Mage to defeat him, and my powers are not good enough yet. You will need to hit him once with each of the four elemental spells of death"
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "before he will be defeated."
+parent = 288
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "act"
+text = "other"
+parent = 288
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "option"
+text = "Where can I find Chronozon?"
+parent = -1
+children = [294, 295, 296]
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find Chronozon?"
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "The fiend has made his lair in the Wilderness below the Obelisk of Air."
+parent = 293
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "act"
+text = "other"
+parent = 293
+is_terminal = true
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "option"
+text = "So how did you end up getting poisoned?"
+parent = -1
+children = [298, 299]
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So how did you end up getting poisoned?"
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "Those accursed poison spiders that surround the entrance to Chronozon's lair... I must have taken a nip from one of them as I attempted to make my escape."
+parent = 297
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "option"
+text = "cond=If the dialogue has gone through another option already:|I will be on my way now."
+parent = -1
+children = [301, 302, 303]
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I will be on my way now."
+parent = 300
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "My thanks for the assistance adventurer."
+parent = 300
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "act"
+text = "end"
+parent = 300
+is_terminal = true
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm trying to kill this demon Chronozon that you mentioned..."
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "So, is this Chronozon hard to defeat?"
+parent = -1
+children = [307]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "act"
+text = "above"
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "option"
+text = "Where can I find Chronozon?"
+parent = -1
+children = [309]
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "act"
+text = "above"
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "option"
+text = "Wish me luck."
+parent = -1
+children = [311, 312, 313]
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Wish me luck."
+parent = 310
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "Good luck. You'll need it."
+parent = 310
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "act"
+text = "end"
+parent = 310
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have your piece of the crest!"
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "Well done! Now return it to my father!"
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have retrieved your crest."
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Adventurer... I can only thank you for your kindness, although the words are insufficient to express the gratitude I feel!"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "You are truly a hero in every sense, and perhaps your efforts can begin to patch the wounds that have torn this family apart..."
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = """
+I know not how I can adequately reward you for your efforts... although I do have these mystical gauntlets, a family heirloom that through some power unknown to me, have always returned to the head of the family
+"""
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "whenever lost, or if the owner has died. I will pledge these to you, and if you should lose them return to me, and they will be here."
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "They can also be granted extra powers. Take them to one of my sons, they should be able to imbue them with a skill for you."
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "I hear you brought the completed crest to my father. I must say, that was awfully impressive work."
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I believe your father mentioned you would be able to improve these gauntlets for me..."
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "Yes, that is correct. I can slightly alter these gauntlets to allow you some of my skill at preparing seafood by making them cooking gauntlets."
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "Caleb"
+text = "When you wear them you will burn lobsters, sharks and swordfish a lot less. It will be a permanent modification however, so make sure this is what you want."
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "option"
+text = "Yes, please do that for me."
+parent = -1
+children = [331, 332, 333]
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, please do that for me."
+parent = 330
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "box"
+text = "Caleb takes the gauntlets from you, pours some herbs and seasonings on them, bakes them on his range for a short time, then hands them back to you."
+parent = 330
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "act"
+text = "end"
+parent = 330
+is_terminal = true
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "option"
+text = "I'll see what your brothers have to offer first."
+parent = -1
+children = [335, 336, 337]
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll see what your brothers have to offer first."
+parent = 334
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Caleb"
+text = "As you wish. Let me know if you change your mind."
+parent = 334
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "act"
+text = "end"
+parent = 334
+is_terminal = true
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "I have received word from my father of your assistance to our family in this matter. You have my thanks for restoring our honour."
+parent = -1
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your father mentioned that you could improve these gauntlets in some way for me..."
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "Indeed I can. In my long time searching for the 'perfect' gold I learned a lot about gold items. I can improve these gauntlets so that they provide more than normal"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Avan"
+text = "experience when smithing gold. I can easily modify these for you."
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "That sounds good, improve them for me."
+parent = -1
+children = [344, 345, 346]
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That sounds good, improve them for me!"
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "box"
+text = "Avan takes your gauntlets, takes out a small hammer, and pounds them into a slightly new shape, then hands them back to you."
+parent = 343
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "act"
+text = "end"
+parent = 343
+is_terminal = true
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "option"
+text = "I think I'll check my other options with your brothers."
+parent = -1
+children = [348, 349, 350]
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll check my other options with your brothers before committing myself."
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "speaker"
+speaker = "Avan"
+text = "If you feel you really must consort with the likes of them. I await your decision."
+parent = 347
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "act"
+text = "end"
+parent = 347
+is_terminal = true
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "Hello again. My family now considers you a hero."
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your father tells me you can improve these gauntlets for me..."
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "And right he is at that. Although my skill with Death Rune magiks was not great enough to defeat Chronozon, I am adequately skilled at Chaos Rune magiks."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Johnathon"
+text = "If you give me your gauntlets I will bestow upon them some of my power, and make any bolt spells you wish to cast more effective."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "option"
+text = "That sounds good to me."
+parent = -1
+children = [357, 358, 359]
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That sounds good to me!"
+parent = 356
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "box"
+text = "Johnathon takes your gauntlets from you, and begins a low chant over them. You see them begin to glow and sparkle, before he returns them to you."
+parent = 356
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "act"
+text = "end"
+parent = 356
+is_terminal = true
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "option"
+text = "I shall see what options your brothers can offer me first."
+parent = -1
+children = [361, 362, 363]
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll check my other options with your brothers before committing myself."
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Johnathon"
+text = "I doubt they will offer anything as useful as my magical boost, but as you wish."
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "act"
+text = "end"
+parent = 360
+is_terminal = true

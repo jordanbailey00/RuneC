@@ -1,0 +1,19 @@
+id = "slayer"
+format = "binary"
+path = "data/defs/slayer.bin"
+magic_label = "SLAY"
+magic_u32 = "0x59414C53"
+current_version = 3
+accepted_versions = [1, 2, 3]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 master_count"]
+producer = "tools/scrape_slayer.py"
+consumers = ["rc-core/slayer.c"]
+source_dataset = "RuneC-owned slayer master/task table"
+row_fields = [
+  "pstr8 master_name",
+  "u16 task_count",
+  "u8 req_slayer, u8 req_combat (v2+)",
+  "tasks[task_count]: u16 weight, v2 amount/range/unlock/requirement fields, pstr8 name, v2 text fields, v3 location/progression/boss fields",
+]
+compatibility = "Loader accepts versions 1 through current_version and rejects version 0 or newer versions."

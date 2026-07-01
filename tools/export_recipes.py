@@ -1,19 +1,7 @@
 #!/usr/bin/env python3
-"""Emit data/defs/recipes.bin from the `recipe` Bucket cache.
+"""Emit data/defs/recipes.bin from RuneC-owned recipe rows.
 
-Keeps only rows where `source_template == "recipe"` with ≥1 skill
-requirement. Item names → cache IDs via `infobox_item`.
-
-Binary format — 'RCIP' magic:
-  magic u32 | version u32 | count u32
-  per recipe:
-    name_len u8 + name[]
-    skill_reqs_n u8 + (skill_id u8, level u8, xp_q1 u16)[]
-    inputs_n u8 + (item_id u32, qty u16)[]
-    tools_n u8 + (item_id u32)[]
-    facility_len u8 + facility[]
-    output_item u32 | output_qty u16 | ticks u16
-    flags u8   (bit0=members)
+Runtime schema: `schema/defs/recipes.schema.toml`.
 """
 from __future__ import annotations
 

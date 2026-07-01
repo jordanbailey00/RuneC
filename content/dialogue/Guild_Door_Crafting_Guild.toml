@@ -1,0 +1,43 @@
+title = "Transcript:Guild Door (Crafting Guild)"
+npcs = ["Master Crafter"]
+node_count = 5
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Master Crafter"
+text = "Where's your brown apron? You can't come in here unless you're wearing one."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err... I haven't got one."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Master Crafter"
+text = "Sorry, only experienced crafters are allowed in here. You must be level 40 or above to enter."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

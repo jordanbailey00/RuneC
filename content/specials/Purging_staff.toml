@@ -1,0 +1,13 @@
+name = "Purging staff"
+item_ids = [29594, 33184]
+
+[special]
+"Special attack" = """
+[[File:Scatter ashes.gif|thumb|300px|A player performing the purging staff's special attack, ''Scatter ashes'', with [[Dark Demonbane]].]]
+[[File:Yama - dealing with void flares.mp4|thumb|300px|''Scatter ashes'' as it is used against [[Yama]], where the reduced attack delay helps eliminate [[Void flare]]s.]]
+The purging staff has a [[special attack]], ''Scatter ashes'', which drains 25% of the player's special attack energy and requires being on the [[Arceuus spellbook]].
+
+''Scatter ashes'' uses the best [[demonbane spell]] the player can cast; if the demonic creature targeted dies from ''Scatter ashes'', the special attack energy used is refunded, and the player's next attack can be used three ticks earlier.
+
+In practice, using ''Scatter ashes'' to kill a target will effectively change the player's attack speed from 5 down to 3. This is because the 3 tick reduction is processed too late for the player to attack 2 ticks later. ''Scatter ashes'' is truly reducing attack delay by 3 though - this can be shown by using ''Scatter ashes'' and then eating a piece of food, which will increase attack delay by 3. In this case, the player will be able to attack again after 5 ticks, instead of the expected 3+3=6 ticks later.
+"""

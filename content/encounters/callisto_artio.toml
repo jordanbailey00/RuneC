@@ -1,0 +1,41 @@
+# Callisto (wilderness, multi-way) + Artio (solo-only variant).
+# Simple melee bear boss with knock-back AoE.
+
+name = "Callisto / Artio"
+slug = "callisto_artio"
+npc_ids = [6609, 11992]           # Callisto (main), Artio (solo)
+source_pages = ["Callisto", "Artio", "Callisto/Strategies"]
+
+[[attacks]]
+name = "Melee Claw"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 40
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged Roar"
+# Shockwave knockback; all adjacent players pushed back N tiles.
+style = "ranged"
+max_hit = 23
+warning_ticks = 2
+on_hit.knockback_tiles = 3
+hits_all_players_in_room = true
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Claw", "Ranged Roar"]
+style_weights = { melee = 2, ranged = 1 }
+
+[[mechanics]]
+name = "Empty-Room Reset"
+primitive = "regen_when_no_player"
+params.heal_to_full = true
+params.reset_all_npcs = true
+
+[variant_override]
+# Artio is the solo-only wilderness version with reduced hp + damage.
+applies_to_npc_id = 11992
+hp_multiplier = 0.3               # ~1/3 of Callisto
+damage_multiplier = 0.7

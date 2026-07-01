@@ -62,7 +62,6 @@ static void tick_until_inactive(RcWorld *world, int max_ticks) {
 }
 
 static void test_default_attack_handler_enters_new_combat_state(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase2_world();
     int npc_idx = spawn_phase2_npc(world, 920200, 1);
     RcNpc *npc = &world->npcs[npc_idx];
@@ -89,7 +88,6 @@ static void test_default_attack_handler_enters_new_combat_state(void) {
 }
 
 static void test_custom_attack_handler_preserves_content_priority(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase2_world();
     int npc_idx = spawn_phase2_npc(world, 920201, 1);
     RcNpc *npc = &world->npcs[npc_idx];
@@ -99,8 +97,8 @@ static void test_custom_attack_handler_preserves_content_priority(void) {
     key.kind = RC_INTERACTION_NPC;
     key.op = RC_INTERACTION_OP2;
     key.content_group = RC_INTERACTION_CONTENT_GROUP_NPC_ATTACK;
-    assert(rc_interaction_register_handler(&key, phase2_complete_handler,
-                                           &state));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase2_complete_handler, &state));
 
     rc_player_interact_npc(world, npc->uid, 1);
     tick_until_inactive(world, 8);
@@ -115,7 +113,6 @@ static void test_custom_attack_handler_preserves_content_priority(void) {
 }
 
 static void test_noncombat_actions_cancel_combat_through_new_state(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase2_world();
     int npc_idx = spawn_phase2_npc(world, 920202, 1);
     RcNpc *npc = &world->npcs[npc_idx];
@@ -152,6 +149,5 @@ int main(void) {
     test_default_attack_handler_enters_new_combat_state();
     test_custom_attack_handler_preserves_content_priority();
     test_noncombat_actions_cancel_combat_through_new_state();
-    rc_interaction_clear_handlers();
     return 0;
 }

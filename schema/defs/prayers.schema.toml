@@ -1,0 +1,30 @@
+id = "prayers"
+format = "binary"
+path = "data/defs/prayers.bin"
+magic_label = "PRAY"
+magic_u32 = "0x59415250"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_prayers.py"
+consumers = ["rc-core/prayer.c"]
+source_dataset = "RuneC-owned prayer metadata table"
+row_fields = [
+  "u8 id",
+  "u8 level",
+  "u8 drain",
+  "u8 flags",
+  "u16 varbit",
+  "u16 groups",
+  "i8 attack",
+  "i8 strength",
+  "i8 defence",
+  "i8 ranged_attack",
+  "i8 ranged_strength",
+  "i8 magic_attack",
+  "i8 magic_defence",
+  "i8 magic_damage",
+  "pstr8 name",
+]
+compatibility = "Loader accepts exactly current_version."

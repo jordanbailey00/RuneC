@@ -1,0 +1,7683 @@
+title = "Transcript:Murder Mystery"
+npcs = ["Hobbes", "Frank", "David (Murder Mystery)", "Bob (Sinclair)", "Anna", "Carol", "Mary (Murder Mystery)", "Elizabeth", "Louisa", "Donovan the Family Handyman", "Pierre", "Stanford", "Guard (Sinclair Mansion)", "Gossip", "Poison Salesman"]
+node_count = 987
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "This is private property! Please leave!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "other"
+text = "{{mes|He is ignoring you.}}"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "other"
+text = "{{mes|She is ignoring you.}}"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "I'm far too upset to talk to random people right now."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "I have no interest in talking to gawkers."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "The guards told me not to talk to anyone."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "Have you no shame? We are all grieving at the moment."
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "other"
+text = "{{mes|I need the guards' permission to do that.}}"
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "other"
+text = "{{mes|You need the guards' permission to do that.}}"
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's going on here?"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Oh, it's terrible! Lord Sinclair has been murdered and we don't have any clues as to who or why. We're totally baffled!"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "If you can help us we will be very grateful."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "select"
+text = "Start the Murder Mystery quest?"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [23, 24, 25, 26, 27]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I'll help!"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Thanks a lot!"
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What should I be doing to help?"
+parent = 22
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Look around and investigate who might be responsible. The Sarge said every murder leaves clues to who done it, but frankly we're out of our depth here."
+parent = 22
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [29, 30, 31]
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You should do your own dirty work."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Get lost then, this is private property! ...Unless you'd like to be taken in for questioning yourself?"
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "end"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "What should I be doing to help again?"
+parent = -1
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What should I be doing to help?"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Look around and investigate who might be responsible. The Sarge said every murder leaves clues to who done it, but frankly we're out of our depth here."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "option"
+text = "How did Lord Sinclair die?"
+parent = -1
+children = [38, 39, 40, 41]
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How did Lord Sinclair die?"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Well, it's all very mysterious. Mary, the maid, found the body in the study next to his bedroom on the east wing of the ground floor."
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "The door was found locked from the inside, and he seemed to have been stabbed, but there was an odd smell in the room. Frankly, I'm stumped."
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "I know who did it!"
+parent = -1
+children = [43, 44, 45, 46, 52, 57, 88]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know who did it!"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Really? That was quick work! Who?"
+parent = 42
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 42
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "option"
+text = "It was an intruder!"
+parent = 42
+children = [47, 48, 49, 50, 51]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It was an intruder!"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "That's what we were thinking too. That someone broke in to steal something, was discovered by Lord Sinclair, stabbed him and ran."
+parent = 46
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "It's odd that apparently nothing was stolen though... Find out something has been stolen,"
+parent = 46
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "and the case is closed, but the murdered man was a friend of the King, and it's more than my job's worth not to investigate fully."
+parent = 46
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "end"
+parent = 46
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "option"
+text = "The butler did it!"
+parent = 42
+children = [53, 54, 55, 56]
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The butler did it!"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "I hope you have proof to that effect. We have to arrest someone for this and it seems to me that only the actual murderer would gain by falsely accusing someone."
+parent = 52
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Although having said that the butler is kind of shifty looking..."
+parent = 52
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "act"
+text = "end"
+parent = 52
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "option"
+text = "It was one of the servants!"
+parent = 42
+children = [58, 59, 60, 61, 73]
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It was one of the servants!"
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? Which one?"
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 3
+kind = "option"
+text = "It was one of the women..."
+parent = 57
+children = [62, 63, 64, 70]
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It was one of the women{{sic|no ellipsis}}"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "option"
+text = "It was SO obviously Louisa the cook."
+parent = 61
+children = [65, 66, 67, 68, 69]
+
+[[nodes]]
+id = 65
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "You DO have evidence of their crime, right?"
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Uh...."
+parent = 64
+
+[[nodes]]
+id = 68
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Tch. You wouldn't last a day in the guards with sloppy thinking like that. Come see me when you have some proof of your accusations."
+parent = 64
+
+[[nodes]]
+id = 69
+depth = 5
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "option"
+text = "It MUST have been Mary the maid."
+parent = 61
+children = [71, 72]
+
+[[nodes]]
+id = 71
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 5
+kind = "act"
+text = "above"
+parent = 70
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "option"
+text = "It was one of the men..."
+parent = 57
+children = [74, 75, 76, 79, 82, 85]
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It was one of the men..."
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 73
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "option"
+text = "It can ONLY be Donovan the handyman."
+parent = 73
+children = [77, 78]
+
+[[nodes]]
+id = 77
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 5
+kind = "act"
+text = "above"
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 4
+kind = "option"
+text = "Pierre the dog handler. No question."
+parent = 73
+children = [80, 81]
+
+[[nodes]]
+id = 80
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 5
+kind = "act"
+text = "above"
+parent = 79
+
+[[nodes]]
+id = 82
+depth = 4
+kind = "option"
+text = "Hobbes the butler. The butler ALWAYS did it."
+parent = 73
+children = [83, 84]
+
+[[nodes]]
+id = 83
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 5
+kind = "act"
+text = "above"
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 4
+kind = "option"
+text = "You MUST know it was Stanford The Gardener..."
+parent = 73
+children = [86, 87]
+
+[[nodes]]
+id = 86
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 5
+kind = "act"
+text = "above"
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "option"
+text = "It was one of his family!"
+parent = 42
+children = [89, 90, 91, 92, 104]
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It was one of his family!"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? Which one?"
+parent = 88
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 88
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "option"
+text = "It was one of the women..."
+parent = 88
+children = [93, 94, 95, 98, 101]
+
+[[nodes]]
+id = 93
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It was one of the women..."
+parent = 92
+
+[[nodes]]
+id = 94
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 92
+
+[[nodes]]
+id = 95
+depth = 4
+kind = "option"
+text = "I KNOW it was Anna."
+parent = 92
+children = [96, 97]
+
+[[nodes]]
+id = 96
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 5
+kind = "act"
+text = "above"
+parent = 95
+
+[[nodes]]
+id = 98
+depth = 4
+kind = "option"
+text = "I am SO sure it was Carol."
+parent = 92
+children = [99, 100]
+
+[[nodes]]
+id = 99
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 5
+kind = "act"
+text = "above"
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 4
+kind = "option"
+text = "I'll bet you ANYTHING it was Elizabeth."
+parent = 92
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 5
+kind = "act"
+text = "above"
+parent = 101
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "option"
+text = "It was one of the men..."
+parent = 88
+children = [105, 106, 107, 110, 113]
+
+[[nodes]]
+id = 105
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "It was one of the men..."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 4
+kind = "option"
+text = "I'm certain it was Bob."
+parent = 104
+children = [108, 109]
+
+[[nodes]]
+id = 108
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 5
+kind = "act"
+text = "above"
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 4
+kind = "option"
+text = "It was David. No doubt about it."
+parent = 104
+children = [111, 112]
+
+[[nodes]]
+id = 111
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 5
+kind = "act"
+text = "above"
+parent = 110
+
+[[nodes]]
+id = 113
+depth = 4
+kind = "option"
+text = "If it wasn't Frank I'll eat my shoes!"
+parent = 104
+children = [114, 115]
+
+[[nodes]]
+id = 114
+depth = 5
+kind = "speaker"
+speaker = "Guard"
+text = "Great work. Show me the evidence, and we'll take them to the dungeons."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 5
+kind = "act"
+text = "above"
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "cond"
+text = "If the player already has the criminal's dagger:"
+parent = -1
+children = [117, 118]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "other"
+text = "{{mes|I already have the murder weapon.}}"
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "act"
+text = "end"
+parent = 116
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "box"
+text = "This knife doesn't seem sturdy enough to have killed Lord Sinclair."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "cond"
+text = "If the player already has the pungent pot:"
+parent = -1
+children = [122, 123]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "other"
+text = "{{mes|I already have the poisoned pot.}}"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "end"
+parent = 121
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "box"
+text = "It seems like Lord Sinclair was drinking from this before he died."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "box"
+text = "Some thread seems to have been caught on a loose nail on the window."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "other"
+text = "{{mes|You take the thread.}}"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "box"
+text = "Some thread seems to have been caught on a loose nail on the window."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "cond"
+text = "If the player lost the thread:"
+parent = -1
+children = [131, 132]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "box"
+text = "Lucky for you there's some thread left. You should be less careless in future."
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "end"
+parent = 130
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "cond"
+text = "If the player is still holding the thread:"
+parent = -1
+children = [134, 135]
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "box"
+text = "You have already taken the thread."
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "other"
+text = "{{mes|You don't want to damage evidence!}}"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "cond"
+text = "For blue thread:"
+parent = -1
+children = [139, 140]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "box"
+text = "Some blue thread. Not enough to be worth taking."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "cond"
+text = "For green thread:"
+parent = -1
+children = [142, 143]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "box"
+text = "Some green thread. Not enough to be worth taking."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "cond"
+text = "For red thread:"
+parent = -1
+children = [145, 146]
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "box"
+text = "Some red thread. Not enough to be worth taking."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "act"
+text = "end"
+parent = 144
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "other"
+text = "{{mes|It's a heap of compost.}}"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "other"
+text = "{{mes|It's a very old beehive.}}"
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "other"
+text = "{{mes|It's the drains from the kitchen.}}"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "other"
+text = "{{mes|It looks like a spiders' nest of some kind...}}"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "other"
+text = "{{mes|A fountain with large numbers of insects around the base.}}"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "other"
+text = "{{mes|The Sinclair Family Crest is hung up here.}}"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "box"
+text = "As you approach the gate the guard dog starts barking loudly at you. There is no way an intruder could have committed the murder. It must have been someone the dog knew to get past it quietly."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Oh really? What do you want to know then?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [159, 160, 161, 162, 163]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think was responsible?"
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "It was clearly an intruder."
+parent = 158
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I don't think it was."
+parent = 158
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "It was one of our lazy servants then."
+parent = 158
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "act"
+text = "end"
+parent = 158
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [165, 166, 167]
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you when the murder happened?"
+parent = 164
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "In the library. No one else was there so you'll just have to take my word for it."
+parent = 164
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "act"
+text = "end"
+parent = 164
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [169, 170, 171, 172]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you recognise this thread?"
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "box"
+text = "You show Anna the thread from the study."
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = "Not really, no. Thread is fairly common."
+parent = 168
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "I suppose I had better talk to you then."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [177, 178, 179]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think was responsible?"
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "I don't really care as long as no one thinks it's me. Maybe it was that strange poison seller who headed towards the seers village."
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "act"
+text = "end"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [181, 182, 183, 184, 185]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you when the murder happened?"
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "I was walking by myself in the garden."
+parent = 180
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And can anyone vouch for that?"
+parent = 180
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "No. But I was."
+parent = 180
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "act"
+text = "end"
+parent = 180
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [187, 188, 193]
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you recognise this thread?"
+parent = 186
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "box"
+text = "You show him the thread you discovered."
+parent = 186
+children = [189, 191]
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "cond"
+text = "If the criminal's thread is red:"
+parent = 188
+children = [190]
+
+[[nodes]]
+id = 190
+depth = 4
+kind = "speaker"
+speaker = "Bob"
+text = "It's some red thread. I suppose you think that's some kind of clue? It looks like the material my trousers are made of"
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "cond"
+text = "If the criminal's thread isn't red:"
+parent = 188
+children = [192]
+
+[[nodes]]
+id = 192
+depth = 4
+kind = "speaker"
+speaker = "Bob"
+text = "It's some thread. great{{sic|not capitalised}} clue. No, really."
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "act"
+text = "end"
+parent = 186
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Well, ask what you want to know then."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [198, 199, 200]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think was responsible?"
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Carol"
+text = "I don't know. I think it's very convenient that you have arrived here so soon after it happened. Maybe it was you."
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "act"
+text = "end"
+parent = 197
+is_terminal = true
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [202, 203, 204]
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you when the murder happened?"
+parent = 201
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Carol"
+text = "Why? Are you accusing me of something? You seem to have a very high opinion of yourself I was in my room if you must know, alone."
+parent = 201
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "act"
+text = "end"
+parent = 201
+is_terminal = true
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [206, 212]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you recognise this thread?"
+parent = 205
+children = [207, 208, 210]
+
+[[nodes]]
+id = 207
+depth = 3
+kind = "box"
+text = "You show Carol the thread found at the crime scene."
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 3
+kind = "cond"
+text = "If the criminal's thread is red:"
+parent = 206
+children = [209]
+
+[[nodes]]
+id = 209
+depth = 4
+kind = "speaker"
+speaker = "Carol"
+text = "It's some red thread... it kind of looks like the Same{{sic}} material as my trousers. But obviously it's not."
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "cond"
+text = "If the criminal's thread isn't red:"
+parent = 206
+children = [211]
+
+[[nodes]]
+id = 211
+depth = 4
+kind = "speaker"
+speaker = "Carol"
+text = "It's some thread. Sorry, do you have a point here? Or do you just enjoy wasting peoples{{sic}} time?"
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "act"
+text = "end"
+parent = 205
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "David"
+text = "And? Make this quick, I have better things to do than be interrogated by halfwits all day."
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [217, 218, 219, 220]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think was responsible?"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "David"
+text = "I don't really know or care. Frankly, the old man deserved to die."
+parent = 216
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "speaker"
+speaker = "David"
+text = "There was a suspicious red headed man who came to the house the other day selling poison now I think about it. Last I saw he was headed towards the tavern in the Seers village."
+parent = 216
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "act"
+text = "end"
+parent = 216
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [222, 223, 224]
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you when the murder happened?"
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "David"
+text = "That is none of your business. Are we finished now, or are you just going to stand there irritating me with your idiotic questions all day?"
+parent = 221
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "act"
+text = "end"
+parent = 221
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [226, 227, 228, 229]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you recognise this thread?"
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "box"
+text = "You show him the thread you found on the study window"
+parent = 225
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "David"
+text = "No. Can I go yet? Your face irritates me."
+parent = 225
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Elizabeth"
+text = "What's so important you need to bother me with then?"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [234, 235]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think was responsible?"
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Elizabeth"
+text = "Could have been anyone. The old man was an idiot. He's been asking for it for years."
+parent = 233
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [237, 238, 239, 240, 241]
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you when the murder happened?"
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Elizabeth"
+text = "I was out."
+parent = 236
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Care to be any more specific?"
+parent = 236
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "speaker"
+speaker = "Elizabeth"
+text = "Not really. I don't have to justify myself to the likes of you, you know. I know the King personally you know. Now are we finished here?"
+parent = 236
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "act"
+text = "end"
+parent = 236
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [243, 244, 245, 246]
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you recognise this thread?"
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "box"
+text = "You show her the thread from the study window."
+parent = 242
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Elizabeth"
+text = "It's some thread. You're not very good at this whole investigation thing are you?"
+parent = 242
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Frank"
+text = "Good for you. Now what do you want?"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Frank"
+text = "...And can you spare me any money? I'm a little short..."
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [252, 253, 254, 255]
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think was responsible?"
+parent = 251
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "speaker"
+speaker = "Frank"
+text = "I don't know."
+parent = 251
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "speaker"
+speaker = "Frank"
+text = "You don't know how long it takes an inheritance to come through do you? I could really use that money pretty soon..."
+parent = 251
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "act"
+text = "end"
+parent = 251
+is_terminal = true
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [257, 258, 259, 260]
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you when the murder happened?"
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "speaker"
+speaker = "Frank"
+text = "I don't know, somewhere around here probably."
+parent = 256
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Frank"
+text = "Could you spare me a few coins? I'll be able to pay you double tomorrow it's just there's this poker night tonight in town..."
+parent = 256
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "act"
+text = "end"
+parent = 256
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [262, 263, 264, 265]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you recognise this thread?"
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "box"
+text = "Frank examines the thread from the crime scene."
+parent = 261
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "speaker"
+speaker = "Frank"
+text = "It looks like thread to me, but I'm not exactly an expert. Is it worth something? Can I have it? Actually, can you spare me a few gold?"
+parent = 261
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "act"
+text = "end"
+parent = 261
+is_terminal = true
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [270, 271, 272, 273]
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think is responsible?"
+parent = 269
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Oh... I really couldn't say. I wouldn't really want to point any fingers at anybody. If I had to make a guess I'd have to say it was probably Bob though."
+parent = 269
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "I saw him arguing with Lord Sinclair about some missing silverware from the Kitchen. It was a very heated argument."
+parent = 269
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "act"
+text = "end"
+parent = 269
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [275, 276, 277]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you at the time of the murder?"
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Me? I was sound asleep here in the servants Quarters. It's very hard work as a handyman around here, There's always something to do!"
+parent = 274
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "act"
+text = "end"
+parent = 274
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [279, 280, 281, 282, 283]
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you hear any suspicious noises at all?"
+parent = 278
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Hmmm..... No, I didn't, but I sleep very soundly at night."
+parent = 278
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you didn't hear any sounds of a struggle or any barking from the guard dog next to his study window?"
+parent = 278
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Now you mention it, no. It is odd I didn't hear anything like that. But I do sleep very soundly as I said and wouldn't necessarily have heard it if there was any such noise."
+parent = 278
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "act"
+text = "end"
+parent = 278
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm investigating the murder up at the Sinclair place."
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Gossip"
+text = "Murder is it? Well, I'm not really surprised..."
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "option"
+text = "What can you tell me about the Sinclairs?"
+parent = -1
+children = [288, 289, 290, 291, 297, 302, 327]
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about the Sinclairs?"
+parent = 287
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, what do you want to know?"
+parent = 287
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 287
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "option"
+text = "Tell me about Lord Sinclair."
+parent = 287
+children = [292, 293, 294, 295, 296]
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Lord Sinclair."
+parent = 291
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "speaker"
+speaker = "Gossip"
+text = "Old Lord Sinclair was a great man with a lot of respect in these parts. More than his worthless children have anyway."
+parent = 291
+
+[[nodes]]
+id = 294
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "His children? They have something to gain by his death?"
+parent = 291
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "speaker"
+speaker = "Gossip"
+text = "Yes. You could say that. Not that I'm one to gossip."
+parent = 291
+
+[[nodes]]
+id = 296
+depth = 3
+kind = "act"
+text = "end"
+parent = 291
+is_terminal = true
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "option"
+text = "Why do the Sinclairs live so far from town?"
+parent = 287
+children = [298, 299, 300, 301]
+
+[[nodes]]
+id = 298
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why do the Sinclairs live so far from town?"
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 3
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, they used to live in the big castle, but old Lord Sinclair gave it up so that those strange knights could live there instead. So the king built him a new house to the North."
+parent = 297
+
+[[nodes]]
+id = 300
+depth = 3
+kind = "speaker"
+speaker = "Gossip"
+text = "It's more cramped than his old place, but he seemed to like it. His children were furious at him for doing it though!"
+parent = 297
+
+[[nodes]]
+id = 301
+depth = 3
+kind = "act"
+text = "end"
+parent = 297
+is_terminal = true
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "option"
+text = "What can you tell me about his sons?"
+parent = 287
+children = [303, 304, 305, 306, 314, 321]
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about his sons?"
+parent = 302
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "speaker"
+speaker = "Gossip"
+text = "His sons eh? They all have their own skeletons in their cupboards. You'll have to be more specific. Who are you interested in exactly?"
+parent = 302
+
+[[nodes]]
+id = 305
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 302
+
+[[nodes]]
+id = 306
+depth = 3
+kind = "option"
+text = "Tell me about Bob."
+parent = 302
+children = [307, 308, 309, 310, 311, 312, 313]
+
+[[nodes]]
+id = 307
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Bob."
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "Bob is an odd character indeed... I'm not one to gossip, but I heard Bob is addicted to Tea. He can't make"
+parent = 306
+
+[[nodes]]
+id = 309
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "it through the day without having at least 20 cups!"
+parent = 306
+
+[[nodes]]
+id = 310
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "You might not think that's such a big thing, but he has spent thousands of gold to feed his habit!"
+parent = 306
+
+[[nodes]]
+id = 311
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "At one point he stole a lot of silverware from the kitchen and pawned it just so he could afford to buy his daily tea allowance."
+parent = 306
+
+[[nodes]]
+id = 312
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "If his father ever found out, he would be in so much trouble... he might even get disowned!"
+parent = 306
+
+[[nodes]]
+id = 313
+depth = 4
+kind = "act"
+text = "end"
+parent = 306
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 3
+kind = "option"
+text = "Tell me about David."
+parent = 302
+children = [315, 316, 317, 318, 319, 320]
+
+[[nodes]]
+id = 315
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about David."
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "David... oh David... not many people know this, but David really has an anger problem. He's always screaming and shouting"
+parent = 314
+
+[[nodes]]
+id = 317
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "at the household servants when he's angry, and they live in a state of fear, always walking on eggshells around him, but none of them have the courage"
+parent = 314
+
+[[nodes]]
+id = 318
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "to talk to his father about his behaviour. If they did, Lord Sinclair would almost certainly"
+parent = 314
+
+[[nodes]]
+id = 319
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "kick him out of the house, as some of the servants have been there longer than he has, and he definitely has no right to treat them like he does... but I'm not one to gossip about people."
+parent = 314
+
+[[nodes]]
+id = 320
+depth = 4
+kind = "act"
+text = "end"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "option"
+text = "Tell me about Frank."
+parent = 302
+children = [322, 323, 324, 325, 326]
+
+[[nodes]]
+id = 322
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Frank."
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = """
+I'm not one to talk ill of people behind their back, but Frank is a real piece of work. He is an absolutely terrible gambler... he can't pass 2 dogs in the street without putting a bet on which one will bark first!
+"""
+parent = 321
+
+[[nodes]]
+id = 324
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "He has already squandered all of his allowance, and I heard he had stolen a number of paintings of his fathers to sell to try and cover his debts, but he still owes a lot of"
+parent = 321
+
+[[nodes]]
+id = 325
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "people a lot of money. If his father ever found out, he would stop his income, and then he would be in serious trouble!"
+parent = 321
+
+[[nodes]]
+id = 326
+depth = 4
+kind = "act"
+text = "end"
+parent = 321
+is_terminal = true
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "option"
+text = "What can you tell me about his daughters?"
+parent = 287
+children = [328, 329, 330, 331, 337, 343]
+
+[[nodes]]
+id = 328
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about his daughters?"
+parent = 327
+
+[[nodes]]
+id = 329
+depth = 3
+kind = "speaker"
+speaker = "Gossip"
+text = "His daughters eh? They're all nasty pieces of work. which of them specifically did you want to know about?"
+parent = 327
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 327
+
+[[nodes]]
+id = 331
+depth = 3
+kind = "option"
+text = "Tell me about Anna."
+parent = 327
+children = [332, 333, 334, 335, 336]
+
+[[nodes]]
+id = 332
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Anna."
+parent = 331
+
+[[nodes]]
+id = 333
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "Anna... ah yes... Anna has 2 great loves:"
+parent = 331
+
+[[nodes]]
+id = 334
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "Sewing and gardening. But one thing she has kept secret is that she once had an affair with Stanford the gardener, and tried to get him fired when they broke up,"
+parent = 331
+
+[[nodes]]
+id = 335
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "by killing all of the flowers in the garden. If her father ever found out she had done that he would be so furious he would probably disown her."
+parent = 331
+
+[[nodes]]
+id = 336
+depth = 4
+kind = "act"
+text = "end"
+parent = 331
+is_terminal = true
+
+[[nodes]]
+id = 337
+depth = 3
+kind = "option"
+text = "Tell me about Carol."
+parent = 327
+children = [338, 339, 340, 341, 342]
+
+[[nodes]]
+id = 338
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Carol."
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "Oh Carol... she is such a fool. You didn't hear this from me, but I heard a while ago she was conned out of a lot of money by a travelling salesman who sold her a box full"
+parent = 337
+
+[[nodes]]
+id = 340
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "of beans by telling her they were magic. But they weren't. She sold some rare books from the library to cover her debts, but"
+parent = 337
+
+[[nodes]]
+id = 341
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "her father would be incredibly annoyed if he ever found out - he might even throw her out of the house!"
+parent = 337
+
+[[nodes]]
+id = 342
+depth = 4
+kind = "act"
+text = "end"
+parent = 337
+is_terminal = true
+
+[[nodes]]
+id = 343
+depth = 3
+kind = "option"
+text = "Tell me about Elizabeth."
+parent = 327
+children = [344, 345, 346, 347, 348, 349]
+
+[[nodes]]
+id = 344
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about Elizabeth."
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = """
+Elizabeth? Elizabeth has a strange problem... She cannot help herself, but is always stealing small objects - it's pretty sad that she is rich enough to afford to buy things, but would rather steal them instead.
+"""
+parent = 343
+
+[[nodes]]
+id = 346
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "Now, I don't want to spread stories, but I heard she even stole a silver needle from her father that had great sentimental value for him."
+parent = 343
+
+[[nodes]]
+id = 347
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "He was devastated when it was lost, and cried for a week thinking he had lost it!"
+parent = 343
+
+[[nodes]]
+id = 348
+depth = 4
+kind = "speaker"
+speaker = "Gossip"
+text = "If he ever found out that it was her who had stolen it he would go absolutely mental, maybe even disowning her!"
+parent = 343
+
+[[nodes]]
+id = 349
+depth = 4
+kind = "act"
+text = "end"
+parent = 343
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [351, 352, 353, 354]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think was responsible?"
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, I guess it could have been an intruder, but with that big guard dog of theirs I seriously doubt it. I suspect it was someone closer to home..."
+parent = 350
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Especially as I heard that the poison salesman in the Seers' village made a big sale to one of the family the other day."
+parent = 350
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "act"
+text = "end"
+parent = 350
+is_terminal = true
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "option"
+text = "I think the butler did it."
+parent = -1
+children = [356, 357, 358]
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think the butler did it."
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "And I think you've been reading too many cheap detective novels. Hobbes is kind of uptight, but his loyalty to old Lord Sinclair is beyond question."
+parent = 355
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "act"
+text = "end"
+parent = 355
+is_terminal = true
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "option"
+text = "I am so confused about who did it."
+parent = -1
+children = [360, 361, 362, 363, 364]
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am so confused about who did it..."
+parent = 359
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Think you could give me any hints?"
+parent = 359
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "Well, I don't know if it's related, but I heard from that Poison Salesman in town that he sold some poison to one of the Sinclair family"
+parent = 359
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Gossip"
+text = "the other day. I don't think he has any stock left now though..."
+parent = 359
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "act"
+text = "end"
+parent = 359
+is_terminal = true
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [369, 370, 371, 372, 373]
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think is responsible?"
+parent = 368
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "Well, in my considered opinion it must be David. The man is nothing more than a bully And I happen to know that poor Lord Sinclair and David had a massive argument in the living"
+parent = 368
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = """
+room about the way he treats the staff, the other day. I did not intend to overhear their conversation, but they were shouting so loudly I could not help but Overhear it. David definitely used the words
+"""
+parent = 368
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "'I am going to kill you!' as well. I think he should be the prime suspect. He has a nasty temper that one."
+parent = 368
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "act"
+text = "end"
+parent = 368
+is_terminal = true
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [375, 376, 377]
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you at the time of the murder?"
+parent = 374
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "I was assisting the cook with the evening meal. I gave Mary His Lordships' dinner, and sent her to take it to him, then heard the scream as she found the body."
+parent = 374
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "act"
+text = "end"
+parent = 374
+is_terminal = true
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [379, 380, 381, 382, 383, 384, 385]
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you hear any suspicious noises at all?"
+parent = 378
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "How do you mean 'suspicious'?"
+parent = 378
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any sounds of a struggle with Lord Sinclair?"
+parent = 378
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "No, I definitely didn't hear anything like that."
+parent = 378
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How about the guard dog barking at all?"
+parent = 378
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "You know, now you come to mention it I don't believe I did. I suppose that is Proof enough that it could not have been an intruder who is responsible."
+parent = 378
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "act"
+text = "end"
+parent = 378
+is_terminal = true
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [390, 391, 392, 393, 394]
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think is responsible?"
+parent = 389
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "Elizabeth."
+parent = 389
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "Her father confronted her about her constant petty thieving, and was devestated to find she had stolen a silver needle which had meant a lot to him."
+parent = 389
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "You could hear their argument from Lumbridge!"
+parent = 389
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "act"
+text = "end"
+parent = 389
+is_terminal = true
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [396, 397, 398]
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you at the time of the murder?"
+parent = 395
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "I was right here with Hobbes and Mary. You can't suspect me surely!"
+parent = 395
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "act"
+text = "end"
+parent = 395
+is_terminal = true
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [400, 401, 402, 403, 404, 405, 406]
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you hear any suspicious noises at all?"
+parent = 399
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "suspicious? what do you mean suspicious?"
+parent = 399
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any sounds of a struggle with an intruder for example?"
+parent = 399
+
+[[nodes]]
+id = 403
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "No, I'm sure I don't recall any such thing."
+parent = 399
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How about the guard dog barking at an intruder?"
+parent = 399
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "No, I didn't. If you don't have anything else to ask can You go and leave me alone now? I have a lot of cooking to do for this evening."
+parent = 399
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "act"
+text = "end"
+parent = 399
+is_terminal = true
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [411, 412, 413, 414]
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think is responsible?"
+parent = 410
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "Oh I don't know... Frank was acting kind of funny... After that big argument him and the Lord had the other day by the beehive... so"
+parent = 410
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I guess maybe him... but it's really scary to think someone here might have been responsible. I actually hope it was a burglar..."
+parent = 410
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "act"
+text = "end"
+parent = 410
+is_terminal = true
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [416, 417, 418, 419]
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you at the time of the murder?"
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I was with Hobbes and Louisa in the Kitchen helping to prepare Lord Sinclair's meal, and then when I took it to his study... I saw... oh, it was horrible... he was...."
+parent = 415
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "box"
+text = "She seems to be on the verge of crying. You decide not to push her anymore for details."
+parent = 415
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "act"
+text = "end"
+parent = 415
+is_terminal = true
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [421, 422, 423, 424, 425, 426, 427]
+
+[[nodes]]
+id = 421
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you hear any suspicious noises at all?"
+parent = 420
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I don't really remember hearing anything out of the ordinary."
+parent = 420
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No sounds of a struggle then?"
+parent = 420
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "No, I don't remember hearing anything like that."
+parent = 420
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How about the guard dog barking?"
+parent = 420
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "Oh that horrible dog is always barking at nothing but I don't think I did..."
+parent = 420
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "act"
+text = "end"
+parent = 420
+is_terminal = true
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [432, 433, 434, 435]
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think is responsible?"
+parent = 431
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "Honestly? I think it was Carol."
+parent = 431
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "I saw her in a huge argument with Lord Sinclair in the library the other day. It was something to do with stolen books. She definitely seemed upset enough to have done it afterwards."
+parent = 431
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "act"
+text = "end"
+parent = 431
+is_terminal = true
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [437, 438, 439]
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you at the time of the murder?"
+parent = 436
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "I was in town at the Inn. When I got back the house was swarming with guards who told me what had happened. Sorry."
+parent = 436
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "act"
+text = "end"
+parent = 436
+is_terminal = true
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [441, 442, 443, 444, 445, 446, 447]
+
+[[nodes]]
+id = 441
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you hear any suspicious noises at all?"
+parent = 440
+
+[[nodes]]
+id = 442
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "Well, like what?"
+parent = 440
+
+[[nodes]]
+id = 443
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any sounds of a struggle with Lord Sinclair?"
+parent = 440
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "No, I don't remember hearing anything like that."
+parent = 440
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How about the guard dog barking at all?"
+parent = 440
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "I hear him bark all the time. It's one of his favorite things to do. I can't say I did the night of the murder though as I wasn't close enough to hear either way."
+parent = 440
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "act"
+text = "end"
+parent = 440
+is_terminal = true
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [452, 453, 454, 455]
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who do you think is responsible?"
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "It was Anna. She is seriously unbalanced. She trashed the garden once then tried to blame it on me! I bet it was her. It's just the kind of thing she'd do!"
+parent = 451
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "She really hates me and was arguing with Lord Sinclair about trashing the garden a few days ago."
+parent = 451
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "act"
+text = "end"
+parent = 451
+is_terminal = true
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [457, 458, 459]
+
+[[nodes]]
+id = 457
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where were you at the time of the murder?"
+parent = 456
+
+[[nodes]]
+id = 458
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Right here, by my little shed. It's very cosy to sit and think in."
+parent = 456
+
+[[nodes]]
+id = 459
+depth = 2
+kind = "act"
+text = "end"
+parent = 456
+is_terminal = true
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [461, 462, 463, 464, 465, 466, 467]
+
+[[nodes]]
+id = 461
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did you hear any suspicious noises at all?"
+parent = 460
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Not that I remember."
+parent = 460
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So no sounds of a struggle between Lord Sinclair and an intruder?"
+parent = 460
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Not to the best of my recollection."
+parent = 460
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How about the guard dog barking?"
+parent = 460
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Not that I can recall."
+parent = 460
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "act"
+text = "end"
+parent = 460
+is_terminal = true
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "box"
+text = "There's some flypaper in there. Should I take it?"
+parent = -1
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "option"
+text = "Yes, it might be useful."
+parent = -1
+children = [471, 472]
+
+[[nodes]]
+id = 471
+depth = 2
+kind = "box"
+text = "You take a piece of fly paper. There is still plenty of fly paper left."
+parent = 470
+
+[[nodes]]
+id = 472
+depth = 2
+kind = "act"
+text = "end"
+parent = 470
+is_terminal = true
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "option"
+text = "No, I don't see any need for it."
+parent = -1
+children = [474]
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "act"
+text = "end"
+parent = 473
+is_terminal = true
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "cond"
+text = "If the player already has the silver necklace:"
+parent = -1
+children = [476, 477]
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "other"
+text = "{{mes|I already have Anna's Necklace.}}"
+parent = 475
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "act"
+text = "end"
+parent = 475
+is_terminal = true
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "box"
+text = "There's something shiny hidden at the bottom. You take Anna's Silver Necklace."
+parent = -1
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "cond"
+text = "If the player already has the silver cup:"
+parent = -1
+children = [481, 482]
+
+[[nodes]]
+id = 481
+depth = 2
+kind = "other"
+text = "{{mes|I already have Bob's cup.}}"
+parent = 480
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "act"
+text = "end"
+parent = 480
+is_terminal = true
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "box"
+text = "There's something shiny hidden at the bottom. You take Bob's silver cup."
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "cond"
+text = "If the player already has the silver bottle:"
+parent = -1
+children = [486, 487]
+
+[[nodes]]
+id = 486
+depth = 2
+kind = "other"
+text = "{{mes|I already have Carol's bottle.}}"
+parent = 485
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "act"
+text = "end"
+parent = 485
+is_terminal = true
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "box"
+text = "There's something shiny hidden at the bottom. You take Carol's silver bottle."
+parent = -1
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "cond"
+text = "If the player already has the silver book:"
+parent = -1
+children = [491, 492]
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "other"
+text = "{{mes|I already have David's book.}}"
+parent = 490
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "act"
+text = "end"
+parent = 490
+is_terminal = true
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "box"
+text = "There's something shiny hidden at the bottom. You take David's silver book."
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "cond"
+text = "If the player already has the silver needle:"
+parent = -1
+children = [496, 497]
+
+[[nodes]]
+id = 496
+depth = 2
+kind = "other"
+text = "{{mes|I already have Elizabeth's Needle.}}"
+parent = 495
+
+[[nodes]]
+id = 497
+depth = 2
+kind = "act"
+text = "end"
+parent = 495
+is_terminal = true
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "box"
+text = "There's something shiny hidden at the bottom. You take Elizabeth's silver needle."
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "cond"
+text = "If the player already has the silver pot:"
+parent = -1
+children = [501, 502]
+
+[[nodes]]
+id = 501
+depth = 2
+kind = "other"
+text = "{{mes|I already have Frank's pot.}}"
+parent = 500
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "act"
+text = "end"
+parent = 500
+is_terminal = true
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "box"
+text = "There's something shiny hidden at the bottom. You take Frank's silver pot."
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "other"
+text = "{{mes|A barrel full of finely sifted flour.}}"
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "cond"
+text = "If the player does not have an empty pot:"
+parent = -1
+children = [507, 508]
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "other"
+text = "{{mes|You need something to put the flour in.}}"
+parent = 506
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "act"
+text = "end"
+parent = 506
+is_terminal = true
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "cond"
+text = "If the player has an empty pot:"
+parent = -1
+children = [510, 511, 512]
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "other"
+text = "{{mes|You take some flour from the barrel.}}"
+parent = 509
+
+[[nodes]]
+id = 511
+depth = 2
+kind = "other"
+text = "{{mes|There's still plenty of flour left.}}"
+parent = 509
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "act"
+text = "end"
+parent = 509
+is_terminal = true
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "other"
+text = "{{mes|You take some flour from the barrel.}}"
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "other"
+text = "{{mes|There's still plenty of flour left.}}"
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "box"
+text = "You probably shouldn't use evidence from a crime scene to keep flour in..."
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle a small amount of flour on the murder weapon.}}"
+parent = -1
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "other"
+text = "{{mes|The murder weapon is now coated with a thin layer of flour.}}"
+parent = -1
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle a small amount of flour on the strange smelling pot.}}"
+parent = -1
+
+[[nodes]]
+id = 520
+depth = 1
+kind = "other"
+text = "{{mes|The surface isn't shiny enough to take a fingerprint from.}}"
+parent = -1
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle the flour on Anna's necklace.}}"
+parent = -1
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "other"
+text = "{{mes|The necklace is now coated with a thin layer of flour.}}"
+parent = -1
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle the flour on Bob's cup.}}"
+parent = -1
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "other"
+text = "{{mes|The cup is now coated with a thin layer of flour.}}"
+parent = -1
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle the flour on Carol's bottle.}}"
+parent = -1
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "other"
+text = "{{mes|The bottle is now coated with a thin layer of flour.}}"
+parent = -1
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle the flour on David's book.}}"
+parent = -1
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "other"
+text = "{{mes|The Book is now coated with a thin layer of flour.}}"
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle the flour on Elizabeth's needle.}}"
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "other"
+text = "{{mes|The Needle is now coated with a thin layer of flour.}}"
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "other"
+text = "{{mes|You sprinkle the flour on Frank's pot}}"
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "other"
+text = "{{mes|The Pot is now coated with a thin layer of flour.}}"
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "other"
+text = "{{mes|You use the flypaper on the floury dagger.}}"
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "other"
+text = "{{mes|You have a clean impression of the murderer's finger prints.}}"
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "other"
+text = "{{mes|You use the flypaper on the flour covered necklace.}}"
+parent = -1
+
+[[nodes]]
+id = 536
+depth = 1
+kind = "other"
+text = "{{mes|You have a clean impression of Anna's finger prints.}}"
+parent = -1
+
+[[nodes]]
+id = 537
+depth = 1
+kind = "other"
+text = "{{mes|You use the flypaper on the flour covered cup.}}"
+parent = -1
+
+[[nodes]]
+id = 538
+depth = 1
+kind = "other"
+text = "{{mes|You have a clean impression of Bob's finger prints.}}"
+parent = -1
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "other"
+text = "{{mes|You use the flypaper on the flour covered bottle.}}"
+parent = -1
+
+[[nodes]]
+id = 540
+depth = 1
+kind = "other"
+text = "{{mes|You have a clean impression of Carol's finger prints.}}"
+parent = -1
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "other"
+text = "{{mes|You use the flypaper on the flour covered book.}}"
+parent = -1
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "other"
+text = "{{mes|You have a clean impression of David's finger prints.}}"
+parent = -1
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "other"
+text = "{{mes|You use the flypaper on the flour covered needle.}}"
+parent = -1
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "other"
+text = "{{mes|You have a clean impression of Elizabeth's finger prints.}}"
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "other"
+text = "{{mes|You use the flypaper on the flour covered pot.}}"
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "other"
+text = "{{mes|You have a clean impression of Frank's finger prints.}}"
+parent = -1
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "cond"
+text = "If Anna is the murderer:"
+parent = -1
+children = [548, 549]
+
+[[nodes]]
+id = 548
+depth = 2
+kind = "other"
+text = "{{mes|The finger prints are an exact match to Anna's.}}"
+parent = 547
+
+[[nodes]]
+id = 549
+depth = 2
+kind = "act"
+text = "end"
+parent = 547
+is_terminal = true
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "cond"
+text = "If Anna is innocent:"
+parent = -1
+children = [551, 552]
+
+[[nodes]]
+id = 551
+depth = 2
+kind = "box"
+text = "They don't seem to be the same. I guess that clears Anna of the crime. You destroy the useless fingerprint."
+parent = 550
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "act"
+text = "end"
+parent = 550
+is_terminal = true
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "cond"
+text = "If Bob is the murderer:"
+parent = -1
+children = [554, 555]
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "other"
+text = "{{mes|The finger prints are an exact match to Bob's.}}"
+parent = 553
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "act"
+text = "end"
+parent = 553
+is_terminal = true
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "cond"
+text = "If Bob is innocent:"
+parent = -1
+children = [557, 558]
+
+[[nodes]]
+id = 557
+depth = 2
+kind = "box"
+text = "They don't seem to be the same. I guess that clears Bob of the crime. You destroy the useless fingerprint."
+parent = 556
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "act"
+text = "end"
+parent = 556
+is_terminal = true
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "cond"
+text = "If Carol is the murderer:"
+parent = -1
+children = [560, 561]
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "other"
+text = "{{mes|The finger prints are an exact match to Carol's.}}"
+parent = 559
+
+[[nodes]]
+id = 561
+depth = 2
+kind = "act"
+text = "end"
+parent = 559
+is_terminal = true
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "cond"
+text = "If Carol is innocent:"
+parent = -1
+children = [563, 564]
+
+[[nodes]]
+id = 563
+depth = 2
+kind = "box"
+text = "They don't seem to be the same. I guess that clears Carol of the crime. You destroy the useless fingerprint."
+parent = 562
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "act"
+text = "end"
+parent = 562
+is_terminal = true
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "cond"
+text = "If David is the murderer:"
+parent = -1
+children = [566, 567]
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "other"
+text = "{{mes|The finger prints are an exact match to David's.}}"
+parent = 565
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "act"
+text = "end"
+parent = 565
+is_terminal = true
+
+[[nodes]]
+id = 568
+depth = 1
+kind = "cond"
+text = "If David is innocent:"
+parent = -1
+children = [569, 570]
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "box"
+text = "They don't seem to be the same. I guess that clears David of the crime. You destroy the useless fingerprint."
+parent = 568
+
+[[nodes]]
+id = 570
+depth = 2
+kind = "act"
+text = "end"
+parent = 568
+is_terminal = true
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "cond"
+text = "If Elizabeth is the murderer:"
+parent = -1
+children = [572, 573]
+
+[[nodes]]
+id = 572
+depth = 2
+kind = "other"
+text = "{{mes|The finger prints are an exact match to Elizabeth's.}}"
+parent = 571
+
+[[nodes]]
+id = 573
+depth = 2
+kind = "act"
+text = "end"
+parent = 571
+is_terminal = true
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "cond"
+text = "If Elizabeth is innocent:"
+parent = -1
+children = [575, 576]
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "box"
+text = "They don't seem to be the same. I guess that clears Elizabeth of the crime. You destroy the useless fingerprint."
+parent = 574
+
+[[nodes]]
+id = 576
+depth = 2
+kind = "act"
+text = "end"
+parent = 574
+is_terminal = true
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "cond"
+text = "If Frank is the murderer:"
+parent = -1
+children = [578, 579]
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "other"
+text = "{{mes|The finger prints are an exact match to Frank's.}}"
+parent = 577
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "act"
+text = "end"
+parent = 577
+is_terminal = true
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "cond"
+text = "If Frank is innocent:"
+parent = -1
+children = [581, 582]
+
+[[nodes]]
+id = 581
+depth = 2
+kind = "box"
+text = "They don't seem to be the same. I guess that clears Frank of the crime. You destroy the useless fingerprint."
+parent = 580
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "act"
+text = "end"
+parent = 580
+is_terminal = true
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm investigating the murder at the Sinclair house."
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "There was a murder at the Sinclair House??? That's terrible! And I was only there the other day too! They bought the last of my Patented Multi Purpose Poison!"
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "option"
+text = "Patented Multi Purpose Poison?"
+parent = -1
+children = [587, 588, 589, 590, 591, 592, 593, 594, 595, 596, 597, 598]
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Patented Multi Purpose Poison?"
+parent = 586
+
+[[nodes]]
+id = 588
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Aaaaah... a miracle of modern apothecaries!"
+parent = 586
+
+[[nodes]]
+id = 589
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "This exclusive concoction has been tested on all known forms of life and been proven to kill them all in varying dilutions from cockroaches to king dragons!"
+parent = 586
+
+[[nodes]]
+id = 590
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "So incredibly versatile, it can be used as pest control, a cleansing agent, drain cleaner, metal polish and washes whiter than white,"
+parent = 586
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "all with our uniquely fragrant concoction that is immediately recognisable across the land as Peter Potter's Patented Poison potion!!!"
+parent = 586
+
+[[nodes]]
+id = 592
+depth = 2
+kind = "box"
+text = "The salesman stops for breath."
+parent = 586
+
+[[nodes]]
+id = 593
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "I'd love to sell you some but I've sold out recently. That's just how good it is! Three hundred and twenty eight people in this area alone cannot be wrong!"
+parent = 586
+
+[[nodes]]
+id = 594
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Nine out of Ten poisoners prefer it in controlled tests!"
+parent = 586
+
+[[nodes]]
+id = 595
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Can I help you with anything else?"
+parent = 586
+
+[[nodes]]
+id = 596
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Perhaps I can take your name and add it to our mailing list of poison users? We will only send you information related to the use of poison and other Peter Potter Products!"
+parent = 586
+
+[[nodes]]
+id = 597
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uh... no, it's ok. Really."
+parent = 586
+
+[[nodes]]
+id = 598
+depth = 2
+kind = "act"
+text = "end"
+parent = 586
+is_terminal = true
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "option"
+text = "Who did you sell Poison to at the house?"
+parent = -1
+children = [600, 601, 602, 603, 604, 605]
+
+[[nodes]]
+id = 600
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who did you sell Poison to at the house?"
+parent = 599
+
+[[nodes]]
+id = 601
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Well, Peter Potter's Patented Multi Purpose Poison is a product of such obvious quality that I am glad to say I managed to sell a bottle to each of the Sinclairs!"
+parent = 599
+
+[[nodes]]
+id = 602
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Anna, Bob, Carol, David, Elizabeth and Frank all bought a bottle! In fact they bought the last of my supplies!"
+parent = 599
+
+[[nodes]]
+id = 603
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Maybe I can take your name and address and I will personally come and visit you when stocks return?"
+parent = 599
+
+[[nodes]]
+id = 604
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uh... no, it's ok."
+parent = 599
+
+[[nodes]]
+id = 605
+depth = 2
+kind = "act"
+text = "end"
+parent = 599
+is_terminal = true
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "option"
+text = "Can I buy some Poison?"
+parent = -1
+children = [607, 608, 609, 610, 611, 612]
+
+[[nodes]]
+id = 607
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I buy some Poison?"
+parent = 606
+
+[[nodes]]
+id = 608
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "I'm afraid I am totally out of stock at the moment after my successful trip to the Sinclairs' House the other day."
+parent = 606
+
+[[nodes]]
+id = 609
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "But don't worry! Our factories are working overtime to produce Peter Potter's Patented Multi Purpose Poison!"
+parent = 606
+
+[[nodes]]
+id = 610
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Possibly the finest multi purpose poison and cleaner yet available to the general market."
+parent = 606
+
+[[nodes]]
+id = 611
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "And its unique fragrance makes it the number one choice for cleaners and exterminators the whole country over!"
+parent = 606
+
+[[nodes]]
+id = 612
+depth = 2
+kind = "act"
+text = "end"
+parent = 606
+is_terminal = true
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "option"
+text = "I have this pot I found at the murder scene..."
+parent = -1
+children = [614, 615, 616, 617, 618, 619, 620]
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have this pot I found at the murder scene..."
+parent = 613
+
+[[nodes]]
+id = 615
+depth = 2
+kind = "box"
+text = "You show the poison salesman the pot you found at the murder scene with the unusual smell."
+parent = 613
+
+[[nodes]]
+id = 616
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Hmmm... yes, that smells exactly like my Patented Multi Purpose Poison, but I don't see how it could be. It quite clearly says on the label of all bottles"
+parent = 613
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "'Not to be taken internally - EXTREMELY POISONOUS'."
+parent = 613
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps someone else put it in his wine?"
+parent = 613
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "Yes... I suppose that could have happened..."
+parent = 613
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "act"
+text = "end"
+parent = 613
+is_terminal = true
+
+[[nodes]]
+id = 621
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "option"
+text = "Talk about the Murder Mystery Quest"
+parent = -1
+children = [623, 624]
+
+[[nodes]]
+id = 623
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm investigating the murder at the Sinclair house."
+parent = 622
+
+[[nodes]]
+id = 624
+depth = 2
+kind = "act"
+text = "above"
+parent = 622
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "option"
+text = "quest=No|Talk about the Fremennik Trials"
+parent = -1
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Oh really? What do you want to know then?"
+parent = -1
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [630]
+
+[[nodes]]
+id = 630
+depth = 2
+kind = "act"
+text = "above"
+parent = 629
+
+[[nodes]]
+id = 631
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [632]
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "act"
+text = "above"
+parent = 631
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [634]
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "act"
+text = "above"
+parent = 633
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "option"
+text = "Why'd you buy poison the other day?"
+parent = -1
+children = [636, 637, 638]
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why'd you buy poison the other day?"
+parent = 635
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "speaker"
+speaker = "Anna"
+text = """
+That useless Gardener Stanford has let his compost heap fester. It's an eyesore to the garden! So I bought some poison from a travelling salesman so that I could kill off some of the wildlife living in it.
+"""
+parent = 635
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "act"
+text = "end"
+parent = 635
+is_terminal = true
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "I suppose I had better talk to you then."
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [643]
+
+[[nodes]]
+id = 643
+depth = 2
+kind = "act"
+text = "above"
+parent = 642
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [645]
+
+[[nodes]]
+id = 645
+depth = 2
+kind = "act"
+text = "above"
+parent = 644
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [647]
+
+[[nodes]]
+id = 647
+depth = 2
+kind = "act"
+text = "above"
+parent = 646
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "option"
+text = "Why'd you buy poison the other day?"
+parent = -1
+children = [649, 650, 651, 652]
+
+[[nodes]]
+id = 649
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why'd you buy poison the other day?"
+parent = 648
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "What's it to you anyway?"
+parent = 648
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "If you absolutely must know, we had a problem with the beehive in the garden, and as all of our servants are so pathetically useless, I decided I would deal with it myself. So I did."
+parent = 648
+
+[[nodes]]
+id = 652
+depth = 2
+kind = "act"
+text = "end"
+parent = 648
+is_terminal = true
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Well, ask what you want to know then."
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [657]
+
+[[nodes]]
+id = 657
+depth = 2
+kind = "act"
+text = "above"
+parent = 656
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [659]
+
+[[nodes]]
+id = 659
+depth = 2
+kind = "act"
+text = "above"
+parent = 658
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [661]
+
+[[nodes]]
+id = 661
+depth = 2
+kind = "act"
+text = "above"
+parent = 660
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "option"
+text = "Why'd you buy poison the other day?"
+parent = -1
+children = [663, 664, 665, 666]
+
+[[nodes]]
+id = 663
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why'd you buy poison the other day?"
+parent = 662
+
+[[nodes]]
+id = 664
+depth = 2
+kind = "speaker"
+speaker = "Carol"
+text = "I don't see what on earth it has to do with you, but the drain outside was"
+parent = 662
+
+[[nodes]]
+id = 665
+depth = 2
+kind = "speaker"
+speaker = "Carol"
+text = "blocked, and as nobody else here has the intelligence to even unblock a simple drain I felt I had to do it myself."
+parent = 662
+
+[[nodes]]
+id = 666
+depth = 2
+kind = "act"
+text = "end"
+parent = 662
+is_terminal = true
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "David"
+text = "And? Make this quick, I have better things to do than be interrogated by halfwits all day."
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [671]
+
+[[nodes]]
+id = 671
+depth = 2
+kind = "act"
+text = "above"
+parent = 670
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [673]
+
+[[nodes]]
+id = 673
+depth = 2
+kind = "act"
+text = "above"
+parent = 672
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [675]
+
+[[nodes]]
+id = 675
+depth = 2
+kind = "act"
+text = "above"
+parent = 674
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "option"
+text = "Why'd you buy poison the other day?"
+parent = -1
+children = [677, 678, 679, 680]
+
+[[nodes]]
+id = 677
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why'd you buy poison the other day?"
+parent = 676
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "speaker"
+speaker = "David"
+text = "There was a nest of spiders upstairs between the two servants' quarters. Obviously I had to kill them before our pathetic servants whined at my father some more."
+parent = 676
+
+[[nodes]]
+id = 679
+depth = 2
+kind = "speaker"
+speaker = "David"
+text = "Honestly, it's like they expect to be treated like royalty! If I had my way I would fire the whole workshy lot of them!"
+parent = 676
+
+[[nodes]]
+id = 680
+depth = 2
+kind = "act"
+text = "end"
+parent = 676
+is_terminal = true
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "speaker"
+speaker = "Elizabeth"
+text = "What's so important you need to bother me with then?"
+parent = -1
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [685]
+
+[[nodes]]
+id = 685
+depth = 2
+kind = "act"
+text = "above"
+parent = 684
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [687]
+
+[[nodes]]
+id = 687
+depth = 2
+kind = "act"
+text = "above"
+parent = 686
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [689]
+
+[[nodes]]
+id = 689
+depth = 2
+kind = "act"
+text = "above"
+parent = 688
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "option"
+text = "Why'd you buy poison the other day?"
+parent = -1
+children = [691, 692, 693, 694, 695]
+
+[[nodes]]
+id = 691
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why'd you buy poison the other day?"
+parent = 690
+
+[[nodes]]
+id = 692
+depth = 2
+kind = "speaker"
+speaker = "Elizabeth"
+text = "There was a nest of mosquitos under the fountain in the garden, which I killed with poison the other day. You can see for yourself if you're capable of managing that, which I somehow doubt."
+parent = 690
+
+[[nodes]]
+id = 693
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I hate mosquitos!"
+parent = 690
+
+[[nodes]]
+id = 694
+depth = 2
+kind = "speaker"
+speaker = "Elizabeth"
+text = "Doesn't everyone?"
+parent = 690
+
+[[nodes]]
+id = 695
+depth = 2
+kind = "act"
+text = "end"
+parent = 690
+is_terminal = true
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Frank"
+text = "Good for you. Now what do you want?"
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "speaker"
+speaker = "Frank"
+text = "...And can you spare me any money? I'm a little short..."
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "option"
+text = "Who do you think was responsible?"
+parent = -1
+children = [701]
+
+[[nodes]]
+id = 701
+depth = 2
+kind = "act"
+text = "above"
+parent = 700
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "option"
+text = "Where were you when the murder happened?"
+parent = -1
+children = [703]
+
+[[nodes]]
+id = 703
+depth = 2
+kind = "act"
+text = "above"
+parent = 702
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "option"
+text = "Do you recognise this thread?"
+parent = -1
+children = [705]
+
+[[nodes]]
+id = 705
+depth = 2
+kind = "act"
+text = "above"
+parent = 704
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "option"
+text = "Why'd you buy poison the other day?"
+parent = -1
+children = [707, 708, 709, 710]
+
+[[nodes]]
+id = 707
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why'd you buy poison the other day?"
+parent = 706
+
+[[nodes]]
+id = 708
+depth = 2
+kind = "speaker"
+speaker = "Frank"
+text = "Would you like to buy some? I'm kind of strapped for cash right now, I'll sell it to you cheap, it's hardly been used at all."
+parent = 706
+
+[[nodes]]
+id = 709
+depth = 2
+kind = "speaker"
+speaker = "Frank"
+text = "I just used a bit to clean that family crest outside up a bit. Do you think I can get much money For the family crest, actually? It's cleaned up a bit now."
+parent = 706
+
+[[nodes]]
+id = 710
+depth = 2
+kind = "act"
+text = "end"
+parent = 706
+is_terminal = true
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 714
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [715]
+
+[[nodes]]
+id = 715
+depth = 2
+kind = "act"
+text = "above"
+parent = 714
+
+[[nodes]]
+id = 716
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [717]
+
+[[nodes]]
+id = 717
+depth = 2
+kind = "act"
+text = "above"
+parent = 716
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [719]
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "act"
+text = "above"
+parent = 718
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "option"
+text = "Do you know why so much poison was bought recently?"
+parent = -1
+children = [721, 722, 723, 724, 725]
+
+[[nodes]]
+id = 721
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know why so much poison was bought recently?"
+parent = 720
+
+[[nodes]]
+id = 722
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Well, I do know Frank bought some poison recently to clean the family crest that's outside."
+parent = 720
+
+[[nodes]]
+id = 723
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = """
+It's very old and rusty, and I couldn't clean it myself, so he said he would buy some cleaner and clean it himself. He probably just got some from that Poison Salesman who came to the door the other day...
+"""
+parent = 720
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "You'd really have to ask him though."
+parent = 720
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "act"
+text = "end"
+parent = 720
+is_terminal = true
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 728
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 729
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [730]
+
+[[nodes]]
+id = 730
+depth = 2
+kind = "act"
+text = "above"
+parent = 729
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [732]
+
+[[nodes]]
+id = 732
+depth = 2
+kind = "act"
+text = "above"
+parent = 731
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [734]
+
+[[nodes]]
+id = 734
+depth = 2
+kind = "act"
+text = "above"
+parent = 733
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "option"
+text = "Do you know why so much poison was bought recently?"
+parent = -1
+children = [736, 737, 738, 739, 740, 741]
+
+[[nodes]]
+id = 736
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know why so much poison was bought recently?"
+parent = 735
+
+[[nodes]]
+id = 737
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "Well, I do know that Elizabeth was extremely annoyed by the mosquito nest under the fountain in the garden, and was going to do something about it. I suspect any poison she bought would have been"
+parent = 735
+
+[[nodes]]
+id = 738
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "enough to get rid of it. A Good job too, I hate mosquitos."
+parent = 735
+
+[[nodes]]
+id = 739
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, so do I."
+parent = 735
+
+[[nodes]]
+id = 740
+depth = 2
+kind = "speaker"
+speaker = "Hobbes"
+text = "You'd really have to ask her though."
+parent = 735
+
+[[nodes]]
+id = 741
+depth = 2
+kind = "act"
+text = "end"
+parent = 735
+is_terminal = true
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 743
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 744
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 745
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [746]
+
+[[nodes]]
+id = 746
+depth = 2
+kind = "act"
+text = "above"
+parent = 745
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [748]
+
+[[nodes]]
+id = 748
+depth = 2
+kind = "act"
+text = "above"
+parent = 747
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [750]
+
+[[nodes]]
+id = 750
+depth = 2
+kind = "act"
+text = "above"
+parent = 749
+
+[[nodes]]
+id = 751
+depth = 1
+kind = "option"
+text = "Do you know why so much poison was bought recently?"
+parent = -1
+children = [752, 753, 754, 755]
+
+[[nodes]]
+id = 752
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know why so much poison was bought recently?"
+parent = 751
+
+[[nodes]]
+id = 753
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "I told Carol to buy some from that strange poison salesman and clean the drains before they began to smell any worse. She was the one who blocked them in the first place with a load"
+parent = 751
+
+[[nodes]]
+id = 754
+depth = 2
+kind = "speaker"
+speaker = "Louisa"
+text = "of beans that she bought for some reason. There were far too many to eat, and they were almost rotten when she bought them anyway! You'd really have to ask her though."
+parent = 751
+
+[[nodes]]
+id = 755
+depth = 2
+kind = "act"
+text = "end"
+parent = 751
+is_terminal = true
+
+[[nodes]]
+id = 756
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 757
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [760]
+
+[[nodes]]
+id = 760
+depth = 2
+kind = "act"
+text = "above"
+parent = 759
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [762]
+
+[[nodes]]
+id = 762
+depth = 2
+kind = "act"
+text = "above"
+parent = 761
+
+[[nodes]]
+id = 763
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [764]
+
+[[nodes]]
+id = 764
+depth = 2
+kind = "act"
+text = "above"
+parent = 763
+
+[[nodes]]
+id = 765
+depth = 1
+kind = "option"
+text = "Do you know why so much poison was bought recently?"
+parent = -1
+children = [766, 767, 768, 769]
+
+[[nodes]]
+id = 766
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know why so much poison was bought recently?"
+parent = 765
+
+[[nodes]]
+id = 767
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "I overheard Anna saying to Stanford that if he didn't do something about the state of his compost heap, she was going to."
+parent = 765
+
+[[nodes]]
+id = 768
+depth = 2
+kind = "speaker"
+speaker = "Mary"
+text = "She really doesn't get on well with Stanford. I really have no idea why. You'd really have to ask her though."
+parent = 765
+
+[[nodes]]
+id = 769
+depth = 2
+kind = "act"
+text = "end"
+parent = 765
+is_terminal = true
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 771
+depth = 1
+kind = "speaker"
+speaker = "Pierre"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [774]
+
+[[nodes]]
+id = 774
+depth = 2
+kind = "act"
+text = "end"
+parent = 773
+is_terminal = true
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [776]
+
+[[nodes]]
+id = 776
+depth = 2
+kind = "act"
+text = "end"
+parent = 775
+is_terminal = true
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [778]
+
+[[nodes]]
+id = 778
+depth = 2
+kind = "act"
+text = "end"
+parent = 777
+is_terminal = true
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "option"
+text = "Do you know why so much poison was bought recently?"
+parent = -1
+children = [780, 781, 782, 783]
+
+[[nodes]]
+id = 780
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know why so much poison was bought recently?"
+parent = 779
+
+[[nodes]]
+id = 781
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "Well, I know David said that he was going to do something about the spiders' nest that's between the two servants' quarters upstairs."
+parent = 779
+
+[[nodes]]
+id = 782
+depth = 2
+kind = "speaker"
+speaker = "Pierre"
+text = "He made a big deal about it to Mary the Maid, calling her useless and incompetent. I felt quite sorry for her actually. You'd really have to ask him though."
+parent = 779
+
+[[nodes]]
+id = 783
+depth = 2
+kind = "act"
+text = "end"
+parent = 779
+is_terminal = true
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm here to help the guards with their investigation."
+parent = -1
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "How can I help?"
+parent = -1
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "option"
+text = "Who do you think is responsible?"
+parent = -1
+children = [788]
+
+[[nodes]]
+id = 788
+depth = 2
+kind = "act"
+text = "end"
+parent = 787
+is_terminal = true
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "option"
+text = "Where were you at the time of the murder?"
+parent = -1
+children = [790]
+
+[[nodes]]
+id = 790
+depth = 2
+kind = "act"
+text = "end"
+parent = 789
+is_terminal = true
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "option"
+text = "Did you hear any suspicious noises at all?"
+parent = -1
+children = [792]
+
+[[nodes]]
+id = 792
+depth = 2
+kind = "act"
+text = "end"
+parent = 791
+is_terminal = true
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "option"
+text = "Do you know why so much poison was bought recently?"
+parent = -1
+children = [794, 795, 796, 797]
+
+[[nodes]]
+id = 794
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know why so much poison was bought recently?"
+parent = 793
+
+[[nodes]]
+id = 795
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "Well, Bob mentioned to me the other day he wanted to get rid of the bees in that hive over there. I think I saw him buying poison"
+parent = 793
+
+[[nodes]]
+id = 796
+depth = 2
+kind = "speaker"
+speaker = "Stanford"
+text = "from that poison salesman the other day. I assume it was to sort out those bees. You'd really have to ask him though."
+parent = 793
+
+[[nodes]]
+id = 797
+depth = 2
+kind = "act"
+text = "end"
+parent = 793
+is_terminal = true
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "cond"
+text = "If Anna is the murderer:"
+parent = -1
+children = [799, 800]
+
+[[nodes]]
+id = 799
+depth = 2
+kind = "box"
+text = "The compost is teeming with maggots. Somebody should really do something about it. It's certainly clear nobody's used poison here."
+parent = 798
+
+[[nodes]]
+id = 800
+depth = 2
+kind = "act"
+text = "end"
+parent = 798
+is_terminal = true
+
+[[nodes]]
+id = 801
+depth = 1
+kind = "cond"
+text = "If Anna is innocent:"
+parent = -1
+children = [802, 803]
+
+[[nodes]]
+id = 802
+depth = 2
+kind = "box"
+text = "There is a faint smell of poison behind the smell of the compost."
+parent = 801
+
+[[nodes]]
+id = 803
+depth = 2
+kind = "act"
+text = "end"
+parent = 801
+is_terminal = true
+
+[[nodes]]
+id = 804
+depth = 1
+kind = "cond"
+text = "If Bob is the murderer:"
+parent = -1
+children = [805, 806]
+
+[[nodes]]
+id = 805
+depth = 2
+kind = "box"
+text = "The beehive buzzes with activity. These bees definitely don't seem poisoned at all."
+parent = 804
+
+[[nodes]]
+id = 806
+depth = 2
+kind = "act"
+text = "end"
+parent = 804
+is_terminal = true
+
+[[nodes]]
+id = 807
+depth = 1
+kind = "cond"
+text = "If Bob is innocent:"
+parent = -1
+children = [808, 809]
+
+[[nodes]]
+id = 808
+depth = 2
+kind = "box"
+text = "The hive is empty. There are a few dead bees and a faint smell of poison."
+parent = 807
+
+[[nodes]]
+id = 809
+depth = 2
+kind = "act"
+text = "end"
+parent = 807
+is_terminal = true
+
+[[nodes]]
+id = 810
+depth = 1
+kind = "cond"
+text = "If Carol is the murderer:"
+parent = -1
+children = [811, 812]
+
+[[nodes]]
+id = 811
+depth = 2
+kind = "box"
+text = "The drain is totally blocked. It really stinks. No, it REALLY smells bad. It's certainly clear nobody's cleaned it recently."
+parent = 810
+
+[[nodes]]
+id = 812
+depth = 2
+kind = "act"
+text = "end"
+parent = 810
+is_terminal = true
+
+[[nodes]]
+id = 813
+depth = 1
+kind = "cond"
+text = "If Carol is innocent:"
+parent = -1
+children = [814, 815]
+
+[[nodes]]
+id = 814
+depth = 2
+kind = "box"
+text = "The drain seems to have been recently cleaned. You can still smell the faint aroma of poison."
+parent = 813
+
+[[nodes]]
+id = 815
+depth = 2
+kind = "act"
+text = "end"
+parent = 813
+is_terminal = true
+
+[[nodes]]
+id = 816
+depth = 1
+kind = "cond"
+text = "If David is the murderer:"
+parent = -1
+children = [817, 818]
+
+[[nodes]]
+id = 817
+depth = 2
+kind = "box"
+text = "There is a spiders' nest here. You estimate there must be at least a few hundred spiders ready to hatch. It's certainly clear nobody's used poison here."
+parent = 816
+
+[[nodes]]
+id = 818
+depth = 2
+kind = "act"
+text = "end"
+parent = 816
+is_terminal = true
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "cond"
+text = "If David is innocent:"
+parent = -1
+children = [820, 821]
+
+[[nodes]]
+id = 820
+depth = 2
+kind = "box"
+text = "A faint smell of poison and a few dead spiders is all that remains of the spiders nest."
+parent = 819
+
+[[nodes]]
+id = 821
+depth = 2
+kind = "act"
+text = "end"
+parent = 819
+is_terminal = true
+
+[[nodes]]
+id = 822
+depth = 1
+kind = "cond"
+text = "If Elizabeth is the murderer:"
+parent = -1
+children = [823, 824]
+
+[[nodes]]
+id = 823
+depth = 2
+kind = "box"
+text = "The fountain is swarming with mosquitos. There's a nest of them underneath the fountain."
+parent = 822
+
+[[nodes]]
+id = 824
+depth = 2
+kind = "act"
+text = "end"
+parent = 822
+is_terminal = true
+
+[[nodes]]
+id = 825
+depth = 1
+kind = "cond"
+text = "If Elizabeth is innocent:"
+parent = -1
+children = [826, 827]
+
+[[nodes]]
+id = 826
+depth = 2
+kind = "box"
+text = "There are a lot of dead mosquitos around the base of the fountain. A faint smell of poison is in the air, but the water seems clean."
+parent = 825
+
+[[nodes]]
+id = 827
+depth = 2
+kind = "act"
+text = "end"
+parent = 825
+is_terminal = true
+
+[[nodes]]
+id = 828
+depth = 1
+kind = "cond"
+text = "If Frank is the murderer:"
+parent = -1
+children = [829, 830]
+
+[[nodes]]
+id = 829
+depth = 2
+kind = "box"
+text = "It looks like the Sinclair family crest but it is very dirty. You can barely make it out under all of the grime. It's certainly clear nobody's cleaned it recently."
+parent = 828
+
+[[nodes]]
+id = 830
+depth = 2
+kind = "act"
+text = "end"
+parent = 828
+is_terminal = true
+
+[[nodes]]
+id = 831
+depth = 1
+kind = "cond"
+text = "If Frank is innocent:"
+parent = -1
+children = [832, 833]
+
+[[nodes]]
+id = 832
+depth = 2
+kind = "box"
+text = "The Sinclair family crest. It's shiny and freshly polished and has a slight smell of poison."
+parent = 831
+
+[[nodes]]
+id = 833
+depth = 2
+kind = "act"
+text = "end"
+parent = 831
+is_terminal = true
+
+[[nodes]]
+id = 834
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 835
+depth = 1
+kind = "option"
+text = "What should I be doing to help again?"
+parent = -1
+children = [836]
+
+[[nodes]]
+id = 836
+depth = 2
+kind = "act"
+text = "above"
+parent = 835
+
+[[nodes]]
+id = 837
+depth = 1
+kind = "option"
+text = "How did Lord Sinclair die?"
+parent = -1
+children = [838]
+
+[[nodes]]
+id = 838
+depth = 2
+kind = "act"
+text = "above"
+parent = 837
+
+[[nodes]]
+id = 839
+depth = 1
+kind = "option"
+text = "I know who did it!"
+parent = -1
+children = [840, 841, 842, 847, 874]
+
+[[nodes]]
+id = 840
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know who did it!{{^|Note: With only one piece of evidence, the dialogue goes straight to that option.}}"
+parent = 839
+
+[[nodes]]
+id = 841
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 839
+
+[[nodes]]
+id = 842
+depth = 2
+kind = "option"
+text = "cond=If the player has the thread evidence:|I have proof that it wasn't any of the servants."
+parent = 839
+children = [843, 844, 845, 846]
+
+[[nodes]]
+id = 843
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that it wasn't any of the servants!"
+parent = 842
+
+[[nodes]]
+id = 844
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "All the servants dress in black so it couldn't have been one of them."
+parent = 842
+
+[[nodes]]
+id = 845
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "That's some good work there. I guess it wasn't a servant. You still haven't proved who did do it though."
+parent = 842
+
+[[nodes]]
+id = 846
+depth = 3
+kind = "act"
+text = "end"
+parent = 842
+is_terminal = true
+
+[[nodes]]
+id = 847
+depth = 2
+kind = "option"
+text = "cond=If the player has poison evidence:|I have proof one of the family lied about the poison."
+parent = 839
+children = [848, 852, 856, 860, 864, 868, 872, 873]
+
+[[nodes]]
+id = 848
+depth = 3
+kind = "cond"
+text = "If Anna is the murderer:"
+parent = 847
+children = [849, 850, 851]
+
+[[nodes]]
+id = 849
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that Anna is lying about the poison."
+parent = 848
+
+[[nodes]]
+id = 850
+depth = 4
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? How did you get that?"
+parent = 848
+
+[[nodes]]
+id = 851
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 848
+
+[[nodes]]
+id = 852
+depth = 3
+kind = "cond"
+text = "If Bob is the murderer:"
+parent = 847
+children = [853, 854, 855]
+
+[[nodes]]
+id = 853
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that Bob is lying about the poison."
+parent = 852
+
+[[nodes]]
+id = 854
+depth = 4
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? How did you get that?"
+parent = 852
+
+[[nodes]]
+id = 855
+depth = 4
+kind = "box"
+text = "You tell the guard about the beehive."
+parent = 852
+
+[[nodes]]
+id = 856
+depth = 3
+kind = "cond"
+text = "If Carol is the murderer:"
+parent = 847
+children = [857, 858, 859]
+
+[[nodes]]
+id = 857
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that Carol is lying about the poison."
+parent = 856
+
+[[nodes]]
+id = 858
+depth = 4
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? How did you get that?"
+parent = 856
+
+[[nodes]]
+id = 859
+depth = 4
+kind = "box"
+text = "You tell the guard about the drain."
+parent = 856
+
+[[nodes]]
+id = 860
+depth = 3
+kind = "cond"
+text = "If David is the murderer:"
+parent = 847
+children = [861, 862, 863]
+
+[[nodes]]
+id = 861
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that David is lying about the poison."
+parent = 860
+
+[[nodes]]
+id = 862
+depth = 4
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? How did you get that?"
+parent = 860
+
+[[nodes]]
+id = 863
+depth = 4
+kind = "box"
+text = "You tell the guard about the mosquitos at the fountain."
+parent = 860
+
+[[nodes]]
+id = 864
+depth = 3
+kind = "cond"
+text = "If Elizabeth is the murderer:"
+parent = 847
+children = [865, 866, 867]
+
+[[nodes]]
+id = 865
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that Elizabeth is lying about the poison."
+parent = 864
+
+[[nodes]]
+id = 866
+depth = 4
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? How did you get that?"
+parent = 864
+
+[[nodes]]
+id = 867
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 864
+
+[[nodes]]
+id = 868
+depth = 3
+kind = "cond"
+text = "If Frank is the murderer:"
+parent = 847
+children = [869, 870, 871]
+
+[[nodes]]
+id = 869
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have proof that Frank is lying about the poison."
+parent = 868
+
+[[nodes]]
+id = 870
+depth = 4
+kind = "speaker"
+speaker = "Guard"
+text = "Oh really? How did you get that?"
+parent = 868
+
+[[nodes]]
+id = 871
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 868
+
+[[nodes]]
+id = 872
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Hmm. That's some good detective work there. We need more evidence before we can close the case though. Keep up the good work!"
+parent = 847
+
+[[nodes]]
+id = 873
+depth = 3
+kind = "act"
+text = "end"
+parent = 847
+is_terminal = true
+
+[[nodes]]
+id = 874
+depth = 2
+kind = "option"
+text = "cond=If the player has fingerprint evidence:|I have the finger prints of the culprit."
+parent = 839
+children = [875, 876, 878, 880, 882, 884, 886, 888, 889, 890, 891]
+
+[[nodes]]
+id = 875
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have the finger prints of the culprit!"
+parent = 874
+
+[[nodes]]
+id = 876
+depth = 3
+kind = "cond"
+text = "If Anna is the murderer:"
+parent = 874
+children = [877]
+
+[[nodes]]
+id = 877
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have Anna's finger prints here. You can see for yourself they match the finger prints on the murder weapon exactly."
+parent = 876
+
+[[nodes]]
+id = 878
+depth = 3
+kind = "cond"
+text = "If Bob is the murderer:"
+parent = 874
+children = [879]
+
+[[nodes]]
+id = 879
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have Bob's finger prints here. You can see for yourself they match the finger prints on the murder weapon exactly."
+parent = 878
+
+[[nodes]]
+id = 880
+depth = 3
+kind = "cond"
+text = "If Carol is the murderer:"
+parent = 874
+children = [881]
+
+[[nodes]]
+id = 881
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have Carol's finger prints here. You can see for yourself they match the finger prints on the murder weapon exactly."
+parent = 880
+
+[[nodes]]
+id = 882
+depth = 3
+kind = "cond"
+text = "If David is the murderer:"
+parent = 874
+children = [883]
+
+[[nodes]]
+id = 883
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have David's finger prints here. You can see for yourself they match the finger prints on the murder weapon exactly."
+parent = 882
+
+[[nodes]]
+id = 884
+depth = 3
+kind = "cond"
+text = "If Elizabeth is the murderer:"
+parent = 874
+children = [885]
+
+[[nodes]]
+id = 885
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have Elizabeth's finger prints here. You can see for yourself they match the finger prints on the murder weapon exactly."
+parent = 884
+
+[[nodes]]
+id = 886
+depth = 3
+kind = "cond"
+text = "If Frank is the murderer:"
+parent = 874
+children = [887]
+
+[[nodes]]
+id = 887
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have Frank's finger prints here. You can see for yourself they match the finger prints on the murder weapon exactly."
+parent = 886
+
+[[nodes]]
+id = 888
+depth = 3
+kind = "box"
+text = "You show the guard the finger prints evidence."
+parent = 874
+
+[[nodes]]
+id = 889
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "... I'm impressed. How on earth did you think of something like that? I've never heard of such a technique for finding criminals before!"
+parent = 874
+
+[[nodes]]
+id = 890
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "This will come in very handy in the future but we can't arrest someone on just this. I'm afraid you'll still need to find more evidence before we can close this case completely."
+parent = 874
+
+[[nodes]]
+id = 891
+depth = 3
+kind = "act"
+text = "end"
+parent = 874
+is_terminal = true
+
+[[nodes]]
+id = 892
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 893
+depth = 1
+kind = "option"
+text = "What should I be doing to help again?"
+parent = -1
+children = [894]
+
+[[nodes]]
+id = 894
+depth = 2
+kind = "act"
+text = "above"
+parent = 893
+
+[[nodes]]
+id = 895
+depth = 1
+kind = "option"
+text = "How did Lord Sinclair die?"
+parent = -1
+children = [896]
+
+[[nodes]]
+id = 896
+depth = 2
+kind = "act"
+text = "above"
+parent = 895
+
+[[nodes]]
+id = 897
+depth = 1
+kind = "option"
+text = "I know who did it!"
+parent = -1
+children = [898, 899, 900, 901, 902, 903, 904, 905, 906, 913, 920, 927, 934, 941, 948, 949, 950, 951, 952]
+
+[[nodes]]
+id = 898
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know who did it!"
+parent = 897
+
+[[nodes]]
+id = 899
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have conclusive proof who the killer was."
+parent = 897
+
+[[nodes]]
+id = 900
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "You do? That's excellent work. Let's hear it then."
+parent = 897
+
+[[nodes]]
+id = 901
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't think it was an intruder, and I don't think Lord Sinclair was killed by being stabbed."
+parent = 897
+
+[[nodes]]
+id = 902
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Hmmm? Really? Why not?"
+parent = 897
+
+[[nodes]]
+id = 903
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nobody heard the guard dog barking, which it would have if it had been an intruder who was responsible."
+parent = 897
+
+[[nodes]]
+id = 904
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nobody heard any signs of a struggle either. I think the knife was there to throw suspicion away from the real culprit."
+parent = 897
+
+[[nodes]]
+id = 905
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Yes, that makes sense. But who did do it then?"
+parent = 897
+
+[[nodes]]
+id = 906
+depth = 2
+kind = "cond"
+text = "If Anna is the murderer:"
+parent = 897
+children = [907, 908, 909, 910, 911, 912]
+
+[[nodes]]
+id = 907
+depth = 3
+kind = "box"
+text = "You prove to the guard the thread matches Anna's clothes."
+parent = 906
+
+[[nodes]]
+id = 908
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes, I'd have to agree with that... but we need more evidence!"
+parent = 906
+
+[[nodes]]
+id = 909
+depth = 3
+kind = "box"
+text = "You prove to the guard Anna did not use poison on the compost heap."
+parent = 906
+
+[[nodes]]
+id = 910
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Excellent work - have you considered a career as a detective? But I'm afraid it's still not quite enough..."
+parent = 906
+
+[[nodes]]
+id = 911
+depth = 3
+kind = "box"
+text = "You match Anna's finger prints with those on the dagger found in the body of Lord Sinclair."
+parent = 906
+
+[[nodes]]
+id = 912
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes. There's no doubt about it. It must have been Anna who killed her father. All of the guards must congratulate you on your excellent work in helping us to solve this case."
+parent = 906
+
+[[nodes]]
+id = 913
+depth = 2
+kind = "cond"
+text = "If Bob is the murderer:"
+parent = 897
+children = [914, 915, 916, 917, 918, 919]
+
+[[nodes]]
+id = 914
+depth = 3
+kind = "box"
+text = "You prove to the guard the thread matches Bob's clothes."
+parent = 913
+
+[[nodes]]
+id = 915
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes, I'd have to agree with that... but we need more evidence!"
+parent = 913
+
+[[nodes]]
+id = 916
+depth = 3
+kind = "box"
+text = "You prove to the guard Bob did not use poison on the beehive."
+parent = 913
+
+[[nodes]]
+id = 917
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Excellent work - have you considered a career as a detective? But I'm afraid it's still not quite enough..."
+parent = 913
+
+[[nodes]]
+id = 918
+depth = 3
+kind = "box"
+text = "You match Bob's finger prints with those on the dagger found in the body of Lord Sinclair."
+parent = 913
+
+[[nodes]]
+id = 919
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes. There's no doubt about it. It must have been Bob who killed his father. All of the guards must congratulate you on your excellent work in helping us to solve this case."
+parent = 913
+
+[[nodes]]
+id = 920
+depth = 2
+kind = "cond"
+text = "If Carol is the murderer:"
+parent = 897
+children = [921, 922, 923, 924, 925, 926]
+
+[[nodes]]
+id = 921
+depth = 3
+kind = "box"
+text = "You prove to the guard the thread matches Carol's clothes."
+parent = 920
+
+[[nodes]]
+id = 922
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes, I'd have to agree with that... but we need more evidence!"
+parent = 920
+
+[[nodes]]
+id = 923
+depth = 3
+kind = "box"
+text = "You prove to the guard Carol did not use poison on the drain."
+parent = 920
+
+[[nodes]]
+id = 924
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Excellent work - have you considered a career as a detective? But I'm afraid it's still not quite enough..."
+parent = 920
+
+[[nodes]]
+id = 925
+depth = 3
+kind = "box"
+text = "You match Carol's finger prints with those on the dagger found in the body of Lord Sinclair."
+parent = 920
+
+[[nodes]]
+id = 926
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes. There's no doubt about it. It must have been Carol who killed her father. All of the guards must congratulate you on your excellent work in helping us to solve this case."
+parent = 920
+
+[[nodes]]
+id = 927
+depth = 2
+kind = "cond"
+text = "If David is the murderer:"
+parent = 897
+children = [928, 929, 930, 931, 932, 933]
+
+[[nodes]]
+id = 928
+depth = 3
+kind = "box"
+text = "You prove to the guard the thread matches David's clothes."
+parent = 927
+
+[[nodes]]
+id = 929
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes, I'd have to agree with that... but we need more evidence!"
+parent = 927
+
+[[nodes]]
+id = 930
+depth = 3
+kind = "box"
+text = "You prove to the guard David did not use poison on the spiders nest."
+parent = 927
+
+[[nodes]]
+id = 931
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Excellent work - have you considered a career as a detective? But I'm afraid it's still not quite enough..."
+parent = 927
+
+[[nodes]]
+id = 932
+depth = 3
+kind = "box"
+text = "You match David's finger prints with those on the dagger found in the body of Lord Sinclair."
+parent = 927
+
+[[nodes]]
+id = 933
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes. There's no doubt about it. It must have been David who killed his father. All of the guards must congratulate you on your excellent work in helping us to solve this case."
+parent = 927
+
+[[nodes]]
+id = 934
+depth = 2
+kind = "cond"
+text = "If Elizabeth is the murderer:"
+parent = 897
+children = [935, 936, 937, 938, 939, 940]
+
+[[nodes]]
+id = 935
+depth = 3
+kind = "box"
+text = "You prove to the guard the thread matches Elizabeth's clothes."
+parent = 934
+
+[[nodes]]
+id = 936
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes, I'd have to agree with that... but we need more evidence!"
+parent = 934
+
+[[nodes]]
+id = 937
+depth = 3
+kind = "box"
+text = "You prove to the guard Elizabeth did not use poison on the fountain."
+parent = 934
+
+[[nodes]]
+id = 938
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Excellent work - have you considered a career as a detective? But I'm afraid it's still not quite enough..."
+parent = 934
+
+[[nodes]]
+id = 939
+depth = 3
+kind = "box"
+text = "You match Elizabeth's finger prints with those on the dagger found in the body of Lord Sinclair."
+parent = 934
+
+[[nodes]]
+id = 940
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes. There's no doubt about it. It must have been Elizabeth who killed her father. All of the guards must congratulate you on your excellent work in helping us to solve this case."
+parent = 934
+
+[[nodes]]
+id = 941
+depth = 2
+kind = "cond"
+text = "If Frank is the murderer:"
+parent = 897
+children = [942, 943, 944, 945, 946, 947]
+
+[[nodes]]
+id = 942
+depth = 3
+kind = "box"
+text = "You prove to the guard the thread matches Frank's clothes."
+parent = 941
+
+[[nodes]]
+id = 943
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes, I'd have to agree with that... but we need more evidence!"
+parent = 941
+
+[[nodes]]
+id = 944
+depth = 3
+kind = "box"
+text = "You prove to the guard Frank did not use poison on the Sinclair Crest."
+parent = 941
+
+[[nodes]]
+id = 945
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Excellent work - have you considered a career as a detective? But I'm afraid it's still not quite enough..."
+parent = 941
+
+[[nodes]]
+id = 946
+depth = 3
+kind = "box"
+text = "You match Frank's finger prints with those on the dagger found in the body of Lord Sinclair."
+parent = 941
+
+[[nodes]]
+id = 947
+depth = 3
+kind = "speaker"
+speaker = "Guard"
+text = "Yes. There's no doubt about it. It must have been Frank who killed his father. All of the guards must congratulate you on your excellent work in helping us to solve this case."
+parent = 941
+
+[[nodes]]
+id = 948
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "We don't have many murders here in Gielinor and I'm afraid we wouldn't have been able to solve it by ourselves. We will hold her here under house arrest until such time as we bring her to trial."
+parent = 897
+
+[[nodes]]
+id = 949
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "You have our gratitude, and I'm sure the rest of the family's as well, in helping to apprehend the murderer. I'll just take the evidence from you now."
+parent = 897
+
+[[nodes]]
+id = 950
+depth = 2
+kind = "box"
+text = "You hand over all the evidence."
+parent = 897
+
+[[nodes]]
+id = 951
+depth = 2
+kind = "speaker"
+speaker = "Guard"
+text = "Please accept this reward from the family!"
+parent = 897
+
+[[nodes]]
+id = 952
+depth = 2
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = 897
+
+[[nodes]]
+id = 953
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "Excellent work on solving the murder! All of the guards I know are very impressed, and don't worry, we have the murderer under guard until they can be taken to trial."
+parent = -1
+
+[[nodes]]
+id = 954
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything else I can do?"
+parent = -1
+
+[[nodes]]
+id = 955
+depth = 1
+kind = "speaker"
+speaker = "Guard"
+text = "No, your work here is done."
+parent = -1
+
+[[nodes]]
+id = 956
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 957
+depth = 1
+kind = "speaker"
+speaker = "Anna"
+text = "Apparently you aren't as stupid as you look."
+parent = -1
+
+[[nodes]]
+id = 958
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 959
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "Apparently you aren't as stupid as you look."
+parent = -1
+
+[[nodes]]
+id = 960
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 961
+depth = 1
+kind = "speaker"
+speaker = "Carol"
+text = "Apparently you aren't as stupid as you look."
+parent = -1
+
+[[nodes]]
+id = 962
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 963
+depth = 1
+kind = "speaker"
+speaker = "David"
+text = "Apparently you aren't as stupid as you look."
+parent = -1
+
+[[nodes]]
+id = 964
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 965
+depth = 1
+kind = "speaker"
+speaker = "Elizabeth"
+text = "Apparently you aren't as stupid as you look."
+parent = -1
+
+[[nodes]]
+id = 966
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 967
+depth = 1
+kind = "speaker"
+speaker = "Frank"
+text = "Apparently you aren't as stupid as you look."
+parent = -1
+
+[[nodes]]
+id = 968
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 969
+depth = 1
+kind = "speaker"
+speaker = "Donovan the Family Handyman"
+text = "Thank you for all your help in solving the murder."
+parent = -1
+
+[[nodes]]
+id = 970
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 971
+depth = 1
+kind = "speaker"
+speaker = "Hobbes"
+text = "Thank you for all your help in solving the murder."
+parent = -1
+
+[[nodes]]
+id = 972
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 973
+depth = 1
+kind = "speaker"
+speaker = "Louisa"
+text = "Thank you for all your help in solving the murder."
+parent = -1
+
+[[nodes]]
+id = 974
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 975
+depth = 1
+kind = "speaker"
+speaker = "Mary"
+text = "Thank you for all your help in solving the murder."
+parent = -1
+
+[[nodes]]
+id = 976
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 977
+depth = 1
+kind = "speaker"
+speaker = "Stanford"
+text = "Thank you for all your help in solving the murder."
+parent = -1
+
+[[nodes]]
+id = 978
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 979
+depth = 1
+kind = "act"
+text = "(King's Random dialogue.)"
+parent = -1
+
+[[nodes]]
+id = 980
+depth = 1
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "I hear you're pretty smart to have solved the Sinclair Murder!"
+parent = -1
+
+[[nodes]]
+id = 981
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 982
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 983
+depth = 1
+kind = "option"
+text = "Talk about the Murder Mystery Quest"
+parent = -1
+children = [984, 985]
+
+[[nodes]]
+id = 984
+depth = 2
+kind = "speaker"
+speaker = "Poison Salesman"
+text = "I hear you're pretty smart to have solved the Sinclair Murder!"
+parent = 983
+
+[[nodes]]
+id = 985
+depth = 2
+kind = "act"
+text = "end"
+parent = 983
+is_terminal = true
+
+[[nodes]]
+id = 986
+depth = 1
+kind = "option"
+text = "quest=No|Talk about the Fremennik Trials"
+parent = -1

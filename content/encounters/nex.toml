@@ -1,0 +1,136 @@
+# Nex — Ancient Prison boss. 4-phase elemental progression: Smoke →
+# Shadow → Blood → Ice → Zaros (final). Each phase has a unique
+# "no escape" / elemental special attack.
+
+name = "Nex"
+slug = "nex"
+npc_ids = [11278]
+source_pages = ["Nex", "Nex/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Melee Claw"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 40
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged Thrown"
+style = "ranged"
+max_hit = 37
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Surge"
+style = "magic"
+max_hit = 37
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "smoke"
+enter_at_hp_pct = 100
+script = "nex_smoke_phase"
+allowed_attacks = ["Melee Claw", "Ranged Thrown", "Magic Surge",
+                   "Smoke Barrage"]
+
+[[phases]]
+id = "shadow"
+enter_at_hp_pct = 80
+script = "nex_shadow_phase"
+allowed_attacks = ["Melee Claw", "Ranged Thrown", "Magic Surge",
+                   "Shadow Trap"]
+
+[[phases]]
+id = "blood"
+enter_at_hp_pct = 60
+script = "nex_blood_phase"
+allowed_attacks = ["Melee Claw", "Ranged Thrown", "Magic Surge",
+                   "Blood Sacrifice"]
+
+[[phases]]
+id = "ice"
+enter_at_hp_pct = 40
+script = "nex_ice_phase"
+allowed_attacks = ["Melee Claw", "Ranged Thrown", "Magic Surge",
+                   "Ice Prison"]
+
+[[phases]]
+id = "zaros"
+enter_at_hp_pct = 20
+script = "nex_zaros_phase"
+allowed_attacks = ["Melee Claw", "Ranged Thrown", "Magic Surge",
+                   "No Escape", "Detonate"]
+
+# ---- Phase-specific specials ------------------------------------------
+
+[[attacks]]
+name = "Smoke Barrage"
+style = "magic"
+max_hit = 45
+warning_ticks = 2
+on_hit.inflict_poison = true
+
+[[attacks]]
+name = "Shadow Trap"
+# Teleports a random player to Nex's position.
+style = "magic"
+max_hit = 0
+warning_ticks = 2
+on_hit.effect = "teleport_player_to_boss"
+
+[[attacks]]
+name = "Blood Sacrifice"
+# Marks a player; if they don't move away in time they explode,
+# healing Nex massively.
+style = "magic"
+max_hit = 60
+warning_ticks = 3
+on_hit.effect = "heal_boss_on_explosion"
+on_hit.effect_amount = 100
+
+[[attacks]]
+name = "Ice Prison"
+# Freezes all players in ice pillars; must be freed by allies.
+style = "magic"
+max_hit = 30
+warning_ticks = 3
+on_hit.effect = "freeze_player"
+on_hit.freeze_ticks = 16
+
+[[attacks]]
+name = "No Escape"
+# Zaros phase: marks a player; drags them to Nex + massive damage
+# unless they reach the marked tile in time.
+style = "magic"
+max_hit = 80
+warning_ticks = 4
+
+[[attacks]]
+name = "Detonate"
+# Final phase: death explosion at fight end.
+style = "magic"
+max_hit = 100
+warning_ticks = 5
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Praying Mantis Minions"
+primitive = "spawn_npcs"
+trigger = "phase_in:smoke"
+period_ticks = 20
+params.npc_name = "Blood reaver"
+params.count = 3
+params.distribution = "around_player"
+
+[[mechanics]]
+name = "Blood Reaver Heal"
+primitive = "periodic_heal_boss"
+trigger = "phase_in:blood"
+# Blood reavers heal Nex when near.
+params.heal_per_tick = 5
+params.requires_npc_alive = "Blood reaver"

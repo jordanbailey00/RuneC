@@ -1,0 +1,25 @@
+id = "npc_defs"
+format = "binary"
+path = "data/defs/npc_defs.bin"
+magic_label = "NDEF"
+magic_u32 = "0x4E444546"
+current_version = 4
+accepted_versions = [1, 2, 3, 4]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_npc_defs_full.py"
+consumers = ["rc-core/npc.c"]
+source_dataset = "b237 cache-derived NPC definitions plus RuneC-owned content/source gaps"
+row_fields = [
+  "u32 id",
+  "u8 size",
+  "i16 combat_level",
+  "u16 hitpoints",
+  "u16 stats[6]",
+  "i32 anims[5]",
+  "pstr8 name",
+  "u8 aggressive, u16 max_hit, u8 attack_speed, u8 aggro_range, u16 slayer_level, u8 attack_types, u8 weakness, u8 immunities (v2+)",
+  "u8 model_count, u32 model_ids[model_count] (v3+)",
+  "options[5]: pstr8 option (v4+)",
+]
+compatibility = "Loader accepts versions 1 through 4 and rejects all other versions."

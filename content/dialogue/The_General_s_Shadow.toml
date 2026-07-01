@@ -1,0 +1,2652 @@
+title = "Transcript:The General's Shadow"
+npcs = ["General Khazard", "Sin Seer", "Scout (Tai Bwo Wannai)", "Scout (Tree Gnome Stronghold)", "Scout (Falador)", "Scout (Shantay Pass)"]
+node_count = 335
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "If the player is not wearing a ghostspeak amulet:"
+parent = -1
+children = [1, 2, 3]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "Wooooo whooo wooo. Whoot!"
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You tell 'em."
+parent = 0
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "act"
+text = "end"
+parent = 0
+is_terminal = true
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "cond"
+text = "If the player is not wearing all six pieces of the [[ghostly robes]]:"
+parent = -1
+children = [5, 6, 7, 8]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "You can see into the Shadow Realm and yet you are not of it. Oh well, you will be of no use."
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Huh? What do you mean I am not of it?"
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "Your form is still solid. To be of the Shadow Realm you must be less opaque."
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "act"
+text = "end"
+parent = 4
+is_terminal = true
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, General."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "What? You are not dead and yet you walk and talk in the Shadow Realm. Explain yourself."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm a being of great power and experience. I can see and speak to ghosts. For my assistance they clothed me in their garb. Can I offer you assistance, General?"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "This intrigues me. How do you know me? You look familiar but I can't place it."
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "Uh, well, you don't really have eyes, so how can you tell?"
+parent = -1
+children = [15, 16, 17, 18, 19, 20, 31]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Uh, well, you don't really have eyes, so how can you tell?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "There are ways to see that you humans cannot grasp."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh."
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "It doesn't matter anyway. You are not of the blood and I cannot trust you."
+parent = 14
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 14
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "option"
+text = "I'm a very trustworthy person."
+parent = 14
+children = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm a very trustworthy person."
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "General Khazard"
+text = "That is not something I can take your word on."
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So who's{{sic}} word would you take?"
+parent = 20
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "General Khazard"
+text = "Hmm... There is one person's word I would believe. If you visited the Sin Seer, and she judged you trustworthy, then I would have use for you."
+parent = 20
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where would I find her?"
+parent = 20
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "General Khazard"
+text = "Well, considering I told you she was a seer, of sorts, I would imagine you would find her in Seers' Village. It is to the south of here, not far."
+parent = 20
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "General Khazard"
+text = "Go and see her, return with her report and I will see if I have use for you. You will be well rewarded."
+parent = 20
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay! That sounds reasonable. Sin Seer, huh? How do you know someone like her?"
+parent = 20
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "General Khazard"
+text = "It's a long story, and I do not have the time to tell it."
+parent = 20
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "act"
+text = "end"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "option"
+text = "You're right. I'm completely untrustworthy."
+parent = 14
+children = [32]
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "I just have one of those faces."
+parent = -1
+children = [34, 35, 36, 37, 38, 39, 41]
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I just have one of those faces."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "True, I never can tell you humans apart. You're all ugly creatures, anyway."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hey!"
+parent = 33
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "It doesn't matter anyway. You are not of the blood and I cannot trust you."
+parent = 33
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 33
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "option"
+text = "I'm a very trustworthy person."
+parent = 33
+children = [40]
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "act"
+text = "above"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "option"
+text = "You're right. I'm completely untrustworthy."
+parent = 33
+children = [42]
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "act"
+text = "above"
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err, what was I supposed to do again?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "You goldfish! Go find the Sin Seer - she will determine if you are trustworthy. She lives in Seers' Village to the south of here."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for the Sin Seer."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Are you another one of those 'holier than thou' fools wanting to redeem themselves?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh, no actually, I'm trying to join a really evil guy's team."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Really? Finally, something worthwhile."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Sin Seer"
+text = "It was fun messing with those devotees the first few times but, after a while, condemning people to an eternity of damnation gets a bit dull."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Sin Seer"
+text = "So, whom are you trying to hook up with? Dark priest? Warlord? Penguin?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh, I want to prove to General Khazard I'm trustworthy."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Oh, that old fart? Is he still around? Humph. I dunno if I can be bothered."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "option"
+text = "Bribe"
+parent = -1
+children = [56, 57, 58, 59, 60, 61, 62, 71]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What if I pay you for the trouble - would you then? I can't imagine you make much money, seeing people's sins and all."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Oh, there's money in it. I just don't get invited to many parties."
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Sin Seer"
+text = "You got me all excited about evil plots, and now it's just a matter of trust. I really can't be bothered to strain myself on that account."
+parent = 55
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fine, you don't actually have to see my sins, just pronounce me to be trustworthy. I'll pay you and be on my way."
+parent = 55
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Sin Seer"
+text = "He'll know it's a lie. But I do need the cash, so I'll do it. Gimme 40 gold coins and you'll be as trustworthy as a newborn."
+parent = 55
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 55
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "option"
+text = "Here's the money."
+parent = 55
+children = [63, 64, 67, 68, 69, 70]
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Here's the money."
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "cond"
+text = "If the player does not have 40 coins:"
+parent = 62
+children = [65, 66]
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Sorry, you don't have enough money."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 4
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Fine. I declare you trustworthy, if you consider bribing a seer a trustworthy transaction."
+parent = 62
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Give this note to Khazard, it will prove you have been to see me."
+parent = 62
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "box"
+text = "pic=Sin seer's note detail.png|You receive a note from the Sin Seer."
+parent = 62
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "act"
+text = "end"
+parent = 62
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "option"
+text = "Never mind."
+parent = 55
+children = [72]
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "act"
+text = "end"
+parent = 71
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "option"
+text = "Plead"
+parent = -1
+children = [74, 75, 76, 77, 78, 87]
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "PLEASE! I want to know what he's up to."
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Ooooh, you're going to learn of his plans and stab him in the back?"
+parent = 73
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely."
+parent = 73
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Fine, give me 40 gold coins and I'll take a look at your sins."
+parent = 73
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "option"
+text = "Here's the money."
+parent = 73
+children = [79, 80, 83, 84, 85, 86]
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Here's the money."
+parent = 78
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "cond"
+text = "If the player does not have 40 coins:"
+parent = 78
+children = [81, 82]
+
+[[nodes]]
+id = 81
+depth = 4
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Sorry, you don't have enough money."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 4
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Sin Seer"
+text = "You have done many great deeds...but many terrible deeds. Sometimes you do them by accident, but are still sins. No, I would not trust you to walk my dog."
+parent = 78
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Give this note to Khazard, it will prove you have been to see me."
+parent = 78
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "box"
+text = "pic=Sin seer's note detail.png|You receive a note from the Sin Seer."
+parent = 78
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "act"
+text = "end"
+parent = 78
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "option"
+text = "Never mind."
+parent = 73
+children = [88]
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "act"
+text = "end"
+parent = 87
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Whatcha lookin' at chicken legs? Don't you have a General you should speak to?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "option"
+text = "I lost the note."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "cond"
+text = "If the player has the note:"
+parent = -1
+children = [92, 93]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Sin Seer"
+text = "You already have one. Get on with you!"
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "cond"
+text = "If the player does not have the note:"
+parent = -1
+children = [95]
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Sin Seer"
+text = "Here ya go. Take more care of it this time."
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "option"
+text = "Yes, I should get to that."
+parent = -1
+children = [97]
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "end"
+parent = 96
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have been to the Sin Seer. She has made her verdict."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "And?"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "cond"
+text = "If the player is not carrying the Sin Seer's note:"
+parent = -1
+children = [101, 102, 103]
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Err, and I seem to have misplaced the note she gave me."
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "Well, you'd best go get another one! Be off with you!"
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "end"
+parent = 100
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "She said to give you this note to prove I went to see her."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "The note says you have committed many sins and atrocities in your life. I'm impressed; I will use you."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "It has been a long time since I have left my home in the south. I have lost track of what is going on in the world, but now it is imperative that I know."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "So, I sent out four scouts to gather information for me. I brought them to walk like me in the Shadow Realm, so they would be safe from my enemies."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = """
+I sent them on four missions. One was to go to the land of the gnomes and explore their holdings. One was to go to a jungle to the south. One was to explore where the White Knights rule. And one to the place that
+"""
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "I once called home - a place of great heat."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "I am going to entrust you with a very important message, which you must deliver to each one of them."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Tell them: The planets are nearing alignment; we will meet in the place of half light and ice soon. Beware of the others, for though they are weak and few, they are cunning."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You can trust me to do it, sir!"
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Do you make progress in finding my scouts?"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "cond"
+text = "If the player has not found any scouts:"
+parent = -1
+children = [116, 117]
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't found any. Where were they headed?"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "act"
+text = "continues"
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "cond"
+text = "If the player has found at least one but not all scouts:"
+parent = -1
+children = [119, 120]
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've found [one/two/three], but they're kind of hard to find. Where were they headed again?"
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "act"
+text = "continues"
+parent = 118
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "cond"
+text = "If the scout in Karamja has not been found:"
+parent = -1
+children = [122, 123]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "One was to go to a jungle to the south."
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "continues"
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "cond"
+text = "If the scout near the Gnome Stronghold has not been found:"
+parent = -1
+children = [125, 126]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "One was to go to the land of the gnomes and explore their holdings."
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "act"
+text = "continues"
+parent = 124
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "cond"
+text = "If the scout near Falador has not been found:"
+parent = -1
+children = [128, 129]
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "One was to explore where the White Knights rule."
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "act"
+text = "continues"
+parent = 127
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "cond"
+text = "If the scout near the Shantay pass has not been found:"
+parent = -1
+children = [131, 132]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "One was to go to a place of great heat."
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "continues"
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "If I knew more of their locations I would go myself. Now go and finish the job."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "other"
+text = "{{mes|They object to your opaque clothes.}}"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [138, 139, 140]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "I am on a mission. I cannot spare time to speak to you."
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 137
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [142, 143, 144]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "Spy! I shall kill you!"
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Eek!"
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [146, 147, 148]
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "You can see into the Shadow Realm, but you are not of it. I cannot trust you."
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am not of it? What Shadow Realm? Hello? He's not listening."
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [150, 151, 152]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "Begone, you filthy human. I spare no words for you."
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "All you had to say was: 'Please, come back some other time.'"
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "act"
+text = "end"
+parent = 149
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [154, 155, 156]
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "A mere mortal can see into the Shadow Realm? The General will want to know of this."
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "General who? Hello? How rude, he's not listening."
+parent = 153
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "end"
+parent = 153
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there! General Khazard sent me."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "You must be a great mage to be able to see me, human."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, are you a ghost?"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Nothing so morbid. I am a scout for Khazard, and I move more easily through the land unseen. There are enemies everywhere."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "If you're not a ghost, why do I need an Amulet of Ghostspeak to talk to you?"
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Those who walk fully in the Shadow Realm become warped by it and speak as ghosts do. That is why I cannot speak to you unless you wear the amulet."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh. Well, here's your message."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Khazard says: 'The planets are nearing alignment; we will meet in the place of half light and ice soon. Beware of the others, for though they are weak and few, they are cunning.'"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Thank you, messenger."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, how's your mission going?"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "There is nothing pleasant about this land. The animals are vile, the temperature is unbearable and the plant life is often more dangerous than the animals."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "cond"
+text = "If Jungle Potion has been completed:"
+parent = -1
+children = [169, 170]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "There were some strange occurrences in Tai Bwo Wannai. The people fled their village because their gods were angry with them, or the like, but now they have returned. I must investigate why."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "act"
+text = "continues"
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "cond"
+text = "If Shilo Village has been completed:"
+parent = -1
+children = [172, 173]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "Shilo Village was overrun with the undead, but someone of great ability has brought the situation under control."
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "act"
+text = "continues"
+parent = 171
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, there's always something interesting going on here."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any idea where the other scouts are?"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I am a scout, not a spy. I do not keep track of them."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = """
+I was told to go south, so here I am. I know one was to investigate the gnomes. I believe one headed towards Asgarnia. Another was told to go to a place of great heat, but that they would have to sneak through a pass.
+"""
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there! General Khazard sent me."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "What news, skinbag?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, no need to be rude."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Your smell disgusts me, so make it quick."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Khazard says: 'The planets are nearing alignment; we will meet in the place of half light and ice soon. Beware of the others, for though they are weak and few, they are cunning.'"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I'll be glad when all this is over. The General will be strong again and we will push back this tide of filth that is humanity."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oi! I am one of the filth, I mean, humans! Besides, we were here first."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Haa, haa, haa. Oh, you naive mortals. There were many here before you. The last time the General went north, all this land belonged to the elves. Do not think so highly of your race."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Discovered anything interesting on your travels?"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "cond"
+text = "If the player has not completed Song of the Elves:"
+parent = -1
+children = [189, 190, 191]
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = """
+As I passed through Ardougne, I overheard some news. The plague in the west grows worse. King Lathas's popularity continues to increase as he tries to combat it. I suspect there is more to be learned, but my
+"""
+parent = 188
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "mission is to observe gnomes, not humans."
+parent = 188
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "act"
+text = "continues"
+parent = 188
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "cond"
+text = "If the player has completed Song of the Elves:"
+parent = -1
+children = [193, 194, 195]
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = """
+As I passed through Ardougne, I overheard some news. The plague in the west was revealed to be a hoax. King Lathas was executed and a new king now rules in his place. I suspect there is more to be learned, but my
+"""
+parent = 192
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "mission is to observe gnomes, not humans."
+parent = 192
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "act"
+text = "continues"
+parent = 192
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "cond"
+text = "If the player sided with Hazeel in Hazeel Cult:"
+parent = -1
+children = [197, 198]
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "I have heard that the cultists, who think they are so well hidden in the sewers, have succeeded in their ritual."
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "act"
+text = "continues"
+parent = 196
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "cond"
+text = "If the player sided with Ceril in Hazeel Cult:"
+parent = -1
+children = [200, 201]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "I have heard that the cultists, who think they are so well hidden in the sewers, have failed in their ritual."
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "act"
+text = "continues"
+parent = 199
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I head to the land of the gnomes; rumours say it is peaceful right now."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "cond"
+text = "If The Grand Tree has been completed:"
+parent = -1
+children = [204, 205]
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "But I hear Glough has lost his position as advisor."
+parent = 203
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "act"
+text = "continues"
+parent = 203
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "That is all I have heard."
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking for some of the other scouts. Any suggestions?"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I was ordered west. One was told to seek out the warmth of the jungles. The other two headed east: one in search of deserts, the other in search of knights."
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there! General Khazard sent me."
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Finally, news! What message does he send?"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err, it was something about planets."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Well, spit it out! I can't wait here all day."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Khazard says: 'The planets are nearing alignment; we will meet in the place of half light and ice soon. Beware of the others, for though they are weak and few, they are cunning.'"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Good. I long for the slaughter. These local squabbles and politics bore me. I wonder if the others have begun to move as well?"
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The other what? Who are you slaughtering?"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Ah, not for your ears, messenger!"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So how's your mission going. Enjoying the Draynor woods?"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "cond"
+text = "If Vampyre Slayer hasn't been completed:"
+parent = -1
+children = [220, 221]
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "The villagers still live in fear of the Count of Draynor Manor, so all is as it should be."
+parent = 219
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "act"
+text = "continues"
+parent = 219
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "cond"
+text = "If Vampyre Slayer has been completed:"
+parent = -1
+children = [223, 224]
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "There is talk in the village that the Count of Draynor Manor has been slain by some meddling adventurer. I will need to enter the manor to verify this."
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "act"
+text = "continues"
+parent = 222
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Other than that, nothing of interest."
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Have you been in touch with any of the other scouts?"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I'm too busy scouting to be in touch. One headed this direction with me seeking the place of heat and sand, another sought a place of moisture and growth and the last sought gnomes."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there! General Khazard sent me."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Gah! Don't sneak up on me!"
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh, sorry."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I think I can see my heart pounding!"
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're pretty jumpy for a scout. I thought you'd be made of sterner stuff."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "What is it you want exactly?"
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I bring a message from the General!"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Khazard says: 'The planets are nearing alignment; we will meet in the place of half light and ice soon. Beware of the others, for though they are weak and few, they are cunning.'"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Oh good, I long for the cold. This place is so hot! The General has told me much of his time spent here and I can see why he left."
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, did the General live here?"
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Long ago, yes. But not by choice. His evil lord and master forced him and his kind to reside here."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Khazard with a master? Hard to believe. Who was it?"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I think I have said too much already."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what have you discovered on your travels through the desert?"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "The fighting in the desert has come to a stop. However, there is still much distrust between Menaphos and Al Kharid. It seems like it would be possible to reignite the war if needed."
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "cond"
+text = "If Desert Treasure I has been completed:"
+parent = -1
+children = [245, 246]
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = "I have heard whisperings in the bandit camp that the prisoner of Jaldraocht is now free."
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "act"
+text = "continues"
+parent = 244
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "cond"
+text = "If Enakhra's Lament has been completed:"
+parent = -1
+children = [248, 249]
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Scout"
+text = """
+I followed one called Lazim. He let slip that he had discovered the buried temple. Now the two others who were there are on the move. The General may find there are new players at the ritual this time.
+"""
+parent = 247
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "act"
+text = "continues"
+parent = 247
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The desert seems to be a hotbed of information. Do you want me to relay any of this to the General?"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Not at this time. I must investigate further."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any idea where I can find the other scouts?"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Hmm, I left one of them near a haunted wood - the trees kept trying to hit us. One scout headed for the jungle and the other for the gnomes."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "act"
+text = "Following dialogue is carried on from whatever the last scout was:"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I've found all of you now."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "How do you mean?"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The General sent me to find his four scouts, and now I've found all of you and delivered his message."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "You have served the General well. I hope he rewards you. How did you come to his service?"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He was surprised to see someone like me in the Shadow Realm and I offered to give him assistance if he needed it."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "You did not know of him before that? I am surprised he would speak to someone who did not know of his greatness."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Greatness? He's crazy. He kidnapped innocent people and butchered them in his arena. Not to mention sicking that dog on people. Killing it was the best thing I ever...heard about."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "Indeed? Strange you would serve a man you feel that way about, but I will not doubt the General's judgement. You'd best go back to the General and report. I have a message you could take him."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, let 'er rip."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I have nothing to rip, but the message is 'We of the blood are still loyal. Pavlov is the messenger.'"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, I'll remember that. Anything else?"
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "No, you may go."
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, what was I supposed to do now?"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "You must speak to General Khazard to obtain your 'well-earned' reward."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I did it, sir! I found all of the scouts and delivered your message. The last one said I should report back to you."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Oh, and what did he say that for?"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He said to tell you, 'We of the blood are still loyal. Pavlov is the messenger.'"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Ah. Interesting. Well, you have served your purpose. Now to award you with something appropriate."
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "There is a cave near where the fish-men gather. Go to the east branch of this cave and seek out one who lives in the Shadow Realm. He will reward you well."
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right! Fish-men. Cave. Ghost. Thanks, General!"
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Wait! Take this, it is the key to your reward."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "cond"
+text = "If the player's inventory is full:"
+parent = -1
+children = [280, 281]
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "You do not have enough space for it. Speak to me again when you do."
+parent = 279
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "act"
+text = "end"
+parent = 279
+is_terminal = true
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "box"
+text = "pic=Severed leg (The General's Shadow) detail.png|The General hands you a severed leg."
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "act"
+text = "receives=Severed leg"
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "cond"
+text = "If The Hand in the Sand has been completed:"
+parent = -1
+children = [285, 286, 287, 288]
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ugh, well, at least it's not another hand."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "Ah, you have dealt with severed limbs before?"
+parent = 284
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's a long story."
+parent = 284
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "act"
+text = "continues"
+parent = 284
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "cond"
+text = "If The Hand in the Sand hasn't been completed:"
+parent = -1
+children = [290, 291]
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ugh! A leg? That's revolting!"
+parent = 289
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "act"
+text = "continues"
+parent = 289
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Don't worry if you lose it, I can always get more to replace it."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "option"
+text = "Sorry, sir. Where was my reward again?"
+parent = -1
+children = [296, 297, 298]
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, sir. Where was my reward again?"
+parent = 295
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "There is a cave near where the fish-men gather. Go there and seek out one who lives in the Shadow Realm. He will reward you well."
+parent = 295
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "act"
+text = "end"
+parent = 295
+is_terminal = true
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "option"
+text = "I lost the key to my reward."
+parent = -1
+children = [300, 301, 302, 305, 306, 307, 308]
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost the key to my reward."
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "Incompetent fool!"
+parent = 299
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "cond"
+text = "If the player is already carrying a severed leg:"
+parent = 299
+children = [303, 304]
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "speaker"
+speaker = "General Khazard"
+text = "You already have one. What use could you have for two?"
+parent = 302
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "act"
+text = "end"
+parent = 302
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "box"
+text = "pic=Severed leg (The General's Shadow) detail.png|The General hands you a severed leg."
+parent = 299
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "act"
+text = "receives=a severed leg"
+parent = 299
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "General Khazard"
+text = "Here, take another. They are easy to come by."
+parent = 299
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "end"
+parent = 299
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [310, 311]
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "act"
+text = "end"
+parent = 309
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The General said I would find my reward near where the fish-men gather. I don't know what he means!"
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "The General is a bit...cliché. Fish-men are fishermen. Now, away with you!"
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "box"
+text = "You have a bad feeling about crawling into the next cavern."
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "select"
+text = "Do you want to enter the cavern?"
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "option"
+text = "Yes"
+parent = -1
+children = [318, 319, 320, 321]
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What the...! It's Bouncer, Khazard's hell hound."
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Khazard tricked me! This is no reward, he's trying to get me killed...AGAIN!"
+parent = 317
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "other"
+text = "{{mes|An evil presence in the cave prevents your prayers from being heard.}}"
+parent = 317
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "act"
+text = "end"
+parent = 317
+is_terminal = true
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "option"
+text = "No"
+parent = -1
+children = [323]
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "act"
+text = "end"
+parent = 322
+is_terminal = true
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, I'd better not go in without the leg, I mean key. Khazard said I wouldn't get my reward without it."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "other"
+text = "{{mes|You grab the severed leg and throw it to distract the hound.}}"
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Away, darn spot!}}"
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your dog attacked me. AGAIN!"
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "He was angry that you killed him. Quite natural, really."
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "General Khazard"
+text = "Now get out of here, you filthy skinbag. I will not waste my time on you."
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Scout"
+text = "I can't speak to you; I must continue on my mission."
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

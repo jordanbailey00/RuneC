@@ -2,7 +2,7 @@
 """Extract fight-mechanics prose from cached boss wikitexts.
 
 Reads `tools/wiki_cache/pages/*.json` (boss main + /Strategies) and
-emits `data/curated/mechanics/{slug}.toml` containing ONLY sections
+emits `content/mechanics/{slug}.toml` containing ONLY sections
 that describe the fight — mechanics, attacks, phases, etc.
 
 Player-loadout sections (Inventory, Equipment, Suggested skills,
@@ -21,6 +21,8 @@ import re
 import sys
 from pathlib import Path
 
+from content_paths import content_write_path
+
 ROOT = Path(__file__).resolve().parents[1]
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -28,7 +30,7 @@ from wiki_pages import PageClient  # noqa: E402
 
 CACHE = ROOT / "tools/wiki_cache"
 PAGES = CACHE / "pages"
-OUT_DIR = ROOT / "data/curated/mechanics"
+OUT_DIR = content_write_path("mechanics")
 REPORT = ROOT / "tools/reports/mechanics_extract.txt"
 
 # Section header regex: matches `== Header ==` (level-2 only).

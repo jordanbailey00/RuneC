@@ -1,37 +1,7 @@
 #!/usr/bin/env python3
 """Scrape slayer-master task assignment tables.
 
-The runtime needs assignment weights plus exact eligibility gates, task
-amounts, extended amounts, alternatives, and unlock text. Cached wiki pages
-are preferred; network refetching is not required for normal exports.
-
-Binary format v3 — 'SLAY' magic:
-  magic u32 | version u32 | master_count u32
-  per master:
-    name_len u8 + name[]
-    task_count u16
-    req_slayer u8
-    req_combat u8
-    per task:
-      weight u16
-      amount_min u16
-      amount_max u16
-      extended_min u16
-      extended_max u16
-      unlock_flags u32
-      req_slayer u8
-      req_combat u8
-      name_len u8 + npc_name[]
-      alternatives_len u8 + alternatives[]
-      requirements_len u8 + requirements[]
-      progression_flags u64
-      progression_any_flags u64
-      task_flags u16
-      locations_len u16 + "name|flags;..."[]
-      boss_candidates_len u16 + "name|slayer|flags|any_flags;..."[]
-
-npc_name is the canonical string (resolved at runtime against
-`npc_id` bucket / infobox_monster for ID lookups).
+Runtime schema: `schema/defs/slayer.schema.toml`.
 """
 from __future__ import annotations
 

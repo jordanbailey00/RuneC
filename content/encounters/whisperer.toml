@@ -1,0 +1,96 @@
+# The Whisperer — DT2 boss. Tests: sanity meter mechanic, shadow-
+# realm phase (player-transported to parallel arena), tentacle
+# projectiles, enrage phase with heal-on-zero hp instead of death.
+
+name = "The Whisperer"
+slug = "whisperer"
+npc_ids = [12204, 12205, 12206, 12207]
+source_pages = ["The Whisperer", "The Whisperer/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Ranged Bolt"
+style = "ranged"
+max_hit = 30
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Bolt"
+style = "magic"
+max_hit = 30
+warning_ticks = 2
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "standard"
+enter_at_hp_pct = 100
+allowed_attacks = ["Ranged Bolt", "Magic Bolt", "Tentacle Drain",
+                   "Screech"]
+
+[[phases]]
+id = "enrage"
+# Wiki: "Upon reaching 0 health, the Whisperer will heal 140 hitpoints
+# and pull the player into the Shadow Realm."
+enter_at_hp = 0
+script = "whisperer_enter_shadow_realm"
+allowed_attacks = ["Ranged Bolt", "Magic Bolt", "Tentacle Drain"]
+# Alternates ranged and magic every 2 attacks with faster cadence.
+attack_pattern = "strict_alternate_pairs"
+starts_with_style = "ranged"
+attack_cycle_ticks = 3
+on_enter.heals_boss = 140
+on_enter.restores_drained_stats = true
+on_enter.teleports_player_to = "shadow_realm_arena"
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Sanity Meter"
+primitive = "player_sanity_tracker"
+# Wiki: sanity drains as player takes damage from tentacles or
+# fails to "hear" correct prayer swaps. Going insane → instant death
+# or teleport from encounter.
+params.max_sanity = 100
+params.drain_per_tentacle_hit = 10
+params.drain_per_wrong_prayer_tick = 2
+params.regen_per_correct_prayer_tick = 1
+params.insane_threshold = 0
+params.insane_action = "teleport_player_out"
+params.restored_on_boss_death = 100
+
+[[mechanics]]
+name = "Tentacle Drain"
+primitive = "spawn_tentacle_projectiles"
+# Tentacles appear on tiles, deal damage + sanity drain if player
+# steps on.
+period_ticks = 6
+params.tentacle_count = 3
+params.warning_ticks = 2
+params.damage_on_hit = 10
+params.sanity_drain_on_hit = 10
+params.enrage_period_ticks = 3
+
+[[mechanics]]
+name = "Screech"
+primitive = "aoe_prayer_swap_demand"
+# Telegraphed AoE forcing a prayer swap; damage + sanity drain if
+# wrong prayer active.
+period_ticks = 20
+params.warning_ticks = 3
+params.required_prayer_cycle = ["protect_from_missiles",
+                                "protect_from_magic"]
+params.wrong_prayer_damage = 25
+params.wrong_prayer_sanity_drain = 15
+
+[[mechanics]]
+name = "Silent Mode"
+primitive = "audio_visual_disruption"
+# "You can't hear her attack" — no sound cues + prayer warnings are
+# hidden. Player must rely on visual telegraphs only.
+trigger = "phase_in:standard"
+period_ticks = 30
+params.duration_ticks = 15
+params.disables_audio_cues = true
+params.hides_overhead_warning = true

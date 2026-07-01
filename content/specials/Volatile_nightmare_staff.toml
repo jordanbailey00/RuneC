@@ -1,0 +1,74 @@
+name = "Volatile nightmare staff"
+item_ids = [24424, 25517]
+
+[special]
+"Special attack" = """
+[[File:Immolate.gif|thumb|250px|A player performing the volatile nightmare staff's special attack, ''Immolate''.]]
+The volatile nightmare staff has a [[special attack]], ''Immolate'', that consumes 55% of the player's special attack energy to hit the target with 50% increased accuracy and deals a high amount of damage. The special attack does not consume runes.
+
+When calculating the max hit, Immolate acts like any other spell. The spell's max hit is calculated first and then rounded down. All [[magic damage]] gear, including the +15% from the staff is calculated separately. Because the staff has a magic damage bonus, the max hit seen in-game will always be higher than the spell's max hit. The max hit varies with visible Magic level according to the formula below.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1765337358294003882|date=06 March 2024|archiveurl=https://archive.is/aZNqZ|archivedate=06 March 2024|quote=[What is the formula for the Volatile staff's special attack base maxhit?] The base is 58, scaled up or down by your *visible* Magic stat divided by 99, if I'm reading my colleagues' code correctly.}} The spell's max hit is limited to, at most, 58. This means that even though the max hit is based on the player's magic level, [[Temporary skill boost|boosting]] above magic level 98 will not increase the max hit. It can be increased though by using additional magic damage gear including the [[Slayer helmet (i)]] when on a [[slayer task]].
+
+<math>\\begin{align}
+\\text{Spell Max Hit} &= \\min\\left\\{ \\left\\lfloor\\ 58 * \\frac{\\text{Magic Level}}{99} + 1 \\right\\rfloor\\ , 58 \\right\\} \\\\
+\\text{Staff Max Hit} &= \\left\\lfloor\\ \\text{Spell Max Hit} * 1.15 \\right\\rfloor\\ \\\\
+\\end{align}</math>
+{| class="wikitable mw-collapsible" style="text-align:center; white-space:nowrap;"
+|-
+! rowspan="2" |{{SCP|Magic|link=yes}} levels
+! colspan="2" |Maximum hit
+|-
+!Base Spell
+!With Staff Magic Damage
+|-
+|82-83||49||56
+|-
+|84-85||50||57
+|-
+|86-87||51||58
+|-
+|88||52||59
+|-
+|89-90
+|53
+|60
+|-
+|91-92||54||62
+|-
+|93||55||63
+|-
+|94-95||56||64
+|-
+|96-97||57||65
+|-
+|98-99+
+|58
+|66
+|}
+{| class="wikitable mw-collapsible" style="text-align:center; white-space:nowrap;"
+|-
+! rowspan="2" |{{SCP|Magic|link=yes}} levels
+! colspan="3" |Maximum hit
+|-
+!Situation
+!Gear
+!Max hit
+|-
+| rowspan="5" |98-99+||Staff only||{{plinkp|Volatile nightmare staff}}||66
+|-
+|[[Best in slot]]
+|{{plinkp|Volatile nightmare staff}}+{{plinkp|Elidinis' ward (f)}}+{{plinkp|Occult necklace}}+{{plinkp|Confliction gauntlets}}+{{plinkp|Magus ring}}+{{plinkp|God capes#Imbuing|pic=Imbued saradomin cape}}+{{plinkp|Ancestral hat}}+{{plinkp|Ancestral robe top}}+{{plinkp|Ancestral robe bottom}}+{{plinkp|Avernic treads (max)}}+{{plinkp|Augury}}
+|87
+|-
+|[[Undead]]
+|{{plinkp|Salve amulet(ei)}}+{{plinkp|Volatile nightmare staff}}+{{plinkp|Elidinis' ward (f)}}+{{plinkp|Confliction gauntlets}}+{{plinkp|Magus ring}}+{{plinkp|God capes#Imbuing|pic=Imbued saradomin cape}}+{{plinkp|Ancestral hat}}+{{plinkp|Ancestral robe top}}+{{plinkp|Ancestral robe bottom}}+{{plinkp|Avernic treads (max)}}+{{plinkp|Augury}}
+|96
+|-
+|[[Slayer task]]
+|{{plinkp|Slayer helmet (i)}}+{{plinkp|Volatile nightmare staff}}+{{plinkp|Elidinis' ward (f)}}+{{plinkp|Occult necklace}}+{{plinkp|Confliction gauntlets}}+{{plinkp|Magus ring}}+{{plinkp|God capes#Imbuing|pic=Imbued saradomin cape}}+{{plinkp|Ancestral robe top}}+{{plinkp|Ancestral robe bottom}}+{{plinkp|Avernic treads (max)}}+{{plinkp|Augury}}
+|97
+|-
+|[[Castle Wars]]
+|{{plinkp|Castle wars bracelet}}+{{plinkp|Volatile nightmare staff}}+{{plinkp|Elidinis' ward (f)}}+{{plinkp|Occult necklace}}+{{plinkp|Confliction gauntlets}}+{{plinkp|Magus ring}}+{{plinkp|Ancestral robe top}}+{{plinkp|Ancestral robe bottom}}+{{plinkp|Avernic treads (max)}}+{{plinkp|Augury}}
+|Unknown
+|}
+"""

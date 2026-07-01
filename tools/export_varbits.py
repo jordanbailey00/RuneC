@@ -23,7 +23,7 @@ import sys
 import argparse
 from pathlib import Path
 
-from source_paths import CACHE_DIR
+from source_paths import CACHE_DIR, require_cache_dir
 
 PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
 sys.path.insert(0, str(PIPELINE))
@@ -77,7 +77,7 @@ def main():
     args = ap.parse_args()
     rows = load_rows()
     names = wiki_names(rows)
-    cache_defs = cache_varbits(args.cache)
+    cache_defs = cache_varbits(require_cache_dir(args.cache))
     by_index: dict[int, tuple[str, int, int, int]] = {}
     collisions = 0
     skipped = 0

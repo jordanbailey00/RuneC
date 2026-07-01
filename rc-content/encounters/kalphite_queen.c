@@ -3,7 +3,7 @@
 // Kalphite Queen — two-phase desert boss (cache NPC ids 965 / 4304).
 //
 // MOST of KQ runs on generic primitives in rc-core. The TOML at
-// `data/curated/encounters/kalphite_queen.toml` references:
+// `content/encounters/kalphite_queen.toml` references:
 //   - drain_prayer_on_hit                     — generic
 //   - chain_magic_to_nearest_player           — generic (solo no-op)
 //   - preserve_stat_drains_across_transition  — generic
@@ -23,14 +23,10 @@
 // encounters/scripts.c as a no-op stub; real behavior belongs here
 // when authored.
 //
-// Reference: pre-2013 RuneScape had KQ with nearly identical
-// mechanics. See:
-//   - rsmod (search "kalphite")
-//   - void_rsps (search "KalphiteQueen")
-//   - 2011Scape-game (overlap source)
-// These are legitimate references for KQ since the mechanics carry
-// over — use them to validate attack rotation timing, max hits,
-// prayer drain amounts, and transition animation duration.
+// Reference: use approved OSRS-native sources only. `rsmod` coverage and
+// OSRS Wiki KQ pages can guide reconstruction where they directly cover the
+// OSRS behavior. Uncovered timing, damage, prayer-drain, or transition details
+// should remain source-gap rows until backed by approved evidence.
 
 void rc_content_kalphite_queen_register(struct RcWorld *world) {
     (void)world;

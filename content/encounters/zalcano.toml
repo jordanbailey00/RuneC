@@ -1,0 +1,55 @@
+# Zalcano — Mining/Smithing/Runecraft skilling boss in Prifddinas.
+# Group encounter: mine ore, smelt in furnace, imbue with runes,
+# throw at Zalcano to damage shield + hp.
+
+name = "Zalcano"
+slug = "zalcano"
+npc_ids = [9049]
+source_pages = ["Zalcano", "Zalcano/Strategies"]
+encounter_type = "skilling_boss"
+
+[[attacks]]
+name = "Falling Rocks"
+# AoE rockfall when low skill → high miss rate.
+style = "ranged"
+max_hit = 30
+warning_ticks = 2
+targets_tile_not_entity = true
+
+[[phases]]
+id = "shielded"
+enter_at_hp_pct = 100
+script = "zalcano_shielded_phase"
+# Zalcano has a shield; player must break it by throwing imbued
+# ore. Shield breaks → damage phase.
+
+[[phases]]
+id = "unshielded"
+enter_after = "shield_broken"
+script = "zalcano_damage_phase"
+duration_ticks = 50               # time-limited attack window
+
+[[mechanics]]
+name = "Ore Cycle"
+primitive = "crafting_resource_loop"
+# Mine → Smelt → Imbue → Throw at Zalcano.
+params.steps = [
+    { action = "Mine", object = "Fractured rocks", skill = "mining", level = 70 },
+    { action = "Smelt", object = "Furnace", skill = "smithing", level = 70 },
+    { action = "Imbue", object = "Altar (Zalcano)", skill = "runecraft", level = 70 },
+    { action = "Throw", target = "Zalcano", damages_shield_or_hp = true, skill = "", level = 0 },
+]
+
+[[mechanics]]
+name = "Golems"
+primitive = "spawn_npcs"
+period_ticks = 30
+params.npc_name = "Tendril"
+params.count = 3
+params.distribution = "random_arena"
+
+[entry_requirement]
+mining_level = 70
+smithing_level = 70
+runecraft_level = 70
+quest_required = "Song of the Elves"

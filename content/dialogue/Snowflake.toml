@@ -1,0 +1,331 @@
+title = "Transcript:Snowflake"
+npcs = ["Snowflake", "My Arm"]
+node_count = 42
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Snowflake"
+text = "Thank you for getting our herb patches to work. Now Boulder can grow goutweed for my people, and they are very happy."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "cond=If the player lost the [[Weiss fire notes]]:|Can I have another copy of that book?"
+parent = -1
+children = [2, 3, 4, 5, 6]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have another copy of that book?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Snowflake"
+text = "Yes, I have another copy for you."
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "box"
+text = "pic=Weiss fire notes detail.png|Snowflake gives you another tatty book of Odd Mushroom's writings."
+parent = 1
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 1
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "other"
+parent = 1
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "How are you two doing?"
+parent = -1
+children = [8, 9, 10, 11, 12, 13]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How are you two doing?"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "My Arm"
+text = "Snowflake an' My Arm very happy. Maybe new herbie patch not da only place where new life gonna be growin' soon!"
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Snowflake"
+text = "Let's not get ahead of ourselves, dear! But the town is thriving; my people are much happier now they are no longer terrified of Father."
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "My Arm"
+text = "Dem trolls likin' da goutweed too!"
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's nice."
+parent = 7
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "Can you note this basalt for me?"
+parent = -1
+children = [15, 16, 19]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you note my basalt for me?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "cond"
+text = "If the player is carrying basalt:"
+parent = 14
+children = [17, 18]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "box"
+text = "pic=Basalt detail.png|Snowflake converts your [item/items] to [a banknote/banknotes]."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "act"
+text = "end"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "cond"
+text = "If the player is not carrying basalt:"
+parent = 14
+children = [20, 21]
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Snowflake"
+text = "You aren't carrying any basalt."
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "act"
+text = "end"
+parent = 19
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "I'll be off."
+parent = -1
+children = [23, 24, 25]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be off."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Snowflake"
+text = "You will always be welcome back."
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "box"
+text = "pic=Basalt detail.png|Snowflake converts your [item/items] to [a banknote/banknotes]."
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "box"
+text = "pic=Goat dung detail.png|No thank you, [player name], I do not need more poo in a bucket from you."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "My Arm"
+text = "Here, solve this."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "act"
+text = "receives=a puzzle box"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "box"
+text = "My Arm hands you a puzzlebox!"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "cond"
+text = "If the puzzle is not solved:"
+parent = -1
+children = [35, 36]
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "My Arm"
+text = "That doesn't look solved to me."
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "cond"
+text = "If the puzzle is solved:"
+parent = -1
+children = [38, 39, 40, 41]
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "My Arm"
+text = "Well done [player name]. Here you go."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "act"
+text = "receives=a [new clue/casket]"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "box"
+text = "You've been given a [new clue/casket]!"
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true

@@ -1,0 +1,42 @@
+id = "activity_schemas"
+format = "binary"
+path = "data/defs/activity_schemas.bin"
+magic_label = "ASCH"
+magic_u32 = "0x48435341"
+current_version = 2
+accepted_versions = [1, 2]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_activity_schemas.py"
+consumers = ["rc-core/activity_schemas.c"]
+source_dataset = "content/activity_spawns.toml, content/activity_state_machines.toml, content/encounters"
+row_fields = [
+  "u8 status",
+  "u8 class_id",
+  "u8 kind",
+  "u32 flags",
+  "u16 npc_count",
+  "u16 object_count",
+  "u16 spawn_point_count",
+  "u16 spawn_region_count",
+  "u16 dynamic_spawn_count",
+  "u16 wave_spawn_count",
+  "u16 object_anchor_count",
+  "u16 safe_tile_count",
+  "u16 unresolved_count",
+  "u16 state_count",
+  "u16 transition_count",
+  "u16 param_count",
+  "u16 attack_count",
+  "u16 phase_count",
+  "u16 mechanic_count",
+  "u16 room_count",
+  "u16 reward_count",
+  "u16 requirement_count",
+  "u8 min_x, max_x, min_y, max_y, min_plane, max_plane",
+  "pstr8 slug",
+  "pstr8 name",
+  "u32 npc_ids[npc_count]",
+  "u32 object_ids[object_count]",
+]
+compatibility = "Loader accepts versions 1 through current_version and rejects version 0 or newer versions."

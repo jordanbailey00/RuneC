@@ -1,0 +1,190 @@
+# Fortis Colosseum — 12-wave gladiatorial arena with player-selected
+# modifiers stacked per wave. Each wave introduces a new enemy type;
+# wave 12 = Sol Heredit solo.
+
+name = "Fortis Colosseum"
+slug = "colosseum"
+# Sol Heredit + wave-enemy ids.
+npc_ids = [12819, 12821, 12818]
+source_pages = ["Fortis Colosseum", "Fortis Colosseum/Strategies",
+                "Sol Heredit"]
+
+# ---- 12-wave progression ----------------------------------------------
+# After each wave the player picks 1 of 3 modifiers that apply for
+# the rest of the run. Modifier pool:
+#   DOOM, SOLARFLARE, MYOPIA, BLASPHEMY, RED FLAG, BEES, REENTRY,
+#   DYNAMIC DUO, FROZEN WELLSPRING, VOLATILITY, MANTIMAYHEM,
+#   TOTEMIC, QUARTET.
+# Modifiers affect enemy behavior + stats for all subsequent waves.
+
+[[waves]]
+id = "wave_1"
+enemies = [{ npc = "Fremennik warband", count = 2 }]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_2"
+enemies = [
+    { npc = "Jaguar warrior",       count = 1 },
+    { npc = "Serpent shaman",       count = 1 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_3"
+enemies = [
+    { npc = "Minotaur",             count = 2 },
+    { npc = "Javelin colossus",     count = 1 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_4"
+enemies = [
+    { npc = "Manticore",            count = 2 },
+    { npc = "Javelin colossus",     count = 2 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_5"
+enemies = [
+    { npc = "Shockwave colossus",   count = 1 },
+    { npc = "Manticore",            count = 2 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_6"
+enemies = [
+    { npc = "Shockwave colossus",   count = 1 },
+    { npc = "Minotaur",             count = 2 },
+    { npc = "Jaguar warrior",       count = 1 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_7"
+enemies = [
+    { npc = "Manticore",            count = 3 },
+    { npc = "Serpent shaman",       count = 1 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_8"
+enemies = [
+    { npc = "Shockwave colossus",   count = 2 },
+    { npc = "Javelin colossus",     count = 1 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_9"
+enemies = [
+    { npc = "Shockwave colossus",   count = 1 },
+    { npc = "Manticore",            count = 1 },
+    { npc = "Javelin colossus",     count = 2 },
+    { npc = "Minotaur",             count = 1 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_10"
+enemies = [
+    { npc = "Serpent shaman",       count = 2 },
+    { npc = "Jaguar warrior",       count = 1 },
+    { npc = "Shockwave colossus",   count = 1 },
+    { npc = "Manticore",            count = 2 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_11"
+enemies = [
+    { npc = "Shockwave colossus",   count = 1 },
+    { npc = "Serpent shaman",       count = 1 },
+    { npc = "Jaguar warrior",       count = 2 },
+    { npc = "Manticore",            count = 1 },
+    { npc = "Javelin colossus",     count = 1 },
+]
+post_wave_modifier_choice = true
+
+[[waves]]
+id = "wave_12"
+# Sol Heredit solo boss fight.
+enemies = [{ npc = "Sol Heredit", count = 1 }]
+boss_fight = true
+
+# ---- Sol Heredit boss definition -------------------------------------
+
+[[bosses]]
+name = "Sol Heredit"
+npc_id = 12821
+is_primary = true
+
+[[bosses.attacks]]
+name = "Combo Slash"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 28
+warning_ticks = 0
+
+[[bosses.attacks]]
+name = "Spear Throw"
+style = "ranged"
+max_hit = 28
+warning_ticks = 2
+
+[[bosses.attacks]]
+name = "Shield Stun"
+# Telegraphed shield bash; stun + damage if player in line.
+style = "melee"
+max_hit = 40
+warning_ticks = 3
+aoe_shape = "line_length_3"
+on_hit.stun_ticks = 4
+
+[[bosses.attacks]]
+name = "Triple Strike"
+# 3-part combo: slash → slash → slam. Each part has own prayer swap.
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 25
+warning_ticks = 0
+combo_sequence = 3
+
+# ---- Sol mechanics ----------------------------------------------------
+
+[[mechanics]]
+name = "Sol Phase Style Shift"
+primitive = "hp_gated_style_increase"
+# Sol uses more specials as HP drops. At 75%, 50%, 25% hp, adds a
+# new attack to his rotation.
+params.thresholds = [
+    { hp_pct = 75, unlock = "Shield Stun" },
+    { hp_pct = 50, unlock = "Triple Strike" },
+    { hp_pct = 25, unlock = "Heroic Tornado" },
+]
+
+[[mechanics]]
+name = "Modifier Stack Effects"
+primitive = "run_level_modifier_registry"
+# All player-selected modifiers accumulate and apply from when
+# chosen until run end. Model as a registry of active modifier ids
+# that other mechanics query.
+params.modifiers = [
+    { id = "DOOM",              effect = "stacking_damage_over_time" },
+    { id = "SOLARFLARE",        effect = "tile_explosion_on_death" },
+    { id = "MYOPIA",            effect = "reduced_sight_range" },
+    { id = "BLASPHEMY",         effect = "prayer_drain_per_enemy_death" },
+    { id = "RED FLAG",          effect = "enemies_spawn_with_shield" },
+    { id = "BEES",              effect = "swarms_of_bees" },
+    { id = "REENTRY",           effect = "portal_repositioning" },
+    { id = "DYNAMIC DUO",       effect = "minotaur_pairs_heal" },
+    { id = "FROZEN WELLSPRING", effect = "water_tiles_freeze" },
+    { id = "VOLATILITY",        effect = "random_ad_hoc_aoe" },
+    { id = "MANTIMAYHEM",       effect = "manticores_x2_count" },
+    { id = "TOTEMIC",           effect = "totems_periodically_spawn" },
+    { id = "QUARTET",           effect = "4_enemies_simultaneous_link" },
+]

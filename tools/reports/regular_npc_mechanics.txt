@@ -1,66 +1,15 @@
-Regular NPC special-mechanics export
+Regular Npc Mechanics
 
-input: data/curated/regular_npc_special_mechanics.toml
-npc_defs: 15666
-wiki poison/venom/disease IDs: 170/25/17
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 2366
+entries: 16
 
-Families
-- dragonfire_users: 94 NPC IDs
-  tags: dragonfire, equipment_mitigation, potion_mitigation, prayer_interaction
-  sample: 139:Steel dragon, 239:King Black Dragon, 247:Red dragon, 248:Red dragon, 249:Red dragon, 250:Red dragon, 251:Red dragon, 252:Black dragon
-- wyverns: 8 NPC IDs
-  tags: icy_breath, equipment_mitigation, prayer_interaction
-  sample: 465:Skeletal Wyvern, 466:Skeletal Wyvern, 467:Skeletal Wyvern, 468:Skeletal Wyvern, 7792:Long-tailed Wyvern, 7793:Taloned Wyvern, 7794:Spitting Wyvern, 7795:Ancient Wyvern
-- spectre_protection_required: 9 NPC IDs
-  tags: equipment_required, stat_drain, special_damage_prevention, nose_peg_required
-  sample: 2:Aberrant spectre, 3:Aberrant spectre, 4:Aberrant spectre, 5:Aberrant spectre, 6:Aberrant spectre, 7:Aberrant spectre, 7279:Deviant spectre, 7402:Abhorrent spectre
-- banshee_protection_required: 4 NPC IDs
-  tags: equipment_required, stat_drain, special_damage_prevention, earmuffs_required
-  sample: 414:Banshee, 7272:Twisted Banshee, 7390:Screaming banshee, 7391:Screaming twisted banshee
-- dust_devil_protection_required: 3 NPC IDs
-  tags: equipment_required, stat_drain, special_damage_prevention, face_mask_required
-  sample: 423:Dust devil, 7249:Dust devil, 11238:Dust devil
-- cave_horror_protection_required: 5 NPC IDs
-  tags: equipment_required, stat_drain, special_damage_prevention, witchwood_icon_required
-  sample: 1047:Cave horror, 1048:Cave horror, 1049:Cave horror, 1050:Cave horror, 1051:Cave horror
-- mirror_shield_required: 13 NPC IDs
-  tags: equipment_required, stat_drain, special_damage_prevention, mirror_shield_required
-  sample: 417:Basilisk, 418:Basilisk, 419:Cockatrice, 420:Cockatrice, 7395:Monstrous basilisk, 9283:Basilisk, 9284:Basilisk, 9285:Basilisk
-- weapon_restricted_damage: 11 NPC IDs
-  tags: weapon_damage_gate, ammo_damage_gate, spell_damage_gate, special_attack_exception
-  sample: 410:Kurask, 411:Kurask, 426:Turoth, 427:Turoth, 428:Turoth, 429:Turoth, 430:Turoth, 431:Turoth
-- slayer_finisher_items: 19 NPC IDs
-  tags: finisher_item, low_hp_rule, auto_finisher_unlock
-  sample: 412:Gargoyle, 413:Gargoyle, 421:Rockslug, 422:Rockslug, 459:Desert Lizard, 460:Desert Lizard, 461:Desert Lizard, 462:Small Lizard
-- ambush_or_spawn_on_interaction: 10 NPC IDs
-  tags: ambush_trigger, child_spawn, minion_spawn, area_attack
-  sample: 8:Nechryael, 11:Nechryael, 476:Wall beast, 6766:Lizardman shaman, 6767:Lizardman shaman, 7278:Greater Nechryael, 7744:Lizardman shaman, 7745:Lizardman shaman
-- poison_users: 170 NPC IDs (wiki_poisonous_ids=170)
-  tags: poison, immunity_check, cure_interaction
-  sample: 138:Kalphite Soldier, 239:King Black Dragon, 406:Cave crawler, 407:Cave crawler, 408:Cave crawler, 409:Cave crawler, 480:Cave slime, 530:Tribesman
-- venom_users: 25 NPC IDs (wiki_venomous_ids=25)
-  tags: venom, immunity_check, cure_interaction
-  sample: 2042:Zulrah, 2043:Zulrah, 2044:Zulrah, 2045:Snakeling, 2046:Snakeling, 8058:Vorkath, 8059:Vorkath, 8060:Vorkath
-- disease_users: 17 NPC IDs (wiki_disease_ids=17)
-  tags: disease, immunity_check, cure_interaction
-  sample: 626:Fever spider, 866:Zogre, 867:Zogre, 868:Zogre, 869:Zogre, 870:Zogre, 871:Zogre, 872:Skogre
-- revenants: 23 NPC IDs
-  tags: healing, teleblock, freeze, wilderness_rule
-  sample: 7881:Revenant imp, 7931:Revenant goblin, 7932:Revenant pyrefiend, 7933:Revenant hobgoblin, 7934:Revenant cyclops, 7935:Revenant hellhound, 7936:Revenant demon, 7937:Revenant ork
-- lizardman_shamans: 5 NPC IDs
-  tags: jump_attack, area_attack, poison, minion_spawn
-  sample: 6766:Lizardman shaman, 6767:Lizardman shaman, 7744:Lizardman shaman, 7745:Lizardman shaman, 8565:Lizardman shaman
-- slayer_poison_specialists: 28 NPC IDs
-  tags: poison, immunity_check, cure_interaction
-  sample: 406:Cave crawler, 407:Cave crawler, 408:Cave crawler, 409:Cave crawler, 448:Crawling Hand, 449:Crawling Hand, 450:Crawling Hand, 451:Crawling Hand
+installed files:
+  - data/defs/regular_npc_mechanics.bin bytes=2366 sha256=45b159dc8da5ec3c203d0bc43897adb7f94a9c83bb5d731b29cd1764fadc014d
 
-Summary
-families: 16
-family NPC ID links: 444
-output: data/defs/regular_npc_mechanics.bin
-
-Status
-READY_WITH_ACCEPTED_SIMPLIFICATIONS: regular special-mechanics families are indexed for runtime lookup.
-READY_WITH_ACCEPTED_SIMPLIFICATIONS: combat consumes damage gates, breath mitigation, statuses, revenants, shaman pressure, and slayer protection tags.
-READY_WITH_ACCEPTED_SIMPLIFICATIONS: slayer consumes NPC-death events for task kill-credit decrement.
-BLOCKS_PARITY: exact slayer eligibility, unlock, task amount, extension, and per-family edge cases still need deeper slayer rules.
+accepted simplifications:
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

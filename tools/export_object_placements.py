@@ -14,7 +14,7 @@ import time
 from collections import Counter
 from pathlib import Path
 
-from source_paths import CACHE_DIR
+from source_paths import CACHE_DIR, display_path, require_cache_dir
 
 PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
 sys.path.insert(0, str(PIPELINE))
@@ -238,7 +238,12 @@ def write_rows(store: RcCacheStore, map_regions: dict[int, MapRegionFiles]):
     }
 
 
-def write_report(stats: dict, names: dict[int, str], elapsed_ms: float) -> None:
+def write_report(
+    stats: dict,
+    names: dict[int, str],
+    elapsed_ms: float,
+    cache_dir: Path,
+) -> None:
     missing_defs = sum(
         count for obj_id, count in stats["object_counts"].items()
         if obj_id not in names
@@ -248,7 +253,7 @@ def write_report(stats: dict, names: dict[int, str], elapsed_ms: float) -> None:
         "",
         "status: READY_WITH_ACCEPTED_SIMPLIFICATIONS",
         f"output binary: data/defs/object_placements.bin ({OUT.stat().st_size} bytes)",
-        f"cache source: tools/cache_pipeline/source/current_fightcaves_demo/data/cache",
+        f"cache source: {display_path(cache_dir)}",
         "OpenRS2 layout reference: https://archive.openrs2.org/api",
         f"elapsed_ms: {elapsed_ms:.2f}",
         "",
@@ -298,14 +303,15 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--cache", type=Path, default=CACHE_DIR)
     args = ap.parse_args()
+    cache_dir = require_cache_dir(args.cache)
 
     start = time.perf_counter()
-    store = RcCacheStore(args.cache)
+    store = RcCacheStore(cache_dir)
     map_regions = find_all_map_region_files(store)
     names = object_names(ODEF)
     stats = write_rows(store, map_regions)
     elapsed_ms = (time.perf_counter() - start) * 1000.0
-    write_report(stats, names, elapsed_ms)
+    write_report(stats, names, elapsed_ms, cache_dir)
     print(REPORT.read_text())
     return 0
 

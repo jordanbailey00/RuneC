@@ -1,6 +1,8 @@
 #ifndef RC_ACTIVITY_STATES_H
 #define RC_ACTIVITY_STATES_H
 
+#include "types.h"
+
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -96,11 +98,26 @@ typedef struct {
     uint8_t complete;
 } RcActivityRun;
 
+typedef struct {
+    RcActivityStateMachine rows[RC_ACTIVITY_STATE_MAX_ROWS];
+    int count;
+    int by_npc[RC_MAX_NPC_ID];
+    int index_built;
+} RcActivityStateData;
+
 extern RcActivityStateMachine
     g_rc_activity_states[RC_ACTIVITY_STATE_MAX_ROWS];
 extern int g_rc_activity_state_count;
 
 int rc_load_activity_states(const char *path);
+void rc_activity_state_data_init(RcActivityStateData *data);
+void rc_activity_state_data_free(RcActivityStateData *data);
+int rc_activity_state_data_import_globals(RcActivityStateData *data);
+int rc_load_activity_states_into(const char *path,
+                                 RcActivityStateData *data);
+int rc_activity_states_mirror_to_globals(const RcActivityStateData *data);
+void rc_activity_states_use_data(const RcActivityStateData *data);
+void rc_activity_states_reset_data_if_active(const RcActivityStateData *data);
 void rc_activity_states_rebuild_index(void);
 int rc_activity_state_find_slug(const char *slug);
 int rc_activity_state_find_for_npc(uint32_t npc_id);

@@ -1,0 +1,3813 @@
+title = "Transcript:2017 Birthday event"
+npcs = ["Party Pete", "Banker", "Bartender (Blue Moon Inn)", "Bob", "Duke Horacio", "Hans", "Horvik", "King Roald", "Leela", "Makeover Mage", "Ned", "Sir Vyvin", "Thessalia", "Wise Old Man", "Lucy", "Megan", "Squire", "Cow31337Killer", "Sergeant Damien", "Evil Dave", "Mugger", "Gnome child"]
+node_count = 496
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "Ask about all the party decorations"
+parent = -1
+children = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 17]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why have you got all these decorations up? What's going on?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "You don't know? How can you not know!"
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't know what exactly?"
+parent = 1
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "It's only time for the one and only..."
+parent = 1
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "PARTY PETE'S WICKED BIRTHDAY BASH!"
+parent = 1
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I cannot say I've heard of it before."
+parent = 1
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "It's the biggest party in all of Gielinor [player]! This one is our biggest yet, numero 4."
+parent = 1
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I suppose I can enjoy a party, but there's no one here."
+parent = 1
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Yeah, about that. I'm going to need your help here. Being the adventurer you are, you're not new when it comes to travelling."
+parent = 1
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 1
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "option"
+text = "Sure thing."
+parent = 1
+children = [13, 14, 15, 16]
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sure thing! Happy to help out."
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|Party Pete hands you a copy of the special guests list."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Party Pete"
+text = "Thank you very much [player]! When the party kicks in I'll be sure to get you a beer. Pete out!"
+parent = 12
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "I've got better things to be doing to be honest."
+parent = 1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [22, 23, 24, 25, 29]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "I'm having trouble maximising my profits at the minute, help me with that and I'll go!"
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "My axes are the sharpest around! They'll need sharpnin' eventually though. I charge 3% of the axe's original value, how much would I charge for repairing an axe that cost 300 coins?"
+parent = 21
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 21
+children = [26, 27, 28]
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Bob"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Bob on the Special guests list."
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 21
+children = [30]
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [34, 35, 36, 40]
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash. 4 years now!"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Hans"
+text = "Ah, our 4th birthday? Ever since I got here, I've just been walking around in circles, in fact I do 1 lap per minute. How many laps could I have completed in those 4 years?"
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 33
+children = [37, 38, 39]
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "speaker"
+speaker = "Hans"
+text = "Thanks so much, that sounds about right! I'll happily go to that party - be there soon!"
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Hans on the Special guests list."
+parent = 36
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "act"
+text = "end"
+parent = 36
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 33
+children = [41]
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [45, 46, 47, 48, 52]
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I'm a bit busy trying to work something out... huh! You could help me! Then I'll attend."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Some reason I feel compelled to ask a ratio question! We keep stocks of 15 cannonballs per 2 cannons, and we have 14 cannons. How many cannonballs should we have in stock?"
+parent = 44
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 44
+children = [49, 50, 51]
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Duke Horacio on the Special guests list."
+parent = 48
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 44
+children = [53]
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Banker"
+text = "Good day, how may I help you?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [58, 59, 60, 61, 65]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Banker"
+text = "To be honest, I'm a bit busy - tell you what, help me with this and I'll go."
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Banker"
+text = "I work a tough job, but I am paid well, I receive 1520 coins per hour, and work 24 hours per day. How many coins do I get per day?"
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 57
+children = [62, 63, 64]
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Banker"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out any banker on the Special guests list."
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "act"
+text = "end"
+parent = 61
+is_terminal = true
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 57
+children = [66]
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 65
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [70, 71, 72, 73, 77]
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "King Roald"
+text = "Ah, our 4th birthday! Well I'm in a bit of a muddle, the kingdom relies on me, help me with this first."
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "King Roald"
+text = "There are a lot of these yellow rugs around here... but they need cleaning. Can you please tell me how many are found around the castle?"
+parent = 69
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 69
+children = [74, 75, 76]
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "King Roald"
+text = "Thanks so much, that sounds about right! I'll grace the party with my royal presence soon!"
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out King Roald on the Special guests list."
+parent = 73
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "act"
+text = "end"
+parent = 73
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 69
+children = [78]
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [82, 83, 84, 85, 89]
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "Sorry, I'm a bit confused about something just this moment... Maybe you could help?"
+parent = 81
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "How many different kinds of chainmail do I normally keep in stock?"
+parent = 81
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 81
+children = [86, 87, 88]
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Horvik"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Horvik on the Special guests list."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 81
+children = [90]
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [94, 95, 96, 97, 101]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "I'm having trouble maximising my profits at the minute, help me with that and I'll go!"
+parent = 93
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Bartender"
+text = "One customer drinks 2.5 beers per hour. 1 beer makes him more drunk by 4pts, but over each hour, he naturally recovers by 1pt. How drunk would he be after 7 hours?"
+parent = 93
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 93
+children = [98, 99, 100]
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Blue Moon Inn Barman on the Special guests list."
+parent = 97
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "act"
+text = "end"
+parent = 97
+is_terminal = true
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 93
+children = [102]
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [106, 107, 108, 109, 113]
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Thessalia"
+text = "I'm not a huge fan of parties if I'm honest... but I tell you what, I'll go if you can answer this for me."
+parent = 105
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Thessalia"
+text = "Can you tell me how many different colours of clothing I offer through my make-over service?"
+parent = 105
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 105
+children = [110, 111, 112]
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "speaker"
+speaker = "Thessalia"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Thessalia on the Special guests list."
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 105
+children = [114]
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [118, 119, 120, 121, 125]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Party? I haven't got any time for a party."
+parent = 117
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I really need to sort out my taxes... I have quite the assets! I pay 24% on my income of 2,000,000 coins. How much do I owe?"
+parent = 117
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 117
+children = [122, 123, 124]
+
+[[nodes]]
+id = 122
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Thanks so much, that sounds about right! I guess I'll meet you at the party soon!"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out the Wise Old Man on the Special guests list."
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "act"
+text = "end"
+parent = 121
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 117
+children = [126]
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [130, 131, 132, 133, 137]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Very forgetful, why can't I remember? Hmm... you could help me! Then I'll attend that birthday bash."
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "It takes many balls of wool to make rope it does. It definitely doesn't need anything else! How many balls of wool does it take?"
+parent = 129
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 129
+children = [134, 135, 136]
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Ned"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 133
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Ned on the Special guests list."
+parent = 133
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "act"
+text = "end"
+parent = 133
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 129
+children = [138]
+
+[[nodes]]
+id = 138
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [142, 143, 144, 145, 149]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "I think I'm going crazy..."
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "I must admit it has gotten boring watching this jail, I've started counting the trees... How many can you spot within the jail's fenced off area?"
+parent = 141
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 141
+children = [146, 147, 148]
+
+[[nodes]]
+id = 146
+depth = 3
+kind = "speaker"
+speaker = "Leela"
+text = "Ah that's cleared that up. Huh, you wanted me to attend this party? Be right there!"
+parent = 145
+
+[[nodes]]
+id = 147
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Leela on the Special guests list."
+parent = 145
+
+[[nodes]]
+id = 148
+depth = 3
+kind = "act"
+text = "end"
+parent = 145
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 141
+children = [150]
+
+[[nodes]]
+id = 150
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [154, 155, 156, 157, 161]
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Sir Vyvin"
+text = "I do love a good party if I do say so myself! Need to think about the ongoing battle first..."
+parent = 153
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Sir Vyvin"
+text = "Tactics... knights... orders... I'm getting tired of it all. Help me! We have 108 white knights, and 50% of them will need a 2nd suit of armour. How many suits of armour do we need in total?"
+parent = 153
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 153
+children = [158, 159, 160]
+
+[[nodes]]
+id = 158
+depth = 3
+kind = "speaker"
+speaker = "Sir Vyvin"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out Sir Vyvin on the Special guests list."
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 3
+kind = "act"
+text = "end"
+parent = 157
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 153
+children = [162]
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "option"
+text = "Talk about Party Pete's wicked birthday bash"
+parent = -1
+children = [166, 167, 168, 169, 173]
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to this here list, you're a special guest for Party Pete's wicked birthday bash..."
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Makeover Mage"
+text = "I keep making mistakes argh! Help me with this question then I'll agree to attend the party."
+parent = 165
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Makeover Mage"
+text = "How many major accidents have I had this month when attempting to use my make-over powers?"
+parent = 165
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "cond"
+text = "Giving the correct answer:"
+parent = 165
+children = [170, 171, 172]
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "speaker"
+speaker = "Makeover Mage"
+text = "Thanks so much, that sounds about right! I'll meet you at the party soon!"
+parent = 169
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "box"
+text = "pic=Invitation list detail.png|You strike out the Makeover Mage on the Special guests list."
+parent = 169
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "act"
+text = "end"
+parent = 169
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "cond"
+text = "Giving the incorrect answer:"
+parent = 165
+children = [174]
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's everyone on the list... Time to go enjoy the party!"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "{{overhead|Choo chooo!}}"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "{{overhead|Paaaaaaarty!}}"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "{{overhead|Woooohoooo!}}"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "{{overhead|Argghh who's throwing beer at me?}}"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [189]
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "{{overhead|There'sh two sets of everything, shtruggling to hammer anything.}}"
+parent = 188
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [191]
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "{{overhead|Two smiths walk into a bar. Haha... they shoulda worked it with a hammer.}}"
+parent = 190
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [193]
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "{{overhead|ALL BARS ARE GOING TO BE HORVIKTIMS TO MY HAMMER.}}"
+parent = 192
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "Talk about the birthday party"
+parent = -1
+children = [196, 197, 198, 199, 200, 201, 202]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Phew, I think that's everyone. Why are all your guests obsessed with trivia?"
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Woohoo all part of the party my friend, thank a lot for getting 'em all here."
+parent = 195
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "There's a problem though... look around here. Not many people are enjoying themselves."
+parent = 195
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "This is the famous Party Pete's wicked birthday bash, how can they not be enjoying themselves?"
+parent = 195
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "I want to see people dancing, people moving, people drinking and have a fun time - can you help out with that?"
+parent = 195
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll see what I can do."
+parent = 195
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "act"
+text = "end"
+parent = 195
+is_terminal = true
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Lucy"
+text = "Hi! I'm Lucy. Welcome to the Party Room!"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "One beer please Lucy!"
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Lucy"
+text = "Coming right up [sir/ma'am]! As part of the birthday bash, you get your first 2 beers free!"
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "act"
+text = "receives=a [[beer]]"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "box"
+text = "Lucy has given you a beer."
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Lucy"
+text = "You have 1 free beer left from either me or Megan!"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Lucy"
+text = "Hi! I'm Lucy. Welcome to the Party Room!"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "One beer please Lucy!"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Lucy"
+text = "Coming right up [sir/ma'am]! As part of the birthday bash, you get your first 2 beers free!"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "act"
+text = "receives=a [[beer]]"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "box"
+text = "Lucy has given you a beer."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "speaker"
+speaker = "Lucy"
+text = "That's your last free beer [player]!"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you here!"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Banker"
+text = "Eh, might not be here much longer if I'm honest, it's not very entertaining."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = -1
+children = [222]
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "option"
+text = "Could you pretend to enjoy the party?"
+parent = -1
+children = [224, 225, 226, 227, 231]
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, what if you just pretended to enjoy the party? You'd really be doing me a favour."
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "speaker"
+speaker = "Banker"
+text = "Ah, well if you're that way inclined, give me 100 coins and we have a deal."
+parent = 223
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 223
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "option"
+text = "Hand over 100 coins."
+parent = 223
+children = [228, 229, 230]
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "box"
+text = "pic=Coins 100 detail.png|You regretfully hand over a stack of 100 coins."
+parent = 227
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "other"
+text = "{{mes|The banker starts to pretend that they're enjoying the party.}}"
+parent = 227
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "act"
+text = "end"
+parent = 227
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "option"
+text = "No way!"
+parent = 223
+children = [232]
+
+[[nodes]]
+id = 232
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 231
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = -1
+children = [234]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 233
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [236]
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 235
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you here!"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Make-over mage"
+text = "No one wants a makeover here, there's just people dancing, drinking and eating! How am I meant to enjoy myself."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = -1
+children = [241]
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "option"
+text = "Could you pretend to enjoy the party?"
+parent = -1
+children = [243, 244, 245, 246, 250]
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, what if you just pretended to enjoy the party? You'd really be doing me a favour."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "speaker"
+speaker = "Make-over mage"
+text = "Ah, well if you're that way inclined, give me 100 coins and we have a deal."
+parent = 242
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 242
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "option"
+text = "Hand over 100 coins."
+parent = 242
+children = [247, 248, 249]
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "box"
+text = "pic=Coins 100 detail.png|You regretfully hand over a stack of 100 coins."
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 3
+kind = "other"
+text = "{{mes|The Makeover mage starts to pretend that they're enjoying the party.}}"
+parent = 246
+
+[[nodes]]
+id = 249
+depth = 3
+kind = "act"
+text = "end"
+parent = 246
+is_terminal = true
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "option"
+text = "No way!"
+parent = 242
+children = [251]
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = -1
+children = [253]
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [255]
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you make it!"
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "There's not really much going on here. I was hoping this would be a fun evening."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "cond"
+text = "Having no match selected:"
+parent = -1
+children = [259, 260, 262, 264, 272]
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 258
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = 258
+children = [261]
+
+[[nodes]]
+id = 261
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 260
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "option"
+text = "Would you like a beer?"
+parent = 258
+children = [263]
+
+[[nodes]]
+id = 263
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = 258
+children = [265, 266, 267, 268, 269, 270, 271]
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What if you weren't alone, I could find you some company... there are many others alone here."
+parent = 264
+
+[[nodes]]
+id = 266
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Oh that would be just the ticket! It'd have to be the right person though - I do have someone in mind..."
+parent = 264
+
+[[nodes]]
+id = 267
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Wonderful! Could you tell me about them?"
+parent = 264
+
+[[nodes]]
+id = 268
+depth = 3
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I have had my eyes on this woman for awhile... her mysterious concoctions just wift{{sic}} through my window. Irresistable!{{sic}}"
+parent = 264
+
+[[nodes]]
+id = 269
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll go talk to whoever I think is the perfect match for you!"
+parent = 264
+
+[[nodes]]
+id = 270
+depth = 3
+kind = "other"
+text = "{{mes|You've selected the Wise Old Man, speak to whomever you believe would make the best match.}}"
+parent = 264
+
+[[nodes]]
+id = 271
+depth = 3
+kind = "act"
+text = "end"
+parent = 264
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "option"
+text = "Goodbye."
+parent = 258
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "cond"
+text = "Having selected Aggie as a match:"
+parent = -1
+children = [274, 275, 276, 277, 278, 279]
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have I got just the date for you..."
+parent = 273
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I am most curious, do tell."
+parent = 273
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, how about you and Aggie?"
+parent = 273
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "That is absolutely perfect. This party just got started [player]!"
+parent = 273
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "other"
+text = "{{mes|You have correctly paired Aggie and the Wise Old Man.}}"
+parent = 273
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "act"
+text = "end"
+parent = 273
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you here Aggie!"
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Aggie"
+text = "Dearie, this party doesn't suit witches like me. You can say nice things all you like."
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "cond"
+text = "Having no match selected:"
+parent = -1
+children = [283, 284, 286, 288, 296]
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 282
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = 282
+children = [285]
+
+[[nodes]]
+id = 285
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "option"
+text = "Would you like a beer?"
+parent = 282
+children = [287]
+
+[[nodes]]
+id = 287
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 286
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = 282
+children = [289, 290, 291, 292, 293, 294, 295]
+
+[[nodes]]
+id = 289
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What if you weren't alone, I could find you some company... there are many others alone here."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 3
+kind = "speaker"
+speaker = "Aggie"
+text = "I've had my eyes on someone... he is irresistable{{sic}}, but I don't know his name."
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How about you tell me what you look for in a partner?"
+parent = 288
+
+[[nodes]]
+id = 292
+depth = 3
+kind = "speaker"
+speaker = "Aggie"
+text = "I love someone who keeps an eye on me. I'm thinking of someone who uses their telescope from their window... Makes sure I'm not up to no good."
+parent = 288
+
+[[nodes]]
+id = 293
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll go talk to whoever I think is the perfect match for you!"
+parent = 288
+
+[[nodes]]
+id = 294
+depth = 3
+kind = "other"
+text = "{{mes|You've selected Aggie, speak to whomever you believe would make the best match.}}"
+parent = 288
+
+[[nodes]]
+id = 295
+depth = 3
+kind = "act"
+text = "end"
+parent = 288
+is_terminal = true
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "option"
+text = "Goodbye."
+parent = 282
+children = [297]
+
+[[nodes]]
+id = 297
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 296
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "cond"
+text = "Having selected the Wise Old Man as a match:"
+parent = -1
+children = [299, 300, 301, 302, 303, 304]
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have I got just the date for you..."
+parent = 298
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "speaker"
+speaker = "Aggie"
+text = "I am most curious, do tell."
+parent = 298
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, how about you and the Wise Old Man?"
+parent = 298
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Aggie"
+text = "Oh wow, he is just the man for me hehehehe."
+parent = 298
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "other"
+text = "{{mes|You have correctly paired Aggie and the Wise Old Man.}}"
+parent = 298
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "act"
+text = "end"
+parent = 298
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you make it!"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "speaker"
+speaker = "Sir Vyvin"
+text = "You brought me all the way to this birthday bash, I cannot help but feel this is a waste of time."
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = -1
+children = [309]
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "option"
+text = "Would you like a beer?"
+parent = -1
+children = [311]
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 310
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = -1
+children = [313, 314, 315, 316, 317, 318, 319]
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What if you weren't alone, I could find you some company... there are many others alone here."
+parent = 312
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Sir Vyvin"
+text = "That would be splendid! I don't find any old company acceptable though."
+parent = 312
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What would you look for in a match?"
+parent = 312
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Sir Vyvin"
+text = "I like to be with someone I've gained a close bond with over the years, maybe someone I've worked with and know well."
+parent = 312
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll go talk to whoever I think is the perfect match for you!"
+parent = 312
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "other"
+text = "{{mes|You've selected Sir Vyvin, speak to whomever you believe would make the best match.}}"
+parent = 312
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "act"
+text = "end"
+parent = 312
+is_terminal = true
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [321]
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 320
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you here!"
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "speaker"
+speaker = "Squire"
+text = "I feel like I may be letting down Falador coming over here and partying..."
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "cond"
+text = "Having selected Sir Vyvin as a match:"
+parent = -1
+children = [325, 326, 327, 328, 329, 330]
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have I got just the date for you..."
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "I am most curious, do tell."
+parent = 324
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, how about you and Sir Vyvin?"
+parent = 324
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "Wow. Thank you, [player]! This party should be wonderful, you're great for making this happen for us!"
+parent = 324
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "other"
+text = "{{mes|You have correctly paired Sir Vyvin and Squire Asrol.}}"
+parent = 324
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "act"
+text = "end"
+parent = 324
+is_terminal = true
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you make it!"
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "This party isn't very regal... I don't think I am going to enjoy myself here."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = -1
+children = [335]
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 334
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "option"
+text = "Would you like a beer?"
+parent = -1
+children = [337]
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 336
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = -1
+children = [339, 340, 341, 342, 343, 344, 345]
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What if you weren't alone, I could find you some company... there are many others alone here."
+parent = 338
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "speaker"
+speaker = "King Roald"
+text = "Oh yes, someone to share a beer with would make all the difference to this party."
+parent = 338
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What would you look for in a match?"
+parent = 338
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "speaker"
+speaker = "King Roald"
+text = "I'm looking for something a bit discreet, essentially a bit of fun with someone who enjoys a drink."
+parent = 338
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll go talk to whoever I think is the perfect match for you!"
+parent = 338
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "other"
+text = "{{mes|You've selected King Roald, speak to whomever you believe would make the best match.}}"
+parent = 338
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "act"
+text = "end"
+parent = 338
+is_terminal = true
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [347]
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 346
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you here Kaylee!"
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Kaylee"
+text = "Urgh, I'm trying to find someone to spend the evening with but I'm struggling. Not looking like it's going to be a good night."
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "cond"
+text = "Having selected King Roald as a match:"
+parent = -1
+children = [351, 352, 353, 354, 355, 356]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have I got just the date for you..."
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Kaylee"
+text = "I am most curious, do tell."
+parent = 350
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, how about you and King Roald?"
+parent = 350
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "speaker"
+speaker = "Kaylee"
+text = "Royalty! Rich, and an older man. He's perfect."
+parent = 350
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "other"
+text = "{{mes|You have correctly paired King Roald and Kaylee.}}"
+parent = 350
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "act"
+text = "end"
+parent = 350
+is_terminal = true
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you make it!"
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "speaker"
+speaker = "Thessalia"
+text = "This party really isn't doing it for me [player]."
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = -1
+children = [361]
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "option"
+text = "Would you like a beer?"
+parent = -1
+children = [363, 364, 365, 366, 367]
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe a nice cold beer would get you in the party mood?"
+parent = 362
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Thessalia"
+text = "That would be lovely, it'd quench my thirst and help me relax!"
+parent = 362
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "box"
+text = "pic=Beer detail.png|You hand over a hopefully fresh, cold beer."
+parent = 362
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "other"
+text = "{{mes|Thessalia starts to enjoy the party.}}"
+parent = 362
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "act"
+text = "end"
+parent = 362
+is_terminal = true
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = -1
+children = [369]
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 368
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [371]
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 370
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you here!"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I do say this party looks to be a bit of a disappointment."
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = -1
+children = [376]
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 375
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "option"
+text = "Would you like a beer?"
+parent = -1
+children = [378, 379, 380, 381, 382]
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe a nice cold beer would get you in the party mood?"
+parent = 377
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "That would do just the job. I do love a good cold beer."
+parent = 377
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "box"
+text = "pic=Beer detail.png|You hand over a hopefully fresh, cold beer."
+parent = 377
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "other"
+text = "{{mes|The Duke starts to enjoy the party.}}"
+parent = 377
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "act"
+text = "end"
+parent = 377
+is_terminal = true
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = -1
+children = [384]
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 383
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [386]
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 385
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nice to see you here!"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "I was expecting something a little better than this to be honest."
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "option"
+text = "How come you aren't enjoying the party?"
+parent = -1
+children = [391]
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 390
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "option"
+text = "Would you like a beer?"
+parent = -1
+children = [393, 394, 395, 396, 397]
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe a nice cold beer would get you in the party mood?"
+parent = 392
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Leela"
+text = "Smashing [player]. After a beer, I think I'll have a good time."
+parent = 392
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "box"
+text = "pic=Beer detail.png|You hand over a hopefully fresh, cold beer."
+parent = 392
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "other"
+text = "{{mes|Leela starts to enjoy the party.}}"
+parent = 392
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "act"
+text = "end"
+parent = 392
+is_terminal = true
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "option"
+text = "Perhaps I could find you some company."
+parent = -1
+children = [399]
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 398
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [401]
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 400
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "box"
+text = "Gabe responds by barking remarkably in tune with the music."
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "option"
+text = "Talk about the birthday party"
+parent = -1
+children = [407, 408, 409, 410, 411, 412, 413]
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I believe that is now everyone having a good time!"
+parent = 406
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Absolutely wonderful [player]. You've been a massive help to this party!"
+parent = 406
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hopefully everyone continues to enjoy themselves. Is there anything I get in return for my services?"
+parent = 406
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Oh absolutely! Ain't nothing as partytastic as these wonderful birthday balloons filled with auto floating gas!"
+parent = 406
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "box"
+text = "pic=Birthday balloons detail.png|Party Pete goes to hand over the balloons..."
+parent = 406
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "act"
+text = "Continues below in the Party crasher section"
+parent = 406
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "act"
+text = "end"
+parent = 406
+is_terminal = true
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "other"
+text = "{{qact|A mugger with a dragon dagger walks into the Party Room.}}"
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's that?!"
+parent = -1
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "{{overhead|Argh!}}"
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Damien"
+text = "{{overhead|Oh no!}}"
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "{{overhead|Evil is here at last!}}"
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "{{overhead|Who goes there!?}}"
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "{{overhead|Hello there friends.}}"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "Party Pete's wicked birthday bash, eh? Nothing like that to gather a bunch of victims into one place."
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "Oh no! I'm not quite level 13... he's going to come after me first!"
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "Quiet you. Let's get the true party underway. This dagger will do just fine."
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Waaaaaiiiiiiiit!"
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "other"
+text = "{{qact|Party Pete runs in front of the mugger.}}"
+parent = -1
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "You cannot stop me now Pete. Get out of my way."
+parent = -1
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "I challenge you to a special birthday bash..."
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "DANCE"
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "OFF"
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "CHALLENGE!"
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "Nooooo!"
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "The official mugger code states that I can never decline a dance off challenge."
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "I'll show you who's boss first and destroy this place afterwards."
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "other"
+text = "{{qact|The mugger climbs atop the table in the centre of the room.}}"
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "I wouldn't be so confident against the party king."
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "other"
+text = "{{qact|Party Pete climbs atop the table in the centre of the room.}}"
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "Let's get this thing on the go - kick off that music."
+parent = -1
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "other"
+text = "{{qact|The mugger does the Dance emote and the partygoers jeer.}}"
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "{{overhead|Get outta here!}}"
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Damien"
+text = "{{overhead|Boooooooo!}}"
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "other"
+text = "'''King Roald''' {{overhead|Get outta here!}}"
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Is that all you've got?"
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "{{overhead|Woaoaoaoaoaoh}}"
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "other"
+text = "{{qact|Party Pete does the enhanced Dance emote and the partygoers cheer.}}"
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "{{overhead|Pete is amazing!}}"
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Damien"
+text = "{{overhead|You've got the moves Pete!}}"
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "other"
+text = "'''Hans''' {{overhead|Hahaha who does this mugger think he is?}}"
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "other"
+text = "'''Kaylee''' {{overhead|Yeaaaaah!}}"
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "Time to turn it up a notch."
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "other"
+text = "{{qact|The mugger does the Smooth dance emote and the partygoers jeer louder.}}"
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "{{overhead|My granny can dance better than that!}}"
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "speaker"
+speaker = "Sergeant Damien"
+text = "{{overhead|Boooooooo!}}"
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "other"
+text = "'''King Roald''' {{overhead|You're a joke!}}"
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "other"
+text = "'''Crunchy''' {{overhead|My granny can dance better than that!}}"
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Let's end this thing!"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "{{overhead|Oooooop!}}"
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "other"
+text = "{{qact|Party Pete does the Crazy dance emote and the partygoers cheer louder.}}"
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "{{overhead|We love you Pete!}}"
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Kaylee"
+text = "{{overhead|We love you Pete!}}"
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "other"
+text = "'''Hans''' {{overhead|We love you Pete!}}"
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "I think that makes me the winner dude."
+parent = -1
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Maybe you should move on, this party is in FUUUUUULLL SWING."
+parent = -1
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "Just because I lost the dance off, doesn't mean I cannot put this dagger to good use."
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "There were no terms specified beforehand! Hahaha."
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "Who wants to taste my dagger first?"
+parent = -1
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "other"
+text = "{{qact|Cow31337Killer walks up to the mugger and kills him in one hit with a Dharok's greataxe.}}"
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "speaker"
+speaker = "Mugger"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "speaker"
+speaker = "Cow31337Killer"
+text = "That's that."
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "option"
+text = "Talk about the birthday party"
+parent = -1
+children = [473, 474, 475, 476, 477, 478, 479, 480]
+
+[[nodes]]
+id = 473
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Those were some amazing moves Pete, thankfully the mugger was stopped!"
+parent = 472
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Haha, those were nothing [player]. I've been partying for years mate, and I got many more ahead!"
+parent = 472
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you were in the process of offering me a reward just before that happened..."
+parent = 472
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Sure thing! I've got em right here."
+parent = 472
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "box"
+text = "pic=4th birthday hat detail.png|pic2=Birthday balloons detail.png|Party Pete hands you a special hat and some balloons."
+parent = 472
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks very much Pete, let's enjoy the party."
+parent = 472
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Party on dude!"
+parent = 472
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "act"
+text = "end"
+parent = 472
+is_terminal = true
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "option"
+text = "Something else|quest=no"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi! Are you enjoying the party?"
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "speaker"
+speaker = "Gnome child"
+text = "Onward and upward is the only way to go, if it's what pleases you the most. Staying in the past, doesn't show fear. It shows commitment."
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "I don't even care whose birthday it is, let's dance the night away."
+parent = -1
+
+[[nodes]]
+id = 487
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We should have a wicked birthday bash more often - see you around!"
+parent = -1
+
+[[nodes]]
+id = 488
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "speaker"
+speaker = "Leela"
+text = "So many great people have came to the party!"
+parent = -1
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We should have a wicked birthday bash more often - see you around!"
+parent = -1
+
+[[nodes]]
+id = 491
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1

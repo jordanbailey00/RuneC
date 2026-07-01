@@ -1,0 +1,27 @@
+id = "object_transports"
+format = "binary"
+path = "data/defs/object_transports.bin"
+magic_label = "OTRP"
+magic_u32 = "0x5052544F"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_object_transports.py"
+consumers = ["rc-core/objects.c"]
+source_dataset = "content/object transport and traversal facts"
+row_fields = [
+  "u32 obj_id",
+  "u16 start_x",
+  "u16 start_y",
+  "u16 dest_x",
+  "u16 dest_y",
+  "u16 packed_planes",
+  "u8 option",
+  "u8 flags",
+  "u8 pad0",
+  "u8 pad1",
+  "pstr8 action",
+  "pstr8 target",
+]
+compatibility = "Loader accepts exactly current_version."

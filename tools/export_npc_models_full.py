@@ -11,7 +11,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-from source_paths import CACHE_DIR, DATA_OSRS, MODEL_DUMP, OSRS_DUMPS
+from legacy_external_source_paths import DATA_OSRS, MODEL_DUMP, OSRS_DUMPS
+from source_paths import CACHE_DIR, require_cache_dir
 
 PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
 MODEL_DUMP_ROOT = MODEL_DUMP if MODEL_DUMP.is_dir() else OSRS_DUMPS
@@ -229,12 +230,13 @@ def main() -> int:
 
     defs = read_ndef_models(args.defs)
     visuals = dump_visuals(NPC_DUMP)
-    visuals.update(cache_visuals(args.cache))
+    cache_dir = require_cache_dir(args.cache)
+    visuals.update(cache_visuals(cache_dir))
     linked = [(i, d) for i, d in sorted(defs.items()) if d["models"]]
     if args.limit > 0:
         linked = linked[:args.limit]
 
-    store = RcCacheStore(args.cache)
+    store = RcCacheStore(cache_dir)
     tex_colors = load_texture_average_colors(store)
     atlas = build_atlas(load_texture_sprites(store))
     models = []

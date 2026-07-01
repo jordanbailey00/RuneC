@@ -1,18 +1,8 @@
 #!/usr/bin/env python3
-"""Emit data/defs/spells.bin + data/defs/teleports.bin from
-`infobox_spell` (201 spells), with combat max-hit hints from the
-local Void source corpus where names line up.
+"""Emit data/defs/spells.bin and data/defs/teleports.bin.
 
-Rune costs parsed from the `json.cost` wikitext via
-`<sup>N</sup>[[File:X rune.png]]` regex.
-
-Binary format v2 — 'SPEL' / 'TELE' magic:
-  magic u32 | version u32 | count u32
-  per spell:
-    name_len u8 + name[]
-    spellbook u8 | type u8 | level u8 | slayer_level u8
-    xp_q1 u16 | flags u8 | max_hit u16 | effect_flags u16
-    runes_n u8 + (item_id u32, qty u8)[]
+Runtime schemas: `schema/defs/spells.schema.toml` and
+`schema/defs/teleports.schema.toml`.
 """
 from __future__ import annotations
 
@@ -20,7 +10,6 @@ import json
 import re
 import struct
 import sys
-import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,7 +22,6 @@ SPEL_MAGIC = 0x4C455053
 TELE_MAGIC = 0x454C4554
 VERSION = 2
 
-VOID_SPELLS = ROOT / "data/source/void_rsps/data/skill/magic/spells.toml"
 REPORT = ROOT / "tools/reports/spells.txt"
 
 SPELLBOOK = {"normal": 0, "ancient": 1, "lunar": 2, "arceuus": 3, "all": 4}
@@ -95,26 +83,7 @@ def slugify(s: str) -> str:
 
 
 def combat_effects() -> dict[str, tuple[int, int]]:
-    if not VOID_SPELLS.exists():
-        return {}
-    data = tomllib.loads(VOID_SPELLS.read_text())
-    out: dict[str, tuple[int, int]] = {}
-    for name, row in data.items():
-        if not isinstance(row, dict):
-            continue
-        max_hit = row.get("max_hit")
-        max_hit_hp = int(max_hit) // 10 if isinstance(max_hit, int) else 0
-        flags = EFFECT_DAMAGE if max_hit_hp > 0 else 0
-        if row.get("freeze_ticks"):
-            flags |= EFFECT_FREEZE
-        if row.get("max_heal"):
-            flags |= EFFECT_HEAL
-        if row.get("poison_damage"):
-            flags |= EFFECT_POISON
-        if row.get("drain_skill"):
-            flags |= EFFECT_DRAIN
-        out[slugify(name)] = (max_hit_hp, flags)
-    return out
+    return {}
 
 
 def parse_level(s) -> int:
@@ -210,11 +179,11 @@ def main():
         f"spells: {len(spells)}\n"
         f"teleports: {len(teleports)}\n"
         f"combat max-hit matches: {matched}\n"
-        "source: OSRS Wiki infobox_spell cache + local Void magic spell data\n"
+        "source: OSRS Wiki infobox_spell cache\n"
         "notes:\n"
         "  Spell metadata and rune costs are wiki-derived. Combat max-hit\n"
-        "  hints are used only where the local source name matches. Exact\n"
-        "  spell effect state machines remain future combat/magic work.\n"
+        "  hints and exact spell effect state machines remain tracked source\n"
+        "  gaps until backed by approved OSRS-native sources.\n"
     )
     print(f"  → {OUT_S} ({OUT_S.stat().st_size} bytes)", file=sys.stderr)
     print(f"  → {OUT_T} ({OUT_T.stat().st_size} bytes)", file=sys.stderr)

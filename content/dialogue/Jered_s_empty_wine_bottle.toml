@@ -1,0 +1,96 @@
+title = "Transcript:Jered's empty wine bottle"
+npcs = ["Iffie (2021 Halloween event)"]
+node_count = 12
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "box"
+text = "I should wait until I'm in a tree to do this!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "other"
+text = "{{mes|You destroyed the bottle, meaning you have no way of scaring Oziach anymore.}}<!--Game chat message, doesn't get filtered as spam.-->"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "other"
+text = """
+{{qact|{{Map|x=3045|y=3496|type=maplink|text=}}The player returns to Brother Jered.}}<!--Always to coordinates 3045, 3496, 0. Has no effect on Oziach (varbit 13111).--><!--There will be no \"Oops\" message from the player here.-->
+"""
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should talk to Brother Jered about trying this again."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "other"
+text = "{{mes|You destroyed the bottle, meaning you have no way of scaring Oziach anymore.}}<!--Game chat message, doesn't get filtered as spam.-->"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "other"
+text = "{{qact|The player returns to the overworld with Iffie.}}"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oops, I shouldn't have destroyed the bottle."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "You left before we could finish! Come back when you're ready to go again."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Iffie"
+text = "Don't be too long though, the saucepan is quite heavy on my head! I'll be here."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

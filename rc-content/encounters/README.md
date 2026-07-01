@@ -27,8 +27,8 @@ Use this file for:
 **Out of scope (goes elsewhere):**
 - Generic primitives used by ≥2 bosses — `rc-core/encounter_prims.c`.
 - NPC stat data (hp, max_hit, attack_types) — `data/defs/npc_defs.bin`
-  via `tools/export_npc_defs_full.py` into the local `RuneC-DB` checkout.
-- Attack / phase / mechanic *data* — `data/curated/encounters/<boss>.toml`
+  via `tools/export_npc_defs_full.py` into the ignored local runtime install.
+- Attack / phase / mechanic *data* — `content/encounters/<boss>.toml`
   → `data/defs/encounters.bin` via `tools/export_encounters.py`.
 - Drops — `data/defs/drops.bin`.
 
@@ -39,8 +39,8 @@ Only *genuinely one-off* code lives in these files.
 ## Relationship to encounter data
 
 Encounter behavior is split across three layers:
-- `data/curated/encounters/<boss>.toml`
-  - boss data: attacks, phases, mechanics, params; owned by `RuneC-DB`
+- `content/encounters/<boss>.toml`
+  - boss data: attacks, phases, mechanics, params; owned by RuneC source
 - `rc-core/encounter_prims.c`
   - reusable generic mechanic implementations referenced by
     `primitive = "..."`
@@ -59,10 +59,10 @@ One `.c` file per encounter, named after the TOML slug:
 ```
 encounters/
 ├── README.md                (this file)
-├── scurrius.c               → data/curated/encounters/scurrius.toml
-├── kalphite_queen.c         → data/curated/encounters/kalphite_queen.toml
+├── scurrius.c               → content/encounters/scurrius.toml
+├── kalphite_queen.c         → content/encounters/kalphite_queen.toml
 ├── scripts.c                → shared no-op registry for authored hooks
-├── vorkath.c                → data/curated/encounters/vorkath.toml
+├── vorkath.c                → content/encounters/vorkath.toml
 └── ...
 ```
 
@@ -111,8 +111,7 @@ encounter slug: `rc_content_chambers_of_xeric_register`.
 //   - <script_name>
 //       <what it does + why it can't be expressed as a generic primitive>
 //
-// Reference: <either "no pre-2013 counterpart (OSRS-only)" OR
-//             "rsmod/void/2011Scape overlap source — see ...">
+// Reference: <approved OSRS-native source, or source gap if unavailable>
 
 // ---- Boss-specific scripts (static — not exported) --------------------
 
@@ -136,30 +135,30 @@ void rc_content_<slug>_register(struct RcWorld *world) {
 Per `rc-content/README.md`:
 - `rsmod` is the modern OSRS engine/code reference when it has the
   needed encounter
-- `void_rsps` and `2011Scape-game` are overlap-only references for
-  older shared content
-- OSRS-only encounters still require wiki reconstruction
+- b237 cache/dumps, RuneLite, RSMod, OSRS Wiki, and reviewed authored content
+  are the accepted authority classes
+- missing facts become source-gap rows until approved evidence exists
 
-### Overlap-boss checklist
+### Encounter reconstruction checklist
 
 When porting from a reference repo:
 
-1. Verify the boss exists in OSRS and pre-2013 RS.
-2. Locate the source script (search `rsmod/content/`,
-   `void_rsps/game/npcs/`, `2011Scape-game/src/main/java/org/wildscape/game/world/`).
-3. Read the wiki for OSRS-specific divergences (OSRS sometimes
+1. Verify the boss exists in OSRS for the target cache/content revision.
+2. Locate approved source evidence in b237 cache/dumps, RuneLite, RSMod,
+   OSRS Wiki, or reviewed authored content.
+3. Read the wiki for OSRS-specific behavior (OSRS sometimes
    rebalanced old content — max hits, drop rates, attack speeds
    can differ).
 4. Port the **logic** to C. Don't port data (stats, drops) — those
    already live in our binaries from Phase 1-2.
-5. Comment the source in the script file (see template above).
+5. Comment the approved source in the script file, or link the source-gap row.
 6. Write a regression test asserting at least one attack rotation
    or damage value matches the wiki.
 
 ### OSRS-only reconstruction checklist
 
-1. Scrape the boss page + strategies page (already done — cached
-   in `tools/wiki_cache/`).
+1. Review the boss page + strategies page, using OSRS Wiki evidence or
+   tracked RuneC content notes.
 2. Read the wiki mechanics section + infobox + strategies.
 3. Encode phases / attacks / mechanic triggers in the TOML.
 4. For anything not expressible in the existing primitive set,

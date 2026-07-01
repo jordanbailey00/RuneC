@@ -1,0 +1,31 @@
+id = "activity_states"
+format = "binary"
+path = "data/defs/activity_states.bin"
+magic_label = "ASTA"
+magic_u32 = "0x41545341"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_activity_states.py"
+consumers = ["rc-core/activity_states.c"]
+source_dataset = "content/activity_state_machines.toml"
+row_fields = [
+  "u8 kind",
+  "u8 status",
+  "u16 npc_count",
+  "u16 state_count",
+  "u16 transition_count",
+  "u16 param_count",
+  "u64 flags",
+  "u64 flags_hi",
+  "pstr8 slug",
+  "pstr8 name",
+  "pstr8 source_rows",
+  "pstr8 source_pages",
+  "u32 npc_ids[npc_count]",
+  "states[state_count]: u8 role, u64 flags, u64 flags_hi, u16 value, pstr8 id",
+  "transitions[transition_count]: u8 event, u16 value, pstr8 from, pstr8 to",
+  "params[param_count]: pstr8 key, i32 value",
+]
+compatibility = "Loader accepts exactly current_version."

@@ -1,76 +1,15 @@
-Acquisition source index
+Acquisition Sources
 
-output binary: data/defs/acquisition_sources.bin (185689 bytes)
-source rows:   5163
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 185689
+entries: 5163
 
-by source kind:
-  npc_drop         1052
-  non_npc_drop     966
-  shop             601
-  recipe           2541
-  shared_table     3
+installed files:
+  - data/defs/acquisition_sources.bin bytes=185689 sha256=996138a9fe674aacc1dfbe7e9c29088f95ae808c65749dcc578e2ac377c95927
 
-by source class:
-  recipe                   2541
-  npc_drop                 1052
-  shop                     601
-  other_non_npc            435
-  container_reward         228
-  resource_node            224
-  hunter_source            29
-  npc_or_service_reward    28
-  activity_reward          14
-  upgrade_or_repair        8
-  shared_drop_table        3
-
-raw row counters:
-  non_npc_activity_reward          404
-  non_npc_container_reward         4559
-  non_npc_hunter_source            265
-  non_npc_npc_or_service_reward    127
-  non_npc_other_non_npc            2899
-  non_npc_resource_node            884
-  non_npc_upgrade_or_repair        91
-  npc_drop_rows                    29409
-
-largest sources by row count:
-  shop               722 shop                     Culinaromancer's Chest
-  shop               454 shop                     Diango
-  non_npc_drop       279 container_reward         Reward casket (easy)
-  non_npc_drop       260 container_reward         Reward casket (medium)
-  shop               252 shop                     White Knight Armoury
-  non_npc_drop       239 container_reward         Reward casket (hard)
-  npc_drop           231 npc_drop                 Cyclops
-  npc_drop           228 npc_drop                 White Knight
-  npc_drop           192 npc_drop                 Skeleton (Tarn's Lair)
-  npc_drop           186 npc_drop                 Zombie (Tarn's Lair)
-  non_npc_drop       186 container_reward         Reward casket (elite)
-  npc_drop           177 npc_drop                 Ankou
-  non_npc_drop       177 container_reward         Reward casket (master)
-  non_npc_drop       170 container_reward         Rewards Chest (Fortis Colosseum)
-  npc_drop           161 npc_drop                 Ice giant
-  npc_drop           155 npc_drop                 Abyssal demon
-  npc_drop           155 npc_drop                 Black demon
-  npc_drop           152 npc_drop                 Dagannoth (Waterbirth Island)
-  npc_drop           144 npc_drop                 Greater Nechryael
-  npc_drop           137 npc_drop                 Ice troll male
-  npc_drop           137 npc_drop                 Ice troll runt
-  npc_drop           136 npc_drop                 Hobgoblin
-  shop               136 shop                     Justine's stuff for the Last Shopper Standing
-  npc_drop           135 npc_drop                 Black dragon
-  npc_drop           135 npc_drop                 Nechryarch
-  shop               128 shop                     TzHaar-Hur-Rin's Ore and Gem Store
-  npc_drop           126 npc_drop                 Obor
-  npc_drop           122 npc_drop                 Dust devil
-  npc_drop           121 npc_drop                 Bandit
-  npc_drop           120 npc_drop                 Lesser demon
-  shop               120 shop                     Gabooty's Tai Bwo Wannai Cooperative.
-  npc_drop           119 npc_drop                 Green dragon
-  npc_drop           116 npc_drop                 Araxyte
-  npc_drop           115 npc_drop                 Skeleton
-  shop               114 shop                     Ali's Discount Wares.
-  shop               114 shop                     Lost Property shop
-  npc_drop           112 npc_drop                 Vyrewatch
-  shop               112 shop                     Jiminua's Jungle Store.
-  npc_drop           111 npc_drop                 Skeleton (Lucien's camp)
-  npc_drop           111 npc_drop                 Skeleton (Shayzien Crypts)
+accepted simplifications:
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

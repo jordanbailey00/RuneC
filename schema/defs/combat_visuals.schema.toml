@@ -1,0 +1,55 @@
+id = "combat_visuals"
+format = "tsv"
+path = "data/defs/combat_visuals.tsv"
+schema_version = 1
+producer = "tools/export_combat_visuals.py"
+consumers = ["rc-viewer/combat_visuals.c"]
+source_dataset = "content/combat_visuals/visuals.tsv"
+required_columns = [
+  "kind",
+  "key",
+  "style",
+  "attack_anim",
+  "launch_spotanim",
+  "travel_spotanim",
+  "impact_spotanim",
+  "projectile_model",
+  "projectile_anim",
+  "hit_delay",
+  "client_delay",
+  "proj_start_height",
+  "proj_end_height",
+  "proj_delay",
+  "proj_angle",
+  "proj_length_adjustment",
+  "proj_progress",
+  "proj_step_multiplier",
+  "note",
+  "projectile_count",
+  "alt_proj_start_height",
+  "alt_proj_end_height",
+  "alt_proj_delay",
+  "alt_proj_angle",
+  "alt_proj_length_adjustment",
+  "alt_proj_progress",
+  "alt_proj_step_multiplier",
+  "aux_travel_spotanim",
+  "aux_impact_spotanim",
+  "aux_projectile_model",
+  "aux_projectile_anim",
+  "impact_on_last_only",
+  "double_launch_spotanim",
+  "stance_idx",
+  "attack_key",
+  "launch_gfx_height",
+  "impact_gfx_height",
+  "impact_gfx_delay",
+  "impact_gfx_rotation",
+  "primitive_type",
+  "source_attachment",
+  "target_attachment",
+  "launch_attachment",
+  "impact_attachment",
+  "authority",
+]
+compatibility = "This table is a TSV column contract, not a binary magic/version table."

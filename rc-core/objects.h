@@ -83,6 +83,25 @@ typedef struct {
     char target[48];
 } RcObjectTransport;
 
+typedef struct {
+    uint32_t first, count;
+} RcObjectRange;
+
+typedef struct {
+    RcObjectDef defs[RC_MAX_OBJECT_ID];
+    RcObjectBehavior behaviors[RC_MAX_OBJECT_ID];
+    RcObjectPlacement *placements;
+    RcObjectTransport *transports;
+    RcObjectParam *params;
+    RcObjectRange region_index[RC_MAX_OBJECT_ID];
+    RcObjectRange transport_index[RC_MAX_OBJECT_ID];
+    int def_count;
+    int behavior_count;
+    int placement_count;
+    int transport_count;
+    int param_count;
+} RcObjectData;
+
 extern RcObjectDef g_rc_object_defs[RC_MAX_OBJECT_ID];
 extern RcObjectBehavior g_rc_object_behaviors[RC_MAX_OBJECT_ID];
 extern RcObjectPlacement *g_rc_object_placements;
@@ -98,12 +117,24 @@ int rc_load_object_defs(const char *path);
 int rc_load_object_placements(const char *path);
 int rc_load_object_behaviors(const char *path);
 int rc_load_object_transports(const char *path);
+void rc_object_data_init(RcObjectData *data);
+void rc_object_data_free(RcObjectData *data);
+int rc_object_data_import_globals(RcObjectData *data);
+int rc_load_object_defs_into(const char *path, RcObjectData *data);
+int rc_load_object_placements_into(const char *path, RcObjectData *data);
+int rc_load_object_behaviors_into(const char *path, RcObjectData *data);
+int rc_load_object_transports_into(const char *path, RcObjectData *data);
+int rc_objects_mirror_to_globals(const RcObjectData *data);
+void rc_objects_use_data(const RcObjectData *data);
+void rc_objects_reset_data_if_active(const RcObjectData *data);
 
 const RcObjectDef *rc_object_def_get(int obj_id);
 int rc_object_def_param_int(int obj_id, int key, int default_value);
 const RcObjectBehavior *rc_object_behavior_get(int obj_id);
 const RcObjectPlacement *rc_object_region_placements(uint16_t mapsquare,
                                                      int *count);
+int rc_object_placement_count(void);
+int rc_object_has_placements(void);
 int rc_object_placements_at(int x, int y, int plane,
                             RcObjectPlacement *out, int max_out);
 const RcObjectTransport *rc_object_transport_find(int obj_id, int x, int y,

@@ -1,6 +1,8 @@
 #ifndef RC_ACTIVITY_SCHEMAS_H
 #define RC_ACTIVITY_SCHEMAS_H
 
+#include "types.h"
+
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -70,10 +72,27 @@ typedef struct {
     uint32_t object_ids[RC_ACTIVITY_SCHEMA_MAX_OBJECTS];
 } RcActivitySchema;
 
+typedef struct {
+    RcActivitySchema *rows;
+    int count;
+    int by_npc[RC_MAX_NPC_ID];
+    int index_built;
+} RcActivitySchemaData;
+
 extern RcActivitySchema *g_rc_activity_schemas;
 extern int g_rc_activity_schema_count;
 
 int rc_load_activity_schemas(const char *path);
+void rc_activity_schema_data_init(RcActivitySchemaData *data);
+void rc_activity_schema_data_free(RcActivitySchemaData *data);
+int rc_activity_schema_data_import_globals(RcActivitySchemaData *data);
+int rc_load_activity_schemas_into(const char *path,
+                                  RcActivitySchemaData *data);
+int rc_activity_schemas_mirror_to_globals(
+    const RcActivitySchemaData *data);
+void rc_activity_schemas_use_data(const RcActivitySchemaData *data);
+void rc_activity_schemas_reset_data_if_active(
+    const RcActivitySchemaData *data);
 void rc_activity_schemas_rebuild_index(void);
 int rc_activity_schema_find_slug(const char *slug);
 int rc_activity_schema_find_for_npc(uint32_t npc_id);

@@ -69,8 +69,7 @@ from rc_cache import (
     read_extended_smart,
     read_map_region_file,
 )
-
-DEFAULT_MODERN_CACHE = Path(__file__).resolve().parent / "source/current_fightcaves_demo/data/cache"
+from source_inputs import B237_CACHE, require_path
 
 # --- object definition with model IDs ---
 
@@ -1738,8 +1737,8 @@ def main() -> None:
     parser.add_argument(
         "--modern-cache",
         type=Path,
-        default=DEFAULT_MODERN_CACHE,
-        help="path to the repo-local b237 OpenRS2 cache directory",
+        default=B237_CACHE,
+        help="path to the b237 OpenRS2 cache directory",
     )
     parser.add_argument(
         "--regions",
@@ -1775,6 +1774,11 @@ def main() -> None:
     if args.cache:
         _main_317(args)
     else:
+        args.modern_cache = require_path(
+            args.modern_cache,
+            "--modern-cache",
+            "RUNEC_B237_CACHE",
+        )
         _main_modern(args)
 
 

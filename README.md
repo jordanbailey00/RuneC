@@ -48,15 +48,18 @@ builds do not require a separate Raylib install.
 ```bash
 git clone https://github.com/jordanbailey00/RuneC.git
 cd RuneC
-./scripts/setup-data.sh
+python3 tools/data_pipeline.py pack-runtime-data
+./scripts/setup-data.sh --offline dist-data
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cmake --build build --parallel
 ./build/rc-viewer
 ```
 
-`./scripts/setup-data.sh` downloads the published runtime data packs, verifies
-them, and expands them into local loose files under `data/` so the viewer starts
-from the fast runtime path.
+`runtime-data.lock` is currently a draft pointer because the data-v1 release
+gate still has source-authority gaps. Until an official runtime-data release is
+recorded there, `./scripts/setup-data.sh` intentionally refuses a default remote
+download. Maintainer/dev checkouts should generate `dist-data/` locally and
+install from it with `--offline`.
 
 ## Validation Tools
 
@@ -145,7 +148,8 @@ data/          Local runtime data install populated by scripts/setup-data.sh.
 RuneC does not track generated runtime data in Git. Run this once after cloning:
 
 ```bash
-./scripts/setup-data.sh
+python3 tools/data_pipeline.py pack-runtime-data
+./scripts/setup-data.sh --offline dist-data
 ```
 
 This installs:
@@ -163,17 +167,27 @@ data/
   ui/
 ```
 
-By default the script downloads from the `RuneC` GitHub Release named
-`data-v1`. Override with `RUNEC_DATA_VERSION`, `RUNEC_DATA_BASE_URL`, or
-`RUNEC_DATA_MANIFEST_URL`. It also expands the packs into loose local runtime
-files so the viewer uses the fast file-loading path. Set `RUNEC_DATA_UNPACK=0`
-to keep only the manifest and packs, or `RUNEC_DATA_UNPACK_FORCE=1` to rewrite
-already extracted files.
+Once `runtime-data.lock` points to an official release, `./scripts/setup-data.sh`
+will download the locked manifest and packs by default. While the lock remains
+draft, use `--offline dist-data` or explicit `RUNEC_DATA_BASE_URL` /
+`RUNEC_DATA_MANIFEST_URL` overrides. The script expands packs into loose local
+runtime files so the viewer uses the fast file-loading path. Set
+`RUNEC_DATA_UNPACK=0` to keep only the manifest and packs, or
+`RUNEC_DATA_UNPACK_FORCE=1` to rewrite already extracted files.
 
 Runtime asset loading supports both loose files and release packs. The default
 backend is `auto`: loose `data/...` files are used when present, otherwise
 `data/packs/*.pak` is used. Override with `RUNEC_ASSET_BACKEND=loose` or
-`RUNEC_ASSET_BACKEND=pack`.
+`RUNEC_ASSET_BACKEND=pack`. Runtime startup validates `data/manifest.json`
+before creating a world and reports missing required data paths as startup
+errors.
+
+Headless environments can verify viewer startup without opening a window:
+
+```bash
+RUNEC_VIEWER_SMOKE=1 RUNEC_ASSET_BACKEND=pack ./build/rc-viewer
+RUNEC_VIEWER_SMOKE=1 RUNEC_ASSET_BACKEND=loose ./build/rc-viewer
+```
 
 ## Build
 
@@ -255,10 +269,12 @@ does not call those projects.
 - [RuneLite](https://github.com/runelite/runelite) for cache/client behavior
   reference
 - [RSMod](https://github.com/rsmod/rsmod) for OSRS server behavior reference
-- [VoidPS](https://github.com/GregHib/void) and 2011Scape for older overlap
-  behavior references
 - [OSRS Wiki](https://oldschool.runescape.wiki/) for content facts and
   mechanics
+
+Private-server and wrong-game sources are not accepted as RuneC data
+authority. Missing facts should be tracked as source gaps until backed by the
+b237 cache/dumps, RuneLite, RSMod, OSRS Wiki, or reviewed authored content.
 
 ## License
 

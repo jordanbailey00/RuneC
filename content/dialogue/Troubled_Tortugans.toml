@@ -1,0 +1,2508 @@
+title = "Transcript:Troubled Tortugans"
+npcs = ["Floopa", "Elder Korel", "Elder Raley", "Elder Hubber", "Elder Root", "Mag", "Chet", "Elder Blunn", "Elder Krill", "Elder Strom", "Elder Coco", "Elder Reggle"]
+node_count = 314
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello? Are you okay? That's a pretty nasty looking injury you've got there..."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "I'm... I'm fine... Please... leave me alone..."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "cond"
+text = "If the player's skill levels are lower than the quest requirements."
+parent = -1
+children = [3, 4]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "box"
+text = "You do not meet all of the requirements to start the Troubled Tortugans quest."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Leave you alone? Look at you! You've been badly hurt and need help."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "No... No help... I'll fix it myself..."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "select"
+text = "Start the Troubled Tortugans quest?"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [9, 10, 11, 12, 13, 14]
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Now look, there is no way you're going to be able to fix this on your own. Either you let me help, or you die here. Is that what you want?"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "No..."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Then what can I do to help?"
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "Bandages... I was trying to make... bandages. Seaweed and a... a palm leaf."
+parent = 8
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right, you take it easy. I'll get your bandages sorted as quick as possible."
+parent = 8
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [16, 17]
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're definitely not okay, but I guess I can't force help upon you if you don't want it. I'll be on my way, but please, you really should reconsider."
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "end"
+parent = 15
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How are you doing there?"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "I feel... fine."
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're a terrible liar, you know? I'll get your bandages sorted as quick as possible. Seaweed and a palm leaf, right?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "Right..."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I've got those bandages. Let's get you sorted out..."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "box"
+text = "pic=Makeshift bandages detail.png|You use the bandages to patch up the injured tortugan."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "You... helped me?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Of course! Did you expect me to just leave you to die? I'm not a monster!"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Injured Tortugan"
+text = "I'm sorry for not trusting you, it's just... Well, I guess it doesn't matter now. I'm Floopa. Thank you for saving my life."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't mention it. I'm [player name]. Pleased to meet you, Floopa."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Thank you, [player name]."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now, those bandages should do the job for the time being, but we need to get you some proper help."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Help? No, I'll be fine now. I can sort the rest out myself."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can you? What is your medical background?"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Well, I read a book once..."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Floopa, I understand that you don't trust me, but I promise I'm only here to help."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "It's not that..."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What then?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "I'd have to go home..."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Home? What's bad about home?"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Nothing, but... if I go there, then I'll have failed."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Failed at what?"
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Everything!"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, those bandages aren't going to last forever, and unfortunately I don't think that book of yours can help... not unless you use the pages as replacement bandages."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "You don't understand!"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please, Floopa, let me take you home. We can use my boat."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "But..."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But?"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Alright, fine!"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you, Floopa. So, where is home?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "The Great Conch, to the south east. I guess I'll join you on your boat."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "No point wasting time I guess. I'll join you on your boat."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where do I need to be going, Floopa?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "You need to head [north/north west/north east/south/south west/south east."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where do I need to be going, Floopa?"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Head to the south of the island. You can dock there."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Right, we're here. I'll meet you ashore."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Goodness, Floopa, look at you!"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "I'm sorry, Korel. I didn't want to come back, but..."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Nonsense! It would have been foolish to try and deal with this yourself! Now, get yourself over to Elder Raley's at once!"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "box"
+text = "Floopa heads over to Elder Raley's home."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Ah, human. I take it we have you to thank for getting Floopa to us?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right, though she wasn't overly keen on coming."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "That's not surprising, but it's good that she did. She would have been unlikely to survive that injury on her own."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you think she'll be okay?"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "She will survive. With Elder Raley looking after her, I have no doubt of that. However, it is a nasty wound, and much of the damage will be permanent. Did she say how it happened?"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No. She seemed reluctant to tell me much at all, to be honest."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "I see. Well, thank you for helping her, human. Now, I've no doubt you have plenty to be doing. You should be on your way."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Actually, would it be possible to stay? I'd be keen to make sure she's doing okay."
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Don't take this the wrong way, human, but as you may have worked out from Floopa, we tortugans aren't always the biggest fans of company. We generally don't allow humans on the Conch."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Generally?"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "There are exceptions."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could I be an exception?"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "I suppose it is within my right to invite you to remain here for a short time as what we call a tourist. It will allow you to stay on the island while Floopa recovers."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "However, you should be aware that the only way to permanently remain on the Conch is to undergo our Trial by Water and become an honorary tortugan."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... Well, let's do this tourist thing for now and we can worry about what happens after that once Floopa is doing better."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Very well. I will see that it is done. Now, if you'd like to check in on Floopa, you'll find her at Elder Raley's home. It's the first one on the right as you head into town."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll head right over."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Hello again, human. If you'd like to check in on Floopa, you'll find her at Elder Raley's home. It's the first one on the right as you head into town."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll head right over."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Mag"
+text = "Hello, human. I'm afraid I can't help you with anything until we've sorted out all the problems that gryphon caused."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "Sorry, but I can't stop to talk. That gryphon attack has caused more than a few problems that need sorting first."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Elder Krill"
+text = "Sorry, but I'm too busy to talk right now. I'm still getting things sorted after that gryphon attack."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Elder Strom"
+text = "No time to talk, human. That gryphon caused no end of problems that need to be dealt with. You'll need to come back later."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Elder Coco"
+text = "Sorry, human, but I don't have time to talk right now. I need to keep working on sorting out all the problems that gryphon caused."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Elder Reggle"
+text = "Sorry, human, but I'm not particularly interested in making conversation with those that I don't trust."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Chet"
+text = "Hello, human. Please be careful around the coral nurseries."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Chet"
+text = "Leave the coral nurseries alone please."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "box"
+text = "You approach the entry, but hear a loud screeching coming from within. You decide it's best not to enter."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "box"
+text = "You can't see any obvious way to unblock the entrance. Given the loud screeching coming from within, you're not sure you'd want to go inside anyway."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "... really no fuss at all! Anyway, has that potion done anything for you yet?"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "I think so. I feel a lot less... like death."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Very good! Very good! A positive first step indeed! We'll give it a bit longer to make sure it properly kicks in, and then we can start on cleaning up that wound."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Oh look, a human! Is this the one you mentioned, Floopa?"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Yes, but... [player name], what are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, your friend on the docks gave me permission to stick around until you were feeling better."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Oh, thank you, but you really don't need..."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Come now, Floopa. You should be more welcoming to the human."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Of course, you're right. I'm sorry, [player name]. I didn't mean to be rude. This is all just... a lot."
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You can say that again! It looks like you've been in a fight with the Sharhai itself!"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Ah, but you must forgive me, human. Here I am admonishing Floopa for her manners while not showing any myself! I'm Raley, one of the elders here on the Great Conch."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's good to meet you. I'm [player name]."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You'll have to forgive me, but I'm a bit all over the place at the moment. We're still dealing with the aftermath of another blasted gryphon attack!"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "An attack? Was anyone hurt?"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = """
+A few cuts and scrapes, but nothing serious. It did manage to make quite the mess around town though. At some point I'll need to help some of the more senior elders with repairs, but one thing at a time.
+"""
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "If you need help with repairs, maybe I could lend a hand? That way you can focus on looking after Floopa."
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "You've helped enough, [player name]. You don't need to trouble yourself further."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "I wouldn't say no to a bit of extra help, though Floopa is right, [player name]. Do not feel like you need to do any more."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not a problem. What repairs need doing?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Most of the elders will handle their own repair work, so it's just the more senior ones who'll need your help. I've made a list of the work that needs to be done."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What sort of materials will I need?"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You'll need a mix of jatoba logs, sea shells and our very own scutes. You'll find some jatoba trees growing to the west of town and the shells are easy enough to find on the various beaches."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "As for the scutes, they get shed quite regularly, so it shouldn't be too hard to find a few dotted around the island."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great! I'll get right to it."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "box"
+text = "pic=List of repairs detail.png|Elder Raley gives you the list of repairs that need doing."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Just come back and let me know if you get stuck with anything. Now, Floopa, I think that potion will have fully done its work now, so let's get to work on that wound."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "This is going to hurt, isn't it?"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Yes, it will probably sting a bit..."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How are you doing, Floopa?"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Argh..."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You might want to leave her to it for a bit. Tidying the wound isn't the most pleasant of experiences."
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Welcome back, [player name]. How are those repairs going?"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "cond"
+text = "If the player still has the repair list:"
+parent = -1
+children = [141, 142]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "act"
+text = "continues"
+parent = 140
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the repair list:"
+parent = -1
+children = [144, 145, 146, 147]
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Could I have another list of the work that needs doing?"
+parent = 143
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Of course!"
+parent = 143
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "box"
+text = "pic=List of repairs detail.png|Elder Raley gives you a list of repairs that need doing."
+parent = 143
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "act"
+text = "continues"
+parent = 143
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = """
+Don't forget, you'll need a mix of jatoba logs, sea shells and our very own scutes. You'll find some jatoba trees growing to the west of town and the shells are easy enough to find on the various beaches.
+"""
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "As for the scutes, they get shed quite regularly, so it shouldn't be too hard to find a few dotted around the island."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Great! Thanks!"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Elder Krill"
+text = "You must be the human that Korel spoke of. Welcome to the Conch."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you! I hear you have a couple of things in need of repair. I've offered to get them sorted."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Elder Krill"
+text = "That is very generous of you, human. Thank you."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Elder Strom"
+text = "Ah, you must be the new tourist."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's me! I've offered to help out with some repairs around town."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Elder Strom"
+text = "Well, in that case, you should get stuck right in."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Elder Coco"
+text = "Hello there, human. Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I'm here to help you. I'm sorting out some of the repairs that need doing."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Elder Coco"
+text = "Oh, I see. That's very generous of you."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Hello again, human. I have finished making arrangements for you to remain on the island as a tourist until Floopa recovers."
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Perfect! Thank you for sorting that."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "It's not a problem."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think that's everything. I should head back to Raley and Floopa."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Elder Krill"
+text = "Thank you for helping with those repairs, human. It shouldn't be long now until I can start selling my goods again."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Elder Strom"
+text = "Not bad on those repairs. Still plenty of things I need to do though. If you need something, you'll have to come back later."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Elder Coco"
+text = "Hello there, human. Thank you for helping with those repairs. I should hopefully have the stall open again soon."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good news! The repairs are all sorted."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = """
+Wonderful! And, you'll be pleased to know that I was successful in properly tidying up Floopa's wound. I'll need her to stay here for a while to make sure it properly heals, but I expect a full recovery!
+"""
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's fantastic!"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Is it? Even if I recover, my flipper... it's gone. Without it I'm... useless..."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Floopa, this is a highly traumatic experience you've gone through, and I won't lie to you, it will change your life forever. But Floopa, you are not, and never will be, useless."
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "I hope you're right..."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You should get some rest. We will sort you out with a place to stay here for as long as you need, and I will be on hand to help you however I can."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm happy to help as well. Is there anything I can do?"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "For Floopa? No. Rest is what she now needs. However, and please do say no if it's too much to ask, you might be able to help us out some more with that gryphon problem."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Of course. What do you need?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Unfortunately, while we were able to injure it, the gryphon managed to escape before we could finish it off. One that aggressive can't be allowed to return."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Korel was planning to deal with it himself, but other matters have required his attention."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sure I can track it down."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = """
+Very good! You really are too kind! It seemed like the injury prevented the gryphon from flying, so you hopefully won't have much trouble picking up its trail. I suggest you start in the middle of town.
+"""
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Will do. I'm sure I'll have it dealt with in no time!"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Very good!"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "option"
+text = "Why are humans generally not allowed here?"
+parent = -1
+children = [194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208]
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Why are humans generally not allowed here?"
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Oh, [player name], I hope you haven't taken offense! It's really nothing personal. It's just how we do things."
+parent = 193
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "It's not just limited to humans either. You might have noticed that there are no adult tortugans here on the Conch, just juveniles and elders."
+parent = 193
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So it's a societal thing?"
+parent = 193
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Yes, I suppose it is. We tortugans like our privacy, and we don't like being overly dependent on others. It is these preferences that have formed our way of life."
+parent = 193
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see. I guess that gives me another question then. If the adults aren't here, where are they?"
+parent = 193
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Out in the wider world, living their lives. They return here from time to time, usually when it is time to mate."
+parent = 193
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ah, so that explains why Floopa was reluctant to return here."
+parent = 193
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Yes, there can be a certain level of... pride, shall we say, amongst the younger adults. They have been known to see independence as a constant requirement."
+parent = 193
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Floopa"
+text = "I can hear you, you know?"
+parent = 193
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "It's rude to eavesdrop, Floopa! You should be resting!"
+parent = 193
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = """
+Anyway, as I was saying, it is a trait seen amongst many of the younger adults. They soon grow out of it. No one wants to be a burden of course, but we elders understand that there is no shame in asking for help.
+"""
+parent = 193
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It sounds like a good balance."
+parent = 193
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Indeed it is."
+parent = 193
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "act"
+text = "other"
+parent = 193
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "option"
+text = "Are gryphons a common problem for your people?"
+parent = -1
+children = [210, 211, 212, 213, 214, 215, 216, 217, 218, 219]
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are gryphons a common problem for your people?"
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Unfortunately so. They are the main predator we have to deal with here on the Conch, and it seems they have decided that we are quite the delicacy."
+parent = 209
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Thankfully, most of them keep to the quieter parts of the island, making them easier to handle. However, from time to time, one will grow bold enough to try and target the town."
+parent = 209
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry. It can't be nice living with that threat."
+parent = 209
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Ah, it is nothing to be sad about. We have grown used to it. Besides, while the gryphons may prey upon us, in many ways, we prey upon them as well."
+parent = 209
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Killing them keeps their numbers under control, and their claws and feathers come in quite useful. In fact, all tortugans must obtain a gryphon claw as part of their Trial by Water."
+parent = 209
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Trial by Water? Korel mentioned that as well."
+parent = 209
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = """
+It is a rite of passage that all juvenile tortugans must go through on their journey to adulthood. On rare occasions, members of other races have undergone the Trial themselves, becoming honourary tortugans.
+"""
+parent = 209
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Perhaps at some point you will be able to take on the trial yourself. You have already shown yourself to be both capable and trustworthy. However, that is a conversation for another day."
+parent = 209
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "act"
+text = "other"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "option"
+text = "I'd better get to it."
+parent = -1
+children = [221, 222]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get to it."
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "act"
+text = "end"
+parent = 220
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey, Floopa."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Sorry, [player name], but Raley says I need to get some rest. We'll talk later, once you've sorted out that gryphon."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Welcome back, [player name]. Any luck with that gryphon?"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it, but I'm sure I'll have it dealt with soon."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You should hopefully be able to pick up its trail in the middle of town. Good luck!"
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "option"
+text = "Why are humans generally not allowed here?"
+parent = -1
+children = [231]
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "act"
+text = "above"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "option"
+text = "Are gryphons a common problem for your people?"
+parent = -1
+children = [233]
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "act"
+text = "above"
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "option"
+text = "I'd better get to it."
+parent = -1
+children = [235]
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "act"
+text = "above"
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "... holding it at bay, but they need support quick!"
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's going on?"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Another gryphon attack, but this time on the Little Pearl!"
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "This doesn't make sense! They've never attacked the Pearl before!"
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "I'm heading over right away. The eggs must be protected!"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What can I do?"
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Join me, human! Sail to the Little Pearl as fast as you can and help protect our eggs!"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You'll find the Pearl south east of the Conch. It shouldn't take you long to get there, but make sure you don't go underprepared! It sounds like this gryphon is one of the larger ones."
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Yes, make sure you speak to Elder Blunn outside first. He can sort you out with a suitable shield."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll grab one of those shields and set off right away!"
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "I will meet you there, human."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Quickly, human! You need to sail to the Little Pearl, south east of the Conch. I will meet you there. Oh, and don't forget to pick up a shield from Elder Blunn outside!"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Hurry, [player name]! You need to head to the Little Pearl!"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "You need to get to the Pearl, [player name]! We can't lose those eggs!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "Hello, human. Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need a shield to protect me against one of the larger gryphons. I'm afraid it's quite urgent."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "Ah, now that is something I can sort for you. I started making these at the suggestion of a human tourist. They're fashioned in the style of our own shells."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "We use them alongside our spears, but for a being of your size, wearing them on your back would work best."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Like my very own shell?"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "Precisely! Normally I would charge for one of these, but you claim the situation is urgent, and I trust you are not lying. As such, I will grant you one for free."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you!"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "Do not lose it, human, for I won't be able to give you another for free. Any more will come at a cost."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "cond"
+text = "If the player has room in their inventory:"
+parent = -1
+children = [263]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "box"
+text = "pic=Tortugan shield detail.png|Elder Blunn gives you a tortugan shield."
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "cond"
+text = "If the player doesn't have room in their inventory:"
+parent = -1
+children = [265]
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "box"
+text = "pic=Tortugan shield detail.png|Elder Blunn tries to give you a tortugan shield, but you don't have enough room for it."
+parent = 264
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "Hello again, human. I assume you're here for that shield?"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right."
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Elder Blunn"
+text = "Do not lose it, for I won't be able to give you another for free. Any more will come at a cost."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "box"
+text = "pic=Tortugan shield detail.png|Elder Blunn gives you a tortugan shield."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene begins. A large ship departs from the island, with Elders Root, Hubber, and Korel battling against a Shellbane gryphon.}}"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's all that about?"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "[Crewmate]"
+text = "Er... Problem over here, Captain!"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "{{overhead|Excellent work! The beast is well and truly dead!}}"
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Elder Hubber"
+text = "Thank you for your help with that gryphon, human."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Elder Root"
+text = "The eggs are safe once more! Good work, human."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Very good work, human!"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are the eggs okay?"
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "As good as can be expected. We lost a fair few, but it could have been much worse."
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry about the ones that were lost."
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Even without a gryphon involved, not all eggs make it. It is an unfortunate reality of life. You need not apologise."
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "Now, I need to get to work on finding out how this happened. To our knowledge, no gryphon has ever travelled this far from the Conch before."
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "About that... It may be nothing, but when I arrived here, I saw a ship with red sails sailing away from the island. You don't think it's connected, do you?"
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "A ship with red sails? Curious... and concerning... Hmm..."
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "You should return to Raley and Floopa on the Conch, human. Tell them what you have told me. See if they can make any sense of it."
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright. I'll head back right away."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Elder Korel"
+text = "You should return to Raley and Floopa on the Conch, human. Tell them what you told me about that ship with the red sails. See if they can make any sense of it."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright. I'll head back right away."
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "You're back, [player name]! What news from the Pearl?"
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The gryphon has been dealt with. The eggs are safe."
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Fantastic news!"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Did you see anything that might explain why the gryphon attacked?"
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Possibly, but it's hard to say for sure. There was a ship near the island. It had red sails."
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "Red sails? Surely not..."
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "What is it, Floopa?"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "It's... I'm not sure. It might... It might have something to do with my injury."
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "My captain... My crew... They betrayed me. Stabbed me with my own spear and abandoned me to the waves..."
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "Floopa... I'm so sorry..."
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This ship? Does it have something to do with your old crew?"
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "speaker"
+speaker = "Floopa"
+text = "I think so... but I need time to think... I need to work out what it all means..."
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "More than that! You need more rest as well. [player name], we should give her the time she needs. Return to us later once she has rested."
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "In the meantime, may I suggest you take this opportunity to further explore our island. I'm sure you'll find it has a lot to offer."
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I might just do that. Thank you."
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Elder Raley"
+text = "No, no, no! Thank you, [player name]! We will talk again soon."
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

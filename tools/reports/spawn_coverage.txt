@@ -1,29 +1,16 @@
-NPCList spawns:           24110
-NPCList distinct names:   2840
-locline rows:             10344
-locline distinct names:   2343
-name match both sources:  620
-wiki-only names:          1723
-NPCList-only names:       2220
+Varrock Npc Spawn Slice
 
-Top 20 wiki-only names (by row count — check whether they're OSRS-only content missing from NPCList, or just disambiguation pages / variants with different base names):
-    252  user:eht
-    173  user:riblet15/sandbox1
-    104  bush (scenery)
-    102  splashing/guide
-     81  poll booth
-     80  user:jakesterwars/npcs
-     70  user:ipathos/sailingmaptest/easy
-     67  coal rocks
-     63  painting (scenery)
-     59  iron rocks
-     59  user:cook me plox/cityzens
-     57  user:ipathos/sailingmaptest/hard
-     52  user:anyny0/spawns
-     50  bank chest
-     48  portrait (scenery)
-     47  bank booth
-     46  bucket
-     46  yew tree
-     45  smashed chair
-     41  mithril rocks
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 13452
+entries: 840
+NPCList spawns: 840
+
+installed files:
+  - data/regions/varrock.npc-spawns.bin bytes=13452 sha256=8bbedde6f7b168690b17d624800ac3c9efad1558866abba5cec2b5559069c04b
+
+accepted simplifications:
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

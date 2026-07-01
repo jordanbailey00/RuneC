@@ -14,6 +14,8 @@ import struct
 from collections import Counter
 from pathlib import Path
 
+from content_paths import content_read_path
+
 try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover
@@ -201,7 +203,7 @@ def add_region(rows: list[dict], activity: str, table: dict):
 def add_activity_rows(rows: list[dict]) -> tuple[Counter, list[str], Counter]:
     if tomllib is None:
         return Counter(), [], Counter()
-    path = ROOT / "data/curated/activity_spawns.toml"
+    path = content_read_path("activity_spawns.toml")
     if not path.is_file():
         return Counter(), [], Counter()
     data = tomllib.loads(path.read_text())
@@ -254,7 +256,7 @@ def add_encounter_dynamic_rows(rows: list[dict]) -> Counter:
     if tomllib is None:
         return Counter()
     out = Counter()
-    for path in sorted((ROOT / "data/curated/encounters").glob("*.toml")):
+    for path in sorted(content_read_path("encounters").glob("*.toml")):
         data = tomllib.loads(path.read_text())
         slug = data.get("slug") or path.stem
         for mech in data.get("mechanics", []):

@@ -1,0 +1,18 @@
+id = "skill_drops"
+format = "binary"
+path = "data/defs/skill_drops.bin"
+magic_label = "SDRP"
+magic_u32 = "0x50524453"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_skill_drops.py"
+consumers = ["rc-core/skills.c"]
+source_dataset = "RuneC acquisition rows for non-NPC drop sources"
+row_fields = [
+  "pstr8 source_name",
+  "u16 drop_count",
+  "drops[drop_count]: u32 item_id, u16 qmin, u16 qmax, u32 rarity_inv",
+]
+compatibility = "Loader accepts exactly current_version."

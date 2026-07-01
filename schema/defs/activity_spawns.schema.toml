@@ -1,0 +1,35 @@
+id = "activity_spawns"
+format = "binary"
+path = "data/defs/activity_spawns.bin"
+magic_label = "ASPN"
+magic_u32 = "0x4E505341"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_activity_spawns.py"
+consumers = ["rc-core/activity_spawns.c"]
+source_dataset = "content/activity_spawns.toml"
+row_fields = [
+  "u8 kind",
+  "u8 plane",
+  "u8 rotation",
+  "u8 random_offset",
+  "u16 flags",
+  "u16 wave",
+  "u16 x",
+  "u16 y",
+  "u16 min_x",
+  "u16 max_x",
+  "u16 min_y",
+  "u16 max_y",
+  "u16 local_x",
+  "u16 local_y",
+  "u32 npc_id",
+  "u32 object_id",
+  "pstr8 slug",
+  "pstr8 key",
+  "pstr8 entity",
+  "pstr8 ref",
+]
+compatibility = "Loader accepts exactly current_version."

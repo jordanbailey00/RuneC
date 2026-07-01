@@ -1,0 +1,20 @@
+id = "player_actions"
+format = "binary"
+path = "data/defs/player_actions.bin"
+magic_label = "PACT"
+magic_u32 = "0x54434150"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_player_actions.py"
+consumers = ["rc-core/player_actions.c"]
+source_dataset = "rc-core/api.h action surface and subsystem gates"
+row_fields = [
+  "u8 action_id",
+  "u8 kind",
+  "u16 name_len",
+  "u32 required_subsystems",
+  "char name[name_len]",
+]
+compatibility = "Loader accepts exactly current_version."

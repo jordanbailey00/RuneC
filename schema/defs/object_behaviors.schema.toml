@@ -1,0 +1,24 @@
+id = "object_behaviors"
+format = "binary"
+path = "data/defs/object_behaviors.bin"
+magic_label = "OBHV"
+magic_u32 = "0x5648424F"
+current_version = 2
+accepted_versions = [1, 2]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_object_behaviors.py"
+consumers = ["rc-core/objects.c"]
+source_dataset = "b237 cache object definitions plus RuneC-owned behavior classification"
+row_fields = [
+  "u32 obj_id",
+  "u32 flags",
+  "i32 next_loc_stage (v2+)",
+  "i32 open_sound (v2+)",
+  "i32 close_sound (v2+)",
+  "i32 climb_anim (v2+)",
+  "u8 action_mask",
+  "u8 skill",
+  "u16 pad",
+]
+compatibility = "Loader accepts versions 1 and 2."

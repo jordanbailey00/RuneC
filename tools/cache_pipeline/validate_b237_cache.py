@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the repo-local b237 cache against the Joshua-F decoded dump."""
+"""Validate an explicit b237 cache against an explicit decoded dump."""
 
 from __future__ import annotations
 
@@ -32,11 +32,9 @@ from rc_cache import (
     find_map_region_files,
     read_map_region_file,
 )
+from source_inputs import B237_CACHE, B237_DUMP, require_path
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE_ROOT = Path(__file__).resolve().parent / "source"
-DEFAULT_CACHE = SOURCE_ROOT / "current_fightcaves_demo/data/cache"
-DEFAULT_DUMP = SOURCE_ROOT / "osrs-dumps"
 
 
 @dataclass
@@ -376,8 +374,8 @@ def validate_map_addressing(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--cache", type=Path, default=DEFAULT_CACHE)
-    parser.add_argument("--dump", type=Path, default=DEFAULT_DUMP)
+    parser.add_argument("--cache", type=Path, default=B237_CACHE)
+    parser.add_argument("--dump", type=Path, default=B237_DUMP)
     parser.add_argument(
         "--region",
         type=parse_region,
@@ -386,16 +384,18 @@ def main(argv: list[str] | None = None) -> int:
         help="Region to verify as X,Y. May be passed more than once.",
     )
     args = parser.parse_args(argv)
+    cache = require_path(args.cache, "--cache", "RUNEC_B237_CACHE")
+    dump = require_path(args.dump, "--dump", "RUNEC_B237_DUMP")
 
-    if not args.cache.is_dir():
-        print(f"cache directory not found: {args.cache}", file=sys.stderr)
+    if not cache.is_dir():
+        print(f"cache directory not found: {cache}", file=sys.stderr)
         return 2
-    if not args.dump.is_dir():
-        print(f"dump directory not found: {args.dump}", file=sys.stderr)
+    if not dump.is_dir():
+        print(f"dump directory not found: {dump}", file=sys.stderr)
         return 2
 
-    store = RcCacheStore(args.cache)
-    ctx = ValidationContext(args.dump)
+    store = RcCacheStore(cache)
+    ctx = ValidationContext(dump)
     validate_config_groups(store, ctx)
     validate_map_addressing(store, ctx, args.region or [(50, 53)])
 

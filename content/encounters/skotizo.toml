@@ -1,0 +1,48 @@
+# Skotizo — catacombs of Kourend shadow boss. Summoned via dark
+# totems. Tests: altar-healing mechanic, multi-style alternating.
+
+name = "Skotizo"
+slug = "skotizo"
+npc_ids = [7286]
+source_pages = ["Skotizo", "Skotizo/Strategies"]
+
+[[attacks]]
+name = "Melee Slam"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 32
+warning_ticks = 0
+
+[[attacks]]
+name = "Magic Bolt"
+style = "magic"
+max_hit = 28
+warning_ticks = 2
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Slam", "Magic Bolt"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Demonic Altars"
+primitive = "heal_altars_player_must_disable"
+# Four altars around arena; each heals Skotizo per tick while
+# active. Player must walk to each and click to disable.
+params.altar_count = 4
+params.heal_per_altar_per_tick = 3
+params.disable_on_click = true
+params.altars_respawn_ticks = 40
+
+[[mechanics]]
+name = "Dark Minions"
+primitive = "spawn_npcs"
+period_ticks = 30
+params.npc_name = "Dark Ankou"
+params.count = 2
+params.distribution = "around_player"
+
+[entry_requirement]
+item_required = "Dark totem"

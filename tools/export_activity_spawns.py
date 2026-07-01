@@ -9,8 +9,10 @@ import tomllib
 from collections import Counter
 from pathlib import Path
 
+from content_paths import content_read_path
+
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "data/curated/activity_spawns.toml"
+SRC = content_read_path("activity_spawns.toml")
 OUT = ROOT / "data/defs/activity_spawns.bin"
 REPORT = ROOT / "tools/reports/activity_spawns.txt"
 
@@ -194,7 +196,7 @@ def write_bin(rows: list[dict[str, object]]) -> None:
             f.write(pstr(row["ref"], 47))
 
 
-def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
+def write_report(rows: list[dict[str, object]]) -> None:
     counts = Counter(int(r["kind"]) for r in rows)
     activities = sorted({str(r["slug"]) for r in rows})
     unresolved = [r for r in rows if int(r["kind"]) == K_UNRESOLVED]
@@ -212,7 +214,6 @@ def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
         f"object-anchor rows: {counts[K_OBJECT_ANCHOR]}",
         f"unresolved required rows: {len(unresolved)}",
         f"output: {OUT.relative_to(ROOT)} ({OUT.stat().st_size} bytes)",
-        f"elapsed_ms: {elapsed_ms:.3f}",
         "",
         "Status",
         "READY rows are loadable activity-local points, regions, dynamic pools, wave refs, or object anchors.",
@@ -254,7 +255,7 @@ def main() -> int:
     rows = collect_rows()
     write_bin(rows)
     elapsed_ms = (time.perf_counter() - start) * 1000.0
-    write_report(rows, elapsed_ms)
+    write_report(rows)
     print(f"exported {len(rows)} activity spawn rows in {elapsed_ms:.3f} ms")
     return 0
 

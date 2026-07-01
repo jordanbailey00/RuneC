@@ -1,0 +1,2815 @@
+title = "Transcript:Heroes' Quest"
+npcs = ["Achietties", "Alfonse the waiter", "Charlie the cook", "Garv", "Gerrant", "Monk", "High Priest (Entrana)", "Straven", "Trobert", "Katrine", "Grip", "Grubor", "Pirate Guard"]
+node_count = 359
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "Greetings. Welcome to the Heroes' Guild."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "Only the greatest heroes of this land may gain entrance to this guild."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "cond"
+text = "If the player's skill levels are lower than the quest requirements."
+parent = -1
+children = [3]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "box"
+text = "Before starting this quest, be aware that one or more of your skill levels are lower than what is required to fully complete it."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "select"
+text = "Start the Heroes' Quest?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [6, 7, 11, 12, 13, 14, 18, 22, 26]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm a hero. May I apply to join?"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the quest requirements to start the quest:"
+parent = 5
+children = [8, 9, 10]
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Achietties"
+text = "You're a hero? I've never heard of you."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "box"
+text = "You do not meet all of the requirements to start the Heroes' Quest."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Achietties"
+text = "Well, you seem to meet our initial requirements, so you may now begin the tasks to earn membership in the Heroes' Guild."
+parent = 5
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Achietties"
+text = "The three items required for entrance are: An Entranan Firebird feather, a Master Thieves' armband, and a cooked Lava Eel."
+parent = 5
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 5
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "option"
+text = "Any hints on getting the armband?"
+parent = 5
+children = [15, 16, 17]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any hints on getting the thieves armband?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Achietties"
+text = "I'm sure you have the relevant contacts to find out about that."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "act"
+text = "end"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "option"
+text = "Any hints on getting the feather?"
+parent = 5
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any hints on getting the feather?"
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Achietties"
+text = "Not really - other than Entranan firebirds tend to live on Entrana."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "option"
+text = "Any hints on getting the eel?"
+parent = 5
+children = [23, 24, 25]
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any hints on getting the eel?"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Achietties"
+text = "Maybe go and find someone who knows a lot about fishing?"
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "option"
+text = "I'll start looking for all those things then."
+parent = 5
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'll start looking for all those things then."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Achietties"
+text = "Good luck with that."
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [31, 32, 33]
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Good for the foremost heroes of the land."
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Achietties"
+text = "Yes. Yes it is."
+parent = 30
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "act"
+text = "end"
+parent = 30
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "Greetings. Welcome to the Heroes' Guild."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "How goes thy quest adventurer?"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's tough. I've not done it yet."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "Remember, the items you need to enter are:"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "An Entranan Firebirds' feather, A Master Thieves armband, and a cooked Lava Eel."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "option"
+text = "Any hints on getting the armband?"
+parent = -1
+children = [41]
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "act"
+text = "above"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Any hints on getting the feather?"
+parent = -1
+children = [43]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "act"
+text = "above"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "Any hints on getting the eel?"
+parent = -1
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "act"
+text = "above"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "option"
+text = "I'll start looking for all those things then."
+parent = -1
+children = [47]
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "act"
+text = "above"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How would I go about getting a Master Thief armband?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Ooh... tricky stuff. Took me YEARS to get that rank."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Well, what some of the more aspiring thieves in our gang are working on right now is to steal some very valuable candlesticks from Scarface Pete - the pirate leader on Karamja."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "His security is excellent, and the target very valuable so that might be enough to get you the rank."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Go talk to our man Alfonse, the waiter in the Shrimp and Parrot."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Use the secret word 'gherkin' to show you're one of us."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What am I supposed to be doing again?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "You told me you wanted to get a Master thief's armband! Now pay attention."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Some of the more aspiring thieves in our gang are working on right now{{Sic|grammar fail}} is to steal some very valuable candlesticks from Scarface Pete - the pirate leader on Karamja."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "His security is excellent, and the target very valuable so that might be enough to get you the rank."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Go talk to our man Alfonse, the waiter in the Shrimp and Parrot."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Use the secret word 'gherkin' to show you're one of us."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Alfonse the waiter"
+text = "Hey! You can't go through there! That's private property!"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Alfonse the waiter"
+text = "Welcome to the Shrimp and Parrot. Would you like to order, sir?"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "select"
+text = "Select an Option."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "option"
+text = "quest=no|Yes please."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "option"
+text = "quest=no|No thank you."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "Do you sell Gherkins?"
+parent = -1
+children = [69, 70, 71, 72]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you sell Gherkins?"
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Alfonse the waiter"
+text = "Hmmmm Gherkins eh? Ask Charlie the cook, round the back. He may have some 'gherkins' for you!"
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "box"
+text = "Alfonse winks at you."
+parent = 68
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "act"
+text = "end"
+parent = 68
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "option"
+text = "quest=no|Where do you get your Karambwan from?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Hey! What are you doing back here?"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "select"
+text = "Select an Option."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "option"
+text = "I'm looking for a gherkin..."
+parent = -1
+children = [77, 78, 79, 80, 84]
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for a gherkin..."
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Aaaaaah... a fellow Phoenix! So, tell me compadre... what brings you to sunny Brimhaven?"
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 76
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "option"
+text = "Sun, sand and the fresh sea air!"
+parent = 76
+children = [81, 82, 83]
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sun, sand and the fresh sea air!"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Well, can't say I blame you compadre. I used to be a city boy myself, but have to admit it's a lot nicer living here nowadays. Brimhaven's certainly good for it."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "option"
+text = "I want to steal Scarface Pete's candlesticks."
+parent = 76
+children = [85, 86, 87, 88, 89, 90, 91, 92]
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I want to steal Scarface Pete's candlesticks."
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Ah yes, of course. The candlesticks. Well, I have to be honest with you compadre, we haven't made much progress in that task ourselves so far. We can however offer"
+parent = 84
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "a little assistance. The setting up of this restaurant was the start of things; we have a secret door out the back of here that leads through the back of Mr Olbors' garden."
+parent = 84
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Now, at the other side of Mr Olbors' garden, is an old side entrance to Scarface Pete's mansion. It seems to have been blocked off from the rest of the mansion some years ago"
+parent = 84
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "and we can't seem to find a way through. We're positive this is the key to entering the house undetected however, and I promise to let you know if we find anything there."
+parent = 84
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Mind if I check it out for myself?"
+parent = 84
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Not at all! The more minds we have working on the problem, the quicker we get that loot!"
+parent = 84
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "act"
+text = "end"
+parent = 84
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "I'm a fellow member of the Phoenix gang."
+parent = -1
+children = [94, 95, 96, 97, 99]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm a fellow member of the Phoenix gang."
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Aaaaaah... a fellow Phoenix! So, tell me compadre... what brings you to sunny Brimhaven?"
+parent = 93
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 93
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "option"
+text = "Sun, sand and the fresh sea air!"
+parent = 93
+children = [98]
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "act"
+text = "above"
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "option"
+text = "I want to steal Scarface Pete's candlesticks."
+parent = 93
+children = [100]
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "act"
+text = "above"
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "option"
+text = "Just exploring..."
+parent = -1
+children = [102, 103, 104]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Just exploring..."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Charlie the cook"
+text = "Well get out! This kitchen isn't for exploring! It's a private establishment! It's out of bounds to customers!"
+parent = 101
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "act"
+text = "end"
+parent = 101
+is_terminal = true
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Garv"
+text = "Oi! Where do you think you're going pal?"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Garv"
+text = "Hello. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "select"
+text = "Select an Option."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "option"
+text = "Can I go in there?"
+parent = -1
+children = [110, 111, 112]
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I go in there?"
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Garv"
+text = "No. In there is private."
+parent = 109
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "act"
+text = "end"
+parent = 109
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "option"
+text = "I want for nothing!"
+parent = -1
+children = [114, 115, 116]
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want for nothing!"
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Garv"
+text = "You're one of a very lucky few then."
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Grubor"
+text = "Yes? What do you want?"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "option"
+text = "Would you like your hedges trimming?"
+parent = -1
+children = [120, 121, 122]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Would you like your hedges trimming?"
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Grubor"
+text = "Eh? Don't be daft! We don't even HAVE any hedges!"
+parent = 119
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "act"
+text = "end"
+parent = 119
+is_terminal = true
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "option"
+text = "I want to come in."
+parent = -1
+children = [124, 125, 126]
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to come in."
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Grubor"
+text = "No, go away."
+parent = 123
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "act"
+text = "end"
+parent = 123
+is_terminal = true
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "option"
+text = "Do you want to trade?"
+parent = -1
+children = [128, 129, 130]
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you want to trade?"
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Grubor"
+text = "No, I'm busy."
+parent = 127
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "box"
+text = "This door is locked."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This room isn't a lot of use on its own... Maybe I can get extra help from the inside somehow... I wonder if any of the other players have found a way in."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have retrieved a candlestick!"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Well, in all honesty, you didn't actually retrieve it yourself, did you? You don't qualify as a master thief unless you actually steal it yourself, you know..."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have retrieved a candlestick!"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Hmmm. Not bad, not bad. Let's see it, make sure it's genuine."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "box"
+text = "You hand Straven the candlestick."
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So is this enough to get me a Master Thief armband?"
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Hmm..."
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "I dunno..."
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Aww, go on then. I suppose I'm in a generous mood today."
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "box"
+text = "pic=Thieves' armband detail.png|Straven hands you a Master Thief armband."
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I've lost my Master Thief armband."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Straven"
+text = "Lucky for you I have a spare. Don't lose it again!"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Katrine"
+text = "Hey."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "option"
+text = "Who are all those people in there?|quest=no"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "Is there any way I can get the rank of master thief?"
+parent = -1
+children = [154, 155, 156, 157, 158, 159, 160, 161, 162, 163]
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there any way I can get the rank of master thief?"
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Katrine"
+text = "Master thief? Ain't we the ambitious one!"
+parent = 153
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Katrine"
+text = "Well, you're gonna have to do something pretty amazing."
+parent = 153
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Anything you can suggest?"
+parent = 153
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Katrine"
+text = "Well, some of the MOST coveted prizes in thiefdom right now are in the pirate town of Brimhaven on Karamja."
+parent = 153
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Katrine"
+text = "The pirate leader Scarface Pete has a pair of extremely valuable candlesticks."
+parent = 153
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Katrine"
+text = "His security is VERY good."
+parent = 153
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Katrine"
+text = "We, of course, have gang members in a town like Brimhaven who may be able to help you."
+parent = 153
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Katrine"
+text = "Visit our hideout in the alleyway on Palm Street. To get in you will need to tell them the secret password 'four leafed clover'."
+parent = 153
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "act"
+text = "end"
+parent = 153
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Grubor"
+text = "Yes? What do you want?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "option"
+text = "Rabbit's foot."
+parent = -1
+children = [166, 167]
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Grubor"
+text = "Eh? What are you on about? Go away!"
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "act"
+text = "end"
+parent = 165
+is_terminal = true
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "option"
+text = "Four leaved clover."
+parent = -1
+children = [169, 170, 171]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Grubor"
+text = "Oh, you're one of the gang are you? Ok, hold up a second, I'll just let you in through here."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "box"
+text = "You hear the door being unbarred from inside."
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "option"
+text = "Lucky horseshoe."
+parent = -1
+children = [173, 174]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Grubor"
+text = "Eh? What are you on about? Go away!"
+parent = 172
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "option"
+text = "Black cat."
+parent = -1
+children = [176, 177]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Grubor"
+text = "Eh? What are you on about? Go away!"
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "act"
+text = "end"
+parent = 175
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Grubor"
+text = "Hi. I'm a little busy right now."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Trobert"
+text = "Hi. Welcome to our Brimhaven headquarters. I'm Trobert and I'm in charge here."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "option"
+text = "So can you help me get Scarface Pete's candlesticks?"
+parent = -1
+children = [184, 185, 186, 187, 188, 189, 193]
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So can you help me get Scarface Pete's candlesticks?"
+parent = 183
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Trobert"
+text = "Well, we have made some progress there. We know that one of the only keys to Pete's treasure room is carried by Grip, the head guard, so we thought it might be good to get close to him somehow."
+parent = 183
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Trobert"
+text = "Grip was taking on a new deputy called Hartigen, an Asgarnian Black Knight who was deserting the Black Knight Fortress and seeking new employment here on Brimhaven."
+parent = 183
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Trobert"
+text = "We managed to waylay him on the journey here, and steal his I.D. papers. Now all we need is to find somebody willing to impersonate him and take the deputy role to get that key for us."
+parent = 183
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 183
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "option"
+text = "I volunteer to undertake that mission!"
+parent = 183
+children = [190, 191, 192]
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I volunteer to undertake that mission!"
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "speaker"
+speaker = "Trobert"
+text = "Good good. Here's the I.D. papers. Take them and introduce yourself to the guards at Scarface Pete's mansion. We'll have that treasure in no time."
+parent = 189
+
+[[nodes]]
+id = 192
+depth = 3
+kind = "act"
+text = "end"
+parent = 189
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "option"
+text = "Well, good luck then."
+parent = 183
+children = [194, 195, 196]
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, good luck then."
+parent = 193
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "speaker"
+speaker = "Trobert"
+text = "Someone will show up eventually."
+parent = 193
+
+[[nodes]]
+id = 196
+depth = 3
+kind = "act"
+text = "end"
+parent = 193
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "option"
+text = "Pleased to meet you."
+parent = -1
+children = [198, 199, 200]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Pleased to meet you."
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Trobert"
+text = "Likewise."
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "act"
+text = "end"
+parent = 197
+is_terminal = true
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "cond"
+text = "If the player has the ID papers:"
+parent = -1
+children = [202, 203, 204]
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Trobert"
+text = "How's it going?"
+parent = 201
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fine, thanks."
+parent = 201
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "act"
+text = "end"
+parent = 201
+is_terminal = true
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "cond"
+text = "If the player has lost the ID papers:"
+parent = -1
+children = [206, 207, 208]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have lost Hartigen's ID paper..."
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Trobert"
+text = "Well that was careless of you wasn't it? Fortunately for you, he had a spare. Take this one, but please try to be more careful with this one."
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "act"
+text = "end"
+parent = 205
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "cond"
+text = "If the player has lost the ID papers and has a full inventory:"
+parent = -1
+children = [210, 211, 212]
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have lost Hartigen's ID papers..."
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Trobert"
+text = "Well that was careless of you, wasn't it? Fortunately for you, he had a spare set. Take this one, but please try to be more careful with it."
+parent = 209
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "act"
+text = "end"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "cond"
+text = "Trying to enter the mansion rather than talking to Garv"
+parent = -1
+children = [214, 215]
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Garv"
+text = "Oi! Where do you think you're going pal?"
+parent = 213
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "act"
+text = "continues"
+parent = 213
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "cond"
+text = "Talking to Garv"
+parent = -1
+children = [217, 218]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Garv"
+text = "Hello. What do you want?"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "act"
+text = "continues"
+parent = 216
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi. I'm Hartigen. I've come to work here."
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "cond"
+text = "If the player is not wearing black armour:"
+parent = -1
+children = [221, 222]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Garv"
+text = "Hartigen the Black Knight? I don't think so. He doesn't dress like that."
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "act"
+text = "end"
+parent = 220
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "cond"
+text = "If the player is wearing black armour:"
+parent = -1
+children = [224, 225, 228]
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Garv"
+text = "I assume you have your I.D. papers then?"
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "cond"
+text = "If the player has the ID papers"
+parent = 223
+children = [226, 227]
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "speaker"
+speaker = "Garv"
+text = "You'd better come in then. Grip will want to talk to you."
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "cond"
+text = "If the player do not have the ID papers"
+parent = 223
+children = [229, 230]
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Uh... yeeeeaaaaah.... about that.... I must have left them in my other suit of armour...."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 3
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there. I am Hartigen. reporting{{sic|Uncapitalized}} for duty as your new deputy sir!"
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Grip"
+text = "Ah good, at last. You took your time getting here! Now let me see..."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Grip"
+text = "I'll get your hours and duty roster sorted out in a while. Oh, and do you have your I.D. papers with you? Internal security is almost as important as external security for a guard."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "cond"
+text = "If the player has the ID papers"
+parent = -1
+children = [235, 236, 237, 238, 243, 262]
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right here sir!"
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "box"
+text = "You hand the ID papers over to Grip."
+parent = 234
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "select"
+text = "Select an option"
+parent = 234
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "option"
+text = "So can I guard the treasure room please?"
+parent = 234
+children = [239, 240, 241, 242]
+
+[[nodes]]
+id = 239
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So can I guard the treasure room please?"
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "speaker"
+speaker = "Grip"
+text = "Well, I might post you outside it sometimes. I prefer to be the only one allowed inside however."
+parent = 238
+
+[[nodes]]
+id = 241
+depth = 3
+kind = "speaker"
+speaker = "Grip"
+text = "There's some pretty valuable artefacts in there! Those keys stay ONLY with the head guard and Scarface Pete."
+parent = 238
+
+[[nodes]]
+id = 242
+depth = 3
+kind = "act"
+text = "other"
+parent = 238
+is_terminal = true
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "option"
+text = "So what do my duties involve?"
+parent = 234
+children = [244, 245, 246, 247, 248, 250, 252]
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "speaker"
+speaker = "Grip"
+text = "You'll have various guard related duties on various shifts. I'll assign specific duties as they are required as and when they become necessary. Just so you know, if anything happens to me"
+parent = 243
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "speaker"
+speaker = "Grip"
+text = "you'll need to take over as head guard here. You'll find important keys to the treasure room and Pete's quarters inside my jacket - although I doubt anything bad's going to happen to"
+parent = 243
+
+[[nodes]]
+id = 246
+depth = 3
+kind = "speaker"
+speaker = "Grip"
+text = "me anytime soon!"
+parent = 243
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "box"
+text = "Grip laughs to himself at the thought."
+parent = 243
+
+[[nodes]]
+id = 248
+depth = 3
+kind = "option"
+text = "So can I guard the treasure room please?"
+parent = 243
+children = [249]
+
+[[nodes]]
+id = 249
+depth = 4
+kind = "act"
+text = "above"
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 3
+kind = "option"
+text = "Well, I'd better sort my new room out."
+parent = 243
+children = [251]
+
+[[nodes]]
+id = 251
+depth = 4
+kind = "act"
+text = "below"
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 3
+kind = "option"
+text = "Anything I can do now?"
+parent = 243
+children = [253, 254, 259]
+
+[[nodes]]
+id = 253
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can do now?"
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 4
+kind = "cond"
+text = "If the player does not have a miscellaneous key yet:"
+parent = 252
+children = [255, 256, 257, 258]
+
+[[nodes]]
+id = 255
+depth = 5
+kind = "speaker"
+speaker = "Grip"
+text = "Hmm. Well, you could find out what this key opens for me. Apparently it's for something in this building, but for the life of me I can't find what."
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 5
+kind = "box"
+text = "Grip hands you a key."
+parent = 254
+
+[[nodes]]
+id = 257
+depth = 5
+kind = "act"
+text = "receives=a miscellaneous key"
+parent = 254
+
+[[nodes]]
+id = 258
+depth = 5
+kind = "act"
+text = "end"
+parent = 254
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 4
+kind = "cond"
+text = "If the player has a miscellaneous key already:"
+parent = 252
+children = [260, 261]
+
+[[nodes]]
+id = 260
+depth = 5
+kind = "speaker"
+speaker = "Grip"
+text = "Can't think of anything right now."
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 5
+kind = "act"
+text = "end"
+parent = 259
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "option"
+text = "Well, I'd better sort my new room out."
+parent = 234
+children = [263, 264, 265]
+
+[[nodes]]
+id = 263
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'd better sort my new room out."
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 3
+kind = "speaker"
+speaker = "Grip"
+text = "Yeah, I'll give you time to settle in. Better get a good nights sleep, I expect you to report for duty at oh five hundred hours tomorrow on the dot!"
+parent = 262
+
+[[nodes]]
+id = 265
+depth = 3
+kind = "act"
+text = "end"
+parent = 262
+is_terminal = true
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "cond"
+text = "If the player lost the ID papers"
+parent = -1
+children = [267, 268, 269]
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh dear... I don't have that with me anymore.."
+parent = 266
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "Grip"
+text = "Well that's no good! Go get them immediately, then report back for duty."
+parent = 266
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "act"
+text = "end"
+parent = 266
+is_terminal = true
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't attack the head guard here! There are too many witnesses around to see me do it! I'd have the whole of Brimhaven after me! Besides, if he dies I want the promotion!"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "box"
+text = "Perhaps you need another player's help...?"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "cond"
+text = "If Grip is alive and any of the pirate guards are nearby"
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Pirate Guard"
+text = "I don't think Mr Grip will like you opening that. That's his private drinks cabinet."
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "option"
+text = "He won't notice me having a quick look."
+parent = -1
+children = [277, 278, 279]
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "He won't notice me having a quick look."
+parent = 276
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Grip"
+text = "{{overhead|Stay out of my drinks cabinet!}}"
+parent = 276
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "act"
+text = "end"
+parent = 276
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "option"
+text = "Ok, I'll leave it."
+parent = -1
+children = [281, 282]
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll leave it."
+parent = 280
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "act"
+text = "end"
+parent = 280
+is_terminal = true
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "cond"
+text = "If there's no one to stop you:"
+parent = -1
+children = [284, 285, 286]
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "box"
+text = "You find a bottle of whiskey in the cupboard."
+parent = 283
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "act"
+text = "receives=whisky"
+parent = 283
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "act"
+text = "end"
+parent = 283
+is_terminal = true
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "box"
+text = "You find two candlesticks in the chest. So that will be one for you, and one for the person who killed Grip for you."
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have a candlestick now!"
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Katrine"
+text = "Good for you."
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Katrine"
+text = "I'll be giving a master thieves armband to the one who retrieved that. I know it wasn't you."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have a candlestick now!"
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Katrine"
+text = "Wow.... is... it REALLY it?"
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Katrine"
+text = "This really is a FINE bit of thievery."
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Katrine"
+text = "Us thieves have been trying to get hold of this one for a while!"
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Katrine"
+text = "You wanted to be ranked as a master thief didn't you? Well, I guess this just about ranks as good enough!"
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "box"
+text = "Katrine gives you a master thief armband."
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "Greetings traveller."
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, I am in search of an Entranan Firebird. Can you help me?"
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "Oh ho! Another one! I don't think they exist, but you'd probably ask the head monk about it. If anyone would know, he would!"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Monk"
+text = "Anything else you wanted to know?"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "quest=no|Can you heal me? I'm injured."
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "option"
+text = "quest=no|Isn't this place built a bit out the way"
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Many greetings. Welcome to our fair island."
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, I am in search of an Entranan Firebird. Can you help me?"
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Well adventurer, I have heard that they exist on this island, but have not ever seen one myself."
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "According to legend however, they are so hot that their merest touch can burn flesh."
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "Apparently long ago a great hero used a pair of magical gloves, stolen from the Queen of the Ice to cool the bird down enough to catch as a pet."
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So where would I find this 'Queen of the Ice' then?"
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "High Priest"
+text = "I know not adventurer, it was just a myth I was told as a young boy. Perhaps somewhere icy?"
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "other"
+text = "{{mes|These rocks contain nothing interesting. They are just in the way.}}"
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ouch!}}"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "other"
+text = "{{qact|The player takes damage.}}"
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "other"
+text = "{{mes|It is too hot to take. You need something cold to pick it up with.}}"
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Gerrant"
+text = "Welcome! You can buy fishing equipment at my store. We'll also buy anything you catch off you."
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "option"
+text = "quest=no|Let's see what you've got then."
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "option"
+text = "quest=no|Sorry, I'm not interested."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "option"
+text = "I want to find out how to catch a lava eel."
+parent = -1
+children = [326, 327, 328, 329, 330, 331, 332]
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to find out how to catch a lava eel."
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Gerrant"
+text = """
+Lava eels eh? That's a tricky one that is, you'll need a lava-proof fishing line. The method for making this would be to take an ordinary fishing rod, and then cover it with the fire-proof Blamish Oil.
+"""
+parent = 325
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Gerrant"
+text = "You know... thinking about it... I may have a jar of Blamish Slime around here somewhere... Now where did I put it?"
+parent = 325
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "box"
+text = "Gerrant searches around a bit."
+parent = 325
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "act"
+text = "receives=[[Blamish snail slime]]"
+parent = 325
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Gerrant"
+text = "Aha! Here it is! Take this slime, mix it with some Harralander and water and you'll have the Blamish Oil you need for treating your fishing rod."
+parent = 325
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "act"
+text = "end"
+parent = 325
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Gerrant"
+text = "Welcome! You can buy fishing equipment at my store. We'll also buy anything you catch off you."
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "option"
+text = "quest=no|Let's see what you've got then."
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "option"
+text = "quest=no|Sorry, I'm not interested."
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "option"
+text = "I want to find out how to catch a lava eel."
+parent = -1
+children = [338, 339, 340]
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to find out how to catch a lava eel."
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Gerrant"
+text = "You'll need a lava-proof fishing line. I'm sure I already gave you what you need for this - take an ordinary fishing rod, and then cover it with the fire-proof Blamish Oil."
+parent = 337
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "end"
+parent = 337
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "other"
+text = "{{mes|You mix the slime into your potion.}}"
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You know... I'd really rather not."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "box"
+text = "pic=Oily fishing rod detail.png|You rub the oil into the fishing rod."
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "Greetings. Welcome to the Heroes' Guild."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "How goes thy quest adventurer?"
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have a raw Lava Eel!"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "That's nice. I require it to be cooked however."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh. Okay then."
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "Greetings. Welcome to the Heroes' Guild."
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "How goes thy quest adventurer?"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have all the required items."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "I see that you have. Well done; Now, to complete the quest, and gain entry to the Heroes' Guild in your final task all that you have to do is..."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "W-what? What do you mean? There's MORE???"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "I'm sorry, I was just having a little fun with you. Just a little Heroes' Guild humour there. What I really meant was"
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Achietties"
+text = "Congratulations! You have completed the Heroes' Guild entry requirements! You will find the door now open for you! Enter, Hero! And take this reward!"
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

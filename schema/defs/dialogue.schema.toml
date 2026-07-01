@@ -1,0 +1,20 @@
+id = "dialogue"
+format = "binary"
+path = "data/defs/dialogue.bin"
+magic_label = "DLGX"
+magic_u32 = "0x58474C44"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 transcript_count"]
+producer = "tools/export_dialogue.py"
+consumers = ["rc-core/dialogue.c"]
+source_dataset = "content/dialogue"
+row_fields = [
+  "pstr8 transcript_slug",
+  "u8 npc_count",
+  "pstr8 npc_names[npc_count]",
+  "u16 node_count",
+  "nodes[node_count]: u16 id, u16 parent, u8 depth, u8 kind, u8 is_terminal, pstr16 speaker, pstr16 text, u16 child_count, u16 child_ids[child_count]",
+]
+compatibility = "Loader accepts exactly current_version."

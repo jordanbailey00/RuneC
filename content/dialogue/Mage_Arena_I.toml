@@ -1,0 +1,1290 @@
+title = "Transcript:Mage Arena I"
+npcs = ["Kolodion", "Chamber guardian"]
+node_count = 164
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. What is this place?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Do not waste my time with trivial questions. I am the Great Kolodion, master of battle magic. I have an arena to run."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I enter?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Hah! A wizard of your level? Don't be absurd."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "You're not allowed in there. Come downstairs if you want to enter my arena."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. What is this place?"
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "I am the great Kolodion, master of battle magic, and this is my battle arena. Top wizards travel from all over Gielinor to fight here."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "option"
+text = "Can I fight here?"
+parent = -1
+children = [11, 12, 13, 14, 15, 31]
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I fight here?"
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "My arena is open to any high level wizard, but this is no game. Many wizards fall in this arena, never to rise again. The strongest mages have been destroyed."
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "If you're sure you want in?"
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 10
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "Yes indeedy."
+parent = 10
+children = [16, 17, 18, 19, 20, 21, 28]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes indeedy."
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "Good, good. You have a healthy sense of competition."
+parent = 15
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "Remember, traveller - in my arena, hand-to-hand combat is useless. Your strength will diminish as you enter the arena, but the spells you can learn are amongst the most powerful in all of Gielinor."
+parent = 15
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "Before I can accept you in, we must duel."
+parent = 15
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 15
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "option"
+text = "Okay, let's fight."
+parent = 15
+children = [22, 23, 24, 25, 26, 27]
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Okay, let's fight."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "speaker"
+speaker = "Kolodion"
+text = "I must first check that you are up to scratch."
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You don't need to worry about that."
+parent = 21
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Kolodion"
+text = "Not just any magician can enter - only the most powerful and most feared. Before you can use the power of this arena, you must prove yourself against me."
+parent = 21
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "other"
+text = "{{Qact|The player is teleported to the Mage Arena to fight against Kolodion}}"
+parent = 21
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "act"
+text = "end"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "option"
+text = "No thanks."
+parent = 15
+children = [29, 30]
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "end"
+parent = 28
+is_terminal = true
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "option"
+text = "No I don't."
+parent = 10
+children = [32, 33, 34]
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No I don't."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "Your loss."
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "What's the point of that?"
+parent = -1
+children = [36, 37, 38, 39]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's the point of that?"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "We learn how to use our magic to its fullest and how to channel the forces of the cosmos into our world..."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "But mainly, I just like blasting people into dust."
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "act"
+text = "previous"
+parent = 35
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "option"
+text = "That's barbaric!"
+parent = -1
+children = [41, 42, 43, 44, 46]
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's barbaric!"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "Nope, it's magic. But I know what you mean. So do you want to join us?"
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 40
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "option"
+text = "Yes indeedy."
+parent = 40
+children = [45]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "act"
+text = "above"
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "option"
+text = "No I don't."
+parent = 40
+children = [47]
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "act"
+text = "above"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "{{overhead|You must prove yourself... now!}}"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Kolodion (Ogre)"
+text = "{{overhead|This is only the beginning; you can't beat me!}}"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Kolodion (Spider)"
+text = "{{overhead|Foolish mortal; I am unstoppable.}}"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Kolodion (Ghost)"
+text = "{{overhead|Now you feel it... The dark energy.}}"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Kolodion (Black demon)"
+text = "{{overhead|Aaaaaaaarrgghhhh! The power!}}"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "other"
+text = "{{Qact|The player is teleported back to the safe zone after defeating Kolodion's final form}}"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Well done, young adventurer; you truly are a worthy battle mage."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What now?"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Step into the magic pool. It will take you to a chamber. There, you must decide which god you will represent in the arena."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, Kolodion."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "That's what I'm here for."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Kolodion."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Hello, young mage. You're a tough one."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What now?"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "box"
+text = "You step into the pool of sparkling water. You feel energy rush through your veins."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello my friend, Kolodion sent me down."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Sssshhh... the gods are talking. I can hear their whispers."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Can you hear them adventurer, they're calling you."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Erm... ok!"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Go chant at the statue of the god you most wish to represent in this world, you will be rewarded."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Once you are done, come back to me. I shall supply you with a mage staff ready for battle."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "box"
+text = "You kneel and chant to Guthix..."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "cond"
+text = "If the player has 1 inventory space open:"
+parent = -1
+children = [75, 76]
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "box"
+text = "You kneel and chant to Guthix... You feel a rush of energy charge through your veins. Suddenly a cape appears in your pack."
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "end"
+parent = 74
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "cond"
+text = "If the player has no inventory spaces open:"
+parent = -1
+children = [78, 79]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "box"
+text = "You kneel and chant to Guthix... ... but there is no response. You feel that making space in your inventory could help."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "act"
+text = "end"
+parent = 77
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "box"
+text = "You kneel and chant to Saradomin..."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "cond"
+text = "If the player has 1 inventory space open:"
+parent = -1
+children = [82, 83]
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "box"
+text = "You kneel and chant to Saradomin... You feel a rush of energy charge through your veins. Suddenly a cape appears in your pack."
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "end"
+parent = 81
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "cond"
+text = "If the player has no inventory spaces open:"
+parent = -1
+children = [85, 86]
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "box"
+text = "You kneel and chant to Saradomin... ... but there is no response. You feel that making space in your inventory could help."
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "end"
+parent = 84
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "box"
+text = "You kneel and chant to Zamorak..."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "cond"
+text = "If the player has 1 inventory space open:"
+parent = -1
+children = [89, 90]
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "box"
+text = "You kneel and chant to Zamorak... You feel a rush of energy charge through your veins. Suddenly a cape appears in your pack."
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "end"
+parent = 88
+is_terminal = true
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "cond"
+text = "If the player has no inventory spaces open:"
+parent = -1
+children = [92, 93]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "box"
+text = "You kneel and chant to Zamorak... ... but there is no response. You feel that making space in your inventory could help."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Hello adventurer, have you made your choice?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the cape with them:"
+parent = -1
+children = [98, 99, 100, 101]
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Good, good, I hope you have chosen well. Have you been rewarded with a cape from your chosen god?"
+parent = 97
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid I don't have it with me."
+parent = 97
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Once you have your cape come back to me, and I shall supply you with a mage staff ready for battle."
+parent = 97
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "act"
+text = "end"
+parent = 97
+is_terminal = true
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "cond"
+text = "If the player has the cape with them:"
+parent = -1
+children = [103, 104, 107, 110]
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Chamber guardian"
+text = "Good, good, I hope you have chosen well. I will now present you with a magic staff. This, along with the cape awarded to you by your chosen god, are all the weapons and armour you will need here."
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "cond"
+text = "If player chose Saradomin cape:"
+parent = 102
+children = [105, 106]
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "box"
+text = "pic=Saradomin staff detail.png|The guardian hands you an ornate magic staff."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "cond"
+text = "If player chose Guthix cape:"
+parent = 102
+children = [108, 109]
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "box"
+text = "pic=Guthix staff detail.png|The guardian hands you an ornate magic staff."
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "act"
+text = "end"
+parent = 107
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "cond"
+text = "If player chose Zamorak cape:"
+parent = 102
+children = [111, 112]
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "box"
+text = "pic=Zamorak staff detail.png|The guardian hands you an ornate magic staff."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "act"
+text = "end"
+parent = 110
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Kolodion."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Kolodion"
+text = "Hey there, how are you? Are you enjoying the bloodshed?"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "I think I've had enough for now."
+parent = -1
+children = [117, 118, 119]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I've had enough for now."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "A shame. You're a good battle mage. I hope to see you soon."
+parent = 116
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "end"
+parent = 116
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "How can I use my new spells outside of the arena?"
+parent = -1
+children = [121, 122, 123, 124, 125, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How can I use my new spells outside of the arena?"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "Experience, my friend, experience. Once you've used the spell enough times in the arena, you'll be able to use them in the rest of Gielinor."
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Good stuff."
+parent = 120
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Kolodion"
+text = "Not so good for the citizens; they won't stand a chance."
+parent = 120
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How am I doing so far?"
+parent = 120
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] (unknown) times:"
+parent = 120
+children = [127]
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to train with the strike spell inside the arena before you can use it outside."
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] (unknown) times:"
+parent = 120
+children = [129]
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have completed over half of the training needed to use the strike spell outside of the arena."
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] (unknown) times:"
+parent = 120
+children = [131]
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You are almost ready to use the strike spell outside of the arena."
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "cond"
+text = "If player has cast [[Saradomin Strike]] at least 100 times:"
+parent = 120
+children = [133]
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You're experienced enough to use the strike spell anywhere."
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] (unknown) times:"
+parent = 120
+children = [135]
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to train with the claw spell inside the arena before you can use it outside."
+parent = 134
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] (unknown) times:"
+parent = 120
+children = [137]
+
+[[nodes]]
+id = 137
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have completed over half of the training needed to use the claw spell outside of the arena."
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] (unknown) times:"
+parent = 120
+children = [139]
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You are almost ready to use the claw spell outside of the arena."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "cond"
+text = "If player has cast [[Claws of Guthix]] at least 100 times:"
+parent = 120
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You're experienced enough to use the claw spell anywhere."
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] (unknown) times:"
+parent = 120
+children = [143]
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to train with the flame spell inside the arena before you can use it outside."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] (unknown) times:"
+parent = 120
+children = [145]
+
+[[nodes]]
+id = 145
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have completed over half of the training needed to use the flame spell outside of the arena."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] (unknown) times:"
+parent = 120
+children = [147]
+
+[[nodes]]
+id = 147
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You are almost ready to use the flame spell outside of the arena."
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "cond"
+text = "If player has cast [[Flames of Zamorak]] at least 100 times:"
+parent = 120
+children = [149]
+
+[[nodes]]
+id = 149
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You're experienced enough to use the flame spell anywhere."
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "act"
+text = "end"
+parent = 120
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "option"
+text = "Are there any more challenges available?"
+parent = -1
+children = [152, 153, 157, 161]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Are there any more challenges available?"
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "cond"
+text = "If player hasn't mastered all the god spells yet:"
+parent = 151
+children = [154, 155, 156]
+
+[[nodes]]
+id = 154
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You still need to learn how to cast all god spells outside of the arena."
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "I've made a note of the spells you still need to learn in your journal."
+parent = 153
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "act"
+text = "end"
+parent = 153
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "cond"
+text = "If player doesn't have 75 Magic:"
+parent = 151
+children = [158, 159, 160]
+
+[[nodes]]
+id = 158
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "You have indeed shown potential, [player name]."
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "However, a wizard of your level wouldn't stand a chance."
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 3
+kind = "act"
+text = "end"
+parent = 157
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "cond"
+text = "If player has mastered all the god spells and is 75 Magic:"
+parent = 151
+children = [162, 163]
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "speaker"
+speaker = "Kolodion"
+text = "I am one of the most powerful mages in existence. But even my power has limitations. There are some beings however that have power exceeding even my own."
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "act"
+text = "Continues in [[Transcript:Mage Arena II]]"
+parent = 161

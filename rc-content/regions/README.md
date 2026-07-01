@@ -6,7 +6,8 @@ expressed cleanly as generic data or generic object interaction rules.
 The region subsystem in `rc-core` loads terrain,
 collision, objects, and NPC spawns generically via binary formats
 (`data/regions/<region>.terrain/.objects/.cmap` and
-`data/regions/<region>.npc-spawns.bin`) from the local `RuneC-DB` checkout.
+`data/regions/<region>.npc-spawns.bin`) from the ignored local runtime-data
+install.
 Most region-specific behavior is expressible as data.
 
 Use this file for:
@@ -39,7 +40,8 @@ void rc_content_varrock_register(struct RcWorld *world) {
 
 Same rules as `encounters/`: one file per region, static internals, single
 public register fn, and reference repos are audit sources only. Use modern OSRS
-sources where available; use VoidPS/2011Scape only for older overlap behavior.
+sources where available; missing region facts should become source-gap rows or
+reviewed authored content with citations.
 
 ## When code belongs here
 

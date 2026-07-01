@@ -1,0 +1,30 @@
+# Thermonuclear Smoke Devil — slayer boss. Simple smoke attacker with
+# facemask requirement for damage mitigation.
+
+name = "Thermonuclear Smoke Devil"
+slug = "thermonuclear_smoke_devil"
+npc_ids = [494]
+source_pages = ["Thermonuclear smoke devil",
+                "Thermonuclear smoke devil/Strategies"]
+
+[[attacks]]
+name = "Smoke Cloud"
+# Ranged style attack; player without facemask takes 5× damage.
+style = "ranged"
+max_hit = 20
+warning_ticks = 2
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Smoke Cloud"]
+
+# ---- Damage modifier --------------------------------------------------
+[[damage_modifiers]]
+condition = "player_facemask_equipped == false"
+damage_scale = 5.0                # 5× damage without facemask
+applies_to_attack = "Smoke Cloud"
+
+[entry_requirement]
+slayer_level = 93
+task_required = "smoke devils"

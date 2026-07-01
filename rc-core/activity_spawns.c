@@ -9,17 +9,84 @@
 #define ASPN_MAGIC 0x4E505341u
 #define ASPN_VERSION 1u
 
-typedef struct {
-    char slug[64];
-    int first;
-    int count;
-} RcActivitySpawnIndex;
-
 RcActivitySpawn *g_rc_activity_spawns = NULL;
 int g_rc_activity_spawn_count = 0;
 
-static RcActivitySpawnIndex *g_spawn_index = NULL;
+static RcActivitySpawnRange *g_spawn_index = NULL;
 static int g_spawn_index_count = 0;
+static const RcActivitySpawn *g_active_activity_spawns = NULL;
+static int g_active_activity_spawn_count = 0;
+static const RcActivitySpawnRange *g_active_spawn_index = NULL;
+static int g_active_spawn_index_count = 0;
+
+static void rebuild_spawn_index_into(RcActivitySpawnData *data);
+
+void rc_activity_spawn_data_init(RcActivitySpawnData *data) {
+    if (!data) return;
+    data->rows = NULL;
+    data->count = 0;
+    data->index = NULL;
+    data->index_count = 0;
+}
+
+void rc_activity_spawn_data_free(RcActivitySpawnData *data) {
+    if (!data) return;
+    free(data->rows);
+    free(data->index);
+    rc_activity_spawn_data_init(data);
+}
+
+int rc_activity_spawn_data_import_globals(RcActivitySpawnData *data) {
+    if (!data) return 0;
+    free(data->rows);
+    free(data->index);
+    data->rows = NULL;
+    data->index = NULL;
+    data->count = 0;
+    data->index_count = 0;
+    if (g_rc_activity_spawn_count > 0) {
+        if (!g_rc_activity_spawns) return 0;
+        data->rows = malloc((size_t)g_rc_activity_spawn_count *
+                            sizeof(*data->rows));
+        if (!data->rows) return 0;
+        memcpy(data->rows, g_rc_activity_spawns,
+               (size_t)g_rc_activity_spawn_count * sizeof(*data->rows));
+        data->count = g_rc_activity_spawn_count;
+    }
+    if (g_spawn_index_count > 0) {
+        if (!g_spawn_index) return 0;
+        data->index = malloc((size_t)g_spawn_index_count *
+                             sizeof(*data->index));
+        if (!data->index) return 0;
+        memcpy(data->index, g_spawn_index,
+               (size_t)g_spawn_index_count * sizeof(*data->index));
+        data->index_count = g_spawn_index_count;
+    } else {
+        rebuild_spawn_index_into(data);
+    }
+    return 1;
+}
+
+void rc_activity_spawns_use_data(const RcActivitySpawnData *data) {
+    if (!data) {
+        g_active_activity_spawns = g_rc_activity_spawns;
+        g_active_activity_spawn_count = g_rc_activity_spawn_count;
+        g_active_spawn_index = g_spawn_index;
+        g_active_spawn_index_count = g_spawn_index_count;
+        return;
+    }
+    g_active_activity_spawns = data->rows;
+    g_active_activity_spawn_count = data->count;
+    g_active_spawn_index = data->index;
+    g_active_spawn_index_count = data->index_count;
+}
+
+void rc_activity_spawns_reset_data_if_active(
+    const RcActivitySpawnData *data) {
+    if (data && g_active_activity_spawns == data->rows) {
+        rc_activity_spawns_use_data(NULL);
+    }
+}
 
 static int read_pstr(FILE *f, char *out, int cap,
                      const char *path, const char *what) {
@@ -31,40 +98,55 @@ static int read_pstr(FILE *f, char *out, int cap,
     return 1;
 }
 
-void rc_activity_spawns_rebuild_index(void) {
-    free(g_spawn_index);
-    g_spawn_index = NULL;
-    g_spawn_index_count = 0;
+static void rebuild_spawn_index_into(RcActivitySpawnData *data) {
+    if (!data) return;
+    free(data->index);
+    data->index = NULL;
+    data->index_count = 0;
 
-    int n = g_rc_activity_spawn_count;
+    int n = data->count;
     if (n <= 0) return;
 
     int groups = 0;
     for (int i = 0; i < n; i++) {
-        if (i == 0 || strcmp(g_rc_activity_spawns[i - 1].slug,
-                             g_rc_activity_spawns[i].slug) != 0) {
+        if (i == 0 || strcmp(data->rows[i - 1].slug,
+                             data->rows[i].slug) != 0) {
             groups++;
         }
     }
-    g_spawn_index = calloc((size_t)groups, sizeof(*g_spawn_index));
-    if (!g_spawn_index) return;
+    data->index = calloc((size_t)groups, sizeof(*data->index));
+    if (!data->index) return;
 
     for (int i = 0; i < n; i++) {
-        if (i == 0 || strcmp(g_rc_activity_spawns[i - 1].slug,
-                             g_rc_activity_spawns[i].slug) != 0) {
-            RcActivitySpawnIndex *idx = &g_spawn_index[g_spawn_index_count++];
+        if (i == 0 || strcmp(data->rows[i - 1].slug,
+                             data->rows[i].slug) != 0) {
+            RcActivitySpawnRange *idx = &data->index[data->index_count++];
             snprintf(idx->slug, sizeof(idx->slug), "%s",
-                     g_rc_activity_spawns[i].slug);
+                     data->rows[i].slug);
             idx->first = i;
             idx->count = 1;
         } else {
-            g_spawn_index[g_spawn_index_count - 1].count++;
+            data->index[data->index_count - 1].count++;
         }
     }
 }
 
-int rc_load_activity_spawns(const char *path) {
-    if (!path) return -1;
+void rc_activity_spawns_rebuild_index(void) {
+    RcActivitySpawnData data = {
+        .rows = g_rc_activity_spawns,
+        .count = g_rc_activity_spawn_count,
+        .index = g_spawn_index,
+        .index_count = g_spawn_index_count,
+    };
+    rebuild_spawn_index_into(&data);
+    g_spawn_index = data.index;
+    g_spawn_index_count = data.index_count;
+    rc_activity_spawns_use_data(NULL);
+}
+
+int rc_load_activity_spawns_into(const char *path,
+                                 RcActivitySpawnData *data) {
+    if (!path || !data) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "activity_spawns: can't open %s\n", path);
@@ -146,22 +228,72 @@ int rc_load_activity_spawns(const char *path) {
     }
 
     rc_asset_close(f);
-    free(g_rc_activity_spawns);
-    g_rc_activity_spawns = rows;
-    g_rc_activity_spawn_count = (int)count;
-    rc_activity_spawns_rebuild_index();
+    free(data->rows);
+    data->rows = rows;
+    data->count = (int)count;
+    rebuild_spawn_index_into(data);
     fprintf(stderr, "activity_spawns: loaded %d rows from %s\n",
-            g_rc_activity_spawn_count, path);
-    return g_rc_activity_spawn_count;
+            data->count, path);
+    return data->count;
+}
+
+int rc_activity_spawns_mirror_to_globals(
+    const RcActivitySpawnData *data) {
+    if (!data) return 0;
+    RcActivitySpawn *rows = NULL;
+    RcActivitySpawnRange *index = NULL;
+    if (data->count > 0) {
+        if (!data->rows) return 0;
+        rows = malloc((size_t)data->count * sizeof(*rows));
+        if (!rows) return 0;
+        memcpy(rows, data->rows, (size_t)data->count * sizeof(*rows));
+    }
+    if (data->index_count > 0) {
+        if (!data->index) {
+            free(rows);
+            return 0;
+        }
+        index = malloc((size_t)data->index_count * sizeof(*index));
+        if (!index) {
+            free(rows);
+            return 0;
+        }
+        memcpy(index, data->index, (size_t)data->index_count * sizeof(*index));
+    }
+    free(g_rc_activity_spawns);
+    free(g_spawn_index);
+    g_rc_activity_spawns = rows;
+    g_rc_activity_spawn_count = data->count;
+    g_spawn_index = index;
+    g_spawn_index_count = data->index_count;
+    return 1;
+}
+
+int rc_load_activity_spawns(const char *path) {
+    RcActivitySpawnData data;
+    rc_activity_spawn_data_init(&data);
+    int loaded = rc_load_activity_spawns_into(path, &data);
+    if (loaded >= 0 && !rc_activity_spawns_mirror_to_globals(&data))
+        loaded = -1;
+    rc_activity_spawn_data_free(&data);
+    if (loaded >= 0) rc_activity_spawns_use_data(NULL);
+    return loaded;
 }
 
 const RcActivitySpawn *rc_activity_spawns_for(const char *slug, int *count) {
     if (count) *count = 0;
     if (!slug) return NULL;
-    for (int i = 0; i < g_spawn_index_count; i++) {
-        if (strcmp(g_spawn_index[i].slug, slug) == 0) {
-            if (count) *count = g_spawn_index[i].count;
-            return &g_rc_activity_spawns[g_spawn_index[i].first];
+    const RcActivitySpawn *rows = g_active_activity_spawns
+                                ? g_active_activity_spawns
+                                : g_rc_activity_spawns;
+    const RcActivitySpawnRange *index = g_active_spawn_index
+                                      ? g_active_spawn_index : g_spawn_index;
+    int index_count = g_active_spawn_index ? g_active_spawn_index_count
+                                           : g_spawn_index_count;
+    for (int i = 0; index && i < index_count; i++) {
+        if (strcmp(index[i].slug, slug) == 0) {
+            if (count) *count = index[i].count;
+            return rows ? &rows[index[i].first] : NULL;
         }
     }
     return NULL;

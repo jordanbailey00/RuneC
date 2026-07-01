@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
-"""Emit data/defs/skill_drops.bin — residual dropsline rows where
-"Dropped from" isn't an NPC (trees, rocks, chests, hunter, containers).
+"""Emit data/defs/skill_drops.bin for non-NPC acquisition drops.
 
-Binary format — 'SDRP' magic:
-  magic u32 | version u32 | count u32
-  per source:
-    source_name_len u8 + source_name[]
-    drops_n u16 + (item_id u32, qmin u16, qmax u16, rarity_inv u32)[]
+Runtime schema: `schema/defs/skill_drops.schema.toml`.
 """
 from __future__ import annotations
 

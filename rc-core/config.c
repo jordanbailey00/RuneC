@@ -38,7 +38,7 @@
 #define DEFAULT_COLLISION   "data/defs/collision_tiles.bin"
 #define DEFAULT_AREA_FLAGS  "data/defs/area_flags.bin"
 #define DEFAULT_TRAVERSAL   "data/defs/traversal_edges.bin"
-#define DEFAULT_ENCOUNTERS  "data/curated/encounters"
+#define DEFAULT_ENCOUNTERS  "content/encounters"
 #define DEFAULT_ENCOUNT_BIN "data/defs/encounters.bin"
 
 RcWorldConfig rc_preset_full_game(void) {

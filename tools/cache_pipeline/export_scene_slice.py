@@ -9,8 +9,7 @@ from pathlib import Path
 
 from export_objects import export_modern_objects
 from export_terrain import export_modern_terrain
-
-DEFAULT_CACHE = Path(__file__).resolve().parent / "source/current_fightcaves_demo/data/cache"
+from source_inputs import B237_CACHE, require_path
 
 def region_list(center_x: int, center_y: int, radius: int) -> list[tuple[int, int]]:
     rx = center_x // 64
@@ -30,7 +29,7 @@ def plane_path(prefix: Path, plane: int, suffix: str) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="export a generated viewer scene slice from the local b237 cache"
+        description="export a generated viewer scene slice from an explicit b237 cache"
     )
     parser.add_argument("--center-x", type=int, required=True)
     parser.add_argument("--center-y", type=int, required=True)
@@ -38,14 +37,15 @@ def main() -> None:
     parser.add_argument(
         "--cache",
         type=Path,
-        default=DEFAULT_CACHE,
+        default=B237_CACHE,
     )
     parser.add_argument("--output-prefix", type=Path, required=True)
     parser.add_argument("--planes", type=str, default="0,1,2,3")
     args = parser.parse_args()
 
-    if not args.cache.exists():
-        sys.exit(f"cache directory not found: {args.cache}")
+    cache = require_path(args.cache, "--cache", "RUNEC_B237_CACHE")
+    if not cache.exists():
+        sys.exit(f"cache directory not found: {cache}")
     if args.radius_regions < 0:
         sys.exit("--radius-regions must be >= 0")
 
@@ -56,7 +56,7 @@ def main() -> None:
     args.output_prefix.parent.mkdir(parents=True, exist_ok=True)
     regions = region_list(args.center_x, args.center_y, args.radius_regions)
     print(
-        f"scene_slice: exporting {len(regions)} regions from {args.cache}",
+        f"scene_slice: exporting {len(regions)} regions from {cache}",
         file=sys.stderr,
     )
 
@@ -65,14 +65,14 @@ def main() -> None:
         objects = plane_path(args.output_prefix, plane, ".objects")
         print(f"scene_slice: plane {plane} terrain -> {terrain}", file=sys.stderr)
         export_modern_terrain(
-            cache_dir=args.cache,
+            cache_dir=cache,
             regions=regions,
             output=terrain,
             scene_plane=plane,
         )
         print(f"scene_slice: plane {plane} objects -> {objects}", file=sys.stderr)
         export_modern_objects(
-            cache_dir=args.cache,
+            cache_dir=cache,
             regions=regions,
             output=objects,
             scene_plane=plane,

@@ -1,40 +1,15 @@
-Full NPC definition export
+Npc Definitions
 
-defs exported: 15666
-combat defs: 5936
-defs with model ids: 13374
-defs with stand anim: 13842
-defs with walk anim: 13349
-cache NPC decode incomplete rows: 0
-model-dump Sailing NPCs skipped by v1 scope: 498
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 1398383
+entries: 15666
 
-source contribution:
-  activity_spawns: 30
-  model_dump: 15168
-  osrsreboxed: 1192
-  rc_cache: 15666
-  wiki_monster: 4149
+installed files:
+  - data/defs/npc_defs.bin bytes=1398383 sha256=d4a8484ac6867e55838cea696a6e47d593903a9ca531fab44d74f92d70ab2ab3
 
-known edge IDs:
-  2042: Zulrah (activity_spawns,model_dump,osrsreboxed,rc_cache,wiki_monster)
-  3127: TzTok-Jad (activity_spawns,model_dump,osrsreboxed,rc_cache,wiki_monster)
-  7706: TzKal-Zuk (activity_spawns,model_dump,rc_cache,wiki_monster)
-  7707: Ancestral Glyph (activity_spawns,model_dump,rc_cache)
-  7708: Jal-MejJak (activity_spawns,model_dump,rc_cache,wiki_monster)
-  10572: Tempoross (activity_spawns,model_dump,rc_cache)
-  10574: Tempoross (activity_spawns,model_dump,rc_cache)
-  10575: Tempoross (activity_spawns,model_dump,rc_cache)
-  11278: Nex (activity_spawns,model_dump,rc_cache,wiki_monster)
-  12821: Sol Heredit (activity_spawns,model_dump,rc_cache,wiki_monster)
-
-RuneLite NpcID constants absent after v1 exclusions: 0
-RuneLite NpcID constants skipped as v1-excluded Sailing: 0
-Sample missing RuneLite IDs:
-  none
-
-Remaining blockers:
-- NPC definition export is whole-game for current in-scope ID sources.
-- Model rendering parity is tracked by tools/reports/npc_models_full.txt.
-- NPC semantic parity is tracked by tools/reports/npc_semantics.txt.
-- Attack/death/run animation coverage remains sparse until a deeper
-  cache-backed definition pass resolves those sequence links.
+accepted simplifications:
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

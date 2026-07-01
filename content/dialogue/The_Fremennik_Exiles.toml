@@ -1,0 +1,6980 @@
+title = "Transcript:The Fremennik Exiles"
+npcs = ["Agnar", "Askeladden", "Baba Yaga", "Bakuna", "Bardur", "Bjorn", "Brundt the Chieftain", "Eldgrim", "Falo the Bard", "Fossegrimen", "Fremennik Warrior", "Freygerd", "Jarvald", "Manni the Reveller", "Maria Gunnars", "Mord Gunnars", "Olaf the Bard", "Peer the Seer", "Pet rock", "Reeso", "Sailor", "The Jormungand", "Thorodin", "Torfinn", "Typhor", "Vritra"]
+node_count = 887
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "option"
+text = "quest=No|Ask about a Seal of Passage."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "Ask for a quest."
+parent = -1
+children = [2, 3, 4, 17]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any quests?"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "As a matter of fact [Fremennik name], I do have a quest for you. Are you interested?"
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 1
+children = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+[[nodes]]
+id = 5
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm ready for another adventure!"
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Excellent, now-"
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what will it be this time? Joining warring islands?"
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I'm a fan of your enthusiasm, [Fremennik name], but-"
+parent = 4
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Would you have me slay a mighty daggermouth? Or do you need my expertise in conquering untamed lands?"
+parent = 4
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Nothing quite that fancy I'm afraid, [Fremennik name]. I just need you to investigate a minor disturbance."
+parent = 4
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh."
+parent = 4
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Freygerd and Reeso run the sandpit a little north of here. They mentioned they heard some rustling by their hut last night and wanted an official to investigate."
+parent = 4
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "You've proven yourself more than worthy of our people's trust."
+parent = 4
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well that doesn't sound so bad. I'll get right on it."
+parent = 4
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Thank you, [Fremennik name]."
+parent = 4
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "end"
+parent = 4
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "No."
+parent = 1
+children = [18, 19, 20]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not right now."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Very well. Return when you wish to help."
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "quest=No|Ask about anything else."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "quest=No|Ask about a Seal of Passage."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "Ask about the investigation."
+parent = -1
+children = [24, 25, 26, 27]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "How goes the investigation, [Fremennik name]?"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking into it at the moment."
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "No rush, [Fremennik name]. I'm sure it's nothing to worry about. Just talk to Freygerd and Reeso at the sandpit when you're ready."
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "option"
+text = "quest=No|Ask about anything else."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Reeso, I'm [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "Greetings, [Fremennik name]. I imagine the Chieftain sent you over. My wife, Freygerd, is probably the best person to speak to. She was the one who saw the... well whatever it was."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "I looked about outside but couldn't see anyone out there."
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get to the bottom of it. Thank you Reeso."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Freygerd, I'm [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Thank goodness you've arrived!"
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Chieftain told me that you saw some sort of disturbance outside your hut?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Yes, my husband thinks I'm going a bit mad but I know what I saw! Red eyes, piercing with a terrifying stare. I was so frightened, I fell to the floor!"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "It was the middle of the night, so I couldn't make out what it was. But when I got back on my feet, it wasn't there anymore."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. I'll have a look around and see what I can find."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Thank you for your help."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "How's it going, [Fremennik name]?"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "Try not to worry too much, I'm sure it's nothing."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Have you looked around the hut yet, [Fremennik name]?"
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I still think I'm missing something. I'll let you know when I'm done."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Thanks again for your help. Make sure you bring anything you find back. I'll make sure my husband delivers it to the Chieftain."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = -1
+children = [51, 52]
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "box"
+text = "You spot an object by the boxes but you don't have enough room to take it."
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "act"
+text = "end"
+parent = 50
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [54, 55, 56]
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "box"
+text = "You find what looks to be a venom gland."
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This doesn't look safe... Good job my backpack magically stops things from breaking!"
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "act"
+text = "end"
+parent = 53
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This seems to be a small sack filled with venom."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "cond"
+text = "If the player does not have inventory space:"
+parent = -1
+children = [60, 61]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "box"
+text = "You spot an object by the rocks but you don't have enough room to take it."
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "act"
+text = "end"
+parent = 59
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [63, 64, 65]
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "box"
+text = "You find some sort of fang."
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's dripping with venom. I'd better make sure I don't prick my finger!"
+parent = 62
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "act"
+text = "end"
+parent = 62
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This seems to be the fang of a relatively small creature. It's absolutely soaked in venom."
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|What the...}}"
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "other"
+text = "{{qact|Basilisk youngling jumps out of the sand pit}}"
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I can honestly say I wasn't expecting that. Looks like it dropped a letter of some sorts. I'd better grab it."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I've found everything I need for this investigation. I should let Freygerd know."
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "cond"
+text = "If the player has the Unsealed letter:"
+parent = -1
+children = [75, 76]
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I already have the letter from this sand pit."
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "end"
+parent = 74
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "cond"
+text = "If the player lost the Unsealed letter and has no inventory space:"
+parent = -1
+children = [78, 79]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "box"
+text = "You find an object in the sandpit but you don't have enough room to take it."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "act"
+text = "end"
+parent = 77
+is_terminal = true
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "cond"
+text = "If the player lost the Unsealed letter:"
+parent = -1
+children = [81, 82, 83]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "box"
+text = "You find the letter you lost."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, that's where that letter went! How convenient."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "How's it going, [Fremennik name]?"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I've found everything I need."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "Ah, you'd better talk to the wife then. She'll want to know what you've discovered."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Have you looked around the hut yet, [Fremennik name]?"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've had a look around and found a few things I'd like to show the Chieftain. The thing that made the noise outside your home is gone now, so there's nothing to worry about."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Thank goodness! I'll have my husband take those items to the Chieftain for you."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "Yeah, yeah... alright!"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "Thank you so much for your help, [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No problem. I best be getting back to the Chieftain!"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Reeso."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "Greetings, [Fremennik name]. How can I help?"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You didn't by any chance read that letter, did you?"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Reeso"
+text = "The sand business is booming over here in Rellekka! I don't have time to worry about some letter."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "option"
+text = "Thank you for letting me know."
+parent = -1
+children = [100, 101, 102]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you for letting me know."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Reeso"
+text = "No problem, [Fremennik name]."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "act"
+text = "end"
+parent = 99
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "option"
+text = "Please, do tell me more about the sand business in Rellekka."
+parent = -1
+children = [104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114]
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Please, do tell me more about the sand business in Rellekka."
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Reeso"
+text = "An adventurer like you? Don't you have anything better to do?"
+parent = 103
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not at all. I seem to have all day to talk to people. Why else would I start a conversation with you?"
+parent = 103
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Reeso"
+text = "Well, being so close to the shore, Rellekka provides a lot of seaweed alongside my sand."
+parent = 103
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me more!"
+parent = 103
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Reeso"
+text = "Well I work for a business known as Sandy Sand Co. A brilliant bunch of people!"
+parent = 103
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Interesting..."
+parent = 103
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Reeso"
+text = "The seaweed from Rellekka, in combination with my sand business, provides a huge amount of glass for the surrounding areas!"
+parent = 103
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Reeso"
+text = "Fellow Fremenniks aren't too pleased with my outside dealings, though know how important my job is. I think they let it slide for that reason."
+parent = 103
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, thank you so much for all of that information Reeso. See you later."
+parent = 103
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "act"
+text = "end"
+parent = 103
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "You didn't say, [Fremennik name]. What exactly was it that was outside? My husband didn't tell me what he took to the Chieftain for you."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "Terrify her with all the details."
+parent = -1
+children = [117, 118, 119, 120, 121, 122]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It was a basilisk."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Freygerd"
+text = "What did you say?"
+parent = 116
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I said it was a basilisk."
+parent = 116
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Freygerd"
+text = "A basilisk?"
+parent = 116
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I really must get back to what I was doing. Lovely to catch up!"
+parent = 116
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "act"
+text = "end"
+parent = 116
+is_terminal = true
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "option"
+text = "Spare her the truth."
+parent = -1
+children = [124, 125, 126, 127, 128, 129]
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It was nothing to worry about! Just a couple of knick knacks probably dropped by some kids!"
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Freygerd"
+text = "What about the red eyes I saw though?"
+parent = 123
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "They were probably just firestarters. That's what I found outside."
+parent = 123
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Freygerd"
+text = "Well that's certainly a relief. Thank you for letting me know!"
+parent = 123
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not a problem!"
+parent = 123
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "act"
+text = "end"
+parent = 123
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "A basilisk! In our town! This is how it starts!"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How what starts?"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Freygerd"
+text = "The end!"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well that sounds cheery. You have nothing to fear though, not with me around. Speaking of which, I'd better get back to it."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "option"
+text = "quest=No|Ask about a Seal of Passage."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "option"
+text = "Ask about the mountain camp.|cond=If the player has not read the letter"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "Ask about the investigation."
+parent = -1
+children = [138, 147]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "cond"
+text = "If the player has not read the letter:"
+parent = 137
+children = [139, 140, 142, 143, 144, 145, 146]
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "[Fremennik name], I'm glad you've returned! This letter you have found is very worrying and requires our utmost attention."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "cond"
+text = "If the player does not already have the letter:"
+parent = 138
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 4
+kind = "box"
+text = "pic=Unsealed letter detail.png|The Chieftain hands you the letter back."
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Never did we think this day would come."
+parent = 138
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "So many lives lost. So many sacrifices."
+parent = 138
+
+[[nodes]]
+id = 144
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "But the Fremennik people shall not bow to the Jormungand again!"
+parent = 138
+
+[[nodes]]
+id = 145
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "[Fremennik name], please read the letter and talk to me afterwards with any questions you may have."
+parent = 138
+
+[[nodes]]
+id = 146
+depth = 3
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "cond"
+text = "If the player has read the letter:"
+parent = 137
+children = [148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190]
+
+[[nodes]]
+id = 148
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "[Fremennik name], I'm glad you've returned! This letter you have found is very worrying and requires our utmost attention."
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't understand. What does the letter mean? Who is the Jormungand? And since when could basilisks read and write?"
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "While they may not show it, basilisks are much smarter than they seem. Many years ago, a great basilisk army enslaved our people and took our home."
+parent = 147
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "The Jormungand, sometimes known as The Serpent King, was the leader of this army. Along with his three generals, Typhor, Vritra and Bakuna, he brought a terror to these lands unlike any other."
+parent = 147
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "If it hadn't been for the bravery of a great hero, we might never have been freed."
+parent = 147
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A hero?"
+parent = 147
+
+[[nodes]]
+id = 154
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Yes. He was known as V. He stood up to the Serpent King and confronted him on the Island of Stone. It is said that the two of them fought for days, but in the end, V stood victorious."
+parent = 147
+
+[[nodes]]
+id = 155
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What happened next?"
+parent = 147
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Well that depends who you ask. The bards wrote a great song about V's victory. They called it the Ballad of the Basilisk, and it claims V killed the Jormungand."
+parent = 147
+
+[[nodes]]
+id = 157
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But..."
+parent = 147
+
+[[nodes]]
+id = 158
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Well... bards are known to bend the truth a bit, especially if it makes a song sound better. In reality, V sealed the Serpent King in a magical prison on the island, where he remains to this day."
+parent = 147
+
+[[nodes]]
+id = 159
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A magical prison? I thought the Fremennik people didn't approve of magic?"
+parent = 147
+
+[[nodes]]
+id = 160
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "V was different. Stories tell of how he unlocked the potential of magic with the single touch of a stone. In that moment, he became more than just a man."
+parent = 147
+
+[[nodes]]
+id = 161
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A god?"
+parent = 147
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "It's not a distinction the Fremennik particularly care for. To us, he has always been a hero to be respected, not a god to be worshipped. They say he felt the same way."
+parent = 147
+
+[[nodes]]
+id = 163
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But he earned the right to use magic?"
+parent = 147
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Exactly. Now the Moon Clan on the other hand, did not earn that right. Their use of magic is an insult to our people."
+parent = 147
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what can we do about the Jormungand?"
+parent = 147
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "We will stay strong, [Fremennik name]. We'll..."
+parent = 147
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "We'll be doomed!"
+parent = 147
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Our army isn't large enough to hold back the forces of the Serpent King."
+parent = 147
+
+[[nodes]]
+id = 169
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I can help!"
+parent = 147
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "[Fremennik name], you're strong. But you're no army."
+parent = 147
+
+[[nodes]]
+id = 171
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're forgetting Brundt. We have the element of surprise! They don't know we're aware of their attack."
+parent = 147
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We could have days to prepare before they make their move. We could..."
+parent = 147
+
+[[nodes]]
+id = 173
+depth = 3
+kind = "other"
+text = "{{qact|Cutscene starts with Agnar running in.}}"
+parent = 147
+
+[[nodes]]
+id = 174
+depth = 3
+kind = "speaker"
+speaker = "Agnar"
+text = "Chieftain Brundt!"
+parent = 147
+
+[[nodes]]
+id = 175
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Agnar? What is it?"
+parent = 147
+
+[[nodes]]
+id = 176
+depth = 3
+kind = "speaker"
+speaker = "Agnar"
+text = "Chieftain Brundt! I'm here on behalf of the Fremennik Council! We've heard some disturbing news about a basilisk in town."
+parent = 147
+
+[[nodes]]
+id = 177
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Well I won't deny there's been a little issue but [Fremennik name] and I will soon have things back under control."
+parent = 147
+
+[[nodes]]
+id = 178
+depth = 3
+kind = "speaker"
+speaker = "Agnar"
+text = "[Fremennik name]? When will you see that this outerlander is the cause of all of our problems!"
+parent = 147
+
+[[nodes]]
+id = 179
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "[Fremennik name] is no outerlander! [He/She] passed our trials and is a Fremennik, just like you and I."
+parent = 147
+
+[[nodes]]
+id = 180
+depth = 3
+kind = "speaker"
+speaker = "Agnar"
+text = "You can disguise it all you want, but [he/she] is an outerlander and always will be! Ever since we let [him/her] in, we've had nothing but trouble!"
+parent = 147
+
+[[nodes]]
+id = 181
+depth = 3
+kind = "speaker"
+speaker = "Agnar"
+text = "And to top it all off, now we have basilisks wandering our town. The council have had enough!"
+parent = 147
+
+[[nodes]]
+id = 182
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "What are you saying Agnar?"
+parent = 147
+
+[[nodes]]
+id = 183
+depth = 3
+kind = "speaker"
+speaker = "Agnar"
+text = "I have a declaration here signed by seven of our twelve council members. We declare this outerlander an exile!"
+parent = 147
+
+[[nodes]]
+id = 184
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "This is outrageous! [Fremennik name] is one of us!"
+parent = 147
+
+[[nodes]]
+id = 185
+depth = 3
+kind = "speaker"
+speaker = "Agnar"
+text = "Do not use that name! The decision of the council is final. As Chieftain, you are honour bound to enact it."
+parent = 147
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I see..."
+parent = 147
+
+[[nodes]]
+id = 187
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Exile, you must leave our province. Our people will no longer see you as their brother."
+parent = 147
+
+[[nodes]]
+id = 188
+depth = 3
+kind = "box"
+text = "Chieftain Brundt gestures his head towards the south east."
+parent = 147
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Leave at once. Do not attempt to interact with myself or my people."
+parent = 147
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "act"
+text = "end"
+parent = 147
+is_terminal = true
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "option"
+text = "quest=No|Ask about anything else."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Begone exile, you are a Fremennik no more."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "other"
+text = "Chieftain Brundt gestures his head towards the south east."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Leave at once. Do not attempt to interact with myself or my people."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again Askeladden."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Askeladden"
+text = "Hey pal... listen. I shouldn't really be talking to you. Everyone is saying you're a bad person. They say you were exiled!"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's true but I did nothing wrong; don't believe them Askeladden!"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Askeladden"
+text = "I believe you buddy! I just can't really be seen talking to you."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's fine, I don't want to get you in trouble. Can you do me a favour though?"
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "option"
+text = "Can I have another pet rock?"
+parent = -1
+children = [203]
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = 202
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "Actually, never mind."
+parent = -1
+children = [205, 206, 207]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually, never mind."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Askeladden"
+text = "Okay pal. If you need anything, come back to me but keep it on the down low."
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Bardur"
+text = "Ah! Exile! Begone with you, before you suffer the same fate as these fledglings!"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fine. I was going anyway."
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [213, 214]
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Bjorn/Eldgrim"
+text = "Gerr owtta 'ere befur ay mayke yew!"
+parent = 212
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "act"
+text = "end"
+parent = 212
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [216, 217]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Bjorn/Eldgrim"
+text = "Behgawn exshiled. Elsh'll cahll thur gards!"
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "end"
+parent = 215
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [219, 220]
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "speaker"
+speaker = "Bjorn/Eldgrim"
+text = "Yoo shuwdn't be warking 'round alown whyle exshiled!"
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "act"
+text = "end"
+parent = 218
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi there! Who are you?"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "speaker"
+speaker = "Falo the Bard"
+text = "Hi there exile. I am Falo the bard! Like my brother Olaf, who lives in Rellekka, I also write music."
+parent = -1
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You don't seem to care too much about me getting exiled."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Falo the Bard"
+text = "Well we're not in Rellekka down here so I don't think it matters too much."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough. So, do you write about anything in particular?"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Jarvald"
+text = "Forgive me exile, though I can't allow you to board my ship."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "option"
+text = "Please Jarvald, it's really important!"
+parent = -1
+children = [229, 230, 231]
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Please Jarvald, it's really important!"
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Jarvald"
+text = "Very well... for old times sake."
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "option"
+text = "Fair enough."
+parent = -1
+children = [233, 234]
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough."
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "act"
+text = "end"
+parent = 232
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Jarvald"
+text = "Do you wish to return to Rellekka?"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "option"
+text = "Yes please."
+parent = -1
+children = [237, 238, 239]
+
+[[nodes]]
+id = 237
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes please."
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "speaker"
+speaker = "Jarvald"
+text = "Very well, but do make sure you're not spotted leaving my ship."
+parent = 236
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "act"
+text = "end"
+parent = 236
+is_terminal = true
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "option"
+text = "No thanks."
+parent = -1
+children = [241, 242]
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "act"
+text = "end"
+parent = 240
+is_terminal = true
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Maria Gunnars"
+text = "Welcome back, [Fremennik name]. Do you have any questions?"
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You don't seem to be bothered about my exile."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Maria Gunnars"
+text = "I'm not. Neitiznot does not consider you an exile, that's just the mainland."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Mord Gunnars"
+text = "Hail the conquering hero!"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Heh. Thanks - I was pretty heroic even if I say so myself."
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You do know I've been exiled right? You don't seem to care."
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Mord Gunnars"
+text = "Don't worry [Fremennik name], your exile does not cover the island of Jatizso. We still consider you a Fremennik."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "box"
+text = "Your pet rock ignores you. You are an exile of the Fremennik Province."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not you too!"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "box"
+text = "Your pet rock continues to ignore you."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aw..."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Sailor"
+text = "Don't talk to me exile."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "option"
+text = "Please, I must get to Miscellania."
+parent = -1
+children = [260, 261, 262, 263, 264]
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Please, I must get to Miscellania."
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "speaker"
+speaker = "Sailor"
+text = "You're lucky you're needed there. Just don't speak to me on the journey!"
+parent = 259
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's go!"
+parent = 259
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "other"
+text = "{{qact|The player travels to Miscellania.}}"
+parent = 259
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "act"
+text = "end"
+parent = 259
+is_terminal = true
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "option"
+text = "Sorry."
+parent = -1
+children = [266, 267]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Sailor"
+text = "You're lucky you're needed on Miscellania exile. Just don't speak to me on the journey!"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "other"
+text = "{{qact|The player travels to Miscellania.}}"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Can I get a ride on your ship?"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Sailor"
+text = "Fine. I won't pretend to like it though."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "option"
+text = "Let's go!"
+parent = -1
+children = [274, 275, 276]
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's go!"
+parent = 273
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "other"
+text = "{{qact|The player travels to Rellekka.}}"
+parent = 273
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "act"
+text = "end"
+parent = 273
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "option"
+text = "Actually, no."
+parent = -1
+children = [278, 279]
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Sailor"
+text = "Okay. Suit yourself."
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "act"
+text = "end"
+parent = 277
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Sailor"
+text = "Let's go exile. Sooner you're off my ship the better."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "other"
+text = "{{qact|The player travels to Rellekka.}}"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Thorodin"
+text = "Exile. You don't have many friends around here at the moment."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do you feel about it?"
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Thorodin"
+text = "Doesn't bother me. Some people take these things more seriously than others. On that note, do you need something?"
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Torfinn"
+text = "Sorry [Fremennik name], I can't be seen talking to you."
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Torfinn"
+text = "I'm not meant to be talking to you [Fremennik name]. I guess I can still take you to Ungael though if you want."
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Torfinn"
+text = "Do you want to return to Rellekka?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "act"
+text = "(Non-quest dialogue.)"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [295, 296]
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "Leave exile, before I alert the guards."
+parent = 294
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "act"
+text = "end"
+parent = 294
+is_terminal = true
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [298, 299]
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "Leave now, before I get rid of you myself."
+parent = 297
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "act"
+text = "end"
+parent = 297
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [301, 302]
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "Begone exile, you're no [brother/sister/Fremennik] to me."
+parent = 300
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "act"
+text = "end"
+parent = 300
+is_terminal = true
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [304, 305]
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "Begone exile, before I call the Fremennik guards!"
+parent = 303
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "act"
+text = "end"
+parent = 303
+is_terminal = true
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [307, 308]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "I'm sorry, you are Fremennik no more. I cannot help you. Leave, before I must call the guards."
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "end"
+parent = 306
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well that was awkward..."
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Indeed. I'm sorry [Fremennik name]. The reality is that many on the council did not take kindly to you becoming one of us. They've been looking for a good excuse to exile you ever since you arrived."
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But they're the ones that voted for me in the first place!"
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Well... not quite. Seven of the twelve council members gave you their vote, but you never had the support of the other five. They're the ones who've been pushing for your exile."
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. And they've used this basilisk problem to convince some of the others."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "It would seem so. Try not to judge them too harshly though, they only had what was best for the province in mind. This basilisk situation has a lot of people scared."
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't understand though, they're only basilisks. Surely we have the strength to defeat them."
+parent = -1
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Ah, I see you are not familiar with the End of Things."
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The End of Things?"
+parent = -1
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Many years ago, before the time of V, it was foretold that this world will end in a great battle. They called this battle Ragnarok, or more commonly, the End of Things."
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well that doesn't sound good. Where do the basilisks fit in?"
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "The prophecies say that the battle will begin after the Serpent King is freed. So you see, it is not the basilisks people fear, it is what comes after."
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Then we'd better make sure the Jormungand stays in that prison!"
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = """
+Well, [Fremennik name], that's why I asked you to meet me out here. If you are to help us put a stop to this threat, you'll need to regain the trust of the council. And I think I know just how you can do that.
+"""
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I think the best possible way to show your worth to them is by being the person that restores V's Shield."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "V's Shield?"
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "The shield used by V when he defeated the Serpent King. It is legendary amongst our people. If we are to have any chance of stopping this threat, we will need to remake it."
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "There's a few things I know about the shield, though other things are lost from stories past."
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I believe some members of the Moon Clan might know the details I don't, so your diplomatic relations should come in handy."
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Keep in mind, now that you've been exiled, most people in the province will be unlikely to talk to you."
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough. So where should I start?"
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Stories tell of how V's Shield was made using four components."
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "First, the base of the shield. This was a traditional Fremennik Shield, like the ones our warriors use."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Next, the Lunar Glass. This was apparently created by a great Moon Clan mystic and was used to reflect the Serpent King's gaze."
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Then you have the Polishing Rock. This was needed to shine the Lunar Glass. This rock was heated softly in a boiling spring."
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Finally, V's Sigil. This sigil was crafted by the Moon Clan, using a unique metal known only to them."
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "option"
+text = "Where can I find a Fremennik Shield?"
+parent = -1
+children = [337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 350, 352, 354]
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find a Fremennik Shield?"
+parent = 336
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Fremennik Shields are only given to warriors of the province."
+parent = 336
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I made a round shield with arctic pine in my previous adventure to Neitiznot?"
+parent = 336
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "No, this shield is different. I'd recommend heading to Waterbirth Island. The daggermouths within the dungeon will likely have some from warriors they've sent to Valhalla."
+parent = 336
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "You could slay them and reclaim a shield from their corpses."
+parent = 336
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What if that doesn't work?"
+parent = 336
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "There's a warrior down there known as Bardur, gathering many a daggermouth hide and saving Fremennik Shields."
+parent = 336
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "If you have no luck finding a shield, perhaps you could charm him to give one to you?"
+parent = 336
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Brundt, I'll keep that in mind."
+parent = 336
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "No problem."
+parent = 336
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Do you have any more questions about V's Shield, [Fremennik name]?"
+parent = 336
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "option"
+text = "Where can I get Lunar Glass?"
+parent = 336
+children = [349]
+
+[[nodes]]
+id = 349
+depth = 3
+kind = "act"
+text = "below"
+parent = 348
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "option"
+text = "How do I make the Polishing Rock?"
+parent = 336
+children = [351]
+
+[[nodes]]
+id = 351
+depth = 3
+kind = "act"
+text = "below"
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "option"
+text = "How do I make V's Sigil?"
+parent = 336
+children = [353]
+
+[[nodes]]
+id = 353
+depth = 3
+kind = "act"
+text = "below"
+parent = 352
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "option"
+text = "That's all thanks."
+parent = 336
+children = [355, 356, 357]
+
+[[nodes]]
+id = 355
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's all thanks."
+parent = 354
+
+[[nodes]]
+id = 356
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Goodbye."
+parent = 354
+
+[[nodes]]
+id = 357
+depth = 3
+kind = "act"
+text = "end"
+parent = 354
+is_terminal = true
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "option"
+text = "Where can I get Lunar Glass?"
+parent = -1
+children = [359, 360, 361, 362, 363, 364, 365, 367, 369, 371]
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I get Lunar Glass?"
+parent = 358
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I'm not sure I'm afraid. I imagine someone from the Moon Clan would likely have more knowledge on the matter."
+parent = 358
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I know just the chicken-legged-house-bound lady to ask!"
+parent = 358
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "What?"
+parent = 358
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry about it..."
+parent = 358
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Do you have any more questions about V's Shield, [Fremennik name]?"
+parent = 358
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "option"
+text = "Where can I find a Fremennik Shield?"
+parent = 358
+children = [366]
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "act"
+text = "above"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "option"
+text = "How do I make the Polishing Rock?"
+parent = 358
+children = [368]
+
+[[nodes]]
+id = 368
+depth = 3
+kind = "act"
+text = "below"
+parent = 367
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "option"
+text = "How do I make V's Sigil?"
+parent = 358
+children = [370]
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "act"
+text = "below"
+parent = 369
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "option"
+text = "That's all thanks."
+parent = 358
+children = [372]
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "act"
+text = "above"
+parent = 371
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "option"
+text = "How do I make the Polishing Rock?"
+parent = -1
+children = [374, 375, 376, 377, 378, 379, 380, 382, 384, 386]
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I make the Polishing Rock?"
+parent = 373
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Well firstly, a rock would probably help..."
+parent = 373
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know a guy! Well, a boy. Hopefully he'll still be willing to speak to me despite the exile."
+parent = 373
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Convenient. As for the matter of heating the rock, there's some hot springs on the mountain to the east that should be warm enough."
+parent = 373
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Use something to lower the rock into one of the geysers there, and you should be good to go."
+parent = 373
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Do you have any more questions about V's Shield, [Fremennik name]?"
+parent = 373
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "option"
+text = "Where can I find a Fremennik Shield?"
+parent = 373
+children = [381]
+
+[[nodes]]
+id = 381
+depth = 3
+kind = "act"
+text = "above"
+parent = 380
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "option"
+text = "How do I make the Polishing Rock?"
+parent = 373
+children = [383]
+
+[[nodes]]
+id = 383
+depth = 3
+kind = "act"
+text = "above"
+parent = 382
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "option"
+text = "How do I make V's Sigil?"
+parent = 373
+children = [385]
+
+[[nodes]]
+id = 385
+depth = 3
+kind = "act"
+text = "below"
+parent = 384
+
+[[nodes]]
+id = 386
+depth = 2
+kind = "option"
+text = "That's all thanks."
+parent = 373
+children = [387]
+
+[[nodes]]
+id = 387
+depth = 3
+kind = "act"
+text = "above"
+parent = 386
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "option"
+text = "How do I make V's Sigil?"
+parent = -1
+children = [389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 404, 406, 408]
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I make V's Sigil?"
+parent = 388
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "V's Sigil is, well... in the shape of a V."
+parent = 388
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh... is that it?"
+parent = 388
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Well, one side of the sigil is shaped like a basilisk. Spines down its back, and maw wide like a gate."
+parent = 388
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And the other side?"
+parent = 388
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Nothing fancy. Just the other side of the letter V."
+parent = 388
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What exactly is it made of?"
+parent = 388
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "The stories tell of a cave on Lunar Isle where V first gained his power. Apparently it contains a unique metal used only by the Moon Clan."
+parent = 388
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I'd say three bars of this metal should be enough. Take them to an anvil and you should be able to make the sigil."
+parent = 388
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Once you have made the sigil, you'll need to have it enchanted. This was apparently done by a powerful spirit."
+parent = 388
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know of such a spirit?"
+parent = 388
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "The stories didn't specify, though I would wager the Fossegrimen might be able to help."
+parent = 388
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Do you have any more questions about V's Shield, [Fremennik name]?"
+parent = 388
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "option"
+text = "Where can I find a Fremennik Shield?"
+parent = 388
+children = [403]
+
+[[nodes]]
+id = 403
+depth = 3
+kind = "act"
+text = "above"
+parent = 402
+
+[[nodes]]
+id = 404
+depth = 2
+kind = "option"
+text = "How do I make the Polishing Rock?"
+parent = 388
+children = [405]
+
+[[nodes]]
+id = 405
+depth = 3
+kind = "act"
+text = "above"
+parent = 404
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "option"
+text = "How do I make V's Sigil?"
+parent = 388
+children = [407]
+
+[[nodes]]
+id = 407
+depth = 3
+kind = "act"
+text = "above"
+parent = 406
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "option"
+text = "That's all thanks."
+parent = 388
+children = [409]
+
+[[nodes]]
+id = 409
+depth = 3
+kind = "act"
+text = "above"
+parent = 408
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [411, 412]
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Goodbye."
+parent = 410
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "act"
+text = "end"
+parent = 410
+is_terminal = true
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Greetings [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "option"
+text = "Where can I find a Fremennik Shield?"
+parent = -1
+children = [416]
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "act"
+text = "above"
+parent = 415
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "option"
+text = "Where can I get Lunar Glass?"
+parent = -1
+children = [418]
+
+[[nodes]]
+id = 418
+depth = 2
+kind = "act"
+text = "above"
+parent = 417
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "option"
+text = "How do I make the Polishing Rock?"
+parent = -1
+children = [420]
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "above"
+parent = 419
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "option"
+text = "How do I make V's Sigil?"
+parent = -1
+children = [422]
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "act"
+text = "above"
+parent = 421
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [424]
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "act"
+text = "above"
+parent = 423
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "speaker"
+speaker = "Bardur"
+text = "Ah! Exile! Begone with you, before you suffer the same fate as these fledglings!"
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Bardur, wait! I'm here with a task from the Chieftain."
+parent = -1
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "speaker"
+speaker = "Bardur"
+text = "I'm not too certain I should trust you! What is it you want?"
+parent = -1
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking to remake V's Shield, but I require a Fremennik Shield from a warrior. Where could I find one?"
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "cond"
+text = "If the player has a [[Fremennik shield]] in their inventory:"
+parent = -1
+children = [430, 431]
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "speaker"
+speaker = "Bardur"
+text = "You already have one! Begone, exile!"
+parent = 429
+
+[[nodes]]
+id = 431
+depth = 2
+kind = "act"
+text = "end"
+parent = 429
+is_terminal = true
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "cond"
+text = "If the player does not have a [[Fremennik shield]] in their inventory:"
+parent = -1
+children = [433, 434, 435, 439, 451]
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "speaker"
+speaker = "Bardur"
+text = "The daggermouths found in these caves should drop a few when slain. They take them from fallen warriors. I have a few myself, in fact. I wish to give them back to the families of the fallen."
+parent = 432
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "speaker"
+speaker = "Bardur"
+text = "These fledgelings won't drop anything you're looking for, though. Search the caves for some matured daggermouths."
+parent = 432
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "option"
+text = "Thanks for your time, Bardur."
+parent = 432
+children = [436, 437, 438]
+
+[[nodes]]
+id = 436
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your time, Bardur."
+parent = 435
+
+[[nodes]]
+id = 437
+depth = 3
+kind = "speaker"
+speaker = "Bardur"
+text = "You're lucky I'm busy exile! Things might have been different if I wasn't..."
+parent = 435
+
+[[nodes]]
+id = 438
+depth = 3
+kind = "act"
+text = "end"
+parent = 435
+is_terminal = true
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "option"
+text = "Maybe I could buy one off you?"
+parent = 432
+children = [440, 441, 442, 447]
+
+[[nodes]]
+id = 440
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Maybe I could buy one off you?"
+parent = 439
+
+[[nodes]]
+id = 441
+depth = 3
+kind = "speaker"
+speaker = "Bardur"
+text = "Hmm... Well I suppose the money would be of great help to the families of the fallen. Very well, I will sell you a shield for 150,000 coins."
+parent = 439
+
+[[nodes]]
+id = 442
+depth = 3
+kind = "option"
+text = "Sounds good to me."
+parent = 439
+children = [443, 444, 445, 446]
+
+[[nodes]]
+id = 443
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good to me."
+parent = 442
+
+[[nodes]]
+id = 444
+depth = 4
+kind = "act"
+text = "receives=a Fremennik shield for 150,000 coins"
+parent = 442
+
+[[nodes]]
+id = 445
+depth = 4
+kind = "speaker"
+speaker = "Bardur"
+text = "Perhaps I misjudged you, exile. Best of luck on your adventure."
+parent = 442
+
+[[nodes]]
+id = 446
+depth = 4
+kind = "act"
+text = "end"
+parent = 442
+is_terminal = true
+
+[[nodes]]
+id = 447
+depth = 3
+kind = "option"
+text = "That's far too much, I won't pay that!"
+parent = 439
+children = [448, 449, 450]
+
+[[nodes]]
+id = 448
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "That's far too much, I won't pay that!"
+parent = 447
+
+[[nodes]]
+id = 449
+depth = 4
+kind = "speaker"
+speaker = "Bardur"
+text = "Well I wouldn't expect an exile like you to care about the fallen. Be gone with you!"
+parent = 447
+
+[[nodes]]
+id = 450
+depth = 4
+kind = "act"
+text = "end"
+parent = 447
+is_terminal = true
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "option"
+text = "cond=If the player is wearing a [[ring of charos (a)]]:|(Charm) I could honour the fallen by remaking V's Shield."
+parent = 432
+children = [452, 453, 454, 455, 456, 457, 458, 459]
+
+[[nodes]]
+id = 452
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I could honour the fallen by remaking V's Shield."
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 3
+kind = "speaker"
+speaker = "Bardur"
+text = "Hmm... They would indeed be pleased. Having your shield used to make the shield of a hero would be an honour!"
+parent = 451
+
+[[nodes]]
+id = 454
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what do you say?"
+parent = 451
+
+[[nodes]]
+id = 455
+depth = 3
+kind = "speaker"
+speaker = "Bardur"
+text = "Very well..."
+parent = 451
+
+[[nodes]]
+id = 456
+depth = 3
+kind = "act"
+text = "receives=a Fremennik shield"
+parent = 451
+
+[[nodes]]
+id = 457
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks Bardur."
+parent = 451
+
+[[nodes]]
+id = 458
+depth = 3
+kind = "speaker"
+speaker = "Bardur"
+text = "Perhaps I misjudged you, exile. Best of luck on your adventure."
+parent = 451
+
+[[nodes]]
+id = 459
+depth = 3
+kind = "act"
+text = "end"
+parent = 451
+is_terminal = true
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Bardur"
+text = "Exile, has that shield served you well?"
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "cond"
+text = "If the player has a [[Fremennik shield]] in their inventory, bank, or any item retrieval service:"
+parent = -1
+children = [462, 463, 464]
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, thank you."
+parent = 461
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "speaker"
+speaker = "Bardur"
+text = "All the best, exile."
+parent = 461
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "act"
+text = "end"
+parent = 461
+is_terminal = true
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "cond"
+text = "If the player does not have a [[Fremennik shield]] in their inventory, bank, or any item retrieval service:"
+parent = -1
+children = [466, 467, 468, 469]
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost it."
+parent = 465
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "speaker"
+speaker = "Bardur"
+text = "Well you're not having another one if that's how you take care of things! If you want another, you'll need to slay some daggermouths!"
+parent = 465
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay..."
+parent = 465
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "act"
+text = "end"
+parent = 465
+is_terminal = true
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Ah! [player name], I'm glad to see you've returned. How can I help?"
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "option"
+text = "quest=No|Have you got anything to trade?"
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "option"
+text = "quest=No|It's a very interesting house you have here."
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "option"
+text = "I was wondering if you could help me make Lunar Glass?"
+parent = -1
+children = [475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485, 486, 491]
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was wondering if you could help me make..."
+parent = 474
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Lunar Glass?"
+parent = 474
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You really need to stop doing that."
+parent = 474
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Stop doing what?"
+parent = 474
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Stop finishing my..."
+parent = 474
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Sentences? Sorry it's a force of habit! Mind reading and watnot{{sic}}."
+parent = 474
+
+[[nodes]]
+id = 481
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = 474
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Oh don't look at me like that! I'm not the one who exiled you."
+parent = 474
+
+[[nodes]]
+id = 483
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Look, those are my private thoughts! You can't just go reading my mind without permission."
+parent = 474
+
+[[nodes]]
+id = 484
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Those aren't private thoughts! They're nothing compared to the other things I can see..."
+parent = 474
+
+[[nodes]]
+id = 485
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Please... can we just focus on the matter at hand?"
+parent = 474
+
+[[nodes]]
+id = 486
+depth = 2
+kind = "cond"
+text = "If the player does not have molten glass in their inventory:"
+parent = 474
+children = [487, 488, 489, 490]
+
+[[nodes]]
+id = 487
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Sure thing! Lunar Glass isn't so hard to make, but I will require a piece of Molten Glass. Return to me when you have some!"
+parent = 486
+
+[[nodes]]
+id = 488
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thank y..."
+parent = 486
+
+[[nodes]]
+id = 489
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "You're welcome."
+parent = 486
+
+[[nodes]]
+id = 490
+depth = 3
+kind = "act"
+text = "end"
+parent = 486
+is_terminal = true
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "cond"
+text = "If the player has molten glass in their inventory:"
+parent = 474
+children = [492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 502, 503, 504, 505, 506]
+
+[[nodes]]
+id = 492
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Sure thing! Lunar Glass isn't so hard to make, but I will require..."
+parent = 491
+
+[[nodes]]
+id = 493
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Some Molten Glass? I have some right here!"
+parent = 491
+
+[[nodes]]
+id = 494
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Hey! That's... really annoying."
+parent = 491
+
+[[nodes]]
+id = 495
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, how the tables have turned!"
+parent = 491
+
+[[nodes]]
+id = 496
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "How did you even know..."
+parent = 491
+
+[[nodes]]
+id = 497
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Anyway, let me imbue this piece of glass for you."
+parent = 491
+
+[[nodes]]
+id = 498
+depth = 3
+kind = "box"
+text = "pic=Molten_glass_(i)_detail.png|Baba Yaga imbues a piece of Molten Glass for you."
+parent = 491
+
+[[nodes]]
+id = 499
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "You will need to enchant it by using it on the Astral Altar. The process will also require 100 Astral Runes."
+parent = 491
+
+[[nodes]]
+id = 500
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh. Can't you just do it for me?"
+parent = 491
+
+[[nodes]]
+id = 501
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Afraid not, I have lots of tidying to do around here."
+parent = 491
+
+[[nodes]]
+id = 502
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tidying?"
+parent = 491
+
+[[nodes]]
+id = 503
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Have you ever tried living in a house that's constantly shaking? It's a total nightmare, believe me."
+parent = 491
+
+[[nodes]]
+id = 504
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I guess I never thought about that before, fair enough."
+parent = 491
+
+[[nodes]]
+id = 505
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Best of luck, [player name]."
+parent = 491
+
+[[nodes]]
+id = 506
+depth = 3
+kind = "act"
+text = "end"
+parent = 491
+is_terminal = true
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "option"
+text = "quest=No|I'm good, thanks, bye."
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Ah! [player name], I'm glad to see you've returned. How can I help?"
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "option"
+text = "quest=No|Have you got anything to trade?"
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "option"
+text = "quest=No|It's a very interesting house you have here."
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "option"
+text = "I was wondering if you could help me make Lunar Glass?"
+parent = -1
+children = [513, 514, 519]
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was wondering if you could help me make..."
+parent = 512
+
+[[nodes]]
+id = 514
+depth = 2
+kind = "cond"
+text = "If the player does not have molten glass in their inventory:"
+parent = 512
+children = [515, 516, 517, 518]
+
+[[nodes]]
+id = 515
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Lunar Glass? I can do that. I will require a piece of Molten Glass. Return to me when you have some!"
+parent = 514
+
+[[nodes]]
+id = 516
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thank y..."
+parent = 514
+
+[[nodes]]
+id = 517
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "You're welcome."
+parent = 514
+
+[[nodes]]
+id = 518
+depth = 3
+kind = "act"
+text = "end"
+parent = 514
+is_terminal = true
+
+[[nodes]]
+id = 519
+depth = 2
+kind = "cond"
+text = "If the player has molten glass in their inventory:"
+parent = 512
+children = [520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533]
+
+[[nodes]]
+id = 520
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Lunar Glass?"
+parent = 519
+
+[[nodes]]
+id = 521
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes! I have th..."
+parent = 519
+
+[[nodes]]
+id = 522
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "The Molten Glass? Excellent!"
+parent = 519
+
+[[nodes]]
+id = 523
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That one wasn't even mind reading! I could have guessed what I was going to say there."
+parent = 519
+
+[[nodes]]
+id = 524
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Anyway, let me imbue this piece of glass for you."
+parent = 519
+
+[[nodes]]
+id = 525
+depth = 3
+kind = "box"
+text = "pic=Molten_glass_(i)_detail.png|Baba Yaga imbues a piece of Molten Glass for you."
+parent = 519
+
+[[nodes]]
+id = 526
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "You will need to enchant it by using it on the Astral Altar. The process will also require 100 Astral Runes."
+parent = 519
+
+[[nodes]]
+id = 527
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh. Can't you just do it for me?"
+parent = 519
+
+[[nodes]]
+id = 528
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Afraid not, I have lots of tidying to do around here."
+parent = 519
+
+[[nodes]]
+id = 529
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Tidying?"
+parent = 519
+
+[[nodes]]
+id = 530
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Have you ever tried living in a house that's constantly shaking? It's a total nightmare, believe me."
+parent = 519
+
+[[nodes]]
+id = 531
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I guess I never thought about that before, fair enough."
+parent = 519
+
+[[nodes]]
+id = 532
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Best of luck, [player name]."
+parent = 519
+
+[[nodes]]
+id = 533
+depth = 3
+kind = "act"
+text = "end"
+parent = 519
+is_terminal = true
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "option"
+text = "quest=No|I'm good, thanks, bye."
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "cond"
+text = "If the player does not have no molten glass (i) in their inventory:"
+parent = -1
+children = [536, 537]
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "box"
+text = "pic=Molten_glass_(i)_detail.png|You don't have any imbued molten glass to enchant."
+parent = 535
+
+[[nodes]]
+id = 537
+depth = 2
+kind = "act"
+text = "end"
+parent = 535
+is_terminal = true
+
+[[nodes]]
+id = 538
+depth = 1
+kind = "cond"
+text = "If the player has molten glass (i) but fewer than 100 astral runes in their inventory:"
+parent = -1
+children = [539, 540]
+
+[[nodes]]
+id = 539
+depth = 2
+kind = "box"
+text = "pic=Astral rune detail.png|You need at least 100 Astral runes to attempt to enchant the glass."
+parent = 538
+
+[[nodes]]
+id = 540
+depth = 2
+kind = "act"
+text = "end"
+parent = 538
+is_terminal = true
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "cond"
+text = "If the player has molten glass (i) and at least 100 astral runes in their inventory:"
+parent = -1
+children = [542, 543]
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "box"
+text = "pic=Lunar glass detail.png|You successfully enchant the glass and create some Lunar Glass."
+parent = 541
+
+[[nodes]]
+id = 543
+depth = 2
+kind = "act"
+text = "end"
+parent = 541
+is_terminal = true
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Ah! [player name], I'm glad to see you've returned. How can I help?"
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "option"
+text = "quest=No|Have you got anything to trade?"
+parent = -1
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "option"
+text = "quest=No|It's a very interesting house you have here."
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "option"
+text = "I was wondering if you could help me make Lunar Glass?"
+parent = -1
+children = [549]
+
+[[nodes]]
+id = 549
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was wondering if you could help me make..."
+parent = 548
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "cond"
+text = "If the player has [[Molten glass (i)|molten glass (i)]] in their inventory:"
+parent = -1
+children = [551, 552]
+
+[[nodes]]
+id = 551
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Lunar Glass? But I can see you already have the Imbued Glass you need! You don't have to be a mind reader to see that..."
+parent = 550
+
+[[nodes]]
+id = 552
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Remember, you'll need to enchant it by using it on the Astral Altar. This process will also require 100 Astral Runes."
+parent = 550
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "cond"
+text = "If the player does not have [[Molten glass (i)|molten glass (i)]] in their inventory:"
+parent = -1
+children = [554, 555, 558]
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Lunar Glass? You'll need some Imbued Glass first. Don't worry, I can make some more for you."
+parent = 553
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "cond"
+text = "If the player does not have [[Molten glass|molten glass]] in their inventory:"
+parent = 553
+children = [556, 557]
+
+[[nodes]]
+id = 556
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "You don't seem to have any Molten Glass. Come back when you do!"
+parent = 555
+
+[[nodes]]
+id = 557
+depth = 3
+kind = "act"
+text = "end"
+parent = 555
+is_terminal = true
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "cond"
+text = "If the player has [[Molten glass|molten glass]] in their inventory:"
+parent = 553
+children = [559, 560, 561]
+
+[[nodes]]
+id = 559
+depth = 3
+kind = "box"
+text = "Baba Yaga imbues a piece of Molten Glass for you."
+parent = 558
+
+[[nodes]]
+id = 560
+depth = 3
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "There you go. Remember, you'll need to enchant it by using it on the Astral Altar. This process will also require 100 Astral Runes."
+parent = 558
+
+[[nodes]]
+id = 561
+depth = 3
+kind = "act"
+text = "end"
+parent = 558
+is_terminal = true
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "cond"
+text = "If the player has [[Lunar glass]] in their inventory or bank:"
+parent = -1
+children = [563, 564]
+
+[[nodes]]
+id = 563
+depth = 2
+kind = "speaker"
+speaker = "Baba Yaga"
+text = "Lunar Glass? But I can see you already have some! You don't have to be a mind reader to see that..."
+parent = 562
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "act"
+text = "end"
+parent = 562
+is_terminal = true
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "option"
+text = "quest=No|I'm good, thanks, bye."
+parent = -1
+
+[[nodes]]
+id = 566
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I already have some Lunar Glass. I should probably gather the rest of the items for V's Shield!"
+parent = -1
+
+[[nodes]]
+id = 567
+depth = 1
+kind = "cond"
+text = "If the player does not have a pet rock in their inventory:"
+parent = -1
+children = [568, 569]
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It might have helped if I'd actually remembered to bring my pet rock."
+parent = 567
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "act"
+text = "end"
+parent = 567
+is_terminal = true
+
+[[nodes]]
+id = 570
+depth = 1
+kind = "cond"
+text = "If the player has a pet rock in their inventory:"
+parent = -1
+children = [571, 572]
+
+[[nodes]]
+id = 571
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This geyser looks a little small. I'd probably do a better job heating this rock in a larger geyser!"
+parent = 570
+
+[[nodes]]
+id = 572
+depth = 2
+kind = "act"
+text = "end"
+parent = 570
+is_terminal = true
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "cond"
+text = "If the player does not have a pet rock in their inventory:"
+parent = -1
+children = [574, 575]
+
+[[nodes]]
+id = 574
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It might have helped if I'd actually remembered to bring my pet rock."
+parent = 573
+
+[[nodes]]
+id = 575
+depth = 2
+kind = "act"
+text = "end"
+parent = 573
+is_terminal = true
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "cond"
+text = "If the player has a pet rock in their inventory:"
+parent = -1
+children = [577, 578, 579, 580, 581, 582, 583, 587]
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, here we go!"
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "box"
+text = "pic=Pet rock detail.png|Your pet rock stares deeply into your eyes."
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any second now, I'm going to lower this rock into the geyser and boil it..."
+parent = 576
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "box"
+text = "pic=Pet rock detail.png|Your pet rock looks sad..."
+parent = 576
+
+[[nodes]]
+id = 581
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's just a rock, how is it looking so sad? Come on, I can do this! For the Province!"
+parent = 576
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "select"
+text = "Are you cruel enough to sacrifice your pet rock?"
+parent = 576
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "option"
+text = "It's for the good of the Province!"
+parent = 576
+children = [584, 585, 586]
+
+[[nodes]]
+id = 584
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It's for the good of the Province... I must do it!"
+parent = 583
+
+[[nodes]]
+id = 585
+depth = 3
+kind = "box"
+text = "pic=Pet rock detail.png|Your pet rock gives you a stern look."
+parent = 583
+
+[[nodes]]
+id = 586
+depth = 3
+kind = "act"
+text = "below"
+parent = 583
+
+[[nodes]]
+id = 587
+depth = 2
+kind = "option"
+text = "I can't do it! I love you pet rock."
+parent = 576
+children = [588, 589, 590, 591, 592, 593, 594, 595, 596]
+
+[[nodes]]
+id = 588
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I can't do it! I love you pet rock."
+parent = 587
+
+[[nodes]]
+id = 589
+depth = 3
+kind = "box"
+text = "pic=Pet rock detail.png|Your pet rock gives you a stern look."
+parent = 587
+
+[[nodes]]
+id = 590
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're right, pet rock... Why does it have to be this way?"
+parent = 587
+
+[[nodes]]
+id = 591
+depth = 3
+kind = "box"
+text = "pic=Pet rock detail.png|You stroke your pet rock one last time, and reminisce about your previous adventures."
+parent = 587
+
+[[nodes]]
+id = 592
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I can't do this to you with all of these happy memories!"
+parent = 587
+
+[[nodes]]
+id = 593
+depth = 3
+kind = "box"
+text = "pic=Pet rock detail.png|Your pet rock gives you an empowering look."
+parent = 587
+
+[[nodes]]
+id = 594
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You're right... I'll talk to Peer the Seer. He'll help me forget all of our times together."
+parent = 587
+
+[[nodes]]
+id = 595
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It'll make this easier."
+parent = 587
+
+[[nodes]]
+id = 596
+depth = 3
+kind = "act"
+text = "end"
+parent = 587
+is_terminal = true
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't do this to you with all of these happy memories!"
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "box"
+text = "pic=Pet rock detail.png|Your pet rock gives you an empowering look."
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're right... I'll talk to Peer the Seer. He'll help me forget all of our times together."
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It'll make this easier."
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "Though I appreciate your efforts in our trials, I'm afraid I can't speak to you [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please, Seer! I'm on a mission for Brundt."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "Hmm... If the Chieftain can still trust you, so can I. How may I be of assistance?"
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's a bit of a sensitive subject..."
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "You can tell me anything, [Fremennik name]. What's the matter?"
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't bring myself to boil my pet rock!"
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know, I'm a horrible person! Please help me, I can't bring myself to do it."
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "Are you serious? I'm a busy man..."
+parent = -1
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Please Seer, you're my only hope!"
+parent = -1
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "Very well. I'll clear your mind of any memories you have of your..."
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "*cough*"
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "pet rock..."
+parent = -1
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "I won't be able to speak with you after this. The others might start to get suspicious."
+parent = -1
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I understand."
+parent = -1
+
+[[nodes]]
+id = 617
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "{{overhead|Concussio! Forgessan! Geodeus!}}"
+parent = -1
+
+[[nodes]]
+id = 618
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you, Seer! I'll head back to the mountains now."
+parent = -1
+
+[[nodes]]
+id = 619
+depth = 1
+kind = "speaker"
+speaker = "Peer the Seer"
+text = "Now be gone with you, exile!"
+parent = -1
+
+[[nodes]]
+id = 620
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know it's just an act... but that hurt."
+parent = -1
+
+[[nodes]]
+id = 621
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "box"
+text = "pic=Pet rock detail.png|You place the rock in the geyser."
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I don't think that will be bobbing up to the top anytime soon! I'll need to fish it out with something."
+parent = -1
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 626
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not going to be able to get my rock back with just my bare hands! I'll need to get something to fish it out."
+parent = -1
+
+[[nodes]]
+id = 627
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 628
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've already dropped one rock in there. I should try fishing it out rather than throwing more away."
+parent = -1
+
+[[nodes]]
+id = 629
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 630
+depth = 1
+kind = "cond"
+text = "If there is no pet rock inside the geyser:"
+parent = -1
+children = [631, 632]
+
+[[nodes]]
+id = 631
+depth = 2
+kind = "other"
+text = "{{mes|You wrap the rock around the fishing line and lower it into the geyser.}}"
+parent = 630
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "act"
+text = "continue"
+parent = 630
+
+[[nodes]]
+id = 633
+depth = 1
+kind = "cond"
+text = "If there is a pet rock inside the geyser:"
+parent = -1
+children = [634, 635]
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "other"
+text = "{{mes|You cast your fishing line into the geyser.}}"
+parent = 633
+
+[[nodes]]
+id = 635
+depth = 2
+kind = "act"
+text = "continue"
+parent = 633
+
+[[nodes]]
+id = 636
+depth = 1
+kind = "other"
+text = "{{mes|You reel the rock back up from the geyser...}}"
+parent = -1
+
+[[nodes]]
+id = 637
+depth = 1
+kind = "cond"
+text = "If the player does not have the [[Ice gloves]] or [[Smiths gloves (i)]] equipped:"
+parent = -1
+children = [638, 639, 640, 644]
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ow!}}"
+parent = 637
+
+[[nodes]]
+id = 639
+depth = 2
+kind = "box"
+text = "pic=Pet rock detail.png|You drop your rock into the geyser."
+parent = 637
+
+[[nodes]]
+id = 640
+depth = 2
+kind = "cond"
+text = "If the player does not have either the Ice gloves or Smiths gloves (i) in their inventory:"
+parent = 637
+children = [641, 642, 643]
+
+[[nodes]]
+id = 641
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Darn it! That rock was hot..."
+parent = 640
+
+[[nodes]]
+id = 642
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "If only I had something that could keep my hands cold!"
+parent = 640
+
+[[nodes]]
+id = 643
+depth = 3
+kind = "act"
+text = "end"
+parent = 640
+is_terminal = true
+
+[[nodes]]
+id = 644
+depth = 2
+kind = "cond"
+text = "If the player has the Ice gloves or Smiths gloves (i) in their inventory:"
+parent = 637
+children = [645, 646]
+
+[[nodes]]
+id = 645
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Darn it! It would probably help if I actually wore my ice gloves."
+parent = 644
+
+[[nodes]]
+id = 646
+depth = 3
+kind = "act"
+text = "end"
+parent = 644
+is_terminal = true
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "cond"
+text = "If the player has the Ice gloves or Smiths gloves (i) equipped:"
+parent = -1
+children = [648, 649, 650]
+
+[[nodes]]
+id = 648
+depth = 2
+kind = "box"
+text = "pic=Polishing rock detail.png|The geyser has heated your rock, giving you a Polishing Rock."
+parent = 647
+
+[[nodes]]
+id = 649
+depth = 2
+kind = "act"
+text = "receives=a [[Polishing rock]]"
+parent = 647
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "act"
+text = "end"
+parent = 647
+is_terminal = true
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "cond"
+text = "If the polishing rock is in the player's inventory:"
+parent = -1
+children = [652, 653]
+
+[[nodes]]
+id = 652
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I already have a Polishing Rock. I think I'm done here."
+parent = 651
+
+[[nodes]]
+id = 653
+depth = 2
+kind = "act"
+text = "end"
+parent = 651
+is_terminal = true
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "cond"
+text = "If the polishing rock is in the player's bank:"
+parent = -1
+children = [655, 656]
+
+[[nodes]]
+id = 655
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I already have a Polishing Rock in my bank. I think I'm done here."
+parent = 654
+
+[[nodes]]
+id = 656
+depth = 2
+kind = "act"
+text = "end"
+parent = 654
+is_terminal = true
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "cond"
+text = "If the player has fewer than 3 lunar bars in their inventory:"
+parent = -1
+children = [658, 659]
+
+[[nodes]]
+id = 658
+depth = 2
+kind = "box"
+text = "pic=Lunar bar detail.png|You require 3 Lunar bars to make a V sigil."
+parent = 657
+
+[[nodes]]
+id = 659
+depth = 2
+kind = "act"
+text = "end"
+parent = 657
+is_terminal = true
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "cond"
+text = "If the player has at least 3 lunar bars in their inventory:"
+parent = -1
+children = [661, 662, 666]
+
+[[nodes]]
+id = 661
+depth = 2
+kind = "select"
+text = "Would you like to make a V Sigil?"
+parent = 660
+
+[[nodes]]
+id = 662
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 660
+children = [663, 664, 665]
+
+[[nodes]]
+id = 663
+depth = 3
+kind = "other"
+text = "{{mes|You hammer the three Lunar bars and make a V Sigil, exactly how Brundt described.}}"
+parent = 662
+
+[[nodes]]
+id = 664
+depth = 3
+kind = "other"
+text = "{{mes|It will still need to be enchanted before it can be used for V's Shield.}}"
+parent = 662
+
+[[nodes]]
+id = 665
+depth = 3
+kind = "act"
+text = "end"
+parent = 662
+is_terminal = true
+
+[[nodes]]
+id = 666
+depth = 2
+kind = "option"
+text = "No."
+parent = 660
+children = [667]
+
+[[nodes]]
+id = 667
+depth = 3
+kind = "act"
+text = "end"
+parent = 666
+is_terminal = true
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I hear that I can present you with an offering and you will enchant my lyre for me."
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "This is true. For a simple enchantment, you may place an offering on my Altar. Can I help you with anything else?"
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "option"
+text = "quest=No|Present offering of a single fish."
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "option"
+text = "quest=No|Ask about a permanent lyre enchantment."
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "option"
+text = "Ask about V's Sigil."
+parent = -1
+children = [679, 682]
+
+[[nodes]]
+id = 674
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm currently trying to remake V's Shield. I was told I need his sigil enchanted by a powerful spirit."
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 3
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "V? Now that's a name I haven't heard in a long time..."
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You know of V?"
+parent = -1
+
+[[nodes]]
+id = 677
+depth = 3
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "Oh yes. Were it not for V, this conversation might never had happened."
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 3
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "I owe V a debt that can never be repaid. It would be an honour to enchant his sigil."
+parent = -1
+
+[[nodes]]
+id = 679
+depth = 2
+kind = "cond"
+text = "If the player does not have the V sigil in their inventory:"
+parent = 673
+children = [680, 681]
+
+[[nodes]]
+id = 680
+depth = 3
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "Bring the unenchanted sigil to me and I'll provide you with what you need."
+parent = 679
+
+[[nodes]]
+id = 681
+depth = 3
+kind = "act"
+text = "end"
+parent = 679
+is_terminal = true
+
+[[nodes]]
+id = 682
+depth = 2
+kind = "cond"
+text = "If the player has the V sigil in their inventory:"
+parent = 673
+children = [683, 684, 685]
+
+[[nodes]]
+id = 683
+depth = 3
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "*The Fossegrimen whispers an enchantment*"
+parent = 682
+
+[[nodes]]
+id = 684
+depth = 3
+kind = "speaker"
+speaker = "Fossegrimen"
+text = "There you go! Go forth mighty warrior."
+parent = 682
+
+[[nodes]]
+id = 685
+depth = 3
+kind = "act"
+text = "end"
+parent = 682
+is_terminal = true
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "option"
+text = "quest=No|Nothing."
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Greetings [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I have everything needed to make V's Shield."
+parent = -1
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Well what are you waiting for? Get it made and we'll have everything we need to put an end to your exile."
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "cond"
+text = "If the player does not have a glassblowing pipe:"
+parent = -1
+children = [692, 693]
+
+[[nodes]]
+id = 692
+depth = 2
+kind = "box"
+text = "You need a Glassblowing Pipe to make V's Shield."
+parent = 691
+
+[[nodes]]
+id = 693
+depth = 2
+kind = "act"
+text = "end"
+parent = 691
+is_terminal = true
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "cond"
+text = "If the player has a glassblowing pipe:"
+parent = -1
+children = [695, 696, 697]
+
+[[nodes]]
+id = 695
+depth = 2
+kind = "box"
+text = "pic=V's shield detail.png|You meld the Lunar Glass to the Fremennik Shield. You then polish it with the Polishing Rock, which cools as you do so. Finally, you attach the V Sigil, finishing the shield."
+parent = 694
+
+[[nodes]]
+id = 696
+depth = 2
+kind = "act"
+text = "receives=V's shield"
+parent = 694
+
+[[nodes]]
+id = 697
+depth = 2
+kind = "act"
+text = "end"
+parent = 694
+is_terminal = true
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This looks complete! I should head back to the Chieftain and see what he thinks."
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Greetings [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've completed V's Shield!"
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Excellent!"
+parent = -1
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Hand it over then, [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, sorry. I simply left it in my bank. I'm such a ditzy person sometimes!"
+parent = -1
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "That's certainly one way to put it... Perhaps you should go and get it?"
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Will do, see you shortly!"
+parent = -1
+
+[[nodes]]
+id = 708
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Greetings [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 710
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've completed V's Shield!"
+parent = -1
+
+[[nodes]]
+id = 711
+depth = 1
+kind = "box"
+text = "pic=V's shield detail.png|You hand V's Shield to Brundt the Chieftain."
+parent = -1
+
+[[nodes]]
+id = 712
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "[Fremennik name]... This is incredible! It's as if you forged the shield from a picture. It's exactly how I imagined it from the stories!"
+parent = -1
+
+[[nodes]]
+id = 713
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you think this will be enough to convince the council?"
+parent = -1
+
+[[nodes]]
+id = 714
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I hope so [Fremennik name]. I do suspect some of them may never respect you though."
+parent = -1
+
+[[nodes]]
+id = 715
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Beggars can't be choosers, I suppose. Let's get going then..."
+parent = -1
+
+[[nodes]]
+id = 716
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Wait!"
+parent = -1
+
+[[nodes]]
+id = 717
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = -1
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "The shield. It requires one last thing."
+parent = -1
+
+[[nodes]]
+id = 719
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's missing?"
+parent = -1
+
+[[nodes]]
+id = 720
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Return to me with two beers. No... Two kegs of beer! Quickly! There's not much time!"
+parent = -1
+
+[[nodes]]
+id = 721
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay!"
+parent = -1
+
+[[nodes]]
+id = 722
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Have you got the two kegs of beer?"
+parent = -1
+
+[[nodes]]
+id = 724
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have them right here!"
+parent = -1
+
+[[nodes]]
+id = 725
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Great!"
+parent = -1
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "other"
+text = "The chieftain takes both kegs and quickly drinks one."
+parent = -1
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey!"
+parent = -1
+
+[[nodes]]
+id = 728
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I'm litchrally abousht to go shtand uhp to the enshtire *hiccup* counshil for yooo...! I need thish!"
+parent = -1
+
+[[nodes]]
+id = 729
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's a very good point. Carry on then."
+parent = -1
+
+[[nodes]]
+id = 730
+depth = 1
+kind = "other"
+text = "The chieftain quickly drinks the second keg and stumbles off."
+parent = -1
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should probably head back to the longhall..."
+parent = -1
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Return to me with two beers. No... Two kegs of beer! Quickly! There's not much time!"
+parent = -1
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I actually have some here."
+parent = -1
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "You're a bigger alcoholic than I am! Hand them over."
+parent = -1
+
+[[nodes]]
+id = 737
+depth = 1
+kind = "box"
+text = "The chieftain takes both kegs and quickly drinks one."
+parent = -1
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 739
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Good to see you [Fremennik name]."
+parent = -1
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And you Brundt. You sobered up quickly."
+parent = -1
+
+[[nodes]]
+id = 741
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "We Fremennik know how to handle a drink, [Fremennik name]. Anyway, I have some good news for you."
+parent = -1
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = -1
+
+[[nodes]]
+id = 743
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Following your successful recreation of V's Shield, the council have agreed to end your exile. I hearby{{sic}} declare you a Fremennik again!"
+parent = -1
+
+[[nodes]]
+id = 744
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Not only that, but we would like you to be the one to carry V's legendary shield into battle."
+parent = -1
+
+[[nodes]]
+id = 745
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm very honoured."
+parent = -1
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "So you should be [Fremennik name]. V was our greatest hero. There is no greater honour than to bear his shield in battle."
+parent = -1
+
+[[nodes]]
+id = 747
+depth = 1
+kind = "box"
+text = "pic=V's shield detail.png|Brundt the Chieftain gives you V's Shield."
+parent = -1
+
+[[nodes]]
+id = 748
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what's our plan?"
+parent = -1
+
+[[nodes]]
+id = 749
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "The basilisks intend to attack the town so they can keep us distracted while they free the Jormungand. Luckily for us, we know about this."
+parent = -1
+
+[[nodes]]
+id = 750
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Once the attack begins, the majority of our forces will stay here to hold the town. While they do, you and I will journey to the Island of Stone."
+parent = -1
+
+[[nodes]]
+id = 751
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "There, we will ensure that the prison of the Jormungand remains sealed."
+parent = -1
+
+[[nodes]]
+id = 752
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good, when do..."
+parent = -1
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "speaker"
+speaker = "Fremennik Warrior"
+text = "Basilisks in the market! Basilisks in the market!"
+parent = -1
+
+[[nodes]]
+id = 754
+depth = 1
+kind = "other"
+text = "{{qact|Cutscene starts}}"
+parent = -1
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|They've walked right through our defences!}}"
+parent = -1
+
+[[nodes]]
+id = 756
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "They've walked right through our defences!"
+parent = -1
+
+[[nodes]]
+id = 757
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|Kill them all!}}"
+parent = -1
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Kill them all!"
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "act"
+text = "Fremennik Warriors, Koschei the Deathless, Thorvald the Warrior and Brundt the Chieftain will say one of the phrases while in combat throughout the Market Fight."
+parent = -1
+
+[[nodes]]
+id = 761
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 762
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [763]
+
+[[nodes]]
+id = 763
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "{{overhead|This is Rellekka!}}"
+parent = 762
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [765]
+
+[[nodes]]
+id = 765
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "{{overhead|Kill the invaders!}}"
+parent = 764
+
+[[nodes]]
+id = 766
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [767]
+
+[[nodes]]
+id = 767
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "{{overhead|You die here beast!}}"
+parent = 766
+
+[[nodes]]
+id = 768
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [769]
+
+[[nodes]]
+id = 769
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "{{overhead|Die you foul beasts!}}"
+parent = 768
+
+[[nodes]]
+id = 770
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [771]
+
+[[nodes]]
+id = 771
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "{{overhead|Death to the basilisks!}}"
+parent = 770
+
+[[nodes]]
+id = 772
+depth = 1
+kind = "option"
+text = "Dialogue 6"
+parent = -1
+children = [773]
+
+[[nodes]]
+id = 773
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "{{overhead|Kill them! Kill them all!}}"
+parent = 772
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "option"
+text = "Dialogue 7"
+parent = -1
+children = [775]
+
+[[nodes]]
+id = 775
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "{{overhead|You will not take our home!}}"
+parent = 774
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "box"
+text = "You leave the battle."
+parent = -1
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "option"
+text = "quest=No|Ask about a Seal of Passage."
+parent = -1
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "option"
+text = "Ask about the Jormungand."
+parent = -1
+children = [780, 781]
+
+[[nodes]]
+id = 780
+depth = 2
+kind = "speaker"
+speaker = "Fremennik Warrior"
+text = "Basilisks in the market! Basilisks in the market!"
+parent = 779
+
+[[nodes]]
+id = 781
+depth = 2
+kind = "act"
+text = "end"
+parent = 779
+is_terminal = true
+
+[[nodes]]
+id = 782
+depth = 1
+kind = "option"
+text = "quest=No|Ask about anything else."
+parent = -1
+
+[[nodes]]
+id = 783
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|[Fremennik name]! Get to the boat. It's time for us to go!}}"
+parent = -1
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What now?"
+parent = -1
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "This isn't good [Fremennik name]. The prison has already been breached."
+parent = -1
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So we're too late?"
+parent = -1
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Not quite, but we'll have to act fast. If the Jormungand manages to leave the prison, the End of Things will be upon us."
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well we'd better get in there and make sure that doesn't happen."
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "It looks like the basilisks resealed the door behind them. We'll have to get through it."
+parent = -1
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "From what I can tell, the door uses a combination lock. You'll need to get the right combination to unlock it. Too many wrong attempts will reset the lock though."
+parent = -1
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd better be careful then. I'll get to work."
+parent = -1
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Hurry [Fremennik name]. We can't afford to waste any time."
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What now?"
+parent = -1
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Have you opened the door yet?"
+parent = -1
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Hurry [Fremennik name]. We need to get inside before it's too late."
+parent = -1
+
+[[nodes]]
+id = 800
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 801
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's the door unlocked."
+parent = -1
+
+[[nodes]]
+id = 802
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Good work [Fremennik name]. Let's get inside and see what's going on."
+parent = -1
+
+[[nodes]]
+id = 803
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 804
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What now?"
+parent = -1
+
+[[nodes]]
+id = 805
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Let's get inside and see what's going on."
+parent = -1
+
+[[nodes]]
+id = 806
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 807
+depth = 1
+kind = "speaker"
+speaker = "Typhor"
+text = "Humans!"
+parent = -1
+
+[[nodes]]
+id = 808
+depth = 1
+kind = "speaker"
+speaker = "Bakuna"
+text = "Destroy them! Our king must be freed!"
+parent = -1
+
+[[nodes]]
+id = 809
+depth = 1
+kind = "speaker"
+speaker = "Vritra"
+text = "It will be done."
+parent = -1
+
+[[nodes]]
+id = 810
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "With me [Fremennik name]! Let's kill these foul beasts!"
+parent = -1
+
+[[nodes]]
+id = 811
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 812
+depth = 1
+kind = "speaker"
+speaker = "The Jormungand"
+text = "At long last, I have been granted freedom. You have done well Bakuna."
+parent = -1
+
+[[nodes]]
+id = 813
+depth = 1
+kind = "speaker"
+speaker = "Bakuna"
+text = "I exist to serve."
+parent = -1
+
+[[nodes]]
+id = 814
+depth = 1
+kind = "speaker"
+speaker = "The Jormungand"
+text = "Good, for I have one final use of you. My long rest has weakened me, you will grant me strength."
+parent = -1
+
+[[nodes]]
+id = 815
+depth = 1
+kind = "other"
+text = "{{qact|The Jormungand kills Bakuna in one hit}}"
+parent = -1
+
+[[nodes]]
+id = 816
+depth = 1
+kind = "speaker"
+speaker = "The Jormungand"
+text = "Power!"
+parent = -1
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "This isn't over yet [Fremennik name], the Jormungand is weak from his imprisonment! We can still stop him!"
+parent = -1
+
+[[nodes]]
+id = 818
+depth = 1
+kind = "speaker"
+speaker = "The Jormungand"
+text = "Humans, you have been bestowed with a great honour, for you are about to become the first of your kind in millennia to feed my power!"
+parent = -1
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "speaker"
+speaker = "The Jormungand"
+text = "Rejoice with me, for your miserable lives are finally at an end!"
+parent = -1
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "You will not defeat us this day! Come [Fremennik name]!"
+parent = -1
+
+[[nodes]]
+id = 821
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 822
+depth = 1
+kind = "cond"
+text = "If The Jormungand uses his glare attack:"
+parent = -1
+children = [823, 824, 826, 828, 830]
+
+[[nodes]]
+id = 823
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 822
+
+[[nodes]]
+id = 824
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 822
+children = [825]
+
+[[nodes]]
+id = 825
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|Turn away [Fremennik name]!}}"
+parent = 824
+
+[[nodes]]
+id = 826
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 822
+children = [827]
+
+[[nodes]]
+id = 827
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|Don't look into his eyes!}}"
+parent = 826
+
+[[nodes]]
+id = 828
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 822
+children = [829]
+
+[[nodes]]
+id = 829
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|Don't look at him [Fremennik name]!}}"
+parent = 828
+
+[[nodes]]
+id = 830
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 822
+children = [831]
+
+[[nodes]]
+id = 831
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|[Fremennik name]! Do not face him!}}"
+parent = 830
+
+[[nodes]]
+id = 832
+depth = 1
+kind = "cond"
+text = "If The Jormungand uses his binding attack:"
+parent = -1
+children = [833, 834, 836, 838, 840]
+
+[[nodes]]
+id = 833
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 832
+
+[[nodes]]
+id = 834
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 832
+children = [835]
+
+[[nodes]]
+id = 835
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|The stone is weak! You can break it!}}"
+parent = 834
+
+[[nodes]]
+id = 836
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 832
+children = [837]
+
+[[nodes]]
+id = 837
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|Try to break free [Fremennik name]!}}"
+parent = 836
+
+[[nodes]]
+id = 838
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 832
+children = [839]
+
+[[nodes]]
+id = 839
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|[Fremennik name]! You need to break loose!}}"
+parent = 838
+
+[[nodes]]
+id = 840
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 832
+children = [841]
+
+[[nodes]]
+id = 841
+depth = 3
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "{{overhead|You can free yourself [Fremennik name]!}}"
+parent = 840
+
+[[nodes]]
+id = 842
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What now?"
+parent = -1
+
+[[nodes]]
+id = 843
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Hurry [Fremennik name]! We need to get inside and stop those basilisks!"
+parent = -1
+
+[[nodes]]
+id = 844
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 845
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Wait [Fremennik name]! I have some things for you!"
+parent = -1
+
+[[nodes]]
+id = 846
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 847
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 848
+depth = 1
+kind = "option"
+text = "Ask about the Jormungand."
+parent = -1
+children = [849]
+
+[[nodes]]
+id = 849
+depth = 2
+kind = "act"
+text = "above"
+parent = 848
+
+[[nodes]]
+id = 850
+depth = 1
+kind = "option"
+text = "Ask about collecting items."
+parent = -1
+children = [851, 852, 853]
+
+[[nodes]]
+id = 851
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any of my items?"
+parent = 850
+
+[[nodes]]
+id = 852
+depth = 2
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I do have some of your items here [Fremennik name]. Do try to be careful with them."
+parent = 850
+
+[[nodes]]
+id = 853
+depth = 2
+kind = "act"
+text = "opens2=[[Item Retrieval Service|Brundt the Cheiftain's Item Retrieval Service]]"
+parent = 850
+
+[[nodes]]
+id = 854
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "I'm afraid I don't have anything for you [Fremennik name]. If I did have any of your items, but you died before collecting them, they'll now be lost."
+parent = -1
+
+[[nodes]]
+id = 855
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 856
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Ah, nothing like a glorious fight to make you feel alive!"
+parent = -1
+
+[[nodes]]
+id = 857
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what now?"
+parent = -1
+
+[[nodes]]
+id = 858
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "Now? We drink of course! The Jormungand has been defeated and the End of Things prevented!"
+parent = -1
+
+[[nodes]]
+id = 859
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you sure? They did manage to free him. How do you know we weren't too late?"
+parent = -1
+
+[[nodes]]
+id = 860
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "You worry too much [Fremennik name]. If the end had begun, we'd have noticed by now. Come! Let us go and celebrate!"
+parent = -1
+
+[[nodes]]
+id = 861
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 862
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene starts with Olaf the Bard singing the Ballad of the Basilisk in the Rellekka longhall}}"
+parent = -1
+
+[[nodes]]
+id = 863
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|T'was on a haughty winter,}}"
+parent = -1
+
+[[nodes]]
+id = 864
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|We're bitten with frost,}}"
+parent = -1
+
+[[nodes]]
+id = 865
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|And none would dare venture,}}"
+parent = -1
+
+[[nodes]]
+id = 866
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|Where many were lost.}}"
+parent = -1
+
+[[nodes]]
+id = 867
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|V sailed his mighty longship,}}"
+parent = -1
+
+[[nodes]]
+id = 868
+depth = 1
+kind = "other"
+text = "{{qact|After the first verse, the camera tilts down to reveal the adventurer standing amidst celebrating Fremenniks, leaving the bard to sing three more verses off-screen}}"
+parent = -1
+
+[[nodes]]
+id = 869
+depth = 1
+kind = "speaker"
+speaker = "Manni the Reveller"
+text = "Another great victory for our people!"
+parent = -1
+
+[[nodes]]
+id = 870
+depth = 1
+kind = "speaker"
+speaker = "Brundt the Chieftain"
+text = "But it wouldn't have been possible without [Fremennik name]!"
+parent = -1
+
+[[nodes]]
+id = 871
+depth = 1
+kind = "speaker"
+speaker = "Agnar"
+text = "You have truly proven yourself to be one of us, [Fremennik name]! I'm sorry we ever doubted you."
+parent = -1
+
+[[nodes]]
+id = 872
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm just glad it all worked out in the end."
+parent = -1
+
+[[nodes]]
+id = 873
+depth = 1
+kind = "speaker"
+speaker = "Manni the Reveller"
+text = "And on that note, time for a drink! I want to see if [Fremennik name] can still drink me under the table!"
+parent = -1
+
+[[nodes]]
+id = 874
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh oh..."
+parent = -1
+
+[[nodes]]
+id = 875
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 876
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|To the Island of Stone,}}"
+parent = -1
+
+[[nodes]]
+id = 877
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|Where the king of the serpents,}} <!--Manni begins to speak here-->"
+parent = -1
+
+[[nodes]]
+id = 878
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|Had made it his home.}}"
+parent = -1
+
+[[nodes]]
+id = 879
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|The storm it was a ragin',}}"
+parent = -1
+
+[[nodes]]
+id = 880
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|Waves broke on the deck,}}"
+parent = -1
+
+[[nodes]]
+id = 881
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|The bell rang with a tolling,}}"
+parent = -1
+
+[[nodes]]
+id = 882
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|To warn of the wreck.}}"
+parent = -1
+
+[[nodes]]
+id = 883
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|But naught could deter him,}}"
+parent = -1
+
+[[nodes]]
+id = 884
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|From the fate of his quest,}}"
+parent = -1
+
+[[nodes]]
+id = 885
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|Winds tore through the main sail,}}"
+parent = -1
+
+[[nodes]]
+id = 886
+depth = 1
+kind = "speaker"
+speaker = "Olaf the Bard"
+text = "{{overhead|Yet onward he pressed.}}"
+parent = -1

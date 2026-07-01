@@ -3,7 +3,7 @@
 // Scurrius — OSRS solo/multi rat boss (cache NPC id 7221/7222).
 //
 // MOST of Scurrius runs on generic primitives in rc-core and needs
-// no code here. The TOML at `data/curated/encounters/scurrius.toml`
+// no code here. The TOML at `content/encounters/scurrius.toml`
 // references:
 //   - telegraphed_aoe_tile  (Falling Bricks)      — generic
 //   - spawn_npcs            (Giant Rat minions)   — generic

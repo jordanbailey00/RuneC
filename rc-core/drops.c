@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define DROP_MAGIC 0x504F5244u
 #define DROP_VERSION 1u
@@ -20,9 +21,99 @@ int g_rc_gdt_entry_count = 0;
 int g_rc_mrdt_entry_count = 0;
 
 static int g_drop_table_by_npc[RC_MAX_NPC_ID];
+static const RcDropTable *g_active_drop_tables = NULL;
+static const RcDropEntry *g_active_drop_entries = NULL;
+static const RcDropEntry *g_active_rdt_entries = NULL;
+static const RcDropEntry *g_active_gdt_entries = NULL;
+static const RcDropEntry *g_active_mrdt_entries = NULL;
+static const int *g_active_drop_table_by_npc = g_drop_table_by_npc;
+static int g_active_drop_table_count = 0;
+static int g_active_drop_entry_count = 0;
+static int g_active_rdt_entry_count = 0;
+static int g_active_gdt_entry_count = 0;
+static int g_active_mrdt_entry_count = 0;
 
 static void reset_drop_index(void) {
     for (int i = 0; i < RC_MAX_NPC_ID; i++) g_drop_table_by_npc[i] = -1;
+}
+
+static void reset_drop_index_into(int *index) {
+    if (!index) return;
+    for (int i = 0; i < RC_MAX_NPC_ID; i++) index[i] = -1;
+}
+
+static void build_drop_index(const RcDropTable *tables, int table_count,
+                             int *index) {
+    reset_drop_index_into(index);
+    if (!tables || !index) return;
+    for (int i = 0; i < table_count; i++) {
+        uint32_t npc_id = tables[i].npc_id;
+        if (npc_id < RC_MAX_NPC_ID) index[npc_id] = i;
+    }
+}
+
+void rc_drop_data_init(RcDropData *data) {
+    if (!data) return;
+    data->tables = NULL;
+    data->entries = NULL;
+    data->rdt_entries = NULL;
+    data->gdt_entries = NULL;
+    data->mrdt_entries = NULL;
+    data->table_count = 0;
+    data->entry_count = 0;
+    data->rdt_entry_count = 0;
+    data->gdt_entry_count = 0;
+    data->mrdt_entry_count = 0;
+    reset_drop_index_into(data->table_by_npc);
+}
+
+void rc_drop_data_free(RcDropData *data) {
+    if (!data) return;
+    free(data->tables);
+    free(data->entries);
+    free(data->rdt_entries);
+    free(data->gdt_entries);
+    free(data->mrdt_entries);
+    rc_drop_data_init(data);
+}
+
+void rc_drops_use_data(const RcDropData *data) {
+    if (!data) {
+        g_active_drop_tables = g_rc_drop_tables;
+        g_active_drop_entries = g_rc_drop_entries;
+        g_active_rdt_entries = g_rc_rdt_entries;
+        g_active_gdt_entries = g_rc_gdt_entries;
+        g_active_mrdt_entries = g_rc_mrdt_entries;
+        g_active_drop_table_by_npc = g_drop_table_by_npc;
+        g_active_drop_table_count = g_rc_drop_table_count;
+        g_active_drop_entry_count = g_rc_drop_entry_count;
+        g_active_rdt_entry_count = g_rc_rdt_entry_count;
+        g_active_gdt_entry_count = g_rc_gdt_entry_count;
+        g_active_mrdt_entry_count = g_rc_mrdt_entry_count;
+        return;
+    }
+    g_active_drop_tables = data->tables;
+    g_active_drop_entries = data->entries;
+    g_active_rdt_entries = data->rdt_entries;
+    g_active_gdt_entries = data->gdt_entries;
+    g_active_mrdt_entries = data->mrdt_entries;
+    g_active_drop_table_by_npc = data->table_by_npc;
+    g_active_drop_table_count = data->table_count;
+    g_active_drop_entry_count = data->entry_count;
+    g_active_rdt_entry_count = data->rdt_entry_count;
+    g_active_gdt_entry_count = data->gdt_entry_count;
+    g_active_mrdt_entry_count = data->mrdt_entry_count;
+}
+
+void rc_drops_reset_data_if_active(const RcDropData *data) {
+    if (!data) return;
+    if (g_active_drop_tables == data->tables
+            || g_active_drop_entries == data->entries
+            || g_active_rdt_entries == data->rdt_entries
+            || g_active_gdt_entries == data->gdt_entries
+            || g_active_mrdt_entries == data->mrdt_entries) {
+        rc_drops_use_data(NULL);
+    }
 }
 
 static int read_header(FILE *f, const char *path, uint32_t magic,
@@ -62,8 +153,8 @@ static int read_entry(FILE *f, const char *path, RcDropEntry *row,
                              path, "rarity"));
 }
 
-int rc_load_drops(const char *path) {
-    if (!path) return -1;
+int rc_load_drops_into(const char *path, RcDropData *data) {
+    if (!path || !data) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
@@ -111,22 +202,104 @@ int rc_load_drops(const char *path) {
     }
     rc_asset_close(f);
 
+    free(data->tables);
+    free(data->entries);
+    data->tables = tables;
+    data->entries = entries;
+    data->table_count = (int)count;
+    data->entry_count = entry_count;
+    build_drop_index(data->tables, data->table_count, data->table_by_npc);
+    return data->table_count;
+}
+
+int rc_drops_mirror_to_globals(const RcDropData *data) {
+    if (!data) return 0;
+    RcDropTable *tables = NULL;
+    RcDropEntry *entries = NULL;
+    RcDropEntry *rdt = NULL;
+    RcDropEntry *gdt = NULL;
+    RcDropEntry *mrdt = NULL;
+
+    if (data->table_count > 0) {
+        if (!data->tables) goto fail;
+        tables = malloc((size_t)data->table_count * sizeof(*tables));
+        if (!tables) goto fail;
+        memcpy(tables, data->tables,
+               (size_t)data->table_count * sizeof(*tables));
+    }
+    if (data->entry_count > 0) {
+        if (!data->entries) goto fail;
+        entries = malloc((size_t)data->entry_count * sizeof(*entries));
+        if (!entries) goto fail;
+        memcpy(entries, data->entries,
+               (size_t)data->entry_count * sizeof(*entries));
+    }
+    if (data->rdt_entry_count > 0) {
+        if (!data->rdt_entries) goto fail;
+        rdt = malloc((size_t)data->rdt_entry_count * sizeof(*rdt));
+        if (!rdt) goto fail;
+        memcpy(rdt, data->rdt_entries,
+               (size_t)data->rdt_entry_count * sizeof(*rdt));
+    }
+    if (data->gdt_entry_count > 0) {
+        if (!data->gdt_entries) goto fail;
+        gdt = malloc((size_t)data->gdt_entry_count * sizeof(*gdt));
+        if (!gdt) goto fail;
+        memcpy(gdt, data->gdt_entries,
+               (size_t)data->gdt_entry_count * sizeof(*gdt));
+    }
+    if (data->mrdt_entry_count > 0) {
+        if (!data->mrdt_entries) goto fail;
+        mrdt = malloc((size_t)data->mrdt_entry_count * sizeof(*mrdt));
+        if (!mrdt) goto fail;
+        memcpy(mrdt, data->mrdt_entries,
+               (size_t)data->mrdt_entry_count * sizeof(*mrdt));
+    }
+
     free(g_rc_drop_tables);
     free(g_rc_drop_entries);
+    free(g_rc_rdt_entries);
+    free(g_rc_gdt_entries);
+    free(g_rc_mrdt_entries);
     g_rc_drop_tables = tables;
     g_rc_drop_entries = entries;
-    g_rc_drop_table_count = (int)count;
-    g_rc_drop_entry_count = entry_count;
-    reset_drop_index();
-    for (int i = 0; i < g_rc_drop_table_count; i++) {
-        uint32_t npc_id = g_rc_drop_tables[i].npc_id;
-        if (npc_id < RC_MAX_NPC_ID) g_drop_table_by_npc[npc_id] = i;
+    g_rc_rdt_entries = rdt;
+    g_rc_gdt_entries = gdt;
+    g_rc_mrdt_entries = mrdt;
+    g_rc_drop_table_count = data->table_count;
+    g_rc_drop_entry_count = data->entry_count;
+    g_rc_rdt_entry_count = data->rdt_entry_count;
+    g_rc_gdt_entry_count = data->gdt_entry_count;
+    g_rc_mrdt_entry_count = data->mrdt_entry_count;
+    build_drop_index(g_rc_drop_tables, g_rc_drop_table_count,
+                     g_drop_table_by_npc);
+    return 1;
+
+fail:
+    free(tables);
+    free(entries);
+    free(rdt);
+    free(gdt);
+    free(mrdt);
+    return 0;
+}
+
+int rc_load_drops(const char *path) {
+    RcDropData data;
+    rc_drop_data_init(&data);
+    int loaded = rc_load_drops_into(path, &data);
+    if (loaded < 0) return -1;
+    if (!rc_drops_mirror_to_globals(&data)) {
+        rc_drop_data_free(&data);
+        return -1;
     }
+    rc_drop_data_free(&data);
+    rc_drops_use_data(NULL);
     return g_rc_drop_table_count;
 }
 
-static int load_shared(const char *path, uint32_t magic, RcDropEntry **dst,
-                       int *dst_count) {
+static int load_shared_into(const char *path, uint32_t magic,
+                            RcDropEntry **dst, int *dst_count) {
     if (!path) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
@@ -155,27 +328,54 @@ static int load_shared(const char *path, uint32_t magic, RcDropEntry **dst,
     return *dst_count;
 }
 
+static int load_shared_global(const char *path, uint32_t magic,
+                              RcDropEntry **dst, int *dst_count) {
+    int loaded = load_shared_into(path, magic, dst, dst_count);
+    if (loaded >= 0) rc_drops_use_data(NULL);
+    return loaded;
+}
+
 int rc_load_rdt(const char *path) {
-    return load_shared(path, RC_SHARED_DROP_RDT, &g_rc_rdt_entries,
-                       &g_rc_rdt_entry_count);
+    return load_shared_global(path, RC_SHARED_DROP_RDT, &g_rc_rdt_entries,
+                              &g_rc_rdt_entry_count);
 }
 
 int rc_load_gdt(const char *path) {
-    return load_shared(path, RC_SHARED_DROP_GDT, &g_rc_gdt_entries,
-                       &g_rc_gdt_entry_count);
+    return load_shared_global(path, RC_SHARED_DROP_GDT, &g_rc_gdt_entries,
+                              &g_rc_gdt_entry_count);
 }
 
 int rc_load_mrdt(const char *path) {
-    return load_shared(path, RC_SHARED_DROP_MRDT, &g_rc_mrdt_entries,
-                       &g_rc_mrdt_entry_count);
+    return load_shared_global(path, RC_SHARED_DROP_MRDT, &g_rc_mrdt_entries,
+                              &g_rc_mrdt_entry_count);
+}
+
+int rc_load_rdt_into(const char *path, RcDropData *data) {
+    return data ? load_shared_into(path, RC_SHARED_DROP_RDT,
+                                   &data->rdt_entries,
+                                   &data->rdt_entry_count) : -1;
+}
+
+int rc_load_gdt_into(const char *path, RcDropData *data) {
+    return data ? load_shared_into(path, RC_SHARED_DROP_GDT,
+                                   &data->gdt_entries,
+                                   &data->gdt_entry_count) : -1;
+}
+
+int rc_load_mrdt_into(const char *path, RcDropData *data) {
+    return data ? load_shared_into(path, RC_SHARED_DROP_MRDT,
+                                   &data->mrdt_entries,
+                                   &data->mrdt_entry_count) : -1;
 }
 
 const RcDropTable *rc_drop_table_for_npc(int npc_id) {
-    if (npc_id < 0 || npc_id >= RC_MAX_NPC_ID || g_rc_drop_table_count <= 0) {
+    if (npc_id < 0 || npc_id >= RC_MAX_NPC_ID
+            || g_active_drop_table_count <= 0
+            || !g_active_drop_tables || !g_active_drop_table_by_npc) {
         return NULL;
     }
-    int idx = g_drop_table_by_npc[npc_id];
-    return idx >= 0 ? &g_rc_drop_tables[idx] : NULL;
+    int idx = g_active_drop_table_by_npc[npc_id];
+    return idx >= 0 ? &g_active_drop_tables[idx] : NULL;
 }
 
 const RcDropEntry *rc_drop_entries_for(const RcDropTable *table, int kind,
@@ -185,22 +385,23 @@ const RcDropEntry *rc_drop_entries_for(const RcDropTable *table, int kind,
         return NULL;
     }
     if (count) *count = table->count[kind];
-    return &g_rc_drop_entries[table->first[kind]];
+    if (!g_active_drop_entries) return NULL;
+    return &g_active_drop_entries[table->first[kind]];
 }
 
 const RcDropEntry *rc_shared_drop_entries(int kind, int *count) {
     if (count) *count = 0;
     if (kind == RC_SHARED_DROP_RDT) {
-        if (count) *count = g_rc_rdt_entry_count;
-        return g_rc_rdt_entries;
+        if (count) *count = g_active_rdt_entry_count;
+        return g_active_rdt_entries;
     }
     if (kind == RC_SHARED_DROP_GDT) {
-        if (count) *count = g_rc_gdt_entry_count;
-        return g_rc_gdt_entries;
+        if (count) *count = g_active_gdt_entry_count;
+        return g_active_gdt_entries;
     }
     if (kind == RC_SHARED_DROP_MRDT) {
-        if (count) *count = g_rc_mrdt_entry_count;
-        return g_rc_mrdt_entries;
+        if (count) *count = g_active_mrdt_entry_count;
+        return g_active_mrdt_entries;
     }
     return NULL;
 }

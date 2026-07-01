@@ -1,19 +1,15 @@
-Shop stock index
+Shops
 
 status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
-output binary: data/defs/shops.bin (157833 bytes)
-source metadata: cached OSRS Wiki infobox_shop bucket
-source stock: cached OSRS Wiki storeline bucket
-item resolution: cached OSRS Wiki infobox_item aliases
-shop rows: 601
-shops with metadata: 448
-shops with stock: 581
-stock item rows resolved: 6209
-stock item rows unresolved: 44
-stock shops missing metadata: 153
-metadata shops missing stock: 20
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 157833
+entries: 601
+
+installed files:
+  - data/defs/shops.bin bytes=157833 sha256=4948577cdbb7ac5563766e2633294687cf23b23e3c8c48964b8fcfa99ef0aefd
 
 accepted simplifications:
-  - binary stores static base stock/prices/restock ticks; per-world stock mutation lands with shop transactions
-  - wiki markup is stripped from owner/location/specialty labels for runtime display/search
-  - unresolved storeline item names stay in the report until the source alias table is widened
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

@@ -1,0 +1,2797 @@
+title = "Transcript:2015 Halloween event"
+npcs = ["Death (NPC)", "Anti-Santa", "Cheerleader", "Gnome child", "Wise Old Man", "Drunken Dwarf", "Sandwich lady", "My Arm", "Hans", "Party Pete", "Lobby Cow", "Gargoyle (2014 Halloween event)"]
+node_count = 357
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "Interacting with death's portal:"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "[Player], I require your presence. Step into the darkness, and come to me."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "other"
+text = "{{qact|The player is teleported into Death's mansion.}}"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Welcome to my domain."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Welcome back to my domain."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Gargoyle"
+text = "Master wants to talk to you."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Ah, [player]. Thank you for coming. I require your assistance."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "option"
+text = "What can I do for you?"
+parent = -1
+children = [12, 13, 14, 15, 55]
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can I do for you?"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "There is a malignant presence in my house."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 11
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "What do you mean by a 'malignant presence'?"
+parent = 11
+children = [16, 17, 18, 21, 27, 31, 32, 33, 34, 35, 36, 53]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean by a 'malignant presence'?"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I speak of Anti-Santa. I let him come in for a chat, but that was months ago, and he's still here."
+parent = 15
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "cond"
+text = "If the player completed the 2014 Christmas event but not the 2015 Easter event:"
+parent = 15
+children = [19, 20]
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Anti-Santa? I met him last Christmas. He hired me to collect useless coal dust from him to distribute as junk gifts. He really hates the holidays."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "act"
+text = "continues"
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "cond"
+text = "If the player completed the 2015 Easter event:"
+parent = 15
+children = [22, 23, 25, 26]
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Anti-Santa? A few months ago, I helped the Easter Bunny defeat a chocolate demon that claimed it had been summoned by Anti-Santa to ruin Easter. He really hates the holidays."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "cond"
+text = "If the player also completed the 2014 Christmas event:"
+parent = 21
+children = [24]
+
+[[nodes]]
+id = 24
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I met him last Christmas, too. He hired me to collect useless coal dust from him to distribute as junk gifts."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Grim Reaper"
+text = """
+We go back a few centuries, so I was tolerant, but the situation is now unacceptable. He smells like a corpse, forever rambles on about his conspiracy theories, and now he's eaten all the trapped souls in my refrigerator.
+"""
+parent = 21
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "act"
+text = "continues"
+parent = 21
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "cond"
+text = "If the player didnt complete the 2015 Easter or 2014 Christmas events:"
+parent = 15
+children = [28, 29, 30]
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Anti-Santa?"
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 4
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "An undead lord of the Claws clan, who seeks to undermine the Christmas season. He has little to do in the rest of the year, so he tries to ruin other holidays too."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "act"
+text = "continues"
+parent = 27
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "If that weren't enough, he is sitting on my sofa in his underpants, with his dirty laundry on the floor. He must be stopped!"
+parent = 15
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So you want Anti-Santa to go?"
+parent = 15
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I have guests coming for my Halloween party, and I will be humiliated if they see the house in this state. I cannot evict him alone; there are influential figures who might see it as... obstreperous."
+parent = 15
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Specifically, I need you to lure Anti-Santa out to the garden, board up the windows to keep him out, re-light the boiler to warm up the house, and tidy the mess he's made. Will you help me?"
+parent = 15
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 15
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "option"
+text = "Okay, I'll help you."
+parent = 15
+children = [37, 38, 39, 40, 46, 51]
+
+[[nodes]]
+id = 37
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll help you."
+parent = 36
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Your kindness will be rewarded."
+parent = 36
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 36
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "option"
+text = "What do I need to do now?"
+parent = 36
+children = [41, 42, 43, 44, 45]
+
+[[nodes]]
+id = 41
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to do now?"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 5
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Anti-Santa is very perceptive. If he becomes suspicious about your presence, he may realize I am trying to evict him and take offence, then there's no getting rid of him."
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 5
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Take this sophisticated disguise. It will conceal your mortal body and make you appear as an undead gravedigger."
+parent = 40
+
+[[nodes]]
+id = 44
+depth = 5
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Anti-Santa wanted my house to be colder, so he extinguished the boiler. Now there are icicles on the ceiling! Go to the basement and re-light the boiler, so that my guests will be comfortable."
+parent = 40
+
+[[nodes]]
+id = 45
+depth = 5
+kind = "act"
+text = "end"
+parent = 40
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "option"
+text = "Why did you let Anti-Santa in?"
+parent = 36
+children = [47, 48, 49, 50]
+
+[[nodes]]
+id = 47
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Why did you let Anti-Santa in?"
+parent = 46
+
+[[nodes]]
+id = 48
+depth = 5
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "We go back a few centuries, after all, he and I are both skeletal figures in black, and our work leaves us with relatively small social circles."
+parent = 46
+
+[[nodes]]
+id = 49
+depth = 5
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "He turned up in the summer, raving about chocolate demons and interfering adventurers, and in a moment of pity I let him into my house."
+parent = 46
+
+[[nodes]]
+id = 50
+depth = 5
+kind = "act"
+text = "other"
+parent = 46
+is_terminal = true
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "option"
+text = "I'll get back to you."
+parent = 36
+children = [52]
+
+[[nodes]]
+id = 52
+depth = 5
+kind = "other"
+text = "{{tmissing}}"
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "option"
+text = "Nope, you let him in, so he's your problem."
+parent = 15
+children = [54]
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "option"
+text = "It's you, isn't it?"
+parent = 11
+children = [56, 57, 58, 59]
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It's you, isn't it?"
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I mean there is ANOTHER malignant presence in my house."
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, okay, please carry on."
+parent = 55
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "act"
+text = "Continues above at \"I speak of Anti-Santa.\""
+parent = 55
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "option"
+text = "Yo, Grimmy, what's up?"
+parent = -1
+children = [61, 62, 63, 64]
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yo, Grimmy, what's up?"
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Please do not speak to me like that."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright. So what can I do for you?"
+parent = 60
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "act"
+text = "Continues above at \"There is a malignant presence in my house.\""
+parent = 60
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Thank you for offering to evict Anti-Santa from my house."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "option"
+text = "What do I need to do now?"
+parent = -1
+children = [67, 69, 77, 82, 85, 90]
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "cond"
+text = "Before relighting the boiler:"
+parent = 66
+children = [68]
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "act"
+text = "above"
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "cond"
+text = "After relighting the boiler:"
+parent = 66
+children = [70, 71, 72, 75, 76]
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Now that the boiler is alive, the fire in the main room has automatically started burning. Anti-Santa will not like the heat, but it is insufficient to drive him out."
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "When he arrived, he brought a lot of damp coal dust. He intends to give the dust as spiteful Christmas presents, since it burns very badly, and it would cause much disappointment to the recipients."
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "cond"
+text = "If the player also completed the 2014 Christmas event:"
+parent = 69
+children = [73, 74]
+
+[[nodes]]
+id = 73
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I remember agreeing to help him mine some coal last Christmas."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "act"
+text = "continues"
+parent = 72
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "The damp coal dust is stored in my shed. If you pour some onto the fire in the main room, it will make the area smokey and humid. Anti-Santa will not like that."
+parent = 69
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "act"
+text = "end"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "cond"
+text = "After relighting the boiler and putting coal dust in the fire:"
+parent = 66
+children = [78, 79, 80, 81]
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Anti-Santa will be keen to escape the humid atmosphere you have created, but the lazy slob needs an incentive to go outside."
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "He ate all the trapped souls from my refrigerator. If you collect the empty jars from the refrigerator, and go outside to the graveyard..."
+parent = 77
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "... you can collect some more souls there. Five should suffice. Pour them into the cauldron to stew. The delicious fragrance should be enough to tempt Anti-Santa out to the garden."
+parent = 77
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "act"
+text = "end"
+parent = 77
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "cond"
+text = "After relighting the boiler, putting coal dust in the fire, and souls in the cauldron:"
+parent = 66
+children = [83, 84]
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "The delicious fragrance of those trapped souls stewing in the cauldron should tempt Anti-Santa to go outside. Go and invite him to take a walk in the garden."
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "act"
+text = "end"
+parent = 82
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "cond"
+text = "After Anti-Santa is in the garden:"
+parent = 66
+children = [86, 87, 88, 89]
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Now Anti-Santa is out of the house, you must board up the windows to keep him out. My gargoyles can stop him re-entering through the door."
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "The best material for boarding up the windows is deadwood - the sinister glow should discourage him fro interfering with it."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "You can use my coffin-making workshop to make planks from the deadwood trees, and I have some coffin nails somewhere."
+parent = 85
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "cond"
+text = "After boarding up the windows:"
+parent = 66
+children = [91, 92]
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "When Anti-Santa extinguished my boiler earlier, some icicles formed on the ceiling, and they have now melted. Use the mop from my shed to clean the floor."
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "act"
+text = "end"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "Why did you let Anti-Santa in?"
+parent = -1
+children = [94]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "act"
+text = "above"
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "option"
+text = "I'll get back to you."
+parent = -1
+children = [96]
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "act"
+text = "above"
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Gargoyle"
+text = "Master doesn't want you going in there without his disguise. You've got the kit, so put it all on."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Grim's party hasn't started yet. Besides, he's hardly going to invite a serf like you. He picks his friends carefully."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sure he does."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "What do you want, serf?"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "option"
+text = "Who are you?"
+parent = -1
+children = [105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 117]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Who are you?"
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "Ha ha ha! I am the despair at year's end. I am the voice of reason that dispels false hope."
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "Each year, I see fools gorging themselves with food, wasting money on frivolous gifts, all to seek a brief respite from the reality of their daily condition."
+parent = 104
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "They conceal their emotions behind a cheerful facade, eating and drinking to block out the fear and pain of everyday life."
+parent = 104
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "They spend a few coins on trinkets for each other, pretending that their money can buy forgiveness for a year of uncaring selfishness or spite."
+parent = 104
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "They speak of a Happy New Year, yet the world spins on and on through the void, unchanged and unchanging, with nothing Happy or New to show for another year's striving."
+parent = 104
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "I am Anti-Santa. I seek to eradicate the spirit of self-deception that is embodied by that buffoon in the red suit."
+parent = 104
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "Let mortals perceive life as it is, not as they dream it to be. Only when their complacency has evaporated can they find the willpower to change the world."
+parent = 104
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 104
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "option"
+text = "You're seriously deranged."
+parent = 104
+children = [115, 116]
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "speaker"
+speaker = "Anti Santa"
+text = "It is you that is deluded, serf."
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 3
+kind = "act"
+text = "other"
+parent = 114
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "option"
+text = "I agree."
+parent = 104
+children = [118, 119, 120]
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I agree."
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "speaker"
+speaker = "Anti Santa"
+text = "Thank you, serf. For some reason I normally get very little affirmation in my work."
+parent = 117
+
+[[nodes]]
+id = 120
+depth = 3
+kind = "act"
+text = "other"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "option"
+text = "Get out of the Grim Reaper's house and go away!"
+parent = -1
+children = [122, 123, 124]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Get out of the Grim Reaper's house and go away!"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Anti Santa"
+text = "How dare you? Grim invited me here; he is my friend, and I shall tell him to teach you a lesson..."
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "other"
+text = "{{qact|Anti-Santa's suspicion is maxed out and the player is kicked out.}}"
+parent = 121
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "option"
+text = "Would you like to take a walk in the garden?"
+parent = -1
+children = [126, 127, 128, 131, 134, 137]
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Would you like to take a walk in the garden?"
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hmmm..."
+parent = 125
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "cond"
+text = "If the player hasn't done anything:"
+parent = 125
+children = [129, 130]
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "No, it is pleasantly cool in here."
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 3
+kind = "act"
+text = "end"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "cond"
+text = "If the boiler has been lit:"
+parent = 125
+children = [132, 133]
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "No. It is a trifle warm in here since some fool lit the boiler again, but the air is dry. I shall remain here."
+parent = 131
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "act"
+text = "end"
+parent = 131
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "cond"
+text = "If player has put coal dust in the fireplace but no souls in the cauldron:"
+parent = 125
+children = [135, 136]
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "No. The air here is horrible, but there is nothing in the garden to interest me."
+parent = 134
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "act"
+text = "end"
+parent = 134
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "cond"
+text = "If the player has put souls in the cauldron and coal dust in the fireplace:"
+parent = 125
+children = [138, 139, 140, 141]
+
+[[nodes]]
+id = 138
+depth = 3
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Perhaps I will. It smells like there are some tasty souls cooking in the garden, and the air in here is horribly humid."
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "other"
+text = "{{qact|Anti-Santa gets up and leaves the house, walking towards the cauldron.}}"
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "box"
+text = "The gargoyles at the exit will now prevent Anti-Santa from returning through that doorway."
+parent = 137
+
+[[nodes]]
+id = 141
+depth = 3
+kind = "act"
+text = "end"
+parent = 137
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "I'm sorry for bothering you."
+parent = -1
+children = [143, 144]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry for bothering you."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "end"
+parent = 142
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hey, Grim, this serf of yours is behaving awfully strangely! Teach [him/her] a lesson, will you?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "other"
+text = "{{qact|The player is teleported to the exit portal of the mansion}}"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "If Anti-Santa realises that you are helping me evict him, he will think I am rude. Try to be more subtle next time!"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "What business do you have, serf, touching my unmentionables?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "option"
+text = "I was going to scrub them clean."
+parent = -1
+children = [152, 153, 154]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was going to scrub them clean."
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Clean? Cleanliness is next to godliness! Do you imply that I am anything less? Unhand them and get back to work!"
+parent = 151
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "act"
+text = "end"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "option"
+text = "I intend to burn them to heat the house."
+parent = -1
+children = [156, 157, 158, 159]
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I intend to burn them to heat the house."
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hahaha - the serf thinks [he/she] is witty!"
+parent = 155
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "box"
+text = "pic=Anti-panties detail.png|You steel your nerves and pick up Anti-Santa's underwear."
+parent = 155
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "act"
+text = "end"
+parent = 155
+is_terminal = true
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "option"
+text = "I was afraid I'd trample mud on them from outside."
+parent = -1
+children = [161, 162, 163]
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I was afraid I'd trample mud on them from outside."
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Or you could pay attention to where you're walking! Unhand them and get back to work!"
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "act"
+text = "end"
+parent = 160
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "box"
+text = "pic=Anti-panties detail.png|No, that'd be disgusting. Why would you want to do that?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hey, serf, what are you doing with the refrigerator?"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "option"
+text = "I'm going to look inside it."
+parent = -1
+children = [169, 170, 171]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm going to look inside it."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Oh, if you're restocking it, we've run out of trapped souls - all the jars are empty. Be a good serf and fill 'em up."
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "option"
+text = "The fridge will cool the room if the door's open."
+parent = -1
+children = [173, 174, 175]
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The fridge will cool the room if the door's open."
+parent = 172
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "No, the heat sink on the back will just release the heat straight into the room again. Don't they teach science at Undead Gravedigger School?"
+parent = 172
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "act"
+text = "end"
+parent = 172
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "Isn't this a vertical coffin with air conditioning?"
+parent = -1
+children = [177, 178, 179]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Isn't this a vertical coffin with air conditioning?"
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "No, it's not. What kind of gravedigger are you if you don't know what a coffin looks like?"
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "act"
+text = "end"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "cond"
+text = "If the player doesn't have 5 jars:"
+parent = -1
+children = [181, 182]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "box"
+text = "pic=Jar of ethereal fluid detail.png|It's full of jars for storing trapped souls, but all the souls have been eaten. You take some jars."
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "act"
+text = "end"
+parent = 180
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "cond"
+text = "If the player already has 5 jars:"
+parent = -1
+children = [184, 185]
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "box"
+text = "pic=Jar of ethereal fluid detail.png|It's full of jars for storing trapped souls, but all the souls have been eaten. You don't need any more jars."
+parent = 183
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "act"
+text = "end"
+parent = 183
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "A good serf should know better than to leave the refrigerator open for so long."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "box"
+text = "pic=Mop (2015 Halloween event) detail.png|You take the mop."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "box"
+text = "pic=Bronze axe detail.png|You take an axe."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "box"
+text = "pic=Hammer detail.png|You take a hammer."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "box"
+text = "pic=Tinderbox detail.png|You take a tinderbox."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "box"
+text = "pic=Damp coal dust detail.png|You take a handful of the coal dust. It feels damp to the touch."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "box"
+text = "pic=Coffin nails detail.png|You take a handful of coffin nails."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "cond"
+text = "If the player already has coffin nails:"
+parent = -1
+children = [201, 202]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "box"
+text = "pic=Coffin nails detail.png|You take a handful of coffin nails."
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "act"
+text = "end"
+parent = 200
+is_terminal = true
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hey, serf, what are you doing to the fire?"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "option"
+text = "I'm burning damp coal dust to make a horrible smoke."
+parent = -1
+children = [206, 207, 208]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm burning damp coal dust to make a horrible smoke."
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Coal dust? That's mine! Grim kindly let me store it in his shed. I'll take that off you!"
+parent = 205
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "act"
+text = "Anti-Santa takes the coal dust from your inventory"
+parent = 205
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "option"
+text = "I'm trying to fix the temperature in here."
+parent = -1
+children = [210, 211, 212, 213]
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm trying to fix the temperature in here."
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "About time too. It's been far too hot since some idiot lit the boiler. Grim knows I'm more comfortable in a chilly environment."
+parent = 209
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "box"
+text = "pic=Damp coal dust detail.png|You throw the damp coal dust into the fire, where it starts generating a noxious cloud of smoke."
+parent = 209
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "act"
+text = "end"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "option"
+text = "I'm looking for my marshmallow."
+parent = -1
+children = [215, 216, 217]
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for my marshmallow."
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Marshmallow? You look like the sort of creature that eats BRAAIIINNS, not candy. Be about your business."
+parent = 214
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "end"
+parent = 214
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "box"
+text = "pic=Damp coal dust detail.png|The fire cannot be lit from here. It appears to be powered from the boiler downstairs."
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hey, serf, what business have you in there?"
+parent = -1
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "option"
+text = "I'm lighting the boiler to warm up the house."
+parent = -1
+children = [223, 224]
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm lighting the boiler to warm up the house."
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "What? I extinguished the boiler myself. Grim knows I'm more comfortable in a chilly environment, and he is a caring host. Be off with you."
+parent = 222
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "option"
+text = "I've got graves to dig, and I left my shovel in there."
+parent = -1
+children = [226, 227, 228]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got graves to dig, and I left my shovel in there"
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "I was down there earlier, extinguishing the boiler to cool the house down, and I didn't see a shovel. You're not making any sense - be off with you."
+parent = 225
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "option"
+text = "I'm looking for the toilet."
+parent = -1
+children = [230, 231, 232, 233, 234]
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for the toilet."
+parent = 229
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "That is a worthy pursuit. Many people spend the holidays wistfully dreaming of a better world, turning to empty fantasies and false cheer to conceal their disappointment at reality."
+parent = 229
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "But you, by focusing on such a practical pursuit, may truly bring about a better world while the dreamers achieve nothing. I salute you, and wish you success in your quest!"
+parent = 229
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "box"
+text = "You enter the basement."
+parent = 229
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "act"
+text = "end"
+parent = 229
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "box"
+text = "You leave the basement."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "There is, in fact, no toilet in there. However I wish you success in your quest."
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "cond"
+text = "Without Anti-Santa's underwear and a tinderbox:"
+parent = -1
+children = [239, 240]
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "box"
+text = "pic=Tinderbox detail.png|You'll need a tinderbox and some suitable kindling."
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "act"
+text = "end"
+parent = 238
+is_terminal = true
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "cond"
+text = "With Anti-Santa's underwear and a tinderbox:"
+parent = -1
+children = [242, 243]
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "box"
+text = "pic=Anti-panties detail.png|Using the stained underpants as kindling, you light the boiler. As the house warms up, you hear the dripping of icicles melting in the room above."
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "act"
+text = "end"
+parent = 241
+is_terminal = true
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "box"
+text = "pic=Trapped soul (2015 Halloween event) detail.png|You manage to entrap the soul in your jar of ethereal fluid."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "box"
+text = "pic=Trapped soul (2015 Halloween event) detail.png|You pour five trapped souls into the cauldron. A shriek of anguish rings in the air. The cauldron is now emitting a fascinating smell."
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "box"
+text = "pic=Deadwood plank detail.png|pic2=Coffin nails detail.png|You board up the window."
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "cond"
+text = "Boarding up the last window:"
+parent = -1
+children = [251, 252]
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "box"
+text = "pic=Deadwood plank detail.png|pic2=Coffin nails detail.png|You have finished boarding up the vulnerable windows."
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "act"
+text = "end"
+parent = 250
+is_terminal = true
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "box"
+text = "It'd be more secure if you boarded up the window from inside the house."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "box"
+text = "The smoke from the coal dust appears to have disappeared."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "box"
+text = "Anti-Santa seems to be enjoying himself. You should probably not mess with him."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Thank you for offering to evict Anti-Santa from my house."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "option"
+text = "What do I need to do now?"
+parent = -1
+children = [261, 262, 263, 264, 265, 266, 267, 268]
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I do believe you have done everything I require. Thank you very much indeed, [player]."
+parent = 260
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Until the day you die, I shall be your friend. I should clarify that most people meet me ON the day they die, so my offer of friendship should not be seen as unduly generous."
+parent = 260
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I will express my gratitude in the usual way, with two sets of masks and two pumpkins. You may also have Anti-Santa's spare underpants; this pair appears to have shrunk, and may fit you."
+parent = 260
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "You may also appreciate your own copy of my undead gravedigger disguise. I think it improves your appearance."
+parent = 260
+
+[[nodes]]
+id = 265
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I will also grant you the right to have your own house decorated like mine, and the makeover mage will henceforth offer some more... spooky options."
+parent = 260
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Once you have your rewards, please come upstairs to join my party."
+parent = 260
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "box"
+text = "pic=Pumpkin detail.png|pic2=Halloween mask set detail.png|The Grim Reaper rewards you with a selection of Halloween-themed goodies."
+parent = 260
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "act"
+text = "end"
+parent = 260
+is_terminal = true
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "option"
+text = "Why did you let Anti-Santa in?"
+parent = -1
+children = [270]
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "act"
+text = "above"
+parent = 269
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "option"
+text = "I'll get back to you."
+parent = -1
+children = [272]
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "act"
+text = "above"
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "Thank you once again for all your help."
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "option"
+text = "You're welcome."
+parent = -1
+children = [276]
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 275
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "option"
+text = "Remind me, what were those rewards?"
+parent = -1
+children = [278, 279, 280, 281, 282, 283, 284, 285]
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Remind me, what were those rewards?"
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I gave you two pumpkins and two mask sets containing the red, green and blue Halloween masks."
+parent = 277
+
+[[nodes]]
+id = 280
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "I also awarded you Anti-Santa's spare underpants, a copy of my undead gravedigger costume, and all the unlockable items from previous Halloween festivities."
+parent = 277
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "If you need to retrieve an unlockable item of this nature, I suggest you visit Diango in Draynor Village. He looks after such things."
+parent = 277
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "You can perform the 'Scared' and 'Zombie Hand' emotes, as well as the new 'Hypermobile Drinker' emote."
+parent = 277
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "speaker"
+speaker = "Grim Reaper"
+text = "If you have a house of your own, you may now pay the Estate Agents to redecorate it in the style of my own mansion. Finally, you can access additional skin tones at the Makeover Mage."
+parent = 277
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 277
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "act"
+text = "end"
+parent = 277
+is_terminal = true
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [288, 289]
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Hic senex, ludavit unum..."
+parent = 287
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "act"
+text = "end"
+parent = 287
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [291, 292]
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "You did well getting Anti-Santa out of Death's house. You show considerable promise as an adventurer."
+parent = 290
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "act"
+text = "end"
+parent = 290
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [294, 295]
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "Of course, when I was young, people threw parties in my honour all the time after I'd saved their cities from ravaging monsters."
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "act"
+text = "end"
+parent = 293
+is_terminal = true
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Come see me in the Party Room anytime!"
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "Round and round and round I go, round and round and round I go, always clockwise, wheee... I should have passed the gatehouse by now."
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [302, 303]
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "My Arm"
+text = "My Arm wouldn't have come if they said there'd be a dwarf at the party. Dwarf not my mate."
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "act"
+text = "end"
+parent = 301
+is_terminal = true
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [305, 306]
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "My Arm"
+text = "It a shame My Arm can't do dat geomancy spell thing to check on crops. My Arm is meant to be protecting someone's herbs. Oh well, no matter."
+parent = 304
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "act"
+text = "end"
+parent = 304
+is_terminal = true
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [308, 309]
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "My Arm"
+text = "Dis a nice party, but goutweed would be better."
+parent = 307
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "act"
+text = "end"
+parent = 307
+is_terminal = true
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [312, 313]
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Sandwich lady"
+text = "Don't even think of asking me for free food today, [player]. I'm taking a break."
+parent = 311
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "act"
+text = "end"
+parent = 311
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [315, 316]
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "other"
+text = "'''Sandwich lady''' It's a nice change to be invited to a party as a guest, not as the caterer."
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "act"
+text = "end"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [318, 319]
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "other"
+text = "'''Sandwich lady''' The food's not bad. I love parties - they're a great chance to restock my tray while keeping my costs down."
+parent = 317
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "act"
+text = "end"
+parent = 317
+is_terminal = true
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [322, 323]
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = """
+Death is the fading scream borne on the wind. Death is in the bubbles from the deep, as dying lungs gasp their last. Death is in the soil, as the deceased become one with nature. Death is in a chair downstairs.
+"""
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "act"
+text = "end"
+parent = 321
+is_terminal = true
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [325, 326]
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "You have stared Death in the face, and he gave you a pair of pumpkins."
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "act"
+text = "end"
+parent = 324
+is_terminal = true
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [329, 330]
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Drunken Dwarf"
+text = "*hic*"
+parent = 328
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "act"
+text = "end"
+parent = 328
+is_terminal = true
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [332, 333]
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "speaker"
+speaker = "Drunken Dwarf"
+text = "Death is my matey!"
+parent = 331
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "act"
+text = "end"
+parent = 331
+is_terminal = true
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [336, 337]
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Lobby Cow"
+text = "Moo."
+parent = 335
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "act"
+text = "end"
+parent = 335
+is_terminal = true
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [339, 340]
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "speaker"
+speaker = "Lobby Cow"
+text = "Mooooooo!"
+parent = 338
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "end"
+parent = 338
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [342, 343]
+
+[[nodes]]
+id = 342
+depth = 2
+kind = "speaker"
+speaker = "Lobby Cow"
+text = "Moooo."
+parent = 341
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "act"
+text = "end"
+parent = 341
+is_terminal = true
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [346]
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "speaker"
+speaker = "Cheerleader"
+text = "{{overhead|So much excitement!}}"
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [348]
+
+[[nodes]]
+id = 348
+depth = 2
+kind = "speaker"
+speaker = "Cheerleader"
+text = "{{overhead|Woohoo!}}"
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [350]
+
+[[nodes]]
+id = 350
+depth = 2
+kind = "speaker"
+speaker = "Cheerleader"
+text = "{{overhead|Happy Halloween!}}"
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [352]
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "speaker"
+speaker = "Cheerleader"
+text = "{{overhead|Yay!}}"
+parent = 351
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [354]
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "speaker"
+speaker = "Cheerleader"
+text = "{{overhead|Great party!}}"
+parent = 353
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "option"
+text = "Dialogue 6"
+parent = -1
+children = [356]
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Cheerleader"
+text = "{{overhead|You saved Death's party!}}"
+parent = 355

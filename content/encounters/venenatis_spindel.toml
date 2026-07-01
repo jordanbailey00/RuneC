@@ -1,0 +1,53 @@
+# Venenatis (wilderness multi-way) + Spindel (solo variant). Giant
+# spider boss with web-tile binding mechanic + spiderling minions.
+
+name = "Venenatis / Spindel"
+slug = "venenatis_spindel"
+npc_ids = [6610, 11993, 11994]
+source_pages = ["Venenatis", "Spindel", "Venenatis/Strategies"]
+
+[[attacks]]
+name = "Melee Bite"
+style = "melee"
+accuracy_roll = "stab"
+max_hit = 30
+warning_ticks = 0
+
+[[attacks]]
+name = "Magic Web"
+style = "magic"
+max_hit = 28
+warning_ticks = 2
+on_hit.drain_prayer_pct = 25
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Bite", "Magic Web"]
+style_weights = { melee = 1, magic = 1 }
+
+[[mechanics]]
+name = "Web Bind"
+primitive = "spawn_web_tiles"
+period_ticks = 15
+params.web_tile_count = 2
+params.immobilizes_player_ticks = 3
+
+[[mechanics]]
+name = "Spiderling Spawn"
+primitive = "spawn_npcs"
+period_ticks = 25
+params.npc_name = "Spiderling"
+params.count = 4
+params.distribution = "around_player"
+
+[[mechanics]]
+name = "Empty-Room Reset"
+primitive = "regen_when_no_player"
+params.heal_to_full = true
+params.reset_all_npcs = true
+
+[variant_override]
+applies_to_npc_id = 11993
+hp_multiplier = 0.3
+damage_multiplier = 0.7

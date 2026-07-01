@@ -1,0 +1,23 @@
+id = "spotanims"
+format = "binary"
+path = "data/defs/spotanims.bin"
+magic_label = "SPOT"
+magic_u32 = "0x544F5053"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/cache_pipeline/export_spotanims.py"
+consumers = ["rc-viewer/spotanims.h"]
+source_dataset = "b237 cache spotanim config decoded by RuneC cache tools"
+row_fields = [
+  "u32 id",
+  "i32 model_id",
+  "i32 animation_id",
+  "u32 resize_xy",
+  "u32 resize_z",
+  "u32 rotation",
+  "i32 brightness",
+  "i32 shadow",
+]
+compatibility = "Loader accepts exactly current_version."

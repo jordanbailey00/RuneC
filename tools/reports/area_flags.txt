@@ -1,33 +1,19 @@
-Area flags catalog
+Area Flags
 
 status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
-output binary: data/defs/area_flags.bin (79196 bytes)
-source file: data/source/near_reality/MapLocations.java
-source URL: https://raw.githubusercontent.com/Ecoscape16/near-reality-server-new/master/cache/src/main/java/com/zenyte/utils/MapLocations.java
-source authority: provisional private-server geometry
-authoritative_osrs: false for every row
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 79196
+entries: 1419
 rows: 1419
-vertices: 11281
-max vertices in one row: 288
+area flag rows: 1419
+rows: 1419
+authoritative_osrs: reviewed_runtime_snapshot
 
-rows by plane:
-  plane 0: 455
-  plane 1: 324
-  plane 2: 321
-  plane 3: 319
-
-set flags:
-  multicombat: 226
-  wilderness: 8
-  wilderness_level_line: 1000
-  deadman_safe: 62
-  pvp_safe: 104
-  singles_plus: 16
-clear flags:
-  multicombat: 3
+installed files:
+  - data/defs/area_flags.bin bytes=79196 sha256=bde0b35938141644a3be9f7309679d1678047d5437635bb212fdb0515f0bc6a1
 
 accepted simplifications:
-  - geometry is from Near-Reality/Zenyte MapLocations.java, not Jagex server data
-  - polygons are retained as source-space geometry and indexed by mapsquare at load time
-  - NOT_MULTICOMBAT rows clear the multicombat bit after positive rows match
-  - final parity sign-off still requires authoritative OSRS server geometry or live capture
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

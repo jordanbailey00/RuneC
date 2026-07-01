@@ -1,0 +1,353 @@
+title = "Transcript:Bear Your Soul"
+npcs = ["Aretha", "Key Master"]
+node_count = 45
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "box"
+text = "The book referred to an artefact being buried in Kourend, but the author did not specify where it was buried. Maybe you could persuade her to change her mind."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Aretha"
+text = "Respect the souls, traveller."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "quest=No|Why are all these souls here?"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "option"
+text = "quest=No|Why are you here?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "option"
+text = "I've been reading your book..."
+parent = -1
+children = [6, 7, 8, 16]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've been reading your book: 'The Journey of Souls'"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Aretha"
+text = "Let me guess, traveller... did you come to ask me where the soul bearer was buried? Every mortal who reads my book seems to want to get their hands on it."
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "option"
+text = "Yes please."
+parent = 5
+children = [9, 10, 11, 12, 13, 14, 15]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes please."
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Aretha"
+text = "Mortals are so predictable. This is the kind of thinking that led that adventurer to break into the Guardian's cave and damage the soul bearer in the first place."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Aretha"
+text = "It occurs to me, though, that even if you dig it up, the artefact is damaged. Although the Elders of Arceuus never had the knowledge to repair it, there is one who may be able to help."
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Aretha"
+text = "I speak of the Key Master, he who watches over the cave of the three-headed Guardian of the River. He has been there for countless years, and will have absorbed power from the River in that time."
+parent = 8
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Aretha"
+text = """
+Now, we buried the artefact in the crypt of the Arceuus church. As I have revealed this secret to you, you will no longer be affected by the spells that prevent unwary explorers from stumbling across it.
+"""
+parent = 8
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks! I'll be off now."
+parent = 8
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "option"
+text = "No, I don't want your smelly soul bearer."
+parent = 5
+children = [17, 18, 19]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't want your smelly soul bearer."
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Aretha"
+text = "Hmmph! So what do you want? I trust you will respect the souls while you are in this hallowed place."
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "act"
+text = "other"
+parent = 16
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "option"
+text = "quest=No|Okay, I'm respecting the souls."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "box"
+text = "You have found the soul bearer."
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Aretha"
+text = "Respect the souls, traveller."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "quest=No|Why are all these souls here?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "quest=No|Why are you here?"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "option"
+text = "About the soul bearer again..."
+parent = -1
+children = [28, 29, 30, 31, 32, 33]
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About the soul bearer again... I've dug it up, but it's damaged."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Aretha"
+text = "This should be of no surprise to you, adventurer, if you paid attention to my book. Indeed, I even spoke of this matter when I first told you where the artefact was buried."
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Aretha"
+text = "Although the Elders of Arceuus never had the knowledge to repair it, I told you of one who may be able to help."
+parent = 27
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Aretha"
+text = "I spoke of the Key Master, he who watches over the cave of the three-headed Guardian of the River. He has been there for countless years, and will have absorbed power from the River in that time."
+parent = 27
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh yes, I see."
+parent = 27
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "other"
+text = "{{tact|end}"
+parent = 27
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "option"
+text = "quest=No|Okay, I'm respecting the souls."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aretha said you might be able to repair the soul bearer for me."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Key Master"
+text = "The soul bearer! You have the soul bearer! The voices speak of it often. It is from this place, yet it is not of this place."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Will you repair it?"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Key Master"
+text = "The voices tell me I can. They speak to me!"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "act"
+text = "The Key Master repairs your soul bearer."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Key Master"
+text = "The voices say you must use it wisely."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "option"
+text = "quest=No|What voices?"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "option"
+text = "Thanks, I will."
+parent = -1
+children = [43, 44]
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks, I will."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true

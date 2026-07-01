@@ -20,11 +20,9 @@ from rc_cache import (
     RcCacheStore,
     decode_interface,
 )
+from source_inputs import B237_CACHE, B237_DUMP, require_path
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE_ROOT = Path(__file__).resolve().parent / "source"
-DEFAULT_CACHE = SOURCE_ROOT / "current_fightcaves_demo/data/cache"
-DEFAULT_DUMP = SOURCE_ROOT / "osrs-dumps"
 DEFAULT_OUTPUT = ROOT / "data/ui/interface_manifest.json"
 DEFAULT_DEBUG_OUTPUT = ROOT / "data/ui/interface_debug.txt"
 DEFAULT_BINARY_OUTPUT = ROOT / "data/ui/interfaces.bin"
@@ -425,8 +423,8 @@ def write_binary(path: Path, groups: list[dict[str, Any]]) -> None:
 
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cache", type=Path, default=DEFAULT_CACHE)
-    parser.add_argument("--dump-root", type=Path, default=DEFAULT_DUMP)
+    parser.add_argument("--cache", type=Path, default=B237_CACHE)
+    parser.add_argument("--dump-root", type=Path, default=B237_DUMP)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--debug-output", type=Path, default=DEFAULT_DEBUG_OUTPUT)
     parser.add_argument("--binary-output", type=Path, default=DEFAULT_BINARY_OUTPUT)
@@ -446,11 +444,13 @@ def main(argv: list[str]) -> int:
         help="decode IF1/IF3 model ids with pre-b237 unsigned-short behavior",
     )
     args = parser.parse_args(argv)
+    cache = require_path(args.cache, "--cache", "RUNEC_B237_CACHE")
+    dump_root = require_path(args.dump_root, "--dump-root", "RUNEC_B237_DUMP")
 
-    store = RcCacheStore(args.cache)
+    store = RcCacheStore(cache)
     index_manifest = store.read_index_manifest(INDEX_INTERFACES)
     rev237 = not args.legacy_model_ids
-    symbols = load_symbol_tables(args.dump_root)
+    symbols = load_symbol_tables(dump_root)
 
     core_groups: list[dict[str, Any]] = []
     errors: list[str] = []

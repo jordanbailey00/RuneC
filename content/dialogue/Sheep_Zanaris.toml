@@ -1,0 +1,289 @@
+title = "Transcript:Sheep (Zanaris)"
+npcs = ["Sheep (Zanaris)", "Cow"]
+node_count = 36
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "Hello, I've just finished composing my latest poem. Would you like to hear it?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "Yes, please."
+parent = -1
+children = [2, 3, 4, 5, 8, 17, 23]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, please."
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Sheep"
+text = "Excellent! The humans{{sic}} an aficionado! Make yourself comfortable and I'll begin..."
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 1
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 1
+children = [6, 7]
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "speaker"
+speaker = "Sheep"
+text = "Twinkle, twinkle little egg Wouldn't you like to grow some legs? {{sic}} And run around, on grass so green arguing with the milk and cream."
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "act"
+text = "end"
+parent = 5
+is_terminal = true
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 1
+children = [9, 10, 16]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Sheep"
+text = "T'was brillig and the slithey toathes Did gyre and gimbol in the wabe All mimsy were the borrowgroves And the mome raths outgrabe."
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "cond"
+text = "Sometimes this conversation will be followed by:"
+parent = 8
+children = [11, 12, 13, 14, 15]
+
+[[nodes]]
+id = 11
+depth = 4
+kind = "speaker"
+speaker = "Cow"
+text = "That's not even your poem, you idiotic, animated ball of wool!"
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 4
+kind = "speaker"
+speaker = "Sheep"
+text = "How now foolish cow? Do you read poetry, instead of pulling a plow?"
+parent = 10
+
+[[nodes]]
+id = 13
+depth = 4
+kind = "speaker"
+speaker = "Cow"
+text = "I'm not talking to you any more, you're nasty."
+parent = 10
+
+[[nodes]]
+id = 14
+depth = 4
+kind = "speaker"
+speaker = "Sheep"
+text = "Oh no! Cow's not talking to me!"
+parent = 10
+
+[[nodes]]
+id = 15
+depth = 4
+kind = "speaker"
+speaker = "Sheep"
+text = "Do I look like I care?"
+parent = 10
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "Dialogue 3"
+parent = 1
+children = [18, 19, 22]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Sheep"
+text = "I wish I was a cow My life would be so simple I could lie around just eating grass And wonder if I was a pimple."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "cond"
+text = "Sometimes this conversation will be followed by:"
+parent = 17
+children = [20, 21]
+
+[[nodes]]
+id = 20
+depth = 4
+kind = "speaker"
+speaker = "Cow"
+text = "Hahaha, I don't think!"
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "speaker"
+speaker = "Sheep"
+text = "Well I thought it was funny."
+parent = 19
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "option"
+text = "Dialogue 4"
+parent = 1
+children = [24, 25]
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Sheep"
+text = "How goes it, blade of grass? I'm glad you're not any thinner You should invite your friends around So I can have my dinner!"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "act"
+text = "end"
+parent = 23
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "No thanks."
+parent = -1
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thanks."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Sheep"
+text = "Huh, the cow's right. You humans have absolutely no understanding of art!"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "box"
+text = "pic=Nuff's certificate detail.png|You show the certificate to the sheep."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know what these strange marks mean?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "The humans found some symbols<br> And doesn't know what they mean<br>So now it's cross-examining me<br>And spoiling my routine!"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "You give me a hair-cut and then expect me to talk to you? I think not!"
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

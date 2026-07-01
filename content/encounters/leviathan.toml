@@ -1,0 +1,109 @@
+# The Leviathan — DT2 boss. Tests: debris falling environmental
+# hazard, enrage phase at 20% hp with forced attack cadence, abyssal
+# pathfinder buff NPC (player must stand in its AoE).
+
+name = "The Leviathan"
+slug = "leviathan"
+npc_ids = [12214, 12215, 12219]
+source_pages = ["The Leviathan", "The Leviathan/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Ranged Orb"
+style = "ranged"
+max_hit = 32
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Orb"
+style = "magic"
+max_hit = 32
+warning_ticks = 2
+
+[[attacks]]
+name = "Melee Bite"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 30
+warning_ticks = 0
+
+[[attacks]]
+name = "Zap Trident"
+# Special: 3-tile line, high damage.
+style = "magic"
+max_hit = 40
+warning_ticks = 3
+targets_tile_not_entity = true
+aoe_shape = "line_length_3"
+
+[[attacks]]
+name = "Slam-Dunk"
+# Drops 3 tiles of ceiling debris on the player's current position.
+style = "ranged"
+max_hit = 30
+warning_ticks = 3
+targets_tile_not_entity = true
+aoe_shape = "3x1_cross"
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "standard"
+enter_at_hp_pct = 100
+allowed_attacks = [
+    "Ranged Orb", "Magic Orb", "Melee Bite",
+    "Zap Trident", "Slam-Dunk", "Debris Fall",
+]
+
+[[phases]]
+id = "enrage"
+enter_at_hp_pct = 20
+script = "leviathan_enter_enrage"
+allowed_attacks = ["Ranged Orb", "Magic Orb", "Melee Bite",
+                   "Debris Fall", "Abyssal Pathfinder"]
+# Wiki: "attack speed to 2 (1.2 seconds). Only uses magic and ranged
+# orbs, though can still bite if adjacent."
+attack_cycle_ticks = 2
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Debris Fall"
+primitive = "telegraphed_aoe_tile"
+# Debris tiles fall on arena; player must dodge. Continues throughout
+# fight, intensifies in enrage.
+period_ticks = 8
+params.target_current_tile = true
+params.extra_random_tiles = 3
+params.warning_ticks = 2
+params.damage_min = 15
+params.damage_max = 25
+params.enrage_phase_period_ticks = 4   # faster in enrage
+
+[[mechanics]]
+name = "Abyssal Pathfinder"
+primitive = "spawn_buff_zone_npc"
+trigger = "phase_enter:enrage"
+# Spawns in NW corner (or next clockwise if blocked by debris).
+# 5×5 AoE. Inside AoE: player gets perfect accuracy + 20% minimum
+# damage floor. Outside AoE: boss attacks pierce prayer + player
+# damage reduced.
+params.npc_name = "Abyssal pathfinder"
+params.spawn_priority_tiles = ["NW", "NE", "SE", "SW"]
+params.buff_aoe_size = 5
+params.buffs_inside.accuracy = "perfect"
+params.buffs_inside.minimum_damage_pct = 20
+params.buffs_inside.magic_damage_multiplier = 2.0   # wiki: magic
+                                                    # gets doubled damage
+params.debuffs_outside.prayer_pierces = true
+params.debuffs_outside.player_damage_scale = 0.5
+
+[[mechanics]]
+name = "Enrage Roar"
+primitive = "one_shot_arena_effect"
+trigger = "phase_enter:enrage"
+# Single debris wave drops on arena as enrage begins.
+params.effect = "debris_wave"
+params.tile_count = 8
+params.damage_max = 20

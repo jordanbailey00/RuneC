@@ -1,0 +1,43 @@
+# Amoxliatl — Varlamore solo slayer boss. Simple jaguar-style melee
+# boss with freeze breath attack.
+
+name = "Amoxliatl"
+slug = "amoxliatl"
+npc_ids = [13988]
+source_pages = ["Amoxliatl", "Amoxliatl/Strategies"]
+
+[[attacks]]
+name = "Melee Claw"
+style = "melee"
+accuracy_roll = "slash"
+max_hit = 20
+warning_ticks = 0
+
+[[attacks]]
+name = "Freeze Breath"
+style = "magic"
+max_hit = 15
+warning_ticks = 2
+on_hit.freeze_ticks = 6
+
+[[attacks]]
+name = "Summon Icicle"
+# Spawns icicle on player tile; damages + blocks movement.
+style = "magic"
+max_hit = 12
+warning_ticks = 2
+targets_tile_not_entity = true
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Claw", "Freeze Breath", "Summon Icicle"]
+style_weights = { melee = 3, magic = 2 }
+
+[[mechanics]]
+name = "Frozen Ground"
+primitive = "tile_debuff_on_stand"
+period_ticks = 15
+params.tile_count = 3
+params.damage_on_step = 8
+params.debuff = { slow_player = true }

@@ -1,0 +1,43 @@
+title = "Transcript:Iwazaru"
+npcs = ["Iwazaru", "Mizaru"]
+node_count = 5
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Iwazaru"
+text = "MMMGHGHGGMH!!!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Mizaru"
+text = "What's going on ARRGH!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "cond"
+text = "Sometimes the following dialogue is also added:"
+parent = -1
+children = [3]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Mizaru"
+text = "Arrgh! Human! Scary! Go away!"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

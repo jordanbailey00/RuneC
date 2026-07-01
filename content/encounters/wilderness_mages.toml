@@ -1,0 +1,91 @@
+# Wilderness mage trio: Chaos Fanatic, Crazy Archaeologist,
+# Deranged Archaeologist. All three share a pattern (mage boss +
+# telegraphed ground-slam AoE + random targeted attacks).
+
+name = "Wilderness Mages"
+slug = "wilderness_mages"
+npc_ids = [6619, 6618, 7806]
+source_pages = [
+    "Chaos Fanatic", "Crazy Archaeologist", "Deranged archaeologist",
+]
+
+# Each of the three bosses is its own NPC; they share a skeleton but
+# have individual max hits. Model as a multi-boss encounter.
+
+[[bosses]]
+name = "Chaos Fanatic"
+npc_id = 6619
+is_primary = true
+
+[[bosses.attacks]]
+name = "Magic Bolt"
+style = "magic"
+max_hit = 27
+warning_ticks = 2
+
+[[bosses.attacks]]
+name = "Explosive Energy"
+# Telegraphed ground-slam AoE (hits nearby tiles).
+style = "magic"
+max_hit = 31
+warning_ticks = 3
+aoe_shape = "3x3"
+targets_tile_not_entity = true
+
+[[bosses.attacks]]
+name = "Tile Blast"
+# Random-tile teleport-to-target attack.
+style = "magic"
+max_hit = 20
+warning_ticks = 2
+targets_tile_not_entity = true
+
+[[bosses]]
+name = "Crazy Archaeologist"
+npc_id = 6618
+is_primary = true
+
+[[bosses.attacks]]
+name = "Rubble Toss"
+# "RUBBLE!" shout → books fall from sky on 3 tiles.
+style = "ranged"
+max_hit = 26
+warning_ticks = 3
+aoe_shape = "3_random_tiles"
+
+[[bosses.attacks]]
+name = "Ranged Spells"
+style = "ranged"
+max_hit = 22
+warning_ticks = 2
+
+[[bosses]]
+name = "Deranged Archaeologist"
+npc_id = 7806
+is_primary = true
+
+[[bosses.attacks]]
+name = "Learn to Read"
+# Splashable magic attack.
+style = "magic"
+max_hit = 30
+warning_ticks = 2
+
+[[bosses.attacks]]
+name = "Book of Knowledge"
+# AoE bomb attack on telegraph tiles.
+style = "magic"
+max_hit = 25
+warning_ticks = 3
+aoe_shape = "3x3"
+targets_tile_not_entity = true
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+
+[[mechanics]]
+name = "Empty-Room Reset"
+primitive = "regen_when_no_player"
+params.heal_to_full = true
+params.applies_to_npc_ids = [6619, 6618, 7806]

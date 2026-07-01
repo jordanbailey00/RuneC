@@ -1,0 +1,60 @@
+quest = "Witch's Potion"
+step_count = 6
+
+[[steps]]
+index = 0
+name = "Hetty the witch"
+links = ["Hetty", "Rimmington", "rat's tail", "Burnt food", "eye of newt", "onion"]
+text = """
+Talk to [[Hetty]] in her house in south-east [[Rimmington]], and tell her you want to know more about the black arts. She will tell you she is making a potion and needs four ingredients that she wants you to get: a [[rat's tail]], a piece of [[Burnt food|burnt meat]], an [[eye of newt]], and an [[onion]].
+"""
+
+[[steps]]
+index = 1
+name = "Rat's tail"
+links = ["rat", "Brian's Archery Supplies", "Hetty"]
+text = """
+Kill a level 1 [[rat]] (they can be found in the [[Brian's Archery Supplies|archery shop]] west of [[Hetty]]'s house) to obtain a rat's tail. '''Note: You can only obtain a rat's tail if you have started the quest! Giant rats will NOT drop a rat's tail.'''
+"""
+
+[[steps]]
+index = 2
+name = "Burnt meat"
+links = ["Burnt meat", "giant rat", "Rimmington", "cow", "cooked meat", "Wydin"]
+text = """
+'''- You can skip this point if you have already obtained [[Burnt meat]].'''
+
+Kill a [[giant rat]] just north of the chapel graveyard south-east of [[Rimmington]], or kill a [[cow]] in the cow pen just south of Falador, and cook the meat. Meat can be used on the fireplace in Hetty's own house. If you didn't manage to burn the meat, use the [[cooked meat]] on the fire or range to purposely burn it. (A player-lit fire will also work.) You can also buy raw meat from [[Wydin]] at the food store in Port Sarim.
+
+[[File:Witch's Potion - Hetty's Cauldron.png|thumb|right|Hetty's cauldron]]
+"""
+
+[[steps]]
+index = 3
+name = "Eye of newt"
+links = ["Eye of newt", "eye of newt", "Betty's Magic Emporium", "Port Sarim", "coins"]
+text = """
+'''- You can skip this point if you have already obtained an [[Eye of newt]].'''
+
+You can buy an [[eye of newt]] from the [[Betty's Magic Emporium|magic shop]] in [[Port Sarim]] for 3 [[coins]]. The magic shop is labelled with a fire rune symbol on the map.
+"""
+
+[[steps]]
+index = 4
+name = "Onion"
+links = ["onion", "Onion", "Rimmington", "Melzar's Maze", "Fred the Farmer", "Lumbridge"]
+text = """
+'''- You can skip this point if you have already obtained an [[onion]].'''
+
+[[Onion]]s can be found in a field directly north of [[Rimmington]] and east of [[Melzar's Maze]], or in the backyard of [[Fred the Farmer]]'s farmhouse west of the sheep pen in [[Lumbridge]].
+"""
+
+[[steps]]
+index = 5
+name = "Finishing up"
+links = ["Hetty"]
+text = """
+When you have all these items, talk to [[Hetty]]. She'll put them in her cauldron and tell you to drink from it. Drink from the cauldron to complete the quest and gain your reward.
+
+'''Congratulations, quest complete!'''
+"""

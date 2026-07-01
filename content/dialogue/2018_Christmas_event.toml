@@ -1,0 +1,3361 @@
+title = "Transcript:2018 Christmas event"
+npcs = ["Duke Horacio", "Fred the Farmer", "Smithing apprentice", "Count Check", "Bob", "Gillie Groats", "Doomsayer", "Party Pete", "Cowboy"]
+node_count = 428
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "If this is the first time talking to Duke Horacio:"
+parent = -1
+children = [1]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Hello there, welcome to Lumbridge."
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "cond"
+text = "If the player has talked to Duke Horacio before:"
+parent = -1
+children = [3]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "option"
+text = "Talk about Lumbridge holiday event."
+parent = -1
+children = [5, 6, 7, 20]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's with all the snow?"
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "A particularly harsh winter for Lumbridge this year. Still, we make the best of it. I hope all our new visitors aren't getting too cold."
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "cond"
+text = "If the player has spent more than 1 hour in the game:"
+parent = 4
+children = [8, 12, 16]
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "option"
+text = "I'm not new!"
+parent = 7
+children = [9, 10, 11]
+
+[[nodes]]
+id = 9
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm not new!"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Oh yes, I know that."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "option"
+text = "Who cares about them?"
+parent = 7
+children = [13, 14, 15]
+
+[[nodes]]
+id = 13
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who cares about them?"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well... I do."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 12
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "option"
+text = "What do you need?"
+parent = 7
+children = [17, 18, 19]
+
+[[nodes]]
+id = 17
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What do you need?"
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Ah..."
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 16
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "cond"
+text = "If the player has spent less than 1 hour in the game:"
+parent = 4
+children = [21, 32, 43]
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "option"
+text = "I'm ok, though I am new around town."
+parent = 20
+children = [22, 23, 24, 25, 28, 30]
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm ok, though I am new around town."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Then doubly welcome you are to Lumbridge."
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 21
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "option"
+text = "Sure I can."
+parent = 21
+children = [26, 27]
+
+[[nodes]]
+id = 26
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I can help."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 5
+kind = "act"
+text = "below"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 4
+kind = "option"
+text = "If I must."
+parent = 21
+children = [29]
+
+[[nodes]]
+id = 29
+depth = 5
+kind = "act"
+text = "below"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 4
+kind = "option"
+text = "No thanks, not this year."
+parent = 21
+children = [31]
+
+[[nodes]]
+id = 31
+depth = 5
+kind = "act"
+text = "below"
+parent = 30
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "option"
+text = "Actually yes, I am rather cold."
+parent = 20
+children = [33, 34, 35, 36, 37, 39, 41]
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Actually yes, I am rather cold."
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well... I may be able to help there."
+parent = 32
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I wonder if you might help me with a little project of mine?"
+parent = 32
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 32
+
+[[nodes]]
+id = 37
+depth = 4
+kind = "option"
+text = "Sure I can."
+parent = 32
+children = [38]
+
+[[nodes]]
+id = 38
+depth = 5
+kind = "act"
+text = "below"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "option"
+text = "If I must."
+parent = 32
+children = [40]
+
+[[nodes]]
+id = 40
+depth = 5
+kind = "other"
+text = "{{tmissing}}"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "option"
+text = "No thanks, not this year."
+parent = 32
+children = [42]
+
+[[nodes]]
+id = 42
+depth = 5
+kind = "other"
+text = "{{tmissing}}"
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "option"
+text = "Who are you calling new?"
+parent = 20
+children = [44, 45, 46, 47]
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Who are you calling new?"
+parent = 43
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I haven't seen you around much before, that's all."
+parent = 43
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I wonder if you might help me with a little project of mine?"
+parent = 43
+
+[[nodes]]
+id = 47
+depth = 4
+kind = "option"
+text = "Yes, I can help."
+parent = 43
+children = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 72, 74, 76]
+
+[[nodes]]
+id = 48
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I can help."
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Great! Thank you!"
+parent = 47
+
+[[nodes]]
+id = 50
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "So, I have seen how much extra work the Lumbridge citizens are putting in recently, what with so many new adventurers in town. I'd like to give them something back."
+parent = 47
+
+[[nodes]]
+id = 51
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "And here comes the but..."
+parent = 47
+
+[[nodes]]
+id = 52
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "How did you know? But... I have to stay here in my room as I have so much paperwork to do."
+parent = 47
+
+[[nodes]]
+id = 53
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "So I'm delivering the presents? I get to be Santa?"
+parent = 47
+
+[[nodes]]
+id = 54
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Um. Not quite, but nearly!"
+parent = 47
+
+[[nodes]]
+id = 55
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean... not quite?"
+parent = 47
+
+[[nodes]]
+id = 56
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well, I don't want them to see you deliver it."
+parent = 47
+
+[[nodes]]
+id = 57
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "What? Why? How?"
+parent = 47
+
+[[nodes]]
+id = 58
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well it kind of looks lazy on my part doesn't it. I'd like you to disguise yourself... as a tree."
+parent = 47
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "A TREE?"
+parent = 47
+
+[[nodes]]
+id = 60
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Yes, a festive tree, as if I'd planted the tree near them and it's holding a present for them... isn't that a wonderful idea?"
+parent = 47
+
+[[nodes]]
+id = 61
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "If by wonderful you mean awful... I suppose you want me to cut bits off trees and stick them to myself and decorate it with something shiny?"
+parent = 47
+
+[[nodes]]
+id = 62
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "How did you know?"
+parent = 47
+
+[[nodes]]
+id = 63
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I'm leaving now."
+parent = 47
+
+[[nodes]]
+id = 64
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Oh very good... leaving... well done."
+parent = 47
+
+[[nodes]]
+id = 65
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "The snowy trees out there look so treemendously festive, you should use some of their branches to decorate them."
+parent = 47
+
+[[nodes]]
+id = 66
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "What about a decoration on top, I don't want to be involved with creepy dolls again."
+parent = 47
+
+[[nodes]]
+id = 67
+depth = 5
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Oh no, no, no. I think you'll be able to find something star like to put on your head, maybe from the church?"
+parent = 47
+
+[[nodes]]
+id = 68
+depth = 5
+kind = "option"
+text = "Where do I get the tree branches from?"
+parent = 47
+children = [69]
+
+[[nodes]]
+id = 69
+depth = 6
+kind = "act"
+text = "below"
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 5
+kind = "option"
+text = "Where do I get the decoration?"
+parent = 47
+children = [71]
+
+[[nodes]]
+id = 71
+depth = 6
+kind = "act"
+text = "below"
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 5
+kind = "option"
+text = "How do I put it all together?"
+parent = 47
+children = [73]
+
+[[nodes]]
+id = 73
+depth = 6
+kind = "act"
+text = "below"
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 5
+kind = "option"
+text = "Why do I need it again?"
+parent = 47
+children = [75]
+
+[[nodes]]
+id = 75
+depth = 6
+kind = "act"
+text = "below"
+parent = 74
+
+[[nodes]]
+id = 76
+depth = 5
+kind = "option"
+text = "No thanks, bye."
+parent = 47
+children = [77]
+
+[[nodes]]
+id = 77
+depth = 6
+kind = "act"
+text = "below"
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "option"
+text = "event=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "Talk about Lumbridge holiday event."
+parent = -1
+children = [81, 82, 83, 84, 89, 90, 96, 100, 108]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "The snowy trees out there look so treemendously festive, you should use some of their branches to decorate them."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What about a decoration on top, I don't want to be involved with creepy dolls again."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Oh no, no, no. I think you'll be able to find something star like to put on your head, maybe from the church?"
+parent = 80
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "option"
+text = "Where do I get the tree branches from?"
+parent = 80
+children = [85, 86, 87, 88]
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get the tree branches from?"
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = """
+The snowy trees out there look so treemendously festive, you should just use some of their branches, but leave the big one alone. Just take something sharp to them. A knife or some shears should do the job.
+"""
+parent = 84
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't think I can take anymore puns."
+parent = 84
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Stick with it, it'll soon be over."
+parent = 84
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "act"
+text = "other"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "option"
+text = "Where do I get the decoration?"
+parent = 80
+children = [91, 92, 93, 94, 95]
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Where do I get the decoration?"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well, not out of my crown! Get it? Crown?"
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Must not react to pun..."
+parent = 90
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "OH ok, have it your way. I noticed a barrel of old waste material near the furnace. You should be able to find some there. Oh, and don't forget you can probably borrow a star from the church."
+parent = 90
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "act"
+text = "other"
+parent = 90
+is_terminal = true
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "option"
+text = "How do I put it all together?"
+parent = 80
+children = [97, 98, 99]
+
+[[nodes]]
+id = 97
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How do I put it all together?"
+parent = 96
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well, thread is too light and rope is too heavy for this job... You could try some wool?"
+parent = 96
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "act"
+text = "other"
+parent = 96
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "option"
+text = "Why do I need it again?"
+parent = 80
+children = [101, 102, 103, 104, 105, 106, 107]
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why do I need it again?"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "To deliver my presents of course!"
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh yeah... you're too busy to do it yourself and don't want them to know that I did it. Pretty poor excuse."
+parent = 100
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Hey, I have a town to run, it's not all it's cracked up to be you know."
+parent = 100
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That was an egg pun, wrong holiday."
+parent = 100
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "How very pithy of you. It wasn't meant to be a pun!"
+parent = 100
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "act"
+text = "other"
+parent = 100
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "option"
+text = "No thanks, bye."
+parent = 80
+children = [109, 110]
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No thanks, bye."
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "act"
+text = "end"
+parent = 108
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "option"
+text = "event=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "cond"
+text = "If the player has less than 5 branches:"
+parent = -1
+children = [113, 116]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "cond"
+text = "If the player has 5 or more open inventory slots:"
+parent = 112
+children = [114, 115]
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "box"
+text = "pic=Festive tree branch detail.png|You chop off some of the tree's snow-covered branches to fashion your outfit."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "cond"
+text = "If the player has less than 5 open inventory slots:"
+parent = 112
+children = [117, 118]
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "box"
+text = "pic=Festive tree branch detail.png|You chop off some of the tree's snow-covered branches, dropping some to the floor."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 3
+kind = "act"
+text = "end"
+parent = 116
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "cond"
+text = "If the player already has 5 or more branches:"
+parent = -1
+children = [120, 121]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've probably got enough of these by now."
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 119
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "cond"
+text = "If the player has not started the event:"
+parent = -1
+children = [123, 124]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What a festive-looking tree, it'd be a shame to cut it down."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "cond"
+text = "If the player has started the event:"
+parent = -1
+children = [126, 127]
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It seems a shame to destroy such a festive-looking tree when all I need is to sever a branch or two for my costume. Maybe I should try using a knife?"
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "end"
+parent = 125
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "cond"
+text = "If the player has not started the event:"
+parent = -1
+children = [129, 130]
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should probably leave these alone."
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "act"
+text = "end"
+parent = 128
+is_terminal = true
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "cond"
+text = "If the player has started the event:"
+parent = -1
+children = [132, 135]
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "cond"
+text = "If the player does not already have some:"
+parent = 131
+children = [133, 134]
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "box"
+text = "pic=Waste gems detail.png|You take some of the chipped gems to decorate your outfit."
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "act"
+text = "end"
+parent = 132
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "cond"
+text = "If the player already has some:"
+parent = 131
+children = [136, 137]
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I should probably leave the rest of these to anyone else who needs them."
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 3
+kind = "act"
+text = "end"
+parent = 135
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "cond"
+text = "If the player has full Prayer points:"
+parent = -1
+children = [139, 140]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "box"
+text = "pic=Church decoration detail.png|While nobody's watching, you steal a decorative star from the altar to top off your costume."
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "cond"
+text = "If the player has Prayer points to recharge:"
+parent = -1
+children = [142, 143]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "box"
+text = "pic=Church decoration detail.png|While nobody's watching, you steal a decorative star from the altar to top off your costume... And pray for forgiveness, while you're here."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "cond"
+text = "If the player already took the star:"
+parent = -1
+children = [145, 146]
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "box"
+text = "You decide you better not steal anything else from the church... But instead pray for forgiveness, while you're here."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "act"
+text = "end"
+parent = 144
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "cond"
+text = "If the player has less than 5 festive tree branches:"
+parent = -1
+children = [148, 149, 150]
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should probably try and make this costume actually look like a tree..."
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "box"
+text = "You need at least 5 festive tree branches to make your costume."
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "act"
+text = "end"
+parent = 147
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "cond"
+text = "If the player has no chipped gems:"
+parent = -1
+children = [152, 153, 154]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What kind of a tree's complete without some sparkly decorations?"
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "box"
+text = "You need some gems to decorate your costume."
+parent = 151
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "act"
+text = "end"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "cond"
+text = "If the player has no church decoration:"
+parent = -1
+children = [156, 157, 158]
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Every tree needs something to top it off!"
+parent = 155
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "box"
+text = "You need some kind of decoration to top off your costume."
+parent = 155
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "act"
+text = "end"
+parent = 155
+is_terminal = true
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "cond"
+text = "If the player has no ball of wool:"
+parent = -1
+children = [160, 161, 162]
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Now if I just had something to tie it all together..."
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "box"
+text = "You need a ball of wool to make your costume."
+parent = 159
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "act"
+text = "end"
+parent = 159
+is_terminal = true
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "cond"
+text = "If the player has all of the required items:"
+parent = -1
+children = [164, 165, 166]
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "box"
+text = "pic=Star-face detail.png|pic2=Tree top detail.png|Through some careful handywork, you manage to put together a Christmas tree costume."
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Perfect! I'll fit right in with this costume... Now to go and show the Duke."
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "option"
+text = "Talk about Lumbridge holiday event."
+parent = -1
+children = [169, 170]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "I see you've got your disguise sorted out, you really should wear it for it to be effective though."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "event=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "option"
+text = "Talk about Lumbridge holiday event."
+parent = -1
+children = [174, 175, 176, 177, 178, 179, 180]
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Is that tree talking to me? I must be ill."
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's me, [Player]!"
+parent = 173
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "And there was me thinking that yew wouldn't have made something that convincing."
+parent = 173
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what do I have to do?"
+parent = 173
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Here, I've written it all down for you."
+parent = 173
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "box"
+text = "pic=Lumbridge task list detail.png|Duke Horacio hands you a neatly written list."
+parent = 173
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "act"
+text = "([[#Questions about the list|Lumbridge task list shows.]])"
+parent = 173
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "event=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Greetings. Welcome to my castle."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "option"
+text = "Talk about Lumbridge holiday event."
+parent = -1
+children = [184, 188]
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "cond"
+text = "If no progress has been made:"
+parent = 183
+children = [185, 186, 187]
+
+[[nodes]]
+id = 185
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So what do I have to do?"
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Here, I've written it all down for you."
+parent = 184
+
+[[nodes]]
+id = 187
+depth = 3
+kind = "act"
+text = "([[#Questions about the list|Lumbridge task list shows.]])"
+parent = 184
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "cond"
+text = "If some progress has been made:"
+parent = 183
+children = [189, 190, 191]
+
+[[nodes]]
+id = 189
+depth = 3
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "How goes the job of Santa?"
+parent = 188
+
+[[nodes]]
+id = 190
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've made some progress. But I have some questions."
+parent = 188
+
+[[nodes]]
+id = 191
+depth = 3
+kind = "act"
+text = "([[#Questions about the list|Lumbridge task list shows.]])"
+parent = 188
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "option"
+text = "event=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "act"
+text = "(Options are presented in a scroll interface instead of the chatbox.)"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "select"
+text = "I have questions about:"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "1: Present for Hans."
+parent = -1
+children = [196, 197]
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Ah Hans, loyal to a fault. He walks the castle grounds all day, everyday. He really could do with a sit down, don't you think? Take my chair, just over there."
+parent = 195
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "act"
+text = "(Lumbridge task list interface opens.)"
+parent = 195
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "option"
+text = "2: Present for Count Check."
+parent = -1
+children = [199, 200, 201]
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = """
+Count Check... he's a bit of an odd one isn't he? He's obsesed{{sic}} with counting. He loves counting, especially shiny things. The other day I was chatting to him and he was completely unable to take his eyes off the golden
+"""
+parent = 198
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "rings on my fingers. Perhaps he'd like some of those. However, they're not normal gold rings, like you would make. These I get specially from the apprentice near the furnace."
+parent = 198
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "act"
+text = "(Lumbridge task list interface opens.)"
+parent = 198
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "option"
+text = "3: Present for Gillie."
+parent = -1
+children = [203, 204, 205]
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = """
+The lovely Gillie. Such pure white milk she brings us daily. But she is so run off her feet. She often suggests that we should find a magic spell to duplicate her! What a notion. I'm surprised we don't hear the same
+"""
+parent = 202
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "complaints from Bob."
+parent = 202
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "act"
+text = "(Lumbridge task list interface opens.)"
+parent = 202
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "option"
+text = "4: Present for Farmer Fred."
+parent = -1
+children = [207, 208, 209]
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = """
+Fred? Such a wholesome farmer. He does his job with the chickens and cows well. However, it wasn't his first choice of profession. He wanted to grow fruit trees you know. The one planted in the castle grounds sure did
+"""
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "catch his eye."
+parent = 206
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "act"
+text = "(Lumbridge task list interface opens.)"
+parent = 206
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "option"
+text = "5: Present for Doom Sayer."
+parent = -1
+children = [211, 212]
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "He's so gloomy, everything is doom doom doom. He needs some light entertainment. I heard he used to be a friend of Party Pete, in Falador, maybe ask him."
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "act"
+text = "(Lumbridge task list interface opens.)"
+parent = 210
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "option"
+text = "6: Nothing."
+parent = -1
+children = [214]
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "act"
+text = "end"
+parent = 213
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "act"
+text = "(Options are presented in a scroll interface instead of the chatbox. Options are crossed out if the present has already been delivered.)"
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "select"
+text = "Duke Horacio's Present List"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "option"
+text = "1: A rest for Hans."
+parent = -1
+children = [218, 220, 222, 224]
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "cond"
+text = "If the player does not have the gift:"
+parent = 217
+children = [219]
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I reckon Hans could do with a sit down as he's always on his feet. I think I saw a comfy chair in the Duke's room."
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "cond"
+text = "If the player already is holding the gift:"
+parent = 217
+children = [221]
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Let's go surprise Hans!"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "cond"
+text = "If the player has given the gift:"
+parent = 217
+children = [223]
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hans seems happy enough with his present already!"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "act"
+text = "(Duke Horacio's Present List opens.)"
+parent = 217
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "option"
+text = "2: Golden rings for Count Check to count."
+parent = -1
+children = [226, 228, 230, 232]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "cond"
+text = "If the player does not have the gift:"
+parent = 225
+children = [227]
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "About 5 I reckon. I wonder if there are any lying around near the furnace, or if anybody there might know, they're made all the time there."
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "cond"
+text = "If the player already is holding the gift:"
+parent = 225
+children = [229]
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Let's go surprise Count Check!"
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "cond"
+text = "If the player has given the gift:"
+parent = 225
+children = [231]
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The Count seems happy enough with his presents already!"
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "act"
+text = "(Duke Horacio's Present List opens.)"
+parent = 225
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "option"
+text = "3: A pretty trinket for Gillie the milk maid."
+parent = -1
+children = [234, 236, 238, 240]
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "cond"
+text = "If the player does not have the gift:"
+parent = 233
+children = [235]
+
+[[nodes]]
+id = 235
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, she does have an awful lot of cows to milk, I wonder if someone around town can help with this. Bob seems to have a lot of work cut out..."
+parent = 234
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "cond"
+text = "If the player already is holding the gift:"
+parent = 233
+children = [237]
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Let's go surprise Gillie!"
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 2
+kind = "cond"
+text = "If the player has given the gift:"
+parent = 233
+children = [239]
+
+[[nodes]]
+id = 239
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Gillie seems happy enough with her present already!"
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "act"
+text = "(Duke Horacio's Present List opens.)"
+parent = 233
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "option"
+text = "4: A pear sapling for Farmer Fred."
+parent = -1
+children = [242, 244, 246, 248]
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "cond"
+text = "If the player does not have the gift:"
+parent = 241
+children = [243]
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The Duke seemed to imply that there was a sapling growing somewhere on the castle grounds."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "cond"
+text = "If the player already is holding the gift:"
+parent = 241
+children = [245]
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Let's go surprise Farmer Fred!"
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "cond"
+text = "If the player has given the gift:"
+parent = 241
+children = [247]
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fred seems happy enough with his present already!"
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "act"
+text = "(Duke Horacio's Present List opens.)"
+parent = 241
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "option"
+text = "5: Entertainment to cheer up the Doom Sayer."
+parent = -1
+children = [250, 252, 254, 256]
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "cond"
+text = "If the player does not have the gift:"
+parent = 249
+children = [251]
+
+[[nodes]]
+id = 251
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I should probably have a chat with the Doom Sayer and find out what entertains him."
+parent = 250
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "cond"
+text = "If the player already is holding the gift:"
+parent = 249
+children = [253]
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Let's go surprise the Doom Sayer!"
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "cond"
+text = "If the player has given the gift:"
+parent = 249
+children = [255]
+
+[[nodes]]
+id = 255
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The Doom Sayer seems happy enough with his present already!"
+parent = 254
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "act"
+text = "(Duke Horacio's Present List opens.)"
+parent = 249
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "option"
+text = "6: Cancel."
+parent = -1
+children = [258]
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "act"
+text = "end"
+parent = 257
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "cond"
+text = "If the player has not started the event:"
+parent = -1
+children = [260, 261]
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "other"
+text = "I don't think the duke would like it if you stole his chair."
+parent = 259
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "act"
+text = "end"
+parent = 259
+is_terminal = true
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "cond"
+text = "If the player has started the event:"
+parent = -1
+children = [263, 264]
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "box"
+text = "You pick up the chair."
+parent = 262
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "act"
+text = "end"
+parent = 262
+is_terminal = true
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "cond"
+text = "If the player is not close enough to Hans:"
+parent = -1
+children = [266, 267]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should probably go somewhere that Hans might actually see me."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "cond"
+text = "If the player is close enough to Hans:"
+parent = -1
+children = [269, 270, 271, 272, 273]
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "box"
+text = "You place the chair on the ground and wait for Hans to notice you..."
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Hans"
+text = "Oh my aching feet! A chair! Just what I've been needing! I'm going to go sit by the fountain, so pretty this time of year."
+parent = 268
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "box"
+text = "Hans takes the chair and teleports away with it."
+parent = 268
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think he hasn't sat down for a while!"
+parent = 268
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "act"
+text = "end"
+parent = 268
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "cond"
+text = "If the player does not have a spade:"
+parent = -1
+children = [275, 276]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "box"
+text = "You pick up the spade."
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "act"
+text = "end"
+parent = 274
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "cond"
+text = "If the player already has a spade:"
+parent = -1
+children = [278, 279]
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, I already have one of those."
+parent = 277
+
+[[nodes]]
+id = 279
+depth = 2
+kind = "act"
+text = "end"
+parent = 277
+is_terminal = true
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "cond"
+text = "If the player has not started the event:"
+parent = -1
+children = [281, 282]
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe I shouldn't go digging things up on castle grounds."
+parent = 280
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "act"
+text = "end"
+parent = 280
+is_terminal = true
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "cond"
+text = "If the player has started the event:"
+parent = -1
+children = [284, 287]
+
+[[nodes]]
+id = 284
+depth = 2
+kind = "cond"
+text = "If the player does not have a spade:"
+parent = 283
+children = [285, 286]
+
+[[nodes]]
+id = 285
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'd be here all day if I tried digging this up by hand..."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 3
+kind = "box"
+text = "You need a spade to dig up the sapling."
+parent = 284
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "cond"
+text = "If the player has a spade:"
+parent = 283
+children = [288, 289]
+
+[[nodes]]
+id = 288
+depth = 3
+kind = "box"
+text = "pic=Pear tree sapling detail.png|You dig up the budding pear tree sapling growing in the castle grounds, leaving a mound of snow in its place."
+parent = 287
+
+[[nodes]]
+id = 289
+depth = 3
+kind = "act"
+text = "end"
+parent = 287
+is_terminal = true
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "cond"
+text = "If the player is not close enough to Farmer Fred:"
+parent = -1
+children = [291, 292]
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should probably go somewhere that Fred might actually see me."
+parent = 290
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "act"
+text = "end"
+parent = 290
+is_terminal = true
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "cond"
+text = "If the player is close enough to Farmer Fred:"
+parent = -1
+children = [294, 295, 296, 297, 298, 299, 300]
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "box"
+text = "You put the sapling at your feet and wait for Fred to notice you..."
+parent = 293
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Wait a second... Where did that Christmas tree come from?"
+parent = 293
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "What's that beneath the tree? Is it..."
+parent = 293
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "box"
+text = "Fred takes the sapling from your feet, somehow blissfully unaware of your presence."
+parent = 293
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Oh, I've always wanted to be able to grow a tree! This is the best day of my life!"
+parent = 293
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, that's Fred taken care of for Christmas."
+parent = 293
+
+[[nodes]]
+id = 300
+depth = 2
+kind = "act"
+text = "end"
+parent = 293
+is_terminal = true
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "option"
+text = "Talk about Lumbridge holiday event."
+parent = -1
+children = [302, 303, 304, 305, 306, 307]
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You don't happen to have any shiny rings laying around, do you?"
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 2
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "Well, as it happens I've been practicing making rings recently! Why?"
+parent = 301
+
+[[nodes]]
+id = 304
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't suppose you could spare a few to help share Christmas cheer?"
+parent = 301
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "You know... They were just going to be smelted back down and reforged. I guess I can spare a few."
+parent = 301
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "box"
+text = "pic=Golden rings detail.png|The Smithing apprentice hands you five golden rings."
+parent = 301
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "act"
+text = "end"
+parent = 301
+is_terminal = true
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "option"
+text = "event=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "About those rings..."
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "You know, I just finished making another lot! Practice makes perfect."
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't suppose you could spare them?"
+parent = -1
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "speaker"
+speaker = "Smithing apprentice"
+text = "I think I could do that... It is Christmas, after all!"
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "box"
+text = "pic=Golden rings detail.png|The Smithing apprentice gives you five golden rings."
+parent = -1
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "cond"
+text = "If the player is not close enough to Count Check:"
+parent = -1
+children = [316, 317]
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should probably go somewhere that the Count might actually see me."
+parent = 315
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "act"
+text = "end"
+parent = 315
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "cond"
+text = "If the player is close enough to Count Check:"
+parent = -1
+children = [319, 320, 321, 322, 323, 324, 325, 326, 327]
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "box"
+text = "You put the five rings on your hand, hold it out and wait for the Count to notice you..."
+parent = 318
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Count Check"
+text = "How long has that Christmas tree been there?"
+parent = 318
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Count Check"
+text = "And what is that shining?"
+parent = 318
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "box"
+text = "The Count takes the golden rings from your fingers one at a time as he counts them out, too distracted to notice the human hand."
+parent = 318
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Count Check"
+text = "One golden ring! Ah, ah, ah... Two golden rings! Ah, ah, ah..."
+parent = 318
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh no..."
+parent = 318
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "box"
+text = "After hearing a noise from the tree, the Count hurries up taking the rest of the rings from your hand."
+parent = 318
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, he seems happy with that!"
+parent = 318
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "act"
+text = "end"
+parent = 318
+is_terminal = true
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "option"
+text = "Talk about Lumbridge holiday event."
+parent = -1
+children = [329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340]
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know much about jewellery and trinkets?"
+parent = 328
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Why? Did somebody tell you I do?!"
+parent = 328
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, no! I was just..."
+parent = 328
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Fine. You heard right... I've got an amulet of duplication!"
+parent = 328
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A what? Come to think of it... That does sound pretty handy."
+parent = 328
+
+[[nodes]]
+id = 334
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Of course it's handy! What will it take to keep you quiet about it?"
+parent = 328
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I just wanted to know where I could get some kind of jewellery around here."
+parent = 328
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "These things don't come cheap... But if it'll keep you quiet, I'll let you have it in exchange for a good word."
+parent = 328
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A good word?"
+parent = 328
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Bob"
+text = "Just spread the word about my business! Tell all your friends how great it is."
+parent = 328
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "box"
+text = "pic=Amulet of duplication detail.png|Bob hands you an amulet of duplication, seemingly in a hurry to get rid of you."
+parent = 328
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "end"
+parent = 328
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "option"
+text = "event=No|Talk about something else."
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "About that amulet..."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "You haven't lost it, have you? You're lucky I have another..."
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You just have these things laying around?"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Bob"
+text = "Well, it is an amulet of duplication! It would be stupid not to have duplicates."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "box"
+text = "Bob hands you a duplicate of the amulet of duplication."
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think this compliments{{sic}} my eyes very well..."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "cond"
+text = "If the player is not close enough to Gillie:"
+parent = -1
+children = [351, 352]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should probably go somewhere that Gillie might actually see me."
+parent = 350
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "act"
+text = "end"
+parent = 350
+is_terminal = true
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "cond"
+text = "If the player is close enough to Gillie:"
+parent = -1
+children = [354, 355, 356, 357, 358, 359, 360, 361]
+
+[[nodes]]
+id = 354
+depth = 2
+kind = "box"
+text = "You hang the amulet on one of your branches and wait for Gillie to notice you..."
+parent = 353
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "speaker"
+speaker = "Gillie Groats"
+text = "Oh my! That Christmas tree certainly did grow quickly."
+parent = 353
+
+[[nodes]]
+id = 356
+depth = 2
+kind = "speaker"
+speaker = "Gillie Groats"
+text = "And that necklace hanging on it! Is that..."
+parent = 353
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "box"
+text = "Gillie gleefully takes the amulet off of the branch and hangs it around her own neck as a clone of her appears before your very eyes."
+parent = 353
+
+[[nodes]]
+id = 358
+depth = 2
+kind = "speaker"
+speaker = "Gillie Groats"
+text = "Hey... You look just like me! <!--chathead on the right-->"
+parent = 353
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Gillie Groats"
+text = "You are me! This is perfect! <!--chathead on the left-->"
+parent = 353
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, Gillie seems happy with that!"
+parent = 353
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "act"
+text = "end"
+parent = 353
+is_terminal = true
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "speaker"
+speaker = "Doomsayer"
+text = "Dooooom!"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where?"
+parent = -1
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "speaker"
+speaker = "Doomsayer"
+text = "All around us! I can feel it in the air, hear it on the wind, smell it... also in the air!"
+parent = -1
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "option"
+text = "Ask about entertainment for the Doomsayer."
+parent = -1
+children = [366, 367, 368, 369, 370, 371, 372]
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So... when you're not smelling doom... what do you do for entertainment?"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "speaker"
+speaker = "Doomsayer"
+text = "I've smelt doom for YEARS, I tell you, years."
+parent = 365
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but before that, what did you do to have fun?"
+parent = 365
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "speaker"
+speaker = "Doomsayer"
+text = "I... uh... I used to watch musicals and plays, funny ones. Party Pete used to host a little event quite regularly in the party room in Falador. But... that was before."
+parent = 365
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll leave before you get sta-"
+parent = 365
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "speaker"
+speaker = "Doomsayer"
+text = "Now it's all Doom! Doom everywhere!"
+parent = 365
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "act"
+text = "end"
+parent = 365
+is_terminal = true
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "option"
+text = "event=No|Ask about something else."
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi!"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Hi! I'm Party Pete. Welcome to the Party Room and happy birthday!"
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "option"
+text = "Ask about entertainment for the Doomsayer."
+parent = -1
+children = [377, 378, 379, 380, 381, 382]
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks! The Duke of Lumbridge tells me that you may be able to organise some appropriate entertainment for the Doomsayer in Lumbridge?"
+parent = 376
+
+[[nodes]]
+id = 378
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = """
+Why yes I can! We go way back, used to be party buddies till he got a bad case of Doom. I've been writing to him and I've managed to get my hands on this summoning whistle that I think will do just the trick.
+"""
+parent = 376
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "box"
+text = "pic=Knight summoner detail.png|Pete hands you a small whistle."
+parent = 376
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What does it do?"
+parent = 376
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "speaker"
+speaker = "Party Pete"
+text = "Summons entertainment amusing enough to make a Doomsayer happy!"
+parent = 376
+
+[[nodes]]
+id = 382
+depth = 2
+kind = "act"
+text = "end"
+parent = 376
+is_terminal = true
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "option"
+text = "event=No|Ask about something else."
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the whistle you gave me..."
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "You really should be more careful with it! But I guess I can understand, it is pretty small."
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is there any chance I could get another?"
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Party Pete"
+text = "Well... Go on, then!"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "box"
+text = "pic=Knight summoner detail.png|Pete hands you a small whistle."
+parent = -1
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "cond"
+text = "If the player is not close enough to the Doomsayer:"
+parent = -1
+children = [391, 392]
+
+[[nodes]]
+id = 391
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should probably go somewhere that the Doomsayer might actually see me."
+parent = 390
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "act"
+text = "end"
+parent = 390
+is_terminal = true
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "cond"
+text = "If the player is close enough to the Doomsayer:"
+parent = -1
+children = [394, 395, 396, 397, 398, 399, 400]
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "box"
+text = "You place the whistle on the ground at your feet and wait for the Doomsayer to notice you..."
+parent = 393
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Doomsayer"
+text = "Hello there, what's this? It can only be something bad, perhaps it summons the end of the world."
+parent = 393
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "box"
+text = "pic=Knight summoner detail.png|The Doomsayer blows the whistle..."
+parent = 393
+
+[[nodes]]
+id = 397
+depth = 2
+kind = "act"
+text = "Nine Falador Knights appear around the Doomsayer and dance."
+parent = 393
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Doomsayer"
+text = "Well! Did I get the wrong end of the stick about that whistle... this is wonderous{{sic}}! This is... magical!"
+parent = 393
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's a bit less full of doom, job done I'd say."
+parent = 393
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "act"
+text = "end"
+parent = 393
+is_terminal = true
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think that's everybody covered! I should probably go and see the Duke again."
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "All done!"
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Excellent, excellent! Thank you so much."
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "cond"
+text = "If the player does not have enough inventory space:"
+parent = -1
+children = [406, 407]
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Duke Horacio"
+text = """
+I would reward you but you need [number] more free spaces in your pack. {{^|number=8 when the inventory is completely full. The Duke will ask you to clear up 8 inventory spaces, for the main 8 noted rewards, but he will actually reward you with as few as 4 spaces emptied, meaning there could be some rewards that drop to the floor.}}
+"""
+parent = 405
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "act"
+text = "end"
+parent = 405
+is_terminal = true
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "As a reward, not only may you keep your disguise, but also, this giant candy cane, and a few other things."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "box"
+text = "The Duke loads you up with presents."
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Thank you so much for helping me! I couldn't have done it without you."
+parent = -1
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're welcome. You work too hard, you should take a break."
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "This is true, I'm sycamore paperwork."
+parent = -1
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That was a rotten pun."
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Well, next year I can turn over a new leaf, spruce this room up and if I can think of something else funny to say I would..."
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's the matter, are you stumped?"
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Did I just say that? I should leave before this gets out of hand."
+parent = -1
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "speaker"
+speaker = "Cowboy"
+text = "I'm in so much trouble, can you help?"
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What with?"
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Cowboy"
+text = "I was bad and opened my present early and now the cows tails are falling off!"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not quite sure how those two things are linked... but ok."
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Cowboy"
+text = "Jack Frost saw me, and cursed me. Why else do you think my hair is green?? Oh please help! Find tails and put them back on the cows."
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where do I find the tails?"
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "speaker"
+speaker = "Cowboy"
+text = "They sometimes drop off if you kill them."
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Um... ok! This is possibly the weirdest thing I've ever been asked to do... But why not?"
+parent = -1
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

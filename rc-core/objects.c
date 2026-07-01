@@ -17,10 +17,6 @@
 #define OBHV_VERSION_MIN 1u
 #define OBHV_VERSION_MAX 2u
 
-typedef struct {
-    uint32_t first, count;
-} RcObjectIndex;
-
 RcObjectDef g_rc_object_defs[RC_MAX_OBJECT_ID];
 RcObjectBehavior g_rc_object_behaviors[RC_MAX_OBJECT_ID];
 RcObjectPlacement *g_rc_object_placements = NULL;
@@ -32,8 +28,94 @@ int g_rc_object_placement_count = 0;
 int g_rc_object_transport_count = 0;
 int g_rc_object_param_count = 0;
 
-static RcObjectIndex g_region_index[RC_MAX_OBJECT_ID];
-static RcObjectIndex g_transport_index[RC_MAX_OBJECT_ID];
+static RcObjectRange g_region_index[RC_MAX_OBJECT_ID];
+static RcObjectRange g_transport_index[RC_MAX_OBJECT_ID];
+static const RcObjectDef *g_active_object_defs = g_rc_object_defs;
+static const RcObjectBehavior *g_active_object_behaviors =
+    g_rc_object_behaviors;
+static const RcObjectPlacement *g_active_object_placements = NULL;
+static const RcObjectTransport *g_active_object_transports = NULL;
+static const RcObjectParam *g_active_object_params = NULL;
+static const RcObjectRange *g_active_region_index = g_region_index;
+static const RcObjectRange *g_active_transport_index = g_transport_index;
+static int g_active_object_def_count = 0;
+static int g_active_object_behavior_count = 0;
+static int g_active_object_placement_count = 0;
+static int g_active_object_transport_count = 0;
+static int g_active_object_param_count = 0;
+
+static void reset_object_range_index(RcObjectRange *index) {
+    if (!index) return;
+    for (int i = 0; i < RC_MAX_OBJECT_ID; i++) {
+        index[i].first = UINT32_MAX;
+        index[i].count = 0;
+    }
+}
+
+void rc_object_data_init(RcObjectData *data) {
+    if (!data) return;
+    memset(data->defs, 0, sizeof(data->defs));
+    memset(data->behaviors, 0, sizeof(data->behaviors));
+    data->placements = NULL;
+    data->transports = NULL;
+    data->params = NULL;
+    data->def_count = 0;
+    data->behavior_count = 0;
+    data->placement_count = 0;
+    data->transport_count = 0;
+    data->param_count = 0;
+    reset_object_range_index(data->region_index);
+    reset_object_range_index(data->transport_index);
+}
+
+void rc_object_data_free(RcObjectData *data) {
+    if (!data) return;
+    free(data->placements);
+    free(data->transports);
+    free(data->params);
+    rc_object_data_init(data);
+}
+
+void rc_objects_use_data(const RcObjectData *data) {
+    if (!data) {
+        g_active_object_defs = g_rc_object_defs;
+        g_active_object_behaviors = g_rc_object_behaviors;
+        g_active_object_placements = g_rc_object_placements;
+        g_active_object_transports = g_rc_object_transports;
+        g_active_object_params = g_rc_object_params;
+        g_active_region_index = g_region_index;
+        g_active_transport_index = g_transport_index;
+        g_active_object_def_count = g_rc_object_def_count;
+        g_active_object_behavior_count = g_rc_object_behavior_count;
+        g_active_object_placement_count = g_rc_object_placement_count;
+        g_active_object_transport_count = g_rc_object_transport_count;
+        g_active_object_param_count = g_rc_object_param_count;
+        return;
+    }
+    g_active_object_defs = data->defs;
+    g_active_object_behaviors = data->behaviors;
+    g_active_object_placements = data->placements;
+    g_active_object_transports = data->transports;
+    g_active_object_params = data->params;
+    g_active_region_index = data->region_index;
+    g_active_transport_index = data->transport_index;
+    g_active_object_def_count = data->def_count;
+    g_active_object_behavior_count = data->behavior_count;
+    g_active_object_placement_count = data->placement_count;
+    g_active_object_transport_count = data->transport_count;
+    g_active_object_param_count = data->param_count;
+}
+
+void rc_objects_reset_data_if_active(const RcObjectData *data) {
+    if (!data) return;
+    if (g_active_object_defs == data->defs
+            || g_active_object_behaviors == data->behaviors
+            || g_active_object_placements == data->placements
+            || g_active_object_transports == data->transports
+            || g_active_object_params == data->params) {
+        rc_objects_use_data(NULL);
+    }
+}
 
 static int read_pstr(FILE *f, char *out, int cap,
                      const char *path, const char *what) {
@@ -90,19 +172,21 @@ static int read_header_version(FILE *f, const char *path,
         && version <= max_version;
 }
 
-static int append_object_param(uint32_t obj_id, uint32_t key, int32_t value) {
-    if (g_rc_object_param_count < 0) return 0;
-    size_t next_count = (size_t)g_rc_object_param_count + 1u;
-    RcObjectParam *next = realloc(g_rc_object_params,
+static int append_object_param_into(RcObjectParam **params, int *count,
+                                    uint32_t obj_id, uint32_t key,
+                                    int32_t value) {
+    if (!params || !count || *count < 0) return 0;
+    size_t next_count = (size_t)*count + 1u;
+    RcObjectParam *next = realloc(*params,
                                   next_count * sizeof(*next));
     if (!next) return 0;
-    g_rc_object_params = next;
-    g_rc_object_params[g_rc_object_param_count] = (RcObjectParam){
+    *params = next;
+    (*params)[*count] = (RcObjectParam){
         .obj_id = obj_id,
         .key = key,
         .value = value,
     };
-    g_rc_object_param_count++;
+    (*count)++;
     return 1;
 }
 
@@ -132,8 +216,8 @@ static uint64_t computed_placement_key(uint32_t obj_id, uint16_t x, uint16_t y,
     return h ? h : 1ull;
 }
 
-int rc_load_object_defs(const char *path) {
-    if (!path) return -1;
+int rc_load_object_defs_into(const char *path, RcObjectData *data) {
+    if (!path || !data) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t version, count;
@@ -142,11 +226,11 @@ int rc_load_object_defs(const char *path) {
         rc_asset_close(f);
         return -1;
     }
-    memset(g_rc_object_defs, 0, sizeof(g_rc_object_defs));
-    free(g_rc_object_params);
-    g_rc_object_params = NULL;
-    g_rc_object_param_count = 0;
-    g_rc_object_def_count = 0;
+    memset(data->defs, 0, sizeof(data->defs));
+    free(data->params);
+    data->params = NULL;
+    data->param_count = 0;
+    data->def_count = 0;
     int loaded = 0;
     for (uint32_t i = 0; i < count; i++) {
         uint32_t obj_id, flags;
@@ -247,7 +331,7 @@ int rc_load_object_defs(const char *path) {
                 row.transforms[t] = transform;
             }
         }
-        row.param_first = (uint32_t)g_rc_object_param_count;
+        row.param_first = (uint32_t)data->param_count;
         row.param_count = param_count;
         for (uint16_t p = 0; p < param_count; p++) {
             uint32_t key;
@@ -259,7 +343,9 @@ int rc_load_object_defs(const char *path) {
                 return -1;
             }
             if (obj_id < RC_MAX_OBJECT_ID
-                    && !append_object_param(obj_id, key, value)) {
+                    && !append_object_param_into(&data->params,
+                                                 &data->param_count,
+                                                 obj_id, key, value)) {
                 rc_asset_close(f);
                 return -1;
             }
@@ -269,17 +355,17 @@ int rc_load_object_defs(const char *path) {
         }
         if (obj_id < RC_MAX_OBJECT_ID) {
             row.loaded = 1;
-            g_rc_object_defs[obj_id] = row;
+            data->defs[obj_id] = row;
             loaded++;
         }
     }
     rc_asset_close(f);
-    g_rc_object_def_count = loaded;
+    data->def_count = loaded;
     return loaded;
 }
 
-int rc_load_object_behaviors(const char *path) {
-    if (!path) return -1;
+int rc_load_object_behaviors_into(const char *path, RcObjectData *data) {
+    if (!path || !data) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t version, count;
@@ -288,8 +374,8 @@ int rc_load_object_behaviors(const char *path) {
         rc_asset_close(f);
         return -1;
     }
-    memset(g_rc_object_behaviors, 0, sizeof(g_rc_object_behaviors));
-    g_rc_object_behavior_count = 0;
+    memset(data->behaviors, 0, sizeof(data->behaviors));
+    data->behavior_count = 0;
     int loaded = 0;
     for (uint32_t i = 0; i < count; i++) {
         uint32_t obj_id, flags;
@@ -325,7 +411,7 @@ int rc_load_object_behaviors(const char *path) {
             return -1;
         }
         if (obj_id < RC_MAX_OBJECT_ID) {
-            g_rc_object_behaviors[obj_id] = (RcObjectBehavior){
+            data->behaviors[obj_id] = (RcObjectBehavior){
                 .flags = flags,
                 .next_loc_stage = next_loc_stage,
                 .action_mask = action_mask,
@@ -336,12 +422,12 @@ int rc_load_object_behaviors(const char *path) {
         }
     }
     rc_asset_close(f);
-    g_rc_object_behavior_count = loaded;
+    data->behavior_count = loaded;
     return loaded;
 }
 
-int rc_load_object_placements(const char *path) {
-    if (!path) return -1;
+int rc_load_object_placements_into(const char *path, RcObjectData *data) {
+    if (!path || !data) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t version, count, region_count;
@@ -358,10 +444,7 @@ int rc_load_object_placements(const char *path) {
         rc_asset_close(f);
         return -1;
     }
-    for (int i = 0; i < RC_MAX_OBJECT_ID; i++) {
-        g_region_index[i].first = UINT32_MAX;
-        g_region_index[i].count = 0;
-    }
+    reset_object_range_index(data->region_index);
     for (uint32_t i = 0; i < count; i++) {
         RcObjectPlacement *row = &rows[i];
         if (!rc_read_exact(f, &row->obj_id, sizeof(row->obj_id), 1, path,
@@ -402,19 +485,19 @@ int rc_load_object_placements(const char *path) {
                                               row->type, row->rotation,
                                               row->flags, i);
         }
-        RcObjectIndex *idx = &g_region_index[row->mapsquare];
+        RcObjectRange *idx = &data->region_index[row->mapsquare];
         if (idx->first == UINT32_MAX) idx->first = i;
         idx->count++;
     }
     rc_asset_close(f);
-    free(g_rc_object_placements);
-    g_rc_object_placements = rows;
-    g_rc_object_placement_count = (int)count;
+    free(data->placements);
+    data->placements = rows;
+    data->placement_count = (int)count;
     return (int)count;
 }
 
-int rc_load_object_transports(const char *path) {
-    if (!path) return -1;
+int rc_load_object_transports_into(const char *path, RcObjectData *data) {
+    if (!path || !data) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
     uint32_t count;
@@ -427,10 +510,7 @@ int rc_load_object_transports(const char *path) {
         rc_asset_close(f);
         return -1;
     }
-    for (int i = 0; i < RC_MAX_OBJECT_ID; i++) {
-        g_transport_index[i].first = UINT32_MAX;
-        g_transport_index[i].count = 0;
-    }
+    reset_object_range_index(data->transport_index);
     for (uint32_t i = 0; i < count; i++) {
         RcObjectTransport *row = &rows[i];
         uint16_t planes;
@@ -464,35 +544,208 @@ int rc_load_object_transports(const char *path) {
         row->start_plane = (uint8_t)((planes >> 14) & 0x3);
         row->dest_plane = (uint8_t)((planes >> 12) & 0x3);
         if (row->obj_id < RC_MAX_OBJECT_ID) {
-            RcObjectIndex *idx = &g_transport_index[row->obj_id];
+            RcObjectRange *idx = &data->transport_index[row->obj_id];
             if (idx->first == UINT32_MAX) idx->first = i;
             idx->count++;
         }
     }
     rc_asset_close(f);
+    free(data->transports);
+    data->transports = rows;
+    data->transport_count = (int)count;
+    return (int)count;
+}
+
+int rc_object_data_import_globals(RcObjectData *data) {
+    if (!data) return 0;
+    memcpy(data->defs, g_rc_object_defs, sizeof(data->defs));
+    memcpy(data->behaviors, g_rc_object_behaviors, sizeof(data->behaviors));
+    data->def_count = g_rc_object_def_count;
+    data->behavior_count = g_rc_object_behavior_count;
+    data->param_count = g_rc_object_param_count;
+    data->placement_count = g_rc_object_placement_count;
+    data->transport_count = g_rc_object_transport_count;
+    memcpy(data->region_index, g_region_index, sizeof(data->region_index));
+    memcpy(data->transport_index, g_transport_index,
+           sizeof(data->transport_index));
+
+    if (data->param_count > 0) {
+        if (!g_rc_object_params) return 0;
+        data->params = malloc((size_t)data->param_count * sizeof(*data->params));
+        if (!data->params) return 0;
+        memcpy(data->params, g_rc_object_params,
+               (size_t)data->param_count * sizeof(*data->params));
+    }
+    if (data->placement_count > 0) {
+        if (!g_rc_object_placements) return 0;
+        data->placements =
+            malloc((size_t)data->placement_count * sizeof(*data->placements));
+        if (!data->placements) return 0;
+        memcpy(data->placements, g_rc_object_placements,
+               (size_t)data->placement_count * sizeof(*data->placements));
+    }
+    if (data->transport_count > 0) {
+        if (!g_rc_object_transports) return 0;
+        data->transports =
+            malloc((size_t)data->transport_count * sizeof(*data->transports));
+        if (!data->transports) return 0;
+        memcpy(data->transports, g_rc_object_transports,
+               (size_t)data->transport_count * sizeof(*data->transports));
+    }
+    return 1;
+}
+
+static int mirror_object_defs_to_globals(const RcObjectData *data) {
+    if (!data) return 0;
+    RcObjectParam *params = NULL;
+    if (data->param_count > 0) {
+        if (!data->params) return 0;
+        params = malloc((size_t)data->param_count * sizeof(*params));
+        if (!params) return 0;
+        memcpy(params, data->params,
+               (size_t)data->param_count * sizeof(*params));
+    }
+    memcpy(g_rc_object_defs, data->defs, sizeof(g_rc_object_defs));
+    free(g_rc_object_params);
+    g_rc_object_params = params;
+    g_rc_object_def_count = data->def_count;
+    g_rc_object_param_count = data->param_count;
+    return 1;
+}
+
+static int mirror_object_behaviors_to_globals(const RcObjectData *data) {
+    if (!data) return 0;
+    memcpy(g_rc_object_behaviors, data->behaviors,
+           sizeof(g_rc_object_behaviors));
+    g_rc_object_behavior_count = data->behavior_count;
+    return 1;
+}
+
+static int mirror_object_placements_to_globals(const RcObjectData *data) {
+    if (!data) return 0;
+    RcObjectPlacement *rows = NULL;
+    if (data->placement_count > 0) {
+        if (!data->placements) return 0;
+        rows = malloc((size_t)data->placement_count * sizeof(*rows));
+        if (!rows) return 0;
+        memcpy(rows, data->placements,
+               (size_t)data->placement_count * sizeof(*rows));
+    }
+    free(g_rc_object_placements);
+    g_rc_object_placements = rows;
+    g_rc_object_placement_count = data->placement_count;
+    memcpy(g_region_index, data->region_index, sizeof(g_region_index));
+    return 1;
+}
+
+static int mirror_object_transports_to_globals(const RcObjectData *data) {
+    if (!data) return 0;
+    RcObjectTransport *rows = NULL;
+    if (data->transport_count > 0) {
+        if (!data->transports) return 0;
+        rows = malloc((size_t)data->transport_count * sizeof(*rows));
+        if (!rows) return 0;
+        memcpy(rows, data->transports,
+               (size_t)data->transport_count * sizeof(*rows));
+    }
     free(g_rc_object_transports);
     g_rc_object_transports = rows;
-    g_rc_object_transport_count = (int)count;
-    return (int)count;
+    g_rc_object_transport_count = data->transport_count;
+    memcpy(g_transport_index, data->transport_index,
+           sizeof(g_transport_index));
+    return 1;
+}
+
+int rc_objects_mirror_to_globals(const RcObjectData *data) {
+    if (!mirror_object_defs_to_globals(data)) return 0;
+    if (!mirror_object_behaviors_to_globals(data)) return 0;
+    if (!mirror_object_placements_to_globals(data)) return 0;
+    if (!mirror_object_transports_to_globals(data)) return 0;
+    return 1;
+}
+
+int rc_load_object_defs(const char *path) {
+    RcObjectData *data = calloc(1, sizeof(*data));
+    if (!data) return -1;
+    rc_object_data_init(data);
+    int loaded = rc_load_object_defs_into(path, data);
+    if (loaded >= 0 && !mirror_object_defs_to_globals(data)) loaded = -1;
+    rc_object_data_free(data);
+    free(data);
+    if (loaded >= 0) rc_objects_use_data(NULL);
+    return loaded;
+}
+
+int rc_load_object_behaviors(const char *path) {
+    RcObjectData *data = calloc(1, sizeof(*data));
+    if (!data) return -1;
+    rc_object_data_init(data);
+    int loaded = rc_load_object_behaviors_into(path, data);
+    if (loaded >= 0 && !mirror_object_behaviors_to_globals(data)) loaded = -1;
+    rc_object_data_free(data);
+    free(data);
+    if (loaded >= 0) rc_objects_use_data(NULL);
+    return loaded;
+}
+
+int rc_load_object_placements(const char *path) {
+    RcObjectData *data = calloc(1, sizeof(*data));
+    if (!data) return -1;
+    rc_object_data_init(data);
+    int loaded = rc_load_object_placements_into(path, data);
+    if (loaded >= 0 && !mirror_object_placements_to_globals(data)) loaded = -1;
+    rc_object_data_free(data);
+    free(data);
+    if (loaded >= 0) rc_objects_use_data(NULL);
+    return loaded;
+}
+
+int rc_load_object_transports(const char *path) {
+    RcObjectData *data = calloc(1, sizeof(*data));
+    if (!data) return -1;
+    rc_object_data_init(data);
+    int loaded = rc_load_object_transports_into(path, data);
+    if (loaded >= 0 && !mirror_object_transports_to_globals(data)) loaded = -1;
+    rc_object_data_free(data);
+    free(data);
+    if (loaded >= 0) rc_objects_use_data(NULL);
+    return loaded;
 }
 
 const RcObjectDef *rc_object_def_get(int obj_id) {
     if (obj_id < 0 || obj_id >= RC_MAX_OBJECT_ID) return NULL;
-    return g_rc_object_defs[obj_id].loaded ? &g_rc_object_defs[obj_id] : NULL;
+    const RcObjectDef *defs = g_active_object_defs ? g_active_object_defs
+                                                   : g_rc_object_defs;
+    const RcObjectDef *def = &defs[obj_id];
+    if (defs != g_rc_object_defs && g_rc_object_defs[obj_id].loaded
+            && memcmp(def, &g_rc_object_defs[obj_id], sizeof(*def)) != 0) {
+        return &g_rc_object_defs[obj_id];
+    }
+    if (def->loaded) return def;
+    if (defs != g_rc_object_defs && g_rc_object_defs[obj_id].loaded) {
+        return &g_rc_object_defs[obj_id];
+    }
+    return NULL;
 }
 
 int rc_object_def_param_int(int obj_id, int key, int default_value) {
     const RcObjectDef *def = rc_object_def_get(obj_id);
-    if (!def || key < 0 || !g_rc_object_params) return default_value;
+    const RcObjectParam *params = g_active_object_params;
+    int param_count = g_active_object_param_count;
+    if (def == &g_rc_object_defs[obj_id]) {
+        params = g_rc_object_params;
+        param_count = g_rc_object_param_count;
+    }
+    if (!def || key < 0 || !params) return default_value;
     uint32_t first = def->param_first;
     uint32_t end = first + def->param_count;
-    if (first >= (uint32_t)g_rc_object_param_count
-            || end > (uint32_t)g_rc_object_param_count
+    if (first >= (uint32_t)param_count
+            || end > (uint32_t)param_count
             || end < first) {
         return default_value;
     }
     for (uint32_t i = first; i < end; i++) {
-        const RcObjectParam *param = &g_rc_object_params[i];
+        const RcObjectParam *param = &params[i];
         if ((int)param->key == key) return param->value;
     }
     return default_value;
@@ -500,16 +753,44 @@ int rc_object_def_param_int(int obj_id, int key, int default_value) {
 
 const RcObjectBehavior *rc_object_behavior_get(int obj_id) {
     if (obj_id < 0 || obj_id >= RC_MAX_OBJECT_ID) return NULL;
-    return g_rc_object_behaviors[obj_id].loaded
-         ? &g_rc_object_behaviors[obj_id] : NULL;
+    const RcObjectBehavior *behaviors = g_active_object_behaviors
+                                      ? g_active_object_behaviors
+                                      : g_rc_object_behaviors;
+    const RcObjectBehavior *behavior = &behaviors[obj_id];
+    if (behaviors != g_rc_object_behaviors
+            && g_rc_object_behaviors[obj_id].loaded
+            && memcmp(behavior, &g_rc_object_behaviors[obj_id],
+                      sizeof(*behavior)) != 0) {
+        return &g_rc_object_behaviors[obj_id];
+    }
+    if (behavior->loaded) return behavior;
+    if (behaviors != g_rc_object_behaviors
+            && g_rc_object_behaviors[obj_id].loaded) {
+        return &g_rc_object_behaviors[obj_id];
+    }
+    return NULL;
 }
 
 const RcObjectPlacement *rc_object_region_placements(uint16_t mapsquare,
                                                      int *count) {
-    RcObjectIndex idx = g_region_index[mapsquare];
+    const RcObjectRange *index = g_active_region_index ? g_active_region_index
+                                                       : g_region_index;
+    const RcObjectPlacement *placements = g_active_object_placements
+                                        ? g_active_object_placements
+                                        : g_rc_object_placements;
+    RcObjectRange idx = index[mapsquare];
     if (count) *count = idx.first == UINT32_MAX ? 0 : (int)idx.count;
-    if (idx.first == UINT32_MAX || !g_rc_object_placements) return NULL;
-    return &g_rc_object_placements[idx.first];
+    if (idx.first == UINT32_MAX || !placements) return NULL;
+    return &placements[idx.first];
+}
+
+int rc_object_placement_count(void) {
+    return g_active_object_placements ? g_active_object_placement_count
+                                      : g_rc_object_placement_count;
+}
+
+int rc_object_has_placements(void) {
+    return rc_object_placement_count() > 0;
 }
 
 int rc_object_placements_at(int x, int y, int plane,
@@ -530,10 +811,15 @@ int rc_object_placements_at(int x, int y, int plane,
 const RcObjectTransport *rc_object_transport_find(int obj_id, int x, int y,
                                                   int plane, int option) {
     if (obj_id < 0 || obj_id >= RC_MAX_OBJECT_ID) return NULL;
-    RcObjectIndex idx = g_transport_index[obj_id];
-    if (idx.first == UINT32_MAX || !g_rc_object_transports) return NULL;
+    const RcObjectRange *index = g_active_transport_index
+                               ? g_active_transport_index : g_transport_index;
+    const RcObjectTransport *transports = g_active_object_transports
+                                        ? g_active_object_transports
+                                        : g_rc_object_transports;
+    RcObjectRange idx = index[obj_id];
+    if (idx.first == UINT32_MAX || !transports) return NULL;
     for (uint32_t i = 0; i < idx.count; i++) {
-        RcObjectTransport *row = &g_rc_object_transports[idx.first + i];
+        const RcObjectTransport *row = &transports[idx.first + i];
         if (row->obj_id != (uint32_t)obj_id) continue;
         if ((int)row->start_x == x && (int)row->start_y == y
                 && (int)row->start_plane == plane

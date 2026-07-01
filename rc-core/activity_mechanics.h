@@ -1,6 +1,8 @@
 #ifndef RC_ACTIVITY_MECHANICS_H
 #define RC_ACTIVITY_MECHANICS_H
 
+#include "types.h"
+
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -86,11 +88,29 @@ typedef struct {
     RcActivityMechanicSection sections[RC_ACTIVITY_MECH_MAX_SECTIONS];
 } RcActivityMechanic;
 
+typedef struct {
+    RcActivityMechanic rows[RC_ACTIVITY_MECH_MAX_ROWS];
+    int count;
+    uint64_t behavior_by_npc[RC_MAX_NPC_ID];
+    uint16_t profile_by_npc[RC_MAX_NPC_ID];
+    int index_built;
+} RcActivityMechanicData;
+
 extern RcActivityMechanic
     g_rc_activity_mechanics[RC_ACTIVITY_MECH_MAX_ROWS];
 extern int g_rc_activity_mechanic_count;
 
 int rc_load_activity_mechanics(const char *path);
+void rc_activity_mechanic_data_init(RcActivityMechanicData *data);
+void rc_activity_mechanic_data_free(RcActivityMechanicData *data);
+int rc_activity_mechanic_data_import_globals(RcActivityMechanicData *data);
+int rc_load_activity_mechanics_into(const char *path,
+                                    RcActivityMechanicData *data);
+int rc_activity_mechanics_mirror_to_globals(
+    const RcActivityMechanicData *data);
+void rc_activity_mechanics_use_data(const RcActivityMechanicData *data);
+void rc_activity_mechanics_reset_data_if_active(
+    const RcActivityMechanicData *data);
 void rc_activity_mechanics_rebuild_index(void);
 int rc_activity_mechanics_find_slug(const char *slug);
 uint64_t rc_activity_mechanics_behavior_for_npc(uint32_t npc_id);

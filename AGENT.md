@@ -93,12 +93,12 @@ performance-sensitive paths.
 - Prefer small module-local APIs over new global cross-system state.
 
 3. Keep the database repo boundary clean.
-- `data/` is a separate local Git repository backed by
-  `https://github.com/jordanbailey00/RuneC-DB`.
 - Do not commit `data/` contents in the main RuneC repository.
-- Runtime code and exporter/tool code stay in RuneC; generated data,
-  generated assets, curated DB inputs, and local DB source corpora stay
-  in `RuneC-DB`.
+- `data/` is an ignored local runtime-data install populated by
+  `scripts/setup-data.sh` or maintainer rebuild tooling.
+- Runtime code, exporter/tool code, curated source content, schemas, and
+  source/gap manifests stay in RuneC; generated runtime data and packs stay
+  ignored locally and are distributed as versioned release artifacts.
 
 4. Build game-wide data-backed pipelines, not bespoke validation fixes.
 - Validation slices such as Varrock, Graardor, KBD, Vorkath, or Jad are

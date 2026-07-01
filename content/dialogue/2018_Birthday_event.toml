@@ -1,0 +1,1637 @@
+title = "Transcript:2018 Birthday event"
+npcs = ["Da Vinci", "Aggie", "Wise Old Man", "Dunce", "Herquin", "Gnome child (2018 Birthday event)", "Gnome child", "Evil Dave"]
+node_count = 210
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Hello there. You seem to be the adventury type, fancy helping me out?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I guess that depends on what is involved."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "I've been commissioned to paint a very special painting. No matter how hard I try, I just can't seem to get the perspective correct on this sword..."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "option"
+text = "Continue listening."
+parent = -1
+children = [5, 6, 7, 8, 15]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "I think I'm going to need a prop of the sword to use as a reference, however, I'm not one to go off looking for such a thing."
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "I thought maybe you could bring me the sword I need?"
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "option"
+text = "What sword are you looking for?"
+parent = 4
+children = [9, 10, 11, 12, 13, 14]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What sword are you looking for?"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Da Vinci"
+text = "I'm afraid it's very specific, you won't find it anywhere, you'll have to make it yourself."
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "How am I suppose to do that?"
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Da Vinci"
+text = "We won't actually be using a real sword, just a prop, so it doesn't need to be made from metal. Gather some normal logs and carve the sword using a knife."
+parent = 8
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have some fletching experience... I'll be right back!"
+parent = 8
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "I'm far too busy right now."
+parent = 4
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "I'm afraid I'm not much of an artist."
+parent = -1
+children = [18]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What sword are you looking for?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "I'm afraid it's very specific, you won't find it anywhere, you'll have to make it yourself."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How am I suppose to do that?"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "We won't actually be using a real sword, just a prop, so it doesn't need to be made from metal. Gather some normal logs and carve the sword using a knife."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have some fletching experience... I'll be right back!"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "select"
+text = "Make a prop sword?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [27]
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "other"
+text = "{{mes|You carefully cut the wood into a prop sword.}}"
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [29]
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here's your sword."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "other"
+text = "{{qact|The player walks over to the table and places the sword on it}}"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "box"
+text = "pic=Prop sword (incomplete) detail.png|You place the prop sword on the table."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "You've done wonderfully well carving this sword, but it's still a bit wooden. I think it needs painting."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "option"
+text = "Well yes, you're doing a painting of it."
+parent = -1
+children = [36, 37, 38]
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well yes, you're doing a painting of it."
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "That's not what I mean! The sword needs to look like a sword."
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "act"
+text = "Continues with \"Ok, what paint do you need?\" below:"
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "option"
+text = "Ok, what paint do you need?"
+parent = -1
+children = [40, 41, 42, 43]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok, what paint do you need?"
+parent = 39
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "I think some gold and silver paint would do. Have a chat with Aggie in Draynor Village, she's good with colours."
+parent = 39
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like a good idea - I'll be back with the dyes as soon as I can!"
+parent = 39
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "act"
+text = "end"
+parent = 39
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "box"
+text = "pic=Gold dust detail.png|You chip off some dust from the rock."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "box"
+text = "pic=Silver dust detail.png|You chip off some dust from the rock."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Aggie"
+text = "What can I help you with?"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "option"
+text = "What could you make for me?|event=no"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "option"
+text = "Can you make paint for me and Da Vinci, please?"
+parent = -1
+children = [53, 54, 55, 56, 67, 78, 84]
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you make paint for me please?"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 2
+kind = "speaker"
+speaker = "Aggie"
+text = "If you have the ingredients, of course!"
+parent = 52
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 52
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "option"
+text = "Gold paint."
+parent = 52
+children = [57, 62]
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "cond"
+text = "If the player doesn't have any gold dust in their inventory:"
+parent = 56
+children = [58, 59, 60, 61]
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Gold paint please."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 4
+kind = "speaker"
+speaker = "Aggie"
+text = "Lovely. For that I'll need gold dust, you can probably get it by chipping little bits off a gold rock with something like a chisel."
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll go get some."
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "cond"
+text = "If the player has gold dust:"
+parent = 56
+children = [63, 64, 65, 66]
+
+[[nodes]]
+id = 63
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Gold paint please."
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Here's the dust."
+parent = 62
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "box"
+text = "pic=Gold paint detail.png|Aggie takes the dust and mixes up some gold paint and hands it to you."
+parent = 62
+
+[[nodes]]
+id = 66
+depth = 4
+kind = "act"
+text = "end"
+parent = 62
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "option"
+text = "Silver paint."
+parent = 52
+children = [68, 73]
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "cond"
+text = "If the player doesn't have any silver dust in their inventory:"
+parent = 67
+children = [69, 70, 71, 72]
+
+[[nodes]]
+id = 69
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Silver paint please."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "speaker"
+speaker = "Aggie"
+text = "Lovely. For that I'll need silver dust, you can probably get it by chipping little bits off a silver rock with something like a chisel."
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Ok, I'll go get some."
+parent = 68
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "act"
+text = "end"
+parent = 68
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "cond"
+text = "If the player has silver dust:"
+parent = 67
+children = [74, 75, 76, 77]
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Silver paint please."
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Here's the dust."
+parent = 73
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "box"
+text = "pic=Silver paint detail.png|Aggie takes the dust and mixes up some silver paint and hands it to you."
+parent = 73
+
+[[nodes]]
+id = 77
+depth = 4
+kind = "act"
+text = "end"
+parent = 73
+is_terminal = true
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "cond"
+text = "If the player has gold and silver dust in their inventory:"
+parent = 52
+children = [79]
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "option"
+text = "Both gold and silver paint."
+parent = 78
+children = [80, 81, 82, 83]
+
+[[nodes]]
+id = 80
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Both gold and silver paint please."
+parent = 79
+
+[[nodes]]
+id = 81
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Here's the dust."
+parent = 79
+
+[[nodes]]
+id = 82
+depth = 4
+kind = "speaker"
+speaker = "Aggie"
+text = "Lovely. There you go. Two pots of paint."
+parent = 79
+
+[[nodes]]
+id = 83
+depth = 4
+kind = "act"
+text = "end"
+parent = 79
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "option"
+text = "I'll come back later."
+parent = 52
+children = [85]
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "option"
+text = "You mad old witch, you can't help me.|event=no"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "Can you make dyes for me please?|event=no"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here's your paint."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "box"
+text = "pic=Silver paint detail.png|pic2=Gold paint detail.png|You hand the paint to Da Vinci who makes a quick job of painting the wooden sword to look real."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "That paint worked just right. Now we just need a nice blue gem for the pommel."
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sure I can get a sapphire..."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "That's kind of you, but that's the wrong kind of blue. Have a chat to Herquin in Falador, he's good with gems."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll get right on it!..."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "option"
+text = "Do you wish to trade?|event=no"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "Do you know where I can get a blue gem?"
+parent = -1
+children = [99, 100, 101, 102, 103, 104, 105, 106, 113]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you know where I can get a blue gem?"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Herquin"
+text = "Yes, they're called sapphires, you can get them mining."
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not that blue. Are there any others?"
+parent = 98
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Herquin"
+text = "Indeed there are. They're not very rare or precious though."
+parent = 98
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's ok, where would I get them?"
+parent = 98
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Herquin"
+text = "Best place I've found is in the moat around the south of the castle. You'll need a small net and likely something to extend it. It's a big drop!"
+parent = 98
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 98
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "option"
+text = "Why on earth would they be there?"
+parent = 98
+children = [107, 108, 109, 110, 111, 112]
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why on earth would they be there?"
+parent = 106
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "speaker"
+speaker = "Herquin"
+text = "Interesting one that, I had a chat with Sir Amik about it. Turns out that hundreds of years ago, when a knight died a sword would be sacrificed to the moat."
+parent = 106
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And the gems were on the swords?"
+parent = 106
+
+[[nodes]]
+id = 110
+depth = 3
+kind = "speaker"
+speaker = "Herquin"
+text = """
+Indeed. In the beginning it was the knight's own swords, but later rather than throw away really precious stuff, they had cheap swords made with semi-precious stones on them, as it was the gesture that counted.
+"""
+parent = 106
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok, thanks for the information!"
+parent = 106
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "act"
+text = "end"
+parent = 106
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "option"
+text = "Ok, thanks for the information!"
+parent = 98
+children = [114, 115]
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ok, thanks for the information!"
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "Sorry I don't want to talk to you actually.|event=no"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "box"
+text = "pic=Rod with net detail.png|You attach the net to the rod."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "other"
+text = "{{mes|You lower your net on the end of the rod into the murky water...}}"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "box"
+text = "pic=Semi-precious blue gem detail.png|You pull a rough, slightly bluish stone from your net. Maybe Herquin can do something with it."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "option"
+text = "Do you wish to trade?|event=no"
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "option"
+text = "Can you polish a gem for me?"
+parent = -1
+children = [124, 125, 126, 127, 128, 129]
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you polish a gem for me?"
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Herquin"
+text = "Of course!"
+parent = 123
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "box"
+text = "pic=Polished blue gem detail.png|Herquin polishes the gem for you."
+parent = 123
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Herquin"
+text = "You got a good one there. Looks like the whole universe inside it now it's polished."
+parent = 123
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for your help!"
+parent = 123
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "act"
+text = "end"
+parent = 123
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "option"
+text = "Sorry I don't want to talk to you actually.|event=no"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here's the gem."
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "box"
+text = "pic=Polished blue gem detail.png|You hand the polished gem to Da Vinci who inlays it into the pommel of the sword."
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Ahh, you've done a grand job on that sword. It's exactly what I need to help with that part of my painting."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm suspecting a 'but' next."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "But... could you do me just one small favour?"
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "cond"
+text = "If the player has completed [[One Small Favour]]:"
+parent = -1
+children = [138]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "option"
+text = "NO! It's never just one small favour!"
+parent = 137
+children = [139, 140, 141]
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "NO! It's never just one small favour!"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "speaker"
+speaker = "Da Vinci"
+text = "You sure? It's only tiny. Without it, this picture won't get done."
+parent = 138
+
+[[nodes]]
+id = 141
+depth = 3
+kind = "act"
+text = "Continues at \"I just need a dragon.\""
+parent = 138
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "I guess so."
+parent = -1
+children = [143, 144, 145, 146, 147, 148, 149, 150, 158, 163]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I guess so. What is it?"
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "I just need a dragon."
+parent = 142
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You JUST need a DRAGON? What do you think I am? Some kind of dragon tamer who can summon creatures out of thin air?"
+parent = 142
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Well, I don't need a real dragon. Just something small, with 4 limbs and wings. Just so I can get the idea of a baby dragon. Hmm, perhaps we could put wings on you."
+parent = 142
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I don't do wings. Besides, I'm too big. I'll find something..."
+parent = 142
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "other"
+text = "You look around the room."
+parent = 142
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 142
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "option"
+text = "Would an imp do?"
+parent = 142
+children = [151, 152, 153, 154, 155, 156, 157]
+
+[[nodes]]
+id = 151
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Would an imp do?"
+parent = 150
+
+[[nodes]]
+id = 152
+depth = 3
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Maybe, but they're red. It must be a green dragon."
+parent = 150
+
+[[nodes]]
+id = 153
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Aggie can help there."
+parent = 150
+
+[[nodes]]
+id = 154
+depth = 3
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Okay, you get that done whilst I paint the sword."
+parent = 150
+
+[[nodes]]
+id = 155
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I already painted the sword."
+parent = 150
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "speaker"
+speaker = "Da Vinci"
+text = "In the PAINTING."
+parent = 150
+
+[[nodes]]
+id = 157
+depth = 3
+kind = "act"
+text = "end"
+parent = 150
+is_terminal = true
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "option"
+text = "Would gnome child do?"
+parent = 142
+children = [159, 160, 161, 162]
+
+[[nodes]]
+id = 159
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Would gnome child do?"
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 158
+
+[[nodes]]
+id = 161
+depth = 3
+kind = "speaker"
+speaker = "Gnome child"
+text = "Green is the colour of nature, yet green is not the natural colour of my lowly flesh. Your proposal is incoherent, unworthy of the glorious winged status you proffer me."
+parent = 158
+
+[[nodes]]
+id = 162
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 158
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "option"
+text = "Would the Wise Old Man do?"
+parent = 142
+children = [164, 165, 166]
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Would the Wise Old Man do?"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "speaker"
+speaker = "Da Vinci"
+text = "What? No! You're too big and he's even taller than you!"
+parent = 163
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "act"
+text = "end"
+parent = 163
+is_terminal = true
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Dunce"
+text = "Please no kill me."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not going to kill you. I'm going to make you a star!"
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Dunce"
+text = "Star... in sky?"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, a star in a painting that the whole world will see. Would you like that?"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Dunce"
+text = "Be happy star. What do?"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "All you need to do is stand still for me... and be green."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Dunce"
+text = "Not green. Red."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can change that."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "option"
+text = "Use the green dye on the imp."
+parent = -1
+children = [178, 179, 180]
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "other"
+text = "{{qact|The green dye is poured on the imp.}}"
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Dunce"
+text = "GREEN!"
+parent = 177
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "act"
+text = "continues"
+parent = 177
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "Don't use the dye."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got you a dragon."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "other"
+text = "{{qact|The camera pans over to the stage with Crunchy and Tim, and the Dunce teleports on stage.}}"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Dunce"
+text = "{{overhead|GREEN!}}"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "An imp! Painted green? Well... I suppose it will have to do!"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Oh yes this is great. I'll be done in no time."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excellent, glad to help."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Now that I've done with that part of the painting, I have arranged a present for you. And, if you'd like it, you can take the sword as I don't need it anymore."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "box"
+text = "pic=Birthday present detail.png|pic2=Prop sword detail.png|Da Vinci hands you a heavy parcel and the sword that you made."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Thank you for all your help with the painting!"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Da Vinci"
+text = "Make sure you check out the basement, we've cleared it out and turned it into a historical gallery of the past 5 years!"
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Dunce"
+text = "Star yet?"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You will be, once Da Vinci has done his work."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You must have seen a few parties in your time."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "I have indeed. This one is most agreeable."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What a party eh?"
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "The cake isn't black."
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, yes. Black cake would be burnt, which wouldn't be very nice."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Evil Dave"
+text = "Yes, but it would look more evil."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Gnome child"
+text = "Greetings."
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you think of the party?"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Gnome child"
+text = "It is as beauteous as the sheen of scales on a butterfly's wing and as odious as a worm's armpit."
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

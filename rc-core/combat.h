@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-// Equipment bonus array indices (matches osrsreboxed-db layout, 14 slots).
+// Equipment bonus array indices used by RuneC item definitions, 14 slots.
 #define EQ_STAB_ATK       0
 #define EQ_SLASH_ATK      1
 #define EQ_CRUSH_ATK      2
@@ -73,7 +73,7 @@ typedef struct {
 } RcCombatViewState;
 
 // Player vs NPC — accuracy + damage calculation per RSMod formulas.
-// `npc_def_id` = index into g_npc_defs[] (use rc_npc_def_find to resolve).
+// `npc_def_id` = NPC definition index (use rc_npc_def_find to resolve).
 RcCombatCalc rc_calc_melee(const RcPlayer *attacker, int npc_def_id);
 RcCombatCalc rc_calc_ranged(const RcPlayer *attacker, int npc_def_id);
 RcCombatCalc rc_calc_magic(const RcPlayer *attacker, int npc_def_id,

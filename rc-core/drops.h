@@ -30,6 +30,20 @@ typedef struct {
     uint16_t count[3];
 } RcDropTable;
 
+typedef struct {
+    RcDropTable *tables;
+    RcDropEntry *entries;
+    RcDropEntry *rdt_entries;
+    RcDropEntry *gdt_entries;
+    RcDropEntry *mrdt_entries;
+    int table_count;
+    int entry_count;
+    int rdt_entry_count;
+    int gdt_entry_count;
+    int mrdt_entry_count;
+    int table_by_npc[RC_MAX_NPC_ID];
+} RcDropData;
+
 #define RC_MAX_LOOT_DROPS 64
 
 typedef struct {
@@ -53,6 +67,15 @@ int rc_load_drops(const char *path);
 int rc_load_rdt(const char *path);
 int rc_load_gdt(const char *path);
 int rc_load_mrdt(const char *path);
+void rc_drop_data_init(RcDropData *data);
+void rc_drop_data_free(RcDropData *data);
+int rc_load_drops_into(const char *path, RcDropData *data);
+int rc_load_rdt_into(const char *path, RcDropData *data);
+int rc_load_gdt_into(const char *path, RcDropData *data);
+int rc_load_mrdt_into(const char *path, RcDropData *data);
+int rc_drops_mirror_to_globals(const RcDropData *data);
+void rc_drops_use_data(const RcDropData *data);
+void rc_drops_reset_data_if_active(const RcDropData *data);
 
 const RcDropTable *rc_drop_table_for_npc(int npc_id);
 const RcDropEntry *rc_drop_entries_for(const RcDropTable *table, int kind,

@@ -8,7 +8,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 
-from source_paths import CACHE_DIR
+from source_paths import CACHE_DIR, display_path, require_cache_dir
 
 PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
 sys.path.insert(0, str(PIPELINE))
@@ -44,9 +44,11 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=OUT)
     parser.add_argument("--report", type=Path, default=REPORT)
     parser.add_argument("--limit-regions", type=int, default=0)
+    parser.add_argument("--cache", type=Path, default=CACHE_DIR)
     args = parser.parse_args()
+    cache_dir = require_cache_dir(args.cache)
 
-    store = RcCacheStore(CACHE_DIR)
+    store = RcCacheStore(cache_dir)
     obj_defs = decode_modern_obj_defs_rc(store)
     map_regions = find_all_map_region_files(store)
     rows: list[tuple[int, int, int, int, int]] = []
@@ -109,7 +111,7 @@ def main() -> int:
         "",
         "status: READY_WITH_ACCEPTED_SIMPLIFICATIONS",
         f"output binary: {args.output.relative_to(ROOT) if args.output.is_relative_to(ROOT) else args.output} ({args.output.stat().st_size} bytes)",
-        f"source cache: {CACHE_DIR.relative_to(ROOT)}",
+        f"source cache: {display_path(cache_dir)}",
         "source object defs: b237 cache index 2 group 6",
         f"cache map groups: {len(map_regions)}",
         f"exported map groups: {len(targets)}",

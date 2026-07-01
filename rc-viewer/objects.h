@@ -22,6 +22,7 @@
 #define OANM_VERSION 1
 #define OANM_FLAG_DYNAMIC_BASE (1u << 0)
 #define OANM_FLAG_DYNAMIC_REPLACEMENT (1u << 1)
+#define RUNEC_DEFAULT_OBJECT_VERTEX_LIMIT 0
 
 typedef struct {
     uint32_t texture_id;
@@ -62,8 +63,33 @@ typedef struct {
     int total_vertex_count;
     int min_world_x, min_world_y;
     int has_textures;
+    int owns_atlas_texture;
     int loaded;
 } ObjectMesh;
+
+static int objects_vertex_limit(void) {
+    const char *value = getenv("RUNEC_OBJECT_VERTEX_LIMIT");
+    if (!value || !value[0])
+        return RUNEC_DEFAULT_OBJECT_VERTEX_LIMIT;
+    int parsed = atoi(value);
+    return parsed < 0 ? 0 : parsed;
+}
+
+static int objects_skip_oversized_asset(const char *path, int vertex_limit) {
+    if (!path || vertex_limit <= 0)
+        return 0;
+    uint64_t size = 0;
+    if (!rc_asset_size(path, &size))
+        return 0;
+    uint64_t min_bytes_for_limit = 20u + (uint64_t)vertex_limit * 16u;
+    if (size <= min_bytes_for_limit)
+        return 0;
+    fprintf(stderr,
+            "objects: skipping %s because asset is %llu bytes and exceeds "
+            "RUNEC_OBJECT_VERTEX_LIMIT=%d; set limit to 0 for full scene\n",
+            path, (unsigned long long)size, vertex_limit);
+    return 1;
+}
 
 static int objects_companion_path(char *out, size_t cap, const char *path,
                                   const char *suffix) {
@@ -116,11 +142,8 @@ static void objects_load_texture_anims(ObjectMesh *om, const char *atlas_path) {
             om->texture_anim_count);
 }
 
-static void objects_load_object_anims(ObjectMesh *om, const char *objects_path) {
-    if (!om || !objects_path) return;
-    char path[1024];
-    if (!objects_companion_path(path, sizeof(path), objects_path, ".oanim"))
-        return;
+static void objects_load_object_anims_path(ObjectMesh *om, const char *path) {
+    if (!om || !path) return;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return;
     uint32_t magic, version, count;
@@ -179,6 +202,14 @@ static void objects_load_object_anims(ObjectMesh *om, const char *objects_path) 
     rc_asset_close(f);
     fprintf(stderr, "object anim: %d placements loaded\n",
             om->object_anim_count);
+}
+
+static void objects_load_object_anims(ObjectMesh *om, const char *objects_path) {
+    if (!om || !objects_path) return;
+    char path[1024];
+    if (!objects_companion_path(path, sizeof(path), objects_path, ".oanim"))
+        return;
+    objects_load_object_anims_path(om, path);
 }
 
 static Texture2D objects_load_atlas(ObjectMesh *om, const char *atlas_path) {
@@ -286,7 +317,13 @@ static void objects_update_texture_anims(ObjectMesh *om, float dt) {
     UpdateTexture(om->atlas_texture, om->atlas_pixels);
 }
 
-static ObjectMesh *objects_load(const char *path) {
+static ObjectMesh *objects_load_with_resources(const char *path,
+                                               const char *atlas_override,
+                                               Texture2D shared_atlas) {
+    int vertex_limit = objects_vertex_limit();
+    if (objects_skip_oversized_asset(path, vertex_limit))
+        return NULL;
+
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "objects: can't open %s\n", path); return NULL; }
 
@@ -309,6 +346,15 @@ static ObjectMesh *objects_load(const char *path) {
     }
     fprintf(stderr, "objects: %u placements, %u verts, %s\n",
             placement_count, total_verts, has_tex ? "OBJ2" : "OBJS");
+
+    if (vertex_limit > 0 && total_verts > (uint32_t)vertex_limit) {
+        fprintf(stderr,
+                "objects: skipping %s because %u verts exceeds "
+                "RUNEC_OBJECT_VERTEX_LIMIT=%d; set limit to 0 for full scene\n",
+                path, total_verts, vertex_limit);
+        rc_asset_close(f);
+        return NULL;
+    }
 
     float *raw_verts = malloc(total_verts * 3 * sizeof(float));
     if (!raw_verts
@@ -371,16 +417,43 @@ static ObjectMesh *objects_load(const char *path) {
     om->loaded = 1;
 
     if (has_tex) {
-        char atlas_path[1024];
-        strncpy(atlas_path, path, sizeof(atlas_path) - 1);
-        char *dot = strrchr(atlas_path, '.');
-        if (dot) strcpy(dot, ".atlas");
-        om->atlas_texture = objects_load_atlas(om, atlas_path);
-        if (om->atlas_texture.id > 0)
-            om->model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = om->atlas_texture;
+        if (shared_atlas.id > 0) {
+            om->atlas_texture = shared_atlas;
+            om->owns_atlas_texture = 0;
+            om->model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture =
+                shared_atlas;
+        } else {
+            char atlas_path[1024];
+            if (atlas_override && atlas_override[0]) {
+                snprintf(atlas_path, sizeof(atlas_path), "%s", atlas_override);
+            } else {
+                strncpy(atlas_path, path, sizeof(atlas_path) - 1);
+                char *dot = strrchr(atlas_path, '.');
+                if (dot) strcpy(dot, ".atlas");
+            }
+            om->atlas_texture = objects_load_atlas(om, atlas_path);
+            om->owns_atlas_texture = om->atlas_texture.id > 0;
+            if (om->atlas_texture.id > 0)
+                om->model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture =
+                    om->atlas_texture;
+        }
     }
     objects_load_object_anims(om, path);
     return om;
+}
+
+static ObjectMesh *objects_load_with_atlas(const char *path,
+                                           const char *atlas_override) {
+    return objects_load_with_resources(path, atlas_override, (Texture2D){0});
+}
+
+static ObjectMesh *objects_load_with_shared_atlas(const char *path,
+                                                  Texture2D atlas_texture) {
+    return objects_load_with_resources(path, NULL, atlas_texture);
+}
+
+static ObjectMesh *objects_load(const char *path) {
+    return objects_load_with_atlas(path, NULL);
 }
 
 static void objects_offset(ObjectMesh *om, int wx, int wy) {
@@ -401,7 +474,8 @@ static void objects_set_shader(ObjectMesh *om, Shader shader) {
 static void objects_free(ObjectMesh *om) {
     if (!om) return;
     if (om->loaded) {
-        if (om->atlas_texture.id > 0) UnloadTexture(om->atlas_texture);
+        if (om->owns_atlas_texture && om->atlas_texture.id > 0)
+            UnloadTexture(om->atlas_texture);
         UnloadModel(om->model);
     }
     free(om->atlas_base_pixels);

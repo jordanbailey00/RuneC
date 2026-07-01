@@ -1,79 +1,7 @@
 #!/usr/bin/env python3
 """Compile encounter TOMLs into `data/defs/encounters.bin`.
 
-Input:  `data/curated/encounters/*.toml` — 50 hand-authored encounter
-        specs, schema described in `database.md`, with field catalog in
-        `docs/encounter_primitives.md`.
-
-Output: `data/defs/encounters.bin` with 'ENCT' magic. Loaded at
-        `rc_world_create_config` time by `rc-core/encounter.c` when
-        `RC_SUB_ENCOUNTER` is enabled.
-
-Binary format (pass-2.11 — encounter presentation/state effects):
-  magic u32 ('ENCT') | version u32 | encounter_count u32
-  per encounter:
-    slug_len u8 + slug[]
-    npc_id_count u8 + (npc_id u32)[]
-    attack_count u8
-      per attack:
-        name_len u8 + name[]
-        style u8
-        max_hit u16
-        warning_ticks u8
-        owner_npc_id u32      (0 = any NPC in spec)
-        min_hit u16
-        flags u32             (forced, prayer-ignorable, melee-range, room)
-        effect_id u8
-        effect_min u8
-        effect_max u8
-        effect_pct u8
-        effect_flags u8
-    phase_count u8
-      per phase:
-        id_len u8 + id[]
-        enter_at_hp_pct u8     (0 = hard hp=0 trigger; 100 = fight start)
-        hard_hp_trigger u8     (1 if `enter_at_hp = 0`)
-        script_len u8 + script[]
-        allowed_attack_mask u32
-        adjacent_style_weights u8[8]
-        distant_style_weights u8[8]
-        player_targetable u8
-        allowed_attack_mask_explicit u8
-    mechanic_count u8
-      per mechanic:
-        name_len u8 + name[]
-        primitive_id u8        (enum — see PRIMITIVE_IDS)
-        period_ticks u16
-        trigger_type u8        (0=periodic, 1=phase_enter,
-                                2=phase_exit, 3=phase_in, 4=after_attack,
-                                5=during_mechanic, 6=attack_counter,
-                                7=event, 255=none)
-        phase_idx u8           (index into encounter phases, or 255)
-        phase_mask u32         (union phase bindings, or 0)
-        trigger_ref_len u8 + trigger_ref[]
-        param_block[64]        (opaque — primitive-specific struct)
-    protection_count u8
-      per protection:
-        attack_idx u8
-        style u8
-        prayer_flag u32
-        damage_pct u8
-    damage_modifier_count u8
-      per modifier:
-        owner_npc_id u32       (0 = any NPC in spec)
-        condition u8           (enum — supported generic predicates)
-        style u8               (RcCombatStyle for style predicates)
-        damage_pct u8
-        flags u8
-
-Still not consumed in pass 2 (pass 3+ work):
-  - raid `[[rooms]]`, wave `[[waves]]` progression (skipped)
-  - variant_override
-  - Zulrah form-specific damage modifiers
-  - encounter_type flag (skipping skilling bosses)
-  - rotations (tick-driven phases — Zulrah)
-  - exact persistent object/arena state for mechanics whose current
-    generic primitive only owns first runtime behavior
+Runtime schema: `schema/defs/encounters.schema.toml`.
 """
 from __future__ import annotations
 
@@ -83,9 +11,11 @@ import sys
 import tomllib
 from pathlib import Path
 
+from content_paths import content_read_path
+
 ROOT = Path(__file__).resolve().parents[1]
 
-CURATED = ROOT / "data/curated/encounters"
+CURATED = content_read_path("encounters")
 OUT = ROOT / "data/defs/encounters.bin"
 REPORT = ROOT / "tools/reports/encounters.txt"
 

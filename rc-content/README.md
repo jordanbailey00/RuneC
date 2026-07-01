@@ -100,9 +100,9 @@ Every content module follows the same shape:
 **File naming.** One file per content unit, snake_case matching the
 TOML/slug:
 - `rc-content/encounters/scurrius.c` matches
-  `data/curated/encounters/scurrius.toml`.
+  `content/encounters/scurrius.toml`.
 - `rc-content/quests/cooks_assistant.c` matches
-  `data/curated/quests/cooks_assistant/steps.toml`.
+  `content/quests/Cook_s_Assistant/steps.toml`.
 
 **Register function.** Every module exposes exactly one public
 symbol:
@@ -141,7 +141,7 @@ belongs in `rc-core/encounter_prims.c`, not here.
 | Varrock NPC-specific tick behavior (if any emerges) | `rc-content/regions/varrock.c` | Region-scoped. |
 | `RcWorld`, `RcEncounterSpec`, tick dispatcher | `rc-core/*` | Engine; content-agnostic. |
 | NPC def data (`npc_defs.bin`), item defs, drop tables | `data/defs/*.bin` | Pure data — not code. |
-| Encounter TOML data | `data/curated/encounters/*.toml` | Pure data — compiled to `encounters.bin`. |
+| Encounter TOML data | `content/encounters/*.toml` | Pure data — compiled to `encounters.bin`. |
 
 **The test:** if you removed this content module, would the engine
 still compile and run? If yes → it's correctly in `rc-content`.
@@ -155,34 +155,34 @@ should be data-driven or should move to content.
 
 ## 5. Data and reference sources
 
-RuneC content logic lives in this repo. Generated data, generated assets,
-curated DB inputs, and local source corpora live in the nested `data/`
-directory backed by `https://github.com/jordanbailey00/RuneC-DB`.
+RuneC content logic and reviewed source content live in this repo. Generated
+data and generated assets live in the ignored local `data/` runtime install and
+are populated by `scripts/setup-data.sh` or maintainer rebuild tooling.
 
 External codebases are reference material only. They are audited from local
-checkouts, normally under `/home/joe/projects/runescape-rl-reference`, and
-must not be called at runtime or during normal export/rendering:
+checkouts outside the shipped runtime, with tool paths supplied through
+documented CLI arguments or environment variables. They must not be called at
+runtime or during normal export/rendering:
 
-- **rsmod** — modern OSRS server emulator. Useful for combat formulas,
+- **RSMod** — modern OSRS server emulator. Useful for combat formulas,
   tick order, pathing, and any encounter logic it actually implements.
-- **void_rsps** — pre-2013 RSPS. Good for skill formulas,
-  Varrock data, doors. Same OSRS-overlap rule as rsmod for
-  boss logic.
-- **2011Scape-game** — tertiary spawn source + overlap boss
-  logic. **Per user memory: OSRS ≠ 2011Scape. They're parallel
-  emulators, not one timeline. Use 2011Scape strictly as an
-  overlap source — never as an OSRS reference on its own.**
-- **osrsreboxed-db** — item / NPC combat stats.
-- **runelite** — cache format, ID constants.
+- **OSRS Wiki** — content facts, strategy prose, and transcripts that need
+  review before becoming executable content.
+- **osrsreboxed** — item / NPC combat-stat research.
+- **RuneLite** — cache format and ID-constant research.
+
+Private-server and wrong-game sources are not accepted as content authority.
+When an approved OSRS-native source does not cover a fact, record a source gap
+or add reviewed authored content with citations.
 
 ### Rules for porting content logic
 
-1. **Check the source class first.** `rsmod` is modern OSRS where
-   coverage exists; `void_rsps` and `2011Scape-game` are overlap-only
-   references for content that genuinely predates the OSRS split.
+1. **Check the source class first.** Prefer b237 cache/dumps, reviewed
+   RuneC-owned content, source-gap rows, and OSRS-native research references
+   that have been converted into RuneC-owned code or tables.
 2. **OSRS-only content** (Scurrius, Vorkath, raids, DT2 chain,
-   Muspah, Hueycoatl, Royal Titans, etc.) must still be reconstructed
-   from the wiki when the overlap sources do not contain it.
+   Muspah, Hueycoatl, Royal Titans, etc.) must be reconstructed from approved
+   OSRS-native sources or tracked as a source gap.
 3. **Validate timing and damage against the wiki** even when a
    reference repo has working logic.
 4. **Port logic, not data.** Drop tables, attack stats, etc. already

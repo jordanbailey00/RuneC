@@ -14,6 +14,9 @@
 RcItemDef g_item_defs[RC_MAX_ITEM_DEFS];
 int g_item_def_count = 0;
 
+static const RcItemDef *g_active_item_defs = g_item_defs;
+static int g_active_item_def_count = 0;
+
 enum {
     IDEF_MAGIC = 0x49444546,
     IDEF_V1 = 1,
@@ -69,6 +72,17 @@ static int read_u32(const unsigned char **p, const unsigned char *end,
 
 static int id_or_missing(uint32_t value) {
     return value == UINT32_MAX ? -1 : (int)value;
+}
+
+void rc_item_use_defs(const RcItemDef *defs, int count) {
+    g_active_item_defs = defs ? defs : g_item_defs;
+    g_active_item_def_count = defs ? count : 0;
+}
+
+void rc_item_reset_defs_if_active(const RcItemDef *defs) {
+    if (defs && g_active_item_defs == defs) {
+        rc_item_use_defs(g_item_defs, g_item_def_count);
+    }
 }
 
 static int parse_equipment(RcItemDef *def, const unsigned char **p,
@@ -218,8 +232,10 @@ static int parse_record(RcItemDef *def, const unsigned char *buf,
     return 1;
 }
 
-int rc_load_item_defs(const char *path) {
-    if (!path) return -1;
+int rc_load_item_defs_into(const char *path, RcItemDef *defs, int max_defs,
+                           int *out_count) {
+    if (out_count) *out_count = 0;
+    if (!path || !defs || max_defs <= 0) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
@@ -235,8 +251,7 @@ int rc_load_item_defs(const char *path) {
         return -1;
     }
 
-    memset(g_item_defs, 0, sizeof(g_item_defs));
-    g_item_def_count = 0;
+    memset(defs, 0, (size_t)max_defs * sizeof(*defs));
     int loaded = 0;
 
     for (uint32_t i = 0; i < count; i++) {
@@ -263,22 +278,43 @@ int rc_load_item_defs(const char *path) {
         }
         free(buf);
 
-        if (def.id >= 0 && def.id < RC_MAX_ITEM_DEFS) {
-            g_item_defs[def.id] = def;
+        if (def.id >= 0 && def.id < max_defs) {
+            defs[def.id] = def;
             loaded++;
         }
     }
 
     rc_asset_close(f);
-    g_item_def_count = loaded;
+    if (out_count) *out_count = loaded;
     return loaded;
+}
+
+int rc_load_item_defs(const char *path) {
+    int loaded = 0;
+    int result = rc_load_item_defs_into(path, g_item_defs, RC_MAX_ITEM_DEFS,
+                                        &loaded);
+    if (result < 0) return -1;
+    g_item_def_count = loaded;
+    rc_item_use_defs(g_item_defs, g_item_def_count);
+    return result;
 }
 
 const RcItemDef *rc_item_def_get(int item_id) {
     if (item_id < 0 || item_id >= RC_MAX_ITEM_DEFS) return NULL;
-    const RcItemDef *def = &g_item_defs[item_id];
+    const RcItemDef *defs = g_active_item_defs ? g_active_item_defs
+                                               : g_item_defs;
+    int count = defs == g_item_defs ? g_item_def_count
+                                    : g_active_item_def_count;
+    const RcItemDef *def = &defs[item_id];
+    if (defs != g_item_defs && g_item_defs[item_id].loaded
+            && memcmp(def, &g_item_defs[item_id], sizeof(*def)) != 0) {
+        return &g_item_defs[item_id];
+    }
     if (def->loaded) return def;
-    if (item_id < g_item_def_count && def->id == item_id) return def;
+    if (defs != g_item_defs && g_item_defs[item_id].loaded) {
+        return &g_item_defs[item_id];
+    }
+    if (item_id < count && def->id == item_id) return def;
     return NULL;
 }
 

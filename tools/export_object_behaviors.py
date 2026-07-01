@@ -8,15 +8,15 @@ import struct
 from collections import Counter
 from pathlib import Path
 
-from source_paths import DATA_OSRS
+from legacy_external_source_paths import DATA_OSRS, OSRS_DUMPS
 
 ROOT = Path(__file__).resolve().parents[1]
 ODEF = ROOT / "data/defs/object_defs.bin"
 OUT = ROOT / "data/defs/object_behaviors.bin"
 REPORT = ROOT / "tools/reports/object_behaviors.txt"
 TRANSPORTS = DATA_OSRS / "transports_osrs.json"
-DUMP_LOC = ROOT / "tools/cache_pipeline/source/osrs-dumps/config/dump.loc"
-DUMP_SEQ = ROOT / "tools/cache_pipeline/source/osrs-dumps/config/dump.seq"
+DUMP_LOC = OSRS_DUMPS / "config/dump.loc"
+DUMP_SEQ = OSRS_DUMPS / "config/dump.seq"
 
 OBHV_MAGIC = 0x5648424F  # OBHV
 OBHV_VERSION = 2

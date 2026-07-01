@@ -1,0 +1,24 @@
+id = "object_placements"
+format = "binary"
+path = "data/defs/object_placements.bin"
+magic_label = "OPLC"
+magic_u32 = "0x434C504F"
+current_version = 2
+accepted_versions = [1, 2]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count", "u32 region_count"]
+producer = "tools/export_object_placements.py"
+consumers = ["rc-core/objects.c"]
+source_dataset = "b237 cache map location groups decoded by RuneC cache tools"
+row_fields = [
+  "u32 obj_id",
+  "u64 placement_key (v2+)",
+  "u16 x",
+  "u16 y",
+  "u16 mapsquare",
+  "u8 plane",
+  "u8 type",
+  "u8 rotation",
+  "u8 flags",
+]
+compatibility = "Loader accepts versions 1 and 2."

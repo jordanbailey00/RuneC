@@ -12,39 +12,48 @@ RcNpcDef g_npc_defs[RC_MAX_NPC_DEFS];
 int g_npc_def_count = 0;
 static int g_npc_def_by_id[RC_MAX_NPC_ID];
 static bool g_npc_def_index_ready = false;
+static const RcNpcDef *g_active_npc_defs = g_npc_defs;
+static int g_active_npc_def_count = 0;
+static const int *g_active_npc_def_by_id = g_npc_def_by_id;
 
 static void rc_npc_def_index_reset(void) {
     for (int i = 0; i < RC_MAX_NPC_ID; i++) g_npc_def_by_id[i] = -1;
     g_npc_def_index_ready = true;
 }
 
-// NDEF binary — v1 (cache only), v2 (combat merge), v3 (model ID links),
-// v4 (cache NPC action slots).
-// v1 layout: magic u32 | version u32 | count u32 |
-//   per NPC: id u32, size u8, combat_level i16, hitpoints u16,
-//            stats[6] u16, anims[5] i32,
-//            name_len u8, name[name_len]
-// v2 appends after the name, per NPC:
-//            aggressive u8, max_hit u16, attack_speed u8, aggro_range u8,
-//            slayer_level u16, attack_types_bitfield u8, weakness_bitfield u8,
-//            immunities u8 (bit0=poison, bit1=venom)
-// v3 appends after v2:
-//            model_count u8, model_ids[model_count] u32
-// v4 appends after v3:
-//            options[5]: option_len u8, option_text[option_len]
-//            Empty/None cache slots are encoded as length 0 so option
-//            indexes stay aligned with the client cache.
+static void npc_def_index_reset_into(int *def_by_id, int max_def_by_id) {
+    if (!def_by_id || max_def_by_id <= 0) return;
+    for (int i = 0; i < max_def_by_id; i++) def_by_id[i] = -1;
+}
+
+void rc_npc_use_defs(const RcNpcDef *defs, int count,
+                     const int *def_by_id) {
+    g_active_npc_defs = defs ? defs : g_npc_defs;
+    g_active_npc_def_count = defs ? count : 0;
+    g_active_npc_def_by_id = defs ? def_by_id : g_npc_def_by_id;
+}
+
+void rc_npc_reset_defs_if_active(const RcNpcDef *defs) {
+    if (defs && g_active_npc_defs == defs) {
+        rc_npc_use_defs(g_npc_defs, g_npc_def_count,
+                        g_npc_def_index_ready ? g_npc_def_by_id : NULL);
+    }
+}
+
+// NDEF runtime schema: schema/defs/npc_defs.schema.toml.
 #define NDEF_MAGIC 0x4E444546
 #define NDEF_V1 1
 #define NDEF_V2 2
 #define NDEF_V3 3
 #define NDEF_V4 4
 
-int rc_load_npc_defs(const char *path) {
+int rc_load_npc_defs_into(const char *path, RcNpcDef *defs, int max_defs,
+                          int *out_count, int *def_by_id,
+                          int max_def_by_id) {
+    if (out_count) *out_count = 0;
+    if (!path || !defs || max_defs <= 0) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) { fprintf(stderr, "npc_defs: can't open %s\n", path); return -1; }
-    int orig_count = g_npc_def_count;
-    if (orig_count == 0) rc_npc_def_index_reset();
 
     uint32_t magic, version, count;
     if (!rc_read_exact(f, &magic, sizeof(magic), 1, path, "npc defs magic")
@@ -56,7 +65,6 @@ int rc_load_npc_defs(const char *path) {
     if (!rc_read_exact(f, &version, sizeof(version), 1, path, "npc defs version")
             || !rc_read_exact(f, &count, sizeof(count), 1, path, "npc defs count")) {
         rc_asset_close(f);
-        g_npc_def_count = orig_count;
         return -1;
     }
     if (version != NDEF_V1 && version != NDEF_V2
@@ -66,9 +74,11 @@ int rc_load_npc_defs(const char *path) {
         return -1;
     }
 
+    memset(defs, 0, (size_t)max_defs * sizeof(*defs));
+    npc_def_index_reset_into(def_by_id, max_def_by_id);
     int loaded = 0;
-    for (uint32_t i = 0; i < count && g_npc_def_count < RC_MAX_NPC_DEFS; i++) {
-        RcNpcDef *d = &g_npc_defs[g_npc_def_count];
+    for (uint32_t i = 0; i < count && loaded < max_defs; i++) {
+        RcNpcDef *d = &defs[loaded];
         memset(d, 0, sizeof(RcNpcDef));
         uint32_t id;
         uint8_t size, name_len;
@@ -85,13 +95,11 @@ int rc_load_npc_defs(const char *path) {
                 || !rc_read_exact(f, anims, sizeof(anims[0]), 5, path, "npc anims")
                 || !rc_read_exact(f, &name_len, sizeof(name_len), 1, path, "npc name length")) {
             rc_asset_close(f);
-            g_npc_def_count = orig_count;
             return -1;
         }
         if (name_len > 63) name_len = 63;
         if (!rc_read_exact(f, d->name, sizeof(char), name_len, path, "npc name")) {
             rc_asset_close(f);
-            g_npc_def_count = orig_count;
             return -1;
         }
         d->name[name_len] = 0;
@@ -118,7 +126,6 @@ int rc_load_npc_defs(const char *path) {
                     || !rc_read_exact(f, &weak, sizeof(weak), 1, path, "npc weakness")
                     || !rc_read_exact(f, &immu, sizeof(immu), 1, path, "npc immunities")) {
                 rc_asset_close(f);
-                g_npc_def_count = orig_count;
                 return -1;
             }
             d->aggressive        = (aggr != 0);
@@ -136,7 +143,6 @@ int rc_load_npc_defs(const char *path) {
             if (!rc_read_exact(f, &model_count, sizeof(model_count), 1,
                                path, "npc model count")) {
                 rc_asset_close(f);
-                g_npc_def_count = orig_count;
                 return -1;
             }
             for (uint8_t j = 0; j < model_count; j++) {
@@ -144,7 +150,6 @@ int rc_load_npc_defs(const char *path) {
                 if (!rc_read_exact(f, &model_id, sizeof(model_id), 1,
                                    path, "npc model id")) {
                     rc_asset_close(f);
-                    g_npc_def_count = orig_count;
                     return -1;
                 }
             }
@@ -156,7 +161,6 @@ int rc_load_npc_defs(const char *path) {
                 if (!rc_read_exact(f, &option_len, sizeof(option_len), 1,
                                    path, "npc option length")) {
                     rc_asset_close(f);
-                    g_npc_def_count = orig_count;
                     return -1;
                 }
                 if (option_len == 0) {
@@ -166,7 +170,6 @@ int rc_load_npc_defs(const char *path) {
                 if (!rc_read_exact(f, option_buf, sizeof(char), option_len,
                                    path, "npc option")) {
                     rc_asset_close(f);
-                    g_npc_def_count = orig_count;
                     return -1;
                 }
                 int copy_len = option_len;
@@ -177,26 +180,109 @@ int rc_load_npc_defs(const char *path) {
             }
         }
 
-        g_npc_def_count++;
-        if (id < RC_MAX_NPC_ID) g_npc_def_by_id[id] = g_npc_def_count - 1;
+        if (def_by_id && id < (uint32_t)max_def_by_id)
+            def_by_id[id] = loaded;
         loaded++;
     }
     rc_asset_close(f);
+    if (out_count) *out_count = loaded;
     fprintf(stderr, "npc_defs: loaded %d defs (NDEF v%u) from %s\n",
             loaded, version, path);
     return loaded;
 }
 
+int rc_load_npc_defs(const char *path) {
+    rc_npc_def_index_reset();
+    int loaded = 0;
+    int result = rc_load_npc_defs_into(path, g_npc_defs, RC_MAX_NPC_DEFS,
+                                       &loaded, g_npc_def_by_id,
+                                       RC_MAX_NPC_ID);
+    if (result < 0) {
+        g_npc_def_count = 0;
+        rc_npc_use_defs(g_npc_defs, g_npc_def_count, g_npc_def_by_id);
+        return -1;
+    }
+    g_npc_def_count = loaded;
+    g_npc_def_index_ready = true;
+    rc_npc_use_defs(g_npc_defs, g_npc_def_count, g_npc_def_by_id);
+    return result;
+}
+
 int rc_npc_def_find(int npc_id) {
-    if (npc_id >= 0 && npc_id < RC_MAX_NPC_ID && g_npc_def_index_ready) {
-        int idx = g_npc_def_by_id[npc_id];
-        if (idx >= 0 && idx < g_npc_def_count && g_npc_defs[idx].id == npc_id) {
+    const RcNpcDef *defs = g_active_npc_defs ? g_active_npc_defs
+                                             : g_npc_defs;
+    int count = defs == g_npc_defs ? g_npc_def_count
+                                   : g_active_npc_def_count;
+    const int *by_id = defs == g_npc_defs
+                     ? (g_npc_def_index_ready ? g_npc_def_by_id : NULL)
+                     : g_active_npc_def_by_id;
+    if (npc_id >= 0 && npc_id < RC_MAX_NPC_ID && by_id) {
+        int idx = by_id[npc_id];
+        if (defs != g_npc_defs && idx >= 0 && idx < count
+                && idx < g_npc_def_count && g_npc_defs[idx].id == npc_id
+                && memcmp(&defs[idx], &g_npc_defs[idx],
+                          sizeof(defs[idx])) != 0) {
+            return idx;
+        }
+        if (idx >= 0 && idx < count && defs[idx].id == npc_id) {
             return idx;
         }
     }
     // Tests may inject synthetic defs without rebuilding the ID index.
-    for (int i = 0; i < g_npc_def_count; i++) {
-        if (g_npc_defs[i].id == npc_id) return i;
+    for (int i = 0; i < count; i++) {
+        if (defs[i].id == npc_id) return i;
+    }
+    if (defs != g_npc_defs) {
+        for (int i = 0; i < g_npc_def_count; i++) {
+            if (g_npc_defs[i].id == npc_id) return i;
+        }
+    }
+    return -1;
+}
+
+const RcNpcDef *rc_npc_defs_all(int *count) {
+    const RcNpcDef *defs = g_active_npc_defs ? g_active_npc_defs
+                                             : g_npc_defs;
+    int n = defs == g_npc_defs ? g_npc_def_count : g_active_npc_def_count;
+    if (count) *count = n;
+    return n > 0 ? defs : NULL;
+}
+
+const RcNpcDef *rc_npc_def_get(int def_idx) {
+    const RcNpcDef *defs = g_active_npc_defs ? g_active_npc_defs
+                                             : g_npc_defs;
+    int count = defs == g_npc_defs ? g_npc_def_count
+                                   : g_active_npc_def_count;
+    if (def_idx >= 0 && def_idx < count) {
+        if (defs != g_npc_defs && def_idx < g_npc_def_count
+                && memcmp(&defs[def_idx], &g_npc_defs[def_idx],
+                          sizeof(defs[def_idx])) != 0) {
+            return &g_npc_defs[def_idx];
+        }
+        return &defs[def_idx];
+    }
+    if (defs != g_npc_defs && def_idx >= 0 && def_idx < g_npc_def_count) {
+        return &g_npc_defs[def_idx];
+    }
+    return NULL;
+}
+
+const RcNpcDef *rc_npc_def_for_npc(const RcNpc *npc) {
+    return npc ? rc_npc_def_get(npc->def_id) : NULL;
+}
+
+int rc_npc_def_find_name(const char *name) {
+    if (!name || !name[0]) return -1;
+    int count = 0;
+    (void)rc_npc_defs_all(&count);
+    for (int i = 0; i < count; i++) {
+        const RcNpcDef *def = rc_npc_def_get(i);
+        if (def && strcmp(def->name, name) == 0) return i;
+    }
+    if (g_active_npc_defs != g_npc_defs) {
+        for (int i = 0; i < g_npc_def_count; i++) {
+            if (strcmp(g_npc_defs[i].name, name) == 0) return i;
+        }
     }
     return -1;
 }
@@ -302,10 +388,10 @@ static int load_npc_spawns_filtered(RcWorld *world, const char *path,
             if (stats) stats->skipped_missing_def++;
             continue;
         }
-        // Override wander_range from spawn if specified
-        if (wander_range > 0) g_npc_defs[def_idx].wander_range = wander_range;
-
-        if (rc_npc_spawn(world, def_idx, x, y, plane) >= 0) {
+        int spawned_idx = rc_npc_spawn(world, def_idx, x, y, plane);
+        if (spawned_idx >= 0) {
+            if (wander_range > 0)
+                world->npcs[spawned_idx].spawn_wander_range = wander_range;
             if (stats) {
                 stats->spawned++;
                 if (plane < RC_MAX_PLANES)
@@ -370,7 +456,8 @@ int rc_load_npc_spawns_near(RcWorld *world, const char *path,
 
 int rc_npc_spawn(RcWorld *world, int def_idx, int world_x, int world_y, int plane) {
     if (world->npc_count >= RC_MAX_NPCS) return -1;
-    if (def_idx < 0 || def_idx >= g_npc_def_count) return -1;
+    const RcNpcDef *def = rc_npc_def_get(def_idx);
+    if (!def) return -1;
 
     RcNpc *npc = &world->npcs[world->npc_count];
     memset(npc, 0, sizeof(RcNpc));
@@ -383,7 +470,8 @@ int rc_npc_spawn(RcWorld *world, int def_idx, int world_x, int world_y, int plan
     npc->spawn_y = world_y;
     npc->prev_x = world_x;
     npc->prev_y = world_y;
-    npc->current_hp = g_npc_defs[def_idx].hitpoints;
+    npc->current_hp = def->hitpoints;
+    npc->spawn_wander_range = 0;
     npc->target_uid = -1;
     npc->facing_entity = -1;
     npc->facing_x = -1;
@@ -399,7 +487,7 @@ int rc_npc_spawn(RcWorld *world, int def_idx, int world_x, int world_y, int plan
     // subscribed (per README §7).
     RcPayloadNpcEvent payload = {
         .npc_id = (uint16_t)npc->uid,
-        .def_id = (uint32_t)g_npc_defs[def_idx].id,
+        .def_id = (uint32_t)def->id,
     };
     rc_event_fire(world, RC_EVT_NPC_SPAWNED, &payload);
 
@@ -419,7 +507,8 @@ void rc_npc_tick(RcWorld *world, RcNpc *npc) {
     rc_combat_actor_tick_recent_hits(&npc->combat);
     rc_combat_tick_actor_threat(&npc->combat);
 
-    RcNpcDef *def = &g_npc_defs[npc->def_id];
+    const RcNpcDef *def = rc_npc_def_get(npc->def_id);
+    if (!def) return;
 
     // Dead: decrement death timer, then start respawn timer
     if (npc->is_dead) {
@@ -449,8 +538,11 @@ void rc_npc_tick(RcWorld *world, RcNpc *npc) {
     // (tick.c calls it per-NPC after the position pass).
 
     // Wander AI matches RSMod NpcWanderModeProcessor.
+    int def_wander_range = def->wander_range > 0 ? def->wander_range : 5;
     int wander_range = npc->disable_wander ? 0
-                     : (def->wander_range > 0 ? def->wander_range : 5);
+                     : (npc->spawn_wander_range > 0
+                        ? npc->spawn_wander_range
+                        : def_wander_range);
     if (wander_range > 0 && npc->target_uid < 0) {
         if (moved_last) {
             npc->wander_timer = 0;

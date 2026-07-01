@@ -609,8 +609,8 @@ int rc_player_max_hit_magic(const RcPlayer *p, int spell_max_hit) {
 }
 
 int rc_npc_offensive_roll(int npc_def_id, RcCombatStyle style) {
-    if (npc_def_id < 0 || npc_def_id >= g_npc_def_count) return 0;
-    const RcNpcDef *d = &g_npc_defs[npc_def_id];
+    const RcNpcDef *d = rc_npc_def_get(npc_def_id);
+    if (!d) return 0;
     int stat = 0;
     switch (style) {
         case COMBAT_RANGED: stat = d->stats[4]; break;
@@ -622,8 +622,8 @@ int rc_npc_offensive_roll(int npc_def_id, RcCombatStyle style) {
 
 int rc_npc_defensive_roll(int npc_def_id, RcCombatStyle style) {
     (void)style;
-    if (npc_def_id < 0 || npc_def_id >= g_npc_def_count) return 0;
-    const RcNpcDef *d = &g_npc_defs[npc_def_id];
+    const RcNpcDef *d = rc_npc_def_get(npc_def_id);
+    if (!d) return 0;
     return npc_eff(d->stats[1]) * 64;
 }
 
@@ -631,7 +631,7 @@ int rc_npc_defensive_roll(int npc_def_id, RcCombatStyle style) {
 
 RcCombatCalc rc_calc_melee(const RcPlayer *atk, int npc_def_id) {
     RcCombatCalc c = {0};
-    if (npc_def_id < 0 || npc_def_id >= g_npc_def_count) return c;
+    if (!rc_npc_def_get(npc_def_id)) return c;
 
     c.attack_roll = rc_player_offensive_roll(atk, atk->combat_style);
     c.defence_roll = rc_npc_defensive_roll(npc_def_id, atk->combat_style);
@@ -642,7 +642,7 @@ RcCombatCalc rc_calc_melee(const RcPlayer *atk, int npc_def_id) {
 
 RcCombatCalc rc_calc_ranged(const RcPlayer *atk, int npc_def_id) {
     RcCombatCalc c = {0};
-    if (npc_def_id < 0 || npc_def_id >= g_npc_def_count) return c;
+    if (!rc_npc_def_get(npc_def_id)) return c;
 
     c.attack_roll = rc_player_offensive_roll(atk, COMBAT_RANGED);
     c.defence_roll = rc_npc_defensive_roll(npc_def_id, COMBAT_RANGED);
@@ -654,7 +654,7 @@ RcCombatCalc rc_calc_ranged(const RcPlayer *atk, int npc_def_id) {
 RcCombatCalc rc_calc_magic(const RcPlayer *atk, int npc_def_id,
                            int spell_max_hit) {
     RcCombatCalc c = {0};
-    if (npc_def_id < 0 || npc_def_id >= g_npc_def_count) return c;
+    if (!rc_npc_def_get(npc_def_id)) return c;
 
     c.attack_roll = rc_player_offensive_roll(atk, COMBAT_MAGIC);
     c.defence_roll = rc_npc_defensive_roll(npc_def_id, COMBAT_MAGIC);
@@ -678,8 +678,8 @@ RcCombatCalc rc_calc_npc_attack_style(int npc_def_id,
                                       const RcPlayer *def,
                                       RcCombatStyle style) {
     RcCombatCalc c = {0};
-    if (npc_def_id < 0 || npc_def_id >= g_npc_def_count) return c;
-    const RcNpcDef *d = &g_npc_defs[npc_def_id];
+    const RcNpcDef *d = rc_npc_def_get(npc_def_id);
+    if (!d) return c;
 
     c.attack_roll = rc_npc_offensive_roll(npc_def_id, style);
     c.defence_roll = rc_player_defensive_roll(def, style);
@@ -689,12 +689,13 @@ RcCombatCalc rc_calc_npc_attack_style(int npc_def_id,
 }
 
 RcCombatCalc rc_calc_npc_attack(int npc_def_id, const RcPlayer *def) {
-    if (npc_def_id < 0 || npc_def_id >= g_npc_def_count) {
+    const RcNpcDef *npc_def = rc_npc_def_get(npc_def_id);
+    if (!npc_def) {
         RcCombatCalc c = {0};
         return c;
     }
     RcCombatStyle style =
-        rc_combat_npc_preferred_style(g_npc_defs[npc_def_id].attack_types);
+        rc_combat_npc_preferred_style(npc_def->attack_types);
     return rc_calc_npc_attack_style(npc_def_id, def, style);
 }
 

@@ -1,0 +1,267 @@
+title = "Transcript:Ur-lun"
+npcs = ["Ur-lun", "Ur-pel"]
+node_count = 33
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Ur-lun"
+text = "At the next council meeting, I'm going to recommend that we change the guards' uniform to be red."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Ur-pel"
+text = "Why?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Ur-lun"
+text = "We have surface-dwellers coming down into our mines and our city now, and remember that they don't have very good eyesight."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Ur-lun"
+text = "I worry that they can't see our guards very clearly in the dark. It is important for a guard to be seen."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Ur-pel"
+text = "You have a point. But I don't think red would be the best colour. It is the colour of blood, so it might give the wrong impression."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Ur-lun"
+text = "What colour do you suggest, then?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Ur-pel"
+text = "I suggest green. I have heard that the plants that grow on the surface are mostly green, so surface-dwellers might find that colour soothing."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Ur-lun"
+text = "No, I disagree. Guards should not be soothing, they should be seen as formidable. Red will give the correct impression."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Ur-pel"
+text = "Oh, hello surface-dweller. We were just discussing some council business."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "option"
+text = "Do you want me to pick an armour colour for you?"
+parent = -1
+children = [10, 11, 12, 13, 17, 21]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you want me to pick an armour colour for you?"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Ur-lun"
+text = "No, thank you. We don't let any one single goblin make decisions, and certainly not an outsider!"
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Ur-pel"
+text = "But we could do with an opinion. What colour do you think is best?"
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "Red"
+parent = 9
+children = [14, 15, 16]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Red."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Ur-lun"
+text = "Thank you, surface-dweller. That's what I'll be recommending in the next meeting."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "Green"
+parent = 9
+children = [18, 19, 20]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Green."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Ur-pel"
+text = "Thank you, surface-dweller. That's what I'll be recommending in the next meeting."
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "option"
+text = "I think the guards are fine as they are"
+parent = 9
+children = [22, 23, 24]
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I think the guards are fine as they are."
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Ur-lun"
+text = "Perhaps you're right. Not making any change would certainly be the easiest option!"
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "act"
+text = "end"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "I think I've been here before..."
+parent = -1
+children = [26, 27, 28, 29, 30, 31, 32]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I've been here before..."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Ur-lun"
+text = "Oh? How so?"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This is a lot like a conversation I had with some goblins on the surface."
+parent = 25
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Ur-pel"
+text = "Really? Which armour colour did they pick?"
+parent = 25
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "They ended up with the same armour colour that they started with!"
+parent = 25
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Ur-lun"
+text = "You know, I think that's probably what we'll end up doing."
+parent = 25
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "act"
+text = "end"
+parent = 25
+is_terminal = true

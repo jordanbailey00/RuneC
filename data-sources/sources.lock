@@ -1,0 +1,121 @@
+version = 1
+phase = "data_cleanup_phase_4"
+generated_on = "2026-06-26"
+
+[[source]]
+id = "content_tree"
+status = "required"
+kind = "tracked_tree"
+path = "content"
+sha256 = "2247cc6d68e10086fc5f1d3b309cec2f375e478222b50072b3f3d7499d6a81cf"
+file_count = 878
+description = "RuneC-owned authored content tables, migrated curated data, and reviewed runtime snapshots."
+
+[[source]]
+id = "source_gaps"
+status = "required"
+kind = "tracked_file"
+path = "data-sources/source_gaps.json"
+sha256 = "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+description = "Tracked source-gap rows for approved-but-missing parity facts. Empty means the formal source-gap gate is closed."
+
+[[source]]
+id = "data_readme"
+status = "required"
+kind = "tracked_file"
+path = "data/README.md"
+sha256 = "741aa3c955893447a011906c89348f410f8765459481428172954b258f865202"
+description = "Migration note for the ignored local runtime-data install."
+
+[[source]]
+id = "b237_cache"
+status = "optional"
+kind = "external_maintainer_input"
+env = "RUNEC_B237_CACHE"
+must_be_outside_repo = false
+description = "Raw b237 OpenRS2 cache for maintainer rebuilds only. May point at the ignored local data/source/b237-openrs2-2528/cache install."
+
+[[source]]
+id = "b237_decoded_dump"
+status = "optional"
+kind = "external_maintainer_input"
+env = "RUNEC_B237_DUMP"
+must_be_outside_repo = true
+description = "Decoded b237 dump/symbol reference for maintainer validation only."
+
+[[source]]
+id = "b237_keys"
+status = "optional"
+kind = "external_maintainer_input"
+env = "RUNEC_B237_KEYS"
+must_be_outside_repo = true
+description = "Optional OpenRS2 key file for cache groups that require XTEA keys."
+
+[[source]]
+id = "schemas"
+status = "required"
+kind = "tracked_tree"
+path = "schema"
+sha256 = "263fccd68b5b6bed1380aa8d91436573e4cce63b978de8b085238224c08e1f05"
+file_count = 35
+description = "Tracked Runtime binary schemas and pack format documentation."
+
+[[blocked_source]]
+id = "void_rsps"
+reason = "Private-server source; not accepted as OSRS spell/combat authority."
+paths = ["data/source/void_rsps"]
+patterns = ["void_rsps", "VoidPS", "voidps:"]
+
+[[blocked_source]]
+id = "near_reality"
+reason = "Private-server geometry; not accepted as OSRS area authority."
+paths = ["data/source/near_reality"]
+patterns = ["near_reality", "Near-Reality", "MapLocations.java"]
+
+[[blocked_source]]
+id = "2011scape_game"
+reason = "Wrong game/cache era; not accepted for OSRS spawns or mechanics."
+paths = ["data/source/2011Scape-game"]
+patterns = ["2011Scape", "SCAPE_2011"]
+
+[[blocked_source]]
+id = "runelite_checkout"
+reason = "Research reference only; do not read a RuneLite checkout as a pipeline input."
+paths = ["data/source/runelite"]
+patterns = ["data/source/runelite"]
+
+[[blocked_source]]
+id = "rsmod_checkout"
+reason = "Research reference only; do not read an RSMod checkout as a pipeline input."
+paths = ["tools/cache_pipeline/source/rsmod"]
+patterns = ["tools/cache_pipeline/source/rsmod", "RUNEC_RSMOD_ROOT"]
+
+[[blocked_source]]
+id = "osrsreboxed_checkout"
+reason = "Research reference only; item/NPC facts must be RuneC-owned or cache-derived."
+paths = ["data/source/osrsreboxed-db", "tools/cache_pipeline/source/osrsreboxed-db"]
+patterns = ["data/source/osrsreboxed-db", "tools/cache_pipeline/source/osrsreboxed-db"]
+
+[[blocked_source]]
+id = "data_osrs_checkout"
+reason = "Research reference only; spawns/transports/traversal must be RuneC-owned or source-gap rows."
+paths = ["data/source/data_osrs"]
+patterns = ["data/source/data_osrs"]
+
+[[blocked_source]]
+id = "osrs_dumps_checkout"
+reason = "Decoded dump mirrors must be explicit off-repo maintainer inputs."
+paths = ["tools/cache_pipeline/source/osrs-dumps"]
+patterns = ["tools/cache_pipeline/source/osrs-dumps"]
+
+[[blocked_source]]
+id = "repo_local_b237_cache"
+reason = "Legacy embedded demo-cache mirrors are blocked; use RUNEC_B237_CACHE pointing at the approved ignored b237 cache install instead."
+paths = ["tools/cache_pipeline/source/current_fightcaves_demo"]
+patterns = ["tools/cache_pipeline/source/current_fightcaves_demo"]
+
+[[blocked_source]]
+id = "wiki_cache"
+reason = "Wiki cache is research material only; reviewed facts must move into RuneC-owned content."
+paths = ["tools/wiki_cache"]
+patterns = ["tools/wiki_cache"]

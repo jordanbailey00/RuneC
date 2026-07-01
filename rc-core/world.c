@@ -14,6 +14,7 @@
 #include "drops.h"
 #include "events.h"
 #include "encounter.h"
+#include "game_data.h"
 #include "items.h"
 #include "interaction.h"
 #include "monster_mechanics.h"
@@ -114,10 +115,36 @@ static void init_player_defaults(RcPlayer *p) {
 RcWorld *rc_world_create_config(const RcWorldConfig *cfg) {
     if (!cfg) return NULL;
 
+    RcGameDataLoadReport data_report;
+    RcGameData *data = rc_game_data_load(cfg, &data_report);
+    if (!data) {
+        fprintf(stderr, "rc-core: %s\n", data_report.message);
+        return NULL;
+    }
+
+    RcWorld *world = rc_world_create_with_data(data, cfg);
+    rc_game_data_release(data);
+    return world;
+}
+
+RcWorld *rc_world_create_with_data(RcGameData *data,
+                                   const RcWorldConfig *cfg) {
+    if (!data || !cfg) return NULL;
+    uint32_t data_subsystems = rc_game_data_subsystems(data);
+    if ((cfg->subsystems & ~data_subsystems) != 0) {
+        fprintf(stderr,
+                "rc-core: RcGameData missing requested subsystem bits 0x%08x\n",
+                cfg->subsystems & ~data_subsystems);
+        return NULL;
+    }
+
     // calloc is fine here — world_create is not on the tick path
     // (see rc-core/README.md §10).
     RcWorld *world = calloc(1, sizeof(RcWorld));
     if (!world) return NULL;
+    world->game_data = data;
+    rc_game_data_retain(data);
+    rc_game_data_activate_views(data, cfg->subsystems);
 
     world->rng_state = cfg->seed;
     world->tick = 0;
@@ -126,99 +153,12 @@ RcWorld *rc_world_create_config(const RcWorldConfig *cfg) {
                     cfg->spawns_path);
 
     rc_events_init(&world->events);
-    if (cfg->varbits_path && g_rc_varbit_count == 0) {
-        rc_load_varbits(cfg->varbits_path);
-    }
-    if (cfg->varps_path && g_rc_varp_count == 0) {
-        rc_load_varps(cfg->varps_path);
-    }
-    uint32_t npc_users = RC_SUB_COMBAT | RC_SUB_DIALOGUE | RC_SUB_SHOPS
-                       | RC_SUB_SLAYER | RC_SUB_ENCOUNTER;
-    if ((cfg->subsystems & npc_users) && cfg->npc_defs_path
-            && g_npc_def_count == 0) {
-        rc_load_npc_defs(cfg->npc_defs_path);
-    }
-    uint32_t item_users = RC_SUB_EQUIPMENT | RC_SUB_INVENTORY
-                        | RC_SUB_CONSUMABLES | RC_SUB_LOOT
-                        | RC_SUB_SKILLS | RC_SUB_SHOPS | RC_SUB_STORAGE;
-    if ((cfg->subsystems & item_users) && cfg->items_path
-            && g_item_def_count == 0) {
-        rc_load_item_defs(cfg->items_path);
-    }
-    uint32_t normalization_users = npc_users | item_users | RC_SUB_LOOT
-                                 | RC_SUB_SHOPS | RC_SUB_STORAGE;
-    if ((cfg->subsystems & normalization_users) && cfg->normalization_path
-            && g_rc_item_normalization_count == 0) {
-        rc_load_normalization(cfg->normalization_path);
-    }
-    if ((cfg->subsystems & RC_SUB_LOOT) && cfg->drops_path
-            && g_rc_drop_table_count == 0) {
-        rc_load_drops(cfg->drops_path);
-    }
-    if ((cfg->subsystems & RC_SUB_LOOT) && cfg->rdt_path
-            && g_rc_rdt_entry_count == 0) {
-        rc_load_rdt(cfg->rdt_path);
-    }
-    if ((cfg->subsystems & RC_SUB_LOOT) && cfg->gdt_path
-            && g_rc_gdt_entry_count == 0) {
-        rc_load_gdt(cfg->gdt_path);
-    }
-    if ((cfg->subsystems & RC_SUB_LOOT) && cfg->mrdt_path
-            && g_rc_mrdt_entry_count == 0) {
-        rc_load_mrdt(cfg->mrdt_path);
-    }
-    if ((cfg->subsystems & (RC_SUB_LOOT | RC_SUB_SKILLS))
-            && cfg->skill_drops_path && g_rc_skill_drop_source_count == 0) {
-        rc_load_skill_drops(cfg->skill_drops_path);
-    }
     if (cfg->player_actions_path && g_rc_player_action_count == 0) {
         rc_load_player_actions(cfg->player_actions_path);
-    }
-    if ((cfg->subsystems & RC_SUB_PRAYER) && cfg->prayers_path
-            && g_rc_prayer_count == 0) {
-        rc_load_prayers(cfg->prayers_path);
-    }
-    if ((cfg->subsystems & RC_SUB_COMBAT) && cfg->spells_path
-            && g_rc_spell_count == 0) {
-        rc_load_spells(cfg->spells_path);
     }
     if ((cfg->subsystems & RC_SUB_COMBAT) && cfg->combat_profiles_path
             && g_rc_combat_profile_count == 0) {
         rc_load_combat_profiles(cfg->combat_profiles_path);
-    }
-    if (cfg->subsystems & RC_SUB_SKILLS) {
-        if (cfg->recipes_path && g_rc_recipe_count == 0) {
-            rc_load_recipes(cfg->recipes_path);
-        }
-        if (cfg->gathering_nodes_path && g_rc_gathering_node_count == 0) {
-            rc_load_gathering_nodes(cfg->gathering_nodes_path);
-        }
-    }
-    if (cfg->subsystems & RC_SUB_OBJECTS) {
-        if (cfg->object_defs_path && g_rc_object_def_count == 0) {
-            rc_load_object_defs(cfg->object_defs_path);
-        }
-        if (cfg->object_behaviors_path && g_rc_object_behavior_count == 0) {
-            rc_load_object_behaviors(cfg->object_behaviors_path);
-        }
-        if (cfg->object_placements_path && g_rc_object_placement_count == 0) {
-            rc_load_object_placements(cfg->object_placements_path);
-        }
-        if (cfg->object_transports_path && g_rc_object_transport_count == 0) {
-            rc_load_object_transports(cfg->object_transports_path);
-        }
-    }
-    if ((cfg->subsystems & RC_SUB_REGIONS) && cfg->collision_tiles_path
-            && g_rc_collision_region_count == 0) {
-        rc_load_collision_tiles(cfg->collision_tiles_path);
-    }
-    if ((cfg->subsystems & RC_SUB_REGIONS) && cfg->area_flags_path
-            && g_rc_area_flag_count == 0) {
-        rc_load_area_flags(cfg->area_flags_path);
-    }
-    if ((cfg->subsystems & RC_SUB_TRAVERSAL) && cfg->traversal_edges_path
-            && g_rc_traversal_edge_count == 0) {
-        rc_load_traversal_edges(cfg->traversal_edges_path);
     }
     uint32_t mechanics_users = RC_SUB_COMBAT | RC_SUB_SLAYER
                              | RC_SUB_ENCOUNTER;
@@ -230,43 +170,18 @@ RcWorld *rc_world_create_config(const RcWorldConfig *cfg) {
             && g_rc_slayer_master_count == 0) {
         rc_load_slayer(cfg->slayer_path);
     }
-    if ((cfg->subsystems & RC_SUB_SHOPS) && cfg->shops_path
-            && g_shop_count == 0) {
-        rc_load_shops(cfg->shops_path);
-    }
-    if ((cfg->subsystems & RC_SUB_QUESTS) && cfg->quests_path
-            && g_rc_quest_count == 0) {
-        rc_load_quests(cfg->quests_path);
-    }
-    if ((cfg->subsystems & RC_SUB_DIALOGUE) && cfg->dialogue_path
-            && g_rc_dialogue_transcript_count == 0) {
-        rc_load_dialogue(cfg->dialogue_path);
-    }
     if (cfg->subsystems & RC_SUB_SLAYER) {
         rc_slayer_init(world);
     }
     // Only enabled subsystems subscribe to the event bus — keeps
     // disabled-subsystem worlds event-free (README §7 + §8).
     if (cfg->subsystems & RC_SUB_ENCOUNTER) {
-        if (cfg->activity_schemas_path
-                && g_rc_activity_schema_count == 0) {
-            rc_load_activity_schemas(cfg->activity_schemas_path);
-        }
-        if (cfg->activity_spawns_path
-                && g_rc_activity_spawn_count == 0) {
-            rc_load_activity_spawns(cfg->activity_spawns_path);
-        }
-        if (cfg->activity_mechanics_path
-                && g_rc_activity_mechanic_count == 0) {
-            rc_load_activity_mechanics(cfg->activity_mechanics_path);
-        }
-        if (cfg->activity_states_path
-                && g_rc_activity_state_count == 0) {
-            rc_load_activity_states(cfg->activity_states_path);
-        }
         rc_encounter_init(world);
-        if (cfg->encounters_path) {
-            rc_encounter_load(world, cfg->encounters_path);
+        int spec_count = 0;
+        const RcEncounterSpec *specs =
+            rc_game_data_encounter_specs(data, &spec_count);
+        for (int i = 0; specs && i < spec_count; i++) {
+            rc_encounter_register(world, &specs[i]);
         }
     }
     init_player_defaults(&world->player);
@@ -285,7 +200,13 @@ RcWorld *rc_world_create(uint32_t seed) {
 }
 
 void rc_world_destroy(RcWorld *world) {
+    if (!world) return;
+    rc_game_data_release(world->game_data);
     free(world);
+}
+
+const RcGameData *rc_world_get_game_data(const RcWorld *world) {
+    return world ? world->game_data : NULL;
 }
 
 const RcPlayer *rc_get_player(const RcWorld *world) {
@@ -385,9 +306,10 @@ int rc_world_find_npc_near(const RcWorld *world, int npc_id, int x, int y,
         return -1;
     for (int i = 0; i < world->npc_count; i++) {
         const RcNpc *npc = &world->npcs[i];
-        if (!npc->active || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+        const RcNpcDef *def = rc_npc_def_for_npc(npc);
+        if (!npc->active || !def)
             continue;
-        if (npc->plane != plane || g_npc_defs[npc->def_id].id != npc_id)
+        if (npc->plane != plane || def->id != npc_id)
             continue;
         if (abs(npc->x - x) <= radius && abs(npc->y - y) <= radius)
             return i;

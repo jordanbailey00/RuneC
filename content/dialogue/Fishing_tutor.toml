@@ -1,0 +1,1068 @@
+title = "Transcript:Fishing tutor"
+npcs = ["Fishing tutor"]
+node_count = 137
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "option"
+text = "cond=If the player has level 1-28 Fishing:|Can you teach me the basics of fishing please?"
+parent = -1
+children = [1, 2, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 17, 19]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you teach me the basics of fishing please?"
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "cond"
+text = "If the player has inventory space and no small fishing net:"
+parent = 0
+children = [3]
+
+[[nodes]]
+id = 3
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Ah, you've lost your net have you? Have another!"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "cond"
+text = "If the player is holding a small fishing net:"
+parent = 0
+children = [5]
+
+[[nodes]]
+id = 5
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "I see you already have a net."
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "box"
+text = "pic=5088 detail.png|Look for this icon on the minimap to find fishing spots, they will move as the fish swim around so you can't be lazy."
+parent = 0
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Ahoy, to fish, you click on the shrimp fishin' spot while ye'r carrying a net."
+parent = 0
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see... is that it?"
+parent = 0
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "There's far more as you progress - not just shrimps. You get more equipment, bigger fish and other things too..."
+parent = 0
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "When you have a full inventory, you can cook it or take it to the bank. You can find a bank on the roof of the castle in Lumbridge and a cookin' range in the castle kitchen."
+parent = 0
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and hasn't started Fishing Contest:"
+parent = 0
+children = [12]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Arrr.. if yer lookin' fer quests you should head over to the Mountain Dwarf who lies north-west of Taverley and have a chat with him, I'm sure he can point you in the right direction."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "I can show ye on that map of yours if ya like?"
+parent = 0
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 0
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "Yes please."
+parent = 0
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "(Map opens.)"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "No thanks."
+parent = 0
+children = [18]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "act"
+text = "initial"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "act"
+text = "initial"
+parent = 0
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "option"
+text = "cond=If the player has level 29-38 Fishing:|I already know about the basics of fishing, got any tips?"
+parent = -1
+children = [21, 22, 24, 26, 27, 28, 37]
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I already know about the basics of fishing, got any tips?"
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "cond"
+text = "If the player has inventory space and no small fishing net:"
+parent = 20
+children = [23]
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Ah, you've lost your net have you? Have another!"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "cond"
+text = "If the player is holding a small fishing net:"
+parent = 20
+children = [25]
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "I see you already have a net."
+parent = 24
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Arrr, chose carefully where and what you fish, you can get different fish in different places throughout the land."
+parent = 20
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Make sure you hang on to your fish, don't throw them away as you can get valuable cooking experience from them, gar! Look out for other things too..."
+parent = 20
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "cond"
+text = "If the player is on a members world:"
+parent = 20
+children = [29, 30, 31, 32, 33, 35]
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Then of course there is always the trawler..."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = """
+If you venture to Port Khazard north of Yanille and speaks to me cabin boy Murphy, he can let you and a bunch of friends use his trawler to fish with... Just make sure you take a bailing bucket or two.
+"""
+parent = 28
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "I can show ye on that map of yours if ya like?"
+parent = 28
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 28
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "option"
+text = "Yes please."
+parent = 28
+children = [34]
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "act"
+text = "(Map opens.)"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "option"
+text = "No thanks."
+parent = 28
+children = [36]
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "act"
+text = "initial"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "act"
+text = "initial"
+parent = 20
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "option"
+text = "cond=If the player has level 39-99 Fishing:|Any advice for an advanced fisher?"
+parent = -1
+children = [39, 40, 42, 44, 45, 63]
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Any advice for an advanced fisher?"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "cond"
+text = "If the player has inventory space and no small fishing net:"
+parent = 38
+children = [41]
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Ah, you've lost your net have you? Have another!"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "cond"
+text = "If the player is holding a small fishing net:"
+parent = 38
+children = [43]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "I see you already have a net."
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Aye, as you get better and better you'll find that you can fish for things like Tuna and Swordfish. These be very good for combat."
+parent = 38
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "cond"
+text = "If the player is on a members world:"
+parent = 38
+children = [46, 47, 48, 49, 51, 53, 60]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Of course, after that you will get Shark, and if you venture out onto the Trawler from Port Khazard, you can then get Manta Ray or Sea Turtle, very good eatin' on one of them."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can also use a fishing potion if you can get your hands on one and just need that little edge.. ask someone who is familiar with herblore."
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Now.. quests..."
+parent = 45
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "cond"
+text = "If the player hasn't started Sea Slug:"
+parent = 45
+children = [50]
+
+[[nodes]]
+id = 50
+depth = 4
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Head over to south of the Legends Guild and East of Ardougne and find Caroline. This will have you investigating some strange happenings on the fishing platform."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "cond"
+text = "Else if the player hasn't started Tai Bwo Wannai Trio:"
+parent = 45
+children = [52]
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Head over to Tai Bwo Wannai Village on the Isle of Karamja and speak to Timfraku to solve a strange mystery."
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "cond"
+text = "If the player was told about a quest:"
+parent = 45
+children = [54, 55, 56, 58]
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "I can show ye on that map of yours if ya like?"
+parent = 53
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "select"
+text = "Select an Option"
+parent = 53
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "option"
+text = "Yes please."
+parent = 53
+children = [57]
+
+[[nodes]]
+id = 57
+depth = 5
+kind = "act"
+text = "(Map opens.)"
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "option"
+text = "No thanks."
+parent = 53
+children = [59]
+
+[[nodes]]
+id = 59
+depth = 5
+kind = "act"
+text = "initial"
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 3
+kind = "cond"
+text = "If the player had no quests available:"
+parent = 45
+children = [61, 62]
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Can't rightly say's there's any I know of that you could handle at the moment, but come back when you're a bit more experienced and I'm sure I can give you a clue."
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "act"
+text = "initial"
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "initial"
+parent = 38
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "option"
+text = "Tell me about different fish."
+parent = -1
+children = [65, 66, 67, 71, 76, 82, 87, 94]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about different fish."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "option"
+text = "cond=If the player has level 1-38 fishing:|Small Net Fish"
+parent = 64
+children = [68, 69, 70]
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "box"
+text = "pic=Small fishing net detail.png|Ahoy, small net fishin' you can do just south of Draynor Village and in these very spots here. Aye."
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "box"
+text = "pic=Shrimps detail.png|Shrimp and anchovies can be caught with your small fishin' net."
+parent = 67
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "act"
+text = "previous"
+parent = 67
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "option"
+text = "cond=If the player is on a members world:|Big Net Fish"
+parent = 64
+children = [72, 73, 74, 75]
+
+[[nodes]]
+id = 72
+depth = 3
+kind = "box"
+text = "pic=Big fishing net detail.png|Aye, you can net yourself some big fish in Catherby, which is a good place to fish for most things, Gar!"
+parent = 71
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "box"
+text = "pic=Mackerel detail.png|Mackrel{{sic"
+parent = 71
+
+[[nodes]]
+id = 74
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Some rich rewards for big net fishin', make sure you be using a big net fishing spot though..."
+parent = 71
+
+[[nodes]]
+id = 75
+depth = 3
+kind = "act"
+text = "previous"
+parent = 71
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "option"
+text = "Rod and Fly Fishing"
+parent = 64
+children = [77, 78, 79, 80, 81]
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "box"
+text = """
+pic=Fishing rod detail.png|Aye, rod fishin' can be practiced here at these spots, as well as south of Draynor Village and in the Lumbridge river, depending upon your experience. You can get bait at any fishin' shop, there be one in Port Sarim.
+"""
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "box"
+text = "pic=Pike detail.png|With a rod you can catch pike, sardines and herring. Good eating on them."
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "box"
+text = "pic=Fly fishing rod detail.png|The art of fly fishin' can be done in rivers, so the Lumbridge river here would suffice."
+parent = 76
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "box"
+text = "pic=Salmon detail.png|Aye, you can catch yourself a delicious trout or salmon."
+parent = 76
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "act"
+text = "previous"
+parent = 76
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "option"
+text = "cond=If the player has level 25 fishing:|Lobster pot"
+parent = 64
+children = [83, 84, 85, 86]
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "box"
+text = "pic=Lobster pot detail.png|Arrr, Lobster pots can be used from the pier on the island of Karamja."
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "box"
+text = "pic=Lobster detail.png|In Lobster pots you can catch lobsters. They're tasty after thems cooked."
+parent = 82
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Is that all?"
+parent = 82
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "act"
+text = "previous"
+parent = 82
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "option"
+text = "cond=If the player has level 35 fishing:|Harpoon Fish"
+parent = 64
+children = [88, 89, 90, 93]
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "box"
+text = "pic=Harpoon detail.png|Arrr, you can also use your harpoon from the pier on the island of Karamja."
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "box"
+text = "pic=Tuna detail.png|pic2=Swordfish detail.png|With it you can catch Tuna and Swordfish."
+parent = 87
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "cond"
+text = "If the player is on a members world:"
+parent = 87
+children = [91, 92]
+
+[[nodes]]
+id = 91
+depth = 4
+kind = "box"
+text = "pic=Shark detail.png|... and shark."
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Ahoy, there's also the fishin' guild if ya skilled enough, you can find it south west of Seers' Village."
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "act"
+text = "previous"
+parent = 87
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "option"
+text = "Tell me about..."
+parent = 64
+children = [95]
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "act"
+text = "initial"
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "option"
+text = "Where and what should I fish?"
+parent = -1
+children = [97, 98, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 133]
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where and what should I fish?"
+parent = 96
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "cond"
+text = "If the player has level 1-9 Fishing:"
+parent = 96
+children = [99, 100, 101, 102, 103]
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "A young and enthusiastic fisher. Try south of Draynor Village or the pier on the island of Karamja to fish for Shrimp at level 1 or Sardines at level 5. Aye, me parrot concurs."
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What parrot?"
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Me parrot Percy on me shoulder thar! Arr!"
+parent = 98
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oookay...sure, a parrot, on your shoulder."
+parent = 98
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Arrr!"
+parent = 98
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "cond"
+text = "If the player is on a non-members world and has level 10-15 Fishing:"
+parent = 96
+children = [105]
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Herrin' can be fished from south of Draynor Village or the pier on the island of Karamja when you reach level 10."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "cond"
+text = "If the player is on a non-members world and has level 15-29 Fishing:"
+parent = 96
+children = [107]
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can use your small net to catch Anchovies from south of Draynor when you reach level 15."
+parent = 106
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "cond"
+text = "If the player is on a non-members world and has level 20-24 Fishing:"
+parent = 96
+children = [109]
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can practice your fly fishin' in the Lumbridge river to catch Trout at level 20."
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "cond"
+text = "If the player is on a non-members world and has level 25-34 Fishing:"
+parent = 96
+children = [111]
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Pike can be fished from Lumbridge river using your fishing rod and some bait with at least level 25 fishing."
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "cond"
+text = "If the player is on a non-members world and has level 35-39 Fishing:"
+parent = 96
+children = [113]
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Use your harpoon and see if you can catch yourself a few Tuna from the pier on the island of Karamja at level 35."
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "cond"
+text = "If the player is on a non-members world and has level 40-49 Fishing:"
+parent = 96
+children = [115]
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can use that Lobster pot from the pier on the island of Karamja to get yourself a whole bunch of the little critters once you reach level 40."
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "cond"
+text = "If the player is on a non-members world and has level 50-99 Fishing:"
+parent = 96
+children = [117]
+
+[[nodes]]
+id = 117
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Congratulations, you can now harpoon Swordfish after level 50. Try the pier on the island of Karamja."
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and has level 10-15 Fishing:"
+parent = 96
+children = [119]
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Herrin' can be fished from Catherby and some other places when you reach level 10."
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and has level 16-22 Fishing:"
+parent = 96
+children = [121]
+
+[[nodes]]
+id = 121
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can use a big net to catch Mackerel from Catherby when you reach level 16."
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and has level 23-27 Fishing:"
+parent = 96
+children = [123]
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Cod can be fished from Catherby and some other places once you reach level 23."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and has level 28-37 Fishing:"
+parent = 96
+children = [125]
+
+[[nodes]]
+id = 125
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can use your fishin' rod and some bait to catch Slimy Eel in the swamps at level 28."
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and has level 38-45 Fishing:"
+parent = 96
+children = [127]
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can use your fishin' rod and some bait to catch Cave Eel in the caves below Lumbridge Swamp at level 38."
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and has level 46-49 Fishing:"
+parent = 96
+children = [129]
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Bass can be caught at level 46 in your big net if you wander along to Catherby."
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "cond"
+text = "If the player is on a members world and has level 50-99 Fishing:"
+parent = 96
+children = [131, 132]
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "Tuna and Swordfish can be harpooned - if you're good enough - from the thrivin' fishing village of Catherby, or if you can get in try the Fishin' Guild. Level 35 for Tuna and 50 for Swordfish."
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "speaker"
+speaker = "Fishing tutor"
+text = "You can also go talk to Murphy and see if you can use his trawler to catch Manta Ray and Sea Turtle if you're really good... Gar!"
+parent = 130
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "act"
+text = "initial"
+parent = 96
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "option"
+text = "Goodbye."
+parent = -1
+children = [135, 136]
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Goodbye."
+parent = 134
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "act"
+text = "end"
+parent = 134
+is_terminal = true

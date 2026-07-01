@@ -1,0 +1,21 @@
+id = "collision_tiles"
+format = "binary"
+path = "data/defs/collision_tiles.bin"
+magic_label = "CTIL"
+magic_u32 = "0x4C495443"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 row_count", "u32 region_count"]
+producer = "tools/export_collision_tiles.py"
+consumers = ["rc-core/collision.c"]
+source_dataset = "b237 cache terrain and object collision decoded by RuneC cache tools"
+row_fields = [
+  "u16 mapsquare",
+  "u8 local_x",
+  "u8 local_y",
+  "u8 plane",
+  "u8 pad",
+  "u32 collision_flags",
+]
+compatibility = "Loader accepts exactly current_version."

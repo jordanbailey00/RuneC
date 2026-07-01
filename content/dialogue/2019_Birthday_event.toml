@@ -1,0 +1,1180 @@
+title = "Transcript:2019 Birthday event"
+npcs = ["Cook (Lumbridge)", "Squire", "Kaylee", "Emily", "Tina", "Duke Horacio", "Wise Old Man", "Hans", "King Roald", "Queen Ellamaria", "Gnome child", "Lumbridge Guide", "Rants", "Zanik"]
+node_count = 151
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "What am I to do? I'm in a terrible mess!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "cond"
+text = "If the player hasn't completed Cook's Assistant:"
+parent = -1
+children = [2]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "cond"
+text = "If the player has completed Cook's Assistant:"
+parent = -1
+children = [4, 5, 6, 7, 17, 29]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "This reminds me of how we first met, back in your kitchen in Lumbridge Castle, when you made me fetch the ingredients for a birthday cake."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Yes, this keeps happening to me whenever I cater birthday parties. I just don't have the supplies I need. Can you help?"
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 3
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "option"
+text = "Why don't you plan better?"
+parent = 3
+children = [8, 9, 10, 11, 12, 13, 15]
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "I had a plan. It was a great plan."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So...?"
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "I'd thought the Duke's guests might not come, so I wouldn't have to cater for them."
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I see the problem."
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "So will you help me?"
+parent = 7
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "option"
+text = "Okay, I'll help you."
+parent = 7
+children = [14]
+
+[[nodes]]
+id = 14
+depth = 4
+kind = "act"
+text = "below"
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "option"
+text = "Nope, sort it out yourself."
+parent = 7
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 4
+kind = "act"
+text = "below"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "Okay, I'll help you."
+parent = 3
+children = [18, 19, 20, 21, 23]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll help you."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "Thank you so much for offering to help me. The Duke told his guests to order whatever they wanted, and they had some odd requests for food and drink. I've written them down in a list..."
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "box"
+text = "pic=Cook's shopping list detail.png|The Cook gives you a shopping list. You glance over it quickly."
+parent = 17
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "cond"
+text = "If the player doesn't have a cabbage on them:"
+parent = 17
+children = [22]
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "act"
+text = "Cook's shopping list interface opens"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "cond"
+text = "If the player has a cabbage on them:"
+parent = 17
+children = [24, 25, 26, 27]
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I see from the list that you want a cabbage. By a remarkable coincidence, I am already carrying a cabbage."
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "Gosh, really? How handy."
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "box"
+text = "pic=Cabbage detail.png|You show the Cook the cabbage you got for the Lumbridge Guide."
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "Thank you, the Lumbridge Guide will be very happy with that."
+parent = 23
+children = [28]
+
+[[nodes]]
+id = 28
+depth = 5
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "option"
+text = "Nope, sort it out yourself."
+parent = 3
+children = [30]
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "How are you getting on with that list?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "cond"
+text = "If the player hasn't gotten the letter yet:"
+parent = -1
+children = [34]
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "option"
+text = "It says I need a letter from you for a squire."
+parent = 33
+children = [35, 36, 37, 38]
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It says I need a letter from you for a squire."
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "That's right. Sir Vyvin would never give away his wine, but I think his squire might help us. I'll give you a letter to take to the squire, in Falador Castle."
+parent = 34
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "box"
+text = "pic=Cook's letter detail.png|The Cook hands you a letter addressed to Sir Vyvin's squire, care of Falador Castle."
+parent = 34
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "cond"
+text = "If the player already gotten the letter:"
+parent = -1
+children = [40]
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "option"
+text = "About the letter for the squire..."
+parent = 39
+children = [41, 43]
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "cond"
+text = "If the player lost the letter:"
+parent = 40
+children = [42]
+
+[[nodes]]
+id = 42
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "cond"
+text = "If the player still has a copy of the letter:"
+parent = 40
+children = [44, 45, 46, 47]
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "About the letter for the squire..."
+parent = 43
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "speaker"
+speaker = "Cook"
+text = "You're meant to be taking it to Sir Vyvin's squire, who's in Falador Castle. Don't tell me you lost it."
+parent = 43
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "No, I have it here."
+parent = 43
+
+[[nodes]]
+id = 47
+depth = 4
+kind = "act"
+text = "end"
+parent = 43
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "option"
+text = "Have you got another copy of the list?"
+parent = -1
+children = [49, 51]
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "cond"
+text = "If the player lost the list:"
+parent = 48
+children = [50]
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "cond"
+text = "If the player still has a copy of the list:"
+parent = 48
+children = [52, 53, 54, 55, 56]
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Have you got another copy of the list?"
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "Oh, have you lost yours?"
+parent = 51
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Nope, I have it with me."
+parent = 51
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "speaker"
+speaker = "Cook"
+text = "Then no, I don't have another copy for you."
+parent = 51
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "act"
+text = "end"
+parent = 51
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "option"
+text = "I'll keep working on it."
+parent = -1
+children = [58]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "cond"
+text = "Without The Knight's Sword quest completed:"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Squire"
+text = "Hello. I am the squire to Sir Vyvin."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "And how is life as a squire?|event=no"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "option"
+text = "A cook gave me a letter for you."
+parent = -1
+children = [63]
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "below"
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "cond"
+text = "With The Knight's Sword quest completed:"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Squire"
+text = "Hello friend! Many thanks for all of your help! Vyvin never even realised it was a different sword, and I still have my job!"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "option"
+text = "I'm glad the new sword worked out alright.|event=no"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "A cook gave me a letter for you."
+parent = -1
+children = [69, 70, 71, 72, 73, 74, 75, 76, 77]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A cook gave me a letter for you."
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "That's nice. Have you got it?"
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "box"
+text = "pic=Cook's letter detail.png|You show the squire the Cook's letter. He reads it with interest."
+parent = 68
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "Gosh, this amazing cook is offering to bake me a birthday cake! I could never afford that sort of thing on my squire allowance."
+parent = 68
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do be careful, I've seen this cook catering a party before. Also he wants something in return. <!--Maybe Cooks assistant or RFD requirement-->"
+parent = 68
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Squire"
+text = "Yes, he wants some of Sir Vyvin's wine. I shouldn't really do this, but I really would like the birthday cake. Close your eyes for a moment, please..."
+parent = 68
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "act"
+text = "The squire fetches the wine, ensuring you didn't see where it's stored."
+parent = 68
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = 68
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "act"
+text = "end"
+parent = 68
+is_terminal = true
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "How are you getting on with that list?"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "I took the letter to the squire."
+parent = -1
+children = [81, 82, 83, 84]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I took the letter to the squire."
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "And he gave you some of Sir Vyvin's wine, which you brought here to me, I remember."
+parent = 80
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, that's what happened."
+parent = 80
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "act"
+text = "end"
+parent = 80
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "option"
+text = "Have you got another copy of the list?"
+parent = -1
+children = [86]
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "above"
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "I'll keep working on it."
+parent = -1
+children = [88]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "above"
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Barmaid"
+text = "Heya! What can I get you?"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "option"
+text = "What ales are you serving?|event=no"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "option"
+text = "cond=If the player has one empty beer glass in their inventory:|I've got this beer glass...|event=no"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "I need some Brewer's Folly for a birthday party."
+parent = -1
+children = [94, 95, 96, 97]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need some Brewer's Folly for a birthday party."
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Barmaid"
+text = "I don't know why you want that. It's horrible, that's why we call it Brewer's Folly. Yes, you can have some. We don't charge for it; no-one would pay anyway."
+parent = 93
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "box"
+text = "pic=Brewer's folly detail.png|[Barmaid] serves you a Brewer's Folly. It smells of deepest folly."
+parent = 93
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "end"
+parent = 93
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "speaker"
+speaker = "Cook"
+text = "How are you getting on with that list?"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "cond"
+text = "If the player has the cabbage:"
+parent = -1
+children = [100, 101]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "box"
+text = "pic=Cabbage detail.png|You show the Cook the cabbage you got for the Lumbridge Guide."
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Thank you, the Lumbridge Guide will be very happy with that."
+parent = 99
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "cond"
+text = "If the player has the brewer's folly:"
+parent = -1
+children = [103, 104]
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "box"
+text = "pic=Brewer's folly detail.png|You show the Cook the beer you got for Hans."
+parent = 102
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Thank you, that should keep Hans happy!"
+parent = 102
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "cond"
+text = "If the player has Sir Vyvin's wine:"
+parent = -1
+children = [106, 107]
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "box"
+text = "pic=Vyvin's wine detail.png|You show the Cook the wine from the squire."
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "Nicely done. I'll bake the squire a lovely cake for his next birthday. I'm good at baking cakes."
+parent = 105
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "cond"
+text = "If the player has the beer glass of water:"
+parent = -1
+children = [109, 110]
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "box"
+text = "pic=Beer glass of water detail.png|You show the Cook the beer glass of water."
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "That should fool the silly ogre into thinking he's got alcohol!"
+parent = 108
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "cond"
+text = "After delivering all items:"
+parent = -1
+children = [112, 113, 114]
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Cook"
+text = "I think you've brought everything I need! Now, as a reward, I've cooked you my signature dish, using the recipe for which I'm famous..."
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "box"
+text = "pic=Birthday cake detail.png|The Cook presents you with a special cake. It looks inedible."
+parent = 111
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "act"
+text = "end"
+parent = 111
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Duke Horacio"
+text = "Excuse me, I am trying to show my moves. That senile old man is trying to copy me, so I must focus on out-dancing him."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Wise Old Man"
+text = "That silly duke thinks he has stylish moves, but I can do anything he can. Watch me go!"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Hans"
+text = "You spent ''X'' hours, ''X'' minutes in the world since you arrived ''X'' days ago. An' the world is 6 years old, hooray!"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "Please excuse me, I'm trying to have some quality time with my wife. The therapist said it would help."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Ellamaria"
+text = "Keep out of my way, peasant! Can't you see the King and I are trying to have an intimate time?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [127, 128]
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = """
+We came to celebrate longevity yet, as time passes, the end may draw nearer, bringing the ruination of all. But let us cheer; today we are still alive, and together we can defy the perils of the future.
+"""
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "act"
+text = "end"
+parent = 126
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [130, 131]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "We seek wisdom, but find platitudes. We seek the far north, but find latitudes. We seek leadership, but find attitudes."
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "act"
+text = "end"
+parent = 129
+is_terminal = true
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [133, 134]
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "As we revere in the number six, let us recall that there are six elements to a tragedy. My favourite of these is Thought; I am pleased to stand on this dance floor indulging in it."
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "act"
+text = "end"
+parent = 132
+is_terminal = true
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [136, 137, 138]
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "As a human grows, they are taught to put childish thoughts aside. Yet the childish thoughts of a Gnome Child can far outstrip the shallow reckonings of humankind. Consider..."
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "Instead of seeking to grow into a human adult, with their facile thoughts and closed minds, you should seek to remain as a child, and instead grow into a Gnome Child."
+parent = 135
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "act"
+text = "end"
+parent = 135
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [140, 141, 142, 143, 144]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "A human party has such focus on food and drink. This is apt. Consider how we come to celebrate the passing of six years..."
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "Just as food and drink passes through your bodies until it goes the way of all things, the six years have passed through your minds."
+parent = 139
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "Do those six years go to the same destination as the food and drink, when it escapes from your nethers? That depends on what experience and wisdom you retained from the years."
+parent = 139
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Gnome child"
+text = "If you have gained from those six years, it is as though you drew nourishment from your food and drink. But if not, it is as though your food dripped straight out of your bottom."
+parent = 139
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "end"
+parent = 139
+is_terminal = true
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "I've no idea how many newcomers I've welcome to the world in the six years that we've been here, but I really am most pleased!"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Rantz"
+text = "Rantz is come to Duke creature's party to celebrate world being old. Duke creature sayed world is more years old than Rantz has fingers on hand. Must be good thing."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "It is good to see you at this gathering, [player name]. I was very touched that the Duke invited me; maybe relations between our peoples will improve."
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

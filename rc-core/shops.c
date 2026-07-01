@@ -13,6 +13,23 @@ RcShopStock *g_shop_stock = NULL;
 int g_shop_count = 0;
 int g_shop_stock_count = 0;
 
+static const RcShop *g_active_shops = NULL;
+static const RcShopStock *g_active_shop_stock = NULL;
+static int g_active_shop_count = 0;
+static int g_active_shop_stock_count = 0;
+
+void rc_shop_data_init(RcShopData *data) {
+    if (!data) return;
+    memset(data, 0, sizeof(*data));
+}
+
+void rc_shop_data_free(RcShopData *data) {
+    if (!data) return;
+    free(data->shops);
+    free(data->stock);
+    rc_shop_data_init(data);
+}
+
 static int read_str8(FILE *f, char *out, int cap,
                      const char *path, const char *what) {
     uint8_t len;
@@ -40,7 +57,9 @@ static int push_stock(RcShopStock **rows, int *count, int *cap,
     return 1;
 }
 
-int rc_load_shops(const char *path) {
+int rc_load_shops_into(const char *path, RcShopData *out) {
+    if (!out) return -1;
+    rc_shop_data_free(out);
     if (!path) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
@@ -111,33 +130,126 @@ int rc_load_shops(const char *path) {
     }
 
     rc_asset_close(f);
+    out->shops = shops;
+    out->stock = stock;
+    out->shop_count = (int)count;
+    out->stock_count = stock_count;
+    return out->shop_count;
+}
+
+int rc_shop_data_import_globals(RcShopData *out) {
+    if (!out) return 0;
+    rc_shop_data_free(out);
+    if (g_shop_count <= 0) return 1;
+    if (!g_shops) return 0;
+    out->shops = malloc((size_t)g_shop_count * sizeof(*out->shops));
+    if (!out->shops) return 0;
+    memcpy(out->shops, g_shops, (size_t)g_shop_count * sizeof(*out->shops));
+    out->shop_count = g_shop_count;
+    out->stock_count = g_shop_stock_count;
+    if (g_shop_stock_count > 0) {
+        if (!g_shop_stock) {
+            rc_shop_data_free(out);
+            return 0;
+        }
+        out->stock = malloc((size_t)g_shop_stock_count * sizeof(*out->stock));
+        if (!out->stock) {
+            rc_shop_data_free(out);
+            return 0;
+        }
+        memcpy(out->stock, g_shop_stock,
+               (size_t)g_shop_stock_count * sizeof(*out->stock));
+    }
+    return 1;
+}
+
+int rc_shops_mirror_to_globals(const RcShopData *data) {
+    RcShop *shops = NULL;
+    RcShopStock *stock = NULL;
+    int shop_count = data ? data->shop_count : 0;
+    int stock_count = data ? data->stock_count : 0;
+    if (shop_count > 0) {
+        if (!data->shops) return 0;
+        shops = malloc((size_t)shop_count * sizeof(*shops));
+        if (!shops) return 0;
+        memcpy(shops, data->shops, (size_t)shop_count * sizeof(*shops));
+    }
+    if (stock_count > 0) {
+        if (!data->stock) {
+            free(shops);
+            return 0;
+        }
+        stock = malloc((size_t)stock_count * sizeof(*stock));
+        if (!stock) {
+            free(shops);
+            return 0;
+        }
+        memcpy(stock, data->stock, (size_t)stock_count * sizeof(*stock));
+    }
     free(g_shops);
     free(g_shop_stock);
     g_shops = shops;
     g_shop_stock = stock;
-    g_shop_count = (int)count;
+    g_shop_count = shop_count;
     g_shop_stock_count = stock_count;
+    rc_shops_use_data(NULL);
+    return 1;
+}
+
+void rc_shops_use_data(const RcShopData *data) {
+    if (!data || data->shop_count <= 0) {
+        g_active_shops = g_shops;
+        g_active_shop_stock = g_shop_stock;
+        g_active_shop_count = g_shop_count;
+        g_active_shop_stock_count = g_shop_stock_count;
+        return;
+    }
+    g_active_shops = data->shops;
+    g_active_shop_stock = data->stock;
+    g_active_shop_count = data->shop_count;
+    g_active_shop_stock_count = data->stock_count;
+}
+
+void rc_shops_reset_data_if_active(const RcShopData *data) {
+    if (!data) return;
+    if (g_active_shops == data->shops || g_active_shop_stock == data->stock) {
+        rc_shops_use_data(NULL);
+    }
+}
+
+int rc_load_shops(const char *path) {
+    RcShopData data;
+    rc_shop_data_init(&data);
+    int loaded = rc_load_shops_into(path, &data);
+    if (loaded < 0) return -1;
+    if (!rc_shops_mirror_to_globals(&data)) {
+        rc_shop_data_free(&data);
+        return -1;
+    }
+    rc_shop_data_free(&data);
     return g_shop_count;
 }
 
 const RcShop *rc_shop_get(int shop_idx) {
-    if (shop_idx < 0 || shop_idx >= g_shop_count || !g_shops) return NULL;
-    return &g_shops[shop_idx];
+    if (shop_idx < 0 || shop_idx >= g_active_shop_count
+            || !g_active_shops) return NULL;
+    return &g_active_shops[shop_idx];
 }
 
 const RcShopStock *rc_shop_stock_rows(const RcShop *shop, int *count) {
-    if (!shop || !g_shop_stock) {
+    (void)g_active_shop_stock_count;
+    if (!shop || !g_active_shop_stock) {
         if (count) *count = 0;
         return NULL;
     }
     if (count) *count = (int)shop->stock_count;
-    return &g_shop_stock[shop->first_stock];
+    return &g_active_shop_stock[shop->first_stock];
 }
 
 int rc_shop_find_by_name(const char *name) {
-    if (!name || !g_shops) return -1;
-    for (int i = 0; i < g_shop_count; i++) {
-        if (strcmp(g_shops[i].name, name) == 0) return i;
+    if (!name || !g_active_shops) return -1;
+    for (int i = 0; i < g_active_shop_count; i++) {
+        if (strcmp(g_active_shops[i].name, name) == 0) return i;
     }
     return -1;
 }

@@ -8,9 +8,8 @@ Use this file for:
 - how files in this directory should be organized
 
 Quest data and quest code are separate:
-- `data/curated/quests/`
-  - human-authored quest structure and step data in the local `RuneC-DB`
-    checkout
+- `content/quests/`
+  - human-authored quest structure and step data in RuneC source
 - `data/defs/quests.bin`
   - compact quest metadata used by runtime systems
 - `rc-content/quests/`
@@ -67,9 +66,9 @@ Pure quest data does not belong here.
 
 Per `rc-content/README.md`:
 - `rsmod` is the modern OSRS code reference where quest coverage exists
-- `void_rsps` and `2011Scape-game` are overlap-only references for
-  older shared quests
-- newer OSRS quest lines still require wiki reconstruction
+- b237 cache/dumps, RuneLite, RSMod, OSRS Wiki, and reviewed authored content
+  are the accepted authority classes
+- missing quest facts become source-gap rows until approved evidence exists
 
 This directory may be empty at times. Its role stays the same: it is
 the home for quest-specific runtime code, not a planning placeholder.

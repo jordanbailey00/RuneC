@@ -1,0 +1,99 @@
+# The Gauntlet + Corrupted Gauntlet — Prifddinas solo-only timed
+# skilling-to-arm prelude + Hunllef boss fight.
+
+name = "The Gauntlet"
+slug = "gauntlet"
+# Crystalline Hunllef = normal, Corrupted Hunllef = corrupted mode.
+npc_ids = [9021, 9036, 9037, 9038, 9039, 9041]
+source_pages = [
+    "The Gauntlet", "The Gauntlet/Strategies",
+    "Crystalline Hunllef", "Corrupted Hunllef",
+]
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "prep"
+enter_at_hp_pct = 100
+# Wiki: 10-minute (1000 tick) prep phase — player explores the
+# crystal maze, gathers resources, crafts weapon + armour, cooks food.
+script = "gauntlet_prep_phase"
+untargetable = true               # Hunllef not yet engaged
+allowed_attacks = []
+duration_ticks = 1000             # ~10 min prep phase hard cap
+# Prep involves: chopping crystal trees, mining crystal rocks,
+# fishing crystal fish, smithing weapons from resources, fighting
+# gauntlet mobs for tool-drops, cooking fish, crafting potions.
+# Model these as non-encounter subsystems (skilling) — not tracked
+# in this encounter TOML.
+
+[[phases]]
+id = "hunllef_magic"
+enter_after = "prep"
+script = "hunllef_engage"
+allowed_attacks = ["Hunllef Magic", "Hunllef Ranged", "Hunllef Melee",
+                   "Tornado Spawn", "Prayer Cycle"]
+# Hunllef starts in magic style.
+starting_style = "magic"
+
+[[phases]]
+id = "hunllef_ranged"
+enter_after = "style_swap_trigger"
+# Style swaps every 4 attacks.
+allowed_attacks = ["Hunllef Magic", "Hunllef Ranged", "Hunllef Melee",
+                   "Tornado Spawn", "Prayer Cycle"]
+starting_style = "ranged"
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Hunllef Magic"
+style = "magic"
+max_hit = 13                      # Crystalline; 23 in Corrupted
+warning_ticks = 2
+
+[[attacks]]
+name = "Hunllef Ranged"
+style = "ranged"
+max_hit = 13                      # Crystalline; 23 in Corrupted
+warning_ticks = 2
+
+[[attacks]]
+name = "Hunllef Melee"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 14                      # Crystalline; 28 in Corrupted
+warning_ticks = 0
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Style Swap"
+primitive = "attack_counter_style_swap"
+# Wiki: swaps magic/ranged style every 4 attacks; player must swap
+# prayer to match.
+params.every_n_attacks = 4
+params.cycle = ["magic", "ranged"]
+
+[[mechanics]]
+name = "Tornado Spawn"
+primitive = "spawn_tracking_tornadoes"
+# 2-3 tornadoes spawn periodically; chase player; damage on contact.
+period_ticks = 25
+params.tornado_count = 3
+params.damage_on_contact = 10
+params.tornado_duration_ticks = 40
+
+[[mechanics]]
+name = "Prayer Cycle"
+primitive = "forced_prayer_switch_on_style_swap"
+# Wrong prayer = full hit; correct prayer = fully blocked.
+# Tied to Style Swap mechanic above.
+
+# ---- Corrupted mode overrides ------------------------------------------
+[corrupted_override]
+applies_to_npc_id = 9036
+hp_multiplier = 1.67
+damage_multiplier = 1.77
+tornado_speed_multiplier = 1.5
+style_swap_every_n_attacks = 4    # same cadence; higher lethality

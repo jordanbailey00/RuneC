@@ -1,0 +1,503 @@
+title = "Transcript:Zanik"
+npcs = ["Zanik", "Ur-tag", "Oldak", "Goblin scribe"]
+node_count = 63
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Hello, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Zanik! What have you been up to?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [4, 5, 6]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "A giant frog found its way into the mines, but I helped the guards to drive it off!"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "It got away in the end. But it was the biggest I'd ever seen!"
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "act"
+text = "end"
+parent = 3
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [8, 9, 10, 11, 12, 13]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I've been thinking about my destiny..."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "What was it Juna said to me? 'Your destiny is to lead all goblins into a new age.'"
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "'All goblins.' Not just the Dorgeshuun, all goblins..."
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "And what does it even mean, my destiny? Is it something I'm certain to do, or just something I ought to do? How can I know?"
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I talked to Juna about it, but she wouldn't tell me anything. She just said, 'You will know, when the time is right.'"
+parent = 7
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [15, 16, 17, 18]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I've been helping Oldak with his experiments!"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I took his magic ball all over the caves and even to Lumbridge to test what happened when I broke it, and I always ended up back here."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "You might find one of those balls useful if you wanted to visit me! Perhaps you should talk to Oldak."
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "act"
+text = "end"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [20, 21]
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I went on another visit to Lumbridge! I still can't convince other Dorgeshuun to go to the surface with me, though."
+parent = 19
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "act"
+text = "end"
+parent = 19
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "cond=After completing [[Another Slice of H.A.M.]] and if the player has the ancient mace:|Dialogue 5"
+parent = -1
+children = [23, 24, 25, 26]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "You've still got that ancient mace..."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "It must be my imagination, but I can almost feel the power coming off it, like it's calling out to me."
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "You should keep it safe, [player name]!"
+parent = 22
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "option"
+text = "cond=After completing [[Another Slice of H.A.M.]] and if the player doesn't have the ancient mace:|Dialogue 6"
+parent = -1
+children = [28, 29, 30, 31]
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I thought you had the ancient goblin mace, [player name]. But I found it in the caves."
+parent = 27
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "When I picked it up I felt strange... it was as if someone was watching to me, urging me to do something, but I don't know what!"
+parent = 27
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I gave it to Tegdak. If you want to have it again you should talk to him."
+parent = 27
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "end"
+parent = 27
+is_terminal = true
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "option"
+text = "cond=After completing [[Another Slice of H.A.M.]]:|Dialogue 7"
+parent = -1
+children = [33, 34, 35]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "I visited the goblin village again. I wanted to learn more about their legend of the 'Chosen Commander'."
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Zanik"
+text = "But I didn't find out any more. They couldn't decide whether I really was the Chosen Commander or not, and they just got into a big argument about it."
+parent = 32
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "act"
+text = "end"
+parent = 32
+is_terminal = true
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "Zanik, the council is still very concerned about the city's safety. If you hear of any more H.A.M. activity on the surface, you must let me know."
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Don't worry, I'm sure [player name] will help keep us safe from the H.A.M. people!"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "And another thing. If you must visit the surface, the council asks that you be careful not to offend the surface-dwellers' customs."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Of course, I'll be careful."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Ur-tag"
+text = "Remember in particular to scrupulously observe the Lumbridge-Dorgeshuun treaty..."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Alright!"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Oh, hello, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Zanik! What have you been up to?"
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "How are your studies going, Oldak?"
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Oldak"
+text = "Oh! Zanik! It's fascinating. These 'runes' store a type of energy I've never encountered before."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Really?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Oldak"
+text = "Yes. Each type of rune has its power tuned to a different effect, but they are all essentially the same energy."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Oldak"
+text = "What I want to know is where this energy came from. The stone that these runes were cut from must be infused with an enormous amount of raw magical energy, but where did that energy come from?"
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Maybe someday we'll find out! Oh, hello, [player name]!"
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Zanik! What have you been up to?"
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Goblin scribe"
+text = "Tell me again about the surface. You said the cavern ceiling was how high?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "No, there was no cavern ceiling. Just a great expanse of blue sky!"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Goblin scribe"
+text = "You couldn't see how high the ceiling was because the sky was in the way. I see."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "No, you don't understand. There was NO ceiling. The surface is right on top of the world! There's no more rock above it!"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Goblin scribe"
+text = "I'm still having trouble getting my head around this 'surface' idea."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Perhaps I should take you to see it?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Goblin scribe"
+text = "Oh, no, no, no. I think I'd rather stay here and write about it."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Zanik"
+text = "Alright. Hello, [player name]."
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, Zanik! What have you been up to?"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "act"
+text = "above"
+parent = -1

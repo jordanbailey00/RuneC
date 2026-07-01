@@ -1,0 +1,126 @@
+# Duke Sucellus — DT2 boss. Tests: sleeping → awakening phase
+# transition via herb-throwing mechanic, multi-style rotation in
+# active phase, lightning + poison + ice attacks.
+
+name = "Duke Sucellus"
+slug = "duke_sucellus"
+npc_ids = [12166, 12191, 12167]
+source_pages = ["Duke Sucellus", "Duke Sucellus/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Melee Slam"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 38
+warning_ticks = 0
+
+[[attacks]]
+name = "Ice Beam"
+style = "magic"
+max_hit = 30
+warning_ticks = 3
+targets_tile_not_entity = true
+aoe_shape = "line_length_5"
+on_hit.freeze_ticks = 4
+
+[[attacks]]
+name = "Poison Cloud"
+style = "magic"
+max_hit = 20
+warning_ticks = 3
+targets_tile_not_entity = true
+aoe_shape = "3x3"
+on_hit.inflict_poison = true
+on_hit.poison_starting_damage = 6
+
+[[attacks]]
+name = "Lightning Rod"
+style = "magic"
+max_hit = 40
+warning_ticks = 2
+on_hit.drain_all_stats = 2
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "sleeping"
+enter_at_hp_pct = 100
+script = "duke_sleeping_phase"
+# Duke is unconscious; player must throw the correct herbs on his
+# body to wake him. Wrong herb = damage + extend sleep timer.
+allowed_attacks = []              # no attacks during sleep
+untargetable = true               # not targetable for damage
+untargetable_reason = "asleep"
+
+[[phases]]
+id = "awakening"
+enter_after = "sleeping"
+script = "duke_awakening_animation"
+allowed_attacks = []
+untargetable = true
+duration_ticks = 12
+
+[[phases]]
+id = "battle"
+enter_after = "awakening"
+allowed_attacks = [
+    "Melee Slam", "Ice Beam", "Poison Cloud", "Lightning Rod",
+    "Arm Slam",
+]
+# Wiki: 3-attack rotation in melee range, varies with player
+# positioning.
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Herb Throwing"
+primitive = "object_item_interaction"
+trigger = "phase_in:sleeping"
+# Three herb piles in arena (Ice, Poison, Lightning-resistant herbs).
+# Player must identify the correct herb sequence shown by Duke's
+# chest-glow pattern and throw them in order.
+params.herb_piles = [
+    { name = "Ice herb",       on_correct = "reduce_sleep_timer" },
+    { name = "Poison herb",    on_correct = "reduce_sleep_timer" },
+    { name = "Lightning herb", on_correct = "reduce_sleep_timer" },
+]
+params.wrong_herb_damage = 15
+params.wrong_herb_delays_wake_ticks = 5
+params.correct_herbs_to_wake = 3
+params.advance_to = "awakening"
+
+[[mechanics]]
+name = "Arm Slam"
+primitive = "positional_aoe"
+trigger = "phase_in:battle"
+# If player stands adjacent on the wrong side, Duke slams with arm.
+period_ticks = 6
+params.trigger_condition = "player_in_adjacent_slam_tile"
+params.damage_min = 20
+params.damage_max = 35
+
+[[mechanics]]
+name = "Ice Beam Trail"
+primitive = "moving_dot_line"
+# Ice Beam leaves a frozen trail behind that damages + slows.
+trigger = "after_attack:Ice Beam"
+params.trail_length = 4
+params.dot_per_tick = 5
+params.slows_player = true
+
+[[mechanics]]
+name = "Body Regen in Sleep"
+primitive = "passive_heal_during_phase"
+trigger = "phase_in:sleeping"
+# Duke slowly regenerates HP while asleep unless herbs interrupt.
+params.heal_per_tick = 2
+params.cancelled_by_correct_herb = true
+
+# ---- Awakened variant -----------------------------------------------
+[awakened_override]
+applies_to_npc_id = 12191
+hp_multiplier = 1.5
+damage_multiplier = 1.33
+herb_sequence_must_be_exact_order = true   # awakened enforces order

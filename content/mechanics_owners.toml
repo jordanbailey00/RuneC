@@ -1,0 +1,297 @@
+schema_version = 1
+
+[behavior_tags]
+Ahrim_the_Blighted = ["stat_drain"]
+Araxxor = ["venom", "enrage", "area_pressure", "stat_drain", "prayer_drain"]
+Blood_Moon = ["heal_on_hit", "area_pressure", "damage_gate"]
+Blue_Moon = ["stat_drain", "area_pressure", "damage_gate"]
+Brutus = ["enrage", "area_pressure", "form_rotation", "protection_pierce"]
+Dagannoth_mother = ["damage_gate", "form_rotation"]
+Dawn = ["damage_gate", "area_pressure", "form_rotation"]
+Demonic_Brutus = ["enrage", "area_pressure", "form_rotation", "protection_pierce"]
+Dharok_the_Wretched = ["enrage"]
+Doom_of_Mokhaiotl = ["enrage", "area_pressure", "stat_drain"]
+Dusk = ["damage_gate", "area_pressure", "form_rotation", "protection_pierce"]
+Eclipse_Moon = ["area_pressure", "damage_gate", "protection_pierce"]
+Elvarg = ["dragonfire"]
+Evil_spirit = ["stat_drain", "prayer_drain"]
+Galvek = ["dragonfire", "area_pressure", "form_rotation"]
+Gelatinnoth_Mother = ["damage_gate", "form_rotation"]
+Gemstone_Crab = ["damage_gate", "form_rotation"]
+General_Khazard = ["area_pressure"]
+Grotesque_Guardians = ["damage_gate", "area_pressure", "form_rotation"]
+Guthan_the_Infested = ["heal_on_hit"]
+Karil_the_Tainted = ["stat_drain"]
+Moons_of_Peril = ["area_pressure", "damage_gate", "form_rotation"]
+Penance_Queen = ["area_pressure", "heal_on_hit"]
+Revenant_maledictus = ["heal_on_hit", "freeze", "area_pressure"]
+Royal_Titans = ["area_pressure", "damage_gate", "form_rotation"]
+Shellbane_gryphon = ["enrage", "area_pressure"]
+Torag_the_Corrupted = ["stat_drain"]
+Tree_spirit_Lost_City = ["area_pressure"]
+Treus_Dayth = ["area_pressure", "stat_drain"]
+TzTok-Jad = ["wave_boss", "area_pressure", "protection_pierce"]
+Vanguard = ["damage_gate", "form_rotation"]
+Verac_the_Defiled = ["protection_pierce"]
+Xamphur = ["stat_drain", "area_pressure"]
+
+[behavior_profiles]
+Ahrim_the_Blighted = "barrows_ahrim"
+Araxxor = "araxxor"
+Blood_Moon = "blood_moon"
+Blue_Moon = "blue_moon"
+Brutus = "brutus"
+Dawn = "dawn"
+Demonic_Brutus = "demonic_brutus"
+Dharok_the_Wretched = "barrows_dharok"
+Dusk = "dusk"
+Eclipse_Moon = "eclipse_moon"
+Grotesque_Guardians = "grotesque_guardians"
+Guthan_the_Infested = "barrows_guthan"
+Karil_the_Tainted = "barrows_karil"
+Moons_of_Peril = "moons_of_peril"
+Revenant_maledictus = "revenant_maledictus"
+Royal_Titans = "royal_titans"
+Shellbane_gryphon = "shellbane_gryphon"
+Torag_the_Corrupted = "barrows_torag"
+TzTok-Jad = "tztok_jad"
+Verac_the_Defiled = "barrows_verac"
+
+[npc_id_unions]
+Grotesque_Guardians = ["Dawn", "Dusk"]
+Moons_of_Peril = ["Blood_Moon", "Blue_Moon", "Eclipse_Moon"]
+
+[owner_only_reasons]
+Tempoross = "object/activity-driven skilling boss; no normal NPC combat row"
+Wintertodt = "scenery/object-driven skilling boss; no normal NPC combat row"
+
+[[owners]]
+slug = "Ahrim_the_Blighted"
+owner_type = "activity"
+owner = "barrows"
+status = "behavior_incomplete"
+reason = "Barrows brother profile; grouped Barrows owner required."
+
+[[owners]]
+slug = "Araxxor"
+owner_type = "encounter"
+owner = "araxxor"
+status = "behavior_incomplete"
+reason = "Standalone boss behavior is not executable yet."
+
+[[owners]]
+slug = "Blood_Moon"
+owner_type = "activity"
+owner = "moons_of_peril"
+status = "behavior_incomplete"
+reason = "Moons boss behavior belongs to the shared Moons activity owner."
+
+[[owners]]
+slug = "Blue_Moon"
+owner_type = "activity"
+owner = "moons_of_peril"
+status = "behavior_incomplete"
+reason = "Moons boss behavior belongs to the shared Moons activity owner."
+
+[[owners]]
+slug = "Brutus"
+owner_type = "activity"
+owner = "the_ides_of_milk"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is owned by the The Ides of Milk activity."
+
+[[owners]]
+slug = "Dagannoth_mother"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "Dawn"
+owner_type = "encounter"
+owner = "grotesque_guardians"
+status = "behavior_incomplete"
+reason = "Grotesque Guardians behavior is grouped under one encounter owner."
+
+[[owners]]
+slug = "Demonic_Brutus"
+owner_type = "activity"
+owner = "the_ides_of_milk"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is owned by the The Ides of Milk activity."
+
+[[owners]]
+slug = "Dharok_the_Wretched"
+owner_type = "activity"
+owner = "barrows"
+status = "behavior_incomplete"
+reason = "Barrows brother profile; grouped Barrows owner required."
+
+[[owners]]
+slug = "Doom_of_Mokhaiotl"
+owner_type = "encounter"
+owner = "doom_of_mokhaiotl"
+status = "behavior_incomplete"
+reason = "Standalone boss behavior is not executable yet."
+
+[[owners]]
+slug = "Dusk"
+owner_type = "encounter"
+owner = "grotesque_guardians"
+status = "behavior_incomplete"
+reason = "Grotesque Guardians behavior is grouped under one encounter owner."
+
+[[owners]]
+slug = "Eclipse_Moon"
+owner_type = "activity"
+owner = "moons_of_peril"
+status = "behavior_incomplete"
+reason = "Moons boss behavior belongs to the shared Moons activity owner."
+
+[[owners]]
+slug = "Elvarg"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "Evil_spirit"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "Galvek"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "Gelatinnoth_Mother"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "Gemstone_Crab"
+owner_type = "encounter"
+owner = "gemstone_crab"
+status = "behavior_incomplete"
+reason = "Standalone boss behavior is not executable yet."
+
+[[owners]]
+slug = "General_Khazard"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "Grotesque_Guardians"
+owner_type = "encounter"
+owner = "grotesque_guardians"
+status = "behavior_incomplete"
+reason = "Grotesque Guardians behavior is grouped under one encounter owner."
+
+[[owners]]
+slug = "Guthan_the_Infested"
+owner_type = "activity"
+owner = "barrows"
+status = "behavior_incomplete"
+reason = "Barrows brother profile; grouped Barrows owner required."
+
+[[owners]]
+slug = "Karil_the_Tainted"
+owner_type = "activity"
+owner = "barrows"
+status = "behavior_incomplete"
+reason = "Barrows brother profile; grouped Barrows owner required."
+
+[[owners]]
+slug = "Moons_of_Peril"
+owner_type = "activity"
+owner = "moons_of_peril"
+status = "behavior_incomplete"
+reason = "Shared Moons activity behavior is not executable yet."
+
+[[owners]]
+slug = "Penance_Queen"
+owner_type = "activity"
+owner = "barbarian_assault"
+status = "behavior_incomplete"
+reason = "Wave/activity boss behavior is not executable yet."
+
+[[owners]]
+slug = "Revenant_maledictus"
+owner_type = "encounter"
+owner = "revenant_maledictus"
+status = "behavior_incomplete"
+reason = "Boss-specific revenant behavior is not executable yet."
+
+[[owners]]
+slug = "Royal_Titans"
+owner_type = "encounter"
+owner = "royal_titans"
+status = "behavior_incomplete"
+reason = "Royal Titans behavior is grouped under one encounter owner."
+
+[[owners]]
+slug = "Shellbane_gryphon"
+owner_type = "encounter"
+owner = "shellbane_gryphon"
+status = "behavior_incomplete"
+reason = "Standalone boss behavior is not executable yet."
+
+[[owners]]
+slug = "Torag_the_Corrupted"
+owner_type = "activity"
+owner = "barrows"
+status = "behavior_incomplete"
+reason = "Barrows brother profile; grouped Barrows owner required."
+
+[[owners]]
+slug = "Tree_spirit_Lost_City"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "Treus_Dayth"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."
+
+[[owners]]
+slug = "TzTok-Jad"
+owner_type = "activity"
+owner = "fight_caves"
+status = "behavior_incomplete"
+reason = "Wave boss behavior belongs to the Fight Caves activity owner."
+
+[[owners]]
+slug = "Vanguard"
+owner_type = "activity"
+owner = "chambers_of_xeric"
+status = "behavior_incomplete"
+reason = "Raid room behavior is not executable yet."
+
+[[owners]]
+slug = "Verac_the_Defiled"
+owner_type = "activity"
+owner = "barrows"
+status = "behavior_incomplete"
+reason = "Barrows brother profile; grouped Barrows owner required."
+
+[[owners]]
+slug = "Xamphur"
+owner_type = "activity"
+owner = "quest_bosses"
+status = "behavior_incomplete"
+reason = "Quest boss behavior is deferred but owned."

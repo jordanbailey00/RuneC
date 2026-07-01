@@ -336,10 +336,10 @@ a one-line config change instead of a month-long refactor.
 
 ## 9. Binary loading — per-subsystem, lazy
 
-All runtime data paths resolve under the local `data/` directory, which is a
-separate `RuneC-DB` checkout. The main RuneC repository owns loaders and
-runtime code; `RuneC-DB` owns generated binaries, curated DB inputs, generated
-sprites/models/regions, and local source corpora.
+All runtime data paths resolve under the local ignored `data/` runtime install.
+The main RuneC repository owns loaders, runtime code, source content, schemas,
+and tooling; generated binaries, sprites, models, regions, and packs are local
+or release artifacts rather than source files in the main repo.
 
 Each subsystem owns its binary(s):
 

@@ -15,10 +15,10 @@ typedef struct {
     int combat_level;       // -1 = no combat level
     int hitpoints;          // max HP
     int stats[6];           // att, def, str, hp, rng, mag
-    // Per-NPC AI parameters (set from def + Void data)
+    // Per-NPC AI parameters from RuneC-owned definition data.
     int wander_range;       // max tiles from spawn (default 5)
     int respawn_ticks;      // ticks before respawn after death (default 25)
-    // Combat / behaviour fields merged from osrsreboxed-db (NDEF v2 onward)
+    // Combat / behaviour fields carried by NDEF v2+ data.
     bool aggressive;
     int aggro_range;
     int max_hit;            // 0 = non-combat
@@ -49,11 +49,21 @@ typedef struct {
 extern RcNpcDef g_npc_defs[RC_MAX_NPC_DEFS];
 extern int g_npc_def_count;
 
-// Load NPC definitions from binary NDEF file
+// Load NPC definitions using schema/defs/npc_defs.schema.toml.
 int rc_load_npc_defs(const char *path);
+int rc_load_npc_defs_into(const char *path, RcNpcDef *defs, int max_defs,
+                          int *out_count, int *def_by_id,
+                          int max_def_by_id);
+void rc_npc_use_defs(const RcNpcDef *defs, int count,
+                     const int *def_by_id);
+void rc_npc_reset_defs_if_active(const RcNpcDef *defs);
 
 // Find a def by NPC ID (b237 cache ID). Returns -1 if not found.
 int rc_npc_def_find(int npc_id);
+int rc_npc_def_find_name(const char *name);
+const RcNpcDef *rc_npc_def_get(int def_idx);
+const RcNpcDef *rc_npc_def_for_npc(const RcNpc *npc);
+const RcNpcDef *rc_npc_defs_all(int *count);
 const char *rc_npc_def_option(const RcNpcDef *def, int option_idx);
 bool rc_npc_def_option_is_attack(const RcNpcDef *def, int option_idx);
 

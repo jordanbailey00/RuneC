@@ -1,24 +1,8 @@
 #!/usr/bin/env python3
-"""Scrape OSRS wiki shared drop-table pages.
+"""Build the shared rare, gem, and mega-rare drop tables.
 
-Three tables:
-  - Rare drop table (RDT)      → `data/defs/rdt.bin`   magic 'RDT_'
-  - Mega-rare drop table (MRDT) → `data/defs/mrdt.bin`  magic 'MRDT'
-  - Gem drop table (GDT)       → `data/defs/gdt.bin`   magic 'GDT_'
-
-Each table is a set of `{{DropsLine|name=X|quantity=Y|rarity=N/M}}`
-templates on its page. Many NPCs roll into these tables via the
-`rare_drop_table` flag in `dropsline`; `drops.bin` currently just
-counts references. This binary fills in the table contents so the
-runtime roll actually has data.
-
-Binary format (same shape for all three):
-  magic u32 | version u32 | count u32
-  per entry:
-    item_id u32
-    qmin u16  (0 if unparseable / Nothing)
-    qmax u16
-    rarity_inv u32  (round(1/rarity); 0 if unparseable)
+Runtime schemas: `schema/defs/rdt.schema.toml`,
+`schema/defs/gdt.schema.toml`, and `schema/defs/mrdt.schema.toml`.
 """
 from __future__ import annotations
 

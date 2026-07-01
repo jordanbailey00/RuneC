@@ -1,0 +1,799 @@
+title = "Transcript:Sune"
+npcs = ["Gulldamar", "Nolar", "Randivor", "Sune", "Tati", "Vermundi"]
+node_count = 104
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Sune"
+text = "Can you leave me alone please? I'm trying to get a bit of rest."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Sune"
+text = "Sorry, I'm busy!"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|I want some bread!}}"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [7, 8]
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Yes dad.}}"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "act"
+text = "below"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [10, 11, 12, 13, 16]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|I'll be right back.}}"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "act"
+text = "Sune walks to the palace marketplace on the eastern bank of the Kelda."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 9
+children = [14, 15]
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Randivor"
+text = "{{overhead|What's your father want now?}}"
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "act"
+text = "below"
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 9
+children = [17, 18, 19, 20, 23]
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Randivor"
+text = "{{overhead|What'll it be, son?}}"
+parent = 16
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|A loaf of bread please.}}"
+parent = 16
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 16
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 16
+children = [21, 22]
+
+[[nodes]]
+id = 21
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Thanks.}}"
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 4
+kind = "act"
+text = "below"
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 16
+children = [24, 25, 26]
+
+[[nodes]]
+id = 24
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Cheers.}}"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 4
+kind = "act"
+text = "Sune walks back to the pickaxe shop."
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 4
+kind = "cond"
+text = "There is a 1 in 4 chance Tati will repeat the same request:"
+parent = 23
+children = [27, 28]
+
+[[nodes]]
+id = 27
+depth = 5
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|I need more bread!}}"
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 5
+kind = "act"
+text = "above"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|I need some silver ore!}}"
+parent = -1
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [32, 33]
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Yes dad.}}"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "act"
+text = "below"
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [35, 36, 37, 38, 41]
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|I'll be right back.}}"
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "act"
+text = "Sune walks to the palace marketplace on the eastern bank of the Kelda."
+parent = 34
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 34
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 34
+children = [39, 40]
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Gulldamar"
+text = "{{overhead|What's your father want now?}}"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "act"
+text = "below"
+parent = 38
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 34
+children = [42, 43, 44, 45, 48]
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Gulldamar"
+text = "{{overhead|What'll it be, son?}}"
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|A piece of silver please.}}"
+parent = 41
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 41
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 41
+children = [46, 47]
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Thanks.}}"
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 4
+kind = "act"
+text = "below"
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 41
+children = [49, 50, 51]
+
+[[nodes]]
+id = 49
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Cheers.}}"
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 4
+kind = "act"
+text = "Sune walks back to the pickaxe shop."
+parent = 48
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "cond"
+text = "There is a 1 in 4 chance Tati will repeat the same request:"
+parent = 48
+children = [52, 53]
+
+[[nodes]]
+id = 52
+depth = 5
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|Only one piece of silver? I need more!}}"
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 5
+kind = "act"
+text = "above"
+parent = 51
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|I need some new clothes!}}"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [57, 58]
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Yes dad.}}"
+parent = 56
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "act"
+text = "below"
+parent = 56
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [60, 61, 62, 63, 66]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|I'll be right back.}}"
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "act"
+text = "Sune walks to the palace marketplace on the eastern bank of the Kelda."
+parent = 59
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 59
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 59
+children = [64, 65]
+
+[[nodes]]
+id = 64
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "{{overhead|What's your father want now?}}"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "act"
+text = "below"
+parent = 63
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 59
+children = [67, 68, 69, 70, 73]
+
+[[nodes]]
+id = 67
+depth = 3
+kind = "speaker"
+speaker = "Vermundi"
+text = "{{overhead|What'll it be, son?}}"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 3
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Some silk please.}}"
+parent = 66
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 66
+
+[[nodes]]
+id = 70
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 66
+children = [71, 72]
+
+[[nodes]]
+id = 71
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Thanks.}}"
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "act"
+text = "below"
+parent = 70
+
+[[nodes]]
+id = 73
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 66
+children = [74, 75, 76]
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Cheers.}}"
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "act"
+text = "Sune walks back to the pickaxe shop."
+parent = 73
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "cond"
+text = "There is a 1 in 4 chance Tati will repeat the same request:"
+parent = 73
+children = [77, 78]
+
+[[nodes]]
+id = 77
+depth = 5
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|These clothes are awful, get me some others!}}"
+parent = 76
+
+[[nodes]]
+id = 78
+depth = 5
+kind = "act"
+text = "above"
+parent = 76
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|My chisel's gone blunt, buy me one!}}"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [82, 83]
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Yes dad.}}"
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "below"
+parent = 81
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [85, 86, 87, 88, 91]
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|I'll be right back.}}"
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "Sune walks to the palace marketplace on the eastern bank of the Kelda."
+parent = 84
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 84
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 84
+children = [89, 90]
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Nolar"
+text = "{{overhead|What's your father want now?}}"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "act"
+text = "below"
+parent = 88
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 84
+children = [92, 93, 94, 95, 98]
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "speaker"
+speaker = "Nolar"
+text = "{{overhead|What'll it be, son?}}"
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|A chisel please.}}"
+parent = 91
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "other"
+text = "{{trandom}}"
+parent = 91
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "option"
+text = "Dialogue 1"
+parent = 91
+children = [96, 97]
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Thanks.}}"
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "act"
+text = "below"
+parent = 95
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "option"
+text = "Dialogue 2"
+parent = 91
+children = [99, 100, 101]
+
+[[nodes]]
+id = 99
+depth = 4
+kind = "speaker"
+speaker = "Sune"
+text = "{{overhead|Cheers.}}"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 4
+kind = "act"
+text = "Sune walks back to the pickaxe shop."
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 4
+kind = "cond"
+text = "There is a 1 in 4 chance Tati will repeat the same request:"
+parent = 98
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 5
+kind = "speaker"
+speaker = "Tati"
+text = "{{overhead|This chisel's rubbish, get me another!}}"
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 5
+kind = "act"
+text = "above"
+parent = 101

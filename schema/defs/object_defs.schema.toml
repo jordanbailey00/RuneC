@@ -1,0 +1,34 @@
+id = "object_defs"
+format = "binary"
+path = "data/defs/object_defs.bin"
+magic_label = "ODEF"
+magic_u32 = "0x4645444F"
+current_version = 2
+accepted_versions = [1, 2]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_object_defs.py"
+consumers = ["rc-core/objects.c"]
+source_dataset = "b237 cache object definitions decoded by RuneC cache tools"
+row_fields = [
+  "u32 obj_id",
+  "u16 width",
+  "u16 length",
+  "u8 interact_type",
+  "u8 action_count",
+  "u8 model_count",
+  "u8 transform_count",
+  "u8 force_approach",
+  "i32 varbit",
+  "i32 varp",
+  "i32 animation_id",
+  "u32 map_icon",
+  "u32 flags",
+  "u8 supports_items, u8 clip_flags, u16 param_count, i32 ambient_sound_id, u16 ambient_sound_distance, u16 ambient_sound_retain (v2+)",
+  "pstr16 name",
+  "actions[5]: pstr16 action",
+  "u32 model_ids[model_count]",
+  "i32 transforms[transform_count]",
+  "params[param_count]: u32 key, i32 value",
+]
+compatibility = "Loader accepts versions 1 and 2."

@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #define RC_AREA_SOURCE_NEAR_REALITY_ZENYTE 1u
+#define RC_AREA_MAPSQUARE_COUNT 65536
 
 enum {
     RC_AREA_MULTICOMBAT           = 1u << 0,
@@ -30,10 +31,38 @@ typedef struct {
     RcAreaPoint *points;
 } RcAreaFlagRow;
 
+typedef struct {
+    uint32_t first, count;
+} RcAreaRange;
+
+typedef struct {
+    uint16_t mapsquare;
+    uint8_t flags[4][64][64];
+} RcAreaTileRegion;
+
+typedef struct {
+    RcAreaFlagRow *rows;
+    RcAreaPoint *points;
+    uint32_t point_count;
+    uint32_t *refs;
+    uint32_t ref_count;
+    RcAreaRange index[RC_AREA_MAPSQUARE_COUNT];
+    RcAreaTileRegion *tiles;
+    int tile_count;
+    int tile_index[RC_AREA_MAPSQUARE_COUNT];
+    int row_count;
+} RcAreaFlagData;
+
 extern RcAreaFlagRow *g_rc_area_flags;
 extern int g_rc_area_flag_count;
 
 int rc_load_area_flags(const char *path);
+void rc_area_flag_data_init(RcAreaFlagData *data);
+void rc_area_flag_data_free(RcAreaFlagData *data);
+int rc_load_area_flags_into(const char *path, RcAreaFlagData *data);
+int rc_area_flags_mirror_to_globals(const RcAreaFlagData *data);
+void rc_area_flags_use_data(const RcAreaFlagData *data);
+void rc_area_flags_reset_data_if_active(const RcAreaFlagData *data);
 int rc_area_flags_is_loaded(void);
 uint32_t rc_area_flags_at(int x, int y, int plane);
 int rc_area_flag_rows_at(int x, int y, int plane);

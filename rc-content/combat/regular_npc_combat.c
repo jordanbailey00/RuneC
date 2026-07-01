@@ -65,22 +65,25 @@ static bool inventory_or_equipment_contains(const RcPlayer *p,
 }
 
 static uint64_t monster_tags_for_def(int def_id) {
-    if (def_id < 0 || def_id >= g_npc_def_count) return 0;
-    int npc_id = g_npc_defs[def_id].id;
+    const RcNpcDef *def = rc_npc_def_get(def_id);
+    if (!def) return 0;
+    int npc_id = def->id;
     if (npc_id < 0) return 0;
     return rc_monster_mechanics_tags_for_npc((uint32_t)npc_id);
 }
 
 static uint64_t activity_behavior_for_def(int def_id) {
-    if (def_id < 0 || def_id >= g_npc_def_count) return 0;
-    int npc_id = g_npc_defs[def_id].id;
+    const RcNpcDef *def = rc_npc_def_get(def_id);
+    if (!def) return 0;
+    int npc_id = def->id;
     if (npc_id < 0) return 0;
     return rc_activity_mechanics_behavior_for_npc((uint32_t)npc_id);
 }
 
 static uint16_t activity_profile_for_def(int def_id) {
-    if (def_id < 0 || def_id >= g_npc_def_count) return 0;
-    int npc_id = g_npc_defs[def_id].id;
+    const RcNpcDef *def = rc_npc_def_get(def_id);
+    if (!def) return 0;
+    int npc_id = def->id;
     if (npc_id < 0) return 0;
     return rc_activity_mechanics_profile_for_npc((uint32_t)npc_id);
 }
@@ -95,10 +98,7 @@ static RcNpc *find_npc_by_uid(RcWorld *world, int uid) {
 }
 
 static int find_npc_def_idx_exact(const char *name) {
-    for (int i = 0; i < g_npc_def_count; i++) {
-        if (strcmp(g_npc_defs[i].name, name) == 0) return i;
-    }
-    return -1;
+    return rc_npc_def_find_name(name);
 }
 
 static bool style_is_melee(RcCombatStyle style) {
@@ -240,11 +240,11 @@ static bool one_in_four(RcWorld *world) {
 }
 
 static void heal_npc(RcNpc *npc, int amount) {
-    if (!npc || amount <= 0 || npc->def_id < 0 ||
-            npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || amount <= 0 || !def) {
         return;
     }
-    int cap = g_npc_defs[npc->def_id].hitpoints;
+    int cap = def->hitpoints;
     if (cap <= 0) return;
     npc->current_hp += amount;
     if (npc->current_hp > cap) npc->current_hp = cap;
@@ -462,10 +462,10 @@ static int regular_modify_npc_roll_damage(RcWorld *world, RcNpc *npc,
                                           RcCombatStyle style, int damage) {
     (void)world;
     (void)style;
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || !def) {
         return damage;
     }
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     uint16_t profile = activity_profile_for_def(npc->def_id);
     if (profile == RC_ACTIVITY_PROFILE_BARROWS_DHAROK &&
             damage > 0 && def->hitpoints > 0 &&
@@ -548,10 +548,10 @@ static void regular_after_npc_swing(RcWorld *world, RcNpc *npc,
 static int regular_modify_npc_attack_speed(RcWorld *world, RcNpc *npc,
                                            int default_speed) {
     (void)world;
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || !def) {
         return default_speed;
     }
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     uint64_t activity = activity_behavior_for_def(npc->def_id);
     uint16_t profile = activity_profile_for_def(npc->def_id);
     if ((activity & RC_ACTIVITY_BEHAVIOR_ENRAGE) == 0) return default_speed;

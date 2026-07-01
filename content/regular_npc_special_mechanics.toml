@@ -1,0 +1,180 @@
+# Regular combat NPC family mechanics.
+# This owns data classification only; combat/slayer code consumes the compiled
+# binary and implements behavior per tag.
+
+schema_version = 2
+
+[[families]]
+key = "dragonfire_users"
+status = "runtime_indexed"
+summary = "Adult dragon-family NPCs that use dragonfire and need antifire/shield/prayer mitigation."
+exact_names = [
+  "Green dragon", "Blue dragon", "Red dragon", "Black dragon",
+  "Bronze dragon", "Iron dragon", "Steel dragon", "Mithril dragon",
+  "Adamant dragon", "Rune dragon", "Lava dragon", "Brutal green dragon",
+  "Brutal blue dragon", "Brutal red dragon", "Brutal black dragon",
+  "King Black Dragon", "Elvarg", "Vorkath"
+]
+exclude_names = [
+  "Baby blue dragon", "Baby red dragon", "Baby green dragon",
+  "Baby black dragon", "Dragon impling", "Dragon display",
+  "Prince Black Dragon"
+]
+tags = ["dragonfire", "equipment_mitigation", "potion_mitigation", "prayer_interaction"]
+required_systems = ["combat", "equipment", "inventory", "prayer", "consumables"]
+sources = ["OSRS Wiki: Dragonfire", "OSRS Wiki: Anti-dragon shield", "OSRS Wiki: Dragonfire shield"]
+
+[[families]]
+key = "wyverns"
+status = "runtime_indexed"
+summary = "Wyverns with icy breath requiring elemental/mind/dragonfire-class shield mitigation."
+exact_names = [
+  "Skeletal Wyvern", "Long-tailed Wyvern", "Taloned Wyvern",
+  "Spitting Wyvern", "Ancient Wyvern"
+]
+exclude_names = ["Wyvern display"]
+tags = ["icy_breath", "equipment_mitigation", "prayer_interaction"]
+required_systems = ["combat", "equipment", "inventory", "prayer"]
+sources = ["OSRS Wiki: Dragonfire shield", "OSRS Wiki: Wyverns"]
+
+[[families]]
+key = "spectre_protection_required"
+status = "runtime_indexed"
+summary = "Spectre-line monsters whose stat drain is prevented by nose peg class protection."
+exact_names = [
+  "Aberrant spectre", "Deviant spectre", "Abhorrent spectre",
+  "Repugnant spectre"
+]
+tags = ["equipment_required", "stat_drain", "special_damage_prevention", "nose_peg_required"]
+required_systems = ["combat", "equipment", "inventory", "slayer"]
+sources = ["OSRS Wiki: Slayer equipment", "OSRS Wiki: Aberrant spectre"]
+
+[[families]]
+key = "banshee_protection_required"
+status = "runtime_indexed"
+summary = "Banshee-line monsters whose scream damage is prevented by earmuff class protection."
+exact_names = [
+  "Banshee", "Twisted Banshee", "Screaming banshee",
+  "Screaming twisted banshee"
+]
+tags = ["equipment_required", "stat_drain", "special_damage_prevention", "earmuffs_required"]
+required_systems = ["combat", "equipment", "inventory", "slayer"]
+sources = ["OSRS Wiki: Slayer equipment", "OSRS Wiki: Banshee"]
+
+[[families]]
+key = "dust_devil_protection_required"
+status = "runtime_indexed"
+summary = "Dust devils whose smoke damage is prevented by face mask class protection."
+exact_names = ["Dust devil"]
+tags = ["equipment_required", "stat_drain", "special_damage_prevention", "face_mask_required"]
+required_systems = ["combat", "equipment", "inventory", "slayer"]
+sources = ["OSRS Wiki: Slayer equipment", "OSRS Wiki: Dust devil"]
+
+[[families]]
+key = "cave_horror_protection_required"
+status = "runtime_indexed"
+summary = "Cave horrors whose special attack is prevented by witchwood icon class protection."
+exact_names = ["Cave horror"]
+tags = ["equipment_required", "stat_drain", "special_damage_prevention", "witchwood_icon_required"]
+required_systems = ["combat", "equipment", "inventory", "slayer"]
+sources = ["OSRS Wiki: Slayer equipment", "OSRS Wiki: Cave horror"]
+
+[[families]]
+key = "mirror_shield_required"
+status = "runtime_indexed"
+summary = "Cockatrice/basilisk-line monsters whose gaze drains stats without mirror-shield-class protection."
+exact_names = [
+  "Basilisk", "Monstrous basilisk", "Monstrous Basilisk",
+  "Basilisk Knight", "Cockatrice", "Moonlight Cockatrice"
+]
+exclude_names = ["Basilisk Youngling", "Basilisk Sentinel"]
+tags = ["equipment_required", "stat_drain", "special_damage_prevention", "mirror_shield_required"]
+required_systems = ["combat", "equipment", "inventory", "slayer"]
+sources = ["OSRS Wiki: Mirror shield", "OSRS Wiki: Basilisk", "OSRS Wiki: Cockatrice"]
+
+[[families]]
+key = "weapon_restricted_damage"
+status = "runtime_indexed"
+summary = "Leafy monsters that can only be damaged by leaf-bladed weapons, broad ammo, or Magic Dart."
+exact_names = ["Kurask", "King kurask", "Turoth", "Spiked Turoth"]
+tags = ["weapon_damage_gate", "ammo_damage_gate", "spell_damage_gate", "special_attack_exception"]
+required_systems = ["combat", "equipment", "inventory", "slayer", "spells"]
+sources = ["OSRS Wiki: Kurask", "OSRS Wiki: Turoth", "OSRS Wiki: Leaf-bladed sword"]
+
+[[families]]
+key = "slayer_finisher_items"
+status = "runtime_indexed"
+summary = "Slayer monsters that require low-HP finishing items or equivalent unlocks/weapons."
+exact_names = [
+  "Gargoyle", "Marble gargoyle", "Rockslug", "Giant rockslug",
+  "Desert Lizard", "Small Lizard", "Zygomite", "Ancient Zygomite"
+]
+tags = ["finisher_item", "low_hp_rule", "auto_finisher_unlock"]
+required_systems = ["combat", "equipment", "inventory", "slayer"]
+sources = ["OSRS Wiki: Rock hammer", "OSRS Wiki: Bag of salt", "OSRS Wiki: Fungicide spray", "OSRS Wiki: Zygomite"]
+
+[[families]]
+key = "ambush_or_spawn_on_interaction"
+status = "runtime_indexed"
+summary = "NPCs whose combat behavior depends on interaction-spawn, ambush, or child-spawn rules."
+exact_names = ["Wall beast", "Nechryael", "Greater Nechryael", "Lizardman shaman"]
+tags = ["ambush_trigger", "child_spawn", "minion_spawn", "area_attack"]
+required_systems = ["combat", "equipment", "inventory", "slayer", "movement"]
+sources = ["OSRS Wiki: Wall beast", "OSRS Wiki: Nechryael", "OSRS Wiki: Lizardman shaman"]
+
+[[families]]
+key = "poison_users"
+status = "runtime_indexed"
+summary = "NPCs with poison application metadata from wiki monster infoboxes."
+wiki_poisonous = true
+tags = ["poison", "immunity_check", "cure_interaction"]
+required_systems = ["combat", "inventory", "consumables"]
+sources = ["OSRS Wiki: Infobox Monster poisonous field"]
+
+[[families]]
+key = "venom_users"
+status = "runtime_indexed"
+summary = "NPCs with venom application metadata from wiki monster infoboxes."
+wiki_venomous = true
+tags = ["venom", "immunity_check", "cure_interaction"]
+required_systems = ["combat", "inventory", "consumables"]
+sources = ["OSRS Wiki: Infobox Monster poisonous field"]
+
+[[families]]
+key = "disease_users"
+status = "runtime_indexed"
+summary = "NPCs with disease application metadata from wiki monster infoboxes."
+wiki_disease = true
+tags = ["disease", "immunity_check", "cure_interaction"]
+required_systems = ["combat", "inventory", "consumables"]
+sources = ["OSRS Wiki: Infobox Monster poisonous field"]
+
+[[families]]
+key = "revenants"
+status = "runtime_indexed"
+summary = "Revenant-family wilderness NPCs with healing and wilderness-only combat effects."
+contains_names = ["Revenant "]
+tags = ["healing", "teleblock", "freeze", "wilderness_rule"]
+required_systems = ["combat", "prayer", "equipment", "inventory", "movement"]
+sources = ["OSRS Wiki: Revenants"]
+
+[[families]]
+key = "lizardman_shamans"
+status = "runtime_indexed"
+summary = "Lizardman shamans with jump, poison-cloud, and spawn mechanics."
+exact_names = ["Lizardman shaman"]
+tags = ["jump_attack", "area_attack", "poison", "minion_spawn"]
+required_systems = ["combat", "movement", "inventory", "consumables"]
+sources = ["OSRS Wiki: Lizardman shaman"]
+
+[[families]]
+key = "slayer_poison_specialists"
+status = "runtime_indexed"
+summary = "Regular slayer monsters whose primary special pressure is poison or venom application."
+exact_names = [
+  "Cave crawler", "Crawling Hand", "Fever spider", "Jungle spider",
+  "Poison spider", "Poison Scorpion", "Pit Scorpion", "Kalrag"
+]
+tags = ["poison", "immunity_check", "cure_interaction"]
+required_systems = ["combat", "inventory", "consumables", "slayer"]
+sources = ["OSRS Wiki: Infobox Monster poisonous field", "OSRS Wiki: Cave crawler", "OSRS Wiki: Fever spider"]

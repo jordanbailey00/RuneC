@@ -112,7 +112,6 @@ static void test_full_inventory_leaves_item_on_ground(void) {
 }
 
 static void test_default_take_handler_reports_full_inventory(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase2_world();
     put_ground_item(world, world->player.x + 2, world->player.y);
     fill_inventory(&world->player);

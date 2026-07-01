@@ -86,32 +86,17 @@ sixth source pass:
   tiles, Sol wave-12 spawn/reduced bounds, or static area geometry.
 
 seventh source pass:
-  Verified the Near-Reality/Zenyte MapLocations source referenced by
-  /home/joe/Downloads/osrs_parity_source_data_notes.md:
-    Ecoscape16/near-reality-server-new
-    cache/src/main/java/com/zenyte/utils/MapLocations.java
-
-  The file exposes machine-usable provisional geometry for:
-    MULTICOMBAT with NOT_MULTICOMBAT subtraction
-    ROUGH_WILDERNESS
-    WILDERNESS_LEVEL_LINES
-    DEADMAN_SAFE_ZONES
-    PVP_WORLD_SAFE_ZONES
-    SINGLES_PLUS_LIST
-
-  Verified examples include the Ancient Prison multicombat rectangle
-  2834/5184..2944/5244 plane 0 and the main Wilderness multicombat
-  polygon listed in the source. This is more useful than screenshots or
-  broad RuneLite helper rectangles, but it is still private-server /
-  overlay-derived geometry and must not be marked authoritative OSRS.
+  Retired the previous provisional area-geometry input because it is not an
+  approved OSRS-native authority. Do not regenerate area_flags.bin from that
+  path. Keep missing multicombat, wilderness, safe-zone, and singles-plus
+  polygons as source gaps until approved evidence exists.
 
 current decision:
-  Do not treat helper rectangles or private-server geometry as
-  authoritative OSRS data. area_flags.bin now exists as a provisional
-  dataset generated from Near-Reality/Zenyte MapLocations.java, with
-  every row retaining source provenance and authoritative_osrs=false.
-  Final parity sign-off still requires authoritative server-side
-  area/zone data or live runtime capture.
+  Do not treat helper rectangles or unapproved geometry as authoritative OSRS
+  data. Existing local area_flags.bin files are compatibility artifacts only
+  and remain provisional. Final parity sign-off still requires authoritative
+  server-side area/zone data, approved authored content, or live runtime
+  capture.
 
 required fields for the eventual dataset:
   area_id
@@ -133,14 +118,16 @@ required behavior flags:
   activity_bounds
   instanced_area
 
-exported provisional dataset:
-  exporter: tools/export_area_flags.py
-  output: data/defs/area_flags.bin
-  report: tools/reports/area_flags.txt
-  row count: 1419
-  vertex count: 11281
-  runtime: rc-core/area_flags.c under RC_SUB_REGIONS, including
-    rc_wilderness_level_at() for clientscript-derived level rows
+retired provisional dataset:
+  previous exporter path: tools/export_area_flags.py
+  previous output: data/defs/area_flags.bin
+  current behavior: tools/export_area_flags.py emits
+    generated/reports/area_flags_gaps.* only and does not regenerate the
+    runtime binary
+  current report: tools/reports/area_flags.txt
+  current row count: 0
+  reason: the previous geometry was not backed by approved OSRS-native
+    authority and must remain a source gap until replaced
 
 next source work:
   extract authoritative server-side area/zone tables if present in

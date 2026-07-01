@@ -14,7 +14,7 @@ This tool:
 5. For each sub-section, captures prose + referenced items +
    referenced NPCs + referenced locations (by parsing [[links]]).
 
-Output: `data/curated/quests/{slug}/steps.toml` per quest.
+Output: `content/quests/{slug}/steps.toml` per quest.
 """
 from __future__ import annotations
 
@@ -26,11 +26,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from content_paths import content_write_path  # noqa: E402
 from wiki_pages import PageClient  # noqa: E402
 from wiki_client import PageMissing  # noqa: E402
 
 CACHE = ROOT / "tools/wiki_cache"
-OUT_BASE = ROOT / "data/curated/quests"
+OUT_BASE = content_write_path("quests")
 REPORT = ROOT / "tools/reports/quest_steps.txt"
 
 _SANITIZE_RE = re.compile(r"[^A-Za-z0-9._-]+")

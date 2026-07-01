@@ -14,7 +14,7 @@ Wiki transcript format uses nested bullet lists with these templates:
 
 Nesting depth (asterisk count) encodes the tree.
 
-Output: `data/curated/dialogue/{slug}.toml` per transcript, with a
+Output: `content/dialogue/{slug}.toml` per transcript, with a
 list of `[[nodes]]` forming the state machine. Each node has:
   id, depth, kind, speaker, text, next (list of child node ids),
   is_terminal
@@ -33,9 +33,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from content_paths import content_write_path  # noqa: E402
 
 CACHE = ROOT / "tools/wiki_cache/pages"
-OUT = ROOT / "data/curated/dialogue"
+OUT = content_write_path("dialogue")
 REPORT = ROOT / "tools/reports/dialogue.txt"
 
 _SANITIZE_RE = re.compile(r"[^A-Za-z0-9._-]+")

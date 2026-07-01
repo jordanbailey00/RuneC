@@ -5,7 +5,7 @@
 #include "config.h"
 #include "combat.h"
 #include "items.h"
-#include "npc.h"     // g_npc_defs
+#include "npc.h"
 #include "prayer.h"
 #include "rng.h"
 #include <stdio.h>
@@ -184,8 +184,8 @@ static bool live_npc_with_id(const RcWorld *world, uint32_t npc_id) {
     for (int i = 0; i < world->npc_count; i++) {
         const RcNpc *npc = &world->npcs[i];
         if (!npc->active || npc->is_dead) continue;
-        if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) continue;
-        if ((uint32_t)g_npc_defs[npc->def_id].id == npc_id) return true;
+        const RcNpcDef *def = rc_npc_def_for_npc(npc);
+        if (def && (uint32_t)def->id == npc_id) return true;
     }
     return false;
 }
@@ -195,8 +195,8 @@ static bool live_npc_named(const RcWorld *world, const char *name) {
     for (int i = 0; i < world->npc_count; i++) {
         const RcNpc *npc = &world->npcs[i];
         if (!npc->active || npc->is_dead) continue;
-        if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) continue;
-        if (strcmp(g_npc_defs[npc->def_id].name, name) == 0) return true;
+        const RcNpcDef *def = rc_npc_def_for_npc(npc);
+        if (def && strcmp(def->name, name) == 0) return true;
     }
     return false;
 }
@@ -208,8 +208,8 @@ static bool spawned_and_all_dead_named(const RcWorld *world,
     for (int i = 0; i < world->npc_count; i++) {
         const RcNpc *npc = &world->npcs[i];
         if (!npc->active) continue;
-        if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) continue;
-        if (strcmp(g_npc_defs[npc->def_id].name, name) != 0) continue;
+        const RcNpcDef *def = rc_npc_def_for_npc(npc);
+        if (!def || strcmp(def->name, name) != 0) continue;
         seen = true;
         if (!npc->is_dead) return false;
     }
@@ -426,11 +426,11 @@ static void drain_player_skill(RcPlayer *p, int skill, int amount) {
 }
 
 static void heal_npc_to_def_cap(RcNpc *npc, int amount) {
-    if (!npc || amount <= 0 || npc->def_id < 0 ||
-            npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || amount <= 0 || !def) {
         return;
     }
-    int cap = g_npc_defs[npc->def_id].hitpoints;
+    int cap = def->hitpoints;
     if (cap <= 0) return;
     npc->current_hp += amount;
     if (npc->current_hp > cap) npc->current_hp = cap;
@@ -891,7 +891,8 @@ static void tick_active(RcWorld *world, RcActiveEncounter *a) {
         // Pass-1 shortcut: compute hp_pct off the def's hitpoints
         // (the max-hp at spawn). Pass 2 tracks max_hp on the NPC
         // instance so re-heals after phase revert compute correctly.
-        int def_hp = g_npc_defs[boss->def_id].hitpoints;
+        const RcNpcDef *def = rc_npc_def_for_npc(boss);
+        int def_hp = def ? def->hitpoints : 0;
         if (def_hp <= 0) continue;
         int hp_pct = boss->current_hp * 100 / def_hp;
         if (hp_pct < ph->enter_at_hp_pct) {
@@ -1193,8 +1194,8 @@ int rc_encounter_reveal_hidden_npcs(RcWorld *world, const char *npc_name,
     for (int i = 0; i < world->npc_count; i++) {
         RcNpc *npc = &world->npcs[i];
         if (!npc->active || npc->is_dead || !npc->player_untargetable) continue;
-        if (npc->def_id < 0 || npc->def_id >= g_npc_def_count) continue;
-        if (strcmp(g_npc_defs[npc->def_id].name, npc_name) != 0) continue;
+        const RcNpcDef *def = rc_npc_def_for_npc(npc);
+        if (!def || strcmp(def->name, npc_name) != 0) continue;
         npc->player_untargetable = false;
         revealed++;
         if (max_count > 0 && revealed >= max_count) break;
@@ -1575,7 +1576,8 @@ static int read_pstr(FILE *f, char *out, int cap) {
     return 1;
 }
 
-int rc_encounter_load(RcWorld *world, const char *path) {
+int rc_encounter_load_specs(const char *path, RcEncounterSpec *out, int max) {
+    if (!out || max <= 0) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) {
         fprintf(stderr, "encounter_load: can't open %s\n", path);
@@ -1596,7 +1598,7 @@ int rc_encounter_load(RcWorld *world, const char *path) {
     }
 
     int loaded = 0;
-    for (uint32_t i = 0; i < count; i++) {
+    for (uint32_t i = 0; i < count && loaded < max; i++) {
         RcEncounterSpec s;
         memset(&s, 0, sizeof(s));
 
@@ -1753,13 +1755,25 @@ int rc_encounter_load(RcWorld *world, const char *path) {
             }
         }
 
-        if (rc_encounter_register(world, &s) >= 0) loaded++;
+        out[loaded++] = s;
     }
 
     rc_asset_close(f);
     fprintf(stderr, "encounter_load: loaded %d / %u encounters from %s\n",
             loaded, count, path);
     return loaded;
+}
+
+int rc_encounter_load(RcWorld *world, const char *path) {
+    if (!world) return -1;
+    RcEncounterSpec specs[RC_ENC_REGISTRY_CAP];
+    int loaded = rc_encounter_load_specs(path, specs, RC_ENC_REGISTRY_CAP);
+    if (loaded < 0) return -1;
+    int registered = 0;
+    for (int i = 0; i < loaded; i++) {
+        if (rc_encounter_register(world, &specs[i]) >= 0) registered++;
+    }
+    return registered;
 }
 
 #undef RD

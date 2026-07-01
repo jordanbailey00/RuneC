@@ -49,6 +49,18 @@ typedef struct {
     uint8_t npc_count;
 } RcDialogueTranscriptDef;
 
+typedef struct {
+    RcDialogueTranscriptDef *transcripts;
+    RcDialogueDefNode *nodes;
+    uint16_t *child_ids;
+    uint32_t *npc_name_offsets;
+    char *strings;
+    uint32_t string_count;
+    int transcript_count;
+    int node_count;
+    int child_id_count;
+} RcDialogueData;
+
 extern RcDialogueTranscriptDef *g_rc_dialogue_transcripts;
 extern RcDialogueDefNode *g_rc_dialogue_nodes;
 extern uint16_t *g_rc_dialogue_child_ids;
@@ -58,6 +70,13 @@ extern int g_rc_dialogue_node_count;
 extern int g_rc_dialogue_child_id_count;
 
 int rc_load_dialogue(const char *path);
+void rc_dialogue_data_init(RcDialogueData *data);
+void rc_dialogue_data_free(RcDialogueData *data);
+int rc_load_dialogue_into(const char *path, RcDialogueData *out);
+int rc_dialogue_data_import_globals(RcDialogueData *out);
+int rc_dialogue_mirror_to_globals(const RcDialogueData *data);
+void rc_dialogue_use_data(const RcDialogueData *data);
+void rc_dialogue_reset_data_if_active(const RcDialogueData *data);
 int rc_dialogue_find_transcript(const char *slug);
 const RcDialogueTranscriptDef *rc_dialogue_transcript_get(int idx);
 const RcDialogueDefNode *rc_dialogue_nodes_for(

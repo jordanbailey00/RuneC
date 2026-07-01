@@ -1,0 +1,48 @@
+# Hespori — farming-guild boss. Appears after seed plant in the
+# Hespori patch. Combat is a mix of farming skill (slash vines) +
+# magic boss fight.
+
+name = "Hespori"
+slug = "hespori"
+npc_ids = [8583]
+source_pages = ["Hespori", "Hespori/Strategies"]
+
+[[attacks]]
+name = "Magic Thorn"
+style = "magic"
+max_hit = 20
+warning_ticks = 2
+
+[[attacks]]
+name = "Ranged Vine"
+style = "ranged"
+max_hit = 20
+warning_ticks = 2
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Magic Thorn", "Ranged Vine"]
+
+[[mechanics]]
+name = "Thorny Vines"
+primitive = "spawn_npcs"
+# Three supporting vine NPCs; player must slash with farming tools
+# (but any attack works) to damage Hespori. The Hespori takes 50%
+# reduced damage until all 3 vines dead.
+period_ticks = 0                  # one-shot at start
+one_shot_at_fight_start = true
+params.npc_name = "Thorny vine"
+params.count = 3
+params.distribution = "around_boss"
+
+[[mechanics]]
+name = "Vine-Gated Damage"
+primitive = "damage_reduction_until_mechanic_triggered"
+params.damage_reduction_pct = 0.50
+params.clear_on = "all_vines_dead"
+
+[entry_requirement]
+farming_level = 65
+# Hespori only appears after the Hespori seed has been planted +
+# grown in the Farming Guild patch (~4 real-life hours).

@@ -12,11 +12,6 @@
 #define SDRP_MAGIC 0x50524453u
 #define GNOD_MAGIC 0x444F4E47u
 #define SKILL_DATA_VERSION 1u
-#define MAX_NODE_REGION 65536
-
-typedef struct {
-    uint32_t first, count;
-} RcSkillIndex;
 
 RcRecipe *g_rc_recipes = NULL;
 RcSkillDropSource *g_rc_skill_drop_sources = NULL;
@@ -29,7 +24,50 @@ int g_rc_gathering_node_count = 0;
 
 static int g_recipe_by_output[RC_MAX_ITEM_DEFS];
 static int *g_recipe_next = NULL;
-static RcSkillIndex g_gathering_region_index[MAX_NODE_REGION];
+static RcSkillRegionIndex g_gathering_region_index[
+    RC_SKILL_NODE_REGION_COUNT];
+
+static const RcRecipe *g_active_recipes = NULL;
+static const int *g_active_recipe_by_output = g_recipe_by_output;
+static int g_active_recipe_count = 0;
+static const RcSkillDropSource *g_active_skill_drop_sources = NULL;
+static const RcSkillDrop *g_active_skill_drops = NULL;
+static int g_active_skill_drop_source_count = 0;
+static int g_active_skill_drop_count = 0;
+static const RcGatheringNode *g_active_gathering_nodes = NULL;
+static const RcSkillRegionIndex *g_active_gathering_region_index =
+    g_gathering_region_index;
+static int g_active_gathering_node_count = 0;
+
+static void clear_recipe_index(int *by_output) {
+    if (!by_output) return;
+    for (int i = 0; i < RC_MAX_ITEM_DEFS; i++) by_output[i] = -1;
+}
+
+static void clear_gathering_index(RcSkillRegionIndex *index) {
+    if (!index) return;
+    for (int i = 0; i < RC_SKILL_NODE_REGION_COUNT; i++) {
+        index[i].first = UINT32_MAX;
+        index[i].count = 0;
+    }
+}
+
+void rc_skill_data_init(RcSkillData *data) {
+    if (!data) return;
+    memset(data, 0, sizeof(*data));
+    clear_recipe_index(data->recipe_by_output);
+    clear_gathering_index(data->gathering_region_index);
+}
+
+void rc_skill_data_free(RcSkillData *data) {
+    if (!data) return;
+    free(data->recipes);
+    free(data->recipe_next);
+    free(data->drop_sources);
+    free(data->drops);
+    free(data->gathering_nodes);
+    rc_skill_data_init(data);
+}
 
 static int read_header(FILE *f, const char *path, uint32_t expect,
                        uint32_t *count) {
@@ -85,7 +123,14 @@ static int inv_can_add(const RcInvSlot *inv, int item_id, int quantity) {
     return free_slots >= needed;
 }
 
-int rc_load_recipes(const char *path) {
+int rc_load_recipes_into(const char *path, RcSkillData *out) {
+    if (!out) return -1;
+    free(out->recipes);
+    free(out->recipe_next);
+    out->recipes = NULL;
+    out->recipe_next = NULL;
+    out->recipe_count = 0;
+    clear_recipe_index(out->recipe_by_output);
     if (!path) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
@@ -162,23 +207,28 @@ int rc_load_recipes(const char *path) {
         }
     }
     rc_asset_close(f);
-    for (int i = 0; i < RC_MAX_ITEM_DEFS; i++) g_recipe_by_output[i] = -1;
+    clear_recipe_index(out->recipe_by_output);
     for (int i = (int)count - 1; i >= 0; i--) {
         uint32_t item_id = rows[i].output_item;
         if (item_id < RC_MAX_ITEM_DEFS) {
-            next[i] = g_recipe_by_output[item_id];
-            g_recipe_by_output[item_id] = i;
+            next[i] = out->recipe_by_output[item_id];
+            out->recipe_by_output[item_id] = i;
         }
     }
-    free(g_rc_recipes);
-    free(g_recipe_next);
-    g_rc_recipes = rows;
-    g_recipe_next = next;
-    g_rc_recipe_count = (int)count;
-    return g_rc_recipe_count;
+    out->recipes = rows;
+    out->recipe_next = next;
+    out->recipe_count = (int)count;
+    return out->recipe_count;
 }
 
-int rc_load_skill_drops(const char *path) {
+int rc_load_skill_drops_into(const char *path, RcSkillData *out) {
+    if (!out) return -1;
+    free(out->drop_sources);
+    free(out->drops);
+    out->drop_sources = NULL;
+    out->drops = NULL;
+    out->drop_source_count = 0;
+    out->drop_count = 0;
     if (!path) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
@@ -224,16 +274,19 @@ int rc_load_skill_drops(const char *path) {
         }
     }
     rc_asset_close(f);
-    free(g_rc_skill_drop_sources);
-    free(g_rc_skill_drops);
-    g_rc_skill_drop_sources = sources;
-    g_rc_skill_drops = drops;
-    g_rc_skill_drop_source_count = (int)count;
-    g_rc_skill_drop_count = drop_count;
-    return g_rc_skill_drop_source_count;
+    out->drop_sources = sources;
+    out->drops = drops;
+    out->drop_source_count = (int)count;
+    out->drop_count = drop_count;
+    return out->drop_source_count;
 }
 
-int rc_load_gathering_nodes(const char *path) {
+int rc_load_gathering_nodes_into(const char *path, RcSkillData *out) {
+    if (!out) return -1;
+    free(out->gathering_nodes);
+    out->gathering_nodes = NULL;
+    out->gathering_node_count = 0;
+    clear_gathering_index(out->gathering_region_index);
     if (!path) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
@@ -246,10 +299,6 @@ int rc_load_gathering_nodes(const char *path) {
     if (!rows) {
         rc_asset_close(f);
         return -1;
-    }
-    for (int i = 0; i < MAX_NODE_REGION; i++) {
-        g_gathering_region_index[i].first = UINT32_MAX;
-        g_gathering_region_index[i].count = 0;
     }
     for (uint32_t i = 0; i < count; i++) {
         RcGatheringNode *row = &rows[i];
@@ -275,33 +324,299 @@ int rc_load_gathering_nodes(const char *path) {
                 || !rc_read_exact(f, &pad, sizeof(pad), 1, path, "pad")) {
             free(rows); rc_asset_close(f); return -1;
         }
-        RcSkillIndex *idx = &g_gathering_region_index[row->mapsquare];
+        RcSkillRegionIndex *idx =
+            &out->gathering_region_index[row->mapsquare];
         if (idx->first == UINT32_MAX) idx->first = i;
         idx->count++;
     }
     rc_asset_close(f);
+    out->gathering_nodes = rows;
+    out->gathering_node_count = (int)count;
+    return out->gathering_node_count;
+}
+
+int rc_skill_data_import_globals(RcSkillData *out) {
+    if (!out) return 0;
+    rc_skill_data_free(out);
+    if (g_rc_recipe_count > 0) {
+        if (!g_rc_recipes || !g_recipe_next) return 0;
+        out->recipes = malloc((size_t)g_rc_recipe_count
+                              * sizeof(*out->recipes));
+        out->recipe_next = malloc((size_t)g_rc_recipe_count
+                                  * sizeof(*out->recipe_next));
+        if (!out->recipes || !out->recipe_next) {
+            rc_skill_data_free(out);
+            return 0;
+        }
+        memcpy(out->recipes, g_rc_recipes,
+               (size_t)g_rc_recipe_count * sizeof(*out->recipes));
+        memcpy(out->recipe_next, g_recipe_next,
+               (size_t)g_rc_recipe_count * sizeof(*out->recipe_next));
+        memcpy(out->recipe_by_output, g_recipe_by_output,
+               sizeof(out->recipe_by_output));
+        out->recipe_count = g_rc_recipe_count;
+    }
+    if (g_rc_skill_drop_source_count > 0) {
+        if (!g_rc_skill_drop_sources) {
+            rc_skill_data_free(out);
+            return 0;
+        }
+        out->drop_sources =
+            malloc((size_t)g_rc_skill_drop_source_count
+                   * sizeof(*out->drop_sources));
+        if (!out->drop_sources) {
+            rc_skill_data_free(out);
+            return 0;
+        }
+        memcpy(out->drop_sources, g_rc_skill_drop_sources,
+               (size_t)g_rc_skill_drop_source_count
+               * sizeof(*out->drop_sources));
+        out->drop_source_count = g_rc_skill_drop_source_count;
+    }
+    if (g_rc_skill_drop_count > 0) {
+        if (!g_rc_skill_drops) {
+            rc_skill_data_free(out);
+            return 0;
+        }
+        out->drops = malloc((size_t)g_rc_skill_drop_count
+                            * sizeof(*out->drops));
+        if (!out->drops) {
+            rc_skill_data_free(out);
+            return 0;
+        }
+        memcpy(out->drops, g_rc_skill_drops,
+               (size_t)g_rc_skill_drop_count * sizeof(*out->drops));
+        out->drop_count = g_rc_skill_drop_count;
+    }
+    if (g_rc_gathering_node_count > 0) {
+        if (!g_rc_gathering_nodes) {
+            rc_skill_data_free(out);
+            return 0;
+        }
+        out->gathering_nodes =
+            malloc((size_t)g_rc_gathering_node_count
+                   * sizeof(*out->gathering_nodes));
+        if (!out->gathering_nodes) {
+            rc_skill_data_free(out);
+            return 0;
+        }
+        memcpy(out->gathering_nodes, g_rc_gathering_nodes,
+               (size_t)g_rc_gathering_node_count
+               * sizeof(*out->gathering_nodes));
+        memcpy(out->gathering_region_index, g_gathering_region_index,
+               sizeof(out->gathering_region_index));
+        out->gathering_node_count = g_rc_gathering_node_count;
+    }
+    return 1;
+}
+
+int rc_skills_mirror_to_globals(const RcSkillData *data) {
+    RcSkillData copy;
+    rc_skill_data_init(&copy);
+    if (data) {
+        if (data->recipe_count > 0) {
+            if (!data->recipes || !data->recipe_next) return 0;
+            copy.recipes = malloc((size_t)data->recipe_count
+                                  * sizeof(*copy.recipes));
+            copy.recipe_next = malloc((size_t)data->recipe_count
+                                      * sizeof(*copy.recipe_next));
+            if (!copy.recipes || !copy.recipe_next) {
+                rc_skill_data_free(&copy);
+                return 0;
+            }
+            memcpy(copy.recipes, data->recipes,
+                   (size_t)data->recipe_count * sizeof(*copy.recipes));
+            memcpy(copy.recipe_next, data->recipe_next,
+                   (size_t)data->recipe_count * sizeof(*copy.recipe_next));
+            memcpy(copy.recipe_by_output, data->recipe_by_output,
+                   sizeof(copy.recipe_by_output));
+            copy.recipe_count = data->recipe_count;
+        }
+        if (data->drop_source_count > 0) {
+            if (!data->drop_sources) {
+                rc_skill_data_free(&copy);
+                return 0;
+            }
+            copy.drop_sources =
+                malloc((size_t)data->drop_source_count
+                       * sizeof(*copy.drop_sources));
+            if (!copy.drop_sources) {
+                rc_skill_data_free(&copy);
+                return 0;
+            }
+            memcpy(copy.drop_sources, data->drop_sources,
+                   (size_t)data->drop_source_count
+                   * sizeof(*copy.drop_sources));
+            copy.drop_source_count = data->drop_source_count;
+        }
+        if (data->drop_count > 0) {
+            if (!data->drops) {
+                rc_skill_data_free(&copy);
+                return 0;
+            }
+            copy.drops = malloc((size_t)data->drop_count
+                                * sizeof(*copy.drops));
+            if (!copy.drops) {
+                rc_skill_data_free(&copy);
+                return 0;
+            }
+            memcpy(copy.drops, data->drops,
+                   (size_t)data->drop_count * sizeof(*copy.drops));
+            copy.drop_count = data->drop_count;
+        }
+        if (data->gathering_node_count > 0) {
+            if (!data->gathering_nodes) {
+                rc_skill_data_free(&copy);
+                return 0;
+            }
+            copy.gathering_nodes =
+                malloc((size_t)data->gathering_node_count
+                       * sizeof(*copy.gathering_nodes));
+            if (!copy.gathering_nodes) {
+                rc_skill_data_free(&copy);
+                return 0;
+            }
+            memcpy(copy.gathering_nodes, data->gathering_nodes,
+                   (size_t)data->gathering_node_count
+                   * sizeof(*copy.gathering_nodes));
+            memcpy(copy.gathering_region_index,
+                   data->gathering_region_index,
+                   sizeof(copy.gathering_region_index));
+            copy.gathering_node_count = data->gathering_node_count;
+        }
+    }
+
+    free(g_rc_recipes);
+    free(g_recipe_next);
+    free(g_rc_skill_drop_sources);
+    free(g_rc_skill_drops);
     free(g_rc_gathering_nodes);
-    g_rc_gathering_nodes = rows;
-    g_rc_gathering_node_count = (int)count;
+    g_rc_recipes = copy.recipes;
+    g_recipe_next = copy.recipe_next;
+    memcpy(g_recipe_by_output, copy.recipe_by_output,
+           sizeof(g_recipe_by_output));
+    g_rc_recipe_count = copy.recipe_count;
+    g_rc_skill_drop_sources = copy.drop_sources;
+    g_rc_skill_drops = copy.drops;
+    g_rc_skill_drop_source_count = copy.drop_source_count;
+    g_rc_skill_drop_count = copy.drop_count;
+    g_rc_gathering_nodes = copy.gathering_nodes;
+    g_rc_gathering_node_count = copy.gathering_node_count;
+    memcpy(g_gathering_region_index, copy.gathering_region_index,
+           sizeof(g_gathering_region_index));
+    rc_skills_use_data(NULL);
+    return 1;
+}
+
+void rc_skills_use_data(const RcSkillData *data) {
+    if (!data || (data->recipe_count <= 0
+            && data->drop_source_count <= 0
+            && data->gathering_node_count <= 0)) {
+        g_active_recipes = g_rc_recipes;
+        g_active_recipe_by_output = g_recipe_by_output;
+        g_active_recipe_count = g_rc_recipe_count;
+        g_active_skill_drop_sources = g_rc_skill_drop_sources;
+        g_active_skill_drops = g_rc_skill_drops;
+        g_active_skill_drop_source_count = g_rc_skill_drop_source_count;
+        g_active_skill_drop_count = g_rc_skill_drop_count;
+        g_active_gathering_nodes = g_rc_gathering_nodes;
+        g_active_gathering_region_index = g_gathering_region_index;
+        g_active_gathering_node_count = g_rc_gathering_node_count;
+        return;
+    }
+    g_active_recipes = data->recipes;
+    g_active_recipe_by_output = data->recipe_by_output;
+    g_active_recipe_count = data->recipe_count;
+    g_active_skill_drop_sources = data->drop_sources;
+    g_active_skill_drops = data->drops;
+    g_active_skill_drop_source_count = data->drop_source_count;
+    g_active_skill_drop_count = data->drop_count;
+    g_active_gathering_nodes = data->gathering_nodes;
+    g_active_gathering_region_index = data->gathering_region_index;
+    g_active_gathering_node_count = data->gathering_node_count;
+}
+
+void rc_skills_reset_data_if_active(const RcSkillData *data) {
+    if (!data) return;
+    if (g_active_recipes == data->recipes
+            || g_active_skill_drop_sources == data->drop_sources
+            || g_active_skill_drops == data->drops
+            || g_active_gathering_nodes == data->gathering_nodes) {
+        rc_skills_use_data(NULL);
+    }
+}
+
+int rc_load_recipes(const char *path) {
+    RcSkillData data;
+    rc_skill_data_init(&data);
+    if (!rc_skill_data_import_globals(&data)) return -1;
+    int loaded = rc_load_recipes_into(path, &data);
+    if (loaded < 0) {
+        rc_skill_data_free(&data);
+        return -1;
+    }
+    if (!rc_skills_mirror_to_globals(&data)) {
+        rc_skill_data_free(&data);
+        return -1;
+    }
+    rc_skill_data_free(&data);
+    return g_rc_recipe_count;
+}
+
+int rc_load_skill_drops(const char *path) {
+    RcSkillData data;
+    rc_skill_data_init(&data);
+    if (!rc_skill_data_import_globals(&data)) return -1;
+    int loaded = rc_load_skill_drops_into(path, &data);
+    if (loaded < 0) {
+        rc_skill_data_free(&data);
+        return -1;
+    }
+    if (!rc_skills_mirror_to_globals(&data)) {
+        rc_skill_data_free(&data);
+        return -1;
+    }
+    rc_skill_data_free(&data);
+    return g_rc_skill_drop_source_count;
+}
+
+int rc_load_gathering_nodes(const char *path) {
+    RcSkillData data;
+    rc_skill_data_init(&data);
+    if (!rc_skill_data_import_globals(&data)) return -1;
+    int loaded = rc_load_gathering_nodes_into(path, &data);
+    if (loaded < 0) {
+        rc_skill_data_free(&data);
+        return -1;
+    }
+    if (!rc_skills_mirror_to_globals(&data)) {
+        rc_skill_data_free(&data);
+        return -1;
+    }
+    rc_skill_data_free(&data);
     return g_rc_gathering_node_count;
 }
 
 const RcRecipe *rc_recipe_get(int idx) {
-    if (idx < 0 || idx >= g_rc_recipe_count || !g_rc_recipes) return NULL;
-    return &g_rc_recipes[idx];
+    if (idx < 0 || idx >= g_active_recipe_count || !g_active_recipes) {
+        return NULL;
+    }
+    return &g_active_recipes[idx];
 }
 
 const RcRecipe *rc_recipe_find_output(int item_id) {
-    if (item_id < 0 || item_id >= RC_MAX_ITEM_DEFS || !g_rc_recipes) return NULL;
-    int idx = g_recipe_by_output[item_id];
-    return idx >= 0 ? &g_rc_recipes[idx] : NULL;
+    if (item_id < 0 || item_id >= RC_MAX_ITEM_DEFS || !g_active_recipes) {
+        return NULL;
+    }
+    int idx = g_active_recipe_by_output[item_id];
+    return idx >= 0 ? &g_active_recipes[idx] : NULL;
 }
 
 const RcSkillDropSource *rc_skill_drop_source_find(const char *name) {
-    if (!name || !g_rc_skill_drop_sources) return NULL;
-    for (int i = 0; i < g_rc_skill_drop_source_count; i++) {
-        if (strcmp(g_rc_skill_drop_sources[i].name, name) == 0) {
-            return &g_rc_skill_drop_sources[i];
+    if (!name || !g_active_skill_drop_sources) return NULL;
+    for (int i = 0; i < g_active_skill_drop_source_count; i++) {
+        if (strcmp(g_active_skill_drop_sources[i].name, name) == 0) {
+            return &g_active_skill_drop_sources[i];
         }
     }
     return NULL;
@@ -309,25 +624,28 @@ const RcSkillDropSource *rc_skill_drop_source_find(const char *name) {
 
 const RcSkillDrop *rc_skill_drops_for(const RcSkillDropSource *source,
                                       int *count) {
-    if (!source || !g_rc_skill_drops) {
+    if (!source || !g_active_skill_drops) {
         if (count) *count = 0;
         return NULL;
     }
     if (count) *count = source->drop_count;
-    return &g_rc_skill_drops[source->first_drop];
+    (void)g_active_skill_drop_count;
+    return &g_active_skill_drops[source->first_drop];
 }
 
 const RcGatheringNode *rc_gathering_nodes_in_region(uint16_t mapsquare,
                                                     int *count) {
-    RcSkillIndex idx = g_gathering_region_index[mapsquare];
+    RcSkillRegionIndex idx = g_active_gathering_region_index[mapsquare];
     if (count) *count = idx.first == UINT32_MAX ? 0 : (int)idx.count;
-    if (idx.first == UINT32_MAX || !g_rc_gathering_nodes) return NULL;
-    return &g_rc_gathering_nodes[idx.first];
+    if (idx.first == UINT32_MAX || !g_active_gathering_nodes) return NULL;
+    (void)g_active_gathering_node_count;
+    return &g_active_gathering_nodes[idx.first];
 }
 
 const RcGatheringNode *rc_gathering_node_find(int obj_id, int x, int y,
                                               int plane) {
-    if (x < 0 || y < 0 || plane < 0 || !g_rc_gathering_nodes) return NULL;
+    if (x < 0 || y < 0 || plane < 0 || !g_active_gathering_nodes)
+        return NULL;
     uint16_t mapsquare = (uint16_t)(((x >> 6) << 8) | (y >> 6));
     int count = 0;
     const RcGatheringNode *rows = rc_gathering_nodes_in_region(mapsquare, &count);

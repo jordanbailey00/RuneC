@@ -1,0 +1,20 @@
+id = "drops"
+format = "binary"
+path = "data/defs/drops.bin"
+magic_label = "DROP"
+magic_u32 = "0x504F5244"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_drops.py"
+consumers = ["rc-core/drops.c"]
+source_dataset = "RuneC acquisition tables and reviewed drop facts"
+row_fields = [
+  "u32 npc_id",
+  "always: u8 count, entries[count]: u32 item_id, u16 qmin, u16 qmax",
+  "main: u8 count, entries[count]: u32 item_id, u16 qmin, u16 qmax, u32 rarity_inv",
+  "tertiary: u8 count, entries[count]: u32 item_id, u16 qmin, u16 qmax, u32 rarity_inv",
+  "u32 rare_table_weight",
+]
+compatibility = "Loader accepts exactly current_version."

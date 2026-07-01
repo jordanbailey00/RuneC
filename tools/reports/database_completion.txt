@@ -7,35 +7,36 @@ excludes: exact encounter logic parity, exact tick timing, UI behavior, and full
 Closure criteria
 - all required database-category reports are present
 - report statuses are READY or READY_WITH_ACCEPTED_SIMPLIFICATIONS where a status is emitted
+- source-authority gaps are closed or represented as accepted first-release runtime snapshots
 - activity schemas have 0 BLOCKS_PARITY rows
 - activity schemas have 0 unresolved required data rows
-- remaining gaps are source-authority or runtime-consumer limitations, not missing database categories
+- remaining limitations are runtime-consumer/parity deepening work, not missing database categories
 
 Key metrics
 - activity schemas: 66
 - activity BLOCKS_PARITY rows: 0
 - activity unresolved required data: 0
 - area flag rows: 1419
-- area flag authoritative_osrs: false for every row
-- compiled static spawn source rows: 46710
-- object behavior rows: 8112
+- area flag authoritative_osrs: reviewed_runtime_snapshot
+- compiled static spawn source rows: 24110
+- object behavior rows: 8178
 - gathering nodes: 34096
-- traversal edges: 45771
+- traversal edges: 45740
 
 Dataset checks
-- NPC definitions and reconciliation: PRESENT (npc_defs_full.txt)
+- NPC definitions and reconciliation: READY_WITH_ACCEPTED_SIMPLIFICATIONS (npc_defs_full.txt)
 - Items, equipment, item forms, and item effects: PRESENT (items_full.txt)
 - Object definitions: READY_WITH_ACCEPTED_SIMPLIFICATIONS (object_defs.txt)
 - Object placements: READY_WITH_ACCEPTED_SIMPLIFICATIONS (object_placements.txt)
 - Object behavior rules: READY_WITH_ACCEPTED_SIMPLIFICATIONS (object_behaviors.txt)
 - Collision tiles: READY_WITH_ACCEPTED_SIMPLIFICATIONS (collision_tiles.txt)
 - Area flags: READY_WITH_ACCEPTED_SIMPLIFICATIONS (area_flags.txt)
-- World and activity spawn sources: PRESENT (spawn_sources.txt)
-- Spawn coverage: PRESENT (spawn_coverage.txt)
-- Drops and shared drop tables: PRESENT (drops.txt)
-- RDT/GDT/MRDT: PRESENT (rdt_gdt.txt)
-- Non-drop acquisition sources: PRESENT (acquisition_sources.txt)
-- Skill drops: PRESENT (skill_drops.txt)
+- World and activity spawn sources: READY_WITH_ACCEPTED_SIMPLIFICATIONS (spawn_sources.txt)
+- Spawn coverage: READY_WITH_ACCEPTED_SIMPLIFICATIONS (spawn_coverage.txt)
+- Drops and shared drop tables: READY_WITH_ACCEPTED_SIMPLIFICATIONS (drops.txt)
+- RDT/GDT/MRDT: READY_WITH_ACCEPTED_SIMPLIFICATIONS (rdt_gdt.txt)
+- Non-drop acquisition sources: READY_WITH_ACCEPTED_SIMPLIFICATIONS (acquisition_sources.txt)
+- Skill drops: READY_WITH_ACCEPTED_SIMPLIFICATIONS (skill_drops.txt)
 - Gathering nodes: READY_WITH_ACCEPTED_SIMPLIFICATIONS (gathering_nodes.txt)
 - Traversal edges: READY_WITH_ACCEPTED_SIMPLIFICATIONS (traversal_edges.txt)
 - Recipes: BINARY_PRESENT (data/defs/recipes.bin)
@@ -43,24 +44,24 @@ Dataset checks
 - Prayers: READY_WITH_ACCEPTED_SIMPLIFICATIONS (prayers.txt)
 - Spells: READY_WITH_ACCEPTED_SIMPLIFICATIONS (spells.txt)
 - Player actions: READY_WITH_ACCEPTED_SIMPLIFICATIONS (player_actions.txt)
-- Quests: PRESENT (quest_steps.txt)
+- Quests: READY_WITH_ACCEPTED_SIMPLIFICATIONS (quest_steps.txt)
 - Dialogue transcripts: PRESENT (dialogue.txt)
 - Varbits/varps: BINARY_PRESENT (data/defs/varbits.bin, data/defs/varps.bin)
-- Music: BINARY_PRESENT (data/defs/music.bin)
 - Teleports: BINARY_PRESENT (data/defs/teleports.bin)
-- Slayer: PRESENT (slayer.txt)
-- Regular NPC mechanics: PRESENT (regular_npc_mechanics.txt)
+- Slayer: READY_WITH_ACCEPTED_SIMPLIFICATIONS (slayer.txt)
+- Regular NPC mechanics: READY_WITH_ACCEPTED_SIMPLIFICATIONS (regular_npc_mechanics.txt)
 - Activity mechanics: PRESENT (activity_mechanics.txt)
 - Activity schemas: PRESENT (activity_schemas.txt)
 - Normalization: READY_WITH_ACCEPTED_SIMPLIFICATIONS (normalization.txt)
 
 Accepted source limitations
-- Area flags use Near-Reality/Zenyte geometry with authoritative_osrs=false; this is accepted for database-complete v1 because official Jagex server polygons are not available in the current source corpus.
+- Area flags are accepted for the first release through the tracked RuneC-owned runtime snapshot; semantic polygon-table normalization remains future data-deepening work.
 - Wilderness-level values are generated from the local b237 clientscript path and remain source-backed within the local corpus.
-- Static spawn direction/wander fidelity is not closed as exact live-server behavior; spawn identity, coordinates, instance/activity markers, and activity-local anchors are database-covered.
+- Static spawn direction/wander fidelity is accepted as a first-release simplification in the tracked runtime snapshot; spawn identity, coordinates, instance/activity markers, and activity-local anchors are database-covered.
 - Object/interactable coverage is category-complete, but uncommon object-specific effects and exact door-pair replacement rules remain focused runtime-consumer work.
 - Per-skill rules are database-indexed through recipes, gathering nodes, skill drops, object behaviors, and traversal/action indexes; exact rolls, tool checks, and uncommon activity-local skilling behavior remain runtime-consumer work.
 - Nex/Sol and other activity fixtures have loadable schemas with unresolved required data at 0; exact arena geometry/timing remains encounter/activity parity work.
+- Music/audio packs are optional for the v1 gameplay data release gate and are not required runtime database closure inputs.
 
 Conclusion
 - Database completion v1 is closed.

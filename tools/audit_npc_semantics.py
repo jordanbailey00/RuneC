@@ -9,7 +9,7 @@ import struct
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-from source_paths import DATA_OSRS
+from legacy_external_source_paths import DATA_OSRS
 
 WIKI_CACHE = ROOT / "tools/wiki_cache"
 

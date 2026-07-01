@@ -3,7 +3,7 @@
 import sys, struct, argparse
 from pathlib import Path
 
-from source_paths import CACHE_DIR
+from source_paths import CACHE_DIR, require_cache_dir
 
 PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
 sys.path.insert(0, str(PIPELINE))
@@ -51,9 +51,10 @@ def main():
     parser.add_argument("--regions", type=str, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    cache_dir = require_cache_dir(args.cache)
 
     regions = [(int(r.split(",")[0]), int(r.split(",")[1])) for r in args.regions.split()]
-    store = RcCacheStore(args.cache)
+    store = RcCacheStore(cache_dir)
 
     print("Loading object definitions (b237 format)...")
     obj_defs = decode_obj_defs_b237(store)

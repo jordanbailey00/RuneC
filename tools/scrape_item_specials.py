@@ -6,7 +6,7 @@ Fetches each weapon's wikitext (cached under
 `tools/wiki_cache/pages/`), extracts the level-2 section titled
 "Special attack" (and any siblings like "Special attacks"), resolves
 item IDs via `infobox_item` bucket, and emits
-`data/curated/specials/{slug}.toml`.
+`content/specials/{slug}.toml`.
 
 No structured mechanic extraction yet — special-attack details are
 prose. The TOML stores section text + item IDs so combat code can
@@ -22,10 +22,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from content_paths import content_write_path  # noqa: E402
 from wiki_pages import PageClient  # noqa: E402
 
 CACHE = ROOT / "tools/wiki_cache"
-OUT_DIR = ROOT / "data/curated/specials"
+OUT_DIR = content_write_path("specials")
 REPORT = ROOT / "tools/reports/item_specials.txt"
 
 _SECTION_RE = re.compile(r"^(==)\s*(.*?)\s*==\s*$", re.MULTILINE)

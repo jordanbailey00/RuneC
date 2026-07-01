@@ -82,7 +82,6 @@ static RcInteractionTarget target_for_ground_item(const RcWorld *world,
 }
 
 static void test_item_on_ground_item_dispatches_source_item(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase5_world();
     GroundHookCtx ctx = {0};
     int src_slot = rc_inv_add(world->player.inventory, 4151, 1);
@@ -92,8 +91,8 @@ static void test_item_on_ground_item_dispatches_source_item(void) {
     RcInteractionDispatchKey key =
         ground_key(RC_INTERACTION_USE_ON, 995);
     key.source_item_id = 4151;
-    assert(rc_interaction_register_handler(&key, ground_hook_handler,
-                                           &ctx));
+    assert(rc_interaction_register_world_handler(world, &key,
+                                                 ground_hook_handler, &ctx));
 
     assert(rc_player_use_inventory_item_on_ground_item(world, src_slot,
                                                        ground_idx));
@@ -112,7 +111,6 @@ static void test_item_on_ground_item_dispatches_source_item(void) {
 }
 
 static void test_spell_on_ground_item_dispatches_source_spell(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase5_world();
     GroundHookCtx ctx = {0};
     int ground_idx = spawn_public_ground_item(world, 995, 100, 2);
@@ -120,8 +118,8 @@ static void test_spell_on_ground_item_dispatches_source_spell(void) {
     RcInteractionDispatchKey key =
         ground_key(RC_INTERACTION_SPELL_ON, 995);
     key.source_spell_id = 900;
-    assert(rc_interaction_register_handler(&key, ground_hook_handler,
-                                           &ctx));
+    assert(rc_interaction_register_world_handler(world, &key,
+                                                 ground_hook_handler, &ctx));
 
     assert(rc_player_cast_spell_on_ground_item(world, 900, ground_idx));
     rc_world_tick(world);
@@ -138,7 +136,6 @@ static void test_spell_on_ground_item_dispatches_source_spell(void) {
 }
 
 static void test_unsupported_item_on_ground_item_fails_without_mutation(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase5_world();
     int src_slot = rc_inv_add(world->player.inventory, 4151, 1);
     assert(src_slot >= 0);
@@ -165,7 +162,6 @@ static void test_unsupported_item_on_ground_item_fails_without_mutation(void) {
 }
 
 static void test_unsupported_spell_on_ground_item_fails_without_mutation(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase5_world();
     int ground_idx = spawn_public_ground_item(world, 995, 100, 2);
     int uid = world->ground_items[ground_idx].uid;
@@ -187,7 +183,6 @@ static void test_unsupported_spell_on_ground_item_fails_without_mutation(void) {
 }
 
 static void test_default_ground_item_fallback_invalid_sources(void) {
-    rc_interaction_clear_handlers();
     RcWorld *world = phase5_world();
     int ground_idx = spawn_public_ground_item(world, 995, 100, 0);
     RcInteractionTarget target = target_for_ground_item(world, ground_idx);
@@ -221,7 +216,6 @@ int main(void) {
     test_unsupported_item_on_ground_item_fails_without_mutation();
     test_unsupported_spell_on_ground_item_fails_without_mutation();
     test_default_ground_item_fallback_invalid_sources();
-    rc_interaction_clear_handlers();
     printf("test_ground_items_phase5: item/spell ground hooks covered.\n");
     return 0;
 }

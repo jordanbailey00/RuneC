@@ -73,11 +73,11 @@ int rc_player_open_storage_npc(RcWorld *world, int npc_uid, int option) {
             break;
         }
     }
-    if (!npc || npc->is_dead || npc->def_id < 0 ||
-            npc->def_id >= g_npc_def_count) {
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!npc || npc->is_dead || !def) {
         return RC_STORAGE_NONE;
     }
-    int kind = rc_storage_kind_for_npc(&g_npc_defs[npc->def_id], option);
+    int kind = rc_storage_kind_for_npc(def, option);
     if (!kind) return RC_STORAGE_NONE;
     world->player.storage_kind = kind;
     world->player.storage_target = npc_uid;

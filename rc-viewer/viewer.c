@@ -65,6 +65,21 @@
 #define RUNEC_ITEM_STACK_VARIANT_MAX 4096
 #define MODEL_ID_SPOTANIM_BASE 0xA2000000u
 #define OBJECT_PICK_TILE_RADIUS 1
+#define VIEWER_MAX_OBJECT_CHUNKS 128
+
+typedef struct {
+    ObjectMesh *mesh;
+    int origin_x;
+    int origin_y;
+    int size;
+    char path[1024];
+} ViewerObjectChunk;
+
+typedef enum {
+    VIEWER_SCENE_MODE_AUTO = 0,
+    VIEWER_SCENE_MODE_GENERATED,
+    VIEWER_SCENE_MODE_FIXED,
+} ViewerSceneMode;
 
 typedef struct {
     int obj_id;
@@ -182,7 +197,7 @@ typedef struct {
     AnimModelState *composed_anim_state;
     uint64_t composed_player_signature;
     int composed_player_loaded;
-    // Per-NPC-def animation scratch state (one per def index into g_npc_defs).
+    // Per-NPC-def animation scratch state keyed by RcNpc.def_id.
     // We share across all instances of the same NPC type — each instance
     // re-applies its own frame from base_verts before its draw call, so
     // cross-instance clobber is fine.
@@ -261,6 +276,14 @@ typedef struct {
     int scene_plane_override;
     int scene_auto_export;
     int scene_radius_regions;
+    int startup_scene_radius_regions;
+    int preload_scene_planes;
+    int object_chunk_size;
+    float object_chunk_draw_radius;
+    ViewerObjectChunk object_chunks[RC_MAX_PLANES][VIEWER_MAX_OBJECT_CHUNKS];
+    int object_chunk_count[RC_MAX_PLANES];
+    Texture2D object_chunk_atlas[RC_MAX_PLANES];
+    int object_chunk_atlas_loaded[RC_MAX_PLANES];
     int initial_scene_origin_x;
     int initial_scene_origin_y;
     int initial_scene_w;
@@ -295,13 +318,43 @@ static const char *env_path(const char *key, const char *fallback) {
     return value && value[0] ? value : fallback;
 }
 
+static int env_has_value(const char *key) {
+    const char *value = getenv(key);
+    return value && value[0];
+}
+
+static ViewerSceneMode viewer_scene_mode_from_env(void) {
+    const char *mode = getenv("RUNEC_SCENE_MODE");
+    if (mode && mode[0]) {
+        if (strcmp(mode, "generated") == 0)
+            return VIEWER_SCENE_MODE_GENERATED;
+        if (strcmp(mode, "fixed") == 0)
+            return VIEWER_SCENE_MODE_FIXED;
+        if (strcmp(mode, "auto") != 0) {
+            fprintf(stderr,
+                    "viewer scene: unknown RUNEC_SCENE_MODE=%s; using auto\n",
+                    mode);
+        }
+    }
+    if (env_has_value("RUNEC_TERRAIN") || env_has_value("RUNEC_OBJECTS"))
+        return VIEWER_SCENE_MODE_FIXED;
+    return VIEWER_SCENE_MODE_FIXED;
+}
+
+static const char *viewer_scene_mode_name(ViewerSceneMode mode) {
+    switch (mode) {
+    case VIEWER_SCENE_MODE_GENERATED: return "generated";
+    case VIEWER_SCENE_MODE_FIXED: return "fixed";
+    case VIEWER_SCENE_MODE_AUTO:
+    default: return "auto";
+    }
+}
+
 static int runtime_data_available(void) {
     const char *required[] = {
         "defs/items.bin",
         "defs/npc_defs.bin",
         "defs/object_defs.bin",
-        env_path("RUNEC_TERRAIN", "regions/varrock.terrain"),
-        env_path("RUNEC_OBJECTS", "regions/varrock.objects"),
         "models/player.models",
         "sprites/ui/side_icon_inventory.png",
         "fonts/runescape.ttf",
@@ -311,6 +364,23 @@ static int runtime_data_available(void) {
         if (!rc_asset_exists(required[i])) {
             fprintf(stderr, "missing runtime data asset: %s\n", required[i]);
             missing = 1;
+        }
+    }
+
+    ViewerSceneMode scene_mode = viewer_scene_mode_from_env();
+    if (scene_mode == VIEWER_SCENE_MODE_FIXED
+            || env_has_value("RUNEC_TERRAIN")
+            || env_has_value("RUNEC_OBJECTS")) {
+        const char *fixed_required[] = {
+            env_path("RUNEC_TERRAIN", "regions/varrock.terrain"),
+            env_path("RUNEC_OBJECTS", "regions/varrock.objects"),
+        };
+        for (size_t i = 0; i < sizeof(fixed_required) / sizeof(fixed_required[0]); i++) {
+            if (!rc_asset_exists(fixed_required[i])) {
+                fprintf(stderr, "missing runtime data asset: %s\n",
+                        fixed_required[i]);
+                missing = 1;
+            }
         }
     }
     if (missing) {
@@ -510,30 +580,210 @@ static int companion_path(char *out, size_t cap, const char *base,
     return n > 0 && (size_t)n < cap;
 }
 
+static void free_object_chunk_plane(ViewerState *v, int plane) {
+    if (!v || plane < 0 || plane >= RC_MAX_PLANES) return;
+    for (int i = 0; i < v->object_chunk_count[plane]; i++) {
+        objects_free(v->object_chunks[plane][i].mesh);
+        v->object_chunks[plane][i].mesh = NULL;
+    }
+    v->object_chunk_count[plane] = 0;
+    if (v->object_chunk_atlas_loaded[plane]
+            && v->object_chunk_atlas[plane].id > 0) {
+        UnloadTexture(v->object_chunk_atlas[plane]);
+    }
+    v->object_chunk_atlas[plane] = (Texture2D){0};
+    v->object_chunk_atlas_loaded[plane] = 0;
+}
+
+static int object_chunk_path(char *out, size_t cap, const char *dir,
+                             const char *prefix, int ox, int oy, int plane) {
+    if (!out || cap == 0 || !dir || !prefix)
+        return 0;
+    int n = 0;
+    if (plane == 0) {
+        n = snprintf(out, cap, "%s/%s_%d_%d.objects", dir, prefix, ox, oy);
+    } else {
+        n = snprintf(out, cap, "%s/%s_%d_%d.p%d.objects", dir, prefix, ox, oy,
+                     plane);
+    }
+    return n > 0 && (size_t)n < cap;
+}
+
+static int load_object_chunk_index_plane(ViewerState *v,
+                                         const char *base_objects_path,
+                                         int plane) {
+    if (!v || !base_objects_path || !env_bool("RUNEC_OBJECT_CHUNKS", 1))
+        return 0;
+    plane = clamp_plane(plane);
+    free_object_chunk_plane(v, plane);
+
+    const char *dir = env_path("RUNEC_OBJECT_CHUNKS_DIR",
+                               "data/regions/varrock_chunks");
+    const char *prefix = env_path("RUNEC_OBJECT_CHUNK_PREFIX", "varrock");
+    int chunk_size = v->object_chunk_size > 0 ? v->object_chunk_size : 64;
+    int count = 0;
+    for (int ox = g_world_origin_x; ox < g_world_origin_x + g_world_w;
+            ox += chunk_size) {
+        for (int oy = g_world_origin_y; oy < g_world_origin_y + g_world_h;
+                oy += chunk_size) {
+            if (count >= VIEWER_MAX_OBJECT_CHUNKS)
+                break;
+            char path[1024];
+            if (!object_chunk_path(path, sizeof(path), dir, prefix, ox, oy,
+                                   plane)
+                    || !rc_asset_exists(path)) {
+                continue;
+            }
+            ViewerObjectChunk *chunk = &v->object_chunks[plane][count++];
+            chunk->origin_x = ox;
+            chunk->origin_y = oy;
+            chunk->size = chunk_size;
+            snprintf(chunk->path, sizeof(chunk->path), "%s", path);
+        }
+    }
+    v->object_chunk_count[plane] = count;
+    if (count <= 0)
+        return 0;
+
+    char atlas_path[1024];
+    if (companion_path(atlas_path, sizeof(atlas_path), base_objects_path,
+                       ".atlas")
+            && rc_asset_exists(atlas_path)) {
+        v->object_chunk_atlas[plane] = objects_load_atlas(NULL, atlas_path);
+        v->object_chunk_atlas_loaded[plane] =
+            v->object_chunk_atlas[plane].id > 0;
+    }
+    fprintf(stderr,
+            "object chunks: indexed %d chunks for plane %d from %s\n",
+            count, plane, dir);
+    return 1;
+}
+
+static int object_chunk_should_draw(const ViewerState *v,
+                                    const ViewerObjectChunk *chunk) {
+    if (!v || !chunk)
+        return 0;
+    if (v->object_chunk_draw_radius <= 0.0f)
+        return 1;
+    float cx = ((float)chunk->origin_x + (float)chunk->size * 0.5f)
+             - (float)g_world_origin_x;
+    float cz = -(((float)chunk->origin_y + (float)chunk->size * 0.5f)
+               - (float)g_world_origin_y);
+    float dx = cx - v->camera.target.x;
+    float dz = cz - v->camera.target.z;
+    float r = v->object_chunk_draw_radius;
+    return dx * dx + dz * dz <= r * r;
+}
+
+static void load_object_chunk_mesh(ViewerState *v, int plane,
+                                   ViewerObjectChunk *chunk) {
+    if (!v || !chunk || chunk->mesh)
+        return;
+    Texture2D atlas = v->object_chunk_atlas_loaded[plane]
+                    ? v->object_chunk_atlas[plane] : (Texture2D){0};
+    chunk->mesh = objects_load_with_shared_atlas(chunk->path, atlas);
+    if (!chunk->mesh)
+        return;
+    objects_offset(chunk->mesh, g_world_origin_x, g_world_origin_y);
+    if (v->alpha_cutout_shader_static_loaded)
+        objects_set_shader(chunk->mesh, v->alpha_cutout_shader_static);
+}
+
+static void draw_object_chunks(ViewerState *v, int plane) {
+    if (!v) return;
+    plane = clamp_plane(plane);
+    for (int i = 0; i < v->object_chunk_count[plane]; i++) {
+        ViewerObjectChunk *chunk = &v->object_chunks[plane][i];
+        if (!object_chunk_should_draw(v, chunk))
+            continue;
+        load_object_chunk_mesh(v, plane, chunk);
+        if (chunk->mesh && chunk->mesh->loaded)
+            DrawModel(chunk->mesh->model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+    }
+}
+
+static int resolve_plane_asset_path(char *out, size_t cap,
+                                    const char *env_prefix,
+                                    const char *base_path, int plane,
+                                    const char *ext,
+                                    int allow_implicit_variant) {
+    if (!out || cap == 0 || !env_prefix || !base_path || !ext)
+        return 0;
+    char env_key[32];
+    snprintf(env_key, sizeof(env_key), "%s%d", env_prefix, plane);
+    const char *path = getenv(env_key);
+    if (path && path[0]) {
+        int n = snprintf(out, cap, "%s", path);
+        return n > 0 && (size_t)n < cap;
+    }
+    if (plane == 0) {
+        int n = snprintf(out, cap, "%s", base_path);
+        return n > 0 && (size_t)n < cap;
+    }
+    return allow_implicit_variant
+        && plane_path_variant(out, cap, base_path, plane, ext)
+        && rc_asset_exists(out);
+}
+
+static int load_terrain_plane_asset(ViewerState *v, const char *path,
+                                    int plane) {
+    if (!v || !path) return 0;
+    plane = clamp_plane(plane);
+    TerrainMesh *tm = terrain_load(path);
+    if (!tm) return 0;
+    terrain_offset(tm, g_world_origin_x, g_world_origin_y);
+    terrain_free(v->terrain_planes[plane]);
+    v->terrain_planes[plane] = tm;
+    if (plane == 0 || !v->terrain)
+        v->terrain = tm;
+    return 1;
+}
+
+static int load_object_plane_asset(ViewerState *v, const char *path,
+                                   int plane) {
+    if (!v || !path) return 0;
+    plane = clamp_plane(plane);
+    ObjectMesh *om = objects_load(path);
+    objects_free(v->object_planes[plane]);
+    free_object_anim_plane(v, plane);
+    v->object_planes[plane] = NULL;
+    if (plane == 0)
+        v->objects = NULL;
+    if (!om) return 0;
+
+    objects_offset(om, g_world_origin_x, g_world_origin_y);
+    if (v->alpha_cutout_shader_static_loaded)
+        objects_set_shader(om, v->alpha_cutout_shader_static);
+    v->object_planes[plane] = om;
+    if (om->object_anim_count > 0) {
+        char anim_models_path[1024];
+        if (companion_path(anim_models_path, sizeof(anim_models_path), path,
+                           ".object_anim.models")
+                && rc_asset_exists(anim_models_path)) {
+            v->object_anim_model_planes[plane] = models_load(anim_models_path);
+            if (v->object_anim_model_planes[plane]) {
+                if (v->alpha_cutout_shader_static_loaded) {
+                    models_set_shader(v->object_anim_model_planes[plane],
+                                      v->alpha_cutout_shader_static);
+                }
+                create_object_anim_plane_states(v, plane);
+            }
+        }
+    }
+    if (plane == 0)
+        v->objects = om;
+    return 1;
+}
+
 static void load_terrain_plane_assets(ViewerState *v, const char *base_path) {
     if (!v || !base_path) return;
     for (int plane = 0; plane < RC_MAX_PLANES; plane++) {
-        char env_key[32];
-        snprintf(env_key, sizeof(env_key), "RUNEC_TERRAIN_P%d", plane);
-        const char *path = getenv(env_key);
-        char variant[1024];
-        if (!path || !path[0]) {
-            if (plane == 0) {
-                path = base_path;
-            } else if (plane_path_variant(variant, sizeof(variant), base_path,
-                                          plane, ".terrain")
-                    && rc_asset_exists(variant)) {
-                path = variant;
-            } else {
-                continue;
-            }
-        }
-        TerrainMesh *tm = terrain_load(path);
-        if (!tm) continue;
-        terrain_offset(tm, g_world_origin_x, g_world_origin_y);
-        v->terrain_planes[plane] = tm;
-        if (plane == 0)
-            v->terrain = tm;
+        char path[1024];
+        if (!resolve_plane_asset_path(path, sizeof(path), "RUNEC_TERRAIN_P",
+                                      base_path, plane, ".terrain",
+                                      v->preload_scene_planes))
+            continue;
+        load_terrain_plane_asset(v, path, plane);
     }
     if (!v->terrain) {
         for (int plane = 0; plane < RC_MAX_PLANES; plane++) {
@@ -548,45 +798,12 @@ static void load_terrain_plane_assets(ViewerState *v, const char *base_path) {
 static void load_object_plane_assets(ViewerState *v, const char *base_path) {
     if (!v || !base_path) return;
     for (int plane = 0; plane < RC_MAX_PLANES; plane++) {
-        char env_key[32];
-        snprintf(env_key, sizeof(env_key), "RUNEC_OBJECTS_P%d", plane);
-        const char *path = getenv(env_key);
-        char variant[1024];
-        if (!path || !path[0]) {
-            if (plane == 0) {
-                path = base_path;
-            } else if (plane_path_variant(variant, sizeof(variant), base_path,
-                                          plane, ".objects")
-                    && rc_asset_exists(variant)) {
-                path = variant;
-            } else {
-                continue;
-            }
-        }
-        ObjectMesh *om = objects_load(path);
-        if (!om) continue;
-        objects_offset(om, g_world_origin_x, g_world_origin_y);
-        if (v->alpha_cutout_shader_static_loaded)
-            objects_set_shader(om, v->alpha_cutout_shader_static);
-        v->object_planes[plane] = om;
-        if (om->object_anim_count > 0) {
-            char anim_models_path[1024];
-            if (companion_path(anim_models_path, sizeof(anim_models_path), path,
-                               ".object_anim.models")
-                    && rc_asset_exists(anim_models_path)) {
-                v->object_anim_model_planes[plane] =
-                    models_load(anim_models_path);
-                if (v->object_anim_model_planes[plane]) {
-                    if (v->alpha_cutout_shader_static_loaded) {
-                        models_set_shader(v->object_anim_model_planes[plane],
-                                          v->alpha_cutout_shader_static);
-                    }
-                    create_object_anim_plane_states(v, plane);
-                }
-            }
-        }
-        if (plane == 0)
-            v->objects = om;
+        char path[1024];
+        if (!resolve_plane_asset_path(path, sizeof(path), "RUNEC_OBJECTS_P",
+                                      base_path, plane, ".objects",
+                                      v->preload_scene_planes))
+            continue;
+        load_object_plane_asset(v, path, plane);
     }
     if (!v->objects) {
         for (int plane = 0; plane < RC_MAX_PLANES; plane++) {
@@ -770,9 +987,10 @@ static int collect_spawned_npc_model_ids(RcWorld *world, uint32_t *ids,
     int count = 0;
     for (int i = 0; i < world->npc_count && count < max_ids; i++) {
         const RcNpc *npc = &world->npcs[i];
+        const RcNpcDef *def = rc_npc_def_for_npc(npc);
         if (!npc->active || npc->plane < min_plane || npc->plane > max_plane
-                || npc->def_id >= (uint32_t)g_npc_def_count) continue;
-        count = append_unique_model_id(ids, count, (uint32_t)g_npc_defs[npc->def_id].id);
+                || !def) continue;
+        count = append_unique_model_id(ids, count, (uint32_t)def->id);
     }
     return count;
 }
@@ -791,8 +1009,10 @@ static void create_npc_anim_states(ViewerState *v) {
         return;
     }
     int created = 0;
-    for (int i = 0; i < g_npc_def_count; i++) {
-        ModelEntry *me = model_find(v->npc_models, (uint32_t)g_npc_defs[i].id);
+    int npc_def_count = 0;
+    const RcNpcDef *npc_defs = rc_npc_defs_all(&npc_def_count);
+    for (int i = 0; npc_defs && i < npc_def_count; i++) {
+        ModelEntry *me = model_find(v->npc_models, (uint32_t)npc_defs[i].id);
         if (me && me->loaded && me->vertex_skins && me->base_vert_count > 0) {
             v->npc_anim_state[i] = anim_model_state_create_with_faces(
                 me->vertex_skins, me->base_vert_count,
@@ -1053,6 +1273,7 @@ static void unload_scene_visual_assets(ViewerState *v) {
         terrain_free(v->terrain_planes[plane]);
         objects_free(v->object_planes[plane]);
         free_object_anim_plane(v, plane);
+        free_object_chunk_plane(v, plane);
         v->terrain_planes[plane] = NULL;
         v->object_planes[plane] = NULL;
     }
@@ -1096,8 +1317,8 @@ static int path_mtime(const char *path, time_t *out) {
 }
 
 static int scene_objects_file_complete(const char *objects_path) {
-    struct stat st;
-    if (!objects_path || stat(objects_path, &st) != 0)
+    uint64_t asset_size = 0;
+    if (!objects_path || !rc_asset_size(objects_path, &asset_size))
         return 0;
 
     FILE *f = rc_asset_fopen(objects_path, "rb");
@@ -1131,10 +1352,10 @@ static int scene_objects_file_complete(const char *objects_path) {
                       + (uint64_t)total_verts * 4ull;
     if (magic == OBJ2_MAGIC)
         expected += (uint64_t)total_verts * 2ull * sizeof(float);
-    if ((uint64_t)st.st_size < expected) {
+    if (asset_size < expected) {
         fprintf(stderr,
-                "viewer scene: incomplete object cache %s (%lld < %llu)\n",
-                objects_path, (long long)st.st_size,
+                "viewer scene: incomplete object cache %s (%llu < %llu)\n",
+                objects_path, (unsigned long long)asset_size,
                 (unsigned long long)expected);
         return 0;
     }
@@ -1189,8 +1410,15 @@ static int ensure_scene_slice_plane_assets(ViewerState *v, int center_x,
     if (!v->scene_auto_export)
         return 0;
 
-    const char *cache = env_path("RUNEC_CACHE",
-        "tools/cache_pipeline/source/current_fightcaves_demo/data/cache");
+    const char *cache = getenv("RUNEC_CACHE");
+    if (!cache || !cache[0])
+        cache = getenv("RUNEC_B237_CACHE");
+    if (!cache || !cache[0]) {
+        fprintf(stderr,
+                "viewer scene: RUNEC_CACHE or RUNEC_B237_CACHE is required "
+                "for scene auto-export\n");
+        return 0;
+    }
     char cmd[4096];
     int timeout_seconds = env_int("RUNEC_SCENE_EXPORT_TIMEOUT_SECONDS", 120);
     if (timeout_seconds < 1)
@@ -1322,6 +1550,14 @@ static int scene_tile_in_initial_scene(const ViewerState *v, int x, int y) {
         && y < v->initial_scene_origin_y + v->initial_scene_h;
 }
 
+static void load_fixed_object_visuals(ViewerState *v, const char *objects_path) {
+    if (!v || !objects_path)
+        return;
+    if (load_object_chunk_index_plane(v, objects_path, 0))
+        return;
+    load_object_plane_assets(v, objects_path);
+}
+
 static int reload_initial_scene(ViewerState *v) {
     if (!v || !v->initial_scene_ready)
         return 0;
@@ -1331,7 +1567,7 @@ static int reload_initial_scene(ViewerState *v) {
     g_world_w = v->initial_scene_w;
     g_world_h = v->initial_scene_h;
     load_terrain_plane_assets(v, v->initial_terrain_path);
-    load_object_plane_assets(v, v->initial_objects_path);
+    load_fixed_object_visuals(v, v->initial_objects_path);
     if (!activate_core_area_for_loaded_scene(v))
         return 0;
     build_minimap_tiles(v);
@@ -1390,12 +1626,231 @@ static int reload_scene_around_player(ViewerState *v, int center_x,
     return 1;
 }
 
+static int loaded_scene_contains_tile(int x, int y) {
+    return x >= g_world_origin_x && x < g_world_origin_x + g_world_w
+        && y >= g_world_origin_y && y < g_world_origin_y + g_world_h;
+}
+
+static void remember_initial_scene(ViewerState *v, const char *terrain_path,
+                                   const char *objects_path) {
+    if (!v) return;
+    snprintf(v->initial_terrain_path, sizeof(v->initial_terrain_path), "%s",
+             terrain_path ? terrain_path : "");
+    snprintf(v->initial_objects_path, sizeof(v->initial_objects_path), "%s",
+             objects_path ? objects_path : "");
+    v->initial_scene_origin_x = g_world_origin_x;
+    v->initial_scene_origin_y = g_world_origin_y;
+    v->initial_scene_w = g_world_w;
+    v->initial_scene_h = g_world_h;
+    v->initial_scene_ready = 1;
+}
+
+static int load_fixed_startup_scene(ViewerState *v, const char *terrain_path,
+                                    const char *objects_path) {
+    if (!v || !terrain_path || !objects_path)
+        return 0;
+    unload_scene_visual_assets(v);
+    remember_initial_scene(v, terrain_path, objects_path);
+    load_terrain_plane_assets(v, terrain_path);
+    load_fixed_object_visuals(v, objects_path);
+    if (!v->terrain) {
+        fprintf(stderr, "viewer scene: fixed startup terrain failed to load\n");
+        return 0;
+    }
+    if (!activate_core_area_for_loaded_scene(v))
+        return 0;
+    build_minimap_tiles(v);
+    v->active_scene_prefix[0] = '\0';
+    fprintf(stderr,
+            "viewer scene: loaded fixed scene origin %d,%d size %dx%d\n",
+            g_world_origin_x, g_world_origin_y, g_world_w, g_world_h);
+    return 1;
+}
+
+static int generated_scene_prefix_for_start(ViewerState *v, char *out,
+                                            size_t cap, int *origin_x,
+                                            int *origin_y, int *world_w,
+                                            int *world_h) {
+    if (!v || !out || cap == 0)
+        return 0;
+    int ox = 0, oy = 0, ww = 0, wh = 0;
+    scene_bounds_for_tile(g_player_start_x, g_player_start_y,
+                          v->startup_scene_radius_regions, &ox, &oy, &ww,
+                          &wh);
+    const char *dir = env_path("RUNEC_SCENE_CACHE_DIR",
+                               "data/regions/scene_cache");
+    int n = snprintf(out, cap, "%s/scene_%d_%d_r%d", dir, ox, oy,
+                     v->startup_scene_radius_regions);
+    if (n <= 0 || (size_t)n >= cap)
+        return 0;
+    if (origin_x) *origin_x = ox;
+    if (origin_y) *origin_y = oy;
+    if (world_w) *world_w = ww;
+    if (world_h) *world_h = wh;
+    return 1;
+}
+
+static void print_generated_scene_hint(ViewerState *v, const char *prefix,
+                                       int plane) {
+    if (!v || !prefix)
+        return;
+    fprintf(stderr,
+            "viewer scene: generated startup scene is missing or stale: %s "
+            "(plane %d)\n",
+            prefix, plane);
+    fprintf(stderr,
+            "viewer scene: prewarm with: python3 "
+            "tools/cache_pipeline/export_scene_slice.py --center-x %d "
+            "--center-y %d --radius-regions %d --output-prefix %s "
+            "--planes 0,1,2,3\n",
+            g_player_start_x, g_player_start_y,
+            v->startup_scene_radius_regions,
+            prefix);
+}
+
+static int load_generated_startup_scene(ViewerState *v, int required) {
+    if (!v || !v->world)
+        return 0;
+
+    char prefix[1024];
+    int origin_x = 0, origin_y = 0, world_w = 0, world_h = 0;
+    if (!generated_scene_prefix_for_start(v, prefix, sizeof(prefix),
+                                          &origin_x, &origin_y,
+                                          &world_w, &world_h))
+        return 0;
+
+    int required_plane = clamp_plane(v->world->player.plane);
+    if (!ensure_scene_slice_plane_assets(v, g_player_start_x, g_player_start_y,
+                                         prefix, 0)) {
+        if (required)
+            print_generated_scene_hint(v, prefix, 0);
+        return 0;
+    }
+    if (required_plane != 0
+            && !ensure_scene_slice_plane_assets(v, g_player_start_x,
+                                                g_player_start_y, prefix,
+                                                required_plane)) {
+        if (required)
+            print_generated_scene_hint(v, prefix, required_plane);
+        return 0;
+    }
+
+    char terrain_path[1024];
+    char objects_path[1024];
+    scene_plane_file(terrain_path, sizeof(terrain_path), prefix, 0,
+                     ".terrain");
+    scene_plane_file(objects_path, sizeof(objects_path), prefix, 0,
+                     ".objects");
+
+    unload_scene_visual_assets(v);
+    g_world_origin_x = origin_x;
+    g_world_origin_y = origin_y;
+    g_world_w = world_w;
+    g_world_h = world_h;
+    remember_initial_scene(v, terrain_path, objects_path);
+    load_terrain_plane_assets(v, terrain_path);
+    load_object_plane_assets(v, objects_path);
+    if (!v->terrain) {
+        if (required)
+            fprintf(stderr,
+                    "viewer scene: generated startup terrain failed to load\n");
+        return 0;
+    }
+    if (!activate_core_area_for_loaded_scene(v))
+        return 0;
+    build_minimap_tiles(v);
+    strncpy(v->active_scene_prefix, prefix, sizeof(v->active_scene_prefix) - 1);
+    v->active_scene_prefix[sizeof(v->active_scene_prefix) - 1] = '\0';
+    fprintf(stderr,
+            "viewer scene: loaded generated startup slice origin %d,%d "
+            "size %dx%d\n",
+            g_world_origin_x, g_world_origin_y, g_world_w, g_world_h);
+    return 1;
+}
+
+static int load_startup_scene(ViewerState *v, ViewerSceneMode mode,
+                              const char *fixed_terrain,
+                              const char *fixed_objects) {
+    if (!v)
+        return 0;
+    if (mode == VIEWER_SCENE_MODE_GENERATED)
+        return load_generated_startup_scene(v, 1);
+    if (mode == VIEWER_SCENE_MODE_AUTO
+            && load_generated_startup_scene(v, 0))
+        return 1;
+    return load_fixed_startup_scene(v, fixed_terrain, fixed_objects);
+}
+
+static const char *startup_npc_models_path(ViewerState *v) {
+    if (env_has_value("RUNEC_NPC_MODELS"))
+        return env_path("RUNEC_NPC_MODELS", "data/models/npcs.models");
+
+    const char *override = getenv("RUNEC_STARTUP_NPC_MODELS");
+    if (override && override[0])
+        return override;
+
+    const char *varrock_candidate = "data/models/npcs_varrock.models";
+    if (v && !v->active_scene_prefix[0]
+            && !env_has_value("RUNEC_TERRAIN")
+            && !env_has_value("RUNEC_OBJECTS")
+            && !env_has_value("RUNEC_WORLD_ORIGIN_X")
+            && !env_has_value("RUNEC_WORLD_ORIGIN_Y")
+            && !env_has_value("RUNEC_WORLD_W")
+            && !env_has_value("RUNEC_WORLD_H")
+            && !env_has_value("RUNEC_NPC_SPAWNS")
+            && g_world_origin_x == DEFAULT_WORLD_ORIGIN_X
+            && g_world_origin_y == DEFAULT_WORLD_ORIGIN_Y
+            && g_world_w == DEFAULT_WORLD_W
+            && g_world_h == DEFAULT_WORLD_H
+            && rc_asset_exists(varrock_candidate)) {
+        return varrock_candidate;
+    }
+
+    const char *candidate = "data/models/npcs_varrock_bank.models";
+    if (v && v->active_scene_prefix[0]
+            && v->startup_scene_radius_regions == 0
+            && g_player_start_x == DEFAULT_PLAYER_START_X
+            && g_player_start_y == DEFAULT_PLAYER_START_Y
+            && rc_asset_exists(candidate)) {
+        return candidate;
+    }
+    return "data/models/npcs.models";
+}
+
 static void ensure_active_scene_plane(ViewerState *v, int plane) {
-    if (!v || !v->world || !v->active_scene_prefix[0])
+    if (!v || !v->world)
         return;
     plane = clamp_plane(plane);
     if (v->terrain_planes[plane] || v->object_planes[plane])
         return;
+
+    if (!v->active_scene_prefix[0] && v->initial_scene_ready) {
+        char terrain_path[1024];
+        char objects_path[1024];
+        int loaded = 0;
+        if (resolve_plane_asset_path(terrain_path, sizeof(terrain_path),
+                                     "RUNEC_TERRAIN_P",
+                                     v->initial_terrain_path, plane,
+                                     ".terrain", 1)) {
+            loaded |= load_terrain_plane_asset(v, terrain_path, plane);
+        }
+        if (resolve_plane_asset_path(objects_path, sizeof(objects_path),
+                                     "RUNEC_OBJECTS_P",
+                                     v->initial_objects_path, plane,
+                                     ".objects", 1)) {
+            if (load_object_chunk_index_plane(v, objects_path, plane))
+                loaded = 1;
+            else
+                loaded |= load_object_plane_asset(v, objects_path, plane);
+        }
+        if (loaded)
+            build_minimap_tiles(v);
+        return;
+    }
+
+    if (!v->active_scene_prefix[0])
+        return;
+
     RcPlayer *p = &v->world->player;
     if (!ensure_scene_slice_plane_assets(v, p->x, p->y,
                                          v->active_scene_prefix, plane)) {
@@ -1617,9 +2072,9 @@ static void load_world_map_minimap(ViewerState *v) {
     if (!enabled || !enabled[0] || strcmp(enabled, "0") == 0)
         return;
 
-    const char *path = env_path("RUNEC_MINIMAP_MAP",
-        "tools/cache_pipeline/source/current_fightcaves_demo/data/"
-        "map-oldschool-live-en-b236-2026-03-18-11-45-07-openrs2#2499.png");
+    const char *path = getenv("RUNEC_MINIMAP_MAP");
+    if (!path || !path[0])
+        return;
     if (!rc_asset_exists(path))
         return;
 
@@ -1957,7 +2412,9 @@ static int pick_npc_at_mouse_score(ViewerState *v, int *out_uid,
         const RcNpc *n = &v->world->npcs[i];
         if (!n->active || n->is_dead || n->plane != scene_plane)
             continue;
-        const RcNpcDef *def = &g_npc_defs[n->def_id];
+        const RcNpcDef *def = rc_npc_def_for_npc(n);
+        if (!def)
+            continue;
         int size = def->size > 0 ? def->size : 1;
         float npc_x = v->npc_render[i].initialized
                     ? v->npc_render[i].render_x : (float)n->x;
@@ -2005,26 +2462,28 @@ static const RcNpc *viewer_find_npc_const_by_uid(const ViewerState *v,
 
 static const char *viewer_npc_name_by_uid(const ViewerState *v, int npc_uid) {
     const RcNpc *npc = viewer_find_npc_const_by_uid(v, npc_uid);
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!def)
         return "NPC";
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     return def->name[0] ? def->name : "NPC";
 }
 
 static int viewer_npc_default_option_by_uid(const ViewerState *v,
                                             int npc_uid) {
     const RcNpc *npc = viewer_find_npc_const_by_uid(v, npc_uid);
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!def)
         return -1;
-    return npc_default_left_click_option(&g_npc_defs[npc->def_id]);
+    return npc_default_left_click_option(def);
 }
 
 static const char *viewer_npc_option_label_by_uid(const ViewerState *v,
                                                   int npc_uid, int option) {
     const RcNpc *npc = viewer_find_npc_const_by_uid(v, npc_uid);
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!def)
         return "";
-    return rc_npc_def_option(&g_npc_defs[npc->def_id], option);
+    return rc_npc_def_option(def, option);
 }
 
 static const char *viewer_ground_item_name(const ViewerState *v, int idx) {
@@ -2101,7 +2560,7 @@ static const RcTraversalEdge *viewer_object_traversal_edge(
         have_placement = 1;
         break;
     }
-    if (g_rc_object_placement_count > 0 && !have_placement)
+    if (rc_object_has_placements() && !have_placement)
         return NULL;
     const RcTraversalEdge *exact =
         rc_traversal_find(RC_TRAVERSAL_OBJECT, obj_id, x, y, plane, opt);
@@ -2525,9 +2984,9 @@ static int viewer_find_npc_index_by_uid(ViewerState *v, int npc_uid) {
 
 static void viewer_left_click_npc(ViewerState *v, int npc_uid) {
     RcNpc *npc = viewer_find_npc_by_uid(v, npc_uid);
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!def)
         return;
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     int opt = npc_default_left_click_option(def);
     if (opt < 0)
         return;
@@ -2547,9 +3006,9 @@ static void reset_viewer_context(ViewerState *v) {
 
 static void open_npc_context_menu(ViewerState *v, int npc_uid) {
     RcNpc *npc = viewer_find_npc_by_uid(v, npc_uid);
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (!def)
         return;
-    const RcNpcDef *def = &g_npc_defs[npc->def_id];
     const char *actions[RUNEC_UI_CONTEXT_ACTIONS];
     char action_text[RUNEC_UI_CONTEXT_ACTIONS][32];
     int action_options[RUNEC_UI_CONTEXT_ACTIONS];
@@ -3900,10 +4359,8 @@ static void viewer_nearest_npc_tile_to_point(
     int *ty
 ) {
     int size = 1;
-    if (npc && npc->def_id >= 0 && npc->def_id < g_npc_def_count
-            && g_npc_defs[npc->def_id].size > 0) {
-        size = g_npc_defs[npc->def_id].size;
-    }
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    if (def && def->size > 0) size = def->size;
     int min_x = npc ? npc->x : px;
     int min_y = npc ? npc->y : py;
     int max_x = min_x + size - 1;
@@ -3917,9 +4374,8 @@ static void viewer_nearest_npc_tile_to_point(
 }
 
 static int viewer_npc_size(const RcNpc *npc) {
-    if (!npc || npc->def_id < 0 || npc->def_id >= g_npc_def_count)
-        return 1;
-    return g_npc_defs[npc->def_id].size > 0 ? g_npc_defs[npc->def_id].size : 1;
+    const RcNpcDef *def = rc_npc_def_for_npc(npc);
+    return def && def->size > 0 ? def->size : 1;
 }
 
 static int viewer_distance_event_target(
@@ -4445,11 +4901,7 @@ static int projectile_target_point(ViewerState *v,
                 continue;
             if (npc->plane != scene_plane)
                 return 0;
-            int size = 1;
-            if (npc->def_id >= 0 && npc->def_id < g_npc_def_count &&
-                    g_npc_defs[npc->def_id].size > 0) {
-                size = g_npc_defs[npc->def_id].size;
-            }
+            int size = viewer_npc_size(npc);
             wx = v->npc_render[i].initialized
                ? v->npc_render[i].render_x : (float)npc->x;
             wy = v->npc_render[i].initialized
@@ -5329,7 +5781,9 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
     if ((!v->npc_anims && !v->npc_fallback_anims) || !me || !me->loaded)
         return 0;
     const RcNpc *n = &v->world->npcs[npc_idx];
-    const RcNpcDef *def = &g_npc_defs[n->def_id];
+    const RcNpcDef *def = rc_npc_def_for_npc(n);
+    if (!def)
+        return 0;
     const RuneCNpcRenderDef *render_def =
         runec_npc_render_find(&v->npc_render_defs, def->id);
     if (!render_def)
@@ -5453,6 +5907,7 @@ static void draw_scene(ViewerState *v) {
         DrawModel(scene_objects->model, (Vector3){0, 0, 0}, 1.0f, WHITE);
         draw_animated_objects(v, scene_plane, scene_objects);
     }
+    draw_object_chunks(v, scene_plane);
 
     // Player model. If equipment needs body-part replacement, use the generated
     // client-style identity-kit/equipment composition path so torso/arms/legs/
@@ -5492,8 +5947,8 @@ static void draw_scene(ViewerState *v) {
         }
     }
 
-    // NPC rendering — one entry per def. Each live NPC's def_id indexes into
-    // g_npc_defs, and we look up the model by NPC cache ID in the model set.
+    // NPC rendering — each live NPC's def_id indexes the active NPC definition
+    // view, and the model set is keyed by NPC cache ID.
     int npc_count = 0;
     const RcNpc *npcs = rc_get_npcs(v->world, &npc_count);
     for (int i = 0; i < npc_count; i++) {
@@ -5501,14 +5956,16 @@ static void draw_scene(ViewerState *v) {
         if (!n->active || n->is_dead) continue;
         if (n->plane != scene_plane) continue;
 
-        RcNpcDef *def = &g_npc_defs[n->def_id];
+        const RcNpcDef *def = rc_npc_def_for_npc(n);
+        if (!def) continue;
+        int size = def->size > 0 ? def->size : 1;
 
         float nwx = v->npc_render[i].initialized
                   ? v->npc_render[i].render_x : (float)n->x;
         float nwy = v->npc_render[i].initialized
                   ? v->npc_render[i].render_y : (float)n->y;
-        float nx_r = (nwx - g_world_origin_x) + 0.5f * (float)def->size;
-        float nz_r = -((nwy - g_world_origin_y) + 0.5f * (float)def->size);
+        float nx_r = (nwx - g_world_origin_x) + 0.5f * (float)size;
+        float nz_r = -((nwy - g_world_origin_y) + 0.5f * (float)size);
         float ny_r = ground_yf_plane(v, scene_plane, nwx, nwy);
 
         // Find the NPC's model by its cache ID
@@ -5613,13 +6070,15 @@ static void draw_scene(ViewerState *v) {
     for (int i = 0; i < npc_count; i++) {
         const RcNpc *n = &npcs[i];
         if (!n->active || n->is_dead || n->plane != scene_plane) continue;
-        const RcNpcDef *def = &g_npc_defs[n->def_id];
+        const RcNpcDef *def = rc_npc_def_for_npc(n);
+        if (!def) continue;
+        int size = def->size > 0 ? def->size : 1;
         float nwx = v->npc_render[i].initialized
                   ? v->npc_render[i].render_x : (float)n->x;
         float nwy = v->npc_render[i].initialized
                   ? v->npc_render[i].render_y : (float)n->y;
-        float nx_r = (nwx - g_world_origin_x) + 0.5f * (float)def->size;
-        float nz_r = -((nwy - g_world_origin_y) + 0.5f * (float)def->size);
+        float nx_r = (nwx - g_world_origin_x) + 0.5f * (float)size;
+        float nz_r = -((nwy - g_world_origin_y) + 0.5f * (float)size);
         float ny_r = ground_yf_plane(v, scene_plane, nwx, nwy) + 2.15f;
         Vector2 s = GetWorldToScreen((Vector3){nx_r, ny_r, nz_r}, v->camera);
         int is_target = combat_view->target.kind == RC_COMBAT_ACTOR_NPC &&
@@ -5686,8 +6145,9 @@ static void draw_scene(ViewerState *v) {
         snprintf(label, sizeof(label), "Target %d",
                  combat_view->target.definition_id);
         RcNpc *target = viewer_find_npc_by_uid(v, combat_view->target.uid);
-        if (target && target->def_id >= 0 && target->def_id < g_npc_def_count)
-            snprintf(label, sizeof(label), "%.63s", g_npc_defs[target->def_id].name);
+        const RcNpcDef *target_def = rc_npc_def_for_npc(target);
+        if (target_def)
+            snprintf(label, sizeof(label), "%.63s", target_def->name);
         float pct = (float)combat_view->target_hp_current /
                     (float)combat_view->target_hp_max;
         if (pct < 0.0f) pct = 0.0f;
@@ -5714,10 +6174,20 @@ int main(void) {
     g_player_start_y = env_int("RUNEC_PLAYER_START_Y", DEFAULT_PLAYER_START_Y);
     g_world_w = env_int("RUNEC_WORLD_W", DEFAULT_WORLD_W);
     g_world_h = env_int("RUNEC_WORLD_H", DEFAULT_WORLD_H);
-    v.scene_auto_export = env_bool("RUNEC_SCENE_AUTO_EXPORT", 1);
+    v.scene_auto_export = env_bool("RUNEC_SCENE_AUTO_EXPORT", 0);
     v.scene_radius_regions = env_int("RUNEC_SCENE_RADIUS_REGIONS", 1);
+    v.startup_scene_radius_regions =
+        env_int("RUNEC_STARTUP_SCENE_RADIUS_REGIONS", 0);
+    v.preload_scene_planes = env_bool("RUNEC_PRELOAD_SCENE_PLANES", 0);
+    v.object_chunk_size = env_int("RUNEC_OBJECT_CHUNK_SIZE", 64);
+    v.object_chunk_draw_radius =
+        env_float("RUNEC_OBJECT_CHUNK_DRAW_RADIUS", 180.0f);
     if (v.scene_radius_regions < 0)
         v.scene_radius_regions = 0;
+    if (v.startup_scene_radius_regions < 0)
+        v.startup_scene_radius_regions = 0;
+    if (v.object_chunk_size <= 0)
+        v.object_chunk_size = 64;
     if (!runtime_data_available())
         return 1;
     const char *combat_visuals_path = env_path("RUNEC_COMBAT_VISUALS",
@@ -5783,6 +6253,25 @@ int main(void) {
     set_viewer_demo_stats(&v.world->player);
     runec_dev_validation_seed_bank(v.world);
 
+    if (env_bool("RUNEC_VIEWER_SMOKE", 0)) {
+        int combat_visual_count = rc_load_combat_visuals(combat_visuals_path);
+        if (combat_visual_count < 0) {
+            fprintf(stderr, "viewer smoke: failed to load combat visuals\n");
+            rc_world_destroy(v.world);
+            return 1;
+        }
+        if (!activate_core_area_for_loaded_scene(&v)) {
+            rc_world_destroy(v.world);
+            return 1;
+        }
+        fprintf(stderr,
+                "viewer smoke: PASS backend=%s combat_visuals=%d npcs=%d\n",
+                env_path("RUNEC_ASSET_BACKEND", "auto"),
+                combat_visual_count, v.world->npc_count);
+        rc_world_destroy(v.world);
+        return 0;
+    }
+
     SetTraceLogLevel(viewer_trace_log_level_from_env());
     RuneCRenderSettings render_settings = render_settings_from_env();
     unsigned int window_flags = FLAG_WINDOW_RESIZABLE;
@@ -5841,27 +6330,27 @@ int main(void) {
     // data/regions/varrock.p1.terrain or RUNEC_TERRAIN_P1 exists, scene
     // rendering can follow the selected plane while legacy single-plane assets
     // continue to load as plane 0 fallback.
+    ViewerSceneMode scene_mode = viewer_scene_mode_from_env();
     const char *initial_terrain = env_path("RUNEC_TERRAIN",
         "data/regions/varrock.terrain");
     const char *initial_objects = env_path("RUNEC_OBJECTS",
         "data/regions/varrock.objects");
-    strncpy(v.initial_terrain_path, initial_terrain,
-            sizeof(v.initial_terrain_path) - 1);
-    strncpy(v.initial_objects_path, initial_objects,
-            sizeof(v.initial_objects_path) - 1);
-    v.initial_scene_origin_x = g_world_origin_x;
-    v.initial_scene_origin_y = g_world_origin_y;
-    v.initial_scene_w = g_world_w;
-    v.initial_scene_h = g_world_h;
-    v.initial_scene_ready = 1;
-    load_terrain_plane_assets(&v, initial_terrain);
-    load_object_plane_assets(&v, initial_objects);
-
-    if (!activate_core_area_for_loaded_scene(&v)) {
-        fprintf(stderr, "Failed to activate initial gameplay area\n");
+    fprintf(stderr,
+            "viewer scene mode: %s auto_export=%s startup_radius=%d "
+            "stream_radius=%d object_chunk_radius=%.1f\n",
+            viewer_scene_mode_name(scene_mode),
+            v.scene_auto_export ? "on" : "off",
+            v.startup_scene_radius_regions,
+            v.scene_radius_regions,
+            v.object_chunk_draw_radius);
+    if (!load_startup_scene(&v, scene_mode, initial_terrain,
+                            initial_objects)) {
+        fprintf(stderr, "Failed to load initial visual scene\n");
         return 1;
     }
-    runec_dev_validation_spawn_varrock_bank_dummy(v.world);
+    if (loaded_scene_contains_tile(RUNEC_DEV_VARROCK_BANK_X,
+                                   RUNEC_DEV_VARROCK_BANK_Y))
+        runec_dev_validation_spawn_varrock_bank_dummy(v.world);
     build_minimap_tiles(&v);
     load_world_map_minimap(&v);
 
@@ -5875,8 +6364,7 @@ int main(void) {
     uint32_t empty_model_ids[1] = {0};
     const uint32_t *model_filter = npc_model_ids ? npc_model_ids : empty_model_ids;
     v.npc_models = models_load_filtered(
-        env_path("RUNEC_NPC_MODELS", "data/models/npcs.models"),
-        model_filter, npc_model_id_count);
+        startup_npc_models_path(&v), model_filter, npc_model_id_count);
     free(npc_model_ids);
     if (v.npc_models && v.alpha_cutout_shader_dynamic_loaded)
         models_set_shader(v.npc_models, v.alpha_cutout_shader_dynamic);
@@ -5892,8 +6380,10 @@ int main(void) {
     if ((v.npc_anims || v.npc_fallback_anims) &&
             v.npc_models && v.npc_models->loaded) {
         int created = 0;
-        for (int i = 0; i < g_npc_def_count; i++) {
-            ModelEntry *me = model_find(v.npc_models, (uint32_t)g_npc_defs[i].id);
+        int npc_def_count = 0;
+        const RcNpcDef *npc_defs = rc_npc_defs_all(&npc_def_count);
+        for (int i = 0; npc_defs && i < npc_def_count; i++) {
+            ModelEntry *me = model_find(v.npc_models, (uint32_t)npc_defs[i].id);
             if (me && me->loaded && me->vertex_skins && me->base_vert_count > 0) {
                 v.npc_anim_state[i] = anim_model_state_create_with_faces(
                     me->vertex_skins, me->base_vert_count,
@@ -5913,11 +6403,17 @@ int main(void) {
         "data/models/items.models"));
     if (v.item_models && v.alpha_cutout_shader_dynamic_loaded)
         models_set_shader(v.item_models, v.alpha_cutout_shader_dynamic);
-    v.projectile_models = models_load(env_path("RUNEC_PROJECTILE_MODELS",
-        "data/models/projectiles.models"));
-    if (v.projectile_models && v.projectile_effect_shader_loaded)
-        models_set_shader(v.projectile_models, v.projectile_effect_shader);
-    create_projectile_anim_states(&v);
+    if (env_bool("RUNEC_LOAD_PROJECTILE_MODELS", 0)) {
+        v.projectile_models = models_load(env_path("RUNEC_PROJECTILE_MODELS",
+            "data/models/projectiles.models"));
+        if (v.projectile_models && v.projectile_effect_shader_loaded)
+            models_set_shader(v.projectile_models, v.projectile_effect_shader);
+        create_projectile_anim_states(&v);
+    } else {
+        fprintf(stderr,
+                "projectile models: skipped by default; set "
+                "RUNEC_LOAD_PROJECTILE_MODELS=1 for combat visual validation\n");
+    }
     v.spotanims = spotanims_load(env_path("RUNEC_SPOTANIMS",
         "data/defs/spotanims.bin"));
     runec_item_render_map_load(&v.item_render_map, env_path("RUNEC_ITEM_RENDER_MAP",
@@ -6216,6 +6712,7 @@ cleanup:
         terrain_free(v.terrain_planes[plane]);
         objects_free(v.object_planes[plane]);
         free_object_anim_plane(&v, plane);
+        free_object_chunk_plane(&v, plane);
     }
     free_item_anim_states(&v);
     free_projectile_anim_states(&v);

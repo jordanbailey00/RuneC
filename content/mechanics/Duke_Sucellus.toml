@@ -1,0 +1,76 @@
+name = "Duke Sucellus"
+source_pages = ["Duke Sucellus", "Duke Sucellus/Strategies"]
+npc_ids = [12192, 12196, 12166, 12167, 12191, 12195, 12193, 12194]
+
+[sections]
+"==Enrage phase==" = """
+Upon reaching 25% of his health (121 hitpoints), Sucellus will enter an enrage phase, attacking one tick faster to start on a 2.4 second (4 tick) cycle.
+
+If using a five-tick weapon, you will only be able to safely attack Sucellus every two attacks, as the third attack will result in the player getting hit by his slamming attack when they do so. Should the player wish to, they may switch to a four-tick weapon such as Arclight or Emberlight to match his attack speed, however it is not necessary in normal mode.
+"""
+
+"==Post fight==" = """
+If you wish to continue killing Sucellus after using up all of your [[Arder-musca poison]]s, run towards one of the mushroom spawns to immediately prepare picking them, as he will "respawn" shortly before one of them is reached.
+
+When picking up drops, be mindful of [[mist rune]] and [[chaos rune]] drops if using the [[Arceuus spellbook]], as these will cause other spells to become available, such as [[Vile Vigour]] and medium-tier thralls, potentially causing problems with muscle memory when spellbook filtering is enabled. These should be left on the ground until the trip concludes.
+"""
+
+"=Battle phase=" = """
+Duke Sucellus has 485 health and attacks on a five-tick cycle (3.0s). It is highly recommended that players melee Sucellus, as he is weak to slash attacks.
+
+In addition, unlike other [[Demon (attribute)|demonic monsters]], Duke Sucellus only has a 70% vulnerability to [[demonbane weapons]]; [[Arclight]] gives a 49% boost to accuracy and damage as opposed to the usual 70%. The [[Ward of Arceuus]] spell can be used to reduce the damage of Sucellus' regular attacks (though the 10% damage reduction from the spell does not reduce damage of normal icicle attacks when using protect from melee as it is capped at 5), and the benefit does not apply to peripheral forms of damage like those inflicted by gas flares or extremities.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1700752935095775549|date=10 September 2023|archiveurl=https://archive.ph/YZHro{{^|https://archive.ph/oC1QK}}|archivedate=10 September 2023|quote=[Hi sorry to bother you, just wanted to know if the Ward of Arceuus spell works to reduce damage taken from Duke Sucellus auto attacks, and likewise vents, ice barrage shadows, and eye statues?] I think it'd work against the Duke's direct attacks, but probably not the peripheral stuff like vents & statues, if I'm reading my colleagues' code correctly.}}
+
+When in melee range (including diagonally across), Sucellus will raise his arms, causing icicles to spike up from the ground. These icicles have a 3x3 AoE and will deal up to 11 damage if [[Protect from Melee]] is not active, or 5 with. This is a standard attack and can occasionally miss, though Sucellus' high stats means this is very unlikely. Shortly afterwards, he will slam his arms back down, shattering the icicles in a 1x1 AoE on them. Getting caught in this slam will deal up to 56 damage without prayer, or 41 with, and will always hit regardless of the player's bonuses.
+
+If outside of melee range, Sucellus will instead launch a blue projectile, which deals up to 48 damage if not protected against, and deals slightly less damage with [[Protect from Magic]], though will generally deal significant damage. The damage only applies upon impact. However, getting hit by this attack, even if protected against, will disqualify the player from a "perfect" kill.
+
+Duke Sucellus has two special attacks:
+[[File:Duke Sucellus - melee flinching.mp4|thumb|400px|The player demonstrates a full cycle of Duke Sucellus' attacks. Here, the Duke attacks three times; while it would normally launch one Gas Flare afterward, the player had damaged him under the 50% health threshold where he would launch two Gas Flares instead.(Note: Duke Sucellus' health is currently 485)]]
+* '''Freezing Gaze''' - Every fifth standard attack, he will open the eye within his body, indicated by the game message {{mes|Duke Sucellus turns his gaze upon you...|colour=#a53fff}} If the player is not standing directly behind a pillar 5 ticks (3 seconds) after the attack is initiated, the player will take up to 101 damage. This is almost assured to kill the player, so avoiding it is essential. This attack takes 6 ticks in total.
+** Players can quickly get one more hit off shortly after the first game message appears, or resume attacking the instant the game message {{mes|You manage to avoid Duke Sucellus' gaze.|colour=#229628}} appears.
+* '''Gas Flare''' - He will launch gas towards the vent closest to the player, leaving dangerous gas there for a few seconds. The gas deals up to 12 damage, which can be reduced with a [[slayer helmet]] or [[gas mask]]. Avoid them by moving to the opposite pillar.
+** The Gas Flare attack will always be launched three standard attacks after the first Freezing Gaze. If above 75% health, Sucellus will use this attack after every five standard attacks, four above 25%, and three below 25%. However, Sucellus will never use this attack immediately after a Freezing Gaze, in which case it will do an extra standard attack. Once the 75% threshold is crossed (and 25% for enraged phase), the change in frequency of the Gas Flare attack will apply after the next gas flares are launched. If above 50% of his health (242 hitpoints), he will spit out one Gas Flare, and two otherwise.
+"""
+
+"=Mechanics=" = """
+When Duke Sucellus is defeated, a drop will be rolled for until the roll results in a success, as described below:{{CiteNews|url=https://secure.runescape.com/m=news/desert-treasure-ii---tweaks-and-drop-rates?oldschool=1|title=Desert Treasure II - Tweaks and Drop Rates|newsdate=3 August 2023}}
+* Roll 1/90 for the tradeable unique drop table (1/30 for awakened variant).
+** If unsuccessful, roll 1/48 for the [[awakener's orb]].
+** If unsuccessful, roll 1/25 for [[frozen tablet]].
+** If unsuccessful, roll 1/200 for [[ice quartz]].
+** If unsuccessful, roll 1/5 for the supply drop table.
+* If all rolls above were unsuccessful, the standard drop table is rolled.
+* Once the player rolls the entire drop table, roll 1/2,500 for [[Baron]] and 1/40 for a clue scroll.
+
+In addition, defeating the boss perfectly will earn 50% more loot from the standard drop table.{{CiteReddit|author=Mod Ayiza|url=https://www.reddit.com/r/2007scape/comments/15gzjui/desert_treasure_ii_tweaks_and_drop_rates/julpslb/|date=3 August 2023|archiveurl=https://archive.li/lVplt|archivedate=3 August 2023|quote=You have to do the fight while avoiding any avoidable damage. Essentially a perfect fight (chip damage does not count).|title=Desert Treasure II - Tweaks and Drop Rates}} This requires the player to kill Duke Sucellus without taking any avoidable damage, which includes:
+* Melee attacks from his slam attack (the chip damage taken from the rising icicles are considered unavoidable)
+* Standard magic attack (praying against them will still fail the achievement, even when hit for a 0)
+* Damage from the Freezing Gaze attack
+* Damage from ignited gas vents in both the preparation and battle phases
+* Damage from ice fall and [[Extremity|extremities]]
+* In the awakened fight, avoid taking poison damage and being hit by a shadow orb
+"""
+
+"Awakened mode" = """
+In Awakened mode, Duke Sucellus has the following changes:
+* The boss' health increases from 485 to '''1,697'''.
+* The boss is immune to [[stat drain]]s.
+* The boss' poison tolerance meter increases from 200 to '''370''', requiring three poisons to wake him up.
+* Upon reaching less than 76% of his health, he will launch four Gas Flares in a row; above that, only once. The gas' damage is also increased to ~26 or 27 if hit without proper face covering.
+* Around 32% health, a '''black orb''' will move from side to side in front of him that deals up to 27 damage and drains all stats by 8.
+* Enraged phase starts at 440 health (25.9%).
+* Periodically, Duke Sucellus will cover the player in bile, resulting in the player leaking poison for 15 ticks. If standing in a poison pool, the player will take 9-12 poison damage every tick and be poisoned starting at 2 damage if no poison immunity is present.
+* The [[black mask]] and [[Slayer helmet (i)|Slayer helmet]] do not apply their usual on-task damage and accuracy bonuses while on a Duke Sucellus [[boss slayer task]].{{CiteNews|url=https://secure.runescape.com/m=news/desert-treasure-ii---tweaks-and-drop-rates?oldschool=1|quote=Slayer tasks no longer apply to the Awakened versions of the Desert Treasure II bosses.|title=Desert Treasure II - Tweaks and Drop Rates|newsdate=03 August 2023}}
+[[File:Duke Sucellus - awakened poison walking.png|thumb|right|300px|The tiles marked for walking Sucellus while splattered with poison. Start from the tile behind the pillar, then walk to tiles 1, 2, 4 and then into melee distance. After this first batch, then walk to tiles 1-4 and repeat two more times. At the start of enrage poison, utilise the pillar tile, tile 1 and 4 for the first instance, then tiles 1, 2 and 4 for the remaining two instances.]]
+Before starting the fight, drop supplies on the pillars closest to Duke Sucellus, enough so that the mushrooms, salt, and poison can be picked without juggling. The damage dealt from ice falls and extremities are the same as in normal mode, though much more care is recommended to avoid unnecessarily draining supplies before even fighting the boss. Drink potions and heal up as needed before using the final poison on him to begin the fight. As with normal mode, players must always force the Duke to use melee, as his magic attacks can hit very hard; up to 36 through prayer, and 71 without. The melee chips are still the same as in normal mode, though the melee attack does hit significantly harder, up to 81 without prayer and around 60 with.
+
+While not necessary, a [[Menaphite remedy]] can be helpful in restoring drained stats every 15 seconds. The player's primary form of healing pre-enrage should be solely Saradomin brews, as damage during this time should only be from the chip damage caused from icicles. Solids are much more helpful in the enrage phase when some recoverable mistakes are made.
+
+Flick Duke Sucellus as required; it is highly important that the player does not get caught by his Freezing Gaze, as it has a significantly higher max hit and can potentially kill in one hit. Once Duke Sucellus starts spitting out multiple Gas Flares (around 75% of his health), run south to the middle row of vents and wait for the last spit to appear before moving back in, as it is important not to let the row in front of him be immersed in dangerous gas, especially with poison and enrage. Around 65% of his health, Sucellus will perform Gas Spits one auto-attack after Freezing Gaze.
+
+When Duke Sucellus splatters the player in bile, the player will be notified with the message "Duke Sucellus covers you in bile. It slowly drips off your body and onto the floor.", resulting the player leaking poison for 15 tiles if walking (or one tick running). This attack will begin to be used upon reaching 65% of his health, and will always occur after Gas Flares, though it is not guaranteed each time. If the bile does appear, use the walking method with the tiles indicated on the picture to the right; pre-enrage, the player must walk four tiles and then be next to Sucellus on the fifth tile to avoid getting hit by magic, while post-enrage, the player must walk three tiles and be next to Sucellus on the fourth tile.
+
+Upon reaching ~32% of his health, an [[Orb of Darkness]] will begin to appear in the row in front of Sucellus from either side of the first set of pillars, which deals up to 27 damage and drains all stats by 8 if hit. These orbs will continually spawn until the encounter ends, and will appear every ~10 or so seconds regardless if the player is hit by it or not. These should be avoided whenever possible; though if there is no other choice, it is recommended to tank the orb, as it is much less dangerous than trying to tank one of Sucellus' auto-attacks.
+
+Once the enrage phase begins, it is important to sync with Sucellus' attacks so that the player will not make mistakes as the chances of dying significantly increase, as it is possible to get biled twice in a single attack rotation. If the second bile occurs, players '''will always''' take damage at some point from the pools, due to the Freezing Gaze attack being lined up one auto-attack after the second Gas Flare. Therefore, minimise time spent in the phase by dumping special attacks to reduce the boss' health.
+"""

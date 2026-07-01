@@ -1,21 +1,7 @@
 #!/usr/bin/env python3
-"""Emit data/defs/shops.bin by joining infobox_shop + storeline.
+"""Emit data/defs/shops.bin from RuneC-owned shop rows.
 
-Item resolution via `infobox_item` name → lowest item_id.
-
-Binary format — 'SHOP' magic:
-  magic u32 | version u32 | count u32
-  per shop:
-    name_len u8 + name[]
-    owner_len u8 + owner[]
-    location_len u8 + location[]
-    specialty_len u8 + specialty[]
-    members u8
-    stock_count u16
-    per stock:
-      item_id u32 | buy u32 | sell u32
-      stock_base u16 (0xFFFF=infinite)
-      buy_mult u16 | sell_mult u16 | restock_ticks u16
+Runtime schema: `schema/defs/shops.schema.toml`.
 """
 from __future__ import annotations
 

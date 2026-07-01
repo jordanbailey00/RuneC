@@ -1,0 +1,56 @@
+quest = "Cook's Assistant"
+step_count = 6
+
+[[steps]]
+index = 0
+name = "A feast for a Duke"
+links = ["Cook (Lumbridge)", "Lumbridge Castle", "Duke Horacio", "cake", "bucket of milk", "egg", "pot of flour"]
+text = """
+[[File:Cook's Assistant - Lumbridge kitchen.png|thumb|300x300px|The quest start location.]]
+[[File:Cook (Lumbridge) chathead.png|left|frameless]]
+Begin the quest by speaking with the Lumbridge [[Cook (Lumbridge)|cook]] found in the kitchen on the {{FloorNumber|uk=0}} of [[Lumbridge Castle]]. He mentions it is [[Duke Horacio]]'s birthday and that he is supposed to bake the Duke a [[cake]]. Unfortunately, however, he has forgotten to buy the ingredients and asks the player to bring him a [[bucket of milk]], an [[egg]], and a [[pot of flour]].
+"""
+
+[[steps]]
+index = 1
+name = "=Bucket and pot="
+links = ["bucket", "pot", "Lumbridge General Store", "coins"]
+text = """
+A [[bucket]] spawns in the cellar of Lumbridge Castle, and a [[pot]] spawns in the kitchen on the centre table. You can also purchase both a bucket and a pot from the [[Lumbridge General Store]] for {{NoCoins|2}} and {{NoCoins|1}} [[coins]], respectively.
+"""
+
+[[steps]]
+index = 2
+name = "=Egg="
+links = ["egg", "Lumbridge", "Lumbridge Castle", "chicken", "coop", "Fred the Farmer"]
+text = """
+[[File:Cook's Assistant - Chicken coop.png|thumb|300x300px|The location for an [[egg]], found in the coop north of [[Lumbridge]].]]
+Go east out of [[Lumbridge Castle]] and run north along the path until you reach the [[chicken]] [[coop]] north-west of [[Fred the Farmer|Farmer Fred]]'s house. Go into the coop and pick up an [[egg]].
+"""
+
+[[steps]]
+index = 3
+name = "=Bucket of milk="
+links = ["dairy cow", "bucket", "cow", "bucket of milk", "Gillie Groats", "River Lum", "Lumbridge cow field"]
+text = """
+[[File:Cook's Assistant - Dairy cow.png|300x300px|thumb|Milking a [[dairy cow]].]]
+With an empty [[bucket]], go north into the [[cow]] pasture. Use the empty bucket on a [[dairy cow]] to get a [[bucket of milk]]. You can optionally talk to [[Gillie Groats]] for an explanation on how to milk a cow. She can be found across the [[River Lum|river]] next to the dairy cow in the eastern [[Lumbridge cow field]].
+"""
+
+[[steps]]
+index = 4
+name = "=Pot of flour="
+links = ["pot", "grain", "Mill Lane Mill", "flour bin", "pot of flour", "Millie Miller"]
+text = """
+With an empty [[pot]], leave the cow pasture and go south-west to the wheat field. Pick some [[grain]], and then enter the [[Mill Lane Mill]], found up the road to the north-east. Climb to the top floor, put the grain in the hopper, then pull the lever and climb back down to the {{FloorNumber|uk=0}}. Finally, use an empty pot on the [[flour bin]] (which is now full of flour) to get a [[pot of flour]]. You can optionally talk to [[Millie Miller]] inside the mill for an explanation on how to make [[pot of flour|flour]].
+"""
+
+[[steps]]
+index = 5
+name = "Delivery"
+links = ["Cook (Lumbridge)"]
+text = """
+After collecting the ingredients, speak to the [[Cook (Lumbridge)|cook]] to deliver them.
+
+'''Congratulations, quest complete!'''
+"""

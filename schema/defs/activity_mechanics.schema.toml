@@ -1,0 +1,27 @@
+id = "activity_mechanics"
+format = "binary"
+path = "data/defs/activity_mechanics.bin"
+magic_label = "AMCH"
+magic_u32 = "0x48434D41"
+current_version = 3
+accepted_versions = [1, 2, 3]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_activity_mechanics.py"
+consumers = ["rc-core/activity_mechanics.c"]
+source_dataset = "content/mechanics, content/encounters, content/mechanics_owners.toml"
+row_fields = [
+  "u8 status",
+  "u8 flags",
+  "u16 npc_count",
+  "u16 section_count",
+  "pstr8 slug",
+  "pstr8 name",
+  "pstr8 source_pages",
+  "pstr8 encounter_slug",
+  "u64 behavior_bits (v2+)",
+  "u16 profile_id (v3+)",
+  "u32 npc_ids[npc_count]",
+  "sections[section_count]: pstr8 title, u32 text_hash, u32 text_len",
+]
+compatibility = "Loader accepts versions 1 through current_version and rejects version 0 or newer versions."

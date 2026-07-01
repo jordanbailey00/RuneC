@@ -8,12 +8,13 @@ import time
 import tomllib
 from pathlib import Path
 
+from content_paths import content_read_path
 from export_activity_mechanics import read_mechanics
 
 ROOT = Path(__file__).resolve().parents[1]
-ENCOUNTERS = ROOT / "data/curated/encounters"
-STATES = ROOT / "data/curated/activity_state_machines.toml"
-SPAWNS = ROOT / "data/curated/activity_spawns.toml"
+ENCOUNTERS = content_read_path("encounters")
+STATES = content_read_path("activity_state_machines.toml")
+SPAWNS = content_read_path("activity_spawns.toml")
 OUT = ROOT / "data/defs/activity_schemas.bin"
 REPORT = ROOT / "tools/reports/activity_schemas.txt"
 
@@ -336,7 +337,7 @@ def write_bin(rows: list[dict[str, object]]) -> None:
                 f.write(struct.pack("<I", int(object_id)))
 
 
-def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
+def write_report(rows: list[dict[str, object]]) -> None:
     status_names = {
         READY: "READY",
         READY_SIMPLIFIED: "READY_WITH_ACCEPTED_SIMPLIFICATIONS",
@@ -358,7 +359,6 @@ def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
         f"schemas with mechanics coverage: {sum(1 for r in rows if int(r['flags']) & FLAG_MECH)}",
         f"schemas with unresolved required data: {sum(1 for r in rows if int(r['flags']) & FLAG_UNRESOLVED)}",
         f"output: {OUT.relative_to(ROOT)} ({OUT.stat().st_size} bytes)",
-        f"elapsed_ms: {elapsed_ms:.3f}",
         "",
         "Status",
         "READY: authored encounter schema is loadable and executable at current encounter-runtime fidelity.",
@@ -397,7 +397,7 @@ def main() -> int:
     final = finalize(rows)
     write_bin(final)
     elapsed_ms = (time.perf_counter() - start) * 1000.0
-    write_report(final, elapsed_ms)
+    write_report(final)
     print(f"exported {len(final)} activity schemas in {elapsed_ms:.3f} ms")
     return 0
 

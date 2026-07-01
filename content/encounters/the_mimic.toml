@@ -1,0 +1,42 @@
+# The Mimic — rare clue-casket boss. Triggered via Strange Casket.
+# Multi-phase style-switching boss.
+
+name = "The Mimic"
+slug = "the_mimic"
+npc_ids = [8633]
+source_pages = ["The Mimic", "The Mimic/Strategies"]
+
+[[attacks]]
+name = "Melee Bite"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 22
+warning_ticks = 0
+
+[[attacks]]
+name = "Ranged Shot"
+style = "ranged"
+max_hit = 22
+warning_ticks = 2
+
+[[attacks]]
+name = "Magic Bolt"
+style = "magic"
+max_hit = 22
+warning_ticks = 2
+
+[[phases]]
+id = "style_cycle"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee Bite", "Ranged Shot", "Magic Bolt"]
+# Style cycles through all three: melee → ranged → magic, repeat.
+attack_pattern = "cycle"
+attack_cycle = ["Melee Bite", "Ranged Shot", "Magic Bolt"]
+
+[[mechanics]]
+name = "Prayer Swap Required"
+primitive = "forced_prayer_switch_on_style_swap"
+
+[entry_requirement]
+item_required = "Strange casket"
+# The Mimic is a one-shot encounter per casket; no respawn.

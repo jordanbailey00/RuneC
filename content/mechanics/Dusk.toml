@@ -1,0 +1,24 @@
+name = "Dusk"
+source_pages = ["Dusk"]
+npc_ids = [7887, 7888, 7889, 7851, 7854, 7855, 7882, 7883, 7886]
+
+[sections]
+"Mechanics" = """
+Dusk uses a [[slash]] attack that can hit through [[Protect from Melee]], with the damage dealt being reduced by 80%.{{NamedRef|script}}
+
+During the final phase of the battle, Dusk has a 1/6 chance each attack to alternate attack styles; that is to say to switch from melee to Ranged or vice versa. However, using the correct protection prayer will increase this chance to 1/3 per attack.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1243459892037464067|date=27 March 2023|archiveurl=https://reldo.runescape.wiki/i/103705|archivedate=11 August 2023|quote=1/3 switch if you're praying against that style, otherwise 1/6. (...)}} For the first attack at the start of the phase, there is a 2/3 chance Dusk will use the opposite attack style of the one the player is praying against.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/jagexash/status/1674453151691276290|date=29 June 2023|archiveurl=https://reldo.runescape.wiki/i/96409|archivedate=13 August 2023|quote=[On the first attack of P4 of Dusk, does it always attack with the opposite of your prayer? (...)] I think it doubles the chance of picking the one that'd bypass your prayer. [As in if I was praying Melee, there’s a 2/3 chance it would lead with Ranged and a 1/3 chance it would lead with Melee?] Yes, that's it. And vice-versa, if I'm reading this correctly.}}
+
+Dusk's Ranged attack, which consists of two orbs being fired at the player in succession, has a unique form of damage calculation during this phase. If Dusk succeeds the Ranged accuracy check, the first orb will always hit for 60% of his max hit, or half of that number if the player is praying correctly.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1185143100186025984|date=18 October 2019|archiveurl=https://reldo.runescape.wiki/i/107162|archivedate=11 August 2023|quote=[also did you happen to notice whether the first orb had any cheating going on in regard to always dealing the max possible damage (...)?] Ah, yes, it does go with 60% of the max hit, without a random roll.}} The second orb meanwhile will carry out a random damage roll upon succeeding the accuracy check, yet goes on to make a second damage roll ranging between 0 and the damage value rolled directly prior.{{CiteTwitter|author=Mod Ash|url=https://twitter.com/JagexAsh/status/1185115040246042624|date=18 October 2019|archiveurl=https://reldo.runescape.wiki/i/105331|archivedate=11 August 2023|quote=1st one rolls ranged accuracy vs your ranged defence, treats the NPC's max hit as 60% of its usual value, then halves it further if you pray. 2nd one does the same, but takes the rolled damage and *rolls a new random number between 0 and the rolled number", thus reducing it.}}
+"""
+
+"The fight" = """
+''Like gargoyles, the player '''must''' bring a [[rock hammer]], [[rock thrownhammer]], or a [[granite hammer]] to defeat Dusk.''
+
+In the beginning of the fight, the player must attack [[Dawn]] with ranged, magic, or halberd attacks (she is immune to all other forms of melee damage); Dusk cannot be harmed during this initial phase of the fight. Once Dawn's health has reached half, she will fly up out of view, and players can begin to attack Dusk.
+
+During this second phase of the fight, Dusk's wings may glow, and will perform an explosive attack. If the player does not run away from him when he does so, the player will be dealt 30+ damage and be knocked back. In addition, debris may fall around the roof, which can deal up to 10 damage and [[Stun (status)|stun]] the player for a brief period of time.
+
+Once his health has reached half, Dawn will return to the fight and together with Dusk, perform a lightning special attack that spawns purple and orange circles indicating where lightning will strike. Each lightning has an AoE of 3x3, rapidly dealing up to 5-10 damage per tick, and can stack together to rapidly kill players should they find themselves too close to the lightning.
+
+After defeating Dawn, Dusk will absorb her essence, and initiate the final phase of the fight. Here, he is stronger, can use melee and ranged attacks, and may drag the player to a prison of purple flames, which has an area of 5x5, with one of the tiles of the wall of flames being absent of fire. The player should attempt to escape the prison or they will be dealt 60+ damage, which heals Dusk. Usually, the player would only need to set a destination tile anywhere outside of the prison of flames; however, should the opening that the player automatically usually paths through be against a wall, then the player should stand in the opening against the wall to avoid the damage from the prison of flames.
+"""

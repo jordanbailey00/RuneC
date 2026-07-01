@@ -8,7 +8,7 @@ import sys
 import argparse
 from pathlib import Path
 
-from source_paths import CACHE_DIR
+from source_paths import CACHE_DIR, require_cache_dir
 
 PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
 sys.path.insert(0, str(PIPELINE))
@@ -26,7 +26,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--cache", type=Path, default=CACHE_DIR)
     args = ap.parse_args()
-    store = RcCacheStore(args.cache)
+    store = RcCacheStore(require_cache_dir(args.cache))
     files = store.read_group(INDEX_CONFIGS, CONFIG_VARP)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("wb") as f:

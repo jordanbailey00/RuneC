@@ -1,0 +1,79 @@
+title = "Transcript:Nasty surprise"
+npcs = ["Nasty Nick"]
+node_count = 10
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [2]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "box"
+text = "pic=Rotten tomato detail.png|You open the box and find a rotten tomato."
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [4]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "box"
+text = "pic=Smelly sock detail.png|You open the box and find a smelly sock."
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "cond"
+text = "If the player opened the box close to Nasty Nick:"
+parent = -1
+children = [6, 7]
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Nasty Nick"
+text = "Surprise! Don't spend it all at once now!"
+parent = 5
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "continue"
+parent = 5
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now that's just nasty..."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

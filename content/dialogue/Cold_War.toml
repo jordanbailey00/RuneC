@@ -1,0 +1,5593 @@
+title = "Transcript:Cold War"
+npcs = ["Larry", "Penguin (Cold War)", "Sheep (penguins)", "Fred the Farmer", "KGP Agent", "Noodle", "Agility Instructor", "Army Commander", "Ping", "Pong", "Pescaling Pax", "Dairy cow"]
+node_count = 708
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. Do you need any help? I'm looking for a quest."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Are you working for them?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh, I'm not sure. Who are they?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "EXACTLY!"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Seriously, what are you talking about?"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I think you can be trusted. What do you know about..."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "penguins?"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh...they live in the cold? That's about all."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Would you like to learn more about them? I'm conducting a, uh, research project, to, uh, learn about their social habits in their natural environment."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you need my help for?"
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Well, I need to build a shelter to hide from view, and it's always useful to have an extra pair of eyes, you know, for, uh, observing...Penguins."
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "So, are you up for it?"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "option"
+text = "Okay, why not!"
+parent = -1
+children = [13, 14, 15, 16, 17, 18, 19, 20, 21]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, why not! But first, who are you and why are you researching penguins?"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "I, uh, was a zoo keeper here. But, I, uh, am on leave to go research penguins in their native habitat."
+parent = 12
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ok! Okay then. So, what did you need me to do?"
+parent = 12
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Right. I need you to gather materials for the bird hide, while I arrange for our transport."
+parent = 12
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "You need to get 10 oak planks, 10 steel nails, a hammer, and a spade so that we can build a bird hide."
+parent = 12
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Once you have those, meet me up by the entrance to Keldagrim, east of Rellekka. I'll be there with a boat to take us to our destination."
+parent = 12
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right, oak planks, steel nails, hammer, spade, east of Rellekka. Got it."
+parent = 12
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "act"
+text = "end"
+parent = 12
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "other"
+text = "{{mes|You've started a new quest:}}{{mes|colour=cyan|Cold War}}"
+parent = 12
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "option"
+text = "I don't think so."
+parent = -1
+children = [23, 24]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't think so."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Have you got the equipment?"
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "option"
+text = "Yes, I have all the materials."
+parent = -1
+children = [27, 28]
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have them with me."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "act"
+text = "below"
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "option"
+text = "What do I need to get?"
+parent = -1
+children = [30, 31, 34, 37, 40, 41, 42, 45]
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to get?"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "cond"
+text = "If missing the planks:"
+parent = 29
+children = [32, 33]
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "other"
+text = "You do not have enough oak planks."
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "cond"
+text = "If missing the nails:"
+parent = 29
+children = [35, 36]
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "other"
+text = "You do not have enough nails."
+parent = 34
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "end"
+parent = 34
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "cond"
+text = "If missing the hammer:"
+parent = 29
+children = [38, 39]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "other"
+text = "You need a hammer."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "You have all the materials. Off to the iceberg!"
+parent = 29
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "select"
+text = "Are you ready to go to the iceberg?"
+parent = 29
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 29
+children = [43, 44]
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "other"
+text = "{{qact|Screen fades and the player is transported to the iceberg}}"
+parent = 42
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "act"
+text = "end"
+parent = 42
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "option"
+text = "No"
+parent = 29
+children = [46, 47]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "act"
+text = "end"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "option"
+text = "Where should I meet you when I have everything?"
+parent = -1
+children = [49, 50, 57]
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Once you have the items, meet me up by the entrance to Keldagrim, east of Rellekka. I'll be there with a boat to take us to our destination."
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "option"
+text = "I have no idea where that is."
+parent = 48
+children = [51, 52, 53, 54, 55, 56]
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have no idea where that is."
+parent = 50
+
+[[nodes]]
+id = 52
+depth = 3
+kind = "speaker"
+speaker = "Larry"
+text = "And you call yourself an adventurer! There is a road from Catherby going north. Take it until you reach the Sinclair Mansion."
+parent = 50
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Larry"
+text = "Take a left at the Mansion, cross two bridges and follow the road until you reach Rellekka. Head east, around Rellekka to the coast near the entrance of Keldagrim."
+parent = 50
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "speaker"
+speaker = "Larry"
+text = "Did I spell that out enough for you?"
+parent = 50
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No need to be snippy."
+parent = 50
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "act"
+text = "end"
+parent = 50
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "option"
+text = "Oh, I know where to go."
+parent = 48
+children = [58, 59]
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I know where to go."
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [61, 62]
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, how do I make a bird hide?"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Use the planks on the patch of snow on that ridge. Once you have that constructed, use the spade on the snow to cover the hide."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "other"
+text = "{{mes|You create the bird hide structure.}}"
+parent = -1
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I've made the structure. Now what?"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Not bad... Now you need to cover the bird hide in snow with a spade."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "other"
+text = "{{mes|You finish the bird hide.}}"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can we start observing the penguins?"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Yes. Let's get in and start observing. You should note down anything interesting the penguins do. I'll include it in my, uh, research."
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "other"
+text = "{{qact|Larry and the player go into the hideout and a small cutscene begins observing two penguins.}}"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Look, here come two penguins now."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "other"
+text = "{{qact|The two penguins greet each other.}}"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aww, they're cute."
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "EVIL. I mean, how fascinating."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene ends.}}"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can we start observing the penguins?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Yes. Let's get in and start observing. You should note down anything interesting the penguins do. I'll include it in my, uh, research."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "other"
+text = "{{qact|Larry and the player go into the hideout and a small cutscene begins observing two penguins.}}"
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Looks like the penguins are on patrol again."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "other"
+text = "{{qact|The two penguins greet each other.}}"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They're just walking around, Larry."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "They are organised! ORGANISED I tell you!"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene ends.}}"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I knew it. I knew they were up to something! Did you see that? They were patrolling!"
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "option"
+text = "That's crazy!"
+parent = -1
+children = [89, 90, 91, 92]
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "It isn't! They saluted and recognised each other. They're organised!"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It looked like one of them shivered and the other one just walked past. Nothing suspicious there, it is really cold here!"
+parent = 88
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "I don't care what you think. I know they are doing something. No one ever believes me. But I'll prove them wrong. ALL OF THEM."
+parent = 88
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, calm down. What do you think we should do now?"
+parent = 88
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "option"
+text = "It did seem rather suspicious."
+parent = -1
+children = [94, 95, 96, 97, 98, 99, 100, 101, 102]
+
+[[nodes]]
+id = 94
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It did seem rather suspicious."
+parent = 93
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "You believe me?"
+parent = 93
+
+[[nodes]]
+id = 96
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course! I mean, those penguins were acting quite strangely."
+parent = 93
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "No one ever believes me. Can I...hug you?"
+parent = 93
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Whoa there, I don't think this calls for hugging. What do we do next about the penguins?"
+parent = 93
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "We need to get closer to the penguins. Infiltrate them. Learn what they are doing."
+parent = 93
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do you plan to do that?"
+parent = 93
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "We can't discuss it here; there are too many spies. Let's leave the iceberg and then I'll tell you my plans."
+parent = 93
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "act"
+text = "end"
+parent = 93
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "We must get away from here before we discuss our plans. We don't want to be overheard."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do you plan to infiltrate the penguins?"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I have altered some designs of clockwork toys to make a clockwork penguin suit. We will use this to infiltrate their ranks."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? We'll just set it off walking? What good will that do?"
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "No! I'm going to use a spell to shrink you down so you can control it from the inside."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait a minute, why am I being shrunk? Why can't you get in the suit and annoy the penguins?"
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "The penguins know my scent. They'd find me out and capture me and...torture me. No, it has to be you."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Don't worry. The spell only works if I'm nearby since I have to be constantly casting it. If trouble starts I'll be close by to help."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Gee, that's comforting."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Here's the book. It has my designs and a list of things you need to get. Use your Crafting table at your house to build it, just like regular clockwork toys."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "act"
+text = "receives=[[Clockwork book]]"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Why do I have to make the suit? I'm tired of doing all the legwork."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "You have to make it, because since I got fired from the Zoo I've been homeless. Thanks for caring."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, sorry... Hey, you told me you were on leave to do research!"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = """
+Well...it's permanent leave, and I am doing research! When I used to work at the Zoo, I noticed the penguins doing odd things, like taking notes or timing things. I asked to have my work detail transferred to their cage and I was fired!
+"""
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I'm sure the penguins are behind it. So I kept spying on them and I'll prove everyone wrong!"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So that's why you can't wear the suit? Because you used to work near them?"
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Err, no. I've had a few run-ins since then. But I don't have time for war stories, we need to concentrate on our mission!"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "When you're done making the suit, we'll head back to the iceberg and try it out."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Do you have the suit?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "option"
+text = "Yes, I have it."
+parent = -1
+children = [126, 127, 130, 131, 132, 135]
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it."
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the suit:"
+parent = 125
+children = [128, 129]
+
+[[nodes]]
+id = 128
+depth = 3
+kind = "speaker"
+speaker = "Larry"
+text = "You don't seem to have the suit with you."
+parent = 127
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "act"
+text = "end"
+parent = 127
+is_terminal = true
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "That's perfect. You are a very skilled crafter. Now we must return to the iceberg and test it."
+parent = 125
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "select"
+text = "Do you want to go to the iceberg?"
+parent = 125
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "option"
+text = "Yes"
+parent = 125
+children = [133, 134]
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "act"
+text = "end"
+parent = 132
+is_terminal = true
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "other"
+text = "{{qact|Screen fades and the player is transported to the iceberg}}"
+parent = 132
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "option"
+text = "No"
+parent = 125
+children = [136, 137]
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 135
+
+[[nodes]]
+id = 137
+depth = 3
+kind = "act"
+text = "end"
+parent = 135
+is_terminal = true
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "option"
+text = "I've lost the clockwork book, could I have another?"
+parent = -1
+children = [139, 140, 143, 144, 145]
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the clockwork book, could I have another?"
+parent = 138
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "cond"
+text = "If the player still possesses the book:"
+parent = 138
+children = [141, 142]
+
+[[nodes]]
+id = 141
+depth = 3
+kind = "speaker"
+speaker = "Larry"
+text = "You haven't lost it, you just need to look for it more closely."
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 3
+kind = "act"
+text = "end"
+parent = 140
+is_terminal = true
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Well, lucky for you I did make another copy. But be more careful!"
+parent = 138
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "act"
+text = "receives=[[Clockwork book]]"
+parent = 138
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "act"
+text = "end"
+parent = 138
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "option"
+text = "I'm a bit confused. Can you explain how to make the suit?"
+parent = -1
+children = [147, 148, 149, 150, 151, 152]
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm a bit confused. Can you explain how to make the suit?"
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "You need 1 piece of silk, 1 clockwork mechanism, and 1 wood plank."
+parent = 146
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "The book will explain how to make the suit. But, since you seem to{{sic}} lazy to read it, I'll summarise."
+parent = 146
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Take the materials to your house and use the Crafting table to make clockwork toys. From there you can make the suit."
+parent = 146
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, thanks."
+parent = 146
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "act"
+text = "end"
+parent = 146
+is_terminal = true
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "No, I'm not done yet."
+parent = -1
+children = [154, 155]
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm not done yet."
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "act"
+text = "end"
+parent = 153
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Look what they did to the bird hide! It's completely destroyed! The savages. The penguins are on to us."
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "I don't think it was the penguins."
+parent = -1
+children = [158, 159]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't think it was the penguins. You can't even make out the prints clearly, it could have been anything."
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Well of course you can't make out tracks. Penguins walk single file to hide their numbers! They're clever...so very clever."
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "option"
+text = "It looks like a warning message to keep us away."
+parent = -1
+children = [161, 162]
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It looks like a warning message to keep us away. I didn't think penguins were violent by nature."
+parent = 160
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Oh, they act like they aren't, but it's all a guise. They wanted to scare us off. We must be on to something."
+parent = 160
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, there aren't any penguins around now, so we can't try out the suit."
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "But, we were so close to finding out what exactly is going on. It's all ruined now. How will we ever infiltrate them if there are none around to infiltrate?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There are other penguins. What about the ones at the Zoo? At least we can test the suit on them."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "OF COURSE! You are brilliant. I should have thought of that. It's where all of this started. Let's return to the Zoo."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I can teleport us back to the Zoo. It'll be faster."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Then why the whole malarkey with the boat?"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Boat rides lower my stress level."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "select"
+text = "Are you ready to go to the Zoo?"
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [172, 173]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "other"
+text = "{{qact|Screen fades and the player is transported to the iceberg}}"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "act"
+text = "end"
+parent = 171
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [175, 176]
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "I'm too tired to teleport again. You'll have to get back to the Zoo on your own."
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "act"
+text = "end"
+parent = 174
+is_terminal = true
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I can teleport us back to the Zoo, but you'll have to make your own way back, teleports tire me out."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "After I put you in the suit, use the little gate in the enclosure to get inside. The zoo keepers won't notice."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Guess we should try this out. How do you know a shrinking spell, anyway?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Well, a while back I was out in the field observing penguins. I worked for the Ardougne Zoo then. I was just quietly observing them when suddenly there was an avalanche."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Larry, you are one unlucky dude."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I'm not done! I was trapped, but a passing old man stopped to help. He said he would shrink me so I could crawl out from under the weight of the snow."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Then he taught me the spell in case I would have need of it again."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Seems like a pretty wise old man."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "You see, that incident made me start suspecting the penguins, and my further work with them at the Zoo just confirmed it. I'm sure they got me fired. I know too much."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, well we don't have all day. Time to be a penguin!"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Okay, but remember, if you move too far away from me the spell will break and you'll be normal sized again. Also, if you need to switch back, just ask me and I'll unshrink you."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right, right. Let's just get this over with."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Penguin time!"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "cond"
+text = "If the player's hands aren't free:"
+parent = -1
+children = [192, 193]
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "You will need your hands free to operate the suit."
+parent = 191
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "act"
+text = "end"
+parent = 191
+is_terminal = true
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "cond"
+text = "If the player is wearing a cape:"
+parent = -1
+children = [195, 196]
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "You can't wear a cape inside the suit, it might get caught."
+parent = 194
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "act"
+text = "end"
+parent = 194
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "other"
+text = "{{mes|You shrink and Larry puts you in the penguin suit.}}"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Don't talk to me while you're in the suit! It'll give away your cover. Here, I'll get you out of it."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'm ready to be big again! Please get me out of this."
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "All right, keep calm. One growth spurt coming up."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "other"
+text = "{{mes|The spell wears off as you climb out of the suit, growing back to normal size.}}"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Squack! Quack, quackity squack, squee."
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Penguin"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Penguin"
+text = "What do you think you are doing?"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm, uh, speaking penguin, I think."
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "WAIT. How come you can speak in the common tongue? You're a penguin!"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Penguin"
+text = "...So are you."
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Penguin"
+text = "And you are speaking in the common tongue. So, what is your point?"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh, right. Yes, of course! Uh, I was just, uh, testing you. Making sure you're on your toes, claws, whatever."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Penguin"
+text = "Operatives must not speak without giving the proper greeting. You have not given the proper greeting and until you do I have nothing more to say."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I better try and get this greeting right."
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "act"
+text = "opens2=Penguin emote interface in the control panel"
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = -1
+children = [217, 218, 219]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "I am sorry comrade, but you still have not shown me the proper greeting."
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "other"
+text = "{{mes|That is not the right greeting.}}"
+parent = 216
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "act"
+text = "end"
+parent = 216
+is_terminal = true
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "cond"
+text = "After one out of three correct moves:"
+parent = -1
+children = [221, 222, 224]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "*Whew, that was right. Two more moves to do. If I get those right, he should speak to me.*"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = 220
+children = [223]
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "act"
+text = "above"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "cond"
+text = "After two out of three correct moves:"
+parent = 220
+children = [225, 226, 228]
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "*I just need to do one more move and I'll have gotten the greeting right.*"
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = 224
+children = [227]
+
+[[nodes]]
+id = 227
+depth = 4
+kind = "act"
+text = "above"
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "cond"
+text = "After a full proper greeting:"
+parent = 224
+children = [229, 230, 231, 232, 233, 234, 235, 238, 242, 243, 244, 245, 246, 247, 248, 249, 250]
+
+[[nodes]]
+id = 229
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "Welcome comrade. Now we may speak properly."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "What news do you bring? Have you made progress with the main directive?"
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Uh, the main directive? Yeah...sure, I made progress with it. It was...easy?"
+parent = 228
+
+[[nodes]]
+id = 232
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "It was easy!? It was easy to learn how to FLY?"
+parent = 228
+
+[[nodes]]
+id = 233
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Uh, yeah. I just kind of jumped off a hill and flapped a lot."
+parent = 228
+
+[[nodes]]
+id = 234
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "You flapped a lot? I didn't think we could fly like other birds."
+parent = 228
+
+[[nodes]]
+id = 235
+depth = 4
+kind = "cond"
+text = "If the player has completed [[Between a Rock...]]:"
+parent = 228
+children = [236, 237]
+
+[[nodes]]
+id = 236
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "I also launched myself out of a cannon!"
+parent = 235
+
+[[nodes]]
+id = 237
+depth = 5
+kind = "speaker"
+speaker = "Penguin"
+text = "This caused you to fly... ingenious."
+parent = 235
+
+[[nodes]]
+id = 238
+depth = 4
+kind = "cond"
+text = "If the player has completed [[Enlightened Journey]]:"
+parent = 228
+children = [239, 240, 241]
+
+[[nodes]]
+id = 239
+depth = 5
+kind = "speaker"
+speaker = "Player"
+text = "Then I flew in a hot air balloon."
+parent = 238
+
+[[nodes]]
+id = 240
+depth = 5
+kind = "speaker"
+speaker = "Penguin"
+text = "A hot air balloon? This contraption made you fly?"
+parent = 238
+
+[[nodes]]
+id = 241
+depth = 5
+kind = "speaker"
+speaker = "Penguin"
+text = "This is very amazing. I will make note of it in my mission report."
+parent = 238
+
+[[nodes]]
+id = 242
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Why is this so important? I mean, we're good swimmers, who cares if we can't fly?"
+parent = 228
+
+[[nodes]]
+id = 243
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = """
+Who cares? It's the entire reason we are in this wretched cage! We need to learn the secrets of flight, and the best way is to get these gullible humans to reveal it to us unwittingly. Blast them and their thumbs.
+"""
+parent = 228
+
+[[nodes]]
+id = 244
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "You sound kind of bitter."
+parent = 228
+
+[[nodes]]
+id = 245
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "Yes, I am. I'm tired of observing these humans and being gawked at by nasty little children. I miss the fresh codfish of our motherland."
+parent = 228
+
+[[nodes]]
+id = 246
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can do?"
+parent = 228
+
+[[nodes]]
+id = 247
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "You could take my mission report back to the outpost for me. I don't want to risk breaking out and blowing our cover."
+parent = 228
+
+[[nodes]]
+id = 248
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "You should check in with the operatives in Lumbridge before you head to the outpost. They might have some news for you to take as well."
+parent = 228
+
+[[nodes]]
+id = 249
+depth = 4
+kind = "act"
+text = "receives=[[Mission report (Ardougne)]]"
+parent = 228
+
+[[nodes]]
+id = 250
+depth = 4
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The penguin gave me his mission report and told me to go to Lumbridge to speak to the penguins there and then go to 'the outpost'."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Lumbridge? There aren't any penguins in Lumbridge. Not that I've seen. Where is this 'outpost'?"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Maybe the penguins in Lumbridge are undercover?"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I didn't find out where their outpost is. I'm hoping the ones in Lumbridge will tell me."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Seems kind of crazy that these penguins have mission reports and operatives."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "They're organised little devils. Don't underestimate them."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "You go on ahead to Lumbridge. I'll meet you there and put you in the suit."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They don't even have thumbs. How organised can they be?"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So, we're in Lumbridge. Where are these penguins?"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I was chatting with a local farmer, and there is a rumour about a 'thing' that lives around here. Maybe it's the penguin and these simple people don't recognise them."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, I suppose."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should probably do the secret handshake before I try talking to these penguins."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "act"
+text = "opens2=Penguin emote interface in the control panel"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = -1
+children = [267]
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "speaker"
+speaker = "Sheep"
+text = "What do you think you are doing? You can't even get the greeting right."
+parent = 266
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "cond"
+text = "After one out of three correct moves:"
+parent = -1
+children = [269, 270, 272]
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "*Whew, that was right. Two more moves to do. If I get those right, he should speak to me.*"
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = 268
+children = [271]
+
+[[nodes]]
+id = 271
+depth = 3
+kind = "act"
+text = "above"
+parent = 270
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "cond"
+text = "After two out of three correct moves:"
+parent = 268
+children = [273, 274, 276]
+
+[[nodes]]
+id = 273
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "*I just need to do one more move and I'll have gotten the greeting right.*"
+parent = 272
+
+[[nodes]]
+id = 274
+depth = 3
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = 272
+children = [275]
+
+[[nodes]]
+id = 275
+depth = 4
+kind = "act"
+text = "above"
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 3
+kind = "cond"
+text = "After a full proper greeting:"
+parent = 272
+children = [277, 278, 279, 280, 281, 282]
+
+[[nodes]]
+id = 277
+depth = 4
+kind = "speaker"
+speaker = "Sheep"
+text = "What do you think you are doing? You're going to blow our cover. Get away."
+parent = 276
+
+[[nodes]]
+id = 278
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "But I gave the correct greeting. You have to talk to me."
+parent = 276
+
+[[nodes]]
+id = 279
+depth = 4
+kind = "speaker"
+speaker = "Sheep"
+text = "Every two-bit soldier knows that salute. We won't give you the time of the day without the secret phrase. Now GO AWAY."
+parent = 276
+
+[[nodes]]
+id = 280
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "But the penguins at the Zoo sent me. They spoke to me without some phrase."
+parent = 276
+
+[[nodes]]
+id = 281
+depth = 4
+kind = "speaker"
+speaker = "Sheep"
+text = "They are lazy, good for nothing codfish addicts. GO AWAY."
+parent = 276
+
+[[nodes]]
+id = 282
+depth = 4
+kind = "act"
+text = "end"
+parent = 276
+is_terminal = true
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The penguins won't talk to me without some stupid secret phrase. These penguins are crazy!"
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "No, I keep trying to tell you, they aren't crazy, they are dangerous and organised."
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Well, since the penguin at the Zoo is the only one talking to you, maybe you should ask him."
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I can teleport us back to the Zoo, but you'll have to make your own way back. Teleports tire me out."
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "option"
+text = "The penguins in Lumbridge refuse to talk to me."
+parent = -1
+children = [289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 302, 305, 307, 308, 312, 322, 323]
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The penguins in Lumbridge refuse to talk to me. They keep demanding a secret phrase."
+parent = 288
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "So, tell them the phrase. It's not exactly hard to remember. Pescaling Pax has a strange sense of humour."
+parent = 288
+
+[[nodes]]
+id = 291
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Pesca-what?"
+parent = 288
+
+[[nodes]]
+id = 292
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "Pescaling Pax. The Pescallion's son. Well, one of them. He's in charge of research and development at our headquarters."
+parent = 288
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, where all of the penguins...I mean us...live?"
+parent = 288
+
+[[nodes]]
+id = 294
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "Comrade! You really do have a funny sense of humour. No, our people live in the great city of Palingrad, of course. Ah, home, I miss it."
+parent = 288
+
+[[nodes]]
+id = 295
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You sound pretty homesick. Can't you go and visit Palingrad?"
+parent = 288
+
+[[nodes]]
+id = 296
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "If only. The Pescallion has declared that until we have finished our research of the southern species and have developed our great plan, we may not return. So I am stuck here observing humans."
+parent = 288
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Gee, I sure would like to get back, too. If only you'd tell me the phrase, so I could get the other mission report and move on."
+parent = 288
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "How do you not know the phrase, comrade?"
+parent = 288
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "option"
+text = "Uh, I forgot what the phrase was."
+parent = 288
+children = [300, 301]
+
+[[nodes]]
+id = 300
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Uh, I forgot what the phrase was."
+parent = 299
+
+[[nodes]]
+id = 301
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That was very careless of you, comrade. But it is your problem, not mine."
+parent = 299
+
+[[nodes]]
+id = 302
+depth = 2
+kind = "option"
+text = "I must have left the outpost before they gave out the phrase."
+parent = 288
+children = [303, 304]
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I must have left the outpost before they gave out the phrase."
+parent = 302
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "speaker"
+speaker = "Penguin"
+text = "No one left before it was given out. I was one of the first operatives to leave, and I know it."
+parent = 302
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "option"
+text = "Is it Rumpelstiltskin?"
+parent = 288
+children = [306]
+
+[[nodes]]
+id = 306
+depth = 3
+kind = "speaker"
+speaker = "Penguin"
+text = "What? Comrade, I think you need your head examined when you get back."
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need that phrase! Isn't there anything you can do?"
+parent = 288
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "cond"
+text = "If player is wearing a Ring of Charos:"
+parent = 288
+children = [309, 310, 311]
+
+[[nodes]]
+id = 309
+depth = 3
+kind = "other"
+text = "{{mes|The Ring of Charos persuades the penguin to help you.}}"
+parent = 308
+
+[[nodes]]
+id = 310
+depth = 3
+kind = "speaker"
+speaker = "Penguin"
+text = "As you are a comrade, I suppose it is my duty to help you."
+parent = 308
+
+[[nodes]]
+id = 311
+depth = 3
+kind = "speaker"
+speaker = "Penguin"
+text = "The phrase is 'Do not trust the walrus'."
+parent = 308
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "cond"
+text = "With a raw cod in inventory:"
+parent = 288
+children = [313, 314, 319]
+
+[[nodes]]
+id = 313
+depth = 3
+kind = "speaker"
+speaker = "Penguin"
+text = "I see you have some raw cod with you comrade. I might be willing to exchange information for it, if you are willing."
+parent = 312
+
+[[nodes]]
+id = 314
+depth = 3
+kind = "option"
+text = "Sure!"
+parent = 312
+children = [315, 316, 317, 318]
+
+[[nodes]]
+id = 315
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sure!"
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 4
+kind = "act"
+text = "gives=Raw cod"
+parent = 314
+
+[[nodes]]
+id = 317
+depth = 4
+kind = "speaker"
+speaker = "Penguin"
+text = "Thank you comrade. This is like a taste of the motherland. The phrase is 'Do not trust the walrus.'"
+parent = 314
+
+[[nodes]]
+id = 318
+depth = 4
+kind = "act"
+text = "end"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 319
+depth = 3
+kind = "option"
+text = "Hmm, no I'll hang on to it."
+parent = 312
+children = [320, 321]
+
+[[nodes]]
+id = 320
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Hmm, no I'll hang on to it."
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 4
+kind = "act"
+text = "end"
+parent = 319
+is_terminal = true
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "I am sorry comrade, but I cannot break protocol without good reason."
+parent = 288
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "act"
+text = "end"
+parent = 288
+is_terminal = true
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "option"
+text = "Where is the outpost?"
+parent = -1
+children = [325, 326, 327]
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "Haa haa haa, that is a funny joke. I like your sense of humour comrade. It would be like asking 'Where is the motherland'."
+parent = 324
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "other"
+text = "'''Player: ''' You mean they aren't the same?"
+parent = 324
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Penguin"
+text = "Haa haa haa... oh you have me in stitches."
+parent = 324
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The Zoo penguin won't tell me the phrase."
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Maybe there's something he wants, something you can trade for the phrase? Or maybe there's some kind of magic that would persuade him?"
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, what do penguins like?"
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I once had to clean all the penguins feet, back when I had a job."
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I distracted them by giving them cod fish and then did the job. It was gross."
+parent = -1
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think I ever want to be a Zoo keeper."
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Or perhaps there's some sort of magic that could persuade the penguin? An object of power or the like?"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Penguin"
+text = "Yes, comrade?"
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "option"
+text = "I need that phrase!"
+parent = -1
+children = [338, 339]
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need that phrase! Isn't there anything you can do?"
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "act"
+text = "(See 'Asking the Zoo penguin the phrase' section above)"
+parent = 337
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "option"
+text = "Where is the outpost?"
+parent = -1
+children = [341]
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "act"
+text = "(See 'Asking the Zoo penguin the phrase' section above)"
+parent = 340
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I got the phrase! These penguins are so weird. It's something about a walrus."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "You aren't taking this seriously! They are dangerous!"
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, and organised. I know."
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Oh, just go talk to the sheep."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do not trust the walrus."
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "Fine. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The penguin at the Zoo told me to see if you had any news."
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "We can't get any news in this field! All these humans keep trying to shear us!"
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = """
+We think the Farmer may be an agent for the other side, trying to have us assassinated by all these foolish humans. If you investigate him for us, we can finish our mission report and you can go on your way.
+"""
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You want me to disguise myself as a human and talk to the Farmer? Seems like a tough request. I'll only do it if you tell me how to get to the outpost."
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "What do you mean 'How to get to the outpost'? Any intelligent penguin knows that."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you calling me dumb? Fine. You can talk to the Farmer yourself, and compromise your mission."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "No, no, we'll tell you. You just deal with the Farmer."
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "What are you doing on my land?"
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "option"
+text = "quest=No|I'm looking for something to kill."
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "option"
+text = "quest=No|I'm lost."
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "option"
+text = "I need to talk to you about penguins."
+parent = -1
+children = [362, 363, 364, 365, 371]
+
+[[nodes]]
+id = 362
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to talk to you about penguins."
+parent = 361
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "About what now? What do penguins have to do with anything?"
+parent = 361
+
+[[nodes]]
+id = 364
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 361
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "option"
+text = "Bully Fred"
+parent = 361
+children = [366, 367, 368, 369, 370]
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Hey Fred! You've been messing with the wrong people. You better leave the penguins alone... OR ELSE!"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 3
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "What are you shouting about? Don't you come into my house shouting at me."
+parent = 365
+
+[[nodes]]
+id = 368
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = """
+I mean it Fred, I don't know whose side you're working for, but assassinating the penguin operatives is going to get you in trouble. To think you'd even stoop to sending others to try and 'shear' them. Be careful, or you might find you've been shorn.
+"""
+parent = 365
+
+[[nodes]]
+id = 369
+depth = 3
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Is this some kind of joke? I'm a SHEEP farmer. That means I need to shear sheep. What are these penguins you keep talking about?"
+parent = 365
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Don't play neutral with me, Fred. I see right through you. You're probably working for the squirrels, aren't you? I'll be watching Fred. I'm always watching."
+parent = 365
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "option"
+text = "Warn Fred"
+parent = 361
+children = [372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383]
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You know that 'Thing' out in your field? It's two penguins in disguise."
+parent = 371
+
+[[nodes]]
+id = 373
+depth = 3
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Like I haven't heard that before."
+parent = 371
+
+[[nodes]]
+id = 374
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No really, it is! They're trying to observe humans to learn our weaknesses."
+parent = 371
+
+[[nodes]]
+id = 375
+depth = 3
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Then why are they disguised as sheep?"
+parent = 371
+
+[[nodes]]
+id = 376
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "They probably thought they'd blend in better. Anyway, I came to warn you to not annoy them too much. They're funny little guys but they seem to have a grudge against you."
+parent = 371
+
+[[nodes]]
+id = 377
+depth = 3
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "You talk to these penguins?"
+parent = 371
+
+[[nodes]]
+id = 378
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have a penguin suit and I know the secret greeting. I'm infiltrating them because this crazy guy Larry is convinced they are trying to take over the world or something."
+parent = 371
+
+[[nodes]]
+id = 379
+depth = 3
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Look, when these voices in your head start talking to you again, you might want to ignore them."
+parent = 371
+
+[[nodes]]
+id = 380
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "HEY! I'm not crazy! Larry's a little left of centre, but I'm just helping him out. The penguins really can talk."
+parent = 371
+
+[[nodes]]
+id = 381
+depth = 3
+kind = "speaker"
+speaker = "Fred the Farmer"
+text = "Right, right. I believe you, sure. Maybe on your way out you could ask the sheep to herd themselves for me."
+parent = 371
+
+[[nodes]]
+id = 382
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fine. Don't believe me. Larry and I will prove you wrong. Just don't go near the penguins, Fred, not if you value your life."
+parent = 371
+
+[[nodes]]
+id = 383
+depth = 3
+kind = "act"
+text = "end"
+parent = 371
+is_terminal = true
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "Is the Farmer an agent for the other side?"
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "option"
+text = "The farmer is definitely an enemy."
+parent = -1
+children = [387, 388, 389, 390]
+
+[[nodes]]
+id = 387
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Farmer is definitely an enemy. High ranking too, I think. He might even be the King of Lumbridge in disguise!"
+parent = 386
+
+[[nodes]]
+id = 388
+depth = 2
+kind = "speaker"
+speaker = "Sheep"
+text = "King? I thought there was a duke, not a king."
+parent = 386
+
+[[nodes]]
+id = 389
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, that's why he's in disguise. Duh."
+parent = 386
+
+[[nodes]]
+id = 390
+depth = 2
+kind = "speaker"
+speaker = "Sheep"
+text = "This is an amazing revelation. We must include it in our report. Thank you, we'll mention your bravery."
+parent = 386
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "option"
+text = "The Farmer is harmless."
+parent = -1
+children = [392, 393, 394, 395]
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Farmer is harmless. The sheep, however...now they seem pretty crafty."
+parent = 391
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Sheep"
+text = "The sheep? But...They just wander around in this field all day. Trust us, we know."
+parent = 391
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Exactly! So you don't suspect them! That's why they are so cunning. Watch your backs."
+parent = 391
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Sheep"
+text = "You have a good point. Yes, we must warn Pescaling Pax of this new threat. We'll put it in the report and you can give it to them."
+parent = 391
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "act"
+text = "receives=[[Mission report (Lumbridge)]]"
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "Well, off you go now!"
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey wait, you said you'd tell me where the outpost is!"
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "You are one clueless penguin. The outpost is the iceberg to the North. The entrance is concealed by what looks like an avalanche."
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "When you try and go through a guard will stop you and ask for the password."
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Sheep"
+text = "The password is cabbage. Don't forget it."
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Haa haa, this is fun!"
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "What? How?"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "cond"
+text = "If the player told the penguins that Fred is a threat:"
+parent = -1
+children = [406, 407, 408, 409, 410]
+
+[[nodes]]
+id = 406
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I just convinced them Fred the Farmer was the King of Lumbridge!"
+parent = 405
+
+[[nodes]]
+id = 407
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "But there is no King of Lumbridge."
+parent = 405
+
+[[nodes]]
+id = 408
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Exactly! They are so gullible. Even if they are organised."
+parent = 405
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "Don't take this so lightly. You might put Fred in danger because you were having a laugh."
+parent = 405
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry. It was just a bit of fun."
+parent = 405
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "cond"
+text = "If the player told the penguins that Fred is harmless:"
+parent = -1
+children = [412, 413, 414, 415, 416]
+
+[[nodes]]
+id = 412
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I just convinced the penguins that the sheep are agents for the other side."
+parent = 411
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "They are?"
+parent = 411
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No! They're just sheep. But I wanted to confuse the penguins. Put them off our scent."
+parent = 411
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "speaker"
+speaker = "Larry"
+text = "What a good plan! I just hope the sheep aren't working for the other side."
+parent = 411
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Larry, we need to get you to hang out with people, not animals."
+parent = 411
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know where their outpost is! The entrance is on the iceberg. It's concealed by an avalanche."
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Great. Let's go back to the iceberg, I'll put you in your suit and we'll really see what these penguins are up to."
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "select"
+text = "Are you ready to go to the iceberg?"
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "option"
+text = "Yes"
+parent = -1
+children = [421, 422]
+
+[[nodes]]
+id = 421
+depth = 2
+kind = "act"
+text = "end"
+parent = 420
+is_terminal = true
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "other"
+text = "{{qact|Screen fades and the player is transported to the iceberg}}"
+parent = 420
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "option"
+text = "No"
+parent = -1
+children = [424, 425]
+
+[[nodes]]
+id = 424
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 423
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "act"
+text = "end"
+parent = 423
+is_terminal = true
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Now you can try and enter the outpost. This is exciting."
+parent = -1
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's fun for you! You're not risking your neck."
+parent = -1
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "But you don't think penguins are dangerous anyway. So there's no danger is there? Or are you coming around to my thinking that they are dangerous?"
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No...I mean...yes. Oh never mind. Just do the spell. Wait, won't the spell wear off once I'm inside? You'll be too far away."
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Oh, no. The ice magnifies this spell, so it will allow you to go greater distances."
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This guy looks official. I'd better do the greeting before I speak to him."
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "act"
+text = "opens2=Penguin emote interface in the control panel"
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = -1
+children = [435]
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Don't stand around, agent. You look absurd."
+parent = 434
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "cond"
+text = "After one out of three correct moves:"
+parent = -1
+children = [437, 438, 440]
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "*Whew, that was right. Two more moves to do. If I get those right, he should speak to me.*"
+parent = 436
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = 436
+children = [439]
+
+[[nodes]]
+id = 439
+depth = 3
+kind = "act"
+text = "above"
+parent = 438
+
+[[nodes]]
+id = 440
+depth = 2
+kind = "cond"
+text = "After two out of three correct moves:"
+parent = 436
+children = [441, 442, 444]
+
+[[nodes]]
+id = 441
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "*I just need to do one more move and I'll have gotten the greeting right.*"
+parent = 440
+
+[[nodes]]
+id = 442
+depth = 3
+kind = "cond"
+text = "If the player fails the greeting:"
+parent = 440
+children = [443]
+
+[[nodes]]
+id = 443
+depth = 4
+kind = "act"
+text = "above"
+parent = 442
+
+[[nodes]]
+id = 444
+depth = 3
+kind = "cond"
+text = "After a full proper greeting:"
+parent = 440
+children = [445, 446, 447, 448, 449, 450]
+
+[[nodes]]
+id = 445
+depth = 4
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Password?"
+parent = 444
+
+[[nodes]]
+id = 446
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Cabbage."
+parent = 444
+
+[[nodes]]
+id = 447
+depth = 4
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Let's see your ID and you can go through."
+parent = 444
+
+[[nodes]]
+id = 448
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "ID? No one told me anything about ID."
+parent = 444
+
+[[nodes]]
+id = 449
+depth = 4
+kind = "speaker"
+speaker = "KGP Agent"
+text = "No ID, no entry!"
+parent = 444
+
+[[nodes]]
+id = 450
+depth = 4
+kind = "act"
+text = "end"
+parent = 444
+is_terminal = true
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The penguin at the entrance said I needed to have an ID. Nobody told me about any ID!"
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "ID? But...they all look alike. Well, the other penguins probably just assumed you had it, since you said you were an agent."
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "You know, I met a rather shifty looking penguin once, north of Miscellania. He was named after some sort of pasta..."
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Anyway, he worked for a black market. Maybe he has a contact here who could get you an ID?"
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Penguins have black markets?"
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Of course. Just look around here for a shifty pasta penguin."
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "Oi, mate, 'u innerested i' sum 'wares?"
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Uh...maybe?"
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "I go' me sum hot 'wares, mate. Wotcha need?"
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I've misplaced me, I mean my, ID card."
+parent = -1
+
+[[nodes]]
+id = 462
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "Ah, frisky nigh' on leave, eh? Betcha furgo' yur missin repor' 'oo."
+parent = -1
+
+[[nodes]]
+id = 463
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, my missin repor'. I think I need one of them too."
+parent = -1
+
+[[nodes]]
+id = 464
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "Well, mate. 'U scratch me back, I stab urs, right?"
+parent = -1
+
+[[nodes]]
+id = 465
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? No, no stabbing."
+parent = -1
+
+[[nodes]]
+id = 466
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "I men' in a good way. I wan' sumpin in exy-change. Ima in need of sum swamp tur."
+parent = -1
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Tur? Do you mean tar?"
+parent = -1
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "Thas wha' I sed, innit? I need sum feathers 'oo. Foive of 'em."
+parent = -1
+
+[[nodes]]
+id = 469
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you need swamp tar and five feathers. Will chicken feathers do?"
+parent = -1
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "Yea, begreat. Then I'll guv yea 'ur stuff."
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "Yuv go' the stuff?"
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "option"
+text = "Yeah, I got it."
+parent = -1
+children = [475, 476, 479, 482, 485, 486, 487, 488]
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, I got it."
+parent = 474
+
+[[nodes]]
+id = 476
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the items:"
+parent = 474
+children = [477, 478]
+
+[[nodes]]
+id = 477
+depth = 3
+kind = "speaker"
+speaker = "Noodle"
+text = "Whers me swamp tur 'n feathers, mate?"
+parent = 476
+
+[[nodes]]
+id = 478
+depth = 3
+kind = "act"
+text = "end"
+parent = 476
+is_terminal = true
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "cond"
+text = "With swamp tar only:"
+parent = 474
+children = [480, 481]
+
+[[nodes]]
+id = 480
+depth = 3
+kind = "speaker"
+speaker = "Noodle"
+text = "Whers me feathers, mate?"
+parent = 479
+
+[[nodes]]
+id = 481
+depth = 3
+kind = "act"
+text = "end"
+parent = 479
+is_terminal = true
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "cond"
+text = "With feathers only:"
+parent = 474
+children = [483, 484]
+
+[[nodes]]
+id = 483
+depth = 3
+kind = "speaker"
+speaker = "Noodle"
+text = "Whers me swamp tur, mate?"
+parent = 482
+
+[[nodes]]
+id = 484
+depth = 3
+kind = "act"
+text = "end"
+parent = 482
+is_terminal = true
+
+[[nodes]]
+id = 485
+depth = 2
+kind = "other"
+text = "Oi, cheers. 'Ers 'ur stuff, now git outta 'ere."
+parent = 474
+
+[[nodes]]
+id = 486
+depth = 2
+kind = "act"
+text = "gives=Swamp tar, Feathers"
+parent = 474
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "act"
+text = "receives=[[Kgp id card]], [[Mission report (fake)]]"
+parent = 474
+
+[[nodes]]
+id = 488
+depth = 2
+kind = "act"
+text = "end"
+parent = 474
+is_terminal = true
+
+[[nodes]]
+id = 489
+depth = 1
+kind = "option"
+text = "What did you need?"
+parent = -1
+children = [490, 491, 492]
+
+[[nodes]]
+id = 490
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What did you need?"
+parent = 489
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "speaker"
+speaker = "Noodle"
+text = "I need swamp tur and foive feathers, mate."
+parent = 489
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "act"
+text = "end"
+parent = 489
+is_terminal = true
+
+[[nodes]]
+id = 493
+depth = 1
+kind = "option"
+text = "Never mind."
+parent = -1
+children = [494, 495]
+
+[[nodes]]
+id = 494
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Never mind."
+parent = 493
+
+[[nodes]]
+id = 495
+depth = 2
+kind = "act"
+text = "end"
+parent = 493
+is_terminal = true
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "option"
+text = "Tell me about this black market."
+parent = -1
+children = [497, 498, 499, 500]
+
+[[nodes]]
+id = 497
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me about this black market you run. Seems kind of risky."
+parent = 496
+
+[[nodes]]
+id = 498
+depth = 2
+kind = "speaker"
+speaker = "Noodle"
+text = "Nah ain't risky. Bu' I dun run it. Me bruva, Alfredo, does. E runs the Fettuccine Mafia."
+parent = 496
+
+[[nodes]]
+id = 499
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Riiiight. Fettucine Mafia. I'll remember that."
+parent = 496
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "act"
+text = "end"
+parent = 496
+is_terminal = true
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "speaker"
+speaker = "Noodle"
+text = "Need summat?"
+parent = -1
+
+[[nodes]]
+id = 502
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, I need some replacements."
+parent = -1
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "cond"
+text = "If player has the Kgp id:"
+parent = -1
+children = [504]
+
+[[nodes]]
+id = 504
+depth = 2
+kind = "speaker"
+speaker = "Noodle"
+text = "U dunna need ID."
+parent = 503
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "act"
+text = "receives=[[Kgp id card]]"
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "cond"
+text = "If player has the Mission report:"
+parent = -1
+children = [507]
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "speaker"
+speaker = "Noodle"
+text = "Oi, 'u got 'ur repor'."
+parent = 506
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "act"
+text = "receives=[[Mission report (fake)]]"
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Let's see your ID and you can go through."
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "cond"
+text = "Without the ID in hand:"
+parent = -1
+children = [512, 513]
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "No ID, no entry!"
+parent = 511
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "act"
+text = "end"
+parent = 511
+is_terminal = true
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "All right, you can go in. The entrance is hidden under that avalanche."
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Once inside, go into the room to the left. You'll be debriefed there. No dawdling!"
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "other"
+text = "{{mes|You enter the secret lair.}}"
+parent = -1
+
+[[nodes]]
+id = 518
+depth = 1
+kind = "other"
+text = "{{mes|You have unlocked a new music track:}}{{mes|colour=Red|Espionage}}"
+parent = -1
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Welcome back agent..."
+parent = -1
+
+[[nodes]]
+id = 520
+depth = 1
+kind = "cond"
+text = "If the player character is male:"
+parent = -1
+children = [521, 522, 523]
+
+[[nodes]]
+id = 521
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Peach? But, aren't you...male?"
+parent = 520
+
+[[nodes]]
+id = 522
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It was either that or Pear."
+parent = 520
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Ah. Of course."
+parent = 520
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "cond"
+text = "If the player character is female:"
+parent = -1
+children = [525, 526]
+
+[[nodes]]
+id = 525
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Pablo? But, aren't you...female?"
+parent = 524
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hippie parents, sir. They had weird ideas about names."
+parent = 524
+
+[[nodes]]
+id = 527
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "So you have just returned from your mission?"
+parent = -1
+
+[[nodes]]
+id = 528
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and I have my mission report. I also have the mission reports from the operatives in the Ardougne Zoo and the Lumbridge sheep field."
+parent = -1
+
+[[nodes]]
+id = 529
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "How very industrious of you, agent. Please hand them over."
+parent = -1
+
+[[nodes]]
+id = 530
+depth = 1
+kind = "act"
+text = "gives=Mission report (Ardougne), Mission report (Lumbridge), Mission report (fake)"
+parent = -1
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Hmm, these reports are...intriguing."
+parent = -1
+
+[[nodes]]
+id = 532
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "It says you jumped off a hill and flew? Without assistance?"
+parent = -1
+
+[[nodes]]
+id = 533
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh yeah. It was amazing. You know, I just...flapped. Really fast."
+parent = -1
+
+[[nodes]]
+id = 534
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Hmm, we shall have to research this."
+parent = -1
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "cond"
+text = "If the player has completed [[Between a Rock...]]:"
+parent = -1
+children = [536, 537, 538]
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Did you really get launched out of a cannon? It seems quite risky."
+parent = 535
+
+[[nodes]]
+id = 537
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It wasn't too bad. I was wearing a helmet at the time."
+parent = 535
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "This could be very useful during battle."
+parent = 535
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "cond"
+text = "If the player has completed [[Enlightened Journey]]:"
+parent = -1
+children = [540, 541, 542]
+
+[[nodes]]
+id = 540
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "You flew in a 'hot air balloon'? What is that exactly?"
+parent = 539
+
+[[nodes]]
+id = 541
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, it was a sack of cloth with a basket attached to the bottom and when you filled it with hot air it went up."
+parent = 539
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Fascinating. Well done agent."
+parent = 539
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "I am satisfied with your reports. You just need to complete a physical and you will be free to roam at your leasure."
+parent = -1
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "A physical? What, are they going to examine my body?"
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Oh no. It's an agility course to make sure you're still fit and able to serve. Don't worry, I'm sure you won't have any difficulty getting through it. Just go through the door at the end of the room."
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "speaker"
+speaker = "Agility Instructor"
+text = "Well done soldier! You've successfully completed the physical. You're free to do as you like."
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do I do now?"
+parent = -1
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "speaker"
+speaker = "Agility Instructor"
+text = "Just go through the gate in the fence and use the same door you came out of. You can come back whenever you like to tone up your body."
+parent = -1
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "All those penguins, what are they doing?"
+parent = -1
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "speaker"
+speaker = "Army Commander"
+text = "Ah, they are doing drills! Getting ready for the invasion. What a glorious day that will be!"
+parent = -1
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Invasion? Of..."
+parent = -1
+
+[[nodes]]
+id = 554
+depth = 1
+kind = "speaker"
+speaker = "Army Commander"
+text = "Yes, yes, I know we all get excited. But, I need you to get out of the way. Move along!"
+parent = -1
+
+[[nodes]]
+id = 555
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 556
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Larry, you were right! There's an entire army of them, and they're drilling and... Larry, they're ORGANISED!"
+parent = -1
+
+[[nodes]]
+id = 557
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "That's what I've been saying from the start! But an entire army? This is just an outpost, so it can't be an entire army."
+parent = -1
+
+[[nodes]]
+id = 558
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know what I saw! They were doing drills and everything."
+parent = -1
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Still, it must only be an invasion party. The main force is on...well, it doesn't matter right now."
+parent = -1
+
+[[nodes]]
+id = 560
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I've been doing some research of my own, and I think I know what our next step should be. There's a secret room, deep in the glacier. I think that is where they are making their war plans."
+parent = -1
+
+[[nodes]]
+id = 561
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "War plans! Who are they going to war with?"
+parent = -1
+
+[[nodes]]
+id = 562
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "With us, you dolt! They are trying to take over the world. Have you not grasped this yet? You need to find that room. Our future depends on it."
+parent = -1
+
+[[nodes]]
+id = 563
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where could this room be?"
+parent = -1
+
+[[nodes]]
+id = 564
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "It's probably the most well guarded room in the place. You'll need to find a way to get into it without arousing suspicion."
+parent = -1
+
+[[nodes]]
+id = 565
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's a pretty tall order."
+parent = -1
+
+[[nodes]]
+id = 566
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 567
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "What are you doing out here! You need to get in there and find the secret room."
+parent = -1
+
+[[nodes]]
+id = 568
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Keep your shorts on; I'm working on it."
+parent = -1
+
+[[nodes]]
+id = 569
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 570
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You there, let me through those doors."
+parent = -1
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "Let's see your ID, comrade."
+parent = -1
+
+[[nodes]]
+id = 572
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No problem!"
+parent = -1
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "I'm sorry comrade, you do not have the clearance to go through these doors."
+parent = -1
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 575
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You look like...knowledgeable...penguins. What's through those doors at the end of the hall?"
+parent = -1
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "Hey man, don't stress. Those doors open new worlds, man. Like, new rooms too."
+parent = -1
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, well, I would like to know what rooms."
+parent = -1
+
+[[nodes]]
+id = 578
+depth = 1
+kind = "speaker"
+speaker = "Ping"
+text = "Like, the War Room and stuff like that, dude. Wicked stuff. Too bad only 'the man' gets to go through."
+parent = -1
+
+[[nodes]]
+id = 579
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Humans can go through?"
+parent = -1
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "No, man. He just means the authority. The MAN, you know?"
+parent = -1
+
+[[nodes]]
+id = 581
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who are you? You don't really look like KGP agents."
+parent = -1
+
+[[nodes]]
+id = 582
+depth = 1
+kind = "speaker"
+speaker = "Ping"
+text = "Dude, we are bards. We sing of the glories of the common penguin. We are also supposed to record history, but man, it is so HIS story. Like, the MAN's story."
+parent = -1
+
+[[nodes]]
+id = 583
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Penguins have bards?"
+parent = -1
+
+[[nodes]]
+id = 584
+depth = 1
+kind = "speaker"
+speaker = "Ping"
+text = "Totally, dude. You want to hear one of our songs?"
+parent = -1
+
+[[nodes]]
+id = 585
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I haven't got anything to lose, except my eardrums."
+parent = -1
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "Well, like, we can't play it in THIS now. Maybe at a later now. We don't have any instruments to accompany our great song."
+parent = -1
+
+[[nodes]]
+id = 587
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But this room is filled with instruments."
+parent = -1
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "Yeah man, but they come from the south, where humans have thumbs to play them with. We don't have thumbs. Also, the Pescaling had our old ones confiscated for being too loud."
+parent = -1
+
+[[nodes]]
+id = 589
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Way harsh, man."
+parent = -1
+
+[[nodes]]
+id = 590
+depth = 1
+kind = "speaker"
+speaker = "Ping"
+text = "But dude, I was reading, and there are instruments we could play. I read about one called bongos. They just need to be hit."
+parent = -1
+
+[[nodes]]
+id = 591
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "But we need two instruments, man. Like, to make it harmonious with the vibes."
+parent = -1
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What about a cowbell? You don't need thumbs for that."
+parent = -1
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "Righteous man. So you'll get a cowbell and bongos for us and we'll rock out. We'll be so harmonious, no Pescallion could complain."
+parent = -1
+
+[[nodes]]
+id = 594
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait, why am I getting these instruments?"
+parent = -1
+
+[[nodes]]
+id = 595
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "Because your aura says you should."
+parent = -1
+
+[[nodes]]
+id = 596
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I have a lead. These two penguin bards seem to know a lot of the history of the iceberg. I think they might know a way into the War Room."
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Bards? They have bards?"
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, that's what I said."
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where would I get a cowbell or a set of bongos?"
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I'm not even going to ask why."
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "I think dairy cows have bells, you could steal one from it. Bongos... I suppose you could make them? Mahogany is good for bending, and then just use soft leather for the drum."
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good plan, Larry."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Pong"
+text = "Man, did you bring the instruments to us?"
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "option"
+text = "What did I need to get you?"
+parent = -1
+children = [607, 608, 609]
+
+[[nodes]]
+id = 607
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What did I need to get you?"
+parent = 606
+
+[[nodes]]
+id = 608
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "We want a cowbell and a set of bongos."
+parent = 606
+
+[[nodes]]
+id = 609
+depth = 2
+kind = "act"
+text = "end"
+parent = 606
+is_terminal = true
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [611, 612, 614, 617, 620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643, 644, 645]
+
+[[nodes]]
+id = 611
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = 610
+
+[[nodes]]
+id = 612
+depth = 2
+kind = "cond"
+text = "If the player doesn't have either:"
+parent = 610
+children = [613]
+
+[[nodes]]
+id = 613
+depth = 3
+kind = "speaker"
+speaker = "Pong"
+text = "You didn't bring the instruments."
+parent = 612
+
+[[nodes]]
+id = 614
+depth = 2
+kind = "cond"
+text = "With cowbells only:"
+parent = 610
+children = [615, 616]
+
+[[nodes]]
+id = 615
+depth = 3
+kind = "speaker"
+speaker = "Pong"
+text = "You didn't bring the bongos."
+parent = 614
+
+[[nodes]]
+id = 616
+depth = 3
+kind = "act"
+text = "end"
+parent = 614
+is_terminal = true
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "cond"
+text = "With  bongos only:"
+parent = 610
+children = [618, 619]
+
+[[nodes]]
+id = 618
+depth = 3
+kind = "speaker"
+speaker = "Pong"
+text = "You didn't bring a cowbell."
+parent = 617
+
+[[nodes]]
+id = 619
+depth = 3
+kind = "act"
+text = "end"
+parent = 617
+is_terminal = true
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "Dude, good job on the instruments. Just let us set up and we'll get going."
+parent = 610
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "act"
+text = "gives=[[Cowbells]] and [[Bongos]]"
+parent = 610
+
+[[nodes]]
+id = 622
+depth = 2
+kind = "other"
+text = "{{qact|A cutscene shows Ping and Pong performing a song}}"
+parent = 610
+
+[[nodes]]
+id = 623
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "And a 1 and a 2 and a 3..."
+parent = 610
+
+[[nodes]]
+id = 624
+depth = 2
+kind = "speaker"
+speaker = "Ping"
+text = "Wait, wait. It needs more cowbell."
+parent = 610
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "You're right, man. Let's try this again!"
+parent = 610
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "act"
+text = "(Ping and Pong begin playing their instruments)"
+parent = 610
+
+[[nodes]]
+id = 627
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "There once was a Pescallion, who travelled in a galleon."
+parent = 610
+
+[[nodes]]
+id = 628
+depth = 2
+kind = "speaker"
+speaker = "Ping"
+text = "Our Pescallion went exploring and found this iceberg {{sic}}"
+parent = 610
+
+[[nodes]]
+id = 629
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "He travelled the world, until his toes curled."
+parent = 610
+
+[[nodes]]
+id = 630
+depth = 2
+kind = "speaker"
+speaker = "Ping"
+text = "Upon an iceberg he came, and our lives were never the same."
+parent = 610
+
+[[nodes]]
+id = 631
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "As an outpost it was approved, so here our people moved."
+parent = 610
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "speaker"
+speaker = "Ping"
+text = "To grow and learn, though our hearts did yearn..."
+parent = 610
+
+[[nodes]]
+id = 633
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "For the motherland."
+parent = 610
+
+[[nodes]]
+id = 634
+depth = 2
+kind = "speaker"
+speaker = "Ping"
+text = "Deep inside the 'berg lay a threat, but don't fret!"
+parent = 610
+
+[[nodes]]
+id = 635
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "For Pescaling Pax trapped those monsters behind a gate, but let's hope they don't mate."
+parent = 610
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "Now we have no fear"
+parent = 610
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "speaker"
+speaker = "Pong"
+text = "But shed a small tear for the motherland."
+parent = 610
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "act"
+text = "(The gate's KGP Agent enters the room)"
+parent = 610
+
+[[nodes]]
+id = 639
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "{{overhead|All right, that's enough racket.}}"
+parent = 610
+
+[[nodes]]
+id = 640
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "{{overhead|Shut those instruments up or I'm throwing you in solitary!}}"
+parent = 610
+
+[[nodes]]
+id = 641
+depth = 2
+kind = "speaker"
+speaker = "KGP Agent"
+text = "{{overhead|I don't care if your vibes are harmonious!}}"
+parent = 610
+
+[[nodes]]
+id = 642
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Now might be a good time for me to slip out and get through those doors..."
+parent = 610
+
+[[nodes]]
+id = 643
+depth = 2
+kind = "act"
+text = "(Player quietly leaves the room)"
+parent = 610
+
+[[nodes]]
+id = 644
+depth = 2
+kind = "other"
+text = "{{qact|End of cutscene}}"
+parent = 610
+
+[[nodes]]
+id = 645
+depth = 2
+kind = "act"
+text = "end"
+parent = 610
+is_terminal = true
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [647, 648]
+
+[[nodes]]
+id = 647
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No."
+parent = 646
+
+[[nodes]]
+id = 648
+depth = 2
+kind = "act"
+text = "end"
+parent = 646
+is_terminal = true
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene shows the player being caught}}"
+parent = -1
+
+[[nodes]]
+id = 650
+depth = 1
+kind = "speaker"
+speaker = "Pescaling Pax"
+text = "And we'll move this little penguin here...and KABLOOM! Heee hee."
+parent = -1
+
+[[nodes]]
+id = 651
+depth = 1
+kind = "act"
+text = "(Player is transformed back to human)"
+parent = -1
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "speaker"
+speaker = "Pescaling Pax"
+text = "It appears we have a visitor!"
+parent = -1
+
+[[nodes]]
+id = 653
+depth = 1
+kind = "speaker"
+speaker = "Pescaling Pax"
+text = "Haa haa! I am glad we installed that anti-magic security. What have we here?"
+parent = -1
+
+[[nodes]]
+id = 654
+depth = 1
+kind = "act"
+text = "gives=Penguin suit"
+parent = -1
+
+[[nodes]]
+id = 655
+depth = 1
+kind = "speaker"
+speaker = "Pescaling Pax"
+text = "What an ingenious little device. This will solve all our problems. Scientists! Come examine this; we have much work to do."
+parent = -1
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What about me?"
+parent = -1
+
+[[nodes]]
+id = 657
+depth = 1
+kind = "speaker"
+speaker = "Pescaling Pax"
+text = "Hmm, take that human to the Ice Lords. They'll enjoy the exercise."
+parent = -1
+
+[[nodes]]
+id = 658
+depth = 1
+kind = "other"
+text = "{{mes|You are caught.}}"
+parent = -1
+
+[[nodes]]
+id = 659
+depth = 1
+kind = "other"
+text = "{{qact|End of cutscene}}"
+parent = -1
+
+[[nodes]]
+id = 660
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "You're safe! I was really worried for a while there. What happened?"
+parent = -1
+
+[[nodes]]
+id = 662
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ice Lord...hit me...ow..."
+parent = -1
+
+[[nodes]]
+id = 663
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "Yes, yes, you're very brave. I mean what happened in the War Room?"
+parent = -1
+
+[[nodes]]
+id = 664
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Pescaling Pax was there, and he forced me out of the suit and then threw me into a cage with the Ice Lords!"
+parent = -1
+
+[[nodes]]
+id = 665
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "But what was IN the War Room?"
+parent = -1
+
+[[nodes]]
+id = 666
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There was a map of the world and a lot of little penguin figures."
+parent = -1
+
+[[nodes]]
+id = 667
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "YES! I knew it! I said I'd prove them all wrong. They are organised and invading. OH YEAH, Larry was right. Who was right? Larry was!"
+parent = -1
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "other"
+text = "{{qact|Larry performs the Dance emote.}}"
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "LARRY! We've just uncovered a plot that could destroy everything we hold dear. Don't you think we should focus on stopping them?"
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "You are such a buzz kill."
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We need to plan our next move, but now they know both our scents and might come after us!"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "No, they only know mine. That agility course really stank up the suit and seems to have covered your scent. You might want to consider bathing soon."
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "speaker"
+speaker = "Larry"
+text = "As for our next move, I've got...friends...elsewhere who should hear of this information, but we have plenty of time. It's not as though they made a break through in their research or something."
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "other"
+text = "{{qact|The screen fades into a brief cutscene showing a giant penguin suit under construction within their outpost before returning to the player.}}"
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "other"
+text = "{{qact|Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The hide was destroyed. It's too damaged to rebuild, so we can't use it to observe penguins any more."
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "other"
+text = "{{mes|You appear to be stuck and need Larry's help to get out of the suit.}}"
+parent = -1
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't speak to the penguins when I'm not in my disguise."
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "other"
+text = "{{mes|You can't use a stile when in the penguin suit.}}"
+parent = -1
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "act"
+text = "(a KGP Agent appears)"
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "other"
+text = "{{mes|The KGP thinks you are a threat.}}"
+parent = -1
+
+[[nodes]]
+id = 685
+depth = 1
+kind = "speaker"
+speaker = "KGP Agent"
+text = "{{overhead|There's been a breach! Red alert!}}"
+parent = -1
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "act"
+text = "(The player is knocked down and transported to the iceberg entrance next to Larry)"
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "cond"
+text = "As soon as the player moves:"
+parent = -1
+children = [688]
+
+[[nodes]]
+id = 688
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Urrrrrgh!}}"
+parent = 687
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "cond"
+text = "Failing to steal the bell:"
+parent = -1
+children = [690, 691, 692, 693, 694]
+
+[[nodes]]
+id = 690
+depth = 2
+kind = "other"
+text = "{{mes|You fail to steal a cowbell.}}"
+parent = 689
+
+[[nodes]]
+id = 691
+depth = 2
+kind = "other"
+text = "{{mes|The cow kicks you and stuns you!}}"
+parent = 689
+
+[[nodes]]
+id = 692
+depth = 2
+kind = "act"
+text = "(The player takes some damage.)"
+parent = 689
+
+[[nodes]]
+id = 693
+depth = 2
+kind = "speaker"
+speaker = "Dairy cow"
+text = "MOO"
+parent = 689
+
+[[nodes]]
+id = 694
+depth = 2
+kind = "act"
+text = "end"
+parent = 689
+is_terminal = true
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "other"
+text = "{{mes|You steal a cowbell.}}"
+parent = -1
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "speaker"
+speaker = "Dairy cow"
+text = "What are yooo interrupting me for? Can't you see I'm working here?"
+parent = -1
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Dairy cow"
+text = "Moo, what do yoooou think you're doing?"
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err... Nothing. Just checking that your cowbell was working. Don't want you to get lost!"
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "speaker"
+speaker = "Dairy cow"
+text = "How exactly am I going to get lost when I'm tied down? What were yooo really doing?"
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think you'll believe me."
+parent = -1
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "speaker"
+speaker = "Dairy cow"
+text = "I'm a talking cow, I'll believe almost anything."
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fine. I need the bell to trick some penguins into helping me get into their secret lair."
+parent = -1
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "speaker"
+speaker = "Dairy cow"
+text = "Well why didn't you say so? I've got a ton of these things. Go ahead and take the bell."
+parent = -1
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "other"
+text = "{{mes|You take the cow's bell}}"
+parent = -1
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "other"
+text = "{{mes|You use the leather and plank to create penguin bongos.}}"
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "other"
+text = "{{mes|The Ice Lords prevent your escape.}}"
+parent = -1

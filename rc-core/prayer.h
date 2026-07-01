@@ -71,6 +71,10 @@ extern RcPrayerDef g_rc_prayer_defs[RC_MAX_PRAYER_DEFS];
 extern int g_rc_prayer_count;
 
 int rc_load_prayers(const char *path);
+int rc_load_prayers_into(const char *path, RcPrayerDef *defs, int max_defs,
+                         int *out_count);
+void rc_prayer_use_defs(const RcPrayerDef *defs, int count);
+void rc_prayer_reset_defs_if_active(const RcPrayerDef *defs);
 const RcPrayerDef *rc_prayer_def_get(int prayer_id);
 uint32_t rc_prayer_bit(int prayer_id);
 

@@ -1,0 +1,142 @@
+# Alchemical Hydra — slayer boss, Karuulm dungeon. Tests: 4 phases by
+# 25% HP, per-phase vent-spray mechanic (75% damage reduction until
+# sprayed), per-phase special attacks, head-drop transitions, enrage
+# phase with alternating attacks.
+
+name = "Alchemical Hydra"
+slug = "alchemical_hydra"
+npc_ids = [8615, 8616, 8617, 8618, 8619, 8620, 8621, 8622]
+# Four phase ids plus variants (multiple npc_ids across phases).
+source_pages = ["Alchemical Hydra", "Alchemical Hydra/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Magic Ball"
+style = "magic"
+max_hit = 24
+warning_ticks = 2
+envenoms_on_hit = true            # even through prayer
+
+[[attacks]]
+name = "Ranged Spikes"
+style = "ranged"
+max_hit = 24
+warning_ticks = 2
+envenoms_on_hit = true
+
+# ---- Phases (by 25% HP — total ~1100 hp, 275 per phase) ---------------
+
+[[phases]]
+id = "serpentine"
+enter_at_hp_pct = 100
+script = "hydra_serpentine_entry"
+allowed_attacks = ["Magic Ball", "Ranged Spikes", "Poison Splatters"]
+required_vent = "red_SE"          # south-east red vent
+damage_reduction_until_vented = 0.75
+
+[[phases]]
+id = "electric"
+enter_at_hp_pct = 75
+script = "hydra_head_drop"
+allowed_attacks = ["Magic Ball", "Ranged Spikes", "Lightning Convergence"]
+required_vent = "green_NE"
+damage_reduction_until_vented = 0.75
+
+[[phases]]
+id = "flame"
+enter_at_hp_pct = 50
+script = "hydra_head_drop"
+allowed_attacks = ["Magic Ball", "Ranged Spikes",
+                   "Stun + Fire Walls", "Flame Trail"]
+required_vent = "blue_NW"
+damage_reduction_until_vented = 0.75
+
+[[phases]]
+id = "enraged"
+enter_at_hp_pct = 25
+script = "hydra_enrage_entry"
+allowed_attacks = ["Magic Ball", "Ranged Spikes", "Poison Splatters"]
+required_vent = "none"            # no vent in final phase
+damage_reduction_until_vented = 0.0
+# Wiki: "In the final phase, the Hydra attacks alternately with
+# Magic and Ranged, choosing to start with the opposite of what it
+# attacked with last. On the fourth attack, the Hydra instead throws
+# poison splatters."
+attack_pattern = "strict_alternate"
+special_every_n_attacks = 4
+special_attack = "Poison Splatters"
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Vent Spray Damage Gate"
+primitive = "damage_reduction_until_mechanic_triggered"
+# Each of the first 3 phases: Hydra reduces incoming damage by 75%
+# until the player lures Hydra over the correct vent and the vent
+# sprays her. Wrong vent increases her attack damage.
+trigger = "phase_enter:serpentine|electric|flame"
+params.damage_reduction_pct = 0.75
+params.clear_on = "correct_vent_sprayed"
+params.increase_damage_on = "wrong_vent_sprayed"
+params.increase_damage_pct = 1.25
+
+[[mechanics]]
+name = "Style Change Warning"
+primitive = "animation_warning_style_swap"
+# Phases 1-3: after every 3 basic attacks, hydra sways heads back as
+# indicator of combat style change.
+trigger = "phase_in:serpentine|electric|flame"
+params.every_n_attacks = 3
+params.warning_animation_ticks = 1
+
+[[mechanics]]
+name = "Poison Splatters"
+primitive = "dot_tile_placement"
+trigger = "phase_in:serpentine"
+# Phase 1 special: poison splatters as tiles that damage over time.
+period_ticks = 4
+params.pool_count = 3
+params.dot_per_tick = 5
+
+[[mechanics]]
+name = "Lightning Convergence"
+primitive = "converging_aoe"
+trigger = "phase_in:electric"
+# Phase 2: lightning strikes converge on the player from multiple
+# directions. Must reposition to avoid intersection.
+period_ticks = 8
+params.bolt_count = 3
+params.converges_on_player = true
+params.damage_per_bolt = 15
+
+[[mechanics]]
+name = "Stun + Fire Walls"
+primitive = "stun_then_fire_walls"
+trigger = "phase_in:flame"
+# Phase 3: stun the player then spawn fire walls blocking escape.
+period_ticks = 15
+params.stun_ticks = 4
+params.fire_wall_damage = 10
+
+[[mechanics]]
+name = "Flame Trail"
+primitive = "moving_dot_line"
+trigger = "phase_in:flame"
+# Phase 3: flame trail follows the player around arena.
+period_ticks = 6
+params.trail_length = 5
+params.dot_per_tick = 8
+
+# ---- Environment-object interaction -----------------------------------
+[[mechanics]]
+name = "Vent Activation"
+primitive = "object_interaction_ticked"
+# Player clicks vent to activate, hydra must be standing on matching
+# colour tile for spray to hit.
+params.objects = [
+    { name = "Red chemical vent",   location = "arena_SE" },
+    { name = "Green chemical vent", location = "arena_NE" },
+    { name = "Blue chemical vent",  location = "arena_NW" },
+]
+params.activation_ticks = 5

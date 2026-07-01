@@ -1,0 +1,2199 @@
+title = "Transcript:2015 Christmas event"
+npcs = ["Santa Claus", "Anti-Santa", "Happy child", "Happy gnome child", "White Knight", "Death (NPC)", "Evil Bob"]
+node_count = 283
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Hohoho! Merry Christmas!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Happy Christmas Santa! What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "It's too dangerous for me out there while Anti-Santa is on the loose. The White Knights' are keeping me here until it's safe. At this rate, I'll miss Christmas altogether!"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "option"
+text = "Is there anything I can do to help?"
+parent = -1
+children = [5, 6, 7, 8, 15]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anything I can do to help?"
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Well, now you mention it... If we knew what Anti-Santa was up to, we could get a step ahead and put an end to his holiday ruining shenanigans once and for all."
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "option"
+text = "Perhaps I could find out what he's planning?"
+parent = 4
+children = [9, 10, 11, 12, 13, 14]
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Perhaps I could find out what he's planning?"
+parent = 8
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Santa Claus"
+text = "That would certainly be helpful, but it won't be an easy task; Anti-Santa isn't going to just reveal his plans to anybody, you'll have to earn his trust first. First, however, you'll have to find him!"
+parent = 8
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Any ideas on where I should start looking?"
+parent = 8
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Santa Claus"
+text = "The White Knights' spies have narrowed down the search to somewhere within Varrock, you should try looking there."
+parent = 8
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll report back once I know more."
+parent = 8
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "end"
+parent = 8
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "I really don't have time to get involved in this, goodbye."
+parent = 4
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "option"
+text = "Ba! Humbug. I haven't got time for this."
+parent = -1
+children = [18]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What should I be doing again?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "You need to find Anti-Santa, he's located somewhere in Varrock. Once you've found him, you'll need to earn his trust and find out what he's up to."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Good luck, [player name], we can't let Anti-Santa destroy Christmas!"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "What are you doing up here? Get out of my sight before I lock you up with the palace guards!"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "Wait, I'm not here to cause trouble, I want to help."
+parent = -1
+children = [26, 27, 28, 29, 43, 48]
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Wait, I'm not here to cause trouble, I want to help."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "What makes you think I possibly need the help of some mortal fool?"
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 25
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "option"
+text = "I've grown sick of Christmas and all that it embodies."
+parent = 25
+children = [30, 31, 32, 33, 37]
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've grown sick of Christmas and all that it embodies."
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Ah, finally someone else who sees through the cheerful facade! But what exactly do you want to do, mortal?"
+parent = 29
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 29
+
+[[nodes]]
+id = 33
+depth = 3
+kind = "option"
+text = "How about you just tell me what it is you're planning to do?"
+parent = 29
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "How about you just tell me what it is you're planning to do?"
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Those who serve under me must first prove they are worthy! Now, answer my question."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "act"
+text = "previous"
+parent = 33
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "option"
+text = "I seek to shatter the illusion of hope this holiday embodies."
+parent = 29
+children = [38, 39, 40, 41, 42]
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I seek to shatter the illusion of hope this holiday embodies."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Maybe there is a flicker of malignancy within you after all! We shall see how you fare on your first assignment!"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "My first assignment?"
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 4
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "I'll fill you in on the details once you've got the necessary supplies. You'll need a vial from the crate over there."
+parent = 37
+
+[[nodes]]
+id = 42
+depth = 4
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "option"
+text = "Err... I thought it'd be fun to be the bad guy for once."
+parent = 25
+children = [44, 45, 46, 47]
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Err... I thought it'd be fun to be the bad guy for once."
+parent = 43
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hahaha! I don't think you have what it takes to work alongside me!"
+parent = 43
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Wait, that's not what I meant..."
+parent = 43
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "act"
+text = "initial"
+parent = 43
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "option"
+text = "Mortal fool? I'm the one who's going to defeat you once and for all!"
+parent = 25
+children = [49, 50, 51]
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Mortal fool? I'm the one who's going to defeat you once and for all!"
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Hahaha! I'd like to see you try!"
+parent = 48
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "option"
+text = "I'll just be on my way then."
+parent = -1
+children = [53]
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "cond"
+text = "Before taking a vial from the crate:"
+parent = -1
+children = [55, 56]
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "You need to take a vial from the crate over there before we can continue."
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "cond"
+text = "After taking a vial from the crate:"
+parent = -1
+children = [58, 59, 60, 61, 62, 63, 64]
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've got the vial, now what?"
+parent = 57
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "I need you to fill it with the tears of the innocent. The children of Varrock make perfect candidates!"
+parent = 57
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Making children cry? How is that going to help?"
+parent = 57
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Let me worry about that, you just bring me back those tears."
+parent = 57
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Upsetting children during the holiday season? That's easier said then done."
+parent = 57
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Use the presents I've prepared over there, I'm sure they'll get those little brats crying in no time!"
+parent = 57
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "act"
+text = "end"
+parent = 57
+is_terminal = true
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think I need any more of these."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've found Anti-Santa. He wants me to fill a vial with children's tears."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Oh dear! There truly is no limit to his malignance! Unfortunately, I see no choice but for you to go through with it, we must learn more about his plans."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Happy gnome child"
+text = "Merry Christmas!"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "option"
+text = "Merry Christmas."
+parent = -1
+children = [73, 74]
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Merry Christmas."
+parent = 72
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "end"
+parent = 72
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "option"
+text = "cond=Before being tasked with making him cry:|What are you doing out here?"
+parent = -1
+children = [76, 77, 78, 79, 80, 81, 82, 83, 84, 85]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing out here?"
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Happy gnome child"
+text = "I'm just trying to admire this tree, but you tall folk keep getting in the way."
+parent = 75
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I'm sorry to hear that."
+parent = 75
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Happy gnome child"
+text = "At least you're looking where you're going, the last brute trampled right over me. Now I think about it, he was much bigger than you, spookier too!"
+parent = 75
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A big spooky man eh? Did you happen to see which way he went?"
+parent = 75
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "speaker"
+speaker = "Happy gnome child"
+text = "Sorry, my face was buried deep in the snow."
+parent = 75
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well can you think of anything that might help me find him?"
+parent = 75
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Happy gnome child"
+text = "Hmm... the weather seemed to get even fiercer where he passed through."
+parent = 75
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That could help, thanks. Goodbye."
+parent = 75
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "act"
+text = "end"
+parent = 75
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "option"
+text = "cond=After being tasked by Anti-Santa with making children cry:|What are you doing out here?"
+parent = -1
+children = [87, 88, 89, 90, 100]
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing out here?"
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "speaker"
+speaker = "Happy gnome child"
+text = "Hello tall one. I am waiting for Santa to bring me my presents."
+parent = 86
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 86
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "option"
+text = "Well, that's a waste of time."
+parent = 86
+children = [91, 92, 93, 94, 98]
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, that's a waste of time."
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 3
+kind = "speaker"
+speaker = "Happy gnome child"
+text = "What are you talking about?"
+parent = 90
+
+[[nodes]]
+id = 93
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 90
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "option"
+text = "Give Anti-present."
+parent = 90
+children = [95, 96, 97]
+
+[[nodes]]
+id = 95
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid this is the only present you'll be getting this year. Santa knows what you gnome children are like!"
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "box"
+text = "The gnome child bursts into tears when they open the present."
+parent = 94
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "act"
+text = "end"
+parent = 94
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "option"
+text = "Forget I said anything, goodbye."
+parent = 90
+children = [99]
+
+[[nodes]]
+id = 99
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "option"
+text = "You're going to catch a cold waiting out here."
+parent = 86
+children = [101]
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Happy child"
+text = "Merry Christmas!"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "option"
+text = "Merry Christmas."
+parent = -1
+children = [105, 106]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Merry Christmas."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "option"
+text = "cond=After being tasked by Anti-Santa with making children cry:|What are you so happy about?"
+parent = -1
+children = [108, 109, 110, 111, 121]
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you so happy about?"
+parent = 107
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Happy child"
+text = "It's Christmas! Santa's going to bring me all the presents I wished for!"
+parent = 107
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 107
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "option"
+text = "Santa doesn't bring presents to naughty kids like you."
+parent = 107
+children = [112, 113, 114, 115, 119]
+
+[[nodes]]
+id = 112
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Santa doesn't bring presents to naughty kids like you."
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 3
+kind = "speaker"
+speaker = "Happy child"
+text = "But I've been good!"
+parent = 111
+
+[[nodes]]
+id = 114
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 111
+
+[[nodes]]
+id = 115
+depth = 3
+kind = "option"
+text = "Give Anti-present."
+parent = 111
+children = [116, 117, 118]
+
+[[nodes]]
+id = 116
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "That's not what it says on Santa's list, this is the only present you'll be getting this year!"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 4
+kind = "box"
+text = "The child bursts into tears when they open the present to find it contains a lump of coal."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 4
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 119
+depth = 3
+kind = "option"
+text = "Oh, my bad. Have a happy holiday."
+parent = 111
+children = [120]
+
+[[nodes]]
+id = 120
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "option"
+text = "I'm sure he will, goodbye."
+parent = 107
+children = [122]
+
+[[nodes]]
+id = 122
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Happy child"
+text = "Merry Christmas!"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "option"
+text = "Merry Christmas."
+parent = -1
+children = [126, 127]
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Merry Christmas."
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "end"
+parent = 125
+is_terminal = true
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "option"
+text = "cond=After being tasked by Anti-Santa with making children cry:|Is that your Christmas wish-list?"
+parent = -1
+children = [129, 130, 131, 132, 142]
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is that your Christmas wish-list?"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Happy child"
+text = "Yep! I've been good all year around so I know Santa will be giving me something nice!"
+parent = 128
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 128
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "option"
+text = "That's not what I heard..."
+parent = 128
+children = [133, 134, 135, 136, 140]
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's not what I heard..."
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Happy child"
+text = "W-What do you mean?"
+parent = 132
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 132
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "option"
+text = "Give Anti-present."
+parent = 132
+children = [137, 138, 139]
+
+[[nodes]]
+id = 137
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I heard you're on the naughty list! This is the only present you'll be getting this year!"
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 4
+kind = "box"
+text = "The child bursts into tears when they open the present to find it contains a lump of coal."
+parent = 136
+
+[[nodes]]
+id = 139
+depth = 4
+kind = "act"
+text = "end"
+parent = 136
+is_terminal = true
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "option"
+text = "Nothing, goodbye."
+parent = 132
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "option"
+text = "I'm sure he will, goodbye."
+parent = 128
+children = [143]
+
+[[nodes]]
+id = 143
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Happy child"
+text = "Merry Christmas!"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "option"
+text = "Merry Christmas."
+parent = -1
+children = [147, 148]
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Merry Christmas."
+parent = 146
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "act"
+text = "end"
+parent = 146
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "cond=After being tasked by Anti-Santa with making children cry:|What have you got there, kiddo?"
+parent = -1
+children = [150, 151, 152, 153, 163]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What have you got there, kiddo?"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Happy child"
+text = "It's my wish-list, I've written down all the presents I would like from Santa!"
+parent = 149
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 149
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "option"
+text = "Well, that's a waste of time."
+parent = 149
+children = [154, 155, 156, 157, 161]
+
+[[nodes]]
+id = 154
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, that's a waste of time."
+parent = 153
+
+[[nodes]]
+id = 155
+depth = 3
+kind = "speaker"
+speaker = "Happy child"
+text = "No it's not! Santa gets all the nice children something from their wish-list!"
+parent = 153
+
+[[nodes]]
+id = 156
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 153
+
+[[nodes]]
+id = 157
+depth = 3
+kind = "option"
+text = "Give Anti-present."
+parent = 153
+children = [158, 159, 160]
+
+[[nodes]]
+id = 158
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "That's true, but it looks like you didn't make it onto his nice list this year, this is the only present you'll be receiving!"
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 4
+kind = "box"
+text = "The child bursts into tears when they open the present to find it contains a lump of coal."
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 4
+kind = "act"
+text = "end"
+parent = 157
+is_terminal = true
+
+[[nodes]]
+id = 161
+depth = 3
+kind = "option"
+text = "Oh right, sure he does, goodbye."
+parent = 153
+children = [162]
+
+[[nodes]]
+id = 162
+depth = 4
+kind = "other"
+text = "{{tmissing}}"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "option"
+text = "Good for you, bye."
+parent = 149
+children = [164]
+
+[[nodes]]
+id = 164
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Great work, I know you'd have it in you! Give me a moment to purify these tears and then we can continue."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "box"
+text = "Anti-Santa takes the vial and absorbs a sorrowful essence from the liquid within."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "I've purified the tears into this sorrowful solution, all you have to do is pour it into the machine over there!"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "box"
+text = "You pour the purified tears into the machine..."
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "box"
+text = "...the blizzard lets out a howl of sorrow..."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "box"
+text = "...hideous creatures emerge from the frost!"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "other"
+text = "{{qact|Frosty spiders and frosty snakelings appear around the machine.}}"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Finally, my army of sorrow brought to life!"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "These creatures, they're made from the tears I collected?"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Precisely! The sadness harvested from those tears has manifested into beings of pure sorrow, nothing will be able to stop them!"
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you planning to do with them?"
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "I shall prepare them for battle, and when the time is right, we shall storm the White Knights' Castle!"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "You have proven your inner malevolence and earned this reward."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He's busy preparing his troops. I should report back to Santa on what has occurred."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Welcome back, what have you discovered?"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Let me start from the beginning..."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "box"
+text = "..."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "...and then the frosty critters came to life, and now he's planning on using them to attack the castle!"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Oh my, then it is as I feared... although... There may be something we can do."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What are you thinking?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "I imagine those creatures are manifesting themselves through some sort of link to those children you upset."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay... and?"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "If you were to cheer up those same children, perhaps we could turn Anti-Santa's own army against him, he wouldn't stand a chance against all that Christmas cheer."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's worth a shot. How could I cheer up the children?"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "You must restore the spirit of Christmas you took away from them. I have a selection of gifts over there, grab as many as you need and deliver them to the children you upset."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sure, I'll get to it right away!"
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Crying gnome child"
+text = "Have you not tormented me enough, human?"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "option"
+text = "Give present"
+parent = -1
+children = [199, 200, 201, 202, 203, 204]
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That was all a mistake! Santa's prepared this special present just for you."
+parent = 198
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Crying gnome child"
+text = "I am wiser than to trust you again, human."
+parent = 198
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The best way you can find out if you trust somebody is to trust them."
+parent = 198
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Crying gnome child"
+text = "..."
+parent = 198
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "box"
+text = "A glow of happiness appears on the gnome child's face as they open the present."
+parent = 198
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "act"
+text = "end"
+parent = 198
+is_terminal = true
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "option"
+text = "I'll see you later."
+parent = -1
+children = [206]
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 205
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Crying child"
+text = "What do you want?"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "option"
+text = "Give present"
+parent = -1
+children = [210, 211, 212, 213, 214]
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I double-checked with Santa and it seems his helpers made a mistake, you were meant to be on the nice list all along!"
+parent = 209
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Crying child"
+text = "Really?"
+parent = 209
+
+[[nodes]]
+id = 212
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and to make up for it, Santa's asked me to give you this very special present!"
+parent = 209
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "box"
+text = "A glow of happiness appears on the child's face as they open the present."
+parent = 209
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "act"
+text = "end"
+parent = 209
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "Nothing, bye."
+parent = -1
+children = [216]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Crying child"
+text = "Haven't you punished me enough?"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "option"
+text = "Give present"
+parent = -1
+children = [220, 221, 222, 223, 224]
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It turns out Santa's pixies mixed up the list - you were on the nice one after all!"
+parent = 219
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Crying child"
+text = "Are you sure?"
+parent = 219
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, and I've got this special present from Santa just for you!"
+parent = 219
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "box"
+text = "A glow of happiness appears on the child's face as they open the present."
+parent = 219
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "act"
+text = "end"
+parent = 219
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "option"
+text = "Nothing, bye."
+parent = -1
+children = [226]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Crying child"
+text = "Go away!"
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "option"
+text = "Give present"
+parent = -1
+children = [230, 231, 232, 233, 234]
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry about earlier, it turns out you were on the nice list all along!"
+parent = 229
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Crying child"
+text = "I knew it!"
+parent = 229
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "To make up for it, Santa's asked me to give you this very special present!"
+parent = 229
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "box"
+text = "A glow of happiness appears on the child's face as they open the present."
+parent = 229
+
+[[nodes]]
+id = 234
+depth = 2
+kind = "act"
+text = "end"
+parent = 229
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "option"
+text = "Nothing, bye."
+parent = -1
+children = [236]
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 235
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Crying child"
+text = "Please leave me alone!"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "option"
+text = "Give present"
+parent = -1
+children = [240, 241, 242, 243, 244]
+
+[[nodes]]
+id = 240
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I'm here to give you a present from Santa."
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Crying child"
+text = "I was on the naughty list, remember?"
+parent = 239
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That was all a mistake! Santa's lists got mixed up, this is a special present just for you!"
+parent = 239
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "box"
+text = "A glow of happiness appears on the child's face as they open the present."
+parent = 239
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "act"
+text = "end"
+parent = 239
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "option"
+text = "Okay, bye."
+parent = -1
+children = [246]
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 245
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've cheered up all of the children!"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Great work, now we just have to... wait... what's that?"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "White Knight"
+text = "Targets approaching the castle, defensive formations!"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "other"
+text = "{{qact|The camera pans to Anti-Santa approaching the castle with multiple frosty spiders and snakelings in tow.}}"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Santa, Your{{Sic}} time is up! I'm here to put an end to this merry mascarade once and for all."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "Go get him my frosty minions! Freeze his plans of festivity for good!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Frosty spiders"
+text = "{{overhead|We obey.}}"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Frosty snakelings"
+text = "{{overhead|We obey.}}"
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "box"
+text = "The creatures surge towards the castle with evil intent..."
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Santa"
+text = "Not so fast! Happiness will prevail!"
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "box"
+text = "The creatures stop and turn towards Anti-Santa."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Anti-Santa"
+text = "What is this? What's going on..."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "box"
+text = "All of a sudden, the frosty critters unleash a flurry of attacks on Anti-Santa."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "other"
+text = "{{qact|Anti-Santa takes a 99 and collapses to the ground, and Death shows up.}}"
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "box"
+text = "Death appears, ready to claim another victim."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Death"
+text = "{{overhead|Oh no... not you again! You're not coming with me!}}"
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "box"
+text = "Death vanishes almost as quickly as he appeared; Anti-Santa's soul remaining unclaimed."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "box"
+text = "pic=Oddskull detail.png|What! You can't just... leave me here."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "box"
+text = "Evil Bob appears."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Evil Bob"
+text = "{{overhead|Meow}}"
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Evil Bob"
+text = "You don't look so good."
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "box"
+text = "pic=Oddskull detail.png|..."
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Evil Bob"
+text = "Do you wanna meet my pet? His name's Pete. Or has this amulet of santaspeak broken again?"
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "box"
+text = "pic=Oddskull detail.png|Do I get a choice?"
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Evil Bob"
+text = "Errr... No."
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "other"
+text = "{{qact|Evil Bob and Anti-Santa teleport away to ScapeRune as the screen fades to black.}}"
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Hohoho! It actually worked! We are rid of that menace once and for all!"
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What will you do now?"
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "I can finally leave the castle and carry out my festive duties. I believe you may have earned a spot on the nice list despite everything you had to do..."
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Please accept these rewards as a personal thank you for saving Christmas!"
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hey Santa, how's it going?"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Santa Claus"
+text = "Hohoho! Just making the final preparations before heading out to spread more festive cheer. Thanks again for all your help!"
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "other"
+text = "{{tmissing}}"
+parent = -1

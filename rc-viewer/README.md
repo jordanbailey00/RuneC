@@ -30,8 +30,8 @@ the viewer boundary, runtime assets, and presentation responsibilities.
 - May choose which content modules to register at startup.
 - Must not own gameplay rules, combat formulas, encounter mechanics,
   quest state machines, or other simulation logic.
-- Must treat `data/` as local generated/runtime assets owned by the
-  separate `RuneC-DB` repository, not as source files in the main RuneC repo.
+- Must treat `data/` as ignored local generated/runtime assets, not as source
+  files in the main RuneC repo.
 
 ## Key files
 
@@ -115,13 +115,9 @@ the viewer boundary, runtime assets, and presentation responsibilities.
   - `RUNEC_PLAYER_START_X`, `RUNEC_PLAYER_START_Y`
   - `RUNEC_DEV_VALIDATION`, `RUNEC_DEV_BANK_DUMMY`,
     `RUNEC_DEV_TRANSPORT_DEST`, `RUNEC_DEV_BOSS_ATTACKS`
-- Those runtime assets are expected to be local in the RuneC working
-  tree under `data/`. In normal development `data/` is a nested
-  `RuneC-DB` checkout:
-
-```bash
-git clone https://github.com/jordanbailey00/RuneC-DB.git data
-```
+- Those runtime assets are expected to be local in the RuneC working tree
+  under `data/`, populated by `scripts/setup-data.sh` or by maintainer data
+  rebuild tooling.
 
 - The viewer must not read runtime assets from a sibling reference checkout.
   Reference repos are audit material; generated viewer assets are loaded from

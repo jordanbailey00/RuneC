@@ -1,0 +1,3590 @@
+title = "Transcript:Cabin Fever"
+npcs = ["Bill Teach", "Mama", "Pirate"]
+node_count = 459
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Mumblelandlubbermumblemumble..."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "What right have ye to be so happy, landlubber?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well it is quite a nice day."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye, that it is."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Will ye forgive an old sailor his temper [lad/lass/kid]? I'm in dire straits indeed."
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's the problem? I may be able to help."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I dunno, [lad/lass/kid], I need a pirate to help me with my problem, but none will sail with me."
+parent = -1
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, ye look like ye might have the right stuff, tell me would ye like te be a pirate?"
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "option"
+text = "Yes, I've always wanted to be a pirate!"
+parent = -1
+children = [10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 29, 30, 31, 32, 33, 34, 35, 36, 37, 44]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I've always wanted to be a pirate!"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "cond"
+text = "If the player does not have all quest requirements:"
+parent = 9
+children = [12, 13, 14]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Bill Teach"
+text = "It takes more grit than most have te be a pirate, and I don't think ye've got what it takes [lad/lass/kid]."
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "box"
+text = "You do not meet all of the requirements to start the Cabin Fever quest."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well [lad/lass/kid], I don't think ye could pirate yer way out of a chest full of piracy."
+parent = 9
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Awww..."
+parent = 9
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "But since nobody else will risk the trip ye'll do!"
+parent = 9
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well [lad/lass/kid], I be Bill Teach, the Captain of the Adventurous, one of the finest ships ever to sail these waters."
+parent = 9
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I'm in port doin' some legitimate tradin' before headin' back to Mos Le'Harmless."
+parent = 9
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Mos Le'Harmless? Where is that?"
+parent = 9
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "It's a pirate stronghold off the southern coast of Morytania. Been in existence for years it has and I reckon it's the best place for pirates to relax!"
+parent = 9
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, one of the best... A lot be liking the Pandemonium these days, and Brimhaven does have that fancy Agility Arena..."
+parent = 9
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will it be OK for me to go there if I am not a pirate?"
+parent = 9
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Of course [lad/lass/kid], once we make landfall ye'll have worked as a sailor on a pirate vessel, which is one of the easiest ways to become a true pirate."
+parent = 9
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "cond"
+text = "If the player has completed The Pandemonium:"
+parent = 9
+children = [26, 27, 28]
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Worked as a sailor? Do I really need to do that? I've already got some sailing experience."
+parent = 25
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Of course ye do, [lad/lass/kid]! Plenty be claiming they've got what it takes to be a pirate, but I can't be takin' ye word 'till I see it for myself."
+parent = 25
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "act"
+text = "continues"
+parent = 25
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "This brings me back to the reason I'm stuck here of course, and the reason I need your help."
+parent = 9
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Last night I got into a war o' words with another Cap'n, and he has vowed to sink my ship and put all of my crew to the sword."
+parent = 9
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How horrible! How did your crew react?"
+parent = 9
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "By desertin'."
+parent = 9
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "All of them?"
+parent = 9
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Every last one!"
+parent = 9
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "The second I leave port I'll come under attack. I think I'll be able te make it if I have another person helpin' out, but I wouldn't stand a chance by me self."
+parent = 9
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye said ye would help me out [lad/lass/kid], will ye stand by yer word?"
+parent = 9
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "option"
+text = "Yes, I am a man of my word."
+parent = 9
+children = [38, 39, 40, 41, 42, 43]
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I am a [man/woman] of my word."
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Arr! Ye struck me as a [man/woman] of integrity!"
+parent = 37
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Bill Teach"
+text = "My ship is the Adventurous, and she's at the east dock."
+parent = 37
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "You won't...err...I mean ye'll not regret it Cap'n!"
+parent = 37
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I'm sure I won't."
+parent = 37
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "act"
+text = "end"
+parent = 37
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "option"
+text = "No, if it's so dangerous your crew left, count me out."
+parent = 9
+children = [45, 46, 47, 48]
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "No, if it's so dangerous your crew left, count me out."
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, that doesn't surprise me much."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Bill Teach"
+text = "On yer way [lad/lass/kid], leave me be."
+parent = 44
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "No thanks, it sounds quite dangerous."
+parent = -1
+children = [50, 51, 52]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No thanks, it sounds quite dangerous."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye, that it be. Come back when yer liver ain't so lily-like, [lad/lass/kid]."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think that whoever owns this ship will be happy with me wandering all over it."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Let me finish my drink, landlubber!"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "If ye ain't up te scratch as a pirate I may not get another one."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aye aye Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Just remember, [he/she]'s all ye could get, Bill, and maybe ye'll get through it..."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye came!"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You seem rather surprised."
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, I had the feelin' ye might have run off when ye realised how much of a task ye had ahead of ye."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't ye worry about me, Cap'n! I'm the scurviest, throat-cuttinest pirate to ever walk the mainplank! Arr!"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye, I should have remembered ye was eager."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye all ready to go [lad/lass]?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "option"
+text = "Let's go Cap'n!"
+parent = -1
+children = [67, 68]
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's go Cap'n!"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "act"
+text = "end"
+parent = 66
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "option"
+text = "Can I just go grab something?"
+parent = -1
+children = [70, 71, 72]
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I just go grab something?"
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye [lad/lass], take yer time, I'm not goin' anywhere without ye."
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "act"
+text = "end"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye all ready to go lad?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "option"
+text = "Let's go Cap'n!"
+parent = -1
+children = [76]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "above"
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "Can I just go grab something?"
+parent = -1
+children = [78]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "act"
+text = "above"
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, it looks like they've found us Cap'n."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye don't say [lad/lass]."
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, without anyone else te help ye'll have te do some hard work if we don't want to end up walkin' home on the sea bed."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What will you be doing?"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well if their first shot hadn't taken out the cannon I'd be firing that at them."
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Arr! They seek te hole the ship! Go and take care of their cannon."
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "If ye grab some fuse from the gun locker, and a rope from the repair locker, then ye can use the rope on the sails to swing over and deal with their cannon."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Just take the fuse, use it on the barrel of gunpowder next to the cannon, and then light it with something."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "A lantern, a tinderbox, it doesn't matter."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "End of problem."
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do I get back?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "They have masts as well don't they?"
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Just do the same trick using some rope on their sails and swing over."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I'll hop to it Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Stop doin' that!"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye ain't a pirate yet by a long shot!"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I'll be on deck if ye need me."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now to take care of that cannon!"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "other"
+text = "{{mes|It will probably not take Bill long to notice you have left the battle.}}"
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "other"
+text = "{{mes|He will no doubt return to Phasmatys and wait for you to come back.}}"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "box"
+text = "Urgent as this looks, if I haven't taken out that cannon they will just hole the ship again."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Just to clear everything up, what is it you want me to do?"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, ye'll need to silence their cannon before it sinks us. Before ye do that though, ye'll need to swing over to their ship."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "option"
+text = "How do I make a rope swing?"
+parent = -1
+children = [107, 108, 109, 110, 111, 112, 113, 114]
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I make a rope swing?"
+parent = 106
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Yer not much of a pirate are ye lad?"
+parent = 106
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye climb up the mast and use a rope on the sails up there."
+parent = 106
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then ye climb down and ye swing on the rope."
+parent = 106
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "If I have te explain how ye do THAT then I might as well just send out some biscuit weevles to do the job instead."
+parent = 106
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aye aye Cap'n! One rope swing coming right up!"
+parent = 106
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Egad..."
+parent = 106
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "act"
+text = "end"
+parent = 106
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "option"
+text = "How can I blow up their cannon?"
+parent = -1
+children = [116, 117, 118, 119, 120, 121, 122, 123]
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How can I blow up their cannon?"
+parent = 115
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, ye'll need some fuse from the cannon locker below decks."
+parent = 115
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Swing over to the enemy ship and put the fuse in the barrel of gunpowder they'll have next to the cannon to speed up their firin'."
+parent = 115
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then, use something on the fuse te get it lit.  A tinderbox, candle or any sort of flame will do."
+parent = 115
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "After that ye just step back and let it burn by its self."
+parent = 115
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I'll blow that cannon sky high, sez I!"
+parent = 115
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Give me strength..."
+parent = 115
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "end"
+parent = 115
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Err, Cap'n, can we go back to port?"
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Go back?"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Got a little scared now have we?"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not that, I just need to grab something from the bank, that's all..."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "A likely story."
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Are ye sure ye can't get by without it?"
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "option"
+text = "No, I need to go back now."
+parent = -1
+children = [132, 133, 134, 135, 136]
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I need to go back now."
+parent = 131
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I thought as much."
+parent = 131
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "act"
+text = "(The screen fades to black. The player returns to Port Phasmatys.)"
+parent = 131
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "box"
+text = "You return to port."
+parent = 131
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "act"
+text = "end"
+parent = 131
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "I'll try..."
+parent = -1
+children = [138, 139, 140]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll try..."
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "That's the spirit!"
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 137
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, as much as this is an interestin' break, why don't ye head back to the ship and we'll see if we can beat them this time?"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Stop sayin' that!"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "All right, lad let's try this again. This time, try not te run away!"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye all ready to go lad?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "option"
+text = "Let's go Cap'n!"
+parent = -1
+children = [148]
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "act"
+text = "above"
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "option"
+text = "Can I just go grab something?"
+parent = -1
+children = [150]
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "act"
+text = "above"
+parent = 149
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "One look at the enemy and ye run away."
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Get over there and take out their cannon before I throw ye there me self."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Kill the squid-lovin' dog!"
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "I'll have ye guts fer garters!"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Kill the landlubber!"
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Get off my ship!"
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Te Davy-Jones locker with ye!"
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Fancy a crumpet?"
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Sorry, I mean..."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Arr! Run him through sez I!"
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "I'm gonna kill ye!"
+parent = -1
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "speaker"
+speaker = "Pirate"
+text = "Prepare te die!"
+parent = -1
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "box"
+text = "I don't have time to search that."
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "box"
+text = "The rope falls off the mast! Clearly your knots are sub-sailor standard."
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "box"
+text = "You fall in the water with a splash!"
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "box"
+text = "You have to swim across; which puts a considerable drain on your energy."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "box"
+text = "You attach the fuse to the barrel."
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "box"
+text = "You are a little too close. Try lighting the end of the fuse."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "box"
+text = "The fuse refuses to light. Try again."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "box"
+text = "You cannot get the flame close enough to the fuse to use that to light it."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "box"
+text = "You light the fuse..."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "box"
+text = "...and destroy the barrel and the cannon."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "act"
+text = "(The barrel blows up, taking out the cannon in the process.)"
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I've blown their cannon to smithereens Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Yer not a pirate yet [lad/lass], so stop talkin' like that!"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, ye've sorted out their cannon, but we're takin' on water."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Go below deck and sort out the leaks."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Will smearing swamp paste on the holes do?"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "No [lad/lass], these holes were made by cannon fire."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye'll need to get some planks from the repair locker and tack them in place. Then ye smear swamp paste over the planks to seal the hole."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I'll have this ship ship-shape in no time! Arr!"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Wait 'till we make landfall before ye start actin' like a pirate!"
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Errr...I may well have been caught up in the whole 'pirate' thing, and I can't seem to remember what I need to do now..."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Zounds..."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Pay attention!"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye'll need to get some planks from the repair locker and tack them in place. Then ye smear swamp paste over the planks to seal the hole."
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I be rememberin' now Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "This is what I get when I ask random strangers for help..."
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Looks like they haven't been back to port to get that cannon fixed, which is lucky."
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Get below and fix the holes in the hull pronto, or we'll sink before they have a chance te kill us!"
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "box"
+text = "You need 2 repair planks to repair this hole."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "box"
+text = "You need 10 tacks to repair this hole."
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "box"
+text = "You need a Hammer to repair this hole."
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "box"
+text = "You nail the Planks over the the hole!"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 221
+depth = 1
+kind = "box"
+text = "You need Swamp Paste to waterproof this hole."
+parent = -1
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "box"
+text = "You smear the Swamp Paste over the hole!"
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The holes be plugged Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Nailed shut and waterproofed?"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aye!"
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Good work [lad/lass]."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Why not pay them a visit and go plunder their hold?"
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I'll plunder their booty and no mistake!"
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Gadzooks..."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Come back here and drop it in the chest in the hold."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aye aye Cap'n! One plunderin' comin' right up!"
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I've been a pirate all me life and I've never heard anyone keep harpin' on like that!"
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Stop it!"
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So...how many loads of plunder did you want me to get?"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ten! Can't ye count that high?"
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Of course I can!"
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What happens if I take all the plunder I find and there is less than ten loads?"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then ye wait for the pirates to stash some more in the hold. Since they are under attack they'll be dumpin' their gold and stuff in there every chance they get."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Just give it a minute and head back!"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I'll keep plunderin' till the hold be full of booty!"
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Yer not making any friends here [lad/lass], just go and do it."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "When yer quite done runnin' away lad ye've got a load of plunder to be grabbin'!"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "cond"
+text = "If the player has recently plundered the chest:"
+parent = -1
+children = [250, 251]
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "box"
+text = "This chest has been recently plundered."
+parent = 249
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "act"
+text = "end"
+parent = 249
+is_terminal = true
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "box"
+text = "You find some plunder!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "act"
+text = "(The player finds 3 loads of plunder.)"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "cond"
+text = "If the player has recently looted the crate:"
+parent = -1
+children = [256, 257]
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "box"
+text = "This crate has been recently looted."
+parent = 255
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "act"
+text = "end"
+parent = 255
+is_terminal = true
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "box"
+text = "You find some plunder!"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "act"
+text = "(The player finds two loads of plunder.)"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "cond"
+text = "If the player has recently ransacked the barrel:"
+parent = -1
+children = [262, 263]
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "box"
+text = "This barrel has been recently ransacked."
+parent = 261
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "act"
+text = "end"
+parent = 261
+is_terminal = true
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "box"
+text = "You find some plunder!"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "act"
+text = "(The player finds one load of plunder.)"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "cond"
+text = "If the player has no plunder to store"
+parent = -1
+children = [268, 269]
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "box"
+text = "You have plunder to deposit."
+parent = 267
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "act"
+text = "end"
+parent = 267
+is_terminal = true
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "box"
+text = "You deposit [X] loads of plunder in the chest."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "box"
+text = "You deposit as much plunder as you can."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "cond"
+text = "If the storage is filled with 10 plunder"
+parent = -1
+children = [275, 276]
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "box"
+text = "This chest is full of plunder."
+parent = 274
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "act"
+text = "end"
+parent = 274
+is_terminal = true
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "box"
+text = "This chest has [X] loads of plunder inside."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "box"
+text = "I seem to have taken all the plunder."
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I warn ye, [lad/lass], if the first word out of yer mouth is 'Arr' I'll be wearing yer spleen as a novelty hat before ye reach the second 'r'!"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ahoy shipmate!"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I should have seen that comin'"
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Cap'n! I've put ten loads of plunder in the chest, in the hold!"
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "cond"
+text = "If the player has extra plunder on them:"
+parent = -1
+children = [286, 287, 288, 289, 290]
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I even had some left over!"
+parent = 285
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Let me see that."
+parent = 285
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I have those back?"
+parent = 285
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Have what back?"
+parent = 285
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nothing..."
+parent = 285
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are we all done now?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Not yet! Let's give em a blast with the cannon before we leave!"
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How, the cannon is broken."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Alright [lad/lass], try and stay with me on this one."
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "See, there is a secret technique for making things that be broken right again."
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "We call this magical process...repairin'."
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know what repairing is!"
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How do I repair the cannon?"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye need to remove the old barrel, then replace it with a new one from the gun locker downstairs."
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And then what?"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I don't want to overload ye with too many details right now. Come tell me when the cannon is ready again."
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What was I doing again?"
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "If ye know what is good for ye, yer off to fix the cannon!"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How was I going to do that again?"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "By replacing the broken barrel with a new one! Hop to it [lad/lass], the salt air is clearly eatin' into yer brains!"
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Have ye sorted out the cannon yet?"
+parent = -1
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then hop to it lad!"
+parent = -1
+
+[[nodes]]
+id = 311
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 312
+depth = 1
+kind = "box"
+text = "You take a cannon barrel."
+parent = -1
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "box"
+text = "You don't need [a Ramrod/a cannon ball/a canister/any Fuse] right now."
+parent = -1
+
+[[nodes]]
+id = 315
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 316
+depth = 1
+kind = "box"
+text = "You attach the new barrel to the cannon."
+parent = -1
+
+[[nodes]]
+id = 317
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Cap'n I..."
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Have ye fixed the cannon yet, yes or no."
+parent = -1
+
+[[nodes]]
+id = 320
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes."
+parent = -1
+
+[[nodes]]
+id = 321
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye did? Great!"
+parent = -1
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Now ye can give those pirates a good shot across their bows."
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye'll need to load the cannon, and if ye get it wrong the barrel will blow, and ye'll need to start again."
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "First, ye take some powder from the powder keg."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then ye use a ramrod from the gun locker on the powder to tamp the charge."
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then ye use a canister round on the cannon."
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Finally ye use some fuse on the cannon, and light it like ye did the fuse on the barrel earlier."
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then, ye'll need to use the ramrod on the cannon to clean it out for the next shot."
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye got all that?"
+parent = -1
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but if I forget I'll come and ask you."
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "And te think this was all I could get te help..."
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I can guess from the lack of an explosion that ye haven't fired the cannon yet, correct?"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, not as such no."
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "And I'll bet ye want a quick recap of how to do it, correct?"
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That would help to be honest."
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye'll need to load the cannon, and if ye get it wrong the barrel will blow, and ye'll need to start again."
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "First, ye take some powder from the powder keg."
+parent = -1
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then ye use a ramrod from the gun locker on the powder to tamp the charge."
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then ye use a canister round on the cannon."
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Finally ye use some fuse on the cannon, and light it like ye did the fuse on the barrel earlier."
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Then, ye'll need to use the ramrod on the cannon to clean it out for the next shot."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye got all that this time?"
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aye Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Yer still not a pirate, so cut that out!"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "We were on the home stretch lad why did we turn back?"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Never mind, just go shoot the pirates and let's press on."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "box"
+text = "You pour the powder into the cannon."
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "box"
+text = "You shove the Ramrod into the cannon barrel."
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "box"
+text = "You roll the canister round into the cannon."
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "box"
+text = "You ready the cannon for firing."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "box"
+text = "You take some gunpowder{{sic|no full stop"
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "box"
+text = "The cannon blows up!"
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "act"
+text = "(The player takes 5 damage and the barrel is destroyed.)"
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "box"
+text = "You inspect the cannon..."
+parent = -1
+children = [361, 363, 367, 369, 371]
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "cond"
+text = "The cannon has not been cleaned out after firing:"
+parent = 360
+children = [362]
+
+[[nodes]]
+id = 362
+depth = 3
+kind = "box"
+text = "The cannon has been fired, but not cleaned with a Ramrod."
+parent = 361
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "cond"
+text = "The cannon has powder in it:"
+parent = 360
+children = [364, 365]
+
+[[nodes]]
+id = 364
+depth = 3
+kind = "box"
+text = "The cannon has had powder added."
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 3
+kind = "cond"
+text = "The powder has not been packed down:"
+parent = 363
+children = [366]
+
+[[nodes]]
+id = 366
+depth = 4
+kind = "box"
+text = "... but the powder had not been tamped down with a Ramrod{{sic|no full stop"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "cond"
+text = "The cannon has been loaded with a canister or cannonball:"
+parent = 360
+children = [368]
+
+[[nodes]]
+id = 368
+depth = 3
+kind = "box"
+text = "The cannon has been loaded with ammunition."
+parent = 367
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "cond"
+text = "The cannon was loaded properly:"
+parent = 360
+children = [370]
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "box"
+text = "Overall everything seems fine."
+parent = 369
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "cond"
+text = "The cannon was loaded improperly:"
+parent = 360
+children = [372]
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "box"
+text = "Something seems wrong, you should clean it out and start from the beginning."
+parent = 371
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "other"
+text = "{{mes|This cannonball is far too big.}}"
+parent = -1
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "box"
+text = "You clean out the cannon."
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "act"
+text = "(The cannon is emptied.)"
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "box"
+text = "You fire the cannon at the crew!"
+parent = -1
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "cond"
+text = "If the player hits the enemy:"
+parent = -1
+children = [379, 380, 381]
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "box"
+text = "You hit them!"
+parent = 378
+
+[[nodes]]
+id = 380
+depth = 2
+kind = "act"
+text = "(The enemy takes 52 damage and dies.)"
+parent = 378
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "act"
+text = "end"
+parent = 378
+is_terminal = true
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "cond"
+text = "If the player misses the enemy:"
+parent = -1
+children = [383, 384, 385]
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "box"
+text = "You missed!"
+parent = 382
+
+[[nodes]]
+id = 384
+depth = 2
+kind = "box"
+text = "Try waiting for there to be pirates in front of the cannon next time you fire!"
+parent = 382
+
+[[nodes]]
+id = 385
+depth = 2
+kind = "act"
+text = "end"
+parent = 382
+is_terminal = true
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "box"
+text = "There is no powder in this cannon, you will need to start again."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "act"
+text = "(The cannon is emptied.)"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "box"
+text = "Looks like you forgot to load it, you will need to start again."
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "act"
+text = "(The cannon is emptied.)"
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, that seems to have showed them Cap'n!"
+parent = -1
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Great! This ordeal will soon be over!"
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Aye Cap'n, we'll beat these pirates yet!"
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Pirates?"
+parent = -1
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Yes, that ordeal too!"
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Now [lad/lass], we'll send them to the bottom of the sea."
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, ye'll shoot holes in their hull with the cannon."
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Essentially ye do what ye just did, but use a cannonball from the gun locker in the hold instead of the canister rounds."
+parent = -1
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr! I'll sink them scurvy dogs!"
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Again with the 'Arr!'..."
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Give it three tries and see if they sink, that many holes should do it."
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Cap'n, I know I need to load and fire the cannon at the enemy ship..."
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye [lad/lass]?"
+parent = -1
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "and I know I do this by adding powder to the cannon, tamping the charge with a ramrod, adding a cannonball, adding some fuse and then lighting it..."
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye [lad/lass]?"
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And I also remembered your warning about cleaning the barrel after every shot to avoid the cannon exploding..."
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye [lad/lass]?"
+parent = -1
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I've forgotten how many times I'm supposed to shoot the enemy ship..."
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Three! Three times [lad/lass]! Three! One more than two, one less than four! Got it!"
+parent = -1
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There is no need to shout..."
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Were almost there! Just hole their hull and we'll be able to make it past. Get to it!"
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "box"
+text = "You shoot the cannon ball at the enemy ship!"
+parent = -1
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "cond"
+text = "If the player hits their shot:"
+parent = -1
+children = [419, 420]
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "box"
+text = "You put a hole in the hull!"
+parent = 418
+
+[[nodes]]
+id = 420
+depth = 2
+kind = "act"
+text = "end"
+parent = 418
+is_terminal = true
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "cond"
+text = "If the player misses their shot:"
+parent = -1
+children = [422, 423]
+
+[[nodes]]
+id = 422
+depth = 2
+kind = "box"
+text = "You fail to damage the hull."
+parent = 421
+
+[[nodes]]
+id = 423
+depth = 2
+kind = "act"
+text = "end"
+parent = 421
+is_terminal = true
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "box"
+text = "You shoot the cannon ball at the enemy ship!"
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "box"
+text = "You put another hole in the hull!"
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 427
+depth = 1
+kind = "act"
+text = "(End-game cutscene begins.)"
+parent = -1
+
+[[nodes]]
+id = 428
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye've done it [lad/lass]! They're sunk now!"
+parent = -1
+
+[[nodes]]
+id = 429
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Let's head to the island!"
+parent = -1
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "speaker"
+speaker = "Mama"
+text = "Bill? You look like you've been to Davey Jones' locker and back."
+parent = -1
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Oh, Miss La'Fiette, if only I were that lucky."
+parent = -1
+
+[[nodes]]
+id = 432
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "My crew deserted and I was stuck with an adventurer mannin' me ship."
+parent = -1
+
+[[nodes]]
+id = 433
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "[He/She] was as piratical as a bunch of Dwellberries..."
+parent = -1
+
+[[nodes]]
+id = 434
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am still here you know..."
+parent = -1
+
+[[nodes]]
+id = 435
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye [lad/lass], I remember."
+parent = -1
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "speaker"
+speaker = "Mama"
+text = "I'll leave you two alone."
+parent = -1
+
+[[nodes]]
+id = 437
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "All right..."
+parent = -1
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ok [player name], yer now a pirate, but..."
+parent = -1
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arr!"
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "BUT ye can't just go around talking like some pirate in a fancy play."
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "No self-respectin' pirate says 'Arr' that much!"
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Well, except for Fancy Dan, but that be another story."
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Here, have this book. It'll learn ye how to be a pirate."
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Or at least learn ye te talk proper like one."
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So all I have to do is read this book and I'm a pirate?"
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Aye...that be all ye need te do."
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Ye'll need that book if ye want te trade with some of the pirates round here."
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Outsiders tend not te understand them if ye catch me drift."
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Anyway, I'd have been shark bait without ye."
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "If ye get a moment come see me fer yer share of the loot."
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "I'm sure as soon as ye stop yellin' 'Arr!' ye'll make a great pirate."
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Thanks [player name]. If ye need a lift back, just come see me."
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I have that gold now?"
+parent = -1
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Bill Teach"
+text = "Sure ye can. Here."
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "act"
+text = "(The player is awarded 10,000 coins.)"
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

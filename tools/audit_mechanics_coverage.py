@@ -7,16 +7,18 @@ import re
 import tomllib
 from pathlib import Path
 
+from content_paths import content_read_path
+
 ROOT = Path(__file__).resolve().parents[1]
-MECH_DIR = ROOT / "data/curated/mechanics"
-ENCOUNTER_DIR = ROOT / "data/curated/encounters"
+MECH_DIR = content_read_path("mechanics")
+ENCOUNTER_DIR = content_read_path("encounters")
 MECH_EXTRACT_REPORT = ROOT / "tools/reports/mechanics_extract.txt"
 ENCOUNTER_REPORT = ROOT / "tools/reports/encounters.txt"
 REGULAR_REPORT = ROOT / "tools/reports/regular_npc_mechanics.txt"
 ACTIVITY_REPORT = ROOT / "tools/reports/activity_mechanics.txt"
 ACTIVITY_STATE_REPORT = ROOT / "tools/reports/activity_states.txt"
-ACTIVITY_STATE_SRC = ROOT / "data/curated/activity_state_machines.toml"
-OWNER_MAP = ROOT / "data/curated/mechanics_owners.toml"
+ACTIVITY_STATE_SRC = content_read_path("activity_state_machines.toml")
+OWNER_MAP = content_read_path("mechanics_owners.toml")
 SCRIPT_STUBS = ROOT / "rc-content/encounters/scripts.c"
 OUT = ROOT / "tools/reports/mechanics_coverage.txt"
 

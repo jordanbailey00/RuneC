@@ -8,13 +8,15 @@ build_cov/
 *.gcov
 .cache/
 dist-data/
+generated/
 compile_commands.json
 __pycache__/
 *.pyc
 .codex
 typescript
-# Large asset files
-data/
+# Large runtime data files
+data/*
+!/data/README.md
 data/regions/varrock.objects
 data/regions/varrock.atlas
 data/regions/varrock.terrain
@@ -29,6 +31,20 @@ docs/
 *.md
 !/AGENT.md
 !/README.md
+!/data_cleanup.md
+!/data_cleanup_history.md
+!/data_pipeline.md
+!/git_setup.md
+!/content/README.md
+!/content/**/*.md
+!/data/README.md
+!/data-sources/README.md
+!/docs/
+!/docs/changelog.md
+!/schema/
+!/schema/README.md
+!/schema/packs/
+!/schema/packs/*.md
 !/rc-core/AGENT.md
 !/rc-core/README.md
 !/rc-viewer/README.md

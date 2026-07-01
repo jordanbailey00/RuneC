@@ -10,15 +10,15 @@
 #define TRAV_VERSION 1u
 #define NO_TILE 0xFFFFu
 
-typedef struct {
-    uint32_t first, count;
-} RcTraversalIndex;
-
 RcTraversalEdge *g_rc_traversal_edges = NULL;
 int g_rc_traversal_edge_count = 0;
 
-static RcTraversalIndex g_traversal_index[RC_TRAVERSAL_KIND_COUNT]
+static RcTraversalRange g_traversal_index[RC_TRAVERSAL_KIND_COUNT]
                                           [RC_TRAVERSAL_MAX_SOURCE_ID];
+static const RcTraversalEdge *g_active_traversal_edges = NULL;
+static const RcTraversalRange (*g_active_traversal_index)
+    [RC_TRAVERSAL_MAX_SOURCE_ID] = g_traversal_index;
+static int g_active_traversal_edge_count = 0;
 
 static int read_str8(FILE *f, char *out, int cap,
                      const char *path, const char *what) {
@@ -39,8 +39,44 @@ static int valid_key(int kind, uint32_t source_id) {
         && source_id < RC_TRAVERSAL_MAX_SOURCE_ID;
 }
 
-int rc_load_traversal_edges(const char *path) {
-    if (!path) return -1;
+void rc_traversal_data_init(RcTraversalData *data) {
+    if (!data) return;
+    data->edges = NULL;
+    data->edge_count = 0;
+    memset(data->index, 0xFF, sizeof(data->index));
+    for (int k = 0; k < RC_TRAVERSAL_KIND_COUNT; k++) {
+        for (int i = 0; i < RC_TRAVERSAL_MAX_SOURCE_ID; i++) {
+            data->index[k][i].count = 0;
+        }
+    }
+}
+
+void rc_traversal_data_free(RcTraversalData *data) {
+    if (!data) return;
+    free(data->edges);
+    rc_traversal_data_init(data);
+}
+
+void rc_traversal_use_data(const RcTraversalData *data) {
+    if (!data) {
+        g_active_traversal_edges = g_rc_traversal_edges;
+        g_active_traversal_edge_count = g_rc_traversal_edge_count;
+        g_active_traversal_index = g_traversal_index;
+        return;
+    }
+    g_active_traversal_edges = data->edges;
+    g_active_traversal_edge_count = data->edge_count;
+    g_active_traversal_index = data->index;
+}
+
+void rc_traversal_reset_data_if_active(const RcTraversalData *data) {
+    if (data && g_active_traversal_edges == data->edges) {
+        rc_traversal_use_data(NULL);
+    }
+}
+
+int rc_load_traversal_edges_into(const char *path, RcTraversalData *data) {
+    if (!path || !data) return -1;
     FILE *f = rc_asset_fopen(path, "rb");
     if (!f) return -1;
 
@@ -58,12 +94,10 @@ int rc_load_traversal_edges(const char *path) {
         rc_asset_close(f);
         return -1;
     }
-    memset(g_traversal_index, 0xFF, sizeof(g_traversal_index));
-    for (int k = 0; k < RC_TRAVERSAL_KIND_COUNT; k++) {
-        for (int i = 0; i < RC_TRAVERSAL_MAX_SOURCE_ID; i++) {
-            g_traversal_index[k][i].count = 0;
-        }
-    }
+    memset(data->index, 0xFF, sizeof(data->index));
+    for (int k = 0; k < RC_TRAVERSAL_KIND_COUNT; k++)
+        for (int j = 0; j < RC_TRAVERSAL_MAX_SOURCE_ID; j++)
+            data->index[k][j].count = 0;
 
     for (uint32_t i = 0; i < count; i++) {
         RcTraversalEdge *row = &rows[i];
@@ -97,33 +131,85 @@ int rc_load_traversal_edges(const char *path) {
         row->start_plane = (uint8_t)((planes >> 8) & 0xFF);
         row->dest_plane = (uint8_t)(planes & 0xFF);
         if (valid_key(row->kind, row->source_id)) {
-            RcTraversalIndex *idx = &g_traversal_index[row->kind][row->source_id];
+            RcTraversalRange *idx =
+                &data->index[row->kind][row->source_id];
             if (idx->first == UINT32_MAX) idx->first = i;
             idx->count++;
         }
     }
 
     rc_asset_close(f);
+    free(data->edges);
+    data->edges = rows;
+    data->edge_count = (int)count;
+    return data->edge_count;
+}
+
+int rc_traversal_mirror_to_globals(const RcTraversalData *data) {
+    if (!data) return 0;
+    if (data->edge_count == g_rc_traversal_edge_count
+            && data->edge_count > 0 && data->edges && g_rc_traversal_edges
+            && memcmp(g_rc_traversal_edges, data->edges,
+                      (size_t)data->edge_count * sizeof(*data->edges)) == 0) {
+        memcpy(g_traversal_index, data->index, sizeof(g_traversal_index));
+        return 1;
+    }
+    RcTraversalEdge *rows = NULL;
+    if (data->edge_count > 0) {
+        if (!data->edges) return 0;
+        rows = malloc((size_t)data->edge_count * sizeof(*rows));
+        if (!rows) return 0;
+        memcpy(rows, data->edges, (size_t)data->edge_count * sizeof(*rows));
+    }
     free(g_rc_traversal_edges);
     g_rc_traversal_edges = rows;
-    g_rc_traversal_edge_count = (int)count;
-    return g_rc_traversal_edge_count;
+    g_rc_traversal_edge_count = data->edge_count;
+    memcpy(g_traversal_index, data->index, sizeof(g_traversal_index));
+    return 1;
+}
+
+int rc_load_traversal_edges(const char *path) {
+    RcTraversalData *data = calloc(1, sizeof(*data));
+    if (!data) return -1;
+    rc_traversal_data_init(data);
+    int loaded = rc_load_traversal_edges_into(path, data);
+    if (loaded >= 0 && !rc_traversal_mirror_to_globals(data)) loaded = -1;
+    rc_traversal_data_free(data);
+    free(data);
+    if (loaded >= 0) rc_traversal_use_data(NULL);
+    return loaded;
 }
 
 const RcTraversalEdge *rc_traversal_edges_for(int kind, int source_id,
                                               int *count) {
+    const RcTraversalEdge *edges = g_active_traversal_edges
+                                 ? g_active_traversal_edges
+                                 : g_rc_traversal_edges;
+    const RcTraversalRange (*index)[RC_TRAVERSAL_MAX_SOURCE_ID] =
+        g_active_traversal_index ? g_active_traversal_index
+                                 : g_traversal_index;
     if (source_id < 0 || !valid_key(kind, (uint32_t)source_id)
-            || !g_rc_traversal_edges) {
+            || !edges) {
         if (count) *count = 0;
         return NULL;
     }
-    RcTraversalIndex idx = g_traversal_index[kind][source_id];
+    RcTraversalRange idx = index[kind][source_id];
     if (idx.first == UINT32_MAX) {
         if (count) *count = 0;
         return NULL;
     }
     if (count) *count = (int)idx.count;
-    return &g_rc_traversal_edges[idx.first];
+    return &edges[idx.first];
+}
+
+const RcTraversalEdge *rc_traversal_edges_all(int *count) {
+    const RcTraversalEdge *edges = g_active_traversal_edges
+                                 ? g_active_traversal_edges
+                                 : g_rc_traversal_edges;
+    int edge_count = g_active_traversal_edges ? g_active_traversal_edge_count
+                                              : g_rc_traversal_edge_count;
+    if (count) *count = edge_count;
+    return edge_count > 0 ? edges : NULL;
 }
 
 const RcTraversalEdge *rc_traversal_find(int kind, int source_id,
@@ -144,9 +230,14 @@ const RcTraversalEdge *rc_traversal_find(int kind, int source_id,
 }
 
 const RcTraversalEdge *rc_traversal_find_target(int kind, const char *target) {
-    if (!target || !g_rc_traversal_edges) return NULL;
-    for (int i = 0; i < g_rc_traversal_edge_count; i++) {
-        const RcTraversalEdge *row = &g_rc_traversal_edges[i];
+    const RcTraversalEdge *edges = g_active_traversal_edges
+                                 ? g_active_traversal_edges
+                                 : g_rc_traversal_edges;
+    int edge_count = g_active_traversal_edges ? g_active_traversal_edge_count
+                                              : g_rc_traversal_edge_count;
+    if (!target || !edges) return NULL;
+    for (int i = 0; i < edge_count; i++) {
+        const RcTraversalEdge *row = &edges[i];
         if (row->kind == (uint8_t)kind && strcmp(row->target, target) == 0) {
             return row;
         }

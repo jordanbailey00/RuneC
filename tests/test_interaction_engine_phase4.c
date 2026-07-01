@@ -30,7 +30,6 @@ static void tick_until_inactive(RcWorld *world, int max_ticks) {
 }
 
 static void test_route_face_and_dispatch_noncombat_npc(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -62,7 +61,6 @@ static void test_route_face_and_dispatch_noncombat_npc(void) {
 }
 
 static void test_attack_range_dispatch_and_stale_target_failure(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -107,6 +105,5 @@ static void test_attack_range_dispatch_and_stale_target_failure(void) {
 int main(void) {
     test_route_face_and_dispatch_noncombat_npc();
     test_attack_range_dispatch_and_stale_target_failure();
-    rc_interaction_clear_handlers();
     return 0;
 }

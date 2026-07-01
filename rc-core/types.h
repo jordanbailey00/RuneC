@@ -523,6 +523,66 @@ typedef struct {
     uint8_t slayer_combat_achievement_tier;
 } RcPlayer;
 
+struct RcWorld;
+
+#define RC_INTERACTION_KEY_ANY -1
+#define RC_INTERACTION_CONTENT_GROUP_NPC_ATTACK 1
+#define RC_INTERACTION_CONTENT_GROUP_DIALOGUE 2
+#define RC_INTERACTION_CONTENT_GROUP_SHOP 3
+#define RC_INTERACTION_CONTENT_GROUP_BANK 4
+#define RC_INTERACTION_CONTENT_GROUP_SKILLING 5
+#define RC_INTERACTION_RESULT_MESSAGE_LEN 96
+#define RC_MAX_INTERACTION_HANDLERS 256
+
+typedef enum {
+    RC_INTERACTION_SYSTEM_NONE = 0,
+    RC_INTERACTION_SYSTEM_DIALOGUE,
+    RC_INTERACTION_SYSTEM_SHOP,
+    RC_INTERACTION_SYSTEM_BANK,
+    RC_INTERACTION_SYSTEM_SKILLING,
+} RcInteractionSystemHandoff;
+
+typedef enum {
+    RC_INTERACTION_HANDLER_NONE = 0,
+    RC_INTERACTION_HANDLER_COMPLETE,
+    RC_INTERACTION_HANDLER_CANCEL,
+    RC_INTERACTION_HANDLER_CONTINUE_APPROACH,
+    RC_INTERACTION_HANDLER_COMBAT_HANDOFF,
+    RC_INTERACTION_HANDLER_MESSAGE,
+    RC_INTERACTION_HANDLER_FAILURE,
+} RcInteractionHandlerCode;
+
+typedef struct {
+    RcInteractionKind kind;
+    RcInteractionOp op;
+    int definition_id;
+    int content_group;
+    int source_item_id;
+    int source_spell_id;
+    int widget_id;
+    int component_id;
+} RcInteractionDispatchKey;
+
+typedef struct {
+    RcInteractionHandlerCode code;
+    RcInteractionFailure failure;
+    int approach_range;
+    int combat_target_uid;
+    int system_handoff;
+    int system_target_id;
+    char message[RC_INTERACTION_RESULT_MESSAGE_LEN];
+} RcInteractionHandlerResult;
+
+typedef RcInteractionHandlerResult (*RcInteractionHandlerFn)(
+    struct RcWorld *world, RcPlayer *player,
+    const RcPendingInteraction *interaction, void *ctx);
+
+typedef struct {
+    RcInteractionDispatchKey key;
+    RcInteractionHandlerFn fn;
+    void *ctx;
+} RcInteractionHandlerEntry;
+
 // NPC (live instance)
 typedef struct {
     int def_id;             // index into definitions table
@@ -543,6 +603,7 @@ typedef struct {
     int last_hit_timer;
     bool is_dead;
     int wander_timer;
+    int spawn_wander_range;
     int attack_count;
     int prev_x, prev_y;
     int poison_damage;
@@ -607,6 +668,7 @@ typedef struct {
 } RcActiveArea;
 
 struct RcWorld;
+struct RcGameData;
 struct RcSpellDef;
 
 typedef struct {
@@ -669,6 +731,9 @@ typedef struct RcWorld {
     RcCombatContentHooks combat_hooks;
     RcCombatAttackEvent combat_attack_events[RC_MAX_COMBAT_ATTACK_EVENTS];
     int combat_attack_event_count;
+    RcInteractionHandlerEntry
+        interaction_handlers[RC_MAX_INTERACTION_HANDLERS];
+    int interaction_handler_count;
 
     // Subsystem bitmask — see config.h for RC_SUB_* flags. Checked
     // only by the base tick dispatcher; subsystem code assumes its
@@ -678,6 +743,7 @@ typedef struct RcWorld {
     // Event bus — subsystems subscribe at init, fire episodically.
     // See events.h / README §7.
     RcEventBus events;
+    struct RcGameData *game_data;
 
     // Encounter subsystem state (inline arena layout per README §4).
     // Only exercised when RC_SUB_ENCOUNTER is enabled.

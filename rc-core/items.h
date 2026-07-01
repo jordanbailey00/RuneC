@@ -51,6 +51,10 @@ extern RcItemDef g_item_defs[RC_MAX_ITEM_DEFS];
 extern int g_item_def_count;
 
 int rc_load_item_defs(const char *path);
+int rc_load_item_defs_into(const char *path, RcItemDef *defs, int max_defs,
+                           int *out_count);
+void rc_item_use_defs(const RcItemDef *defs, int count);
+void rc_item_reset_defs_if_active(const RcItemDef *defs);
 const RcItemDef *rc_item_def_get(int item_id);
 
 // Inventory operations

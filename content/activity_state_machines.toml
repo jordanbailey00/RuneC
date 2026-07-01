@@ -1,0 +1,691 @@
+schema_version = 1
+
+[[activities]]
+slug = "barrows"
+name = "Barrows"
+kind = "crypt_activity"
+status = "typed_state_machine"
+v1_required = true
+source_rows = [
+  "Ahrim_the_Blighted",
+  "Dharok_the_Wretched",
+  "Guthan_the_Infested",
+  "Karil_the_Tainted",
+  "Torag_the_Corrupted",
+  "Verac_the_Defiled",
+]
+source_pages = ["Barrows", "Ahrim the Blighted", "Dharok the Wretched", "Guthan the Infested", "Karil the Tainted", "Torag the Corrupted", "Verac the Defiled"]
+npc_ids = [1672, 1673, 1674, 1675, 1676, 1677]
+flags = ["v1_required", "kill_set", "reward_chest", "random_tunnel_brother"]
+
+[activities.params]
+required_brother_kills = 6
+reward_chest = 1
+
+[[activities.states]]
+id = "crypts"
+role = "entry"
+flags = ["select_tunnel_brother", "spawn_crypt_brothers"]
+
+[[activities.states]]
+id = "tunnels"
+role = "combat"
+flags = ["spawn_tunnel_brother", "kill_count"]
+
+[[activities.states]]
+id = "chest"
+role = "reward"
+flags = ["reward_chest", "complete_on_open"]
+
+[[activities.transitions]]
+from = "crypts"
+to = "tunnels"
+event = "tunnel_brother_selected"
+
+[[activities.transitions]]
+from = "tunnels"
+to = "chest"
+event = "required_bosses_dead"
+value = 6
+
+[[activities]]
+slug = "tzhaar_fight_cave"
+name = "TzHaar Fight Cave"
+kind = "wave_activity"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["TzTok-Jad"]
+source_pages = ["TzHaar Fight Cave", "TzTok-Jad"]
+npc_ids = [3127]
+flags = ["v1_required", "wave_sequence", "dynamic_spawns", "activity_local_arena"]
+
+[activities.params]
+wave_count = 63
+boss_wave = 63
+jad_healer_threshold_hp = 150
+jad_attack_range = 15
+
+[[activities.states]]
+id = "waves"
+role = "wave"
+value = 1
+flags = ["spawn_wave_npcs", "advance_on_wave_clear"]
+
+[[activities.states]]
+id = "jad"
+role = "boss"
+value = 63
+flags = ["boss_wave", "spawn_healers_at_threshold"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["complete_on_boss_dead"]
+
+[[activities.transitions]]
+from = "waves"
+to = "jad"
+event = "wave_reached"
+value = 63
+
+[[activities.transitions]]
+from = "jad"
+to = "reward"
+event = "boss_dead"
+value = 3127
+
+[[activities]]
+slug = "inferno"
+name = "The Inferno"
+kind = "wave_activity"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["TzKal-Zuk"]
+source_pages = ["The Inferno", "TzKal-Zuk"]
+npc_ids = [7706, 7707, 7708]
+flags = ["v1_required", "wave_sequence", "line_of_sight_shield", "dynamic_spawns", "activity_local_arena"]
+
+[activities.params]
+wave_count = 69
+zuk_wave = 69
+zuk_npc_id = 7706
+ancestral_glyph_npc_id = 7707
+jad_wave = 68
+zuk_healer_threshold_1_hp = 600
+zuk_healer_threshold_2_hp = 300
+
+[[activities.states]]
+id = "waves"
+role = "wave"
+value = 1
+flags = ["spawn_wave_npcs", "advance_on_wave_clear"]
+
+[[activities.states]]
+id = "triple_jad"
+role = "boss"
+value = 68
+flags = ["multi_boss", "spawn_healers_at_threshold"]
+
+[[activities.states]]
+id = "zuk"
+role = "boss"
+value = 69
+flags = ["line_of_sight_shield", "hp_gated_healers", "wave_end_minion"]
+
+[[activities.transitions]]
+from = "waves"
+to = "triple_jad"
+event = "wave_reached"
+value = 68
+
+[[activities.transitions]]
+from = "triple_jad"
+to = "zuk"
+event = "wave_reached"
+value = 69
+
+[[activities]]
+slug = "grotesque_guardians"
+name = "Grotesque Guardians"
+kind = "dual_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Grotesque_Guardians", "Dawn", "Dusk"]
+source_pages = ["Grotesque Guardians", "Dawn", "Dusk"]
+npc_ids = [7851, 7852, 7853, 7854, 7855, 7882, 7883, 7884, 7885, 7886, 7887, 7888, 7889]
+flags = ["v1_required", "dual_boss", "damage_gate", "phase_sequence", "object_finisher"]
+
+[activities.params]
+dawn_half_hp_pct = 50
+dusk_half_hp_pct = 50
+energy_sphere_heal = 90
+
+[[activities.states]]
+id = "dawn_open"
+role = "boss"
+flags = ["dawn_vulnerable", "dusk_immune"]
+
+[[activities.states]]
+id = "dusk_open"
+role = "boss"
+flags = ["dusk_vulnerable", "dawn_hidden"]
+
+[[activities.states]]
+id = "final_duo"
+role = "phase"
+flags = ["lightning_aoe", "dawn_spheres", "dusk_prison"]
+
+[[activities.transitions]]
+from = "dawn_open"
+to = "dusk_open"
+event = "hp_threshold"
+value = 50
+
+[[activities.transitions]]
+from = "dusk_open"
+to = "final_duo"
+event = "hp_threshold"
+value = 50
+
+[[activities]]
+slug = "moons_of_peril"
+name = "Moons of Peril"
+kind = "multi_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Moons_of_Peril", "Blood_Moon", "Blue_Moon", "Eclipse_Moon"]
+source_pages = ["Moons of Peril", "Blood Moon", "Blue Moon", "Eclipse Moon"]
+npc_ids = [13011, 13012, 13013]
+flags = ["v1_required", "multi_boss", "room_sequence", "curse_stacks", "reward_chest"]
+
+[activities.params]
+boss_count = 3
+curse_decay_ticks = 5
+curse_decay_amount = 2
+max_curse_stacks = 127
+
+[[activities.states]]
+id = "rooms"
+role = "entry"
+flags = ["choose_boss_room", "room_local_state"]
+
+[[activities.states]]
+id = "boss_combat"
+role = "combat"
+flags = ["three_hit_cycle", "curse_stacks", "special_rotation"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["all_bosses_dead", "reward_chest"]
+
+[[activities.transitions]]
+from = "boss_combat"
+to = "reward"
+event = "required_bosses_dead"
+value = 3
+
+[[activities]]
+slug = "royal_titans"
+name = "Royal Titans"
+kind = "dual_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Royal_Titans"]
+source_pages = ["Royal Titans", "Royal Titans/Strategies"]
+npc_ids = [14147, 14148]
+flags = ["v1_required", "dual_boss", "linked_phase", "elemental_hazards", "safe_tile_blast"]
+
+[activities.params]
+titan_hp = 600
+phase_2_hp_pct = 35
+ranged_accuracy_boost_pct = 500
+elemental_blast_hits = 3
+
+[[activities.states]]
+id = "ranged_platform"
+role = "phase"
+flags = ["ranged_accuracy_boost", "walls", "elemental_summons"]
+
+[[activities.states]]
+id = "melee_platform"
+role = "phase"
+flags = ["stomp_rows", "melee_reachable"]
+
+[[activities.states]]
+id = "phase_2"
+role = "boss"
+flags = ["elemental_blast", "whole_arena_stomp", "partner_subdue_enrage"]
+
+[[activities.transitions]]
+from = "ranged_platform"
+to = "phase_2"
+event = "hp_threshold"
+value = 35
+
+[[activities.transitions]]
+from = "melee_platform"
+to = "phase_2"
+event = "hp_threshold"
+value = 35
+
+[[activities]]
+slug = "tempoross"
+name = "Tempoross"
+kind = "skilling_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Tempoross"]
+source_pages = ["Tempoross", "Tempoross/Strategies"]
+npc_ids = []
+flags = ["v1_required", "object_driven", "resource_loop", "energy_essence_loop", "activity_local_arena"]
+
+[activities.params]
+solo_energy_x10 = 2600
+solo_essence_x10 = 2500
+object_resource_initial = 2600
+object_resource_delta = 10
+raw_harpoonfish_damage = 10
+cooked_harpoonfish_damage = 15
+max_spirit_pool_hit = 12
+max_cycles = 3
+
+[[activities.states]]
+id = "energy"
+role = "resource"
+flags = ["harpoonfish_cannons", "storm_attacks", "tether_objects"]
+
+[[activities.states]]
+id = "essence"
+role = "resource"
+flags = ["spirit_pool", "run_restore", "energy_regen"]
+
+[[activities.states]]
+id = "fail"
+role = "fail"
+flags = ["energy_overflow"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = []
+
+[[activities.transitions]]
+from = "energy"
+to = "essence"
+event = "resource_zero"
+
+[[activities.transitions]]
+from = "essence"
+to = "energy"
+event = "timer"
+value = 1
+
+[[activities.transitions]]
+from = "essence"
+to = "reward"
+event = "resource_zero"
+
+[[activities]]
+slug = "wintertodt"
+name = "Wintertodt"
+kind = "skilling_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Wintertodt"]
+source_pages = ["Wintertodt", "Wintertodt/Strategies"]
+npc_ids = []
+flags = ["v1_required", "object_driven", "resource_loop", "energy_based_attacks", "activity_local_arena"]
+
+[activities.params]
+standard_attack_cooldown_ticks = 10
+object_resource_initial = 10
+object_resource_delta = 10
+max_warm_items = 4
+max_braziers_lit = 3
+
+[[activities.states]]
+id = "energy"
+role = "resource"
+flags = ["bruma_roots", "braziers", "pyromancers"]
+
+[[activities.states]]
+id = "attacks"
+role = "hazard"
+flags = ["standard_damage", "snowfall_aoe", "brazier_break", "pyromancer_damage"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["energy_zero", "reward_cart"]
+
+[[activities.transitions]]
+from = "energy"
+to = "reward"
+event = "resource_zero"
+
+[[activities]]
+slug = "araxxor"
+name = "Araxxor"
+kind = "single_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Araxxor"]
+source_pages = ["Araxxor", "Araxxor/Strategies"]
+npc_ids = [13668]
+flags = ["v1_required", "single_boss", "venom", "egg_rotation", "enrage"]
+
+[activities.params]
+enrage_hp = 255
+enrage_attack_speed_ticks = 4
+
+[[activities.states]]
+id = "combat"
+role = "combat"
+flags = ["style_by_defence_roll", "egg_rotation", "acid_specials"]
+
+[[activities.states]]
+id = "enrage"
+role = "phase"
+flags = ["cleave_aoe", "acid_pools", "attack_speed_increase"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["harvest_or_destroy_corpse"]
+
+[[activities.transitions]]
+from = "combat"
+to = "enrage"
+event = "hp_threshold"
+value = 255
+
+[[activities.transitions]]
+from = "enrage"
+to = "reward"
+event = "boss_dead"
+
+[[activities]]
+slug = "doom_of_mokhaiotl"
+name = "Doom of Mokhaiotl"
+kind = "single_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Doom_of_Mokhaiotl"]
+source_pages = ["Doom of Mokhaiotl", "Doom of Mokhaiotl/Strategies"]
+npc_ids = [14707, 14708, 14709]
+flags = ["v1_required", "single_boss", "delve_scaling", "shield_phase", "burrow_phase"]
+
+[activities.params]
+shield_phase_hp_pct = 75
+max_delve_level = 8
+
+[[activities.states]]
+id = "standard"
+role = "combat"
+flags = ["projectile_prayers", "rock_throw", "shockwave"]
+
+[[activities.states]]
+id = "shield"
+role = "phase"
+flags = ["demonbane_interrupt", "charge_bar"]
+
+[[activities.states]]
+id = "burrow"
+role = "phase"
+flags = ["zoom_attack", "falling_rocks", "charge_bar"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["delve_complete"]
+
+[[activities.transitions]]
+from = "standard"
+to = "shield"
+event = "hp_threshold"
+value = 75
+
+[[activities.transitions]]
+from = "shield"
+to = "burrow"
+event = "timer"
+value = 1
+
+[[activities.transitions]]
+from = "standard"
+to = "reward"
+event = "boss_dead"
+
+[[activities.transitions]]
+from = "shield"
+to = "reward"
+event = "boss_dead"
+
+[[activities.transitions]]
+from = "burrow"
+to = "reward"
+event = "boss_dead"
+
+[[activities]]
+slug = "gemstone_crab"
+name = "Gemstone Crab"
+kind = "single_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Gemstone_Crab"]
+source_pages = ["Gemstone Crab", "Gemstone Crab/Strategies"]
+npc_ids = [14779]
+flags = ["v1_required", "single_boss", "quadrant_attacks", "burrow_shove"]
+
+[activities.params]
+ruby_bolt_effective_hp = 300
+
+[[activities.states]]
+id = "active"
+role = "combat"
+flags = ["quadrant_focus", "safe_center_tile"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["boss_dead"]
+
+[[activities.transitions]]
+from = "active"
+to = "reward"
+event = "boss_dead"
+
+[[activities]]
+slug = "penance_queen"
+name = "Penance Queen"
+kind = "wave_activity"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Penance_Queen"]
+source_pages = ["Penance Queen", "Barbarian Assault"]
+npc_ids = [5775]
+flags = ["v1_required", "wave_sequence", "team_role_activity"]
+
+[activities.params]
+queen_wave = 10
+
+[[activities.states]]
+id = "waves"
+role = "wave"
+flags = ["barbarian_assault_roles", "advance_on_wave_clear"]
+
+[[activities.states]]
+id = "queen"
+role = "boss"
+value = 10
+flags = ["queen_spawn", "role_items_required"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["wave_10_complete"]
+
+[[activities.transitions]]
+from = "waves"
+to = "queen"
+event = "wave_reached"
+value = 10
+
+[[activities.transitions]]
+from = "queen"
+to = "reward"
+event = "boss_dead"
+value = 5775
+
+[[activities]]
+slug = "phosanis_nightmare"
+name = "Phosani's Nightmare"
+kind = "single_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Phosani_s_Nightmare"]
+source_pages = ["Phosani's Nightmare", "Phosani's Nightmare/Strategies"]
+npc_ids = [9416, 9417, 9418, 9419, 9420, 9421, 9422, 9424, 11153, 11154, 11155]
+flags = ["v1_required", "single_boss", "phase_sequence", "sleepwalkers", "desperation"]
+
+[activities.params]
+shield_phase_count = 3
+final_phase_hp = 150
+totem_charge = 200
+
+[[activities.states]]
+id = "shield_phases"
+role = "phase"
+flags = ["special_sets", "totem_charge", "sleepwalker_end_phase"]
+
+[[activities.states]]
+id = "desperation"
+role = "phase"
+flags = ["grasping_claws_loop", "sleepwalker_stream"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["boss_dead"]
+
+[[activities.transitions]]
+from = "shield_phases"
+to = "desperation"
+event = "required_bosses_dead"
+value = 3
+
+[[activities.transitions]]
+from = "shield_phases"
+to = "reward"
+event = "boss_dead"
+
+[[activities.transitions]]
+from = "desperation"
+to = "reward"
+event = "boss_dead"
+
+[[activities]]
+slug = "revenant_maledictus"
+name = "Revenant maledictus"
+kind = "single_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Revenant_maledictus"]
+source_pages = ["Revenant maledictus"]
+npc_ids = [11246]
+flags = ["v1_required", "single_boss", "wilderness", "multi_target_specials"]
+
+[activities.params]
+special_count = 3
+air_surge_aoe = 5
+
+[[activities.states]]
+id = "active"
+role = "combat"
+flags = ["ice_spell", "blood_spell", "air_surge"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["top_damage_reward", "participant_reward"]
+
+[[activities.transitions]]
+from = "active"
+to = "reward"
+event = "boss_dead"
+
+[[activities]]
+slug = "shellbane_gryphon"
+name = "Shellbane gryphon"
+kind = "single_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Shellbane_gryphon"]
+source_pages = ["Shellbane gryphon", "Shellbane gryphon/Strategies"]
+npc_ids = [14860]
+flags = ["v1_required", "single_boss", "shield_required", "wind_hazards"]
+
+[activities.params]
+weight_counter_kg = 40
+max_whirlwinds = 5
+
+[[activities.states]]
+id = "active"
+role = "combat"
+flags = ["knockback", "corrosive_spit", "whirlwind"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["boss_dead"]
+
+[[activities.transitions]]
+from = "active"
+to = "reward"
+event = "boss_dead"
+
+[[activities]]
+slug = "vanguard"
+name = "Vanguard"
+kind = "multi_boss"
+status = "typed_state_machine"
+v1_required = true
+source_rows = ["Vanguard"]
+source_pages = ["Vanguard"]
+npc_ids = [7528, 7527, 7526, 7529]
+flags = ["v1_required", "multi_boss", "cox_room", "health_sync"]
+
+[activities.params]
+boss_count = 3
+shuffle_min_ticks = 20
+shuffle_max_ticks = 36
+small_team_heal_threshold_pct = 40
+large_team_heal_threshold_x10 = 333
+
+[[activities.states]]
+id = "buried"
+role = "entry"
+flags = ["spawn_underground", "trigger_on_approach"]
+
+[[activities.states]]
+id = "combat"
+role = "combat"
+flags = ["three_styles", "aoe_attacks", "health_difference_heal"]
+
+[[activities.states]]
+id = "reward"
+role = "reward"
+flags = ["all_vanguards_dead"]
+
+[[activities.transitions]]
+from = "buried"
+to = "combat"
+event = "timer"
+value = 1
+
+[[activities.transitions]]
+from = "combat"
+to = "reward"
+event = "required_bosses_dead"
+value = 3

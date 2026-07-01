@@ -1,0 +1,3007 @@
+title = "Transcript:Shadows of Custodia"
+npcs = ["Ictus", "Marcus", "Bartender (Auburn Pub)", "Shopkeeper (Auburnvale)", "Francis (Auburnvale)", "Aemilia", "Captain Ariadna", "Shas", "Etz"]
+node_count = 379
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "box"
+text = "pic=Scribbled note detail.png|pic2=Scribbled note detail.png|The notice board is covered in missing person posters."
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "cond"
+text = "The player has not started the quest:"
+parent = -1
+children = [2, 3, 4, 7]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm... That's quite a few missing people... Looks like some of these have been here for a while."
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "select"
+text = "Start the Shadows of Custodia quest?"
+parent = 1
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 1
+children = [5, 6]
+
+[[nodes]]
+id = 5
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I wonder if anyone around here knows more about this..."
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "act"
+text = "end"
+parent = 4
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "option"
+text = "No."
+parent = 1
+children = [8, 9]
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Probably too much for me to take on right now though, but hopefully someone can find them."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 3
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "cond"
+text = "The player has started the quest:"
+parent = -1
+children = [11, 12]
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I should keep looking for these people..."
+parent = 10
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "act"
+text = "end"
+parent = 10
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. Do you have a moment to talk?"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "I suppose so."
+parent = -1
+
+[[nodes]]
+id = 15
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know much about the missing people?"
+parent = -1
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "Only what I've heard around the place. That funny guy by the sea keeps suggesting they're being taken in the night, which is absurd really."
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Funny guy by the sea?"
+parent = -1
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "He's always going on about strange people coming in the night, but no one would dare do that with the ents around. It's a load of rubbish."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you don't think it's possible?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "It would take a lot of things happening right before my eyes for me to even consider it."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, what do you think is happening then?"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "I think that some of them are accidents. Others might just be leaving."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No suspicion of anything else?"
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "Like what? Murder? I'm not sure who would want to kill folk around here. We're a tight community."
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm... Thanks for the help, I guess."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again. I don't suppose you had any more thoughts on the missing people?"
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "Not really. I'm sure if you keep asking around you'll find someone who can help you. Just don't waste your time on that funny guy by the sea..."
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Bartender"
+text = "Welcome to the Auburn Pub. Are you here to buy a drink?"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "option"
+text = "quest=no|Let's see what you have."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "About the missing people..."
+parent = -1
+children = [34, 35, 49]
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About the missing people..."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "cond"
+text = "First conversation:"
+parent = 33
+children = [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "Ah, looking to find them, are you?"
+parent = 35
+
+[[nodes]]
+id = 37
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That's right. What can you tell me about them?"
+parent = 35
+
+[[nodes]]
+id = 38
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "Not a lot. Couple of kids that have run into trouble on some adventure no doubt, along with a few adults who decided to slip away in the night."
+parent = 35
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Is that normal around here?"
+parent = 35
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "Well, we're sat between two sets of mountains. Lots of places for accidents to happen."
+parent = 35
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "The mountains... Right."
+parent = 35
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Is there anyone else who might be more... invested in the missing people?"
+parent = 35
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "Well, those posters aren't putting themselves on the notice board. You'll probably want to find whoever put them there."
+parent = 35
+
+[[nodes]]
+id = 44
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And you don't know who that is?"
+parent = 35
+
+[[nodes]]
+id = 45
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "Some local parents I think, but many faces come in here. I can't keep track of them all. Now, are you going to buy a drink?"
+parent = 35
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "select"
+text = "Select an option"
+parent = 35
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "option"
+text = "quest=no|Let's see what you have."
+parent = 35
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "option"
+text = "quest=no|No thanks."
+parent = 35
+
+[[nodes]]
+id = 49
+depth = 2
+kind = "cond"
+text = "Repeat conversations:"
+parent = 33
+children = [50, 51]
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Bartender"
+text = "Like I told you, you'll want to find whoever put those posters up. I think it was some local parents. Now, are you going to buy a drink?"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "above"
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "option"
+text = "quest=no|Nothing for me, thanks."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "Not often someone comes out to speak to me. What do you want?"
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm investigating the missing people. Do you know anything about them?"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "Oh, yes! Yes indeed! They were taken by the night people!"
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The night people?"
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "Yes! I hear them in the dark. They think they're quiet, but not to me! I can hear them scrape against the wooden walls!"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could that not just be a dog scratching at the post?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "Does a dog walk on two legs?"
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "One of the ents then?"
+parent = -1
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "An ent wouldn't go around scraping against things? They're far too careful for that!"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think-"
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "Oh, I see what you're doing! You're just another who wants to laugh at me! You'll all see soon enough!"
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay... I think I'll leave you to it."
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "That's right! Be gone with you!"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "You again? Come to laugh at me once more? I know the night people are real! You'll find out soon enough!"
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay..."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Nilsal. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "select"
+text = "Select an option:"
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "option"
+text = "quest=No|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "option"
+text = "About the missing people..."
+parent = -1
+children = [74, 75, 88]
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About the missing people..."
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "cond"
+text = "First conversation:"
+parent = 73
+children = [76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87]
+
+[[nodes]]
+id = 76
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Ah, yes... It's a sad day when a town doesn't worry about its missing children..."
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "People aren't worried about it?"
+parent = 75
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "They were at first, but with how long it's been happening, I think everyone's run out of energy to keep searching."
+parent = 75
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But people have searched the? Are there any theories as to where they're going?"
+parent = 75
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Well, that depends on who you ask... Some try to rationalise it away as some accident in the forest, the river, or the mountains."
+parent = 75
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Others just assume they up and left overnight. Took only the essentials to go and start a new life."
+parent = 75
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Then of course, some think they're getting taken in the night..."
+parent = 75
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And what do you think?"
+parent = 75
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "I think we could be doing more. Something is happening and it doesn't feel right. I know I'm not the only one who feels this way."
+parent = 75
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'm here to have a look around. I'll see what I can find out about them."
+parent = 75
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Thank you, traveller."
+parent = 75
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "act"
+text = "end"
+parent = 75
+is_terminal = true
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "cond"
+text = "Repeat conversations:"
+parent = 73
+children = [89, 90, 91]
+
+[[nodes]]
+id = 89
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Did you manage to find out anything?"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 88
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "That's a shame... Hopefully you have some luck soon."
+parent = 88
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks?"
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Shopkeeper"
+text = "Nilsal. What can I do for you?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "select"
+text = "Select an option:"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "option"
+text = "quest=No|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "option"
+text = "About the missing people..."
+parent = -1
+children = [97]
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "end"
+parent = 96
+is_terminal = true
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "quest=No|Nothing, thanks?"
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Good day, traveller."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. I was wondering if you could tell me anything about the missing people."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Not really. We put a lot of effort into finding them, but nothing came of it."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where do you think they went?"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Well, some say they got lost in the mountains. Others say they decided to go and live somewhere like Fortis instead of here. I'm not too sure myself. It is a large number of people who've vanished..."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But you stopped looking?"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "It was taking up a lot of resources. We don't have a huge number of guards here, so I need to use my people wisely."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "If we get a new lead, I'm happy to send them out again, but right now it's like looking for a needle in a haystack."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. Thanks for the information."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Good day, traveller."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. I was wondering if you had any more thoughts on the missing people?"
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "No. As I said, we tried looking, but found nothing. Without a new lead, things are at a dead end."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. Thanks for the information."
+parent = -1
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excuse me. I'm looking into the-"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Turn around. Walk out."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait, I-"
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Please... Nobody's looking into anything. Just leave us."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I'm trying to find the missing people!"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Prove it! What do you know?"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "cond"
+text = "The player has not talked to Ictus:"
+parent = -1
+children = [121, 122, 123]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Er..."
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Aemilia"
+text = "Exactly! Now, go!"
+parent = 120
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "end"
+parent = 120
+is_terminal = true
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "cond"
+text = "The player has talked to Ictus:"
+parent = -1
+children = [125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I know most of the town has given up on finding them. Most are just dismissing the disappearances, assuming them to have run away or had an accident."
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "However, there are some who think something more sinister is going on. If that's the case, I intend to find out. I'm [player name] and I promise I\"m here to help."
+parent = 124
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "You... You'll find our sons?"
+parent = 124
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm going to try."
+parent = 124
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Aemilia"
+text = "Well... I suppose you do at least seem to somewhat care."
+parent = 124
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "What do you need from us, [player name]?"
+parent = 124
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "First up, what can you tell me about the disappearnce of your sons?"
+parent = 124
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Aemilia"
+text = "That's the thing... They just seemed to vanish! One moment they were playing upstairs, but the next they'd gone."
+parent = 124
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you didn't notice anything unusual at all?"
+parent = 124
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "Nothing really. The only thing that was a bit odd was the ents..."
+parent = 124
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The ents?"
+parent = 124
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "Yes. Their normal path takes them right past our house, but the night the boys disappeared, they took a different route. It's like they were avoiding something..."
+parent = 124
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see. Can I look around the house a little and see if there's any clues as to where your sons went?"
+parent = 124
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Aemilia"
+text = "If you think it will help, then of course."
+parent = 124
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 124
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "act"
+text = "end"
+parent = 124
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "You again? We already told you to go away!"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But I want to help!"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Prove it! What do you know?"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Have you found anything yet?"
+parent = -1
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking."
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Please, help us find our sons."
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Have you found anything yet?"
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There are a few scratches on the wall outside along with this strange red substance."
+parent = -1
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Yes, I saw that, but I thought it was from the ents. Do you think something else left it?"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Possibly. It looks like there are puddles of the stuff leading away from your house. I'm going to follow them and see where they lead."
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Thank you, [player name]. Please, help us find our sons."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Good day, traveller. Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Potentially. I was wondering if you have any clue what left these weird puddles through here?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Hmm... I hadn't noticed them before. I don't think the ents leave that sort of thing. My guess would be one of the woodland creatures."
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. Thank you for your help."
+parent = -1
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's odd... There are some scratches going up the wall, along with a strange stick red substance. It's not blood... What is it?"
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do we have here? More of that strange substance. I wonder where it leads..."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "box"
+text = "pic=Wet fabric scrap detail.png|It looks like there's some sort of fabric caught on the plank, but it's too far away for you to reach."
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmm... A fishing rod might work..."
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "box"
+text = "pic=Wet fabric scrap detail.png|It looks like there's some sort of fabric caught on the plank. You might be able to reach it with your fishing rod..."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "box"
+text = "pic=Wet fabric scrap detail.png|You use your fishing rod to hook a bit of fabric off the plank."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... I should see if this is from one of our missing people!"
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think this plank can offer me anything else. I should go and see if that fabric is from one of the missing people."
+parent = -1
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 172
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Could this be from one of the missing people?"
+parent = -1
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Should I destroy this?"
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It could be evidence of something happening here... Surely it wouldn't be ethical to do this?"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Then again, I wouldn't want to give false hope to those parents if it's actually nothing."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yet I could still ask them about it, even if I don't have it to hand..."
+parent = -1
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "other"
+text = "{{qact|Regular destroy options are displayed.}}"
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Have you found anything yet?"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "cond"
+text = "The player has not found anything:"
+parent = -1
+children = [181, 182, 183]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking."
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "other"
+text = "'''Aemilia''': Please, help us find our sons."
+parent = 180
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "act"
+text = "end"
+parent = 180
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "cond"
+text = "The player has found the wet fabric scrap:"
+parent = -1
+children = [185, 186, 187, 188, 189, 190, 191, 192]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes. I followed a trail of... well, I'm not sure what it is. It led from your home to the river, and I found a scrap of fabric. Does one of your sons often wear brown clothes?"
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Aemilia"
+text = "Yes, Etz does... What does it mean?"
+parent = 184
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It means I may have a lead."
+parent = 184
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "What direction was this trail going?"
+parent = 184
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Up towards the mountains north west of here. It might be dangerous, but I think I can explore further."
+parent = 184
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Aemilia"
+text = "If you're willing to, it would mean everything to us. You're the only one who's actually cared enough to find anything!"
+parent = 184
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's the least I can do. I'll be back once I've discovered more."
+parent = 184
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "act"
+text = "end"
+parent = 184
+is_terminal = true
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "You're back Did you find anything in the mountains?"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still looking."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Thank you for helping us. No one else seems to care..."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Are you okay? Can you walk?"
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Injured boy"
+text = "I think so... I'm not sure if Etz can though..."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's okay. I should be able to carry him. Now, let's get out of here..."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "box"
+text = "You take the two boys back to Auburnvale."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "I can't believe you found them!"
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I was very fortunate. They were in a cave in the mountains, but they weren't particularly far inside."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Probably using the survival skills I taught them! That's my boys!"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How are they doing now?"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "They're upstairs recovering. They need some rest, but they'll be okay."
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's good to hear, though I am still worried as to how they ended up there. It's not really the kind of place someone visits, not to mention that strange substance I found..."
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "You think they were taken by something?"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I don't think we can rule it out."
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Well, they weren't the only ones to disappear. What if you're right? What if there are more people up there? And what if whatever took them comes back?"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "First things first, I need to find out exactly what happened to your sons. Do you think I could ask them about it?"
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Not yet. They need some rest first."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "In the meantime, you should go see Ariadna, the guard captain. People can't ignore this now. If something did take our boys, she needs to know about it. You'll find her by the main entrance into town."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll go and see her. Is there anything else I can be doing to help as well?"
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "other"
+text = "'''Aemilia''': The boys were upstairs when they disappeared. What if whatever took them climbed our wall and came through the window? If that's the case, we need to stop it from happening again!"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Let's see... I suppose I could take a look at the wall and see if it can be reinforced in some way?"
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "If it's not too much trouble, that would mean a lot to us."
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sure it won't be too much to sort. Right, I'll be back once I've spoken to Captain Ariadna and sorted your wall out."
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "You're back. How's it going?"
+parent = -1
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "cond"
+text = "If the player has reinforced the wall:"
+parent = -1
+children = [221]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "cond"
+text = "The player has not talked to Captain Ariadna:"
+parent = 220
+children = [222, 223, 224]
+
+[[nodes]]
+id = 222
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've got your wall all sorted. Now I need to go and see Captain Ariadna."
+parent = 221
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "Aemilia"
+text = "She should be by the main entrance into town. Thank you so much for doing all this, iknami. It means everything to us."
+parent = 221
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "act"
+text = "end"
+parent = 221
+is_terminal = true
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "cond"
+text = "If the player has not reinforced the wall:"
+parent = -1
+children = [226, 230]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "cond"
+text = "The player has not talked to Captain Ariadna:"
+parent = 225
+children = [227, 228, 229]
+
+[[nodes]]
+id = 227
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I still need to get your wall sorted. I haven't spoken to Captain Ariadna yet either."
+parent = 226
+
+[[nodes]]
+id = 228
+depth = 3
+kind = "speaker"
+speaker = "Aemilia"
+text = "She should be by the main entrance into town. Thank you so much for doing all of this, iknami. It means everything to us."
+parent = 226
+
+[[nodes]]
+id = 229
+depth = 3
+kind = "act"
+text = "end"
+parent = 226
+is_terminal = true
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "cond"
+text = "If the player has agreed to get some longbows:"
+parent = 225
+children = [231, 232, 233]
+
+[[nodes]]
+id = 231
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've got your wall all sorted. Now I'm helping Captain Ariadna source some new bows to equip the guards a bit better."
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 3
+kind = "speaker"
+speaker = "Aemilia"
+text = "Thank you so much for doing all this, iknami. It means everything to us."
+parent = 230
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "act"
+text = "end"
+parent = 230
+is_terminal = true
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "cond"
+text = "If the player hasn't reinforced the wall:"
+parent = -1
+children = [235, 239]
+
+[[nodes]]
+id = 235
+depth = 2
+kind = "cond"
+text = "If the player hasn't talked to Captain Ariadna:"
+parent = 234
+children = [236, 237, 238]
+
+[[nodes]]
+id = 236
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I still need your wall sorted. I haven't spoken to Captain Ariadna either."
+parent = 235
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "speaker"
+speaker = "Aemilia"
+text = "She should be by the main entrance into town. Thank you so much for doing all this, iknami. It means everything to us."
+parent = 235
+
+[[nodes]]
+id = 238
+depth = 3
+kind = "act"
+text = "end"
+parent = 235
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 2
+kind = "cond"
+text = "If the player has agreed to get some longbows:"
+parent = 234
+children = [240]
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "other"
+text = "''Missing''"
+parent = 239
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "cond"
+text = "The player has finished all of the tasks:"
+parent = -1
+children = [242, 243, 244, 245, 246]
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've helped Captain Ariadna source some new bows to equip the guards a bit better, and your wall is all sorted as well.}}"
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 2
+kind = "speaker"
+speaker = "Aemilia"
+text = "Thank you, iknami. You'll be pleased to hear the boys are feeling a bit better."
+parent = 241
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So I can speak to them now?"
+parent = 241
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "Yes, but do be patient with them. They still have quite a bit of recovering to do."
+parent = 241
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "act"
+text = "end"
+parent = 241
+is_terminal = true
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "The boys are resting at the moment. You'll have to come back later if you want to speak to them."
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now then... How do we reinforce you? Perhaps some maple logs will do the trick!"
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There we go!"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now then... How do we reinforce you? Perhaps some maple logs will do the trick! I reckon I'll need four sets in total, and a hammer of course."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now then... How do we reinforce you? Perhaps some maple logs will do the trick! I reckon I'll need four sets in total."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day! I'm here about those missing people."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Yes, I saw you bringing those boys back to town. Where did you find them?"
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "In a cave up in the mountains."
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Ariadna"
+text = "Did you see any sign of other missing people?"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid not, but I intend to ask the boys about them once they've had some time to rest. I'm worried they didn't go up there on their own. There's a chance something might have taken them."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Ah, wonderful. This is just what we need."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I must admit, the town doesn't seem very well equipped to deal with this sort of thing. Is there anything I can do to help?"
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Well, one of the people who went missing was the local fletcher. In his absence, our already light supply of longbows has become even lighter."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sure I can step in as your fletcher! New bows, was it?"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "That's right. We typically use willow longbows. We've lost a few experienced archers over the years so we've tried to make things more approachable... and cheaper."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Willow... Approachable... Got it! How many did you need?"
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Four would keep us comfortable for the time being."
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "cond"
+text = "If the player does not have enough longbows:"
+parent = -1
+children = [269, 270]
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll be back soon."
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "act"
+text = "end"
+parent = 268
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "cond"
+text = "If the player happens to have enough longbows:"
+parent = -1
+children = [272, 273, 274, 275, 276, 277, 278]
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I just so happen to have those on hand!"
+parent = 271
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Making the most of the woodlands around here, were you?"
+parent = 271
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely."
+parent = 271
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "box"
+text = "pic=Willow longbow detail.png|pic2=Willow longbow detail.png|You give Captain Ariadna four willow longbows."
+parent = 271
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Thank you, traveller."
+parent = 271
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So you've got the bows. What now?"
+parent = 271
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "act"
+text = "below"
+parent = 271
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have those bows you asked for!"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "box"
+text = "pic=Willow_longbow.png|You give Captain Ariadna four willow longbows."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Thank you, traveller."
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So you've got the bows. Now what?"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Well, not really a lot. We'll increase the number of guards posted at the entrances into town, but without knowing what we're looking for, we can't do much else."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right... Not quite the solution I was after, but it's a start. I guess I'd better go check in with those boys and see if I can find out more about how they ended up in that cave."
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "You're back. Have you sourced those willow longbows yet?"
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not quite. How many did you need?"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Just the four of them."
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll be back soon."
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "Ah, it's you. I hear you're still looking into the case of those missing people. Must say, you're the first person in a while to actually stick to it."
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I don't like leaving a mystery unsolved."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "Clearly. Anyway, good luck with it."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Shas"
+text = "You're the one that saved us. Thank you."
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not a problem. I'm just glad you're both okay. If it's alright, I wanted to ask you how you ended up in that cave. I'm hoping it might help me track down the others who are missing."
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Etz"
+text = "We didn't see any others... It was just us and Antos..."
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Antos?"
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Etz"
+text = "Yes! He makes bows for the guards. We'd see him sometimes when dad would go with him to the pub, but he wasn't in the pub! He was in the cave!"
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where?"
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Shas"
+text = "He was deeper inside. Those... things... they dragged him away!"
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This isn't good. I need to get back there!"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Etz"
+text = "Please... find Antos."
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "speaker"
+speaker = "Etz"
+text = "Please... find Antos."
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "speaker"
+speaker = "Shas"
+text = "He was deeper inside that cave. Those... things... they dragged him away!"
+parent = -1
+
+[[nodes]]
+id = 307
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm going to head back there right now!"
+parent = -1
+
+[[nodes]]
+id = 308
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Have you spoken to the boys yet?"
+parent = -1
+
+[[nodes]]
+id = 310
+depth = 1
+kind = "cond"
+text = "The player hasn't talked to the boys:"
+parent = -1
+children = [311, 312, 313]
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 310
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "They're just upstairs, but do be patient with them. They still have quite a bit of recovering to do."
+parent = 310
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "act"
+text = "end"
+parent = 310
+is_terminal = true
+
+[[nodes]]
+id = 314
+depth = 1
+kind = "cond"
+text = "The player has talked to the boys:"
+parent = -1
+children = [315, 316, 317]
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but I need to get back to the cave. Apparently someone called Antos is still in there!"
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Francis"
+text = "Antos is up there? You'd better go and find him, iknami!"
+parent = 314
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "act"
+text = "end"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Traveller. Did you find out more about what happened to those boys?"
+parent = -1
+
+[[nodes]]
+id = 319
+depth = 1
+kind = "cond"
+text = "The player has not talked to the boys:"
+parent = -1
+children = [320, 321]
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 319
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Well, without knowing what we're looking for, there's not much we can do."
+parent = 319
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "cond"
+text = "The player has talked to the boys:"
+parent = -1
+children = [323, 324, 325, 326, 327, 328, 329]
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, but I also found out someone called Antos is still in that cave! I need to go and find him!"
+parent = 322
+
+[[nodes]]
+id = 324
+depth = 2
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Antos? I'll get the guards ready, but that will take some time."
+parent = 322
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "We don't have time! I'm heading up there now!"
+parent = 322
+
+[[nodes]]
+id = 326
+depth = 2
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "You're going alone?"
+parent = 322
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's that or he dies!"
+parent = 322
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "You're mad, traveller! Good luck up there."
+parent = 322
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "act"
+text = "end"
+parent = 322
+is_terminal = true
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Antos? Are you okay?"
+parent = -1
+
+[[nodes]]
+id = 331
+depth = 1
+kind = "speaker"
+speaker = "Antos"
+text = "Behind... you..."
+parent = -1
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "speaker"
+speaker = "Antos"
+text = "Have they gone?"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "For now, but there could be more. We should get out of here."
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "speaker"
+speaker = "Antos"
+text = "Thank you, iknami. I thought I could find out where people were going... No one else seemed to care... I managed to track those boys here, but then those things..."
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's okay, Antos. The boys are safe."
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "speaker"
+speaker = "Antos"
+text = "That's good... but everyone else... Look what they did to them..."
+parent = -1
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry, Antos. We can't help them now, but at least you and the boys are safe. Come on, let's get you home, before more of those things arrive..."
+parent = -1
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "box"
+text = "You take Antos back to Auburnvale."
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "You found Antos! I never thought we'd see him again. What happened?"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That cave up in the mountains is full of some strange creatures. They were the ones responsible for the disappearances."
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "I see... Did you find anyone else up there?"
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No. At least, no one alive, that is."
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "That's... unfortunate. Still, from what you've said, I suppose we should be thankful that you found anyone still breathing."
+parent = -1
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Right, time to get to work I guess. Now that we know about these creatures and where they're coming from, we can hopefully ensure they don't take anyone else."
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "I suspect it's going to require us to establish a constant watch. Not ideal, but doable, especially with those new bows."
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can do to help?"
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Well, if you ever fancy heading up there and killing more of those creatures, you won't find me complaining. Apart from that though, I think you've done all you can."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "In that case, good luck with it all."
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Thank you. All the best, traveller."
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Hello again, traveller. We've been keeping an eye on the mountain pass to make sure those creatures don't come back. We haven't had any more disappearances, so it seems to be working."
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's good to hear."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Still, we can't be too careful. If you ever fancy going up to that cave and killing a few of them for us, that would be appreciated."
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I might just do that."
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "speaker"
+speaker = "Captain Ariadna"
+text = "Thank you, traveller. All the best."
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "Thank you for finding our sons, iknami."
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's not a problem."
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "speaker"
+speaker = "Francis"
+text = "Tetamo! You are too humble, friend. Without you, our boys would be dead. What you did means everything to us."
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you!"
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "speaker"
+speaker = "Aemilia"
+text = "No, thank you, iknami!"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "speaker"
+speaker = "Shas"
+text = "Thank you for saving us."
+parent = -1
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't mention it."
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "speaker"
+speaker = "Etz"
+text = "And thank you for saving Antos as well!"
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's really not a problem."
+parent = -1
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "speaker"
+speaker = "Etz"
+text = "You're our hero!"
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "speaker"
+speaker = "Marcus"
+text = "Ah, it's you. I hear you've become a bit of a hero around here. Not a bad job."
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 374
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "You found those people who went missing! Did you see them? Did you see the night people?"
+parent = -1
+
+[[nodes]]
+id = 375
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sort of. I wouldn't call them people though."
+parent = -1
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "speaker"
+speaker = "Ictus"
+text = "But they're real! They're actually real! No one believed me, but I knew they were real!"
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, congratulations I guess..."
+parent = -1
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

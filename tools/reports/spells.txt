@@ -1,11 +1,16 @@
-Spellbook export
+Spells
 
 status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
-spells: 201
-teleports: 58
-combat max-hit matches: 46
-source: OSRS Wiki infobox_spell cache + local Void magic spell data
-notes:
-  Spell metadata and rune costs are wiki-derived. Combat max-hit
-  hints are used only where the local source name matches. Exact
-  spell effect state machines remain future combat/magic work.
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 2
+snapshot bytes: 11062
+entries: 259
+
+installed files:
+  - data/defs/spells.bin bytes=8464 sha256=01d466f3872a66cfd009bddb7424e235e46e3d0de2fb25f3337761f3a7e9df91
+  - data/defs/teleports.bin bytes=2598 sha256=f67e2418cd32bc560a94dbed33487d4d8c1cc2fb78f5ddd115bacb6e1897ec34
+
+accepted simplifications:
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

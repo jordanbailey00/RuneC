@@ -46,6 +46,23 @@ extern int g_rc_npc_normalization_count;
 extern int g_rc_source_normalization_count;
 
 int rc_load_normalization(const char *path);
+int rc_load_normalization_into(const char *path,
+                               RcItemNormalization *item_defs,
+                               int max_item_defs, int *out_item_count,
+                               RcNpcNormalization *npc_defs,
+                               int max_npc_defs, int *out_npc_count,
+                               RcSourceNormalization **source_defs,
+                               int *out_source_count);
+void rc_normalization_use_defs(const RcItemNormalization *item_defs,
+                               int item_count,
+                               const RcNpcNormalization *npc_defs,
+                               int npc_count,
+                               const RcSourceNormalization *source_defs,
+                               int source_count);
+void rc_normalization_reset_defs_if_active(
+    const RcItemNormalization *item_defs,
+    const RcNpcNormalization *npc_defs,
+    const RcSourceNormalization *source_defs);
 uint32_t rc_normalization_hash_key(const char *name);
 int rc_normalize_item_id(int item_id);
 int rc_item_noted_id(int item_id);

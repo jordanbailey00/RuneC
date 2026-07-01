@@ -1,0 +1,339 @@
+title = "Transcript:Jack Seagull"
+npcs = ["Jack Seagull", "Longbow Ben"]
+node_count = 42
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "cond"
+text = "Before completing [[Pirate's Treasure]]:"
+parent = -1
+children = [2]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "option"
+text = "I'm looking for Redbeard Frank."
+parent = 1
+children = [3, 4, 5, 6]
+
+[[nodes]]
+id = 3
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm looking for Redbeard Frank."
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 3
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Redbeard Frank ye say? He be outside. Says he likes the feel of the wind on his cheeks."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 3
+kind = "act"
+text = "end"
+parent = 2
+is_terminal = true
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "What are you doing here?"
+parent = -1
+children = [8, 9, 10, 11]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What are you doing here?"
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Drinking."
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough."
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "option"
+text = "Have you got any quests I could do?"
+parent = -1
+children = [13, 14, 18, 22, 26]
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you got any quests I could do?"
+parent = 12
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "cond"
+text = "Before completing [[Pirate's Treasure]] and [[Goblin Diplomacy]]:"
+parent = 12
+children = [15, 16, 17]
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Nay, but the barkeep hears most of the news around here. Or Redbeard Frank, he's often spoken of buried treasure. Perhaps ye should be asking them for quests."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "act"
+text = "end"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "cond"
+text = "Before completing [[Pirate's Treasure]]:"
+parent = 12
+children = [19, 20, 21]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Nay, but Redbeard Frank has often spoken of buried treasure. Perhaps ye should be asking him for a quest."
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 18
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "act"
+text = "end"
+parent = 18
+is_terminal = true
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "cond"
+text = "Before completing [[Goblin Diplomacy]]:"
+parent = 12
+children = [23, 24, 25]
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Nay, but the barkeep hears most of the news around here. Perhaps ye should be asking him for a quest."
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "act"
+text = "end"
+parent = 22
+is_terminal = true
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "cond"
+text = "After completing [[Pirate's Treasure]] and [[Goblin Diplomacy]]:"
+parent = 12
+children = [27, 28, 29]
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Nay, I've nothing for ye to do. But I hear there's an old landlubber in Draynor Village who's always a-looking for a lively [lad/lass] to do him a favour."
+parent = 26
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks."
+parent = 26
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "act"
+text = "end"
+parent = 26
+is_terminal = true
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Arrr, matey!"
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Yo ho ho!"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So are you pirates?"
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Aye [laddie/lassie], that we are."
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Aye, that we be."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Nay, always ye say it wrong! Tis 'we are', not 'we be'."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "I be a pirate, not a scurvy schoolmaster!"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Ye be a fool, and a disgrace to piracy."
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Jack Seagull"
+text = "Now ye be saying 'be' too!"
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Longbow Ben"
+text = "Arrr! Tis thy fault."
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll leave you two to sort it out."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

@@ -1,0 +1,20 @@
+id = "quests"
+format = "binary"
+path = "data/defs/quests.bin"
+magic_label = "QEST"
+magic_u32 = "0x54534551"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_quests.py"
+consumers = ["rc-core/quests.c"]
+source_dataset = "content/quests"
+row_fields = [
+  "pstr8 name",
+  "u8 difficulty",
+  "u8 length",
+  "u8 req_count",
+  "reqs[req_count]: u8 skill_id, u8 level",
+]
+compatibility = "Loader accepts exactly current_version."

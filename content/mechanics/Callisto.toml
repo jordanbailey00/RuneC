@@ -1,0 +1,15 @@
+name = "Callisto"
+source_pages = ["Callisto", "Callisto/Strategies"]
+npc_ids = [6609]
+
+[sections]
+"Attacks" = """
+[[File:Fighting Callisto.png|thumb|300px|A group of players fighting Callisto.]]
+
+*Melee: Callisto swipes at the player. This has AoE capabilities and deals massive damage; using [[Protect from Melee]] reduces the damage by ~50%.
+*Ranged: Callisto launches crescent-shaped projectiles at everyone in the den if he cannot attack with melee.
+*Knockback: Callisto will launch a white orb-like projectile at a targeted player, which will send them flying backwards and inflict damage if [[Protect from Magic]] is not activated when the attack visually hits the player.
+** The knockback attack is a single-target attack with splash AOE. This means that it will only target one player, but the spell will affect all players within a 3x3 square of the targeted player when it hits.
+** The damage the player will take from this attack when it hits them off prayer depends on how far the player can be knocked back before they hit an object (the walls of the arena or any bear traps on the floor). The attack will attempt to knock the player back 3 tiles. If the player can be knocked back the full 3 tiles without hitting an object, they will take 5 damage. This scales up by 15 damage for each tile of knockback that cannot be completed, so the player will take 20 damage if they were 2 tiles away from an object they were pushed into, and 35 damage if they were 1 tile away. If the player is directly next to an object that the attack pushes them into, they will take 50 damage.
+*Bear Traps: At 66% health, Callisto will deploy red, ghostly-like bear traps around the arena. Getting caught in a trap will deal up to 15 damage and briefly bind the player. The traps will be redeployed again at ~33% health and appear afterwards with every attack he makes.
+"""

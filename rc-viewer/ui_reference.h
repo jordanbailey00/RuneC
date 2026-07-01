@@ -4,17 +4,9 @@
 #include "raylib.h"
 
 /*
- * OSRS UI reference constants copied from the local rsmod/model_dump interface
- * dumps. These mirror what Void/RSMod open server-side; the viewer should use
- * these as layout authority instead of hand-tuned gameframe coordinates.
- *
- * Source files:
- * - data/source/model_dump/osrs-dumps/interface/toplevel_osrs_stretch.if3
- * - data/source/model_dump/osrs-dumps/interface/orbs.if3
- * - data/source/model_dump/osrs-dumps/interface/stats.if3
- * - data/source/model_dump/osrs-dumps/interface/inventory.if3
- * - data/source/model_dump/osrs-dumps/interface/combat_interface.if3
- * - data/source/model_dump/osrs-dumps/interface/wornitems.if3
+ * OSRS UI reference constants reviewed from b237 interface dumps and tracked
+ * here as RuneC-owned layout data. The viewer should use these as layout
+ * authority instead of hand-tuned gameframe coordinates.
  */
 
 #define RUNEC_IFACE_TOPLEVEL_OSRS_STRETCH 161

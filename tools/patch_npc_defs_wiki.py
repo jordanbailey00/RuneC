@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
-"""Patch `data/defs/npc_defs.bin` with wiki-authoritative stats.
+"""Legacy patcher for NDEF v2 wiki-authoritative stats.
 
-The NDEF binary is produced by `export_npcs.py` which uses
-`osrsreboxed-db` as its primary NPC-stat source. `osrsreboxed.max_hit`
-reports base melee damage and misses breath / special attacks (Green
-dragon osrsreboxed=8 vs wiki=50). This tool applies the wiki overlay
-post-hoc without requiring a full cache re-export.
+Current `data/defs/npc_defs.bin` files are produced by
+`export_npc_defs_full.py`. This helper remains for old NDEF v2 artifacts that
+need a post-hoc wiki overlay without a full cache re-export.
 
 Overlaid fields (wiki wins when it has data):
  - max_hit  — wiki lists max damage per style; we take the max.
  - poison_immune / venom_immune  — wiki "Immune" / "Not immune" strings.
 
-NDEF v2 record layout (see export_npcs.py write_ndef):
+NDEF v2 record layout from the legacy exporter:
    fixed prefix (33 bytes) + name_len byte + name + v2 trailer (10 bytes)
    trailer: u8 aggressive, u16 max_hit, u8 attack_speed, u8 aggro_range,
             u16 slayer_level, u8 attack_types, u8 weakness, u8 immunities

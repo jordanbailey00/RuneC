@@ -1,0 +1,22 @@
+id = "shops"
+format = "binary"
+path = "data/defs/shops.bin"
+magic_label = "SHOP"
+magic_u32 = "0x504F4853"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_shops.py"
+consumers = ["rc-core/shops.c"]
+source_dataset = "RuneC-owned shop stock rows"
+row_fields = [
+  "pstr8 name",
+  "pstr8 owner",
+  "pstr8 location",
+  "pstr8 specialty",
+  "u8 members",
+  "u16 stock_count",
+  "stock[stock_count]: u32 item_id, i32 buy_price, i32 sell_price, u16 base_stock, u16 buy_mult, u16 sell_mult, u16 restock_ticks",
+]
+compatibility = "Loader accepts exactly current_version."

@@ -1,0 +1,6459 @@
+title = "Transcript:Watchtower"
+npcs = ["Enclave guard", "Tower guard", "Watchtower Wizard", "Wizard (Watchtower)", "Gorad", "Grew", "Mad skavid", "Og", "Ogre guard", "Ogre shaman", "Scared skavid", "Skavid", "Toban", "City guard", "Ogre chieftain"]
+node_count = 821
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello. What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Tower guard"
+text = "We are the tower guards – our business is our own!"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Tower guard"
+text = "You can't go up there. That's private, that is."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What's going on here?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Who are you? Are you one of the new guards?"
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm an adventurer."
+parent = -1
+
+[[nodes]]
+id = 10
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well what are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 11
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Looking for adventures - what else?"
+parent = -1
+
+[[nodes]]
+id = 12
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Oh my, oh my! What does it all matter in the end, anyway?"
+parent = -1
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "What's the matter?"
+parent = -1
+children = [15, 16, 17, 18, 20, 21, 22, 23, 45]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's the matter?"
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Oh dear, oh dear. Darn and drat!"
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "We try hard to keep this town protected."
+parent = 14
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "But how can we do that when the Watchtower isn't working?"
+parent = 14
+children = [19]
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean it isn't working?"
+parent = 18
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "The Watchtower here works by the power of magic. An ancient spell designed to ward off ogres that has been in place here for many moons."
+parent = 14
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "The exact knowledge of the spell is lost to us now, but the essence of the spell has been infused into four powering crystals that keep the tower protected from the hordes in the Feldips."
+parent = 14
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 14
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "option"
+text = "So how come the spell doesn't work?"
+parent = 14
+children = [24, 25, 26, 27, 28, 29, 30, 31, 41]
+
+[[nodes]]
+id = 24
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "So how come the spell doesn't work?"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "The crystals! The crystals have been taken!"
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Taken?"
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Stolen!"
+parent = 23
+
+[[nodes]]
+id = 28
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Stolen?"
+parent = 23
+
+[[nodes]]
+id = 29
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Yes, yes! Do I have to repeat myself?"
+parent = 23
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "select"
+text = "Start the Watchtower quest?"
+parent = 23
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "option"
+text = "Yes."
+parent = 23
+children = [32, 33, 34, 35, 36, 37, 38, 39, 40]
+
+[[nodes]]
+id = 32
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Can I be of help?"
+parent = 31
+
+[[nodes]]
+id = 33
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Help? Oh wonderful, dear traveller!"
+parent = 31
+
+[[nodes]]
+id = 34
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Yes I could do with an extra pair of eyes here."
+parent = 31
+
+[[nodes]]
+id = 35
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "???"
+parent = 31
+
+[[nodes]]
+id = 36
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "There must be some evidence of what has happened here. Perhaps you could assist me in searching for clues?"
+parent = 31
+
+[[nodes]]
+id = 37
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I would be happy to."
+parent = 31
+
+[[nodes]]
+id = 38
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Try searching the surrounding area. If you find anything unusual, bring it here. Try the bushes - I've read enough adventure stories to know that clues get caught in bushes all the time."
+parent = 31
+
+[[nodes]]
+id = 39
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "I will tell the guards to let you past - that way, you can just use the ladder to get in and out."
+parent = 31
+
+[[nodes]]
+id = 40
+depth = 4
+kind = "act"
+text = "end"
+parent = 31
+is_terminal = true
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "option"
+text = "No."
+parent = 23
+children = [42, 43, 44]
+
+[[nodes]]
+id = 42
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm not interested."
+parent = 41
+
+[[nodes]]
+id = 43
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "That's typical, nowadays. It's left to us wizards to do all the work."
+parent = 41
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "act"
+text = "end"
+parent = 41
+is_terminal = true
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "option"
+text = "I'm not interested in your rantings."
+parent = 14
+children = [46, 47, 48]
+
+[[nodes]]
+id = 46
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm not interested in your rantings."
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Hmph! Suit yourself."
+parent = 45
+
+[[nodes]]
+id = 48
+depth = 3
+kind = "act"
+text = "end"
+parent = 45
+is_terminal = true
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "You wizards are always complaining."
+parent = -1
+children = [50, 51, 52, 53]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You wizards are always complaining."
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Complaining? Complaining!"
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "What folks these days don't realise is that if it weren't for us wizards, this entire world would be overrun with every creature you could possibly imagine. And some you couldn't even conceive of!"
+parent = 49
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got some questions about the search for evidence."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Hello again. Did you find anything of interest?"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "cond"
+text = "With no evidence to show him:"
+parent = -1
+children = [59, 60, 61]
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, sorry, nothing yet."
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Oh dear, oh dear, there must be something, somewhere..."
+parent = 58
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "act"
+text = "end"
+parent = 58
+is_terminal = true
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "cond"
+text = "With any of the evidence besides fingernails:"
+parent = -1
+children = [63, 64, 65, 66]
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have this [robe/dagger/armour/eyepatch]..."
+parent = 62
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Let me see..."
+parent = 62
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "No, sorry, this is not evidence. You need to keep searching, I'm afraid."
+parent = 62
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "act"
+text = "end"
+parent = 62
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "cond"
+text = "With the fingernails"
+parent = -1
+children = [68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 100]
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have a look at these..."
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Interesting, very interesting."
+parent = 67
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Long nails...grey in colour...well chewed..."
+parent = 67
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Of course! They belong to a skavid!"
+parent = 67
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A skavid?"
+parent = 67
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "A servant race to the ogres: grey, depressed-looking creatures, always losing nails, teeth and hair!"
+parent = 67
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "They inhabit the caves in the Feldip Hills."
+parent = 67
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "They normally keep to themselves, though. It's unusual for them to venture from their caves."
+parent = 67
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 67
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "option"
+text = "What do you suggest I do?"
+parent = 67
+children = [78, 79, 80, 81, 82, 83, 84, 85, 86, 95]
+
+[[nodes]]
+id = 78
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "What do you suggest I do?"
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "It's no good searching the caves. Well, not yet, anyway."
+parent = 77
+
+[[nodes]]
+id = 80
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why not?"
+parent = 77
+
+[[nodes]]
+id = 81
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "They are deep and complex. The only way you will navigate the caves is to have a map or something."
+parent = 77
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "It may be that the ogres have one..."
+parent = 77
+
+[[nodes]]
+id = 83
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And how do you know that?"
+parent = 77
+
+[[nodes]]
+id = 84
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well... I don't."
+parent = 77
+
+[[nodes]]
+id = 85
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 77
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "option"
+text = "So what do I do?"
+parent = 77
+children = [87, 88, 89, 90, 91, 92, 93, 94]
+
+[[nodes]]
+id = 87
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what do I do?"
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You need to be fearless and gain entrance to Gu'Tanoth, the city of the ogres, then find out how to navigate the caves."
+parent = 86
+
+[[nodes]]
+id = 89
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "That sounds scary..."
+parent = 86
+
+[[nodes]]
+id = 90
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Ogres are nasty creatures, yes. Only a strong warrior, and a clever one at that, can get the better of them."
+parent = 86
+
+[[nodes]]
+id = 91
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to do to get into the city?"
+parent = 86
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You'll need some way to make the guards let you in."
+parent = 86
+
+[[nodes]]
+id = 93
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You could start by checking out the ogre settlements around here. Tribal ogres often dislike their neighbours... In the meantime, I'll throw those fingernails out for you."
+parent = 86
+
+[[nodes]]
+id = 94
+depth = 4
+kind = "act"
+text = "end"
+parent = 86
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 3
+kind = "option"
+text = "I won't bother then."
+parent = 77
+children = [96, 97, 98, 99]
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I won't bother, then."
+parent = 95
+
+[[nodes]]
+id = 97
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Won't bother? Won't bother!"
+parent = 95
+
+[[nodes]]
+id = 98
+depth = 4
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Perhaps this quest is too hard for you?"
+parent = 95
+
+[[nodes]]
+id = 99
+depth = 4
+kind = "act"
+text = "end"
+parent = 95
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "option"
+text = "Shall I search the caves?"
+parent = 67
+children = [101, 102, 103, 104, 105, 106, 107, 108, 109, 111]
+
+[[nodes]]
+id = 101
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Shall I search the caves?"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "It's no good searching the caves. Well, not yet, anyway."
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Why not?"
+parent = 100
+
+[[nodes]]
+id = 104
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "They are deep and complex. The only way you will navigate the caves is to have a map or something."
+parent = 100
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "It may be that the ogres have one..."
+parent = 100
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "And how do you know that?"
+parent = 100
+
+[[nodes]]
+id = 107
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well... I don't."
+parent = 100
+
+[[nodes]]
+id = 108
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 100
+
+[[nodes]]
+id = 109
+depth = 3
+kind = "option"
+text = "So what do I do?"
+parent = 100
+children = [110]
+
+[[nodes]]
+id = 110
+depth = 4
+kind = "act"
+text = "above"
+parent = 109
+
+[[nodes]]
+id = 111
+depth = 3
+kind = "option"
+text = "I won't bother then."
+parent = 100
+children = [112]
+
+[[nodes]]
+id = 112
+depth = 4
+kind = "act"
+text = "above"
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "cond"
+text = "Old robe:"
+parent = -1
+children = [114, 115, 116]
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aha! A robe. This could be a clue..."
+parent = 113
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "act"
+text = "receives=[[old robe]]"
+parent = 113
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "act"
+text = "end"
+parent = 113
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "cond"
+text = "Unusual armour:"
+parent = -1
+children = [118, 119, 120]
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here's some armour; it could be evidence..."
+parent = 117
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "receives=[[unusual armour]]"
+parent = 117
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "act"
+text = "end"
+parent = 117
+is_terminal = true
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "cond"
+text = "Damaged dagger:"
+parent = -1
+children = [122, 123, 124]
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Aha, a dagger! I wonder if this is evidence..."
+parent = 121
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "act"
+text = "receives=[[damaged dagger]]"
+parent = 121
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "act"
+text = "end"
+parent = 121
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "cond"
+text = "Tattered eye patch:"
+parent = -1
+children = [126, 127, 128]
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I've found an eye patch; I had better show this to the Watchtower Wizard."
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "receives=[[tattered eye patch]]"
+parent = 125
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "act"
+text = "end"
+parent = 125
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "cond"
+text = "Fingernails:"
+parent = -1
+children = [130, 131, 132]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's this? Disgusting! Some fingernails. They may be a clue though... I'd better take them."
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "act"
+text = "receives=[[Fingernails]]"
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "act"
+text = "end"
+parent = 129
+is_terminal = true
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "cond"
+text = "Searching the same bush after finding an item in it:"
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have already searched this place."
+parent = -1
+children = [135]
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "act"
+text = "end"
+parent = 134
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "cond"
+text = "Finding nothing:"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hmmm, nothing here."
+parent = -1
+children = [138]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "act"
+text = "end"
+parent = 137
+is_terminal = true
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got some questions regarding the tribal ogres."
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "How's it going?"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "option"
+text = "I am having difficulty with the tribes."
+parent = -1
+children = [145, 146, 147]
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am having difficulty with the tribes."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Talk to them face to face and don't show any fear. Make sure you are rested and well fed, and fight the good fight!"
+parent = 144
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "act"
+text = "end"
+parent = 144
+is_terminal = true
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "option"
+text = "I have everything under control."
+parent = -1
+children = [149, 150, 151]
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have everything under control."
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Good, good! I will expect the crystals back shortly then..."
+parent = 148
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "act"
+text = "end"
+parent = 148
+is_terminal = true
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "option"
+text = "I have lost something the ogres gave to me."
+parent = -1
+children = [153, 154, 155]
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have lost something the ogres gave to me."
+parent = 152
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Oh, deary me! Well, there's nothing I can do about it. You will have to go back to them, I'm afraid."
+parent = 152
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "act"
+text = "end"
+parent = 152
+is_terminal = true
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "speaker"
+speaker = "Toban"
+text = "What do you want, small t'ing?"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 158
+depth = 1
+kind = "option"
+text = "I seek entrance to the city of ogres."
+parent = -1
+children = [159, 160, 161, 162, 163, 164, 169]
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek entrance to the city of ogres."
+parent = 158
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Toban"
+text = "Hahaha! You'll never get in there."
+parent = 158
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll find a way, trust me."
+parent = 158
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Toban"
+text = "Bold words for a t'ing so small."
+parent = 158
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 158
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "option"
+text = "I could do something for you..."
+parent = 158
+children = [165, 166, 167, 168]
+
+[[nodes]]
+id = 165
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I could do something for you..."
+parent = 164
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "speaker"
+speaker = "Toban"
+text = "Hahaha! This creature t'inks it can help me! I would eat you now, but for your puny size."
+parent = 164
+
+[[nodes]]
+id = 167
+depth = 3
+kind = "speaker"
+speaker = "Toban"
+text = "Prove to me your might: bring me the bones of an adult dragon to chew on, and I'll eat them, not you."
+parent = 164
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "act"
+text = "end"
+parent = 164
+is_terminal = true
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "option"
+text = "Die, creature!"
+parent = 158
+children = [170]
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "act"
+text = "below"
+parent = 169
+
+[[nodes]]
+id = 171
+depth = 1
+kind = "option"
+text = "Die, creature!"
+parent = -1
+children = [172, 173, 174]
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Die, creature!"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Toban"
+text = "Hahaha! It t'inks it's a match for Toban, does it?"
+parent = 171
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "other"
+text = "{{qact|Tobans hits and damages the player}}"
+parent = 171
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "speaker"
+speaker = "Toban"
+text = "Hahaha! Small t'ing returns. Did you bring the dragon bone?"
+parent = -1
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "cond"
+text = "Without dragon bones:"
+parent = -1
+children = [177, 178, 179]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't have what you want."
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Toban"
+text = "Then you shall get nothing from me!"
+parent = 176
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "act"
+text = "end"
+parent = 176
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "cond"
+text = "With dragon bones:"
+parent = -1
+children = [181, 182, 183, 184]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "When I say I will get something, I get it!"
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Toban"
+text = "Hahaha! Small t'ing has done it. Toban is glad - take this..."
+parent = 180
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "box"
+text = "pic=Relic part 3 detail.png|The ogre gives you part of a statue."
+parent = 180
+
+[[nodes]]
+id = 184
+depth = 2
+kind = "act"
+text = "end"
+parent = 180
+is_terminal = true
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Toban"
+text = "The small t'ing returns; what do you want now?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "option"
+text = "I seek another task."
+parent = -1
+children = [188, 189, 190]
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek another task."
+parent = 187
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Toban"
+text = "Have you arrived for dinner? Hahaha! Be gone, small t'ing!"
+parent = 187
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "act"
+text = "end"
+parent = 187
+is_terminal = true
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "option"
+text = "I can't find the relic part you gave me."
+parent = -1
+children = [192]
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "cond"
+text = "If the player has the relic part on them:"
+parent = 191
+children = [193, 194, 195]
+
+[[nodes]]
+id = 193
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I can't find the relic part you gave me."
+parent = 192
+
+[[nodes]]
+id = 194
+depth = 3
+kind = "speaker"
+speaker = "Toban"
+text = "Small t'ing, you lie to me! I always says that small t'ings are big trouble."
+parent = 192
+
+[[nodes]]
+id = 195
+depth = 3
+kind = "act"
+text = "end"
+parent = 192
+is_terminal = true
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "cond"
+text = "With Toban's key:"
+parent = -1
+children = [197, 198]
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "box"
+text = "pic=Toban's gold detail.png|You find a stash of gold inside."
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "act"
+text = "end"
+parent = 196
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "cond"
+text = "Without Toban's key:"
+parent = -1
+children = [200, 201]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I need a key of some sort."
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "act"
+text = "end"
+parent = 199
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Og"
+text = "Why you here, little t'ing?"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "I seek entrance to the city of ogres."
+parent = -1
+children = [205, 206, 207, 208, 209, 210, 211]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek entrance to the city of ogres."
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Og"
+text = "You got no business there!"
+parent = 204
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Og"
+text = "Just a minute... Maybe if you did somet'ing for me, I might help you get in."
+parent = 204
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What can I do to help an ogre?"
+parent = 204
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Og"
+text = "South-east of here der is more ogres - the name of the chieftain is Toban. He stole gold from me and I want it back!"
+parent = 204
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "speaker"
+speaker = "Og"
+text = "Here is a key to the chest it's in. If you bring it here, I may reward you..."
+parent = 204
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "act"
+text = "end"
+parent = 204
+is_terminal = true
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "option"
+text = "I have come to kill you."
+parent = -1
+children = [213, 214, 215]
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have come to kill you!"
+parent = 212
+
+[[nodes]]
+id = 214
+depth = 2
+kind = "speaker"
+speaker = "Og"
+text = "Kill me, eh? You shall be crushed. Guards!"
+parent = 212
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "other"
+text = "{{qact|An ogre attacks the player.}}"
+parent = 212
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "speaker"
+speaker = "Og"
+text = "Where my gold from dat dirty Toban?"
+parent = -1
+
+[[nodes]]
+id = 217
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "option"
+text = "I have your gold."
+parent = -1
+children = [219, 223]
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "cond"
+text = "If the player does have the gold:"
+parent = 218
+children = [220, 221, 222]
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Well, well, the little t'ing has got it! Take dis to show little t'ing is a friend to da ogres. Hahahahaha!"
+parent = 219
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "box"
+text = "pic=Relic part 1 detail.png|The ogre gives you part of a horrible statue."
+parent = 219
+
+[[nodes]]
+id = 222
+depth = 3
+kind = "act"
+text = "end"
+parent = 219
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the gold:"
+parent = 218
+children = [224, 225, 226]
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have your gold."
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "No you don't! If you want to impress me, get da gold I asked for!"
+parent = 223
+
+[[nodes]]
+id = 226
+depth = 3
+kind = "act"
+text = "end"
+parent = 223
+is_terminal = true
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "option"
+text = "I haven't got it yet."
+parent = -1
+children = [228, 229, 230]
+
+[[nodes]]
+id = 228
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I haven't got it yet."
+parent = 227
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Og"
+text = "Don't come back until you have it, unless you wanna be on tonight's menu!"
+parent = 227
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "act"
+text = "end"
+parent = 227
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "option"
+text = "I have lost the key!"
+parent = -1
+children = [232, 236, 241]
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "cond"
+text = "If the player no longer has the key:"
+parent = 231
+children = [233, 234, 235]
+
+[[nodes]]
+id = 233
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the key!"
+parent = 232
+
+[[nodes]]
+id = 234
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Stoopid! Take another and don't lose it!"
+parent = 232
+
+[[nodes]]
+id = 235
+depth = 3
+kind = "act"
+text = "end"
+parent = 232
+is_terminal = true
+
+[[nodes]]
+id = 236
+depth = 2
+kind = "cond"
+text = "If the player has the key on them:"
+parent = 231
+children = [237, 238, 239, 240]
+
+[[nodes]]
+id = 237
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Oh yeah? What's dat den?"
+parent = 236
+
+[[nodes]]
+id = 238
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh yeah, I've got it right here."
+parent = 236
+
+[[nodes]]
+id = 239
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Stoopid!"
+parent = 236
+
+[[nodes]]
+id = 240
+depth = 3
+kind = "act"
+text = "end"
+parent = 236
+is_terminal = true
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "cond"
+text = "If the player has the key stored somewhere:"
+parent = 231
+children = [242, 243, 244]
+
+[[nodes]]
+id = 242
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the key!"
+parent = 241
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Are you trying to trick me? I bet you got it stored somewhere. Humans always do that."
+parent = 241
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "act"
+text = "end"
+parent = 241
+is_terminal = true
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Og"
+text = "It's the little t'ing again."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "option"
+text = "Do you have any other tasks for me?"
+parent = -1
+children = [248, 249, 250]
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any other tasks for me?"
+parent = 247
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "speaker"
+speaker = "Og"
+text = "No, I have no more tasks for you, now go away."
+parent = 247
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "act"
+text = "end"
+parent = 247
+is_terminal = true
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "option"
+text = "I have lost the relic part you gave me."
+parent = -1
+children = [252, 256, 260]
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "cond"
+text = "If the player has the relic part on them:"
+parent = 251
+children = [253, 254, 255]
+
+[[nodes]]
+id = 253
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the relic part you gave me."
+parent = 252
+
+[[nodes]]
+id = 254
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Are you blind? I can see you got it even from here!"
+parent = 252
+
+[[nodes]]
+id = 255
+depth = 3
+kind = "act"
+text = "end"
+parent = 252
+is_terminal = true
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "cond"
+text = "If the player lost the relic part:"
+parent = 251
+children = [257, 258, 259]
+
+[[nodes]]
+id = 257
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the relic part you gave me."
+parent = 256
+
+[[nodes]]
+id = 258
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Grrr, why do I bother? It's a good job I got another part."
+parent = 256
+
+[[nodes]]
+id = 259
+depth = 3
+kind = "act"
+text = "end"
+parent = 256
+is_terminal = true
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "cond"
+text = "If the relic part is stored somewhere:"
+parent = 251
+children = [261, 262, 263]
+
+[[nodes]]
+id = 261
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the relic part you gave me."
+parent = 260
+
+[[nodes]]
+id = 262
+depth = 3
+kind = "speaker"
+speaker = "Og"
+text = "Are you trying to trick me? I bet you got it stored somewhere. Humans always do that."
+parent = 260
+
+[[nodes]]
+id = 263
+depth = 3
+kind = "act"
+text = "end"
+parent = 260
+is_terminal = true
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Grew"
+text = "What do you want, little morsel? You would look good on my plate!"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I want to enter the city of ogres."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Grew"
+text = "Hah! I should eat you instead!"
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "option"
+text = "Don't eat me; I can help you."
+parent = -1
+children = [269, 270, 271, 272, 273, 274]
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Don't eat me; I can help you."
+parent = 268
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Grew"
+text = "What can a morsel like you do for me?"
+parent = 268
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am a mighty adventurer, slayer of monsters and user of magic powers."
+parent = 268
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Grew"
+text = "Well, well, perhaps the morsel can help after all..."
+parent = 268
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Grew"
+text = "If you t'ink you're tough, find Gorad, my enemy to the south-east, and knock one of his teeth out! Heheheheh!"
+parent = 268
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "act"
+text = "end"
+parent = 268
+is_terminal = true
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "option"
+text = "You will have to kill me first."
+parent = -1
+children = [276, 277, 278]
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You will have to kill me first."
+parent = 275
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Grew"
+text = "That's not tricky - guards!"
+parent = 275
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "other"
+text = "{{qact|An ogre attacks the player.}}"
+parent = 275
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Grew"
+text = "The morsel is back. Does it have our tooth for us?"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "cond"
+text = "Without the ogre tooth:"
+parent = -1
+children = [281, 282, 283]
+
+[[nodes]]
+id = 281
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Err, I don't have it."
+parent = 280
+
+[[nodes]]
+id = 282
+depth = 2
+kind = "speaker"
+speaker = "Grew"
+text = "Morsel, you dare to return without the tooth! Either you are stoopid, or wants to be eaten!"
+parent = 280
+
+[[nodes]]
+id = 283
+depth = 2
+kind = "act"
+text = "end"
+parent = 280
+is_terminal = true
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "cond"
+text = "With the ogre tooth:"
+parent = -1
+children = [285, 286, 287, 288]
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have it."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Grew"
+text = "That'll annoy Gorad lots! Heheheheh! Here's a token of my gratitude: some old gem I stole from Gorad, and an old part of a statue."
+parent = 284
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "box"
+text = "pic=Relic part 2 detail.png|pic2=Crystal (yellow) detail.png|You get part of a horrible statue... and one of the crystals!"
+parent = 284
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "act"
+text = "end"
+parent = 284
+is_terminal = true
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've come to knock your teeth out!"
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Gorad"
+text = "You shut your face! I smack you till you dead and sorry!"
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "cond"
+text = "After killing Gorad:"
+parent = -1
+children = [293]
+
+[[nodes]]
+id = 293
+depth = 2
+kind = "box"
+text = "pic=Ogre tooth detail.png|He's dropped a tooth. You grab it quickly."
+parent = 292
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Grew"
+text = "What are you doing here, morsel?"
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "option"
+text = "Can I do anything else for you?"
+parent = -1
+children = [297, 298, 299]
+
+[[nodes]]
+id = 297
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I do anything else for you?"
+parent = 296
+
+[[nodes]]
+id = 298
+depth = 2
+kind = "speaker"
+speaker = "Grew"
+text = "I have nothing left for you but the cooking pot!"
+parent = 296
+
+[[nodes]]
+id = 299
+depth = 2
+kind = "act"
+text = "end"
+parent = 296
+is_terminal = true
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "option"
+text = "I've lost the relic part you gave me."
+parent = -1
+children = [301, 305, 309]
+
+[[nodes]]
+id = 301
+depth = 2
+kind = "cond"
+text = "If the player has the relic part on them:"
+parent = 300
+children = [302, 303, 304]
+
+[[nodes]]
+id = 302
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the relic part you gave me."
+parent = 301
+
+[[nodes]]
+id = 303
+depth = 3
+kind = "speaker"
+speaker = "Grew"
+text = "You lie to me, morsel!"
+parent = 301
+
+[[nodes]]
+id = 304
+depth = 3
+kind = "act"
+text = "end"
+parent = 301
+is_terminal = true
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the relic part:"
+parent = 300
+children = [306, 307, 308]
+
+[[nodes]]
+id = 306
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the relic part you gave me."
+parent = 305
+
+[[nodes]]
+id = 307
+depth = 3
+kind = "speaker"
+speaker = "Grew"
+text = "Stupid morsel, I have another. Take it and go now before I lose my temper."
+parent = 305
+
+[[nodes]]
+id = 308
+depth = 3
+kind = "act"
+text = "end"
+parent = 305
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "cond"
+text = "If the relic part is stored somewhere:"
+parent = 300
+children = [310, 311, 312]
+
+[[nodes]]
+id = 310
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the relic part you gave me."
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 3
+kind = "speaker"
+speaker = "Grew"
+text = "You probably got it stored somewhere, morsel! Humans do that a lot."
+parent = 309
+
+[[nodes]]
+id = 312
+depth = 3
+kind = "act"
+text = "end"
+parent = 309
+is_terminal = true
+
+[[nodes]]
+id = 313
+depth = 1
+kind = "option"
+text = "I've lost the crystal you gave me."
+parent = -1
+children = [314, 318, 322]
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "cond"
+text = "If the player has the crystal on them:"
+parent = 313
+children = [315, 316, 317]
+
+[[nodes]]
+id = 315
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the crystal you gave me."
+parent = 314
+
+[[nodes]]
+id = 316
+depth = 3
+kind = "speaker"
+speaker = "Grew"
+text = "How dare you lie to me morsel! I will grind you up for my bread!"
+parent = 314
+
+[[nodes]]
+id = 317
+depth = 3
+kind = "act"
+text = "end"
+parent = 314
+is_terminal = true
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "cond"
+text = "If the player doesn't have the crystal:"
+parent = 313
+children = [319, 320, 321]
+
+[[nodes]]
+id = 319
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the crystal you gave me."
+parent = 318
+
+[[nodes]]
+id = 320
+depth = 3
+kind = "speaker"
+speaker = "Grew"
+text = "I suppose you want another? I suppose just this once I could give you my copy..."
+parent = 318
+
+[[nodes]]
+id = 321
+depth = 3
+kind = "act"
+text = "end"
+parent = 318
+is_terminal = true
+
+[[nodes]]
+id = 322
+depth = 2
+kind = "cond"
+text = "If the crystal is stored somewhere:"
+parent = 313
+children = [323, 324, 325]
+
+[[nodes]]
+id = 323
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I've lost the crystal you gave me."
+parent = 322
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "speaker"
+speaker = "Grew"
+text = "You probably got it stored somewhere, morsel! Humans do that a lot."
+parent = 322
+
+[[nodes]]
+id = 325
+depth = 3
+kind = "act"
+text = "end"
+parent = 322
+is_terminal = true
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "cond"
+text = "Handing in relic part 1:"
+parent = -1
+children = [327]
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "An ogre called Og gave me this..."
+parent = 326
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "cond"
+text = "Handing in relic part 2:"
+parent = -1
+children = [329]
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "An ogre called Grew gave me this..."
+parent = 328
+
+[[nodes]]
+id = 330
+depth = 1
+kind = "cond"
+text = "Handing in relic part 3:"
+parent = -1
+children = [331]
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "An ogre called Toban gave me this..."
+parent = 330
+
+[[nodes]]
+id = 332
+depth = 1
+kind = "cond"
+text = "After handing in one relic part:"
+parent = -1
+children = [333]
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Ah, it's part of an old ogre statue. I'll take that off you - it might come in handy if I can fix it up."
+parent = 332
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "cond"
+text = "After handing in two relic parts:"
+parent = -1
+children = [335]
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Ah, it's more of that old ogre statue. I'll take this bit too."
+parent = 334
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "cond"
+text = "After handing in the third relic part:"
+parent = -1
+children = [337, 338, 339, 340]
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "It looks like you've brought me all the pieces of the relic. It is as I thought - a statue symbolising an ogre warrior of old."
+parent = 336
+
+[[nodes]]
+id = 338
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well, if you ever want to make friends with an ogre, this is the item to have! Now I'll try to assemble it..."
+parent = 336
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "box"
+text = "pic=Ogre relic detail.png|The wizard gives you a complete statue."
+parent = 336
+
+[[nodes]]
+id = 340
+depth = 2
+kind = "act"
+text = "end"
+parent = 336
+is_terminal = true
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got some questions about the ogre city."
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I had a feeling you might say that."
+parent = -1
+
+[[nodes]]
+id = 344
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 345
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Ah, the warrior returns. Have you found a way into Gu'Tanoth yet?"
+parent = -1
+
+[[nodes]]
+id = 346
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I can't get past the guards."
+parent = -1
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well, ogres dislike others apart from their own kind. What you need is some form of proof of friendship, something to trick them into believing you're their friend."
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Which shouldn't be too hard, considering their intelligence."
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "option"
+text = "I have lost the relic you gave me."
+parent = -1
+children = [351, 355, 360]
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "cond"
+text = "If the player has the relic in their inventory:"
+parent = 350
+children = [352, 353, 354]
+
+[[nodes]]
+id = 352
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the relic you gave me."
+parent = 351
+
+[[nodes]]
+id = 353
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Have you gone mad? I can see you have it with you!"
+parent = 351
+
+[[nodes]]
+id = 354
+depth = 3
+kind = "act"
+text = "end"
+parent = 351
+is_terminal = true
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "cond"
+text = "If the player lost the relic:"
+parent = 350
+children = [356, 357, 358, 359]
+
+[[nodes]]
+id = 356
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the relic you gave me."
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "What? Lost the relic? How careless! It's a good job I copied its design, then! You can take this copy instead - it's just as good."
+parent = 355
+
+[[nodes]]
+id = 358
+depth = 3
+kind = "box"
+text = "pic=Ogre relic detail.png|The wizard gives you another statue."
+parent = 355
+
+[[nodes]]
+id = 359
+depth = 3
+kind = "act"
+text = "end"
+parent = 355
+is_terminal = true
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "cond"
+text = "If the player stored the relic somewhere:"
+parent = 350
+children = [361, 362, 363]
+
+[[nodes]]
+id = 361
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the relic you gave me."
+parent = 360
+
+[[nodes]]
+id = 362
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "I imagine you've stored it somewhere. Go and see where you might have put it."
+parent = 360
+
+[[nodes]]
+id = 363
+depth = 3
+kind = "act"
+text = "end"
+parent = 360
+is_terminal = true
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "option"
+text = "I will find my way in, no problem."
+parent = -1
+children = [365, 366, 367]
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I will find my way in, no problem."
+parent = 364
+
+[[nodes]]
+id = 366
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Yes, I'm sure you will... Good luck!"
+parent = 364
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "act"
+text = "end"
+parent = 364
+is_terminal = true
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "cond"
+text = "If the player is not carrying the relic:"
+parent = -1
+children = [369, 370, 371, 372]
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Stop, creature! Only ogres and their friends allowed in this city. Show me a sign of companionship, like a lost relic or somefing, and you may pass."
+parent = 368
+
+[[nodes]]
+id = 370
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Until then, back to whence you came!"
+parent = 368
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "act"
+text = "(The ogre guard pushes you back down the hill, stunning you and dealing 3 damage)"
+parent = 368
+
+[[nodes]]
+id = 372
+depth = 2
+kind = "act"
+text = "end"
+parent = 368
+is_terminal = true
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "cond"
+text = "If the player is carrying the relic:"
+parent = -1
+children = [374, 375, 376, 377]
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Well, what proof of friendship did you bring?"
+parent = 373
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have a relic!"
+parent = 373
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "It's got the statue of Dalgroth. Welcome to Gu'Tanoth, friend of the ogres."
+parent = 373
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "act"
+text = "end"
+parent = 373
+is_terminal = true
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've made it into the ogre city!"
+parent = -1
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's like talking to a broken record."
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "How are you doing with the ogres?"
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have gained entry to the city!"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Already? Excellent!"
+parent = -1
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I still can't navigate the skavid caves."
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You need a map of some kind... I bet one of the ogres has one."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay thanks, I'll go and find out."
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Oi! Where do you think you are going? You are for the cooking pot!"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "option"
+text = "But I am a friend to ogres..."
+parent = -1
+children = [392, 393, 394, 395, 396]
+
+[[nodes]]
+id = 392
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But I am a friend to ogres..."
+parent = 391
+
+[[nodes]]
+id = 393
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Prove it to us with a gift. Get us something from the market."
+parent = 391
+
+[[nodes]]
+id = 394
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Like what?"
+parent = 391
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Surprise us..."
+parent = 391
+
+[[nodes]]
+id = 396
+depth = 2
+kind = "act"
+text = "end"
+parent = 391
+is_terminal = true
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "option"
+text = "Not if I can help it."
+parent = -1
+children = [398, 399, 400, 401, 405]
+
+[[nodes]]
+id = 398
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not if I can help it."
+parent = 397
+
+[[nodes]]
+id = 399
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "You can help by being tonight's dinner, or you can go away. Now, which shall it be?"
+parent = 397
+
+[[nodes]]
+id = 400
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 397
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "option"
+text = "Okay, okay, I'm going."
+parent = 397
+children = [402, 403, 404]
+
+[[nodes]]
+id = 402
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, okay, I'm going."
+parent = 401
+
+[[nodes]]
+id = 403
+depth = 3
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Back to whence you came!"
+parent = 401
+
+[[nodes]]
+id = 404
+depth = 3
+kind = "other"
+text = "{{qact|The guard attacks the player, who falls into the lava. Fade out/in. The player appears south of Gu'Tanoth and takes damage.}}"
+parent = 401
+
+[[nodes]]
+id = 405
+depth = 2
+kind = "option"
+text = "I tire of ogres; prepare to die!"
+parent = 397
+children = [406, 407]
+
+[[nodes]]
+id = 406
+depth = 3
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Grrrrr!"
+parent = 405
+
+[[nodes]]
+id = 407
+depth = 3
+kind = "other"
+text = "{{qact|The ogre guard attacks the player.}}"
+parent = 405
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "cond"
+text = "Without an ogre rockcake:"
+parent = -1
+children = [409, 410, 411]
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Um... is there anything in my backpack that you'd want?"
+parent = 408
+
+[[nodes]]
+id = 410
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "You didn't bring anything! Shove off!"
+parent = 408
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "act"
+text = "end"
+parent = 408
+is_terminal = true
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "cond"
+text = "With an ogre rockcake:"
+parent = -1
+children = [413, 414, 415, 416, 417]
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Stop, creature! Oh it's you. Well, what have you got for us, then?"
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How about this?"
+parent = 412
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "box"
+text = "pic=Rock cake detail.png|You offer the guard a rock cake."
+parent = 412
+
+[[nodes]]
+id = 416
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Well, well, look at this. My favourite: rock cake! Okay, we will let it through."
+parent = 412
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "act"
+text = "end"
+parent = 412
+is_terminal = true
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "What do you want, small thing? Leave us alone!"
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "Oi! Little thing. If you want to cross here, you must pay me 20 gold pieces first!"
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You want me to give you 20 gold pieces to let me jump off a bridge?"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "speaker"
+speaker = "Ogre guard"
+text = "That's what I said, like it or lump it."
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "option"
+text = "Okay, I'll pay it."
+parent = -1
+children = [425, 430]
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "cond"
+text = "If the player doesn't have 20 coins:"
+parent = 424
+children = [426, 427, 428, 429]
+
+[[nodes]]
+id = 426
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll pay it."
+parent = 425
+
+[[nodes]]
+id = 427
+depth = 3
+kind = "speaker"
+speaker = "Ogre guard"
+text = "A wise choice, little thing."
+parent = 425
+
+[[nodes]]
+id = 428
+depth = 3
+kind = "speaker"
+speaker = "Ogre guard"
+text = "And where is your money? Grrrr! Do you want to get hurt or something?"
+parent = 425
+
+[[nodes]]
+id = 429
+depth = 3
+kind = "act"
+text = "end"
+parent = 425
+is_terminal = true
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "cond"
+text = "If the player has 20 coins:"
+parent = 424
+children = [431, 432, 433, 434, 435]
+
+[[nodes]]
+id = 431
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I'll pay it."
+parent = 430
+
+[[nodes]]
+id = 432
+depth = 3
+kind = "speaker"
+speaker = "Ogre guard"
+text = "A wise choice, little thing."
+parent = 430
+
+[[nodes]]
+id = 433
+depth = 3
+kind = "other"
+text = "{{qact|The player jumps over the gap.}}"
+parent = 430
+
+[[nodes]]
+id = 434
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Phew! I just made it."
+parent = 430
+
+[[nodes]]
+id = 435
+depth = 3
+kind = "act"
+text = "end"
+parent = 430
+is_terminal = true
+
+[[nodes]]
+id = 436
+depth = 1
+kind = "option"
+text = "Forget it, I'm not paying."
+parent = -1
+children = [437, 438, 439]
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Forget it, I'm not paying."
+parent = 436
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "speaker"
+speaker = "Ogre guard"
+text = "In that case you're not crossing."
+parent = 436
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "act"
+text = "end"
+parent = 436
+is_terminal = true
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "speaker"
+speaker = "City guard"
+text = "Grrrr, what business you got here?"
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am on an errand."
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "speaker"
+speaker = "City guard"
+text = "So what you want with me?"
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "option"
+text = "I am an ogre killer come to destroy you!"
+parent = -1
+children = [444, 445, 446, 447]
+
+[[nodes]]
+id = 444
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am an ogre killer come to destroy you!"
+parent = 443
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "I would like to see you try!"
+parent = 443
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "other"
+text = "{{mes|You are under attack!}}"
+parent = 443
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "act"
+text = "end"
+parent = 443
+is_terminal = true
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "option"
+text = "I seek passage into the skavid caves"
+parent = -1
+children = [449, 450, 451, 452, 453, 454, 455, 456]
+
+[[nodes]]
+id = 449
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I seek passage into the skavid caves."
+parent = 448
+
+[[nodes]]
+id = 450
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "Is that so... You humour me small t'ing. Answer this riddle and I will help you..."
+parent = 448
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "I want you to bring me an item: I will give you all the letters of this item, you work out what it is..."
+parent = 448
+
+[[nodes]]
+id = 452
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My first is in days, but not in years, My second is in evil, and also in tears, My third is in all, but not in none, My fourth is in hot, but not in sun."
+parent = 448
+
+[[nodes]]
+id = 453
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My fifth is in heaven, and also in hate, My sixth is in fearing, but not in fate, My seventh is in plush, but not in place."
+parent = 448
+
+[[nodes]]
+id = 454
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My eighth is in nine, but not in eight, My last is in earth, and also in great."
+parent = 448
+
+[[nodes]]
+id = 455
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My whole is an object, that magic will make. It brings wrack and ruin to all in its wake... Now how long, I wonder, will this riddle take?"
+parent = 448
+
+[[nodes]]
+id = 456
+depth = 2
+kind = "act"
+text = "end"
+parent = 448
+is_terminal = true
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "speaker"
+speaker = "City guard"
+text = "Hur, hur, hur... I see you haven't worked it out yet. Keep trying, imp."
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "option"
+text = "Can I hear the riddle again?"
+parent = -1
+children = [460, 461, 462, 463, 464, 465, 466]
+
+[[nodes]]
+id = 460
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can I hear the riddle again?"
+parent = 459
+
+[[nodes]]
+id = 461
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "I want you to bring me an item: I will give you all the letters of this item, you work out what it is..."
+parent = 459
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My first is in days, but not in years, My second is in evil, and also in tears, My third is in all, but not in none, My fourth is in hot, but not in sun."
+parent = 459
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My fifth is in heaven, and also in hate, My sixth is in fearing, but not in fate, My seventh is in plush, but not in place."
+parent = 459
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My eighth is in nine, but not in eight, My last is in earth, and also in great."
+parent = 459
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "My whole is an object, that magic will make. It brings wrack and ruin to all in its wake... Now how long, I wonder, will this riddle take?"
+parent = 459
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "act"
+text = "end"
+parent = 459
+is_terminal = true
+
+[[nodes]]
+id = 467
+depth = 1
+kind = "option"
+text = "I'll be back!"
+parent = -1
+children = [468, 469]
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll be back!"
+parent = 467
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "act"
+text = "end"
+parent = 467
+is_terminal = true
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "speaker"
+speaker = "City guard"
+text = "That is not what I want, imp!"
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I worked it out!"
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "speaker"
+speaker = "City guard"
+text = "Hur, hur. The imp has done it! This is what you be needing..."
+parent = -1
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "box"
+text = "pic=Skavid map detail.png|The guard takes your death rune and gives you a map."
+parent = -1
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "speaker"
+speaker = "City guard"
+text = "What is it?"
+parent = -1
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "option"
+text = "Do you have any other riddles for me?"
+parent = -1
+children = [479, 480, 481, 482, 486]
+
+[[nodes]]
+id = 479
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any other riddles for me?"
+parent = 478
+
+[[nodes]]
+id = 480
+depth = 2
+kind = "speaker"
+speaker = "City guard"
+text = "Yes, what looks good on a plate with salad?"
+parent = 478
+
+[[nodes]]
+id = 481
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 478
+
+[[nodes]]
+id = 482
+depth = 2
+kind = "option"
+text = "I don't know..."
+parent = 478
+children = [483, 484, 485]
+
+[[nodes]]
+id = 483
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't know..."
+parent = 482
+
+[[nodes]]
+id = 484
+depth = 3
+kind = "speaker"
+speaker = "City guard"
+text = "You! Now go, and bother me no more.){{sic}}"
+parent = 482
+
+[[nodes]]
+id = 485
+depth = 3
+kind = "act"
+text = "end"
+parent = 482
+is_terminal = true
+
+[[nodes]]
+id = 486
+depth = 2
+kind = "option"
+text = "A nice pizza?"
+parent = 478
+children = [487, 488, 489]
+
+[[nodes]]
+id = 487
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "A nice pizza?"
+parent = 486
+
+[[nodes]]
+id = 488
+depth = 3
+kind = "speaker"
+speaker = "City guard"
+text = "Grr! Think you are a comedian, eh? Get lost!"
+parent = 486
+
+[[nodes]]
+id = 489
+depth = 3
+kind = "act"
+text = "end"
+parent = 486
+is_terminal = true
+
+[[nodes]]
+id = 490
+depth = 1
+kind = "option"
+text = "I have lost the map you gave me."
+parent = -1
+children = [491, 492, 497, 500]
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have lost the map you gave me."
+parent = 490
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "cond"
+text = "If the player does not have a [[Skavid map]] in their inventory or bank:"
+parent = 490
+children = [493, 494, 495, 496]
+
+[[nodes]]
+id = 493
+depth = 3
+kind = "speaker"
+speaker = "City guard"
+text = "What's the point? Take this one and go away!"
+parent = 492
+
+[[nodes]]
+id = 494
+depth = 3
+kind = "box"
+text = "pic=Skavid map detail.png|The guard gives you another map."
+parent = 492
+
+[[nodes]]
+id = 495
+depth = 3
+kind = "act"
+text = "receives=[[Skavid map]]"
+parent = 492
+
+[[nodes]]
+id = 496
+depth = 3
+kind = "act"
+text = "end"
+parent = 492
+is_terminal = true
+
+[[nodes]]
+id = 497
+depth = 2
+kind = "cond"
+text = "If the player has a Skavid map in their bank:"
+parent = 490
+children = [498, 499]
+
+[[nodes]]
+id = 498
+depth = 3
+kind = "speaker"
+speaker = "City guard"
+text = "You imps always store things in places and forget. Go look for it."
+parent = 497
+
+[[nodes]]
+id = 499
+depth = 3
+kind = "act"
+text = "end"
+parent = 497
+is_terminal = true
+
+[[nodes]]
+id = 500
+depth = 2
+kind = "cond"
+text = "If the player has a Skavid map in their inventory:"
+parent = 490
+children = [501, 502, 503]
+
+[[nodes]]
+id = 501
+depth = 3
+kind = "speaker"
+speaker = "City guard"
+text = "Are you blind? What is that you are carrying?"
+parent = 500
+
+[[nodes]]
+id = 502
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Oh, that map..."
+parent = 500
+
+[[nodes]]
+id = 503
+depth = 3
+kind = "act"
+text = "end"
+parent = 500
+is_terminal = true
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm glad that was easier on the way back!"
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've got some questions about the skavid caves."
+parent = -1
+
+[[nodes]]
+id = 507
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Oh, really? I'm quite an expert on skavids."
+parent = -1
+
+[[nodes]]
+id = 508
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wonderful!"
+parent = -1
+
+[[nodes]]
+id = 509
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Only joking!"
+parent = -1
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, okay."
+parent = -1
+
+[[nodes]]
+id = 512
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 513
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "How is the quest going?"
+parent = -1
+
+[[nodes]]
+id = 514
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have worked out the guard's puzzle."
+parent = -1
+
+[[nodes]]
+id = 515
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "My, my. A wordsmith as well as a hero."
+parent = -1
+
+[[nodes]]
+id = 516
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 517
+depth = 1
+kind = "option"
+text = "I am still trying to navigate the skavid caves."
+parent = -1
+children = [518, 519, 520]
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am still trying to navigate the skavid caves."
+parent = 517
+
+[[nodes]]
+id = 519
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Take some illumination with you or else it will be dark."
+parent = 517
+
+[[nodes]]
+id = 520
+depth = 2
+kind = "act"
+text = "end"
+parent = 517
+is_terminal = true
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "option"
+text = "I am trying to get into the shamans' cave."
+parent = -1
+children = [522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534]
+
+[[nodes]]
+id = 522
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am trying to get into the shamans' cave."
+parent = 521
+
+[[nodes]]
+id = 523
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Yes, it will be well guarded. Hmmm, let me see..."
+parent = 521
+
+[[nodes]]
+id = 524
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Ah yes, I gather some ogres are allergic to certain herbs. Now what was it? It had white berries and blue leaves...."
+parent = 521
+
+[[nodes]]
+id = 525
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Cave nightshade, that's it!"
+parent = 521
+
+[[nodes]]
+id = 526
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You should try looking through some of the caves."
+parent = 521
+
+[[nodes]]
+id = 527
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright!"
+parent = 521
+
+[[nodes]]
+id = 528
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "And don't forget to look out for the dragons!"
+parent = 521
+
+[[nodes]]
+id = 529
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The WHAT?"
+parent = 521
+
+[[nodes]]
+id = 530
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Dragons."
+parent = 521
+
+[[nodes]]
+id = 531
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Didn't you know that the ogres keep blue dragons as pets and for magical ingredients?"
+parent = 521
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well, regardless, I'm sure a bold, brave adventurer such as yourself won't have any problems."
+parent = 521
+
+[[nodes]]
+id = 533
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great..."
+parent = 521
+
+[[nodes]]
+id = 534
+depth = 2
+kind = "act"
+text = "end"
+parent = 521
+is_terminal = true
+
+[[nodes]]
+id = 535
+depth = 1
+kind = "option"
+text = "It is going well."
+parent = -1
+children = [536, 537, 538]
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It is going well."
+parent = 535
+
+[[nodes]]
+id = 537
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "That's good to hear. We are much closer to fixing the tower now."
+parent = 535
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "act"
+text = "end"
+parent = 535
+is_terminal = true
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "cond"
+text = "With a light source but no tinderbox:"
+parent = -1
+children = [540, 541, 542, 543]
+
+[[nodes]]
+id = 540
+depth = 2
+kind = "box"
+text = "If your light source goes out down there you'll be in trouble! Are you sure you want to go in without a tinderbox?"
+parent = 539
+
+[[nodes]]
+id = 541
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 539
+
+[[nodes]]
+id = 542
+depth = 2
+kind = "option"
+text = "I'll be fine without a tinderbox."
+parent = 539
+
+[[nodes]]
+id = 543
+depth = 2
+kind = "option"
+text = "I'll come back with a tinderbox."
+parent = 539
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "speaker"
+speaker = "Scared skavid"
+text = "Tanath cur, tanath cur!"
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "???"
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "speaker"
+speaker = "Scared skavid"
+text = "Don't hurt me, don't hurt me!"
+parent = -1
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Stop moaning, creature. I know about you skavids - you serve those monsters, the ogres."
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "speaker"
+speaker = "Scared skavid"
+text = "Please don't touch me!"
+parent = -1
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You have something that belongs to me..."
+parent = -1
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "speaker"
+speaker = "Scared skavid"
+text = "I don't have anything; please believe me!"
+parent = -1
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Somehow, I find your words hard to believe."
+parent = -1
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "speaker"
+speaker = "Scared skavid"
+text = "I'm begging your kindness; I don't have it!"
+parent = -1
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 554
+depth = 1
+kind = "option"
+text = "I don't believe you, hand it over!"
+parent = -1
+children = [555, 556, 557, 558]
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't believe you, hand it over!"
+parent = 554
+
+[[nodes]]
+id = 556
+depth = 2
+kind = "speaker"
+speaker = "Scared skavid"
+text = "Ahhhhh, help!"
+parent = 554
+
+[[nodes]]
+id = 557
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh great, I'm not getting anywhere."
+parent = 554
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "act"
+text = "end"
+parent = 554
+is_terminal = true
+
+[[nodes]]
+id = 559
+depth = 1
+kind = "option"
+text = "Okay, okay, I'm not going to hurt you."
+parent = -1
+children = [560, 561, 562, 563, 564, 565, 566, 567, 568, 569]
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, okay, I'm not going to hurt you."
+parent = 559
+
+[[nodes]]
+id = 561
+depth = 2
+kind = "speaker"
+speaker = "Scared skavid"
+text = "Thank you, kind [sir/madam]."
+parent = 559
+
+[[nodes]]
+id = 562
+depth = 2
+kind = "speaker"
+speaker = "Scared skavid"
+text = "I'll tells you where that things you wants is. The mad skavids have it in their cave in the city."
+parent = 559
+
+[[nodes]]
+id = 563
+depth = 2
+kind = "speaker"
+speaker = "Scared skavid"
+text = "You will have to learn skavid, otherwise they will not talks to you. Here, I'll tell you what you need to know..."
+parent = 559
+
+[[nodes]]
+id = 564
+depth = 2
+kind = "other"
+text = "{{qact|An ogre shaman appears.}}"
+parent = 559
+
+[[nodes]]
+id = 565
+depth = 2
+kind = "speaker"
+speaker = "Ogre shaman"
+text = "{{overhead|You shut your mouth! Don't tell them anything!}}"
+parent = 559
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "speaker"
+speaker = "Scared skavid"
+text = "{{overhead|Tanath cur, tanath cur!}}"
+parent = 559
+
+[[nodes]]
+id = 567
+depth = 2
+kind = "other"
+text = "{{qact|The ogre shaman disappears.}}"
+parent = 559
+
+[[nodes]]
+id = 568
+depth = 2
+kind = "speaker"
+speaker = "Scared skavid"
+text = "I cannot help you, but the others can. Let me tells you the most common skavid words: Ar, nod, gor, ig and cur. Those will gets you started."
+parent = 559
+
+[[nodes]]
+id = 569
+depth = 2
+kind = "act"
+text = "end"
+parent = 559
+is_terminal = true
+
+[[nodes]]
+id = 570
+depth = 1
+kind = "speaker"
+speaker = "Scared skavid"
+text = "Master, how are you doing learning our language?"
+parent = -1
+
+[[nodes]]
+id = 571
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I am studying the speech of your kind..."
+parent = -1
+
+[[nodes]]
+id = 572
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 573
+depth = 1
+kind = "speaker"
+speaker = "Skavid"
+text = "Bidith tanath..."
+parent = -1
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 575
+depth = 1
+kind = "option"
+text = "Cur."
+parent = -1
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "other"
+text = "*'''Player:''' Cur."
+parent = -1
+children = [577, 578, 579]
+
+[[nodes]]
+id = 577
+depth = 2
+kind = "speaker"
+speaker = "Skavid"
+text = "Cur, cur tanath!"
+parent = 576
+
+[[nodes]]
+id = 578
+depth = 2
+kind = "speaker"
+speaker = "Skavid"
+text = "Cur tanath!"
+parent = 576
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "act"
+text = "end"
+parent = 576
+is_terminal = true
+
+[[nodes]]
+id = 580
+depth = 1
+kind = "option"
+text = "Ar."
+parent = -1
+children = [581, 582, 583, 584, 585]
+
+[[nodes]]
+id = 581
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ar."
+parent = 580
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "speaker"
+speaker = "Skavid"
+text = "???"
+parent = 580
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "speaker"
+speaker = "Skavid"
+text = "Bidith tanath..."
+parent = 580
+
+[[nodes]]
+id = 584
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 580
+
+[[nodes]]
+id = 585
+depth = 2
+kind = "act"
+text = "initial"
+parent = 580
+
+[[nodes]]
+id = 586
+depth = 1
+kind = "option"
+text = "Ig."
+parent = -1
+
+[[nodes]]
+id = 587
+depth = 1
+kind = "option"
+text = "Nod."
+parent = -1
+
+[[nodes]]
+id = 588
+depth = 1
+kind = "option"
+text = "Gor."
+parent = -1
+
+[[nodes]]
+id = 589
+depth = 1
+kind = "speaker"
+speaker = "Skavid"
+text = "Cur bidith..."
+parent = -1
+
+[[nodes]]
+id = 590
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 591
+depth = 1
+kind = "option"
+text = "Cur."
+parent = -1
+
+[[nodes]]
+id = 592
+depth = 1
+kind = "option"
+text = "Ar."
+parent = -1
+
+[[nodes]]
+id = 593
+depth = 1
+kind = "option"
+text = "Ig."
+parent = -1
+children = [594, 595, 596]
+
+[[nodes]]
+id = 594
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ig."
+parent = 593
+
+[[nodes]]
+id = 595
+depth = 2
+kind = "speaker"
+speaker = "Skavid"
+text = "Ig! Bidith ig!"
+parent = 593
+
+[[nodes]]
+id = 596
+depth = 2
+kind = "act"
+text = "end"
+parent = 593
+is_terminal = true
+
+[[nodes]]
+id = 597
+depth = 1
+kind = "option"
+text = "Nod."
+parent = -1
+
+[[nodes]]
+id = 598
+depth = 1
+kind = "option"
+text = "Gor."
+parent = -1
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "speaker"
+speaker = "Skavid"
+text = "Tanath gor..."
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "option"
+text = "Cur."
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "option"
+text = "Ar."
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "option"
+text = "Ig."
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "option"
+text = "Nod."
+parent = -1
+children = [605, 606, 607]
+
+[[nodes]]
+id = 605
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Nod."
+parent = 604
+
+[[nodes]]
+id = 606
+depth = 2
+kind = "speaker"
+speaker = "Skavid"
+text = "Nod, gor nod!"
+parent = 604
+
+[[nodes]]
+id = 607
+depth = 2
+kind = "act"
+text = "end"
+parent = 604
+is_terminal = true
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "option"
+text = "Gor."
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "speaker"
+speaker = "Scared skavid"
+text = "Master, my kinsmen tell me you have learned skavid. You should speak to the mad ones in their cave."
+parent = -1
+
+[[nodes]]
+id = 610
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 611
+depth = 1
+kind = "speaker"
+speaker = "Mad skavid"
+text = "Gor nod..."
+parent = -1
+
+[[nodes]]
+id = 612
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 613
+depth = 1
+kind = "option"
+text = "Cur."
+parent = -1
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "option"
+text = "Ar."
+parent = -1
+
+[[nodes]]
+id = 615
+depth = 1
+kind = "option"
+text = "Bidith."
+parent = -1
+
+[[nodes]]
+id = 616
+depth = 1
+kind = "option"
+text = "Tanath."
+parent = -1
+children = [617, 618, 619, 620, 621]
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tanath."
+parent = 616
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "speaker"
+speaker = "Mad skavid"
+text = "Hehe! So you speak a little skavid, eh? I'll give you a prize for that!"
+parent = 616
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Mad skavid"
+text = "The others are with the shamans in the enclave - you'll never get them back. They hid one in the sacred rock! Nothing can touch it now."
+parent = 616
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "box"
+text = "pic=Crystal (magenta) detail.png|The skavid gives you a large crystal."
+parent = 616
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "act"
+text = "end"
+parent = 616
+is_terminal = true
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "option"
+text = "Gor."
+parent = -1
+
+[[nodes]]
+id = 623
+depth = 1
+kind = "speaker"
+speaker = "Mad skavid"
+text = "What, you gots the crystal..."
+parent = -1
+
+[[nodes]]
+id = 624
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 625
+depth = 1
+kind = "option"
+text = "But I've lost it!"
+parent = -1
+children = [626, 630, 632]
+
+[[nodes]]
+id = 626
+depth = 2
+kind = "cond"
+text = "If the player lost the crystal:"
+parent = 625
+children = [627, 628, 629]
+
+[[nodes]]
+id = 627
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "But I've lost it!"
+parent = 626
+
+[[nodes]]
+id = 628
+depth = 3
+kind = "speaker"
+speaker = "Mad skavid"
+text = "Alright, take this one then..."
+parent = 626
+
+[[nodes]]
+id = 629
+depth = 3
+kind = "act"
+text = "end"
+parent = 626
+is_terminal = true
+
+[[nodes]]
+id = 630
+depth = 2
+kind = "cond"
+text = "If the player has the crystal:"
+parent = 625
+children = [631]
+
+[[nodes]]
+id = 631
+depth = 3
+kind = "other"
+text = "{{tmissing}}"
+parent = 630
+
+[[nodes]]
+id = 632
+depth = 2
+kind = "cond"
+text = "If the crystal is stored somewhere:"
+parent = 625
+children = [633, 634]
+
+[[nodes]]
+id = 633
+depth = 3
+kind = "speaker"
+speaker = "Mad skavid"
+text = "You stored it somewhere maybe. Go away!"
+parent = 632
+
+[[nodes]]
+id = 634
+depth = 3
+kind = "act"
+text = "end"
+parent = 632
+is_terminal = true
+
+[[nodes]]
+id = 635
+depth = 1
+kind = "option"
+text = "Oh, okay then."
+parent = -1
+children = [636, 637, 638]
+
+[[nodes]]
+id = 636
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, okay then."
+parent = 635
+
+[[nodes]]
+id = 637
+depth = 2
+kind = "speaker"
+speaker = "Mad skavid"
+text = "You be on your way, then."
+parent = 635
+
+[[nodes]]
+id = 638
+depth = 2
+kind = "act"
+text = "end"
+parent = 635
+is_terminal = true
+
+[[nodes]]
+id = 639
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have gained access to the skavid caves."
+parent = -1
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 641
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "'You'll have to speak with the Watchtower Wizard about that.'"
+parent = -1
+
+[[nodes]]
+id = 642
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'd get more help out of a-"
+parent = -1
+
+[[nodes]]
+id = 643
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "What was that?"
+parent = -1
+
+[[nodes]]
+id = 644
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Nothing."
+parent = -1
+
+[[nodes]]
+id = 645
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 646
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Hello again. How do you fare?"
+parent = -1
+
+[[nodes]]
+id = 647
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 648
+depth = 1
+kind = "option"
+text = "It goes well. I can now navigate the skavid caves."
+parent = -1
+children = [649, 650, 651]
+
+[[nodes]]
+id = 649
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It goes well. I can now navigate the skavid caves."
+parent = 648
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "That is good news. Let me know if you find anything of interest."
+parent = 648
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "act"
+text = "end"
+parent = 648
+is_terminal = true
+
+[[nodes]]
+id = 652
+depth = 1
+kind = "option"
+text = "I had a crystal but I lost it!"
+parent = -1
+children = [653, 654, 655]
+
+[[nodes]]
+id = 653
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I had a crystal, but I lost it!"
+parent = 652
+
+[[nodes]]
+id = 654
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Oh no. Well, you had better go back there, then!"
+parent = 652
+
+[[nodes]]
+id = 655
+depth = 2
+kind = "act"
+text = "end"
+parent = 652
+is_terminal = true
+
+[[nodes]]
+id = 656
+depth = 1
+kind = "option"
+text = "I am now ready for the shamans."
+parent = -1
+children = [657, 658, 659, 660, 661, 662, 663, 664, 665, 666, 667]
+
+[[nodes]]
+id = 657
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am now ready for the shamans."
+parent = 656
+
+[[nodes]]
+id = 658
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Remember all I told you. You must distract the guard somehow. Cave nightshade is what you are looking for - try searching the skavid caves for it."
+parent = 656
+
+[[nodes]]
+id = 659
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "This herb is very poisonous, however, so handle it with care. Also, be on your guard in that cave. Who knows what monsters may be in that awful place..."
+parent = 656
+
+[[nodes]]
+id = 660
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright!"
+parent = 656
+
+[[nodes]]
+id = 661
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "And don't forget to look out for the dragons!"
+parent = 656
+
+[[nodes]]
+id = 662
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The WHAT?"
+parent = 656
+
+[[nodes]]
+id = 663
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Dragons."
+parent = 656
+
+[[nodes]]
+id = 664
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Didn't you know that the ogres keep blue dragons as pets and for magical ingredients"
+parent = 656
+
+[[nodes]]
+id = 665
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well, regardless, I'm sure a bold, brave adventurer such as yourself won't have any problems."
+parent = 656
+
+[[nodes]]
+id = 666
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Great..."
+parent = 656
+
+[[nodes]]
+id = 667
+depth = 2
+kind = "act"
+text = "end"
+parent = 656
+is_terminal = true
+
+[[nodes]]
+id = 668
+depth = 1
+kind = "speaker"
+speaker = "Enclave guard"
+text = "No you don't!"
+parent = -1
+
+[[nodes]]
+id = 669
+depth = 1
+kind = "other"
+text = "{{qact|The enclave guard attacks the player.}}"
+parent = -1
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "speaker"
+speaker = "Enclave guard"
+text = "What do you want?"
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "option"
+text = "I want to go in there."
+parent = -1
+children = [673, 674, 675]
+
+[[nodes]]
+id = 673
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to go in there."
+parent = 672
+
+[[nodes]]
+id = 674
+depth = 2
+kind = "speaker"
+speaker = "Enclave guard"
+text = "Oh you do, do you? How about 'no'?"
+parent = 672
+
+[[nodes]]
+id = 675
+depth = 2
+kind = "other"
+text = "{{qact|The enclave guard attacks the player.}}"
+parent = 672
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "option"
+text = "I want to rid the world of ogres!"
+parent = -1
+children = [677, 678, 679]
+
+[[nodes]]
+id = 677
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I want to rid the world of ogres."
+parent = 676
+
+[[nodes]]
+id = 678
+depth = 2
+kind = "speaker"
+speaker = "Enclave guard"
+text = "You dare mock me, creature!"
+parent = 676
+
+[[nodes]]
+id = 679
+depth = 2
+kind = "other"
+text = "{{qact|The enclave guard attacks the player.}}"
+parent = 676
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "speaker"
+speaker = "Enclave guard"
+text = "What is this? Arrrrgh! I cannot stand this plant! Argh, it burns! It burns!"
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "select"
+text = "You can run past, but keep in mind that a dangerous area follows!"
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "option"
+text = "I'm not scared"
+parent = -1
+children = [683]
+
+[[nodes]]
+id = 683
+depth = 2
+kind = "other"
+text = "{{mes|You run past the guard while he's busy.}}"
+parent = 682
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "option"
+text = "I think I'll stay here"
+parent = -1
+children = [685]
+
+[[nodes]]
+id = 685
+depth = 2
+kind = "act"
+text = "end"
+parent = 684
+is_terminal = true
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "box"
+text = "Meanwhile, in the Shaman's enclave..."
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene plays. A blue dragon attacks an ogre shaman, who takes no damage and reflects 30 damage back to the dragon}}"
+parent = -1
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "speaker"
+speaker = "Ogre shaman"
+text = "{{overhead|Hur, hut, hur. Stoopid dragon!}}"
+parent = -1
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "speaker"
+speaker = "Ogre shaman"
+text = "{{overhead|Take dis!}}"
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "other"
+text = "{{qact|The ogre shaman hits the blue dragon with a spell that deals 75 damage, killing the dragon}}"
+parent = -1
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "speaker"
+speaker = "Ogre shaman"
+text = "{{overhead|Hur, hur, hur, hur!}}"
+parent = -1
+
+[[nodes]]
+id = 692
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "speaker"
+speaker = "Ogre chieftain"
+text = "Grrr! Go away from me, vermin!"
+parent = -1
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "speaker"
+speaker = "Ogre shaman"
+text = "Grr! How dare you talk to us. We will destroy you!"
+parent = -1
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "The shamans are too powerful for me to attack!"
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You'll have to speak with the Watchtower Wizard about that."
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have found the cave of ogre shaman, but I cannot touch them!"
+parent = -1
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "That is because of their magical powers. We must fight them with their own methods; do not speak to them! I suggest a potion..."
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Collect a guam leaf, add jangerberries, then mix in some ground bat bones. You must return it to me before you use it, so that I can empower it with my magic."
+parent = -1
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Be very careful how you mix it as it is extremely volatile. Mixing ingredients of this type in the wrong order can cause explosions!"
+parent = -1
+
+[[nodes]]
+id = 704
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "I hope you've been brushing up Herblore and Magic? I must warn you, only experienced magicians can use the potion. It is too dangerous in the hands of the unskilled."
+parent = -1
+
+[[nodes]]
+id = 705
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 706
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Any more news?"
+parent = -1
+
+[[nodes]]
+id = 707
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 708
+depth = 1
+kind = "option"
+text = "Can you tell me again what I need for the potion?"
+parent = -1
+children = [709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 719, 720, 721, 722]
+
+[[nodes]]
+id = 709
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you tell me again what I need for the potion?"
+parent = 708
+
+[[nodes]]
+id = 710
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Yes indeed, let me see, what was it again..."
+parent = 708
+
+[[nodes]]
+id = 711
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You will need a guam leaf. That goes into the mix first."
+parent = 708
+
+[[nodes]]
+id = 712
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is the next ingredient?"
+parent = 708
+
+[[nodes]]
+id = 713
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You need some jangerberries."
+parent = 708
+
+[[nodes]]
+id = 714
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some of those."
+parent = 708
+
+[[nodes]]
+id = 715
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Wonderful!"
+parent = 708
+
+[[nodes]]
+id = 716
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "You will need to add those after the guam leaf has gone in, but before the final ingredient."
+parent = 708
+
+[[nodes]]
+id = 717
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is the final ingredient?"
+parent = 708
+
+[[nodes]]
+id = 718
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "The final ingredient is ground bat bones."
+parent = 708
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some bat bones; how can I grind them?"
+parent = 708
+
+[[nodes]]
+id = 720
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "A pestle and mortar will more than do the trick."
+parent = 708
+
+[[nodes]]
+id = 721
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "When you have mixed the potion correctly, then I can empower the potion with magic and the ogre shamans can be destroyed."
+parent = 708
+
+[[nodes]]
+id = 722
+depth = 2
+kind = "act"
+text = "end"
+parent = 708
+is_terminal = true
+
+[[nodes]]
+id = 723
+depth = 1
+kind = "option"
+text = "No, I'm still working on it."
+parent = -1
+children = [724, 725]
+
+[[nodes]]
+id = 724
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I'm still working on it."
+parent = 723
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "act"
+text = "end"
+parent = 723
+is_terminal = true
+
+[[nodes]]
+id = 726
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any chance of advice about this potion?"
+parent = -1
+
+[[nodes]]
+id = 727
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Nope. Try the Watchtower Wizard."
+parent = -1
+
+[[nodes]]
+id = 728
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 729
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Any more news?"
+parent = -1
+
+[[nodes]]
+id = 730
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have made the potion."
+parent = -1
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "That's great news; let me infuse it with magic..."
+parent = -1
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Here it is - a dangerous substance. I must remind you that this potion can only be used if your Magic level is high enough."
+parent = -1
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How high is high enough?"
+parent = -1
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Well, if you can cast Bones to Bananas, or any spells beyond that, you should be alright."
+parent = -1
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "cond"
+text = "After killing one shaman:"
+parent = -1
+children = [737]
+
+[[nodes]]
+id = 737
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's one destroyed..."
+parent = 736
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "cond"
+text = "After killing two shamans:"
+parent = -1
+children = [739]
+
+[[nodes]]
+id = 739
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's the second one gone..."
+parent = 738
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "cond"
+text = "After killing three shamans:"
+parent = -1
+children = [741]
+
+[[nodes]]
+id = 741
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 740
+
+[[nodes]]
+id = 742
+depth = 1
+kind = "cond"
+text = "After killing four shamans:"
+parent = -1
+children = [743]
+
+[[nodes]]
+id = 743
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "There goes the fourth..."
+parent = 742
+
+[[nodes]]
+id = 744
+depth = 1
+kind = "cond"
+text = "After killing five shamans:"
+parent = -1
+children = [745]
+
+[[nodes]]
+id = 745
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's five! Only one more left now..."
+parent = 744
+
+[[nodes]]
+id = 746
+depth = 1
+kind = "cond"
+text = "After killing the last shaman:"
+parent = -1
+children = [747]
+
+[[nodes]]
+id = 747
+depth = 2
+kind = "box"
+text = "pic=Crystal (cyan) detail.png|A crystal drops from the hand of the disappearing ogre. You snatch it up quickly."
+parent = 746
+
+[[nodes]]
+id = 748
+depth = 1
+kind = "cond"
+text = "Searching the shaman robe while already having the crystal:"
+parent = -1
+children = [749]
+
+[[nodes]]
+id = 749
+depth = 2
+kind = "box"
+text = "pic=Shaman robe detail.png|pic2=Crystal (cyan) detail.png|You search the robe, but find nothing. You already have the shamans' crystal."
+parent = 748
+
+[[nodes]]
+id = 750
+depth = 1
+kind = "cond"
+text = "Searching the shaman robe while not having the crystal:"
+parent = -1
+children = [751]
+
+[[nodes]]
+id = 751
+depth = 2
+kind = "box"
+text = "pic=Shaman robe detail.png|pic2=Crystal (cyan) detail.png|You search the robe and find a crystal!"
+parent = 750
+
+[[nodes]]
+id = 752
+depth = 1
+kind = "box"
+text = "pic=Crystal (grey) detail.png|A crack appears in the rock and you prise a crystal out."
+parent = -1
+
+[[nodes]]
+id = 753
+depth = 1
+kind = "other"
+text = "{{mes|You examine the rock for ores...}}"
+parent = -1
+
+[[nodes]]
+id = 754
+depth = 1
+kind = "other"
+text = "{{mes|The rock has a gap in which a crystal used to sit.}}"
+parent = -1
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I already have this crystal. There is no benefit to getting another."
+parent = -1
+
+[[nodes]]
+id = 756
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 757
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Hello again. Did the potion work?"
+parent = -1
+
+[[nodes]]
+id = 758
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Indeed it did! I wiped out those ogre shamans!"
+parent = -1
+
+[[nodes]]
+id = 759
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 760
+depth = 1
+kind = "option"
+text = "I had another crystal but I lost it."
+parent = -1
+children = [761, 762, 763]
+
+[[nodes]]
+id = 761
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I had another crystal but I lost it."
+parent = 760
+
+[[nodes]]
+id = 762
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Oh, really? If you got it from someone, maybe they'll have found it again. Otherwise, go and search the place where you got it in the first place."
+parent = 760
+
+[[nodes]]
+id = 763
+depth = 2
+kind = "act"
+text = "end"
+parent = 760
+is_terminal = true
+
+[[nodes]]
+id = 764
+depth = 1
+kind = "option"
+text = "I am looking for another crystal."
+parent = -1
+children = [765, 766, 767, 768]
+
+[[nodes]]
+id = 765
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am looking for another crystal."
+parent = 764
+
+[[nodes]]
+id = 766
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "I am sure the cave holds the final crystal. Look for the source of the shamans' power."
+parent = 764
+
+[[nodes]]
+id = 767
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay, I will go and have a look."
+parent = 764
+
+[[nodes]]
+id = 768
+depth = 2
+kind = "act"
+text = "end"
+parent = 764
+is_terminal = true
+
+[[nodes]]
+id = 769
+depth = 1
+kind = "option"
+text = "I have found another crystal!"
+parent = -1
+children = [770, 771, 772]
+
+[[nodes]]
+id = 770
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have found another crystal!"
+parent = 769
+
+[[nodes]]
+id = 771
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Good, hand it over to me."
+parent = 769
+
+[[nodes]]
+id = 772
+depth = 2
+kind = "act"
+text = "end"
+parent = 769
+is_terminal = true
+
+[[nodes]]
+id = 773
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any chance of a hand?"
+parent = -1
+
+[[nodes]]
+id = 774
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Well, you could ask the Watchtower Wizard for one."
+parent = -1
+
+[[nodes]]
+id = 775
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 776
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Hello again. Did the potion work?"
+parent = -1
+
+[[nodes]]
+id = 777
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Indeed it did! I wiped out those ogre shamans!"
+parent = -1
+
+[[nodes]]
+id = 778
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Magnificent! At last you've brought all the crystals."
+parent = -1
+
+[[nodes]]
+id = 779
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Now the shield generator can be activated and, once again, Yanille will be safe from the threat of the ogres."
+parent = -1
+
+[[nodes]]
+id = 780
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Put the crystals on the pillars there and throw the lever to activate the system."
+parent = -1
+
+[[nodes]]
+id = 781
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 782
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "The system is not activated yet. Throw the switch to start it."
+parent = -1
+
+[[nodes]]
+id = 783
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 784
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What should I do now?"
+parent = -1
+
+[[nodes]]
+id = 785
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "You will need to speak to the Watchtower Wizard."
+parent = -1
+
+[[nodes]]
+id = 786
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "Seriously, he's the one in charge here."
+parent = -1
+
+[[nodes]]
+id = 787
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 788
+depth = 1
+kind = "box"
+text = "You need to put the crystals on the correct pillars before the shield will work. All that happens now is a rather unsatisfying clunking noise."
+parent = -1
+
+[[nodes]]
+id = 789
+depth = 1
+kind = "other"
+text = "{{mes|That is not the right crystal for this pillar; try another.}}"
+parent = -1
+
+[[nodes]]
+id = 790
+depth = 1
+kind = "other"
+text = "{{mes|The magic force field activates.}}"
+parent = -1
+
+[[nodes]]
+id = 791
+depth = 1
+kind = "act"
+text = "receives=15,250 Magic experience, 5,000 coins, and a [[spell scroll]]"
+parent = -1
+
+[[nodes]]
+id = 792
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Marvellous! It works! The town will now be safe. Take these coins as a token of my gratitude. Also, let me improve your Magic level."
+parent = -1
+
+[[nodes]]
+id = 793
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "I've given you a special scroll too - it's a new spell. Read the scroll and you will be able to teleport yourself here."
+parent = -1
+
+[[nodes]]
+id = 794
+depth = 1
+kind = "other"
+text = "{{mes|Congratulations, you've completed a quest: Watchtower}}"
+parent = -1
+
+[[nodes]]
+id = 795
+depth = 1
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Greetings, friend. I trust all is well with you? Yanille is safe at last!"
+parent = -1
+
+[[nodes]]
+id = 796
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 797
+depth = 1
+kind = "cond"
+text = "If the player has read the spell scroll:"
+parent = -1
+
+[[nodes]]
+id = 798
+depth = 1
+kind = "option"
+text = "Do you have any more quests for me?"
+parent = -1
+
+[[nodes]]
+id = 799
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you have any more quests for me?"
+parent = -1
+children = [800, 801]
+
+[[nodes]]
+id = 800
+depth = 2
+kind = "speaker"
+speaker = "Watchtower wizard"
+text = "More quests? No, indeed, adventurer. You have done us a great service, already."
+parent = 799
+
+[[nodes]]
+id = 801
+depth = 2
+kind = "act"
+text = "end"
+parent = 799
+is_terminal = true
+
+[[nodes]]
+id = 802
+depth = 1
+kind = "cond"
+text = "If the player has not read the spell scroll:"
+parent = -1
+
+[[nodes]]
+id = 803
+depth = 1
+kind = "option"
+text = "I lost the scroll you gave me."
+parent = -1
+children = [804, 805, 809]
+
+[[nodes]]
+id = 804
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I lost the scroll you gave me."
+parent = 803
+
+[[nodes]]
+id = 805
+depth = 2
+kind = "cond"
+text = "If the player lost the spell scroll:"
+parent = 803
+children = [806, 807, 808]
+
+[[nodes]]
+id = 806
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Never mind, have another..."
+parent = 805
+
+[[nodes]]
+id = 807
+depth = 3
+kind = "act"
+text = "receives=[[spell scroll]]"
+parent = 805
+
+[[nodes]]
+id = 808
+depth = 3
+kind = "act"
+text = "end"
+parent = 805
+is_terminal = true
+
+[[nodes]]
+id = 809
+depth = 2
+kind = "cond"
+text = "If the player has the spell scroll"
+parent = 803
+children = [810, 811]
+
+[[nodes]]
+id = 810
+depth = 3
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "Ho, ho, ho! A comedian to the finish. There it is, in your backpack!"
+parent = 809
+
+[[nodes]]
+id = 811
+depth = 3
+kind = "act"
+text = "end"
+parent = 809
+is_terminal = true
+
+[[nodes]]
+id = 812
+depth = 1
+kind = "option"
+text = "That's okay."
+parent = -1
+children = [813, 814, 815]
+
+[[nodes]]
+id = 813
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's okay."
+parent = 812
+
+[[nodes]]
+id = 814
+depth = 2
+kind = "speaker"
+speaker = "Watchtower Wizard"
+text = "We are always in your debt; do come and visit us again."
+parent = 812
+
+[[nodes]]
+id = 815
+depth = 2
+kind = "act"
+text = "end"
+parent = 812
+is_terminal = true
+
+[[nodes]]
+id = 816
+depth = 1
+kind = "speaker"
+speaker = "Wizard"
+text = "All's well that ends well."
+parent = -1
+
+[[nodes]]
+id = 817
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 818
+depth = 1
+kind = "box"
+text = "You memorise what is written on the scroll."
+parent = -1
+
+[[nodes]]
+id = 819
+depth = 1
+kind = "box"
+text = "You can now cast the Watchtower teleport spell... ...Provided you have the required runes and magic level."
+parent = -1
+
+[[nodes]]
+id = 820
+depth = 1
+kind = "other"
+text = "{{mes|The scroll crumbles to dust.}}"
+parent = -1

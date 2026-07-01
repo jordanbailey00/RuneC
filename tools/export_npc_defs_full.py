@@ -7,7 +7,6 @@ structured surfaces we currently have:
 - model_dump/osrs-dumps NPC config dump
 - osrsreboxed monster JSON
 - cached OSRS Wiki infobox_monster rows
-- RuneLite NpcID names
 - curated activity_spawns edge-case IDs
 """
 
@@ -30,10 +29,11 @@ ROOT = Path(__file__).resolve().parents[1]
 PIPELINE = ROOT / "tools/cache_pipeline"
 sys.path.insert(0, str(PIPELINE))
 
-from source_paths import CACHE_DIR, DATA_OSRS, MODEL_DUMP, OSRSREBOXED, OSRS_DUMPS, RUNELITE
+from legacy_external_source_paths import DATA_OSRS, MODEL_DUMP, OSRSREBOXED, OSRS_DUMPS
+from source_paths import CACHE_DIR, require_cache_dir
+from content_paths import content_read_path
 from rc_cache import CONFIG_NPC, RcCacheStore, decode_npc_definition, read_config_group
 
-RUNELITE_NPC_ID = RUNELITE / "runelite-api/src/main/java/net/runelite/api/NpcID.java"
 WIKI_CACHE = ROOT / "tools/wiki_cache"
 MODEL_DUMP_ROOT = MODEL_DUMP if MODEL_DUMP.is_dir() else OSRS_DUMPS
 NPC_DUMP = MODEL_DUMP_ROOT / "config/dump.npc"
@@ -404,31 +404,14 @@ def apply_wiki_monsters(defs: dict[int, dict[str, Any]]) -> int:
     return count
 
 
-def runelite_names() -> dict[int, str]:
-    names: dict[int, str] = {}
-    if not RUNELITE_NPC_ID.is_file():
-        return names
-    for line in RUNELITE_NPC_ID.read_text(errors="replace").splitlines():
-        m = re.search(r"public static final int ([A-Z0-9_]+) = (\d+);", line)
-        if not m:
-            continue
-        raw, npc_id = m.group(1), int(m.group(2))
-        raw = re.sub(r"_\d+$", "", raw)
-        special = {
-            "TZKALZUK": "TzKal-Zuk",
-            "TZTOKJAD": "TzTok-Jad",
-            "JALMEJJAK": "Jal-MejJak",
-            "NEX": "Nex",
-        }
-        name = special.get(raw, raw.replace("_", " ").title())
-        names.setdefault(npc_id, name[:63])
-    return names
+def external_reference_names() -> dict[int, str]:
+    return {}
 
 
 def apply_activity_spawns(defs: dict[int, dict[str, Any]], names: dict[int, str]) -> int:
     if tomllib is None:
         return 0
-    path = ROOT / "data/curated/activity_spawns.toml"
+    path = content_read_path("activity_spawns.toml")
     if not path.is_file():
         return 0
     data = tomllib.loads(path.read_text())
@@ -454,12 +437,13 @@ def apply_activity_spawns(defs: dict[int, dict[str, Any]], names: dict[int, str]
     return count
 
 
-def apply_runelite_name_fallback(defs: dict[int, dict[str, Any]], names: dict[int, str]) -> int:
+def apply_external_name_fallback(defs: dict[int, dict[str, Any]],
+                                 names: dict[int, str]) -> int:
     count = 0
     for npc_id, name in names.items():
         if npc_id in defs and defs[npc_id]["name"].startswith("npc_"):
             defs[npc_id]["name"] = name
-            defs[npc_id]["sources"].add("runelite_name")
+            defs[npc_id]["sources"].add("external_name")
             count += 1
     return count
 
@@ -539,14 +523,14 @@ def report(defs: dict[int, dict[str, Any]], names: dict[int, str],
     for d in defs.values():
         for source in d["sources"]:
             source_counts[source] = source_counts.get(source, 0) + 1
-    runelite_missing = sorted(set(names) - set(defs))
-    runelite_missing_excluded = [
-        npc_id for npc_id in runelite_missing
+    external_missing = sorted(set(names) - set(defs))
+    external_missing_excluded = [
+        npc_id for npc_id in external_missing
         if "sailing" in id_symbols.get(npc_id, "").lower()
     ]
-    excluded_missing = set(runelite_missing_excluded)
-    runelite_missing_other = [
-        npc_id for npc_id in runelite_missing
+    excluded_missing = set(external_missing_excluded)
+    external_missing_other = [
+        npc_id for npc_id in external_missing
         if npc_id not in excluded_missing
     ]
     known = [2042, 3127, 7706, 7707, 7708, 10572, 10574, 10575, 11278, 12821]
@@ -577,13 +561,13 @@ def report(defs: dict[int, dict[str, Any]], names: dict[int, str],
             lines.append(f"  {npc_id}: MISSING")
     lines += [
         "",
-        f"RuneLite NpcID constants absent after v1 exclusions: {len(runelite_missing_other)}",
-        f"RuneLite NpcID constants skipped as v1-excluded Sailing: {len(runelite_missing_excluded)}",
-        "Sample missing RuneLite IDs:",
+        f"external name references absent after v1 exclusions: {len(external_missing_other)}",
+        f"external name references skipped as v1-excluded Sailing: {len(external_missing_excluded)}",
+        "Sample missing external reference IDs:",
     ]
-    for npc_id in runelite_missing_other[:40]:
+    for npc_id in external_missing_other[:40]:
         lines.append(f"  {npc_id}: {names[npc_id]}")
-    if not runelite_missing_other:
+    if not external_missing_other:
         lines.append("  none")
     lines += [
         "",
@@ -611,10 +595,10 @@ def main() -> int:
     model_dump_count, model_dump_skipped = apply_model_dump(defs, seq_ids)
     reboxed_count = apply_osrsreboxed(defs)
     wiki_count = apply_wiki_monsters(defs)
-    cache_count, cache_incomplete = apply_cache_npcs(defs, args.cache)
-    names = runelite_names()
+    cache_count, cache_incomplete = apply_cache_npcs(defs, require_cache_dir(args.cache))
+    names = external_reference_names()
     activity_count = apply_activity_spawns(defs, names)
-    fallback_count = apply_runelite_name_fallback(defs, names)
+    fallback_count = apply_external_name_fallback(defs, names)
 
     write_ndef(args.out, defs)
     args.report.parent.mkdir(parents=True, exist_ok=True)
@@ -628,7 +612,7 @@ def main() -> int:
     print(f"rc_cache NPC defs merged: {cache_count}")
     print(f"rc_cache incomplete NPC decodes skipped: {cache_incomplete}")
     print(f"activity IDs merged: {activity_count}")
-    print(f"runelite fallback names used: {fallback_count}")
+    print(f"external fallback names used: {fallback_count}")
     print(f"wrote {len(defs)} defs to {args.out}")
     print(f"wrote report to {args.report}")
     return 0

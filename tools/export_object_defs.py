@@ -15,7 +15,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from source_paths import CACHE_DIR
+from source_paths import CACHE_DIR, display_path, require_cache_dir
 
 PIPELINE = Path(__file__).resolve().parent / "cache_pipeline"
 sys.path.insert(0, str(PIPELINE))
@@ -287,7 +287,7 @@ def write_report(rows: list[ObjDef], unknown: Counter[int],
                  wiki_object_ids: set[int], wiki_scenery_ids: set[int],
                  wiki_object_rows: int, wiki_object_pages: int,
                  wiki_scenery_rows: int, wiki_scenery_pages: int,
-                 elapsed_ms: float) -> None:
+                 elapsed_ms: float, cache_dir: Path) -> None:
     cache_ids = {row.obj_id for row in rows}
     action_counts: Counter[str] = Counter()
     for row in rows:
@@ -300,7 +300,7 @@ def write_report(rows: list[ObjDef], unknown: Counter[int],
         "",
         f"status: READY_WITH_ACCEPTED_SIMPLIFICATIONS",
         f"output binary: data/defs/object_defs.bin ({OUT.stat().st_size} bytes)",
-        f"cache source: tools/cache_pipeline/source/current_fightcaves_demo/data/cache",
+        f"cache source: {display_path(cache_dir)}",
         "OpenRS2 layout reference: https://archive.openrs2.org/api",
         f"elapsed_ms: {elapsed_ms:.2f}",
         "",
@@ -358,9 +358,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--cache", type=Path, default=CACHE_DIR)
     args = ap.parse_args()
+    cache_dir = require_cache_dir(args.cache)
 
     start = time.perf_counter()
-    rows, unknown = decode_cache(args.cache)
+    rows, unknown = decode_cache(cache_dir)
     wiki_object_ids, wiki_object_rows, wiki_object_pages = read_wiki_ids("object_id")
     wiki_scenery_ids, wiki_scenery_rows, wiki_scenery_pages = read_wiki_ids("infobox_scenery")
     for row in rows:
@@ -372,7 +373,7 @@ def main() -> int:
     elapsed_ms = (time.perf_counter() - start) * 1000.0
     write_report(rows, unknown, wiki_object_ids, wiki_scenery_ids,
                  wiki_object_rows, wiki_object_pages,
-                 wiki_scenery_rows, wiki_scenery_pages, elapsed_ms)
+                 wiki_scenery_rows, wiki_scenery_pages, elapsed_ms, cache_dir)
     print(REPORT.read_text())
     return 0
 

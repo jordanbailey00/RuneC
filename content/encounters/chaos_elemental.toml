@@ -1,0 +1,57 @@
+# Chaos Elemental — wilderness boss. Tests: randomized-style attack,
+# player-teleport mechanic, equipment-unequip mechanic.
+
+name = "Chaos Elemental"
+slug = "chaos_elemental"
+npc_ids = [2054]
+source_pages = ["Chaos Elemental", "Chaos Elemental/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Discord"
+# Randomized style per projectile — 3-colour spray that lands as one
+# of {melee, ranged, magic}. Player can't tell in advance.
+style = "random"
+random_styles = ["melee", "ranged", "magic"]
+# Wiki note: "projectile deals magic damage most frequently" — bias
+# toward magic. Protect from Magic gives partial mitigation.
+style_weights = { magic = 2, ranged = 1, melee = 1 }
+max_hit = 29
+warning_ticks = 2
+
+# Confusion + Madness are special attacks, not regular styles —
+# modeled as mechanics below so they can be scheduled independently.
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "default"
+enter_at_hp_pct = 100
+allowed_attacks = ["Discord"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Confusion"
+primitive = "teleport_player_nearby"
+# Wiki: "Teleports players a short space or several spaces away
+# from it."
+period_ticks = 20    # approximate — tune
+params.min_distance = 2
+params.max_distance = 5
+params.constrain_to_arena = true
+
+[[mechanics]]
+name = "Madness"
+primitive = "unequip_player_items"
+# Wiki: "unequips up to four items that players are wielding,
+# forcing them to take time to re-equip ... The weapon of the
+# player is always prioritised."
+period_ticks = 30    # approximate — tune
+params.count = 4
+params.weapon_priority = true   # weapon always included if equipped
+params.affects_slots = [
+    "weapon", "shield", "head", "body", "legs",
+    "hands", "feet", "cape", "amulet", "ring",
+]

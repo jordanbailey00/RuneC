@@ -1,0 +1,65 @@
+# Scorpia — wilderness boss. Tests: offspring bodyguards, passive
+# prayer drain, summon-heal-at-50%.
+
+name = "Scorpia"
+slug = "scorpia"
+npc_ids = [6615]
+source_pages = ["Scorpia", "Scorpia/Strategies"]
+
+# ---- Attack styles -----------------------------------------------------
+
+[[attacks]]
+name = "Melee"
+style = "melee"
+accuracy_roll = "stab"
+# Inflicts poison starting at 20 damage.
+max_hit = 25           # approximate; tune against wiki if listed
+warning_ticks = 0
+inflicts_poison = true
+poison_starting_damage = 20
+# Wiki: "Scorpia's melee attacks, whether successful or not, drain
+# the player's prayer points by 2 if they have Protect from Melee
+# prayer active."
+drains_prayer_if_praying = { prayer = "protect_from_melee", points = 2 }
+
+# ---- Phases ------------------------------------------------------------
+
+[[phases]]
+id = "solo"
+enter_at_hp_pct = 100
+allowed_attacks = ["Melee"]
+
+[[phases]]
+id = "guarded"
+# "Once Scorpia falls below 50% health, the next attack against her,
+# whether successful or not, will cause her to summon two Scorpia's
+# guardians."
+enter_at_hp_pct = 50
+script = "scorpia_summon_guardians"
+allowed_attacks = ["Melee"]
+
+# ---- Mechanics --------------------------------------------------------
+
+[[mechanics]]
+name = "Summon Guardians"
+primitive = "spawn_npcs_once"
+trigger = "phase_enter:guarded"
+params.npc_name = "Scorpia's guardian"
+params.count = 2
+params.distribution = "adjacent_to_boss"
+# Guardians heal Scorpia rapidly; see Guardian Heal mechanic below.
+
+[[mechanics]]
+name = "Guardian Heal"
+primitive = "periodic_heal_boss"
+# While at least one Scorpia's guardian is alive, Scorpia regains
+# hp on a fast cadence.
+trigger = "while_alive:Scorpia's guardian"
+params.heal_per_tick = 4
+params.period_ticks = 1
+
+# ---- Offspring in arena (separate NPCs, not summoned) ------------------
+# The Scorpion Pit is pre-populated with many Scorpia's offspring NPCs.
+# Those are regular world-spawn NPCs (in NPCList_OSRS + spawn binary),
+# not an encounter mechanic — they exist before the player even
+# engages Scorpia.

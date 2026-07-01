@@ -19,9 +19,8 @@ except ModuleNotFoundError:  # pragma: no cover
     tomllib = None
 
 ROOT = Path(__file__).resolve().parents[1]
-from source_paths import DATA_OSRS, MODEL_DUMP, RUNELITE
-
-RUNELITE_NPC_ID = RUNELITE / "runelite-api/src/main/java/net/runelite/api/NpcID.java"
+from legacy_external_source_paths import DATA_OSRS, MODEL_DUMP
+from content_paths import content_read_path
 
 NDEF_MAGIC = 0x4E444546
 DROP_MAGIC = 0x504F5244
@@ -74,16 +73,8 @@ def read_ndef(path: Path) -> dict[int, dict]:
     return defs
 
 
-def runelite_ids() -> dict[int, str]:
-    ids: dict[int, str] = {}
-    if not RUNELITE_NPC_ID.is_file():
-        return ids
-    for line in RUNELITE_NPC_ID.read_text(errors="replace").splitlines():
-        m = re.search(r"public static final int ([A-Z0-9_]+) = (\d+);", line)
-        if not m:
-            continue
-        ids[int(m.group(2))] = m.group(1)
-    return ids
+def external_reference_ids() -> dict[int, str]:
+    return {}
 
 
 def npc_symbols() -> dict[int, str]:
@@ -176,10 +167,10 @@ def toml_names(path: Path) -> set[str]:
 
 def main() -> int:
     defs = read_ndef(ROOT / "data/defs/npc_defs.bin")
-    runelite = runelite_ids()
+    external_refs = external_reference_ids()
     symbols = npc_symbols()
     sailing = {i for i, s in symbols.items() if "sailing" in s.lower()}
-    missing_runelite = sorted(set(runelite) - set(defs) - sailing)
+    missing_external_refs = sorted(set(external_refs) - set(defs) - sailing)
 
     drop_ids = drop_table_ids(ROOT / "data/defs/drops.bin")
     spawn_all, spawn_instance, spawn_rows = spawn_ids(ROOT / "data/spawns/world.npc-spawns.bin")
@@ -207,9 +198,9 @@ def main() -> int:
 
     model_linked = {i for i, d in defs.items() if d["models"]}
     combat_ids = {i for i, d in defs.items() if d["combat"] > 0}
-    mechanic_names = toml_names(ROOT / "data/curated/mechanics")
-    encounter_names = toml_names(ROOT / "data/curated/encounters")
-    special_path = ROOT / "data/curated/regular_npc_special_mechanics.toml"
+    mechanic_names = toml_names(content_read_path("mechanics"))
+    encounter_names = toml_names(content_read_path("encounters"))
+    special_path = content_read_path("regular_npc_special_mechanics.toml")
     special_families = []
     if tomllib is not None and special_path.is_file():
         special_families = tomllib.loads(special_path.read_text()).get("families", [])
@@ -233,7 +224,7 @@ def main() -> int:
         "NPC reconciliation report",
         "",
         f"npc_defs: {len(defs)}",
-        f"runelite non-excluded missing: {len(missing_runelite)}",
+        f"external reference non-excluded missing: {len(missing_external_refs)}",
         "data_osrs source available: "
         f"{data_osrs_available}",
         "aliases in data_osrs name collection: "
@@ -280,12 +271,12 @@ def main() -> int:
         "",
         "Remaining blockers",
     ] + blockers
-    if missing_runelite:
-        lines += ["", "Sample non-excluded missing RuneLite IDs:"]
-        for npc_id in missing_runelite[:30]:
-            lines.append(f"  {npc_id}: {runelite[npc_id]}")
+    if missing_external_refs:
+        lines += ["", "Sample non-excluded missing external reference IDs:"]
+        for npc_id in missing_external_refs[:30]:
+            lines.append(f"  {npc_id}: {external_refs[npc_id]}")
     else:
-        lines += ["", "Non-excluded RuneLite ID coverage: complete"]
+        lines += ["", "Non-excluded external reference ID coverage: complete"]
     missing_mechanics = sorted(mechanic_names - encounter_names)
     if missing_mechanics:
         lines += ["", "Sample name-normalized mechanics TOMLs unmatched to encounter TOML:"]

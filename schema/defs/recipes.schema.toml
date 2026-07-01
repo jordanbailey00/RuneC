@@ -1,0 +1,27 @@
+id = "recipes"
+format = "binary"
+path = "data/defs/recipes.bin"
+magic_label = "RCIP"
+magic_u32 = "0x50494352"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_recipes.py"
+consumers = ["rc-core/skills.c"]
+source_dataset = "RuneC-owned recipe rows"
+row_fields = [
+  "pstr8 name",
+  "u8 req_count",
+  "reqs[req_count]: u8 skill, u8 level, u16 xp_q1",
+  "u8 input_count",
+  "inputs[input_count]: u32 item_id, u16 quantity",
+  "u8 tool_count",
+  "tools[tool_count]: u32 item_id",
+  "pstr8 facility",
+  "u32 output_item",
+  "u16 output_qty",
+  "u16 ticks",
+  "u8 flags",
+]
+compatibility = "Loader accepts exactly current_version."

@@ -1,0 +1,2170 @@
+title = "Transcript:Regicide"
+npcs = ["King Lathas", "Idris", "Morvran", "Essyllt", "Lord Iorwerth", "Elf Tracker", "Chemist", "Tyras guard", "Arianwyn"]
+node_count = 273
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I received your message my liege. How may I serve the kingdom?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "Ahh... adventurer. The repair work on the Well of Voyage has been completed. We're finally ready to move against my brother."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "I assume you have a plan?"
+parent = -1
+children = [3, 4, 5, 6, 7, 8, 9, 10, 11, 17]
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I assume you have a plan?"
+parent = 2
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "I do indeed. I recently managed to make contact with the elves that inhabit the western lands."
+parent = 2
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Elves? I’ve never seen an elf before."
+parent = 2
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Well that may well change soon. Apparently, my brother has been causing them quite a bit of trouble. As such, they've agreed to help us get rid of him once and for all."
+parent = 2
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what do I need to do?"
+parent = 2
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "You are to head into the Underground Pass and through the Well of Voyage. Lord Iorwerth, the leader of the elves, will send some representatives to meet you on the other side."
+parent = 2
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "With their help, you are to find my brother and kill him. Once that's done, return to me."
+parent = 2
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "select"
+text = "Start the Regicide quest?"
+parent = 2
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 2
+children = [12, 13, 14, 15, 16]
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Very well. Anything else I should know?"
+parent = 11
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "speaker"
+speaker = "King Lathas"
+text = "My brother may not be the only threat you face. I hear the elves are currently dealing with a rebellion. The rebels likely won't take kindly to you working with their enemy so be on the look out."
+parent = 11
+
+[[nodes]]
+id = 14
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I see. I'll be careful."
+parent = 11
+
+[[nodes]]
+id = 15
+depth = 3
+kind = "speaker"
+speaker = "King Lathas"
+text = "Good luck adventurer."
+parent = 11
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "act"
+text = "end"
+parent = 11
+is_terminal = true
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "No."
+parent = 2
+children = [18, 19, 20]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I don't think I'm ready for this yet."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "speaker"
+speaker = "King Lathas"
+text = "As you wish. Return to me when you are ready and we will begin."
+parent = 17
+
+[[nodes]]
+id = 20
+depth = 3
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "What's the deal with your brother again?"
+parent = -1
+children = [22, 23, 24, 25, 26, 27, 28, 29, 33]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's the deal with your brother again?"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "My brother, King Tyras, was always a bit of an explorer. He went on numerous expeditions to the lands west of here. On one of these expeditions, he was captured by the forces of the Dark Lord."
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = """
+The Dark Lord agreed to spare his life, but only on one condition... That he would drink from the Chalice of Eternity. The chalice corrupted him. He joined forces with the Dark Lord, the embodiment of pure evil…
+"""
+parent = 21
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = """
+As a result, I had a wall built around West Ardougne to act as a barrier between him and the rest of the world. Tyras is king of West Ardougne, sealing off the city was the only way to stop him and the Dark Lord.
+"""
+parent = 21
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "I knew people would never believe the truth, so I had the plague made up as an excuse for the cordon. I'm not proud of it, but it was the only way to keep people safe."
+parent = 21
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But now we’re ready to stop him."
+parent = 21
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Indeed we are. My brother has been gathering strength in the west, preparing to move against us. But now that we have a way through, we can move against him first."
+parent = 21
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "option"
+text = "Excellent. Do you have a plan in place?"
+parent = 21
+children = [30, 31, 32]
+
+[[nodes]]
+id = 30
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Excellent. Do you have a plan in place?"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 3
+kind = "speaker"
+speaker = "King Lathas"
+text = "I do indeed. I recently managed to make contact with the elves that inhabit the western lands."
+parent = 29
+
+[[nodes]]
+id = 32
+depth = 3
+kind = "act"
+text = "above"
+parent = 29
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "option"
+text = "Sounds good. See you later."
+parent = 21
+children = [34, 35, 36]
+
+[[nodes]]
+id = 34
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good. See you later."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 3
+kind = "speaker"
+speaker = "King Lathas"
+text = "Farewell adventurer. Return to me once you are ready to begin."
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 3
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "option"
+text = "Sounds good. See you later."
+parent = -1
+children = [38]
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "act"
+text = "above"
+parent = 37
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Idris"
+text = "Halt human! What are you doing here?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Idris"
+text = "Wait! What was that? What the..."
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Morvran"
+text = "Are you the human by the name of [player name]?"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes that's me."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Essyllt"
+text = "Good... We've been expecting you. King Lathas sent word of your coming."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Essyllt"
+text = "You should speak with Lord Iorwerth. He will help you track down that brigand Tyras. You'll find his camp in the north west of the forest."
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, I'm [player name]. Your scouts said that I should come and see you."
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Ahh... [player name]. Welcome to Tirannwn. I understand you've been sent here to rid us of that criminal Tyras. I offer my full support."
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Unfortunately, most of my troops are currently dealing with a group of renegade elves. That does mean we're a bit more limited than we otherwise would be."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see. I'll need to play this smart then."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Indeed. Now, Tyras and his forces moved camp recently so your first step will be to find their new camp. I have a tracker currently working in that area. I suggest you join up with him."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "You'll find him at Tyras's old camp. It's south east of here, just north of that poisoned lake. Once you've found the camp, come and let me know."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you. I shall return when my task is complete."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "Human! You must be one of Tyras's men..."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No I'm [player name]! Lord Iorwerth said you might be able to help me."
+parent = -1
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "And you have something to prove this?"
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well... Err... No."
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "As I was saying... I have no time for brigands or outlaws."
+parent = -1
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Good day [player name]. How may I help you now?"
+parent = -1
+
+[[nodes]]
+id = 62
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Your scout refused to help. He asked for proof that you sent me."
+parent = -1
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Bless his loyalty but curse his suspicion. Here he will recognise this."
+parent = -1
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "cond"
+text = "If the player doesn't have enough inventory space:"
+parent = -1
+children = [65, 66]
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "box"
+text = "<!--id: 3208-->pic=Crystal pendant detail.png|Lord Iorwerth tries to give you a crystal pendant but you don't have enough room for it."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "act"
+text = "end"
+parent = 64
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "cond"
+text = "If the player has enough inventory space:"
+parent = -1
+children = [68, 69]
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "box"
+text = "pic=Crystal pendant detail.png|Lord Iorwerth gives you a crystal pendant."
+parent = 67
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "act"
+text = "end"
+parent = 67
+is_terminal = true
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "Human! You must be one of Tyras's men..."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No I'm [player name]! Lord Iorwerth said you might be able to help me."
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "And you have something to prove this?"
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "box"
+text = "pic=Crystal pendant detail.png|You show the tracker the crystal pendant."
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "That's Lord Iorwerth's pendant. He must have a lot of faith in you. Now, what is it I can help you with?"
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to find Tyras and kill him. Do you know where his camp is?"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "Well this was his old camp. After the battle a few days ago they moved. We're yet to find them again."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can I help at all?"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "As it goes I'm not actually tracking them at the moment. I'm currently trying to trace our renegade brethren instead. This here is the best lead we've found so far."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What is?"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "Ahh I guess you can't see it with those human eyes."
+parent = -1
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "I tell you what. Now that you're here I may as well give you a hand. I'll search here on the east side. You check out the west end of the camp. Come and tell me if you find anything."
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "[player name], how goes your search? Any luck hunting down that brigand?"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've found no trace of him as yet."
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "I'm sure you will find something at his old camp that can help you."
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'll take a look and see what I can find."
+parent = -1
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Good. Come find me when you've located the camp."
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What should I be doing again?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "Check out the west end of the camp and see if you can find anything. I'll keep looking here. Let me know if you find anything."
+parent = -1
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "box"
+text = "You try to follow the footprints but they lead into impassable woodland."
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've found tracks leading off to the west. But they trail off into the trees. Beyond that I am unable to follow."
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "These forests aren't always as dense as you'd think. If you look closer, you might see ways that you can get through. With that in mind, why don't you give it another go?"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thanks... I'll see what I can find."
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "How goes the hunt for that bandit camp?"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I found it a short distance west of here."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "I'm sure Lord Iorwerth will be pleased to hear that. You should let him know."
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Tyras Guard"
+text = "{{overhead|I see you making friends with that elf, traitor!}}"
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "[player name] how goes your search... Any luck hunting down that brigand?"
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've finally tracked the brute down. His camp is in a secluded bit of forest, almost directly south of here."
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Good job. As we don't have the troops available to take on his forces directly, I suggest we try some alternative tactics."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "I have this book here which details an explosive reaction. We should be able to use it to create a bomb."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well that should make short work of Tyras."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Indeed. Have a read through and see what you think. Once you have, let me know if you have any questions."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "cond"
+text = "If the player doesn't have any inventory space:"
+parent = -1
+children = [112, 113]
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "box"
+text = "<!--id: 3230-->pic=Big book of bangs detail.png|Lord Iorwerth tries to give you a book but you don't have enough room for it."
+parent = 111
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "end"
+parent = 111
+is_terminal = true
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [115, 116]
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "box"
+text = "pic=Big book of bangs detail.png|Lord Iorwerth gives you a book."
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "act"
+text = "end"
+parent = 114
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I lost my copy of The Big Book of Bangs."
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Its lucky I had a scribe make a few copies then, is it not?"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "cond"
+text = "If the player doesn't have any inventory space:"
+parent = -1
+children = [120, 121]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "box"
+text = "<!--id: 3230-->pic=Big book of bangs detail.png|Lord Iorwerth tries to give you a book but you don't have enough room for it."
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "end"
+parent = 119
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [123, 124, 125]
+
+[[nodes]]
+id = 123
+depth = 2
+kind = "box"
+text = "pic=Big book of bangs detail.png|Lord Iorwerth gives you a book."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you."
+parent = 122
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Good day [player name]. Have you had any luck with that book?"
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "option"
+text = "I need some quicklime."
+parent = -1
+children = [130, 131, 132, 133, 134, 135]
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need some quicklime."
+parent = 129
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Quicklime?"
+parent = 129
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Apparently it's made by heating limestone."
+parent = 129
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Ah, I see. There's a mine directly east of here where you can mine limestone."
+parent = 129
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Is there anything else I can help with?"
+parent = 129
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "act"
+text = "other"
+parent = 129
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "option"
+text = "I need some sulphur."
+parent = -1
+children = [137, 138, 139, 140, 141]
+
+[[nodes]]
+id = 137
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need some sulphur."
+parent = 136
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Check the shore south of the old camp you were at earlier. I've seen sulphur there in the past, it comes from that poisoned lake."
+parent = 136
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good, thanks."
+parent = 136
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Is there anything else I can help with?"
+parent = 136
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "act"
+text = "other"
+parent = 136
+is_terminal = true
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "option"
+text = "I need some naphtha."
+parent = -1
+children = [143, 144, 145, 146, 147, 148, 149, 150]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need some naphtha."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Naphtha?"
+parent = 142
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "According to the book, you get it through the fractional distillation of coal tar."
+parent = 142
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Well you should be able to get some coal tar from that poisoned lake to the south. As for the rest, I'm afraid I don't have the chemistry knowledge to understand it."
+parent = 142
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hmm... I know someone from Ardougne who might be able to help. She knows a thing or two about chemistry."
+parent = 142
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Perfect! Take the book to her and see if she can help. Just don't tell her what it's for. Even if she's trustworthy, we can't take any risks."
+parent = 142
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Anyway, is there anything else I can help with?"
+parent = 142
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "act"
+text = "other"
+parent = 142
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "option"
+text = "I need a barrel."
+parent = -1
+children = [152, 153, 154, 155, 156]
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need a barrel."
+parent = 151
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Have a look around the camp, there should be some empty barrels lying around."
+parent = 151
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will do, thanks."
+parent = 151
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Is there anything else I can help with?"
+parent = 151
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "act"
+text = "other"
+parent = 151
+is_terminal = true
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "I need a fuse."
+parent = -1
+children = [158, 159, 160, 161]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need a fuse."
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Some sort of fabric should work. You can use the loom here if needed."
+parent = 157
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Is there anything else I can help with?"
+parent = 157
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "act"
+text = "other"
+parent = 157
+is_terminal = true
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "option"
+text = "That's all thanks."
+parent = -1
+children = [163, 164, 165]
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's all thanks."
+parent = 162
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Let me know if you need anything else."
+parent = 162
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "act"
+text = "end"
+parent = 162
+is_terminal = true
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "select"
+text = "What do you want to talk about?"
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "option"
+text = "quest=No|Lamps."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "option"
+text = "Your quest."
+parent = -1
+children = [169, 170, 171, 172, 173, 174, 175, 176, 177]
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Good day. I was hoping you could help me with something. I have a book which mentions the fractional distillation of coal tar. I don't know how to do that though."
+parent = 168
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "Ah, you'll be wanting to use the still then. It's just outside."
+parent = 168
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I use it?"
+parent = 168
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "It's quite simple really. You have to get the still heat up very high for it to work. However, if it gets too hot it will burn out and you will have to start over."
+parent = 168
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "You must also watch the pressure, if it gets too high you will also have to start over. There are valves to control pressure and tar flow. These will also affect the heat of the still."
+parent = 168
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is that all?"
+parent = 168
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Chemist"
+text = "You'll also need plenty of coal to keep the still hot."
+parent = 168
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see, thanks for the information."
+parent = 168
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "act"
+text = "end"
+parent = 168
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "option"
+text = "quest=No|Impling jars."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Good day [player.] Have you had any luck with that book?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have finished the bomb."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Excellent work. Now we can finally deal with Tyras."
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what should I do? Plant it in his camp?"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "No, you'll be spotted by the guards if you try that. You'll need to get it in from outside."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any suggestions?"
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Tyras and his men have used catapults against us in the past. Maybe you can turn one of them against him."
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Now you'd better get going. Don't forget, you'll need a tinderbox to light that fuse. Return to me once the deed is done."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Tyras guard"
+text = "Oi! Don't mess with that."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Tyras guard"
+text = "Yeah, what ya want?"
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I was wondering what you were doing out here?"
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Tyras guard"
+text = "I was just wondering what I was doing here too. I'm meant to be looking after this catapult but I can't keep my mind on the job. We've been living off field rations for almost a year now."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Tyras guard"
+text = "I keep seeing rabbits in this forest. What I wouldn't give to eat one, but I'm not quick enough to kill any and I'm no good with a bow."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "cond"
+text = "Without a cooked rabbit:"
+parent = -1
+children = [197, 198]
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I can see how that would be distracting."
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "act"
+text = "end"
+parent = 196
+is_terminal = true
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "cond"
+text = "With a cooked rabbit:"
+parent = -1
+children = [200, 201, 202]
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I have one here for you."
+parent = 199
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Tyras guard"
+text = "You cooked me a rabbit! Thanks a lot. You don't mind watching things while I take five to eat it, do you?"
+parent = 199
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "act"
+text = "end"
+parent = 199
+is_terminal = true
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "All right."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Tyras guard"
+text = "They say the king died from a flying fire ball. Are you certain no one messed with the catapult while I was eating?"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I was the only one here. I was watching the whole time."
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello."
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "I take it that the huge explosion I just heard was you?"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I've finally dealt with Tyras, he should cause you no more problems."
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Elf Tracker"
+text = "This is good news indeed. Lord Iorwerth will be very happy. You should go and let him know."
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lord Iorwerth, it is done."
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Good good... One of my scouts reported that they saw his tent in a ball of flames. You have done well."
+parent = -1
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = """
+I'm sure you will want to get back to your king and tell him. He will undoubtedly want some proof. He should trust me enough in this matter, Give{{sic}} him this letter, it verifies that the job is done.
+"""
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "cond"
+text = "If the player doesn't have any inventory space:"
+parent = -1
+children = [216, 217]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "box"
+text = "<!--id: 3207-->pic=Iorwerth's message detail.png|Lord Iorwerth tries to give you a scroll but you don't have enough room for it."
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "end"
+parent = 215
+is_terminal = true
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [219, 220, 221, 222]
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "box"
+text = "pic=Iorwerth's message detail.png|Lord Iorwerth gives you a scroll."
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "As a token of my own thanks, I give you access to the pass through Arandar. You'll find the start of the trail in the far north east of the woods."
+parent = 218
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you my lord."
+parent = 218
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "act"
+text = "end"
+parent = 218
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lord Iorwerth, I have lost the message for King Lathas."
+parent = -1
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Here have another copy, but don't let it fall into the wrong hands."
+parent = -1
+
+[[nodes]]
+id = 225
+depth = 1
+kind = "cond"
+text = "If the player doesn't have any inventory space:"
+parent = -1
+children = [226, 227]
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "box"
+text = "<!--id: 3207-->pic=Iorwerth's message detail.png|Lord Iorwerth tries to give you a scroll but you don't have enough room for it."
+parent = 225
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "act"
+text = "end"
+parent = 225
+is_terminal = true
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [229, 230, 231]
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "box"
+text = "pic=Iorwerth's message detail.png|Lord Iorwerth gives you a scroll."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you my lord."
+parent = 228
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Good day Lord Iorwerth."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "Have you delivered the message to King Lathas yet?"
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet my lord."
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Lord Iorwerth"
+text = "There is no time for delay, he'll need to see it."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Arianwyn"
+text = "Are you the human by the name [player name]?"
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, that's me?"
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Arianwyn"
+text = "Thank Seren, maybe all is not yet lost."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What do you mean?"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Arianwyn"
+text = "I am Arianwyn, leader of the Elven Resistance. We've been watching you since you arrived in Tirannwn. We know it was you that murdered King Tyras."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "speaker"
+speaker = "Arianwyn"
+text = "There is much to explain and little time. You carry a message from Lord Iorwerth, do you not?"
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the scroll with them:"
+parent = -1
+children = [244]
+
+[[nodes]]
+id = 244
+depth = 2
+kind = "other"
+text = "{{tmissing}}"
+parent = 243
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "cond"
+text = "If the player has the scroll with them:"
+parent = -1
+children = [246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257]
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well you seem to know everything else so I'll not lie. Yes."
+parent = 245
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "speaker"
+speaker = "Arianwyn"
+text = "Good, we understand each other well. Now hand it here and find the truth of who your real employer is."
+parent = 245
+
+[[nodes]]
+id = 248
+depth = 2
+kind = "box"
+text = "pic=Iorwerth's message detail.png|You show the message to the elf, he moves his lips silently and the seal on the message is parted."
+parent = 245
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "act"
+text = "(Opens [[Transcript:Iorwerth's message|Iorwerth's message]].)"
+parent = 245
+
+[[nodes]]
+id = 250
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I had no idea! Why would the king do this?"
+parent = 245
+
+[[nodes]]
+id = 251
+depth = 2
+kind = "speaker"
+speaker = "Arianwyn"
+text = "I have a few ideas, now is not the time to discuss them though. For now, you should go to King Lathas as normal. Give him the message and act like nothing unusual has happened."
+parent = 245
+
+[[nodes]]
+id = 252
+depth = 2
+kind = "speaker"
+speaker = "Arianwyn"
+text = "Once you are done, return to Tirannwn and seek out Islwyn and Eluned. You'll find them roaming the Isafdar forest. They will bring you to me."
+parent = 245
+
+[[nodes]]
+id = 253
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You want me to help you? Okay, what's in it for me?"
+parent = 245
+
+[[nodes]]
+id = 254
+depth = 2
+kind = "speaker"
+speaker = "Arianwyn"
+text = "The chance for redemption after all you've done? If that doesn't take your fancy, consider this..."
+parent = 245
+
+[[nodes]]
+id = 255
+depth = 2
+kind = "speaker"
+speaker = "Arianwyn"
+text = "This isn't a struggle for land or title. It is a war for life, all life. If Iorwerth and Lathas manage to summon Zamorak, we all die."
+parent = 245
+
+[[nodes]]
+id = 256
+depth = 2
+kind = "speaker"
+speaker = "Arianwyn"
+text = "Deliver your message, act normal. We'll meet again soon."
+parent = 245
+
+[[nodes]]
+id = 257
+depth = 2
+kind = "act"
+text = "end"
+parent = 245
+is_terminal = true
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "My lord, Tyras is dead!"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "King Lathas"
+text = "This is grand news indeed! You'll forgive me if I'm a little apprehensive about this, but I take it you do have proof?"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "cond"
+text = "If the player doesn't have the scroll with them:"
+parent = -1
+children = [261, 262, 263, 264]
+
+[[nodes]]
+id = 261
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "No, I have nothing to corroborate this."
+parent = 260
+
+[[nodes]]
+id = 262
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "I am sure you have done as you say, but on this matter I can afford no doubts. You must find something to confirm your story."
+parent = 260
+
+[[nodes]]
+id = 263
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll see what I can do."
+parent = 260
+
+[[nodes]]
+id = 264
+depth = 2
+kind = "act"
+text = "end"
+parent = 260
+is_terminal = true
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "cond"
+text = "If the player has the scroll with them:"
+parent = -1
+children = [266, 267, 268, 269, 270, 271, 272]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have a letter sent by Lord Iorwerth."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "box"
+text = "pic=Iorwerth's message detail.png|You hand the king the message. He looks at the seal then opens it."
+parent = 265
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Yes... Good... This will do nicely. Well done, you've done an excellent job."
+parent = 265
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Does this mean we can reveal the truth about the plague?"
+parent = 265
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Not yet I'm afraid. Even with my brother gone, the Dark Lord remains a threat. For now, the plague must remain."
+parent = 265
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "King Lathas"
+text = "Anyway, I'll send word when I next require your services. Oh, and I guess you'll be wanting your reward."
+parent = 265
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true

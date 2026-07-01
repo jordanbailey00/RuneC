@@ -47,10 +47,33 @@ typedef struct {
     uint32_t object_id;
 } RcActivitySpawn;
 
+typedef struct {
+    char slug[64];
+    int first;
+    int count;
+} RcActivitySpawnRange;
+
+typedef struct {
+    RcActivitySpawn *rows;
+    int count;
+    RcActivitySpawnRange *index;
+    int index_count;
+} RcActivitySpawnData;
+
 extern RcActivitySpawn *g_rc_activity_spawns;
 extern int g_rc_activity_spawn_count;
 
 int rc_load_activity_spawns(const char *path);
+void rc_activity_spawn_data_init(RcActivitySpawnData *data);
+void rc_activity_spawn_data_free(RcActivitySpawnData *data);
+int rc_activity_spawn_data_import_globals(RcActivitySpawnData *data);
+int rc_load_activity_spawns_into(const char *path,
+                                 RcActivitySpawnData *data);
+int rc_activity_spawns_mirror_to_globals(
+    const RcActivitySpawnData *data);
+void rc_activity_spawns_use_data(const RcActivitySpawnData *data);
+void rc_activity_spawns_reset_data_if_active(
+    const RcActivitySpawnData *data);
 void rc_activity_spawns_rebuild_index(void);
 const RcActivitySpawn *rc_activity_spawns_for(const char *slug, int *count);
 const RcActivitySpawn *rc_activity_spawn_find_key(const char *slug,

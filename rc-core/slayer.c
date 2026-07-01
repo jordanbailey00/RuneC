@@ -82,13 +82,14 @@ static bool key_matches(const char *wanted_name, const char *npc_name) {
 }
 
 static bool npc_matches_name(int def_idx, const char *name) {
-    if (def_idx < 0 || def_idx >= g_npc_def_count) return false;
-    return key_matches(name, g_npc_defs[def_idx].name);
+    const RcNpcDef *def = rc_npc_def_get(def_idx);
+    return def && key_matches(name, def->name);
 }
 
 static bool npc_matches_group_alias(int def_idx, const char *group) {
-    if (def_idx < 0 || def_idx >= g_npc_def_count || !group) return false;
-    const char *npc = g_npc_defs[def_idx].name;
+    const RcNpcDef *def = rc_npc_def_get(def_idx);
+    if (!def || !group) return false;
+    const char *npc = def->name;
     if (key_matches(group, npc)) return true;
     if (key_matches(group, "Barrows brothers")) {
         return key_matches("Ahrim the Blighted", npc) ||

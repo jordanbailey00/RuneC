@@ -1,0 +1,1717 @@
+title = "Transcript:2023 Halloween event"
+npcs = ["Man", "Woman", "Guard", "Lumbridge Guide", "Town Crier", "Iffie", "Elsie", "Ned"]
+node_count = 217
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Trick or treat!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "cond"
+text = "If the player does not have a treat cauldron:"
+parent = -1
+children = [2, 3, 6, 9, 11, 12]
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 1
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 1
+children = [4, 5]
+
+[[nodes]]
+id = 4
+depth = 3
+kind = "speaker"
+speaker = "NPC"
+text = "Spooky! But without a Treat cauldron, where will you store your treats?"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 3
+kind = "act"
+text = "continues"
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 1
+children = [7, 8]
+
+[[nodes]]
+id = 7
+depth = 3
+kind = "speaker"
+speaker = "NPC"
+text = "I admire your spirit, but you can't go Trick-or- Treating without a Treat cauldron!"
+parent = 6
+
+[[nodes]]
+id = 8
+depth = 3
+kind = "act"
+text = "continues"
+parent = 6
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "cond"
+text = "If the player is not wearing at least three Halloween-themed items:"
+parent = 1
+children = [10]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "NPC"
+text = "You also need to wear a spooky costume. At least three Halloween items should do the trick!"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "Speak to the children near the west bank in Varrock, they'll help you get in the spooky spirit."
+parent = 1
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "act"
+text = "end"
+parent = 1
+is_terminal = true
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "cond"
+text = "If the player has less than three Halloween-themed items equipped:"
+parent = -1
+children = [14, 15, 17, 19, 20]
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "other"
+text = "{{trandom}}"
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "Dialogue 1"
+parent = 13
+children = [16]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "NPC"
+text = "That's not a very spooky costume! Try combining at least three Halloween items, that'll be sure to spook!"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "option"
+text = "Dialogue 2"
+parent = 13
+children = [18]
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "NPC"
+text = "Almost, but you can't go Trick-or-Treating without a spooky costume! At least three Halloween items should do the trick!"
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "speaker"
+speaker = "NPC"
+text = "Speak to the children near the west bank in Varrock, they'll help you get in the spooky spirit."
+parent = 13
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "act"
+text = "end"
+parent = 13
+is_terminal = true
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Trick or treat!"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "cond"
+text = "If the player hasn't received treats from the town crier:"
+parent = -1
+children = [23, 24, 25, 26, 27, 28, 29, 30, 31]
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "Hear ye! Hear ye! Come and check out the spookiest costume in town!"
+parent = 22
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, where?"
+parent = 22
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "Yours, of course, unless you tell me this isn't supposed to be a costume?"
+parent = 22
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh it is! I am flattered!"
+parent = 22
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "Then you hopefully won't mind me calling everyone to see it!"
+parent = 22
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I appreciate the attention, although I was just really hoping for some treats!"
+parent = 22
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "Straight to the point I see. Fine, please take these with my thanks! Have a happy Halloween!"
+parent = 22
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you! While I'm here, can you think of anyone else I should spook?"
+parent = 22
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "act"
+text = "continues"
+parent = 22
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "cond"
+text = "If the player has already received treats from the town crier:"
+parent = -1
+children = [33, 34, 35, 36, 37, 38, 39]
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "Ah, if it isn't the spookiest Trick-or-Treater!"
+parent = 32
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Have you seen any better costumes?"
+parent = 32
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "Why, are you looking for inspiration for next year?"
+parent = 32
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe? Possibly?"
+parent = 32
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "I've seen quite a few good costumes but I still liked yours a lot. So as for next year, who can tell? Not me!"
+parent = 32
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough then! Is anyone else giving out treats?"
+parent = 32
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "act"
+text = "continues"
+parent = 32
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "cond"
+text = "If the player has trick-or-treated everyone:"
+parent = -1
+children = [41, 42, 43]
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "I believe you've visited the most generous of us!"
+parent = 40
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "The citizens are still as eager as ever, though, and I hear Varrock is the place to be for Trick-or-Treaters!"
+parent = 40
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "act"
+text = "end"
+parent = 40
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Elsie:|Dialogue 1"
+parent = -1
+children = [46]
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "You know, Elsie in the Varrock church loves a good spook as well! You should show her your costume!"
+parent = 45
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Iffie:|Dialogue 2"
+parent = -1
+children = [48]
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "You might like to pay Iffie in Varrock a visit. I hear she's being very generous with treats and stories!"
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Ned:|Dialogue 3"
+parent = -1
+children = [50]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "You know who else would love to see a colourful costume? Ned in Draynor Village!"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Lumbridge Guide:|Dialogue 4"
+parent = -1
+children = [52]
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Town Crier"
+text = "I hear the Lumbridge Guide is welcoming all Trick-or- Treaters with a generous supply of treats!"
+parent = 51
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Trick or treat!"
+parent = -1
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "cond"
+text = "If the player hasn't received treats from Elsie:"
+parent = -1
+children = [56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Oooh! What a lovely costume! You simply will have to show my sister Iffie later."
+parent = 55
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I somehow did not think Halloween was a holiday you'd enjoy."
+parent = 55
+
+[[nodes]]
+id = 58
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Well dearie, appearances can be deceiving! Let me tell you a little story of my youth."
+parent = 55
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "My sister and I have always loved knitting. Between Christmas jumpers and other wolly{{sic}} scarves, we have a little family tradition."
+parent = 55
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "As a way to challenge ourselves, when we were a bit younger, we would knit the most horrifying Halloween costumes, then wear them and scare passers-by out of their wits!"
+parent = 55
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What kind of costumes are we talking about?"
+parent = 55
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Iffie's favourite costume represented the Chaos Elemental. Mine was a fearsome three-headed dragon!"
+parent = 55
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, but I have to see it to believe it!"
+parent = 55
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Sorry dearie! We were banned from wearing those years ago because of the mass hysteria they caused! I reused the yarn to make mittens for the church sale."
+parent = 55
+
+[[nodes]]
+id = 65
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Anyway, thank you for taking the time to listen to my silly story. Have some well-deserved treats. They're not all mints, I promise."
+parent = 55
+
+[[nodes]]
+id = 66
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thank you Elsie! Do you know if anyone else is looking for some trick-or-treating fun?"
+parent = 55
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "act"
+text = "continues"
+parent = 55
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "cond"
+text = "If the player has already received treats from Elsie:"
+parent = -1
+children = [69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Hello dearie, are you here for another tale?"
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I suppose I could lend an ear."
+parent = 68
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Ok, a little short one then. One day a very kind adventurer came and brought me a warm cup of tea."
+parent = 68
+
+[[nodes]]
+id = 72
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "It's always nice to have a warm cup of tea, you know. Keeps the fingers nimble."
+parent = 68
+
+[[nodes]]
+id = 73
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "I was just telling them one of my stories when suddenly the biggest spider I had ever seen appeared in front of my eyes!"
+parent = 68
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How big are we talking?"
+parent = 68
+
+[[nodes]]
+id = 75
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "A spider that took the entirety of my field of vision! Bigger and fuzzier still than the ones you get near here."
+parent = 68
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Did the adventurer not help you out?"
+parent = 68
+
+[[nodes]]
+id = 77
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "Unfortunately, they were busy being covered in tea. I had become rather startled, you see! Thankfully, all that movement caused the tiny spider to fall off my glasses!"
+parent = 68
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't know if I would prefer a large spider far away or a small spider on my face!"
+parent = 68
+
+[[nodes]]
+id = 79
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I won't keep you any longer Elsie, but before I go, do you know of anyone that might have treats left?"
+parent = 68
+
+[[nodes]]
+id = 80
+depth = 2
+kind = "act"
+text = "continues"
+parent = 68
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "cond"
+text = "If the player has trick-or-treated everyone:"
+parent = -1
+children = [82, 83, 84]
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "I believe you've visited the most generous of us!"
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "The citizens are still as eager as ever, though, and I hear Varrock is the place to be for Trick-or-Treaters!"
+parent = 81
+
+[[nodes]]
+id = 84
+depth = 2
+kind = "act"
+text = "end"
+parent = 81
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Ned:|Dialogue 1"
+parent = -1
+children = [87]
+
+[[nodes]]
+id = 87
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "You know who else would love to see a colourful costume? Ned in Draynor Village!"
+parent = 86
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Falador town crier:|Dialogue 2"
+parent = -1
+children = [89]
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "I hear the Town crier in Falador loves a bit of Trick- or-Treating and has plenty of treats to hand out!"
+parent = 88
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Iffie:|Dialogue 3"
+parent = -1
+children = [91]
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "You might like to pay my sister Iffie in the Varrock clothes shop a visit. I hear she's being very generous with treats and stories!"
+parent = 90
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Lumbridge Guide:|Dialogue 4"
+parent = -1
+children = [93]
+
+[[nodes]]
+id = 93
+depth = 2
+kind = "speaker"
+speaker = "Elsie"
+text = "I hear the Lumbridge Guide is welcoming all Trick-or- Treaters with a generous supply of treats!"
+parent = 92
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Trick or treat!"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "cond"
+text = "If the player hasn't received treats from Iffie:"
+parent = -1
+children = [97, 98, 101, 104, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122]
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "Oooh dearie! What a beautiful costume!"
+parent = 96
+
+[[nodes]]
+id = 98
+depth = 2
+kind = "cond"
+text = "If the player is wearing the [[ugly halloween jumper]], did not complete the [[2021 Halloween event]], and hasn't received treats from Iffie:"
+parent = 96
+children = [99, 100]
+
+[[nodes]]
+id = 99
+depth = 3
+kind = "speaker"
+speaker = "Iffie"
+text = "What a beautiful jumper you have here. I remember once knitting one just like it! In fact, it could very well be this one!"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 3
+kind = "act"
+text = "continue"
+parent = 98
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "cond"
+text = "If the player is wearing the [[ugly halloween jumper]], completed the [[2021 Halloween event]], and hasn't received treats from Iffie:"
+parent = 96
+children = [102, 103]
+
+[[nodes]]
+id = 102
+depth = 3
+kind = "speaker"
+speaker = "Iffie"
+text = "I am glad that you are still wearing that jumper I made for you! It still fits you perfectly, even two years on."
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 3
+kind = "act"
+text = "continue"
+parent = 101
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "cond"
+text = "If the above two conditions are not met:"
+parent = 96
+children = [105, 106]
+
+[[nodes]]
+id = 105
+depth = 3
+kind = "speaker"
+speaker = "Iffie"
+text = "I would have jumped out of my skin if I could still jump."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 3
+kind = "act"
+text = "continue"
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "Say, while you're here, would you care for a scary story?"
+parent = 96
+
+[[nodes]]
+id = 108
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sure, why not!"
+parent = 96
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "We have bowls of treats we keep to treat Trick-or- Treaters. We left the bowls outside the shop so the Trick-or-Treaters wouldn't come in and frighten the customers."
+parent = 96
+
+[[nodes]]
+id = 110
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "However we found the treats vanishing in an instant, as if a greedy passer-by would help themselves without leaving any for anyone else."
+parent = 96
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "That's not very polite if you ask me. I was ready to be up in arms about today's youth, but I thought it would be prudent to witness the thief first."
+parent = 96
+
+[[nodes]]
+id = 112
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That sounds dangerous! What did you do?"
+parent = 96
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "We refilled the bowls and waited, but we must have been too visible. Everyone was behaving perfectly. We went to sit back and the sweets vanished once again!"
+parent = 96
+
+[[nodes]]
+id = 114
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Was it ghosts? I bet it was ghosts."
+parent = 96
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "We refilled again and this time hid very carefully. For a while nothing happened. Charlie came by, but he only took a couple of sweets before strolling back."
+parent = 96
+
+[[nodes]]
+id = 116
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "Then when we least expected it, the most unsettling monster appeared from behind the shop, crammed its head into one of the bowls and wolfed the whole contents out!"
+parent = 96
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh no! What did it look like?"
+parent = 96
+
+[[nodes]]
+id = 118
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "Knee-height, eyes as dark as the night, a large gaping mouth, four legs, skin peeling and covered in fleas!"
+parent = 96
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "Eventually we understood that someone had been putting Halloween costumes on the hungry stray dogs! We now keep the bowls where we can see them!"
+parent = 96
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, I was not expecting that plot twist!"
+parent = 96
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That was a lovely story, Iffie. Before I take my leave, is there anyone else I should visit?"
+parent = 96
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "act"
+text = "continues"
+parent = 96
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "cond"
+text = "If the player has already received treats from Iffie:"
+parent = -1
+children = [124, 125, 126, 127, 128, 129, 130, 131]
+
+[[nodes]]
+id = 124
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "So, did you spot the spookiest stray dogs?"
+parent = 123
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know they lurk around here and am in no rush to find them!"
+parent = 123
+
+[[nodes]]
+id = 126
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "I saw one dressed as a huge spider earlier!"
+parent = 123
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "I can add that to my list of jumpers I ought to try knitting."
+parent = 123
+
+[[nodes]]
+id = 128
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What, a jumper featuring a dog dressed as a spider? That sounds ambitious!"
+parent = 123
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "Or maybe just spider-themed. Maybe next year, who knows!"
+parent = 123
+
+[[nodes]]
+id = 130
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "While I'm here, do you know of anyone else giving out treats?"
+parent = 123
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "act"
+text = "continues"
+parent = 123
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "cond"
+text = "If the player has trick-or-treated everyone:"
+parent = -1
+children = [133, 134, 135]
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "I believe you've visited the most generous of us!"
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "The citizens are still eager as ever, though, and I hear Varrock is the place to be for Trick-or-Treaters!"
+parent = 132
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "act"
+text = "end"
+parent = 132
+is_terminal = true
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Ned:|Dialogue 1"
+parent = -1
+children = [138]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "You know who else would love to see a colourful costume? Ned in Draynor Village!"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Elsie:|Dialogue 1"
+parent = -1
+children = [140]
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "You know, my sister Elsie in the Varrock church loves a good spook as well! You should show her your costume!"
+parent = 139
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Falador town crier:|Dialogue 2"
+parent = -1
+children = [142]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "I hear the Town crier in Falador loves a bit of Trick- or-Treating and has plenty of treats to hand out!"
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Lumbridge Guide:|Dialogue 4"
+parent = -1
+children = [144]
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Iffie"
+text = "I hear the Lumbridge Guide is welcoming all Trick-or- Treaters with a generous supply of treats!"
+parent = 143
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Trick or treat!"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "cond"
+text = "If the player hasn't received treats from Ned:"
+parent = -1
+children = [148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160]
+
+[[nodes]]
+id = 148
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Aye, what a good costume!"
+parent = 147
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "That would scare any old sailor, and I've seen my fair share of things!"
+parent = 147
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you get much business around Halloween?"
+parent = 147
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Actually, not too bad! For the most part they need some ropes for tying hay bales."
+parent = 147
+
+[[nodes]]
+id = 152
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "But the bulk of my business at the moment is sailing rigs."
+parent = 147
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do they require particular maintenance at this time of year?"
+parent = 147
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "No, but I have heard that they are considering allowing less experienced sailors to sail the seas!"
+parent = 147
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "I think it'll just mean an increase of shipwrecks, if you ask me! But it is good for my business."
+parent = 147
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, that does sound interesting! I wonder if they'll let me?"
+parent = 147
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Maybe in a year or so? Meanwhile, I'd better get to work right away."
+parent = 147
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll leave you to it then."
+parent = 147
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is there anyone else who'd like to see my costume?"
+parent = 147
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "act"
+text = "continues"
+parent = 147
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "cond"
+text = "If the player has already received treats from Ned:"
+parent = -1
+children = [162, 163, 164, 165, 166, 167, 168]
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Oh hello again!"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "Here for some rope or to show me the results of your sweet plundering?"
+parent = 161
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have not been plundering, I have been Trick-or- Treating properly!"
+parent = 161
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "People have been kind to me, for the most part! I might have been victim of the odd trick myself."
+parent = 161
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "That sounds like quite a tale! Maybe for some other time!"
+parent = 161
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe! In the meantime, do you know who else would like to see my costume?"
+parent = 161
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "act"
+text = "continues"
+parent = 161
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "cond"
+text = "If the player has trick-or-treated everyone:"
+parent = -1
+children = [170, 171, 172]
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "I believe you've visited the most generous of us!"
+parent = 169
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "The citizens are still as eager as ever, though, and I hear Varrock is the place to be for Trick-or-Treaters!"
+parent = 169
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "act"
+text = "end"
+parent = 169
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Elsie:|Dialogue 1"
+parent = -1
+children = [175]
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "You know, Elsie in the Varrock church loves a good spook as well! You should show her your costume!"
+parent = 174
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Falador town crier:|Dialogue 2"
+parent = -1
+children = [177]
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "I hear the Town crier in Falador loves a bit of Trick- or-Treating and has plenty of treats to hand out!"
+parent = 176
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Iffie:|Dialogue 3"
+parent = -1
+children = [179]
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "You might like to pay Iffie in Varrock a visit. I hear she's being very generous with treats and stories!"
+parent = 178
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Lumbridge Guide:|Dialogue 4"
+parent = -1
+children = [181]
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Ned"
+text = "I hear the Lumbridge Guide is welcoming all Trick-or- Treaters with a generous supply of treats!"
+parent = 180
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Trick or treat!"
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "cond"
+text = "If the player hasn't received treats from the Lumbridge Guide:"
+parent = -1
+children = [185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "Greetings, adventurer! Are you looking for advice or are you looking for treats?"
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Can you guess from looking at my outfit?"
+parent = 184
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "I have seen adventurers sporting a wide range of interesting get-ups no matter the season."
+parent = 184
+
+[[nodes]]
+id = 188
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "This said, it's the season to be spooky and you do a fine job of it!"
+parent = 184
+
+[[nodes]]
+id = 189
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "I will not ask whether this is also your choice of clothes the rest of the year."
+parent = 184
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "After all, you are more than welcome to dress how you like, when you like."
+parent = 184
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That is very accepting of you!"
+parent = 184
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "I meet a lot of people in my line of work and hear a lot of stories. Believe it or not, people tell stories of adventures, past and future, just by the way they dress."
+parent = 184
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And what does my outfit say?"
+parent = 184
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "That you are very interested in gathering sweet treats!"
+parent = 184
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You're spot on! While we're on the topic, is there anyone else I should visit?"
+parent = 184
+
+[[nodes]]
+id = 196
+depth = 2
+kind = "act"
+text = "continues"
+parent = 184
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "cond"
+text = "If the player has already received treats from the Lumbridge Guide:"
+parent = -1
+children = [198, 199, 200, 201, 202]
+
+[[nodes]]
+id = 198
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "Hello again! Are you looking for advice or are you looking for treats?"
+parent = 197
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I would take more treats if you're offering!"
+parent = 197
+
+[[nodes]]
+id = 200
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "I should have expected this! I will have to admit that my treat supply is limited and I have many more adventurers to reward."
+parent = 197
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I suppose that is fair enough. In that case, I will take your advice to help me find someone else to visit!"
+parent = 197
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "act"
+text = "continues"
+parent = 197
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "cond"
+text = "If the player has trick-or-treated everyone:"
+parent = -1
+children = [204, 205, 206]
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "I believe you've visited the most generous of us!"
+parent = 203
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "The citizens are still as eager as ever, though, and I hear Varrock is the place to be for Trick-or-Treaters!"
+parent = 203
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "act"
+text = "end"
+parent = 203
+is_terminal = true
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Elsie:|Dialogue 1"
+parent = -1
+children = [209]
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "You know, Elsie in the Varrock church loves a good spook as well! You should show her your costume!"
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to the Falador town crier:|Dialogue 2"
+parent = -1
+children = [211]
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "I hear the Town crier in Falador loves a bit of Trick- or-Treating and has plenty of treats to hand out!"
+parent = 210
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Iffie:|Dialogue 3"
+parent = -1
+children = [213]
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "You might like to pay Iffie in Varrock a visit. I hear she's being very generous with treats and stories!"
+parent = 212
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "option"
+text = "cond=If the player has not yet talked to Ned:|Dialogue 4"
+parent = -1
+children = [215]
+
+[[nodes]]
+id = 215
+depth = 2
+kind = "speaker"
+speaker = "Lumbridge Guide"
+text = "You know who else would love to see a colourful costume? Ned in Draynor Village!"
+parent = 214
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

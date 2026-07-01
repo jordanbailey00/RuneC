@@ -50,7 +50,6 @@ static void tick_until_inactive(RcWorld *world, int max_ticks) {
 }
 
 static void test_exact_handler_overrides_default_npc_option(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -64,7 +63,8 @@ static void test_exact_handler_overrides_default_npc_option(void) {
     key.kind = RC_INTERACTION_NPC;
     key.op = RC_INTERACTION_OP1;
     key.definition_id = 901300;
-    assert(rc_interaction_register_handler(&key, exact_talk_handler, &state));
+    assert(rc_interaction_register_world_handler(
+        world, &key, exact_talk_handler, &state));
 
     rc_player_interact_npc(world, uid, 0);
     tick_until_inactive(world, 16);
@@ -80,7 +80,6 @@ static void test_exact_handler_overrides_default_npc_option(void) {
 }
 
 static void test_default_attack_and_noncombat_handlers_preserve_behavior(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -128,7 +127,6 @@ static void test_default_attack_and_noncombat_handlers_preserve_behavior(void) {
 }
 
 static void test_missing_option_and_no_handler_are_deterministic(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -171,6 +169,5 @@ int main(void) {
     test_exact_handler_overrides_default_npc_option();
     test_default_attack_and_noncombat_handlers_preserve_behavior();
     test_missing_option_and_no_handler_are_deterministic();
-    rc_interaction_clear_handlers();
     return 0;
 }

@@ -1,0 +1,2155 @@
+title = "Transcript:The Curse of Arrav"
+npcs = ["Elias White", "Sharathteerk", "Zemouregal", "Arrav"]
+node_count = 274
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "If the player speaks to Elias before receiving [[Elias' message|his message]]:"
+parent = -1
+children = [1, 2, 3]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, hello there, [player name]. Good to see you."
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you, Elias. So what brings you all the way out here?"
+parent = 0
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "act"
+text = "continue"
+parent = 0
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "cond"
+text = "If the player speaks to Elias after reading [[Elias' message|his message]]:"
+parent = -1
+children = [5, 6, 7]
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, hello there, [player name]. Good to see you. I take it you recived{{sic}} my message?"
+parent = 4
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I did indeed. So what brings us all the way out here?"
+parent = 4
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "act"
+text = "continue"
+parent = 4
+
+[[nodes]]
+id = 8
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Well, it turns out the desert was the best place to begin my research into Arrav and his heart. Not too surprising of course, given the burial practices here."
+parent = -1
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "cond"
+text = "If the player did not speak to Elias at the [[Uzer Oasis]] prior to 21 February 2024:"
+parent = -1
+children = [10, 11, 12]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And how's that going so far?"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Pretty well. In fact, I think I'm getting close to something. It's related to that old mastaba up on the plateau. I reckon it might contain the knowledge we need to help old Arrav out."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "act"
+text = "continue"
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 1
+kind = "cond"
+text = "If the player spoke to Elias at the Uzer Oasis before 21 February 2024:"
+parent = -1
+children = [14, 15, 16, 17]
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "In fact, as you might recall, I was here before to look into that old mastaba up on the plateau."
+parent = 13
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I remember. You said it might contain important information on the Mahjarrat."
+parent = 13
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Indeed I did. And I reckon it might also contain the knowledge we need to help old Arrav out."
+parent = 13
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "continue"
+parent = 13
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excellent!"
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "And on that note, how do you feel about a bit of tomb raiding?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "select"
+text = "Start The Curse of Arrav quest?"
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+
+[[nodes]]
+id = 22
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like a job for me! What do you need?"
+parent = 21
+
+[[nodes]]
+id = 23
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Well, without getting bogged down in all the details, my research led me to some information on a rare and unusual form of necromancy that was once practiced in these lands."
+parent = 21
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "The key element of the process involved the removal and preservation of the heart, much in the same way that the priests of Icthlarin do so during their burial ceremonies."
+parent = 21
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "The key difference: The process is performed while the victim is still alive!"
+parent = 21
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's horrible!"
+parent = 21
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Indeed. I have encountered many forms of dark magic in my time, but I must confess, few have filled me with the same anger that I felt upon discovering this vile form of necromancy."
+parent = 21
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you think this is what happened to Arrav?"
+parent = 21
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Almost certainly. The end result of the process is an undead slave, bound to whoever possess their still-beating heart."
+parent = 21
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = """
+The victim must do whatever they are commanded, but unlike most other forms of necromancy, their mind, and indeed their very soul, remains intact. It all perfectly matches what you encountered with Arrav.
+"""
+parent = 21
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Now thankfully, as horrible as all this is, I believe this is a way for us to break Zemouregal's control over Arrav. To do so, we must recover Arrav's heart."
+parent = 21
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But what does that have to do with the mastaba?"
+parent = 21
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "If we are to recover the heart, we will need a way to not only keep it preserved, but to keep it beating as well."
+parent = 21
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Zemouregal must have a way of doing this, but I have a feeling he won't be willing to share the details on how."
+parent = 21
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "My hope is the mastaba contains the answers we need. It was built to house a Pharaoh who ruled the desert thousands of years ago."
+parent = 21
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "She was known for many feats, with one of them being her work in saving the victims of a Mahjarrat necromancer."
+parent = 21
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ah, I see. Well, if there's any information on heart preservation in there, I'm sure I can find it."
+parent = 21
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "I have no doubt you can. While you work on that, I will get started on our next issue: Finding where Zemouregal is keeping Arrav's heart. Hopefully I'll have something by the time you're done."
+parent = 21
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = """
+Oh, and a word of warning. When I was asking around about the mastaba, I was told about a group of... well they apparently called themselves explorers. They entered the mastaba, but never came back out.
+"""
+parent = 21
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "I'd say it's safe to assume that there are some sort of defensive measures in place to deter any would-be grave robbers."
+parent = 21
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the heads up. I'll be careful."
+parent = 21
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Good luck in there. I will meet you here once you are done."
+parent = 21
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "act"
+text = "end"
+parent = 21
+is_terminal = true
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [45, 46, 47]
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll have to pass right now. I have some other things I need to do."
+parent = 44
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Well, when you're ready, you know where to find me."
+parent = 44
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "act"
+text = "end"
+parent = 44
+is_terminal = true
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, hello again, [player name]. How goes the tomb raiding?"
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "cond"
+text = "If the player has not entered the tomb:"
+parent = -1
+children = [50, 51, 52, 53]
+
+[[nodes]]
+id = 50
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to be doing again?"
+parent = 49
+
+[[nodes]]
+id = 51
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "You need to head into that mastaba up on the plateau and see if you can find some information on how we can keep Arrav's heart preserved. Once you have something, meet me back here."
+parent = 49
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right. I'll get to it."
+parent = 49
+
+[[nodes]]
+id = 53
+depth = 2
+kind = "act"
+text = "end"
+parent = 49
+is_terminal = true
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "cond"
+text = "If the player has entered the tomb:"
+parent = -1
+children = [55, 56, 57]
+
+[[nodes]]
+id = 55
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = 54
+
+[[nodes]]
+id = 56
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Well, keep at it. Once you have some information on how we can keep Arrav's heart preserved, meet me back here."
+parent = 54
+
+[[nodes]]
+id = 57
+depth = 2
+kind = "act"
+text = "end"
+parent = 54
+is_terminal = true
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "cond"
+text = "If the player has learned about canopic jars:"
+parent = -1
+children = [59, 60, 61, 64, 67, 68]
+
+[[nodes]]
+id = 59
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think I've discovered what we need. We should be able to preserve Arrav's heart using a specially prepared canopic jar."
+parent = 58
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Excellent stuff! So how do we prepare this jar?"
+parent = 58
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "cond"
+text = "If the player has not added anything to the canopic jar:"
+parent = 58
+children = [62, 63]
+
+[[nodes]]
+id = 62
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We need to fill it with three dwellberries and a ring of life. I'll get started right away."
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 3
+kind = "speaker"
+speaker = "Elias White"
+text = "Sounds good. Let me know once it's ready and we can discuss our next steps."
+parent = 61
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "cond"
+text = "If the player has added something to the canopic jar:"
+parent = 58
+children = [65, 66]
+
+[[nodes]]
+id = 65
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "We need to fill it with three dwellberries and a ring of life. I'm working on it right now."
+parent = 64
+
+[[nodes]]
+id = 66
+depth = 3
+kind = "speaker"
+speaker = "Elias White"
+text = "Well, let me know once it's ready and we can discuss our next steps."
+parent = 64
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Will do."
+parent = 58
+
+[[nodes]]
+id = 68
+depth = 2
+kind = "act"
+text = "end"
+parent = 58
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "box"
+text = "pic=Waterskin detail.png|You search the skeleton and find an empty waterskin."
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "box"
+text = "pic=Damaged armour detail.png|You search the skeleton and find some damaged armour."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "box"
+text = "pic=Mastaba key (2) detail.png|You search the skeleton and find a key."
+parent = -1
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "box"
+text = "pic=Mastaba key (1) detail.png|You search the skeleton and find a key."
+parent = -1
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "box"
+text = "pic=Dust (item) detail.png|You search the skeleton and find some worthless dust."
+parent = -1
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "box"
+text = "pic=Vase (Digsite) detail.png|You search the skeleton and find a vase."
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "cond"
+text = "If the player does not have a key:"
+parent = -1
+children = [82, 83]
+
+[[nodes]]
+id = 82
+depth = 2
+kind = "box"
+text = "You try to pull the lever, but it won't budge. However, you spot a small keyhole beneath it."
+parent = 81
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "end"
+parent = 81
+is_terminal = true
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "cond"
+text = "If the player has the wrong key for the lever:"
+parent = -1
+children = [85, 86]
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "box"
+text = "You try to pull the lever, but it won't budge. You spot a small keyhole beneath it, but the key you are carrying doesn't fit in it."
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 2
+kind = "act"
+text = "end"
+parent = 84
+is_terminal = true
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "cond"
+text = "If the player has the right key for the lever:"
+parent = -1
+children = [88, 89, 90, 97]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "box"
+text = """
+You try to pull the lever, but it won't budge. However, you spot a small keyhole beneath it that perfectly fits the key you are carrying. You turn the key in the lock and feel the lever loosen slightly.
+"""
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 2
+kind = "select"
+text = "Pull the lever?"
+parent = 87
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 87
+children = [91, 94]
+
+[[nodes]]
+id = 91
+depth = 3
+kind = "cond"
+text = "If the player has not pulled a lever yet:"
+parent = 90
+children = [92, 93]
+
+[[nodes]]
+id = 92
+depth = 4
+kind = "box"
+text = "You pull the lever."
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 4
+kind = "act"
+text = "end"
+parent = 91
+is_terminal = true
+
+[[nodes]]
+id = 94
+depth = 3
+kind = "cond"
+text = "If the player has pulled one lever:"
+parent = 90
+children = [95, 96]
+
+[[nodes]]
+id = 95
+depth = 4
+kind = "box"
+text = "You pull the lever and hear a click coming from elsewhere in the mastaba."
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 4
+kind = "act"
+text = "end"
+parent = 94
+is_terminal = true
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "option"
+text = "No."
+parent = 87
+children = [98]
+
+[[nodes]]
+id = 98
+depth = 3
+kind = "act"
+text = "end"
+parent = 97
+is_terminal = true
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "cond"
+text = "If the player has already used the key:"
+parent = -1
+children = [100]
+
+[[nodes]]
+id = 100
+depth = 2
+kind = "act"
+text = "above"
+parent = 99
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "box"
+text = "The doors are securely locked. You can't see any obvious way to open them."
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "box"
+text = "You pull the lever and hear a rumbling coming from the floor grid."
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "box"
+text = "pic=Canopic jar (oil) detail.png|You search the shelves and find an oil-filled canopic jar."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "box"
+text = "Much of the mural is beyond your understanding, but you recognise a Pharaoh Queen preparing a canopic jar. A diagram seems to show the jar being filled with three dwellberries and a ring of life."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "box"
+text = "Much of the mural is beyond your understanding, but you recognise a Pharaoh Queen placing a heart into a canopic jar."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "box"
+text = "Much of the mural is beyond your understanding, but you recognise a Mahjarrat facing off against a Pharaoh Queen."
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "box"
+text = "pic=Canopic jar (oil and berries) detail.png|You put three dwellberries into the canopic jar."
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "box"
+text = "pic=Canopic jar (full) detail.png|You put a ring of life into the canopic jar."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, hello again, [player name]. How goes the tomb raiding?"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "box"
+text = "pic=Canopic jar (full) detail.png|You show the canopic jar to Elias."
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This canopic jar should be able to preserve Arrav's heart!"
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Excellent stuff! I had no doubt you'd discover what we needed. You'll be pleased to hear that I've managed to make some good progress as well."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Have you found where Arrav's heart is?"
+parent = -1
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Not quite, but I have the next best thing. One of my contacts has been supporting my research by investigating Mahjarrat activity in the far north."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "He recently spotted Zemouregal entering an old fort near the mountain of Trollweiss."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Ah, I know Trollweiss. I've been tobogganing there."
+parent = -1
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Really? It hadn't struck me as a tourist area, what with it being a bit troll-ridden. Anyhow, you shouldn't need to be doing any tobogganing this time. Instead, you'll be heading underground."
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Underground?"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Yes. My contact located some tunnels that looked like they might lead right into the fort. Seems like a far better option than the front door."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, then I'd best get going. Where can I find these tunnels?"
+parent = -1
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "The entrance is right on the top of Trollweiss. I'd suggest you take a pickaxe with you. My contact mentioned that there had been a few cave-ins."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "option"
+text = "You seem to have a lot of contacts."
+parent = -1
+children = [132, 133, 134, 135, 136]
+
+[[nodes]]
+id = 132
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You seem to have a lot of contacts."
+parent = 131
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Indeed. I've managed to make a few friends in my time."
+parent = 131
+
+[[nodes]]
+id = 134
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So are they all looking into Zemouregal for you?"
+parent = 131
+
+[[nodes]]
+id = 135
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Oh, not at all. Given recent events, Zemouregal is of particular interest of course, but Mahjarrat activity in general has been increasing recently, especially up north."
+parent = 131
+
+[[nodes]]
+id = 136
+depth = 2
+kind = "act"
+text = "initial"
+parent = 131
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "option"
+text = "So how did you first end up researching the Mahjarrat?"
+parent = -1
+children = [138, 139, 140, 141, 142, 143]
+
+[[nodes]]
+id = 138
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So how did you first end up researching the Mahjarrat?"
+parent = 137
+
+[[nodes]]
+id = 139
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "You know, it's been so long that I can barely remember. As I recall, I first found mention of their kind right here in the desert."
+parent = 137
+
+[[nodes]]
+id = 140
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = """
+I was assisting some archologists{{sic}} in the south when I found an old tablet describing of a race of seemingly immortal shapeshifters wielding the power of gods. Naturally, I was immediately fascinated!
+"""
+parent = 137
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Of course, I soon went on to find out that they are not only fascinating, but also very dangerous. I must admit that I see it as something of a duty to keep my research up to date."
+parent = 137
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "The events at Varrock showed that too many have forgotten the dangers of the Mahjarrat."
+parent = 137
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "act"
+text = "initial"
+parent = 137
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "option"
+text = "Alright. I'll be back once I've explored this fort."
+parent = -1
+children = [145, 146, 147]
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright. I'll be back soon."
+parent = 144
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Good luck."
+parent = 144
+
+[[nodes]]
+id = 147
+depth = 2
+kind = "act"
+text = "end"
+parent = 144
+is_terminal = true
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "option"
+text = "cond=If the player has asked another question:|I'd better get going."
+parent = -1
+children = [149, 150, 151]
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'd better get going."
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Good luck out there."
+parent = 148
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "act"
+text = "end"
+parent = 148
+is_terminal = true
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Hello again, [player name]. Have you managed to explore those tunnels yet?"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet."
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "You'll find the entrance atop Trollweiss Mountain. I'd suggest you take a pickaxe with you. My contact mentioned that there had been a few cave-ins."
+parent = -1
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "cond"
+text = "If the player attempts to open the eastern door without speaking to Arrav:"
+parent = -1
+children = [157, 158]
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Arrav"
+text = "You..."
+parent = 156
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "act"
+text = "continues"
+parent = 156
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arrav?"
+parent = -1
+
+[[nodes]]
+id = 160
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "You... You should not be here. Zemouregal could return at... urgh... at any time. If he does, I won't.... I won't be able to stop myself from... arrgh..."
+parent = -1
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's a risk I'm willing to take. I'm here to help you."
+parent = -1
+
+[[nodes]]
+id = 162
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "Why? You do not... do not know me. You do not know what I've... urgh... what I've done. Leave this place, and leave me. I am... forsaken."
+parent = -1
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not if I have anything to say about it. Arrav, I need to find your heart. With it, I can free you!"
+parent = -1
+
+[[nodes]]
+id = 164
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "It's not... here. Zemouregal did not want it too close to his... arrgh... his kin."
+parent = -1
+
+[[nodes]]
+id = 165
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Do you know where it is?"
+parent = -1
+
+[[nodes]]
+id = 166
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "In the next room... look behind the... urgh... the flame tapestry. You might be able to find something that can... arrgh... help."
+parent = -1
+
+[[nodes]]
+id = 167
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "My master calls me... Thank you... whoever you are. I... urgh... I don't even know your name."
+parent = -1
+
+[[nodes]]
+id = 168
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's [player name], and I will save you Arrav, I promise."
+parent = -1
+
+[[nodes]]
+id = 169
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 170
+depth = 1
+kind = "cond"
+text = "If the player does not have two free inventory spaces:"
+parent = -1
+children = [171, 172]
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "box"
+text = "pic=Base plans detail.png|pic2=Base key detail.png|You find some plans and a key behind the tapestry. However, you don't have enough room to take them."
+parent = 170
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "act"
+text = "end"
+parent = 170
+is_terminal = true
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "cond"
+text = "If the player has two free inventory spaces:"
+parent = -1
+children = [174, 175]
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "box"
+text = "pic=Base plans detail.png|pic2=Base key detail.png|You find some plans and a key behind the tapestry."
+parent = 173
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "act"
+text = "end"
+parent = 173
+is_terminal = true
+
+[[nodes]]
+id = 176
+depth = 1
+kind = "box"
+text = "These appear to be complex plans for Zemouregal's Base in Silvarea. Maybe Elias can help you interpret them."
+parent = -1
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 178
+depth = 1
+kind = "box"
+text = "The door is securely locked."
+parent = -1
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Hello again, [player name]. Did you manage to find a way into that fort?"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I did! The heart wasn't there, but I think I know where it is. I reckon it's in the base near Varrock."
+parent = -1
+
+[[nodes]]
+id = 182
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Are you sure?"
+parent = -1
+
+[[nodes]]
+id = 183
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, take a look at these plans I found and see what you think."
+parent = -1
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "box"
+text = "pic=Base plans detail.png|You give the plans to Elias."
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Right then, let's see..."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Yes, there's a chamber here marked as containing a heart! It must be Arrav's!"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "However, reaching it is going to pose some significant problems..."
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "It seems that the inner section of Zemouregal's Base has state of the art security. The corridor into the area is filled to the brim with human detection spells. These will set off an alarm."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Now, there is a sewage system running under some parts of the base that can be accessed from the nearby kitchen."
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "These sewers could be used to bypass the spells. However, surges of energy are periodically sent through the water there."
+parent = -1
+
+[[nodes]]
+id = 191
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "On the other side of the spells the vault door is found. This door is guarded by zombies. If they see an intruder, they will set off the alarm."
+parent = -1
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "If the alarm is sounded, a gas will be released, incapacitating all living things in the area."
+parent = -1
+
+[[nodes]]
+id = 193
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "The vault door is made of five-inch thick runite-enforced steel, with a four digit access code. When the code is entered incorrectly more than twice, the alarm will be set off."
+parent = -1
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Inside the vault there is a criss-cross of special fire ray enchantments that Zemouregal has made. Touching any of these will do significant damage and set off the alarm."
+parent = -1
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Finally, at the back of the vault, we have the pedestal holding Arrav's heart."
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, that sounds an awful lot to get past. It sounds like an impossible mission!"
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "It does appear to pose somewhat of a challenge, but if we engage in a bit of cunning, it may not be as impossible as you might think."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "First of all, we're going to need a distraction to lure some of those zombies out. I have no doubt that I'll be able to act as suitable bait. While I do that, you'll need to get through those sewers."
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But what about the energy surges? I don't really fancy getting fried!"
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Understandable. I would suggest you invest in some kind of insulation to protect yourself from the surges."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Now, provided my distraction works, you should find the area on the other side of the sewers free of zombies. That will give you the time and space needed to get that vault door open."
+parent = -1
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And then the fire rays?"
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Well, no great heist is complete without the use of a crossbow and a grappling hook."
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Okay, so to summarise, I need some sort of insulated protection along with a crossbow and grappling hook?"
+parent = -1
+
+[[nodes]]
+id = 205
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Precisely! Gather those items and then meet me outside Zemouregal's Base near Varrock. It's time to recover a heart!"
+parent = -1
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "box"
+text = "Elias departs."
+parent = -1
+
+[[nodes]]
+id = 207
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "cond"
+text = "If the player lost the canopic jar:"
+parent = -1
+children = [209, 210, 211]
+
+[[nodes]]
+id = 209
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Hello again, [player name]. I found this earlier. I imagine you'll be needing it."
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 2
+kind = "box"
+text = "pic=Canopic jar (full) detail.png|Elias gives you a canopic jar."
+parent = 208
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Now, are you ready to perform a heist? Remember, you'll need some sort of insulated protection along with a crossbow and grappling hook."
+parent = 208
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "cond"
+text = "If the player has the canopic jar:"
+parent = -1
+children = [213]
+
+[[nodes]]
+id = 213
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, there you are, [player name]. Ready to perform a heist? Remember, you'll need some sort of insulated protection along with a crossbow and grappling hook."
+parent = 212
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "option"
+text = "Ready when you are."
+parent = -1
+children = [216, 217, 218]
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ready when you are."
+parent = 215
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Excellent. Once you head in, I'll arrange a distraction to lure some of those zombies away. I'll meet you back here once you've recovered the heart. Good luck."
+parent = 215
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "act"
+text = "end"
+parent = 215
+is_terminal = true
+
+[[nodes]]
+id = 219
+depth = 1
+kind = "option"
+text = "I still need to do some preparation."
+parent = -1
+children = [220, 221, 222]
+
+[[nodes]]
+id = 220
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I still need to do some preparation."
+parent = 219
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Very well. I will wait for you here."
+parent = 219
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "act"
+text = "end"
+parent = 219
+is_terminal = true
+
+[[nodes]]
+id = 223
+depth = 1
+kind = "cond"
+text = "If the player lost the canopic jar:"
+parent = -1
+children = [224, 225, 226, 227]
+
+[[nodes]]
+id = 224
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Hello again, [player name]. I found this earlier. I imagine you'll be needing it."
+parent = 223
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "box"
+text = "pic=Canopic jar (full) detail.png|Elias gives you a canopic jar."
+parent = 223
+
+[[nodes]]
+id = 226
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Now, once you head in, I'll arrange a distraction to lure some of those zombies away. I'll meet you back here once you've recovered the heart. Good luck."
+parent = 223
+
+[[nodes]]
+id = 227
+depth = 2
+kind = "act"
+text = "end"
+parent = 223
+is_terminal = true
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "cond"
+text = "If the player has the canopic jar:"
+parent = -1
+children = [229, 230]
+
+[[nodes]]
+id = 229
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "I'm ready when you are, [player name]. Once you head in, I'll arrange a distraction to lure some of those zombies away. I'll meet you back here once you've recovered the heart. Good luck."
+parent = 228
+
+[[nodes]]
+id = 230
+depth = 2
+kind = "act"
+text = "end"
+parent = 228
+is_terminal = true
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "box"
+text = "pic=Mahjarrat notes (k-z) detail.png|You search the table and find some interesting-looking notes."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "box"
+text = "pic=Decoder strips detail.png|You search the table and find some strange pieces of paper with holes in."
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "box"
+text = "pic=Code key detail.png|You unlock the chest and find a code key inside."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "box"
+text = "It reads [code]."
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Well, look what we have here..."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Did you really think you had any hope of stealing that heart?"
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Arrav, kill [him/her/them]."
+parent = -1
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Hmph!"
+parent = -1
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "Urgh... [player name]..."
+parent = -1
+
+[[nodes]]
+id = 245
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "What a miserable failure you are. Sharathteerk, get rid of him."
+parent = -1
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "other"
+text = "{{qact|Sharathteerk casts a teleportation spell, but fails.}}"
+parent = -1
+
+[[nodes]]
+id = 247
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "What are you playing at?"
+parent = -1
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "Something's not right... Something's blocking my teleport!"
+parent = -1
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Impossible! Stop messing around and..."
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Wait... I sense..."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "other"
+text = "{{qact|Elias White teleports in.}}"
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "You!"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "[player name]! Grab the heart, quickly!"
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "other"
+text = """
+{{qact|Elias casts a powerful spell that binds both Zemouregal and Sharathteerk in chains, with the player taking Arrav's heart from its pedestal, causing it to glow red. Elias then teleports the player and himself.}}
+"""
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That was a close one!"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "That's one way to put it. Good job I was keeping an eye on things."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You can say that again, though that does leave me with some questions..."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "You're wondering how I managed to do it?"
+parent = -1
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Teleporting directly into the room... Keeping a Mahjarrat at bay... Those aren't the kind of skills that just anyone possesses. Not to mention that Zemouregal knew you!"
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "I have never kept it secret from you that I have a history with the Mahjarrat, although I may have chosen not to divulge some of the more... specific details."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "I hope you will not judge me too harshly for that. We are all entitled to our secrets, and even now I would prefer not to share them."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I guess... It's just, you made out you were just researching the Mahjarrat. This is clearly a lot more than that."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "It is, and I apologise if you feel I have deceived you. My past with the Mahjarrat, and especially with Zemouregal is... complicated. Again, I would prefer we not discuss this further."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Now, why don't we instead focus this conversation on something far more positive than my history. We have successfully recovered Arrav's heart!"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So does this mean we can free him now?"
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Eventually, yes, but while the heart is key to Zemouregal's control over Arrav, merely possessing it won't be enough to break that control."
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Doing so will require further research, not to mention the right opportunity."
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So what happens now?"
+parent = -1
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "I will take the heart and begin working right away. Given that Zemouregal knows we have it, I intend to go to ground for this one."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "You might not hear from me for some time, but fear not, I will be in touch again once things are ready."
+parent = -1
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Stay safe out there, [player name]. Until we meet again."
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "box"
+text = "Elias departs."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1

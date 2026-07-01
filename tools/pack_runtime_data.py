@@ -16,6 +16,7 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 import struct
+import tomllib
 from typing import Iterable
 import zlib
 
@@ -38,6 +39,62 @@ STORE_EXTENSIONS = {
     ".flac",
     ".png",
 }
+
+REQUIRED_LOGICAL_PATHS = (
+    "defs/npc_defs.bin",
+    "spawns/world.npc-spawns.bin",
+    "defs/varbits.bin",
+    "defs/varps.bin",
+    "defs/items.bin",
+    "defs/normalization.bin",
+    "defs/drops.bin",
+    "defs/skill_drops.bin",
+    "defs/rdt.bin",
+    "defs/gdt.bin",
+    "defs/mrdt.bin",
+    "defs/recipes.bin",
+    "defs/gathering_nodes.bin",
+    "defs/quests.bin",
+    "defs/dialogue.bin",
+    "defs/shops.bin",
+    "defs/slayer.bin",
+    "defs/prayers.bin",
+    "defs/spells.bin",
+    "defs/combat_visuals.tsv",
+    "defs/player_actions.bin",
+    "defs/regular_npc_mechanics.bin",
+    "defs/activity_schemas.bin",
+    "defs/activity_spawns.bin",
+    "defs/activity_mechanics.bin",
+    "defs/activity_states.bin",
+    "defs/object_defs.bin",
+    "defs/object_placements.bin",
+    "defs/object_behaviors.bin",
+    "defs/object_transports.bin",
+    "defs/collision_tiles.bin",
+    "defs/area_flags.bin",
+    "defs/traversal_edges.bin",
+    "defs/encounters.bin",
+)
+
+PROVISIONAL_REQUIRED_LOGICAL_PATHS = (
+    {
+        "path": "defs/area_flags.bin",
+        "dataset": "area_flags",
+        "reason": (
+            "Runtime currently requires area flags for region semantics, but "
+            "multicombat, wilderness, safe-zone, and singles-plus authority "
+            "is still tracked as a source gap."
+        ),
+        "release_gate": "not_publishable_source_gaps",
+    },
+)
+
+OPTIONAL_LOGICAL_PATHS = (
+    "audio/",
+    "maps/",
+    "music/",
+)
 
 
 @dataclass(frozen=True)
@@ -150,6 +207,14 @@ def logical_path(data_root: Path, path: Path) -> str:
     return path.relative_to(data_root).as_posix()
 
 
+def portable_path(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(Path.cwd().resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
 def add_unique(
     assigned: dict[str, str],
     spec_name: str,
@@ -253,7 +318,10 @@ def build_specs(data_root: Path) -> tuple[PackSpec, ...]:
     )
     add_spec(
         "runec-models-npcs",
-        (p for p in model_files if p.name.startswith("npcs.")),
+        (
+            p for p in model_files
+            if p.name.startswith("npcs.") or p.name.startswith("npcs_")
+        ),
         numbered=True,
         chunkable=False,
     )
@@ -425,6 +493,61 @@ def file_sha256(path: Path) -> str:
     return sha.hexdigest()
 
 
+def optional_file_sha256(path: Path) -> str | None:
+    return file_sha256(path) if path.exists() else None
+
+
+def source_authority_policy_hash() -> str:
+    sha = hashlib.sha256()
+    for path in (
+        Path("data-sources/sources.lock"),
+        Path("tools/validate_source_authority.py"),
+        Path("tools/validate_sources.py"),
+    ):
+        if path.exists():
+            sha.update(path.as_posix().encode("utf-8"))
+            sha.update(b"\0")
+            with path.open("rb") as f:
+                for block in iter(lambda: f.read(IO_CHUNK_BYTES), b""):
+                    sha.update(block)
+            sha.update(b"\0")
+    return sha.hexdigest()
+
+
+def load_schema_versions() -> dict[str, int]:
+    versions: dict[str, int] = {}
+    schema_root = Path("schema/defs")
+    for path in sorted(schema_root.glob("*.schema.toml")):
+        try:
+            with path.open("rb") as f:
+                data = tomllib.load(f)
+        except tomllib.TOMLDecodeError as exc:
+            raise SystemExit(f"cannot parse schema {path}: {exc}") from exc
+        schema_id = data.get("id") or path.stem.removesuffix(".schema")
+        current = data.get("current_version")
+        if isinstance(current, int):
+            versions[str(schema_id)] = current
+    return versions
+
+
+def asset_lookup(assets: list[dict]) -> dict[str, dict]:
+    return {entry["path"]: entry for entry in assets}
+
+
+def loose_asset_checksums(assets: list[dict]) -> dict[str, dict]:
+    by_path = asset_lookup(assets)
+    out: dict[str, dict] = {}
+    for logical in REQUIRED_LOGICAL_PATHS:
+        entry = by_path.get(logical)
+        if not entry:
+            continue
+        out[logical] = {
+            "bytes": entry["size"],
+            "sha256": entry["sha256"],
+        }
+    return out
+
+
 def pack_index_bytes(version: str, name: str, entries: list[dict]) -> bytes:
     out = bytearray()
     out.extend(INDEX_COUNT.pack(INDEX_MAGIC, len(entries)))
@@ -506,6 +629,7 @@ def write_pack(
     pack_info = {
         "name": name,
         "path": f"packs/{name}",
+        "bytes": path.stat().st_size,
         "size": path.stat().st_size,
         "sha256": file_sha256(path),
         "asset_count": len(entries),
@@ -526,6 +650,17 @@ def build_manifest(
     assets: list[dict],
     max_pack_bytes: int,
 ) -> dict:
+    source_lock_path = Path("data-sources/sources.lock")
+    content_catalog_path = Path("content/catalog.toml")
+    by_path = asset_lookup(assets)
+    missing_required = [
+        logical for logical in REQUIRED_LOGICAL_PATHS if logical not in by_path
+    ]
+    if missing_required:
+        raise SystemExit(
+            "missing required runtime logical paths: "
+            + ", ".join(missing_required)
+        )
     return {
         "format": "runec-data-manifest-v1",
         "pack_format": {
@@ -544,9 +679,19 @@ def build_manifest(
         .isoformat()
         .replace("+00:00", "Z"),
         "source": {
-            "data_root": str(data_root.resolve()),
+            "data_root": portable_path(data_root),
             "runtime_subset_doc": "docs/archive/data_runtime_subsets.md",
+            "source_lockfile": source_lock_path.as_posix(),
+            "source_lockfile_sha256": optional_file_sha256(source_lock_path),
+            "source_authority_policy_sha256": source_authority_policy_hash(),
+            "content_catalog": content_catalog_path.as_posix(),
+            "content_catalog_sha256": optional_file_sha256(content_catalog_path),
         },
+        "schema_versions": load_schema_versions(),
+        "required_logical_paths": list(REQUIRED_LOGICAL_PATHS),
+        "provisional_required_logical_paths": list(PROVISIONAL_REQUIRED_LOGICAL_PATHS),
+        "optional_logical_paths": list(OPTIONAL_LOGICAL_PATHS),
+        "loose_asset_checksums": loose_asset_checksums(assets),
         "target_max_pack_bytes": max_pack_bytes,
         "packs": packs,
         "assets": sorted(assets, key=lambda entry: entry["path"]),
@@ -661,10 +806,12 @@ def main() -> int:
 
     packs: list[dict] = []
     assets: list[dict] = []
+    current_pack_names: set[str] = set()
     for spec in specs:
         chunks = chunks_by_spec[spec.stem]
         for chunk in chunks:
             name = pack_name(chunk, version, len(chunks))
+            current_pack_names.add(name)
             print(
                 f"writing {name}: {len(chunk.files)} files, "
                 f"{human_size(chunk.uncompressed_size)}",
@@ -682,6 +829,12 @@ def main() -> int:
             )
             packs.append(pack_info)
             assets.extend(pack_assets)
+
+    if args.force:
+        for stale in sorted(packs_dir.glob("*.pak")):
+            if stale.name not in current_pack_names:
+                print(f"removing stale pack {stale.name}", flush=True)
+                stale.unlink()
 
     manifest = build_manifest(
         version=version,

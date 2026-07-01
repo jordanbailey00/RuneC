@@ -9,10 +9,12 @@ import time
 import tomllib
 from pathlib import Path
 
+from content_paths import content_read_path
+
 ROOT = Path(__file__).resolve().parents[1]
-MECH_DIR = ROOT / "data/curated/mechanics"
-ENCOUNTER_DIR = ROOT / "data/curated/encounters"
-OWNER_MAP = ROOT / "data/curated/mechanics_owners.toml"
+MECH_DIR = content_read_path("mechanics")
+ENCOUNTER_DIR = content_read_path("encounters")
+OWNER_MAP = content_read_path("mechanics_owners.toml")
 OUT = ROOT / "data/defs/activity_mechanics.bin"
 REPORT = ROOT / "tools/reports/activity_mechanics.txt"
 
@@ -340,7 +342,7 @@ def write_bin(rows: list[dict[str, object]]) -> None:
                 f.write(struct.pack("<II", text_hash, text_len))
 
 
-def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
+def write_report(rows: list[dict[str, object]]) -> None:
     backed = [r for r in rows if r["status"] == STATUS_ENCOUNTER_BACKED]
     owner_mapped = [r for r in rows if r["status"] == STATUS_OWNER_MAPPED]
     owner_exec = [r for r in rows if r["status"] == STATUS_OWNER_EXECUTABLE]
@@ -362,7 +364,6 @@ def write_report(rows: list[dict[str, object]], elapsed_ms: float) -> None:
         f"derived NPC ID rows: {len(derived_ids)}",
         f"section descriptors: {section_count}",
         f"output: {OUT.relative_to(ROOT)}",
-        f"elapsed_ms: {elapsed_ms:.3f}",
         "",
         "Status",
         "READY: all mechanics extracts are represented in a loadable binary index.",
@@ -423,7 +424,7 @@ def main() -> int:
     rows = read_mechanics()
     write_bin(rows)
     elapsed_ms = (time.perf_counter() - start) * 1000.0
-    write_report(rows, elapsed_ms)
+    write_report(rows)
     indexed = sum(1 for r in rows if r["status"] == STATUS_ACTIVITY_INDEXED)
     owned = sum(1 for r in rows
                 if r["status"] in (STATUS_OWNER_MAPPED,

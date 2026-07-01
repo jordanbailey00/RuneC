@@ -6,9 +6,9 @@
 #include "handles.h"
 
 // Encounter subsystem — runtime dispatcher for boss scripts + mechanic
-// primitives. Data comes from `data/curated/encounters/*.toml`
+// primitives. Data comes from `content/encounters/*.toml`
 // (authored by hand; see `database.md` and a live encounter TOML such
-// as `data/curated/encounters/scurrius.toml` for schema shape).
+// as `content/encounters/scurrius.toml` for schema shape).
 //
 // Encounter specs are compiled into `data/defs/encounters.bin` and
 // loaded into a registry at startup. rc-core owns generic dispatch;
@@ -226,7 +226,7 @@ typedef struct __attribute__((packed)) {
 } RcPrimParamsTelegraphedAoe;
 
 typedef struct __attribute__((packed)) {
-    char name[32];                 // npc name — strcmp'd against g_npc_defs[].name
+    char name[32];                 // NPC name matched through RcNpcDef views
     uint8_t count;
     uint8_t persist_after_death;
     uint8_t heal_boss_on_contact;
@@ -839,6 +839,7 @@ void rc_encounter_script_noop(struct RcWorld *world, int enc_idx);
 // Load all encounters from `data/defs/encounters.bin` ('ENCT' magic).
 // Populates the registry. Returns number loaded, or -1 on error.
 int rc_encounter_load(struct RcWorld *world, const char *path);
+int rc_encounter_load_specs(const char *path, RcEncounterSpec *out, int max);
 
 // Primitive registry lookup (implemented in encounter_prims.c).
 // Returns NULL for IDs that are explicitly unsupported (0 and out-of-range).

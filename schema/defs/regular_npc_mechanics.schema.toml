@@ -1,0 +1,21 @@
+id = "regular_npc_mechanics"
+format = "binary"
+path = "data/defs/regular_npc_mechanics.bin"
+magic_label = "RNME"
+magic_u32 = "0x454D4E52"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_regular_npc_mechanics.py"
+consumers = ["rc-core/monster_mechanics.c"]
+source_dataset = "content/regular_npc_special_mechanics.toml and NPC definition groups"
+row_fields = [
+  "pstr8 family_key",
+  "u8 status",
+  "u16 npc_count",
+  "u32 system_bits",
+  "u64 tag_bits",
+  "u32 npc_ids[npc_count]",
+]
+compatibility = "Loader accepts exactly current_version."

@@ -1,0 +1,31 @@
+id = "encounters"
+format = "binary"
+path = "data/defs/encounters.bin"
+magic_label = "ENCT"
+magic_u32 = "0x54434E45"
+current_version = 12
+accepted_versions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_encounters.py"
+consumers = ["rc-core/encounter.c"]
+source_dataset = "content/encounters and rc-content encounter scripts"
+row_fields = [
+  "pstr32 id",
+  "pstr64 name",
+  "u32 flags",
+  "u16 npc_id",
+  "u16 phase_count",
+  "u16 attack_count",
+  "u16 primitive_count",
+  "u16 spawn_count",
+  "u16 tile_count",
+  "u16 param_count",
+  "phase rows",
+  "attack rows",
+  "primitive rows",
+  "spawn rows",
+  "tile rows",
+  "param rows",
+]
+compatibility = "Loader accepts versions 1 through current_version and rejects version 0 or newer versions."

@@ -1,97 +1,19 @@
-Spawn source parity report
+Static Npc Spawn Source Rows
 
-output binary: data/defs/spawn_sources.bin (1761967 bytes)
-source rows:   46710
-data/source present: True
+status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 385772
+entries: 24110
+source rows: 24110
+compiled static spawn source rows: 24110
+source rows: 24110
+unresolved required activity markers: 0
 
-compiled static spawns:
-  world rows:            24110
-  world NPC IDs:         5695
-  instance-flagged rows: 3314
-  varrock rows:          840
+installed files:
+  - data/spawns/world.npc-spawns.bin bytes=385772 sha256=4865d5045d54910c4d4927d9844930606443332d7be8878b7d77c3849d1b7d36
 
-wiki locline:
-  rows:                  10344
-  rows with coordinates: 10233
-  coordinate points:     63758
-  resolved NPC rows:     2951
-  resolved NPC points:   22486
-  non-NPC/unresolved rows: 7393
-  non-NPC/unresolved pts: 41272
-  NPC names supplied only by wiki/source index: 218
-
-activity_spawns.toml:
-  provisional_private_server_verified          2
-  resolved_from_reference                      3
-  resolved_object_anchors                      2
-  dynamic_spawns                               2
-  object_anchors                               28
-  spawn_points                                 23
-  spawn_regions                                15
-  wave_spawns                                  8
-  unresolved required markers: 0
-
-encounter-authored dynamic NPC spawns:
-  hp_gated_healer_spawn                        1
-  spawn_ally_npcs                              1
-  spawn_buff_zone_npc                          1
-  spawn_convergent_minions                     1
-  spawn_hidden_minions                         1
-  spawn_leech_npc                              1
-  spawn_npcs                                   10
-  spawn_npcs_once                              2
-  spawn_objective_npcs                         1
-
-rows by source kind:
-  world_static         24110
-  wiki_locline         22486
-  activity_point       36
-  activity_wave        10
-  activity_dynamic     6
-  object_anchor        28
-  activity_region      15
-  encounter_dynamic    19
-
-top wiki NPC names missing from world binary by coordinate count:
-  npc_id=15224  rows=12   points=159  Albatross
-  npc_id=15214  rows=8    points=137  Eagle ray
-  npc_id=3361   rows=29   points=135  Guard (Deadman Mode)
-  npc_id=15198  rows=8    points=134  Tiger shark
-  npc_id=15200  rows=9    points=130  Great white shark
-  npc_id=15222  rows=10   points=129  Osprey
-  npc_id=13164  rows=9    points=121  Citizen (Civitas illa Fortis)
-  npc_id=15206  rows=7    points=119  Pygmy kraken
-  npc_id=15194  rows=7    points=118  Bull shark
-  npc_id=12730  rows=3    points=110  Armoured zombie (Defender of Varrock)
-  npc_id=15196  rows=8    points=108  Hammerhead shark
-  npc_id=13100  rows=8    points=99   Guard (Varlamore)
-  npc_id=12771  rows=10   points=92   Moonlight moth
-  npc_id=12770  rows=2    points=86   Sunlight Moth
-  npc_id=15208  rows=6    points=72   Spined kraken
-  npc_id=15228  rows=4    points=69   Tern
-  npc_id=15210  rows=5    points=67   Armoured kraken
-  npc_id=15576  rows=4    points=67   Veiled kraken
-  npc_id=15218  rows=5    points=61   Stingray
-  npc_id=15226  rows=7    points=61   Frigatebird
-  npc_id=15202  rows=5    points=60   Narwhal
-  npc_id=508    rows=2    points=58   Soulless
-  npc_id=11175  rows=4    points=55   Araxyte
-  npc_id=12982  rows=1    points=54   Jerboa
-  npc_id=15204  rows=4    points=52   Orca
-  npc_id=12881  rows=2    points=47   Guard (Cam Torum)
-  npc_id=15234  rows=10   points=47   Dolphin
-  npc_id=15216  rows=5    points=45   Butterfly ray
-  npc_id=14113  rows=1    points=43   Armoured zombie (Zemouregal's Fort)
-  npc_id=3567   rows=9    points=43   Chair (Draynor Manor)
-  npc_id=12720  rows=1    points=41   Armoured zombie (Zemouregal's Base)
-  npc_id=13063  rows=3    points=39   Citizen (Cam Torum)
-  npc_id=15220  rows=3    points=39   Manta ray (monster)
-  npc_id=7797   rows=2    points=36   Ancient Zygomite
-  npc_id=12491  rows=2    points=36   Warped Terrorbird
-  npc_id=12983  rows=4    points=36   Toucan
-  npc_id=14857  rows=2    points=36   Gryphon
-  npc_id=3184   rows=1    points=33   Dagannoth spawn
-  npc_id=9312   rows=16   points=32   Trader Crewmember
-  npc_id=12268  rows=2    points=30   Strangled
-
-unresolved required activity markers:
+accepted simplifications:
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

@@ -1,62 +1,15 @@
-Normalization export
+Normalization
 
 status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
-output binary: data/defs/normalization.bin (1000105 bytes)
-sources: items.bin, npc_defs.bin, acquisition_sources.bin
-item rows: 33377
-item canonical/form mappings: 23977
-noted item links: 9438
-placeholder item links: 19076
-npc rows: 15666
-npc alias/form mappings: 8534
-source-name rows: 5163
-elapsed_ms: 240.371
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 1000105
+entries: 33377
+
+installed files:
+  - data/defs/normalization.bin bytes=1000105 sha256=f5d6cf4c27e8679e4d4a586fa11c84f747c5cf5fa8b64a3b8e968cbefd94af5a
 
 accepted simplifications:
-  - charged/degraded/ornamented variants are canonicalized by form links first, then normalized display-name groups
-  - NPC aliases use normalized display-name groups; exact combat/runtime IDs remain available and should not be discarded
-  - source-name rows store hashes for deterministic joins, not original prose labels
-
-sample item mappings:
-  7 -> 6
-  9 -> 8
-  11 -> 10
-  13 -> 12
-  29 -> 28
-  31 -> 30
-  37 -> 36
-  49 -> 48
-  51 -> 50
-  55 -> 54
-  57 -> 56
-  59 -> 58
-  61 -> 60
-  63 -> 62
-  65 -> 64
-  67 -> 66
-  69 -> 68
-  71 -> 70
-  73 -> 72
-  79 -> 78
-
-sample npc mappings:
-  3 -> 2
-  4 -> 2
-  5 -> 2
-  6 -> 2
-  7 -> 2
-  11 -> 8
-  18 -> 17
-  19 -> 17
-  20 -> 17
-  22 -> 17
-  27 -> 26
-  28 -> 26
-  29 -> 26
-  30 -> 26
-  31 -> 26
-  32 -> 26
-  33 -> 26
-  34 -> 26
-  35 -> 26
-  36 -> 26
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

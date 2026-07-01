@@ -48,6 +48,10 @@ extern RcSpellDef g_rc_spell_defs[RC_MAX_SPELL_DEFS];
 extern int g_rc_spell_count;
 
 int rc_load_spells(const char *path);
+int rc_load_spells_into(const char *path, RcSpellDef *defs, int max_defs,
+                        int *out_count);
+void rc_spell_use_defs(const RcSpellDef *defs, int count);
+void rc_spell_reset_defs_if_active(const RcSpellDef *defs);
 const RcSpellDef *rc_spell_def_get(int spell_idx);
 int rc_spell_find(const char *name);
 

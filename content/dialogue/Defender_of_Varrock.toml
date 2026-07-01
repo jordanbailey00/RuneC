@@ -1,0 +1,5917 @@
+title = "Transcript:Defender of Varrock"
+npcs = ["Elias White", "Sharathteerk", "Zemouregal", "Arrav", "Captain Rovin", "Ramarno", "Reldo", "Sir Prysin", "Aeonisig Raispher", "King Roald", "Horvik", "Curator Haig Halen", "Romeo", "Dimintheis", "Monk of Zamorak", "Queen Ellamaria"]
+node_count = 756
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "cond"
+text = "If the player did not speak to Elias at the [[Uzer Oasis]] prior to 21 February 2024:"
+parent = -1
+children = [1, 2, 3, 4, 5, 6, 7, 8]
+
+[[nodes]]
+id = 1
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello there."
+parent = 0
+
+[[nodes]]
+id = 2
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Good day to you."
+parent = 0
+
+[[nodes]]
+id = 3
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What brings you here?"
+parent = 0
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "The eternal quest for knowledge, of course! The name's Elias White. I'm something of an explorer."
+parent = 0
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Pleased to meet you. I'm [player name]. So you're searching for knowledge in an inn?"
+parent = 0
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Not exactly. In fact, I was previously hunting down information on an ancient race deep within the desert."
+parent = 0
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "However, I received an interesting yet concerning tip- off from a contact of mine regarding some of my research. I came here to investigate for myself."
+parent = 0
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "act"
+text = "continue"
+parent = 0
+
+[[nodes]]
+id = 9
+depth = 1
+kind = "cond"
+text = "If the player spoke to Elias at the Uzer Oasis before 21 February 2024:"
+parent = -1
+children = [10, 11, 12, 13, 14, 15]
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Oh, hello there. You look familiar. Have we met before?"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I think so. The name's [player name]. You're Elias, right? You had a camp out near Uzer."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, of course. You offered to help with my work, didn't you? I'm still very keen to take you up on that offer at some point, but a more pressing matter has delayed that somewhat."
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Is that what's brought you here?"
+parent = 9
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Indeed. I recived an interesting yet concerning tip-off from a contact of mine regarding some of my research. I came here to investigate for myself."
+parent = 9
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "act"
+text = "continue"
+parent = 9
+
+[[nodes]]
+id = 16
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can help with?"
+parent = -1
+
+[[nodes]]
+id = 17
+depth = 1
+kind = "cond"
+text = "If the player does not meet the quest's requirements:"
+parent = -1
+children = [18, 19]
+
+[[nodes]]
+id = 18
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "How kind of you to offer. I'm not in need of any extra help right now though."
+parent = 17
+
+[[nodes]]
+id = 19
+depth = 2
+kind = "act"
+text = "end"
+parent = 17
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "cond"
+text = "If the player meets the quest's requirements:"
+parent = -1
+children = [21]
+
+[[nodes]]
+id = 21
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "How kind of you to offer. I definitely wouldn't complain about some extra support, if you're sure you're interested?"
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "select"
+text = "Start the Defender of Varrock quest?"
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 85]
+
+[[nodes]]
+id = 24
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Absolutely! So what was this tip-off you received?"
+parent = 23
+
+[[nodes]]
+id = 25
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "It's nothing much, but apparently one of the patrons in here was ranting and raving about zombies. Most just dismissed him as having had one too many, but I'm not so sure."
+parent = 23
+
+[[nodes]]
+id = 26
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How come?"
+parent = 23
+
+[[nodes]]
+id = 27
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Varrock has an interesting history when it comes to zombies. Tell me, what do you know of Arrav?"
+parent = 23
+
+[[nodes]]
+id = 28
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Arrav? As in the Shield of Arrav? I was the one who helped return it to the museum."
+parent = 23
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, I heard about that. Excellent work! You may well know then that the former owner of that shield, Arrav himself, once defended Varrock against a zombie invasion led by a Mahjarrat named Zemouregal."
+parent = 23
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Arrav sacrificed himself to save his city, but Zemouregal survived."
+parent = 23
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you think these zombie sightings mean he's returned?"
+parent = 23
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Apparently the zombies were seen forming ranks. Zombies don't naturally organise themselves, so someone must be organising them. I can think of worse candidates than Zemouregal."
+parent = 23
+
+[[nodes]]
+id = 33
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I can see why you think this is worth looking into. Where do we start?"
+parent = 23
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Zombies are not particularly light on their feet, so my hope is we can pick up their trail. The sightings were apparently right outside the inn."
+parent = 23
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Follow the tracks and see where they came from. Good plan."
+parent = 23
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Then shall we get started?"
+parent = 23
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 23
+
+[[nodes]]
+id = 38
+depth = 2
+kind = "option"
+text = "Ready when you are."
+parent = 23
+children = [39, 40, 41, 42, 43, 47, 60, 69, 82]
+
+[[nodes]]
+id = 39
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Ready when you are."
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 3
+kind = "speaker"
+speaker = "Elias White"
+text = "Excellent! I'm right behind you."
+parent = 38
+
+[[nodes]]
+id = 41
+depth = 3
+kind = "act"
+text = "(Elias begins to follow the player.)"
+parent = 38
+
+[[nodes]]
+id = 42
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 38
+
+[[nodes]]
+id = 43
+depth = 3
+kind = "option"
+text = "Let's get going"
+parent = 38
+children = [44, 45, 46]
+
+[[nodes]]
+id = 44
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Let's get going."
+parent = 43
+
+[[nodes]]
+id = 45
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Lead the way."
+parent = 43
+
+[[nodes]]
+id = 46
+depth = 4
+kind = "act"
+text = "end"
+parent = 43
+is_terminal = true
+
+[[nodes]]
+id = 47
+depth = 3
+kind = "option"
+text = "What can you tell me about Arrav and Zemouregal?"
+parent = 38
+children = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+
+[[nodes]]
+id = 48
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What can you tell me about Arrav and Zemouregal?"
+parent = 47
+
+[[nodes]]
+id = 49
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "It's quite the tale and I doubt I'd be able to do it justice, but I can try and give you an overview."
+parent = 47
+
+[[nodes]]
+id = 50
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = """
+Back in the Fourth Age, a group of travellers came upon an abandoned child. It is said the child was unusual for one so young. Dark eyes and a fierce countenance, yet fair hair and skin, with a kind smile.
+"""
+parent = 47
+
+[[nodes]]
+id = 51
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "The travellers saw this as an omen and set up camp where they found him. The camp soon grew into the town of Avarrocka, or Varrock as we now call it."
+parent = 47
+
+[[nodes]]
+id = 52
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "As for the child, he grew to become a mighty hero. After defending the town from a goblin attack, he took on the name Arrav, a curse word in goblin tongue, for he had become the Curse of Goblins."
+parent = 47
+
+[[nodes]]
+id = 53
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Arrav's heroic deeds continued, until he was granted a vision of the future. He saw the Mahjarrat Zemouregal claiming Avarrocka as his own."
+parent = 47
+
+[[nodes]]
+id = 54
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Determined to stop Zemouregal in any way he could, Arrav set out to find a powerful weapon with which to best him. His journey took him to the Imcando Dwarves, who granted him a powerful shield."
+parent = 47
+
+[[nodes]]
+id = 55
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "The Shield of Arrav?"
+parent = 47
+
+[[nodes]]
+id = 56
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Exactly. With the shield in hand, Arrav returned home and faced off against Zemouregal and his zombie horde. Thanks to him, the invasion was repelled, but at the cost of Arrav's life."
+parent = 47
+
+[[nodes]]
+id = 57
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Zemouregal has not been seen since, but it is said that his last act before retreating was to claim Arrav's body, promising to turn him into an undead slave to one day return with."
+parent = 47
+
+[[nodes]]
+id = 58
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Hundreds of years have now passed, and while there are few who haven't heard of Arrav, many have forgotten Zemouregal and his promise."
+parent = 47
+
+[[nodes]]
+id = 59
+depth = 4
+kind = "act"
+text = "other"
+parent = 47
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 3
+kind = "option"
+text = "So what exactly is it you're researching?"
+parent = 38
+children = [61, 62, 63, 64, 65, 66, 67, 68]
+
+[[nodes]]
+id = 61
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So what exactly is it you're researching?"
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = """
+The Mahjarrat. It's fair to say they are quite the subject of fascination for me. Many of them once held dominion over huge parts of the world. Zamorak himself was a Mahjarrat, and he managed to achieve godhood!
+"""
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = """
+But now, they've all but vanished! Most will go through their whole lives without ever seeing one, and their most common appearance these days is in the spooky stories parents use to keep their children in line.
+"""
+parent = 60
+
+[[nodes]]
+id = 64
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "And that's why you're so interested in Zemouregal?"
+parent = 60
+
+[[nodes]]
+id = 65
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = """
+Indeed. An actual Mahjarrat, and a very dangerous one at that. Ancient tomes can only teach us so much. If I want to learn everything there is to know about their race, it's going to take some more hands on work.
+"""
+parent = 60
+
+[[nodes]]
+id = 66
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What about the danger?"
+parent = 60
+
+[[nodes]]
+id = 67
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Well that's just all the more reason for me to be here. If Zemouregal is planning a new attack on Varrock, an expert on his race might come in quite useful."
+parent = 60
+
+[[nodes]]
+id = 68
+depth = 4
+kind = "act"
+text = "other"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 69
+depth = 3
+kind = "option"
+text = "If you're an explorer, I'm guessing you travel a lot?"
+parent = 38
+children = [70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81]
+
+[[nodes]]
+id = 70
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "If you're an explorer, I'm guessing you travel a lot?"
+parent = 69
+
+[[nodes]]
+id = 71
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Indeed! From the frozen wastes of the north to the ancient tombs of the desert, I've seen it all."
+parent = 69
+
+[[nodes]]
+id = 72
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So where do you call home?"
+parent = 69
+
+[[nodes]]
+id = 73
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "I've lived in many places over the years, but I wouldn't really say I have a home. I guess here in Varrock would be the closest answer."
+parent = 69
+
+[[nodes]]
+id = 74
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like you have quite the history."
+parent = 69
+
+[[nodes]]
+id = 75
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Oh yes! If nothing else, I've definitely lived a varied life."
+parent = 69
+
+[[nodes]]
+id = 76
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "So you weren't always an explorer?"
+parent = 69
+
+[[nodes]]
+id = 77
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Not at all. I've done all sorts of things in my time. In fact, at one point I was an adventurer like you!"
+parent = 69
+
+[[nodes]]
+id = 78
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "What happened? Some sort of life-changing injury?"
+parent = 69
+
+[[nodes]]
+id = 79
+depth = 4
+kind = "speaker"
+speaker = "Elias White"
+text = "Thankfully not. I just found that when it came to my work, it was the history I discovered that interested me more than the treasure."
+parent = 69
+
+[[nodes]]
+id = 80
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough."
+parent = 69
+
+[[nodes]]
+id = 81
+depth = 4
+kind = "act"
+text = "other"
+parent = 69
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 3
+kind = "option"
+text = "I need to do something else."
+parent = 38
+children = [83, 84]
+
+[[nodes]]
+id = 83
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I need to do something else."
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 4
+kind = "act"
+text = "end"
+parent = 82
+is_terminal = true
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "option"
+text = "I need to do something else first."
+parent = 23
+children = [86, 87, 88]
+
+[[nodes]]
+id = 86
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I need to do something else first."
+parent = 85
+
+[[nodes]]
+id = 87
+depth = 3
+kind = "speaker"
+speaker = "Elias White"
+text = "Very well. I'll be here when you're ready."
+parent = 85
+
+[[nodes]]
+id = 88
+depth = 3
+kind = "act"
+text = "end"
+parent = 85
+is_terminal = true
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [90, 91, 92]
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I think I'll pass."
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Very well. If you change your mind, I'll be here."
+parent = 89
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "end"
+parent = 89
+is_terminal = true
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again. So what was this tip-off you received?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "It's nothing much, but apparently one of the patrons in here was ranting and raving about zombies. Most just dismissed him as having had one too many, but I'm not so sure."
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Ready to get back to it? My hope is we can pick up the trail left by those zombies right outside the inn."
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "Let's get going."
+parent = -1
+children = [99]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "above"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "option"
+text = "cond=If the player has given the grubby key to Elias:|Do you have that key we found?"
+parent = -1
+children = [101, 102, 103]
+
+[[nodes]]
+id = 101
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Do you have that key we found?"
+parent = 100
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "I do indeed. Don't worry, I'll look after it until we need it."
+parent = 100
+
+[[nodes]]
+id = 103
+depth = 2
+kind = "act"
+text = "other"
+parent = 100
+is_terminal = true
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "option"
+text = "I need to do something else."
+parent = -1
+children = [105, 106, 107]
+
+[[nodes]]
+id = 105
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to do something else."
+parent = 104
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Very well. I'll meet you back at the Jolly Boar Inn."
+parent = 104
+
+[[nodes]]
+id = 107
+depth = 2
+kind = "act"
+text = "end"
+parent = 104
+is_terminal = true
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "I'll meet you back at the Jolly Boar Inn, [player name]."
+parent = -1
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "We need to try and pick up the trail left by those zombies."
+parent = -1
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "Let's get going."
+parent = -1
+children = [113]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "above"
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "option"
+text = "What can you tell me about Arrav and Zemouregal?"
+parent = -1
+children = [115]
+
+[[nodes]]
+id = 115
+depth = 2
+kind = "act"
+text = "above"
+parent = 114
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "option"
+text = "So what exactly is it you're researching?"
+parent = -1
+children = [117]
+
+[[nodes]]
+id = 117
+depth = 2
+kind = "act"
+text = "above"
+parent = 116
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "option"
+text = "If you're an explorer, I'm guessing you travel a lot?"
+parent = -1
+children = [119]
+
+[[nodes]]
+id = 119
+depth = 2
+kind = "act"
+text = "above"
+parent = 118
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "option"
+text = "I need to do something else."
+parent = -1
+children = [121]
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "act"
+text = "above"
+parent = 120
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "We need to try and follow the trail left by those zombies."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "option"
+text = "Let's get going."
+parent = -1
+children = [125]
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "act"
+text = "above"
+parent = 124
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "option"
+text = "What can you tell me about Arrav and Zemouregal?"
+parent = -1
+children = [127]
+
+[[nodes]]
+id = 127
+depth = 2
+kind = "act"
+text = "above"
+parent = 126
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "option"
+text = "So what exactly is it you're researching?"
+parent = -1
+children = [129]
+
+[[nodes]]
+id = 129
+depth = 2
+kind = "act"
+text = "above"
+parent = 128
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "option"
+text = "If you're an explorer, I'm guessing you travel a lot?"
+parent = -1
+children = [131]
+
+[[nodes]]
+id = 131
+depth = 2
+kind = "act"
+text = "above"
+parent = 130
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "option"
+text = "I need to do something else."
+parent = -1
+children = [133]
+
+[[nodes]]
+id = 133
+depth = 2
+kind = "act"
+text = "above"
+parent = 132
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "other"
+text = "{{mes|The plant has been disturbed recently. Something came this way.}}"
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Look! Footprints. Let's see where they lead us."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "other"
+text = "{{mes|Nothing seems out of place here.}}"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "other"
+text = "{{mes|The ground around the rocks has been disturbed recently. Something came this way.}}"
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "other"
+text = "{{mes|The bush has been disturbed recently. Something came this way.}}"
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [141]
+
+[[nodes]]
+id = 141
+depth = 2
+kind = "box"
+text = "pic=Grubby key (Defender of Varrock) detail.png|While inspecting the plant, you find a key. You don't have enough room to take it yourself, so Elias grabs it for you."
+parent = 140
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "cond"
+text = "If the player has inventory space:"
+parent = -1
+children = [143]
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "box"
+text = "pic=Grubby key (Defender of Varrock) detail.png|While inspecting the plant, you find a key."
+parent = 142
+
+[[nodes]]
+id = 144
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "A key? I wonder what it opens... Best we keep a hold of it and find out."
+parent = -1
+
+[[nodes]]
+id = 145
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 146
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Why are you trying to destroy that? We need it. I can look after it for you if you want?"
+parent = -1
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "option"
+text = "Here you go."
+parent = -1
+children = [149, 150, 151]
+
+[[nodes]]
+id = 149
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here you go."
+parent = 148
+
+[[nodes]]
+id = 150
+depth = 2
+kind = "box"
+text = "pic=Grubby key (Defender of Varrock) detail.png|You give the key to Elias."
+parent = 148
+
+[[nodes]]
+id = 151
+depth = 2
+kind = "act"
+text = "end"
+parent = 148
+is_terminal = true
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "option"
+text = "Actually, I'll keep hold of it."
+parent = -1
+children = [153, 154]
+
+[[nodes]]
+id = 153
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Actually, I'll keep hold of it."
+parent = 152
+
+[[nodes]]
+id = 154
+depth = 2
+kind = "act"
+text = "end"
+parent = 152
+is_terminal = true
+
+[[nodes]]
+id = 155
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "We need to try and follow the trail left by those zombies."
+parent = -1
+
+[[nodes]]
+id = 156
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 157
+depth = 1
+kind = "option"
+text = "Let's get going."
+parent = -1
+children = [158]
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "act"
+text = "above"
+parent = 157
+
+[[nodes]]
+id = 159
+depth = 1
+kind = "option"
+text = "Do you have that key we found?"
+parent = -1
+children = [160]
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "act"
+text = "above"
+parent = 159
+
+[[nodes]]
+id = 161
+depth = 1
+kind = "option"
+text = "What can you tell me about Arrav and Zemouregal?"
+parent = -1
+children = [162]
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "act"
+text = "above"
+parent = 161
+
+[[nodes]]
+id = 163
+depth = 1
+kind = "option"
+text = "More options..."
+parent = -1
+children = [164, 165, 167, 169, 171]
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 163
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "option"
+text = "So what exactly is it you're researching?"
+parent = 163
+children = [166]
+
+[[nodes]]
+id = 166
+depth = 3
+kind = "act"
+text = "above"
+parent = 165
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "option"
+text = "If you're an explorer, I'm guessing you travel a lot?"
+parent = 163
+children = [168]
+
+[[nodes]]
+id = 168
+depth = 3
+kind = "act"
+text = "above"
+parent = 167
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "option"
+text = "I need to do something else."
+parent = 163
+children = [170]
+
+[[nodes]]
+id = 170
+depth = 3
+kind = "act"
+text = "above"
+parent = 169
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "option"
+text = "Previous options..."
+parent = 163
+children = [172]
+
+[[nodes]]
+id = 172
+depth = 3
+kind = "act"
+text = "previous"
+parent = 171
+
+[[nodes]]
+id = 173
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "A trapdoor! Now what do you reckon the chances are that we can unlock it with that key?"
+parent = -1
+
+[[nodes]]
+id = 174
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Only one way to find out..."
+parent = -1
+
+[[nodes]]
+id = 175
+depth = 1
+kind = "cond"
+text = "If the player has the grubby key in their possession:"
+parent = -1
+children = [176]
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "box"
+text = "pic=Grubby key (Defender of Varrock) detail.png|You unlock the trapdoor using the key you found."
+parent = 175
+
+[[nodes]]
+id = 177
+depth = 1
+kind = "cond"
+text = "If Elias already has the key:"
+parent = -1
+children = [178]
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "box"
+text = "pic=Grubby key (Defender of Varrock) detail.png|Elias unlocks the trapdoor using the key you found."
+parent = 177
+
+[[nodes]]
+id = 179
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Right, shall we go in?"
+parent = -1
+
+[[nodes]]
+id = 180
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 181
+depth = 1
+kind = "option"
+text = "Let's do it."
+parent = -1
+children = [182, 183]
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Let's do it."
+parent = 181
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "act"
+text = "end"
+parent = 181
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "option"
+text = "I'm not ready yet."
+parent = -1
+children = [185, 186, 187]
+
+[[nodes]]
+id = 185
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not ready yet."
+parent = 184
+
+[[nodes]]
+id = 186
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Well let's not waste too much time. We need to see what's down there."
+parent = 184
+
+[[nodes]]
+id = 187
+depth = 2
+kind = "act"
+text = "end"
+parent = 184
+is_terminal = true
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Let's see what we can find down that trapdoor."
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 190
+depth = 1
+kind = "option"
+text = "Let's get going."
+parent = -1
+children = [191]
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "act"
+text = "above"
+parent = 190
+
+[[nodes]]
+id = 192
+depth = 1
+kind = "option"
+text = "What can you tell me about Arrav and Zemouregal?"
+parent = -1
+children = [193]
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "act"
+text = "above"
+parent = 192
+
+[[nodes]]
+id = 194
+depth = 1
+kind = "option"
+text = "So what exactly is it you're researching?"
+parent = -1
+children = [195]
+
+[[nodes]]
+id = 195
+depth = 2
+kind = "act"
+text = "above"
+parent = 194
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "option"
+text = "If you're an explorer, I'm guessing you travel a lot?"
+parent = -1
+children = [197]
+
+[[nodes]]
+id = 197
+depth = 2
+kind = "act"
+text = "above"
+parent = 196
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "option"
+text = "I need to do something else."
+parent = -1
+children = [199]
+
+[[nodes]]
+id = 199
+depth = 2
+kind = "act"
+text = "above"
+parent = 198
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I should probably fetch Elias first."
+parent = -1
+
+[[nodes]]
+id = 201
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 202
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Ready to get back to it? We need to find out what's hiding down that trapdoor."
+parent = -1
+
+[[nodes]]
+id = 203
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 204
+depth = 1
+kind = "option"
+text = "Ready when you are."
+parent = -1
+children = [205]
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "act"
+text = "above"
+parent = 204
+
+[[nodes]]
+id = 206
+depth = 1
+kind = "option"
+text = "I need to do something else first."
+parent = -1
+children = [207]
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "act"
+text = "above"
+parent = 206
+
+[[nodes]]
+id = 208
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Right, shall we go in?"
+parent = -1
+
+[[nodes]]
+id = 209
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 210
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Fascinating... What is this place?"
+parent = -1
+
+[[nodes]]
+id = 211
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure."
+parent = -1
+
+[[nodes]]
+id = 212
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Then let's look around and find out!"
+parent = -1
+
+[[nodes]]
+id = 213
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 214
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Let's see if we can work out what this dungeon is for."
+parent = -1
+
+[[nodes]]
+id = 215
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 216
+depth = 1
+kind = "option"
+text = "Let's get going."
+parent = -1
+children = [217]
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "act"
+text = "above"
+parent = 216
+
+[[nodes]]
+id = 218
+depth = 1
+kind = "option"
+text = "What can you tell me about Arrav and Zemouregal?"
+parent = -1
+children = [219]
+
+[[nodes]]
+id = 219
+depth = 2
+kind = "act"
+text = "above"
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 1
+kind = "option"
+text = "So what exactly is it you're researching?"
+parent = -1
+children = [221]
+
+[[nodes]]
+id = 221
+depth = 2
+kind = "act"
+text = "above"
+parent = 220
+
+[[nodes]]
+id = 222
+depth = 1
+kind = "option"
+text = "If you're an explorer, I'm guessing you travel a lot?"
+parent = -1
+children = [223]
+
+[[nodes]]
+id = 223
+depth = 2
+kind = "act"
+text = "above"
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 1
+kind = "option"
+text = "I need to do something else."
+parent = -1
+children = [225]
+
+[[nodes]]
+id = 225
+depth = 2
+kind = "act"
+text = "above"
+parent = 224
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "other"
+text = "{{mes|A strange red mist rises from the dying zombie.}}"
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "Zemouregal, this magical mist feels like it's corroding my insides. This seems like a bad idea..."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Nonsense! The mist has no side effects. Besides, it's essential for the new security system. Everyone needs to be imbued with it if they wish to pass through any doors or gates in the base."
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Now, what news do you bring from the north?"
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "Your cousin grows unusually strong. We should consider allying ourselves to him, maybe even combine forces."
+parent = -1
+
+[[nodes]]
+id = 231
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Combine forces? I won't hear of it! Lucien would never enter into such an arrangement unless he were the one in control, and I have no desire to serve at his behest."
+parent = -1
+
+[[nodes]]
+id = 232
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Besides, Lucien isn't the only one with powerful resources..."
+parent = -1
+
+[[nodes]]
+id = 233
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Is that...?"
+parent = -1
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Arrav. So the stories are true. The legendary hero of Avarrocka, now the slave of a disgusting necromancer."
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "After many long years, it is time for Arrav to take command of my zombie troops. And on that note, come, let us inspect the forces."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "I see it's just as I suspected. Zemouregal is the one responsible for our zombie gatherings. We should inform the authorities in Varrock at once."
+parent = -1
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What about the rest of this place? There could be more useful information to uncover here."
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "True. Perhaps it would be wise for us to split up."
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like a plan. You head to Varrock and let them know what we've found so far. I'll keep exploring."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Very well. I'll meet you in the palace once you're done. Be careful."
+parent = -1
+
+[[nodes]]
+id = 241
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 242
+depth = 1
+kind = "box"
+text = "There doesn't seem to be a lot going on down there."
+parent = -1
+
+[[nodes]]
+id = 243
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 244
+depth = 1
+kind = "cond"
+text = "If the player does not have any bottles of red mist:"
+parent = -1
+children = [245]
+
+[[nodes]]
+id = 245
+depth = 2
+kind = "other"
+text = "{{mes|The gate is locked.}}"
+parent = 244
+
+[[nodes]]
+id = 246
+depth = 1
+kind = "cond"
+text = "If the player has less than three bottles of red mist:"
+parent = -1
+children = [247]
+
+[[nodes]]
+id = 247
+depth = 2
+kind = "other"
+text = "{{mes|The gate seems to respond to the mist bottles you're carrying, but it remains locked. Perhaps more are needed.}}"
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 1
+kind = "cond"
+text = "If the player has three bottles of red mist:"
+parent = -1
+children = [249]
+
+[[nodes]]
+id = 249
+depth = 2
+kind = "other"
+text = "{{mes|The gate absorbs the mist from the bottles you're carrying, unlocking in the process.}}"
+parent = 248
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "You... You must leave this place. It's too... urgh..."
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "... too dangerous for the likes of you here."
+parent = -1
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arrav? But how are you... Are you fighting Zemouregal's control?"
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "My body is... under his control. I can sometimes manage to speak when Zemouregal's concentration is elsewhere, but even then, it's... painful. My mind, however... gahh..."
+parent = -1
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "... is still intact. He left it that way. He wanted me to feel the horror when I... urgh..."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm so sorry, Arrav. There must be some way I can help you. What can I do?"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "My heart... He has it. That's how he... how he... arrgh..."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "I'm sorry, he calls to me. I must go. Please, leave... Leave before you..."
+parent = -1
+
+[[nodes]]
+id = 258
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 259
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "I'm telling you, he may be close to finding it."
+parent = -1
+
+[[nodes]]
+id = 260
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Enough! I don't have time to worry about fairy tales."
+parent = -1
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "But think of the power..."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Do you not think that I am all too aware of the power? You couldn't begin to imagine what I'd do to have it for myself! But I am also all too aware of what happens to those who try to claim it."
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "If that is the fate Lucien wishes for himself, then he is welcome to it. In the meantime, we will focus on more practical endeavours. This is our last chance before the time comes to head north."
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "Your forces are ready, Zemouregal."
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Then let us waste no more time. Begin the final preparations."
+parent = -1
+
+[[nodes]]
+id = 266
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Soon, the Mahjarrat will hold dominion over these lands once more. Varrock will be mine. Arrav cannot save his people this time. He can only watch as he himself seals their fate!"
+parent = -1
+
+[[nodes]]
+id = 267
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "This isn't good. I'd better get to Varrock right away!"
+parent = -1
+
+[[nodes]]
+id = 268
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 269
+depth = 1
+kind = "box"
+text = "The door is locked."
+parent = -1
+
+[[nodes]]
+id = 270
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 271
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, there you are. How did things go after I left you?"
+parent = -1
+
+[[nodes]]
+id = 272
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not good. Zemouregal is nearly ready to begin another attack on Varrock."
+parent = -1
+
+[[nodes]]
+id = 273
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Then it's just as I feared. I've already reported our discovery to Captain Rovin. Come, let's fill him in on everything else you've learnt."
+parent = -1
+
+[[nodes]]
+id = 274
+depth = 1
+kind = "box"
+text = "You head upstairs with Elias."
+parent = -1
+
+[[nodes]]
+id = 275
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "About time, adventurer. Your companion here tells me we have a zombie army on our doorstep!"
+parent = -1
+
+[[nodes]]
+id = 276
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "I'm afraid that's not all, Captain. [player name] has made some further discoveries."
+parent = -1
+
+[[nodes]]
+id = 277
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Indeed. Zemouregal plans to have Arrav lead the zombies in an attack on Varrock, and he plans to do so very soon."
+parent = -1
+
+[[nodes]]
+id = 278
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Zemouregal attacking Varrock again is our greatest fear and worst nightmare. And to think he now has Arrav under his control as well... What a horrifying fate for our greatest hero."
+parent = -1
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There may still be hope for Arrav. While spying on Zemouregal, I came face to face with him. He may serve Zemouregal, but not willingly. His mind is still his own."
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "A zombie with his mind intact... Most zombies are mere husks, their souls having long departed their bodies. For one to still be sentient is highly unusual. Could it mean..."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Oh, nothing to worry about now. Still, we may be able to work with this. What did Arrav have to say to you?"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He told me that Zemouregal has his heart."
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "His heart? Interesting... Could that be how Zemouregal is controlling him?"
+parent = -1
+
+[[nodes]]
+id = 285
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "What are you saying? Does this mean we might be able to save Arrav?"
+parent = -1
+
+[[nodes]]
+id = 286
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "In the long term, potentially. But this will require a fair amount of research. Something I fear we have little time for right now."
+parent = -1
+
+[[nodes]]
+id = 287
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Well then what other options do we have?"
+parent = -1
+
+[[nodes]]
+id = 288
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Well thanks to our good friend here, we have the very shield that was used to stop Zemouregal the first time he attacked."
+parent = -1
+
+[[nodes]]
+id = 289
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "The Shield of Arrav? But is it really any use? Despite our attempts, we've never been able to unlock its power. Could it be that the legends were exaggerated and that it's just an ordinary shield?"
+parent = -1
+
+[[nodes]]
+id = 290
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "To answer that, our best bet would likely be to seek out the creators of the shield: The Imcando Dwarves of Camdozaal."
+parent = -1
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Hmm... but are the Imcando not extinct now?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not quite. There are still a few out there, including one in Camdozaal. Ramarno is his name."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Well then what are we waiting for? [player name], speak to this Ramarno and seek his advice on how to use the shield to defend our city. In the meantime, we will prepare our defences."
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "About time, adventurer. Your companion here tells me we have a zombie army on our doorstep!"
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "You'd better head over to Camdozaal, [player name]. Time is not on our side."
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Adventurer. Have you been to Camdozaal yet?"
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No, not yet. I'll be on my way shortly."
+parent = -1
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "speaker"
+speaker = "Ramarno"
+text = "Ah, [player name]. I'm sure you have plenty of questions. I will do my best to answer them."
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 305
+depth = 1
+kind = "option"
+text = "quest=No|What can I do here?"
+parent = -1
+
+[[nodes]]
+id = 306
+depth = 1
+kind = "option"
+text = "I need your help with a shield."
+parent = -1
+children = [307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321]
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with a shield."
+parent = 306
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "A shield? What kind of shield?"
+parent = 306
+
+[[nodes]]
+id = 309
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The Shield of Arrav. We've discovered that Zemouregal intends to attack the city of Varrock with a zombie army. It was the shield that stopped him last time."
+parent = 306
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "Ah, and you are hoping to use it to do so again. I wish I could help you, but I know little of the shield and its power. It was created far before my time."
+parent = 306
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "Still, I may have a way for you to learn what you need."
+parent = 306
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = 306
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "The Sacred Forge of course!"
+parent = 306
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "But how will a forge help me?"
+parent = 306
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "The Sacred Forge is far more than a mere furnace! It is a powerful relic from a time when the gods still walked these lands."
+parent = 306
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = """
+Before Camdozaal's ruin, our sages would use the forge to guide our people. It is said the forge granted them access to the Dream Theatre, a place where they were blessed with visions of the past, present and future.
+"""
+parent = 306
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I see. So how do I access this Dream Theatre?"
+parent = 306
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = """
+The Forge will need powering, but normal barronite won't work for this. You'll need to obtain some imbued barronite. With that, provided the forge deems you worthy, you will be able to enter the Dream Theatre.
+"""
+parent = 306
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And how do I get imbued barronite?"
+parent = 306
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "Head to the mines and mine yourself a barronite deposit. Once you have that, imbue it using the core of a chaos golem from the golem workshop."
+parent = 306
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "act"
+text = "other"
+parent = 306
+is_terminal = true
+
+[[nodes]]
+id = 322
+depth = 1
+kind = "option"
+text = "quest=No|What happened to the other Imcando Dwarves?"
+parent = -1
+
+[[nodes]]
+id = 323
+depth = 1
+kind = "option"
+text = "quest=No|Can I use the Forge?"
+parent = -1
+
+[[nodes]]
+id = 324
+depth = 1
+kind = "option"
+text = "quest=No|Never mind, I have no questions for now."
+parent = -1
+
+[[nodes]]
+id = 325
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 326
+depth = 1
+kind = "speaker"
+speaker = "Ramarno"
+text = "Ah, [player name]. I'm sure you have plenty of questions. I will do my best to answer them."
+parent = -1
+
+[[nodes]]
+id = 327
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 328
+depth = 1
+kind = "option"
+text = "quest=No|What can I do here?"
+parent = -1
+
+[[nodes]]
+id = 329
+depth = 1
+kind = "option"
+text = "How do I access the Dream Theatre?"
+parent = -1
+children = [330, 331, 332]
+
+[[nodes]]
+id = 330
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I access the Dream Theatre?"
+parent = 329
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "You'll need to obtain some imbued barronite. Head to the mines and mine yourself a barronite deposit. Once you have that, imbue it using the core of a chaos golem from the golem workshop."
+parent = 329
+
+[[nodes]]
+id = 332
+depth = 2
+kind = "act"
+text = "other"
+parent = 329
+is_terminal = true
+
+[[nodes]]
+id = 333
+depth = 1
+kind = "option"
+text = "quest=No|What happened to the other Imcando Dwarves?"
+parent = -1
+
+[[nodes]]
+id = 334
+depth = 1
+kind = "option"
+text = "quest=No|Can I use the Forge?"
+parent = -1
+
+[[nodes]]
+id = 335
+depth = 1
+kind = "option"
+text = "quest=No|Never mind, I have no questions for now."
+parent = -1
+
+[[nodes]]
+id = 336
+depth = 1
+kind = "box"
+text = "pic=Imbued barronite detail.png|You imbue the barronite deposit using the chaos core."
+parent = -1
+
+[[nodes]]
+id = 337
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 338
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 339
+depth = 1
+kind = "speaker"
+speaker = "Ramarno"
+text = "Ah, [player name]. I'm sure you have plenty of questions. I will do my best to answer them."
+parent = -1
+
+[[nodes]]
+id = 340
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 341
+depth = 1
+kind = "option"
+text = "quest=No|What can I do here?"
+parent = -1
+
+[[nodes]]
+id = 342
+depth = 1
+kind = "option"
+text = "quest=No|I have something I'd like you to examine."
+parent = -1
+
+[[nodes]]
+id = 343
+depth = 1
+kind = "option"
+text = "How do I access the Dream Theatre?"
+parent = -1
+children = [344, 345, 346]
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How do I access the Dream Theatre?"
+parent = 343
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "speaker"
+speaker = "Ramarno"
+text = "I see you've got the imbued barronite. Just place it into the Sacred Forge. Provided the forge deems you worthy, you'll then be able to enter the Dream Theatre."
+parent = 343
+
+[[nodes]]
+id = 346
+depth = 2
+kind = "act"
+text = "other"
+parent = 343
+is_terminal = true
+
+[[nodes]]
+id = 347
+depth = 1
+kind = "option"
+text = "quest=No|More options..."
+parent = -1
+
+[[nodes]]
+id = 348
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Arrav?"
+parent = -1
+
+[[nodes]]
+id = 349
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "What is this? I feel... free. I can speak without pain. How is this possible?"
+parent = -1
+
+[[nodes]]
+id = 350
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "We don't have much time. I'm talking to you from the Imcando Dream Theatre. I need to know how to use your shield."
+parent = -1
+
+[[nodes]]
+id = 351
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "The shield... of course. What do you need to know?"
+parent = -1
+
+[[nodes]]
+id = 352
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You used the shield to defeat Zemouregal's army before. How can we do it again?"
+parent = -1
+
+[[nodes]]
+id = 353
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "It was not I who used the shield. When I faced Zemouregal, I cast the shield to the son of Avarrocka's founder. Only then did the zombies meet their doom."
+parent = -1
+
+[[nodes]]
+id = 354
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "How?"
+parent = -1
+
+[[nodes]]
+id = 355
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "It was his blood. The shield is tied to Avarrocka. Only one with the blood of the founder can use it."
+parent = -1
+
+[[nodes]]
+id = 356
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "So if I can find his descendant..."
+parent = -1
+
+[[nodes]]
+id = 357
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "Then you can save my home."
+parent = -1
+
+[[nodes]]
+id = 358
+depth = 1
+kind = "speaker"
+speaker = "Arrav"
+text = "Wait... It's him! He knows you're here!"
+parent = -1
+
+[[nodes]]
+id = 359
+depth = 1
+kind = "other"
+text = "{{qact|The vision of Arrav transforms into Zemouregal.}}"
+parent = -1
+
+[[nodes]]
+id = 360
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "And what do we have here? Now, this is interesting... A snooping adventurer!"
+parent = -1
+
+[[nodes]]
+id = 361
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "So you hope to stop me do you, you pathetic human wretch? Well my zombie army is at the walls of Varrock. You are already too late!"
+parent = -1
+
+[[nodes]]
+id = 362
+depth = 1
+kind = "other"
+text = "{{qact|The player finds themselves back in reality.}}"
+parent = -1
+
+[[nodes]]
+id = 363
+depth = 1
+kind = "speaker"
+speaker = "Ramarno"
+text = "Well? How did it go?"
+parent = -1
+
+[[nodes]]
+id = 364
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I know how to use the shield!"
+parent = -1
+
+[[nodes]]
+id = 365
+depth = 1
+kind = "speaker"
+speaker = "Ramarno"
+text = "Glad to hear it."
+parent = -1
+
+[[nodes]]
+id = 366
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Now I need to get back to Varrock as fast as possible. I just hope I'm not too late."
+parent = -1
+
+[[nodes]]
+id = 367
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 368
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 369
+depth = 1
+kind = "speaker"
+speaker = "Ramarno"
+text = "Ah, [player name]. I'm sure you have plenty of questions. I will do my best to answer them."
+parent = -1
+
+[[nodes]]
+id = 370
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 371
+depth = 1
+kind = "option"
+text = "quest=No|What can I do here?"
+parent = -1
+
+[[nodes]]
+id = 372
+depth = 1
+kind = "option"
+text = "quest=No|I have something I'd like you to examine."
+parent = -1
+
+[[nodes]]
+id = 373
+depth = 1
+kind = "option"
+text = "quest=No|I know how to use the shield!"
+parent = -1
+children = [374, 375]
+
+[[nodes]]
+id = 374
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I know how to use the shield!"
+parent = 373
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "act"
+text = "above"
+parent = 373
+
+[[nodes]]
+id = 376
+depth = 1
+kind = "option"
+text = "quest=No|More options..."
+parent = -1
+
+[[nodes]]
+id = 377
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Oh this is not good! I need to find Elias and Captain Rovin!"
+parent = -1
+
+[[nodes]]
+id = 378
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 379
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Where did all these zombies come from?"
+parent = -1
+
+[[nodes]]
+id = 380
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's an invasion by Zemouregal."
+parent = -1
+
+[[nodes]]
+id = 381
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "The gods preserve us!"
+parent = -1
+
+[[nodes]]
+id = 382
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'm working on a plan to get rid of them."
+parent = -1
+
+[[nodes]]
+id = 383
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "We're doomed!"
+parent = -1
+
+[[nodes]]
+id = 384
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 385
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "Whatever you want, adventurer, it will need to wait. In case you hadn't noticed, there are zombies all over the palace!"
+parent = -1
+
+[[nodes]]
+id = 386
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry, Your Majesty. I'm trying to get rid of them."
+parent = -1
+
+[[nodes]]
+id = 387
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "Well get to it then, rather than standing there yapping at me!"
+parent = -1
+
+[[nodes]]
+id = 388
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 389
+depth = 1
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "What's going on? Where have all these zombies come from?"
+parent = -1
+
+[[nodes]]
+id = 390
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They're an army belonging to Zemouregal."
+parent = -1
+
+[[nodes]]
+id = 391
+depth = 1
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "Zemouregal? Saradomin preserve us!"
+parent = -1
+
+[[nodes]]
+id = 392
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 393
+depth = 1
+kind = "speaker"
+speaker = "Queen Ellamaria"
+text = "What are all these horrible, icky zombies doing in my nice, clean palace? You! You're an adventurer! Get out there and sort this out!"
+parent = -1
+
+[[nodes]]
+id = 394
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm working on it."
+parent = -1
+
+[[nodes]]
+id = 395
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 396
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "What's happening? Where did all these zombies come from?"
+parent = -1
+
+[[nodes]]
+id = 397
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's an army of zombies belonging to Zemouregal."
+parent = -1
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Ah... that is bad news indeed."
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm working on a way to get rid of them, so fingers crossed."
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 401
+depth = 1
+kind = "speaker"
+speaker = "Ambassador Ferrnook"
+text = "Why are there zombies all over the place? Is this normal in Misthalin?"
+parent = -1
+
+[[nodes]]
+id = 402
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not really. Normally they stick to caves and sewers."
+parent = -1
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Ambassador Ferrnook"
+text = "Well I hope they get removed soon. This isn't very safe."
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't you think you should try and get to somewhere safer?"
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "speaker"
+speaker = "Ambassador Ferrnook"
+text = "Well, I'd prefer to wait it out, but if someone doesn't deal with these things soon, I may have to."
+parent = -1
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "other"
+text = "{{trandom}}"
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "option"
+text = "Dialogue 1"
+parent = -1
+children = [409]
+
+[[nodes]]
+id = 409
+depth = 2
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "{{overhead|Ha! Mash those guards!}}"
+parent = 408
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "option"
+text = "Dialogue 2"
+parent = -1
+children = [411]
+
+[[nodes]]
+id = 411
+depth = 2
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "{{overhead|Hey, zombies! I'm on your side!}}"
+parent = 410
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "option"
+text = "Dialogue 3"
+parent = -1
+children = [413]
+
+[[nodes]]
+id = 413
+depth = 2
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "{{overhead|Let me out! I'll help with your invasion!}}"
+parent = 412
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "option"
+text = "Dialogue 4"
+parent = -1
+children = [415]
+
+[[nodes]]
+id = 415
+depth = 2
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "{{overhead|Let me out! I'm a bad guy too!}}"
+parent = 414
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "option"
+text = "Dialogue 5"
+parent = -1
+children = [417]
+
+[[nodes]]
+id = 417
+depth = 2
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "{{overhead|Oi, zombies! Care to let me out?}}"
+parent = 416
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "option"
+text = "Dialogue 6"
+parent = -1
+children = [419]
+
+[[nodes]]
+id = 419
+depth = 2
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "{{overhead|So, are any of you zombies gonna break me out?}}"
+parent = 418
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = """
+About time you showed up! The zombies have breached the northern wall and are swarming the palace! We've managed to keep them from moving on the rest of Varrock for now, but we won't be able to do so forever!
+"""
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "The situation isn't great, but all may not be lost. Did you manage to find out anything about how the shield works?"
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sort of. I discovered that only a descendant of Varrock's original founder can use the shield, but I'm not sure how we'd find someone of that lineage still alive today."
+parent = -1
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "The library would be your best bet. Get down there and see if Reldo can help you."
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "cond"
+text = "If the player does not have the Shield of Arrav:"
+parent = -1
+children = [425, 426, 429]
+
+[[nodes]]
+id = 425
+depth = 2
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Oh, and you'd better take this."
+parent = 424
+
+[[nodes]]
+id = 426
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 424
+children = [427, 428]
+
+[[nodes]]
+id = 427
+depth = 3
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin tries to give you the Shield of Arrav, but you don't have enough room to take it."
+parent = 426
+
+[[nodes]]
+id = 428
+depth = 3
+kind = "act"
+text = "end"
+parent = 426
+is_terminal = true
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin gives you the Shield of Arrav."
+parent = 424
+
+[[nodes]]
+id = 430
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 431
+depth = 1
+kind = "cond"
+text = "If the player lost the shield:"
+parent = -1
+children = [432, 433, 436, 437]
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "You're going to be needing this."
+parent = 431
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 431
+children = [434, 435]
+
+[[nodes]]
+id = 434
+depth = 3
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin tries to give you the Shield of Arrav, but you don't have enough room to take it."
+parent = 433
+
+[[nodes]]
+id = 435
+depth = 3
+kind = "act"
+text = "end"
+parent = 433
+is_terminal = true
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin gives you the Shield of Arrav."
+parent = 431
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Have you managed to make any progress, [player name]?"
+parent = 431
+
+[[nodes]]
+id = 438
+depth = 1
+kind = "cond"
+text = "If the player still has the shield:"
+parent = -1
+children = [439]
+
+[[nodes]]
+id = 439
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "You're back. Have you managed to make any progress?"
+parent = 438
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Not yet, no."
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Then you should get down to the library and talk to Reldo. If we don't get this situation under control, Varrock is doomed, and I'd very much prefer it if that could be avoided."
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Oh wonderful... he's gone."
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who's gone?"
+parent = -1
+
+[[nodes]]
+id = 445
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Surok Magis. The teleport block should have stopped him escaping, but it seems he was able to use the zombies as a distraction and disable the spell."
+parent = -1
+
+[[nodes]]
+id = 446
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "In hindsight, imprisoning a deadly mage in a library was maybe not a very well thought out plan, but it seems we have bigger issues to deal with for now."
+parent = -1
+
+[[nodes]]
+id = 447
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You can say that again. Speaking of which, I need your help. I must find out if there are any living descendants of the founder of Varrock."
+parent = -1
+
+[[nodes]]
+id = 448
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "I'm normally the first person to chat about local history, but given the situation, is now really the best time for this?"
+parent = -1
+
+[[nodes]]
+id = 449
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes. This information may help us to defeat the zombies."
+parent = -1
+
+[[nodes]]
+id = 450
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Well in that case, I think I have what you need. There was a document on the desk in the corner listing the elders who sent Arrav on his original quest for the Shield of Arrav."
+parent = -1
+
+[[nodes]]
+id = 451
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "One of those elders would have been the original founder of the city."
+parent = -1
+
+[[nodes]]
+id = 452
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sounds like a good start, but how would that help me track down their descendants?"
+parent = -1
+
+[[nodes]]
+id = 453
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = """
+Notable families like that are unlikely to have changed their surnames over the years. If you consult the latest census, you'll hopefully find some matching names. You'll find it just next to the desk.
+"""
+parent = -1
+
+[[nodes]]
+id = 454
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's perfect! Thanks, Reldo."
+parent = -1
+
+[[nodes]]
+id = 455
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Any luck with your search?"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm still working on it."
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "That document on the desk in the corner should be of use. It listed the names of the elders who sent Arrav on his original quest for the shield."
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "If you cross-reference the document with the latest census, you should hopefully be able to find their descendants."
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "cond"
+text = "If the player lost the shield:"
+parent = -1
+children = [462, 463, 466, 467]
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "You're going to be needing this."
+parent = 461
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 461
+children = [464, 465]
+
+[[nodes]]
+id = 464
+depth = 3
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin tries to give you the Shield of Arrav, but you don't have enough room to take it."
+parent = 463
+
+[[nodes]]
+id = 465
+depth = 3
+kind = "act"
+text = "end"
+parent = 463
+is_terminal = true
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin gives you the Shield of Arrav."
+parent = 461
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Have you managed to make any progress, [player name]?"
+parent = 461
+
+[[nodes]]
+id = 468
+depth = 1
+kind = "cond"
+text = "If the player still has the shield:"
+parent = -1
+children = [469]
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "You're back. Have you managed to make any progress?"
+parent = 468
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Reldo has given me a lead. Hopefully it will help us find someone who can use the shield."
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Good. Follow this lead and see where it takes you, but be quick about it. If we don't get this situation under control, Varrock is doomed, and I'd very much prefer it if that could be avoided."
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "cond"
+text = "If the player already has the list of elders:"
+parent = -1
+children = [474, 475]
+
+[[nodes]]
+id = 474
+depth = 2
+kind = "box"
+text = "You already have the list of elders. There doesn't seem to be anything else of use here."
+parent = 473
+
+[[nodes]]
+id = 475
+depth = 2
+kind = "act"
+text = "end"
+parent = 473
+is_terminal = true
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = -1
+children = [477, 478]
+
+[[nodes]]
+id = 477
+depth = 2
+kind = "box"
+text = "pic=List of elders detail.png|You find a fragment of a document that might be of use, but you don't have enough room to take it."
+parent = 476
+
+[[nodes]]
+id = 478
+depth = 2
+kind = "act"
+text = "end"
+parent = 476
+is_terminal = true
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "box"
+text = "pic=List of elders detail.png|You find a fragment of a document that might be of use."
+parent = -1
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Any luck with your search for those descendants?"
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think so. I have some potential contenders at least."
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "speaker"
+speaker = "Reldo"
+text = "Well let's hope this works then. Things are starting to look a little bit problematic."
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "cond"
+text = "If the player lost the shield:"
+parent = -1
+children = [486, 487, 490, 491]
+
+[[nodes]]
+id = 486
+depth = 2
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "You're going to be needing this."
+parent = 485
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "cond"
+text = "If the player has no inventory space:"
+parent = 485
+children = [488, 489]
+
+[[nodes]]
+id = 488
+depth = 3
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin tries to give you the Shield of Arrav, but you don't have enough room to take it."
+parent = 487
+
+[[nodes]]
+id = 489
+depth = 3
+kind = "act"
+text = "end"
+parent = 487
+is_terminal = true
+
+[[nodes]]
+id = 490
+depth = 2
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|Captain Rovin gives you the Shield of Arrav."
+parent = 485
+
+[[nodes]]
+id = 491
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Have you managed to make any progress, [player name]?"
+parent = 485
+
+[[nodes]]
+id = 492
+depth = 1
+kind = "cond"
+text = "If the player still has the shield:"
+parent = -1
+children = [493]
+
+[[nodes]]
+id = 493
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "You're back. Have you managed to make any progress?"
+parent = 492
+
+[[nodes]]
+id = 494
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have some contenders for the descendant of Varrock's original founder. I now just need to work out who the right one is."
+parent = -1
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Try giving the shield to them. Whoever the right person is, the shield should respond to them in some way."
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "And be quick about it. If we don't get this situation under control, Varrock is doomed, and I'd very much prefer it if that could be avoided."
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Where did all these zombies come from?"
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It's an invasion by Zemouregal."
+parent = -1
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "The gods preserve us!"
+parent = -1
+
+[[nodes]]
+id = 501
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Don't worry, I'm working on a plan to get rid of them. You might be able to help by using the Shield of Arrav."
+parent = -1
+
+[[nodes]]
+id = 502
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "The Shield of Arrav?"
+parent = -1
+
+[[nodes]]
+id = 503
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes. A descendant of an original elder of Avarrocka can apparently use it to stop the zombies. You're one of those descendants, although I'm not sure if you're the right one."
+parent = -1
+
+[[nodes]]
+id = 504
+depth = 1
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Well, I suppose anything is worth a try."
+parent = -1
+
+[[nodes]]
+id = 505
+depth = 1
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|You pass the shield to Sir Prysin, but nothing happens."
+parent = -1
+
+[[nodes]]
+id = 506
+depth = 1
+kind = "cond"
+text = "If Sir Prysin is not the correct person to talk to:"
+parent = -1
+children = [507, 508, 509, 510]
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Nothing seems to be happening."
+parent = 506
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It must be someone else who's the right descendant then."
+parent = 506
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Oh no... What if this doesn't work? We're doomed! We're doomed!"
+parent = 506
+
+[[nodes]]
+id = 510
+depth = 2
+kind = "act"
+text = "end"
+parent = 506
+is_terminal = true
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "cond"
+text = "If Sir Prysin is the correct person to talk to:"
+parent = -1
+children = [512, 513, 514, 515, 516, 517, 518]
+
+[[nodes]]
+id = 512
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Nothing seems to be happening. What made you think I was descended from an original elder of Avarrocka?"
+parent = 511
+
+[[nodes]]
+id = 513
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well your surname is Prysin. It matches the name of an elder called Khom Prysin."
+parent = 511
+
+[[nodes]]
+id = 514
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "But I'm not actually a blood descendant of the Prysins. My great-grandfather, Wally, was adopted into the family."
+parent = 511
+
+[[nodes]]
+id = 515
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... So, are there any genuine Prysins around?"
+parent = 511
+
+[[nodes]]
+id = 516
+depth = 2
+kind = "speaker"
+speaker = "Sir Prysin"
+text = "Well, none with the name Prysin. The last descendant of the Prysin line was a lady named Rhee Prysin. She married into the Fitzharmon family."
+parent = 511
+
+[[nodes]]
+id = 517
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "As in Dimintheis Fitzharmon? Sounds like I'd better pay him a visit."
+parent = 511
+
+[[nodes]]
+id = 518
+depth = 2
+kind = "act"
+text = "end"
+parent = 511
+is_terminal = true
+
+[[nodes]]
+id = 519
+depth = 1
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "What's going on? Where have all these zombies come from?"
+parent = -1
+
+[[nodes]]
+id = 520
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "They're an army belonging to Zemouregal."
+parent = -1
+
+[[nodes]]
+id = 521
+depth = 1
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "Zemouregal? Saradomin preserve us!"
+parent = -1
+
+[[nodes]]
+id = 522
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "All might not be lost. You might be able to help us by using the Shield of Arrav."
+parent = -1
+
+[[nodes]]
+id = 523
+depth = 1
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "But I don't know how to use the shield... No one does."
+parent = -1
+
+[[nodes]]
+id = 524
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have a reason to believe that you are descended from an original elder of Avarrocka, which might mean that you have the ability to use it. Here, hold it and see if anything happens."
+parent = -1
+
+[[nodes]]
+id = 525
+depth = 1
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|You pass the shield to Aeonisig, but nothing happens."
+parent = -1
+
+[[nodes]]
+id = 526
+depth = 1
+kind = "cond"
+text = "If Aeonisig is not the correct person to talk to:"
+parent = -1
+children = [527, 528, 529, 530]
+
+[[nodes]]
+id = 527
+depth = 2
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "Nothing special seems to be happening."
+parent = 526
+
+[[nodes]]
+id = 528
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Then it must be someone else who's descended from the correct elder."
+parent = 526
+
+[[nodes]]
+id = 529
+depth = 2
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "Well then you need to find them before these zombies kill us all!"
+parent = 526
+
+[[nodes]]
+id = 530
+depth = 2
+kind = "act"
+text = "end"
+parent = 526
+is_terminal = true
+
+[[nodes]]
+id = 531
+depth = 1
+kind = "cond"
+text = "If Aeonisig is the correct person to talk to:"
+parent = -1
+children = [532, 533, 534, 535, 536, 537, 538]
+
+[[nodes]]
+id = 532
+depth = 2
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "Nothing special seems to be happening. Why do you think I'm descended from an original elder of Avarrocka, anyway?"
+parent = 531
+
+[[nodes]]
+id = 533
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well your surname is Raispher. It matches the name of an elder called Dathero Raispher."
+parent = 531
+
+[[nodes]]
+id = 534
+depth = 2
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "Smart thinking, but also flawed. I'm not actually a blood descendant of the Raisphers. My great-grandfather was adopted into the family."
+parent = 531
+
+[[nodes]]
+id = 535
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... So, are there any genuine Raisphers around?"
+parent = 531
+
+[[nodes]]
+id = 536
+depth = 2
+kind = "speaker"
+speaker = "Aeonisig Raispher"
+text = "Well, none with the name Raispher. The last descendant of the Raispher line was a lady named Lucinda Raispher. She married into the Fitzharmon family."
+parent = 531
+
+[[nodes]]
+id = 537
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "As in Dimintheis Fitzharmon? Sounds like I'd better pay him a visit."
+parent = 531
+
+[[nodes]]
+id = 538
+depth = 2
+kind = "act"
+text = "end"
+parent = 531
+is_terminal = true
+
+[[nodes]]
+id = 539
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "Whatever you want, adventurer, it will need to wait. In case you hadn't noticed, there are zombies all over the palace!"
+parent = -1
+
+[[nodes]]
+id = 540
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well I might have a solution to that. We have the Shield of Arrav."
+parent = -1
+
+[[nodes]]
+id = 541
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "No one has figured out how to unlock the powers of the shield in hundreds of years! Are we so desperate that we are relying on legends?"
+parent = -1
+
+[[nodes]]
+id = 542
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It might be that you yourself can use it. I have a reason to believe that you are descended from an original elder of Avarrocka."
+parent = -1
+
+[[nodes]]
+id = 543
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "Well of course! Would you expect anything less of the man who is king?"
+parent = -1
+
+[[nodes]]
+id = 544
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Here, hold the shield and see if anything happens."
+parent = -1
+
+[[nodes]]
+id = 545
+depth = 1
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|You pass the shield to King Roald, but nothing happens."
+parent = -1
+
+[[nodes]]
+id = 546
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "It doesn't seem to be doing anything special."
+parent = -1
+
+[[nodes]]
+id = 547
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It must be someone else who is descended from the correct elder then."
+parent = -1
+
+[[nodes]]
+id = 548
+depth = 1
+kind = "speaker"
+speaker = "King Roald"
+text = "Well then you'd better get out there and find them! These zombies need to be stopped!"
+parent = -1
+
+[[nodes]]
+id = 549
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 550
+depth = 1
+kind = "speaker"
+speaker = "Horvik"
+text = "Hello, do you need any help?"
+parent = -1
+
+[[nodes]]
+id = 551
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 552
+depth = 1
+kind = "option"
+text = "quest=No|Do you want to trade?"
+parent = -1
+
+[[nodes]]
+id = 553
+depth = 1
+kind = "option"
+text = "I need your help with a shield."
+parent = -1
+children = [554, 555, 556, 557, 558, 559, 560, 561, 566]
+
+[[nodes]]
+id = 554
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with a shield."
+parent = 553
+
+[[nodes]]
+id = 555
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "A shield? Sounds like my area. What do you need?"
+parent = 553
+
+[[nodes]]
+id = 556
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It's not your skills as a Blacksmith I need. It's to do with the zombie attack on the palace!"
+parent = 553
+
+[[nodes]]
+id = 557
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "Oh, I see. What do you need me to do?"
+parent = 553
+
+[[nodes]]
+id = 558
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have reason to believe that you are descended from an original elder of Avarrocka, which might mean you have the ability to use the Shield of Arrav to defeat the zombies."
+parent = 553
+
+[[nodes]]
+id = 559
+depth = 2
+kind = "speaker"
+speaker = "Horvik"
+text = "The Shield of Arrav? Sounds a bit unlikely to me, but I'll give it a go."
+parent = 553
+
+[[nodes]]
+id = 560
+depth = 2
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|You pass the shield to Horvik, but nothing happens."
+parent = 553
+
+[[nodes]]
+id = 561
+depth = 2
+kind = "cond"
+text = "If Horvik is not the correct person to talk to:"
+parent = 553
+children = [562, 563, 564, 565]
+
+[[nodes]]
+id = 562
+depth = 3
+kind = "speaker"
+speaker = "Horvik"
+text = "It doesn't seem to be doing anything exciting."
+parent = 561
+
+[[nodes]]
+id = 563
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It must be a different descendant that I'm after then."
+parent = 561
+
+[[nodes]]
+id = 564
+depth = 3
+kind = "speaker"
+speaker = "Horvik"
+text = "Well good luck finding them. Last thing we need is those zombies moving on the rest of the city."
+parent = 561
+
+[[nodes]]
+id = 565
+depth = 3
+kind = "act"
+text = "end"
+parent = 561
+is_terminal = true
+
+[[nodes]]
+id = 566
+depth = 2
+kind = "cond"
+text = "If Horvik is the correct person to talk to:"
+parent = 553
+children = [567, 568, 569, 570, 571, 572, 573]
+
+[[nodes]]
+id = 567
+depth = 3
+kind = "speaker"
+speaker = "Horvik"
+text = "It doesn't seem to be doing anything exciting. Why do you think I was descended from an original elder of Avarrocka, anyway?"
+parent = 566
+
+[[nodes]]
+id = 568
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well your surname is Ravitz. It matches the name of an elder called Ramone Ravitz."
+parent = 566
+
+[[nodes]]
+id = 569
+depth = 3
+kind = "speaker"
+speaker = "Horvik"
+text = "Ah... I'm not actually a blood descendant of the Ravitzes. My great-grandfather was adopted into the family."
+parent = 566
+
+[[nodes]]
+id = 570
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... So, are there any genuine Ravitzes around?"
+parent = 566
+
+[[nodes]]
+id = 571
+depth = 3
+kind = "speaker"
+speaker = "Horvik"
+text = "I'm the only one I know of with the Ravitz surname. The last descendant of the Ravitz line was a lady named Shauna Ravitz. She married into the Fitzharmon family."
+parent = 566
+
+[[nodes]]
+id = 572
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "As in Dimintheis Fitzharmon? Sounds like I'd better pay him a visit."
+parent = 566
+
+[[nodes]]
+id = 573
+depth = 3
+kind = "act"
+text = "end"
+parent = 566
+is_terminal = true
+
+[[nodes]]
+id = 574
+depth = 1
+kind = "option"
+text = "quest=No|No thanks. I'm just looking around."
+parent = -1
+
+[[nodes]]
+id = 575
+depth = 1
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Welcome to the museum of Varrock."
+parent = -1
+
+[[nodes]]
+id = 576
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 577
+depth = 1
+kind = "option"
+text = "quest=No|Talk about Fossil Island."
+parent = -1
+
+[[nodes]]
+id = 578
+depth = 1
+kind = "option"
+text = "I need your help with the zombie invasion."
+parent = -1
+children = [579, 580, 581, 582, 583, 584, 585, 586, 591]
+
+[[nodes]]
+id = 579
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with the zombie invasion."
+parent = 578
+
+[[nodes]]
+id = 580
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "I'm flattered, but I'm sure I don't have the combat prowess for those kinds of shenanigans."
+parent = 578
+
+[[nodes]]
+id = 581
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Maybe not normally, but the Shield of Arrav might change that."
+parent = 578
+
+[[nodes]]
+id = 582
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "I'm not sure the shield, nice as it is, will make that much difference."
+parent = 578
+
+[[nodes]]
+id = 583
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well I have reason to believe that you are descended from an original elder of Avarrocka, which might mean you have the ability to use the shield. Here, hold it and see if anything happens."
+parent = 578
+
+[[nodes]]
+id = 584
+depth = 2
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Well, I've held it a few times in the course of my work, but I'll give it a go."
+parent = 578
+
+[[nodes]]
+id = 585
+depth = 2
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|You pass the shield to Haig Halen, but nothing happens."
+parent = 578
+
+[[nodes]]
+id = 586
+depth = 2
+kind = "cond"
+text = "If Haig is not the correct person to talk to:"
+parent = 578
+children = [587, 588, 589, 590]
+
+[[nodes]]
+id = 587
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Nothing special seems to be happening."
+parent = 586
+
+[[nodes]]
+id = 588
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "It must be someone else who is descended from the correct elder then."
+parent = 586
+
+[[nodes]]
+id = 589
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Well I wish you luck in finding them."
+parent = 586
+
+[[nodes]]
+id = 590
+depth = 3
+kind = "act"
+text = "end"
+parent = 586
+is_terminal = true
+
+[[nodes]]
+id = 591
+depth = 2
+kind = "cond"
+text = "If Haig is the correct person to talk to:"
+parent = 578
+children = [592, 593, 594, 595, 596, 597, 598]
+
+[[nodes]]
+id = 592
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Nothing special seems to be happening. Why do you think I'm descended from an original elder of Varrock, anyway?"
+parent = 591
+
+[[nodes]]
+id = 593
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Well, your surname is Halen. It matches the name of an elder called Marv Halen."
+parent = 591
+
+[[nodes]]
+id = 594
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "Now that is smart thinking, but I'm not actually a blood descendant of the original Halens. My great-grandfather was adopted into the family."
+parent = 591
+
+[[nodes]]
+id = 595
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... So, are there any genuine Halens around?"
+parent = 591
+
+[[nodes]]
+id = 596
+depth = 3
+kind = "speaker"
+speaker = "Curator Haig Halen"
+text = "The last descendant of the Halen line that I know of was a lady named Edwina. She married into the Fitzharmon family."
+parent = 591
+
+[[nodes]]
+id = 597
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "As in Dimintheis Fitzharmon? Sounds like I'd better pay him a visit."
+parent = 591
+
+[[nodes]]
+id = 598
+depth = 3
+kind = "act"
+text = "end"
+parent = 591
+is_terminal = true
+
+[[nodes]]
+id = 599
+depth = 1
+kind = "option"
+text = "quest=No|Have you any interesting news?"
+parent = -1
+
+[[nodes]]
+id = 600
+depth = 1
+kind = "option"
+text = "quest=No|Do you know where I could find any treasure?"
+parent = -1
+
+[[nodes]]
+id = 601
+depth = 1
+kind = "option"
+text = "quest=No|How do I get a medallion?"
+parent = -1
+
+[[nodes]]
+id = 602
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Romeo! I need to speak to you. A zombie army has invaded the palace and you might be the only one who's able to stop them."
+parent = -1
+
+[[nodes]]
+id = 603
+depth = 1
+kind = "speaker"
+speaker = "Romeo"
+text = "Ooh, do you really think I could? I've always wanted to be a hero!"
+parent = -1
+
+[[nodes]]
+id = 604
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I'm not sure. We might be able to find out with this shield though."
+parent = -1
+
+[[nodes]]
+id = 605
+depth = 1
+kind = "speaker"
+speaker = "Romeo"
+text = "Shield? What do you mean?"
+parent = -1
+
+[[nodes]]
+id = 606
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = """
+I have reason to believe that you are descended from an original elder of Avarrocka, which might mean that you can use the Shield of Arrav to defeat the zombies. Here, hold it and see if anything happens.
+"""
+parent = -1
+
+[[nodes]]
+id = 607
+depth = 1
+kind = "speaker"
+speaker = "Romeo"
+text = "Ooh, okay, that sounds fun!"
+parent = -1
+
+[[nodes]]
+id = 608
+depth = 1
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|You pass the shield to Romeo, but nothing happens."
+parent = -1
+
+[[nodes]]
+id = 609
+depth = 1
+kind = "cond"
+text = "If Romeo is not the correct person to talk to:"
+parent = -1
+children = [610, 611, 612, 613]
+
+[[nodes]]
+id = 610
+depth = 2
+kind = "speaker"
+speaker = "Romeo"
+text = "Oh... Nothing's happening."
+parent = 609
+
+[[nodes]]
+id = 611
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I guess it must be a different descendant that I'm after."
+parent = 609
+
+[[nodes]]
+id = 612
+depth = 2
+kind = "speaker"
+speaker = "Romeo"
+text = "That's a shame. I would have quite liked to have been the one to use it."
+parent = 609
+
+[[nodes]]
+id = 613
+depth = 2
+kind = "act"
+text = "end"
+parent = 609
+is_terminal = true
+
+[[nodes]]
+id = 614
+depth = 1
+kind = "cond"
+text = "If Romeo is the correct person to talk to:"
+parent = -1
+children = [615, 616, 617, 618, 619, 620, 621]
+
+[[nodes]]
+id = 615
+depth = 2
+kind = "speaker"
+speaker = "Romeo"
+text = "Oh... Nothing's happening. Are you sure it was me who was meant to be using it?"
+parent = 614
+
+[[nodes]]
+id = 616
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well it wasn't a guarantee, but your surname matches that of an elder called Ramone Gontamue."
+parent = 614
+
+[[nodes]]
+id = 617
+depth = 2
+kind = "speaker"
+speaker = "Romeo"
+text = "Oh, well I'm not actually a real descendant of the Gontamues. My great-grandfather was adopted into the family."
+parent = 614
+
+[[nodes]]
+id = 618
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Interesting... So, are there any genuine Gontamues around?"
+parent = 614
+
+[[nodes]]
+id = 619
+depth = 2
+kind = "speaker"
+speaker = "Romeo"
+text = "Not exactly. The last descendant of the Gontamue line was Lilith Gontamue. She married into the Fitzharmon family."
+parent = 614
+
+[[nodes]]
+id = 620
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "As in Dimintheis Fitzharmon? Sounds like I'd better pay him a visit."
+parent = 614
+
+[[nodes]]
+id = 621
+depth = 2
+kind = "act"
+text = "end"
+parent = 614
+is_terminal = true
+
+[[nodes]]
+id = 622
+depth = 1
+kind = "cond"
+text = "If the player has not completed [[Family Pest]]:"
+parent = -1
+children = [623, 624, 625]
+
+[[nodes]]
+id = 623
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 622
+
+[[nodes]]
+id = 624
+depth = 2
+kind = "option"
+text = "quest=No|Have you got any quests for me?"
+parent = 622
+
+[[nodes]]
+id = 625
+depth = 2
+kind = "option"
+text = "Other"
+parent = 622
+children = [626, 627, 628, 629]
+
+[[nodes]]
+id = 626
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "You have my eternal gratitude for all you have done in saving my family's honour, adventurer. Perhaps some day my sons will overcome their differences."
+parent = 625
+
+[[nodes]]
+id = 627
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 625
+
+[[nodes]]
+id = 628
+depth = 3
+kind = "option"
+text = "quest=No|Do you have any gauntlets for me?"
+parent = 625
+
+[[nodes]]
+id = 629
+depth = 3
+kind = "option"
+text = "I need your help with the zombie invasion."
+parent = 625
+children = [630, 631, 632, 633, 634, 635, 636, 637, 638, 639]
+
+[[nodes]]
+id = 630
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with the zombie invasion."
+parent = 629
+
+[[nodes]]
+id = 631
+depth = 4
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Well, I suppose I could help, but I am getting on a bit now. I'm not quite the warrior I used to be."
+parent = 629
+
+[[nodes]]
+id = 632
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I'm hoping the Shield of Arrav may help a little."
+parent = 629
+
+[[nodes]]
+id = 633
+depth = 4
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Ah, yes, I know of the shield's legend. I don't understand what that has to do with me though."
+parent = 629
+
+[[nodes]]
+id = 634
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I have reason to believe that you're descended from one of the original elders of Avarrocka, which might mean you have the ability to use the shield."
+parent = 629
+
+[[nodes]]
+id = 635
+depth = 4
+kind = "speaker"
+speaker = "Dimintheis"
+text = "That doesn't sound entirely convincing, but I'll give it a go."
+parent = 629
+
+[[nodes]]
+id = 636
+depth = 4
+kind = "box"
+text = "pic=Shield of arrav (item) detail.png|You pass the shield to Dimintheis and it magically responds to his touch."
+parent = 629
+
+[[nodes]]
+id = 637
+depth = 4
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Well, that is impressive."
+parent = 629
+
+[[nodes]]
+id = 638
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I think you might be the one! Quick, let's get to the palace!"
+parent = 629
+
+[[nodes]]
+id = 639
+depth = 4
+kind = "act"
+text = "(Cutscene begins.)"
+parent = 629
+
+[[nodes]]
+id = 640
+depth = 1
+kind = "cond"
+text = "If the player has completed Family Pest:"
+parent = -1
+children = [641, 642, 643, 644, 645, 646, 648]
+
+[[nodes]]
+id = 641
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello Dimintheis."
+parent = 640
+
+[[nodes]]
+id = 642
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I will not forget what you did for my family, [player name]. Those 500,000 coins have allowed us to put food on the table."
+parent = 640
+
+[[nodes]]
+id = 643
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's no problem."
+parent = 640
+
+[[nodes]]
+id = 644
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 640
+
+[[nodes]]
+id = 645
+depth = 2
+kind = "option"
+text = "quest=No|Could I get another pair of gauntlets?"
+parent = 640
+
+[[nodes]]
+id = 646
+depth = 2
+kind = "option"
+text = "I need your help with the zombie invasion."
+parent = 640
+children = [647]
+
+[[nodes]]
+id = 647
+depth = 3
+kind = "act"
+text = "above"
+parent = 646
+
+[[nodes]]
+id = 648
+depth = 2
+kind = "option"
+text = "quest=No|The gauntlets are a family heirloom?"
+parent = 640
+
+[[nodes]]
+id = 649
+depth = 1
+kind = "cond"
+text = "If the player has not completed [[Family Pest]]:"
+parent = -1
+children = [650, 651, 652]
+
+[[nodes]]
+id = 650
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 649
+
+[[nodes]]
+id = 651
+depth = 2
+kind = "option"
+text = "quest=No|Have you got any quests for me?"
+parent = 649
+
+[[nodes]]
+id = 652
+depth = 2
+kind = "option"
+text = "Other"
+parent = 649
+children = [653, 654, 655, 656]
+
+[[nodes]]
+id = 653
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "You have my eternal gratitude for all you have done in saving my family's honour, adventurer. Perhaps some day my sons will overcome their differences."
+parent = 652
+
+[[nodes]]
+id = 654
+depth = 3
+kind = "select"
+text = "Select an Option"
+parent = 652
+
+[[nodes]]
+id = 655
+depth = 3
+kind = "option"
+text = "quest=No|Do you have any gauntlets for me?"
+parent = 652
+
+[[nodes]]
+id = 656
+depth = 3
+kind = "option"
+text = "I need your help with the zombie invasion."
+parent = 652
+children = [657, 658, 659, 660]
+
+[[nodes]]
+id = 657
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I need your help with the zombie invasion."
+parent = 656
+
+[[nodes]]
+id = 658
+depth = 4
+kind = "speaker"
+speaker = "Dimintheis"
+text = "You want me to use the shield? It seems to be responding to me in some way! Is this what you were expecting?"
+parent = 656
+
+[[nodes]]
+id = 659
+depth = 4
+kind = "speaker"
+speaker = "Player"
+text = "I think so! Quick, let's get to the palace!"
+parent = 656
+
+[[nodes]]
+id = 660
+depth = 4
+kind = "act"
+text = "(Cutscene begins.)"
+parent = 656
+
+[[nodes]]
+id = 661
+depth = 1
+kind = "cond"
+text = "If the player has completed Family Pest:"
+parent = -1
+children = [662, 663, 664, 665, 666, 667, 669]
+
+[[nodes]]
+id = 662
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello Dimintheis."
+parent = 661
+
+[[nodes]]
+id = 663
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I will not forget what you did for my family, [player name]. Those 500,000 coins have allowed us to put food on the table."
+parent = 661
+
+[[nodes]]
+id = 664
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's no problem."
+parent = 661
+
+[[nodes]]
+id = 665
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 661
+
+[[nodes]]
+id = 666
+depth = 2
+kind = "option"
+text = "quest=No|Could I get another pair of gauntlets?"
+parent = 661
+
+[[nodes]]
+id = 667
+depth = 2
+kind = "option"
+text = "I need your help with the zombie invasion."
+parent = 661
+children = [668]
+
+[[nodes]]
+id = 668
+depth = 3
+kind = "act"
+text = "above"
+parent = 667
+
+[[nodes]]
+id = 669
+depth = 2
+kind = "option"
+text = "quest=No|The gauntlets are a family heirloom?"
+parent = 661
+
+[[nodes]]
+id = 670
+depth = 1
+kind = "other"
+text = "{{qact|A cutscene begins in which Dimintheis, wielding the shield, arrives at Varrock Palace.}}"
+parent = -1
+
+[[nodes]]
+id = 671
+depth = 1
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Die, zombie scum!"
+parent = -1
+
+[[nodes]]
+id = 672
+depth = 1
+kind = "other"
+text = "{{qact|Dimintheis unleashes the shield's power, instantly killing the zombies in the vicinity. The scene then changes to the imprisoned Monk of Zamorak, who has broken out.}}"
+parent = -1
+
+[[nodes]]
+id = 673
+depth = 1
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "Hurrah! Free at last."
+parent = -1
+
+[[nodes]]
+id = 674
+depth = 1
+kind = "other"
+text = "{{qact|The shield's power destroys the zombies inside the palace.}}"
+parent = -1
+
+[[nodes]]
+id = 675
+depth = 1
+kind = "speaker"
+speaker = "Monk of Zamorak"
+text = "Erm."
+parent = -1
+
+[[nodes]]
+id = 676
+depth = 1
+kind = "other"
+text = "{{qact|The scene changes to the palace garden.}}"
+parent = -1
+
+[[nodes]]
+id = 677
+depth = 1
+kind = "speaker"
+speaker = "Queen Ellamaria"
+text = "Stay back! I won't let you eat me!"
+parent = -1
+
+[[nodes]]
+id = 678
+depth = 1
+kind = "other"
+text = "{{qact|The shield's power destroys the zombies in the garden. The scene then changes to the broken wall north of the palace.}}"
+parent = -1
+
+[[nodes]]
+id = 679
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "Zemouregal... The forces... What do we do?"
+parent = -1
+
+[[nodes]]
+id = 680
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "What do we do? We flee, you fool!"
+parent = -1
+
+[[nodes]]
+id = 681
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "But all the work..."
+parent = -1
+
+[[nodes]]
+id = 682
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Do you have a better suggestion? Are you hiding some secret to overcoming such an astounding disaster?"
+parent = -1
+
+[[nodes]]
+id = 683
+depth = 1
+kind = "speaker"
+speaker = "Sharathteerk"
+text = "No..."
+parent = -1
+
+[[nodes]]
+id = 684
+depth = 1
+kind = "speaker"
+speaker = "Zemouregal"
+text = "Then recall Arrav at once! There is nothing more to be gained here. It is time for us to head north."
+parent = -1
+
+[[nodes]]
+id = 685
+depth = 1
+kind = "other"
+text = "{{qact|The cutscene ends.}}"
+parent = -1
+
+[[nodes]]
+id = 686
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "It seems the shield worked better than anyone could have hoped for. From what we can tell, not a single zombie remains! It was a close one, but thanks to you, Varrock is saved!"
+parent = -1
+
+[[nodes]]
+id = 687
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "It wouldn't have been possible without Dimintheis."
+parent = -1
+
+[[nodes]]
+id = 688
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Indeed. I will ensure the King is made aware of his contribution."
+parent = -1
+
+[[nodes]]
+id = 689
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Any word on what happened to Zemouregal?"
+parent = -1
+
+[[nodes]]
+id = 690
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "There's been no sign of him so far. We'll keep an eye out, but I suspect he'll have gone to ground."
+parent = -1
+
+[[nodes]]
+id = 691
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "And he'll have Arrav with him."
+parent = -1
+
+[[nodes]]
+id = 692
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = """
+We may not have been able to save Arrav today, but thanks to your discoveries, we now have a lead to follow. It will take me some time, but once I have something on this heart business, I'll be in touch.
+"""
+parent = -1
+
+[[nodes]]
+id = 693
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "And on that note, I intend to get started right away. Until we meet again."
+parent = -1
+
+[[nodes]]
+id = 694
+depth = 1
+kind = "box"
+text = "Elias departs."
+parent = -1
+
+[[nodes]]
+id = 695
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Well once again, adventurer, on behalf of Varrock, you have my thanks. Today's victory will go down in history."
+parent = -1
+
+[[nodes]]
+id = 696
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Now, you'd best be on your way. I have lots of work to do, and I'm sure you have better places to be than here."
+parent = -1
+
+[[nodes]]
+id = 697
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Well once again, adventurer, on behalf of Varrock, you have my thanks. Today's victory will go down in history."
+parent = -1
+
+[[nodes]]
+id = 698
+depth = 1
+kind = "act"
+text = "above"
+parent = -1
+
+[[nodes]]
+id = 699
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Oh, it's you. Thank you again for your help in defeating the zombie army."
+parent = -1
+
+[[nodes]]
+id = 700
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "You're welcome."
+parent = -1
+
+[[nodes]]
+id = 701
+depth = 1
+kind = "speaker"
+speaker = "Captain Rovin"
+text = "Now, you must excuse me. I have lots to do."
+parent = -1
+
+[[nodes]]
+id = 702
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 703
+depth = 1
+kind = "cond"
+text = "If the player has not completed Family Pest:"
+parent = -1
+children = [704, 705, 706]
+
+[[nodes]]
+id = 704
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 703
+
+[[nodes]]
+id = 705
+depth = 2
+kind = "option"
+text = "quest=No|Have you got any quests for me?"
+parent = 703
+
+[[nodes]]
+id = 706
+depth = 2
+kind = "option"
+text = "Other"
+parent = 703
+children = [707, 708]
+
+[[nodes]]
+id = 707
+depth = 3
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Hello again, adventurer. I hope that Shield of Arrav business marks the start of something big for my family. Maybe it will help me finally get out of this hole!"
+parent = 706
+
+[[nodes]]
+id = 708
+depth = 3
+kind = "other"
+text = "''(Continues to non-quest dialogue)''"
+parent = 706
+
+[[nodes]]
+id = 709
+depth = 1
+kind = "cond"
+text = "If the player has completed Family Pest:"
+parent = -1
+children = [710, 711, 712, 713, 714, 715, 716]
+
+[[nodes]]
+id = 710
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Hello Dimintheis."
+parent = 709
+
+[[nodes]]
+id = 711
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "I will not forget what you did for my family, [player name]. Those 500,000 coins have allowed us to put food on the table."
+parent = 709
+
+[[nodes]]
+id = 712
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That's no problem."
+parent = 709
+
+[[nodes]]
+id = 713
+depth = 2
+kind = "speaker"
+speaker = "Dimintheis"
+text = "Combine that with the whole Shield of Arrav business and things are really starting to look up for us!"
+parent = 709
+
+[[nodes]]
+id = 714
+depth = 2
+kind = "select"
+text = "Select an Option"
+parent = 709
+
+[[nodes]]
+id = 715
+depth = 2
+kind = "option"
+text = "quest=No|Could I get another pair of gauntlets?"
+parent = 709
+
+[[nodes]]
+id = 716
+depth = 2
+kind = "option"
+text = "quest=No|The gauntlets are a family heirloom?"
+parent = 709
+
+[[nodes]]
+id = 717
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Ah, hello there, [player name]. Good to see you."
+parent = -1
+
+[[nodes]]
+id = 718
+depth = 1
+kind = "cond"
+text = "If the player did not speak to Elias at the [[Uzer Oasis]] prior to 21 February 2024:"
+parent = -1
+children = [719, 720, 721, 722, 723]
+
+[[nodes]]
+id = 719
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you, Elias. So what brings you all the way out here?"
+parent = 718
+
+[[nodes]]
+id = 720
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Well it turns out the desert was the best place to begin my research into Arrav and his heart. Not too surprising of course, given the burial practices here."
+parent = 718
+
+[[nodes]]
+id = 721
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And how's that going so far?"
+parent = 718
+
+[[nodes]]
+id = 722
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Pretty well. In fact, I think I'm getting close to something. It's related to that old mastaba up on the plateau. I reckon it might contain the knowledge we need to help old Arrav out."
+parent = 718
+
+[[nodes]]
+id = 723
+depth = 2
+kind = "act"
+text = "continue"
+parent = 718
+
+[[nodes]]
+id = 724
+depth = 1
+kind = "cond"
+text = "If the player spoke to Elias at the Uzer Oasis before 21 February 2024:"
+parent = -1
+children = [725, 726, 727, 728, 729, 730]
+
+[[nodes]]
+id = 725
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "And you, Elias. So you're back out here again?"
+parent = 724
+
+[[nodes]]
+id = 726
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Indeed. Turns out the desert was the best place to begin my research into Arrav and his heart. Not too surprising of course, given the burial practices here."
+parent = 724
+
+[[nodes]]
+id = 727
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "In fact, as you might recall, I was here before to look into that old mastaba up on the plateau."
+parent = 724
+
+[[nodes]]
+id = 728
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I remember. You said it might contain important information on the Mahjarrat."
+parent = 724
+
+[[nodes]]
+id = 729
+depth = 2
+kind = "speaker"
+speaker = "Elias White"
+text = "Indeed I did. And I reckon it might also contain the knowledge we need to help old Arrav out."
+parent = 724
+
+[[nodes]]
+id = 730
+depth = 2
+kind = "act"
+text = "continue"
+parent = 724
+
+[[nodes]]
+id = 731
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Excellent!"
+parent = -1
+
+[[nodes]]
+id = 732
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Now, I still have quite a bit of preparatory work to do before we consider heading inside, but once that's done, I'll be in touch."
+parent = -1
+
+[[nodes]]
+id = 733
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good. I'd best leave you to your work."
+parent = -1
+
+[[nodes]]
+id = 734
+depth = 1
+kind = "speaker"
+speaker = "Elias White"
+text = "Until next time."
+parent = -1
+
+[[nodes]]
+id = 735
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 736
+depth = 1
+kind = "box"
+parent = -1
+
+[[nodes]]
+id = 737
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello!"
+parent = -1
+
+[[nodes]]
+id = 738
+depth = 1
+kind = "speaker"
+speaker = "Historian Minas"
+text = "Hello there, welcome to Varrock Museum! Can I help you?"
+parent = -1
+
+[[nodes]]
+id = 739
+depth = 1
+kind = "select"
+text = "Select an Option"
+parent = -1
+
+[[nodes]]
+id = 740
+depth = 1
+kind = "option"
+text = "quest=No|Tell me about the Museum."
+parent = -1
+
+[[nodes]]
+id = 741
+depth = 1
+kind = "option"
+text = "I have some information that might be of use in your displays."
+parent = -1
+children = [742, 743, 744, 745, 746, 747, 748, 749, 750, 751, 752, 753, 754]
+
+[[nodes]]
+id = 742
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I have some information that might be of use in your displays."
+parent = 741
+
+[[nodes]]
+id = 743
+depth = 2
+kind = "speaker"
+speaker = "Historian Minas"
+text = "That's grand! We're always glad to have more facts. Now, tell me what you know..."
+parent = 741
+
+[[nodes]]
+id = 744
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, we got rid of the marauding zombies."
+parent = 741
+
+[[nodes]]
+id = 745
+depth = 2
+kind = "speaker"
+speaker = "Historian Minas"
+text = "That's handy. Zombies do tend to leave horrible muddy footprints around the place. So what actually happened with them?"
+parent = 741
+
+[[nodes]]
+id = 746
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, Zemouregal the Mahjarrat sent his zombie army against Varrock. However, we figured out how to stop him."
+parent = 741
+
+[[nodes]]
+id = 747
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I found out that the descendant of the founder of Varrock could use the shield to stop the zombie army. It turns out that Dimintheis was that descendant, so he was able to defeat the zombies."
+parent = 741
+
+[[nodes]]
+id = 748
+depth = 2
+kind = "speaker"
+speaker = "Historian Minas"
+text = "My, my, that is all very interesting. I shall make sure the display is updated at once! Display number 24, 4th Age, year 700-800."
+parent = 741
+
+[[nodes]]
+id = 749
+depth = 2
+kind = "speaker"
+speaker = "Historian Minas"
+text = "Oh, and before I forget, we found this old lamp lying around. Since you've done such a sterling job, we'd like you to have it."
+parent = 741
+
+[[nodes]]
+id = 750
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh, random bits of tat, thank you very much."
+parent = 741
+
+[[nodes]]
+id = 751
+depth = 2
+kind = "speaker"
+speaker = "Historian Minas"
+text = "You're welcome!"
+parent = 741
+
+[[nodes]]
+id = 752
+depth = 2
+kind = "box"
+text = "You have earned the gratitude of the Museum; you can earn no higher Kudos at this time."
+parent = 741
+
+[[nodes]]
+id = 753
+depth = 2
+kind = "box"
+text = "You receive an old lamp."
+parent = 741
+
+[[nodes]]
+id = 754
+depth = 2
+kind = "act"
+text = "end"
+parent = 741
+is_terminal = true
+
+[[nodes]]
+id = 755
+depth = 1
+kind = "option"
+text = "quest=No|No thanks."
+parent = -1

@@ -118,7 +118,6 @@ static void add_phase6_staff(void) {
 }
 
 static void test_interaction_attack_enters_repeating_combat(void) {
-    rc_interaction_clear_handlers();
     Phase6Events events = {0};
     RcWorld *world = phase6_world(&events);
     int npc_idx = spawn_phase6_npc(world, 901600, 1, 200);
@@ -145,7 +144,6 @@ static void test_interaction_attack_enters_repeating_combat(void) {
 }
 
 static void test_magic_attack_queues_delayed_hit_and_npc_retaliates(void) {
-    rc_interaction_clear_handlers();
     Phase6Events events = {0};
     RcWorld *world = phase6_world(&events);
     memset(g_rc_spell_defs, 0, sizeof(g_rc_spell_defs));
@@ -186,7 +184,6 @@ static void test_magic_attack_queues_delayed_hit_and_npc_retaliates(void) {
 }
 
 static void test_death_clears_target_and_respawn_is_stable(void) {
-    rc_interaction_clear_handlers();
     Phase6Events events = {0};
     RcWorld *world = phase6_world(&events);
     int npc_idx = spawn_phase6_npc(world, 901602, 1, 5);
@@ -215,6 +212,5 @@ int main(void) {
     test_interaction_attack_enters_repeating_combat();
     test_magic_attack_queues_delayed_hit_and_npc_retaliates();
     test_death_clears_target_and_respawn_is_stable();
-    rc_interaction_clear_handlers();
     return 0;
 }

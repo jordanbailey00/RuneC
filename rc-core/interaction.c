@@ -6,16 +6,6 @@ enum {
     RC_INTERACTION_MAX_APPROACH_RANGE = 64,
 };
 
-typedef struct {
-    RcInteractionDispatchKey key;
-    RcInteractionHandlerFn fn;
-    void *ctx;
-} RcInteractionHandlerEntry;
-
-static RcInteractionHandlerEntry g_interaction_handlers[
-    RC_MAX_INTERACTION_HANDLERS];
-static int g_interaction_handler_count;
-
 RcInteractionOp rc_interaction_op_from_option(int option_idx) {
     switch (option_idx) {
     case 0: return RC_INTERACTION_OP1;
@@ -253,11 +243,6 @@ RcInteractionKind rc_interaction_target_kind(const RcPlayer *player) {
     return player->interaction.target.kind;
 }
 
-void rc_interaction_clear_handlers(void) {
-    memset(g_interaction_handlers, 0, sizeof(g_interaction_handlers));
-    g_interaction_handler_count = 0;
-}
-
 static int key_specificity(const RcInteractionDispatchKey *key) {
     int score = 0;
     if (key->definition_id != RC_INTERACTION_KEY_ANY) score += 100;
@@ -311,37 +296,46 @@ static int dispatch_key_valid(const RcInteractionDispatchKey *key) {
         && key->component_id >= RC_INTERACTION_KEY_ANY;
 }
 
-int rc_interaction_register_handler(const RcInteractionDispatchKey *key,
-                                    RcInteractionHandlerFn fn, void *ctx) {
+static void clear_handler_table(RcInteractionHandlerEntry *entries,
+                                int *count) {
+    if (!entries || !count) return;
+    memset(entries, 0,
+           (size_t)RC_MAX_INTERACTION_HANDLERS * sizeof(entries[0]));
+    *count = 0;
+}
+
+static int register_handler_in_table(RcInteractionHandlerEntry *entries,
+                                     int *count,
+                                     const RcInteractionDispatchKey *key,
+                                     RcInteractionHandlerFn fn, void *ctx) {
+    if (!entries || !count) return 0;
     if (!dispatch_key_valid(key) || !fn) return 0;
-    for (int i = 0; i < g_interaction_handler_count; i++) {
-        if (keys_equal(&g_interaction_handlers[i].key, key)) {
-            g_interaction_handlers[i].fn = fn;
-            g_interaction_handlers[i].ctx = ctx;
+    for (int i = 0; i < *count; i++) {
+        if (keys_equal(&entries[i].key, key)) {
+            entries[i].fn = fn;
+            entries[i].ctx = ctx;
             return 1;
         }
     }
-    if (g_interaction_handler_count >= RC_MAX_INTERACTION_HANDLERS) {
+    if (*count >= RC_MAX_INTERACTION_HANDLERS) {
         return 0;
     }
-    RcInteractionHandlerEntry *entry =
-        &g_interaction_handlers[g_interaction_handler_count++];
+    RcInteractionHandlerEntry *entry = &entries[(*count)++];
     entry->key = *key;
     entry->fn = fn;
     entry->ctx = ctx;
     return 1;
 }
 
-int rc_interaction_handler_count(void) {
-    return g_interaction_handler_count;
-}
-
-int rc_interaction_find_handler(const RcInteractionDispatchKey *key) {
+static int find_handler_in_table(const RcInteractionHandlerEntry *entries,
+                                 int count,
+                                 const RcInteractionDispatchKey *key) {
+    if (!entries || count <= 0) return -1;
     if (!dispatch_key_valid(key)) return -1;
     int best = -1;
     int best_score = -1;
-    for (int i = 0; i < g_interaction_handler_count; i++) {
-        RcInteractionHandlerEntry *entry = &g_interaction_handlers[i];
+    for (int i = 0; i < count; i++) {
+        const RcInteractionHandlerEntry *entry = &entries[i];
         if (!key_matches(&entry->key, key)) continue;
         int score = key_specificity(&entry->key);
         if (score > best_score) {
@@ -350,6 +344,32 @@ int rc_interaction_find_handler(const RcInteractionDispatchKey *key) {
         }
     }
     return best;
+}
+
+void rc_interaction_clear_world_handlers(RcWorld *world) {
+    if (!world) return;
+    clear_handler_table(world->interaction_handlers,
+                        &world->interaction_handler_count);
+}
+
+int rc_interaction_register_world_handler(
+    RcWorld *world, const RcInteractionDispatchKey *key,
+    RcInteractionHandlerFn fn, void *ctx) {
+    if (!world) return 0;
+    return register_handler_in_table(world->interaction_handlers,
+                                     &world->interaction_handler_count,
+                                     key, fn, ctx);
+}
+
+int rc_interaction_world_handler_count(const RcWorld *world) {
+    return world ? world->interaction_handler_count : 0;
+}
+
+int rc_interaction_find_world_handler(const RcWorld *world,
+                                      const RcInteractionDispatchKey *key) {
+    if (!world) return -1;
+    return find_handler_in_table(world->interaction_handlers,
+                                 world->interaction_handler_count, key);
 }
 
 static RcInteractionHandlerResult no_handler_result(RcPlayer *player) {
@@ -374,10 +394,12 @@ RcInteractionHandlerResult rc_interaction_dispatch(RcWorld *world,
     }
     RcInteractionDispatchKey key =
         rc_interaction_dispatch_key_from_pending(&player->interaction);
-    int handler_idx = rc_interaction_find_handler(&key);
+    int handler_idx = world ? rc_interaction_find_world_handler(world, &key)
+                            : -1;
     if (handler_idx < 0) return no_handler_result(player);
 
-    RcInteractionHandlerEntry *entry = &g_interaction_handlers[handler_idx];
+    const RcInteractionHandlerEntry *entry =
+        &world->interaction_handlers[handler_idx];
     RcInteractionHandlerResult result =
         entry->fn(world, player, &player->interaction, entry->ctx);
     if (result.code == RC_INTERACTION_HANDLER_CANCEL ||

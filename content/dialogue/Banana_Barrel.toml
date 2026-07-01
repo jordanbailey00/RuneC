@@ -1,0 +1,51 @@
+title = "Transcript:Banana Barrel"
+npcs = ["Zeke"]
+node_count = 6
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Zeke"
+text = "Leave that barrel alone! That property doesn't belong to you!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Zeke"
+text = "What are you doing?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I require another one of your premium bananas."
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Zeke"
+text = "Haven't you already captured all of the monkeys? Leave some bananas for me!"
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true

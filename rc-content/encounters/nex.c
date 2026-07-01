@@ -16,10 +16,7 @@ static RcNpc *nex_boss(struct RcWorld *world, int enc_idx) {
 }
 
 static int nex_def_idx(const char *name) {
-    for (int i = 0; i < g_npc_def_count; i++) {
-        if (strcmp(g_npc_defs[i].name, name) == 0) return i;
-    }
-    return -1;
+    return rc_npc_def_find_name(name);
 }
 
 static void nex_spawn_minion(struct RcWorld *world, RcNpc *boss,
@@ -67,10 +64,11 @@ static void nex_ice_phase(struct RcWorld *world, int enc_idx) {
 static void nex_zaros_phase(struct RcWorld *world, int enc_idx) {
     nex_enter_phase(world, enc_idx, "Nex Zaros Phase", "", 0, 0);
     RcNpc *boss = nex_boss(world, enc_idx);
-    if (!boss || boss->def_id < 0 || boss->def_id >= g_npc_def_count) return;
+    const RcNpcDef *def = rc_npc_def_for_npc(boss);
+    if (!boss || !def) return;
     boss->current_hp += 500;
-    if (boss->current_hp > g_npc_defs[boss->def_id].hitpoints) {
-        boss->current_hp = g_npc_defs[boss->def_id].hitpoints;
+    if (boss->current_hp > def->hitpoints) {
+        boss->current_hp = def->hitpoints;
     }
 }
 

@@ -1,0 +1,196 @@
+# Theatre of Blood — 6-room sequential raid.
+# Rooms: Maiden → Bloat → Nylocas → Sotetseg → Xarpus → Verzik.
+
+name = "Theatre of Blood"
+slug = "theatre_of_blood"
+npc_ids = [8360, 8361, 8362]     # Verzik phase ids + others
+source_pages = [
+    "Theatre of Blood", "Theatre of Blood/Strategies",
+    "The Maiden of Sugadinti", "Pestilent Bloat",
+    "Nylocas Vasilias", "Sotetseg", "Xarpus", "Verzik Vitur",
+]
+
+# ---- Sequential room progression --------------------------------------
+
+[[rooms]]
+id = "maiden"
+sequence = 1
+boss_npc_id = 8360
+boss_name = "The Maiden of Sugadinti"
+mechanics_summary = [
+    "blood_splats_on_tiles",
+    "nylocas_blood_spawn_at_70_50_30_pct",
+    "matron_heals_nylocas_if_reach_her",
+]
+
+[[rooms]]
+id = "bloat"
+sequence = 2
+boss_name = "Pestilent Bloat"
+mechanics_summary = [
+    "bloat_walks_around_pillars",
+    "sleep_wake_cycle",
+    "flies_spawn_while_awake",
+    "high_damage_on_hit_during_walking",
+]
+
+[[rooms]]
+id = "nylocas"
+sequence = 3
+boss_name = "Nylocas Vasilias"
+mechanics_summary = [
+    "4_waves_of_colored_nylocas",
+    "nylocas_style_swap_on_color",
+    "vasilias_style_cycle_every_4_attacks",
+    "pillar_hp_matters_for_run_end",
+]
+
+[[rooms]]
+id = "sotetseg"
+sequence = 4
+boss_name = "Sotetseg"
+mechanics_summary = [
+    "shadow_realm_maze_every_2_25_pct",
+    "ball_attack_splits_damage_between_players",
+    "telegraphed_aoe_on_player_tiles",
+]
+
+[[rooms]]
+id = "xarpus"
+sequence = 5
+boss_name = "Xarpus"
+mechanics_summary = [
+    "poison_drip_tiles_regenerate_xarpus",
+    "screech_damage_when_player_misses_prayer",
+    "counter_attacks_on_hit_during_rage_phase",
+]
+
+[[rooms]]
+id = "verzik"
+sequence = 6
+boss_name = "Verzik Vitur"
+mechanics_summary = ["see_verzik_phase_blocks_below"]
+
+# ---- Verzik (final boss, 3 phases) ------------------------------------
+
+[[phases]]
+id = "verzik_p1"
+enter_after = "enter_verzik_room"
+script = "verzik_phase_1"
+allowed_attacks = ["Lightning Electrofying", "Crabs Spawn"]
+# P1: Verzik sits on throne; lightning-electric projectile. Player
+# must hide behind pillars.
+# Ends when throne health depleted.
+
+[[phases]]
+id = "verzik_p2"
+enter_after = "verzik_p1"
+script = "verzik_phase_2"
+allowed_attacks = ["Verzik Magic", "Verzik Ranged", "Web Spawn",
+                   "Magic Bomb", "Purple Bomb"]
+# P2: Nylocas spawn in 3 colors; split-ball attack at player groups.
+# Spiders (Athanatos / Matomenos / Toxobolos — 3 colors).
+
+[[phases]]
+id = "verzik_p3"
+enter_after = "verzik_p2"
+script = "verzik_phase_3"
+allowed_attacks = [
+    "Verzik Magic", "Verzik Ranged", "Verzik Melee",
+    "Tornados", "Yellows (lightning puddles)",
+    "Dawnbringer Charge",
+]
+# P3: mobile Verzik. Tornadoes spawn; yellow puddles persist.
+# Dawnbringer = one-shot weapon provided for P1 only.
+
+# ---- Verzik attacks ---------------------------------------------------
+
+[[attacks]]
+name = "Lightning Electrofying"
+style = "magic"
+max_hit = 137
+warning_ticks = 3
+# Ignores prayer; only pillars block. Damage reduced with Dawnbringer.
+
+[[attacks]]
+name = "Verzik Magic"
+style = "magic"
+max_hit = 51
+warning_ticks = 2
+
+[[attacks]]
+name = "Verzik Ranged"
+style = "ranged"
+max_hit = 51
+warning_ticks = 2
+
+[[attacks]]
+name = "Verzik Melee"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 67
+warning_ticks = 0
+
+[[attacks]]
+name = "Purple Bomb"
+# P2 split-ball: splits damage between nearby players.
+style = "magic"
+max_hit = 80
+warning_ticks = 3
+on_hit.splits_damage_across_players = true
+
+# ---- Verzik mechanics -------------------------------------------------
+
+[[mechanics]]
+name = "Dawnbringer Weapon"
+primitive = "one_shot_weapon_provided"
+trigger = "phase_enter:verzik_p1"
+# Dawnbringer is given at start of P1; 100 hit effective damage
+# vs P1 Verzik. Lost at start of P2.
+params.item = "Dawnbringer"
+params.effective_max_hit = 100
+params.removed_at_phase = "verzik_p2"
+
+[[mechanics]]
+name = "Pillars"
+primitive = "destructible_pillars"
+trigger = "phase_enter:verzik_p1"
+params.pillar_count = 4
+params.pillar_hp = 1200
+params.damaged_per_electrify = 70
+
+[[mechanics]]
+name = "Web Spawn"
+primitive = "spawn_web_tiles"
+trigger = "phase_in:verzik_p2"
+period_ticks = 8
+params.web_tile_count = 3
+params.immobilizes_player_ticks = 4
+
+[[mechanics]]
+name = "Nylocas P2 Waves"
+primitive = "spawn_colored_nylocas"
+trigger = "phase_in:verzik_p2"
+period_ticks = 15
+params.nylo_colors = ["red_melee", "green_magic", "blue_ranged"]
+params.heals_verzik_if_not_killed = true
+params.heal_per_nylo_per_tick = 5
+
+[[mechanics]]
+name = "Tornados"
+primitive = "spawn_tracking_tornadoes"
+trigger = "phase_in:verzik_p3"
+period_ticks = 20
+params.tornado_count = 4
+params.player_specific = true       # one per player
+params.damage_on_contact = 20
+
+[[mechanics]]
+name = "Yellows (lightning puddles)"
+primitive = "persistent_dot_tile_pool"
+trigger = "phase_in:verzik_p3"
+# Persistent lightning puddles that accumulate throughout phase.
+period_ticks = 6
+params.duration_ticks = 0           # 0 = persists until phase end
+params.tile_count_per_spawn = 2
+params.dot_per_tick = 12

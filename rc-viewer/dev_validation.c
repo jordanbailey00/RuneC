@@ -154,8 +154,9 @@ int runec_dev_validation_prepare_encounter(RcWorld *world,
         npc->is_dead = false;
         npc->death_timer = 0;
         npc->respawn_timer = 0;
-        if (npc->def_id >= 0 && npc->def_id < g_npc_def_count) {
-            npc->current_hp = g_npc_defs[npc->def_id].hitpoints;
+        const RcNpcDef *def = rc_npc_def_for_npc(npc);
+        if (def) {
+            npc->current_hp = def->hitpoints;
         }
         if (env_bool_local("RUNEC_DEV_BOSS_ATTACKS", 1)) {
             rc_combat_start_npc_vs_player(world, npc->uid, 0);

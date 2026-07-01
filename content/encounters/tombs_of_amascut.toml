@@ -1,0 +1,201 @@
+# Tombs of Amascut — 4 path bosses (selectable order) → Wardens.
+# Path bosses: Akkha, Ba-Ba, Kephri, Zebak. Wardens = final boss
+# (Tumeken's Warden + Elidinis' Warden phase combat).
+
+name = "Tombs of Amascut"
+slug = "tombs_of_amascut"
+npc_ids = [11751, 11753, 11754, 11755, 11756, 11758, 11760, 11761, 11762]
+source_pages = [
+    "Tombs of Amascut", "Tombs of Amascut/Strategies",
+    "Akkha", "Akkha/Strategies",
+    "Ba-Ba", "Ba-Ba/Strategies",
+    "Kephri", "Kephri/Strategies",
+    "Zebak", "Zebak/Strategies",
+    "Tumeken's Warden", "Elidinis' Warden",
+]
+
+# ---- Path boss rooms (player picks order) ----------------------------
+
+[[rooms]]
+id = "akkha"
+path_boss = true
+boss_name = "Akkha"
+phases = 5                         # 4 phase-shifts + final
+mechanics_summary = [
+    "style_cycles_every_4_attacks",
+    "memorize_orb_sequence_to_damage_phase",
+    "4_invocations_at_hp_thresholds",
+    "shadow_orbs_radial_aoe",
+    "quadrant_line_attack_between_phases",
+]
+
+[[rooms]]
+id = "baba"
+path_boss = true
+boss_name = "Ba-Ba"
+phases = 3
+mechanics_summary = [
+    "rock_slam_aoe",
+    "boulder_phase_rolls_through_arena",
+    "banana_puzzle_mid_phase",
+    "gorilla_spawns_attack_player",
+]
+
+[[rooms]]
+id = "kephri"
+path_boss = true
+boss_name = "Kephri"
+phases = 3
+mechanics_summary = [
+    "bomb_scarab_spawns_every_3_attacks",
+    "egg_spawns_summon_scarabs_if_broken",
+    "heal_scarabs_when_near_kephri",
+    "swarms_phase_2",
+    "tile_bomb_attacks",
+]
+
+[[rooms]]
+id = "zebak"
+path_boss = true
+boss_name = "Zebak"
+phases = 2
+mechanics_summary = [
+    "water_level_rises_continuously",
+    "jug_mechanic_to_drain_water",
+    "roar_aoe_knockback",
+    "blood_cloud_dot",
+    "bite_attack_high_damage",
+]
+
+# ---- Wardens (final encounter, multi-phase) ---------------------------
+
+[[phases]]
+id = "wardens_p1"
+enter_after = "all_path_bosses_cleared"
+script = "wardens_phase_1"
+allowed_attacks = []
+# P1: Obelisk / statues; players DPS obelisk while protecting from
+# scarab spawns. Tumeken + Elidinis statues not yet attackable.
+
+[[phases]]
+id = "wardens_p2"
+enter_after = "wardens_p1"
+script = "wardens_phase_2"
+allowed_attacks = ["Warden Magic", "Warden Ranged", "Akkha Reprise",
+                   "Baba Reprise", "Zebak Reprise", "Kephri Reprise"]
+# P2: One warden at 100% engaging player(s). Uses attacks from each
+# path boss randomly (Akkha reprise, Baba reprise, etc.).
+
+[[phases]]
+id = "wardens_p3"
+enter_after = "wardens_p2:warden_1_dead"
+script = "wardens_phase_3"
+allowed_attacks = ["Warden Magic", "Warden Ranged", "Pylons",
+                   "Death Tiles", "Mid-Arena Pillar", "Light Tiles"]
+# P3: Massive chamber, Tumeken phase; pylons, death tiles, pillar
+# protection.
+
+# ---- Warden attacks ---------------------------------------------------
+
+[[attacks]]
+name = "Warden Magic"
+style = "magic"
+max_hit = 76
+warning_ticks = 2
+
+[[attacks]]
+name = "Warden Ranged"
+style = "ranged"
+max_hit = 76
+warning_ticks = 2
+
+[[attacks]]
+name = "Akkha Reprise"
+# Reprise: same radial shadow orbs as Akkha's fight.
+style = "magic"
+max_hit = 40
+warning_ticks = 3
+aoe_shape = "radial"
+
+[[attacks]]
+name = "Kephri Reprise"
+style = "ranged"
+max_hit = 40
+warning_ticks = 2
+# Bomb scarab reprise.
+
+[[attacks]]
+name = "Baba Reprise"
+style = "melee"
+accuracy_roll = "crush"
+max_hit = 50
+warning_ticks = 0
+# Slam reprise.
+
+[[attacks]]
+name = "Zebak Reprise"
+style = "ranged"
+max_hit = 40
+warning_ticks = 2
+on_hit.inflict_venom = true
+
+# ---- Warden mechanics -------------------------------------------------
+
+[[mechanics]]
+name = "Core Break Sequence"
+primitive = "obelisk_dps_check"
+trigger = "phase_in:wardens_p1"
+# Obelisk in center has HP pool; must be DPS'd down within time
+# limit or P1 fails.
+params.obelisk_hp = 3000
+params.time_limit_ticks = 60
+
+[[mechanics]]
+name = "Pylons"
+primitive = "spawn_energized_pylons"
+trigger = "phase_in:wardens_p3"
+# Pylons spawn around arena; standing in pylon field gives damage
+# buff. Knocked-off pylons reduce player damage.
+params.pylon_count = 4
+params.buff_range_tiles = 3
+params.buff_damage_multiplier = 1.5
+
+[[mechanics]]
+name = "Death Tiles"
+primitive = "periodic_death_tile_wave"
+trigger = "phase_in:wardens_p3"
+# Tiles spawn in waves; any tile contact = instakill. Safe tiles
+# alternate across the arena.
+period_ticks = 12
+params.wave_tile_count = 20
+params.safe_tile_pattern = "checkerboard"
+params.damage_on_tile = 999          # instakill
+
+[[mechanics]]
+name = "Light Tiles"
+primitive = "telegraphed_aoe_tile"
+trigger = "phase_in:wardens_p3"
+period_ticks = 6
+params.target_current_tile = true
+params.warning_ticks = 2
+params.damage_min = 50
+params.damage_max = 80
+
+# ---- Invocation system -----------------------------------------------
+# ToA's signature feature: player-selected modifiers (Invocations)
+# that stack before the raid. Each invocation adjusts difficulty +
+# point rewards. Similar to Colosseum modifier system.
+
+[[mechanics]]
+name = "Invocations"
+primitive = "run_level_modifier_registry"
+# 35 invocations in OSRS. Partial list:
+params.invocations = [
+    { id = "Walk the Path",    level = 150, difficulty = "Entry" },
+    { id = "Pathseeker",       level = 150, difficulty = "Normal" },
+    { id = "Path Conqueror",   level = 300, difficulty = "Hard" },
+    { id = "Ancestral Dampening" },
+    { id = "Resistance" },
+    { id = "Quick Study" },
+    # ... 29 more
+]

@@ -1,0 +1,27 @@
+id = "items"
+format = "binary"
+path = "data/defs/items.bin"
+magic_label = "IDEF"
+magic_u32 = "0x49444546"
+current_version = 2
+accepted_versions = [1, 2]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_items.py"
+consumers = ["rc-core/items.c"]
+source_dataset = "b237 cache-derived item definitions plus RuneC-owned item content"
+row_fields = [
+  "u32 record_len",
+  "record: u32 id",
+  "record: u16 flags and u8 kind (v2); u8 flags only in v1",
+  "record: pstr8 name",
+  "record: u16 weight_cg",
+  "record: u32 highalch",
+  "record: u32 lowalch",
+  "record: u32 value",
+  "record: u32 linked_id_item, linked_id_noted, linked_id_placeholder, buy_limit (v2)",
+  "record: u32 wear_model_ids[7] (v2)",
+  "optional equipment block: u8 slot, u8 req_count, reqs, i16 bonuses[14]",
+  "optional weapon block: u8 attack_speed, u8 weapon_type, u8 stance_bits, stance names",
+]
+compatibility = "Loader accepts versions 1 and 2."

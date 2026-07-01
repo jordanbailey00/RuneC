@@ -1,0 +1,1135 @@
+title = "Transcript:Gertrude's Cat"
+npcs = ["Gertrude", "Gertrude's cat (NPC)", "Kitten (Gertrude's Cat)", "Shilop", "Wilough"]
+node_count = 144
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello, are you okay?"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Do I look okay? Those kids drive me crazy."
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "I'm sorry. It's just that I've lost her."
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Lost who?"
+parent = -1
+
+[[nodes]]
+id = 4
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Fluffs, poor Fluffs. She never hurt anyone."
+parent = -1
+
+[[nodes]]
+id = 5
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Who's Fluffs?"
+parent = -1
+
+[[nodes]]
+id = 6
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "My beloved feline friend Fluffs. She's been purring by my side for almost a decade. Please, could you go search for her while I look over the kids?"
+parent = -1
+
+[[nodes]]
+id = 7
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [8, 9, 10, 11, 12, 13]
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, I suppose I could."
+parent = 7
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "speaker"
+speaker = "Gertrude"
+text = "Really? Thank you so much! I really have no idea where she could be!"
+parent = 7
+
+[[nodes]]
+id = 10
+depth = 2
+kind = "speaker"
+speaker = "Gertrude"
+text = "I think my sons, Shilop and Wilough, saw the cat last. They'll be out in the market place."
+parent = 7
+
+[[nodes]]
+id = 11
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright then, I'll see what I can do."
+parent = 7
+
+[[nodes]]
+id = 12
+depth = 2
+kind = "act"
+text = "[[Gertrude's Cat]] is started."
+parent = 7
+
+[[nodes]]
+id = 13
+depth = 2
+kind = "act"
+text = "end"
+parent = 7
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [15, 16, 17]
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sorry, I'm too busy to play pet rescue."
+parent = 14
+
+[[nodes]]
+id = 16
+depth = 2
+kind = "speaker"
+speaker = "Gertrude"
+text = "Well, okay then. I'll have to find someone else."
+parent = 14
+
+[[nodes]]
+id = 17
+depth = 2
+kind = "act"
+text = "end"
+parent = 14
+is_terminal = true
+
+[[nodes]]
+id = 18
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Gertrude."
+parent = -1
+
+[[nodes]]
+id = 19
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Have you seen my poor Fluffs?"
+parent = -1
+
+[[nodes]]
+id = 20
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm afraid not."
+parent = -1
+
+[[nodes]]
+id = 21
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "What about Shilop?"
+parent = -1
+
+[[nodes]]
+id = 22
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "No sign of him either."
+parent = -1
+
+[[nodes]]
+id = 23
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Hmmm...strange, he should be at the market."
+parent = -1
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there, I've been looking for you."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Wilough/Shilop"
+text = "I didn't mean to take it! I just forgot to pay."
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "What? I'm trying to help your mum find Fluffs."
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "other"
+text = "''(If the player first talked to Shilop)''"
+parent = -1
+children = [29]
+
+[[nodes]]
+id = 29
+depth = 2
+kind = "speaker"
+speaker = "Wilough"
+text = "I might be able to help. Fluffs followed me to my secret play area, I haven't seen her since."
+parent = 28
+
+[[nodes]]
+id = 30
+depth = 1
+kind = "speaker"
+speaker = "Wilough"
+text = "Ohh...well, in that case I might be able to help. Fluffs followed me to my secret play area, I haven't seen her since."
+parent = -1
+
+[[nodes]]
+id = 31
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where is this play area?"
+parent = -1
+
+[[nodes]]
+id = 32
+depth = 1
+kind = "speaker"
+speaker = "Wilough"
+text = "If I told you that, it wouldn't be a secret."
+parent = -1
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "Tell me sonny, or I will hurt you."
+parent = -1
+children = [34, 35, 36, 37]
+
+[[nodes]]
+id = 34
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Tell me sonny, or I will hurt you."
+parent = 33
+
+[[nodes]]
+id = 35
+depth = 2
+kind = "speaker"
+speaker = "Wilough"
+text = "W..wh..what?! Y..you wouldn't! A young lad like me! I'd have you behind bars before nightfall!"
+parent = 33
+
+[[nodes]]
+id = 36
+depth = 2
+kind = "act"
+text = "You decided it's best not to hurt the boy."
+parent = 33
+
+[[nodes]]
+id = 37
+depth = 2
+kind = "act"
+text = "end"
+parent = 33
+is_terminal = true
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "option"
+text = "What will make you tell me?"
+parent = -1
+children = [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 52]
+
+[[nodes]]
+id = 39
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What will make you tell me?"
+parent = 38
+
+[[nodes]]
+id = 40
+depth = 2
+kind = "speaker"
+speaker = "Shilop"
+text = "Well...now you ask, I am a bit short on cash."
+parent = 38
+
+[[nodes]]
+id = 41
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "How much?"
+parent = 38
+
+[[nodes]]
+id = 42
+depth = 2
+kind = "speaker"
+speaker = "Shilop"
+text = "10 coins."
+parent = 38
+
+[[nodes]]
+id = 43
+depth = 2
+kind = "speaker"
+speaker = "Wilough"
+text = "10 coins?!"
+parent = 38
+
+[[nodes]]
+id = 44
+depth = 2
+kind = "speaker"
+speaker = "Wilough"
+text = "I'll handle this."
+parent = 38
+
+[[nodes]]
+id = 45
+depth = 2
+kind = "speaker"
+speaker = "Wilough"
+text = "100 coins should cover it."
+parent = 38
+
+[[nodes]]
+id = 46
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "100 coins! Why should I pay you?"
+parent = 38
+
+[[nodes]]
+id = 47
+depth = 2
+kind = "speaker"
+speaker = "Wilough"
+text = "You shouldn't, but we won't help otherwise. We never liked that cat anyway, so what do you say?"
+parent = 38
+
+[[nodes]]
+id = 48
+depth = 2
+kind = "option"
+text = "I'm not paying you a penny."
+parent = 38
+children = [49, 50, 51]
+
+[[nodes]]
+id = 49
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm not paying you a penny."
+parent = 48
+
+[[nodes]]
+id = 50
+depth = 3
+kind = "speaker"
+speaker = "Wilough"
+text = "Okay then, I'll find another way to make money."
+parent = 48
+
+[[nodes]]
+id = 51
+depth = 3
+kind = "act"
+text = "end"
+parent = 48
+is_terminal = true
+
+[[nodes]]
+id = 52
+depth = 2
+kind = "option"
+text = "Okay then, I'll pay."
+parent = 38
+children = [53, 54, 55, 56, 57, 58, 59]
+
+[[nodes]]
+id = 53
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay then, I'll pay."
+parent = 52
+
+[[nodes]]
+id = 54
+depth = 3
+kind = "act"
+text = "You give the lad 100 coins."
+parent = 52
+
+[[nodes]]
+id = 55
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "There you go, now where did you see Fluffs ?"
+parent = 52
+
+[[nodes]]
+id = 56
+depth = 3
+kind = "speaker"
+speaker = "Wilough"
+text = "I play at an abandoned lumber mill to the north east. Just beyond the Jolly Boar Inn. I saw Fluffs running around in there."
+parent = 52
+
+[[nodes]]
+id = 57
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Anything else?"
+parent = 52
+
+[[nodes]]
+id = 58
+depth = 3
+kind = "speaker"
+speaker = "Wilough"
+text = "Well, you'll have to find the broken fence to get in. I'm sure you can manage that."
+parent = 52
+
+[[nodes]]
+id = 59
+depth = 3
+kind = "act"
+text = "end"
+parent = 52
+is_terminal = true
+
+[[nodes]]
+id = 60
+depth = 1
+kind = "option"
+text = "Well never mind, it's Fluffs' loss."
+parent = -1
+children = [61, 62, 63]
+
+[[nodes]]
+id = 61
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Well, never mind, it's Fluffs' loss."
+parent = 60
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "speaker"
+speaker = "Wilough"
+text = "I'm sure my mum will get over it."
+parent = 60
+
+[[nodes]]
+id = 63
+depth = 2
+kind = "act"
+text = "end"
+parent = 60
+is_terminal = true
+
+[[nodes]]
+id = 64
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Where did you say you saw Fluffs?"
+parent = -1
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "speaker"
+speaker = "Wilough"
+text = "Weren't you listening? I saw the flea bag in the old lumber mill just north east of here. Just walk past the Jolly Boar Inn and you should find it."
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 67
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Gertrude."
+parent = -1
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Hello again, did you manage to find Shilop? I can't keep an eye on him for the life of me."
+parent = -1
+
+[[nodes]]
+id = 69
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "He does seem quite a handful."
+parent = -1
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "You have no idea! Did he help at all?"
+parent = -1
+
+[[nodes]]
+id = 71
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I think so, I'm just going to look now."
+parent = -1
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Thanks again, adventurer."
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 74
+depth = 1
+kind = "other"
+text = "'''Fluffs' kitten:''' {{overhead|Mew!}}"
+parent = -1
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 76
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Miaoww}}"
+parent = -1
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 78
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Hisss!}}"
+parent = -1
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ouch!}}"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "act"
+text = "Maybe the cat is thirsty?"
+parent = -1
+
+[[nodes]]
+id = 81
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Hisss!}}"
+parent = -1
+
+[[nodes]]
+id = 83
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ouch!}}"
+parent = -1
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "act"
+text = "Perhaps the cat wants something?"
+parent = -1
+
+[[nodes]]
+id = 85
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Mew!}}"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 88
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Hisss!}}"
+parent = -1
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ouch!}}"
+parent = -1
+
+[[nodes]]
+id = 90
+depth = 1
+kind = "act"
+text = "Maybe the cat is hungry?"
+parent = -1
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 92
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "speaker"
+speaker = "Shilop"
+text = "You think you're tough do you?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Pardon?"
+parent = -1
+
+[[nodes]]
+id = 95
+depth = 1
+kind = "speaker"
+speaker = "Shilop"
+text = "I can beat anyone up!"
+parent = -1
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "speaker"
+speaker = "Wilough"
+text = "He can you know!"
+parent = -1
+
+[[nodes]]
+id = 97
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Really?"
+parent = -1
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "act"
+text = "The boy begins to jump around with his fists up. You decide it's best not to kill him just yet."
+parent = -1
+
+[[nodes]]
+id = 99
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Hello. How's it going? Any luck?"
+parent = -1
+
+[[nodes]]
+id = 102
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I've found Fluffs!"
+parent = -1
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Well well, you are clever! Did you bring her back?"
+parent = -1
+
+[[nodes]]
+id = 104
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, that's the thing, she refuses to leave."
+parent = -1
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Oh dear, oh dear! Maybe she's just hungry. She loves doogle sardines but I'm all out."
+parent = -1
+
+[[nodes]]
+id = 106
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Doogle sardines?"
+parent = -1
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Yes, raw sardines seasoned with doogle leaves. Unfortunately I've used all my doogle leaves, but you may find some in the woods out back."
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 109
+depth = 1
+kind = "act"
+text = "You rub the doogle leaves all over the sardines."
+parent = -1
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 111
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Mew!}}"
+parent = -1
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 113
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Hisss!}}"
+parent = -1
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "{{overhead|Ouch!}}"
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "act"
+text = "The cat seems afraid to leave. In the distance you can hear kittens mewing..."
+parent = -1
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hi!"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Hey traveller, did Fluffs eat the sardines?"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Yeah, she loved them, but she still won't leave."
+parent = -1
+
+[[nodes]]
+id = 120
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Well that is strange, there must be a reason."
+parent = -1
+
+[[nodes]]
+id = 121
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 122
+depth = 1
+kind = "act"
+text = "You find a kitten! You carefully place it in your backpack."
+parent = -1
+
+[[nodes]]
+id = 123
+depth = 1
+kind = "act"
+text = "receives=[[Fluffs' kitten]]."
+parent = -1
+
+[[nodes]]
+id = 124
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 1
+kind = "speaker"
+speaker = "Fluffs"
+text = "{{overhead|Purr...}}"
+parent = -1
+
+[[nodes]]
+id = 126
+depth = 1
+kind = "other"
+text = "'''Fluffs' kitten:''' {{overhead|Purr...}}"
+parent = -1
+
+[[nodes]]
+id = 127
+depth = 1
+kind = "act"
+text = "Fluffs has run off home with her offsping."
+parent = -1
+
+[[nodes]]
+id = 128
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 129
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello Gertrude. Fluffs ran off with her kitten."
+parent = -1
+
+[[nodes]]
+id = 130
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "You're back! Thank you! Thank you! Fluffs just came back! I think she was just upset as she couldn't find her kitten."
+parent = -1
+
+[[nodes]]
+id = 131
+depth = 1
+kind = "box"
+text = "Gertrude gives you a hug"
+parent = -1
+
+[[nodes]]
+id = 132
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "If you hadn't found her kitten it would have died out there!"
+parent = -1
+
+[[nodes]]
+id = 133
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's okay, I like to do my bit."
+parent = -1
+
+[[nodes]]
+id = 134
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "I don't know how to thank you. I have no real material possessions. I do have kittens! I can only really look after one."
+parent = -1
+
+[[nodes]]
+id = 135
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, if it needs a home."
+parent = -1
+
+[[nodes]]
+id = 136
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "I would sell it to my cousin in West Ardougne. I hear there's a rat epidemic there. But it's too far."
+parent = -1
+
+[[nodes]]
+id = 137
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Here you go, look after her and thank you again!"
+parent = -1
+
+[[nodes]]
+id = 138
+depth = 1
+kind = "speaker"
+speaker = "Gertrude"
+text = "Oh by the way, the kitten can live in your backpack, but to make it grow you must take it out and feed and stroke it often."
+parent = -1
+
+[[nodes]]
+id = 139
+depth = 1
+kind = "act"
+text = "Gertrude gives you a kitten."
+parent = -1
+
+[[nodes]]
+id = 140
+depth = 1
+kind = "act"
+text = "receives=[[kitten]]"
+parent = -1
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "act"
+text = "...and some food!"
+parent = -1
+
+[[nodes]]
+id = 142
+depth = 1
+kind = "act"
+text = "receives=[[chocolate cake]] and [[Stew|stew]]"
+parent = -1
+
+[[nodes]]
+id = 143
+depth = 1
+kind = "other"
+text = "{{Qact|Congratulations! Quest complete!}}"
+parent = -1

@@ -1,40 +1,17 @@
-Gathering node index
+Gathering Nodes
 
 status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
-output binary: data/defs/gathering_nodes.bin (613740 bytes)
-source object behaviors: data/defs/object_behaviors.bin
-source object placements: data/defs/object_placements.bin
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 613740
+entries: 34096
 nodes: 34096
+gathering nodes: 34096
 
-by skill:
-  woodcutting  24456
-  mining       3526
-  fishing      30
-  farming      6084
-
-top regions:
-  12340 (48,52) 567
-  12339 (48,51) 495
-   6475 (25,75) 490
-   6448 (25,48) 429
-   6967 (27,55) 419
-   5423 (21,47) 417
-   6703 (26,47) 376
-  10044 (39,60) 374
-  10548 (41,52) 358
-  12852 (50,52) 334
-   6447 (25,47) 284
-  12595 (49,51) 282
-   5421 (21,45) 238
-  10550 (41,54) 234
-  11339 (44,75) 233
-  10805 (42,53) 224
-  10569 (41,73) 220
-   9523 (37,51) 210
-   9541 (37,69) 196
-  10315 (40,75) 193
+installed files:
+  - data/defs/gathering_nodes.bin bytes=613740 sha256=ea69638f130869bab49e444bd4e226b15de7f754184237a9f4f876c693450013
 
 accepted simplifications:
-  - nodes are object-backed resources only; hunter targets, stalls, and activity-only nodes stay with activity schemas
-  - level/tool requirements come from recipes and future per-skill action rules
-  - runtime now owns generic depletion/respawn; exact success rolls remain per-skill action work
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

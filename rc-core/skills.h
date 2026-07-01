@@ -6,6 +6,7 @@
 #define RC_RECIPE_MAX_REQS 8
 #define RC_RECIPE_MAX_INPUTS 16
 #define RC_RECIPE_MAX_TOOLS 8
+#define RC_SKILL_NODE_REGION_COUNT 65536
 
 typedef struct {
     uint8_t skill, level;
@@ -45,6 +46,24 @@ typedef struct {
     uint8_t plane, skill, action_mask, type, rotation, flags;
 } RcGatheringNode;
 
+typedef struct {
+    uint32_t first, count;
+} RcSkillRegionIndex;
+
+typedef struct {
+    RcRecipe *recipes;
+    int recipe_count;
+    int *recipe_next;
+    int recipe_by_output[RC_MAX_ITEM_DEFS];
+    RcSkillDropSource *drop_sources;
+    RcSkillDrop *drops;
+    int drop_source_count;
+    int drop_count;
+    RcGatheringNode *gathering_nodes;
+    int gathering_node_count;
+    RcSkillRegionIndex gathering_region_index[RC_SKILL_NODE_REGION_COUNT];
+} RcSkillData;
+
 extern RcRecipe *g_rc_recipes;
 extern RcSkillDropSource *g_rc_skill_drop_sources;
 extern RcSkillDrop *g_rc_skill_drops;
@@ -60,6 +79,15 @@ extern const int RC_XP_TABLE[100];
 int rc_load_recipes(const char *path);
 int rc_load_skill_drops(const char *path);
 int rc_load_gathering_nodes(const char *path);
+void rc_skill_data_init(RcSkillData *data);
+void rc_skill_data_free(RcSkillData *data);
+int rc_load_recipes_into(const char *path, RcSkillData *out);
+int rc_load_skill_drops_into(const char *path, RcSkillData *out);
+int rc_load_gathering_nodes_into(const char *path, RcSkillData *out);
+int rc_skill_data_import_globals(RcSkillData *out);
+int rc_skills_mirror_to_globals(const RcSkillData *data);
+void rc_skills_use_data(const RcSkillData *data);
+void rc_skills_reset_data_if_active(const RcSkillData *data);
 
 const RcRecipe *rc_recipe_get(int idx);
 const RcRecipe *rc_recipe_find_output(int item_id);

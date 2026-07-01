@@ -50,7 +50,6 @@ static void tick_until_inactive(RcWorld *world, int max_ticks) {
 }
 
 static void test_attack_group_handler_beats_generic_option_handler(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -64,11 +63,11 @@ static void test_attack_group_handler_beats_generic_option_handler(void) {
     RcInteractionDispatchKey key = rc_interaction_dispatch_key_any();
     key.kind = RC_INTERACTION_NPC;
     key.op = RC_INTERACTION_OP2;
-    assert(rc_interaction_register_handler(&key, phase5_complete_handler,
-                                           &generic));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase5_complete_handler, &generic));
     key.content_group = RC_INTERACTION_CONTENT_GROUP_NPC_ATTACK;
-    assert(rc_interaction_register_handler(&key, phase5_complete_handler,
-                                           &attack));
+    assert(rc_interaction_register_world_handler(
+        world, &key, phase5_complete_handler, &attack));
 
     rc_player_interact_npc(world, uid, 1);
     tick_until_inactive(world, 8);
@@ -83,7 +82,6 @@ static void test_attack_group_handler_beats_generic_option_handler(void) {
 }
 
 static void test_default_attack_handler_starts_and_refreshes_combat(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -121,7 +119,6 @@ static void test_default_attack_handler_starts_and_refreshes_combat(void) {
 }
 
 static void test_attack_requires_data_backed_attack_option(void) {
-    rc_interaction_clear_handlers();
     RcWorldConfig cfg = rc_preset_base_only();
     cfg.subsystems = RC_SUB_COMBAT;
     RcWorld *world = rc_world_create_config(&cfg);
@@ -164,6 +161,5 @@ int main(void) {
     test_attack_group_handler_beats_generic_option_handler();
     test_default_attack_handler_starts_and_refreshes_combat();
     test_attack_requires_data_backed_attack_option();
-    rc_interaction_clear_handlers();
     return 0;
 }

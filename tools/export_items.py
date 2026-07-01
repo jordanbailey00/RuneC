@@ -24,7 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from cache_item_defs import load_cache_item_defs
 from database_sources import OsrsreboxedDB, OSRSREBOXED
-from source_paths import CACHE_DIR
+from source_paths import CACHE_DIR, require_cache_dir
 from wiki_item_bonuses import load_wiki_bonus_overrides
 
 IDEF_MAGIC = 0x49444546  # "IDEF"
@@ -497,7 +497,7 @@ def main():
 
     db = open_optional_item_db()
     model_links = load_item_models()
-    cache_items = load_cache_item_defs(args.cache_dir)
+    cache_items = load_cache_item_defs(require_cache_dir(args.cache_dir))
     cache_models = cache_model_links(cache_items)
     model_links.update(cache_models)
     noted_links, placeholder_links = cache_form_links(cache_items)

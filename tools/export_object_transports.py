@@ -7,7 +7,7 @@ import struct
 from collections import Counter
 from pathlib import Path
 
-from source_paths import DATA_OSRS
+from legacy_external_source_paths import DATA_OSRS
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = DATA_OSRS / "transports_osrs.json"

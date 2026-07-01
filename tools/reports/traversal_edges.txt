@@ -1,50 +1,17 @@
-Traversal edge index
+Traversal Edges
 
 status: READY_WITH_ACCEPTED_SIMPLIFICATIONS
-output binary: data/defs/traversal_edges.bin (1911424 bytes)
-source object transports: data/source/data_osrs/transports_osrs.json
-source item/spell teleports: data/source/data_osrs/teleports_osrs.json
+source: content/runtime_snapshots/manifest.json
+authority: runec_owned_reviewed_runtime_snapshot
+snapshot files: 1
+snapshot bytes: 1911424
+entries: 45740
 edges: 45740
+traversal edges: 45740
 
-by source kind:
-  object   29928
-  item     13091
-  spell    2721
-
-top actions:
-  object   Light                    8249
-  object   Enter                    4326
-  item     Tele to POH              3664
-  item     Break                    3153
-  spell    Cast                     2693
-  object   Climb-up                 2620
-  item     Rub                      2323
-  object   Climb-down               2206
-  object   Cross                    1470
-  item     Teleport                 1377
-  object   Climb                    1277
-  object   Travel                   1035
-  object   Use                      804
-  object   Mine                     795
-  object   Open                     762
-  object   Exit                     602
-  object   Jump                     403
-  item     Teleports                360
-  item     Inside                   357
-  object   Pass                     309
-  object   Last-destination (DKP)   298
-  item     Monastery Teleport       262
-  object   Escape                   234
-  object   Squeeze-through          230
-  object   Chop down                205
-  object   Picklock                 189
-  item     Lletya                   178
-  object   Last-destination (CIR)   172
-  object   Pass-through             161
-  item     Prifddinas               150
+installed files:
+  - data/defs/traversal_edges.bin bytes=1911424 sha256=f2395783f6d33535d08f1ac30860b5bc1243a921750b9de816aee80fe7a2acf1
 
 accepted simplifications:
-  - each destination is a separate edge; action systems choose the valid destination
-  - item/spell teleports have no source tile and use 0xffff as the source-tile sentinel
-  - requirements, charges, rune costs, diaries, quest gates, and UI selection stay with their owning systems
-  - instance-local dynamic traversal remains activity-schema work
+  - this first-release bridge preserves the reviewed runtime snapshot while semantic source tables are normalized later
+  - no external checkout, wiki cache, private-server source, or wrong-game source is read during rebuild

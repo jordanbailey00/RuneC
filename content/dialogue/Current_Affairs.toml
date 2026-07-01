@@ -1,0 +1,3958 @@
+title = "Transcript:Current Affairs"
+npcs = ["Arhein", "Councillor Catherine", "Harry"]
+node_count = 512
+
+[[nodes]]
+id = 0
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 1
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 2
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 3
+depth = 1
+kind = "option"
+text = "What's with the duck?"
+parent = -1
+children = [4, 5, 6, 7, 8, 9, 14, 15, 20]
+
+[[nodes]]
+id = 4
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's with the duck?"
+parent = 3
+
+[[nodes]]
+id = 5
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Oh, it's part of a little test I'd like to do. A travelling salesman stopped off here a while ago and claimed you can use a duck to accurately track currents in the sea."
+parent = 3
+
+[[nodes]]
+id = 6
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "My plan is to track the currents around Catherby to see if I can speed up the docking process, but there's a bit of a snag..."
+parent = 3
+
+[[nodes]]
+id = 7
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = 3
+
+[[nodes]]
+id = 8
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = """
+The local council have a by-law forbidding non-human workers from doing business in Catherby. I'd hoped the local councillor wouldn't notice, but the second the duck arrived, she came along making threats of a fine!
+"""
+parent = 3
+
+[[nodes]]
+id = 9
+depth = 2
+kind = "cond"
+text = "If the player does not meet the requirements to begin the quest:"
+parent = 3
+children = [10, 11, 12, 13]
+
+[[nodes]]
+id = 10
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can do to help?"
+parent = 9
+
+[[nodes]]
+id = 11
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "I don't think so, but thanks for the offer."
+parent = 9
+
+[[nodes]]
+id = 12
+depth = 3
+kind = "box"
+text = "You do not meet all of the requirements to start the Current Affairs quest."
+parent = 9
+
+[[nodes]]
+id = 13
+depth = 3
+kind = "act"
+text = "end"
+parent = 9
+is_terminal = true
+
+[[nodes]]
+id = 14
+depth = 2
+kind = "select"
+text = "Start the Current Affairs quest?"
+parent = 3
+
+[[nodes]]
+id = 15
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 3
+children = [16, 17, 18, 19]
+
+[[nodes]]
+id = 16
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can do to help?"
+parent = 15
+
+[[nodes]]
+id = 17
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "Well, you're welcome to try talking to Councillor Catherine yourself. You'll find her in the Council Office north east of here. I warn you though, it will probably be an uphill struggle!"
+parent = 15
+
+[[nodes]]
+id = 18
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks for the warning. I'll head over and see what I can do."
+parent = 15
+
+[[nodes]]
+id = 19
+depth = 3
+kind = "act"
+text = "end"
+parent = 15
+is_terminal = true
+
+[[nodes]]
+id = 20
+depth = 2
+kind = "option"
+text = "No."
+parent = 3
+children = [21, 22, 23]
+
+[[nodes]]
+id = 21
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry to hear that. Hopefully you manage to work something out."
+parent = 20
+
+[[nodes]]
+id = 22
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "Thank you, friend."
+parent = 20
+
+[[nodes]]
+id = 23
+depth = 3
+kind = "act"
+text = "end"
+parent = 20
+is_terminal = true
+
+[[nodes]]
+id = 24
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 25
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 26
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 27
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 28
+depth = 1
+kind = "option"
+text = "What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 29
+depth = 1
+kind = "option"
+text = "Where can I find the Council Office?"
+parent = -1
+children = [30, 31, 32]
+
+[[nodes]]
+id = 30
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I find the Council Office?"
+parent = 29
+
+[[nodes]]
+id = 31
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "It's just north east of here. Good luck trying to deal with Councillor Catherine though."
+parent = 29
+
+[[nodes]]
+id = 32
+depth = 2
+kind = "act"
+text = "end"
+parent = 29
+is_terminal = true
+
+[[nodes]]
+id = 33
+depth = 1
+kind = "option"
+text = "Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 34
+depth = 1
+kind = "option"
+text = "I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 35
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello there. Are you Councillor Catherine? I was hoping you could help me with something."
+parent = -1
+
+[[nodes]]
+id = 36
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Thank you for enquiring at the Catherby Council Office. Your views are important to us. What is it I can do for you today?"
+parent = -1
+
+[[nodes]]
+id = 37
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I had a question about one of the local by-laws. Apparently non-human workers aren't allowed to do business in Catherby?"
+parent = -1
+
+[[nodes]]
+id = 38
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "That is correct."
+parent = -1
+
+[[nodes]]
+id = 39
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Doesn't that strike you as a bit... wrong?"
+parent = -1
+
+[[nodes]]
+id = 40
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = """
+If you are referring to the rumours of Humans Against Monsters sympathies within the Catherby Council, then I can assure you that a full impartial investigation found those rumours to be totally false.
+"""
+parent = -1
+
+[[nodes]]
+id = 41
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Impartial?"
+parent = -1
+
+[[nodes]]
+id = 42
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Completely."
+parent = -1
+
+[[nodes]]
+id = 43
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I see... So you wouldn't even be willing to let Arhein's duck track a few currents? The results would be very useful, not just to Arhein. I imagine any sailor docking here would find them helpful."
+parent = -1
+
+[[nodes]]
+id = 44
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Are you a sailor yourself?"
+parent = -1
+
+[[nodes]]
+id = 45
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, yes, I suppose you could say that."
+parent = -1
+
+[[nodes]]
+id = 46
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = """
+All sailors doing business in Catherby must first be registered with the Catherby Council. Doing so requires completion of the appropriate form which is the fourth in the port series of the Catherby Registry form group.
+"""
+parent = -1
+
+[[nodes]]
+id = 47
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Wait... What?"
+parent = -1
+
+[[nodes]]
+id = 48
+depth = 1
+kind = "box"
+text = "pic=Form cr-4p detail.png|Councillor Catherine hands you a form."
+parent = -1
+
+[[nodes]]
+id = 49
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Please ensure when filling in the form that all answers are clearly legible. Failure to do so may result in unnecessary processing delays."
+parent = -1
+
+[[nodes]]
+id = 50
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "But why do I need to..."
+parent = -1
+
+[[nodes]]
+id = 51
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Thanks to recent budget changes, I'm pleased to confirm that the Catherby Council are now able to provide charcoal free of charge. If required, you can find some in the cabinet to my left."
+parent = -1
+
+[[nodes]]
+id = 52
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Right..."
+parent = -1
+
+[[nodes]]
+id = 53
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Upon completion, please return the form to the Catherby Council Office at your earliest convenience."
+parent = -1
+
+[[nodes]]
+id = 54
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 55
+depth = 1
+kind = "box"
+text = "pic=Charcoal detail.png|You search the cabinet and find some charcoal."
+parent = -1
+
+[[nodes]]
+id = 56
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 57
+depth = 1
+kind = "box"
+text = "pic=Form cr-4p detail.png|You start looking through the questions on the form..."
+parent = -1
+
+[[nodes]]
+id = 58
+depth = 1
+kind = "select"
+text = "What is your main reason for making port at Catherby?"
+parent = -1
+
+[[nodes]]
+id = 59
+depth = 1
+kind = "option"
+text = "Pleasure."
+parent = -1
+children = [60]
+
+[[nodes]]
+id = 60
+depth = 2
+kind = "act"
+text = "continue"
+parent = 59
+
+[[nodes]]
+id = 61
+depth = 1
+kind = "option"
+text = "Trade."
+parent = -1
+children = [62]
+
+[[nodes]]
+id = 62
+depth = 2
+kind = "act"
+text = "continue"
+parent = 61
+
+[[nodes]]
+id = 63
+depth = 1
+kind = "option"
+text = "Piracy."
+parent = -1
+children = [64]
+
+[[nodes]]
+id = 64
+depth = 2
+kind = "act"
+text = "continue"
+parent = 63
+
+[[nodes]]
+id = 65
+depth = 1
+kind = "select"
+text = "How many hulls does your ship have?"
+parent = -1
+
+[[nodes]]
+id = 66
+depth = 1
+kind = "option"
+text = "0"
+parent = -1
+children = [67]
+
+[[nodes]]
+id = 67
+depth = 2
+kind = "act"
+text = "continue"
+parent = 66
+
+[[nodes]]
+id = 68
+depth = 1
+kind = "option"
+text = "1"
+parent = -1
+children = [69]
+
+[[nodes]]
+id = 69
+depth = 2
+kind = "act"
+text = "continue"
+parent = 68
+
+[[nodes]]
+id = 70
+depth = 1
+kind = "option"
+text = "2+"
+parent = -1
+children = [71]
+
+[[nodes]]
+id = 71
+depth = 2
+kind = "act"
+text = "continue"
+parent = 70
+
+[[nodes]]
+id = 72
+depth = 1
+kind = "select"
+text = "Is your ship insured against cargo spillage and theft?"
+parent = -1
+
+[[nodes]]
+id = 73
+depth = 1
+kind = "option"
+text = "Cargo spillage."
+parent = -1
+children = [74]
+
+[[nodes]]
+id = 74
+depth = 2
+kind = "act"
+text = "continue"
+parent = 73
+
+[[nodes]]
+id = 75
+depth = 1
+kind = "option"
+text = "Theft."
+parent = -1
+children = [76]
+
+[[nodes]]
+id = 76
+depth = 2
+kind = "act"
+text = "continue"
+parent = 75
+
+[[nodes]]
+id = 77
+depth = 1
+kind = "option"
+text = "Both."
+parent = -1
+children = [78]
+
+[[nodes]]
+id = 78
+depth = 2
+kind = "act"
+text = "continue"
+parent = 77
+
+[[nodes]]
+id = 79
+depth = 1
+kind = "select"
+text = "Does your first mate have first aid training?"
+parent = -1
+
+[[nodes]]
+id = 80
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [81]
+
+[[nodes]]
+id = 81
+depth = 2
+kind = "act"
+text = "continue"
+parent = 80
+
+[[nodes]]
+id = 82
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [83]
+
+[[nodes]]
+id = 83
+depth = 2
+kind = "act"
+text = "continue"
+parent = 82
+
+[[nodes]]
+id = 84
+depth = 1
+kind = "option"
+text = "Partial."
+parent = -1
+children = [85]
+
+[[nodes]]
+id = 85
+depth = 2
+kind = "act"
+text = "continue"
+parent = 84
+
+[[nodes]]
+id = 86
+depth = 1
+kind = "select"
+text = "Does your second mate have second aid training?"
+parent = -1
+
+[[nodes]]
+id = 87
+depth = 1
+kind = "option"
+text = "Partial."
+parent = -1
+children = [88]
+
+[[nodes]]
+id = 88
+depth = 2
+kind = "act"
+text = "continue"
+parent = 87
+
+[[nodes]]
+id = 89
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [90]
+
+[[nodes]]
+id = 90
+depth = 2
+kind = "act"
+text = "continue"
+parent = 89
+
+[[nodes]]
+id = 91
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [92]
+
+[[nodes]]
+id = 92
+depth = 2
+kind = "act"
+text = "continue"
+parent = 91
+
+[[nodes]]
+id = 93
+depth = 1
+kind = "select"
+text = "Have you experienced symptoms of plague in the last two weeks?"
+parent = -1
+
+[[nodes]]
+id = 94
+depth = 1
+kind = "option"
+text = "Yes."
+parent = -1
+children = [95]
+
+[[nodes]]
+id = 95
+depth = 2
+kind = "act"
+text = "continue"
+parent = 94
+
+[[nodes]]
+id = 96
+depth = 1
+kind = "option"
+text = "Partial."
+parent = -1
+children = [97]
+
+[[nodes]]
+id = 97
+depth = 2
+kind = "act"
+text = "continue"
+parent = 96
+
+[[nodes]]
+id = 98
+depth = 1
+kind = "option"
+text = "No."
+parent = -1
+children = [99]
+
+[[nodes]]
+id = 99
+depth = 2
+kind = "act"
+text = "continue"
+parent = 98
+
+[[nodes]]
+id = 100
+depth = 1
+kind = "select"
+text = "How much experience do you have sailing?"
+parent = -1
+
+[[nodes]]
+id = 101
+depth = 1
+kind = "option"
+text = "Less than a month."
+parent = -1
+children = [102]
+
+[[nodes]]
+id = 102
+depth = 2
+kind = "act"
+text = "continue"
+parent = 101
+
+[[nodes]]
+id = 103
+depth = 1
+kind = "option"
+text = "Less than a year."
+parent = -1
+children = [104]
+
+[[nodes]]
+id = 104
+depth = 2
+kind = "act"
+text = "continue"
+parent = 103
+
+[[nodes]]
+id = 105
+depth = 1
+kind = "option"
+text = "A year or more."
+parent = -1
+children = [106]
+
+[[nodes]]
+id = 106
+depth = 2
+kind = "act"
+text = "continue"
+parent = 105
+
+[[nodes]]
+id = 107
+depth = 1
+kind = "select"
+text = "Where would you say your home port is?"
+parent = -1
+
+[[nodes]]
+id = 108
+depth = 1
+kind = "option"
+text = "Varrock."
+parent = -1
+children = [109]
+
+[[nodes]]
+id = 109
+depth = 2
+kind = "act"
+text = "continue"
+parent = 108
+
+[[nodes]]
+id = 110
+depth = 1
+kind = "option"
+text = "Falador."
+parent = -1
+children = [111]
+
+[[nodes]]
+id = 111
+depth = 2
+kind = "act"
+text = "continue"
+parent = 110
+
+[[nodes]]
+id = 112
+depth = 1
+kind = "option"
+text = "Edgeville."
+parent = -1
+children = [113]
+
+[[nodes]]
+id = 113
+depth = 2
+kind = "act"
+text = "continue"
+parent = 112
+
+[[nodes]]
+id = 114
+depth = 1
+kind = "box"
+text = "pic=Form cr-4p detail.png|Mercifully, it looks like the form is finished."
+parent = -1
+
+[[nodes]]
+id = 115
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 116
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Hello again."
+parent = -1
+
+[[nodes]]
+id = 117
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Have you fully filled in that form?"
+parent = -1
+
+[[nodes]]
+id = 118
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 119
+depth = 1
+kind = "option"
+text = "Yes, I have it here."
+parent = -1
+children = [120, 121, 122, 125]
+
+[[nodes]]
+id = 120
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = 119
+
+[[nodes]]
+id = 121
+depth = 2
+kind = "box"
+text = "pic=Form cr-4p detail.png|Councillor Catherine looks over the form."
+parent = 119
+
+[[nodes]]
+id = 122
+depth = 2
+kind = "cond"
+text = "If the player has not fully filled out form cr-4p:"
+parent = 119
+children = [123, 124]
+
+[[nodes]]
+id = 123
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "I am afraid there are still questions missing answers. Please make sure you fully fill the form in before you hand it in."
+parent = 122
+
+[[nodes]]
+id = 124
+depth = 3
+kind = "act"
+text = "end"
+parent = 122
+is_terminal = true
+
+[[nodes]]
+id = 125
+depth = 2
+kind = "cond"
+text = "If the player has fully filled out form cr-4p:"
+parent = 119
+children = [126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+
+[[nodes]]
+id = 126
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yes, I have it here."
+parent = 125
+
+[[nodes]]
+id = 127
+depth = 3
+kind = "box"
+text = "pic=Form cr-4p detail.png|Councillor Catherine takes the completed form."
+parent = 125
+
+[[nodes]]
+id = 128
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Thank you very much. However, I must inform you that the Catherby Council is currently experiencing higher than usual volumes of enquiries, so there may be some delays in the processing of your form."
+parent = 125
+
+[[nodes]]
+id = 129
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Okay... I don't actually really care about the form though."
+parent = 125
+
+[[nodes]]
+id = 130
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Then what is it I can help you with?"
+parent = 125
+
+[[nodes]]
+id = 131
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "That by-law about non-humans... I want to get it changed."
+parent = 125
+
+[[nodes]]
+id = 132
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Any change to the by-laws can only occur with approval from the Mayor of Catherby."
+parent = 125
+
+[[nodes]]
+id = 133
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right, we're getting somewhere. Where can I find the mayor?"
+parent = 125
+
+[[nodes]]
+id = 134
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "I'm afraid that due to the Catherby Data Protection Regulation, I am not at liberty to give out personal information on the mayor."
+parent = 125
+
+[[nodes]]
+id = 135
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Are you serious?"
+parent = 125
+
+[[nodes]]
+id = 136
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Very serious. Now, if that's all, thank you for visiting the Catherby Council Office today."
+parent = 125
+
+[[nodes]]
+id = 137
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "We hope your experience was a positive one, but if you do have any feedback, I'd be more than happy to provide you with the relevant form."
+parent = 125
+
+[[nodes]]
+id = 138
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Yeah... I think I'll pass on that."
+parent = 125
+
+[[nodes]]
+id = 139
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Then I wish you a very good day."
+parent = 125
+
+[[nodes]]
+id = 140
+depth = 3
+kind = "act"
+text = "end"
+parent = 125
+is_terminal = true
+
+[[nodes]]
+id = 141
+depth = 1
+kind = "option"
+text = "Not yet."
+parent = -1
+children = [142, 143, 144, 145, 146]
+
+[[nodes]]
+id = 142
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Not yet."
+parent = 141
+
+[[nodes]]
+id = 143
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Please ensure that you have done so before you hand it in. Please also ensure that all answers are clearly legible. Failure to do so may result in unnecessary processing delays."
+parent = 141
+
+[[nodes]]
+id = 144
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Thanks to recent budget changes, I'm pleased to confirm that the Catherby Council are now able to provide charcoal free of charge. If required, you can find some in the cabinet to my left."
+parent = 141
+
+[[nodes]]
+id = 145
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Okay."
+parent = 141
+
+[[nodes]]
+id = 146
+depth = 2
+kind = "act"
+text = "end"
+parent = 141
+is_terminal = true
+
+[[nodes]]
+id = 147
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Welcome to the Catherby Council Office. Your views are important to us. How can I help you today?"
+parent = -1
+
+[[nodes]]
+id = 148
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I need to speak to the mayor."
+parent = -1
+
+[[nodes]]
+id = 149
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = """
+I'm afraid that due to the Catherby Data Protection Regulation, I am not at liberty to give out personal information on the mayor. Now, if that's all, thank you for visiting the Catherby Council Office today.
+"""
+parent = -1
+
+[[nodes]]
+id = 150
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 151
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 152
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 153
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 154
+depth = 1
+kind = "option"
+text = "I need to find the Mayor of Catherby."
+parent = -1
+children = [155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183]
+
+[[nodes]]
+id = 155
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I need to find the Mayor of Catherby."
+parent = 154
+
+[[nodes]]
+id = 156
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "The mayor? Oh no..."
+parent = 154
+
+[[nodes]]
+id = 157
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What?"
+parent = 154
+
+[[nodes]]
+id = 158
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "I'm afraid to say that the mayor died a few days ago."
+parent = 154
+
+[[nodes]]
+id = 159
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Oh... I'm sorry to hear that."
+parent = 154
+
+[[nodes]]
+id = 160
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Don't worry, it happens all the time."
+parent = 154
+
+[[nodes]]
+id = 161
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "It does? That feels like the kind of thing I should be worried about..."
+parent = 154
+
+[[nodes]]
+id = 162
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Why do you need the mayor anyway?"
+parent = 154
+
+[[nodes]]
+id = 163
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Apparently only the mayor can approve a change to the by-laws."
+parent = 154
+
+[[nodes]]
+id = 164
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Really? I don't recall that ever stopping Catherine before, but if she insists, I guess we can do this song and dance once more."
+parent = 154
+
+[[nodes]]
+id = 165
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Meaning?"
+parent = 154
+
+[[nodes]]
+id = 166
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "We're going to need another mayor, but we need to make sure Catherine doesn't notice."
+parent = 154
+
+[[nodes]]
+id = 167
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where on Gielinor will we get another mayor? And how in the name of Guthix's trousers will Catherine not notice?"
+parent = 154
+
+[[nodes]]
+id = 168
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Well, the Mayor of Catherby has been, for a long time now, a fish."
+parent = 154
+
+[[nodes]]
+id = 169
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "A fish?"
+parent = 154
+
+[[nodes]]
+id = 170
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Actually, to be precise, it has been 26 different fish, 25 of which were doing a fantastic job of pretending to be the first."
+parent = 154
+
+[[nodes]]
+id = 171
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm not sure this democracy thing is going to catch on if it keeps being implemented this badly."
+parent = 154
+
+[[nodes]]
+id = 172
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Well, unfortunately no one in Catherby really wanted the job. In fact, there was only one candidate, and it was the one person we all definitely didn't want to be the mayor."
+parent = 154
+
+[[nodes]]
+id = 173
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Councillor Catherine?"
+parent = 154
+
+[[nodes]]
+id = 174
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Councillor Catherine."
+parent = 154
+
+[[nodes]]
+id = 175
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So the answer was a fish?"
+parent = 154
+
+[[nodes]]
+id = 176
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "It seemed like a good idea at the time. Problem is, Catherine responded by introducing that by-law preventing non-humans from working here."
+parent = 154
+
+[[nodes]]
+id = 177
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "We were lucky that a different by-law she'd already introduced clearly stated that the mayor serves until death."
+parent = 154
+
+[[nodes]]
+id = 178
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course. And as a result, you now need to make sure she doesn't know the mayor died."
+parent = 154
+
+[[nodes]]
+id = 179
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Exactly!"
+parent = 154
+
+[[nodes]]
+id = 180
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Right..."
+parent = 154
+
+[[nodes]]
+id = 181
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll help you replace the fish."
+parent = 154
+
+[[nodes]]
+id = 182
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "A wise choice. Go and see Harry at the fishing shop. He should be able to help."
+parent = 154
+
+[[nodes]]
+id = 183
+depth = 2
+kind = "act"
+text = "end"
+parent = 154
+is_terminal = true
+
+[[nodes]]
+id = 184
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 185
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 186
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 187
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 188
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 189
+depth = 1
+kind = "option"
+text = "About the mayor..."
+parent = -1
+children = [190, 191, 192, 193, 194]
+
+[[nodes]]
+id = 190
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About the mayor..."
+parent = 189
+
+[[nodes]]
+id = 191
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "You'll need to go and see Harry at the fishing shop. He should be able to help you sort out a replacement mayor."
+parent = 189
+
+[[nodes]]
+id = 192
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "You know, out of context, that might be the strangest thing anyone has ever said."
+parent = 189
+
+[[nodes]]
+id = 193
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Well, desperate times..."
+parent = 189
+
+[[nodes]]
+id = 194
+depth = 2
+kind = "act"
+text = "end"
+parent = 189
+is_terminal = true
+
+[[nodes]]
+id = 195
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 196
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 197
+depth = 1
+kind = "speaker"
+speaker = "Harry"
+text = "Welcome! If you're looking for fishing equipment, you're in the right place. I'll also give you a good price on any fish that you want to sell."
+parent = -1
+
+[[nodes]]
+id = 198
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 199
+depth = 1
+kind = "option"
+text = "quest=no|Let's see what you've got."
+parent = -1
+
+[[nodes]]
+id = 200
+depth = 1
+kind = "option"
+text = "I'm here about the mayor."
+parent = -1
+children = [201, 202, 203, 204, 205, 206, 207, 208, 211, 216, 217, 218, 222]
+
+[[nodes]]
+id = 201
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here about the mayor."
+parent = 200
+
+[[nodes]]
+id = 202
+depth = 2
+kind = "speaker"
+speaker = "Harry"
+text = "What about the mayor?"
+parent = 200
+
+[[nodes]]
+id = 203
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Arhein said you could help me get a replacement."
+parent = 200
+
+[[nodes]]
+id = 204
+depth = 2
+kind = "speaker"
+speaker = "Harry"
+text = "Oh, we've lost another one have we?"
+parent = 200
+
+[[nodes]]
+id = 205
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Afraid so."
+parent = 200
+
+[[nodes]]
+id = 206
+depth = 2
+kind = "speaker"
+speaker = "Harry"
+text = "Well, it's easy to fix. You just need a special mayoral fishbowl and a tiny net. Once you have them, grab a fish from one of the aquariums with the net, and that is our new mayor."
+parent = 200
+
+[[nodes]]
+id = 207
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Where can I get the fishbowl and net?"
+parent = 200
+
+[[nodes]]
+id = 208
+depth = 2
+kind = "cond"
+text = "If the player's inventory is full:"
+parent = 200
+children = [209, 210]
+
+[[nodes]]
+id = 209
+depth = 3
+kind = "speaker"
+speaker = "Harry"
+text = "I can sell you the whole kit for 50 coins. Just come back once you've got enough room."
+parent = 208
+
+[[nodes]]
+id = 210
+depth = 3
+kind = "act"
+text = "end"
+parent = 208
+is_terminal = true
+
+[[nodes]]
+id = 211
+depth = 2
+kind = "cond"
+text = "If the player doesn't have enough coins:"
+parent = 200
+children = [212, 213, 214, 215]
+
+[[nodes]]
+id = 212
+depth = 3
+kind = "speaker"
+speaker = "Harry"
+text = "I can sell you the whole kit for 50 coins."
+parent = 211
+
+[[nodes]]
+id = 213
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I don't have enough money for that."
+parent = 211
+
+[[nodes]]
+id = 214
+depth = 3
+kind = "speaker"
+speaker = "Harry"
+text = "Politics is an expensive game!"
+parent = 211
+
+[[nodes]]
+id = 215
+depth = 3
+kind = "act"
+text = "end"
+parent = 211
+is_terminal = true
+
+[[nodes]]
+id = 216
+depth = 2
+kind = "speaker"
+speaker = "Harry"
+text = "I can sell you the whole kit for 50 coins."
+parent = 200
+
+[[nodes]]
+id = 217
+depth = 2
+kind = "select"
+text = "Buy the mayoral election kit for 50 coins?"
+parent = 200
+
+[[nodes]]
+id = 218
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 200
+children = [219, 220, 221]
+
+[[nodes]]
+id = 219
+depth = 3
+kind = "box"
+text = "pic=Tiny net detail.png|pic2=Mayoral fishbowl detail.png|You buy a mayoral election kit from Harry for 50 coins."
+parent = 218
+
+[[nodes]]
+id = 220
+depth = 3
+kind = "speaker"
+speaker = "Harry"
+text = "There you go. Once you've caught the mayor, be sure to take him to Arhein to make sure he's happy. Just don't take too long. They don't seem to have a long life span..."
+parent = 218
+
+[[nodes]]
+id = 221
+depth = 3
+kind = "act"
+text = "end"
+parent = 218
+is_terminal = true
+
+[[nodes]]
+id = 222
+depth = 2
+kind = "option"
+text = "No."
+parent = 200
+children = [223, 224, 225]
+
+[[nodes]]
+id = 223
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "I think I'll pass."
+parent = 222
+
+[[nodes]]
+id = 224
+depth = 3
+kind = "speaker"
+speaker = "Harry"
+text = "Politics is an expensive game!"
+parent = 222
+
+[[nodes]]
+id = 225
+depth = 3
+kind = "act"
+text = "end"
+parent = 222
+is_terminal = true
+
+[[nodes]]
+id = 226
+depth = 1
+kind = "option"
+text = "quest=no|Sorry, but I'm not interested."
+parent = -1
+
+[[nodes]]
+id = 227
+depth = 1
+kind = "speaker"
+speaker = "Harry"
+text = "Welcome! If you're looking for fishing equipment, you're in the right place. I'll also give you a good price on any fish that you want to sell."
+parent = -1
+
+[[nodes]]
+id = 228
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 229
+depth = 1
+kind = "option"
+text = "quest=no|Let's see what you've got."
+parent = -1
+
+[[nodes]]
+id = 230
+depth = 1
+kind = "option"
+text = "I'm here about the mayor."
+parent = -1
+children = [231, 232, 233]
+
+[[nodes]]
+id = 231
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here about the mayor."
+parent = 230
+
+[[nodes]]
+id = 232
+depth = 2
+kind = "speaker"
+speaker = "Harry"
+text = "You've got your special mayoral fishbowl and tiny net. Just grab a fish from one of the aquariums with the net, and that is our new mayor."
+parent = 230
+
+[[nodes]]
+id = 233
+depth = 2
+kind = "act"
+text = "end"
+parent = 230
+is_terminal = true
+
+[[nodes]]
+id = 234
+depth = 1
+kind = "option"
+text = "quest=no|Sorry, but I'm not interested."
+parent = -1
+
+[[nodes]]
+id = 235
+depth = 1
+kind = "box"
+text = "You drop the fishbowl and it smashes on the floor."
+parent = -1
+
+[[nodes]]
+id = 236
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 237
+depth = 1
+kind = "speaker"
+speaker = "Harry"
+text = "Welcome! If you're looking for fishing equipment, you're in the right place. I'll also give you a good price on any fish that you want to sell."
+parent = -1
+
+[[nodes]]
+id = 238
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 239
+depth = 1
+kind = "option"
+text = "quest=no|Let's see what you've got."
+parent = -1
+
+[[nodes]]
+id = 240
+depth = 1
+kind = "option"
+text = "I'm here about the mayor."
+parent = -1
+children = [241, 242, 246]
+
+[[nodes]]
+id = 241
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here about the mayor."
+parent = 240
+
+[[nodes]]
+id = 242
+depth = 2
+kind = "cond"
+text = "With free inventory space:"
+parent = 240
+children = [243, 244, 245]
+
+[[nodes]]
+id = 243
+depth = 3
+kind = "box"
+text = "pic=Tiny net detail.png|pic2=Mayoral fishbowl detail.png|Harry gives you a tiny net and a mayoral fishbowl."
+parent = 242
+
+[[nodes]]
+id = 244
+depth = 3
+kind = "speaker"
+speaker = "Harry"
+text = "I think you dropped these. Good job I noticed and picked them up for you. Now, go grab a fish from one of the aquariums with the net, and that is our new mayor."
+parent = 242
+
+[[nodes]]
+id = 245
+depth = 3
+kind = "act"
+text = "end"
+parent = 242
+is_terminal = true
+
+[[nodes]]
+id = 246
+depth = 2
+kind = "cond"
+text = "Withouth free inventory space:"
+parent = 240
+children = [247, 248]
+
+[[nodes]]
+id = 247
+depth = 3
+kind = "speaker"
+speaker = "Harry"
+text = "I think you dropped your net and fishbowl. Don't worry, I picked them up for you. Just make soom room for them and I'll give them back."
+parent = 246
+
+[[nodes]]
+id = 248
+depth = 3
+kind = "act"
+text = "end"
+parent = 246
+is_terminal = true
+
+[[nodes]]
+id = 249
+depth = 1
+kind = "option"
+text = "quest=no|Sorry, but I'm not interested."
+parent = -1
+
+[[nodes]]
+id = 250
+depth = 1
+kind = "box"
+text = "pic=Mayor of catherby detail.png|You wave the net around and you catch a tiny mayorfish!"
+parent = -1
+
+[[nodes]]
+id = 251
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 252
+depth = 1
+kind = "box"
+text = "You drop the fishbowl and it smashes on the floor. The Mayor of Catherby sadly dies as it does so."
+parent = -1
+
+[[nodes]]
+id = 253
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 254
+depth = 1
+kind = "speaker"
+speaker = "Harry"
+text = "Welcome! If you're looking for fishing equipment, you're in the right place. I'll also give you a good price on any fish that you want to sell."
+parent = -1
+
+[[nodes]]
+id = 255
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 256
+depth = 1
+kind = "option"
+text = "quest=no|Let's see what you've got."
+parent = -1
+
+[[nodes]]
+id = 257
+depth = 1
+kind = "option"
+text = "I'm here about the mayor."
+parent = -1
+children = [258, 259, 260]
+
+[[nodes]]
+id = 258
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm here about the mayor."
+parent = 257
+
+[[nodes]]
+id = 259
+depth = 2
+kind = "speaker"
+speaker = "Harry"
+text = "I see you've caught a new one. You'd best show him to Arhein. Just don't take too long. They don't seem to have a long life span..."
+parent = 257
+
+[[nodes]]
+id = 260
+depth = 2
+kind = "act"
+text = "end"
+parent = 257
+is_terminal = true
+
+[[nodes]]
+id = 261
+depth = 1
+kind = "option"
+text = "quest=no|Sorry, but I'm not interested."
+parent = -1
+
+[[nodes]]
+id = 262
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 263
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 264
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 265
+depth = 1
+kind = "option"
+text = "About the mayor..."
+parent = -1
+children = [266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278]
+
+[[nodes]]
+id = 266
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About the mayor..."
+parent = 265
+
+[[nodes]]
+id = 267
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes?"
+parent = 265
+
+[[nodes]]
+id = 268
+depth = 2
+kind = "box"
+text = "pic=Mayor of catherby detail.png|You show Arhein the mayor."
+parent = 265
+
+[[nodes]]
+id = 269
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The mayor has returned."
+parent = 265
+
+[[nodes]]
+id = 270
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Long live the mayor."
+parent = 265
+
+[[nodes]]
+id = 271
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So what now?"
+parent = 265
+
+[[nodes]]
+id = 272
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Well, I think I'll start keeping a stock of mayors on standby from now on."
+parent = 265
+
+[[nodes]]
+id = 273
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "That seems like a good idea, but I meant about the by- law."
+parent = 265
+
+[[nodes]]
+id = 274
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Ah, of course. Let me just give him his mayoral chain..."
+parent = 265
+
+[[nodes]]
+id = 275
+depth = 2
+kind = "box"
+text = "pic=Mayor of catherby detail.png|Arhein places a small chain in the bowl."
+parent = 265
+
+[[nodes]]
+id = 276
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "There! Catherine shouldn't be able to stop us getting the by-law changed now. You should go and speak with her."
+parent = 265
+
+[[nodes]]
+id = 277
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'll head over there right away."
+parent = 265
+
+[[nodes]]
+id = 278
+depth = 2
+kind = "act"
+text = "end"
+parent = 265
+is_terminal = true
+
+[[nodes]]
+id = 279
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 280
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 281
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 282
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 283
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 284
+depth = 1
+kind = "option"
+text = "About the mayor..."
+parent = -1
+children = [285, 286, 287, 288, 289, 290]
+
+[[nodes]]
+id = 285
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About the mayor..."
+parent = 284
+
+[[nodes]]
+id = 286
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes?"
+parent = 284
+
+[[nodes]]
+id = 287
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to do with him now?"
+parent = 284
+
+[[nodes]]
+id = 288
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "You should speak to Catherine. Now that we have the mayor, she shouldn't be able to stop us getting that by-law changed."
+parent = 284
+
+[[nodes]]
+id = 289
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "In that case, I'll go and see her right away."
+parent = 284
+
+[[nodes]]
+id = 290
+depth = 2
+kind = "act"
+text = "end"
+parent = 284
+is_terminal = true
+
+[[nodes]]
+id = 291
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 292
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 293
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Welcome to the Catherby Council Office. Your views are important to us. How can I help you today?"
+parent = -1
+
+[[nodes]]
+id = 294
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have the mayor!"
+parent = -1
+
+[[nodes]]
+id = 295
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "What?"
+parent = -1
+
+[[nodes]]
+id = 296
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Well, I did have the mayor, but I appear to have misplaced him."
+parent = -1
+
+[[nodes]]
+id = 297
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "You've misplaced the mayor?"
+parent = -1
+
+[[nodes]]
+id = 298
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's right."
+parent = -1
+
+[[nodes]]
+id = 299
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "I see... Well, if that's all, thank you for visiting the Catherby Council Office today."
+parent = -1
+
+[[nodes]]
+id = 300
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 301
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Welcome to the Catherby Council Office. Your views are important to us. How can I help you today?"
+parent = -1
+
+[[nodes]]
+id = 302
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have the mayor!"
+parent = -1
+
+[[nodes]]
+id = 303
+depth = 1
+kind = "box"
+text = "pic=Mayor of catherby detail.png|You show Councillor Catherine the mayor."
+parent = -1
+
+[[nodes]]
+id = 304
+depth = 1
+kind = "cond"
+text = "If the player did not talk to Arhein with the Mayor:"
+parent = -1
+children = [305, 306, 307, 308]
+
+[[nodes]]
+id = 305
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Are you sure? It doesn't look like the mayor. Where is his mayoral chain?"
+parent = 304
+
+[[nodes]]
+id = 306
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I don't know."
+parent = 304
+
+[[nodes]]
+id = 307
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Hmm... Well, if that's all, thank you for visiting the Catherby Council Office today."
+parent = 304
+
+[[nodes]]
+id = 308
+depth = 2
+kind = "act"
+text = "end"
+parent = 304
+is_terminal = true
+
+[[nodes]]
+id = 309
+depth = 1
+kind = "cond"
+text = "If the player talked to Arhein with the Mayor:"
+parent = -1
+children = [310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 323, 325, 327, 328, 329, 331, 333, 335, 336, 337, 339, 341, 343, 344, 345, 347, 349, 351, 352, 353, 355, 357, 359, 360, 361, 363, 365, 367, 368, 369, 371, 373, 375, 376, 377, 379, 381, 383, 395]
+
+[[nodes]]
+id = 310
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Oh, how wonderful."
+parent = 309
+
+[[nodes]]
+id = 311
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "So, shall we get to work on getting that by-law changed?"
+parent = 309
+
+[[nodes]]
+id = 312
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "I'm afraid a recent audit has exposed irregularities in key paperwork filed with the Catherby Council Office. These irregularities must be addressed prior to any updates to the by-laws."
+parent = 309
+
+[[nodes]]
+id = 313
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Here we go..."
+parent = 309
+
+[[nodes]]
+id = 314
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Unfortunately, as you yourself have recently filed a form with the Catherby Council Office, I must now ask you to join me in reviewing that form to ensure everything is correct."
+parent = 309
+
+[[nodes]]
+id = 315
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What if I've forgotten what I put down?"
+parent = 309
+
+[[nodes]]
+id = 316
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "That seems unlikely. After all, you gave accurate information, did you not?"
+parent = 309
+
+[[nodes]]
+id = 317
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I am shocked that you would suggest otherwise."
+parent = 309
+
+[[nodes]]
+id = 318
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Very good. In that case, let us begin."
+parent = 309
+
+[[nodes]]
+id = 319
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "What is your main reason for making port at Catherby?"
+parent = 309
+
+[[nodes]]
+id = 320
+depth = 2
+kind = "select"
+text = "What is your main reason for making port at Catherby?"
+parent = 309
+
+[[nodes]]
+id = 321
+depth = 2
+kind = "option"
+text = "Pleasure."
+parent = 309
+children = [322]
+
+[[nodes]]
+id = 322
+depth = 3
+kind = "act"
+text = "continue"
+parent = 321
+
+[[nodes]]
+id = 323
+depth = 2
+kind = "option"
+text = "Trade."
+parent = 309
+children = [324]
+
+[[nodes]]
+id = 324
+depth = 3
+kind = "act"
+text = "continue"
+parent = 323
+
+[[nodes]]
+id = 325
+depth = 2
+kind = "option"
+text = "Piracy."
+parent = 309
+children = [326]
+
+[[nodes]]
+id = 326
+depth = 3
+kind = "act"
+text = "continue"
+parent = 325
+
+[[nodes]]
+id = 327
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "How many hulls does your ship have?"
+parent = 309
+
+[[nodes]]
+id = 328
+depth = 2
+kind = "select"
+text = "How many hulls does your ship have?"
+parent = 309
+
+[[nodes]]
+id = 329
+depth = 2
+kind = "option"
+text = "0"
+parent = 309
+children = [330]
+
+[[nodes]]
+id = 330
+depth = 3
+kind = "act"
+text = "continue"
+parent = 329
+
+[[nodes]]
+id = 331
+depth = 2
+kind = "option"
+text = "1"
+parent = 309
+children = [332]
+
+[[nodes]]
+id = 332
+depth = 3
+kind = "act"
+text = "continue"
+parent = 331
+
+[[nodes]]
+id = 333
+depth = 2
+kind = "option"
+text = "2+"
+parent = 309
+children = [334]
+
+[[nodes]]
+id = 334
+depth = 3
+kind = "act"
+text = "continue"
+parent = 333
+
+[[nodes]]
+id = 335
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Is your ship insured against cargo spillage and theft?"
+parent = 309
+
+[[nodes]]
+id = 336
+depth = 2
+kind = "select"
+text = "Is your ship insured against cargo spillage and theft?"
+parent = 309
+
+[[nodes]]
+id = 337
+depth = 2
+kind = "option"
+text = "Cargo spillage."
+parent = 309
+children = [338]
+
+[[nodes]]
+id = 338
+depth = 3
+kind = "act"
+text = "continue"
+parent = 337
+
+[[nodes]]
+id = 339
+depth = 2
+kind = "option"
+text = "Theft."
+parent = 309
+children = [340]
+
+[[nodes]]
+id = 340
+depth = 3
+kind = "act"
+text = "continue"
+parent = 339
+
+[[nodes]]
+id = 341
+depth = 2
+kind = "option"
+text = "Both."
+parent = 309
+children = [342]
+
+[[nodes]]
+id = 342
+depth = 3
+kind = "act"
+text = "continue"
+parent = 341
+
+[[nodes]]
+id = 343
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Does your first mate have first aid training?"
+parent = 309
+
+[[nodes]]
+id = 344
+depth = 2
+kind = "select"
+text = "Does your first mate have first aid training?"
+parent = 309
+
+[[nodes]]
+id = 345
+depth = 2
+kind = "option"
+text = "No."
+parent = 309
+children = [346]
+
+[[nodes]]
+id = 346
+depth = 3
+kind = "act"
+text = "continue"
+parent = 345
+
+[[nodes]]
+id = 347
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 309
+children = [348]
+
+[[nodes]]
+id = 348
+depth = 3
+kind = "act"
+text = "continue"
+parent = 347
+
+[[nodes]]
+id = 349
+depth = 2
+kind = "option"
+text = "Partial."
+parent = 309
+children = [350]
+
+[[nodes]]
+id = 350
+depth = 3
+kind = "act"
+text = "continue"
+parent = 349
+
+[[nodes]]
+id = 351
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Does your second mate have second aid training?"
+parent = 309
+
+[[nodes]]
+id = 352
+depth = 2
+kind = "select"
+text = "Does your second mate have second aid training?"
+parent = 309
+
+[[nodes]]
+id = 353
+depth = 2
+kind = "option"
+text = "Partial."
+parent = 309
+children = [354]
+
+[[nodes]]
+id = 354
+depth = 3
+kind = "act"
+text = "continue"
+parent = 353
+
+[[nodes]]
+id = 355
+depth = 2
+kind = "option"
+text = "No."
+parent = 309
+children = [356]
+
+[[nodes]]
+id = 356
+depth = 3
+kind = "act"
+text = "continue"
+parent = 355
+
+[[nodes]]
+id = 357
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 309
+children = [358]
+
+[[nodes]]
+id = 358
+depth = 3
+kind = "act"
+text = "continue"
+parent = 357
+
+[[nodes]]
+id = 359
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Have you experienced symptoms of plague in the last two weeks?"
+parent = 309
+
+[[nodes]]
+id = 360
+depth = 2
+kind = "select"
+text = "Have you experienced symptoms of plague in the last two weeks?"
+parent = 309
+
+[[nodes]]
+id = 361
+depth = 2
+kind = "option"
+text = "Yes."
+parent = 309
+children = [362]
+
+[[nodes]]
+id = 362
+depth = 3
+kind = "act"
+text = "continue"
+parent = 361
+
+[[nodes]]
+id = 363
+depth = 2
+kind = "option"
+text = "Partial."
+parent = 309
+children = [364]
+
+[[nodes]]
+id = 364
+depth = 3
+kind = "act"
+text = "continue"
+parent = 363
+
+[[nodes]]
+id = 365
+depth = 2
+kind = "option"
+text = "No."
+parent = 309
+children = [366]
+
+[[nodes]]
+id = 366
+depth = 3
+kind = "act"
+text = "continue"
+parent = 365
+
+[[nodes]]
+id = 367
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "How much experience do you have sailing?"
+parent = 309
+
+[[nodes]]
+id = 368
+depth = 2
+kind = "select"
+text = "How much experience do you have sailing?"
+parent = 309
+
+[[nodes]]
+id = 369
+depth = 2
+kind = "option"
+text = "Less than a month."
+parent = 309
+children = [370]
+
+[[nodes]]
+id = 370
+depth = 3
+kind = "act"
+text = "continue"
+parent = 369
+
+[[nodes]]
+id = 371
+depth = 2
+kind = "option"
+text = "Less than a year."
+parent = 309
+children = [372]
+
+[[nodes]]
+id = 372
+depth = 3
+kind = "act"
+text = "continue"
+parent = 371
+
+[[nodes]]
+id = 373
+depth = 2
+kind = "option"
+text = "A year or more."
+parent = 309
+children = [374]
+
+[[nodes]]
+id = 374
+depth = 3
+kind = "act"
+text = "continue"
+parent = 373
+
+[[nodes]]
+id = 375
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Where would you say your home port is?"
+parent = 309
+
+[[nodes]]
+id = 376
+depth = 2
+kind = "select"
+text = "Where would you say your home port is?"
+parent = 309
+
+[[nodes]]
+id = 377
+depth = 2
+kind = "option"
+text = "Varrock."
+parent = 309
+children = [378]
+
+[[nodes]]
+id = 378
+depth = 3
+kind = "act"
+text = "continue"
+parent = 377
+
+[[nodes]]
+id = 379
+depth = 2
+kind = "option"
+text = "Falador."
+parent = 309
+children = [380]
+
+[[nodes]]
+id = 380
+depth = 3
+kind = "act"
+text = "continue"
+parent = 379
+
+[[nodes]]
+id = 381
+depth = 2
+kind = "option"
+text = "Edgeville."
+parent = 309
+children = [382]
+
+[[nodes]]
+id = 382
+depth = 3
+kind = "act"
+text = "continue"
+parent = 381
+
+[[nodes]]
+id = 383
+depth = 2
+kind = "cond"
+text = "If the player repeated all correct answers:"
+parent = 309
+children = [384, 385, 386, 389, 390, 391, 392, 393, 394]
+
+[[nodes]]
+id = 384
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Hmm, that all seems to be right..."
+parent = 383
+
+[[nodes]]
+id = 385
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Can we finally get on with this by-law change now?"
+parent = 383
+
+[[nodes]]
+id = 386
+depth = 3
+kind = "cond"
+text = "Without free inventory space:"
+parent = 383
+children = [387, 388]
+
+[[nodes]]
+id = 387
+depth = 4
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "*sigh* Yes, I suppose everything is in order. I have a form here that needs signing by the mayor. Please make some room so that I am able to give it to you."
+parent = 386
+
+[[nodes]]
+id = 388
+depth = 4
+kind = "act"
+text = "end"
+parent = 386
+is_terminal = true
+
+[[nodes]]
+id = 389
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "*sigh* Yes, I suppose everything is in order. I just need this form signing by the mayor."
+parent = 383
+
+[[nodes]]
+id = 390
+depth = 3
+kind = "box"
+text = "pic=Form 7r4-5h detail.png|Councillor Catherine hands you a form."
+parent = 383
+
+[[nodes]]
+id = 391
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Right... How does the mayor sign forms usually, given his lack of hands?"
+parent = 383
+
+[[nodes]]
+id = 392
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Simply dip the form into his bowl and he will give it a nibble. We consider that to be his signature."
+parent = 383
+
+[[nodes]]
+id = 393
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough."
+parent = 383
+
+[[nodes]]
+id = 394
+depth = 3
+kind = "act"
+text = "end"
+parent = 383
+is_terminal = true
+
+[[nodes]]
+id = 395
+depth = 2
+kind = "cond"
+text = "If the player repeated any incorrect answers:"
+parent = 309
+children = [396, 397]
+
+[[nodes]]
+id = 396
+depth = 3
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "I'm afraid that one of your answers didn't match the original form. We will have to go through the incorrect questions again."
+parent = 395
+
+[[nodes]]
+id = 397
+depth = 3
+kind = "act"
+text = "Councillor Catherine asks the questions the player missed."
+parent = 395
+
+[[nodes]]
+id = 398
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Welcome to the Catherby Council Office. Your views are important to us. How can I help you today?"
+parent = -1
+
+[[nodes]]
+id = 399
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Can we finally get on with this by-law change now?"
+parent = -1
+
+[[nodes]]
+id = 400
+depth = 1
+kind = "cond"
+text = "Without the form or free inventory space:"
+parent = -1
+children = [401, 402]
+
+[[nodes]]
+id = 401
+depth = 2
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "*sigh* Yes, I suppose everything is in order. I have a form here that needs signing by the mayor. Please make some room so that I am able to give it to you."
+parent = 400
+
+[[nodes]]
+id = 402
+depth = 2
+kind = "act"
+text = "end"
+parent = 400
+is_terminal = true
+
+[[nodes]]
+id = 403
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "I suppose so. You just need to get that form signed by the mayor. Simply dip the form into his bowl and he will give it a nibble. We consider that to be his signature."
+parent = -1
+
+[[nodes]]
+id = 404
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Fair enough."
+parent = -1
+
+[[nodes]]
+id = 405
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 406
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Welcome to the Catherby Council Office. Your views are important to us. How can I help you today?"
+parent = -1
+
+[[nodes]]
+id = 407
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry, but I lost the form you gave me. Can I have another?"
+parent = -1
+
+[[nodes]]
+id = 408
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Very well, but I would advise you take more care next time."
+parent = -1
+
+[[nodes]]
+id = 409
+depth = 1
+kind = "box"
+text = "pic=Form 7r4-5h detail.png|Councillor Catherine hands you a form."
+parent = -1
+
+[[nodes]]
+id = 410
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 411
+depth = 1
+kind = "box"
+text = "pic=Form 7r4-5h detail.png|pic2=Mayor of catherby detail.png|The mayor eagerly signs the form for you. You should return it to Councillor Catherine."
+parent = -1
+
+[[nodes]]
+id = 412
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 413
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Welcome to the Catherby Council Office. Your views are important to us. How can I help you today?"
+parent = -1
+
+[[nodes]]
+id = 414
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I have that signed form."
+parent = -1
+
+[[nodes]]
+id = 415
+depth = 1
+kind = "box"
+text = "pic=Form cr-4p detail.png|Councillor Catherine takes the completed form and stamps it."
+parent = -1
+
+[[nodes]]
+id = 416
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "The by-law has now been amended. Good day."
+parent = -1
+
+[[nodes]]
+id = 417
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 418
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Welcome to the Catherby Council Office. Your views are important to us."
+parent = -1
+
+[[nodes]]
+id = 419
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "That's good to hear..."
+parent = -1
+
+[[nodes]]
+id = 420
+depth = 1
+kind = "speaker"
+speaker = "Councillor Catherine"
+text = "Unfortunately, all of our operatives are too busy to help you today. Please try again soon."
+parent = -1
+
+[[nodes]]
+id = 421
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Delightful..."
+parent = -1
+
+[[nodes]]
+id = 422
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 423
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 424
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 425
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 426
+depth = 1
+kind = "option"
+text = "The by-law has been changed!"
+parent = -1
+children = [427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438]
+
+[[nodes]]
+id = 427
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "The by-law has been changed!"
+parent = 426
+
+[[nodes]]
+id = 428
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Excellent! Thank you for sorting that out for me. However, I do have one more thing I'd appreciate some help with."
+parent = 426
+
+[[nodes]]
+id = 429
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = 426
+
+[[nodes]]
+id = 430
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "I have some repairs I need to do on my ship. Would you mind taking the duck out to test the currents yourself?"
+parent = 426
+
+[[nodes]]
+id = 431
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Of course. How do I do it?"
+parent = 426
+
+[[nodes]]
+id = 432
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "From what I've been told, you just need to release the duck, follow him while he tracks the currents, and then pick him up once he's done."
+parent = 426
+
+[[nodes]]
+id = 433
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good. Where should I release him?"
+parent = 426
+
+[[nodes]]
+id = 434
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "I saw a good spot next to that island east of the docks. The one with the obelisk on it."
+parent = 426
+
+[[nodes]]
+id = 435
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll sail over there right away."
+parent = 426
+
+[[nodes]]
+id = 436
+depth = 2
+kind = "box"
+text = "pic=Current duck detail.png|Arhein hands you the duck."
+parent = 426
+
+[[nodes]]
+id = 437
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Have fun!"
+parent = 426
+
+[[nodes]]
+id = 438
+depth = 2
+kind = "act"
+text = "end"
+parent = 426
+is_terminal = true
+
+[[nodes]]
+id = 439
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 440
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 441
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 442
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 443
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 444
+depth = 1
+kind = "option"
+text = "About that duck..."
+parent = -1
+children = [445, 446, 447, 448, 451]
+
+[[nodes]]
+id = 445
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that duck..."
+parent = 444
+
+[[nodes]]
+id = 446
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes?"
+parent = 444
+
+[[nodes]]
+id = 447
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "I'm sorry, but I've lost him."
+parent = 444
+
+[[nodes]]
+id = 448
+depth = 2
+kind = "cond"
+text = "Without free inventory space:"
+parent = 444
+children = [449, 450]
+
+[[nodes]]
+id = 449
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes, I noticed. Luckily for us, he came wandering back to me. Make some room to hold him and I'll give him back."
+parent = 448
+
+[[nodes]]
+id = 450
+depth = 3
+kind = "act"
+text = "end"
+parent = 448
+is_terminal = true
+
+[[nodes]]
+id = 451
+depth = 2
+kind = "cond"
+text = "With free inventory space:"
+parent = 444
+children = [452, 453, 454, 455]
+
+[[nodes]]
+id = 452
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes, I noticed. Luckily for us, he came wandering back to me. Here you go."
+parent = 451
+
+[[nodes]]
+id = 453
+depth = 3
+kind = "box"
+text = "pic=Current duck detail.png|Arhein hands you the duck."
+parent = 451
+
+[[nodes]]
+id = 454
+depth = 3
+kind = "speaker"
+speaker = "Player"
+text = "Thanks!"
+parent = 451
+
+[[nodes]]
+id = 455
+depth = 3
+kind = "act"
+text = "end"
+parent = 451
+is_terminal = true
+
+[[nodes]]
+id = 456
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 457
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 458
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 459
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 460
+depth = 1
+kind = "option"
+text = "quest=no|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 461
+depth = 1
+kind = "option"
+text = "About that duck..."
+parent = -1
+children = [462, 463, 464, 465, 466, 467, 468, 469]
+
+[[nodes]]
+id = 462
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "About that duck..."
+parent = 461
+
+[[nodes]]
+id = 463
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Yes?"
+parent = 461
+
+[[nodes]]
+id = 464
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What do I need to do with him?"
+parent = 461
+
+[[nodes]]
+id = 465
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "From what I've been told, you just need to release the duck, follow him while he tracks the currents, and then pick him up once he's done."
+parent = 461
+
+[[nodes]]
+id = 466
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Sounds good. Where should I release him?"
+parent = 461
+
+[[nodes]]
+id = 467
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "I saw a good spot next to that island east of the docks. The one with the obelisk on it."
+parent = 461
+
+[[nodes]]
+id = 468
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Alright, I'll sail over there right away."
+parent = 461
+
+[[nodes]]
+id = 469
+depth = 2
+kind = "act"
+text = "end"
+parent = 461
+is_terminal = true
+
+[[nodes]]
+id = 470
+depth = 1
+kind = "option"
+text = "quest=no|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 471
+depth = 1
+kind = "option"
+text = "quest=no|I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 472
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "There he goes! Now to follow him and see where these currents flow."
+parent = -1
+
+[[nodes]]
+id = 473
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 474
+depth = 1
+kind = "box"
+text = "pic=Current duck detail.png|The duck recognises your boat and climbs aboard. He shares the secrets of the currents he travelled on with you."
+parent = -1
+
+[[nodes]]
+id = 475
+depth = 1
+kind = "act"
+text = "end"
+parent = -1
+is_terminal = true
+
+[[nodes]]
+id = 476
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 477
+depth = 1
+kind = "select"
+text = "Select an option"
+parent = -1
+
+[[nodes]]
+id = 478
+depth = 1
+kind = "option"
+text = "What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 479
+depth = 1
+kind = "option"
+text = "I've charted the currents!"
+parent = -1
+
+[[nodes]]
+id = 480
+depth = 1
+kind = "option"
+text = "Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 481
+depth = 1
+kind = "option"
+text = "I'd best be off."
+parent = -1
+
+[[nodes]]
+id = 482
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "I've charted the currents!"
+parent = -1
+
+[[nodes]]
+id = 483
+depth = 1
+kind = "box"
+text = "You share details on the currents around Catherby with Arhein."
+parent = -1
+
+[[nodes]]
+id = 484
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Thank you so much, friend! I'm sorry for all the nonsense you had to deal with. Please, keep the duck as thanks. I have no more need of him, and he seems to really like you!"
+parent = -1
+
+[[nodes]]
+id = 485
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "In fact, keep the mayor as well. It's not like I don't have plenty of spares."
+parent = -1
+
+[[nodes]]
+id = 486
+depth = 1
+kind = "cond"
+text = "If the player lost the Mayor of Catherby:"
+parent = -1
+children = [487, 488, 489, 492, 493, 494]
+
+[[nodes]]
+id = 487
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Ah, on that note, I'm afraid I lost him."
+parent = 486
+
+[[nodes]]
+id = 488
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Not to worry. As I say, I have plenty of spares."
+parent = 486
+
+[[nodes]]
+id = 489
+depth = 2
+kind = "cond"
+text = "If the player has no free inventory space:"
+parent = 486
+children = [490, 491]
+
+[[nodes]]
+id = 490
+depth = 3
+kind = "speaker"
+speaker = "Arhein"
+text = "I also have a little something else for you, but it appears you don't have space to take it. Please come back when you do."
+parent = 489
+
+[[nodes]]
+id = 491
+depth = 3
+kind = "act"
+text = "end"
+parent = 489
+is_terminal = true
+
+[[nodes]]
+id = 492
+depth = 2
+kind = "box"
+text = "pic=Mayor of catherby detail.png|Arhein gives you a new mayor."
+parent = 486
+
+[[nodes]]
+id = 493
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "I believe that puts us at mayor [X] now. Long live the mayor."
+parent = 486
+
+[[nodes]]
+id = 494
+depth = 2
+kind = "act"
+text = "continues"
+parent = 486
+
+[[nodes]]
+id = 495
+depth = 1
+kind = "speaker"
+speaker = "Player"
+text = "Thank you!"
+parent = -1
+
+[[nodes]]
+id = 496
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Don't mention it. All the best!"
+parent = -1
+
+[[nodes]]
+id = 497
+depth = 1
+kind = "other"
+text = "{{qact|Congratulations! Quest complete!}}"
+parent = -1
+
+[[nodes]]
+id = 498
+depth = 1
+kind = "speaker"
+speaker = "Arhein"
+text = "Hello again!"
+parent = -1
+
+[[nodes]]
+id = 499
+depth = 1
+kind = "option"
+text = "quest=No|What do you have for sale?"
+parent = -1
+
+[[nodes]]
+id = 500
+depth = 1
+kind = "option"
+text = "What's with the duck?"
+parent = -1
+children = [501, 502, 503, 504, 505, 506, 507, 508, 509]
+
+[[nodes]]
+id = 501
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What's with the duck?"
+parent = 500
+
+[[nodes]]
+id = 502
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "Oh, it's part of a little test I'd like to do. A travelling salesman stopped off here a while ago and claimed you can use a duck to accurately track currents in the sea."
+parent = 500
+
+[[nodes]]
+id = 503
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "My plan is to track the currents around Catherby to see if I can speed up the docking process, but there's a bit of a snag..."
+parent = 500
+
+[[nodes]]
+id = 504
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "What is it?"
+parent = 500
+
+[[nodes]]
+id = 505
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = """
+The local council have a by-law forbidding non-human workers from doing business in Catherby. I'd hoped the local councillor wouldn't notice, but the second the duck arrived, she came along making threats of a fine!
+"""
+parent = 500
+
+[[nodes]]
+id = 506
+depth = 2
+kind = "speaker"
+speaker = "Player"
+text = "Anything I can do to help?"
+parent = 500
+
+[[nodes]]
+id = 507
+depth = 2
+kind = "speaker"
+speaker = "Arhein"
+text = "I don't think so, but thanks for the offer."
+parent = 500
+
+[[nodes]]
+id = 508
+depth = 2
+kind = "box"
+text = "The Sailing skill will release on the 19th November."
+parent = 500
+
+[[nodes]]
+id = 509
+depth = 2
+kind = "act"
+text = "end"
+parent = 500
+is_terminal = true
+
+[[nodes]]
+id = 510
+depth = 1
+kind = "option"
+text = "quest=No|Where abouts do you make deliveries to?"
+parent = -1
+
+[[nodes]]
+id = 511
+depth = 1
+kind = "option"
+text = "quest=No|I'd best be off."
+parent = -1

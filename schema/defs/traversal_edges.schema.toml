@@ -1,0 +1,27 @@
+id = "traversal_edges"
+format = "binary"
+path = "data/defs/traversal_edges.bin"
+magic_label = "TRAV"
+magic_u32 = "0x56415254"
+current_version = 1
+accepted_versions = [1]
+endianness = "little"
+header = ["u32 magic", "u32 version", "u32 count"]
+producer = "tools/export_traversal_edges.py"
+consumers = ["rc-core/traversal.c"]
+source_dataset = "RuneC-owned traversal facts and object transport rows"
+row_fields = [
+  "u8 kind",
+  "u8 option",
+  "u16 packed_planes",
+  "u32 source_id",
+  "u32 flags",
+  "u16 start_x",
+  "u16 start_y",
+  "u16 dest_x",
+  "u16 dest_y",
+  "u8 pad[4]",
+  "pstr8 action",
+  "pstr8 target",
+]
+compatibility = "Loader accepts exactly current_version."
