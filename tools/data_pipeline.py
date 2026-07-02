@@ -114,6 +114,8 @@ def py_cmd(*args: str) -> tuple[str, ...]:
 
 B237_CACHE_INPUT = ("env:RUNEC_B237_CACHE",)
 B237_CACHE_AND_DUMP_INPUTS = ("env:RUNEC_B237_CACHE", "env:RUNEC_B237_DUMP")
+OSRSREBOXED_INPUT = ("env:RUNEC_OSRSREBOXED_DB",)
+B237_CACHE_AND_OSRSREBOXED_INPUTS = B237_CACHE_INPUT + OSRSREBOXED_INPUT
 
 
 def snapshot_cmd(*paths: str) -> tuple[str, ...]:
@@ -121,23 +123,22 @@ def snapshot_cmd(*paths: str) -> tuple[str, ...]:
 
 CACHE_DERIVED_REBUILD_SPECS = (
     RuntimeOutputSpec(
-        dataset="models",
-        logical_paths=("models/",),
-        rebuild_inputs=B237_CACHE_AND_DUMP_INPUTS,
-        commands=(
-            py_cmd("tools/cache_pipeline/export_item_render_models.py", "--cache", "{b237_cache}", "--dump", "{b237_dump}"),
-            py_cmd("tools/cache_pipeline/export_projectile_models.py", "--cache", "{b237_cache}", "--spotanims", "data/defs/spotanims.bin", "--spotanim-ids", "all", "--output", "data/models/projectiles.models"),
-        ),
-        authority="b237 cache plus decoded dump; NPC/player broad model rebuilds still use lower-level scoped tools until normalized",
-    ),
-    RuntimeOutputSpec(
-        dataset="animations",
-        logical_paths=("anims/",),
+        dataset="spotanims",
+        logical_paths=("defs/spotanims.bin",),
         rebuild_inputs=B237_CACHE_INPUT,
         commands=(
-            py_cmd("tools/cache_pipeline/export_animations.py", "--modern-cache", "{b237_cache}", "--output", "data/anims/all.anims"),
+            py_cmd("tools/cache_pipeline/export_spotanims.py", "--modern-cache", "{b237_cache}", "--output", "data/defs/spotanims.bin"),
         ),
-        authority="b237 cache",
+        authority="b237 cache spotanim config decoded by RuneC cache tools",
+    ),
+    RuntimeOutputSpec(
+        dataset="projectile_models",
+        logical_paths=("models/projectiles.models",),
+        rebuild_inputs=B237_CACHE_INPUT,
+        commands=(
+            py_cmd("tools/cache_pipeline/export_projectile_models.py", "--cache", "{b237_cache}", "--spotanims", "data/defs/spotanims.bin", "--spotanim-ids", "all", "--output", "data/models/projectiles.models"),
+        ),
+        authority="b237 cache spotanim/projectile models decoded by RuneC cache tools",
     ),
     RuntimeOutputSpec(
         dataset="ui_sprites",
@@ -188,13 +189,118 @@ CACHE_DERIVED_REBUILD_SPECS = (
     ),
 )
 
+POST_DEF_RENDER_REBUILD_SPECS = (
+    RuntimeOutputSpec(
+        dataset="item_render_models",
+        logical_paths=("models/items.models", "models/items.tanim", "models/item_render.map"),
+        rebuild_inputs=B237_CACHE_AND_DUMP_INPUTS,
+        commands=(
+            py_cmd(
+                "tools/cache_pipeline/export_item_render_models.py",
+                "--cache",
+                "{b237_cache}",
+                "--dump",
+                "{b237_dump}",
+                "--item-ids",
+                "combat-validation",
+            ),
+        ),
+        authority="b237 cache plus rebuilt items.bin for first-release validation equipment visuals",
+    ),
+    RuntimeOutputSpec(
+        dataset="validation_item_icons",
+        logical_paths=("sprites/items/",),
+        rebuild_inputs=OSRSREBOXED_INPUT,
+        commands=(
+            py_cmd(
+                "tools/cache_pipeline/export_reference_item_icons.py",
+                "--reference",
+                "{osrsreboxed_db}/docs/items-icons",
+                "--items",
+                "data/defs/items.bin",
+                "--item-ids",
+                "combat-validation",
+            ),
+        ),
+        authority="validation-only known-good osrsreboxed item icon overlay for combat bank items; full b237 renderer remains baseline",
+        release_required=False,
+    ),
+    RuntimeOutputSpec(
+        dataset="animations",
+        logical_paths=("anims/player.anims", "anims/npcs.anims", "anims/object.anims", "anims/all.anims"),
+        rebuild_inputs=B237_CACHE_INPUT,
+        commands=(
+            py_cmd(
+                "tools/cache_pipeline/export_animations.py",
+                "--modern-cache",
+                "{b237_cache}",
+                "--spotanims",
+                "data/defs/spotanims.bin",
+                "--item-render-map",
+                "data/models/item_render.map",
+                "--combat-visuals",
+                "data/defs/combat_visuals.tsv",
+                "--output",
+                "data/anims/player.anims",
+            ),
+            py_cmd(
+                "tools/cache_pipeline/export_animations.py",
+                "--modern-cache",
+                "{b237_cache}",
+                "--npc-defs",
+                "data/defs/npc_defs.bin",
+                "--combat-visuals",
+                "data/defs/combat_visuals.tsv",
+                "--output",
+                "data/anims/npcs.anims",
+            ),
+            py_cmd(
+                "tools/cache_pipeline/export_animations.py",
+                "--modern-cache",
+                "{b237_cache}",
+                "--object-anims",
+                "data/regions",
+                "--output",
+                "data/anims/object.anims",
+            ),
+            py_cmd(
+                "tools/cache_pipeline/export_animations.py",
+                "--modern-cache",
+                "{b237_cache}",
+                "--spotanims",
+                "data/defs/spotanims.bin",
+                "--object-anims",
+                "data/regions",
+                "--item-render-map",
+                "data/models/item_render.map",
+                "--combat-visuals",
+                "data/defs/combat_visuals.tsv",
+                "--npc-defs",
+                "data/defs/npc_defs.bin",
+                "--output",
+                "data/anims/all.anims",
+            ),
+        ),
+        authority="b237 cache sequence/frame data explicitly scoped from spotanims, item render BAS, combat visuals, object anims, and NPC defs",
+    ),
+)
+
 DEF_REBUILD_SPECS = (
     RuntimeOutputSpec(
         dataset="items",
         logical_paths=("defs/items.bin",),
-        rebuild_inputs=B237_CACHE_INPUT,
-        commands=(py_cmd("tools/export_items.py", "--output", "data/defs/items.bin"),),
-        authority="b237 cache with existing RuneC item export logic",
+        rebuild_inputs=B237_CACHE_AND_OSRSREBOXED_INPUTS,
+        commands=(
+            py_cmd(
+                "tools/export_items.py",
+                "--output",
+                "data/defs/items.bin",
+                "--osrsreboxed-root",
+                "{osrsreboxed_db}",
+                "--require-osrsreboxed",
+            ),
+        ),
+        authority="b237 cache plus explicit osrsreboxed equipment/weapon validation bridge; official release still requires RuneC-owned replacement",
     ),
     RuntimeOutputSpec(
         dataset="npc_defs",
@@ -366,6 +472,7 @@ def command_args(command: tuple[str, ...]) -> list[str]:
         "{python}": sys.executable,
         "{b237_cache}": b237(),
         "{b237_dump}": b237_dump(),
+        "{osrsreboxed_db}": os.environ.get("RUNEC_OSRSREBOXED_DB", ""),
     }
     out: list[str] = []
     for part in command:
@@ -383,6 +490,7 @@ def command_record(command: tuple[str, ...]) -> dict[str, Any]:
             part.replace("{python}", sys.executable)
             .replace("{b237_cache}", "$RUNEC_B237_CACHE")
             .replace("{b237_dump}", "$RUNEC_B237_DUMP")
+            .replace("{osrsreboxed_db}", "$RUNEC_OSRSREBOXED_DB")
         )
     return {"args": args}
 
@@ -538,13 +646,13 @@ STAGE_SPECS: dict[str, StageSpec] = {
     ),
     "export-defs": StageSpec(
         name="export-defs",
-        inputs=("data-sources/sources.lock", "schema/defs/", "RUNEC_B237_CACHE"),
+        inputs=("data-sources/sources.lock", "schema/defs/", "RUNEC_B237_CACHE", "RUNEC_OSRSREBOXED_DB"),
         outputs=("data/defs/", "generated/pipeline/stages/export-defs.json"),
         description="Regenerate non-content definition outputs or record required rebuild gaps.",
     ),
     "export-render-assets": StageSpec(
         name="export-render-assets",
-        inputs=("data-sources/sources.lock", "RUNEC_B237_CACHE", "RUNEC_B237_DUMP"),
+        inputs=("data-sources/sources.lock", "RUNEC_B237_CACHE", "RUNEC_B237_DUMP", "RUNEC_OSRSREBOXED_DB"),
         outputs=(
             "data/models/",
             "data/sprites/",
@@ -552,7 +660,7 @@ STAGE_SPECS: dict[str, StageSpec] = {
             "data/fonts/",
             "generated/pipeline/stages/export-render-assets.json",
         ),
-        description="Verify render-facing rebuild coverage before runtime packing.",
+        description="Rebuild render-facing outputs that depend on regenerated definitions before runtime packing.",
     ),
     "pack-runtime-data": StageSpec(
         name="pack-runtime-data",
@@ -886,13 +994,15 @@ def stage_export_defs(ctx: PipelineContext, record: dict[str, Any]) -> None:
 
 
 def stage_export_render_assets(ctx: PipelineContext, record: dict[str, Any]) -> None:
-    record["mode"] = "verify_cache_rebuild_coverage"
+    record["mode"] = "rebuild_post_definition_render_assets"
     record["notes"] = [
-        "Render-facing outputs are cache-derived; this stage mirrors export-cache-derived-assets so required gaps are visible before packing.",
+        "Render-facing outputs that depend on regenerated definitions run after export-defs.",
+        "The validation item-icon overlay is non-release-required and exists to keep manual validation recognizable while the b237 icon renderer matures.",
     ]
-    emit_rebuild_plan(ctx, record, CACHE_DERIVED_REBUILD_SPECS)
+    emit_rebuild_plan(ctx, record, POST_DEF_RENDER_REBUILD_SPECS)
+    run_rebuild_specs(ctx, record, POST_DEF_RENDER_REBUILD_SPECS)
     record["inventory"] = {
-        "render_assets": tree_summary(ctx.data_root, ("models", "sprites", "ui", "fonts")),
+        "render_assets": tree_summary(ctx.data_root, ("models", "anims", "sprites", "ui", "fonts")),
     }
     message = required_rebuild_gap_message(record)
     if message:

@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import struct
 import sys
@@ -95,6 +96,26 @@ MODEL_TYPES = {
     "item_model_female1": 5,
     "item_model_female2": 6,
 }
+
+WEARPOS_HAT = 0
+WEARPOS_BACK = 1
+WEARPOS_FRONT = 2
+WEARPOS_RIGHT_HAND = 3
+WEARPOS_TORSO = 4
+WEARPOS_LEFT_HAND = 5
+WEARPOS_ARMS = 6
+WEARPOS_LEGS = 7
+WEARPOS_HEAD = 8
+WEARPOS_HANDS = 9
+WEARPOS_FEET = 10
+WEARPOS_JAW = 11
+WEARPOS_RING = 12
+WEARPOS_QUIVER = 13
+
+
+def default_osrsreboxed_root() -> Path:
+    raw = os.environ.get("RUNEC_OSRSREBOXED_DB")
+    return Path(raw) if raw else OSRSREBOXED
 
 
 def int_or(v, default):
@@ -208,6 +229,112 @@ def cache_form_links(cache_items: dict[int, dict]) -> tuple[dict[int, int], dict
 def cache_real_item(rec: dict | None) -> bool:
     name = (rec or {}).get("name")
     return bool(name and str(name).strip().lower() != "null")
+
+
+def cache_item_has_wear_action(cache: dict | None) -> bool:
+    if not cache:
+        return False
+    for action in cache.get("interface_ops") or []:
+        if str(action or "").strip().lower() in {"wear", "wield"}:
+            return True
+    return False
+
+
+def cache_wear_positions(cache: dict | None) -> list[int]:
+    if not cache:
+        return []
+    out: list[int] = []
+    for key in ("wearpos1", "wearpos2", "wearpos3"):
+        value = cache.get(key)
+        if value is not None:
+            out.append(int(value))
+    return out
+
+
+def infer_cache_equip_slot(cache: dict | None) -> str | None:
+    wearpos = set(cache_wear_positions(cache))
+    if not wearpos:
+        return None
+    if WEARPOS_RIGHT_HAND in wearpos:
+        return "weapon"
+    if WEARPOS_LEFT_HAND in wearpos:
+        return "shield"
+    if WEARPOS_TORSO in wearpos or WEARPOS_ARMS in wearpos:
+        return "body"
+    if WEARPOS_LEGS in wearpos:
+        return "legs"
+    if WEARPOS_HANDS in wearpos:
+        return "hands"
+    if WEARPOS_FEET in wearpos:
+        return "feet"
+    if wearpos & {WEARPOS_HAT, WEARPOS_HEAD, WEARPOS_JAW}:
+        return "head"
+    if WEARPOS_BACK in wearpos:
+        return "cape"
+    if WEARPOS_FRONT in wearpos:
+        return "neck"
+    if WEARPOS_RING in wearpos:
+        return "ring"
+    if WEARPOS_QUIVER in wearpos:
+        return "ammo"
+    return None
+
+
+def empty_equipment(slot: str) -> dict:
+    return {
+        "slot": slot,
+        "requirements": {},
+        "attack_stab": 0,
+        "attack_slash": 0,
+        "attack_crush": 0,
+        "attack_magic": 0,
+        "attack_ranged": 0,
+        "defence_stab": 0,
+        "defence_slash": 0,
+        "defence_crush": 0,
+        "defence_magic": 0,
+        "defence_ranged": 0,
+        "melee_strength": 0,
+        "ranged_strength": 0,
+        "magic_damage": 0,
+        "prayer": 0,
+    }
+
+
+def infer_cache_weapon(cache: dict | None, slot: str | None) -> dict | None:
+    if slot != "weapon":
+        return None
+    name = str((cache or {}).get("name") or "").lower()
+    if "staff" in name or "sceptre" in name or "wand" in name:
+        weapon_type = "staff"
+    elif "bow" in name:
+        weapon_type = "bow"
+    elif "blade" in name or "sword" in name:
+        weapon_type = "slash_sword"
+    else:
+        weapon_type = "unarmed"
+    return {
+        "attack_speed": 4,
+        "weapon_type": weapon_type,
+        "stances": [],
+    }
+
+
+def apply_cache_equipment_fallback(rec: dict, cache: dict | None) -> dict:
+    if (rec.get("equipment") or rec.get("noted") or rec.get("placeholder")
+            or not cache_item_has_wear_action(cache)):
+        return rec
+    slot = infer_cache_equip_slot(cache)
+    if not slot:
+        return rec
+    out = dict(rec)
+    out["equipment"] = empty_equipment(slot)
+    out["equipable_by_player"] = True
+    if slot == "weapon":
+        out["equipable_weapon"] = True
+        if not out.get("weapon"):
+            out["weapon"] = infer_cache_weapon(cache, slot)
+    return out
 
 
 class OptionalItemDB:
@@ -492,11 +619,23 @@ def main():
     p.add_argument("--wiki-triage-report", type=Path,
                    default=Path("tools/reports/items_wiki_supplemental_triage.txt"))
     p.add_argument("--cache-dir", type=Path, default=CACHE_DIR)
+    p.add_argument("--osrsreboxed-root", type=Path,
+                   default=default_osrsreboxed_root(),
+                   help=("optional osrsreboxed-db checkout used for equipment/"
+                         "weapon metadata during validation rebuilds; may also "
+                         "be provided with RUNEC_OSRSREBOXED_DB"))
+    p.add_argument("--require-osrsreboxed", action="store_true",
+                   help="fail instead of emitting cache-only non-equipment item defs")
     p.add_argument("--limit", type=int, default=0, help="debug: cap records")
     args = p.parse_args()
 
-    db = open_optional_item_db()
-    model_links = load_item_models()
+    db = open_optional_item_db(args.osrsreboxed_root)
+    if args.require_osrsreboxed and not getattr(db, "available", False):
+        raise SystemExit(
+            "osrsreboxed item source is required for equipment/weapon metadata; "
+            "pass --osrsreboxed-root or set RUNEC_OSRSREBOXED_DB"
+        )
+    model_links = load_item_models(args.osrsreboxed_root)
     cache_items = load_cache_item_defs(require_cache_dir(args.cache_dir))
     cache_models = cache_model_links(cache_items)
     model_links.update(cache_models)
@@ -519,6 +658,7 @@ def main():
     exported_wiki_supplemental = 0
     exported_wiki_cache_backed = 0
     exported_wiki_bonus_overrides = 0
+    exported_cache_equipment_fallbacks = 0
     skipped_wiki_supplemental = 0
     exported_ids: set[int] = set()
     incomplete_triage: list[dict] = []
@@ -554,6 +694,11 @@ def main():
             rec = dict(rec)
             rec["equipment"] = dict(wiki_bonus_overrides[item_id])
             exported_wiki_bonus_overrides += 1
+        had_equipment = bool(rec.get("equipment"))
+        rec = apply_cache_equipment_fallback(rec, cache)
+        exported_cache_equipment_fallbacks += int(
+            not had_equipment and bool(rec.get("equipment"))
+        )
         packed = build_record(rec, model_links)
         if packed is None:
             continue
@@ -579,6 +724,11 @@ def main():
             rec = dict(rec)
             rec["equipment"] = dict(wiki_bonus_overrides[item_id])
             exported_wiki_bonus_overrides += 1
+        had_equipment = bool(rec.get("equipment"))
+        rec = apply_cache_equipment_fallback(rec, cache)
+        exported_cache_equipment_fallbacks += int(
+            not had_equipment and bool(rec.get("equipment"))
+        )
         packed = build_record(rec, model_links)
         if packed is None:
             continue
@@ -612,6 +762,11 @@ def main():
                 rec = dict(rec)
                 rec["equipment"] = dict(wiki_bonus_overrides[item_id])
                 exported_wiki_bonus_overrides += 1
+            had_equipment = bool(rec.get("equipment"))
+            rec = apply_cache_equipment_fallback(rec, cache_items.get(item_id))
+            exported_cache_equipment_fallbacks += int(
+                not had_equipment and bool(rec.get("equipment"))
+            )
             packed = build_record(rec, model_links)
             if packed is None:
                 continue
@@ -659,6 +814,7 @@ def main():
             f"wiki-only supplemental rows ignored as non-current/non-item: {skipped_wiki_supplemental}",
             f"cache placeholder/null rows preserved: {exported_null_cache_rows}",
             f"wiki bonus overrides applied: {exported_wiki_bonus_overrides}",
+            f"cache equipment fallbacks applied: {exported_cache_equipment_fallbacks}",
             f"wiki bonus rows not resolved to current item defs: {len(wiki_bonus['unresolved'])}",
             f"equipment rows: {exported_equipment}",
             f"weapon rows: {exported_weapon}",

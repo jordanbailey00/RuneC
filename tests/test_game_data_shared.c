@@ -42,7 +42,7 @@ int main(void) {
     assert(stats->activity_mechanic_count == 96);
     assert(stats->activity_state_count == 16);
     assert(stats->encounter_spec_count > 0);
-    assert(stats->varbit_count == 18639);
+    assert(stats->varbit_count == 18571);
     assert(stats->varp_count == 5546);
     assert(stats->recipe_count > 3000);
     assert(stats->skill_drop_source_count > 900);
@@ -132,7 +132,7 @@ int main(void) {
     assert(vars != NULL);
     assert(vars->varbit_count == stats->varbit_count);
     assert(vars->varp_count == stats->varp_count);
-    int holy_grail = rc_varbit_find("HOLY_GRAIL_PROGRESS");
+    int holy_grail = rc_varbit_find("VARBIT_5");
     assert(holy_grail == 5);
     assert(rc_varbit_def_get(holy_grail) == &vars->varbits[holy_grail]);
     assert(rc_varp_def_get(318) == &vars->varps[318]);

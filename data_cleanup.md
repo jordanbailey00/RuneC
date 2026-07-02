@@ -55,6 +55,14 @@ Current state:
   - object/traversal smoke destinations: Edgeville dungeon, Varrock Rat Pits,
     Varrock sewer, Wilderness lever/coffin, Observatory ladder, Yanille
     railing.
+- Validation-bank wielding now passes automated coverage for the current
+  validation item set.
+- Explicit player/NPC/object/all animation packs and projectile model packs are
+  rebuilt and included in runtime packs.
+- The external reference icon overlay is missing 26 newest b237 item icons; the
+  current build keeps the b237-rendered icons for those items.
+- `python3 tools/data_pipeline.py --check`, loose/pack viewer smoke, and CTest
+  currently pass.
 - Manual validation has not passed yet.
 
 Required work:
@@ -62,7 +70,8 @@ Required work:
    - startup Varrock;
    - boss validation teleports;
    - the object/traversal smoke destinations listed above;
-   - local NPCs, terrain, objects, object animations, and projectile visuals.
+   - local NPCs, terrain, objects, object animations, projectile visuals,
+     player/NPC animations, item icons, and wielding.
 2. Fix any manual-validation issues found.
 3. If a failed route is outside the listed validation set, explicitly decide
    whether it is first-release scope before adding scene coverage for it.

@@ -280,6 +280,66 @@ active plan. Remaining work is tracked only in `data_cleanup.md`.
 - Manual viewer validation is still pending and is required before Step 2 can
   close.
 
+## Validation Item, Icon, And Animation Fixes
+
+- Added explicit `RUNEC_OSRSREBOXED_DB` / `--osrsreboxed-root` support to the
+  item exporter and made validation item definition export fail if that bridge
+  is required but unavailable.
+- Extended cache item decoding to retain client wear-position fields
+  (`wearpos1`, `wearpos2`, `wearpos3`).
+- Added a scoped cache-equipment fallback for current-cache items with `Wear` or
+  `Wield` inventory actions when the external item metadata source has no
+  equipment block:
+  - inferred equipment slot from cache wear positions;
+  - marked weapon-slot items as player-wieldable;
+  - preserved zero bonuses for fallback rows so exact missing stat source
+    remains visible.
+- Regenerated `data/defs/items.bin`; the report now records:
+  - `osrsreboxed item source available: True`;
+  - `cache equipment fallbacks applied: 360`;
+  - `equipment rows: 5227`;
+  - `weapon rows: 1245`.
+- Fixed the validation-bank wielding failure for the b237 validation gear that
+  previously exported as generic items:
+  - Oathplate helm/chest/legs;
+  - Avernic treads;
+  - Confliction gauntlets;
+  - Twinflame staff;
+  - Arkan blade;
+  - Soulflame horn;
+  - Eye of ayak and Eye of ayak (uncharged);
+  - Nature's reprisal.
+- Moved item render model generation after regenerated item definitions so the
+  viewer consumes the current equipment slots and model links.
+- Added validation item icon overlay support for the `combat-validation` item
+  set from `items.bin` plus `rc-viewer/dev_validation.c`.
+- Overlaid 382 external reference icons onto the b237-rendered item sprite set;
+  26 newest b237 item icons are not present in the external icon source and
+  remain backed by the b237 renderer output.
+- Made animation export explicit in the pipeline:
+  - `player.anims` includes spotanim sequence IDs, item render BAS sequence
+    IDs, and combat visual sequence IDs;
+  - `npcs.anims` includes NPC definition sequence IDs and combat visual
+    sequence IDs;
+  - `object.anims` includes object animation IDs from region data;
+  - `all.anims` unions spotanim, object, item render BAS, combat visual, and
+    NPC definition sequence IDs.
+- Rebuilt runtime packs after the item/render/animation changes; the manifest
+  contains 16 packs and 34,641 assets.
+- Updated tests for the regenerated b237 data surface:
+  - validation-bank equipment coverage;
+  - cache-fallback item equipment;
+  - cache-only object-definition wiki flags;
+  - cache-native varbit count and `VARBIT_5` naming.
+- Verified:
+  - `python3 tools/data_pipeline.py --check`;
+  - `cmake --build build -j2`;
+  - `RUNEC_VIEWER_SMOKE=1 RUNEC_VIEWER_SMOKE_SCENES=1
+    RUNEC_ASSET_BACKEND=loose ./build/rc-viewer`;
+  - `RUNEC_VIEWER_SMOKE=1 RUNEC_VIEWER_SMOKE_SCENES=1
+    RUNEC_ASSET_BACKEND=pack ./build/rc-viewer`;
+  - `ctest --test-dir build --output-on-failure` passed 69/69 tests.
+
 ## Validation Already Run
 
 - `cmake --build build -j2 --target rc-viewer test_game_data_validation`

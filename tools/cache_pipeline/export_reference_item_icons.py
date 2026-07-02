@@ -13,7 +13,14 @@ import argparse
 import json
 import os
 import shutil
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from export_item_render_models import (  # noqa: E402
+    parse_item_ids as parse_render_item_ids,
+    parse_items_bin,
+)
 
 
 DEFAULT_REFERENCE = (
@@ -59,7 +66,7 @@ DEFAULT_ITEM_IDS = (
 COIN_VISUAL_QUANTITIES = (1, 2, 3, 4, 5, 25, 100, 250, 1000, 10000)
 
 
-def parse_item_ids(raw: str | None) -> list[int]:
+def parse_explicit_item_ids(raw: str | None) -> list[int]:
     if not raw:
         return list(DEFAULT_ITEM_IDS)
     return [int(part.strip()) for part in raw.replace(",", " ").split() if part.strip()]
@@ -84,6 +91,20 @@ def copy_icon(reference_dir: Path, output_dir: Path, item_id: int) -> bool:
     dst = output_dir / f"item_{item_id}.png"
     shutil.copy2(src, dst)
     return True
+
+
+def resolve_item_ids(raw: str | None, args: argparse.Namespace) -> list[int]:
+    if args.all:
+        return parse_all_item_ids(args.reference)
+    normalized = (raw or "").strip().lower()
+    if normalized in {"combat-validation", "all-equippable", "default"}:
+        items = parse_items_bin(args.items)
+        return parse_render_item_ids(
+            normalized,
+            items,
+            args.dev_validation_source,
+        )
+    return parse_explicit_item_ids(raw)
 
 
 def write_stack_variants(stacked_items_path: Path, output_path: Path) -> int:
@@ -117,6 +138,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--item-ids", help="space/comma separated item ids")
+    parser.add_argument("--items", type=Path, default=Path("data/defs/items.bin"),
+                        help="items.bin used when --item-ids is a named set")
+    parser.add_argument("--dev-validation-source", type=Path,
+                        default=Path("rc-viewer/dev_validation.c"),
+                        help="source file used by the combat-validation item set")
+    parser.add_argument("--fail-on-missing", action="store_true",
+                        help="return nonzero if any requested reference icon is absent")
     parser.add_argument(
         "--all",
         action="store_true",
@@ -135,11 +163,14 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit(f"reference item icon directory not found: {args.reference}")
     args.output.mkdir(parents=True, exist_ok=True)
 
-    item_ids = parse_all_item_ids(args.reference) if args.all else parse_item_ids(args.item_ids)
+    item_ids = resolve_item_ids(args.item_ids, args)
     copied = 0
+    missing = 0
     for item_id in item_ids:
         if copy_icon(args.reference, args.output, item_id):
             copied += 1
+        else:
+            missing += 1
 
     coin = args.output / "item_995.png"
     if coin.exists():
@@ -151,8 +182,12 @@ def main(argv: list[str] | None = None) -> int:
         if args.stacked_items is not None else 0
     )
     print(f"copied {copied} item icons to {args.output}")
+    if missing:
+        print(f"missing {missing} requested item icons")
     if variants:
         print(f"wrote {variants} stack icon variants to {args.variants_output}")
+    if args.fail_on_missing and missing:
+        return 1
     return 0 if copied > 0 else 1
 
 

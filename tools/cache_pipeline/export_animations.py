@@ -944,6 +944,52 @@ def read_combat_visual_sequence_ids(path: Path) -> set[int]:
     return out
 
 
+def read_npc_def_sequence_ids(path: Path) -> set[int]:
+    out: set[int] = set()
+    if not path.exists():
+        return out
+    data = path.read_bytes()
+    if len(data) < 12:
+        raise ValueError(f"npc def file too small: {path}")
+    magic, version, count = struct.unpack_from("<III", data, 0)
+    if magic != 0x4E444546:
+        raise ValueError(f"bad npc def magic in {path}")
+    pos = 12
+    for _ in range(count):
+        if pos + 4 + 1 + 2 + 2 + 12 + 20 + 1 > len(data):
+            raise ValueError(f"truncated npc def row in {path}")
+        pos += 4  # npc id
+        pos += 1  # size
+        pos += 2  # combat level
+        pos += 2  # hp
+        pos += 12  # stats[6]
+        anims = struct.unpack_from("<5i", data, pos)
+        pos += 20
+        for anim_id in anims:
+            if anim_id >= 0:
+                out.add(int(anim_id))
+        name_len = data[pos]
+        pos += 1 + name_len
+        if pos > len(data):
+            raise ValueError(f"truncated npc def name in {path}")
+        if version >= 2:
+            pos += 10
+        if version >= 3:
+            if pos >= len(data):
+                raise ValueError(f"truncated npc def model count in {path}")
+            model_count = data[pos]
+            pos += 1 + 4 * model_count
+        if version >= 4:
+            for _option in range(5):
+                if pos >= len(data):
+                    raise ValueError(f"truncated npc def option in {path}")
+                option_len = data[pos]
+                pos += 1 + option_len
+        if pos > len(data):
+            raise ValueError(f"truncated npc def row in {path}")
+    return out
+
+
 def main() -> None:
     """Export animation data from OSRS cache."""
     parser = argparse.ArgumentParser(description="export OSRS animations from cache")
@@ -959,6 +1005,8 @@ def main() -> None:
                         help="include BAS sequence ids referenced by item_render.map")
     parser.add_argument("--combat-visuals", type=Path,
                         help="include attack/projectile sequence ids from combat_visuals.tsv")
+    parser.add_argument("--npc-defs", type=Path,
+                        help="include stand/walk/run/attack/death sequence ids from npc_defs.bin")
     args = parser.parse_args()
 
     output_path = Path(args.output)
@@ -983,6 +1031,10 @@ def main() -> None:
             combat_visual_ids = read_combat_visual_sequence_ids(args.combat_visuals)
             needed |= combat_visual_ids
             print(f"including {len(combat_visual_ids)} combat visual sequence IDs")
+        if args.npc_defs:
+            npc_def_ids = read_npc_def_sequence_ids(args.npc_defs)
+            needed |= npc_def_ids
+            print(f"including {len(npc_def_ids)} NPC definition sequence IDs")
         export_animations_from_modern_cache(
             cache_path,
             output_path,

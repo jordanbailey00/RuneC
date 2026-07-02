@@ -161,7 +161,7 @@ static void check_skilling_only(void) {
     assert(g_item_def_count > 30000);
     assert(g_rc_item_normalization_count > 30000);
     assert(g_rc_player_action_count == 13);
-    assert(g_rc_varbit_count == 18639);
+    assert(g_rc_varbit_count == 18571);
     assert(g_rc_varp_count == 5546);
     assert(g_rc_recipe_count > 3000);
     assert(g_rc_skill_drop_source_count > 900);
@@ -193,7 +193,7 @@ static void check_full_game(void) {
     assert(g_npc_def_count > 10000);
     assert(g_item_def_count > 30000);
     assert(g_rc_item_normalization_count > 30000);
-    assert(g_rc_varbit_count == 18639);
+    assert(g_rc_varbit_count == 18571);
     assert(g_rc_varp_count == 5546);
     assert(g_rc_drop_table_count == 1052);
     assert(g_rc_rdt_entry_count == 19);

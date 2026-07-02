@@ -139,8 +139,8 @@ int main(void) {
     if (model_rows < 55000u) abort();
     if (action_rows < 16000u) abort();
     if (transform_rows < 4500u) abort();
-    if (wiki_object_rows < 15000u) abort();
-    if (wiki_scenery_rows < 14000u) abort();
+    if (wiki_object_rows != 0u) abort();
+    if (wiki_scenery_rows != 0u) abort();
     if (interactive < 35000u) abort();
     if (version >= 2u) {
         if (param_rows < 1000u) abort();

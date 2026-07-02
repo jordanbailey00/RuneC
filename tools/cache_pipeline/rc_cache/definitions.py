@@ -332,6 +332,9 @@ class ItemDef(DecodeSummary):
     placeholder_template_id: int = -1
     male_model_ids: list[int] = field(default_factory=lambda: [-1, -1, -1])
     female_model_ids: list[int] = field(default_factory=lambda: [-1, -1, -1])
+    wearpos1: int = -1
+    wearpos2: int = -1
+    wearpos3: int = -1
     ground_actions: list[str | None] = field(
         default_factory=lambda: [None, None, "Take", None, None]
     )
@@ -371,7 +374,13 @@ def decode_item_definition(item_id: int, data: bytes) -> ItemDef:
             d.stackable = True
         elif op == 12:
             d.cost = read_i32(buf)
-        elif op in (13, 14, 17, 18, 19, 20, 27, 28, 29, 42, 62, 69, 119, 120, 121, 122, 155, 157, 162, 163, 165):
+        elif op == 13:
+            d.wearpos1 = read_u8(buf)
+        elif op == 14:
+            d.wearpos2 = read_u8(buf)
+        elif op == 27:
+            d.wearpos3 = read_u8(buf)
+        elif op in (17, 18, 19, 20, 28, 29, 42, 62, 69, 119, 120, 121, 122, 155, 157, 162, 163, 165):
             read_u8(buf)
         elif op == 15:
             pass
