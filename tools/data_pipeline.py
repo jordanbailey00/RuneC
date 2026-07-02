@@ -182,8 +182,9 @@ CACHE_DERIVED_REBUILD_SPECS = (
             py_cmd("tools/cache_pipeline/export_terrain.py", "--modern-cache", "{b237_cache}", "--regions", "48,51 49,51 50,51 51,51 52,51 48,52 49,52 50,52 51,52 52,52 48,53 49,53 50,53 51,53 52,53 48,54 49,54 50,54 51,54 52,54 48,55 49,55 50,55 51,55 52,55", "--output", "data/regions/varrock.terrain"),
             py_cmd("tools/cache_pipeline/export_objects.py", "--modern-cache", "{b237_cache}", "--regions", "48,51 49,51 50,51 51,51 52,51 48,52 49,52 50,52 51,52 52,52 48,53 49,53 50,53 51,53 52,53 48,54 49,54 50,54 51,54 52,54 48,55 49,55 50,55 51,55 52,55", "--output", "data/regions/varrock.objects"),
             py_cmd("tools/cache_pipeline/export_collision_map_modern.py", "--cache", "{b237_cache}", "--regions", "48,51", "49,51", "50,51", "51,51", "52,51", "48,52", "49,52", "50,52", "51,52", "52,52", "48,53", "49,53", "50,53", "51,53", "52,53", "48,54", "49,54", "50,54", "51,54", "52,54", "48,55", "49,55", "50,55", "51,55", "52,55", "--output", "data/regions/varrock.cmap"),
+            py_cmd("tools/cache_pipeline/export_validation_scenes.py", "--cache", "{b237_cache}", "--clean"),
         ),
-        authority="b237 cache; broader destination coverage is step 4",
+        authority="b237 cache; full Varrock baseline plus first-release viewer validation scene slices",
     ),
 )
 
@@ -1085,6 +1086,7 @@ def clean_generated(ctx: PipelineContext) -> None:
         ctx.data_root / "manifest.json",
         ctx.data_root / ".runtime-unpacked",
         ctx.data_root / "packs",
+        ctx.data_root / "regions" / "scene_cache",
         ctx.dist_root / "manifest.json",
         ctx.dist_root / "packs",
     ]

@@ -237,6 +237,49 @@ active plan. Remaining work is tracked only in `data_cleanup.md`.
   performance workaround and needs lazy/scoped loading before combat visual
   validation can close.
 
+## Step 2 Viewer Validation Readiness Implementation
+
+- Added `tools/cache_pipeline/export_validation_scenes.py` as the tracked
+  b237 exporter for the first-release viewer validation scene set.
+- The exporter cleans `data/regions/scene_cache` before writing the approved
+  scene set so stale local scene-cache files are not packed.
+- Wired validation scene export into the cache-derived `regions` rebuild stage
+  and added `data/regions/scene_cache` to `--clean-generated`.
+- Generated and packed scene assets for:
+  - Graardor, KBD, Vorkath, and Jad boss validation teleports;
+  - Edgeville dungeon, Varrock Rat Pits, Varrock sewer, Wilderness
+    lever/coffin, Observatory ladder, and Yanille railing object/traversal
+    smoke destinations.
+- Updated viewer scene reloads to load the required destination plane first,
+  so nonzero-plane destinations such as Graardor plane 2 do not depend on
+  plane 0 visual assets.
+- Added `RUNEC_VIEWER_SMOKE_SCENES=1` to verify required validation scene
+  assets exist in both loose and pack backends.
+- Narrowed generated scene freshness checks to the actual scene exporter
+  dependencies; runtime definition binaries are not inputs to the b237 scene
+  mesh exporter.
+- Added lazy projectile model loading for active combat projectile/spotanim
+  model IDs, preserving the optional `RUNEC_LOAD_PROJECTILE_MODELS=1` eager
+  full-pack path without making it the default.
+- Added a local development pack fallback so `RUNEC_ASSET_BACKEND=pack` can
+  read freshly built `dist-data/packs` when official/setup-installed
+  `data/packs` is absent.
+- Rebuilt the full data pipeline with:
+  - `RUNEC_B237_CACHE=data/source/b237-openrs2-2528/cache`
+  - `RUNEC_B237_DUMP=/home/joe/projects/referencee/model_dump/osrs-dumps`
+  - `python3 tools/data_pipeline.py --clean-generated all`
+- The rebuilt manifest contains 34,631 runtime assets, including 70 validation
+  scene-cache assets.
+- Ran `python3 tools/data_pipeline.py --check`; it passed.
+- Ran `RUNEC_VIEWER_SMOKE=1 RUNEC_VIEWER_SMOKE_SCENES=1
+  RUNEC_ASSET_BACKEND=loose ./build/rc-viewer`; it passed and checked 10
+  validation scenes.
+- Ran `RUNEC_VIEWER_SMOKE=1 RUNEC_VIEWER_SMOKE_SCENES=1
+  RUNEC_ASSET_BACKEND=pack ./build/rc-viewer`; it passed and checked 10
+  validation scenes.
+- Manual viewer validation is still pending and is required before Step 2 can
+  close.
+
 ## Validation Already Run
 
 - `cmake --build build -j2 --target rc-viewer test_game_data_validation`

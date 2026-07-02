@@ -47,36 +47,25 @@ Close when:
 
 ### 2. Viewer Validation Readiness
 
-Current blocker:
-- Full Varrock startup is the baseline, but non-Varrock validation destinations
-  do not have complete default visual scene coverage.
-- Boss validation can render/focus a boss NPC without terrain, objects,
-  destination NPC population, or projectile visuals.
-- Projectile model loading is currently disabled by default to avoid eager
-  startup cost.
+Current state:
+- Full Varrock startup remains the baseline.
+- Automated loose/pack smoke checks now verify scene assets for the current
+  first-release validation set:
+  - dev boss destinations: Graardor, KBD, Vorkath, Jad;
+  - object/traversal smoke destinations: Edgeville dungeon, Varrock Rat Pits,
+    Varrock sewer, Wilderness lever/coffin, Observatory ladder, Yanille
+    railing.
+- Manual validation has not passed yet.
 
 Required work:
-1. Define the required manual-validation destination set:
+1. User manually validates `./build/rc-viewer` for:
    - startup Varrock;
-   - validation bosses;
-   - dungeons reached by object transports;
-   - object-transport destinations selected for the first release.
-2. For each destination, export/package/load:
-   - terrain;
-   - object meshes;
-   - atlases and texture animations;
-   - object animation companions;
-   - collision/active-area coverage;
-   - destination NPC population.
-3. Make active-area NPC/collision loading robust when visual scene loading is
-   missing or delayed.
-4. Restore projectile visuals through lazy loading or scoped validation
-   projectile bundles instead of eagerly loading the full projectile model pack.
-5. Rebuild packs and run:
-   - `RUNEC_VIEWER_SMOKE=1 RUNEC_ASSET_BACKEND=pack ./build/rc-viewer`
-   - `RUNEC_VIEWER_SMOKE=1 RUNEC_ASSET_BACKEND=loose ./build/rc-viewer`
-6. Ask for user manual validation only after the destination coverage and
-   projectile path are fixed.
+   - boss validation teleports;
+   - the object/traversal smoke destinations listed above;
+   - local NPCs, terrain, objects, object animations, and projectile visuals.
+2. Fix any manual-validation issues found.
+3. If a failed route is outside the listed validation set, explicitly decide
+   whether it is first-release scope before adding scene coverage for it.
 
 Close when:
 - User manually validates pack/loose startup and the agreed destination set.

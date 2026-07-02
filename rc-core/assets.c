@@ -175,6 +175,11 @@ static int rc_file_exists_path(const char *path) {
     return path && stat(path, &st) == 0 && S_ISREG(st.st_mode);
 }
 
+static int rc_dir_exists_path(const char *path) {
+    struct stat st;
+    return path && stat(path, &st) == 0 && S_ISDIR(st.st_mode);
+}
+
 static int rc_join_path(char *out, size_t cap, const char *a, const char *b) {
     if (!out || cap == 0 || !a || !b) return 0;
     int n = snprintf(out, cap, "%s/%s", a, b);
@@ -276,6 +281,11 @@ static void rc_asset_apply_env(void) {
         snprintf(g_pack_dir, sizeof(g_pack_dir), "%s", pack_dir);
     } else if (root && root[0]) {
         snprintf(g_pack_dir, sizeof(g_pack_dir), "%s/packs", root);
+    }
+    if ((!pack_dir || !pack_dir[0]) && strcmp(g_data_root, "data") == 0
+            && !rc_dir_exists_path(g_pack_dir)
+            && rc_dir_exists_path("dist-data/packs")) {
+        snprintf(g_pack_dir, sizeof(g_pack_dir), "dist-data/packs");
     }
     const char *backend = getenv("RUNEC_ASSET_BACKEND");
     if (backend && strcmp(backend, "loose") == 0) {

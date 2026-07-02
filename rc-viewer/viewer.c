@@ -48,6 +48,7 @@
 #define NPC_RENDER_MAX_DT 0.05f
 #define NPC_MODEL_SCALE 1.0f
 #define VIEWER_MAX_COMBAT_PROJECTILES 64
+#define VIEWER_PROJECTILE_MODEL_FILTER_MAX 256
 #define VIEWER_NPC_TZTOK_JAD 3127
 #define VIEWER_JAD_MELEE_ANIM_TICKS 3
 #define VIEWER_JAD_WARNING_ANIM_TICKS 5
@@ -143,6 +144,27 @@ typedef struct {
     int sequence_index;
     int sequence_count;
 } ViewerCombatProjectile;
+
+typedef struct {
+    const char *key;
+    int center_x;
+    int center_y;
+    int plane;
+    int radius_regions;
+} ViewerValidationScene;
+
+static const ViewerValidationScene VIEWER_VALIDATION_SCENES[] = {
+    {"graardor", 2872, 5358, 2, 1},
+    {"kbd", 2269, 4697, 0, 1},
+    {"vorkath", 2269, 4062, 0, 1},
+    {"jad", 2400, 5088, 0, 1},
+    {"edgeville_dungeon", 3117, 9852, 0, 1},
+    {"varrock_rat_pits", 2894, 5097, 0, 1},
+    {"varrock_sewer", 3237, 9858, 0, 1},
+    {"wilderness_lever", 3154, 3924, 0, 1},
+    {"observatory_ladder", 2465, 3495, 1, 1},
+    {"yanille_railing", 2519, 3163, 0, 1},
+};
 
 static const char *object_action_label(const ViewerPickedObject *object,
                                        const RcObjectDef *def, int opt);
@@ -253,6 +275,8 @@ typedef struct {
     RcCombatViewState combat_view;
     ViewerCombatProjectile combat_projectiles[VIEWER_MAX_COMBAT_PROJECTILES];
     int combat_projectile_count;
+    uint32_t projectile_model_request_ids[VIEWER_PROJECTILE_MODEL_FILTER_MAX];
+    int projectile_model_request_id_count;
     Shader alpha_cutout_shader_static;
     Shader alpha_cutout_shader_dynamic;
     Shader projectile_effect_shader;
@@ -1372,9 +1396,6 @@ static int scene_objects_current(const char *objects_path) {
         "tools/cache_pipeline/export_scene_slice.py",
         "tools/cache_pipeline/export_terrain.py",
         "tools/cache_pipeline/export_objects.py",
-        "data/defs/object_defs.bin",
-        "data/defs/object_behaviors.bin",
-        "data/defs/object_placements.bin",
     };
     for (size_t i = 0; i < sizeof(deps) / sizeof(deps[0]); i++) {
         time_t dep_mtime;
@@ -1399,6 +1420,46 @@ static int scene_plane_files_exist(const char *prefix, int plane) {
         return 0;
     scene_plane_file(path, sizeof(path), prefix, plane, ".atlas");
     return rc_asset_exists(path);
+}
+
+static int validate_viewer_scene_assets(ViewerState *v) {
+    if (!v)
+        return 0;
+    const char *dir = env_path("RUNEC_SCENE_CACHE_DIR",
+                               "data/regions/scene_cache");
+    int missing = 0;
+    int checked = 0;
+    for (size_t i = 0;
+            i < sizeof(VIEWER_VALIDATION_SCENES)
+                    / sizeof(VIEWER_VALIDATION_SCENES[0]);
+            i++) {
+        const ViewerValidationScene *scene = &VIEWER_VALIDATION_SCENES[i];
+        int origin_x = 0;
+        int origin_y = 0;
+        int world_w = 0;
+        int world_h = 0;
+        scene_bounds_for_tile(scene->center_x, scene->center_y,
+                              scene->radius_regions, &origin_x, &origin_y,
+                              &world_w, &world_h);
+        (void)world_w;
+        (void)world_h;
+        char prefix[1024];
+        int n = snprintf(prefix, sizeof(prefix), "%s/scene_%d_%d_r%d",
+                         dir, origin_x, origin_y, scene->radius_regions);
+        if (n <= 0 || (size_t)n >= sizeof(prefix)
+                || !scene_plane_files_exist(prefix, scene->plane)) {
+            fprintf(stderr,
+                    "viewer smoke scenes: missing %s plane %d at %s\n",
+                    scene->key, scene->plane, n > 0 ? prefix : "(overflow)");
+            missing++;
+            continue;
+        }
+        checked++;
+    }
+    if (missing > 0)
+        return -1;
+    fprintf(stderr, "viewer smoke scenes: PASS checked=%d\n", checked);
+    return checked;
 }
 
 static int ensure_scene_slice_plane_assets(ViewerState *v, int center_x,
@@ -1601,20 +1662,15 @@ static int reload_scene_around_player(ViewerState *v, int center_x,
                                          required_plane))
         return 0;
 
-    char terrain_path[1024];
-    char objects_path[1024];
-    scene_plane_file(terrain_path, sizeof(terrain_path), prefix, 0,
-                     ".terrain");
-    scene_plane_file(objects_path, sizeof(objects_path), prefix, 0,
-                     ".objects");
-
     unload_scene_visual_assets(v);
     g_world_origin_x = origin_x;
     g_world_origin_y = origin_y;
     g_world_w = world_w;
     g_world_h = world_h;
-    load_terrain_plane_assets(v, terrain_path);
-    load_object_plane_assets(v, objects_path);
+    if (!load_generated_scene_plane_assets(v, prefix, required_plane))
+        return 0;
+    if (required_plane != 0 && scene_plane_files_exist(prefix, 0))
+        load_generated_scene_plane_assets(v, prefix, 0);
     if (!activate_core_area_for_loaded_scene(v))
         return 0;
     build_minimap_tiles(v);
@@ -1735,21 +1791,22 @@ static int load_generated_startup_scene(ViewerState *v, int required) {
         return 0;
     }
 
+    unload_scene_visual_assets(v);
+    g_world_origin_x = origin_x;
+    g_world_origin_y = origin_y;
+    g_world_w = world_w;
+    g_world_h = world_h;
     char terrain_path[1024];
     char objects_path[1024];
     scene_plane_file(terrain_path, sizeof(terrain_path), prefix, 0,
                      ".terrain");
     scene_plane_file(objects_path, sizeof(objects_path), prefix, 0,
                      ".objects");
-
-    unload_scene_visual_assets(v);
-    g_world_origin_x = origin_x;
-    g_world_origin_y = origin_y;
-    g_world_w = world_w;
-    g_world_h = world_h;
     remember_initial_scene(v, terrain_path, objects_path);
-    load_terrain_plane_assets(v, terrain_path);
-    load_object_plane_assets(v, objects_path);
+    if (!load_generated_scene_plane_assets(v, prefix, 0))
+        return 0;
+    if (required_plane != 0)
+        load_generated_scene_plane_assets(v, prefix, required_plane);
     if (!v->terrain) {
         if (required)
             fprintf(stderr,
@@ -4768,6 +4825,68 @@ static ModelEntry *projectile_model_find(ViewerState *v, uint32_t model_id) {
     return NULL;
 }
 
+static int projectile_model_id_add(uint32_t *ids, int *count, int cap,
+                                   uint32_t id) {
+    if (!ids || !count || cap <= 0)
+        return 0;
+    for (int i = 0; i < *count; i++) {
+        if (ids[i] == id)
+            return 1;
+    }
+    if (*count >= cap)
+        return 0;
+    ids[(*count)++] = id;
+    return 1;
+}
+
+static int projectile_model_id_list_contains(const uint32_t *ids, int count,
+                                             uint32_t id) {
+    for (int i = 0; ids && i < count; i++) {
+        if (ids[i] == id)
+            return 1;
+    }
+    return 0;
+}
+
+static int projectile_model_requests_same(ViewerState *v,
+                                          const uint32_t *ids,
+                                          int count) {
+    if (!v || count != v->projectile_model_request_id_count)
+        return 0;
+    for (int i = 0; i < count; i++) {
+        if (!projectile_model_id_list_contains(v->projectile_model_request_ids,
+                                               count, ids[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+static void projectile_model_remember_request(ViewerState *v,
+                                              const uint32_t *ids,
+                                              int count) {
+    if (!v)
+        return;
+    if (count > VIEWER_PROJECTILE_MODEL_FILTER_MAX)
+        count = VIEWER_PROJECTILE_MODEL_FILTER_MAX;
+    for (int i = 0; i < count; i++)
+        v->projectile_model_request_ids[i] = ids[i];
+    v->projectile_model_request_id_count = count;
+}
+
+static int projectile_model_set_covers_ids(ModelSet *models,
+                                           const uint32_t *ids,
+                                           int count) {
+    if (!models || !models->loaded)
+        return 0;
+    for (int i = 0; i < count; i++) {
+        ModelEntry *entry = model_find(models, ids[i]);
+        if (!entry || !entry->loaded)
+            return 0;
+    }
+    return 1;
+}
+
 static const SpotAnimDef *projectile_travel_spotanim(ViewerState *v,
                                                      const ViewerCombatProjectile *proj) {
     if (!v || !proj || proj->travel_spotanim_id < 0)
@@ -4787,6 +4906,82 @@ static const SpotAnimDef *projectile_impact_spotanim(ViewerState *v,
     if (!v || !proj || proj->impact_spotanim_id < 0)
         return NULL;
     return spotanim_find(v->spotanims, proj->impact_spotanim_id);
+}
+
+static void projectile_collect_spotanim_model_ids(
+    ViewerState *v,
+    int spotanim_id,
+    uint32_t *ids,
+    int *count,
+    int *truncated
+) {
+    if (!v || spotanim_id < 0)
+        return;
+    const SpotAnimDef *spot = spotanim_find(v->spotanims, spotanim_id);
+    if (!spot)
+        return;
+    if (spot->id <= 0x0FFFFFFFu
+            && !projectile_model_id_add(ids, count,
+                                        VIEWER_PROJECTILE_MODEL_FILTER_MAX,
+                                        MODEL_ID_SPOTANIM_BASE + spot->id)) {
+        if (truncated) *truncated = 1;
+    }
+    if (spot->model_id >= 0
+            && !projectile_model_id_add(ids, count,
+                                        VIEWER_PROJECTILE_MODEL_FILTER_MAX,
+                                        (uint32_t)spot->model_id)) {
+        if (truncated) *truncated = 1;
+    }
+}
+
+static void ensure_projectile_models_for_active_projectiles(
+    ViewerState *v,
+    int scene_plane
+) {
+    if (!v)
+        return;
+    uint32_t ids[VIEWER_PROJECTILE_MODEL_FILTER_MAX];
+    int id_count = 0;
+    int truncated = 0;
+    scene_plane = clamp_plane(scene_plane);
+
+    for (int i = 0; i < v->combat_projectile_count; i++) {
+        const ViewerCombatProjectile *proj = &v->combat_projectiles[i];
+        if (!proj->active || proj->plane != scene_plane)
+            continue;
+        if (proj->projectile_model_id >= 0
+                && !projectile_model_id_add(ids, &id_count,
+                                            VIEWER_PROJECTILE_MODEL_FILTER_MAX,
+                                            (uint32_t)proj->projectile_model_id)) {
+            truncated = 1;
+        }
+        projectile_collect_spotanim_model_ids(
+            v, proj->launch_spotanim_id, ids, &id_count, &truncated);
+        projectile_collect_spotanim_model_ids(
+            v, proj->travel_spotanim_id, ids, &id_count, &truncated);
+        projectile_collect_spotanim_model_ids(
+            v, proj->impact_spotanim_id, ids, &id_count, &truncated);
+    }
+
+    if (id_count <= 0)
+        return;
+    if (projectile_model_set_covers_ids(v->projectile_models, ids, id_count))
+        return;
+    if (projectile_model_requests_same(v, ids, id_count))
+        return;
+
+    free_projectile_anim_states(v);
+    models_free(v->projectile_models);
+    v->projectile_models = models_load_filtered(
+        env_path("RUNEC_PROJECTILE_MODELS", "data/models/projectiles.models"),
+        ids, id_count);
+    if (v->projectile_models && v->projectile_effect_shader_loaded)
+        models_set_shader(v->projectile_models, v->projectile_effect_shader);
+    create_projectile_anim_states(v);
+    projectile_model_remember_request(v, ids, id_count);
+    fprintf(stderr,
+            "projectile models: lazy requested=%d%s active visual ids\n",
+            id_count, truncated ? " (truncated)" : "");
 }
 
 static int projectile_effect_model_id(const ViewerCombatProjectile *proj,
@@ -5155,6 +5350,7 @@ static void draw_combat_projectiles(ViewerState *v) {
     const ViewerCombatProjectile *projectiles = v ? v->combat_projectiles : NULL;
     if (!projectiles || count <= 0) return;
     int scene_plane = viewer_scene_plane(v);
+    ensure_projectile_models_for_active_projectiles(v, scene_plane);
     BeginBlendMode(BLEND_ALPHA);
     rlDisableDepthMask();
     for (int i = 0; i < count; i++) {
@@ -6264,6 +6460,11 @@ int main(void) {
             rc_world_destroy(v.world);
             return 1;
         }
+        if (env_bool("RUNEC_VIEWER_SMOKE_SCENES", 0)
+                && validate_viewer_scene_assets(&v) < 0) {
+            rc_world_destroy(v.world);
+            return 1;
+        }
         fprintf(stderr,
                 "viewer smoke: PASS backend=%s combat_visuals=%d npcs=%d\n",
                 env_path("RUNEC_ASSET_BACKEND", "auto"),
@@ -6411,8 +6612,8 @@ int main(void) {
         create_projectile_anim_states(&v);
     } else {
         fprintf(stderr,
-                "projectile models: skipped by default; set "
-                "RUNEC_LOAD_PROJECTILE_MODELS=1 for combat visual validation\n");
+                "projectile models: lazy active-projectile loading enabled; "
+                "set RUNEC_LOAD_PROJECTILE_MODELS=1 for eager full-pack load\n");
     }
     v.spotanims = spotanims_load(env_path("RUNEC_SPOTANIMS",
         "data/defs/spotanims.bin"));

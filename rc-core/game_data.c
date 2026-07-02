@@ -129,6 +129,10 @@ static void rc_effective_pack_dir(const char *data_root, char *out, size_t cap) 
         return;
     }
     rc_join(out, cap, data_root, "packs");
+    if (strcmp(data_root, "data") == 0 && !rc_dir_has_pak(out)
+            && rc_dir_has_pak("dist-data/packs")) {
+        snprintf(out, cap, "%s", "dist-data/packs");
+    }
 }
 
 static char *rc_read_file(const char *path, size_t *out_size) {
