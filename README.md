@@ -282,8 +282,8 @@ boundary, and admitted object traversals prefetch the core-selected destination
 while the player routes and the authored action runs. Matching work is promoted
 without restarting it. PR 10 transaction safety still protects late or failed
 visual preparation. The superseded progress overlay and broad loading input
-gate have been removed. See `full_world_streaming_plan.md` for acceptance
-criteria.
+gate have been removed. See the [archived streaming plan](docs/archive/full_world_streaming_plan-through-2026-10-03.md)
+for acceptance history and [TODO.md](docs/TODO.md) for remaining work.
 Height sampling also clamps the outer corner of legacy `64x64` terrain files;
 new exports carry the actual neighboring corner values.
 

@@ -12,7 +12,8 @@ Unless a schema says otherwise:
 - schema files, exporters, loaders, and source locks stay tracked in this repo
 
 `schema/defs/*.schema.toml` documents table-level runtime contracts.
-`schema/packs/runec_pack_v1.md` documents the runtime pack container and index.
+[`docs/runec_pack_v1.md`](../docs/runec_pack_v1.md) documents the runtime pack
+container and index.
 
 The schema documents are intentionally compact in Phase 3. They pin the
 runtime contract that already exists in loaders/exporters and give Phase 4 a

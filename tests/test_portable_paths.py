@@ -18,9 +18,32 @@ sys.path.insert(0, str(ROOT / "tools"))
 from frontend_validation import build_asset_bundle as bundle
 import validate_no_external_repos as guard
 import validate_sources as sources
+import validate_schemas as schemas
 
 
 class PortablePathsTests(unittest.TestCase):
+    def test_current_runtime_schema_contracts_match_validator(self):
+        with redirect_stdout(io.StringIO()):
+            self.assertEqual(schemas.main(), 0)
+
+    def test_pack_spec_is_in_docs_and_missing_or_invalid_docs_fail(self):
+        spec = ROOT / "docs/runec_pack_v1.md"
+        self.assertTrue(spec.is_file(), "required pack specification missing from docs/")
+        with TemporaryDirectory() as tmp, patch.object(schemas, "ROOT", Path(tmp)):
+            path = Path(tmp) / "docs/runec_pack_v1.md"
+            path.parent.mkdir()
+            failures = []
+            schemas.validate_pack_doc(failures)
+            self.assertEqual(failures, ["pack format doc missing"])
+            path.write_text("Incomplete specification\n")
+            failures = []
+            schemas.validate_pack_doc(failures)
+            self.assertEqual(len(failures), 3)
+            path.write_text(spec.read_text())
+            failures = []
+            schemas.validate_pack_doc(failures)
+            self.assertEqual(failures, [])
+
     def test_source_lock_does_not_depend_on_ignored_local_notes(self):
         with TemporaryDirectory() as tmp, patch.object(sources, "ROOT", Path(tmp)):
             root = Path(tmp)

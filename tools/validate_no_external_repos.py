@@ -40,9 +40,10 @@ SKIP_DIRS = {
 
 POLICY_FILES = {
     "data-sources/sources.lock",
-    "data_cleanup.md",
-    "data_pipeline.md",
-    "git_setup.md",
+    # Relocated audit evidence is documentation, never executable input.
+    "docs/TODO.md",
+    "docs/systems_audit.md",
+    "docs/deferred_system_audit.md",
     "docs/changelog.md",
     "docs/git_history.md",
     "tools/validate_no_external_repos.py",
@@ -110,7 +111,6 @@ LEGACY_EXTERNAL_SOURCE_FILES = {
     "tools/extract_mechanics.py",
     "tools/extract_quest_steps.py",
     "tools/legacy_external_source_paths.py",
-    "tools/patch_npc_defs_wiki.py",
     "tools/scrape_all.py",
     "tools/scrape_bosses.py",
     "tools/scrape_item_specials.py",

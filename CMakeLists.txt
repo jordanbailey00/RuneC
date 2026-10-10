@@ -143,12 +143,10 @@ foreach(TEST_SRC ${TEST_SOURCES})
     elseif(MSVC)
         target_compile_options(${TEST_NAME} PRIVATE /UNDEBUG)
     endif()
-    if (NOT TEST_NAME STREQUAL "test_collision")
-        add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
-        set_tests_properties(${TEST_NAME} PROPERTIES
-            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        )
-    endif()
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+    set_tests_properties(${TEST_NAME} PROPERTIES
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
 endforeach()
 
 if(TARGET test_runtime_foundation)

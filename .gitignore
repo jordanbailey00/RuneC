@@ -8,6 +8,7 @@ build_cov/
 *.gcov
 .cache/
 dist-data/
+/trash/
 generated/
 compile_commands.json
 __pycache__/
@@ -25,11 +26,12 @@ data/regions/test_varrock.terrain
 collision_log.txt
 # Local raw source corpora used by exporters; keep these out of git.
 data/source/
-# Local documentation trees and Markdown are ignored; tracked README files are
-# the sole Markdown exception.
-docs/
+# Planning/history stays local. READMEs and the validator-required pack spec
+# are distributed with the source.
+/docs/*
 *.md
 !README.md
 !**/README.md
+!/docs/runec_pack_v1.md
 # Local claude-code settings
 .claude/

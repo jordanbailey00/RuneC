@@ -18,7 +18,7 @@ BINARY_SCHEMAS: dict[str, tuple[str, int, tuple[int, ...]]] = {
     "area_flags": ("AFLG", 1, (1,)),
     "collision_tiles": ("CTPI", 1, (1,)),
     "dialogue": ("DLGX", 1, (1,)),
-    "drops": ("DROP", 1, (1,)),
+    "drops": ("DROP", 2, (2,)),
     "encounters": ("ENCT", 12, tuple(range(1, 13))),
     "gathering_nodes": ("GNOD", 2, (2,)),
     "gdt": ("GDT_", 1, (1,)),
@@ -154,7 +154,7 @@ def validate_tsv(schema_id: str, spec: dict[str, Any],
 
 
 def validate_pack_doc(failures: list[str]) -> None:
-    path = SCHEMA_DIR / "packs/runec_pack_v1.md"
+    path = ROOT / "docs/runec_pack_v1.md"
     if not path.is_file():
         failures.append("pack format doc missing")
         return
