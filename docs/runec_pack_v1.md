@@ -34,8 +34,8 @@ Index layout:
   - `char[path_len] logical_path`
   - `uint8 compression`
   - `uint64 offset`
-  - `uint64 stored_size`
   - `uint64 uncompressed_size`
+  - `uint64 stored_size` (must equal `uncompressed_size` for stored entries)
   - `uint8[32] sha256`
 
 Compression values:
