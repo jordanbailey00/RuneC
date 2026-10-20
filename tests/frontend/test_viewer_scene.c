@@ -340,6 +340,69 @@ static void test_boss_landing_heights(RcWorld *world) {
     free(v);
 }
 
+// A large NPC's projectile leaves the same body point whatever the angle:
+// it is locked to the NPC's centre and starts `progress` toward the target
+// at the row's start height (not at the footprint tile nearest the target).
+static void test_boss_projectile_origins(RcWorld *world) {
+    assert(rc_load_combat_visuals("data/defs/combat_visuals.tsv") > 0);
+    const RcCombatVisualDef *row = rc_combat_visual_for_npc_action(8061, "Dragonfire");
+    assert(row && row->projectile_progress > 64 && row->projectile_start_height > 0);
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    int bx = 3216, by = 3216;
+    assert(viewer_world_transform_set(&g_world_transform, bx - 64, by - 64));
+    int idx = rc_npc_spawn(world, rc_npc_def_find(8061), bx, by, 0);
+    assert(idx >= 0);
+    const RcNpc *vork = &world->npcs[idx];
+    float cx = (float)bx + 3.5f, cy = (float)by + 3.5f;   // size 7
+    // Straight in front (south) and on the diagonal past a wing corner.
+    const int spots[2][2] = {{bx + 3, by - 6}, {bx + 10, by + 10}};
+    float reach[2];
+    for (int s = 0; s < 2; s++) {
+        world->player.x = spots[s][0];
+        world->player.y = spots[s][1];
+        world->player.plane = 0;
+        v->prev_player_x = (float)world->player.x;
+        v->prev_player_y = (float)world->player.y;
+        v->combat_projectile_count = 0;
+        RcCombatAttackEvent event = {
+            .active = true, .source_kind = RC_COMBAT_ACTOR_NPC,
+            .target_kind = RC_COMBAT_ACTOR_PLAYER, .style = COMBAT_MAGIC,
+            .action_kind = RC_COMBAT_ACTION_ENCOUNTER,
+            .source_uid = vork->uid, .target_uid = 0,
+            .source_definition_id = 8061, .target_definition_id = -1,
+            .source_x = bx, .source_y = by, .target_x = world->player.x,
+            .target_y = world->player.y, .hit_delay = 3,
+            .world_tick = (uint32_t)world->tick,
+        };
+        snprintf(event.action_key_name, sizeof(event.action_key_name), "Dragonfire");
+        viewer_handle_npc_attack_event(v, &event);
+        assert(v->combat_projectile_count == 1);
+        ViewerCombatProjectile *proj = &v->combat_projectiles[0];
+        assert(fabsf(proj->source_fx - cx) < 0.001f && fabsf(proj->source_fy - cy) < 0.001f
+               && "locked to the NPC's centre");
+        // First visible frame: the start delay into the flight.
+        proj->age_ticks = 0;
+        v->tick_frac = (float)row->projectile_delay / 30.0f;
+        float angle, pitch;
+        int visible = 0;
+        Vector3 at = combat_projectile_position(v, proj, 0, &angle, &pitch, &visible);
+        assert(visible);
+        float wx = at.x + (float)g_world_origin_x, wy = -at.z + (float)g_world_origin_y;
+        float dx = (float)world->player.x + 0.5f - cx, dy = (float)world->player.y + 0.5f - cy;
+        float along = ((wx - cx) * dx + (wy - cy) * dy) / sqrtf(dx * dx + dy * dy);
+        float off = fabsf((wx - cx) * dy - (wy - cy) * dx) / sqrtf(dx * dx + dy * dy);
+        reach[s] = along;
+        assert(off < 0.01f && "on the line from the centre to the target");
+        assert(fabsf(along - (float)row->projectile_progress / 128.0f) < 0.01f);
+        assert(fabsf(at.y - (float)row->projectile_start_height / 128.0f) < 0.06f);
+    }
+    assert(fabsf(reach[0] - reach[1]) < 0.01f && "same mouth point from any angle");
+    rc_npc_remove(world, vork->uid);
+    free(v);
+}
+
 static void test_ground_item_appearances(void) {
     ViewerState *v = calloc(1, sizeof(*v));
     assert(v);
@@ -425,8 +488,8 @@ static void test_consumable_projection(RcWorld *world) {
     rc_world_tick(world);
     viewer_sync_consumption(v);
     assert(v->player_action_anim_id == 830 && world->player.inventory[slot].item_id == 139);
-    assert(rc_player_inventory_add(world,2452,1,0).code == RC_ITEM_RESULT_OK);
-    slot = rc_inv_find(world->player.inventory,2452);
+    assert(rc_player_inventory_add(world,10925,1,0).code == RC_ITEM_RESULT_OK);
+    slot = rc_inv_find(world->player.inventory,10925);
     assert(!rc_player_drink(world,slot));
     viewer_sync_consumption(v);
     assert(v->consume_outcome_seen == world->player.consume_outcome_sequence);
@@ -477,6 +540,7 @@ int main(void) {
     test_overlapping_menu_and_pickup(world);
     test_scene_examine_object_and_walk(world);
     test_boss_landing_heights(world);
+    test_boss_projectile_origins(world);
     test_ground_item_appearances();
     rc_world_destroy(world);
     puts("viewer scene: installed loot, target selection and dispatch passed");

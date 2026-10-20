@@ -15,48 +15,45 @@
 // linked into the binary; isolation targets just omit the .c files
 // they don't want and the corresponding symbol is never referenced.
 //
-// Usage:
+// Every register fn returns 1 on success and 0 on failure. Install the
+// aggregate through rc_world_install_content so rc_world_reset re-runs it:
 //
 //   RcWorldConfig cfg = rc_preset_full_game();
 //   RcWorld *w = rc_world_create_config(&cfg);
-//   rc_content_register_all(w);     // full game
+//   rc_world_install_content(w, rc_content_register_all);   // full game
 //
-// or, for a custom bundle:
-//
-//   rc_content_scurrius_register(w);
-//   rc_content_kalphite_queen_register(w);
-//   // ...other modules you care about
+// A custom bundle installs its own function calling the modules it needs.
 
 struct RcWorld;
-void rc_content_consumables_register(struct RcWorld *world);
-void rc_content_storage_register(struct RcWorld *world);
+int rc_content_consumables_register(struct RcWorld *world);
+int rc_content_storage_register(struct RcWorld *world);
 
 // Aggregate entry point — calls every content module register fn
 // that's linked in. Isolated-sim builds link a subset of content
 // .c files; the unused register fns simply aren't compiled in.
-void rc_content_register_all(struct RcWorld *world);
+int rc_content_register_all(struct RcWorld *world);
 
 // ---- Per-module register fns ------------------------------------------
 
 // Combat — OSRS-specific regular-NPC combat hooks. Generic combat state,
 // formulas, hit queues, and attack timing stay in rc-core.
-void rc_content_combat_register(struct RcWorld *world);
+int rc_content_combat_register(struct RcWorld *world);
 
-// Encounters — boss-specific scripts (named by TOML `script = "..."`).
-// Generic, shared mechanics (telegraphed_aoe_tile, spawn_npcs, etc.)
-// live in rc-core/encounter_prims.c and are NOT per-boss.
-void rc_content_scurrius_register(struct RcWorld *world);
-void rc_content_kalphite_queen_register(struct RcWorld *world);
-void rc_content_encounter_script_stubs_register(struct RcWorld *world);
-void rc_content_alchemical_hydra_register(struct RcWorld *world);
-void rc_content_the_nightmare_register(struct RcWorld *world);
-void rc_content_phantom_muspah_register(struct RcWorld *world);
-void rc_content_duke_sucellus_register(struct RcWorld *world);
-void rc_content_leviathan_register(struct RcWorld *world);
-void rc_content_whisperer_register(struct RcWorld *world);
-void rc_content_gauntlet_register(struct RcWorld *world);
-void rc_content_nex_register(struct RcWorld *world);
-void rc_content_raids_register(struct RcWorld *world);
+// Encounters — boss-specific content (named by TOML `script = "..."`, or
+// option handlers such as Vorkath's Poke). Generic mechanics live in
+// rc-core/encounter_prims.c and are NOT per-boss.
+int rc_content_vorkath_register(struct RcWorld *world);
+// Scripts for encounters that are not admitted (no support level); kept
+// registered until those encounters are verified or removed.
+int rc_content_alchemical_hydra_register(struct RcWorld *world);
+int rc_content_the_nightmare_register(struct RcWorld *world);
+int rc_content_phantom_muspah_register(struct RcWorld *world);
+int rc_content_duke_sucellus_register(struct RcWorld *world);
+int rc_content_leviathan_register(struct RcWorld *world);
+int rc_content_whisperer_register(struct RcWorld *world);
+int rc_content_gauntlet_register(struct RcWorld *world);
+int rc_content_nex_register(struct RcWorld *world);
+int rc_content_raids_register(struct RcWorld *world);
 // Future entries land here as new boss modules are authored.
 
 // Regions — region-specific NPC tick logic, object interactions, etc.

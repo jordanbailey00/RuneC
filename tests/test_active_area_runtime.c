@@ -233,10 +233,21 @@ int main(void) {
            == rc_collision_flags_at(3213, 3428, 0, NULL));
 
     uint32_t first_gen = world->active_area.generation;
-    RcEncounterSpec area_encounter = {0};
-    area_encounter.npc_ids[0] = 2215;
-    area_encounter.npc_id_count = 1;
-    assert(rc_encounter_register(world, &area_encounter) >= 0);
+    static RcEncounterSpec area_encounter;
+    memset(&area_encounter, 0, sizeof(area_encounter));
+    strcpy(area_encounter.slug, "area_test");
+    area_encounter.support = RC_ENC_SUPPORT_FULL;
+    area_encounter.form_count = 1;
+    area_encounter.forms[0].npc_id = 2215;
+    area_encounter.forms[0].binds_on_spawn = true;
+    area_encounter.attack_count = 1;
+    area_encounter.attacks[0].style = COMBAT_MELEE_CRUSH;
+    area_encounter.attacks[0].max_hit = 1;
+    area_encounter.attacks[0].weight_adjacent = 1;
+    area_encounter.phase_count = 1;
+    area_encounter.phases[0].allowed_attack_mask = 1;
+    area_encounter.phases[0].player_targetable = true;
+    assert(rc_encounter_use_specs(world, &area_encounter, 1) == 0);
     RcNpcEnsureResult ensured;
     assert(rc_world_find_npc_near(NULL, 2215, 2872, 5358, 2, 8) == -1);
     assert(rc_world_ensure_npc_near(NULL, 2215, 2872, 5358, 2, 8,
@@ -251,9 +262,9 @@ int main(void) {
     assert(world->npc_count == 838);
     assert(active_encounter_for(world, ensured.uid) >= 0);
     int encounter_effect = rc_encounter_add_effect(
-        world, RC_ENC_EFFECT_ROOM_ATTACK,
-        2872, 5358, 2, 2872, 5358, 20,
-        (uint16_t)ensured.uid, COMBAT_MAGIC, 1, "test", "");
+        world, active_encounter_for(world, ensured.uid),
+        RC_ENC_EFFECT_ROOM_ATTACK, 2872, 5358, 2, 2872, 5358, 20,
+        COMBAT_MAGIC, 1, "test", "");
     assert(encounter_effect >= 0);
     assert(rc_world_find_npc_near(world, 2215, 2872, 5358, 2, 8)
            == ensured.index);

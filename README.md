@@ -87,8 +87,9 @@ Open the Clan Chat side tab to use the validation panel:
 
 - `Follow` returns the scene view to the player's current plane.
 - `0`, `1`, `2`, and `3` force the viewer to inspect a specific scene level.
-- `Varrock`, `Graardor`, `KBD`, `Vorkath`, and `Jad` move the player to common
-  validation locations.
+- `Varrock`, `Graardor`, `KBD`, `KQ` (Kalphite Queen), `Chaos Ele` (Chaos
+  Elemental), `Vorkath`, and `Jad` move the player to common validation locations. Vorkath
+  arrives asleep; Poke it to start the fight.
 
 These helpers are for development and testing. To run without them:
 

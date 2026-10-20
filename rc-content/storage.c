@@ -23,10 +23,12 @@ static int item_bankable(int id) {
     return !in_ranges(id, unbankable, COUNT(unbankable));
 }
 
-void rc_content_storage_register(RcWorld *world) {
+int rc_content_storage_register(RcWorld *world) {
     static const RcStoragePolicy policy = {
         object_storage, npc_storage, COUNT(object_storage), COUNT(npc_storage),
         item_bankable,
     };
-    if (world && (world->enabled & RC_SUB_STORAGE)) world->storage_policy = &policy;
+    if (!world) return 0;
+    if (world->enabled & RC_SUB_STORAGE) world->storage_policy = &policy;
+    return 1;
 }

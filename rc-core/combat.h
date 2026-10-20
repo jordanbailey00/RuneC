@@ -147,6 +147,13 @@ int rc_combat_apply_regular_npc_attack_rules(
 // Tick player-side combat statuses applied by regular NPC mechanics.
 void rc_combat_tick_player_status(struct RcWorld *world);
 void rc_player_apply_freeze(struct RcWorld *world, int ticks);
+// Records an encounter attack or mechanic part for presentation (no hit).
+// `key` is the attack or mechanic name, optionally with a ":part" suffix;
+// `target_player` false aims at the target tile.
+void rc_combat_record_encounter_action(struct RcWorld *world, const RcNpc *npc,
+                                       bool target_player, int target_x,
+                                       int target_y, RcCombatStyle style,
+                                       int hit_delay, const char *key);
 void rc_player_apply_teleblock(struct RcWorld *world, int ticks);
 int rc_player_freeze_ticks_remaining(const struct RcWorld *world);
 int rc_player_teleblock_ticks_remaining(const struct RcWorld *world);

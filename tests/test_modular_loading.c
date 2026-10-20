@@ -134,7 +134,7 @@ static void check_combat_only(void) {
     assert(g_rc_activity_spawn_count == 117);
     assert(g_rc_activity_mechanic_count == 96);
     assert(g_rc_activity_state_count == 16);
-    assert(w->encounter.registry_count > 0);
+    assert(w->encounter.spec_count > 0);
     assert(g_rc_recipe_count == 0);
     assert(g_rc_object_def_count == 0);
     assert(g_rc_collision_region_count == 0);
@@ -213,7 +213,7 @@ static void check_full_game(void) {
     assert(g_rc_dialogue_transcript_count == 380);
     assert(g_rc_dialogue_node_count > 150000);
     assert(g_rc_activity_schema_count == 66);
-    assert(w->encounter.registry_count > 0);
+    assert(w->encounter.spec_count > 0);
     rc_world_destroy(w);
 }
 

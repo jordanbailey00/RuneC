@@ -314,14 +314,17 @@ int main(void) {
     assert(w1 != NULL);
     assert(rc_world_get_game_data(w1) == full_data);
     assert(w1->rng_state == 17);
-    assert(w1->encounter.registry_count == stats->encounter_spec_count);
+    assert(w1->encounter.spec_count == stats->encounter_spec_count);
+    assert(w1->encounter.specs
+           == rc_game_data_encounter_specs(full_data, NULL));
 
     world_cfg.seed = 29;
     RcWorld *w2 = rc_world_create_with_data(full_data, &world_cfg);
     assert(w2 != NULL);
     assert(rc_world_get_game_data(w2) == full_data);
     assert(w2->rng_state == 29);
-    assert(w2->encounter.registry_count == stats->encounter_spec_count);
+    assert(w2->encounter.spec_count == stats->encounter_spec_count);
+    assert(w2->encounter.specs == w1->encounter.specs);
     assert(w1 != w2);
 
     rc_world_destroy(w1);

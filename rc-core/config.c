@@ -42,7 +42,6 @@
 #define DEFAULT_COLLISION   "data/regions/world.collision-tiles.indexed.bin"
 #define DEFAULT_AREA_FLAGS  "data/defs/area_flags.bin"
 #define DEFAULT_TRAVERSAL   "data/defs/traversal_edges.bin"
-#define DEFAULT_ENCOUNTERS  "content/encounters"
 #define DEFAULT_ENCOUNT_BIN "data/defs/encounters.bin"
 
 RcWorldStreamingConfig rc_world_streaming_config_default(void) {
@@ -183,7 +182,6 @@ RcWorldConfig rc_preset_full_game(void) {
         .collision_tiles_path = DEFAULT_COLLISION,
         .area_flags_path = DEFAULT_AREA_FLAGS,
         .traversal_edges_path = DEFAULT_TRAVERSAL,
-        .encounters_dir  = DEFAULT_ENCOUNTERS,
         .encounters_path = DEFAULT_ENCOUNT_BIN,
     };
 }
@@ -214,7 +212,6 @@ RcWorldConfig rc_preset_combat_only(void) {
         .activity_spawns_path = DEFAULT_ACT_SPAWNS,
         .activity_mechanics_path = DEFAULT_ACT_MECH,
         .activity_states_path = DEFAULT_ACT_STATES,
-        .encounters_dir  = DEFAULT_ENCOUNTERS,
         .encounters_path = DEFAULT_ENCOUNT_BIN,
     };
 }

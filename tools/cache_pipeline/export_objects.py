@@ -985,6 +985,8 @@ OANM_VERSION = 1
 OBJECT_ANIM_MODEL_BASE = 0xA1000000
 OANM_FLAG_DYNAMIC_BASE = 1 << 0
 OANM_FLAG_DYNAMIC_REPLACEMENT = 1 << 1
+# Spawn templates (export_spawn_objects.py): position relative to the tile.
+OANM_FLAG_SPAWN_TEMPLATE = 1 << 2
 OBHV_DOOR = 1 << 0
 OBHV_RESOURCE = 1 << 5
 OBHV_PAIR_LEFT = 1 << 8
@@ -1269,6 +1271,35 @@ def _clone_model_data(src: ModelData) -> ModelData:
     )
 
 
+def prepare_loc_model_set(
+    loc: LocDef,
+    model_ids: tuple[int, ...],
+    model_loader: "Callable[[int], ModelData | None]",
+    model_cache: dict[int, ModelData],
+) -> ModelData | None:
+    """One loc's render model: merged parts, recolored, retextured, scaled.
+
+    Returns None when a part fails to decode. Rotation and mirroring are
+    per placement and left to the caller.
+    """
+    parts: list[ModelData] = []
+    for model_id in model_ids:
+        if model_id not in model_cache:
+            raw = model_loader(model_id)
+            if raw is None:
+                return None
+            model_cache[model_id] = raw
+        parts.append(_clone_model_data(model_cache[model_id]))
+    if not parts:
+        return None
+    md = parts[0] if len(parts) == 1 else merge_models(parts)
+    md.model_id = model_ids[0]
+    apply_recolors(md, loc)
+    apply_retextures(md, loc)
+    scale_model(md, loc.model_size_x, loc.model_size_h, loc.model_size_y)
+    return md
+
+
 def process_placements(
     placements: list[PlacedObject],
     loc_defs: dict[int, LocDef],
@@ -1296,22 +1327,9 @@ def process_placements(
 
     def prepare_model_set(loc: LocDef, model_ids: tuple[int, ...]) -> ModelData | None:
         nonlocal model_miss
-        parts: list[ModelData] = []
-        for model_id in model_ids:
-            if model_id not in model_cache:
-                raw = model_loader(model_id)
-                if raw is None:
-                    model_miss += 1
-                    return None
-                model_cache[model_id] = raw
-            parts.append(_clone_model_data(model_cache[model_id]))
-        if not parts:
-            return None
-        md = parts[0] if len(parts) == 1 else merge_models(parts)
-        md.model_id = model_ids[0]
-        apply_recolors(md, loc)
-        apply_retextures(md, loc)
-        scale_model(md, loc.model_size_x, loc.model_size_h, loc.model_size_y)
+        md = prepare_loc_model_set(loc, model_ids, model_loader, model_cache)
+        if md is None and model_ids:
+            model_miss += 1
         return md
 
     def sidecar_model_for_type(loc: LocDef, obj_type: int) -> tuple[tuple[int, ...], ModelData | None]:

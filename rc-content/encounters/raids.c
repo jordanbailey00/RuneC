@@ -21,10 +21,10 @@ static void raid_enter_phase(struct RcWorld *world, int enc_idx,
     a->active_mechanic_ticks = 0;
     boss->target_uid = 0;
     boss->player_untargetable = false;
-    rc_encounter_add_effect(world, RC_ENC_EFFECT_ROOM_ATTACK,
+    rc_encounter_add_effect(world, enc_idx, RC_ENC_EFFECT_ROOM_ATTACK,
                             boss->x, boss->y, boss->plane,
                             world->player.x, world->player.y,
-                            5, (uint16_t)boss->uid, style, 0, name, "");
+                            5, style, 0, name, "");
 }
 
 static void olm_phase_1(struct RcWorld *world, int enc_idx) {
@@ -63,14 +63,16 @@ static void wardens_phase_3(struct RcWorld *world, int enc_idx) {
     raid_enter_phase(world, enc_idx, "Wardens Phase 3", COMBAT_NONE);
 }
 
-void rc_content_raids_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "olm_phase_1", olm_phase_1);
-    rc_encounter_register_script(world, "olm_phase_2", olm_phase_2);
-    rc_encounter_register_script(world, "olm_phase_3", olm_phase_3);
-    rc_encounter_register_script(world, "verzik_phase_1", verzik_phase_1);
-    rc_encounter_register_script(world, "verzik_phase_2", verzik_phase_2);
-    rc_encounter_register_script(world, "verzik_phase_3", verzik_phase_3);
-    rc_encounter_register_script(world, "wardens_phase_1", wardens_phase_1);
-    rc_encounter_register_script(world, "wardens_phase_2", wardens_phase_2);
-    rc_encounter_register_script(world, "wardens_phase_3", wardens_phase_3);
+int rc_content_raids_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "olm_phase_1", olm_phase_1) >= 0;
+    ok &= rc_encounter_register_script(world, "olm_phase_2", olm_phase_2) >= 0;
+    ok &= rc_encounter_register_script(world, "olm_phase_3", olm_phase_3) >= 0;
+    ok &= rc_encounter_register_script(world, "verzik_phase_1", verzik_phase_1) >= 0;
+    ok &= rc_encounter_register_script(world, "verzik_phase_2", verzik_phase_2) >= 0;
+    ok &= rc_encounter_register_script(world, "verzik_phase_3", verzik_phase_3) >= 0;
+    ok &= rc_encounter_register_script(world, "wardens_phase_1", wardens_phase_1) >= 0;
+    ok &= rc_encounter_register_script(world, "wardens_phase_2", wardens_phase_2) >= 0;
+    ok &= rc_encounter_register_script(world, "wardens_phase_3", wardens_phase_3) >= 0;
+    return ok;
 }

@@ -33,10 +33,12 @@ static void hydra_enrage_entry(struct RcWorld *world, int enc_idx) {
     world->encounter.active[enc_idx].active_mechanic_ticks = 0;
 }
 
-void rc_content_alchemical_hydra_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "hydra_serpentine_entry",
-                                 hydra_serpentine_entry);
-    rc_encounter_register_script(world, "hydra_head_drop", hydra_head_drop);
-    rc_encounter_register_script(world, "hydra_enrage_entry",
-                                 hydra_enrage_entry);
+int rc_content_alchemical_hydra_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "hydra_serpentine_entry",
+                                 hydra_serpentine_entry) >= 0;
+    ok &= rc_encounter_register_script(world, "hydra_head_drop", hydra_head_drop) >= 0;
+    ok &= rc_encounter_register_script(world, "hydra_enrage_entry",
+                                 hydra_enrage_entry) >= 0;
+    return ok;
 }

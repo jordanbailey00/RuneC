@@ -18,8 +18,8 @@ Use this file for:
 ## What belongs in this directory
 
 **In-scope (goes here):**
-- Boss-specific phase scripts — e.g. `scurrius_heal_at_food_pile`,
-  `kq_shed_exoskeleton`, `vorkath_acid_phase_transition`.
+- Boss-specific phase scripts and option handlers — e.g. Vorkath's Poke,
+  which wakes the sleeping form through `rc_encounter_wake`.
 - Boss-specific attack rotations that don't generalize — e.g. Zulrah's
   tick-indexed phase rotation, Olm's hand-vs-head coordination.
 - Boss-specific environmental setup (if not expressible in TOML).
@@ -38,9 +38,20 @@ Only *genuinely one-off* code lives in these files.
 
 ## Relationship to encounter data
 
+Only documents declaring `support = "full"` or `support = "attacks_only"`
+are exported; the rest are research notes the game never loads. A full spec
+may name a phase script only once that script is registered here; otherwise
+binding refuses the spec with a diagnostic.
+
 Encounter behavior is split across three layers:
 - `content/encounters/<boss>.toml`
-  - boss data: attacks, phases, mechanics, params; owned by RuneC source
+  - boss data: forms, helpers, spawned objects, attacks, phases, mechanics,
+    params; owned by RuneC source
+- `content/combat_visuals/visuals.tsv`
+  - presentation for every attack, mechanic part and form change by name
+    (`docs/encounter_primitives.md`); `tests/test_encounter_visuals.c`
+    checks coverage. Neither core nor this directory names a model,
+    sequence or spotanim
 - `rc-core/encounter_prims.c`
   - reusable generic mechanic implementations referenced by
     `primitive = "..."`
@@ -59,17 +70,13 @@ One `.c` file per encounter, named after the TOML slug:
 ```
 encounters/
 ├── README.md                (this file)
-├── scurrius.c               → content/encounters/scurrius.toml
-├── kalphite_queen.c         → content/encounters/kalphite_queen.toml
-├── scripts.c                → shared no-op registry for authored hooks
 ├── vorkath.c                → content/encounters/vorkath.toml
-└── ...
+└── ...                      scripts for unadmitted bosses (inactive)
 ```
 
-`scripts.c` is not boss behavior. It registers currently authored
-`script = "..."` names to a no-op function so ENCT v3 routing is
-validated while the real per-boss implementations are still being
-authored.
+Kalphite Queen, King Black Dragon, Chaos Elemental and General Graardor need
+no module: their behavior is entirely data. There are no stub registries: an
+unregistered script name refuses its spec instead of running a no-op.
 
 For multi-file encounters (raids with many rooms, wave bosses like
 Inferno with per-wave logic), use a subdirectory:
@@ -101,7 +108,7 @@ encounter slug: `rc_content_chambers_of_xeric_register`.
 // Cache NPC id(s): <list>.
 //
 // MOST of <Boss> runs on generic primitives in rc-core. The TOML at
-// `data/curated/encounters/<slug>.toml` references:
+// `content/encounters/<slug>.toml` references:
 //   - <primitive_name>  <TOML mechanic name>  — generic
 //   - <primitive_name>  <TOML mechanic name>  — generic
 //
@@ -122,9 +129,9 @@ encounter slug: `rc_content_chambers_of_xeric_register`.
 
 // ---- Registration ------------------------------------------------------
 
-void rc_content_<slug>_register(struct RcWorld *world) {
-    (void)world;
-    // Register encounter-specific hooks exposed by this module.
+int rc_content_<slug>_register(struct RcWorld *world) {
+    // Register encounter-specific hooks; 1 on success, 0 on failure.
+    return rc_encounter_register_script(world, "<script_name>", <fn>) >= 0;
 }
 ```
 

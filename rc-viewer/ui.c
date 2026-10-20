@@ -2817,15 +2817,15 @@ static Rectangle side_clan_dev_transport_rect(const RuneCUiLayout *layout,
     int row = idx / 2;
     return (Rectangle){
         layout->side_content.x + 8.0f + (float)col * 88.0f,
-        layout->side_content.y + 100.0f + (float)row * 25.0f,
+        layout->side_content.y + 100.0f + (float)row * 23.0f,
         82.0f,
-        22.0f,
+        20.0f,
     };
 }
 
 static Rectangle dev_spellbook_button(const RuneCUiLayout *layout, int book) {
     return (Rectangle){layout->side_content.x + 8 + (book % 2) * 88,
-        layout->side_content.y + 201 + (book / 2) * 25, 82, 22};
+        layout->side_content.y + 212 + (book / 2) * 25, 82, 22};
 }
 
 static int spell_grid_visible(const RuneCUiState *ui) {
@@ -4144,7 +4144,7 @@ static void draw_clan_validation_tab(const RuneCUiState *ui,
     }
     if (ui->dev_spellbooks_enabled) {
         draw_text_shadow(ui, "Spellbook", layout->side_content.x + 8,
-                         layout->side_content.y + 183, 12, OSRS_ORANGE);
+                         layout->side_content.y + 195, 12, OSRS_ORANGE);
         for (int book = 0; book < 4; book++) {
             Rectangle r = dev_spellbook_button(layout, book);
             DrawRectangleRec(r, (Color){42, 34, 25, 230});

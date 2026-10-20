@@ -31,11 +31,13 @@ static void muspah_shield_up(struct RcWorld *world, int enc_idx) {
     world->encounter.active[enc_idx].mechanic_progress = 0;
 }
 
-void rc_content_phantom_muspah_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "muspah_first_special",
-                                 muspah_first_special);
-    rc_encounter_register_script(world, "muspah_form_swap", muspah_form_swap);
-    rc_encounter_register_script(world, "muspah_second_special",
-                                 muspah_second_special);
-    rc_encounter_register_script(world, "muspah_shield_up", muspah_shield_up);
+int rc_content_phantom_muspah_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "muspah_first_special",
+                                 muspah_first_special) >= 0;
+    ok &= rc_encounter_register_script(world, "muspah_form_swap", muspah_form_swap) >= 0;
+    ok &= rc_encounter_register_script(world, "muspah_second_special",
+                                 muspah_second_special) >= 0;
+    ok &= rc_encounter_register_script(world, "muspah_shield_up", muspah_shield_up) >= 0;
+    return ok;
 }

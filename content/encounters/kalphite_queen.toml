@@ -1,111 +1,66 @@
-# Kalphite Queen — Phase 4 pilot 2.
-# Stress-tests the schema with hard HP-based phase transition (not %)
-# and partial-immunity protection prayers.
+# Kalphite Queen (oracle WB-015). Evidence: OSRS Wiki Kalphite Queen/Strategies
+# r15356631; identities from B237 NDEF, spawns and RuneLite gamevals
+# (963 = crawling form at 3474,9496,0; 965 = KALPHITE_FLYINGQUEEN). 4303/4304
+# are quest actors, 6500/6501 Clan Cup and 15616/15617 Leagues copies.
+#
+# Not modelled (evidence gaps): worker hatching from cocoons, and her
+# overhead protections, which only raise defence and need per-form NPC
+# defence bonuses (DSA-027).
 
 name = "Kalphite Queen"
 slug = "kalphite_queen"
-# 965=phase 1 grounded, 4304=phase 2 airborne,
-# 963/4303=legacy/alternate ids.
-npc_ids = [965, 4304, 963, 4303]
+support = "full"
+disengage = "keep"
+respawn_ticks = 50
 source_pages = ["Kalphite Queen", "Kalphite Queen/Strategies"]
 
-[stats_override]
-# Combat level 333. Each form has 255 hp (510 across both forms).
-# Left to inherit from NDEF; override if we discover mismatch.
+# The crawling form "dies" into a 20-tick transition, then the airborne form
+# enters at full health; stat drains carry over. Only the airborne form's
+# death is final (loot, respawn). Left alone for 2,000 ticks it reverts to
+# the crawling form, keeping its health.
+[[forms]]
+id = "crawling"
+npc_id = 963
+name = "Kalphite Queen"
+binds = true
+on_lethal = "transform"
+next = "airborne"
+next_hp = "full"
+transition_ticks = 20
 
-# ---- Attack styles -----------------------------------------------------
+[[forms]]
+id = "airborne"
+npc_id = 965
+name = "Kalphite Queen"
+revert_after_ticks = 2000
+revert_to = "crawling"
+revert_hp = "keep"
 
-[[attacks]]
-name = "Barbed Spines"
-style = "ranged"
-max_hit = 31
-forced_hit = true              # wiki: "always land as successful hits"
-warning_ticks = 2
-# Drains 1 prayer point when damage > 0 (mitigated by spectral shield).
-drains_prayer_on_damage = 1
-
-[[attacks]]
-name = "Magic Bounce"
-style = "magic"
-max_hit = 31
-forced_hit = true
-warning_ticks = 2
-# In multi-player: attack bounces player → nearest player until all
-# within range hit. In solo: behaves as single-target magic.
-
+# Adjacent: 1/2 melee, 1/4 ranged, 1/4 magic. Otherwise 1/2 ranged, 1/2 magic.
+# Ranged and magic always hit (they can still roll 0); protection prayers work.
 [[attacks]]
 name = "Melee"
-style = "melee"
-accuracy_roll = "stab"
+style = "stab"
 max_hit = 31
-warning_ticks = 0
-# Standard accuracy; no forced-hit. Only triggers when player adjacent.
+weight_adjacent = 2
 
-# ---- Phases ------------------------------------------------------------
+[[attacks]]
+name = "Barbed spines"
+style = "ranged"
+max_hit = 31
+weight_adjacent = 1
+weight_distant = 1
+flags = ["always_accurate"]
+# Drains 1 prayer point whenever the roll is above zero, even when prayed against.
+effect = { kind = "drain_prayer", when = "rolled", points = 1 }
 
-[[phases]]
-id = "grounded"
-enter_at_hp_pct = 100
-allowed_attacks = ["Barbed Spines", "Magic Bounce", "Melee"]
-# Adjacent-to-queen: 50% melee, 25% ranged, 25% magic.
-# Non-adjacent:     50% ranged, 50% magic.
-adjacency_style_weights = { melee = 2, ranged = 1, magic = 1 }
-non_adjacent_style_weights = { ranged = 1, magic = 1 }
-# Protection prayers active (partial, not immunity — just added defence):
-overhead_prayers = ["protect_from_magic", "protect_from_missiles"]
-
-[[phases]]
-id = "transition"
-enter_at_hp = 0                # hard zero-hp trigger, not %
-# 20-tick (12-second) animation: legs fall off, exoskeleton sheds.
-# Queen is untargetable during this window.
-script = "kq_shed_exoskeleton"
-duration_ticks = 20
-untargetable = true
+[[attacks]]
+name = "Magic"
+style = "magic"
+max_hit = 31
+weight_adjacent = 1
+weight_distant = 1
+flags = ["always_accurate"]
 
 [[phases]]
-id = "airborne"
-# Triggered by transition phase completing. No hp threshold — set by
-# the transition script when it finishes.
-enter_after = "transition"
-allowed_attacks = ["Barbed Spines", "Magic Bounce", "Melee"]
-adjacency_style_weights = { melee = 2, ranged = 1, magic = 1 }
-non_adjacent_style_weights = { ranged = 1, magic = 1 }
-overhead_prayers = ["protect_from_melee"]
-# If this form stays alive 20 min (2000 ticks), KQ reverts to
-# grounded with this form's remaining hp. When grounded dies again,
-# a fresh airborne respawns (Vet'ion-style enrage loop).
-enrage_timeout_ticks = 2000
-enrage_action = "revert_to_grounded_preserving_hp"
-
-# ---- Mechanics --------------------------------------------------------
-
-[[mechanics]]
-name = "Prayer Drain on Ranged Hit"
-primitive = "drain_prayer_on_hit"
-# Bound to the Barbed Spines attack above; referenced there by
-# drains_prayer_on_damage. No separate mechanic trigger needed.
-bound_to = "Barbed Spines"
-params.points = 1
-params.spectral_shield_mitigation = true
-
-[[mechanics]]
-name = "Magic Bounce Chain"
-primitive = "chain_magic_to_nearest_player"
-# In multi: attack bounces from primary target to nearest player.
-# In solo: no-op (no chain target).
-bound_to = "Magic Bounce"
-params.max_bounces = 99        # practically unlimited — hits everyone
-
-[[mechanics]]
-name = "Stat-Drain Carries to Phase 2"
-primitive = "preserve_stat_drains_across_transition"
-trigger = "phase_exit:grounded"
-# DDS / bandos godsword / similar stat-drains applied to phase 1
-# persist on phase 2. Tracked as a flag on the NPC's stat struct.
-
-# ---- Drops (in drops.bin) --------------------------------------------
-
-# KQ drops: NPC ids 965 + 4304 both exist; both forms share a table.
-# Runtime: grant drops only on second-phase death (airborne id=4304).
-on_death = { grant_drops_for_npc_id = 4304, skip_drops_for = [965, 963, 4303] }
+id = "fight"

@@ -17,6 +17,7 @@
 //   RC_NPC_NONE, RC_ITEM_SLOT_NONE, RC_GROUND_ITEM_NONE
 
 typedef uint32_t RcNpcId;
+typedef uint64_t RcTick;     // monotonic world tick; see rc-core/README.md §3
 typedef uint8_t  RcItemSlot;
 typedef uint16_t RcGroundItemId;
 

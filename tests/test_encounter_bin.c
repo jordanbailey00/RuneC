@@ -1,362 +1,646 @@
-// test_encounter_bin — validate the TOML → binary → registry pipeline
-// for all 50 encounter TOMLs.
+// test_encounter_bin — the ENCT v13 contract between
+// tools/export_encounters.py and rc_encounter_load_specs.
 //
 // Verifies:
-//   1. encounters.bin parses cleanly (magic + version).
-//   2. All 50 encounters land in the registry.
-//   3. Every encounter has >= 1 npc_id registered.
-//   4. Known boss NPC IDs resolve to their expected slug (e.g. 7221
-//      → "scurrius", 965 → "kalphite_queen").
-//   5. Spec counts for attacks/phases/mechanics are within the
-//      schema caps (no corruption from the compiler).
+//   1. The installed encounters.bin holds exactly the admitted specs
+//      (Kalphite Queen, King Black Dragon, Chaos Elemental and Vorkath at
+//      full support, General Graardor attacks-only) with their roles,
+//      attacks and mechanic parameters.
+//   2. A spec round-trips through the binary layout field for field.
+//   3. Malformed, over-capacity, unsupported or inconsistent content is
+//      rejected all-or-fail: nothing is published and the output is zeroed.
+//   4. Role validation names the mismatching definition.
+//   5. Only verified primitives resolve; every other id is disabled.
 
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "../rc-core/api.h"
-#include "../rc-core/config.h"
+#include "../rc-core/combat.h"
 #include "../rc-core/encounter.h"
-#include "../rc-content/content.h"
+#include "../rc-core/game_data.h"
+#include "../rc-core/prayer.h"
+#include "../rc-core/types.h"
 
 #define RC_TEST_ENCOUNTERS_BIN RC_TEST_SOURCE_DIR "/data/defs/encounters.bin"
 
-// Spot-check lookups: npc_id → expected slug prefix.
-static const struct { uint32_t id; const char *slug; } expected[] = {
-    { 7221,  "scurrius" },
-    { 965,   "kalphite_queen" },
-    { 7416,  "obor" },
-    { 8195,  "bryophyta" },
-    { 6615,  "scorpia" },
-    { 5779,  "giant_mole" },
-    { 2054,  "chaos_elemental" },
-    { 319,   "corporeal_beast" },
-    { 5862,  "cerberus" },
-    { 494,   "kraken" },
-    { 239,   "king_black_dragon" },
-    { 2042,  "zulrah" },
-    { 8061,  "vorkath" },
-    { 2205,  "commander_zilyana" },
-    { 3129,  "kril_tsutsaroth" },
-    { 3162,  "kreearra" },
-    { 2215,  "general_graardor" },
-    { 12224, "vardorvis" },
-    { 12215, "leviathan" },
-    { 11278, "nex" },
-    { 14176, "yama" },
-};
+typedef struct {
+    unsigned char data[32768];
+    size_t len;
+} Buf;
 
-static int find_phase(const RcEncounterSpec *s, const char *id) {
-    for (int i = 0; i < s->phase_count; i++) {
-        if (strcmp(s->phases[i].id, id) == 0) return i;
-    }
-    return -1;
+static void put(Buf *b, const void *p, size_t n) {
+    assert(b->len + n <= sizeof(b->data));
+    memcpy(b->data + b->len, p, n);
+    b->len += n;
+}
+static void u8(Buf *b, unsigned v) { uint8_t x = (uint8_t)v; put(b, &x, 1); }
+static void u16(Buf *b, unsigned v) { uint16_t x = (uint16_t)v; put(b, &x, 2); }
+static void u32(Buf *b, uint32_t v) { put(b, &v, 4); }
+static void str(Buf *b, const char *s) {
+    size_t n = strlen(s);
+    u8(b, (unsigned)n);
+    put(b, s, n);
 }
 
-static int find_mech(const RcEncounterSpec *s, const char *name) {
-    for (int i = 0; i < s->mechanic_count; i++) {
-        if (strcmp(s->mechanics[i].name, name) == 0) return i;
+// Mirrors encode_encounter in tools/export_encounters.py.
+static void encode_spec(Buf *b, const RcEncounterSpec *s) {
+    str(b, s->slug);
+    str(b, s->name);
+    u8(b, s->support);
+    u8(b, s->disengage);
+    u16(b, s->respawn_ticks);
+    u8(b, s->form_count);
+    for (int i = 0; i < s->form_count; i++) {
+        const RcEncounterForm *f = &s->forms[i];
+        u32(b, f->npc_id);
+        str(b, f->name);
+        u8(b, f->binds_on_spawn);
+        u8(b, f->dormant);
+        u8(b, f->on_lethal);
+        u8(b, f->next_form);
+        u8(b, f->next_hp);
+        u16(b, f->transition_ticks);
+        u16(b, f->revert_after_ticks);
+        u8(b, f->revert_form);
+        u8(b, f->revert_hp);
     }
-    return -1;
-}
-
-static int find_attack(const RcEncounterSpec *s, const char *name) {
+    u8(b, s->helper_count);
+    for (int i = 0; i < s->helper_count; i++) {
+        u32(b, s->helpers[i].npc_id);
+        str(b, s->helpers[i].name);
+    }
+    // An over-capacity count is written as is; the loader rejects it first.
+    u8(b, s->object_count);
+    for (int i = 0; i < s->object_count && i < RC_ENC_MAX_OBJECTS; i++) {
+        u32(b, s->objects[i].loc_id);
+        str(b, s->objects[i].name);
+        u8(b, s->objects[i].loc_type);
+    }
+    u8(b, s->attack_count);
     for (int i = 0; i < s->attack_count; i++) {
-        if (strcmp(s->attacks[i].name, name) == 0) return i;
+        const RcEncounterAttack *a = &s->attacks[i];
+        str(b, a->name);
+        u32(b, a->npc_id);
+        u8(b, a->style);
+        u16(b, a->min_hit);
+        u16(b, a->max_hit);
+        u8(b, a->weight_adjacent);
+        u8(b, a->weight_distant);
+        u8(b, a->range);
+        u8(b, a->hit_delay);
+        u8(b, a->breath);
+        u8(b, a->adjacent_pct);
+        u32(b, a->flags);
+        u8(b, a->effect_id);
+        u8(b, a->effect_when);
+        u8(b, a->effect_a);
+        u8(b, a->effect_b);
+        u16(b, a->effect_chance);
+        u16(b, a->effect_chance_protected);
     }
-    return -1;
+    u8(b, s->phase_count);
+    for (int i = 0; i < s->phase_count; i++) {
+        const RcEncounterPhase *p = &s->phases[i];
+        str(b, p->id);
+        u8(b, p->enter_at_hp_pct);
+        u32(b, p->allowed_attack_mask);
+        str(b, p->script);
+        u8(b, p->player_targetable);
+    }
+    u8(b, s->mechanic_count);
+    for (int i = 0; i < s->mechanic_count; i++) {
+        const RcEncounterMechanic *m = &s->mechanics[i];
+        str(b, m->name);
+        u8(b, m->primitive_id);
+        u16(b, m->period_ticks);
+        u8(b, m->trigger_type);
+        u8(b, m->phase_idx);
+        u32(b, m->phase_mask);
+        str(b, m->trigger_ref);
+        put(b, m->param_block, sizeof(m->param_block));
+    }
+    u8(b, s->protection_count);
+    for (int i = 0; i < s->protection_count; i++) {
+        const RcEncounterProtection *p = &s->protections[i];
+        u8(b, p->attack_idx);
+        u8(b, p->style);
+        u32(b, p->prayer_flag);
+        u8(b, p->damage_pct);
+    }
+    u8(b, s->damage_mod_count);
+    for (int i = 0; i < s->damage_mod_count; i++) {
+        const RcEncounterDamageModifier *m = &s->damage_mods[i];
+        u32(b, m->npc_id);
+        u8(b, m->condition);
+        u8(b, m->style);
+        u8(b, m->damage_pct);
+        u8(b, m->flags);
+    }
+}
+
+static void encode_file(Buf *b, const RcEncounterSpec *specs, int count,
+                        uint32_t version) {
+    b->len = 0;
+    u32(b, 0x54434E45u);
+    u32(b, version);
+    u32(b, (uint32_t)count);
+    for (int i = 0; i < count; i++) encode_spec(b, &specs[i]);
+}
+
+static char g_path[256];
+static RcEncounterSpec g_out[RC_ENC_REGISTRY_CAP];
+
+static int load_buf(const Buf *b) {
+    FILE *f = fopen(g_path, "wb");
+    assert(f && fwrite(b->data, 1, b->len, f) == b->len);
+    fclose(f);
+    memset(g_out, 0xA5, sizeof(g_out));
+    return rc_encounter_load_specs(g_path, g_out, RC_ENC_REGISTRY_CAP);
+}
+
+static bool out_zeroed(void) {
+    const unsigned char *p = (const unsigned char *)g_out;
+    for (size_t i = 0; i < sizeof(g_out); i++) {
+        if (p[i]) return false;
+    }
+    return true;
+}
+
+// A minimal valid spec: two forms (transform), a helper, an object, a melee
+// and a breath attack, a phase and the three supported primitives.
+static RcEncounterSpec valid_spec(const char *slug, uint32_t base_id) {
+    RcEncounterSpec s;
+    memset(&s, 0, sizeof(s));
+    snprintf(s.slug, sizeof(s.slug), "%s", slug);
+    snprintf(s.name, sizeof(s.name), "Spec %s", slug);
+    s.support = RC_ENC_SUPPORT_FULL;
+    s.disengage = RC_ENC_DISENGAGE_RESET;
+    s.respawn_ticks = 7;
+    s.form_count = 2;
+    s.forms[0] = (RcEncounterForm){.npc_id = base_id, .name = "Form A",
+        .binds_on_spawn = true, .on_lethal = RC_ENC_LETHAL_TRANSFORM,
+        .next_form = 1, .next_hp = RC_ENC_FORM_HP_FULL, .transition_ticks = 4};
+    s.forms[1] = (RcEncounterForm){.npc_id = base_id + 1, .name = "Form B",
+        .revert_after_ticks = 30, .revert_form = 0,
+        .revert_hp = RC_ENC_FORM_HP_KEEP};
+    s.helper_count = 1;
+    s.helpers[0] = (RcEncounterHelper){.npc_id = base_id + 2, .name = "Helper"};
+    s.object_count = 1;
+    s.objects[0] = (RcEncounterObject){.loc_id = base_id + 3, .name = "Puddle",
+        .loc_type = 10};
+    s.attack_count = 2;
+    s.attacks[0] = (RcEncounterAttack){.name = "Bite", .style = COMBAT_MELEE_STAB,
+        .max_hit = 20, .weight_adjacent = 2, .flags = RC_ENC_ATTACK_DIAGONAL_REACH};
+    s.attacks[1] = (RcEncounterAttack){.name = "Breath", .npc_id = base_id + 1,
+        .style = COMBAT_MAGIC, .max_hit = 50, .weight_adjacent = 1,
+        .weight_distant = 1, .breath = 3,
+        .effect_id = RC_ENC_ATTACK_EFFECT_FREEZE,
+        .effect_when = RC_ENC_EFFECT_WHEN_ALWAYS, .effect_b = 5,
+        .effect_chance = 500, .effect_chance_protected = 125};
+    s.phase_count = 1;
+    s.phases[0] = (RcEncounterPhase){.id = "fight", .enter_at_hp_pct = 100,
+        .allowed_attack_mask = 3, .player_targetable = true};
+    s.mechanic_count = 3;
+    RcEncounterMechanic *rot = &s.mechanics[0];
+    snprintf(rot->name, sizeof(rot->name), "Rotation");
+    rot->primitive_id = RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL;
+    rot->trigger_type = RC_ENC_TRIGGER_ATTACK_COUNT;
+    rot->phase_idx = 0xFF;
+    RcPrimParamsAttackCounterAlternateSpecial rp = {
+        .every_n_attacks = 4, .special_count = 2,
+        .special_mechanics = {1, 2}, .random_first = 1,
+    };
+    memcpy(rot->param_block, &rp, sizeof(rp));
+    RcEncounterMechanic *acid = &s.mechanics[1];
+    snprintf(acid->name, sizeof(acid->name), "Acid");
+    acid->primitive_id = RC_PRIM_ACID_FIELD;
+    acid->trigger_type = RC_ENC_TRIGGER_ATTACK_COUNT;
+    acid->phase_idx = 0xFF;
+    RcPrimParamsAcidField ap = {
+        .pool_count = 4, .pool_radius = 3, .pool_damage_max = 10,
+        .pool_leech_pct = 100, .pool_ticks = 9, .strike_count = 5,
+        .strike_delay = 2, .strike_min = 5, .strike_max = 9,
+        .damage_taken_pct = 50, .strike_style = COMBAT_MAGIC,
+        .pool_object = 0, .pool_delay = 1,
+    };
+    memcpy(acid->param_block, &ap, sizeof(ap));
+    RcEncounterMechanic *spawn = &s.mechanics[2];
+    snprintf(spawn->name, sizeof(spawn->name), "Spawn");
+    spawn->primitive_id = RC_PRIM_SPAWN_OWNED_HELPERS;
+    spawn->trigger_type = RC_ENC_TRIGGER_ATTACK_COUNT;
+    spawn->phase_idx = 0xFF;
+    RcPrimParamsSpawnOwnedHelpers hp = {
+        .helper = 0, .count = 1, .spawn_distance = 6, .explode_max = 30,
+        .boss_immune = 1, .freeze_player = 1, .boss_idle = 1,
+        .instakill_spell = "Crumble Undead", .spawn_delay = 2,
+    };
+    memcpy(spawn->param_block, &hp, sizeof(hp));
+    s.protection_count = 1;
+    s.protections[0] = (RcEncounterProtection){.attack_idx = 0,
+        .style = COMBAT_MELEE_STAB, .prayer_flag = PRAYER_PROTECT_MELEE,
+        .damage_pct = 40};
+    s.damage_mod_count = 1;
+    s.damage_mods[0] = (RcEncounterDamageModifier){.npc_id = base_id,
+        .condition = RC_ENC_DMG_STYLE_NOT, .style = COMBAT_MAGIC,
+        .damage_pct = 50};
+    return s;
+}
+
+static void expect_reject(const RcEncounterSpec *specs, int count,
+                          uint32_t version, const char *why) {
+    Buf b;
+    encode_file(&b, specs, count, version);
+    int loaded = load_buf(&b);
+    if (loaded != -1) fprintf(stderr, "accepted invalid content: %s\n", why);
+    assert(loaded == -1);
+    assert(out_zeroed() && "a rejected load publishes nothing");
+}
+
+static void test_installed_specs(void) {
+    int count = rc_encounter_load_specs(RC_TEST_ENCOUNTERS_BIN, g_out,
+                                        RC_ENC_REGISTRY_CAP);
+    assert(count == 5);
+    const RcEncounterSpec *kq = NULL, *kbd = NULL, *ce = NULL, *vork = NULL,
+                          *gg = NULL;
+    for (int i = 0; i < count; i++) {
+        const RcEncounterSpec *s = &g_out[i];
+        if (!strcmp(s->slug, "kalphite_queen")) kq = s;
+        else if (!strcmp(s->slug, "king_black_dragon")) kbd = s;
+        else if (!strcmp(s->slug, "chaos_elemental")) ce = s;
+        else if (!strcmp(s->slug, "vorkath")) vork = s;
+        else if (!strcmp(s->slug, "general_graardor")) gg = s;
+    }
+    assert(kq && kbd && ce && vork && gg);
+
+    assert(kq->support == RC_ENC_SUPPORT_FULL && kq->form_count == 2);
+    assert(kq->forms[0].npc_id == 963 && kq->forms[0].binds_on_spawn);
+    assert(kq->forms[0].on_lethal == RC_ENC_LETHAL_TRANSFORM);
+    assert(kq->forms[0].transition_ticks == 20 && kq->forms[0].next_form == 1);
+    assert(kq->forms[1].npc_id == 965 && !kq->forms[1].binds_on_spawn);
+    assert(kq->forms[1].revert_after_ticks == 2000);
+    assert(kq->forms[1].revert_hp == RC_ENC_FORM_HP_KEEP);
+    assert(kq->attack_count == 3 && kq->attacks[0].weight_distant == 0);
+    assert(kq->attacks[1].flags & RC_ENC_ATTACK_ALWAYS_ACCURATE);
+    assert(kq->attacks[1].effect_id == RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER);
+    assert(kq->attacks[1].effect_when == RC_ENC_EFFECT_WHEN_ROLLED);
+
+    assert(kbd->forms[0].npc_id == 239 && kbd->attack_count == 5);
+    assert(kbd->respawn_ticks == 16);
+    for (int i = 2; i < 5; i++) {
+        assert(kbd->attacks[i].breath == 2);
+        assert(kbd->attacks[i].effect_chance == 500);
+        assert(kbd->attacks[i].effect_chance_protected == 125);
+    }
+
+    assert(ce->forms[0].npc_id == 2054 && ce->attack_count == 5);
+    assert(ce->attacks[4].flags & RC_ENC_ATTACK_NEEDS_FREE_SLOT);
+    assert(ce->attacks[4].effect_id == RC_ENC_ATTACK_EFFECT_UNEQUIP);
+    assert(ce->attacks[4].effect_b == 4);
+
+    assert(gg->support == RC_ENC_SUPPORT_ATTACKS_ONLY);
+    assert(gg->mechanic_count == 0 && gg->attacks[1].min_hit == 15);
+
+    assert(vork->disengage == RC_ENC_DISENGAGE_RESET);
+    assert(vork->forms[0].npc_id == 8059 && vork->forms[0].dormant);
+    assert(vork->forms[1].npc_id == 8061);
+    assert(vork->helper_count == 1 && vork->helpers[0].npc_id == 8063);
+    assert(vork->object_count == 1 && vork->objects[0].loc_id == 32000);
+    assert(!strcmp(vork->objects[0].name, "Acid pool"));
+    assert(vork->objects[0].loc_type == 10);
+    assert(vork->mechanic_count == 3);
+    for (int i = 0; i < 3; i++) assert(vork->mechanics[i].prim);
+    const RcPrimParamsAttackCounterAlternateSpecial *rot =
+        (const void *)vork->mechanics[0].param_block;
+    assert(rot->every_n_attacks == 7 && rot->special_count == 2);
+    assert(rot->special_mechanics[0] == 1 && rot->special_mechanics[1] == 2);
+    const RcPrimParamsAcidField *acid = (const void *)vork->mechanics[1].param_block;
+    assert(acid->strike_count == 25 && acid->strike_min == 25);
+    assert(acid->strike_max == 41 && acid->damage_taken_pct == 50);
+    assert(acid->pool_object == 0 && acid->pool_delay == 2);
+    const RcPrimParamsSpawnOwnedHelpers *spawn =
+        (const void *)vork->mechanics[2].param_block;
+    assert(spawn->spawn_distance == 10 && spawn->explode_max == 60);
+    assert(spawn->spawn_delay == 3);
+    assert(!strcmp(spawn->instakill_spell, "Crumble Undead"));
+    const RcEncounterAttack *bomb = &vork->attacks[6];
+    assert(bomb->flags & RC_ENC_ATTACK_TILE_TARGET);
+    assert(bomb->adjacent_pct == 50 && bomb->max_hit == 121);
+}
+
+static void test_round_trip(void) {
+    RcEncounterSpec specs[2] = {valid_spec("one", 60000), valid_spec("two", 60010)};
+    Buf b;
+    encode_file(&b, specs, 2, 13);
+    assert(load_buf(&b) == 2);
+    for (int i = 0; i < 2; i++) {
+        // prim pointers are resolved at load; re-encoding compares every
+        // serialized field.
+        for (int m = 0; m < specs[i].mechanic_count; m++) {
+            assert(g_out[i].mechanics[m].prim
+                   == rc_encounter_prim_lookup(specs[i].mechanics[m].primitive_id));
+        }
+        Buf want = {.len = 0}, have = {.len = 0};
+        encode_spec(&want, &specs[i]);
+        encode_spec(&have, &g_out[i]);
+        assert(want.len == have.len && !memcmp(want.data, have.data, want.len));
+    }
+    // An empty file of the current version is valid.
+    encode_file(&b, specs, 0, 13);
+    assert(load_buf(&b) == 0);
+}
+
+static void test_rejections(void) {
+    RcEncounterSpec base = valid_spec("base", 60000);
+    RcEncounterSpec s;
+    Buf b;
+
+    expect_reject(&base, 1, 12, "older version");
+    expect_reject(&base, 1, 14, "newer version");
+    encode_file(&b, &base, 1, 13);
+    b.data[0] ^= 0xFF;
+    assert(load_buf(&b) == -1 && out_zeroed());
+    encode_file(&b, &base, 1, 13);
+    b.len -= 3;
+    assert(load_buf(&b) == -1 && out_zeroed());
+    encode_file(&b, &base, 1, 13);
+    u8(&b, 0);
+    assert(load_buf(&b) == -1 && out_zeroed());
+    encode_file(&b, &base, 1, 13);
+    b.data[8] = 2;   // header count promises a second spec
+    assert(load_buf(&b) == -1 && out_zeroed());
+    encode_file(&b, &base, 1, 13);
+    b.data[8] = 65;  // above RC_ENC_REGISTRY_CAP
+    assert(load_buf(&b) == -1 && out_zeroed());
+
+    s = base; s.support = RC_ENC_SUPPORT_NONE;
+    expect_reject(&s, 1, 13, "support none");
+    s = base; s.forms[0].on_lethal = 2;
+    expect_reject(&s, 1, 13, "lethal policy");
+    s = base;
+    ((RcPrimParamsAttackCounterAlternateSpecial *)s.mechanics[0].param_block)
+        ->every_n_attacks = 1;
+    expect_reject(&s, 1, 13, "rotation every attack");
+    {
+        // A protection count above the cap: encode none, then patch the count.
+        RcEncounterSpec probe = base;
+        probe.protection_count = 0;
+        probe.damage_mod_count = 0;
+        encode_file(&b, &probe, 1, 13);
+        b.data[b.len - 2] = RC_ENC_MAX_PROTECTIONS + 1;
+        assert(load_buf(&b) == -1 && out_zeroed());
+    }
+    s = base; s.disengage = 2;
+    expect_reject(&s, 1, 13, "disengage policy");
+    s = base; s.form_count = 0;
+    expect_reject(&s, 1, 13, "no forms");
+    s = base; s.forms[0].binds_on_spawn = false;
+    expect_reject(&s, 1, 13, "no binding form");
+    s = base; s.forms[0].next_form = 0;
+    expect_reject(&s, 1, 13, "transform into itself");
+    s = base; s.forms[0].next_form = 2;
+    expect_reject(&s, 1, 13, "transform out of range");
+    s = base; s.forms[1].revert_form = 1;
+    expect_reject(&s, 1, 13, "revert into itself");
+    s = base; s.forms[1].npc_id = s.forms[0].npc_id;
+    expect_reject(&s, 1, 13, "duplicate form");
+    s = base; s.helpers[0].npc_id = s.forms[1].npc_id;
+    expect_reject(&s, 1, 13, "helper is a form");
+    s = base; s.object_count = RC_ENC_MAX_OBJECTS + 1;
+    expect_reject(&s, 1, 13, "object count");
+    s = base; s.objects[0].loc_type = 23;
+    expect_reject(&s, 1, 13, "object placement type");
+    s = base; s.object_count = 2; s.objects[1] = s.objects[0];
+    expect_reject(&s, 1, 13, "duplicate object");
+    s = base; s.objects[0].name[0] = '\0';
+    expect_reject(&s, 1, 13, "unnamed object");
+    s = base; s.forms[0].dormant = true;
+    expect_reject(&s, 1, 13, "dormant transform form");
+    s = base; s.forms[1].transition_ticks = 3;
+    expect_reject(&s, 1, 13, "transition on a final form");
+    s = base; s.attacks[0].style = COMBAT_NONE;
+    expect_reject(&s, 1, 13, "attack style");
+    s = base; s.attacks[0].flags |= 1u << 9;
+    expect_reject(&s, 1, 13, "unknown attack flag");
+    s = base; s.attacks[0].weight_adjacent = 0;
+    expect_reject(&s, 1, 13, "unselectable attack");
+    s = base; s.attacks[0].min_hit = 21;
+    expect_reject(&s, 1, 13, "min above max");
+    s = base; s.attacks[0].flags |= RC_ENC_ATTACK_NO_DAMAGE;
+    expect_reject(&s, 1, 13, "no-damage attack with a max hit");
+    s = base; s.attacks[1].effect_chance = 1001;
+    expect_reject(&s, 1, 13, "effect chance");
+    s = base; s.attacks[1].effect_id = RC_ENC_ATTACK_EFFECT_COUNT;
+    expect_reject(&s, 1, 13, "effect id");
+    s = base; s.attacks[1].npc_id = 1;
+    expect_reject(&s, 1, 13, "attack owner is not a form");
+    s = base; s.attacks[1].flags |= RC_ENC_ATTACK_ALWAYS_ACCURATE;
+    expect_reject(&s, 1, 13, "breath with forced accuracy");
+    s = base; s.attacks[0].flags |= RC_ENC_ATTACK_TILE_TARGET;
+    expect_reject(&s, 1, 13, "tile attack without a delay");
+    s = base; s.phases[0].allowed_attack_mask = 1u << 5;
+    expect_reject(&s, 1, 13, "phase mask names a missing attack");
+    s = base; s.phases[0].enter_at_hp_pct = 101;
+    expect_reject(&s, 1, 13, "phase threshold");
+    s = base; s.mechanics[1].primitive_id = RC_PRIM_TELEGRAPHED_AOE_TILE;
+    expect_reject(&s, 1, 13, "unverified primitive");
+    s = base; s.mechanics[1].trigger_type = RC_ENC_TRIGGER_AFTER_ATTACK;
+    expect_reject(&s, 1, 13, "undispatched trigger");
+    s = base; s.mechanics[1].trigger_type = RC_ENC_TRIGGER_PERIODIC;
+    expect_reject(&s, 1, 13, "period-0 periodic");
+    s = base; s.mechanics[1].trigger_type = RC_ENC_TRIGGER_PHASE_ENTER;
+    s.mechanics[1].period_ticks = 5;
+    expect_reject(&s, 1, 13, "period on a phase-enter trigger");
+    s = base; s.mechanics[1].phase_mask = 1u << 3;
+    expect_reject(&s, 1, 13, "mechanic phase out of range");
+    s = base;
+    ((RcPrimParamsAttackCounterAlternateSpecial *)s.mechanics[0].param_block)
+        ->special_mechanics[1] = 0;
+    expect_reject(&s, 1, 13, "rotation lists itself");
+    s = base;
+    ((RcPrimParamsAttackCounterAlternateSpecial *)s.mechanics[0].param_block)
+        ->special_count = 1;
+    expect_reject(&s, 1, 13, "attack-count mechanic outside the rotation");
+    s = base;
+    ((RcPrimParamsAcidField *)s.mechanics[1].param_block)->strike_count = 0;
+    expect_reject(&s, 1, 13, "acid field without strikes");
+    s = base;
+    ((RcPrimParamsAcidField *)s.mechanics[1].param_block)->pool_count = 17;
+    expect_reject(&s, 1, 13, "acid pools above the run quota");
+    s = base;
+    ((RcPrimParamsAcidField *)s.mechanics[1].param_block)->pool_object = 1;
+    expect_reject(&s, 1, 13, "acid pool object index");
+    s = base;
+    ((RcPrimParamsSpawnOwnedHelpers *)s.mechanics[2].param_block)->helper = 1;
+    expect_reject(&s, 1, 13, "owned helper index");
+    s = base;
+    memset(((RcPrimParamsSpawnOwnedHelpers *)s.mechanics[2].param_block)
+           ->instakill_spell, 'x', 24);
+    expect_reject(&s, 1, 13, "unterminated spell name");
+    s = base; s.protections[0].attack_idx = 2;
+    expect_reject(&s, 1, 13, "protection attack index");
+    s = base; snprintf(s.attacks[0].name, sizeof(s.attacks[0].name), "Bite:hard");
+    expect_reject(&s, 1, 13, "':' in an attack name");
+    s = base; snprintf(s.mechanics[1].name, sizeof(s.mechanics[1].name), "Acid:pool");
+    expect_reject(&s, 1, 13, "':' in a mechanic name");
+    s = base; snprintf(s.mechanics[2].name, sizeof(s.mechanics[2].name), "form");
+    expect_reject(&s, 1, 13, "a mechanic named like the form-change keys");
+    s = base; s.damage_mods[0].condition = RC_ENC_DMG_CAP_RANGE;
+    expect_reject(&s, 1, 13, "unsupported damage condition");
+
+    s = base;
+    s.support = RC_ENC_SUPPORT_ATTACKS_ONLY;
+    expect_reject(&s, 1, 13, "attacks-only spec with forms and mechanics");
+    {
+        // An attacks-only spec may not spawn objects either.
+        RcEncounterSpec plain = base;
+        plain.support = RC_ENC_SUPPORT_ATTACKS_ONLY;
+        plain.form_count = 1;
+        plain.forms[0].on_lethal = RC_ENC_LETHAL_DIE;
+        plain.forms[0].next_form = 0;
+        plain.forms[0].transition_ticks = 0;
+        plain.attacks[1].npc_id = 0;
+        plain.helper_count = 0;
+        plain.mechanic_count = 0;
+        expect_reject(&plain, 1, 13, "attacks-only spec with an object");
+        plain.object_count = 0;
+        encode_file(&b, &plain, 1, 13);
+        assert(load_buf(&b) == 1);
+    }
+
+    RcEncounterSpec pair[2] = {valid_spec("dup", 60000), valid_spec("dup", 60010)};
+    expect_reject(pair, 2, 13, "duplicate slug");
+    pair[1] = valid_spec("other", 60001);
+    expect_reject(pair, 2, 13, "form claimed by two specs");
+    pair[1] = valid_spec("other", 60002);
+    expect_reject(pair, 2, 13, "helper of one spec is a form of another");
+
+    // Strings: empty required names and embedded NULs.
+    encode_file(&b, &base, 1, 13);
+    b.data[12] = 0;   // slug length 0
+    assert(load_buf(&b) == -1 && out_zeroed());
+    encode_file(&b, &base, 1, 13);
+    b.data[14] = 0;   // NUL inside the slug "base"
+    assert(load_buf(&b) == -1 && out_zeroed());
+    assert(rc_encounter_load_specs("/nonexistent/encounters.bin", g_out, 4) == -1);
+}
+
+static const char *fake_names(const void *ctx, uint32_t npc_id) {
+    (void)ctx;
+    switch (npc_id) {
+        case 60000: return "Form A";
+        case 60001: return "Form B";
+        case 60002: return "Helper";
+        default: return NULL;
+    }
+}
+
+static const char *fake_objects(const void *ctx, uint32_t loc_id) {
+    (void)ctx;
+    return loc_id == 60003 ? "Puddle" : NULL;
+}
+
+static void test_roles(void) {
+    RcEncounterSpec s = valid_spec("roles", 60000);
+    char message[256] = "";
+    assert(rc_encounter_validate_roles(&s, 1, fake_names, fake_objects, NULL,
+                                       message, sizeof(message)) == 1);
+    snprintf(s.helpers[0].name, sizeof(s.helpers[0].name), "Wrong");
+    assert(rc_encounter_validate_roles(&s, 1, fake_names, fake_objects, NULL,
+                                       message, sizeof(message)) == 0);
+    assert(strstr(message, "helper 60002") && strstr(message, "'Wrong'"));
+    s = valid_spec("roles", 60000);
+    s.forms[1].npc_id = 61000;
+    assert(rc_encounter_validate_roles(&s, 1, fake_names, fake_objects, NULL,
+                                       message, sizeof(message)) == 0);
+    assert(strstr(message, "<missing>"));
+    s = valid_spec("roles", 60000);
+    snprintf(s.objects[0].name, sizeof(s.objects[0].name), "Lake");
+    assert(rc_encounter_validate_roles(&s, 1, fake_names, fake_objects, NULL,
+                                       message, sizeof(message)) == 0);
+    assert(strstr(message, "object 60003") && strstr(message, "'Lake'"));
+    // Without object data only the NPC roles are checked.
+    assert(rc_encounter_validate_roles(&s, 1, fake_names, NULL, NULL,
+                                       message, sizeof(message)) == 1);
+    assert(rc_encounter_validate_roles(&s, 1, NULL, NULL, NULL, NULL, 0) == 0);
+}
+
+// Game data refuses specs whose roles name the wrong B237 definitions.
+static void test_game_data_rejects_mislabelled_roles(void) {
+    RcEncounterSpec s = valid_spec("mislabelled", 963);
+    Buf b;
+    encode_file(&b, &s, 1, 13);
+    FILE *f = fopen(g_path, "wb");
+    assert(f && fwrite(b.data, 1, b.len, f) == b.len);
+    fclose(f);
+    RcWorldConfig cfg = rc_preset_base_only();
+    cfg.subsystems |= RC_SUB_ENCOUNTER;
+    cfg.encounters_path = g_path;
+    RcGameDataLoadReport report;
+    memset(&report, 0, sizeof(report));
+    assert(rc_game_data_load(&cfg, &report) == NULL);
+    assert(strstr(report.message, "form 963 is 'Kalphite Queen', expected 'Form A'"));
+}
+
+// With object definitions loaded, game data also refuses an object role that
+// names a missing or differently named loc.
+static void test_game_data_rejects_mislabelled_objects(void) {
+    int count = rc_encounter_load_specs(RC_TEST_ENCOUNTERS_BIN, g_out,
+                                        RC_ENC_REGISTRY_CAP);
+    static RcEncounterSpec specs[RC_ENC_REGISTRY_CAP];
+    memcpy(specs, g_out, sizeof(specs));
+    RcEncounterSpec *vork = NULL;
+    for (int i = 0; i < count; i++) {
+        if (!strcmp(specs[i].slug, "vorkath")) vork = &specs[i];
+    }
+    assert(vork && vork->object_count == 1);
+    RcWorldConfig full = rc_preset_full_game();
+    RcWorldConfig cfg = rc_preset_base_only();
+    cfg.subsystems |= RC_SUB_ENCOUNTER | RC_SUB_OBJECTS;
+    cfg.object_defs_path = full.object_defs_path;
+    cfg.object_behaviors_path = full.object_behaviors_path;
+    cfg.encounters_path = g_path;
+    const struct { uint32_t loc_id; const char *name, *message; } cases[] = {
+        {65535, "Acid pool", "object 65535 is '<missing>', expected 'Acid pool'"},
+        {32000, "Lake", "object 32000 is 'Acid pool', expected 'Lake'"},
+    };
+    for (size_t c = 0; c < sizeof(cases) / sizeof(cases[0]); c++) {
+        vork->objects[0].loc_id = cases[c].loc_id;
+        snprintf(vork->objects[0].name, sizeof(vork->objects[0].name), "%s",
+                 cases[c].name);
+        Buf b;
+        encode_file(&b, specs, count, 13);
+        FILE *f = fopen(g_path, "wb");
+        assert(f && fwrite(b.data, 1, b.len, f) == b.len);
+        fclose(f);
+        RcGameDataLoadReport report;
+        memset(&report, 0, sizeof(report));
+        assert(rc_game_data_load(&cfg, &report) == NULL);
+        assert(strstr(report.message, cases[c].message));
+    }
+}
+
+static void test_primitive_gate(void) {
+    for (int id = 0; id < 256; id++) {
+        bool supported = id == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL
+                      || id == RC_PRIM_ACID_FIELD
+                      || id == RC_PRIM_SPAWN_OWNED_HELPERS;
+        assert((rc_encounter_prim_lookup((uint8_t)id) != NULL) == supported);
+    }
 }
 
 int main(void) {
-    RcWorldConfig cfg = rc_preset_combat_only();
-    cfg.seed = 1;
-    cfg.encounters_path = RC_TEST_ENCOUNTERS_BIN;
-    RcWorld *w = rc_world_create_config(&cfg);
-    assert(w != NULL);
-    assert((w->enabled & RC_SUB_ENCOUNTER) != 0);
-    rc_content_register_all(w);
-
-    // All 50 TOMLs should load.
-    assert(w->encounter.registry_count == 50);
-    assert(w->encounter.script_count == 50);
-    printf("  registry loaded: %d encounters\n", w->encounter.registry_count);
-
-    // Sanity: every encounter has at least one NPC id registered.
-    int zero_nids = 0;
-    for (int i = 0; i < w->encounter.registry_count; i++) {
-        const RcEncounterSpec *s = &w->encounter.registry[i];
-        if (s->npc_id_count == 0) zero_nids++;
-        // Schema caps enforced by the compiler + loader.
-        assert(s->attack_count <= RC_ENC_MAX_ATTACKS);
-        assert(s->phase_count <= RC_ENC_MAX_PHASES);
-        assert(s->mechanic_count <= RC_ENC_MAX_MECHANICS);
-        assert(s->npc_id_count <= RC_ENC_MAX_NPC_IDS);
-        assert(s->damage_mod_count <= RC_ENC_MAX_DAMAGE_MODS);
-    }
-    assert(zero_nids == 0 && "every encounter must have >= 1 npc_id");
-
-    // Spot-check: known NPC IDs resolve to their expected slug.
-    int matched = 0, missed = 0;
-    for (size_t i = 0; i < sizeof(expected) / sizeof(expected[0]); i++) {
-        int idx = rc_encounter_find_spec(w, expected[i].id);
-        if (idx < 0) {
-            fprintf(stderr, "  MISS: npc_id %u → no registered encounter\n",
-                    expected[i].id);
-            missed++;
-            continue;
-        }
-        const RcEncounterSpec *s = &w->encounter.registry[idx];
-        if (strcmp(s->slug, expected[i].slug) != 0) {
-            fprintf(stderr, "  WRONG: npc_id %u → slug '%s' "
-                    "(expected '%s')\n",
-                    expected[i].id, s->slug, expected[i].slug);
-            missed++;
-            continue;
-        }
-        matched++;
-    }
-    printf("  spot-check: %d/%lu expected npc_id → slug matches\n",
-           matched, sizeof(expected) / sizeof(expected[0]));
-    assert(missed == 0);
-
-    // Trigger binding spot-checks: v3 encodes phase-enter/exit,
-    // phase-in unions, and dormant hook trigger classes.
-    const RcEncounterSpec *scurrius =
-        &w->encounter.registry[rc_encounter_find_spec(w, 7221)];
-    int scur_heal_phase = find_phase(scurrius, "heal");
-    int scur_food_heal = find_mech(scurrius, "Food Heal");
-    assert(scur_heal_phase >= 0 && scur_food_heal >= 0);
-    assert(scurrius->mechanics[scur_food_heal].trigger_type
-           == RC_ENC_TRIGGER_PHASE_ENTER);
-    assert(scurrius->mechanics[scur_food_heal].phase_idx == scur_heal_phase);
-
-    const RcEncounterSpec *kq =
-        &w->encounter.registry[rc_encounter_find_spec(w, 965)];
-    int grounded_phase = find_phase(kq, "grounded");
-    int preserve = find_mech(kq, "Stat-Drain Carries to Phase 2");
-    assert(grounded_phase >= 0 && preserve >= 0);
-    assert(kq->mechanics[preserve].trigger_type
-           == RC_ENC_TRIGGER_PHASE_EXIT);
-    assert(kq->mechanics[preserve].phase_idx == grounded_phase);
-
-    const RcEncounterSpec *scorpia =
-        &w->encounter.registry[rc_encounter_find_spec(w, 6615)];
-    int guarded_phase = find_phase(scorpia, "guarded");
-    int summon = find_mech(scorpia, "Summon Guardians");
-    int guardian_heal = find_mech(scorpia, "Guardian Heal");
-    assert(guarded_phase >= 0 && summon >= 0 && guardian_heal >= 0);
-    assert(scorpia->mechanics[summon].primitive_id == RC_PRIM_SPAWN_NPCS_ONCE);
-    assert(scorpia->mechanics[summon].trigger_type
-           == RC_ENC_TRIGGER_PHASE_ENTER);
-    assert(scorpia->mechanics[summon].phase_idx == guarded_phase);
-    assert(scorpia->mechanics[guardian_heal].primitive_id
-           == RC_PRIM_PERIODIC_HEAL_BOSS);
-    assert(scorpia->mechanics[guardian_heal].trigger_type
-           == RC_ENC_TRIGGER_PERIODIC);
-    assert(scorpia->mechanics[guardian_heal].period_ticks == 1);
-    const RcPrimParamsPeriodicHealBoss *heal_params =
-        (const RcPrimParamsPeriodicHealBoss *)
-        scorpia->mechanics[guardian_heal].param_block;
-    assert(strcmp(heal_params->alive_npc_name, "Scorpia's guardian") == 0);
-    assert(heal_params->heal_per_tick == 4);
-
-    const RcEncounterSpec *chaos =
-        &w->encounter.registry[rc_encounter_find_spec(w, 2054)];
-    int confusion = find_mech(chaos, "Confusion");
-    int madness = find_mech(chaos, "Madness");
-    assert(confusion >= 0 && madness >= 0);
-    assert(chaos->mechanics[confusion].primitive_id
-           == RC_PRIM_TELEPORT_PLAYER_NEARBY);
-    assert(chaos->mechanics[madness].primitive_id
-           == RC_PRIM_UNEQUIP_PLAYER_ITEMS);
-    const RcPrimParamsUnequipPlayerItems *madness_params =
-        (const RcPrimParamsUnequipPlayerItems *)
-        chaos->mechanics[madness].param_block;
-    assert(madness_params->count == 4);
-    assert(madness_params->weapon_priority == 1);
-    assert((madness_params->slot_mask & (1u << EQUIP_WEAPON)) != 0u);
-
-    const RcEncounterSpec *kraken =
-        &w->encounter.registry[rc_encounter_find_spec(w, 494)];
-    int whirlpools = find_phase(kraken, "whirlpools");
-    int surfaced = find_phase(kraken, "surfaced");
-    int surface = find_mech(kraken, "Surface After Tentacles");
-    int whirlpool_gating = find_mech(kraken, "Whirlpool Gating");
-    assert(whirlpools >= 0 && surfaced >= 0 && surface >= 0);
-    assert(whirlpool_gating >= 0);
-    assert(!kraken->phases[whirlpools].player_targetable);
-    assert(kraken->phases[surfaced].player_targetable);
-    const RcPrimParamsSpawnHiddenMinions *whirlpool_params =
-        (const RcPrimParamsSpawnHiddenMinions *)
-        kraken->mechanics[whirlpool_gating].param_block;
-    assert(strcmp(whirlpool_params->object_name, "Whirlpool") == 0);
-    assert(kraken->mechanics[surface].trigger_type == RC_ENC_TRIGGER_PHASE_IN);
-    assert((kraken->mechanics[surface].phase_mask & (1u << whirlpools)) != 0);
-
-    const RcEncounterSpec *vorkath =
-        &w->encounter.registry[rc_encounter_find_spec(w, 8061)];
-    int special = find_mech(vorkath, "Special Attack Counter");
-    int spawn = find_mech(vorkath, "Zombified Spawn");
-    int acid = find_mech(vorkath, "Acid Pool");
-    int fireball = find_mech(vorkath, "Fireball During Acid");
-    assert(special >= 0 && spawn >= 0 && acid >= 0 && fireball >= 0);
-    assert(vorkath->mechanics[special].primitive_id
-           == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL);
-    assert(vorkath->mechanics[special].trigger_type
-           == RC_ENC_TRIGGER_ATTACK_COUNT);
-    const RcPrimParamsAttackCounterAlternateSpecial *special_params =
-        (const RcPrimParamsAttackCounterAlternateSpecial *)
-        vorkath->mechanics[special].param_block;
-    assert(special_params->every_n_attacks == 7);
-    assert(special_params->special_count == 2);
-    assert(strcmp(special_params->special_names[0], "Zombified Spawn") == 0);
-    assert(strcmp(special_params->special_names[1], "Acid Pool") == 0);
-    assert(vorkath->mechanics[spawn].trigger_type
-           == RC_ENC_TRIGGER_ATTACK_COUNT);
-    const RcPrimParamsSpawnNpcs *spawn_params =
-        (const RcPrimParamsSpawnNpcs *)vorkath->mechanics[spawn].param_block;
-    assert(strcmp(spawn_params->name, "Zombified Spawn") == 0);
-    assert(spawn_params->blocks_boss_damage_until_dead == 1);
-    assert(spawn_params->freeze_player_ticks == 24);
-    assert(vorkath->mechanics[acid].trigger_type
-           == RC_ENC_TRIGGER_ATTACK_COUNT);
-    assert(vorkath->mechanics[acid].primitive_id
-           == RC_PRIM_COVERED_ARENA_ENVIRONMENT);
-    const RcPrimParamsCoveredArenaEnvironment *acid_params =
-        (const RcPrimParamsCoveredArenaEnvironment *)
-        vorkath->mechanics[acid].param_block;
-    assert(acid_params->duration_ticks == 24);
-    assert(acid_params->dot_per_tick == 10);
-    assert(acid_params->pool_count == 10);
-    assert(acid_params->damage_reduction_pct == 50);
-    assert(vorkath->mechanics[fireball].trigger_type
-           == RC_ENC_TRIGGER_DURING_MECH);
-    assert(strcmp(vorkath->mechanics[fireball].trigger_ref,
-                  "Acid Pool") == 0);
-    int venom = find_attack(vorkath, "Venomous Dragonfire");
-    int corrupt = find_attack(vorkath, "Corrupting Dragonfire");
-    assert(venom >= 0 && corrupt >= 0);
-    assert(vorkath->attacks[venom].effect_id == RC_ENC_ATTACK_EFFECT_VENOM);
-    assert(vorkath->attacks[corrupt].effect_id
-           == RC_ENC_ATTACK_EFFECT_DEACTIVATE_PRAYERS);
-
-    const RcEncounterSpec *zulrah =
-        &w->encounter.registry[rc_encounter_find_spec(w, 2042)];
-    int z_default = find_phase(zulrah, "default");
-    int z_dive = find_mech(zulrah, "Dive Between Forms");
-    assert(z_default >= 0);
-    assert(strcmp(zulrah->phases[z_default].script,
-                  "zulrah_drive_rotation") == 0);
-    assert(rc_encounter_script_lookup(w, "zulrah_drive_rotation") != NULL);
-    assert(z_dive >= 0);
-    assert(zulrah->mechanics[z_dive].primitive_id
-           == RC_PRIM_FORM_TRANSITION_DIVE);
-    assert(zulrah->mechanics[z_dive].period_ticks == 30);
-    const RcPrimParamsFormTransitionDive *dive_params =
-        (const RcPrimParamsFormTransitionDive *)
-        zulrah->mechanics[z_dive].param_block;
-    assert(dive_params->dive_ticks == 3);
-    assert(dive_params->resurface_ticks == 2);
-    assert(dive_params->untargetable_during_dive == 1);
-    int has_cap = 0;
-    for (int i = 0; i < zulrah->damage_mod_count; i++) {
-        if (zulrah->damage_mods[i].condition == RC_ENC_DMG_CAP_RANGE) {
-            has_cap = 1;
-            assert(zulrah->damage_mods[i].style == 45);
-            assert(zulrah->damage_mods[i].damage_pct == 50);
-        }
-    }
-    assert(has_cap);
-
-    const RcEncounterSpec *dks =
-        &w->encounter.registry[rc_encounter_find_spec(w, 2883)];
-    const RcEncounterSpec *corp =
-        &w->encounter.registry[rc_encounter_find_spec(w, 319)];
-    const RcEncounterSpec *kree =
-        &w->encounter.registry[rc_encounter_find_spec(w, 3162)];
-    const RcEncounterSpec *kril =
-        &w->encounter.registry[rc_encounter_find_spec(w, 3129)];
-    const RcEncounterSpec *cerb =
-        &w->encounter.registry[rc_encounter_find_spec(w, 5862)];
-    assert(dks->damage_mod_count == 3);
-    assert(corp->damage_mod_count == 1);
-    assert(kree->damage_mod_count == 4);
-    int corp_drain = find_attack(corp, "Magic Drain-Heal");
-    assert(corp_drain >= 0);
-    assert(corp->attacks[corp_drain].effect_id
-           == RC_ENC_ATTACK_EFFECT_DRAIN_HEAL);
-    assert(corp->attacks[corp_drain].effect_min == 1);
-    assert(corp->attacks[corp_drain].effect_max == 2);
-    assert(corp->attacks[corp_drain].effect_pct == 50);
-    int corp_split = find_attack(corp, "Magic AoE Split");
-    assert(corp_split >= 0);
-    assert(corp->attacks[corp_split].effect_id
-           == RC_ENC_ATTACK_EFFECT_SPLIT_PROJECTILES);
-    assert(corp->attacks[corp_split].effect_min == 6);
-    assert(corp->attacks[corp_split].effect_max == 30);
-    int corp_core = find_mech(corp, "Dark Energy Core");
-    assert(corp_core >= 0);
-    assert(corp->mechanics[corp_core].trigger_type == RC_ENC_TRIGGER_EVENT);
-    const RcPrimParamsSpawnLeechNpc *core_params =
-        (const RcPrimParamsSpawnLeechNpc *)
-        corp->mechanics[corp_core].param_block;
-    assert(core_params->large_hit_threshold == 32);
-    assert(core_params->boss_hp_below == 1000);
-    assert(core_params->spawn_chance_denominator == 8);
-    assert(core_params->poisoned_leech_period_ticks == 10);
-    int kril_poison = find_attack(kril, "Melee Scimitars");
-    int kril_drain = find_attack(kril, "Enraged Melee (Prayer-Pierce)");
-    assert(kril_poison >= 0 && kril_drain >= 0);
-    assert(kril->attacks[kril_poison].effect_id
-           == RC_ENC_ATTACK_EFFECT_POISON);
-    assert(kril->attacks[kril_poison].effect_min == 16);
-    assert((kril->attacks[kril_poison].effect_flags
-            & RC_ENC_ATTACK_EFFECT_POISON_PIERCES_PRAY) != 0);
-    assert(kril->attacks[kril_drain].effect_id
-           == RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER_PCT);
-    assert(kril->attacks[kril_drain].effect_pct == 50);
-    int kree_wind = find_attack(kree, "Wind Gust");
-    assert(kree_wind >= 0);
-    assert(kree->attacks[kree_wind].effect_id
-           == RC_ENC_ATTACK_EFFECT_KNOCKBACK);
-    assert(kree->attacks[kree_wind].effect_min == 1);
-    int cerb_souls = find_mech(cerb, "Summoned Souls");
-    assert(cerb_souls >= 0);
-    const RcPrimParamsSpawnSoulAttackers *souls_params =
-        (const RcPrimParamsSpawnSoulAttackers *)
-        cerb->mechanics[cerb_souls].param_block;
-    assert(souls_params->prayer_drain_with_ward == 20);
-    assert(souls_params->prayer_drain_with_spectral == 15);
-    assert(souls_params->prayer_drain_with_both == 10);
-    assert(souls_params->spectral_item_id == 12821);
-    int cerb_lava = find_mech(cerb, "Lava Pools");
-    assert(cerb_lava >= 0);
-    const RcPrimParamsDotTilePlacement *lava_params =
-        (const RcPrimParamsDotTilePlacement *)
-        cerb->mechanics[cerb_lava].param_block;
-    assert(lava_params->pools_random == 2);
-    assert(lava_params->duration_ticks == 10);
-    assert(lava_params->dragonfire_protection_applies == 1);
-
-    // Aggregate stats across the registry — sanity that attacks /
-    // phases / mechanics actually got compiled in (not just empty
-    // shells).
-    int total_attacks = 0, total_phases = 0, total_mechanics = 0;
-    int total_nids = 0;
-    for (int i = 0; i < w->encounter.registry_count; i++) {
-        const RcEncounterSpec *s = &w->encounter.registry[i];
-        total_attacks += s->attack_count;
-        total_phases += s->phase_count;
-        total_mechanics += s->mechanic_count;
-        total_nids += s->npc_id_count;
-    }
-    printf("  totals: %d npc_ids, %d attacks, %d phases, %d mechanics\n",
-           total_nids, total_attacks, total_phases, total_mechanics);
-    assert(total_attacks > 50);    // at least 1 attack per encounter avg
-    assert(total_phases >= 50);    // at least 1 phase per encounter
-    assert(total_mechanics > 30);  // many encounters have mechanics
-
-    rc_world_destroy(w);
-    printf("test_encounter_bin: all 50 encounters loaded + validated.\n");
+    snprintf(g_path, sizeof(g_path), "/tmp/runec_enct_%ld.bin", (long)getpid());
+    test_installed_specs();
+    test_round_trip();
+    test_rejections();
+    test_roles();
+    test_game_data_rejects_mislabelled_roles();
+    test_game_data_rejects_mislabelled_objects();
+    test_primitive_gate();
+    unlink(g_path);
+    printf("test_encounter_bin: ok\n");
     return 0;
 }

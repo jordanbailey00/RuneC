@@ -59,6 +59,12 @@ RcWorld *rc_world_create_with_data(RcGameData *data,
                                    const RcWorldConfig *cfg);
 RcWorld *rc_world_create(uint32_t seed);
 int      rc_world_reset(RcWorld *world);
+// Runs a content installer (hooks, handlers, encounter scripts) now and again
+// after every rc_world_reset, so a reset world keeps its content. Returns the
+// installer's result: 1 on success, 0 on failure.
+typedef int (*RcWorldContentInstaller)(RcWorld *world);
+int      rc_world_install_content(RcWorld *world,
+                                  RcWorldContentInstaller install);
 void     rc_world_destroy(RcWorld *world);
 const RcGameData *rc_world_get_game_data(const RcWorld *world);
 

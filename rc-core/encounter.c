@@ -1,960 +1,876 @@
 #include "encounter.h"
-#include "consumables.h"
+#include "api.h"
 #include "assets.h"
-#include "types.h"
-#include "events.h"
-#include "config.h"
 #include "combat.h"
+#include "combat_hit.h"
+#include "config.h"
+#include "consumables.h"
+#include "coordinates.h"
+#include "events.h"
 #include "items.h"
 #include "npc.h"
+#include "object_runtime.h"
+#include "objects.h"
+#include "pathfinding.h"
 #include "prayer.h"
 #include "rng.h"
+#include "spells.h"
+#include "types.h"
+#include <limits.h>
 #include <stdio.h>
-#include <stddef.h>
 #include <string.h>
 
-// RcPayloadNpcEvent lives in events.h — we just consume it here.
-
 #define ENCT_MAGIC 0x54434E45u     // 'ENCT'
+#define ENCT_VERSION 13u
+// Engine policy, not OSRS constants: an engaged fight ends after this many
+// consecutive ticks in which neither side targets the other, or when the
+// player is further than the leash from the boss footprint.
+#define RC_ENC_CALM_TICKS 16
+#define RC_ENC_LEASH_TILES 32
+#define RC_ENC_HELPER_SLOTS (RC_ENC_MAX_ACTIVE * RC_ENC_MAX_RUN_HELPERS)
+#define RC_ENC_NO_MECHANIC 0xFFu
 
-static int find_active_slot(const RcEncounterState *s) {
-    for (int i = 0; i < RC_ENC_MAX_ACTIVE; i++) {
-        if (!s->active[i].active) return i;
+// ---- Lookup ------------------------------------------------------------
+
+static const RcEncounterSpec *run_spec(const RcWorld *world,
+                                       const RcActiveEncounter *a) {
+    const RcEncounterState *s = &world->encounter;
+    if (!a->active || !s->specs || a->spec_idx >= s->spec_count) return NULL;
+    return &s->specs[a->spec_idx];
+}
+
+const RcEncounterSpec *rc_encounter_spec(const RcWorld *world, int spec_idx) {
+    if (!world || !world->encounter.specs || spec_idx < 0
+            || spec_idx >= world->encounter.spec_count) return NULL;
+    return &world->encounter.specs[spec_idx];
+}
+
+// Combat asks this for every NPC each tick; the mask keeps worlds without
+// runs from touching the slots at all.
+int rc_encounter_run_for_npc(const RcWorld *world, RcNpcId npc_uid) {
+    if (!world || npc_uid == RC_NPC_NONE) return -1;
+    uint16_t mask = world->encounter.active_mask;
+    for (int i = 0; mask; i++, mask >>= 1) {
+        if ((mask & 1u) && world->encounter.active[i].boss_id == npc_uid)
+            return i;
     }
     return -1;
 }
 
-static int find_active_by_npc(const RcEncounterState *s, RcNpcId id) {
-    for (int i = 0; i < RC_ENC_MAX_ACTIVE; i++) {
-        if (s->active[i].active && s->active[i].boss_id == id) return i;
-    }
-    return -1;
-}
-
-static bool phase_matches(const RcEncounterMechanic *m, uint8_t phase) {
-    if (m->phase_mask != 0u && phase < 32) {
-        return (m->phase_mask & (1u << phase)) != 0u;
-    }
-    return m->phase_idx == phase;
-}
-
-static void run_phase_script(RcWorld *world, int active_idx, uint8_t phase) {
-    RcEncounterState *s = &world->encounter;
-    if (active_idx < 0 || active_idx >= RC_ENC_MAX_ACTIVE) return;
-    RcActiveEncounter *a = &s->active[active_idx];
-    if (!a->active || a->spec_idx >= s->registry_count) return;
-    const RcEncounterSpec *spec = &s->registry[a->spec_idx];
-    if (phase >= spec->phase_count) return;
-    const char *name = spec->phases[phase].script;
-    if (!name[0]) return;
-    RcEncounterScriptFn fn = rc_encounter_script_lookup(world, name);
-    if (!fn) {
-        s->script_misses++;
-        return;
-    }
-    fn(world, active_idx);
-    s->scripts_called++;
-}
-
-static void invoke_mechanic(RcWorld *world, int active_idx,
-                            const RcEncounterMechanic *mech) {
-    RcActiveEncounter *a = NULL;
-    if (active_idx >= 0 && active_idx < RC_ENC_MAX_ACTIVE) {
-        a = &world->encounter.active[active_idx];
-        if (a->active && a->spec_idx < world->encounter.registry_count) {
-            const RcEncounterSpec *spec =
-                &world->encounter.registry[a->spec_idx];
-            ptrdiff_t idx = mech - spec->mechanics;
-            a->invoking_mechanic_idx =
-                (idx >= 0 && idx < spec->mechanic_count) ? (uint8_t)idx
-                                                         : 0xFFu;
+static int run_for_helper(const RcWorld *world, RcNpcId uid, int *helper_at) {
+    if (uid == RC_NPC_NONE) return -1;
+    uint16_t mask = world->encounter.active_mask;
+    for (int i = 0; mask; i++, mask >>= 1) {
+        const RcActiveEncounter *a = &world->encounter.active[i];
+        if (!(mask & 1u)) continue;
+        for (int h = 0; h < a->helper_count; h++) {
+            if (a->helpers[h] != uid) continue;
+            if (helper_at) *helper_at = h;
+            return i;
         }
     }
-    if (mech->prim) mech->prim(world, active_idx, mech->param_block);
-    if (a) a->invoking_mechanic_idx = 0xFFu;
+    return -1;
+}
+
+// NPC slots never move while an NPC lives, so the bound slot is the boss
+// until it is removed; a mismatch means the boss is gone.
+static RcNpc *run_boss(RcWorld *world, RcActiveEncounter *a) {
+    if (a->boss_slot < 0 || a->boss_slot >= world->npc_count) return NULL;
+    RcNpc *npc = &world->npcs[a->boss_slot];
+    return npc->active && (RcNpcId)npc->uid == a->boss_id ? npc : NULL;
+}
+
+static int form_def_index(const RcEncounterSpec *spec, uint8_t form) {
+    return form < spec->form_count
+         ? rc_npc_def_find((int)spec->forms[form].npc_id) : -1;
+}
+
+static bool form_dormant(const RcEncounterSpec *spec,
+                         const RcActiveEncounter *a) {
+    return a->form < spec->form_count && spec->forms[a->form].dormant;
+}
+
+static bool mechanic_in_phase(const RcEncounterMechanic *m, uint8_t phase) {
+    if (m->phase_mask) return phase < 32 && (m->phase_mask & (1u << phase));
+    return m->phase_idx == 0xFFu || m->phase_idx == phase;
+}
+
+static int chebyshev(int ax, int ay, int bx, int by) {
+    int dx = ax > bx ? ax - bx : bx - ax;
+    int dy = ay > by ? ay - by : by - ay;
+    return dx > dy ? dx : dy;
+}
+
+// Distance from a point to an NPC footprint (0 = inside).
+static int footprint_distance(const RcWorld *world, const RcNpc *npc,
+                              int x, int y) {
+    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
+    int size = def && def->size > 0 ? def->size : 1;
+    int nx = x < npc->x ? npc->x : x > npc->x + size - 1 ? npc->x + size - 1 : x;
+    int ny = y < npc->y ? npc->y : y > npc->y + size - 1 ? npc->y + size - 1 : y;
+    return chebyshev(x, y, nx, ny);
+}
+
+// ---- Mechanics and phases ---------------------------------------------
+
+static void invoke_mechanic(RcWorld *world, int slot,
+                            const RcEncounterMechanic *mech) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || !mech->prim) return;
+    a->invoking_mechanic_idx = (uint8_t)(mech - spec->mechanics);
+    mech->prim(world, slot, mech->param_block);
+    if (a->active) a->invoking_mechanic_idx = RC_ENC_NO_MECHANIC;
     world->encounter.triggered_mechanics++;
 }
 
-static void tick_mechanic(RcWorld *world, int active_idx,
-                          RcEncounterMechanic *mech) {
-    if (mech->period_ticks == 0) return;
-    if (mech->ticks_until_next == 0) {
-        invoke_mechanic(world, active_idx, mech);
-        mech->ticks_until_next = mech->period_ticks;
-    } else {
-        mech->ticks_until_next--;
-    }
+static void run_phase_script(RcWorld *world, int slot, uint8_t phase) {
+    RcEncounterState *s = &world->encounter;
+    const RcEncounterSpec *spec = run_spec(world, &s->active[slot]);
+    if (!spec || phase >= spec->phase_count || !spec->phases[phase].script[0])
+        return;
+    // Binding refuses specs whose scripts are not registered.
+    RcEncounterScriptFn fn =
+        rc_encounter_script_lookup(world, spec->phases[phase].script);
+    if (!fn) return;
+    fn(world, slot);
+    s->scripts_called++;
 }
 
-static bool trigger_ref_matches(const char *have, const char *want) {
-    return have && want && want[0] && strcmp(have, want) == 0;
-}
-
-static int phase_index_by_id(const RcEncounterSpec *spec, const char *id) {
-    if (!spec || !id || !id[0]) return -1;
-    for (int i = 0; i < spec->phase_count; i++) {
-        if (strcmp(spec->phases[i].id, id) == 0) return i;
-    }
-    return -1;
-}
-
-static int set_active_phase_idx(RcWorld *world, int active_idx, uint8_t next) {
-    if (!world || active_idx < 0 || active_idx >= RC_ENC_MAX_ACTIVE) return 0;
-    RcActiveEncounter *a = &world->encounter.active[active_idx];
-    if (!a->active || a->spec_idx >= world->encounter.registry_count) return 0;
-    const RcEncounterSpec *spec = &world->encounter.registry[a->spec_idx];
-    if (next >= spec->phase_count || next == a->current_phase) return 0;
+// The single phase-change owner. Exit and enter mechanics and the phase
+// script run here directly; the event only notifies observers.
+static void enter_phase(RcWorld *world, int slot, uint8_t next, bool initial) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || next >= spec->phase_count) return;
     uint8_t old = a->current_phase;
+    if (!initial && next == old) return;
+    for (int m = 0; !initial && m < spec->mechanic_count && a->active; m++) {
+        const RcEncounterMechanic *mech = &spec->mechanics[m];
+        if (mech->trigger_type == RC_ENC_TRIGGER_PHASE_EXIT
+                && mechanic_in_phase(mech, old))
+            invoke_mechanic(world, slot, mech);
+    }
+    if (!a->active) return;
     a->current_phase = next;
     a->mechanic_progress = 0;
-    RcPayloadPhaseTransition payload = {
-        .npc_id = a->boss_id,
-        .old_phase = old,
-        .new_phase = next,
-    };
-    rc_event_fire(world, RC_EVT_PHASE_TRANSITION, &payload);
-    return 1;
-}
-
-static const char *attack_name_for_active(const RcEncounterSpec *spec,
-                                          const RcActiveEncounter *active) {
-    if (!spec || !active) return "";
-    if (active->last_attack_idx < spec->attack_count) {
-        return spec->attacks[active->last_attack_idx].name;
+    for (int m = 0; m < spec->mechanic_count; m++) {
+        const RcEncounterMechanic *mech = &spec->mechanics[m];
+        if (mech->trigger_type == RC_ENC_TRIGGER_PHASE_IN
+                && mechanic_in_phase(mech, next))
+            a->next_due[m] = world->tick + mech->period_ticks;
     }
-    uint16_t attack_count = active->attack_count;
-    if (!spec || spec->attack_count == 0 || attack_count == 0) return "";
-    uint16_t idx = (uint16_t)((attack_count - 1) % spec->attack_count);
-    return spec->attacks[idx].name;
-}
-
-static bool attack_style_is_melee(uint8_t style) {
-    return style == COMBAT_MELEE_STAB ||
-           style == COMBAT_MELEE_SLASH ||
-           style == COMBAT_MELEE_CRUSH;
-}
-
-static bool attack_matches_active(const RcEncounterAttack *attack,
-                                  const RcActiveEncounter *active,
-                                  int distance) {
-    if (attack->npc_id && attack->npc_id != active->def_id) return false;
-    if ((attack->flags & RC_ENC_ATTACK_REQ_MELEE_RANGE) && distance > 1) {
-        return false;
+    for (int m = 0; m < spec->mechanic_count && a->active; m++) {
+        const RcEncounterMechanic *mech = &spec->mechanics[m];
+        if (mech->trigger_type == RC_ENC_TRIGGER_PHASE_ENTER
+                && mechanic_in_phase(mech, next))
+            invoke_mechanic(world, slot, mech);
     }
-    return true;
+    if (!a->active) return;
+    run_phase_script(world, slot, next);
+    if (!initial && a->active) {
+        RcPayloadPhaseTransition payload = {
+            .npc_id = a->boss_id, .old_phase = old, .new_phase = next,
+        };
+        rc_event_fire(world, RC_EVT_PHASE_TRANSITION, &payload);
+    }
 }
 
-static int attack_weight(const RcEncounterPhase *phase,
-                         const RcEncounterAttack *attack,
-                         int distance) {
-    const uint8_t *weights = distance <= 1
-                             ? phase->adjacent_style_weights
-                             : phase->distant_style_weights;
-    if (attack->style < 8 && weights[attack->style]) {
-        return weights[attack->style];
+int rc_encounter_set_phase(RcWorld *world, int active_idx,
+                           const char *phase_id) {
+    if (!world || active_idx < 0 || active_idx >= RC_ENC_MAX_ACTIVE
+            || !phase_id) return 0;
+    RcActiveEncounter *a = &world->encounter.active[active_idx];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || !a->engaged) return 0;
+    for (int i = 0; i < spec->phase_count; i++) {
+        if (strcmp(spec->phases[i].id, phase_id) != 0) continue;
+        if (i == a->current_phase) return 0;
+        enter_phase(world, active_idx, (uint8_t)i, false);
+        return 1;
     }
     return 0;
 }
 
-static uint8_t preferred_style_from_phase_id(const RcEncounterPhase *phase) {
-    if (!phase) return COMBAT_NONE;
-    if (strstr(phase->id, "magic")) return COMBAT_MAGIC;
-    if (strstr(phase->id, "ranged")) return COMBAT_RANGED;
-    if (strstr(phase->id, "melee")) return COMBAT_MELEE_CRUSH;
-    return COMBAT_NONE;
-}
+// ---- Effects -----------------------------------------------------------
 
-static uint32_t phase_attack_mask(const RcEncounterPhase *phase,
-                                  int attack_count) {
-    uint32_t mask = phase->allowed_attack_mask;
-    if (phase->allowed_attack_mask_explicit) return mask;
-    if (mask) return mask;
-    return attack_count >= 32 ? 0xFFFFFFFFu : ((1u << attack_count) - 1u);
-}
-
-static bool respawn_applies(const RcPrimParamsPeriodicRespawnIfDead *p,
-                            uint32_t npc_id) {
-    if (!p) return false;
-    for (int i = 0; i < p->count && i < 8; i++) {
-        if (p->npc_ids[i] == npc_id) return true;
-    }
-    return false;
-}
-
-static bool live_npc_with_id(const RcWorld *world, uint32_t npc_id) {
-    for (int i = 0; i < world->npc_count; i++) {
-        const RcNpc *npc = &world->npcs[i];
-        if (!npc->active || npc->is_dead) continue;
-        const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-        if (def && (uint32_t)def->id == npc_id) return true;
-    }
-    return false;
-}
-
-static bool live_npc_named(const RcWorld *world, const char *name) {
-    if (!name || !name[0]) return false;
-    for (int i = 0; i < world->npc_count; i++) {
-        const RcNpc *npc = &world->npcs[i];
-        if (!npc->active || npc->is_dead) continue;
-        const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-        if (def && strcmp(def->name, name) == 0) return true;
-    }
-    return false;
-}
-
-static bool spawned_and_all_dead_named(const RcWorld *world,
-                                       const char *name) {
-    if (!name || !name[0]) return false;
-    bool seen = false;
-    for (int i = 0; i < world->npc_count; i++) {
-        const RcNpc *npc = &world->npcs[i];
-        if (!npc->active) continue;
-        const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-        if (!def || strcmp(def->name, name) != 0) continue;
-        seen = true;
-        if (!npc->is_dead) return false;
-    }
-    return seen;
-}
-
-static bool active_spawn_blocker_alive(const RcWorld *world,
-                                       const RcActiveEncounter *a,
-                                       const RcEncounterSpec *spec) {
-    if (!world || !a || !spec || a->active_mechanic_idx >= spec->mechanic_count) {
-        return false;
-    }
-    const RcEncounterMechanic *m = &spec->mechanics[a->active_mechanic_idx];
-    if (m->primitive_id != RC_PRIM_SPAWN_NPCS_ONCE &&
-            m->primitive_id != RC_PRIM_SPAWN_NPCS) {
-        return false;
-    }
-    const RcPrimParamsSpawnNpcs *p =
-        (const RcPrimParamsSpawnNpcs *)m->param_block;
-    return p->blocks_boss_damage_until_dead && live_npc_named(world, p->name);
-}
-
-static int active_environment_damage_pct(const RcActiveEncounter *a,
-                                         const RcEncounterSpec *spec) {
-    if (!a || !spec || a->active_mechanic_idx >= spec->mechanic_count) {
-        return 100;
-    }
-    const RcEncounterMechanic *m = &spec->mechanics[a->active_mechanic_idx];
-    if (m->primitive_id == RC_PRIM_COVERED_ARENA_ENVIRONMENT) {
-        const RcPrimParamsCoveredArenaEnvironment *p =
-            (const RcPrimParamsCoveredArenaEnvironment *)m->param_block;
-        return p->damage_reduction_pct ? p->damage_reduction_pct : 100;
-    }
-    if (m->primitive_id == RC_PRIM_DAMAGE_REDUCTION_UNTIL_TRIGGER) {
-        const RcPrimParamsDamageGate *p =
-            (const RcPrimParamsDamageGate *)m->param_block;
-        int reduction = p->damage_reduction_pct;
-        if (reduction > 100) reduction = 100;
-        return 100 - reduction;
-    }
-    if (m->primitive_id == RC_PRIM_SPAWN_BUFF_ZONE_NPC) {
-        const RcPrimParamsSpawnBuffZoneNpc *p =
-            (const RcPrimParamsSpawnBuffZoneNpc *)m->param_block;
-        return p->outside_damage_pct ? p->outside_damage_pct : 100;
-    }
-    return 100;
-}
-
-static const RcPrimParamsGroupKillRequired *group_kill_params(
-    const RcEncounterSpec *spec) {
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (m->primitive_id == RC_PRIM_GROUP_KILL_REQUIRED) {
-            return (const RcPrimParamsGroupKillRequired *)m->param_block;
-        }
-    }
-    return NULL;
-}
-
-static const RcPrimParamsPeriodicRespawnIfDead *respawn_params(
-    const RcEncounterSpec *spec) {
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (m->primitive_id == RC_PRIM_PERIODIC_RESPAWN_IF_DEAD) {
-            return (const RcPrimParamsPeriodicRespawnIfDead *)m->param_block;
-        }
-    }
-    return NULL;
-}
-
-static bool group_is_dead(const RcWorld *world,
-                          const RcPrimParamsGroupKillRequired *p) {
-    if (!p || p->count == 0) return false;
-    for (int i = 0; i < p->count && i < 8; i++) {
-        if (live_npc_with_id(world, p->npc_ids[i])) return false;
-    }
-    return true;
-}
-
-static RcNpc *find_npc_by_uid(RcWorld *world, RcNpcId uid) {
-    return rc_npc_resolve(world, uid);
-}
-
-static uint32_t protect_prayer_for_style(uint8_t style) {
-    switch (style) {
-        case COMBAT_MELEE_STAB:
-        case COMBAT_MELEE_SLASH:
-        case COMBAT_MELEE_CRUSH:
-            return PRAYER_PROTECT_MELEE;
-        case COMBAT_RANGED:
-            return PRAYER_PROTECT_RANGE;
-        case COMBAT_MAGIC:
-            return PRAYER_PROTECT_MAGIC;
-        default:
-            return 0;
+static void release_effect(RcWorld *world, RcEncounterEffect *e) {
+    if (!e->active) return;
+    e->active = false;
+    if (e->object_key) (void)rc_world_object_revert(world, e->object_key);
+    e->object_key = 0;
+    if (e->run_slot < RC_ENC_MAX_ACTIVE) {
+        RcActiveEncounter *a = &world->encounter.active[e->run_slot];
+        if (a->active && a->generation == e->run_generation
+                && a->effect_count > 0)
+            a->effect_count--;
     }
 }
 
-static char lower_ascii(char c) {
-    return (c >= 'A' && c <= 'Z') ? (char)(c + ('a' - 'A')) : c;
-}
-
-static bool contains_ci(const char *s, const char *needle) {
-    if (!s || !needle || !needle[0]) return false;
-    for (; *s; s++) {
-        const char *a = s;
-        const char *b = needle;
-        while (*a && *b && lower_ascii(*a) == lower_ascii(*b)) {
-            a++;
-            b++;
-        }
-        if (!*b) return true;
+static int claim_effect(RcWorld *world, int slot, uint8_t kind) {
+    if (!world || kind == RC_ENC_EFFECT_NONE || slot < 0
+            || slot >= RC_ENC_MAX_ACTIVE) return -1;
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    if (!a->active || a->effect_count >= RC_ENC_RUN_EFFECT_QUOTA) return -1;
+    for (int i = 0; i < RC_ENC_MAX_EFFECTS; i++) {
+        RcEncounterEffect *e = &world->encounter_effects[i];
+        if (e->active) continue;
+        memset(e, 0, sizeof(*e));
+        e->active = true;
+        e->kind = kind;
+        e->loc_id = -1;
+        e->run_slot = (uint8_t)slot;
+        e->run_generation = a->generation;
+        e->source_uid = a->boss_id;
+        a->effect_count++;
+        if (i >= world->encounter_effect_count)
+            world->encounter_effect_count = i + 1;
+        return i;
     }
-    return false;
+    return -1;
 }
 
-static bool style_matches(uint8_t have, uint8_t want) {
-    if (want == COMBAT_MELEE_CRUSH) {
-        return have == COMBAT_MELEE_STAB ||
-               have == COMBAT_MELEE_SLASH ||
-               have == COMBAT_MELEE_CRUSH;
-    }
-    return have == want;
+static void copy_name(char *dst, size_t cap, const char *src) {
+    size_t n = 0;
+    while (src && n + 1 < cap && src[n]) n++;
+    if (n) memcpy(dst, src, n);
+    dst[n] = '\0';
 }
 
-static const RcItemDef *equipped_weapon(const RcWorld *world) {
-    if (!world) return NULL;
-    int id = world->player.equipment[EQUIP_WEAPON].item_id;
-    return rc_item_def_get(id);
+int rc_encounter_add_effect(RcWorld *world, int enc_idx, uint8_t kind,
+                            int x, int y, int plane,
+                            int target_x, int target_y,
+                            int ticks, uint8_t style, uint8_t damage_per_tick,
+                            const char *name, const char *target_name) {
+    int i = claim_effect(world, enc_idx, kind);
+    if (i < 0) return -1;
+    RcEncounterEffect *e = &world->encounter_effects[i];
+    e->style = style;
+    e->damage_per_tick = damage_per_tick;
+    e->x = x;
+    e->y = y;
+    e->plane = plane;
+    e->target_x = target_x;
+    e->target_y = target_y;
+    e->ticks_remaining = ticks;
+    copy_name(e->name, sizeof(e->name), name);
+    copy_name(e->target_name, sizeof(e->target_name), target_name);
+    return i;
 }
 
-static bool player_has_equipped_item(const RcPlayer *p, int item_id) {
-    if (!p || item_id < 0) return false;
-    for (int i = 0; i < RC_EQUIP_COUNT; i++) {
-        if (p->equipment[i].item_id == item_id) return true;
-    }
-    return false;
+int rc_encounter_add_strike(RcWorld *world, int enc_idx, int x, int y,
+                            int plane, int delay, uint16_t min_damage,
+                            uint16_t max_damage, uint8_t adjacent_pct,
+                            uint8_t style) {
+    if (delay < 0 || min_damage > max_damage || adjacent_pct > 100) return -1;
+    int i = claim_effect(world, enc_idx, RC_ENC_EFFECT_TILE_STRIKE);
+    if (i < 0) return -1;
+    RcEncounterEffect *e = &world->encounter_effects[i];
+    e->x = e->target_x = x;
+    e->y = e->target_y = y;
+    e->plane = plane;
+    e->style = style;
+    e->impact_tick = world->tick + (RcTick)delay;
+    e->min_damage = min_damage;
+    e->max_damage = max_damage;
+    e->adjacent_pct = adjacent_pct;
+    e->ticks_remaining = -1;
+    return i;
 }
 
-static bool player_equipment_contains(const RcPlayer *p, const char *needle) {
-    if (!p || !needle || !needle[0]) return false;
-    for (int i = 0; i < RC_EQUIP_COUNT; i++) {
-        int item_id = p->equipment[i].item_id;
-        if (item_id < 0) continue;
-        const RcItemDef *def = rc_item_def_get(item_id);
-        if (def && contains_ci(def->name, needle)) return true;
-    }
-    return false;
+// A landed pool shows its loc unless the tile's layer already holds one;
+// the pool works either way.
+static void land_pool(RcWorld *world, RcEncounterEffect *e) {
+    e->landed = true;
+    if (e->loc_id < 0 || !(world->enabled & RC_SUB_OBJECTS)) return;
+    RcObjectPlacement loc = {
+        .obj_id = (uint32_t)e->loc_id, .x = (uint16_t)e->x,
+        .y = (uint16_t)e->y, .plane = (uint8_t)e->plane, .type = e->loc_type,
+    };
+    RcObjectPlacement base;
+    if (rc_object_placement_find_layer(e->x, e->y, e->plane,
+            rc_object_layer_for_type(e->loc_type), &base) != 0) return;
+    uint64_t key = 0;
+    if (rc_world_object_add(world, &loc, 0, &key) == RC_OBJECT_MUTATION_OK)
+        e->object_key = key;
 }
 
-static bool player_has_facemask_protection(const RcPlayer *p) {
-    return player_equipment_contains(p, "face mask") ||
-           player_equipment_contains(p, "facemask") ||
-           player_equipment_contains(p, "slayer helmet");
+int rc_encounter_add_pool(RcWorld *world, int enc_idx, int x, int y,
+                          int plane, int delay, int ticks, uint8_t damage_max,
+                          uint8_t leech_pct, int loc_id, uint8_t loc_type) {
+    if (delay < 0 || ticks <= 0 || !damage_max || leech_pct > 100) return -1;
+    int i = claim_effect(world, enc_idx, RC_ENC_EFFECT_ACID_POOL);
+    if (i < 0) return -1;
+    RcEncounterEffect *e = &world->encounter_effects[i];
+    e->x = e->target_x = x;
+    e->y = e->target_y = y;
+    e->plane = plane;
+    e->impact_tick = world->tick + (RcTick)delay;
+    e->ticks_remaining = ticks;
+    e->damage_per_tick = damage_max;
+    e->leech_pct = leech_pct;
+    e->loc_id = loc_id;
+    e->loc_type = loc_type;
+    copy_name(e->name, sizeof(e->name), "Pool");
+    if (delay == 0) land_pool(world, e);
+    return i;
 }
 
-static bool weapon_is_halberd_or_salamander(const RcItemDef *def) {
-    if (!def) return false;
-    return contains_ci(def->name, "halberd") ||
-           contains_ci(def->name, "salamander") ||
-           def->weapon_type == 26;
+int rc_encounter_add_helper_drop(RcWorld *world, int enc_idx, uint8_t helper,
+                                 int x, int y, int plane, int delay) {
+    if (delay < 0) return 0;
+    if (delay == 0)
+        return rc_encounter_spawn_helper(world, enc_idx, helper, x, y, plane,
+                                         NULL);
+    const RcEncounterSpec *spec = enc_idx >= 0 && enc_idx < RC_ENC_MAX_ACTIVE
+        ? run_spec(world, &world->encounter.active[enc_idx]) : NULL;
+    if (!spec || helper >= spec->helper_count) return 0;
+    int i = claim_effect(world, enc_idx, RC_ENC_EFFECT_HELPER_DROP);
+    if (i < 0) return 0;
+    RcEncounterEffect *e = &world->encounter_effects[i];
+    e->x = e->target_x = x;
+    e->y = e->target_y = y;
+    e->plane = plane;
+    e->helper = helper;
+    e->impact_tick = world->tick + (RcTick)delay;
+    e->ticks_remaining = -1;
+    return 1;
 }
 
-static bool weapon_is_halberd(const RcItemDef *def) {
-    return def && contains_ci(def->name, "halberd");
-}
-
-static bool weapon_is_corpbane_stab(const RcItemDef *def, uint8_t style) {
-    if (!def || style != COMBAT_MELEE_STAB) return false;
-    return def->weapon_type == 19 ||          // spear
-           contains_ci(def->name, "spear") ||
-           contains_ci(def->name, "hasta") ||
-           contains_ci(def->name, "halberd");
-}
-
-static bool damage_modifier_matches(const RcWorld *world,
-                                    const RcEncounterDamageModifier *m,
-                                    uint32_t npc_id, uint8_t style) {
-    if (m->npc_id && m->npc_id != npc_id) return false;
-    const RcItemDef *weapon = equipped_weapon(world);
-    switch (m->condition) {
-        case RC_ENC_DMG_STYLE_NOT:
-            return !style_matches(style, m->style);
-        case RC_ENC_DMG_STYLE_IS:
-            return style_matches(style, m->style);
-        case RC_ENC_DMG_NOT_CORPBANE_STAB:
-            return !weapon_is_corpbane_stab(weapon, style);
-        case RC_ENC_DMG_MELEE_NOT_HALBERD_SALAMANDER:
-            return style_matches(style, COMBAT_MELEE_CRUSH) &&
-                   !weapon_is_halberd_or_salamander(weapon);
-        case RC_ENC_DMG_MELEE_NOT_HALBERD:
-            return style_matches(style, COMBAT_MELEE_CRUSH) &&
-                   !weapon_is_halberd(weapon);
-        case RC_ENC_DMG_PLAYER_NOT_FACEMASK:
-            return !player_has_facemask_protection(&world->player);
-        case RC_ENC_DMG_CAP_RANGE:
+static bool run_has_drops(const RcWorld *world, int slot) {
+    const RcActiveEncounter *a = &world->encounter.active[slot];
+    for (int i = 0; i < world->encounter_effect_count; i++) {
+        const RcEncounterEffect *e = &world->encounter_effects[i];
+        if (e->active && e->kind == RC_ENC_EFFECT_HELPER_DROP
+                && e->run_slot == slot && e->run_generation == a->generation)
             return true;
-        default:
-            return false;
     }
+    return false;
 }
 
-static void drain_player_skill(RcPlayer *p, int skill, int amount) {
-    if (!p || skill < 0 || skill >= SKILL_COUNT || amount <= 0) return;
-    p->skills.boosted_level[skill] -= amount;
-    if (p->skills.boosted_level[skill] < 0) {
-        p->skills.boosted_level[skill] = 0;
-    }
+static void end_window(RcWorld *world, RcActiveEncounter *a);
+
+// A helper-held window (ticks 0) ends once no helper lives or is in flight.
+static void release_helper_window(RcWorld *world, int slot) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    if (a->active && a->helper_count == 0
+            && a->active_mechanic_idx != RC_ENC_NO_MECHANIC
+            && a->active_mechanic_ticks == 0 && !run_has_drops(world, slot))
+        end_window(world, a);
 }
 
-static void heal_npc_to_def_cap(RcWorld *world, RcNpc *npc, int amount) {
-    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-    if (!npc || amount <= 0 || !def) {
-        return;
-    }
-    int cap = def->hitpoints;
-    if (cap <= 0) return;
-    npc->current_hp += amount;
-    if (npc->current_hp > cap) npc->current_hp = cap;
+static void land_drop(RcWorld *world, RcEncounterEffect *e) {
+    int slot = e->run_slot;
+    const RcActiveEncounter *a = slot < RC_ENC_MAX_ACTIVE
+        ? &world->encounter.active[slot] : NULL;
+    bool live = a && a->active && a->generation == e->run_generation;
+    bool spawned = live && rc_encounter_spawn_helper(world, slot, e->helper,
+                                                     e->x, e->y, e->plane, NULL);
+    release_effect(world, e);
+    if (live && !spawned) release_helper_window(world, slot);
 }
 
-static void knock_player_away_from_npc(RcWorld *world, const RcNpc *npc,
-                                       int tiles) {
-    if (!world || !npc || tiles <= 0) return;
+// Hazard damage bypasses prayer and never applies attack effects.
+static void queue_hazard_hit(RcWorld *world, const RcEncounterEffect *e,
+                             int damage, int max_hit) {
     RcPlayer *p = &world->player;
-    int dx = p->x - npc->x;
-    int dy = p->y - npc->y;
-    if (dx == 0 && dy == 0) {
-        dx = 1;
-    } else {
-        if (dx > 0) dx = 1;
-        else if (dx < 0) dx = -1;
-        if (dy > 0) dy = 1;
-        else if (dy < 0) dy = -1;
-    }
-    p->prev_x = p->x;
-    p->prev_y = p->y;
-    p->x += dx * tiles;
-    p->y += dy * tiles;
+    if (damage <= 0 || p->is_dead || p->current_hp <= 0) return;
+    (void)rc_queue_hit_meta(p->pending_hits, &p->num_pending_hits, damage, 0,
+                            e->style ? e->style : COMBAT_MAGIC,
+                            (int)e->source_uid, 0, world->tick,
+                            RC_HIT_SUPPRESS_ENCOUNTER_EFFECTS, max_hit);
 }
 
-static void copy_effect_name(char *dst, int cap, const char *src) {
-    if (!dst || cap <= 0) return;
-    if (!src) src = "";
-    strncpy(dst, src, (size_t)cap - 1);
-    dst[cap - 1] = '\0';
-}
-
-static void apply_attack_effect(RcWorld *world, RcActiveEncounter *a,
-                                const RcEncounterSpec *spec,
-                                uint16_t damage) {
-    if (!world || !a || !spec) return;
-    if (a->last_attack_idx >= spec->attack_count) return;
-    const RcEncounterAttack *attack = &spec->attacks[a->last_attack_idx];
-    if (damage > 0 && (attack->flags & RC_ENC_ATTACK_HITS_ALL_ROOM)) {
-        RcNpc *boss = find_npc_by_uid(world, a->boss_id);
-        if (boss) {
-            rc_encounter_add_effect(world, RC_ENC_EFFECT_ROOM_ATTACK,
-                                    boss->x, boss->y, boss->plane,
-                                    world->player.x, world->player.y, 2,
-                                    (uint16_t)boss->uid, attack->style,
-                                    (uint8_t)(damage > 255 ? 255 : damage),
-                                    attack->name, "");
-        }
-    }
-    if (attack->effect_id == RC_ENC_ATTACK_EFFECT_DRAIN_HEAL) {
-        if (damage == 0) return;
-        int min = attack->effect_min;
-        int max = attack->effect_max >= attack->effect_min
-                  ? attack->effect_max : attack->effect_min;
-        int drain = min;
-        if (max > min) drain += rc_rng_range(&world->rng_state, max - min);
-        uint8_t flags = attack->effect_flags;
-        if ((flags & (RC_ENC_ATTACK_EFFECT_DRAIN_MAGIC |
-                      RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER)) ==
-                (RC_ENC_ATTACK_EFFECT_DRAIN_MAGIC |
-                 RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER)) {
-            flags = rc_rng_range(&world->rng_state, 1) == 0
-                    ? RC_ENC_ATTACK_EFFECT_DRAIN_MAGIC
-                    : RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER;
-        }
-        if ((flags & RC_ENC_ATTACK_EFFECT_DRAIN_MAGIC) != 0) {
-            drain_player_skill(&world->player, SKILL_MAGIC, drain);
-        }
-        if ((flags & RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER) != 0) {
-            rc_prayer_drain_points(world, drain);
-        }
-        if (attack->effect_pct) {
-            RcNpc *boss = find_npc_by_uid(world, a->boss_id);
-            heal_npc_to_def_cap(world, boss,
-                                ((int)damage * attack->effect_pct) / 100);
-        }
-    } else if (attack->effect_id == RC_ENC_ATTACK_EFFECT_SPLIT_PROJECTILES) {
-        if (damage == 0) return;
-        RcNpc *boss = find_npc_by_uid(world, a->boss_id);
-        if (!boss) return;
-        for (int i = 0; i < attack->effect_min; i++) {
-            int dmg = attack->effect_max > 0
-                      ? rc_rng_range(&world->rng_state, attack->effect_max)
-                      : 0;
-            rc_queue_hit_flags(world->player.pending_hits,
-                               &world->player.num_pending_hits,
-                               dmg, 1, attack->style, boss->uid,
-                               world->player.active_prayers, world->tick,
-                               RC_HIT_SUPPRESS_ENCOUNTER_EFFECTS);
-        }
-    } else if (attack->effect_id == RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER_PCT) {
-        if (damage == 0 || attack->effect_pct == 0) return;
-        int drain = (world->player.current_prayer_points *
-                     attack->effect_pct) / 100;
-        if (drain <= 0 && world->player.current_prayer_points > 0) drain = 1;
-        rc_prayer_drain_tenths(world, drain);
-    } else if (attack->effect_id == RC_ENC_ATTACK_EFFECT_POISON) {
-        if (damage == 0 &&
-                (attack->effect_flags &
-                 RC_ENC_ATTACK_EFFECT_POISON_PIERCES_PRAY) == 0) {
-            return;
-        }
-        if (attack->effect_pct &&
-                rc_rng_range(&world->rng_state, 99) >= attack->effect_pct) {
-            return;
-        }
-        rc_player_apply_toxin(world, attack->effect_min, false);
-    } else if (attack->effect_id == RC_ENC_ATTACK_EFFECT_KNOCKBACK) {
-        if (damage == 0) return;
-        RcNpc *boss = find_npc_by_uid(world, a->boss_id);
-        knock_player_away_from_npc(world, boss, attack->effect_min);
-    } else if (attack->effect_id == RC_ENC_ATTACK_EFFECT_VENOM) {
-        int venom = attack->effect_min ? attack->effect_min : 6;
-        rc_player_apply_toxin(world, venom, true);
-    } else if (attack->effect_id == RC_ENC_ATTACK_EFFECT_DEACTIVATE_PRAYERS) {
-        rc_prayer_disable_all(world, RC_PRAYER_FORCED_OFF);
+static void tick_pool(RcWorld *world, RcEncounterEffect *e) {
+    const RcPlayer *p = &world->player;
+    if (!e->damage_per_tick || p->plane != e->plane || p->x != e->x
+            || p->y != e->y) return;
+    int damage = 1 + rc_rng_range(&world->rng_state, e->damage_per_tick - 1);
+    queue_hazard_hit(world, e, damage, e->damage_per_tick);
+    RcNpc *owner = e->leech_pct ? rc_npc_resolve(world, e->source_uid) : NULL;
+    if (owner && !owner->is_dead && owner->current_hp > 0) {
+        int heal = damage * e->leech_pct / 100;
+        int cap = owner->spawn_hp > 0 ? owner->spawn_hp : owner->current_hp;
+        owner->current_hp = owner->current_hp + heal > cap
+                          ? cap : owner->current_hp + heal;
     }
 }
 
-static uint16_t attack_counter_every(const RcEncounterMechanic *m) {
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_SPECIAL) {
-        const RcPrimParamsAttackCounterSpecial *p =
-            (const RcPrimParamsAttackCounterSpecial *)m->param_block;
-        return p->every_n_attacks;
+// Warned strikes are judged where the player stands on impact.
+static void resolve_strike(RcWorld *world, const RcEncounterEffect *e) {
+    const RcPlayer *p = &world->player;
+    if (p->plane != e->plane) return;
+    int distance = chebyshev(p->x, p->y, e->x, e->y);
+    if (distance > 1 || (distance == 1 && !e->adjacent_pct)) return;
+    int damage = (int)e->min_damage + rc_rng_range(
+        &world->rng_state, (int)e->max_damage - (int)e->min_damage);
+    if (distance == 1) damage = damage * e->adjacent_pct / 100;
+    queue_hazard_hit(world, e, damage, e->max_damage);
+}
+
+void rc_encounter_tick_effects(RcWorld *world) {
+    if (!world) return;
+    int last_active = -1;
+    for (int i = 0; i < world->encounter_effect_count; i++) {
+        RcEncounterEffect *e = &world->encounter_effects[i];
+        if (!e->active) continue;
+        if (e->kind == RC_ENC_EFFECT_TILE_STRIKE) {
+            if (world->tick >= e->impact_tick) {
+                resolve_strike(world, e);
+                release_effect(world, e);
+                continue;
+            }
+        } else if (e->kind == RC_ENC_EFFECT_HELPER_DROP) {
+            if (world->tick >= e->impact_tick) {
+                land_drop(world, e);
+                continue;
+            }
+        } else if (e->kind == RC_ENC_EFFECT_ACID_POOL) {
+            if (!e->landed && world->tick < e->impact_tick) {
+                last_active = i;
+                continue;
+            }
+            if (!e->landed) land_pool(world, e);
+            tick_pool(world, e);
+        }
+        if (e->ticks_remaining > 0 && --e->ticks_remaining == 0) {
+            release_effect(world, e);
+            continue;
+        }
+        last_active = i;
     }
-    if (m->primitive_id == RC_PRIM_SPAWN_SOUL_ATTACKERS) {
-        const RcPrimParamsSpawnSoulAttackers *p =
-            (const RcPrimParamsSpawnSoulAttackers *)m->param_block;
-        return p->every_n_attacks;
+    world->encounter_effect_count = last_active + 1;
+}
+
+// ---- Run lifecycle -----------------------------------------------------
+
+static void end_window(RcWorld *world, RcActiveEncounter *a) {
+    if (a->run_flags & RC_ENC_RUN_PLAYER_FROZEN)
+        world->player.freeze_expire_tick = world->tick;
+    a->run_flags &= (uint8_t)~(RC_ENC_RUN_BOSS_IMMUNE
+                               | RC_ENC_RUN_PLAYER_FROZEN
+                               | RC_ENC_RUN_BOSS_IDLE);
+    a->damage_taken_pct = 100;
+    a->active_mechanic_idx = RC_ENC_NO_MECHANIC;
+    a->active_mechanic_ticks = 0;
+}
+
+void rc_encounter_begin_window(RcWorld *world, int enc_idx,
+                               uint8_t mechanic_idx, uint16_t ticks,
+                               uint8_t run_flags, uint8_t damage_taken_pct) {
+    if (!world || enc_idx < 0 || enc_idx >= RC_ENC_MAX_ACTIVE) return;
+    RcActiveEncounter *a = &world->encounter.active[enc_idx];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || mechanic_idx >= spec->mechanic_count) return;
+    end_window(world, a);
+    a->active_mechanic_idx = mechanic_idx;
+    a->active_mechanic_ticks = ticks;
+    a->run_flags |= run_flags;
+    a->damage_taken_pct = damage_taken_pct > 100 ? 100 : damage_taken_pct;
+    if (run_flags & RC_ENC_RUN_PLAYER_FROZEN)
+        rc_player_apply_freeze(world, INT_MAX);
+}
+
+static void release_run_effects(RcWorld *world, int slot) {
+    const RcActiveEncounter *a = &world->encounter.active[slot];
+    for (int i = 0; i < world->encounter_effect_count; i++) {
+        RcEncounterEffect *e = &world->encounter_effects[i];
+        if (e->active && e->run_slot == slot
+                && e->run_generation == a->generation)
+            release_effect(world, e);
     }
-    if (m->primitive_id == RC_PRIM_DOT_TILE_PLACEMENT) {
-        const RcPrimParamsDotTilePlacement *p =
-            (const RcPrimParamsDotTilePlacement *)m->param_block;
-        return p->every_n_attacks;
+}
+
+// Helpers leave on the next encounter tick, so a run ended inside an NPC
+// lifecycle event never removes NPCs re-entrantly.
+static void queue_helper_removals(RcWorld *world, RcActiveEncounter *a) {
+    RcEncounterState *s = &world->encounter;
+    while (a->helper_count > 0 && s->helper_removal_count < RC_ENC_HELPER_SLOTS)
+        s->helper_removals[s->helper_removal_count++] = a->helpers[--a->helper_count];
+}
+
+static void flush_helper_removals(RcWorld *world) {
+    RcEncounterState *s = &world->encounter;
+    while (s->helper_removal_count > 0)
+        rc_npc_remove(world, s->helper_removals[--s->helper_removal_count]);
+}
+
+static void end_run(RcWorld *world, int slot, bool finished) {
+    RcEncounterState *s = &world->encounter;
+    RcActiveEncounter *a = &s->active[slot];
+    if (!a->active) return;
+    RcNpc *boss = run_boss(world, a);
+    if (boss && a->transition_until) boss->player_untargetable = false;
+    end_window(world, a);
+    release_run_effects(world, slot);
+    queue_helper_removals(world, a);
+    if (finished) s->finished_count++;
+    s->active_mask &= (uint16_t)~(1u << slot);
+    memset(a, 0, sizeof(*a));
+}
+
+static void stop_boss_combat(RcWorld *world, RcNpc *boss) {
+    RcCombatActorRef actor = {RC_COMBAT_ACTOR_NPC, boss->uid};
+    rc_combat_stop_actor(world, actor, RC_COMBAT_STATE_CANCELLED);
+    boss->target_uid = -1;
+    boss->combat.attack_prepared = false;
+    if (world->player.attack_target == boss->uid) {
+        world->player.attack_target = -1;
+        world->player.attack_target_def_id = -1;
     }
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL) {
+}
+
+// Changes the boss definition. Stat drains carry into the new form.
+static void record_form(RcWorld *world, const RcNpc *npc, const char *key,
+                        int hold_ticks) {
+    rc_combat_record_encounter_action(world, npc, false, npc->x, npc->y,
+                                      COMBAT_NONE, hold_ticks, key);
+}
+
+static void enter_form(RcWorld *world, int slot, uint8_t form,
+                       uint8_t hp_policy) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    RcNpc *npc = spec ? run_boss(world, a) : NULL;
+    int def_idx = spec ? form_def_index(spec, form) : -1;
+    if (!npc || def_idx < 0) return;
+    const RcNpcDef *old_def = rc_npc_def_for_npc(world, npc);
+    rc_npc_set_form(npc, def_idx == npc->def_id ? -1 : def_idx);
+    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
+    if (!def) return;
+    for (int i = 0; old_def && i < 6; i++) {
+        int drained = old_def->stats[i] - npc->stats[i];
+        npc->stats[i] = def->stats[i] - (drained > 0 ? drained : 0);
+        if (npc->stats[i] < 0) npc->stats[i] = 0;
+    }
+    npc->spawn_hp = def->hitpoints > 0 ? def->hitpoints : 1;
+    if (hp_policy == RC_ENC_FORM_HP_FULL || npc->current_hp <= 0
+            || npc->current_hp > npc->spawn_hp)
+        npc->current_hp = npc->spawn_hp;
+    npc->player_untargetable = false;
+    a->form = form;
+    a->def_id = spec->forms[form].npc_id;
+    a->form_entered_tick = world->tick;
+    a->transition_until = 0;
+    a->run_flags &= (uint8_t)~RC_ENC_RUN_BOSS_IDLE;
+    if (spec->forms[form].dormant) {
+        a->engaged = false;
+        stop_boss_combat(world, npc);
+    }
+    if (def != old_def) record_form(world, npc, RC_ENC_FORM_ENTER_KEY, 0);
+}
+
+static int bind_run(RcWorld *world, int spec_idx, RcNpc *npc, int npc_slot,
+                    uint8_t form) {
+    RcEncounterState *s = &world->encounter;
+    int slot = -1;
+    for (int i = 0; i < RC_ENC_MAX_ACTIVE && slot < 0; i++) {
+        if (!s->active[i].active) slot = i;
+    }
+    if (slot < 0) {
+        s->refused_count++;
+        return -1;
+    }
+    RcActiveEncounter *a = &s->active[slot];
+    memset(a, 0, sizeof(*a));
+    if (++s->next_generation == 0) s->next_generation = 1;
+    s->active_mask |= (uint16_t)(1u << slot);
+    a->active = true;
+    a->generation = s->next_generation;
+    a->spec_idx = (uint16_t)spec_idx;
+    a->boss_id = (RcNpcId)npc->uid;
+    a->boss_slot = npc_slot;
+    a->form = form;
+    a->def_id = s->specs[spec_idx].forms[form].npc_id;
+    a->bound_tick = world->tick;
+    a->form_entered_tick = world->tick;
+    a->last_attack_idx = RC_ENC_NO_MECHANIC;
+    a->active_mechanic_idx = RC_ENC_NO_MECHANIC;
+    a->invoking_mechanic_idx = RC_ENC_NO_MECHANIC;
+    a->damage_taken_pct = 100;
+    s->started_count++;
+    return slot;
+}
+
+static void engage_run(RcWorld *world, int slot) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || a->engaged || a->transition_until || form_dormant(spec, a))
+        return;
+    a->engaged = true;
+    a->engaged_tick = world->tick;
+    a->calm_ticks = 0;
+    a->attack_count = 0;
+    a->attack_special_toggle = 0;
+    a->ticks_since_start = 0;
+    for (int m = 0; m < spec->mechanic_count; m++) {
+        const RcEncounterMechanic *mech = &spec->mechanics[m];
+        a->next_due[m] = world->tick + mech->period_ticks;
+        if (mech->primitive_id != RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL)
+            continue;
         const RcPrimParamsAttackCounterAlternateSpecial *p =
-            (const RcPrimParamsAttackCounterAlternateSpecial *)m->param_block;
-        return p->every_n_attacks;
+            (const void *)mech->param_block;
+        if (p->random_first && p->special_count > 1)
+            a->attack_special_toggle = (uint8_t)rc_rng_bounded(
+                &world->rng_state, p->special_count);
     }
-    if (m->primitive_id == RC_PRIM_ANIMATION_WARNING_STYLE_SWAP) {
-        const RcPrimParamsStyleSwap *p =
-            (const RcPrimParamsStyleSwap *)m->param_block;
-        return p->every_n_attacks;
-    }
-    if (m->primitive_id == RC_PRIM_PERIODIC_SPIKE_CLUSTER) {
-        const RcPrimParamsPeriodicSpikeCluster *p =
-            (const RcPrimParamsPeriodicSpikeCluster *)m->param_block;
-        return p->every_n_attacks;
-    }
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_STYLE_SWAP) {
-        const RcPrimParamsAttackCounterStyleSwap *p =
-            (const RcPrimParamsAttackCounterStyleSwap *)m->param_block;
-        return p->every_n_attacks;
-    }
-    return 7;
+    enter_phase(world, slot, 0, true);
 }
 
-static uint8_t attack_counter_priority(const RcEncounterMechanic *m) {
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_SPECIAL) {
-        const RcPrimParamsAttackCounterSpecial *p =
-            (const RcPrimParamsAttackCounterSpecial *)m->param_block;
-        return p->priority ? p->priority : 255;
+static void disengage_run(RcWorld *world, int slot) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || !a->engaged) return;
+    end_window(world, a);
+    release_run_effects(world, slot);
+    queue_helper_removals(world, a);
+    a->engaged = false;
+    a->calm_ticks = 0;
+    a->attack_count = 0;
+    a->current_phase = 0;
+    a->mechanic_progress = 0;
+    if (spec->disengage != RC_ENC_DISENGAGE_RESET) return;
+    RcNpc *boss = run_boss(world, a);
+    if (a->form != 0 || a->transition_until) {
+        enter_form(world, slot, 0, RC_ENC_FORM_HP_FULL);
+    } else if (boss && boss->spawn_hp > 0) {
+        boss->current_hp = boss->spawn_hp;
     }
-    if (m->primitive_id == RC_PRIM_SPAWN_SOUL_ATTACKERS) {
-        const RcPrimParamsSpawnSoulAttackers *p =
-            (const RcPrimParamsSpawnSoulAttackers *)m->param_block;
-        return p->priority ? p->priority : 255;
-    }
-    if (m->primitive_id == RC_PRIM_DOT_TILE_PLACEMENT) {
-        const RcPrimParamsDotTilePlacement *p =
-            (const RcPrimParamsDotTilePlacement *)m->param_block;
-        return p->priority ? p->priority : 255;
-    }
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL) return 1;
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_STYLE_SWAP) return 1;
-    if (m->primitive_id == RC_PRIM_PERIODIC_SPIKE_CLUSTER) return 2;
-    if (m->primitive_id == RC_PRIM_ANIMATION_WARNING_STYLE_SWAP) return 250;
-    return 255;
 }
 
-static bool attack_counter_hp_matches(RcWorld *world,
-                                      const RcActiveEncounter *a,
-                                      const RcEncounterMechanic *m) {
-    RcNpc *boss = find_npc_by_uid(world, a->boss_id);
-    if (!boss) return false;
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_SPECIAL) {
-        const RcPrimParamsAttackCounterSpecial *p =
-            (const RcPrimParamsAttackCounterSpecial *)m->param_block;
-        return p->max_hp == 0 || boss->current_hp <= p->max_hp;
-    }
-    if (m->primitive_id == RC_PRIM_SPAWN_SOUL_ATTACKERS) {
-        const RcPrimParamsSpawnSoulAttackers *p =
-            (const RcPrimParamsSpawnSoulAttackers *)m->param_block;
-        if (p->min_hp && boss->current_hp < p->min_hp) return false;
-        return p->max_hp == 0 || boss->current_hp <= p->max_hp;
-    }
-    if (m->primitive_id == RC_PRIM_DOT_TILE_PLACEMENT) {
-        const RcPrimParamsDotTilePlacement *p =
-            (const RcPrimParamsDotTilePlacement *)m->param_block;
-        return p->max_hp == 0 || boss->current_hp <= p->max_hp;
-    }
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL) {
-        return true;
-    }
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_STYLE_SWAP) {
-        return true;
+static bool spec_ready(RcWorld *world, int spec_idx) {
+    RcEncounterState *s = &world->encounter;
+    const RcEncounterSpec *spec = &s->specs[spec_idx];
+    uint64_t bit = 1ull << spec_idx;
+    if (s->refused_specs & bit) return false;
+    for (int i = 0; i < spec->phase_count; i++) {
+        const char *name = spec->phases[i].script;
+        if (!name[0] || rc_encounter_script_lookup(world, name)) continue;
+        s->refused_specs |= bit;
+        s->refused_count++;
+        fprintf(stderr, "encounter: %s refused: phase '%s' script '%s' "
+                "is not registered\n", spec->slug, spec->phases[i].id, name);
+        return false;
     }
     return true;
 }
 
-static bool attack_counter_prayer_matches(const RcWorld *world,
-                                          const RcEncounterMechanic *m) {
-    if (m->primitive_id != RC_PRIM_ATTACK_COUNTER_SPECIAL) return true;
-    const RcPrimParamsAttackCounterSpecial *p =
-        (const RcPrimParamsAttackCounterSpecial *)m->param_block;
-    uint32_t prayer = protect_prayer_for_style(p->condition_prayer_style);
-    return prayer == 0 || (world->player.active_prayers & prayer) != 0;
-}
-
-static bool leech_spawn_roll(RcWorld *world,
-                             const RcPrimParamsSpawnLeechNpc *p) {
-    if (!p || p->spawn_chance_denominator <= 1) return true;
-    return rc_rng_range(&world->rng_state,
-                        p->spawn_chance_denominator - 1) == 0;
-}
-
-static void maybe_spawn_leech_from_large_hit(RcWorld *world, int slot,
-                                             const RcEncounterSpec *spec,
-                                             const RcPayloadNpcDamaged *hit) {
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (m->primitive_id != RC_PRIM_SPAWN_LEECH_NPC || !m->prim) continue;
-        const RcPrimParamsSpawnLeechNpc *p =
-            (const RcPrimParamsSpawnLeechNpc *)m->param_block;
-        if (live_npc_named(world, p->name)) continue;
-        if (p->large_hit_threshold == 0 ||
-                hit->damage < p->large_hit_threshold) {
-            continue;
-        }
-        if (leech_spawn_roll(world, p)) invoke_mechanic(world, slot, m);
-    }
-}
-
-static void maybe_spawn_leech_from_boss_attack(RcWorld *world, int slot,
-                                               const RcEncounterSpec *spec,
-                                               const RcActiveEncounter *a) {
-    RcNpc *boss = find_npc_by_uid(world, a->boss_id);
-    if (!boss) return;
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (m->primitive_id != RC_PRIM_SPAWN_LEECH_NPC || !m->prim) continue;
-        const RcPrimParamsSpawnLeechNpc *p =
-            (const RcPrimParamsSpawnLeechNpc *)m->param_block;
-        if (live_npc_named(world, p->name)) continue;
-        if (p->boss_hp_below == 0 || boss->current_hp >= p->boss_hp_below) {
-            continue;
-        }
-        if (leech_spawn_roll(world, p)) invoke_mechanic(world, slot, m);
-    }
-}
-
-static bool attack_counter_due(RcWorld *world, const RcActiveEncounter *a,
-                               const RcEncounterMechanic *m) {
-    bool phase_counter = m->trigger_type == RC_ENC_TRIGGER_PHASE_IN &&
-        phase_matches(m, a->current_phase) &&
-        (m->primitive_id == RC_PRIM_ANIMATION_WARNING_STYLE_SWAP ||
-         m->primitive_id == RC_PRIM_PERIODIC_SPIKE_CLUSTER);
-    if (!m->prim) return false;
-    if (!phase_counter &&
-            m->trigger_type != RC_ENC_TRIGGER_ATTACK_COUNT) {
-        return false;
-    }
-    switch (m->primitive_id) {
-        case 0:
-        case RC_PRIM_ATTACK_COUNTER_SPECIAL:
-        case RC_PRIM_SPAWN_SOUL_ATTACKERS:
-        case RC_PRIM_DOT_TILE_PLACEMENT:
-        case RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL:
-        case RC_PRIM_ATTACK_COUNTER_STYLE_SWAP:
-        case RC_PRIM_ANIMATION_WARNING_STYLE_SWAP:
-        case RC_PRIM_PERIODIC_SPIKE_CLUSTER:
-            break;
-        default:
-            return false;
-    }
-    uint16_t every = attack_counter_every(m);
-    bool first = false;
-    uint8_t skip = 0;
-    if (m->primitive_id == RC_PRIM_ATTACK_COUNTER_SPECIAL) {
-        const RcPrimParamsAttackCounterSpecial *p =
-            (const RcPrimParamsAttackCounterSpecial *)m->param_block;
-        first = p->first_attack_trigger && a->attack_count == 1;
-        skip = p->skip_chance_pct;
-    } else if (m->primitive_id == RC_PRIM_SPAWN_SOUL_ATTACKERS) {
-        const RcPrimParamsSpawnSoulAttackers *p =
-            (const RcPrimParamsSpawnSoulAttackers *)m->param_block;
-        skip = p->skip_chance_pct;
-    } else if (m->primitive_id == RC_PRIM_DOT_TILE_PLACEMENT) {
-        const RcPrimParamsDotTilePlacement *p =
-            (const RcPrimParamsDotTilePlacement *)m->param_block;
-        skip = p->skip_chance_pct;
-    }
-    if (!first && (every == 0 || (a->attack_count % every) != 0)) {
-        return false;
-    }
-    if (!attack_counter_hp_matches(world, a, m)) return false;
-    if (!attack_counter_prayer_matches(world, m)) return false;
-    return skip == 0 || rc_rng_range(&world->rng_state, 99) >= skip;
-}
-
-static void activate_mechanic_window(RcActiveEncounter *a, uint8_t idx) {
-    a->active_mechanic_idx = idx;
-    a->active_mechanic_ticks = 24;
-}
-
-static void tick_active_mechanic_window(RcWorld *world, int active_idx,
-                                        RcActiveEncounter *a,
-                                        const RcEncounterSpec *spec) {
-    if (a->active_mechanic_idx == 0xFFu || a->active_mechanic_ticks == 0) {
-        return;
-    }
-    const RcEncounterMechanic *active =
-        &spec->mechanics[a->active_mechanic_idx];
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        RcEncounterMechanic *m =
-            &((RcEncounterMechanic *)spec->mechanics)[i];
-        if (m->trigger_type != RC_ENC_TRIGGER_DURING_MECH) continue;
-        if (!trigger_ref_matches(active->name, m->trigger_ref)) continue;
-        if (m->period_ticks) {
-            tick_mechanic(world, active_idx, m);
-        } else {
-            invoke_mechanic(world, active_idx, m);
+// Spec and form for a live definition id. Only binding forms start a run,
+// except an NPC an earlier run left in a later form.
+static int spec_form_for(const RcWorld *world, uint32_t npc_id,
+                         bool restored, uint8_t *form_out) {
+    const RcEncounterState *s = &world->encounter;
+    for (int i = 0; s->specs && i < s->spec_count; i++) {
+        const RcEncounterSpec *spec = &s->specs[i];
+        for (uint8_t f = 0; f < spec->form_count; f++) {
+            if (spec->forms[f].npc_id != npc_id) continue;
+            if (!spec->forms[f].binds_on_spawn && !restored) return -1;
+            if (form_out) *form_out = f;
+            return i;
         }
     }
-    a->active_mechanic_ticks--;
-    if (a->active_mechanic_ticks == 0) {
-        const char *advance_to = "";
-        if (active->primitive_id == RC_PRIM_NPC_PATHED_MOVEMENT) {
-            const RcPrimParamsNpcPathedMovement *p =
-                (const RcPrimParamsNpcPathedMovement *)active->param_block;
-            advance_to = p->advance_to;
-        } else if (active->primitive_id == RC_PRIM_SPAWN_OBJECTIVE_NPCS) {
-            const RcPrimParamsSpawnObjectiveNpcs *p =
-                (const RcPrimParamsSpawnObjectiveNpcs *)active->param_block;
-            advance_to = p->advance_to;
-        } else if (active->primitive_id == RC_PRIM_SPAWN_WALL_TENTACLES) {
-            const RcPrimParamsSpawnWallTentacles *p =
-                (const RcPrimParamsSpawnWallTentacles *)active->param_block;
-            advance_to = p->advance_to;
-        }
-        a->active_mechanic_idx = 0xFFu;
-        if (advance_to[0]) {
-            rc_encounter_set_phase(world, active_idx, advance_to);
-        }
-    }
+    return -1;
 }
 
-static void tick_objective_phase_advances(RcWorld *world, int active_idx,
-                                          RcActiveEncounter *a,
-                                          const RcEncounterSpec *spec) {
-    if (a->active_mechanic_idx < spec->mechanic_count) {
-        const RcEncounterMechanic *active =
-            &spec->mechanics[a->active_mechanic_idx];
-        if (active->primitive_id == RC_PRIM_DAMAGE_REDUCTION_UNTIL_TRIGGER) {
-            const RcPrimParamsDamageGate *p =
-                (const RcPrimParamsDamageGate *)active->param_block;
-            if (p->clear_npc_name[0] &&
-                    spawned_and_all_dead_named(world, p->clear_npc_name)) {
-                a->active_mechanic_idx = 0xFFu;
-                a->active_mechanic_ticks = 0;
-            }
-        }
+static void try_bind(RcWorld *world, int npc_slot) {
+    RcNpc *npc = &world->npcs[npc_slot];
+    if (!npc->active || npc->is_dead || npc->owner_controlled
+            || rc_encounter_run_for_npc(world, (RcNpcId)npc->uid) >= 0
+            || run_for_helper(world, (RcNpcId)npc->uid, NULL) >= 0) return;
+    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
+    uint8_t form = 0;
+    int spec_idx = def ? spec_form_for(world, (uint32_t)def->id,
+                                       npc->form_def > 0, &form) : -1;
+    if (spec_idx < 0 || !spec_ready(world, spec_idx)) return;
+    (void)bind_run(world, spec_idx, npc, npc_slot, form);
+}
+
+static int npc_slot_of(const RcWorld *world, RcNpcId uid) {
+    for (int i = 0; i < world->npc_count; i++) {
+        if (world->npcs[i].active && (RcNpcId)world->npcs[i].uid == uid)
+            return i;
     }
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (!phase_matches(m, a->current_phase)) continue;
-        const char *npc_name = "";
-        const char *advance_to = "";
-        if (m->primitive_id == RC_PRIM_SPAWN_OBJECTIVE_NPCS) {
-            const RcPrimParamsSpawnObjectiveNpcs *p =
-                (const RcPrimParamsSpawnObjectiveNpcs *)m->param_block;
-            npc_name = p->npc_name;
-            advance_to = p->advance_to;
-        } else if (m->primitive_id == RC_PRIM_SPAWN_WALL_TENTACLES) {
-            const RcPrimParamsSpawnWallTentacles *p =
-                (const RcPrimParamsSpawnWallTentacles *)m->param_block;
-            npc_name = p->npc_name[0] ? p->npc_name : "Abyssal tentacle";
-            advance_to = p->advance_to;
-        } else {
-            continue;
-        }
-        if (advance_to[0] && spawned_and_all_dead_named(world, npc_name)) {
-            rc_encounter_set_phase(world, active_idx, advance_to);
+    return -1;
+}
+
+int rc_encounter_spawn_helper(RcWorld *world, int enc_idx, uint8_t helper,
+                              int x, int y, int plane, RcNpcId *out_uid) {
+    if (!world || enc_idx < 0 || enc_idx >= RC_ENC_MAX_ACTIVE) return 0;
+    RcActiveEncounter *a = &world->encounter.active[enc_idx];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || helper >= spec->helper_count
+            || a->helper_count >= RC_ENC_MAX_RUN_HELPERS) return 0;
+    int def_idx = rc_npc_def_find((int)spec->helpers[helper].npc_id);
+    if (def_idx < 0) return 0;
+    RcNpcSpawnConfig config = {.spawn_key = 0, .wander_range = 0};
+    RcNpcSpawnResult result = rc_npc_spawn_ex(world, def_idx, x, y, plane,
+                                              &config);
+    if (result.status != RC_NPC_SPAWN_CREATED || !a->active) return 0;
+    world->npcs[result.slot].owner_controlled = true;
+    a->helpers[a->helper_count++] = result.uid;
+    if (out_uid) *out_uid = result.uid;
+    return 1;
+}
+
+static void forget_helper(RcWorld *world, int slot, int helper_at) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    a->helpers[helper_at] = a->helpers[--a->helper_count];
+    release_helper_window(world, slot);
+}
+
+// ---- Tick --------------------------------------------------------------
+
+static bool player_fighting_boss(const RcWorld *world, const RcNpc *boss) {
+    const RcPlayer *p = &world->player;
+    if (p->is_dead || p->plane != boss->plane) return false;
+    return boss->target_uid == 0 || p->attack_target == boss->uid;
+}
+
+static void tick_phase_thresholds(RcWorld *world, int slot,
+                                  const RcEncounterSpec *spec,
+                                  const RcNpc *boss) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    if (boss->spawn_hp <= 0) return;
+    int hp_pct = boss->current_hp * 100 / boss->spawn_hp;
+    for (int p = a->current_phase + 1; p < spec->phase_count; p++) {
+        uint8_t enter = spec->phases[p].enter_at_hp_pct;
+        if (enter < 100 && hp_pct < enter) {
+            enter_phase(world, slot, (uint8_t)p, false);
             return;
         }
     }
 }
 
-// Advance one active encounter. Pass-1 tick: phase HP-threshold
-// check + mechanic period countdown. Primitives don't fire yet
-// (they're NULL until pass-2 registers them); mechanic timers still
-// decrement so the state machine exercises correctly.
-static void tick_active(RcWorld *world, RcActiveEncounter *a) {
-    RcEncounterState *s = &world->encounter;
-    const RcEncounterSpec *spec = &s->registry[a->spec_idx];
+static void tick_window(RcWorld *world, int slot, const RcEncounterSpec *spec) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    if (a->active_mechanic_idx >= spec->mechanic_count) return;
+    rc_encounter_prim_window_tick(world, slot,
+                                  &spec->mechanics[a->active_mechanic_idx]);
+    // Helper-held windows (ticks 0) end in forget_helper.
+    if (a->active && a->active_mechanic_ticks > 0
+            && --a->active_mechanic_ticks == 0)
+        end_window(world, a);
+}
 
-    RcNpc *boss = rc_npc_resolve(world, a->boss_id);
-    if (!boss || boss->is_dead) return;   // finish handled by on_died.
-
-    int active_idx = (int)(a - s->active);
-    if (a->ticks_since_start == 0) {
-        for (int m = 0; m < spec->mechanic_count; m++) {
-            const RcEncounterMechanic *mech = &spec->mechanics[m];
-            if (mech->trigger_type == RC_ENC_TRIGGER_PHASE_ENTER &&
-                    phase_matches(mech, a->current_phase)) {
-                invoke_mechanic(world, active_idx, mech);
-            } else if (mech->trigger_type == RC_ENC_TRIGGER_PHASE_IN &&
-                       mech->period_ticks == 0 &&
-                       mech->primitive_id !=
-                           RC_PRIM_ANIMATION_WARNING_STYLE_SWAP &&
-                       mech->primitive_id != RC_PRIM_PERIODIC_SPIKE_CLUSTER &&
-                       phase_matches(mech, a->current_phase)) {
-                invoke_mechanic(world, active_idx, mech);
-            }
-        }
+static void tick_run(RcWorld *world, int slot) {
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    RcNpc *boss = spec ? run_boss(world, a) : NULL;
+    if (!boss) {
+        end_run(world, slot, false);
+        return;
+    }
+    if (boss->is_dead) return;   // death and teardown are event-owned
+    if (a->transition_until) {
+        boss->current_hp = 0;
+        if (world->tick < a->transition_until) return;
+        uint8_t next = a->transition_form;
+        bool woke = spec->forms[a->form].dormant;
+        enter_form(world, slot, next, a->transition_hp);
+        if (!spec->forms[next].dormant) engage_run(world, slot);
+        // A woken boss turns on the player that woke it.
+        if (woke && a->engaged) rc_combat_start_npc_vs_player(world, boss->uid, 0);
+        return;
+    }
+    const RcEncounterForm *form = &spec->forms[a->form];
+    if (!a->engaged && form->revert_after_ticks
+            && world->tick - a->form_entered_tick >= form->revert_after_ticks) {
+        enter_form(world, slot, form->revert_form, form->revert_hp);
+        return;
+    }
+    if (form->dormant) return;
+    bool fighting = player_fighting_boss(world, boss);
+    if (!a->engaged) {
+        if (!fighting) return;
+        engage_run(world, slot);
+        if (!a->active || !a->engaged) return;
+    }
+    const RcPlayer *p = &world->player;
+    a->calm_ticks = fighting ? 0 : (uint8_t)(a->calm_ticks + 1);
+    if (p->is_dead || p->plane != boss->plane
+            || footprint_distance(world, boss, p->x, p->y) > RC_ENC_LEASH_TILES
+            || a->calm_ticks >= RC_ENC_CALM_TICKS) {
+        disengage_run(world, slot);
+        return;
     }
     a->ticks_since_start++;
-
-    // Phase transition check — advance to the next phase whose
-    // trigger is met. Only 100→lower HP% transitions are live here;
-    // hard hp=0 triggers + timed/event-driven "enter_after" phases
-    // remain deferred until the phase model grows beyond the pass-1
-    // shell.
-    for (int p = a->current_phase + 1; p < spec->phase_count; p++) {
-        const RcEncounterPhase *ph = &spec->phases[p];
-        if (ph->hard_hp_trigger) continue;
-        if (ph->enter_at_hp_pct == 0 || ph->enter_at_hp_pct == 100) continue;
-        // Pass-1 shortcut: compute hp_pct off the def's hitpoints
-        // (the max-hp at spawn). Pass 2 tracks max_hp on the NPC
-        // instance so re-heals after phase revert compute correctly.
-        const RcNpcDef *def = rc_npc_def_for_npc(world, boss);
-        int def_hp = def ? def->hitpoints : 0;
-        if (def_hp <= 0) continue;
-        int hp_pct = boss->current_hp * 100 / def_hp;
-        if (hp_pct < ph->enter_at_hp_pct) {
-            uint8_t old_phase = a->current_phase;
-            a->current_phase = (uint8_t)p;
-            a->mechanic_progress = 0;
-            RcPayloadPhaseTransition payload = {
-                .npc_id = a->boss_id,
-                .old_phase = old_phase,
-                .new_phase = (uint8_t)p,
-            };
-            rc_event_fire(world, RC_EVT_PHASE_TRANSITION, &payload);
-        }
+    tick_phase_thresholds(world, slot, spec, boss);
+    if (!a->active) return;
+    tick_window(world, slot, spec);
+    for (int m = 0; m < spec->mechanic_count && a->active && a->engaged; m++) {
+        const RcEncounterMechanic *mech = &spec->mechanics[m];
+        bool periodic = mech->trigger_type == RC_ENC_TRIGGER_PERIODIC
+            || (mech->trigger_type == RC_ENC_TRIGGER_PHASE_IN
+                && mech->period_ticks > 0);
+        if (!periodic || !mechanic_in_phase(mech, a->current_phase)
+                || world->tick < a->next_due[m]) continue;
+        a->next_due[m] = world->tick + mech->period_ticks;
+        invoke_mechanic(world, slot, mech);
     }
+}
 
-    // Mechanic countdown. Periodic mechanics always tick; phase-in
-    // mechanics tick only while their authored phase is current.
-    tick_active_mechanic_window(world, active_idx, a, spec);
-    tick_objective_phase_advances(world, active_idx, a, spec);
-    for (int m = 0; m < spec->mechanic_count; m++) {
-        RcEncounterMechanic *mech =
-            &((RcEncounterMechanic *)spec->mechanics)[m];
-        if (mech->trigger_type == RC_ENC_TRIGGER_PERIODIC) {
-            tick_mechanic(world, active_idx, mech);
-        } else if (mech->trigger_type == RC_ENC_TRIGGER_PHASE_IN &&
-                   phase_matches(mech, a->current_phase)) {
-            tick_mechanic(world, active_idx, mech);
-        }
+void rc_encounter_tick(RcWorld *world) {
+    if (!world || !(world->enabled & RC_SUB_ENCOUNTER)) return;
+    flush_helper_removals(world);
+    for (int i = 0; i < RC_ENC_MAX_ACTIVE; i++) {
+        if (world->encounter.active_mask & (1u << i)) tick_run(world, i);
     }
 }
 
 // ---- Public API --------------------------------------------------------
 
+int rc_encounter_use_specs(RcWorld *world, const RcEncounterSpec *specs,
+                           int count) {
+    if (!world || count < 0 || count > RC_ENC_REGISTRY_CAP
+            || (count > 0 && !specs)) return -1;
+    RcEncounterState *s = &world->encounter;
+    for (int i = 0; i < RC_ENC_MAX_ACTIVE; i++) end_run(world, i, false);
+    flush_helper_removals(world);
+    s->specs = count > 0 ? specs : NULL;
+    s->spec_count = (uint8_t)count;
+    s->refused_specs = 0;
+    if (!(world->enabled & RC_SUB_ENCOUNTER)) return 0;
+    for (int i = 0; i < world->npc_count; i++) try_bind(world, i);
+    return 0;
+}
+
 int rc_encounter_init(RcWorld *world) {
     if (!world) return -1;
     RcEncounterState *s = &world->encounter;
     memset(s, 0, sizeof(*s));
-    if (rc_event_subscribe(world, RC_EVT_NPC_SPAWNED,
-                           rc_encounter_on_npc_spawned, s) != 0
-            || rc_event_subscribe(world, RC_EVT_NPC_REMOVED,
-                                  rc_encounter_on_npc_removed, s) != 0
-            || rc_event_subscribe(world, RC_EVT_NPC_DIED,
-                                  rc_encounter_on_npc_died, s) != 0
-            || rc_event_subscribe(world, RC_EVT_PLAYER_DAMAGED,
-                                  rc_encounter_on_player_damaged, s) != 0
-            || rc_event_subscribe(world, RC_EVT_PHASE_TRANSITION,
-                                  rc_encounter_on_phase_transition, s) != 0
-            || rc_event_subscribe(world, RC_EVT_NPC_ATTACK,
-                                  rc_encounter_on_npc_attack, s) != 0
-            || rc_event_subscribe(world, RC_EVT_NPC_DAMAGED,
-                                  rc_encounter_on_npc_damaged, s) != 0) {
-        return -1;
+    static const int events[] = {
+        RC_EVT_NPC_SPAWNED, RC_EVT_NPC_RESPAWNED, RC_EVT_NPC_REMOVED,
+        RC_EVT_NPC_DIED, RC_EVT_PLAYER_DAMAGED, RC_EVT_NPC_ATTACK,
+        RC_EVT_PLAYER_DIED,
+    };
+    static const RcEventFn handlers[] = {
+        rc_encounter_on_npc_spawned, rc_encounter_on_npc_spawned,
+        rc_encounter_on_npc_removed, rc_encounter_on_npc_died,
+        rc_encounter_on_player_damaged, rc_encounter_on_npc_attack,
+        rc_encounter_on_player_died,
+    };
+    for (size_t i = 0; i < sizeof(events) / sizeof(events[0]); i++) {
+        if (rc_event_subscribe(world, events[i], handlers[i], s) != 0)
+            return -1;
     }
     return 0;
 }
 
-void rc_encounter_tick(RcWorld *world) {
-    if (!(world->enabled & RC_SUB_ENCOUNTER)) return;
-    RcEncounterState *s = &world->encounter;
-    for (int i = 0; i < RC_ENC_MAX_ACTIVE; i++) {
-        if (s->active[i].active) tick_active(world, &s->active[i]);
-    }
-}
-
-int rc_encounter_register(RcWorld *world, const RcEncounterSpec *spec) {
-    RcEncounterState *s = &world->encounter;
-    if (s->registry_count >= RC_ENC_REGISTRY_CAP) return -1;
-    s->registry[s->registry_count] = *spec;
-    return s->registry_count++;
-}
-
 int rc_encounter_register_script(RcWorld *world, const char *name,
                                  RcEncounterScriptFn fn) {
-    if (!world || !name || !name[0] || !fn) return -1;
+    if (!world || !name || !name[0] || !fn
+            || strlen(name) >= sizeof(world->encounter.scripts[0].name))
+        return -1;
     RcEncounterState *s = &world->encounter;
     for (int i = 0; i < s->script_count; i++) {
-        if (strcmp(s->scripts[i].name, name) == 0) {
-            s->scripts[i].fn = fn;
-            return i;
-        }
+        if (strcmp(s->scripts[i].name, name) != 0) continue;
+        s->scripts[i].fn = fn;
+        return i;
     }
     if (s->script_count >= RC_ENC_SCRIPT_REGISTRY_CAP) return -1;
     RcEncounterScriptEntry *entry = &s->scripts[s->script_count];
     memset(entry, 0, sizeof(*entry));
-    strncpy(entry->name, name, sizeof(entry->name) - 1);
+    memcpy(entry->name, name, strlen(name));
     entry->fn = fn;
     return s->script_count++;
 }
@@ -964,869 +880,903 @@ RcEncounterScriptFn rc_encounter_script_lookup(const RcWorld *world,
     if (!world || !name || !name[0]) return NULL;
     const RcEncounterState *s = &world->encounter;
     for (int i = 0; i < s->script_count; i++) {
-        if (strcmp(s->scripts[i].name, name) == 0) {
-            return s->scripts[i].fn;
+        if (strcmp(s->scripts[i].name, name) == 0) return s->scripts[i].fn;
+    }
+    return NULL;
+}
+
+// ---- Combat integration ------------------------------------------------
+
+static bool player_has_free_slot(const RcPlayer *p) {
+    for (int i = 0; i < RC_INVENTORY_SIZE; i++) {
+        if (p->inventory[i].item_id < 0) return true;
+    }
+    return false;
+}
+
+static bool style_is_melee_style(uint8_t style) {
+    return style == COMBAT_MELEE_STAB || style == COMBAT_MELEE_SLASH
+        || style == COMBAT_MELEE_CRUSH;
+}
+
+static bool attack_eligible(const RcWorld *world, const RcActiveEncounter *a,
+                            const RcEncounterSpec *spec, int idx) {
+    const RcEncounterAttack *atk = &spec->attacks[idx];
+    if (!(spec->phases[a->current_phase].allowed_attack_mask & (1u << idx)))
+        return false;
+    if (atk->npc_id && atk->npc_id != a->def_id) return false;
+    return !(atk->flags & RC_ENC_ATTACK_NEEDS_FREE_SLOT)
+        || player_has_free_slot(&world->player);
+}
+
+static const RcEncounterMechanic *special_rotation(const RcEncounterSpec *spec) {
+    for (int m = 0; m < spec->mechanic_count; m++) {
+        if (spec->mechanics[m].primitive_id
+                == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL)
+            return &spec->mechanics[m];
+    }
+    return NULL;
+}
+
+int rc_encounter_select_npc_attack(RcWorld *world, RcNpcId npc_uid,
+                                   int distance, bool side_adjacent,
+                                   const RcEncounterAttack **attack,
+                                   uint32_t *generation) {
+    if (attack) *attack = NULL;
+    if (!world || !attack || !generation) return RC_ENC_SELECT_NONE;
+    int slot = rc_encounter_run_for_npc(world, npc_uid);
+    if (slot < 0) return RC_ENC_SELECT_NONE;
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || form_dormant(spec, a) || a->transition_until
+            || (a->run_flags & RC_ENC_RUN_BOSS_IDLE))
+        return RC_ENC_SELECT_HOLD;
+    if (!a->engaged) {
+        engage_run(world, slot);
+        if (!a->active || !a->engaged) return RC_ENC_SELECT_HOLD;
+    }
+    const RcEncounterMechanic *rotation = special_rotation(spec);
+    if (rotation) {
+        const RcPrimParamsAttackCounterAlternateSpecial *p =
+            (const void *)rotation->param_block;
+        if ((a->attack_count + 1) % p->every_n_attacks == 0) {
+            uint8_t pick = p->special_mechanics[a->attack_special_toggle
+                                                % p->special_count];
+            a->attack_special_toggle =
+                (uint8_t)((a->attack_special_toggle + 1) % p->special_count);
+            a->attack_count++;
+            invoke_mechanic(world, slot, &spec->mechanics[pick]);
+            return RC_ENC_SELECT_SPECIAL;
+        }
+    }
+    bool diagonal_reach = false;
+    for (int i = 0; i < spec->attack_count; i++) {
+        const RcEncounterAttack *atk = &spec->attacks[i];
+        diagonal_reach |= (atk->flags & RC_ENC_ATTACK_DIAGONAL_REACH)
+                       && style_is_melee_style(atk->style)
+                       && attack_eligible(world, a, spec, i);
+    }
+    bool adjacent = side_adjacent || (diagonal_reach && distance == 1);
+    int total = 0, total_adjacent = 0;
+    for (int i = 0; i < spec->attack_count; i++) {
+        if (!attack_eligible(world, a, spec, i)) continue;
+        total += adjacent ? spec->attacks[i].weight_adjacent
+                          : spec->attacks[i].weight_distant;
+        total_adjacent += spec->attacks[i].weight_adjacent;
+    }
+    if (total <= 0)
+        return !adjacent && total_adjacent > 0 ? RC_ENC_SELECT_APPROACH
+                                               : RC_ENC_SELECT_HOLD;
+    int pick = (int)rc_rng_bounded(&world->rng_state, (uint32_t)total);
+    for (int i = 0; i < spec->attack_count; i++) {
+        if (!attack_eligible(world, a, spec, i)) continue;
+        pick -= adjacent ? spec->attacks[i].weight_adjacent
+                         : spec->attacks[i].weight_distant;
+        if (pick >= 0) continue;
+        a->last_attack_idx = (uint8_t)i;
+        *attack = &spec->attacks[i];
+        *generation = a->generation;
+        return i;
+    }
+    return RC_ENC_SELECT_HOLD;
+}
+
+const RcEncounterAttack *rc_encounter_attack(const RcWorld *world,
+                                             RcNpcId npc_uid, int attack_idx,
+                                             uint32_t *generation) {
+    int slot = rc_encounter_run_for_npc(world, npc_uid);
+    if (slot < 0) return NULL;
+    const RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || attack_idx < 0 || attack_idx >= spec->attack_count)
+        return NULL;
+    if (generation) *generation = a->generation;
+    return &spec->attacks[attack_idx];
+}
+
+int rc_encounter_player_protection_scale_pct(const RcWorld *world,
+                                             int source_uid, int attack,
+                                             uint32_t generation,
+                                             uint32_t prayer_snapshot) {
+    if (!world || source_uid < 0 || attack <= 0) return -1;
+    int slot = rc_encounter_run_for_npc(world, (RcNpcId)source_uid);
+    if (slot < 0) return -1;
+    const RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || a->generation != generation) return -1;
+    for (int i = 0; i < spec->protection_count; i++) {
+        const RcEncounterProtection *p = &spec->protections[i];
+        if (p->attack_idx + 1 == attack && (prayer_snapshot & p->prayer_flag))
+            return p->damage_pct;
+    }
+    return -1;
+}
+
+int rc_encounter_scale_player_damage(RcWorld *world, RcNpcId npc_uid,
+                                     uint8_t style, int damage) {
+    if (!world || damage <= 0) return damage;
+    int slot = rc_encounter_run_for_npc(world, npc_uid);
+    if (slot < 0) return damage;
+    const RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec) return damage;
+    if (a->run_flags & RC_ENC_RUN_BOSS_IMMUNE) return 0;
+    int out = damage;
+    for (int i = 0; i < spec->damage_mod_count; i++) {
+        const RcEncounterDamageModifier *m = &spec->damage_mods[i];
+        if (m->npc_id && m->npc_id != a->def_id) continue;
+        bool match = style == m->style;
+        if (m->condition == RC_ENC_DMG_STYLE_NOT ? !match : match)
+            out = out * m->damage_pct / 100;
+    }
+    return out * a->damage_taken_pct / 100;
+}
+
+bool rc_encounter_player_instakill(const RcWorld *world, RcNpcId npc_uid,
+                                   int spell_key) {
+    if (!world || spell_key <= 0) return false;
+    int slot = run_for_helper(world, npc_uid, NULL);
+    const RcNpc *npc = slot >= 0 ? rc_npc_resolve_const(world, npc_uid) : NULL;
+    const RcNpcDef *def = npc ? rc_npc_def_for_npc(world, npc) : NULL;
+    const RcSpellDef *spell = rc_spell_def_get(spell_key - 1);
+    if (!def || !spell) return false;
+    const RcEncounterSpec *spec = run_spec(world, &world->encounter.active[slot]);
+    for (int m = 0; spec && m < spec->mechanic_count; m++) {
+        const RcEncounterMechanic *mech = &spec->mechanics[m];
+        if (mech->primitive_id != RC_PRIM_SPAWN_OWNED_HELPERS) continue;
+        const RcPrimParamsSpawnOwnedHelpers *p = (const void *)mech->param_block;
+        if (spec->helpers[p->helper].npc_id == (uint32_t)def->id
+                && p->instakill_spell[0]
+                && strcmp(p->instakill_spell, spell->name) == 0)
+            return true;
+    }
+    return false;
+}
+
+void rc_encounter_player_attack_committed(RcWorld *world, RcNpcId npc_uid) {
+    int slot = world ? rc_encounter_run_for_npc(world, npc_uid) : -1;
+    if (slot >= 0) engage_run(world, slot);
+}
+
+bool rc_encounter_player_can_target_npc(const RcWorld *world,
+                                        RcNpcId npc_uid) {
+    int slot = world ? rc_encounter_run_for_npc(world, npc_uid) : -1;
+    if (slot < 0) return true;
+    const RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || a->transition_until || form_dormant(spec, a)) return false;
+    return spec->phases[a->current_phase].player_targetable;
+}
+
+int rc_encounter_intercept_lethal(RcWorld *world, RcNpcId npc_uid) {
+    if (!world || !(world->enabled & RC_SUB_ENCOUNTER)) return 0;
+    int slot = rc_encounter_run_for_npc(world, npc_uid);
+    if (slot < 0) return 0;
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec) return 0;
+    if (a->transition_until) return 1;
+    const RcEncounterForm *form = &spec->forms[a->form];
+    RcNpc *npc = run_boss(world, a);
+    if (form->on_lethal != RC_ENC_LETHAL_TRANSFORM || !npc) return 0;
+    end_window(world, a);
+    release_run_effects(world, slot);
+    npc->combat.attack_prepared = false;
+    if (world->player.attack_target == npc->uid) {
+        world->player.attack_target = -1;
+        world->player.attack_target_def_id = -1;
+    }
+    record_form(world, npc, RC_ENC_FORM_LEAVE_KEY, form->transition_ticks);
+    if (form->transition_ticks == 0) {
+        enter_form(world, slot, form->next_form, form->next_hp);
+        return 1;
+    }
+    npc->current_hp = 0;
+    npc->player_untargetable = true;
+    a->transition_until = world->tick + form->transition_ticks;
+    a->transition_form = form->next_form;
+    a->transition_hp = form->next_hp;
+    return 1;
+}
+
+int rc_encounter_wake(RcWorld *world, RcNpcId npc_uid) {
+    int slot = world ? rc_encounter_run_for_npc(world, npc_uid) : -1;
+    if (slot < 0) return 0;
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    RcNpc *npc = spec ? run_boss(world, a) : NULL;
+    if (!npc || npc->is_dead || !form_dormant(spec, a) || a->transition_until)
+        return 0;
+    const RcEncounterForm *form = &spec->forms[a->form];
+    record_form(world, npc, RC_ENC_FORM_LEAVE_KEY, form->transition_ticks);
+    if (form->transition_ticks) {
+        npc->player_untargetable = true;
+        a->transition_until = world->tick + form->transition_ticks;
+        a->transition_form = form->next_form;
+        a->transition_hp = form->next_hp;
+        return 1;
+    }
+    enter_form(world, slot, form->next_form, form->next_hp);
+    engage_run(world, slot);
+    rc_combat_start_npc_vs_player(world, npc->uid, 0);
+    return 1;
+}
+
+static int run_of_member(const RcWorld *world, RcNpcId uid) {
+    int slot = rc_encounter_run_for_npc(world, uid);
+    return slot >= 0 ? slot : run_for_helper(world, uid, NULL);
+}
+
+bool rc_encounter_same_fight(const RcWorld *world, RcNpcId a, RcNpcId b) {
+    if (!world || !world->encounter.active_mask) return false;
+    int slot = run_of_member(world, a);
+    return slot >= 0 && slot == run_of_member(world, b);
+}
+
+int rc_encounter_restart(RcWorld *world, RcNpcId npc_uid) {
+    if (!world) return 0;
+    int slot = rc_encounter_run_for_npc(world, npc_uid);
+    if (slot >= 0) end_run(world, slot, false);
+    int npc_slot = npc_slot_of(world, npc_uid);
+    if (npc_slot < 0 || !(world->enabled & RC_SUB_ENCOUNTER)) return 0;
+    try_bind(world, npc_slot);
+    return rc_encounter_run_for_npc(world, npc_uid) >= 0;
+}
+
+// ---- Attack effects ----------------------------------------------------
+
+static void drain_all_stats(RcPlayer *p, int levels) {
+    for (int skill = 0; skill < SKILL_COUNT; skill++) {
+        if (skill == SKILL_HITPOINTS) continue;
+        p->skills.boosted_level[skill] -= levels;
+        if (p->skills.boosted_level[skill] < 0)
+            p->skills.boosted_level[skill] = 0;
+    }
+}
+
+// Moves the player to a random open tile `min_d..max_d` tiles from the
+// attacker's footprint; does nothing when no such tile is found.
+static void teleport_away(RcWorld *world, const RcNpc *boss, int min_d,
+                          int max_d) {
+    RcPlayer *p = &world->player;
+    if (!boss || max_d <= 0 || min_d > max_d) return;
+    for (int tries = 0; tries < 32; tries++) {
+        int x = p->x + rc_rng_range(&world->rng_state, max_d * 2) - max_d;
+        int y = p->y + rc_rng_range(&world->rng_state, max_d * 2) - max_d;
+        int d = footprint_distance(world, boss, x, y);
+        if (d < min_d || d > max_d || (x == p->x && y == p->y)
+                || !rc_world_tile_valid(x, y, p->plane)
+                || rc_tile_blocked(&world->map, x, y, p->plane)) continue;
+        (void)rc_world_relocate_player(world, x, y, p->plane);
+        return;
+    }
+}
+
+// Unequips up to `count` items, weapon first. Each needs a free inventory
+// slot, so space limits the result.
+static void unequip_items(RcWorld *world, int count) {
+    RcPlayer *p = &world->player;
+    int removed = 0;
+    for (int pass = 0; pass < 2; pass++) {
+        for (int slot = 0; slot < RC_EQUIP_COUNT && removed < count; slot++) {
+            if ((pass == 0) != (slot == EQUIP_WEAPON)
+                    || p->equipment[slot].item_id < 0) continue;
+            RcItemActionResult r = rc_player_unequip_expected(
+                world, slot, p->equipment[slot].generation);
+            if (r.code == RC_ITEM_RESULT_OK) removed++;
+        }
+    }
+}
+
+static void apply_attack_effect(RcWorld *world, const RcNpc *boss,
+                                const RcEncounterAttack *atk,
+                                const RcPayloadPlayerDamaged *hit) {
+    bool due = atk->effect_when == RC_ENC_EFFECT_WHEN_ALWAYS
+        || (atk->effect_when == RC_ENC_EFFECT_WHEN_ROLLED && hit->rolled > 0)
+        || (atk->effect_when == RC_ENC_EFFECT_WHEN_DAMAGED && hit->damage > 0);
+    if (!due || atk->effect_id == RC_ENC_ATTACK_EFFECT_NONE) return;
+    uint16_t chance = (hit->flags & RC_HIT_BREATH_PROTECTED)
+                    ? atk->effect_chance_protected : atk->effect_chance;
+    if (chance < 1000 && rc_rng_bounded(&world->rng_state, 1000) >= chance)
+        return;
+    switch (atk->effect_id) {
+        case RC_ENC_ATTACK_EFFECT_POISON:
+            rc_player_apply_toxin(world, atk->effect_a, false);
+            break;
+        case RC_ENC_ATTACK_EFFECT_VENOM:
+            rc_player_apply_toxin(world, atk->effect_a, true);
+            break;
+        case RC_ENC_ATTACK_EFFECT_DEACTIVATE_PRAYERS:
+            rc_prayer_disable_all(world, RC_PRAYER_FORCED_OFF);
+            break;
+        case RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER:
+            rc_prayer_drain_points(world, atk->effect_a);
+            break;
+        case RC_ENC_ATTACK_EFFECT_DRAIN_ALL_STATS:
+            drain_all_stats(&world->player, atk->effect_a);
+            break;
+        case RC_ENC_ATTACK_EFFECT_FREEZE:
+            rc_player_apply_freeze(world, atk->effect_b);
+            break;
+        case RC_ENC_ATTACK_EFFECT_TELEPORT_AWAY:
+            teleport_away(world, boss, atk->effect_a, atk->effect_b);
+            break;
+        case RC_ENC_ATTACK_EFFECT_UNEQUIP:
+            unequip_items(world, atk->effect_b);
+            break;
+        default:
+            break;
+    }
+}
+
+// ---- Events ------------------------------------------------------------
+
+void rc_encounter_on_npc_spawned(RcWorld *world, int evt, const void *payload,
+                                 void *ctx) {
+    (void)evt;
+    (void)ctx;
+    const RcPayloadNpcEvent *p = payload;
+    if (!world || !p || !(world->enabled & RC_SUB_ENCOUNTER)) return;
+    int slot = npc_slot_of(world, p->npc_id);
+    if (slot >= 0) try_bind(world, slot);
+}
+
+void rc_encounter_on_npc_removed(RcWorld *world, int evt, const void *payload,
+                                 void *ctx) {
+    (void)evt;
+    (void)ctx;
+    const RcPayloadNpcEvent *p = payload;
+    if (!world || !p) return;
+    int slot = rc_encounter_run_for_npc(world, p->npc_id);
+    if (slot >= 0) end_run(world, slot, false);
+    int helper_at = -1;
+    int owner = run_for_helper(world, p->npc_id, &helper_at);
+    if (owner >= 0) forget_helper(world, owner, helper_at);
+}
+
+void rc_encounter_on_npc_died(RcWorld *world, int evt, const void *payload,
+                              void *ctx) {
+    (void)evt;
+    (void)ctx;
+    const RcPayloadNpcEvent *p = payload;
+    if (!world || !p) return;
+    int helper_at = -1;
+    int owner = run_for_helper(world, p->npc_id, &helper_at);
+    if (owner >= 0) {
+        forget_helper(world, owner, helper_at);
+        return;
+    }
+    int slot = rc_encounter_run_for_npc(world, p->npc_id);
+    if (slot < 0) return;
+    const RcEncounterSpec *spec = run_spec(world, &world->encounter.active[slot]);
+    RcNpc *npc = run_boss(world, &world->encounter.active[slot]);
+    if (spec && npc && npc->respawns && spec->respawn_ticks)
+        npc->respawn_timer = spec->respawn_ticks;
+    end_run(world, slot, true);
+}
+
+void rc_encounter_on_player_died(RcWorld *world, int evt, const void *payload,
+                                 void *ctx) {
+    (void)evt;
+    (void)payload;
+    (void)ctx;
+    if (!world) return;
+    for (int i = 0; i < RC_ENC_MAX_ACTIVE; i++) disengage_run(world, i);
+}
+
+void rc_encounter_on_player_damaged(RcWorld *world, int evt,
+                                    const void *payload, void *ctx) {
+    (void)evt;
+    (void)ctx;
+    const RcPayloadPlayerDamaged *p = payload;
+    if (!world || !p || p->enc_attack == 0 || p->source_npc_id == UINT32_MAX
+            || (p->flags & (RC_HIT_SUPPRESS_ENCOUNTER_EFFECTS
+                            | RC_HIT_SOURCE_EXPIRED))) return;
+    int slot = rc_encounter_run_for_npc(world, p->source_npc_id);
+    if (slot < 0) return;
+    RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    if (!spec || a->generation != p->enc_generation
+            || p->enc_attack > spec->attack_count) return;
+    apply_attack_effect(world, run_boss(world, a),
+                        &spec->attacks[p->enc_attack - 1], p);
+}
+
+void rc_encounter_on_npc_attack(RcWorld *world, int evt, const void *payload,
+                                void *ctx) {
+    (void)evt;
+    (void)ctx;
+    const RcPayloadNpcAttack *p = payload;
+    if (!world || !p) return;
+    int slot = rc_encounter_run_for_npc(world, p->npc_id);
+    if (slot >= 0 && world->encounter.active[slot].engaged)
+        world->encounter.active[slot].attack_count++;
+}
+
+// ---- Binary loader (ENCT v13, all-or-fail) -----------------------------
+
+typedef struct {
+    const unsigned char *at;
+    size_t left;
+    const char *error;
+} RcEnctReader;
+
+static void fail(RcEnctReader *r, const char *why) {
+    if (!r->error) r->error = why;
+}
+
+static int take(RcEnctReader *r, void *out, size_t n) {
+    if (r->error) return 0;
+    if (r->left < n) {
+        r->error = "truncated";
+        return 0;
+    }
+    memcpy(out, r->at, n);
+    r->at += n;
+    r->left -= n;
+    return 1;
+}
+
+static uint8_t take_u8(RcEnctReader *r) {
+    uint8_t v = 0;
+    take(r, &v, 1);
+    return v;
+}
+
+static uint16_t take_u16(RcEnctReader *r) {
+    uint16_t v = 0;
+    take(r, &v, 2);
+    return v;
+}
+
+static uint32_t take_u32(RcEnctReader *r) {
+    uint32_t v = 0;
+    take(r, &v, 4);
+    return v;
+}
+
+static void take_str(RcEnctReader *r, char *out, size_t cap, bool required) {
+    uint8_t len = take_u8(r);
+    if (r->error) return;
+    if (len >= cap || (required && len == 0)) {
+        fail(r, "string length");
+        return;
+    }
+    if (len && !take(r, out, len)) return;
+    out[len] = '\0';
+    if (strlen(out) != len) fail(r, "embedded NUL");
+}
+
+static void read_form(RcEnctReader *r, RcEncounterForm *f) {
+    f->npc_id = take_u32(r);
+    take_str(r, f->name, sizeof(f->name), true);
+    uint8_t binds = take_u8(r), dormant = take_u8(r);
+    f->on_lethal = take_u8(r);
+    f->next_form = take_u8(r);
+    f->next_hp = take_u8(r);
+    f->transition_ticks = take_u16(r);
+    f->revert_after_ticks = take_u16(r);
+    f->revert_form = take_u8(r);
+    f->revert_hp = take_u8(r);
+    if (binds > 1 || dormant > 1 || f->on_lethal > RC_ENC_LETHAL_TRANSFORM
+            || f->next_hp > RC_ENC_FORM_HP_KEEP
+            || f->revert_hp > RC_ENC_FORM_HP_KEEP)
+        fail(r, "form field");
+    f->binds_on_spawn = binds;
+    f->dormant = dormant;
+}
+
+static void read_attack(RcEnctReader *r, RcEncounterAttack *a) {
+    take_str(r, a->name, sizeof(a->name), true);
+    a->npc_id = take_u32(r);
+    a->style = take_u8(r);
+    a->min_hit = take_u16(r);
+    a->max_hit = take_u16(r);
+    a->weight_adjacent = take_u8(r);
+    a->weight_distant = take_u8(r);
+    a->range = take_u8(r);
+    a->hit_delay = take_u8(r);
+    a->breath = take_u8(r);
+    a->adjacent_pct = take_u8(r);
+    a->flags = take_u32(r);
+    a->effect_id = take_u8(r);
+    a->effect_when = take_u8(r);
+    a->effect_a = take_u8(r);
+    a->effect_b = take_u8(r);
+    a->effect_chance = take_u16(r);
+    a->effect_chance_protected = take_u16(r);
+    const uint32_t known = RC_ENC_ATTACK_ALWAYS_ACCURATE
+        | RC_ENC_ATTACK_IGNORES_PROTECTION | RC_ENC_ATTACK_TILE_TARGET
+        | RC_ENC_ATTACK_NO_DAMAGE | RC_ENC_ATTACK_NEEDS_FREE_SLOT
+        | RC_ENC_ATTACK_DIAGONAL_REACH;
+    bool no_damage = (a->flags & RC_ENC_ATTACK_NO_DAMAGE) != 0;
+    if (a->style == COMBAT_NONE || a->style > COMBAT_MAGIC
+            || a->min_hit > a->max_hit || (a->flags & ~known)
+            || no_damage == (a->max_hit > 0)
+            || a->effect_id >= RC_ENC_ATTACK_EFFECT_COUNT
+            || a->effect_when >= RC_ENC_EFFECT_WHEN_COUNT
+            || a->effect_chance > 1000 || a->effect_chance_protected > 1000
+            || a->adjacent_pct > 100
+            || (a->weight_adjacent == 0 && a->weight_distant == 0)
+            || ((a->flags & RC_ENC_ATTACK_TILE_TARGET)
+                && (a->breath || a->effect_id || !a->hit_delay))
+            || (a->breath && (a->flags & (RC_ENC_ATTACK_ALWAYS_ACCURATE
+                                          | RC_ENC_ATTACK_NO_DAMAGE))))
+        fail(r, "attack field");
+}
+
+static void read_phase(RcEnctReader *r, RcEncounterPhase *p,
+                       uint8_t attack_count) {
+    take_str(r, p->id, sizeof(p->id), true);
+    p->enter_at_hp_pct = take_u8(r);
+    p->allowed_attack_mask = take_u32(r);
+    take_str(r, p->script, sizeof(p->script), false);
+    uint8_t targetable = take_u8(r);
+    uint32_t valid = attack_count >= 32 ? 0xFFFFFFFFu
+                                        : (1u << attack_count) - 1u;
+    if (p->enter_at_hp_pct > 100 || targetable > 1
+            || p->allowed_attack_mask == 0
+            || (p->allowed_attack_mask & ~valid))
+        fail(r, "phase field");
+    p->player_targetable = targetable != 0;
+}
+
+static bool trigger_supported(uint8_t t) {
+    return t == RC_ENC_TRIGGER_PERIODIC || t == RC_ENC_TRIGGER_PHASE_ENTER
+        || t == RC_ENC_TRIGGER_PHASE_EXIT || t == RC_ENC_TRIGGER_PHASE_IN
+        || t == RC_ENC_TRIGGER_ATTACK_COUNT;
+}
+
+static void read_mechanic(RcEnctReader *r, RcEncounterMechanic *m,
+                          uint8_t phase_count) {
+    take_str(r, m->name, sizeof(m->name), true);
+    m->primitive_id = take_u8(r);
+    m->period_ticks = take_u16(r);
+    m->trigger_type = take_u8(r);
+    m->phase_idx = take_u8(r);
+    m->phase_mask = take_u32(r);
+    take_str(r, m->trigger_ref, sizeof(m->trigger_ref), false);
+    take(r, m->param_block, sizeof(m->param_block));
+    if (r->error) return;
+    m->prim = rc_encounter_prim_lookup(m->primitive_id);
+    uint32_t valid = (1u << phase_count) - 1u;
+    bool periodic = m->trigger_type == RC_ENC_TRIGGER_PERIODIC;
+    if (!m->prim) fail(r, "unsupported primitive");
+    else if (!trigger_supported(m->trigger_type)) fail(r, "unsupported trigger");
+    else if ((m->phase_idx != 0xFFu && m->phase_idx >= phase_count)
+             || (m->phase_mask & ~valid))
+        fail(r, "mechanic phase");
+    else if (periodic && m->period_ticks == 0) fail(r, "period-0 periodic");
+    else if (!periodic && m->trigger_type != RC_ENC_TRIGGER_PHASE_IN
+             && m->period_ticks)
+        fail(r, "period on a non-periodic trigger");
+}
+
+static bool special_target(const RcEncounterSpec *s, int mech) {
+    for (int j = 0; j < s->mechanic_count; j++) {
+        const RcEncounterMechanic *m = &s->mechanics[j];
+        if (m->primitive_id != RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL)
+            continue;
+        const RcPrimParamsAttackCounterAlternateSpecial *p =
+            (const void *)m->param_block;
+        for (int k = 0; k < p->special_count && k < 2; k++) {
+            if (p->special_mechanics[k] == mech) return true;
+        }
+    }
+    return false;
+}
+
+static bool cstr_in(const char *s, size_t cap) {
+    return memchr(s, '\0', cap) != NULL;
+}
+
+// Primitive parameters reference other spec rows; check them once.
+static const char *check_params(const RcEncounterSpec *s) {
+    int rotations = 0;
+    for (int i = 0; i < s->mechanic_count; i++) {
+        const RcEncounterMechanic *m = &s->mechanics[i];
+        bool rotation = m->primitive_id
+                     == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL;
+        if (m->trigger_type == RC_ENC_TRIGGER_ATTACK_COUNT
+                && !rotation && !special_target(s, i))
+            return "attack-count mechanic outside a special rotation";
+        if (rotation) {
+            const RcPrimParamsAttackCounterAlternateSpecial *p =
+                (const void *)m->param_block;
+            rotations++;
+            if (m->trigger_type != RC_ENC_TRIGGER_ATTACK_COUNT
+                    || p->every_n_attacks < 2 || p->special_count < 1
+                    || p->special_count > 2 || p->random_first > 1)
+                return "special rotation";
+            for (int k = 0; k < p->special_count; k++) {
+                uint8_t t = p->special_mechanics[k];
+                if (t >= s->mechanic_count || t == i
+                        || s->mechanics[t].trigger_type
+                           != RC_ENC_TRIGGER_ATTACK_COUNT
+                        || s->mechanics[t].primitive_id
+                           == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL)
+                    return "special rotation target";
+            }
+        } else if (m->primitive_id == RC_PRIM_ACID_FIELD) {
+            const RcPrimParamsAcidField *p = (const void *)m->param_block;
+            if (p->pool_count > RC_ENC_RUN_EFFECT_QUOTA / 2
+                    || (p->pool_count && (!p->pool_ticks
+                                          || !p->pool_damage_max))
+                    || p->strike_count == 0 || p->strike_min > p->strike_max
+                    || p->pool_leech_pct > 100 || p->damage_taken_pct > 100
+                    || p->strike_style == COMBAT_NONE
+                    || p->strike_style > COMBAT_MAGIC
+                    || p->strike_delay + p->pool_count
+                       >= RC_ENC_RUN_EFFECT_QUOTA
+                    || (p->pool_object != RC_ENC_NO_OBJECT
+                        && p->pool_object >= s->object_count))
+                return "acid field";
+        } else if (m->primitive_id == RC_PRIM_SPAWN_OWNED_HELPERS) {
+            const RcPrimParamsSpawnOwnedHelpers *p = (const void *)m->param_block;
+            if (p->helper >= s->helper_count || p->count == 0
+                    || p->count > RC_ENC_MAX_RUN_HELPERS
+                    || p->boss_immune > 1 || p->freeze_player > 1
+                    || p->boss_idle > 1 || p->spawn_distance == 0
+                    || !cstr_in(p->instakill_spell, sizeof(p->instakill_spell)))
+                return "owned helpers";
+        }
+    }
+    return rotations > 1 ? "more than one special rotation" : NULL;
+}
+
+static const char *check_spec(const RcEncounterSpec *s) {
+    bool binds = false;
+    for (int f = 0; f < s->form_count; f++) {
+        const RcEncounterForm *form = &s->forms[f];
+        binds |= form->binds_on_spawn;
+        if (form->npc_id == 0) return "form id";
+        bool moves = form->on_lethal == RC_ENC_LETHAL_TRANSFORM || form->dormant;
+        if (moves && (form->next_form >= s->form_count || form->next_form == f))
+            return "form link";
+        if (!moves && (form->next_form || form->transition_ticks))
+            return "unused form link";
+        if (form->revert_after_ticks
+                && (form->revert_form >= s->form_count || form->revert_form == f))
+            return "form revert";
+        if (form->dormant && form->on_lethal == RC_ENC_LETHAL_TRANSFORM)
+            return "dormant form";
+        for (int g = 0; g < f; g++) {
+            if (s->forms[g].npc_id == form->npc_id) return "duplicate form";
+        }
+        for (int h = 0; h < s->helper_count; h++) {
+            if (s->helpers[h].npc_id == form->npc_id) return "helper is a form";
+        }
+    }
+    if (!binds) return "no binding form";
+    for (int i = 0; i < s->object_count; i++) {
+        if (s->objects[i].loc_type > 22) return "object type";
+        for (int j = 0; j < i; j++) {
+            if (s->objects[j].loc_id == s->objects[i].loc_id)
+                return "duplicate object";
+        }
+    }
+    for (int i = 0; i < s->attack_count; i++) {
+        if (strchr(s->attacks[i].name, ':')) return "attack name";
+    }
+    for (int i = 0; i < s->mechanic_count; i++) {
+        if (strchr(s->mechanics[i].name, ':')
+                || strcmp(s->mechanics[i].name, "form") == 0)
+            return "mechanic name";
+    }
+    for (int i = 0; i < s->attack_count; i++) {
+        uint32_t owner = s->attacks[i].npc_id;
+        bool known = owner == 0;
+        for (int f = 0; f < s->form_count && !known; f++)
+            known = s->forms[f].npc_id == owner;
+        if (!known) return "attack owner is not a form";
+    }
+    if (s->support == RC_ENC_SUPPORT_ATTACKS_ONLY
+            && (s->form_count != 1 || s->phase_count != 1
+                || s->helper_count != 0 || s->mechanic_count != 0
+                || s->object_count != 0
+                || s->phases[0].script[0]
+                || s->forms[0].on_lethal != RC_ENC_LETHAL_DIE
+                || s->forms[0].dormant || s->forms[0].revert_after_ticks))
+        return "attacks-only spec declares more than attacks";
+    for (int i = 0; i < s->protection_count; i++) {
+        const RcEncounterProtection *p = &s->protections[i];
+        if (p->attack_idx >= s->attack_count || p->prayer_flag == 0
+                || p->damage_pct > 100)
+            return "protection";
+    }
+    for (int i = 0; i < s->damage_mod_count; i++) {
+        const RcEncounterDamageModifier *m = &s->damage_mods[i];
+        if ((m->condition != RC_ENC_DMG_STYLE_NOT
+                && m->condition != RC_ENC_DMG_STYLE_IS)
+                || m->damage_pct > 100 || m->style == COMBAT_NONE
+                || m->style > COMBAT_MAGIC)
+            return "damage modifier";
+    }
+    return check_params(s);
+}
+
+static void read_spec(RcEnctReader *r, RcEncounterSpec *s) {
+    memset(s, 0, sizeof(*s));
+    take_str(r, s->slug, sizeof(s->slug), true);
+    take_str(r, s->name, sizeof(s->name), true);
+    s->support = take_u8(r);
+    s->disengage = take_u8(r);
+    s->respawn_ticks = take_u16(r);
+    if (s->support != RC_ENC_SUPPORT_FULL
+            && s->support != RC_ENC_SUPPORT_ATTACKS_ONLY)
+        fail(r, "support level");
+    if (s->disengage > RC_ENC_DISENGAGE_RESET) fail(r, "disengage policy");
+    s->form_count = take_u8(r);
+    if (s->form_count == 0 || s->form_count > RC_ENC_MAX_FORMS)
+        fail(r, "form count");
+    for (int i = 0; !r->error && i < s->form_count; i++)
+        read_form(r, &s->forms[i]);
+    s->helper_count = take_u8(r);
+    if (s->helper_count > RC_ENC_MAX_HELPERS) fail(r, "helper count");
+    for (int i = 0; !r->error && i < s->helper_count; i++) {
+        s->helpers[i].npc_id = take_u32(r);
+        take_str(r, s->helpers[i].name, sizeof(s->helpers[i].name), true);
+    }
+    s->object_count = take_u8(r);
+    if (s->object_count > RC_ENC_MAX_OBJECTS) fail(r, "object count");
+    for (int i = 0; !r->error && i < s->object_count; i++) {
+        s->objects[i].loc_id = take_u32(r);
+        take_str(r, s->objects[i].name, sizeof(s->objects[i].name), true);
+        s->objects[i].loc_type = take_u8(r);
+    }
+    s->attack_count = take_u8(r);
+    if (s->attack_count == 0 || s->attack_count > RC_ENC_MAX_ATTACKS)
+        fail(r, "attack count");
+    for (int i = 0; !r->error && i < s->attack_count; i++)
+        read_attack(r, &s->attacks[i]);
+    s->phase_count = take_u8(r);
+    if (s->phase_count == 0 || s->phase_count > RC_ENC_MAX_PHASES)
+        fail(r, "phase count");
+    for (int i = 0; !r->error && i < s->phase_count; i++)
+        read_phase(r, &s->phases[i], s->attack_count);
+    s->mechanic_count = take_u8(r);
+    if (s->mechanic_count > RC_ENC_MAX_MECHANICS) fail(r, "mechanic count");
+    for (int i = 0; !r->error && i < s->mechanic_count; i++)
+        read_mechanic(r, &s->mechanics[i], s->phase_count);
+    s->protection_count = take_u8(r);
+    if (s->protection_count > RC_ENC_MAX_PROTECTIONS)
+        fail(r, "protection count");
+    for (int i = 0; !r->error && i < s->protection_count; i++) {
+        RcEncounterProtection *p = &s->protections[i];
+        p->attack_idx = take_u8(r);
+        p->style = take_u8(r);
+        p->prayer_flag = take_u32(r);
+        p->damage_pct = take_u8(r);
+    }
+    s->damage_mod_count = take_u8(r);
+    if (s->damage_mod_count > RC_ENC_MAX_DAMAGE_MODS) fail(r, "modifier count");
+    for (int i = 0; !r->error && i < s->damage_mod_count; i++) {
+        RcEncounterDamageModifier *m = &s->damage_mods[i];
+        m->npc_id = take_u32(r);
+        m->condition = take_u8(r);
+        m->style = take_u8(r);
+        m->damage_pct = take_u8(r);
+        m->flags = take_u8(r);
+    }
+    if (!r->error) {
+        const char *why = check_spec(s);
+        if (why) fail(r, why);
+    }
+}
+
+static const char *check_unique(const RcEncounterSpec *out, int i) {
+    for (int j = 0; j < i; j++) {
+        if (strcmp(out[j].slug, out[i].slug) == 0) return "duplicate slug";
+        for (int f = 0; f < out[i].form_count + out[i].helper_count; f++) {
+            uint32_t id = f < out[i].form_count
+                        ? out[i].forms[f].npc_id
+                        : out[i].helpers[f - out[i].form_count].npc_id;
+            for (int g = 0; g < out[j].form_count; g++) {
+                if (out[j].forms[g].npc_id == id)
+                    return "NPC id claimed by two specs";
+            }
+            for (int h = 0; f < out[i].form_count && h < out[j].helper_count;
+                    h++) {
+                if (out[j].helpers[h].npc_id == id)
+                    return "NPC id claimed by two specs";
+            }
         }
     }
     return NULL;
 }
 
-void rc_encounter_script_noop(RcWorld *world, int enc_idx) {
-    (void)world;
-    (void)enc_idx;
-}
-
-int rc_encounter_set_phase(RcWorld *world, int active_idx,
-                           const char *phase_id) {
-    if (!world || active_idx < 0 || active_idx >= RC_ENC_MAX_ACTIVE) return 0;
-    RcActiveEncounter *a = &world->encounter.active[active_idx];
-    if (!a->active || a->spec_idx >= world->encounter.registry_count) return 0;
-    const RcEncounterSpec *spec = &world->encounter.registry[a->spec_idx];
-    int idx = phase_index_by_id(spec, phase_id);
-    if (idx < 0) return 0;
-    return set_active_phase_idx(world, active_idx, (uint8_t)idx);
-}
-
-int rc_encounter_find_spec(const RcWorld *world, uint32_t npc_id) {
-    const RcEncounterState *s = &world->encounter;
-    for (int i = 0; i < s->registry_count; i++) {
-        const RcEncounterSpec *spec = &s->registry[i];
-        for (int j = 0; j < spec->npc_id_count; j++) {
-            if (spec->npc_ids[j] == npc_id) return i;
-        }
-    }
-    return -1;
-}
-
-int rc_encounter_select_npc_attack(RcWorld *world, RcNpcId npc_uid,
-                                   int distance, uint8_t *style,
-                                   uint16_t *min_hit, uint16_t *max_hit,
-                                   uint32_t *flags) {
-    if (!world || !style || !min_hit || !max_hit || !flags) return -1;
-    RcEncounterState *s = &world->encounter;
-    int active_idx = find_active_by_npc(s, npc_uid);
-    if (active_idx < 0) return -1;
-    RcActiveEncounter *active = &s->active[active_idx];
-    if (active->spec_idx >= s->registry_count) return -1;
-    RcEncounterSpec *spec = &s->registry[active->spec_idx];
-    if (spec->attack_count == 0 || active->current_phase >= spec->phase_count) {
-        return -1;
-    }
-
-    const RcEncounterPhase *phase = &spec->phases[active->current_phase];
-    uint32_t mask = phase_attack_mask(phase, spec->attack_count);
-    uint8_t preferred_style = preferred_style_from_phase_id(phase);
-    if (preferred_style != COMBAT_NONE) {
-        for (int i = 0; i < spec->attack_count && i < 32; i++) {
-            if ((mask & (1u << i)) == 0) continue;
-            if (!style_matches(spec->attacks[i].style, preferred_style)) {
-                continue;
-            }
-            if (!attack_matches_active(&spec->attacks[i], active, distance)) {
-                continue;
-            }
-            active->last_attack_idx = (uint8_t)i;
-            *style = spec->attacks[i].style;
-            *min_hit = spec->attacks[i].min_hit;
-            *max_hit = spec->attacks[i].max_hit;
-            *flags = spec->attacks[i].flags;
-            return i;
-        }
-    }
-    int total = 0;
-    int fallback_total = 0;
-    for (int i = 0; i < spec->attack_count && i < 32; i++) {
-        if ((mask & (1u << i)) == 0) continue;
-        if (!attack_matches_active(&spec->attacks[i], active, distance)) {
-            continue;
-        }
-        total += attack_weight(phase, &spec->attacks[i], distance);
-        if (distance <= 1 || !attack_style_is_melee(spec->attacks[i].style)) {
-            fallback_total++;
-        }
-    }
-
-    int pick = total > 0 ? rc_rng_range(&world->rng_state, total - 1)
-                         : rc_rng_range(&world->rng_state,
-                                        fallback_total > 0
-                                        ? fallback_total - 1 : 0);
-    int seen = 0;
-    for (int i = 0; i < spec->attack_count && i < 32; i++) {
-        if ((mask & (1u << i)) == 0) continue;
-        if (!attack_matches_active(&spec->attacks[i], active, distance)) {
-            continue;
-        }
-        int weight = total > 0 ? attack_weight(phase, &spec->attacks[i], distance)
-                               : (distance <= 1 ||
-                                  !attack_style_is_melee(spec->attacks[i].style));
-        if (weight <= 0) continue;
-        seen += weight;
-        if (pick >= seen) continue;
-        active->last_attack_idx = (uint8_t)i;
-        *style = spec->attacks[i].style;
-        *min_hit = spec->attacks[i].min_hit;
-        *max_hit = spec->attacks[i].max_hit;
-        *flags = spec->attacks[i].flags;
-        return i;
-    }
-    return -1;
-}
-
-int rc_encounter_player_protection_scale_pct(const RcWorld *world,
-                                             int source_uid, int style,
-                                             uint32_t prayer_snapshot) {
-    if (!world || source_uid < 0) return -1;
-    const RcEncounterState *s = &world->encounter;
-    int active_idx = find_active_by_npc(s, (RcNpcId)source_uid);
-    if (active_idx < 0) return -1;
-    const RcActiveEncounter *active = &s->active[active_idx];
-    if (active->spec_idx >= s->registry_count) return -1;
-    const RcEncounterSpec *spec = &s->registry[active->spec_idx];
-    for (int i = 0; i < spec->protection_count; i++) {
-        const RcEncounterProtection *p = &spec->protections[i];
-        if (p->style != (uint8_t)style) continue;
-        if ((prayer_snapshot & p->prayer_flag) == 0) continue;
-        return p->damage_pct;
-    }
-    return -1;
-}
-
-int rc_encounter_scale_player_damage(RcWorld *world,
-                                     RcNpcId npc_uid, uint8_t style,
-                                     int damage) {
-    if (!world || damage <= 0) return damage;
-    const RcEncounterState *s = &world->encounter;
-    int active_idx = find_active_by_npc(s, (RcNpcId)npc_uid);
-    if (active_idx < 0) return damage;
-    const RcActiveEncounter *active = &s->active[active_idx];
-    if (active->spec_idx >= s->registry_count) return damage;
-    const RcEncounterSpec *spec = &s->registry[active->spec_idx];
-    if (active_spawn_blocker_alive(world, active, spec)) return 0;
-    if (active->active_mechanic_idx < spec->mechanic_count) {
-        const RcEncounterMechanic *m =
-            &spec->mechanics[active->active_mechanic_idx];
-        if (m->primitive_id == RC_PRIM_HEAL_BOSS_ON_PLAYER_ATTACK_MISS) {
-            const RcPrimParamsHealOnAttack *p =
-                (const RcPrimParamsHealOnAttack *)m->param_block;
-            if (p->cancel_player_attack) return 0;
-        }
-    }
-    int out = damage;
-    for (int i = 0; i < spec->damage_mod_count; i++) {
-        const RcEncounterDamageModifier *m = &spec->damage_mods[i];
-        if (!damage_modifier_matches(world, m, active->def_id, style)) {
-            continue;
-        }
-        if (m->condition == RC_ENC_DMG_PLAYER_NOT_FACEMASK) continue;
-        if (m->condition == RC_ENC_DMG_CAP_RANGE) {
-            int min = m->style;
-            int max = m->damage_pct >= m->style ? m->damage_pct : m->style;
-            if (out > max) out = min + (int)rc_rng_range(&world->rng_state,
-                                                         max - min);
-        } else {
-            out = (out * m->damage_pct) / 100;
-        }
-    }
-    out = (out * active_environment_damage_pct(active, spec)) / 100;
-    return out;
-}
-
-void rc_encounter_player_attack_committed(RcWorld *world, RcNpcId npc_uid) {
-    const RcEncounterState *s = &world->encounter;
-    if (!s->registry_count) return;
-    int index = find_active_by_npc(s, npc_uid);
-    if (index < 0) return;
-    const RcActiveEncounter *active = &s->active[index];
-    if (active->spec_idx >= s->registry_count) return;
-    const RcEncounterSpec *spec = &s->registry[active->spec_idx];
-    if (active->active_mechanic_idx >= spec->mechanic_count
-            || active_spawn_blocker_alive(world, active, spec)) return;
-    const RcEncounterMechanic *m = &spec->mechanics[active->active_mechanic_idx];
-    if (m->primitive_id != RC_PRIM_HEAL_BOSS_ON_PLAYER_ATTACK_MISS) return;
-    const RcPrimParamsHealOnAttack *p = (const RcPrimParamsHealOnAttack *)m->param_block;
-    RcNpc *boss = find_npc_by_uid(world, active->boss_id);
-    if (boss && p->heal_per_attack)
-        heal_npc_to_def_cap(world, boss, p->heal_per_attack);
-}
-
-int rc_encounter_scale_incoming_damage(RcWorld *world,
-                                       int source_uid, uint8_t style,
-                                       int damage) {
-    if (!world || source_uid < 0 || damage <= 0) return damage;
-    const RcEncounterState *s = &world->encounter;
-    int active_idx = find_active_by_npc(s, (RcNpcId)source_uid);
-    if (active_idx < 0) return damage;
-    const RcActiveEncounter *active = &s->active[active_idx];
-    if (active->spec_idx >= s->registry_count) return damage;
-    const RcEncounterSpec *spec = &s->registry[active->spec_idx];
-    int out = damage;
-    for (int i = 0; i < spec->damage_mod_count; i++) {
-        const RcEncounterDamageModifier *m = &spec->damage_mods[i];
-        if (m->condition != RC_ENC_DMG_PLAYER_NOT_FACEMASK) continue;
-        if (!damage_modifier_matches(world, m, active->def_id, style)) {
-            continue;
-        }
-        out = (out * m->damage_pct) / 100;
-    }
-    return out;
-}
-
-bool rc_encounter_player_can_target_npc(const RcWorld *world,
-                                        RcNpcId npc_uid) {
-    if (!world) return true;
-    const RcEncounterState *s = &world->encounter;
-    int active_idx = find_active_by_npc(s, (RcNpcId)npc_uid);
-    if (active_idx < 0) return true;
-    const RcActiveEncounter *active = &s->active[active_idx];
-    if (active->spec_idx >= s->registry_count) return true;
-    const RcEncounterSpec *spec = &s->registry[active->spec_idx];
-    if (active->current_phase >= spec->phase_count) return true;
-    return spec->phases[active->current_phase].player_targetable;
-}
-
-int rc_encounter_reveal_hidden_npcs(RcWorld *world, const char *npc_name,
-                                    int max_count) {
-    if (!world || !npc_name || !npc_name[0] || max_count == 0) return 0;
-    int revealed = 0;
-    for (int i = 0; i < world->npc_count; i++) {
-        RcNpc *npc = &world->npcs[i];
-        if (!npc->active || npc->is_dead || !npc->player_untargetable) continue;
-        const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-        if (!def || strcmp(def->name, npc_name) != 0) continue;
-        npc->player_untargetable = false;
-        revealed++;
-        if (max_count > 0 && revealed >= max_count) break;
-    }
-    return revealed;
-}
-
-int rc_encounter_add_effect(RcWorld *world, uint8_t kind,
-                            int x, int y, int plane,
-                            int target_x, int target_y,
-                            int ticks, uint16_t source_uid,
-                            uint8_t style, uint8_t damage_per_tick,
-                            const char *name, const char *target_name) {
-    if (!world || kind == RC_ENC_EFFECT_NONE) return -1;
-    for (int i = 0; i < RC_ENC_MAX_EFFECTS; i++) {
-        RcEncounterEffect *e = &world->encounter_effects[i];
-        if (e->active) continue;
-        memset(e, 0, sizeof(*e));
-        e->active = true;
-        e->kind = kind;
-        e->style = style;
-        e->damage_per_tick = damage_per_tick;
-        e->source_uid = source_uid;
-        e->x = x;
-        e->y = y;
-        e->plane = plane;
-        e->target_x = target_x;
-        e->target_y = target_y;
-        e->ticks_remaining = ticks;
-        copy_effect_name(e->name, sizeof(e->name), name);
-        copy_effect_name(e->target_name, sizeof(e->target_name), target_name);
-        if (i >= world->encounter_effect_count) {
-            world->encounter_effect_count = i + 1;
-        }
-        return i;
-    }
-    return -1;
-}
-
-void rc_encounter_tick_effects(RcWorld *world) {
-    if (!world) return;
-    int last_active = -1;
-    for (int i = 0; i < world->encounter_effect_count; i++) {
-        RcEncounterEffect *e = &world->encounter_effects[i];
-        if (!e->active) continue;
-        if ((e->kind == RC_ENC_EFFECT_LAVA_POOL ||
-             e->kind == RC_ENC_EFFECT_ACID_POOL) &&
-                e->damage_per_tick > 0 &&
-                world->player.plane == e->plane &&
-                world->player.x == e->x &&
-                world->player.y == e->y) {
-            rc_queue_hit(world->player.pending_hits,
-                         &world->player.num_pending_hits,
-                         e->damage_per_tick, 0,
-                         e->style ? e->style : COMBAT_MAGIC,
-                         e->source_uid, world->player.active_prayers,
-                         world->tick);
-        }
-        if (e->ticks_remaining > 0) {
-            e->ticks_remaining--;
-            if (e->ticks_remaining == 0) {
-                if (e->kind == RC_ENC_EFFECT_FORM_DIVE) {
-                    RcNpc *npc = find_npc_by_uid(world, e->source_uid);
-                    if (npc) npc->player_untargetable = false;
-                }
-                e->active = false;
-                continue;
-            }
-        }
-        last_active = i;
-    }
-    world->encounter_effect_count = last_active + 1;
-}
-
-typedef struct {
-    int effect_index;
-    int encounter_slot;
-    int mechanic_index;
-} RcEncounterObjectMatch;
-
-static int find_encounter_object_match(const RcWorld *world, int obj_id,
-                                       const char *object_name,
-                                       int x, int y, int plane, int opt,
-                                       RcEncounterObjectMatch *out) {
-    (void)obj_id;
-    (void)opt;
-    if (!world || !object_name || !object_name[0] || !out) return 0;
-    *out = (RcEncounterObjectMatch){-1, -1, -1};
-    for (int i = 0; i < world->encounter_effect_count; i++) {
-        const RcEncounterEffect *e = &world->encounter_effects[i];
-        if (!e->active || e->kind != RC_ENC_EFFECT_HIDDEN_OBJECT) continue;
-        if (strcmp(e->name, object_name) != 0) continue;
-        if (x >= 0 && y >= 0 && plane >= 0 &&
-                (e->x != x || e->y != y || e->plane != plane)) {
-            continue;
-        }
-        out->effect_index = i;
-        return 1;
-    }
-
-    for (int slot = 0; slot < RC_ENC_MAX_ACTIVE; slot++) {
-        const RcActiveEncounter *a = &world->encounter.active[slot];
-        if (!a->active || a->spec_idx >= world->encounter.registry_count) {
-            continue;
-        }
-        const RcEncounterSpec *spec = &world->encounter.registry[a->spec_idx];
-        for (int i = 0; i < spec->mechanic_count; i++) {
-            const RcEncounterMechanic *m = &spec->mechanics[i];
-            if (!m->prim) continue;
-            if (m->primitive_id == RC_PRIM_OBJECT_INTERACTION_TICKED) {
-                const RcPrimParamsObjectInteractionTicked *p =
-                    (const RcPrimParamsObjectInteractionTicked *)m->param_block;
-                bool matches = false;
-                for (int n = 0; n < 3; n++) {
-                    if (p->object_names[n][0] &&
-                            contains_ci(object_name, p->object_names[n])) {
-                        matches = true;
-                        break;
-                    }
-                }
-                if (!matches) continue;
-            }
-            else if (m->primitive_id == RC_PRIM_HEAL_ALTARS_PLAYER_MUST_DISABLE) {
-                if (!contains_ci(object_name, "altar")) continue;
-                const RcPrimParamsHealAltars *p =
-                    (const RcPrimParamsHealAltars *)m->param_block;
-                if (!p->disable_on_click) continue;
-            }
-            else if (m->primitive_id == RC_PRIM_OBJECT_ITEM_INTERACTION) {
-                if (!phase_matches(m, a->current_phase)) continue;
-                if (!contains_ci(object_name, "herb")) continue;
-            }
-            else continue;
-            out->encounter_slot = slot;
-            out->mechanic_index = i;
-            return 1;
-        }
-    }
-    return 0;
-}
-
-int rc_encounter_object_option_supported(const RcWorld *world, int obj_id,
-                                         const char *object_name,
-                                         int x, int y, int plane, int opt) {
-    RcEncounterObjectMatch match;
-    return find_encounter_object_match(world, obj_id, object_name,
-                                       x, y, plane, opt, &match);
-}
-
-int rc_encounter_interact_object(RcWorld *world, int obj_id,
-                                 const char *object_name,
-                                 int x, int y, int plane, int opt) {
-    RcEncounterObjectMatch match;
-    if (!find_encounter_object_match(world, obj_id, object_name,
-                                     x, y, plane, opt, &match)) {
-        return 0;
-    }
-    if (match.effect_index >= 0) {
-        RcEncounterEffect *effect = &world->encounter_effects[match.effect_index];
-        if (rc_encounter_reveal_hidden_npcs(
-                world, effect->target_name, 1) <= 0) {
-            return 0;
-        }
-        effect->active = false;
-        return 1;
-    }
-
-    RcActiveEncounter *active = &world->encounter.active[match.encounter_slot];
-    RcEncounterSpec *spec = &world->encounter.registry[active->spec_idx];
-    RcEncounterMechanic *mechanic = &spec->mechanics[match.mechanic_index];
-    if (mechanic->primitive_id == RC_PRIM_OBJECT_INTERACTION_TICKED) {
-        if (active->active_mechanic_idx < spec->mechanic_count &&
-                spec->mechanics[active->active_mechanic_idx].primitive_id ==
-                    RC_PRIM_DAMAGE_REDUCTION_UNTIL_TRIGGER) {
-            active->active_mechanic_idx = 0xFFu;
-            active->active_mechanic_ticks = 0;
-        }
-        return 1;
-    }
-    if (mechanic->primitive_id == RC_PRIM_HEAL_ALTARS_PLAYER_MUST_DISABLE) {
-        const RcPrimParamsHealAltars *params =
-            (const RcPrimParamsHealAltars *)mechanic->param_block;
-        uint8_t altar_count = params->altar_count ? params->altar_count : 4;
-        if (active->mechanic_progress < altar_count)
-            active->mechanic_progress++;
-        return 1;
-    }
-    const RcPrimParamsObjectItemInteraction *params =
-        (const RcPrimParamsObjectItemInteraction *)mechanic->param_block;
-    active->mechanic_progress++;
-    uint8_t needed = params->correct_herbs_to_wake
-                   ? params->correct_herbs_to_wake : 1;
-    if (active->mechanic_progress >= needed) {
-        active->mechanic_progress = 0;
-        if (params->advance_to[0])
-            rc_encounter_set_phase(world, match.encounter_slot,
-                                   params->advance_to);
-    }
-    return 1;
-}
-
-void rc_encounter_on_npc_spawned(RcWorld *world, int evt,
-                                 const void *payload, void *ctx) {
-    (void)evt;
-    RcEncounterState *s = (RcEncounterState *)ctx;
-    const RcPayloadNpcEvent *p = (const RcPayloadNpcEvent *)payload;
-    if (!p) return;
-
-    int spec_idx = rc_encounter_find_spec(world, p->def_id);
-    if (spec_idx < 0) return;
-    int slot = find_active_slot(s);
-    if (slot < 0) return;
-
-    RcActiveEncounter *a = &s->active[slot];
-    a->active = true;
-    a->spec_idx = (uint16_t)spec_idx;
-    a->boss_id = p->npc_id;
-    a->def_id = p->def_id;
-    a->current_phase = 0;
-    a->last_attack_idx = 0xFFu;
-    a->active_mechanic_idx = 0xFFu;
-    a->invoking_mechanic_idx = 0xFFu;
-    a->active_mechanic_ticks = 0;
-    a->mechanic_progress = 0;
-    a->shield_points = 0;
-    a->script_flags = 0;
-    a->ticks_since_start = 0;
-    s->started_count++;
-    run_phase_script(world, slot, 0);
-}
-
-void rc_encounter_on_npc_removed(RcWorld *world, int evt,
-                                 const void *payload, void *ctx) {
-    (void)evt;
-    RcEncounterState *state = ctx;
-    const RcPayloadNpcEvent *npc = payload;
-    if (!world || !state || !npc) return;
-    int slot = find_active_by_npc(state, npc->npc_id);
-    if (slot >= 0) state->active[slot].active = false;
-    for (int i = 0; i < world->encounter_effect_count; i++) {
-        if (world->encounter_effects[i].active
-                && world->encounter_effects[i].source_uid == npc->npc_id) {
-            world->encounter_effects[i].active = false;
-        }
-    }
-}
-
-void rc_encounter_on_npc_died(RcWorld *world, int evt,
-                              const void *payload, void *ctx) {
-    (void)evt;
-    RcEncounterState *s = (RcEncounterState *)ctx;
-    const RcPayloadNpcEvent *p = (const RcPayloadNpcEvent *)payload;
-    if (!p) return;
-
-    int slot = find_active_by_npc(s, p->npc_id);
-    if (slot < 0) return;
-    RcActiveEncounter *a = &s->active[slot];
-    const RcEncounterSpec *spec = &s->registry[a->spec_idx];
-    const RcPrimParamsGroupKillRequired *group = group_kill_params(spec);
-    const RcPrimParamsPeriodicRespawnIfDead *respawn = respawn_params(spec);
-    if (group && group->count > 0) {
-        if (!group_is_dead(world, group)) {
-            if (respawn_applies(respawn, a->def_id)) {
-                RcNpc *npc = rc_npc_resolve(world, p->npc_id);
-                if (npc) npc->respawn_timer = respawn->cooldown_ticks;
-            }
-            return;
-        }
-        for (int i = 0; i < RC_ENC_MAX_ACTIVE; i++) {
-            if (s->active[i].active &&
-                    s->active[i].spec_idx == a->spec_idx) {
-                s->active[i].active = false;
-            }
-        }
-        s->finished_count++;
-        return;
-    }
-
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (m->trigger_type == RC_ENC_TRIGGER_EVENT &&
-                trigger_ref_matches(m->trigger_ref, "zuk_killed")) {
-            invoke_mechanic(world, slot, m);
-        }
-    }
-    s->active[slot].active = false;
-    s->finished_count++;
-}
-
-// PLAYER_DAMAGED → route to event-driven mechanics.
-// Pass-2 wiring covers drain_prayer_on_hit (KQ Barbed Spines). When
-// the damaging hit's source NPC is a boss in an active encounter, we
-// invoke any drain_prayer_on_hit primitive on that spec. Future
-// event-driven primitives (e.g. venom on hit, stat-drain on hit)
-// route through the same dispatch.
-void rc_encounter_on_player_damaged(RcWorld *world, int evt,
-                                    const void *payload, void *ctx) {
-    (void)evt;
-    RcEncounterState *s = (RcEncounterState *)ctx;
-    const RcPayloadPlayerDamaged *p = (const RcPayloadPlayerDamaged *)payload;
-    if (!p || (p->flags & (RC_HIT_SUPPRESS_ENCOUNTER_EFFECTS | RC_HIT_SOURCE_EXPIRED))) return;
-    if (p->source_npc_id == UINT32_MAX) return;   // non-NPC source
-
-    int slot = find_active_by_npc(s, p->source_npc_id);
-    if (slot < 0) return;                         // not a tracked boss
-
-    RcActiveEncounter *a = &s->active[slot];
-    const RcEncounterSpec *spec = &s->registry[a->spec_idx];
-    apply_attack_effect(world, a, spec, p->damage);
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (p->damage == 0) continue;             // mitigated → no drain
-        if (m->primitive_id == RC_PRIM_DRAIN_PRAYER_ON_HIT && m->prim) {
-            m->prim(world, slot, m->param_block);
-        }
-    }
-}
-
-void rc_encounter_on_phase_transition(RcWorld *world, int evt,
-                                      const void *payload, void *ctx) {
-    (void)evt;
-    RcEncounterState *s = (RcEncounterState *)ctx;
-    const RcPayloadPhaseTransition *p =
-        (const RcPayloadPhaseTransition *)payload;
-    if (!p) return;
-
-    int slot = find_active_by_npc(s, p->npc_id);
-    if (slot < 0) return;
-
-    RcActiveEncounter *a = &s->active[slot];
-    const RcEncounterSpec *spec = &s->registry[a->spec_idx];
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (!m->prim) continue;
-
-        if (m->trigger_type == RC_ENC_TRIGGER_PHASE_ENTER &&
-            phase_matches(m, p->new_phase)) {
-            m->prim(world, slot, m->param_block);
-        } else if (m->trigger_type == RC_ENC_TRIGGER_PHASE_EXIT &&
-                   phase_matches(m, p->old_phase)) {
-            m->prim(world, slot, m->param_block);
-        } else if (m->trigger_type == RC_ENC_TRIGGER_PHASE_IN &&
-                   m->period_ticks == 0 &&
-                   m->primitive_id != RC_PRIM_ANIMATION_WARNING_STYLE_SWAP &&
-                   m->primitive_id != RC_PRIM_PERIODIC_SPIKE_CLUSTER &&
-                   phase_matches(m, p->new_phase)) {
-            m->prim(world, slot, m->param_block);
-        }
-    }
-
-    run_phase_script(world, slot, p->new_phase);
-}
-
-void rc_encounter_on_npc_attack(RcWorld *world, int evt,
-                                const void *payload, void *ctx) {
-    (void)evt;
-    RcEncounterState *s = (RcEncounterState *)ctx;
-    const RcPayloadNpcAttack *p = (const RcPayloadNpcAttack *)payload;
-    if (!p) return;
-
-    int slot = find_active_by_npc(s, p->npc_id);
-    if (slot < 0) return;
-    RcActiveEncounter *a = &s->active[slot];
-    const RcEncounterSpec *spec = &s->registry[a->spec_idx];
-    a->attack_count++;
-    maybe_spawn_leech_from_boss_attack(world, slot, spec, a);
-
-    const char *attack_name = attack_name_for_active(spec, a);
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (m->trigger_type == RC_ENC_TRIGGER_AFTER_ATTACK &&
-                trigger_ref_matches(attack_name, m->trigger_ref)) {
-            invoke_mechanic(world, slot, m);
-        }
-    }
-
-    int best = -1;
-    uint8_t best_priority = 255;
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (!attack_counter_due(world, a, m)) continue;
-        uint8_t priority = attack_counter_priority(m);
-        if (best < 0 || priority < best_priority) {
-            best = i;
-            best_priority = priority;
-        }
-    }
-    if (best >= 0) {
-        const RcEncounterMechanic *m = &spec->mechanics[best];
-        invoke_mechanic(world, slot, m);
-        if (m->primitive_id != RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL &&
-                m->primitive_id != RC_PRIM_ANIMATION_WARNING_STYLE_SWAP &&
-                m->primitive_id != RC_PRIM_PERIODIC_SPIKE_CLUSTER) {
-            activate_mechanic_window(a, (uint8_t)best);
-        }
-    }
-}
-
-void rc_encounter_on_npc_damaged(RcWorld *world, int evt,
-                                 const void *payload, void *ctx) {
-    (void)evt;
-    RcEncounterState *s = (RcEncounterState *)ctx;
-    const RcPayloadNpcDamaged *p = (const RcPayloadNpcDamaged *)payload;
-    if (!p || p->damage == 0) return;
-
-    int slot = find_active_by_npc(s, p->npc_id);
-    if (slot < 0) return;
-    RcActiveEncounter *a = &s->active[slot];
-    const RcEncounterSpec *spec = &s->registry[a->spec_idx];
-    maybe_spawn_leech_from_large_hit(world, slot, spec, p);
-    for (int i = 0; i < spec->mechanic_count; i++) {
-        const RcEncounterMechanic *m = &spec->mechanics[i];
-        if (!m->prim) continue;
-        if (m->primitive_id == RC_PRIM_TELEPORT_ON_INCOMING_ATTACK ||
-                m->primitive_id == RC_PRIM_TOTEM_CHARGE_PROGRESSION ||
-                (m->primitive_id == RC_PRIM_SMITE_DRAIN_SHIELD &&
-                 a->shield_points > 0)) {
-            invoke_mechanic(world, slot, m);
-        }
-    }
-}
-
-// ---- Binary loader ----------------------------------------------------
-
-// Safe-read helper — returns 0 on short read.
-#define RD(ptr, n) (fread((ptr), 1, (n), f) == (size_t)(n))
-
-static int read_pstr(FILE *f, char *out, int cap) {
-    uint8_t len;
-    if (!RD(&len, 1)) return 0;
-    if (len >= cap) return 0;
-    if (len && !RD(out, len)) return 0;
-    out[len] = '\0';
-    return 1;
-}
-
 int rc_encounter_load_specs(const char *path, RcEncounterSpec *out, int max) {
-    if (!out || max <= 0) return -1;
-    FILE *f = rc_asset_fopen(path, "rb");
-    if (!f) {
-        fprintf(stderr, "encounter_load: can't open %s\n", path);
+    if (!path || !out || max <= 0) return -1;
+    RcAssetBytes bytes = rc_asset_read_all(path);
+    if (!bytes.data) {
+        fprintf(stderr, "encounter_load: can't read %s\n", path);
         return -1;
     }
-    uint32_t magic, version, count;
-    if (!RD(&magic, 4) || !RD(&version, 4) || !RD(&count, 4)) {
-        fprintf(stderr, "encounter_load: bad header\n"); rc_asset_close(f);
-        return -1;
-    }
-    if (magic != ENCT_MAGIC) {
-        fprintf(stderr, "encounter_load: bad magic %08x\n", magic);
-        rc_asset_close(f); return -1;
-    }
-    if (version == 0 || version > 12) {
-        fprintf(stderr, "encounter_load: unsupported version %u\n", version);
-        rc_asset_close(f); return -1;
-    }
-
+    RcEnctReader r = {bytes.data, bytes.size, NULL};
+    uint32_t magic = take_u32(&r);
+    uint32_t version = take_u32(&r);
+    uint32_t count = take_u32(&r);
+    if (!r.error && magic != ENCT_MAGIC) fail(&r, "magic");
+    if (!r.error && version != ENCT_VERSION) fail(&r, "version");
+    if (!r.error && (count > (uint32_t)max || count > RC_ENC_REGISTRY_CAP))
+        fail(&r, "spec count");
     int loaded = 0;
-    for (uint32_t i = 0; i < count && loaded < max; i++) {
-        RcEncounterSpec s;
-        memset(&s, 0, sizeof(s));
-
-        if (!read_pstr(f, s.slug, sizeof(s.slug))) break;
-
-        uint8_t nid_count;
-        if (!RD(&nid_count, 1)) break;
-        s.npc_id_count = nid_count > RC_ENC_MAX_NPC_IDS
-                         ? RC_ENC_MAX_NPC_IDS : nid_count;
-        for (uint8_t j = 0; j < nid_count; j++) {
-            uint32_t nid;
-            if (!RD(&nid, 4)) { rc_asset_close(f); return loaded; }
-            if (j < RC_ENC_MAX_NPC_IDS) s.npc_ids[j] = nid;
+    for (uint32_t i = 0; !r.error && i < count; i++) {
+        read_spec(&r, &out[i]);
+        if (!r.error) {
+            const char *why = check_unique(out, (int)i);
+            if (why) fail(&r, why);
         }
-
-        uint8_t atk_count;
-        if (!RD(&atk_count, 1)) break;
-        s.attack_count = atk_count > RC_ENC_MAX_ATTACKS
-                         ? RC_ENC_MAX_ATTACKS : atk_count;
-        for (uint8_t j = 0; j < atk_count; j++) {
-            RcEncounterAttack a; memset(&a, 0, sizeof(a));
-            if (!read_pstr(f, a.name, sizeof(a.name))) { rc_asset_close(f); return loaded; }
-            uint8_t style, warn;
-            uint16_t maxhit;
-            if (!RD(&style, 1) || !RD(&maxhit, 2) || !RD(&warn, 1)) {
-                rc_asset_close(f); return loaded;
-            }
-            a.style = style;
-            a.max_hit = maxhit;
-            a.warning_ticks = warn;
-            if (version >= 5) {
-                if (!RD(&a.npc_id, 4) || !RD(&a.min_hit, 2) ||
-                    !RD(&a.flags, 4)) {
-                    rc_asset_close(f); return loaded;
-                }
-            }
-            if (version >= 8) {
-                if (!RD(&a.effect_id, 1) || !RD(&a.effect_min, 1) ||
-                    !RD(&a.effect_max, 1) || !RD(&a.effect_pct, 1) ||
-                    !RD(&a.effect_flags, 1)) {
-                    rc_asset_close(f); return loaded;
-                }
-            }
-            if (j < RC_ENC_MAX_ATTACKS) s.attacks[j] = a;
-        }
-
-        uint8_t ph_count;
-        if (!RD(&ph_count, 1)) break;
-        s.phase_count = ph_count > RC_ENC_MAX_PHASES
-                        ? RC_ENC_MAX_PHASES : ph_count;
-        for (uint8_t j = 0; j < ph_count; j++) {
-            RcEncounterPhase p; memset(&p, 0, sizeof(p));
-            p.player_targetable = true;
-            if (!read_pstr(f, p.id, sizeof(p.id))) { rc_asset_close(f); return loaded; }
-            uint8_t pct, hard;
-            if (!RD(&pct, 1) || !RD(&hard, 1)) { rc_asset_close(f); return loaded; }
-            p.enter_at_hp_pct = pct;
-            p.hard_hp_trigger = (bool)hard;
-            if (version >= 3) {
-                if (!read_pstr(f, p.script, sizeof(p.script))) {
-                    rc_asset_close(f); return loaded;
-                }
-            }
-            if (version >= 4) {
-                if (!RD(&p.allowed_attack_mask, 4) ||
-                    !RD(p.adjacent_style_weights,
-                        sizeof(p.adjacent_style_weights)) ||
-                    !RD(p.distant_style_weights,
-                        sizeof(p.distant_style_weights))) {
-                    rc_asset_close(f); return loaded;
-                }
-            }
-            if (version >= 7) {
-                uint8_t targetable;
-                if (!RD(&targetable, 1)) { rc_asset_close(f); return loaded; }
-                p.player_targetable = targetable != 0;
-            }
-            if (version >= 9) {
-                uint8_t explicit_mask;
-                if (!RD(&explicit_mask, 1)) { rc_asset_close(f); return loaded; }
-                p.allowed_attack_mask_explicit = explicit_mask != 0;
-            } else {
-                p.allowed_attack_mask_explicit = p.allowed_attack_mask != 0;
-            }
-            if (j < RC_ENC_MAX_PHASES) s.phases[j] = p;
-        }
-
-        uint8_t mech_count;
-        if (!RD(&mech_count, 1)) break;
-        s.mechanic_count = mech_count > RC_ENC_MAX_MECHANICS
-                           ? RC_ENC_MAX_MECHANICS : mech_count;
-        for (uint8_t j = 0; j < mech_count; j++) {
-            RcEncounterMechanic m; memset(&m, 0, sizeof(m));
-            if (!read_pstr(f, m.name, sizeof(m.name))) { rc_asset_close(f); return loaded; }
-            uint8_t prim;
-            uint16_t period;
-            if (!RD(&prim, 1) || !RD(&period, 2)) { rc_asset_close(f); return loaded; }
-            if (version >= 2) {
-                if (!RD(&m.trigger_type, 1) || !RD(&m.phase_idx, 1)) {
-                    rc_asset_close(f); return loaded;
-                }
-            } else {
-                m.trigger_type = RC_ENC_TRIGGER_PERIODIC;
-                m.phase_idx = 0xFFu;
-            }
-            if (version >= 3) {
-                if (!RD(&m.phase_mask, 4) ||
-                    !read_pstr(f, m.trigger_ref, sizeof(m.trigger_ref))) {
-                    rc_asset_close(f); return loaded;
-                }
-            } else if (m.phase_idx < 32) {
-                m.phase_mask = 1u << m.phase_idx;
-            }
-            if (!RD(m.param_block, sizeof(m.param_block))) {
-                rc_asset_close(f); return loaded;
-            }
-            m.primitive_id = prim;
-            m.prim = rc_encounter_prim_lookup(prim);
-            m.period_ticks = period;
-            m.ticks_until_next = 0;
-            if (j < RC_ENC_MAX_MECHANICS) s.mechanics[j] = m;
-        }
-
-        if (version >= 4) {
-            uint8_t prot_count;
-            if (!RD(&prot_count, 1)) break;
-            s.protection_count = prot_count > RC_ENC_MAX_PROTECTIONS
-                                 ? RC_ENC_MAX_PROTECTIONS : prot_count;
-            for (uint8_t j = 0; j < prot_count; j++) {
-                RcEncounterProtection p;
-                memset(&p, 0, sizeof(p));
-                if (!RD(&p.attack_idx, 1) || !RD(&p.style, 1) ||
-                    !RD(&p.prayer_flag, 4) || !RD(&p.damage_pct, 1)) {
-                    rc_asset_close(f); return loaded;
-                }
-                if (j < RC_ENC_MAX_PROTECTIONS) s.protections[j] = p;
-            }
-        }
-
-        if (version >= 6) {
-            uint8_t mod_count;
-            if (!RD(&mod_count, 1)) break;
-            s.damage_mod_count = mod_count > RC_ENC_MAX_DAMAGE_MODS
-                                 ? RC_ENC_MAX_DAMAGE_MODS : mod_count;
-            for (uint8_t j = 0; j < mod_count; j++) {
-                RcEncounterDamageModifier m;
-                memset(&m, 0, sizeof(m));
-                if (!RD(&m.npc_id, 4) || !RD(&m.condition, 1) ||
-                    !RD(&m.style, 1) || !RD(&m.damage_pct, 1) ||
-                    !RD(&m.flags, 1)) {
-                    rc_asset_close(f); return loaded;
-                }
-                if (j < RC_ENC_MAX_DAMAGE_MODS) s.damage_mods[j] = m;
-            }
-        }
-
-        out[loaded++] = s;
+        if (!r.error) loaded++;
     }
-
-    rc_asset_close(f);
-    fprintf(stderr, "encounter_load: loaded %d / %u encounters from %s\n",
-            loaded, count, path);
+    if (!r.error && r.left) fail(&r, "trailing bytes");
+    rc_asset_bytes_free(&bytes);
+    if (r.error) {
+        fprintf(stderr, "encounter_load: %s: %s (spec %d)\n", path, r.error,
+                loaded);
+        memset(out, 0, sizeof(*out) * (size_t)max);
+        return -1;
+    }
     return loaded;
 }
 
-int rc_encounter_load(RcWorld *world, const char *path) {
-    if (!world) return -1;
-    RcEncounterSpec specs[RC_ENC_REGISTRY_CAP];
-    int loaded = rc_encounter_load_specs(path, specs, RC_ENC_REGISTRY_CAP);
-    if (loaded < 0) return -1;
-    int registered = 0;
-    for (int i = 0; i < loaded; i++) {
-        if (rc_encounter_register(world, &specs[i]) >= 0) registered++;
+static bool role_named(RcEncounterDefNameFn name_of, const void *ctx,
+                       const RcEncounterSpec *s, const char *role,
+                       uint32_t id, const char *want, char *message,
+                       int message_capacity) {
+    const char *have = name_of(ctx, id);
+    if (have && strcmp(have, want) == 0) return true;
+    if (message && message_capacity > 0) {
+        snprintf(message, (size_t)message_capacity,
+                 "encounter %s %s %u is '%s', expected '%s'", s->slug, role,
+                 id, have ? have : "<missing>", want);
     }
-    return registered;
+    return false;
 }
 
-#undef RD
+int rc_encounter_validate_roles(const RcEncounterSpec *specs, int count,
+                                RcEncounterDefNameFn npc_name,
+                                RcEncounterDefNameFn object_name,
+                                const void *ctx, char *message,
+                                int message_capacity) {
+    if (!npc_name || count < 0 || (count && !specs)) return 0;
+    for (int i = 0; i < count; i++) {
+        const RcEncounterSpec *s = &specs[i];
+        for (int f = 0; f < s->form_count; f++) {
+            if (!role_named(npc_name, ctx, s, "form", s->forms[f].npc_id,
+                            s->forms[f].name, message, message_capacity))
+                return 0;
+        }
+        for (int h = 0; h < s->helper_count; h++) {
+            if (!role_named(npc_name, ctx, s, "helper", s->helpers[h].npc_id,
+                            s->helpers[h].name, message, message_capacity))
+                return 0;
+        }
+        for (int o = 0; object_name && o < s->object_count; o++) {
+            if (!role_named(object_name, ctx, s, "object", s->objects[o].loc_id,
+                            s->objects[o].name, message, message_capacity))
+                return 0;
+        }
+    }
+    return 1;
+}

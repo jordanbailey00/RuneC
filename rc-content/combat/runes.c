@@ -212,7 +212,7 @@ static RcInteractionHandlerResult pouch_action(RcWorld *world, RcPlayer *player,
     return rc_interaction_result_complete();
 }
 
-void rc_content_runes_register(RcWorld *world) {
+int rc_content_runes_register(RcWorld *world) {
     const int ids[] = {12791, 24416, 27281, 27509};
     const int ops[] = {RC_INTERACTION_OP1, RC_INTERACTION_OP4, RC_INTERACTION_USE_ON};
     for (unsigned i = 0; i < sizeof(ids) / sizeof(ids[0]); i++) {
@@ -223,8 +223,9 @@ void rc_content_runes_register(RcWorld *world) {
             key.op = ops[j];
             if (!rc_interaction_register_world_handler(world, &key, pouch_action, NULL)) {
                 fprintf(stderr, "runes: could not register pouch handler\n");
-                abort();
+                return 0;
             }
         }
     }
+    return 1;
 }

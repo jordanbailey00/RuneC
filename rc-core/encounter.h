@@ -5,14 +5,13 @@
 #include <stdbool.h>
 #include "handles.h"
 
-// Encounter subsystem — runtime dispatcher for boss scripts + mechanic
-// primitives. Data comes from `content/encounters/*.toml`
-// (authored by hand; see `database.md` and a live encounter TOML such
-// as `content/encounters/scurrius.toml` for schema shape).
-//
-// Encounter specs are compiled into `data/defs/encounters.bin` and
-// loaded into a registry at startup. rc-core owns generic dispatch;
-// rc-content registers OSRS-specific script functions by name.
+// Encounter subsystem: generic dispatch for boss forms, attacks, phases
+// and mechanic primitives. Specs come from `content/encounters/*.toml`
+// through `tools/export_encounters.py` into `data/defs/encounters.bin`
+// (ENCT v13). Only encounters that declare a support level are exported;
+// the loader rejects malformed, over-capacity or unsupported content.
+// Specs are immutable and shared through RcGameData; all fight state
+// lives in a world-owned run. rc-content registers scripts by name.
 
 struct RcWorld;
 
@@ -23,61 +22,73 @@ typedef void (*RcEncounterPrimFn)(struct RcWorld *world, int enc_idx,
                                   const void *params);
 typedef void (*RcEncounterScriptFn)(struct RcWorld *world, int enc_idx);
 
-// Encounter phase — ordered list per encounter. `enter_at_hp_pct`
-// of 0 means "hard HP=0 trigger"; 100 means "fight start".
+enum {
+    RC_ENC_SUPPORT_NONE = 0,
+    RC_ENC_SUPPORT_FULL = 1,          // every attack, form, phase, mechanic
+    RC_ENC_SUPPORT_ATTACKS_ONLY = 2,  // verified attack table only
+};
+
+// Encounter phase — ordered list per encounter. Phase 0 starts the
+// fight; later phases enter when boss HP drops below `enter_at_hp_pct`
+// or when a mechanic/script selects them.
 typedef struct {
     char id[32];
-    uint8_t enter_at_hp_pct;       // 100 → fight start; 0 → hard HP=0
-    bool hard_hp_trigger;          // distinguishes hp=0 from uninit
+    uint8_t enter_at_hp_pct;       // 100 = selected only explicitly
     uint32_t allowed_attack_mask;  // bitmask of attack indices
-    uint8_t adjacent_style_weights[8];
-    uint8_t distant_style_weights[8];
     char script[48];               // rc-content script name, optional
-    bool player_targetable;         // false = player cannot damage this phase
-    bool allowed_attack_mask_explicit;
+    bool player_targetable;        // false = player cannot damage this phase
 } RcEncounterPhase;
 
-// Attack definition within an encounter (overrides the NDEF default
-// when active). `style` maps to RcCombatStyle via the standard enum.
+// Attack definition. A selected attack replaces the NDEF default for
+// one launch; weights choose among attacks allowed by the phase.
 typedef struct {
     char name[48];
-    uint32_t npc_id;               // 0 = applies to any NPC in spec
-    uint8_t style;                 // RcCombatStyle
+    uint32_t npc_id;               // owning form/actor cache id; 0 = any
+    uint8_t style;                 // RcCombatStyle (melee subtype included)
     uint16_t min_hit;
     uint16_t max_hit;
-    uint16_t max_hit_solo;         // 0 = same as max_hit
-    uint8_t warning_ticks;
-    uint8_t accuracy_roll_idx;     // 0=stab 1=slash 2=crush 3=ranged 4=magic
-    uint32_t flags;                // forced_hit, prayer_ignorable, ...
+    uint8_t weight_adjacent;       // selection weight when adjacent
+    uint8_t weight_distant;        // selection weight otherwise
+    uint8_t range;                 // reach in tiles; 0 = NPC default
+    uint8_t hit_delay;             // ticks to impact; 0 = combat profile
+    uint8_t breath;                // content breath profile; 0 = none
+    uint8_t adjacent_pct;          // tile attacks: damage % beside impact
+    uint32_t flags;                // RC_ENC_ATTACK_*
     uint8_t effect_id;             // RC_ENC_ATTACK_EFFECT_*
-    uint8_t effect_min;
-    uint8_t effect_max;
-    uint8_t effect_pct;
-    uint8_t effect_flags;
+    uint8_t effect_when;           // RC_ENC_EFFECT_WHEN_*
+    uint8_t effect_a;              // effect amount (damage, points, tiles)
+    uint8_t effect_b;              // effect duration or count
+    uint16_t effect_chance;        // per mille when unprotected
+    uint16_t effect_chance_protected; // per mille behind shield/prayer
 } RcEncounterAttack;
 
 enum {
-    RC_ENC_ATTACK_FORCED_HIT        = 1u << 0,
-    RC_ENC_ATTACK_PRAYER_IGNORABLE  = 1u << 1,
-    RC_ENC_ATTACK_REQ_MELEE_RANGE   = 1u << 2,
-    RC_ENC_ATTACK_HITS_ALL_ROOM     = 1u << 3,
+    RC_ENC_ATTACK_ALWAYS_ACCURATE    = 1u << 0,  // roll damage, never miss
+    RC_ENC_ATTACK_IGNORES_PROTECTION = 1u << 1,  // no prayer/breath protection
+    RC_ENC_ATTACK_TILE_TARGET        = 1u << 2,  // strikes the launch tile
+    RC_ENC_ATTACK_NO_DAMAGE          = 1u << 3,  // effect-only attack
+    RC_ENC_ATTACK_NEEDS_FREE_SLOT    = 1u << 4,  // selectable only with space
+    RC_ENC_ATTACK_DIAGONAL_REACH     = 1u << 5,  // adjacency includes diagonals
 };
 
 enum {
     RC_ENC_ATTACK_EFFECT_NONE = 0,
-    RC_ENC_ATTACK_EFFECT_DRAIN_HEAL = 1,
-    RC_ENC_ATTACK_EFFECT_SPLIT_PROJECTILES = 2,
-    RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER_PCT = 3,
-    RC_ENC_ATTACK_EFFECT_POISON = 4,
-    RC_ENC_ATTACK_EFFECT_KNOCKBACK = 5,
-    RC_ENC_ATTACK_EFFECT_VENOM = 6,
-    RC_ENC_ATTACK_EFFECT_DEACTIVATE_PRAYERS = 7,
+    RC_ENC_ATTACK_EFFECT_POISON = 1,           // a = starting damage
+    RC_ENC_ATTACK_EFFECT_VENOM = 2,            // a = starting damage
+    RC_ENC_ATTACK_EFFECT_DEACTIVATE_PRAYERS = 3,
+    RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER = 4,     // a = prayer points
+    RC_ENC_ATTACK_EFFECT_DRAIN_ALL_STATS = 5,  // a = levels
+    RC_ENC_ATTACK_EFFECT_FREEZE = 6,           // b = ticks
+    RC_ENC_ATTACK_EFFECT_TELEPORT_AWAY = 7,    // a = min tiles, b = max tiles
+    RC_ENC_ATTACK_EFFECT_UNEQUIP = 8,          // b = item count, weapon first
+    RC_ENC_ATTACK_EFFECT_COUNT = 9,
 };
 
 enum {
-    RC_ENC_ATTACK_EFFECT_DRAIN_MAGIC          = 1u << 0,
-    RC_ENC_ATTACK_EFFECT_DRAIN_PRAYER         = 1u << 1,
-    RC_ENC_ATTACK_EFFECT_POISON_PIERCES_PRAY  = 1u << 2,
+    RC_ENC_EFFECT_WHEN_DAMAGED = 0,   // landed with damage > 0
+    RC_ENC_EFFECT_WHEN_ALWAYS = 1,    // every impact, even fully blocked
+    RC_ENC_EFFECT_WHEN_ROLLED = 2,    // rolled damage > 0, even if blocked
+    RC_ENC_EFFECT_WHEN_COUNT = 3,
 };
 
 typedef struct {
@@ -106,18 +117,19 @@ typedef struct {
 } RcEncounterDamageModifier;
 
 enum {
-    RC_ENC_TRIGGER_PERIODIC     = 0,
+    RC_ENC_TRIGGER_PERIODIC     = 0,     // every period_ticks while engaged
     RC_ENC_TRIGGER_PHASE_ENTER  = 1,
     RC_ENC_TRIGGER_PHASE_EXIT   = 2,
-    RC_ENC_TRIGGER_PHASE_IN     = 3,     // active while phase is current
-    RC_ENC_TRIGGER_AFTER_ATTACK = 4,     // hook exists; dispatcher later
-    RC_ENC_TRIGGER_DURING_MECH  = 5,     // hook exists; dispatcher later
-    RC_ENC_TRIGGER_ATTACK_COUNT = 6,     // hook exists; dispatcher later
-    RC_ENC_TRIGGER_EVENT        = 7,     // named event hook
+    RC_ENC_TRIGGER_PHASE_IN     = 3,     // periodic while phase is current
+    RC_ENC_TRIGGER_AFTER_ATTACK = 4,     // not dispatched; loader rejects
+    RC_ENC_TRIGGER_DURING_MECH  = 5,     // not dispatched; loader rejects
+    RC_ENC_TRIGGER_ATTACK_COUNT = 6,     // run by a special rotation
+    RC_ENC_TRIGGER_EVENT        = 7,     // not dispatched; loader rejects
     RC_ENC_TRIGGER_NONE         = 255,
 };
 
-// Mechanic entry — schedules a primitive on a period or trigger.
+// Mechanic entry — schedules a primitive on a period or trigger. Specs
+// are immutable; each run owns its own due ticks.
 typedef struct {
     char name[48];
     RcEncounterPrimFn prim;        // resolved from primitive_id at load
@@ -126,8 +138,7 @@ typedef struct {
     uint8_t phase_idx;             // index into phases[], or 0xFF
     uint32_t phase_mask;           // union trigger phase bitmask; 0 = phase_idx
     char trigger_ref[32];          // attack/mechanic/event name for hook triggers
-    uint16_t period_ticks;
-    uint16_t ticks_until_next;
+    uint16_t period_ticks;         // periodic triggers: ticks between runs
     uint8_t param_block[64];       // opaque per-primitive params
 } RcEncounterMechanic;
 
@@ -210,6 +221,8 @@ enum {
     RC_PRIM_PERIODIC_DEATH_TILE_WAVE       = 79,
     RC_PRIM_SURVIVING_BOSS_ENRAGE          = 80,
     RC_PRIM_HEAL_ALTARS_PLAYER_MUST_DISABLE = 81,
+    RC_PRIM_ACID_FIELD                     = 82,
+    RC_PRIM_SPAWN_OWNED_HELPERS            = 83,
     RC_PRIM_MAX                            = 92,
 };
 
@@ -356,6 +369,7 @@ typedef struct __attribute__((packed)) {
 } RcPrimParamsSpawnHiddenMinions;
 
 #define RC_ENC_MAX_EFFECTS 64
+#define RC_ENC_RUN_EFFECT_QUOTA 32
 
 enum {
     RC_ENC_EFFECT_NONE = 0,
@@ -363,19 +377,34 @@ enum {
     RC_ENC_EFFECT_LAVA_POOL = 2,
     RC_ENC_EFFECT_HIDDEN_OBJECT = 3,
     RC_ENC_EFFECT_ROOM_ATTACK = 4,
-    RC_ENC_EFFECT_ACID_POOL = 5,
+    RC_ENC_EFFECT_ACID_POOL = 5,      // standing on it damages; leech heals
     RC_ENC_EFFECT_FORM_DIVE = 6,
+    RC_ENC_EFFECT_TILE_STRIKE = 7,    // warned tile; checked at impact
+    RC_ENC_EFFECT_HELPER_DROP = 8,    // helper in flight; spawns at impact
 };
 
+// World-visible hazard owned by one encounter run. Presentation reads
+// these; damage and lifetime are decided here only.
 typedef struct {
     bool active;
     uint8_t kind;
     uint8_t style;
-    uint8_t damage_per_tick;
-    uint16_t source_uid;
+    uint8_t damage_per_tick;      // pools: max damage per tick standing on it
+    uint8_t adjacent_pct;         // strikes: damage % beside the impact tile
+    uint8_t leech_pct;            // pools: % of damage healed to the owner
+    uint8_t run_slot;             // owning run slot
+    uint32_t run_generation;      // owning run generation
+    RcNpcId source_uid;           // owning actor, full width
     int x, y, plane;
     int target_x, target_y;
     int ticks_remaining;          // <0 = persistent until interaction.
+    RcTick impact_tick;           // strikes, pools and drops: landing tick
+    uint16_t min_damage, max_damage; // strikes: damage roll on impact
+    bool landed;                  // pools: live (damaging) since impact
+    uint8_t helper;               // drops: spec helper index
+    uint8_t loc_type;             // pools: placement type of loc_id
+    int loc_id;                   // pools: loc shown while live, or -1
+    uint64_t object_key;          // pools: spawned loc state key, 0 = none
     char name[32];
     char target_name[32];
 } RcEncounterEffect;
@@ -405,11 +434,46 @@ typedef struct __attribute__((packed)) {
     uint8_t in_flight_attacks_still_resolve;
 } RcPrimParamsFormTransitionDive;
 
+// A special replaces every Nth attack and alternates between listed
+// mechanics (exporter resolves names to indices).
 typedef struct __attribute__((packed)) {
     uint8_t every_n_attacks;
-    uint8_t special_count;
-    char special_names[2][24];
+    uint8_t special_count;          // 1..2
+    uint8_t special_mechanics[2];   // mechanic indices, alternated
+    uint8_t random_first;           // first special chosen with world RNG
 } RcPrimParamsAttackCounterAlternateSpecial;
+
+// Acid field: pools around the player (one on the player's tile) and a
+// run of tile strikes, one per tick at the player's tile, checked on
+// impact. The boss idles and takes scaled damage for the window.
+typedef struct __attribute__((packed)) {
+    uint8_t pool_count;
+    uint8_t pool_radius;            // random pools within this many tiles
+    uint8_t pool_damage_max;        // per tick while standing on a pool
+    uint8_t pool_leech_pct;         // % of pool damage healed to the boss
+    uint8_t pool_ticks;             // pool lifetime
+    uint8_t strike_count;           // strikes, one per tick
+    uint8_t strike_delay;           // ticks from launch to impact
+    uint16_t strike_min, strike_max;
+    uint8_t damage_taken_pct;       // boss damage scale during the window
+    uint8_t strike_style;           // RcCombatStyle for the strike hit
+    uint8_t pool_object;            // spec object index, or RC_ENC_NO_OBJECT
+    uint8_t pool_delay;             // ticks from the spit to the pools landing
+} RcPrimParamsAcidField;
+
+// Owned helpers placed a fixed distance from the player. While any
+// lives, the run can hold the boss immune/idle and the player frozen.
+typedef struct __attribute__((packed)) {
+    uint8_t helper;                 // spec helper index
+    uint8_t count;                  // 1..RC_ENC_MAX_RUN_HELPERS
+    uint8_t spawn_distance;         // tiles from the player
+    uint8_t explode_max;            // seek and explode, max at full HP; 0 = no
+    uint8_t boss_immune;
+    uint8_t freeze_player;
+    uint8_t boss_idle;
+    char instakill_spell[24];       // spell name that kills a helper outright
+    uint8_t spawn_delay;            // ticks from launch to the helper landing
+} RcPrimParamsSpawnOwnedHelpers;
 
 typedef struct __attribute__((packed)) {
     uint16_t duration_ticks;
@@ -725,20 +789,79 @@ typedef struct __attribute__((packed)) {
     uint8_t respawn_ticks;
 } RcPrimParamsHealAltars;
 
-// Encounter spec — built once at startup from TOML, lives in the
-// registry keyed by `npc_ids[]`.
+// Encounter spec — immutable after load and shared by every world.
 #define RC_ENC_MAX_ATTACKS        16
 #define RC_ENC_MAX_PHASES         8
 #define RC_ENC_MAX_MECHANICS      16
-#define RC_ENC_MAX_NPC_IDS        8
+#define RC_ENC_MAX_FORMS          4
+#define RC_ENC_MAX_HELPERS        4
+#define RC_ENC_MAX_OBJECTS        4
+#define RC_ENC_NO_OBJECT          0xFFu
 #define RC_ENC_MAX_PROTECTIONS    16
 #define RC_ENC_MAX_DAMAGE_MODS    16
 #define RC_ENC_REGISTRY_CAP       64
+#define RC_ENC_MAX_RUN_HELPERS    8
+
+enum {
+    RC_ENC_LETHAL_DIE = 0,          // ordinary death, loot and respawn
+    RC_ENC_LETHAL_TRANSFORM = 1,    // nonterminal: enter next_form instead
+};
+
+enum {
+    RC_ENC_FORM_HP_FULL = 0,
+    RC_ENC_FORM_HP_KEEP = 1,
+};
+
+enum {
+    RC_ENC_DISENGAGE_KEEP = 0,      // form/HP persist when the fight ends
+    RC_ENC_DISENGAGE_RESET = 1,     // return to form 0 at full HP
+};
+
+// One boss form. Form 0 is the base definition the NPC spawns as.
+typedef struct {
+    uint32_t npc_id;                // B237 definition cache id
+    char name[64];                  // expected definition name
+    bool binds_on_spawn;            // spawning this definition starts a run
+    bool dormant;                   // no attacks or mechanics until woken
+    uint8_t on_lethal;              // RC_ENC_LETHAL_*
+    uint8_t next_form;              // transform or wake target
+    uint8_t next_hp;                // RC_ENC_FORM_HP_* entering next_form
+    uint16_t transition_ticks;      // idle, untargetable before next_form
+    uint16_t revert_after_ticks;    // 0 = never
+    uint8_t revert_form;            // form entered when the timer expires
+    uint8_t revert_hp;              // RC_ENC_FORM_HP_* entering revert_form
+} RcEncounterForm;
+
+// Helper definition owned by the run that spawns it. Helpers never bind
+// their own run and never respawn.
+typedef struct {
+    uint32_t npc_id;
+    char name[64];                  // expected definition name
+} RcEncounterHelper;
+
+// Loc a mechanic spawns into the world (B237 object id, checked against
+// its expected definition name like NPC roles).
+typedef struct {
+    uint32_t loc_id;
+    char name[64];                  // expected definition name
+    uint8_t loc_type;               // placement type, 0..22
+} RcEncounterObject;
 
 typedef struct {
     char slug[48];
-    uint32_t npc_ids[RC_ENC_MAX_NPC_IDS];
-    uint8_t npc_id_count;
+    char name[64];
+    uint8_t support;                // RC_ENC_SUPPORT_*
+    uint8_t disengage;              // RC_ENC_DISENGAGE_*
+    uint16_t respawn_ticks;         // 0 = definition policy
+
+    RcEncounterForm forms[RC_ENC_MAX_FORMS];
+    uint8_t form_count;
+
+    RcEncounterHelper helpers[RC_ENC_MAX_HELPERS];
+    uint8_t helper_count;
+
+    RcEncounterObject objects[RC_ENC_MAX_OBJECTS];
+    uint8_t object_count;
 
     RcEncounterAttack attacks[RC_ENC_MAX_ATTACKS];
     uint8_t attack_count;
@@ -756,14 +879,31 @@ typedef struct {
     uint8_t damage_mod_count;
 } RcEncounterSpec;
 
-// Active encounter — instance data for a running encounter. One
-// per spawned boss that matched a registry entry.
+enum {
+    RC_ENC_RUN_BOSS_IMMUNE    = 1u << 0,   // boss takes no damage
+    RC_ENC_RUN_PLAYER_FROZEN  = 1u << 1,   // player held while flag is set
+    RC_ENC_RUN_BOSS_IDLE      = 1u << 2,   // boss does not attack
+};
+
+// One fight. A run starts when a binding form spawns and owns every
+// timer, counter, helper and hazard of that fight. `generation` is
+// unique per world so stale references to a reused slot are detected.
 typedef struct {
     bool active;
-    uint16_t spec_idx;             // index into registry
+    uint32_t generation;
+    uint16_t spec_idx;
     RcNpcId boss_id;               // NPC handle
-    uint32_t def_id;               // cache NPC ID for owner-specific data
+    int boss_slot;                 // cached npcs[] index, revalidated on use
+    uint32_t def_id;               // current form definition cache id
+    uint8_t form;                  // current form index
     uint8_t current_phase;
+    bool engaged;
+    RcTick bound_tick;
+    RcTick engaged_tick;
+    RcTick form_entered_tick;
+    RcTick transition_until;       // >0: enter transition_form at this tick
+    uint8_t transition_form;
+    uint8_t transition_hp;
     uint16_t attack_count;
     uint8_t attack_special_toggle;
     uint8_t last_attack_idx;
@@ -773,7 +913,14 @@ typedef struct {
     uint16_t mechanic_progress;
     uint16_t shield_points;
     uint8_t script_flags;
+    uint8_t run_flags;             // RC_ENC_RUN_*
+    uint8_t damage_taken_pct;      // boss damage scale while a window runs
+    uint8_t effect_count;          // live effects owned by this run
+    uint8_t calm_ticks;            // consecutive ticks with no fight
     uint32_t ticks_since_start;
+    RcTick next_due[RC_ENC_MAX_MECHANICS];
+    RcNpcId helpers[RC_ENC_MAX_RUN_HELPERS];
+    uint8_t helper_count;
 } RcActiveEncounter;
 
 #define RC_ENC_MAX_ACTIVE 16
@@ -785,12 +932,19 @@ typedef struct {
 } RcEncounterScriptEntry;
 
 typedef struct {
-    // Registry — populated once at init.
-    RcEncounterSpec registry[RC_ENC_REGISTRY_CAP];
-    uint8_t registry_count;
+    // Immutable shared specs (game data, or a caller-owned test set).
+    const RcEncounterSpec *specs;
+    uint8_t spec_count;
+    uint32_t next_generation;
+    uint64_t refused_specs;         // specs refused at bind, diagnosed once
 
-    // Active encounters — created when a registered NPC spawns.
     RcActiveEncounter active[RC_ENC_MAX_ACTIVE];
+    uint16_t active_mask;           // bit i set while active[i] is in use
+
+    // Helpers of ended or disengaged runs. The encounter tick removes them,
+    // never the NPC lifecycle event that ended the run.
+    RcNpcId helper_removals[RC_ENC_MAX_ACTIVE * RC_ENC_MAX_RUN_HELPERS];
+    uint8_t helper_removal_count;
 
     // rc-content script registry. Names come from phase `script = "..."`
     // fields in the compiled encounter data.
@@ -801,13 +955,20 @@ typedef struct {
     uint32_t started_count;
     uint32_t finished_count;
     uint32_t scripts_called;
-    uint32_t script_misses;
+    uint32_t refused_count;
     uint32_t triggered_mechanics;
 } RcEncounterState;
 
 // Lifecycle
 int rc_encounter_init(struct RcWorld *world);
 void rc_encounter_tick(struct RcWorld *world);
+
+// Point a world at caller-owned immutable specs (tests and tools). The
+// array must outlive the world or the next call; runs are cleared.
+int rc_encounter_use_specs(struct RcWorld *world, const RcEncounterSpec *specs,
+                           int count);
+const RcEncounterSpec *rc_encounter_spec(const struct RcWorld *world,
+                                         int spec_idx);
 
 // Event hooks — wired up at rc_encounter_init via rc_event_subscribe.
 // Exposed here so tests can invoke them directly.
@@ -819,74 +980,141 @@ void rc_encounter_on_npc_died(struct RcWorld *world, int evt,
                               const void *payload, void *ctx);
 void rc_encounter_on_player_damaged(struct RcWorld *world, int evt,
                                     const void *payload, void *ctx);
-void rc_encounter_on_phase_transition(struct RcWorld *world, int evt,
-                                      const void *payload, void *ctx);
 void rc_encounter_on_npc_attack(struct RcWorld *world, int evt,
                                 const void *payload, void *ctx);
-void rc_encounter_on_npc_damaged(struct RcWorld *world, int evt,
+void rc_encounter_on_player_died(struct RcWorld *world, int evt,
                                  const void *payload, void *ctx);
-
-// Registry access — tests use this to inject a minimal encounter
-// spec without needing a full TOML pipeline.
-int rc_encounter_register(struct RcWorld *world,
-                          const RcEncounterSpec *spec);
 
 int rc_encounter_register_script(struct RcWorld *world,
                                  const char *name,
                                  RcEncounterScriptFn fn);
 RcEncounterScriptFn rc_encounter_script_lookup(const struct RcWorld *world,
                                                const char *name);
-void rc_encounter_script_noop(struct RcWorld *world, int enc_idx);
 
-// Load all encounters from `data/defs/encounters.bin` ('ENCT' magic).
-// Populates the registry. Returns number loaded, or -1 on error.
-int rc_encounter_load(struct RcWorld *world, const char *path);
+// Load all-or-fail from `data/defs/encounters.bin` (ENCT v13). Returns
+// the spec count, or -1 on any malformed, over-capacity or unsupported
+// content (nothing is partially published).
 int rc_encounter_load_specs(const char *path, RcEncounterSpec *out, int max);
+// Check role identities against loaded definitions. `npc_name` and
+// `object_name` return the definition name for a cache id, or NULL when
+// missing; a NULL `object_name` skips object roles (no object data).
+// Returns 1 when every role resolves to its expected name.
+typedef const char *(*RcEncounterDefNameFn)(const void *ctx, uint32_t id);
+int rc_encounter_validate_roles(const RcEncounterSpec *specs, int count,
+                                RcEncounterDefNameFn npc_name,
+                                RcEncounterDefNameFn object_name,
+                                const void *ctx, char *message,
+                                int message_capacity);
 
-// Primitive registry lookup (implemented in encounter_prims.c).
-// Returns NULL for IDs that are explicitly unsupported (0 and out-of-range).
-// IDs mapped by a valid enum value but not yet implemented are resolved
-// to a no-op helper so mechanics can still be tracked and advanced.
+// Primitive lookup (encounter_prims.c). Returns NULL for unknown or
+// unsupported primitives; the loader rejects specs that reference them.
 RcEncounterPrimFn rc_encounter_prim_lookup(uint8_t primitive_id);
+// Presentation parts a supported primitive records for its mechanic as
+// combat attack events (RC_COMBAT_ACTION_ENCOUNTER): the key is the
+// mechanic name for part "" and "<mechanic>:<part>" otherwise.
+// NULL-terminated; NULL when the primitive records nothing itself.
+const char *const *rc_encounter_prim_parts(uint8_t primitive_id);
+// Presentation keys for form changes, recorded by the form they belong to:
+// the leaving form when its transition starts (hit_delay = the transition's
+// ticks, 0 when immediate) and the form that takes over. Attack and mechanic
+// names never contain ':' and no mechanic is named "form", so these keys
+// never collide with attacks or mechanic parts.
+#define RC_ENC_FORM_LEAVE_KEY "form:leave"
+#define RC_ENC_FORM_ENTER_KEY "form:enter"
 int rc_encounter_set_phase(struct RcWorld *world, int active_idx,
                            const char *phase_id);
 
-// Lookup: returns the registry index for the first spec matching
-// `npc_id`, or -1 if no match.
-int rc_encounter_find_spec(const struct RcWorld *world,
-                           uint32_t npc_id);
+// Run slot for an NPC handle, or -1.
+int rc_encounter_run_for_npc(const struct RcWorld *world, RcNpcId npc_uid);
+// Attack selection results below zero.
+enum {
+    RC_ENC_SELECT_NONE = -1,        // no encounter: NDEF default attack
+    RC_ENC_SELECT_SPECIAL = -2,     // a special used this attack turn
+    RC_ENC_SELECT_HOLD = -3,        // boss idles; no attack this tick
+    RC_ENC_SELECT_APPROACH = -4,    // only melee-range attacks; close in
+};
+// Chooses the encounter attack for a launch. Returns the attack index
+// (with *attack and *generation set) or an RC_ENC_SELECT_* value.
+// `distance` is the player's distance from the boss footprint and
+// `side_adjacent` whether ordinary melee reaches the player; attacks with
+// RC_ENC_ATTACK_DIAGONAL_REACH also count diagonal contact. A special
+// runs its mechanic here and counts as this attack turn.
 int rc_encounter_select_npc_attack(struct RcWorld *world, RcNpcId npc_uid,
-                                   int distance, uint8_t *style,
-                                   uint16_t *min_hit, uint16_t *max_hit,
-                                   uint32_t *flags);
+                                   int distance, bool side_adjacent,
+                                   const RcEncounterAttack **attack,
+                                   uint32_t *generation);
+// Attack `attack_idx` of the run bound to `npc_uid`; NULL when absent.
+const RcEncounterAttack *rc_encounter_attack(const struct RcWorld *world,
+                                             RcNpcId npc_uid, int attack_idx,
+                                             uint32_t *generation);
+// Attack-specific protection percent for a landed hit (`attack` is the
+// hit's encounter attack index + 1, `generation` its run generation), or
+// -1 for default protection.
 int rc_encounter_player_protection_scale_pct(const struct RcWorld *world,
-                                             int source_uid, int style,
+                                             int source_uid, int attack,
+                                             uint32_t generation,
                                              uint32_t prayer_snapshot);
 void rc_encounter_player_attack_committed(struct RcWorld *world, RcNpcId npc_uid);
+// Launch-time scaling of player damage against a run's boss: immunity,
+// window damage scale and spec damage modifiers.
 int rc_encounter_scale_player_damage(struct RcWorld *world,
                                      RcNpcId npc_uid, uint8_t style,
                                      int damage);
-int rc_encounter_scale_incoming_damage(struct RcWorld *world,
-                                       int source_uid, uint8_t style,
-                                       int damage);
+// True when `spell_key` (spell index + 1) kills this owned helper outright.
+bool rc_encounter_player_instakill(const struct RcWorld *world,
+                                   RcNpcId npc_uid, int spell_key);
 bool rc_encounter_player_can_target_npc(const struct RcWorld *world,
                                         RcNpcId npc_uid);
-int rc_encounter_reveal_hidden_npcs(struct RcWorld *world,
-                                    const char *npc_name,
-                                    int max_count);
-int rc_encounter_add_effect(struct RcWorld *world, uint8_t kind,
+// Called before an NPC dies. Returns 1 when the encounter takes the
+// lethal hit as a nonterminal form change (no death, loot or event).
+int rc_encounter_intercept_lethal(struct RcWorld *world, RcNpcId npc_uid);
+// Content-owned wake actions (e.g. an NPC option) start a dormant fight.
+int rc_encounter_wake(struct RcWorld *world, RcNpcId npc_uid);
+// True when both NPCs belong to one run (its boss or owned helpers), so
+// single-combat locks treat them as one opponent.
+bool rc_encounter_same_fight(const struct RcWorld *world, RcNpcId a, RcNpcId b);
+// Ends any run for the NPC and binds a fresh one from its current
+// definition. Callers that restore an NPC's life outside the respawn path
+// (tools, dev transports) use this. Returns 1 when a run is bound.
+int rc_encounter_restart(struct RcWorld *world, RcNpcId npc_uid);
+// Primitive support. Helpers spawned here belong to run `enc_idx`:
+// they never respawn, never bind a run and are removed with it.
+int rc_encounter_spawn_helper(struct RcWorld *world, int enc_idx,
+                              uint8_t helper, int x, int y, int plane,
+                              RcNpcId *out_uid);
+// Per-tick work of the open mechanic window (encounter_prims.c).
+void rc_encounter_prim_window_tick(struct RcWorld *world, int enc_idx,
+                                   const RcEncounterMechanic *mech);
+// Opens the run's mechanic window for `mechanic_idx`. `ticks` 0 keeps it
+// open until the window's helpers are gone.
+void rc_encounter_begin_window(struct RcWorld *world, int enc_idx,
+                               uint8_t mechanic_idx, uint16_t ticks,
+                               uint8_t run_flags, uint8_t damage_taken_pct);
+// Pool on a tile that lands `delay` ticks from now. Once landed it lives
+// `ticks` ticks; standing on it deals 1..damage_max per tick and heals the
+// owner `leech_pct` of that. `loc_id` >= 0 is shown as a loc of
+// `loc_type` while the pool lives. Returns the effect slot or -1.
+int rc_encounter_add_pool(struct RcWorld *world, int enc_idx, int x, int y,
+                          int plane, int delay, int ticks, uint8_t damage_max,
+                          uint8_t leech_pct, int loc_id, uint8_t loc_type);
+// Helper `helper` landing on a tile `delay` ticks from now; 0 spawns it at
+// once. Returns 1 when the helper spawned or is in flight.
+int rc_encounter_add_helper_drop(struct RcWorld *world, int enc_idx,
+                                 uint8_t helper, int x, int y, int plane,
+                                 int delay);
+// Warned strike on a tile, resolved against the player's position at
+// impact. Returns the effect slot or -1.
+int rc_encounter_add_strike(struct RcWorld *world, int enc_idx,
+                            int x, int y, int plane, int delay,
+                            uint16_t min_damage, uint16_t max_damage,
+                            uint8_t adjacent_pct, uint8_t style);
+// Adds a hazard owned by run `enc_idx`; fails when the world pool or
+// the run quota is full.
+int rc_encounter_add_effect(struct RcWorld *world, int enc_idx, uint8_t kind,
                             int x, int y, int plane,
                             int target_x, int target_y,
-                            int ticks, uint16_t source_uid,
-                            uint8_t style, uint8_t damage_per_tick,
+                            int ticks, uint8_t style, uint8_t damage_per_tick,
                             const char *name, const char *target_name);
 void rc_encounter_tick_effects(struct RcWorld *world);
-int rc_encounter_object_option_supported(const struct RcWorld *world,
-                                         int obj_id,
-                                         const char *object_name,
-                                         int x, int y, int plane, int opt);
-int rc_encounter_interact_object(struct RcWorld *world, int obj_id,
-                                 const char *object_name,
-                                 int x, int y, int plane, int opt);
 
 #endif

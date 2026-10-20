@@ -81,12 +81,11 @@ in the engine.
 rc-content/
 ├── content.h             shared content-registration API
 ├── content.c             aggregate rc_content_register_all()
+├── combat/dragonfire.c   breath protection tables (npc_breath_max_hit)
 ├── encounters/           per-boss modules (one .c per boss)
 │   ├── README.md
-│   ├── scurrius.c
-│   ├── kalphite_queen.c
-│   ├── scripts.c          shared registry for currently stubbed hooks
-│   └── ...
+│   ├── vorkath.c          Poke wakes the sleeping form
+│   └── ...                scripts for unadmitted bosses (inactive)
 ├── regions/              region-specific NPC / object behavior
 └── quests/               per-quest varbit state machines
 ```
@@ -153,17 +152,18 @@ TOML/slug:
 symbol:
 
 ```c
-// rc-content/encounters/scurrius.c
+// rc-content/encounters/vorkath.c
 #include "../content.h"
 
-void rc_content_scurrius_register(struct RcWorld *world) {
-    // Subscribe to events, register scripts, etc.
+int rc_content_vorkath_register(struct RcWorld *world) {
+    // Register scripts or handlers; return 1 on success, 0 on failure.
 }
 ```
 
-Signature: `void rc_content_<slug>_register(struct RcWorld *)`.
-Declared in `content.h`. Called once per world by
-`rc_content_register_all` or by isolation builds directly.
+Signature: `int rc_content_<slug>_register(struct RcWorld *)`, returning 1
+on success and 0 on failure. Declared in `content.h`. Install the aggregate
+with `rc_world_install_content(world, rc_content_register_all)` so it runs
+again after `rc_world_reset`; isolation builds install their own function.
 
 **Internals are file-static.** Script functions inside the module
 (e.g. `static void scurrius_heal_at_food_pile(...)`) are `static`

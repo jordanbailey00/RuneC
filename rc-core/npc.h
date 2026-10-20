@@ -113,6 +113,9 @@ int rc_npc_def_find_name(const char *name);
 const RcNpcDef *rc_npc_def_get(int def_idx);
 const RcNpcDef *rc_npc_base_def_for_npc(const RcNpc *npc);
 const RcNpcDef *rc_npc_def_for_npc(const RcWorld *world, const RcNpc *npc);
+// Encounter-owned form override (def index, -1 = base). Each new life
+// starts in the base form; HP and other life state stay with the caller.
+int rc_npc_set_form(RcNpc *npc, int def_idx);
 int rc_npc_def_collect_form_ids(const RcNpcDef *def, int *out_ids,
                                 int max_ids);
 const RcNpcDef *rc_npc_defs_all(int *count);

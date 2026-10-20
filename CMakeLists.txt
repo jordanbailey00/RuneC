@@ -164,6 +164,12 @@ endif()
 if(TARGET test_ralos_runtime)
     target_sources(test_ralos_runtime PRIVATE rc-viewer/combat_visuals.c)
 endif()
+if(TARGET test_encounter_visuals)
+    target_sources(test_encounter_visuals PRIVATE
+        rc-viewer/combat_visuals.c
+        rc-viewer/npc_render_defs.c
+    )
+endif()
 
 if(TARGET test_items_bin)
     target_sources(test_items_bin PRIVATE

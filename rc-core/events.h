@@ -93,6 +93,9 @@ typedef struct {
     uint8_t style;             // RcCombatStyle
     uint8_t flags;
     int damage_tenths;         // actual HP removed; damage remains whole hitpoints
+    uint16_t rolled;           // launch roll before protection/modifiers
+    uint8_t enc_attack;        // encounter attack index + 1; zero = none
+    uint32_t enc_generation;   // launching encounter run generation
 } RcPayloadPlayerDamaged;      // RC_EVT_PLAYER_DAMAGED
 
 typedef struct {

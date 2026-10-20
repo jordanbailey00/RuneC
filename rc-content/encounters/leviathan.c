@@ -15,7 +15,9 @@ static void leviathan_enter_enrage(struct RcWorld *world, int enc_idx) {
     if (npc) npc->attack_timer = 0;
 }
 
-void rc_content_leviathan_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "leviathan_enter_enrage",
-                                 leviathan_enter_enrage);
+int rc_content_leviathan_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "leviathan_enter_enrage",
+                                 leviathan_enter_enrage) >= 0;
+    return ok;
 }

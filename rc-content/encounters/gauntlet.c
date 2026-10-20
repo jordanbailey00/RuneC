@@ -28,9 +28,11 @@ static void hunllef_engage(struct RcWorld *world, int enc_idx) {
     }
 }
 
-void rc_content_gauntlet_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "gauntlet_prep_phase",
-                                 gauntlet_prep_phase);
-    rc_encounter_register_script(world, "hunllef_engage",
-                                 hunllef_engage);
+int rc_content_gauntlet_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "gauntlet_prep_phase",
+                                 gauntlet_prep_phase) >= 0;
+    ok &= rc_encounter_register_script(world, "hunllef_engage",
+                                 hunllef_engage) >= 0;
+    return ok;
 }

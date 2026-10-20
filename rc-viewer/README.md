@@ -110,6 +110,10 @@ death diagnostic; enabling loot is not a claim that every table is verified.
   - viewer-only combat presentation profile loader
   - owns projectile, spotanim, animation, attachment, and visual timing
     metadata; `rc-core` only consumes backend hit-delay profiles
+  - encounter actions (`RC_COMBAT_ACTION_ENCOUNTER`) resolve by NPC definition
+    and `attack_key` (`rc_combat_visual_for_npc_action`): each attack, mechanic
+    part and form change has its own row. A missing attack row falls back to
+    the NPC's style row, a missing part row draws nothing; both are logged once
 - `hitsplats.c` / `hitsplats.h`
   - viewer-only B237 hitsplat catalog, four-slot presentation state, and basic
     hit-to-visual selection
@@ -152,7 +156,29 @@ death diagnostic; enabling loot is not a claim that every table is verified.
   use splash effects. Flight-end and impact heights are separate fields.
 - Ancient Rush/Blitz use sequence 1978 and Burst/Barrage use 1979, distinct
   from Standard staff casting. Attack playback restarts for each launch and
-  uses the sequence's duration instead of a fixed two-tick cutoff.
+  uses the sequence's duration instead of a fixed two-tick cutoff; NPC attack
+  sequences also play their full length (a mechanic's 30-tick sequence is
+  not cut short), mechanic parts without a sequence leave a running one alone,
+  and `form:leave` holds its last frame for the whole transition. An NPC only
+  plays a sequence on the skeleton of its own stand sequence, so a previous
+  form's (or a graphic's) sequence never deforms its model.
+- Tile-aimed encounter projectiles (target `RC_COMBAT_ACTOR_NONE`) land on the
+  core's impact tick (`hit_delay`), so acid, rapid fire and the spawn arrive
+  when their pool, strike or helper does.
+- An NPC's projectiles and launch graphics are locked to the NPC as in the
+  client: they start at its centre (rendered position plus half its size),
+  `proj_progress` fine units (128 per tile) toward the target, at
+  `proj_start_height` above the ground there. A large NPC therefore fires
+  from the same body point (Vorkath's mouth) from every angle; there is no
+  nearest-footprint-tile origin. Tile-sourced rows still start at the target
+  tile.
+- Locs the core spawns at runtime (`RC_OBJECT_STATE_SPAWNED`, e.g. Vorkath's
+  acid pools) are drawn from `data/models/spawn_objects.models` and its
+  `.oanim` templates (loc id, type, rotation; positions relative to the tile)
+  written by `tools/cache_pipeline/export_spawn_objects.py`, on the terrain at
+  the footprint centre, animated with `object.anims` when the loc has a
+  sequence. A loc without a template is logged once. Encounter hazards have
+  no debug tile overlay; their projectiles and locs are the presentation.
 - Inventory, bank and equipment icons use native 36x32 cache-rendered PNGs,
   without auto-fit scaling, reference overlays or invented 3D/model icons.
   The exporter owns camera angles, perspective, face ordering, lighting,

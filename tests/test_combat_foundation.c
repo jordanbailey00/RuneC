@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static RcWorld *combat_world(void) {
+static RcWorld *combat_world_with(uint32_t subsystems) {
     memset(g_npc_defs, 0, sizeof(g_npc_defs));
     g_npc_def_count = 1;
     RcNpcDef *def = &g_npc_defs[0];
@@ -32,7 +32,7 @@ static RcWorld *combat_world(void) {
     strcpy(def->options[0], "Talk-to");
     strcpy(def->options[1], "Attack");
     RcWorldConfig cfg = rc_preset_base_only();
-    cfg.subsystems = RC_SUB_COMBAT;
+    cfg.subsystems = subsystems;
     RcWorld *world = rc_test_world_create_with_defs(&cfg, "combat-foundation", 0);
     assert(world);
     world->player.x = 3208;
@@ -42,6 +42,10 @@ static RcWorld *combat_world(void) {
     assert(index == 0);
     world->npcs[0].disable_wander = true;
     return world;
+}
+
+static RcWorld *combat_world(void) {
+    return combat_world_with(RC_SUB_COMBAT);
 }
 
 static void test_selection_and_cancellation_ownership(void) {
@@ -466,41 +470,44 @@ static void test_status_damage_and_poison_capacity(void) {
     rc_world_destroy(w);
 }
 
-static void test_encounter_effects_commit_and_full_width_identity(void) {
-    RcWorld *w = combat_world();
+static void test_encounter_full_width_identity_and_targeting(void) {
+    RcWorld *w = combat_world_with(RC_SUB_COMBAT | RC_SUB_ENCOUNTER);
+    static RcEncounterSpec spec;
+    memset(&spec, 0, sizeof(spec));
+    strcpy(spec.slug, "full_width");
+    spec.support = RC_ENC_SUPPORT_FULL;
+    spec.form_count = 1;
+    spec.forms[0].npc_id = 940000;
+    spec.forms[0].binds_on_spawn = true;
+    spec.attack_count = 1;
+    spec.attacks[0].style = COMBAT_MELEE_CRUSH;
+    spec.attacks[0].max_hit = 1;
+    spec.attacks[0].weight_adjacent = 1;
+    spec.phase_count = 1;
+    spec.phases[0].allowed_attack_mask = 1;
+    spec.phases[0].player_targetable = false;
+    assert(rc_encounter_use_specs(w, &spec, 1) == 0);
+    // The fixture boss spawned before the specs were installed binds too.
+    assert(rc_encounter_run_for_npc(w, (RcNpcId)w->npcs[0].uid) >= 0);
     w->next_npc_uid = 70000;
     int index = rc_npc_spawn(w, 0, 3208, 3209, 0);
     assert(index >= 0);
     RcNpc *n = &w->npcs[index];
     assert(n->uid == 70000);
+    int run = rc_encounter_run_for_npc(w, (RcNpcId)n->uid);
+    assert(run >= 0 && w->encounter.active[run].boss_id == 70000u);
     n->current_hp = 50;
-    n->force_player_max_hit = true;
-    RcEncounterSpec spec = {0};
-    spec.phase_count = 1;
-    spec.phases[0].player_targetable = false;
-    spec.mechanic_count = 1;
-    spec.mechanics[0].primitive_id = RC_PRIM_HEAL_BOSS_ON_PLAYER_ATTACK_MISS;
-    RcPrimParamsHealOnAttack params = {.heal_per_attack = 5, .cancel_player_attack = 1};
-    memcpy(spec.mechanics[0].param_block, &params, sizeof(params));
-    int registry = rc_encounter_register(w, &spec);
-    assert(registry >= 0);
-    w->encounter.active[0] = (RcActiveEncounter){.active = true,
-        .boss_id = n->uid, .spec_idx = registry, .active_mechanic_idx = 0};
     assert(!rc_encounter_player_can_target_npc(w, n->uid));
-    w->encounter.registry[registry].phases[0].player_targetable = true;
+    assert(rc_combat_start_player_vs_npc(w, 0, n->uid));
+    rc_combat_tick_player(w);
+    assert(n->num_pending_hits == 0 && "untargetable phase refuses the launch");
+    spec.phases[0].player_targetable = true;
+    w->encounter.active[run].run_flags |= RC_ENC_RUN_BOSS_IMMUNE;
     assert(rc_encounter_scale_player_damage(w, n->uid, COMBAT_MELEE_CRUSH, 5) == 0);
-    assert(n->current_hp == 50 && "damage calculation must not heal before commit");
-    for (int i = 0; i < RC_MAX_PENDING_HITS; i++)
-        assert(rc_queue_hit(n->pending_hits, &n->num_pending_hits,
-                            1, 100, COMBAT_RANGED, RC_HIT_SOURCE_PLAYER, 0, w->tick));
-    assert(rc_combat_start_player_vs_npc(w, 0, n->uid));
-    rc_combat_tick_player(w);
+    w->encounter.active[run].run_flags = 0;
+    w->encounter.active[run].damage_taken_pct = 50;
+    assert(rc_encounter_scale_player_damage(w, n->uid, COMBAT_MELEE_CRUSH, 9) == 4);
     assert(n->current_hp == 50);
-    n->num_pending_hits = 0;
-    assert(rc_combat_start_player_vs_npc(w, 0, n->uid));
-    rc_combat_tick_player(w);
-    assert(n->current_hp == 55 && n->num_pending_hits == 1);
-    assert(n->pending_hits[0].damage == 0);
     rc_world_destroy(w);
 }
 
@@ -539,7 +546,7 @@ int main(void) {
     test_damage_owner_regen_and_projectile_lifetime();
     test_status_damage_and_poison_capacity();
     test_dormant_new_life_and_independent_threat_expiry();
-    test_encounter_effects_commit_and_full_width_identity();
+    test_encounter_full_width_identity_and_targeting();
     test_projectile_cannot_target_reborn_source();
     puts("combat foundation: ownership, cadence, reach, capacity, lifecycle passed");
     return 0;

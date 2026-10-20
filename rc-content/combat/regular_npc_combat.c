@@ -2,6 +2,7 @@
 #include "ammunition.h"
 #include "ralos.h"
 #include "magic.h"
+#include "dragonfire.h"
 
 #include "activity_mechanics.h"
 #include "combat.h"
@@ -806,8 +807,8 @@ static void regular_after_player_special_launch(RcWorld *world,
 }
 
 
-void rc_content_combat_register(struct RcWorld *world) {
-    if (!world) return;
+int rc_content_combat_register(struct RcWorld *world) {
+    if (!world) return 0;
     static const RcCombatContentHooks hooks = {
         .apply_player_damage = regular_player_damage,
         .apply_npc_attack_damage = regular_npc_attack_damage,
@@ -820,6 +821,7 @@ void rc_content_combat_register(struct RcWorld *world) {
         .modify_npc_attack_speed = regular_modify_npc_attack_speed,
         .modify_incoming_damage_after_protection =
             regular_modify_incoming_after_protection,
+        .npc_breath_max_hit = rc_content_dragonfire_max_hit,
         .player_special_energy_cost = regular_player_special_energy_cost,
         .player_ranged_resource_cost = regular_player_ranged_resource_cost,
         .consume_ranged_resource = rc_content_consume_ammunition,
@@ -836,6 +838,5 @@ void rc_content_combat_register(struct RcWorld *world) {
         .player_consume_spell_runes = rc_content_consume_spell_runes,
     };
     rc_combat_register_content_hooks(world, &hooks);
-    rc_content_ralos_register(world);
-    rc_content_runes_register(world);
+    return rc_content_ralos_register(world) && rc_content_runes_register(world);
 }

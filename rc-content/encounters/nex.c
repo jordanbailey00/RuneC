@@ -33,11 +33,10 @@ static void nex_enter_phase(struct RcWorld *world, int enc_idx,
     a->active_mechanic_idx = 0xFFu;
     a->active_mechanic_ticks = 0;
     boss->target_uid = 0;
-    rc_encounter_add_effect(world, RC_ENC_EFFECT_ROOM_ATTACK,
+    rc_encounter_add_effect(world, enc_idx, RC_ENC_EFFECT_ROOM_ATTACK,
                             boss->x, boss->y, boss->plane,
                             world->player.x, world->player.y,
-                            4, (uint16_t)boss->uid, COMBAT_NONE, 0,
-                            phase_name, "");
+                            4, COMBAT_NONE, 0, phase_name, "");
     if (minion && minion[0]) nex_spawn_minion(world, boss, minion, dx, dy);
 }
 
@@ -68,10 +67,12 @@ static void nex_zaros_phase(struct RcWorld *world, int enc_idx) {
     }
 }
 
-void rc_content_nex_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "nex_smoke_phase", nex_smoke_phase);
-    rc_encounter_register_script(world, "nex_shadow_phase", nex_shadow_phase);
-    rc_encounter_register_script(world, "nex_blood_phase", nex_blood_phase);
-    rc_encounter_register_script(world, "nex_ice_phase", nex_ice_phase);
-    rc_encounter_register_script(world, "nex_zaros_phase", nex_zaros_phase);
+int rc_content_nex_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "nex_smoke_phase", nex_smoke_phase) >= 0;
+    ok &= rc_encounter_register_script(world, "nex_shadow_phase", nex_shadow_phase) >= 0;
+    ok &= rc_encounter_register_script(world, "nex_blood_phase", nex_blood_phase) >= 0;
+    ok &= rc_encounter_register_script(world, "nex_ice_phase", nex_ice_phase) >= 0;
+    ok &= rc_encounter_register_script(world, "nex_zaros_phase", nex_zaros_phase) >= 0;
+    return ok;
 }

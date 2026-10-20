@@ -142,13 +142,12 @@ static int init_world_state(RcWorld *world) {
     if ((world->enabled & RC_SUB_SLAYER) && rc_slayer_init(world) != 0)
         return 0;
     if (world->enabled & RC_SUB_ENCOUNTER) {
-        if (rc_encounter_init(world) != 0) return 0;
         int spec_count = 0;
         const RcEncounterSpec *specs =
             rc_game_data_encounter_specs(world->game_data, &spec_count);
-        for (int i = 0; specs && i < spec_count; i++) {
-            if (rc_encounter_register(world, &specs[i]) < 0) return 0;
-        }
+        if (rc_encounter_init(world) != 0
+                || rc_encounter_use_specs(world, specs, spec_count) != 0)
+            return 0;
     }
     init_player_defaults(&world->player);
     return rc_interaction_install_world_defaults(world);
@@ -241,6 +240,12 @@ void rc_world_destroy(RcWorld *world) {
     free(world);
 }
 
+int rc_world_install_content(RcWorld *world, RcWorldContentInstaller install) {
+    if (!world || !install) return 0;
+    world->content_installer = install;
+    return install(world) == 1;
+}
+
 int rc_world_reset(RcWorld *world) {
     if (!world || !world->game_data || !world->npcs) return 0;
 
@@ -252,6 +257,7 @@ int rc_world_reset(RcWorld *world) {
     uint32_t enabled = world->enabled;
     bool members_world = world->members_world;
     RcWorldStreamingConfig streaming = world->streaming;
+    RcWorldContentInstaller installer = world->content_installer;
     char spawns_path[sizeof(world->npc_spawns_path)];
     memcpy(spawns_path, world->npc_spawns_path, sizeof(spawns_path));
     char ground_spawns_path[sizeof(world->ground_item_spawns_path)];
@@ -273,7 +279,7 @@ int rc_world_reset(RcWorld *world) {
            sizeof(ground_spawns_path));
     if (!init_world_state(world)) return 0;
     world->next_npc_uid = next_npc_uid;
-    return 1;
+    return !installer || rc_world_install_content(world, installer);
 }
 
 const RcGameData *rc_world_get_game_data(const RcWorld *world) {

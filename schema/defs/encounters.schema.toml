@@ -3,29 +3,22 @@ format = "binary"
 path = "data/defs/encounters.bin"
 magic_label = "ENCT"
 magic_u32 = "0x54434E45"
-current_version = 12
-accepted_versions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+current_version = 13
+accepted_versions = [13]
 endianness = "little"
-header = ["u32 magic", "u32 version", "u32 count"]
+header = ["u32 magic", "u32 version", "u32 count (<= 64)"]
 producer = "tools/export_encounters.py"
 consumers = ["rc-core/encounter.c"]
-source_dataset = "content/encounters and rc-content encounter scripts"
+source_dataset = "content/encounters documents that declare support = \"full\" or \"attacks_only\""
 row_fields = [
-  "pstr32 id",
-  "pstr64 name",
-  "u32 flags",
-  "u16 npc_id",
-  "u16 phase_count",
-  "u16 attack_count",
-  "u16 primitive_count",
-  "u16 spawn_count",
-  "u16 tile_count",
-  "u16 param_count",
-  "phase rows",
-  "attack rows",
-  "primitive rows",
-  "spawn rows",
-  "tile rows",
-  "param rows",
+  "pstr slug (<48), pstr name (<64), u8 support (1 full, 2 attacks_only), u8 disengage (0 keep, 1 reset), u16 respawn_ticks",
+  "u8 form_count (1..4); forms: u32 npc_id, pstr name (<64), u8 binds, u8 dormant, u8 on_lethal (0 die, 1 transform), u8 next_form, u8 next_hp (0 full, 1 keep), u16 transition_ticks, u16 revert_after_ticks, u8 revert_form, u8 revert_hp",
+  "u8 helper_count (0..4); helpers: u32 npc_id, pstr name (<64)",
+  "u8 object_count (0..4); objects: u32 loc_id, pstr name (<64), u8 loc_type (0..22)",
+  "u8 attack_count (1..16); attacks: pstr name (<48), u32 owner npc_id (0 any form), u8 style, u16 min_hit, u16 max_hit, u8 weight_adjacent, u8 weight_distant, u8 range, u8 hit_delay, u8 breath, u8 adjacent_pct, u32 flags, u8 effect_id, u8 effect_when, u8 effect_a, u8 effect_b, u16 effect_chance (per mille), u16 effect_chance_protected (per mille)",
+  "u8 phase_count (1..8); phases: pstr id (<32), u8 enter_at_hp_pct, u32 allowed_attack_mask, pstr script (<48, optional), u8 targetable",
+  "u8 mechanic_count (0..16); mechanics: pstr name (<48), u8 primitive_id (24, 82 or 83 only), u16 period_ticks, u8 trigger (0 periodic, 1 phase_enter, 2 phase_exit, 3 phase_in, 6 attack_count), u8 phase_idx (0xFF), u32 phase_mask, pstr trigger_ref (<32, empty), u8 params[64]",
+  "u8 protection_count (0..16); protections: u8 attack_idx, u8 style, u32 prayer_flag, u8 damage_pct",
+  "u8 damage_mod_count (0..16); modifiers: u32 npc_id (0 any form), u8 condition (1 style_not, 5 style_is), u8 style, u8 damage_pct, u8 flags",
 ]
-compatibility = "Loader accepts versions 1 through current_version and rejects version 0 or newer versions."
+compatibility = "Loader accepts only version 13 and is all-or-fail: any malformed, over-capacity, unsupported or inconsistent spec (or trailing bytes) rejects the whole file. Game data then checks every form and helper id against its expected B237 NDEF name, and every object id against its expected object definition name when object definitions are loaded."

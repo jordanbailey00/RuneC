@@ -32,8 +32,10 @@ static void nightmare_phase_3(struct RcWorld *world, int enc_idx) {
     world->encounter.active[enc_idx].shield_points = 0;
 }
 
-void rc_content_the_nightmare_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "nightmare_phase_1", nightmare_phase_1);
-    rc_encounter_register_script(world, "nightmare_phase_2", nightmare_phase_2);
-    rc_encounter_register_script(world, "nightmare_phase_3", nightmare_phase_3);
+int rc_content_the_nightmare_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "nightmare_phase_1", nightmare_phase_1) >= 0;
+    ok &= rc_encounter_register_script(world, "nightmare_phase_2", nightmare_phase_2) >= 0;
+    ok &= rc_encounter_register_script(world, "nightmare_phase_3", nightmare_phase_3) >= 0;
+    return ok;
 }

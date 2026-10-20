@@ -2,6 +2,7 @@
 
 #include "../rc-core/api.h"
 #include "../rc-core/combat.h"
+#include "../rc-core/encounter.h"
 #include "../rc-core/items.h"
 #include "../rc-core/npc.h"
 #include "../rc-core/pathfinding.h"
@@ -86,7 +87,9 @@ static const RuneCDevTransport g_dev_transports[] = {
     {"varrock",  "Varrock",   RUNEC_DEV_VARROCK_BANK_X, RUNEC_DEV_VARROCK_BANK_Y, 0,   -1, 1},
     {"graardor", "Graardor",  2872, 5358, 2, 2215, 4},
     {"kbd",      "KBD",       2269, 4697, 0, 239, 5},
-    {"vorkath",  "Vorkath",   2269, 4062, 0, 8061, 7},
+    {"kq",       "KQ",        3474, 9496, 0, 963, 5},
+    {"chaos",    "Chaos Ele", 3261, 3927, 0, 2054, 3},
+    {"vorkath",  "Vorkath",   2269, 4062, 0, 8059, 7},
     {"jad",      "Jad",       2400, 5088, 0, 3127, 5},
 };
 
@@ -101,8 +104,17 @@ static const RuneCDevEncounterNpc g_kbd_encounter[] = {
     {239, 2269, 4697, 0, 5},
 };
 
+static const RuneCDevEncounterNpc g_kq_encounter[] = {
+    {963, 3474, 9496, 0, 5},
+};
+
+static const RuneCDevEncounterNpc g_chaos_encounter[] = {
+    {2054, 3261, 3927, 0, 3},
+};
+
+// Vorkath arrives asleep; poke it to start the fight.
 static const RuneCDevEncounterNpc g_vorkath_encounter[] = {
-    {8061, 2269, 4062, 0, 7},
+    {8059, 2269, 4062, 0, 7},
 };
 
 static const RuneCDevEncounterNpc g_jad_encounter[] = {
@@ -163,6 +175,12 @@ const RuneCDevEncounterNpc *runec_dev_validation_encounter_npcs(
     } else if (strcmp(transport->key, "kbd") == 0) {
         rows = g_kbd_encounter;
         row_count = ARRAY_COUNT(g_kbd_encounter);
+    } else if (strcmp(transport->key, "kq") == 0) {
+        rows = g_kq_encounter;
+        row_count = ARRAY_COUNT(g_kq_encounter);
+    } else if (strcmp(transport->key, "chaos") == 0) {
+        rows = g_chaos_encounter;
+        row_count = ARRAY_COUNT(g_chaos_encounter);
     } else if (strcmp(transport->key, "vorkath") == 0) {
         rows = g_vorkath_encounter;
         row_count = ARRAY_COUNT(g_vorkath_encounter);
@@ -173,6 +191,21 @@ const RuneCDevEncounterNpc *runec_dev_validation_encounter_npcs(
     if (count)
         *count = row_count;
     return rows;
+}
+
+// The option-less copy of a boss (Vorkath 8058) cannot start a fight, so the
+// transport replaces it with the interactive form.
+static void remove_npcs_near(RcWorld *world, int npc_id, int x, int y,
+                             int plane, int radius) {
+    for (int i = 0; i < world->npc_count; i++) {
+        const RcNpc *npc = &world->npcs[i];
+        const RcNpcDef *def = rc_npc_base_def_for_npc(npc);
+        int dx = npc->x > x ? npc->x - x : x - npc->x;
+        int dy = npc->y > y ? npc->y - y : y - npc->y;
+        if (npc->active && def && def->id == npc_id && npc->plane == plane
+                && dx <= radius && dy <= radius)
+            rc_npc_remove(world, (RcNpcId)npc->uid);
+    }
 }
 
 int runec_dev_validation_prepare_encounter(RcWorld *world,
@@ -186,6 +219,8 @@ int runec_dev_validation_prepare_encounter(RcWorld *world,
         return 0;
 
     rc_combat_set_multi_combat(world, count > 1);
+    if (strcmp(transport->key, "vorkath") == 0)
+        remove_npcs_near(world, 8058, rows[0].x, rows[0].y, rows[0].plane, 3);
     int prepared = 0;
     for (int i = 0; i < count; i++) {
         const RuneCDevEncounterNpc *row = &rows[i];
@@ -205,6 +240,8 @@ int runec_dev_validation_prepare_encounter(RcWorld *world,
         npc->disable_wander = true;
         npc->player_untargetable = false;
         rc_npc_reset_life(world, npc);
+        // A restored boss starts a fresh encounter in its first form.
+        rc_encounter_restart(world, (RcNpcId)npc->uid);
         if (env_bool_local("RUNEC_DEV_BOSS_ATTACKS", 1)) {
             rc_combat_start_npc_vs_player(world, npc->uid, 0);
             npc->attack_timer = 0;
@@ -483,6 +520,8 @@ void runec_dev_validation_seed_bank(RcWorld *world) {
         "Dragonfire shield", "Dragonfire ward", "Ancient wyvern shield",
         "Serpentine helm", "Magma helm", "Tanzanite helm", "Echo boots",
         "Weapon poison(+)", "Weapon poison(++)", "Anti-venom+(4)",
+        "Anti-dragon shield", "Antifire potion(4)", "Extended antifire(4)",
+        "Super antifire potion(4)", "Extended super antifire(4)",
         "Shark", "Anglerfish", "Prayer potion(4)", "Ranging potion(4)",
         "Magic potion(4)", "Super combat potion(4)", "Coins",
         "Cooked karambwan", "Saradomin brew(4)", "Super restore(4)",

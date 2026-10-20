@@ -1,3 +1,4 @@
+#include "../rc-core/encounter.h"
 #include <assert.h>
 #include <string.h>
 
@@ -61,6 +62,46 @@ static void test_god_mode(RcWorld *world) {
     assert(runec_dev_validation_set_god_mode(world, true));
     assert(!p->is_dead && p->current_hp > 0);
     assert(runec_dev_validation_set_god_mode(world, false));
+}
+
+// Every boss teleport lands on a fight bound to the intended encounter.
+static void check_transport_encounters(void) {
+    RcWorldConfig cfg = rc_preset_combat_only();
+    cfg.spawns_path = NULL;
+    cfg.ground_item_spawns_path = NULL;
+    RcWorld *world = rc_world_create_config(&cfg);
+    assert(world && rc_world_install_content(world, rc_content_register_all));
+    const struct { const char *key; const char *slug; int form; } expect[] = {
+        {"graardor", "general_graardor", 0}, {"kbd", "king_black_dragon", 0},
+        {"kq", "kalphite_queen", 0}, {"chaos", "chaos_elemental", 0},
+        {"vorkath", "vorkath", 0}, {"jad", NULL, 0},
+    };
+    for (unsigned i = 0; i < sizeof(expect) / sizeof(expect[0]); i++) {
+        const RuneCDevTransport *d = runec_dev_validation_find_transport(expect[i].key);
+        assert(d);
+        rc_test_open_mapsquare(world, d->target_x, d->target_y, d->plane);
+        assert(runec_dev_validation_prepare_encounter(world, d) >= 1);
+        int idx = rc_world_find_npc_near(world, d->npc_id, d->target_x,
+                                         d->target_y, d->plane, 0);
+        assert(idx >= 0);
+        int run = rc_encounter_run_for_npc(world, (RcNpcId)world->npcs[idx].uid);
+        if (!expect[i].slug) {
+            assert(run < 0 && "unadmitted bosses keep ordinary combat");
+            continue;
+        }
+        assert(run >= 0);
+        const RcActiveEncounter *a = &world->encounter.active[run];
+        assert(!strcmp(rc_encounter_spec(world, a->spec_idx)->slug, expect[i].slug));
+        assert(a->form == expect[i].form);
+        // A second teleport restarts the fight in its first form.
+        world->encounter.active[run].attack_count = 9;
+        assert(runec_dev_validation_prepare_encounter(world, d) >= 1);
+        run = rc_encounter_run_for_npc(world, (RcNpcId)world->npcs[idx].uid);
+        assert(run >= 0 && world->encounter.active[run].attack_count == 0);
+    }
+    assert(rc_world_find_npc_near(world, 8058, 2269, 4062, 0, 3) < 0);
+    printf("dev transports: boss teleports bind the intended encounters\n");
+    rc_world_destroy(world);
 }
 
 int main(void) {
@@ -239,7 +280,9 @@ int main(void) {
         {2216, "Sergeant Strongstack", 1},
         {2217, "Sergeant Steelwill", 1},
         {2218, "Sergeant Grimspike", 1},
-        {8061, "Vorkath", 7},
+        {963, "Kalphite Queen", 5},
+        {2054, "Chaos Elemental", 3},
+        {8059, "Vorkath", 7},
         {3127, "TzTok-Jad", 5},
     };
     int transport_count;
@@ -309,5 +352,6 @@ int main(void) {
     }
 
     rc_world_destroy(world);
+    check_transport_encounters();
     return 0;
 }

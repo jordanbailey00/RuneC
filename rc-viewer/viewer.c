@@ -5,6 +5,7 @@
 #include "../rc-core/combat.h"
 #include "../rc-core/config.h"
 #include "../rc-core/consumables.h"
+#include "../rc-core/encounter.h"
 #include "../rc-core/items.h"
 #include "../rc-core/objects.h"
 #include "../rc-core/pathfinding.h"
@@ -124,6 +125,11 @@ typedef enum {
     VIEWER_ASYNC_NPC_MODELS,
 } ViewerAsyncMapsquareKind;
 
+// Encounter forms and helpers appear mid-fight (a transform, a wake, an
+// owned spawn), so their models load with every scene.
+#define VIEWER_ENCOUNTER_ROLE_MODELS \
+    (RC_ENC_REGISTRY_CAP * (RC_ENC_MAX_FORMS + RC_ENC_MAX_HELPERS))
+
 typedef struct {
     ViewerAsyncMapsquareKind kind;
     int region_x;
@@ -136,7 +142,8 @@ typedef struct {
     char material_path[1024];
     char npc_spawns_path[1024];
     int min_x, min_y, max_x, max_y;
-    uint32_t extra_model_ids[RUNEC_UI_DEV_TRANSPORT_MAX + 1];
+    uint32_t extra_model_ids[RUNEC_UI_DEV_TRANSPORT_MAX + 1
+                             + VIEWER_ENCOUNTER_ROLE_MODELS];
     int extra_model_id_count;
 } ViewerAsyncMapsquareRequest;
 
@@ -243,7 +250,8 @@ typedef struct {
     uint8_t impact_attachment;
     int source_uid;
     int target_uid;
-    int source_x, source_y;
+    int source_x, source_y;     // tile holding the origin
+    float source_fx, source_fy; // origin centre, world tiles (actor centre)
     int target_x, target_y;
     int plane;
     int weapon_item_id;
@@ -356,6 +364,18 @@ typedef struct {
     int projectile_anim_state_count;
     AnimModelState **object_anim_states[RC_MAX_PLANES];
     int object_anim_state_count[RC_MAX_PLANES];
+    // Locs the core spawns at runtime: templates by loc id, type and
+    // rotation (tools/cache_pipeline/export_spawn_objects.py).
+    ObjectMesh *spawn_object_templates;
+    ModelSet *spawn_object_models;
+    AnimModelState **spawn_object_states;
+    int spawn_object_state_count;
+    // Gaps reported once: locs without a template, encounter actions
+    // without a combat visual row.
+    int missing_spawn_objects[16];
+    int missing_spawn_object_count;
+    uint32_t missing_npc_visuals[64];
+    int missing_npc_visual_count;
     ModelEntry composed_player_model;
     AnimModelState *composed_anim_state;
     uint64_t composed_player_signature;
@@ -1981,6 +2001,22 @@ static int append_unique_model_id(uint32_t *ids, int count, uint32_t id) {
     return count;
 }
 
+static int append_encounter_role_model_ids(const RcWorld *world, uint32_t *ids,
+                                           int count, int max_ids) {
+    for (int s = 0; count >= 0; s++) {
+        const RcEncounterSpec *spec = rc_encounter_spec(world, s);
+        if (!spec) break;
+        for (int i = 0; i < spec->form_count + spec->helper_count; i++) {
+            if (count >= max_ids) return -1;
+            uint32_t id = i < spec->form_count
+                        ? spec->forms[i].npc_id
+                        : spec->helpers[i - spec->form_count].npc_id;
+            count = append_unique_model_id(ids, count, id);
+        }
+    }
+    return count;
+}
+
 static int viewer_actor_in_draw_range(const ViewerState *v, float x, float y,
                                       float padding) {
     if (!v || !v->world)
@@ -2029,7 +2065,7 @@ static int collect_spawned_npc_model_ids(ViewerState *v, uint32_t *ids,
                 ids, count, (uint32_t)form_ids[j]);
         }
     }
-    return count;
+    return append_encounter_role_model_ids(world, ids, count, max_ids);
 }
 
 static void free_npc_anim_states(ViewerState *v) {
@@ -5235,6 +5271,103 @@ static void draw_animated_objects(ViewerState *v, int scene_plane,
         v->object_anim_state_count[scene_plane]);
 }
 
+static void load_spawn_objects(ViewerState *v) {
+    const char *models_path = env_path("RUNEC_SPAWN_OBJECT_MODELS",
+        "data/models/spawn_objects.models");
+    const char *templates_path = env_path("RUNEC_SPAWN_OBJECT_TEMPLATES",
+        "data/models/spawn_objects.oanim");
+    ObjectMesh *templates = calloc(1, sizeof(*templates));
+    if (!templates || !objects_load_object_anims_path(templates, templates_path)) {
+        fprintf(stderr, "spawn objects: no templates at %s; spawned locs are "
+                "not drawn\n", templates_path);
+        objects_free(templates);
+        return;
+    }
+    v->spawn_object_templates = templates;
+    v->spawn_object_models = models_load(models_path);
+    if (v->spawn_object_models && v->alpha_cutout_shader_static_loaded)
+        models_set_shader(v->spawn_object_models, v->alpha_cutout_shader_static);
+    create_object_anim_states(templates, v->spawn_object_models,
+                              &v->spawn_object_states,
+                              &v->spawn_object_state_count);
+}
+
+static void free_spawn_objects(ViewerState *v) {
+    free_model_anim_states(&v->spawn_object_states,
+                           &v->spawn_object_state_count);
+    models_free(v->spawn_object_models);
+    objects_free(v->spawn_object_templates);
+    v->spawn_object_models = NULL;
+    v->spawn_object_templates = NULL;
+}
+
+static int spawn_object_template(const ViewerState *v, const RcObjectState *s) {
+    const ObjectMesh *t = v->spawn_object_templates;
+    for (int i = 0; t && i < t->object_anim_count; i++) {
+        const ObjectAnimRow *row = &t->object_anims[i];
+        if ((int)row->obj_id == s->active_obj_id
+                && row->obj_type == s->active_type
+                && row->rotation == (s->active_rotation & 3))
+            return i;
+    }
+    return -1;
+}
+
+static void report_missing_spawn_object(ViewerState *v, int obj_id) {
+    for (int i = 0; i < v->missing_spawn_object_count; i++) {
+        if (v->missing_spawn_objects[i] == obj_id) return;
+    }
+    if (v->missing_spawn_object_count < (int)(sizeof(v->missing_spawn_objects)
+                                              / sizeof(v->missing_spawn_objects[0])))
+        v->missing_spawn_objects[v->missing_spawn_object_count++] = obj_id;
+    fprintf(stderr, "spawn objects: no template for loc %d "
+            "(tools/cache_pipeline/export_spawn_objects.py)\n", obj_id);
+}
+
+// Locs the core spawned at runtime have no map-square model; each is drawn
+// from its template at the state's tile, standing on the ground there.
+static void draw_spawned_objects(ViewerState *v, int scene_plane) {
+    const RcWorld *world = v ? v->world : NULL;
+    if (!world || !world->object_state_count) return;
+    AnimCache *cache = v->object_anim_cache ? v->object_anim_cache : v->anims;
+    float client_ticks = ((float)world->tick + v->tick_frac) * 30.0f;
+    for (int i = 0; i < world->object_state_count; i++) {
+        const RcObjectState *s = &world->object_states[i];
+        if (!(s->flags & RC_OBJECT_STATE_SPAWNED) || s->active_obj_id < 0
+                || s->active_plane != scene_plane
+                || !viewer_actor_in_draw_range(v, (float)s->active_x,
+                                               (float)s->active_y, 2.0f))
+            continue;
+        int t = spawn_object_template(v, s);
+        const ObjectAnimRow *row = t >= 0
+            ? &v->spawn_object_templates->object_anims[t] : NULL;
+        ModelEntry *entry = row && v->spawn_object_models
+            ? model_find(v->spawn_object_models, row->model_id) : NULL;
+        if (!entry || !entry->loaded) {
+            report_missing_spawn_object(v, s->active_obj_id);
+            continue;
+        }
+        AnimModelState *state = t < v->spawn_object_state_count
+                              ? v->spawn_object_states[t] : NULL;
+        if (state && row->animation_id >= 0) {
+            float phase = (float)((s->active_x * 13 + s->active_y * 17
+                                   + s->active_obj_id * 3) % 97);
+            if (!animate_model_entry_sequence(entry, state, cache,
+                                              row->animation_id,
+                                              client_ticks + phase))
+                reset_model_entry_to_base_pose(entry);
+        }
+        float wx = (float)s->active_x + row->pos_x;
+        float wy = (float)s->active_y - row->pos_z;
+        Vector3 pos = {
+            wx - (float)g_world_origin_x,
+            ground_yf_plane(v, scene_plane, wx, wy) + row->pos_y,
+            row->pos_z - (float)(s->active_y - g_world_origin_y),
+        };
+        DrawModel(entry->model, pos, 1.0f, WHITE);
+    }
+}
+
 static int mapsquare_chunk_in_active_scene(
     const ViewerMapsquareChunk *chunk) {
     if (!chunk)
@@ -5960,6 +6093,16 @@ static ViewerAsyncMapsquareRequest *npc_models_request(
                 (uint32_t)transports[i].npc_id;
         }
     }
+    int roles = append_encounter_role_model_ids(
+        v->world, request->extra_model_ids, request->extra_model_id_count,
+        (int)(sizeof(request->extra_model_ids)
+              / sizeof(request->extra_model_ids[0])));
+    if (roles < 0) {
+        fprintf(stderr, "npc models: encounter role models exceed the request\n");
+        free(request);
+        return NULL;
+    }
+    request->extra_model_id_count = roles;
     return request;
 }
 
@@ -7275,40 +7418,26 @@ static void viewer_start_player_attack_anim(
     v->anim_frame_timer = 0;
 }
 
+// The attack sequence plays for its full length (at least the default
+// hold, or `hold_ticks` when longer), so long sequences such as a whole
+// mechanic's are not cut short and a form change can hold its last frame.
 static void viewer_start_npc_attack_anim(
     ViewerState *v,
     const RcCombatAttackEvent *event,
-    const RcCombatVisualDef *visual
+    const RcCombatVisualDef *visual,
+    int hold_ticks
 ) {
     int idx = viewer_find_npc_index_by_uid(v, event ? event->source_uid : -1);
     if (idx < 0) return;
-    v->npc_render[idx].attack_anim_timer =
-        viewer_npc_attack_anim_ticks(event);
-    v->npc_render[idx].attack_anim_id =
-        visual && visual->attack_anim_id >= 0 ? visual->attack_anim_id : -1;
-}
-
-static void viewer_nearest_npc_tile_to_point(
-    const ViewerState *v,
-    const RcNpc *npc,
-    int px,
-    int py,
-    int *tx,
-    int *ty
-) {
-    int size = 1;
-    const RcNpcDef *def = rc_npc_def_for_npc(v ? v->world : NULL, npc);
-    if (def && def->size > 0) size = def->size;
-    int min_x = npc ? npc->x : px;
-    int min_y = npc ? npc->y : py;
-    int max_x = min_x + size - 1;
-    int max_y = min_y + size - 1;
-    if (px < min_x) *tx = min_x;
-    else if (px > max_x) *tx = max_x;
-    else *tx = px;
-    if (py < min_y) *ty = min_y;
-    else if (py > max_y) *ty = max_y;
-    else *ty = py;
+    int anim_id = visual && visual->attack_anim_id >= 0
+                ? visual->attack_anim_id : -1;
+    int ticks = viewer_npc_attack_anim_ticks(event);
+    if (hold_ticks > ticks) ticks = hold_ticks;
+    AnimSequence *seq = anim_id >= 0 && anim_id <= 0xFFFF
+        ? anim_get_sequence(v->anims, (uint16_t)anim_id) : NULL;
+    int seq_ticks = anim_sequence_game_ticks(seq);
+    v->npc_render[idx].attack_anim_timer = seq_ticks > ticks ? seq_ticks : ticks;
+    v->npc_render[idx].attack_anim_id = anim_id;
 }
 
 static int viewer_npc_size(const ViewerState *v, const RcNpc *npc) {
@@ -7413,38 +7542,40 @@ static void viewer_apply_projectile_profile_for_index(
     viewer_apply_projectile_profile(proj, profile, distance, hit_delay);
 }
 
-static void viewer_npc_visual_source_tile(
+// An NPC's projectiles and launch graphics are locked to the NPC, as in the
+// client: they start at its centre (its rendered position plus half its
+// size) and the row's progress moves the start toward the target, so a large
+// NPC fires from the same body point whatever the angle. Tile rows start at
+// the target tile.
+static void viewer_npc_visual_source(
     ViewerState *v,
     const RcCombatAttackEvent *event,
     const RcCombatVisualDef *visual,
-    int *sx,
-    int *sy
+    ViewerCombatProjectile *proj
 ) {
-    if (!v || !event || !sx || !sy) return;
-    RcNpc *npc = viewer_find_npc_by_uid(v, event->source_uid);
-    if (!npc) {
-        *sx = event->source_x;
-        *sy = event->source_y;
+    if (!v || !event || !proj) return;
+    int idx = viewer_find_npc_index_by_uid(v, event->source_uid);
+    if (idx < 0 || (visual && (visual->source_attachment ==
+                               RC_COMBAT_VISUAL_ATTACH_TARGET_TILE
+                               || visual->source_attachment ==
+                               RC_COMBAT_VISUAL_ATTACH_FIXED_TILE))) {
+        bool at_target = idx >= 0;
+        proj->source_x = at_target ? event->target_x : event->source_x;
+        proj->source_y = at_target ? event->target_y : event->source_y;
+        proj->source_fx = (float)proj->source_x + 0.5f;
+        proj->source_fy = (float)proj->source_y + 0.5f;
         return;
     }
-    if (visual && (visual->source_attachment ==
-                   RC_COMBAT_VISUAL_ATTACH_TARGET_TILE ||
-                   visual->source_attachment ==
-                   RC_COMBAT_VISUAL_ATTACH_FIXED_TILE)) {
-        *sx = event->target_x;
-        *sy = event->target_y;
-        return;
-    }
-    if (visual && visual->source_attachment ==
-            RC_COMBAT_VISUAL_ATTACH_SOURCE_CENTER) {
-        int size = viewer_npc_size(v, npc);
-        *sx = npc->x + size / 2;
-        *sy = npc->y + size / 2;
-        return;
-    }
-    viewer_nearest_npc_tile_to_point(v, npc, event->target_x,
-                                     event->target_y,
-                                     sx, sy);
+    const RcNpc *npc = &v->world->npcs[idx];
+    float half = 0.5f * (float)viewer_npc_size(v, npc);
+    float x = v->npc_render[idx].initialized ? v->npc_render[idx].render_x
+                                             : (float)npc->x;
+    float y = v->npc_render[idx].initialized ? v->npc_render[idx].render_y
+                                             : (float)npc->y;
+    proj->source_fx = x + half;
+    proj->source_fy = y + half;
+    proj->source_x = (int)floorf(proj->source_fx);
+    proj->source_y = (int)floorf(proj->source_fy);
 }
 
 static void viewer_spawn_projectile_instance(
@@ -7488,9 +7619,10 @@ static void viewer_spawn_projectile_instance(
     proj->target_uid = event->target_uid;
     proj->source_x = event->source_x;
     proj->source_y = event->source_y;
+    proj->source_fx = (float)event->source_x + 0.5f;
+    proj->source_fy = (float)event->source_y + 0.5f;
     if (event->source_kind == RC_COMBAT_ACTOR_NPC)
-        viewer_npc_visual_source_tile(v, event, visual,
-                                      &proj->source_x, &proj->source_y);
+        viewer_npc_visual_source(v, event, visual, proj);
     proj->target_x = event->target_x;
     proj->target_y = event->target_y;
     proj->plane = event->plane;
@@ -7537,6 +7669,16 @@ static void viewer_spawn_projectile_instance(
         if (proj->duration_ticks < min_duration)
             proj->duration_ticks = min_duration;
         proj->impact_duration_ticks = 3;
+    }
+    // Tile-aimed encounter projectiles land on the core's impact tick.
+    if (event->action_kind == RC_COMBAT_ACTION_ENCOUNTER
+            && event->target_kind == RC_COMBAT_ACTOR_NONE
+            && event->hit_delay > 0
+            && !viewer_visual_is_fixed_tile_impact(visual)) {
+        proj->duration_ticks = proj->client_delay = event->hit_delay;
+        proj->projectile_end_time = event->hit_delay * 30;
+        if (proj->projectile_start_time >= proj->projectile_end_time)
+            proj->projectile_start_time = proj->projectile_end_time - 1;
     }
     proj->impact_spotanim_height = viewer_projectile_impact_height(
         proj, visual, (RcCombatStyle)event->style);
@@ -7647,6 +7789,56 @@ static void viewer_handle_player_attack_event(
         v, event, visuals.projectile, visuals.effect, visuals.timing);
 }
 
+static uint32_t viewer_npc_action_hash(int npc_id, const char *key) {
+    uint32_t h = 2166136261u ^ (uint32_t)npc_id;
+    for (const char *c = key; c && *c; c++) h = (h ^ (uint8_t)*c) * 16777619u;
+    return h ? h : 1u;
+}
+
+static void viewer_report_missing_npc_visual(ViewerState *v,
+                                             const RcCombatAttackEvent *event) {
+    uint32_t h = viewer_npc_action_hash(event->source_definition_id,
+                                        event->action_key_name);
+    for (int i = 0; i < v->missing_npc_visual_count; i++) {
+        if (v->missing_npc_visuals[i] == h) return;
+    }
+    if (v->missing_npc_visual_count < (int)(sizeof(v->missing_npc_visuals)
+                                            / sizeof(v->missing_npc_visuals[0])))
+        v->missing_npc_visuals[v->missing_npc_visual_count++] = h;
+    fprintf(stderr, "combat visuals: no row for npc %d action '%s' "
+            "(content/combat_visuals/visuals.tsv)\n",
+            event->source_definition_id, event->action_key_name);
+}
+
+// Encounter actions are drawn from the row for their attack or mechanic
+// part. A missing attack row falls back to the NPC's style row; a missing
+// part row draws nothing. Either gap is reported once.
+static void viewer_handle_npc_attack_event(ViewerState *v,
+                                           const RcCombatAttackEvent *event) {
+    const RcCombatVisualDef *visual = NULL;
+    if (event->action_kind == RC_COMBAT_ACTION_ENCOUNTER) {
+        visual = rc_combat_visual_for_npc_action(event->source_definition_id,
+                                                 event->action_key_name);
+        if (!visual) {
+            viewer_report_missing_npc_visual(v, event);
+            if (strchr(event->action_key_name, ':')) return;
+        } else {
+            // Parts without a sequence leave the boss's running one alone;
+            // a leaving form holds its sequence for the whole transition.
+            int hold = strcmp(event->action_key_name,
+                              RC_ENC_FORM_LEAVE_KEY) == 0 ? event->hit_delay : 0;
+            if (visual->attack_anim_id >= 0)
+                viewer_start_npc_attack_anim(v, event, visual, hold);
+            viewer_spawn_npc_attack_projectiles(v, event, visual);
+            return;
+        }
+    }
+    visual = rc_combat_visual_for_npc(event->source_definition_id,
+                                      (RcCombatStyle)event->style);
+    viewer_start_npc_attack_anim(v, event, visual, 0);
+    viewer_spawn_npc_attack_projectiles(v, event, visual);
+}
+
 static void viewer_capture_combat_attack_events(ViewerState *v) {
     if (!v || !v->world) return;
     int count = 0;
@@ -7655,14 +7847,10 @@ static void viewer_capture_combat_attack_events(ViewerState *v) {
     for (int i = 0; events && i < count; i++) {
         const RcCombatAttackEvent *event = &events[i];
         if (!event->active) continue;
-        if (event->source_kind == RC_COMBAT_ACTOR_PLAYER) {
+        if (event->source_kind == RC_COMBAT_ACTOR_PLAYER)
             viewer_handle_player_attack_event(v, event);
-        } else if (event->source_kind == RC_COMBAT_ACTOR_NPC) {
-            const RcCombatVisualDef *visual = rc_combat_visual_for_npc(
-                event->source_definition_id, (RcCombatStyle)event->style);
-            viewer_start_npc_attack_anim(v, event, visual);
-            viewer_spawn_npc_attack_projectiles(v, event, visual);
-        }
+        else if (event->source_kind == RC_COMBAT_ACTOR_NPC)
+            viewer_handle_npc_attack_event(v, event);
     }
 }
 
@@ -8025,8 +8213,8 @@ static Vector3 combat_projectile_position(ViewerState *v,
                                           float *out_pitch,
                                           int *out_visible) {
     *out_visible = 0;
-    float sx = (float)LOCAL_X(proj->source_x) + 0.5f;
-    float sz = -((float)LOCAL_Y(proj->source_y) + 0.5f);
+    float sx = proj->source_fx - (float)g_world_origin_x;
+    float sz = -(proj->source_fy - (float)g_world_origin_y);
     float tx = 0.0f;
     float tz = 0.0f;
     float target_ground = 0.0f;
@@ -8040,8 +8228,8 @@ static Vector3 combat_projectile_position(ViewerState *v,
                   : 1.45f;
     float end_h = proj->projectile_end_height >= 0
                 ? (float)proj->projectile_end_height / 128.0f : 1.05f;
-    float sy = ground_y_plane(v, scene_plane, proj->source_x,
-                              proj->source_y) + start_h;
+    float sy = ground_yf_plane(v, scene_plane, proj->source_fx,
+                               proj->source_fy) + start_h;
     float ty = target_ground + end_h;
 
     float start_time = proj->projectile_start_time >= 0
@@ -8201,9 +8389,10 @@ static int draw_projectile_launch(ViewerState *v,
     float height = proj->launch_spotanim_height >= 0
                  ? (float)proj->launch_spotanim_height / 128.0f : 0.75f;
     Vector3 pos = {
-        (float)LOCAL_X(proj->source_x) + 0.5f,
-        ground_y_plane(v, scene_plane, proj->source_x, proj->source_y) + height,
-        -((float)LOCAL_Y(proj->source_y) + 0.5f),
+        proj->source_fx - (float)g_world_origin_x,
+        ground_yf_plane(v, scene_plane, proj->source_fx, proj->source_fy)
+            + height,
+        -(proj->source_fy - (float)g_world_origin_y),
     };
     ModelEntry *entry = projectile_spotanim_model_entry(v, spot, -1);
     if (entry) {
@@ -8263,10 +8452,10 @@ static void draw_combat_projectiles(ViewerState *v) {
                                    end_time);
             continue;
         }
-        float sx = (float)LOCAL_X(proj->source_x) + 0.5f;
-        float sz = -((float)LOCAL_Y(proj->source_y) + 0.5f);
-        float sy = ground_y_plane(v, scene_plane, proj->source_x,
-                                  proj->source_y) +
+        float sx = proj->source_fx - (float)g_world_origin_x;
+        float sz = -(proj->source_fy - (float)g_world_origin_y);
+        float sy = ground_yf_plane(v, scene_plane, proj->source_fx,
+                                   proj->source_fy) +
                    (proj->projectile_start_height >= 0
                     ? (float)proj->projectile_start_height / 128.0f : 1.45f);
         Vector3 start = {sx, sy, sz};
@@ -8943,6 +9132,13 @@ static void update_player_anim(ViewerState *v) {
     }
 }
 
+// Skeleton (framebase) a sequence animates, or -1 when unknown.
+static int viewer_sequence_skeleton(AnimCache *cache, int seq_id) {
+    AnimSequence *seq = seq_id >= 0 && seq_id <= 0xFFFF
+                      ? anim_get_sequence(cache, (uint16_t)seq_id) : NULL;
+    return seq && seq->frame_count ? (int)seq->frames[0].frame.framebase_id : -1;
+}
+
 // Apply the correct animation frame to one NPC's shared mesh just before it
 // draws. NPCs of the same def share the mesh buffer + AnimModelState, so the
 // caller must animate and draw each instance sequentially (no batching across
@@ -8978,11 +9174,19 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
     else if (v->npc_render[npc_idx].attack_anim_timer > 0
             && !v->npc_render[npc_idx].moving) {
         attack_anim_active = 1;
-        if (v->npc_render[npc_idx].attack_anim_id > 0)
-            target = v->npc_render[npc_idx].attack_anim_id;
-        else
+        int attack = v->npc_render[npc_idx].attack_anim_id;
+        int bone = viewer_sequence_skeleton(v->anims, attack);
+        int body = viewer_sequence_skeleton(v->anims, render_def->stand_anim);
+        if (attack > 0 && bone >= 0 && body >= 0 && bone != body) {
+            // A sequence made for another skeleton (a previous form's)
+            // never deforms this definition's model.
+            attack_anim_active = 0;
+        } else if (attack > 0) {
+            target = attack;
+        } else {
             target = render_def->attack_anim >= 0
                 ? render_def->attack_anim : target;
+        }
     }
     else if (moved_last_tick && render_def->walk_anim >= 0) {
         target = render_def->walk_anim;
@@ -9174,6 +9378,7 @@ static void draw_scene(ViewerState *v, int ui_capture) {
     models_update_texture_anims(v->object_anim_model_planes[scene_plane],
                                 frame_dt);
     draw_animated_objects(v, scene_plane, scene_objects);
+    draw_spawned_objects(v, scene_plane);
 
     // Player model. If equipment needs body-part replacement, use the generated
     // client-style identity-kit/equipment composition path so torso/arms/legs/
@@ -9647,7 +9852,8 @@ int main(int argc, char **argv) {
                                      cfg.object_behaviors_path);
     // Register all OSRS content modules (boss scripts, etc.). See
     // rc-content/README.md for the engine/content split.
-    rc_content_register_all(v.world);
+    if (!rc_world_install_content(v.world, rc_content_register_all))
+        fprintf(stderr, "content: registration failed; see messages above\n");
 
     (void)rc_world_relocate_player(v.world, g_player_start_x,
                                    g_player_start_y, g_player_start_plane);
@@ -9874,6 +10080,7 @@ int main(int argc, char **argv) {
     }
     v.spotanims = spotanims_load(env_path("RUNEC_SPOTANIMS",
         "data/defs/spotanims.bin"));
+    load_spawn_objects(&v);
     runec_item_render_map_load(&v.item_render_map, env_path("RUNEC_ITEM_RENDER_MAP",
         "data/models/item_render.map"));
     runec_item_def_render_map_load(&v.item_def_render_map, cfg.items_path);
@@ -10236,6 +10443,7 @@ cleanup:
     free_mapsquare_cache(&v);
     free_item_anim_states(&v);
     free_projectile_anim_states(&v);
+    free_spawn_objects(&v);
     clear_composed_player_model(&v);
     models_free(v.player_model);
     for (int i = 0; i < RC_MAX_GROUND_ITEMS; i++)

@@ -78,6 +78,10 @@ static const RcConsumableDef definitions[] = {
     P4(2446,175,177,179, .cure=1, .poison_immunity=150),
     P4(2448,181,183,185, .cure=1, .poison_immunity=600),
     P4(12913,12915,12917,12919, .cure=2, .poison_immunity=1500, .venom_immunity=360),
+    P4(2452,2454,2456,2458, .antifire_ticks=600),
+    P4(11951,11953,11955,11957, .antifire_ticks=1200),
+    P4(21978,21981,21984,21987, .super_antifire_ticks=300),
+    P4(22209,22212,22215,22218, .super_antifire_ticks=600),
     P4(23685,23688,23691,23694, .divine_ticks=500, .stats={SUPER_MELEE}),
     P4(23697,23700,23703,23706, .divine_ticks=500, .stats={BOOST(SKILL_ATTACK,15,5)}),
     P4(23709,23712,23715,23718, .divine_ticks=500, .stats={BOOST(SKILL_STRENGTH,15,5)}),
@@ -105,12 +109,15 @@ static int prayer_bonus(const RcPlayer *p) {
     return 0;
 }
 
-void rc_content_consumables_register(RcWorld *world) {
-    if (!world || !(world->enabled & RC_SUB_CONSUMABLES)) return;
+int rc_content_consumables_register(RcWorld *world) {
+    if (!world) return 0;
+    if (!(world->enabled & RC_SUB_CONSUMABLES)) return 1;
+    world->consumable_prayer_bonus = prayer_bonus;
     if (!rc_consumables_register(world, definitions,
             (int)(sizeof(definitions) / sizeof(definitions[0])))) {
         world->consumables = NULL;
         world->consumable_count = 0;
+        return 0;
     }
-    world->consumable_prayer_bonus = prayer_bonus;
+    return 1;
 }

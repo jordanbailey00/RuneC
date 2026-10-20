@@ -531,6 +531,10 @@ def build_specs(data_root: Path) -> tuple[PackSpec, ...]:
         (p for p in model_files if p.name.startswith("projectiles.")),
     )
     add_spec(
+        "runec-models-spawn-objects",
+        (p for p in model_files if p.name.startswith("spawn_objects.")),
+    )
+    add_spec(
         "runec-models-extra",
         (
             p
@@ -972,6 +976,7 @@ def validate_required_specs(specs: tuple[PackSpec, ...]) -> None:
         "runec-models-npcs",
         "runec-models-player",
         "runec-models-projectiles",
+        "runec-models-spawn-objects",
         "runec-anims",
         "runec-sprites-ui",
         "runec-sprites-items",

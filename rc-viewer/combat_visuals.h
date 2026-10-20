@@ -80,6 +80,7 @@ typedef struct {
     uint8_t target_attachment;
     uint8_t launch_attachment;
     uint8_t impact_attachment;
+    char attack_key[64];     // NPC rows: encounter attack or mechanic part
     char authority[64];
 } RcCombatVisualDef;
 
@@ -105,6 +106,11 @@ const RcCombatVisualDef *rc_combat_visual_for_spell_id(
     int spell_idx, const char *fallback_name, RcCombatStyle style);
 const RcCombatVisualDef *rc_combat_visual_for_npc(int npc_id,
                                                   RcCombatStyle style);
+// Row for a named encounter action of an NPC definition: an attack name or a
+// mechanic part "<mechanic>[:<part>]" (RC_COMBAT_ACTION_ENCOUNTER events),
+// matched exactly against the attack_key column.
+const RcCombatVisualDef *rc_combat_visual_for_npc_action(int npc_id,
+                                                         const char *key);
 const RcCombatVisualDef *rc_combat_visual_for_special_item(int item_id,
                                                            RcCombatStyle style);
 

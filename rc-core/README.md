@@ -98,7 +98,10 @@ subsystems**.
   `rc_bank_add_item[_tab]` is privileged fixture setup, not player access.
 - **slayer** — task metadata, assignment, unlock/block/prefer filters,
   task progress
-- **encounter** — boss phase/rotation dispatcher + primitive registry
+- **encounter** — admitted boss runs: forms, engagement, phases, attack
+  selection, owned helpers and hazards (pools that land after their spit and
+  show their loc, helpers that land after their launch), and the verified
+  primitives
 - **objects** — object definitions, placed-object lookup, typed object
   behavior tags, complete varbit/varp transforms, exact layer-aware dynamic
   loc mutation, altar restore, doors, and gathering-node depletion/respawn
@@ -419,6 +422,14 @@ shot; autocast retains the target. Pending hits retain spell/weapon identity
 for landed content effects, while attack events expose accuracy and hit count
 without presentation metadata. NPC immobilization uses absolute world ticks.
 
+Encounter actions are named, never drawn, by core: an encounter attack's event
+carries `RC_COMBAT_ACTION_ENCOUNTER` and the attack name (tile attacks aim at
+the launch tile, `target_kind = RC_COMBAT_ACTOR_NONE`), and mechanic parts and
+form changes record presentation-only events through
+`rc_combat_record_encounter_action` ("<mechanic>[:<part>]", `form:leave`,
+`form:enter`; `docs/encounter_primitives.md`). Those records leave 16 event
+slots free for launches. Presentation maps names to visuals from data.
+
 Spell selection/autocast/book APIs return `RcSpellResult`; queued admission is
 not execution. `rc_spell_available` checks the bound world's definitions,
 book, supported type, levels, membership, weapon and resource inputs. The
@@ -467,8 +478,10 @@ remain explicitly scoped in the systems audit; they are not accepted parity.
 `rc_world_reset` is the supported in-place rollout reset. It keeps the world's
 immutable game data, allocated NPC storage, enabled subsystem set, streaming
 policy, configured spawn path, and initial seed, while destroying dormant and
-other owned mutable buffers and rebuilding initial gameplay state. Raw byte
-copies of `RcWorld` are not snapshots and are unsupported.
+other owned mutable buffers and rebuilding initial gameplay state. Content
+installed through `rc_world_install_content` (hooks, handlers, encounter
+scripts) is installed again after the reset. Raw byte copies of `RcWorld` are
+not snapshots and are unsupported.
 
 ---
 
@@ -621,18 +634,23 @@ them episodic means the dispatch cost is negligible aggregated over
 a tick, and the hot path stays tight.
 
 Current encounter events:
-- `RC_EVT_PLAYER_DAMAGED` routes on-hit primitives.
-- `RC_EVT_PHASE_TRANSITION` routes phase-enter/phase-exit primitives
-  and phase scripts.
-- `RC_EVT_NPC_ATTACK` routes encounter after-attack, attack-counter,
-  and mechanic-window hooks.
+- `RC_EVT_NPC_SPAWNED` / `RC_EVT_NPC_RESPAWNED` bind runs;
+  `RC_EVT_NPC_DIED` / `RC_EVT_NPC_REMOVED` end them or forget helpers.
+- `RC_EVT_PLAYER_DAMAGED` applies the landed attack's effect, identified by
+  the hit's encounter attack and run generation.
+- `RC_EVT_NPC_ATTACK` counts launched attacks for the special rotation.
+- `RC_EVT_PLAYER_DIED` disengages runs.
+- `RC_EVT_PHASE_TRANSITION` is a notification only; `enter_phase` owns
+  phase changes and runs their mechanics and scripts directly.
 
 ---
 
 ## 8. No cross-subsystem reach-through
 
-- `combat.c` may not call `loot_*` directly. It fires `RC_EVT_NPC_DIED`;
-  `loot.c` subscribes and rolls drops.
+- `combat.c` may not call loot code directly. On a final death `tick.c`
+  prepares loot and then fires `RC_EVT_NPC_DIED`; an encounter's nonterminal
+  form change is intercepted first (`rc_encounter_intercept_lethal`), so it
+  gets neither.
 - `loot.c` may not read `combat_state` internals. It operates on the
   event payload + base world state.
 - `quests.c` may not poll `dialogue_state`. It subscribes to
@@ -672,7 +690,7 @@ Each subsystem owns its binary(s):
 | regions | `world.collision-tiles.indexed.bin`, `area_flags.bin` |
 | skills | `recipes.bin`, `skill_drops.bin`, `gathering_nodes.bin` |
 | combat / slayer / encounter | `regular_npc_mechanics.bin` |
-| encounter | `encounters.bin` (ENCT v12), `activity_schemas.bin`, `activity_spawns.bin`, `activity_mechanics.bin`, `activity_states.bin`, curated encounter TOMLs |
+| encounter | `encounters.bin` (ENCT v13, admitted specs only), `activity_schemas.bin`, `activity_spawns.bin`, `activity_mechanics.bin`, `activity_states.bin` |
 | slayer | `slayer.bin` |
 | active area | mapsquare-indexed collision, world NPC/static ground-item spawns, and object placements via `rc_world_activate_area`; lower-level NPC rect/near loaders remain available for tools/tests |
 | (audio → rc-viewer) | `music.bin` |
@@ -838,10 +856,11 @@ static library that depends on `rc-core`).
 | Code | Lives in | Why |
 |---|---|---|
 | Tick dispatch, event bus, pathfinding, combat math, subsystem handles | `rc-core/` | Engine — content-agnostic. |
-| Generic encounter primitives (`telegraphed_aoe_tile`, `spawn_npcs`, `drain_prayer_on_hit`, etc. — used by many bosses) | `rc-core/encounter_prims.c` | Shared mechanism, not content. |
+| Generic encounter primitives (`acid_field`, `spawn_owned_helpers`, the special rotation; unverified older ones stay disabled) | `rc-core/encounter_prims.c` | Shared mechanism, not content. |
 | Encounter script registry and trigger dispatch | `rc-core/encounter.c` | Generic routing by name/type; script bodies stay in content. |
 | Encounter attack tables, targetability, damage modifiers, and protection scaling | `rc-core/encounter.c` + `rc-core/combat.c` | Generic phase-owned attack selection, phase targetability, player damage scaling, attack effects, and prayer damage scaling. Boss-specific attacks stay in data. |
-| Regular NPC tag consumers for generic combat rules | `rc-core/combat.c` | Generic mechanics such as breath mitigation and damage gates. |
+| Regular NPC tag consumers for generic combat rules | `rc-core/combat.c` | Generic mechanics such as damage gates; encounter bosses skip them. |
+| Breath protection tables | `rc-content/combat/dragonfire.c` | Exact OSRS values are content, reached through `npc_breath_max_hit`. |
 | Activity-mechanics behavior/profile dispatch | `rc-core/activity_mechanics.c` + `rc-core/combat.c` | Generic data-driven owner effects; full boss scripts stay in content. |
 | Typed activity state-machine loading and `RcActivityRun` stepping | `rc-core/activity_states.c` | Shared activity flow mechanism; object events validate loaded activity anchors and multi-boss runs count unique deaths. |
 | Activity schema indexing | `rc-core/activity_schemas.c` | Loadable summary of encounters, typed activities, NPC IDs, object IDs, and activity-local arena/spawn metadata. |
@@ -851,7 +870,7 @@ static library that depends on `rc-core`).
 | Owned traversal execution | `rc-core/tick.c` + `rc-core/traversal.c` | Exact object admission can create one generation-owned traversal with explicit destination policy, phase timing, checked relocation, and a terminal outcome. Ambiguous or unsupported graph rows are not executable actions. |
 | Generic object consumers | `rc-core/tick.c` + `rc-core/skills.c` | Prayer altars restore prayer from object behavior data; doors record per-world open state; resource objects start, deplete, and respawn source-backed gathering nodes. |
 | Slayer task loading, assignment filters, amount selection, and kill-credit routing | `rc-core/slayer.c` | Generic task owner; exact quest/location/boss-task edge rules come from data/content. |
-| Boss-specific scripts (`scurrius_heal_at_food_pile`, `kq_shed_exoskeleton`) | `rc-content/encounters/<boss>.c` | Content — one boss only. |
+| Boss-specific content (Vorkath's Poke handler, phase scripts) | `rc-content/encounters/<boss>.c` | Content — one boss only. |
 | Quest state machines (Cook's Assistant, Dragon Slayer II) | `rc-content/quests/<slug>.c` | Content — one quest only. |
 | Region-specific NPC / object behavior | `rc-content/regions/<region>.c` | Content — one region only. |
 | Pure data (stats, drops, attack TOMLs, items, prayers, spells, action gates) | `data/defs/*.bin` + `data/curated/` | Data, not code. |

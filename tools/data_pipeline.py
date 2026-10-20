@@ -163,6 +163,15 @@ CACHE_DERIVED_REBUILD_SPECS = (
         authority="b237 cache spotanim/projectile models decoded by RuneC cache tools",
     ),
     RuntimeOutputSpec(
+        dataset="spawn_object_models",
+        logical_paths=("models/spawn_objects.models", "models/spawn_objects.oanim"),
+        rebuild_inputs=B237_CACHE_INPUT,
+        commands=(
+            py_cmd("tools/cache_pipeline/export_spawn_objects.py", "--cache", "{b237_cache}", "--output", "data/models/spawn_objects.models"),
+        ),
+        authority="b237 cache loc models for the locs admitted encounter documents spawn at runtime",
+    ),
+    RuntimeOutputSpec(
         dataset="ui_sprites",
         logical_paths=("sprites/ui/",),
         rebuild_inputs=B237_CACHE_AND_DUMP_INPUTS,
@@ -266,6 +275,7 @@ POST_DEF_RENDER_REBUILD_SPECS = (
                 "{b237_cache}",
                 "--object-anims",
                 "data/regions",
+                "data/models/spawn_objects.oanim",
                 "--output",
                 "data/anims/object.anims",
             ),
@@ -277,6 +287,7 @@ POST_DEF_RENDER_REBUILD_SPECS = (
                 "data/defs/spotanims.bin",
                 "--object-anims",
                 "data/regions",
+                "data/models/spawn_objects.oanim",
                 "--item-render-map",
                 "data/models/item_render.map",
                 "--combat-visuals",
@@ -289,7 +300,7 @@ POST_DEF_RENDER_REBUILD_SPECS = (
                 "data/anims/all.anims",
             ),
         ),
-        authority="b237 cache sequence/frame data explicitly scoped from spotanims, item render BAS, combat visuals, object anims, NPC defs, and reviewed NPC attack mappings",
+        authority="b237 cache sequence/frame data explicitly scoped from spotanims, item render BAS, combat visuals, object anims (map squares and spawned-loc templates), NPC defs, and reviewed NPC attack mappings",
     ),
 )
 

@@ -165,7 +165,6 @@ static char *rc_game_data_identity(const RcWorldConfig *cfg) {
     RC_ID_PATH(collision_tiles_path);
     RC_ID_PATH(area_flags_path);
     RC_ID_PATH(traversal_edges_path);
-    RC_ID_PATH(encounters_dir);
     RC_ID_PATH(encounters_path);
 #undef RC_ID_PATH
     const char *root = getenv("RUNEC_DATA_ROOT");
@@ -1042,6 +1041,24 @@ static uint32_t rc_loaded_capabilities(uint32_t requested,
     return capabilities;
 }
 
+// Definition name for an NPC cache id, or NULL when the id has no definition.
+static const char *game_data_npc_name(const void *ctx, uint32_t npc_id) {
+    const RcGameData *data = ctx;
+    if (npc_id >= RC_MAX_NPC_ID) return NULL;
+    int idx = data->npc_def_by_id[npc_id];
+    if (idx < 0 || idx >= data->npc_def_count
+            || data->npc_defs[idx].id != (int)npc_id) return NULL;
+    return data->npc_defs[idx].name;
+}
+
+// Definition name for an object cache id, or NULL when it has none.
+static const char *game_data_object_name(const void *ctx, uint32_t loc_id) {
+    const RcGameData *data = ctx;
+    if (loc_id >= RC_MAX_OBJECT_ID || !data->object_data.defs[loc_id].loaded)
+        return NULL;
+    return data->object_data.defs[loc_id].name;
+}
+
 RcGameData *rc_game_data_load(const RcWorldConfig *cfg,
                               RcGameDataLoadReport *out) {
     RcGameDataLoadReport local;
@@ -1548,6 +1565,17 @@ RcGameData *rc_game_data_load(const RcWorldConfig *cfg,
             snprintf(report->message, sizeof(report->message),
                      "failed to load encounter specs from %.384s",
                      cfg->encounters_path);
+            rc_game_data_release(data);
+            return NULL;
+        }
+        char role_error[256];
+        if (data->npc_def_count > 0
+                && !rc_encounter_validate_roles(
+                    data->encounter_specs, loaded, game_data_npc_name,
+                    data->object_data.def_count > 0 ? game_data_object_name
+                                                    : NULL,
+                    data, role_error, sizeof(role_error))) {
+            snprintf(report->message, sizeof(report->message), "%s", role_error);
             rc_game_data_release(data);
             return NULL;
         }

@@ -16,7 +16,7 @@ int rc_content_has_spell_runes(const RcWorld *world, const RcPlayer *player,
                                const RcSpellDef *spell);
 int rc_content_consume_spell_runes(RcWorld *world, RcPlayer *player,
                                    const RcSpellDef *spell);
-void rc_content_runes_register(RcWorld *world);
+int rc_content_runes_register(RcWorld *world);
 void rc_content_magic_hit(RcWorld *world, RcNpc *target,
                           const RcPendingHit *hit, int damage);
 

@@ -443,8 +443,17 @@ static int npc_transform_value(const RcWorld *world, const RcNpcDef *def) {
     return -1;
 }
 
-const RcNpcDef *rc_npc_def_for_npc(const RcWorld *world, const RcNpc *npc) {
-    const RcNpcDef *def = rc_npc_base_def_for_npc(npc);
+int rc_npc_set_form(RcNpc *npc, int def_idx) {
+    if (!npc || (def_idx >= 0 && !rc_npc_def_get(def_idx))) return 0;
+    npc->form_def = def_idx >= 0 ? def_idx + 1 : 0;
+    npc->combat.attack_prepared = false;
+    return 1;
+}
+
+// Varbit/varp morphs; kept out of line so the per-tick lookup of the many
+// definitions without transforms stays a bare index.
+static __attribute__((noinline)) const RcNpcDef *resolve_npc_transforms(
+    const RcWorld *world, const RcNpcDef *def) {
     for (int depth = 0; def && def->transform_count > 0 && depth < 32;
          depth++) {
         uint64_t end = (uint64_t)def->transform_offset
@@ -465,6 +474,15 @@ const RcNpcDef *rc_npc_def_for_npc(const RcWorld *world, const RcNpc *npc) {
         def = resolved;
     }
     return def && def->transform_count > 0 ? NULL : def;
+}
+
+const RcNpcDef *rc_npc_def_for_npc(const RcWorld *world, const RcNpc *npc) {
+    if (!npc) return NULL;
+    // An encounter form overrides the spawned definition.
+    const RcNpcDef *def = rc_npc_def_get(npc->form_def > 0 ? npc->form_def - 1
+                                                          : npc->def_id);
+    if (!def || def->transform_count <= 0) return def;
+    return resolve_npc_transforms(world, def);
 }
 
 int rc_npc_def_collect_form_ids(const RcNpcDef *def, int *out_ids,
@@ -1265,7 +1283,7 @@ void rc_npc_tick(RcWorld *world, RcNpc *npc) {
 
     if (moved_last) npc->wander_timer = 0;
     else npc->wander_timer++;
-    if (npc->target_uid >= 0 || npc->disable_wander
+    if (npc->target_uid >= 0 || npc->disable_wander || npc->owner_controlled
             || npc->spawn_wander_range <= 0) return;
     if (npc->route_mode == RC_NPC_ROUTE_WANDER
             || npc->route_mode == RC_NPC_ROUTE_RETURN) return;

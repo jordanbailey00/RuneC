@@ -873,7 +873,10 @@ static void resolve_npc_hits(RcWorld *world, RcNpc *npc) {
                 rc_combat_start_npc_vs_player(world, npc->uid, 0);
             }
         }
-        if (npc->current_hp <= 0) {
+        if (npc->current_hp <= 0
+                && rc_encounter_intercept_lethal(world, (RcNpcId)npc->uid)) {
+            // A nonterminal encounter form: no death, loot or NPC_DIED.
+        } else if (npc->current_hp <= 0) {
             npc->current_hp = 0;
             npc->is_dead = true;
             if (world->player.storage_session
@@ -1953,10 +1956,6 @@ int rc_world_object_option_supported(const RcWorld *world, int obj_id,
     }
     const RcObjectDef *def = rc_object_def_get(obj_id);
     if (!def) return 0;
-    if (rc_encounter_object_option_supported(
-            world, obj_id, def->name, x, y, plane, option)) {
-        return 1;
-    }
     const RcObjectBehavior *behavior = rc_object_behavior_get(obj_id);
     const RcObjectState *state = placement_key
         ? rc_world_object_state_find_key_const(world, placement_key) : NULL;
@@ -2459,11 +2458,6 @@ int rc_player_interact_object_placement(RcWorld *world, int obj_id, int x,
         placement_key = placement.key;
     }
     const RcObjectDef *def = rc_object_def_get(obj_id);
-    if (rc_encounter_interact_object(world, obj_id, def ? def->name : "",
-                                     x, y, plane, opt)) {
-        api_stop_player_combat(world);
-        return 1;
-    }
     if (opt < 0 || opt >= RC_OBJECT_ACTIONS) return 0;
     if (!rc_world_object_option_supported(world, obj_id, x, y, plane,
                                           placement_key, opt)) {

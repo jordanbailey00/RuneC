@@ -15,29 +15,30 @@
 // (good — isolation builds fail loudly when they reference content
 // they've excluded).
 
-void rc_content_register_all(struct RcWorld *world) {
+int rc_content_register_all(struct RcWorld *world) {
+    if (!world) return 0;
+    int ok = 1;
     // ---- Combat -----------------------------------------------------
-    rc_content_combat_register(world);
-    rc_content_consumables_register(world);
-    rc_content_storage_register(world);
+    ok &= rc_content_combat_register(world);
+    ok &= rc_content_consumables_register(world);
+    ok &= rc_content_storage_register(world);
 
     // ---- Encounters -------------------------------------------------
-    rc_content_encounter_script_stubs_register(world);
-    rc_content_scurrius_register(world);
-    rc_content_kalphite_queen_register(world);
-    rc_content_alchemical_hydra_register(world);
-    rc_content_the_nightmare_register(world);
-    rc_content_phantom_muspah_register(world);
-    rc_content_duke_sucellus_register(world);
-    rc_content_leviathan_register(world);
-    rc_content_whisperer_register(world);
-    rc_content_gauntlet_register(world);
-    rc_content_nex_register(world);
-    rc_content_raids_register(world);
+    ok &= rc_content_vorkath_register(world);
+    ok &= rc_content_alchemical_hydra_register(world);
+    ok &= rc_content_the_nightmare_register(world);
+    ok &= rc_content_phantom_muspah_register(world);
+    ok &= rc_content_duke_sucellus_register(world);
+    ok &= rc_content_leviathan_register(world);
+    ok &= rc_content_whisperer_register(world);
+    ok &= rc_content_gauntlet_register(world);
+    ok &= rc_content_nex_register(world);
+    ok &= rc_content_raids_register(world);
 
     // ---- Regions ----------------------------------------------------
     // (none yet)
 
     // ---- Quests -----------------------------------------------------
     // (none yet)
+    return ok;
 }

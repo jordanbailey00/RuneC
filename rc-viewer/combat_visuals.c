@@ -20,6 +20,7 @@ typedef struct {
     int target_attachment;
     int launch_attachment;
     int impact_attachment;
+    int attack_key;
     int authority;
 } RcCombatVisualRichColumns;
 
@@ -181,6 +182,7 @@ static void capture_rich_columns(RcCombatVisualRichColumns *cols,
         find_header_col(parts, count, "launch_attachment");
     cols->impact_attachment =
         find_header_col(parts, count, "impact_attachment");
+    cols->attack_key = find_header_col(parts, count, "attack_key");
     cols->authority = find_header_col(parts, count, "authority");
 }
 
@@ -307,6 +309,7 @@ int rc_load_combat_visuals(const char *path) {
         .target_attachment = -1,
         .launch_attachment = -1,
         .impact_attachment = -1,
+        .attack_key = -1,
         .authority = -1,
     };
     char line[2048];
@@ -421,6 +424,8 @@ int rc_load_combat_visuals(const char *path) {
         def->launch_attachment = (uint8_t)launch_attachment;
         def->impact_attachment = (uint8_t)impact_attachment;
 
+        copy_field(def->attack_key, optional_col(parts, n,
+                                                 rich_cols.attack_key));
         copy_field(def->authority, optional_col(parts, n,
                                                 rich_cols.authority));
         if (!def->authority[0])
@@ -511,6 +516,18 @@ const RcCombatVisualDef *rc_combat_visual_for_npc(int npc_id,
         if (!fallback && visual_style_matches(def, style)) fallback = def;
     }
     return fallback;
+}
+
+const RcCombatVisualDef *rc_combat_visual_for_npc_action(int npc_id,
+                                                         const char *key) {
+    if (!key || !key[0]) return NULL;
+    for (int i = 0; i < g_rc_combat_visual_count; i++) {
+        const RcCombatVisualDef *def = &g_rc_combat_visual_defs[i];
+        if (def->kind == RC_COMBAT_VISUAL_NPC && def->key_id == npc_id
+                && strcmp(def->attack_key, key) == 0)
+            return def;
+    }
+    return NULL;
 }
 
 const RcCombatVisualDef *rc_combat_visual_for_special_item(int item_id,

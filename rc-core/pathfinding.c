@@ -226,7 +226,7 @@ bool rc_has_los_rect(const RcWorldMap *map,
         int step_x = east ? 1 : -1;
         int offset_y = north ? 0 : -1;
         int64_t scaled_y = ((int64_t)start_y << 16) + 32768 + offset_y;
-        int64_t tangent = ((int64_t)delta_y << 16) / abs_x;
+        int64_t tangent = (int64_t)delta_y * 65536 / abs_x;   // deltas may be negative
         int current_x = start_x;
         while (current_x != end_x) {
             current_x += step_x;
@@ -249,7 +249,7 @@ bool rc_has_los_rect(const RcWorldMap *map,
         int offset_x = east ? 0 : -1;
         int step_y = north ? 1 : -1;
         int64_t scaled_x = ((int64_t)start_x << 16) + 32768 + offset_x;
-        int64_t tangent = ((int64_t)delta_x << 16) / abs_y;
+        int64_t tangent = (int64_t)delta_x * 65536 / abs_y;
         int current_y = start_y;
         while (current_y != end_y) {
             current_y += step_y;

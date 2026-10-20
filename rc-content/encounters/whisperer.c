@@ -28,7 +28,9 @@ static void whisperer_enter_shadow_realm(struct RcWorld *world, int enc_idx) {
     }
 }
 
-void rc_content_whisperer_register(struct RcWorld *world) {
-    rc_encounter_register_script(world, "whisperer_enter_shadow_realm",
-                                 whisperer_enter_shadow_realm);
+int rc_content_whisperer_register(struct RcWorld *world) {
+    int ok = 1;
+    ok &= rc_encounter_register_script(world, "whisperer_enter_shadow_realm",
+                                 whisperer_enter_shadow_realm) >= 0;
+    return ok;
 }

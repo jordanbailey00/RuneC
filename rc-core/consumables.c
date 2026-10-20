@@ -74,7 +74,8 @@ int rc_consumables_register(RcWorld *w, const RcConsumableDef *defs, int count) 
             && d->delayed_cure <= 1 && d->replacement_id >= -1
             && d->replacement_id != d->item_id
             && (d->delayed_heal || (!d->delayed_energy && !d->delayed_cure))
-            && (d->kind != RC_CONSUME_DRINK || !d->attack_delay);
+            && (d->kind != RC_CONSUME_DRINK || !d->attack_delay)
+            && !(d->antifire_ticks && d->super_antifire_ticks);
         bool action = false;
         for (int op = 0; op < RC_ITEM_ACTION_COUNT; op++)
             action |= rc_consumable_action(d->item_id, op)
@@ -204,6 +205,9 @@ RcConsumeResult rc_player_consume_expected(RcWorld *w, int slot,
     }
     p->run_energy = minimum(10000, p->run_energy + d->energy * 100);
     if (d->stamina_ticks) p->stamina_until = w->tick + d->stamina_ticks;
+    if (d->antifire_ticks) p->antifire_until = w->tick + d->antifire_ticks;
+    if (d->super_antifire_ticks)
+        p->super_antifire_until = w->tick + d->super_antifire_ticks;
     bool downgraded = p->toxin_venom && d->cure != 2;
     cure(p, d->cure);
     if (d->poison_immunity && !downgraded)
@@ -267,6 +271,7 @@ void rc_consumables_tick(RcWorld *w) {
 void rc_consumables_reset(RcPlayer *p) {
     p->food_ready_tick = p->potion_ready_tick = p->combo_ready_tick = 0;
     p->stamina_until = p->delayed_food_tick = 0;
+    p->antifire_until = p->super_antifire_until = 0;
     p->delayed_food_heal = p->delayed_food_energy = 0;
     p->delayed_food_cure = false;
     p->divine_mask = 0;

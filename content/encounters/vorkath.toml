@@ -1,137 +1,138 @@
-# Vorkath — post-Dragon Slayer II solo boss. Tests: attack-count-gated
-# specials (6 standard → 1 special alternating), acid-pool arena
-# environment, zombified spawn helper (heal-if-alive pattern).
+# Vorkath (oracle WB-043). Evidence: OSRS Wiki Vorkath/Strategies r15364644
+# and Dragonfire; identities from B237 NDEF (8059 sleeping with Poke, 8061
+# awake; 8058 has no options, 8060 and 8062 are quest copies; 8063 is the
+# Zombified Spawn) and B237 loc 32000 "Acid pool" (RuneLite ObjectID
+# VORKATH_ACID). Presentation rows: content/combat_visuals/visuals.tsv.
+#
+# PROVISIONAL (no source found, awaiting sign-off): standard attack weights
+# beyond "ranged 4 : magic 3, magic more often in melee distance"; the wake
+# delay; deadly dragonfire's flight time; acid pool count, radius and
+# lifetime; the acid and spawn flight times; rapid-fire strike flight time;
+# that Vorkath does not attack while the spawn lives.
 
 name = "Vorkath"
 slug = "vorkath"
-npc_ids = [8061, 8059, 8058]      # post-quest, quest-variant, cutscene
-source_pages = ["Vorkath", "Vorkath/Strategies"]
+support = "full"
+# Leaving or dying puts Vorkath back to sleep at full health.
+disengage = "reset"
+respawn_ticks = 1
+source_pages = ["Vorkath", "Vorkath/Strategies", "Dragonfire"]
 
-# ---- Standard attacks -------------------------------------------------
+# Poking the sleeping form (rc-content/encounters/vorkath.c) wakes it.
+[[forms]]
+id = "asleep"
+npc_id = 8059
+name = "Vorkath"
+binds = true
+dormant = true
+next = "awake"
+next_hp = "full"
+transition_ticks = 5
 
+[[forms]]
+id = "awake"
+npc_id = 8061
+name = "Vorkath"
+
+[[helpers]]
+id = "spawn"
+npc_id = 8063
+name = "Zombified Spawn"
+
+# Spawned under each landed acid pool (centrepiece loc, no clipping).
+[[objects]]
+id = "acid"
+object_id = 32000
+name = "Acid pool"
+type = 10
+
+# Six standard attacks, then a special. Specials alternate acid / spawn and
+# the first is random.
 [[attacks]]
 name = "Melee"
-style = "melee"
-accuracy_roll = "slash"
+style = "slash"
 max_hit = 32
-warning_ticks = 0
-# Used more in melee range.
+weight_adjacent = 2
+flags = ["diagonal_reach"]
 
 [[attacks]]
 name = "Magic"
 style = "magic"
 max_hit = 30
-warning_ticks = 2
-# Relative weight: 3 (vs ranged 4).
+weight_adjacent = 4
+weight_distant = 3
 
 [[attacks]]
 name = "Ranged"
 style = "ranged"
 max_hit = 32
-warning_ticks = 2
-# Relative weight: 4.
-
-# ---- Dragonfire variants (shared with KBD pattern) -------------------
+weight_adjacent = 3
+weight_distant = 4
 
 [[attacks]]
-name = "Standard Dragonfire"
-style = "dragonfire"
-max_hit = 95                      # without any protection
-warning_ticks = 2
-# With antifire potion + protection shield → max 10.
-# With super antifire + shield → 0.
+name = "Dragonfire"
+style = "magic"
+max_hit = 80
+weight_adjacent = 1
+weight_distant = 1
+breath = "vorkath"
 
+# Dragonfire protection reduces the damage, never the venom.
 [[attacks]]
-name = "Venomous Dragonfire"
-style = "dragonfire_special"
-max_hit = 95
-warning_ticks = 2
-on_hit.effect = "inflict_venom"
-on_hit.effect_ignores_dragonfire_protection = true
-# Dragonfire protection reduces damage, NOT venom.
+name = "Venomous dragonfire"
+style = "magic"
+max_hit = 75
+weight_adjacent = 1
+weight_distant = 1
+breath = "vorkath_coloured"
+effect = { kind = "venom", when = "always", damage = 6 }
 
+# Dragonfire protection reduces the damage; prayers still switch off.
 [[attacks]]
-name = "Corrupting Dragonfire"
-style = "dragonfire_special"
-max_hit = 95
-warning_ticks = 2
-on_hit.effect = "deactivate_all_prayers"
-on_hit.effect_ignores_dragonfire_protection = true
+name = "Corrupting dragonfire"
+style = "magic"
+max_hit = 75
+weight_adjacent = 1
+weight_distant = 1
+breath = "vorkath_coloured"
+effect = { kind = "deactivate_prayers", when = "always" }
 
+# Launched at the player's tile; half damage beside it; no protection applies.
 [[attacks]]
-name = "Deadly Dragonfire"
-# "Vertically launched at the player's position. Will often outright
-# kill. Half damage if adjacent. Cannot be defended against with any
-# dragonfire protection."
-style = "dragonfire_aoe"
-max_hit = 121                     # ballpark — wiki: "outright kill"
-warning_ticks = 3
-targets_tile_not_entity = true
-ignores_all_dragonfire_protection = true
-adjacent_tile_damage_scale = 0.5  # half if adjacent, full on-tile
-
-# ---- Phases ------------------------------------------------------------
+name = "Deadly dragonfire"
+style = "magic"
+max_hit = 121
+weight_adjacent = 1
+weight_distant = 1
+hit_delay = 4
+adjacent_pct = 50
+flags = ["tile_target", "ignores_protection"]
 
 [[phases]]
-id = "default"
-enter_at_hp_pct = 100
-allowed_attacks = [
-    "Melee", "Magic", "Ranged",
-    "Standard Dragonfire", "Venomous Dragonfire",
-    "Corrupting Dragonfire", "Deadly Dragonfire",
-    "Zombified Spawn", "Acid Pool",
-]
-# Wiki attack pattern: 6 random standard attacks → 1 special → 6
-# standard → OTHER special → repeat. Tracked via attack-counter.
-
-# ---- Mechanics --------------------------------------------------------
+id = "fight"
 
 [[mechanics]]
-name = "Special Attack Counter"
+name = "Special rotation"
 primitive = "attack_counter_alternate_special"
-# Every 7th attack is a special; specials alternate between
-# Zombified Spawn and Acid Pool.
-params.standard_attacks_between = 6
-params.specials = ["Zombified Spawn", "Acid Pool"]
-params.rotation = "strict_alternate"
+trigger = "attack_count"
+params = { every_n_attacks = 7, specials = ["Acid phase", "Zombified spawn"], random_first = true }
 
+# Acid spat around the arena lands as pools (one under the player) that heal
+# Vorkath for the damage they deal; 25 fireballs follow, one per tick at the
+# player's tile, 25-41 each through any protection. Vorkath takes half
+# damage meanwhile.
 [[mechanics]]
-name = "Zombified Spawn"
-primitive = "spawn_npcs_once"
-trigger = "attack_counter_special"
-# Spawns a Zombified Spawn that walks toward Vorkath and heals him
-# unless killed / pushed away with Crumble Undead.
-params.npc_name = "Zombified Spawn"
-params.count = 1
-params.spawn_tile = "in_front_of_vorkath"
-params.heals_boss_on_contact = 50   # approximate
-params.blocks_boss_damage_until_dead = true
-params.freeze_player_ticks = 24
+name = "Acid phase"
+primitive = "acid_field"
+trigger = "attack_count"
+params = { pool_count = 12, pool_radius = 6, pool_damage_max = 10, pool_leech_pct = 100, pool_ticks = 30, pool_object = "acid", pool_delay = 2, strike_count = 25, strike_delay = 2, strike_min = 25, strike_max = 41, damage_taken_pct = 50, strike_style = "magic" }
 
+# Icy breath freezes the player; the spawn is launched ten tiles away, walks
+# over and explodes for up to 60 scaled by its health. Crumble Undead kills
+# it outright. Vorkath is immune until it is gone, which also ends the
+# freeze.
 [[mechanics]]
-name = "Acid Pool"
-primitive = "covered_arena_environment"
-trigger = "attack_counter_special"
-# Arena floor becomes covered in acid pools; player must run along
-# a safe path while avoiding fireball attacks.
-params.duration_ticks = 24
-params.dot_per_tick = 10
-params.pool_count = 10
-params.safe_path_navigation = true
-params.damage_reduction_pct = 50
-
-[[mechanics]]
-name = "Fireball During Acid"
-primitive = "telegraphed_aoe_tile"
-trigger = "during_mechanic:Acid Pool"
-# During the acid phase Vorkath shoots fireballs at the player's
-# current tile. Player must dodge 2 tiles away.
-period_ticks = 4
-params.target_current_tile = true
-params.warning_ticks = 2
-params.damage_min = 40
-params.damage_max = 60
-
-# ---- Immunity flag ----------------------------------------------------
-# immunevenom = Yes (from infobox_monster); handled via NDEF immunity
-# bits. No override needed here.
+name = "Zombified spawn"
+primitive = "spawn_owned_helpers"
+trigger = "attack_count"
+params = { helper = "spawn", count = 1, spawn_distance = 10, spawn_delay = 3, explode_max = 60, boss_immune = true, freeze_player = true, boss_idle = true, instakill_spell = "Crumble Undead" }

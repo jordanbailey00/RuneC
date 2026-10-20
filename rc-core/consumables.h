@@ -24,6 +24,7 @@ typedef struct RcConsumableDef {
     uint8_t energy, prayer_flat, prayer_percent;
     uint8_t cure; // 1: poison cure / venom downgrade; 2: both
     uint16_t poison_immunity, venom_immunity, stamina_ticks, divine_ticks;
+    uint16_t antifire_ticks, super_antifire_ticks;
     RcConsumeStat stats[SKILL_COUNT];
 } RcConsumableDef;
 

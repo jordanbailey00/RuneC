@@ -21,6 +21,7 @@ typedef enum RcBenchMode {
     RC_BENCH_MAGIC = 3,
     RC_BENCH_RANGED = 4,
     RC_BENCH_CONSUMABLES = 5,
+    RC_BENCH_ENCOUNTER = 6,   // 16 bound KBD runs, one fighting, ~1,000 NPCs
 } RcBenchMode;
 
 static double rc_now_seconds(void) {
@@ -41,6 +42,7 @@ static int rc_parse_positive(const char *arg, const char *value, int fallback) {
 
 static const char *rc_mode_name(RcBenchMode mode) {
     return mode == RC_BENCH_PRAYER ? "prayer"
+         : mode == RC_BENCH_ENCOUNTER ? "encounter"
          : mode == RC_BENCH_CONSUMABLES ? "consumables"
          : mode == RC_BENCH_MAGIC ? "magic" : mode == RC_BENCH_RANGED ? "ranged"
          : mode == RC_BENCH_COMBAT ? "combat" : "idle";
@@ -73,6 +75,11 @@ static RcWorld *rc_make_world(int seed, RcBenchMode mode, int *npc_def_idx) {
         cfg.spells_path = "data/defs/spells.bin";
     }
     if (mode == RC_BENCH_CONSUMABLES) cfg.subsystems |= RC_SUB_CONSUMABLES;
+    if (mode == RC_BENCH_ENCOUNTER) {
+        cfg.subsystems |= RC_SUB_ENCOUNTER;
+        cfg.encounters_path = "data/defs/encounters.bin";
+        cfg.npc_capacity = RC_WORLD_NPC_CAPACITY_SIM;
+    }
 
     RcWorld *world = rc_world_create_config(&cfg);
     if (!world) {
@@ -114,7 +121,31 @@ static RcWorld *rc_make_world(int seed, RcBenchMode mode, int *npc_def_idx) {
         rc_player_set_prayer(world, RC_PRAYER_PROTECT_FROM_MELEE);
         rc_player_set_prayer(world, RC_PRAYER_ULTIMATE_STRENGTH);
     }
-    if (mode != RC_BENCH_IDLE) {
+    if (mode == RC_BENCH_ENCOUNTER) {
+        rc_content_combat_register(world);
+        rc_test_open_mapsquare(world, 3200, 3200, 0);
+        int kbd = rc_npc_def_find(239);
+        if (*npc_def_idx < 0) *npc_def_idx = rc_find_bench_npc_def();
+        for (int i = 0; kbd >= 0 && i < 16; i++) {
+            int idx = rc_npc_spawn(world, kbd, 3204 + (i % 4) * 12,
+                                   3204 + (i / 4) * 12, 0);
+            if (idx < 0) break;
+            world->npcs[idx].disable_wander = true;
+        }
+        for (int i = 0; world->npc_count < world->npc_capacity - 8 && i < 960; i++)
+            rc_npc_spawn(world, *npc_def_idx, 3200 + i % 64, 3250 + i / 64, 0);
+        if (kbd < 0 || world->npc_count < 900) {
+            fprintf(stderr, "failed to spawn encounter benchmark NPCs\n");
+            exit(1);
+        }
+        world->npcs[0].current_hp = world->npcs[0].spawn_hp = 1000000000;
+        world->player.x = 3206;
+        world->player.y = 3203;
+        if (!rc_combat_start_player_vs_npc(world, 0, world->npcs[0].uid)) {
+            fprintf(stderr, "failed to start encounter benchmark combat\n");
+            exit(1);
+        }
+    } else if (mode != RC_BENCH_IDLE) {
         rc_test_open_mapsquare(world, 3200, 3200, 0);
         if (*npc_def_idx < 0) *npc_def_idx = rc_find_bench_npc_def();
         int npc_idx = rc_npc_spawn(world, *npc_def_idx, 3201, 3200, 0);
@@ -136,7 +167,7 @@ static RcWorld *rc_make_world(int seed, RcBenchMode mode, int *npc_def_idx) {
 
 static void rc_print_usage(const char *argv0) {
     fprintf(stderr,
-            "usage: %s [--mode idle|combat|prayer|magic|ranged|consumables] [--envs N] [--steps N] [--warmup N]\n",
+            "usage: %s [--mode idle|combat|prayer|magic|ranged|consumables|encounter] [--envs N] [--steps N] [--warmup N]\n",
             argv0);
 }
 
@@ -161,6 +192,8 @@ int main(int argc, char **argv) {
                 mode = RC_BENCH_RANGED;
             } else if (strcmp(argv[i], "consumables") == 0) {
                 mode = RC_BENCH_CONSUMABLES;
+            } else if (strcmp(argv[i], "encounter") == 0) {
+                mode = RC_BENCH_ENCOUNTER;
             } else {
                 rc_print_usage(argv[0]);
                 return 2;

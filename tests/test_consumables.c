@@ -189,6 +189,33 @@ static void effects_and_expiry(void) {
     rc_world_destroy(w);
 }
 
+// Antifire families feed the dragonfire tables (rc-content/combat/dragonfire.c).
+static void antifire_timers(void) {
+    RcWorld *w = make_world();
+    RcPlayer *p = &w->player;
+    RcTick start = w->tick;
+    int potion = add(w,2452);
+    assert(consume(w,potion,1) == RC_CONSUME_OK);
+    assert(p->antifire_until == start+600 && !p->super_antifire_until);
+    assert(p->inventory[potion].item_id == 2454 && "one dose is used");
+    w->tick = p->potion_ready_tick;
+    start = w->tick;
+    assert(consume(w,add(w,22209),1) == RC_CONSUME_OK);
+    assert(p->super_antifire_until == start+600 && p->antifire_until > w->tick);
+    w->tick = p->potion_ready_tick;
+    start = w->tick;
+    int last = add(w,11957);
+    assert(consume(w,last,1) == RC_CONSUME_OK);
+    assert(p->antifire_until == start+1200 && p->inventory[last].item_id == 229);
+    w->tick = p->potion_ready_tick;
+    start = w->tick;
+    assert(consume(w,add(w,21987),1) == RC_CONSUME_OK);
+    assert(p->super_antifire_until == start+300);
+    rc_combat_reset_player_life(w);
+    assert(!p->antifire_until && !p->super_antifire_until);
+    rc_world_destroy(w);
+}
+
 static void toxins_and_lifecycle(void) {
     RcWorld *w = make_world();
     RcPlayer *p = &w->player;
@@ -262,10 +289,10 @@ static void failures_are_atomic(void) {
     add(w,385);
     rc_world_tick(w);
     assert(w->player.consume_result == RC_CONSUME_STALE && !w->player.consume_sequence);
-    int unsupported = add(w,2452); // Antifire must not silently consume without a breath reader.
+    int unsupported = add(w,10925); // Sanfew needs disease rules; it must not silently consume.
     assert(!rc_player_drink(w,unsupported));
     assert(w->player.consume_result == RC_CONSUME_UNSUPPORTED);
-    assert(w->player.inventory[unsupported].item_id == 2452);
+    assert(w->player.inventory[unsupported].item_id == 10925);
     RcConsumableDef bad = *rc_consumable_get(w,385);
     bad.replacement_id = INT_MAX;
     assert(!rc_consumables_register(w,&bad,1));
@@ -479,12 +506,13 @@ int main(int argc, char **argv) {
     doses_and_catalog();
     timing_and_order();
     effects_and_expiry();
+    antifire_timers();
     toxins_and_lifecycle();
     failures_are_atomic();
     movement_and_energy();
     boundaries_and_refresh();
     deterministic_replay();
     consumption_damage_delivery();
-    puts("consumables: doses, ordering, effects, toxins, expiry and atomic failures passed");
+    puts("consumables: doses, ordering, effects, antifire, toxins, expiry and atomic failures passed");
     return 0;
 }

@@ -103,7 +103,7 @@ static RcInteractionHandlerResult ralos_option(RcWorld *world, RcPlayer *p,
     return rc_interaction_result_complete();
 }
 
-void rc_content_ralos_register(RcWorld *world) {
+int rc_content_ralos_register(RcWorld *world) {
     const int ids[] = {RALOS_EMPTY, RALOS_CHARGED};
     for (unsigned i = 0; i < sizeof(ids) / sizeof(ids[0]); i++) {
         int first_op = ids[i] == RALOS_EMPTY ? RC_INTERACTION_USE_ON : RC_INTERACTION_OP3;
@@ -115,16 +115,17 @@ void rc_content_ralos_register(RcWorld *world) {
             if (op == RC_INTERACTION_USE_ON) key.source_item_id = SUNFIRE;
             if (!rc_interaction_register_world_handler(world, &key, ralos_option, NULL)) {
                 fprintf(stderr, "ralos: could not register inventory handler\n");
-                abort();
+                return 0;
             }
             if (op == RC_INTERACTION_USE_ON) {
                 key.definition_id = SUNFIRE;
                 key.source_item_id = ids[i];
                 if (!rc_interaction_register_world_handler(world, &key, ralos_option, NULL)) {
                     fprintf(stderr, "ralos: could not register charging handler\n");
-                    abort();
+                    return 0;
                 }
             }
         }
     }
+    return 1;
 }

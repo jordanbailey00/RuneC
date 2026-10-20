@@ -7,6 +7,6 @@ int rc_content_ralos_hits(RcWorld *world, const RcNpc *target,
                           const RcCombatCalc *calc, bool special,
                           RcPendingHit *hits, int capacity, const char **failure);
 int rc_content_ralos_consume_charge(RcWorld *world, int weapon_id);
-void rc_content_ralos_register(RcWorld *world);
+int rc_content_ralos_register(RcWorld *world);
 
 #endif

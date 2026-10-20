@@ -1,113 +1,65 @@
-# King Black Dragon — wilderness lair boss. Tests: multi-variant
-# dragonfire breath with per-variant on-hit effects, antifire
-# protection stack, melee vs breath distribution.
+# King Black Dragon (oracle WB-031). Evidence: OSRS Wiki King Black
+# Dragon/Strategies r15354852 and Dragonfire; identity from B237 NDEF
+# (239 = boss; 2642 is a cutscene actor, 6502 Clan Cup, 12440 a later copy).
 
 name = "King Black Dragon"
 slug = "king_black_dragon"
-npc_ids = [239, 2642]
-source_pages = ["King Black Dragon", "King Black Dragon/Strategies"]
+support = "full"
+respawn_ticks = 16
+source_pages = ["King Black Dragon", "King Black Dragon/Strategies", "Dragonfire"]
 
-# ---- Attack styles -----------------------------------------------------
+[[forms]]
+id = "dragon"
+npc_id = 239
+name = "King Black Dragon"
+binds = true
 
+# In melee distance: 1/3 melee, 1/3 fiery breath, 1/9 each special breath.
+# Otherwise: 1/2 fiery breath, 1/6 each special breath. Breath damage comes
+# from the content dragonfire table (rc-content/combat/dragonfire.c), which
+# already accounts for Protect from Magic.
 [[attacks]]
-name = "Melee Bite"
-style = "melee"
-accuracy_roll = "stab"
+name = "Melee"
+style = "stab"
 max_hit = 25
-warning_ticks = 0
-# Protect from Melee → full block.
+weight_adjacent = 3
 
 [[attacks]]
-name = "Fiery Breath"
-style = "dragonfire"              # custom style for antifire stack
+name = "Fiery breath"
+style = "magic"
 max_hit = 65
-warning_ticks = 2
-# Dragonfire damage reduced by:
-#   anti-dragon shield / dragonfire shield / wyvern shield (partial)
-#   antifire potion / super antifire (partial)
-#   Protect from Magic (partial)
-#   Full stack (best antifire shield + super antifire pot + Protect
-#   from Magic): 0 damage.
+weight_adjacent = 3
+weight_distant = 3
+breath = "kbd_fiery"
+
+# Special breath effects land 1/2 of the time, 1/8 behind an antifire shield
+# and/or Protect from Magic.
+[[attacks]]
+name = "Toxic breath"
+style = "magic"
+max_hit = 50
+weight_adjacent = 1
+weight_distant = 1
+breath = "kbd_special"
+effect = { kind = "poison", when = "always", damage = 8, chance = 0.5, chance_protected = 0.125 }
 
 [[attacks]]
-name = "Toxic Breath"
-style = "dragonfire_special"
+name = "Shocking breath"
+style = "magic"
 max_hit = 50
-warning_ticks = 2
-on_hit.effect = "inflict_poison"
-on_hit.effect_chance = 0.5        # 50% un-mitigated
-on_hit.effect_chance_protected = 0.125  # 1/8 with protection
-on_hit.poison_starting_damage = 8
+weight_adjacent = 1
+weight_distant = 1
+breath = "kbd_special"
+effect = { kind = "drain_all_stats", when = "always", levels = 2, chance = 0.5, chance_protected = 0.125 }
 
 [[attacks]]
-name = "Shocking Breath"
-style = "dragonfire_special"
+name = "Icy breath"
+style = "magic"
 max_hit = 50
-warning_ticks = 2
-on_hit.effect = "drain_all_stats"
-on_hit.effect_chance = 0.5
-on_hit.effect_chance_protected = 0.125
-on_hit.drain_amount = 2           # -2 all stats
-
-[[attacks]]
-name = "Icy Breath"
-style = "dragonfire_special"
-max_hit = 50
-warning_ticks = 2
-on_hit.effect = "freeze_player"
-on_hit.effect_chance = 0.5
-on_hit.effect_chance_protected = 0.125
-on_hit.freeze_ticks = 10          # 6 seconds
-
-# ---- Phases ------------------------------------------------------------
+weight_adjacent = 1
+weight_distant = 1
+breath = "kbd_special"
+effect = { kind = "freeze", when = "always", ticks = 10, chance = 0.5, chance_protected = 0.125 }
 
 [[phases]]
-id = "default"
-enter_at_hp_pct = 100
-allowed_attacks = ["Melee Bite", "Fiery Breath",
-                   "Toxic Breath", "Shocking Breath", "Icy Breath"]
-# Wiki: in melee range, 1/3 melee, 1/3 fire breath, 1/3 one of the
-# three special breaths (each 1/9).
-# Outside melee range: 50% fire, 50% one of the three specials (each 1/6).
-adjacency_style_weights = { melee = 3, fire_breath = 3, special_breath = 3 }
-non_adjacent_style_weights = { fire_breath = 3, special_breath = 3 }
-# Special-breath selection uniform across the three specials.
-special_breath_distribution = { toxic = 1, shocking = 1, icy = 1 }
-
-# ---- Protections -------------------------------------------------------
-# Dragonfire protection is orthogonal to style protection.
-# Modeled as a damage_scale stack: final damage = base × antifire_scale.
-[[damage_modifiers]]
-condition = "player_has_antifire_shield"
-applies_to_styles = ["dragonfire", "dragonfire_special"]
-damage_scale = 0.333
-
-[[damage_modifiers]]
-condition = "player_has_antifire_potion"
-applies_to_styles = ["dragonfire", "dragonfire_special"]
-damage_scale = 0.5
-
-[[damage_modifiers]]
-condition = "player_has_super_antifire_potion"
-applies_to_styles = ["dragonfire", "dragonfire_special"]
-damage_scale = 0.0                # full block with super antifire + shield
-
-[[protections]]
-attack = "Fiery Breath"
-player_prayer = "protect_from_magic"
-damage_scale = 0.5
-
-[[protections]]
-attack = "Toxic Breath"
-player_prayer = "protect_from_magic"
-damage_scale = 0.5
-
-[[protections]]
-attack = "Shocking Breath"
-player_prayer = "protect_from_magic"
-damage_scale = 0.5
-
-[[protections]]
-attack = "Icy Breath"
-player_prayer = "protect_from_magic"
-damage_scale = 0.5
+id = "fight"

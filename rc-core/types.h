@@ -29,8 +29,6 @@
 #define RC_SLAYER_PREFER_SLOTS 8
 #define RC_MAX_PLAYER_COMMANDS 32
 
-typedef uint64_t RcTick;
-
 typedef enum {
     RC_PLAYER_COMMAND_NONE = 0,
     RC_PLAYER_COMMAND_WALK_TO,
@@ -498,6 +496,7 @@ typedef enum {
 enum {
     RC_HIT_SUPPRESS_ENCOUNTER_EFFECTS = 1u << 0,
     RC_HIT_SOURCE_EXPIRED = 1u << 1,
+    RC_HIT_BREATH_PROTECTED = 1u << 2,  // launch saw breath protection
 };
 
 enum {
@@ -511,19 +510,22 @@ enum {
     RC_HIT_SOURCE_PLAYER = -1,
 };
 
+// Field order keeps the struct at 56 bytes (no padding growth).
 typedef struct {
     int active;
     int damage;
     int max_hit;
     int defence_drain;
     RcTick apply_tick;
-    bool accurate;
     int attack_style;       // RcCombatStyle
     int source_idx;         // player, status, or NPC uid
     int prayer_snapshot;    // locked prayer at snapshot tick
+    uint32_t enc_generation; // launching encounter run generation
     RcTick prayer_lock_tick;
+    bool accurate;
     uint8_t hit_type;
     uint8_t flags;
+    uint8_t enc_attack;     // encounter attack index + 1; zero = none
     uint16_t spell_key;     // spell index + 1; zero means no spellbook cast
     uint16_t weapon_id;     // launch-time weapon, zero for unarmed
 } RcPendingHit;
@@ -576,6 +578,8 @@ typedef struct {
     bool attack_prepared;
     uint16_t prepared_min_hit, prepared_max_hit;
     uint32_t prepared_attack_flags;
+    uint8_t prepared_enc_attack;        // encounter attack index + 1
+    uint32_t prepared_enc_generation;   // run generation at selection
     uint32_t flags;
     int attack_range;
     int distance_to_target;
@@ -618,6 +622,7 @@ typedef enum {
     RC_COMBAT_ACTION_SPELL = 2,
     RC_COMBAT_ACTION_NPC = 3,
     RC_COMBAT_ACTION_SPECIAL = 4,
+    RC_COMBAT_ACTION_ENCOUNTER = 5,   // action_key_name = encounter attack/part
 } RcCombatActionKind;
 
 typedef struct {
@@ -829,6 +834,7 @@ typedef struct {
     // Timers
     RcTick food_ready_tick, potion_ready_tick, combo_ready_tick;
     RcTick stamina_until;
+    RcTick antifire_until, super_antifire_until;
     RcTick delayed_food_tick;
     int delayed_food_heal, delayed_food_energy;
     bool delayed_food_cure;
@@ -985,6 +991,7 @@ typedef enum {
 // NPC (live instance)
 typedef struct {
     int def_id;             // index into definitions table
+    int form_def;           // encounter form override: def index + 1; 0 = base
     int uid;
     uint64_t spawn_key;     // stable indexed-spawn identity; 0 = dynamic
     int x, y, plane;
@@ -1026,6 +1033,7 @@ typedef struct {
     bool disable_wander;
     bool force_player_max_hit;
     bool player_untargetable;
+    bool owner_controlled;  // owner drives it; no wander/hunt/attacks
     bool player_loot_credit;
     bool loot_prepared;
     bool active;
@@ -1173,6 +1181,12 @@ typedef struct {
                                    int default_speed);
     int (*modify_incoming_damage_after_protection)(
         struct RcWorld *world, const RcPendingHit *hit, int damage);
+    // Encounter breath attacks (RcEncounterAttack.breath): max hit for the
+    // breath profile against the player's current protection. `resisted`
+    // is the magic accuracy outcome; *shielded reports shield or Protect
+    // from Magic coverage. Negative = unknown profile (attack rejected).
+    int (*npc_breath_max_hit)(const struct RcWorld *world, const RcNpc *npc,
+                              uint8_t breath, bool resisted, bool *shielded);
     int (*player_special_energy_cost)(const struct RcWorld *world,
                                       const RcPlayer *player,
                                       const RcNpc *target, int weapon_id);
@@ -1253,6 +1267,8 @@ typedef struct RcWorld {
     uint32_t initial_seed;
     bool multi_combat;
     RcCombatContentHooks combat_hooks;
+    // Content installer re-run by rc_world_reset (see rc_world_install_content).
+    int (*content_installer)(struct RcWorld *world);
     const struct RcConsumableDef *consumables;
     int consumable_count;
     int (*consumable_prayer_bonus)(const RcPlayer *player);
