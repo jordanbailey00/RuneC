@@ -564,9 +564,8 @@ static RcPlayerAttackProfiles select_player_attack_profiles(
 }
 
 static int has_player_attack_los(const RcWorld *world, const RcPlayer *p,
-                                 const RcNpc *npc, RcCombatStyle style) {
-    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-    int size = def && def->size > 0 ? def->size : 1;
+                                 const RcNpc *npc, int size,
+                                 RcCombatStyle style) {
     if (style_is_melee(style))
         return rc_has_line_of_walk_rect(&world->map, p->x, p->y, 1, 1,
                                          npc->x, npc->y, size, size, p->plane);
@@ -574,20 +573,34 @@ static int has_player_attack_los(const RcWorld *world, const RcPlayer *p,
                            npc->x, npc->y, size, size, p->plane);
 }
 
+// Whether the player can attack the NPC from where they stand. It runs up to
+// three times a tick (state sync, approach, attack), so the footprint is
+// resolved once and distance and line of sight only when they decide it or
+// the caller asks.
 static int player_can_attack_npc_now(const RcWorld *world, const RcPlayer *p,
                                      const RcNpc *npc, int range,
                                      RcCombatStyle style, int *distance,
                                      int *los) {
-    int dist = distance_player_to_npc(world, p, npc);
-    if (distance) *distance = dist;
+    if (distance) *distance = INT_MAX;
     if (los) *los = 0;
-    if (style_is_melee(style)
-            && point_in_npc_footprint(world, npc, p->x, p->y)) {
+    int size = npc_footprint_size(world, npc);
+    RcTileBounds bounds;
+    if (!rc_tile_bounds_from_origin_size(npc->x, npc->y, size, size,
+                                         npc->plane, &bounds))
         return 0;
+    bool melee = style_is_melee(style);
+    bool adjacent_melee = melee && range == 1;
+    int dist = INT_MAX;
+    int tx, ty;
+    if ((distance || !adjacent_melee) && p->plane == npc->plane
+            && rc_tile_rect_closest_point(&bounds.rect, p->x, p->y, &tx, &ty)) {
+        int d = rc_tile_distance(p->x, p->y, p->plane, tx, ty, npc->plane);
+        if (d >= 0) dist = d;
     }
-    if (style_is_melee(style) && range == 1) {
-        const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-        int size = def && def->size > 0 ? def->size : 1;
+    if (distance) *distance = dist;
+    if (melee && rc_tile_rect_contains(&bounds.rect, p->x, p->y))
+        return 0;
+    if (adjacent_melee) {
         RcRouteTarget target = rc_route_target_rectangle(
             npc->x, npc->y, size, size, 1, 1, false, false);
         int reached = p->plane == npc->plane && rc_route_target_reached(
@@ -595,43 +608,110 @@ static int player_can_attack_npc_now(const RcWorld *world, const RcPlayer *p,
         if (los) *los = reached;
         return reached;
     }
-    int line = has_player_attack_los(world, p, npc, style);
+    if (!los && dist > range) return 0;
+    int line = has_player_attack_los(world, p, npc, size, style);
     if (los) *los = line;
     return dist <= range && line;
 }
 
-static int choose_player_attack_tile(const RcWorld *world, const RcPlayer *p,
-                                     const RcNpc *npc, int range,
-                                     RcCombatStyle style,
-                                     RcRoute *out_route) {
-    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-    int size = def && def->size > 0 ? def->size : 1;
-    if (!world || !p || !npc || !out_route || range < 1
-            || range >= RC_WORLD_SIZE) return 0;
-    RcRouteTarget target = rc_route_target_rectangle(
-        npc->x, npc->y, size, size, 1, range, false,
-        style_needs_los(style));
-    target.require_line_of_walk = style_is_melee(style) && range > 1;
-    *out_route = rc_find_route(&world->map, p->x, p->y, 1, 1,
-                               p->plane, &target, false);
-    return rc_route_status_admitted(out_route->status);
-}
-
-static int route_player_toward_npc(RcWorld *world, RcPlayer *p,
-                                   const RcNpc *npc, int range) {
-    RcRoute route = {0};
-    if (!choose_player_attack_tile(world, p, npc, range, p->combat_style,
-                                   &route)) {
-        rc_player_route_clear(p, RC_MOVEMENT_NO_ROUTE);
-        return 0;
-    }
-    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-    int size = def && def->size > 0 ? def->size : 1;
+// The tiles the player may attack the NPC from: within `range` of its whole
+// footprint, with line of sight for ranged and magic and line of walk for
+// extended melee.
+static RcRouteTarget player_attack_target(const RcWorld *world,
+                                          const RcPlayer *p, const RcNpc *npc,
+                                          int range) {
+    int size = npc_footprint_size(world, npc);
     RcRouteTarget target = rc_route_target_rectangle(
         npc->x, npc->y, size, size, 1, range, false,
         style_needs_los(p->combat_style));
     target.require_line_of_walk = style_is_melee(p->combat_style) && range > 1;
+    return target;
+}
+
+static int route_player_toward_npc(RcWorld *world, RcPlayer *p,
+                                   const RcNpc *npc, int range) {
+    RcRouteTarget target = player_attack_target(world, p, npc, range);
+    RcRoute route = {0};
+    if (range >= 1 && range < RC_WORLD_SIZE)
+        route = rc_find_route(&world->map, p->x, p->y, 1, 1, p->plane,
+                              &target, false);
+    if (!rc_route_status_admitted(route.status)) {
+        rc_player_route_clear(p, RC_MOVEMENT_NO_ROUTE);
+        p->attack_unroutable_tick = world->tick + 1;
+        return 0;
+    }
     return rc_player_route_admit(p, &route, &target, 1, 1, false);
+}
+
+static bool same_attack_target(const RcRouteTarget *a, const RcRouteTarget *b) {
+    return a->kind == b->kind && a->x == b->x && a->y == b->y
+        && a->width == b->width && a->height == b->height
+        && a->min_distance == b->min_distance
+        && a->max_distance == b->max_distance
+        && a->require_los == b->require_los
+        && a->require_line_of_walk == b->require_line_of_walk;
+}
+
+static RcNpc *find_npc_by_uid(struct RcWorld *world, int uid);
+
+// The attack records what decided an in-reach verdict. While that still
+// matches on the next tick, a standing attacker is in reach without a
+// re-check; the attack re-checks after movement regardless, so a change the
+// key misses (a door, say) only delays the next step by a tick. A new form
+// of the target ends the attack, so it needs no key.
+static uint32_t reach_tile_key(int x, int y, int plane) {
+    return (uint32_t)x | (uint32_t)y << RC_WORLD_COORD_BITS
+         | (uint32_t)plane << (2 * RC_WORLD_COORD_BITS);
+}
+
+static void stamp_attack_reach(const RcWorld *world, RcPlayer *p,
+                               const RcNpc *npc) {
+    p->attack_reach.tick = world->tick + 1;
+    p->attack_reach.npc_tile = reach_tile_key(npc->x, npc->y, npc->plane);
+    p->attack_reach.tile = reach_tile_key(p->x, p->y, p->plane);
+    p->attack_reach.npc_slot = (int)(npc - world->npcs);
+    p->attack_reach.weapon = p->equipment[EQUIP_WEAPON].item_id;
+    p->attack_reach.style_idx = p->attack_style_idx;
+    p->attack_reach.autocast = p->autocast_spell;
+    p->attack_reach.manual_cast = p->manual_spell_cast;
+}
+
+static bool attack_reach_unchanged(const RcWorld *world, const RcPlayer *p) {
+    int slot = p->attack_reach.npc_slot;
+    if (p->attack_reach.tick != world->tick || p->attack_reach.tick == 0
+            || slot < 0 || slot >= world->npc_count)
+        return false;
+    const RcNpc *npc = &world->npcs[slot];
+    return npc->active && npc->uid == p->attack_target
+        && p->attack_reach.npc_tile == reach_tile_key(npc->x, npc->y,
+                                                      npc->plane)
+        && p->attack_reach.tile == reach_tile_key(p->x, p->y, p->plane)
+        && p->attack_reach.weapon == p->equipment[EQUIP_WEAPON].item_id
+        && p->attack_reach.style_idx == p->attack_style_idx
+        && p->attack_reach.autocast == p->autocast_spell
+        && p->attack_reach.manual_cast == p->manual_spell_cast;
+}
+
+bool rc_combat_player_approach(RcWorld *world) {
+    if (!world) return true;
+    RcPlayer *p = &world->player;
+    if (p->attack_target < 0) return true;
+    bool walking = p->route_idx < p->route_len;
+    if (!walking && attack_reach_unchanged(world, p)) return true;
+    RcNpc *target = find_npc_by_uid(world, p->attack_target);
+    if (!target || !rc_npc_def_for_npc(world, target)) return true;
+    rc_refresh_player_combat_style(p);
+    if (p->combat_style == COMBAT_NONE) return true;
+    int range = rc_player_attack_range(p);
+    if (player_can_attack_npc_now(world, p, target, range, p->combat_style,
+                                  NULL, NULL)) {
+        if (walking) rc_player_route_clear(p, RC_MOVEMENT_ARRIVED);
+        return false;
+    }
+    RcRouteTarget want = player_attack_target(world, p, target, range);
+    if (!walking || !same_attack_target(&p->route_target, &want))
+        (void)route_player_toward_npc(world, p, target, range);
+    return true;
 }
 
 static int npc_can_attack_player_now(const RcWorld *world, const RcNpc *npc,
@@ -1381,10 +1461,21 @@ static void combat_tick_player_attack(RcWorld *world) {
     int range = rc_player_attack_range(p);
     if (!player_can_attack_npc_now(world, p, target, range,
                                    p->combat_style, NULL, NULL)) {
-        if (!route_player_toward_npc(world, p, target, range))
+        // Keep a route to the target's current footprint; a search the
+        // approach already lost this tick (nothing has moved since) fails
+        // the same way.
+        RcRouteTarget want = player_attack_target(world, p, target, range);
+        bool routed = p->route_idx < p->route_len
+                   && same_attack_target(&p->route_target, &want);
+        bool unroutable = p->attack_unroutable_tick == world->tick + 1;
+        if (!routed && (unroutable
+                        || !route_player_toward_npc(world, p, target, range)))
             reject_launch(world, player_actor, "no reachable attack tile");
         return;
     }
+    stamp_attack_reach(world, p, target);
+    // In reach: the approach is over even if its route had steps left.
+    if (p->route_idx < p->route_len) rc_player_route_clear(p, RC_MOVEMENT_ARRIVED);
     if (p->attack_timer > 0) return;
     if (target->num_pending_hits >= RC_MAX_PENDING_HITS
             || world->combat_attack_event_count >= RC_MAX_COMBAT_ATTACK_EVENTS) {

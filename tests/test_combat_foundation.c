@@ -13,12 +13,12 @@
 #include <stdio.h>
 #include <string.h>
 
-static RcWorld *combat_world_with(uint32_t subsystems) {
+static RcWorld *combat_world_sized(uint32_t subsystems, int size) {
     memset(g_npc_defs, 0, sizeof(g_npc_defs));
     g_npc_def_count = 1;
     RcNpcDef *def = &g_npc_defs[0];
     def->id = 940000;
-    def->size = 1;
+    def->size = size;
     def->hitpoints = 1000;
     def->stats[0] = 99;
     def->stats[1] = 1;
@@ -42,6 +42,10 @@ static RcWorld *combat_world_with(uint32_t subsystems) {
     assert(index == 0);
     world->npcs[0].disable_wander = true;
     return world;
+}
+
+static RcWorld *combat_world_with(uint32_t subsystems) {
+    return combat_world_sized(subsystems, 1);
 }
 
 static RcWorld *combat_world(void) {
@@ -164,6 +168,116 @@ static void test_melee_reach(void) {
     w->map.regions[0].tiles[0][9][8].collision_flags = COL_LOC;
     assert(!rc_route_target_reached(&w->map, 0, 3208, 3208, 1, 1, &target));
     assert(rc_has_los_rect(&w->map, 3208, 3208, 1, 1, 3210, 3208, 1, 1, 0));
+    rc_world_destroy(w);
+}
+
+// Gap from the player's tile to a size x size footprint (0 = under it) and
+// whether the player shares an edge with it (melee needs a side, not a corner).
+static int footprint_gap(const RcNpc *n, int size, int x, int y, bool *side) {
+    int cx = x < n->x ? n->x : x > n->x + size - 1 ? n->x + size - 1 : x;
+    int cy = y < n->y ? n->y : y > n->y + size - 1 ? n->y + size - 1 : y;
+    int dx = x > cx ? x - cx : cx - x, dy = y > cy ? y - cy : cy - y;
+    if (side) *side = (dx == 1 && dy == 0) || (dx == 0 && dy == 1);
+    return dx > dy ? dx : dy;
+}
+
+static int player_swings(RcWorld *w) {
+    int count = 0, swings = 0;
+    const RcCombatAttackEvent *events = rc_combat_attack_events(w, &count);
+    for (int i = 0; i < count; i++)
+        swings += events[i].source_kind == RC_COMBAT_ACTOR_PLAYER;
+    return swings;
+}
+
+// A melee approach to a large NPC that moves while the player walks: the
+// player re-paths to its current footprint, stops on the first side tile
+// it reaches, never steps under it and swings only from a side.
+static void test_melee_approach_to_moving_large_npc(void) {
+    RcWorld *w = combat_world_sized(RC_SUB_COMBAT, 4);
+    RcNpc *n = &w->npcs[0];
+    assert(rc_npc_def_for_npc(w, n)->size == 4);
+    n->x = 3212;
+    n->y = 3208;
+    n->disable_wander = false;
+    w->player.x = 3206;
+    w->player.y = 3209;
+    w->player.max_hp = w->player.current_hp = 99000;
+    w->player.skills.base_level[SKILL_HITPOINTS] = 99;
+    assert(rc_combat_start_player_vs_npc(w, 0, n->uid));
+    assert(rc_combat_start_npc_vs_player(w, n->uid, 0));
+    int swings = 0, still = 0;
+    for (int t = 0; t < 16; t++) {
+        int px = w->player.x, py = w->player.y, nx = n->x, ny = n->y;
+        rc_world_tick(w);
+        bool side = false;
+        int gap = footprint_gap(n, 4, w->player.x, w->player.y, &side);
+        assert(gap >= 1 && "the player never stands under the NPC");
+        if (player_swings(w)) {
+            assert(gap == 1 && side && "melee lands only from a side tile");
+            swings++;
+        }
+        if (swings && n->x == nx && n->y == ny)
+            still += w->player.x == px && w->player.y == py;
+    }
+    assert(swings >= 3 && still >= 8 && "once beside it, the player holds its tile");
+    // The NPC steps away: the player follows its new footprint.
+    w->npcs[0].combat.attack_prepared = false;
+    n->disable_wander = true;
+    n->x += 2;
+    n->target_uid = -1;
+    for (int t = 0; t < 4; t++) rc_world_tick(w);
+    bool side = false;
+    assert(footprint_gap(n, 4, w->player.x, w->player.y, &side) == 1 && side);
+    // Under the NPC, melee first steps out to the nearest side tile.
+    w->player.x = n->x + 1;
+    w->player.y = n->y + 1;
+    rc_player_route_clear(&w->player, RC_MOVEMENT_NO_ROUTE);
+    for (int t = 0; t < 3; t++) {
+        rc_world_tick(w);
+        if (player_swings(w)) {
+            assert(footprint_gap(n, 4, w->player.x, w->player.y, &side) == 1 && side);
+        }
+    }
+    assert(footprint_gap(n, 4, w->player.x, w->player.y, &side) == 1 && side);
+    rc_world_destroy(w);
+}
+
+// Walking to a standing target keeps one route (no search per tick), and a
+// target with no reachable side ends the attack after a single search.
+static void test_melee_approach_route_reuse_and_unreachable(void) {
+    RcWorld *w = combat_world_sized(RC_SUB_COMBAT, 2);
+    RcNpc *n = &w->npcs[0];
+    n->x = 3216;
+    n->y = 3208;
+    w->player.x = 3207;
+    w->player.y = 3208;
+    assert(rc_combat_start_player_vs_npc(w, 0, n->uid));
+    int ticks = 0;
+    bool side = false;
+    while (footprint_gap(n, 2, w->player.x, w->player.y, &side) != 1 || !side) {
+        rc_world_tick(w);
+        assert(++ticks < 12 && "reaches the target's side");
+        assert((w->player.movement_result == RC_MOVEMENT_MOVED
+                || w->player.movement_result == RC_MOVEMENT_ARRIVED)
+               && "the route is followed, not searched again");
+    }
+    assert(ticks > 3 && w->player.attack_target == n->uid);
+
+    // Walls on every side tile of the footprint: no melee tile exists.
+    w->player.x = 3207;
+    w->player.y = 3208;
+    rc_player_route_clear(&w->player, RC_MOVEMENT_NO_ROUTE);
+    for (int i = 0; i < 2; i++) {
+        for (int k = 0; k < 4; k++) {
+            int x = k < 2 ? n->x + i : (k == 2 ? n->x - 1 : n->x + 2);
+            int y = k < 2 ? (k == 0 ? n->y - 1 : n->y + 2) : n->y + i;
+            w->map.regions[0].tiles[0][x - 3200][y - 3200].collision_flags = COL_BLOCK_WALK;
+        }
+    }
+    rc_world_tick(w);
+    assert(w->player.attack_target == -1 && w->player.x == 3207 && w->player.y == 3208);
+    assert(w->player.combat.failure_reason
+           && strcmp(w->player.combat.failure_reason, "no reachable attack tile") == 0);
     rc_world_destroy(w);
 }
 
@@ -530,6 +644,8 @@ static void test_projectile_cannot_target_reborn_source(void) {
 }
 
 int main(void) {
+    test_melee_approach_to_moving_large_npc();
+    test_melee_approach_route_reuse_and_unreachable();
     test_ordinary_protection_snapshot();
     test_selection_and_cancellation_ownership();
     test_npc_repeat_interval();

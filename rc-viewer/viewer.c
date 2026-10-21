@@ -281,6 +281,13 @@ typedef struct {
     int projectile_progress;
     int sequence_index;
     int sequence_count;
+    // Flight as the client steps it: position (world tiles, scene height),
+    // vertical velocity (tiles per client cycle) and the client time of the
+    // last step. Each step re-aims at the target's current position over
+    // the remaining time.
+    bool flying;
+    float flight_x, flight_y, flight_h, flight_vh;
+    float flight_time;
 } ViewerCombatProjectile;
 
 typedef struct {
@@ -432,6 +439,7 @@ typedef struct {
 
     int show_grid;
     int show_collision;
+    int show_npc_footprints;
     int god_mode;
     RuneCUiState ui;
     RuneCInputFeedback input_feedback;
@@ -1937,6 +1945,38 @@ static void emit_route_tile_edges(ViewerState *v, int plane,
         Vector3 next = c[(i + 1) % 4];
         rlVertex3f(c[i].x, c[i].y, c[i].z);
         rlVertex3f(next.x, next.y, next.z);
+    }
+}
+
+// The tiles each NPC occupies in the core (its tile plus its size east and
+// north): what pathing, melee reach and line of sight are measured against.
+static void draw_npc_footprints(ViewerState *v, int plane,
+                                const RcNpc *npcs, int npc_count) {
+    for (int pass = 0; pass < 2; pass++) {
+        rlSetTexture(0);
+        rlBegin(pass == 0 ? RL_TRIANGLES : RL_LINES);
+        if (pass == 0) rlColor4ub(0, 200, 255, 56);
+        else rlColor4ub(0, 220, 255, 200);
+        for (int i = 0; i < npc_count; i++) {
+            const RcNpc *n = &npcs[i];
+            RcNpcLifePhase life = rc_npc_life_phase(n);
+            if (life == RC_NPC_LIFE_REMOVED || life == RC_NPC_LIFE_HIDDEN
+                    || n->plane != plane
+                    || !viewer_actor_in_draw_range(v, (float)n->x,
+                                                   (float)n->y, 0.0f))
+                continue;
+            const RcNpcDef *def = rc_npc_def_for_npc(v->world, n);
+            int size = def && def->size > 0 ? def->size : 1;
+            for (int dx = 0; dx < size; dx++) {
+                for (int dy = 0; dy < size; dy++) {
+                    if (pass == 0)
+                        emit_route_tile_fill(v, plane, n->x + dx, n->y + dy);
+                    else
+                        emit_route_tile_edges(v, plane, n->x + dx, n->y + dy);
+                }
+            }
+        }
+        rlEnd();
     }
 }
 
@@ -8107,16 +8147,6 @@ static float projectile_yaw_degrees(float sx, float sz, float tx, float tz) {
     return atan2f(tx - sx, tz - sz) * (180.0f / 3.14159265f);
 }
 
-static int projectile_uses_fixed_target_tile(const ViewerCombatProjectile *proj) {
-    return proj && proj->source_kind == RC_COMBAT_ACTOR_NPC &&
-           proj->target_kind == RC_COMBAT_ACTOR_PLAYER &&
-           proj->style == COMBAT_RANGED &&
-           proj->projectile_model_id < 0 &&
-           proj->projectile_start_height >= 512 &&
-           proj->source_x == proj->target_x &&
-           proj->source_y == proj->target_y;
-}
-
 static int projectile_has_travel_visual(const ViewerCombatProjectile *proj) {
     return proj && (proj->travel_spotanim_id >= 0 ||
                     proj->projectile_model_id >= 0 ||
@@ -8150,11 +8180,13 @@ static int projectile_target_point(ViewerState *v,
     int tile_x = proj->target_x;
     int tile_y = proj->target_y;
     int target_plane = proj->plane;
+    // A row aimed at a tile lands where it was aimed; anything aimed at an
+    // actor ends on that actor's current position.
+    bool on_tile = proj->target_attachment == RC_COMBAT_VISUAL_ATTACH_TARGET_TILE
+                || proj->target_attachment == RC_COMBAT_VISUAL_ATTACH_FIXED_TILE
+                || proj->target_attachment == RC_COMBAT_VISUAL_ATTACH_GROUND_TILE;
 
-    if (projectile_uses_fixed_target_tile(proj)) {
-        if (target_plane != scene_plane)
-            return 0;
-    } else if (proj->target_kind == RC_COMBAT_ACTOR_NPC) {
+    if (!on_tile && proj->target_kind == RC_COMBAT_ACTOR_NPC) {
         for (int i = 0; i < v->world->npc_count; i++) {
             const RcNpc *npc = &v->world->npcs[i];
             if (!npc->active || npc->uid != proj->target_uid)
@@ -8175,7 +8207,7 @@ static int projectile_target_point(ViewerState *v,
             if (out_tile_y) *out_tile_y = tile_y;
             return 1;
         }
-    } else if (proj->target_kind == RC_COMBAT_ACTOR_PLAYER) {
+    } else if (!on_tile && proj->target_kind == RC_COMBAT_ACTOR_PLAYER) {
         int player_x = 0;
         int player_y = 0;
         int player_plane = 0;
@@ -8206,8 +8238,13 @@ static int projectile_target_point(ViewerState *v,
     return 1;
 }
 
+// The client's projectile step: before each move it aims at the target's
+// current position over the remaining flight time (so a homing projectile
+// follows a moving target smoothly), sets its climb from the launch slope
+// once, and solves the vertical acceleration that lands it at the end
+// height. The first visible step starts `progress` toward the target.
 static Vector3 combat_projectile_position(ViewerState *v,
-                                          const ViewerCombatProjectile *proj,
+                                          ViewerCombatProjectile *proj,
                                           int scene_plane,
                                           float *out_angle,
                                           float *out_pitch,
@@ -8228,8 +8265,6 @@ static Vector3 combat_projectile_position(ViewerState *v,
                   : 1.45f;
     float end_h = proj->projectile_end_height >= 0
                 ? (float)proj->projectile_end_height / 128.0f : 1.05f;
-    float sy = ground_yf_plane(v, scene_plane, proj->source_fx,
-                               proj->source_fy) + start_h;
     float ty = target_ground + end_h;
 
     float start_time = proj->projectile_start_time >= 0
@@ -8239,57 +8274,65 @@ static Vector3 combat_projectile_position(ViewerState *v,
                    : (float)(proj->duration_ticks > 0
                              ? proj->duration_ticks * 30 : 30);
     float client_time = ((float)proj->age_ticks + v->tick_frac) * 30.0f;
-    if (client_time < start_time || client_time > end_time + 1.0f)
+    float sy = ground_yf_plane(v, scene_plane, proj->source_fx,
+                               proj->source_fy) + start_h;
+    if (client_time < start_time || client_time > end_time + 1.0f) {
+        if (client_time < start_time) proj->flying = false;
         return (Vector3){sx, sy, sz};
-
-    float dx = tx - sx;
-    float dz = tz - sz;
-    float horizontal = sqrtf(dx * dx + dz * dz);
-    float dir_x = 0.0f;
-    float dir_z = 1.0f;
-    if (horizontal > 1e-5f) {
-        dir_x = dx / horizontal;
-        dir_z = dz / horizontal;
     }
 
-    float start_pos = proj->projectile_progress >= 0
-                    ? (float)proj->projectile_progress / 128.0f
-                    : 0.0f;
-    sx += dir_x * start_pos;
-    sz += dir_z * start_pos;
+    // World coordinates, so a scene re-centred mid-flight does not move it.
+    float target_x = tx + (float)g_world_origin_x;
+    float target_y = (float)g_world_origin_y - tz;
+    if (!proj->flying) {
+        float dx = target_x - proj->source_fx, dy = target_y - proj->source_fy;
+        float horizontal = sqrtf(dx * dx + dy * dy);
+        float start_pos = proj->projectile_progress >= 0
+                        ? (float)proj->projectile_progress / 128.0f : 0.0f;
+        proj->flight_x = proj->source_fx;
+        proj->flight_y = proj->source_fy;
+        if (horizontal > 1e-5f) {
+            proj->flight_x += dx * start_pos / horizontal;
+            proj->flight_y += dy * start_pos / horizontal;
+        }
+        proj->flight_h = sy;
+        proj->flight_time = start_time;
+    }
+    float remaining = end_time + 1.0f - proj->flight_time;
+    if (remaining < 1.0f) remaining = 1.0f;
+    float vx = (target_x - proj->flight_x) / remaining;
+    float vy = (target_y - proj->flight_y) / remaining;
+    float speed = sqrtf(vx * vx + vy * vy);
+    if (!proj->flying) {
+        float slope = proj->projectile_angle >= 0
+                    ? (float)proj->projectile_angle : 15.0f;
+        proj->flight_vh = speed * tanf(slope * (3.14159265f / 128.0f));
+        proj->flying = true;
+    }
+    float accel = 2.0f * (ty - proj->flight_h - proj->flight_vh * remaining)
+                / (remaining * remaining);
+    float delta = client_time - proj->flight_time;
+    if (delta > 0.0f) {
+        proj->flight_x += vx * delta;
+        proj->flight_y += vy * delta;
+        proj->flight_h += proj->flight_vh * delta + 0.5f * accel * delta * delta;
+        proj->flight_vh += accel * delta;
+        proj->flight_time = client_time;
+    }
 
-    float travel_time = end_time + 1.0f - start_time;
-    if (travel_time < 1.0f)
-        travel_time = 1.0f;
-    float t = client_time - start_time;
-    if (t < 0.0f) t = 0.0f;
-    if (t > travel_time) t = travel_time;
-
-    float speed_x = (tx - sx) / travel_time;
-    float speed_z = (tz - sz) / travel_time;
-    float horizontal_speed = sqrtf(speed_x * speed_x + speed_z * speed_z);
-    float slope = proj->projectile_angle >= 0
-                ? (float)proj->projectile_angle : 15.0f;
-    float speed_y = horizontal_speed * tanf(slope * (3.14159265f / 128.0f));
-    float accel_y = 2.0f * (ty - sy - speed_y * travel_time) /
-                    (travel_time * travel_time);
-
-    Vector3 pos = {
-        sx + speed_x * t,
-        sy + speed_y * t + 0.5f * accel_y * t * t,
-        sz + speed_z * t,
-    };
     if (out_angle) {
-        *out_angle = projectile_yaw_degrees(sx, sz, tx, tz);
+        *out_angle = speed > 1e-6f
+                   ? atan2f(vx, -vy) * (180.0f / 3.14159265f)
+                   : projectile_yaw_degrees(sx, sz, tx, tz);
     }
     if (out_pitch) {
-        float vy = speed_y + accel_y * t;
-        *out_pitch = horizontal_speed > 1e-5f
-                   ? -atan2f(vy, horizontal_speed) * (180.0f / 3.14159265f)
+        *out_pitch = speed > 1e-6f
+                   ? -atan2f(proj->flight_vh, speed) * (180.0f / 3.14159265f)
                    : 0.0f;
     }
     *out_visible = 1;
-    return pos;
+    return (Vector3){proj->flight_x - (float)g_world_origin_x, proj->flight_h,
+                     -(proj->flight_y - (float)g_world_origin_y)};
 }
 
 static int combat_projectile_impact_position(ViewerState *v,
@@ -8421,14 +8464,14 @@ static int draw_projectile_launch(ViewerState *v,
 
 static void draw_combat_projectiles(ViewerState *v) {
     int count = v ? v->combat_projectile_count : 0;
-    const ViewerCombatProjectile *projectiles = v ? v->combat_projectiles : NULL;
+    ViewerCombatProjectile *projectiles = v ? v->combat_projectiles : NULL;
     if (!projectiles || count <= 0) return;
     int scene_plane = viewer_scene_plane(v);
     ensure_projectile_models_for_active_projectiles(v, scene_plane);
     BeginBlendMode(BLEND_ALPHA);
     rlDisableDepthMask();
     for (int i = 0; i < count; i++) {
-        const ViewerCombatProjectile *proj = &projectiles[i];
+        ViewerCombatProjectile *proj = &projectiles[i];
         if (!proj->active || proj->plane != scene_plane)
             continue;
         float end_time = proj->projectile_end_time > proj->projectile_start_time
@@ -8919,6 +8962,8 @@ static void handle_input(ViewerState *v, int ui_capture) {
                     v->god_mode ? "on" : "off");
         }
         if (IsKeyPressed(KEY_F3)) v->show_grid = !v->show_grid;
+        if (IsKeyPressed(KEY_F4))
+            v->show_npc_footprints = !v->show_npc_footprints;
         if (IsKeyPressed(KEY_C)) v->show_collision = !v->show_collision;
         if (IsKeyPressed(KEY_SPACE)) v->paused = !v->paused;
         if (IsKeyPressed(KEY_R))
@@ -9540,6 +9585,12 @@ static void draw_scene(ViewerState *v, int ui_capture) {
                 if (f & COL_WALL_W) DrawLine3D((Vector3){tx-e,ty,tz-e}, (Vector3){tx-e,ty,tz+e}, YELLOW);
             }
         }
+    }
+
+    if (v->show_npc_footprints) {
+        rlDisableBackfaceCulling();
+        draw_npc_footprints(v, scene_plane, npcs, npc_count);
+        rlEnableBackfaceCulling();
     }
 
     // Grid

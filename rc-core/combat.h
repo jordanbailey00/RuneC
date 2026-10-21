@@ -147,6 +147,12 @@ int rc_combat_apply_regular_npc_attack_rules(
 // Tick player-side combat statuses applied by regular NPC mechanics.
 void rc_combat_tick_player_status(struct RcWorld *world);
 void rc_player_apply_freeze(struct RcWorld *world, int ticks);
+// Attack approach, run before the player steps: a player attacking an NPC
+// stops once in reach of its current footprint, and otherwise re-paths
+// toward that footprint whenever it moved, so a moving target never leaves
+// the player walking a stale route (or under the NPC). Returns false when
+// the player should not step this tick.
+bool rc_combat_player_approach(struct RcWorld *world);
 // Records an encounter attack or mechanic part for presentation (no hit).
 // `key` is the attack or mechanic name, optionally with a ":part" suffix;
 // `target_player` false aims at the target tile.

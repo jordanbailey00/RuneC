@@ -172,6 +172,21 @@ death diagnostic; enabling loot is not a claim that every table is verified.
   from the same body point (Vorkath's mouth) from every angle; there is no
   nearest-footprint-tile origin. Tile-sourced rows still start at the target
   tile.
+- In flight a projectile steps as the client's does (Client3
+  `projectileentity_update_velocity`). Every frame its horizontal velocity
+  re-aims at the target's current position over the remaining flight time.
+  Its climb is set once from the launch slope, and its vertical acceleration
+  is solved for the end height. A projectile aimed at an actor therefore ends
+  on that actor's model wherever it moved, curving toward it instead of
+  jumping. A row whose target attachment is a tile (`target_tile`,
+  `fixed_tile`, `ground_tile`) lands on the tile it was aimed at. Today that
+  is Vorkath's deadly dragonfire, acid spit, rapid fire and spawn launch,
+  which are dodgeable in OSRS. Jad's falling rock is a `target_impact` on the
+  player.
+- F4 toggles a development overlay of every NPC's occupied tiles: its core
+  tile plus its size, drawn at the core position, not the interpolated model.
+  Use it to check footprints and melee spacing. F3 toggles the grid and C the
+  collision overlay.
 - Locs the core spawns at runtime (`RC_OBJECT_STATE_SPAWNED`, e.g. Vorkath's
   acid pools) are drawn from `data/models/spawn_objects.models` and its
   `.oanim` templates (loc id, type, rotation; positions relative to the tile)

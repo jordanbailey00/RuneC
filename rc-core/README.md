@@ -408,6 +408,21 @@ tick interval. Melee uses shared cardinal/line-of-walk reach; ranged and magic
 use projectile LOS. Area flags supply multi-combat policy, with the explicit
 world override retained for configured encounters and tests.
 
+Reach is measured against the NPC's whole footprint (its tile plus its
+`npc_defs.bin` size east and north). Ordinary melee needs a tile sharing a
+side with it; a player under the footprint must step out first. Before the
+player steps (phase 4), `rc_combat_player_approach` stops an attacker who is
+already in reach (clearing any remaining route) and otherwise re-paths toward
+the target's current footprint when the player is standing or the footprint
+moved, so a moving NPC is followed the same tick and never leaves the player
+on a stale route. The attack after movement stays the authority: it keeps a
+route that already leads to the current footprint instead of searching each
+tick and does not repeat a search the approach lost that tick. The attack
+records what decided an in-reach verdict (target slot, both tiles, weapon,
+attack style and spells); while that still matches on the next tick a standing
+attacker skips the pre-step check. A change it does not key on (a door) only
+delays the next step by a tick.
+
 `rc_combat_set_auto_retaliate` queues the requested boolean, not a toggle.
 Disabling retaliation prevents a new automatic attack but does not cancel an
 existing target. Content supplies ranged weapon/ammo compatibility and the

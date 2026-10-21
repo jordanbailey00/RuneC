@@ -802,6 +802,14 @@ typedef struct {
     int attack_timer;
     int attack_target;      // NPC uid or -1
     int attack_target_def_id;
+    // The attack's last in-reach verdict, keyed by what decides it (see
+    // rc_combat_player_approach); `tick` is its world tick plus one, 0: none.
+    struct {
+        RcTick tick;
+        uint32_t npc_tile, tile;   // packed x | y << 14 | plane << 28
+        int npc_slot, weapon, style_idx, autocast, manual_cast;
+    } attack_reach;
+    RcTick attack_unroutable_tick; // world tick + 1 of a failed attack route
     RcCombatActorState combat;
     RcCombatStyle combat_style;
     int attack_style_idx;

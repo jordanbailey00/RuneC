@@ -986,7 +986,13 @@ void rc_world_tick(RcWorld *world) {
 
     // Phase 4 — player action resolution (gated per subsystem).
     process_player_action_timers(world);
-    process_player_movement(world);
+    if (!(on & RC_SUB_COMBAT) || rc_combat_player_approach(world)) {
+        process_player_movement(world);
+    } else {
+        // In reach of the attack target: the player holds this tick.
+        world->player.movement_step_count = 0;
+        update_player_run_energy(world, 0);
+    }
     process_player_interaction(world, 1);
     process_player_action_timers(world);
     if (on & RC_SUB_COMBAT)   process_player_combat(world);

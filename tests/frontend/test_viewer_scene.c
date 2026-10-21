@@ -403,6 +403,188 @@ static void test_boss_projectile_origins(RcWorld *world) {
     free(v);
 }
 
+// Where the player is drawn this frame (scene coordinates).
+static Vector3 presented_player(ViewerState *v) {
+    const RcPlayer *p = &v->world->player;
+    float wx = v->prev_player_x + ((float)p->x - v->prev_player_x) * v->tick_frac;
+    float wy = v->prev_player_y + ((float)p->y - v->prev_player_y) * v->tick_frac;
+    return (Vector3){wx - (float)g_world_origin_x + 0.5f, ground_yf_plane(v, 0, wx, wy),
+                     -(wy - (float)g_world_origin_y + 0.5f)};
+}
+
+// Flies a projectile ten frames a tick while the player runs two tiles east
+// on each of its first two ticks, and returns it at end_time + 1 (the last
+// drawn moment). *kink is the largest frame-to-frame change of its step over
+// the mean step: small for a smooth curve, large for a jump.
+static Vector3 fly_while_player_runs(ViewerState *v, ViewerCombatProjectile *proj,
+                                     float *kink) {
+    RcPlayer *p = &v->world->player;
+    float land = (float)proj->projectile_end_time + 1.0f;
+    float angle, pitch, path = 0.0f, worst = 0.0f;
+    int visible = 0, seen = 0, steps = 0, tick = -1;
+    Vector3 at = {0}, last = {0}, last_step = {0};
+    for (float time = 0.0f;; time = fminf(time + 3.0f, land)) {
+        while (tick < (int)(time / 30.0f)) {
+            tick++;
+            v->prev_player_x = (float)p->x;
+            v->prev_player_y = (float)p->y;
+            if (tick == 1 || tick == 2) p->x += 2;
+        }
+        proj->age_ticks = tick;
+        v->tick_frac = (time - 30.0f * (float)tick) / 30.0f;
+        at = combat_projectile_position(v, proj, 0, &angle, &pitch, &visible);
+        if (time >= land) break;
+        if (!visible) continue;
+        if (seen) {
+            Vector3 step = {at.x - last.x, 0.0f, at.z - last.z};
+            path += hypotf(step.x, step.z);
+            if (steps++)
+                worst = fmaxf(worst, hypotf(step.x - last_step.x, step.z - last_step.z));
+            last_step = step;
+        }
+        seen = 1;
+        last = at;
+    }
+    assert(visible && steps > 2 && "drawn up to end_time + 1");
+    *kink = worst / (path / (float)steps);
+    return at;
+}
+
+// Fires one of Vorkath's encounter attacks at the player's tile (or, for a
+// tile-aimed one, at that tile) and returns its projectile.
+static ViewerCombatProjectile *launch_at_player(ViewerState *v, const RcNpc *npc,
+                                                const char *action, bool on_tile) {
+    const RcPlayer *p = &v->world->player;
+    v->prev_player_x = (float)p->x;
+    v->prev_player_y = (float)p->y;
+    v->combat_projectile_count = 0;
+    RcCombatAttackEvent event = {
+        .active = true, .source_kind = RC_COMBAT_ACTOR_NPC,
+        .target_kind = on_tile ? RC_COMBAT_ACTOR_NONE : RC_COMBAT_ACTOR_PLAYER,
+        .style = COMBAT_MAGIC, .action_kind = RC_COMBAT_ACTION_ENCOUNTER,
+        .source_uid = npc->uid, .target_uid = on_tile ? -1 : 0,
+        .source_definition_id = 8061, .target_definition_id = -1,
+        .source_x = npc->x, .source_y = npc->y, .target_x = p->x, .target_y = p->y,
+        .hit_delay = on_tile ? 4 : 3, .world_tick = (uint32_t)v->world->tick,
+    };
+    snprintf(event.action_key_name, sizeof(event.action_key_name), "%s", action);
+    viewer_handle_npc_attack_event(v, &event);
+    assert(v->combat_projectile_count == 1);
+    return &v->combat_projectiles[0];
+}
+
+static Vector3 projectile_at(ViewerState *v, ViewerCombatProjectile *proj, float time) {
+    proj->age_ticks = (int)(time / 30.0f);
+    v->tick_frac = (time - 30.0f * (float)proj->age_ticks) / 30.0f;
+    float angle, pitch;
+    int visible = 0;
+    Vector3 at = combat_projectile_position(v, proj, 0, &angle, &pitch, &visible);
+    assert(visible);
+    return at;
+}
+
+// A projectile aimed at the player ends on the player's current position when
+// they move mid-flight, steering smoothly instead of jumping; one aimed at a
+// tile still lands on that tile; Jad's falling rock lands on the player.
+static void test_projectiles_follow_moving_player(RcWorld *world) {
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    int bx = 3216, by = 3216;
+    assert(viewer_world_transform_set(&g_world_transform, bx - 64, by - 64));
+    int idx = rc_npc_spawn(world, rc_npc_def_find(8061), bx, by, 0);
+    assert(idx >= 0);
+    const RcNpc *vork = &world->npcs[idx];
+    int vork_uid = vork->uid;
+    const char *actions[2] = {"Dragonfire", "Deadly dragonfire"};
+    for (int a = 0; a < 2; a++) {
+        bool on_tile = a == 1;
+        world->player.x = bx + 3;
+        world->player.y = by - 8;
+        world->player.plane = 0;
+        int aim_x = world->player.x, aim_y = world->player.y;
+        ViewerCombatProjectile *proj = launch_at_player(v, vork, actions[a], on_tile);
+        float kink = 0.0f;
+        Vector3 at = fly_while_player_runs(v, proj, &kink);
+        assert(world->player.x == aim_x + 4 && "the player moved during the flight");
+        Vector3 aim = {(float)(aim_x - g_world_origin_x) + 0.5f, 0.0f,
+                       -((float)(aim_y - g_world_origin_y) + 0.5f)};
+        Vector3 goal = on_tile ? aim : presented_player(v);
+        assert(hypotf(at.x - goal.x, at.z - goal.z) < 0.01f
+               && (on_tile ? "a tile-aimed projectile lands on its tile"
+                           : "a projectile aimed at the player ends on the player"));
+        if (!on_tile) {
+            assert(hypotf(at.x - aim.x, at.z - aim.z) > 2.0f && "not on the tile it was aimed at");
+            assert(fabsf(at.y - (goal.y + (float)proj->projectile_end_height / 128.0f)) < 0.01f);
+        }
+        assert(kink < 0.5f && "steers smoothly, no jumps");
+    }
+
+    // Displaced with nothing to interpolate (a teleport), the player is
+    // steered to over the remaining flight, not jumped to.
+    world->player.x = bx + 3;
+    world->player.y = by - 8;
+    ViewerCombatProjectile *proj = launch_at_player(v, vork, "Dragonfire", false);
+    assert(proj->projectile_start_time < 54 && proj->projectile_end_time > 66);
+    Vector3 before = projectile_at(v, proj, 54.0f);
+    Vector3 now = projectile_at(v, proj, 60.0f);
+    world->player.x += 3;
+    v->prev_player_x = (float)world->player.x;
+    Vector3 after = projectile_at(v, proj, 66.0f);
+    assert(hypotf(after.x - now.x, after.z - now.z)
+           < hypotf(now.x - before.x, now.z - before.z) + 0.6f && "no jump");
+    Vector3 landed = projectile_at(v, proj, (float)proj->projectile_end_time + 1.0f);
+    Vector3 goal = presented_player(v);
+    assert(hypotf(landed.x - goal.x, landed.z - goal.z) < 0.01f);
+
+    // A scene re-centred mid-flight (streaming) leaves it where it was.
+    world->player.x = bx + 3;
+    proj = launch_at_player(v, vork, "Dragonfire", false);
+    before = projectile_at(v, proj, 54.0f);
+    float before_x = before.x + (float)g_world_origin_x;
+    float before_y = (float)g_world_origin_y - before.z;
+    assert(viewer_world_transform_set(&g_world_transform, bx - 128, by - 64));
+    now = projectile_at(v, proj, 54.0f);
+    assert(fabsf(now.x + (float)g_world_origin_x - before_x) < 0.001f
+           && fabsf((float)g_world_origin_y - now.z - before_y) < 0.001f);
+    assert(viewer_world_transform_set(&g_world_transform, bx - 64, by - 64));
+    rc_npc_remove(world, vork_uid);
+
+    // Jad's rock falls on the player wherever they have moved to.
+    idx = rc_npc_spawn(world, rc_npc_def_find(3127), bx, by, 0);
+    assert(idx >= 0);
+    int jad_uid = world->npcs[idx].uid;
+    world->player.x = bx + 2;
+    world->player.y = by - 6;
+    v->prev_player_x = (float)world->player.x;
+    v->prev_player_y = (float)world->player.y;
+    v->tick_frac = 0.0f;
+    v->combat_projectile_count = 0;
+    RcCombatAttackEvent rock = {
+        .active = true, .source_kind = RC_COMBAT_ACTOR_NPC,
+        .target_kind = RC_COMBAT_ACTOR_PLAYER, .style = COMBAT_RANGED,
+        .action_kind = RC_COMBAT_ACTION_NPC, .source_uid = jad_uid, .target_uid = 0,
+        .source_definition_id = 3127, .target_definition_id = -1,
+        .source_x = bx, .source_y = by, .target_x = world->player.x,
+        .target_y = world->player.y, .hit_delay = 3, .world_tick = (uint32_t)world->tick,
+    };
+    viewer_handle_npc_attack_event(v, &rock);
+    assert(v->combat_projectile_count == 1);
+    proj = &v->combat_projectiles[0];
+    assert(proj->impact_spotanim_id == 451 && !projectile_has_travel_visual(proj)
+           && proj->launch_spotanim_id < 0);
+    world->player.x += 3;
+    world->player.y -= 1;
+    v->prev_player_x = (float)world->player.x;
+    v->prev_player_y = (float)world->player.y;
+    Vector3 hit;
+    assert(combat_projectile_impact_position(v, proj, 0, &hit));
+    goal = presented_player(v);
+    assert(hypotf(hit.x - goal.x, hit.z - goal.z) < 0.01f && "the rock lands on the player");
+    rc_npc_remove(world, jad_uid);
+    free(v);
+}
+
 static void test_ground_item_appearances(void) {
     ViewerState *v = calloc(1, sizeof(*v));
     assert(v);
@@ -541,6 +723,7 @@ int main(void) {
     test_scene_examine_object_and_walk(world);
     test_boss_landing_heights(world);
     test_boss_projectile_origins(world);
+    test_projectiles_follow_moving_player(world);
     test_ground_item_appearances();
     rc_world_destroy(world);
     puts("viewer scene: installed loot, target selection and dispatch passed");
