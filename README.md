@@ -72,8 +72,10 @@ from it with `--offline dist-data`.
 The pinned `data-v2026.10.21-b237` release includes the complete four-plane
 world, updated loot definitions, per-item ground models and the encounter
 foundation data (ENCT v13 encounters, boss combat visuals and the runtime
-spawned-loc templates). Code from `28f37c8` onwards needs it; earlier commits
-pair with `data-v2026.10.03-b237`. Unverified loot tables remain explicitly
+spawned-loc templates). Commits `28f37c8` to `2113bf8` need it; earlier
+commits pair with `data-v2026.10.03-b237`. `7e323b6` onwards loads newer
+encounter and NPC model data (ENCT v15 since the Vorkath anchoring) that has
+not been released yet. Unverified loot tables remain explicitly
 rejected; this release is not full gameplay parity.
 The official release gate still flags unfinished loot, unavailable prayer
 effects, and an outdated gathering-count report. Runtime tests passing does not
@@ -92,7 +94,7 @@ Open the Clan Chat side tab to use the validation panel:
 - `0`, `1`, `2`, and `3` force the viewer to inspect a specific scene level.
 - `Varrock`, `Graardor`, `KBD`, `KQ` (Kalphite Queen), `Chaos Ele` (Chaos
   Elemental), `Vorkath`, and `Jad` move the player to common validation locations. Vorkath
-  arrives asleep; Poke it to start the fight.
+  arrives asleep; Poke it to start the fight. Teleporting there again puts it back to sleep.
 
 These helpers are for development and testing. To run without them:
 

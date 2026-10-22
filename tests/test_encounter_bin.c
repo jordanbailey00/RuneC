@@ -46,6 +46,9 @@ static void str(Buf *b, const char *s) {
 }
 
 // Mirrors encode_encounter in tools/export_encounters.py.
+// When set, every form's anchored byte is written as this raw value.
+static int g_anchored_raw = -1;
+
 static void encode_spec(Buf *b, const RcEncounterSpec *s) {
     str(b, s->slug);
     str(b, s->name);
@@ -73,6 +76,7 @@ static void encode_spec(Buf *b, const RcEncounterSpec *s) {
         u8(b, f->revert_form);
         u8(b, f->revert_hp);
         for (int k = 0; k < 5; k++) u16(b, (uint16_t)f->defence_bonus[k]);
+        u8(b, g_anchored_raw >= 0 ? (uint8_t)g_anchored_raw : f->anchored);
     }
     u8(b, s->helper_count);
     for (int i = 0; i < s->helper_count; i++) {
@@ -197,7 +201,7 @@ static RcEncounterSpec valid_spec(const char *slug, uint32_t base_id) {
         .next_form = 1, .next_hp = RC_ENC_FORM_HP_FULL, .transition_ticks = 4};
     s.forms[1] = (RcEncounterForm){.npc_id = base_id + 1, .name = "Form B",
         .revert_after_ticks = 30, .revert_form = 0,
-        .revert_hp = RC_ENC_FORM_HP_KEEP,
+        .revert_hp = RC_ENC_FORM_HP_KEEP, .anchored = true,
         .defence_bonus = {100, 100, 100, 10, -20}};
     s.has_arena = true;
     s.arena_min_x = 3000;
@@ -378,12 +382,22 @@ static void test_installed_specs(void) {
     const RcEncounterAttack *bomb = &vork->attacks[6];
     assert(bomb->flags & RC_ENC_ATTACK_TILE_TARGET);
     assert(bomb->adjacent_pct == 50 && bomb->max_hit == 121);
+    // Vorkath never walks, and its distant attacks reach the arena's
+    // farthest tile; no other boss is anchored.
+    assert(vork->forms[0].anchored && vork->forms[1].anchored);
+    assert(vork->attacks[0].range == 0 && vork->attack_count == 7);
+    for (int i = 1; i < vork->attack_count; i++)
+        assert(vork->attacks[i].range == 8);
+    const RcEncounterSpec *walkers[4] = {kq, kbd, ce, gg};
+    for (int i = 0; i < 4; i++)
+        for (int f = 0; f < walkers[i]->form_count; f++)
+            assert(!walkers[i]->forms[f].anchored);
 }
 
 static void test_round_trip(void) {
     RcEncounterSpec specs[2] = {valid_spec("one", 60000), valid_spec("two", 60010)};
     Buf b;
-    encode_file(&b, specs, 2, 14);
+    encode_file(&b, specs, 2, 15);
     assert(load_buf(&b) == 2);
     for (int i = 0; i < 2; i++) {
         // prim pointers are resolved at load; re-encoding compares every
@@ -398,7 +412,7 @@ static void test_round_trip(void) {
         assert(want.len == have.len && !memcmp(want.data, have.data, want.len));
     }
     // An empty file of the current version is valid.
-    encode_file(&b, specs, 0, 14);
+    encode_file(&b, specs, 0, 15);
     assert(load_buf(&b) == 0);
 }
 
@@ -407,142 +421,153 @@ static void test_rejections(void) {
     RcEncounterSpec s;
     Buf b;
 
-    expect_reject(&base, 1, 13, "older version");
-    expect_reject(&base, 1, 15, "newer version");
-    encode_file(&b, &base, 1, 14);
+    expect_reject(&base, 1, 14, "older version");
+    expect_reject(&base, 1, 16, "newer version");
+    encode_file(&b, &base, 1, 15);
     b.data[0] ^= 0xFF;
     assert(load_buf(&b) == -1 && out_zeroed());
-    encode_file(&b, &base, 1, 14);
+    encode_file(&b, &base, 1, 15);
     b.len -= 3;
     assert(load_buf(&b) == -1 && out_zeroed());
-    encode_file(&b, &base, 1, 14);
+    encode_file(&b, &base, 1, 15);
     u8(&b, 0);
     assert(load_buf(&b) == -1 && out_zeroed());
-    encode_file(&b, &base, 1, 14);
+    encode_file(&b, &base, 1, 15);
     b.data[8] = 2;   // header count promises a second spec
     assert(load_buf(&b) == -1 && out_zeroed());
-    encode_file(&b, &base, 1, 14);
+    encode_file(&b, &base, 1, 15);
     b.data[8] = 65;  // above RC_ENC_REGISTRY_CAP
     assert(load_buf(&b) == -1 && out_zeroed());
 
+    g_anchored_raw = 2;
+    expect_reject(&base, 1, 15, "anchored flag");
+    g_anchored_raw = -1;
     s = base; s.support = RC_ENC_SUPPORT_NONE;
-    expect_reject(&s, 1, 14, "support none");
+    expect_reject(&s, 1, 15, "support none");
     s = base; s.forms[0].on_lethal = 2;
-    expect_reject(&s, 1, 14, "lethal policy");
+    expect_reject(&s, 1, 15, "lethal policy");
     s = base;
     ((RcPrimParamsAttackCounterAlternateSpecial *)s.mechanics[0].param_block)
         ->every_n_attacks = 1;
-    expect_reject(&s, 1, 14, "rotation every attack");
+    expect_reject(&s, 1, 15, "rotation every attack");
     {
         // A protection count above the cap: encode none, then patch the count.
         RcEncounterSpec probe = base;
         probe.protection_count = 0;
         probe.damage_mod_count = 0;
-        encode_file(&b, &probe, 1, 14);
+        encode_file(&b, &probe, 1, 15);
         b.data[b.len - 2] = RC_ENC_MAX_PROTECTIONS + 1;
         assert(load_buf(&b) == -1 && out_zeroed());
     }
     s = base; s.disengage = 2;
-    expect_reject(&s, 1, 14, "disengage policy");
+    expect_reject(&s, 1, 15, "disengage policy");
     s = base; s.form_count = 0;
-    expect_reject(&s, 1, 14, "no forms");
+    expect_reject(&s, 1, 15, "no forms");
     s = base; s.forms[0].binds_on_spawn = false;
-    expect_reject(&s, 1, 14, "no binding form");
+    expect_reject(&s, 1, 15, "no binding form");
     s = base; s.forms[0].next_form = 0;
-    expect_reject(&s, 1, 14, "transform into itself");
+    expect_reject(&s, 1, 15, "transform into itself");
     s = base; s.forms[0].next_form = 2;
-    expect_reject(&s, 1, 14, "transform out of range");
+    expect_reject(&s, 1, 15, "transform out of range");
     s = base; s.forms[1].revert_form = 1;
-    expect_reject(&s, 1, 14, "revert into itself");
+    expect_reject(&s, 1, 15, "revert into itself");
     s = base; s.forms[1].npc_id = s.forms[0].npc_id;
-    expect_reject(&s, 1, 14, "duplicate form");
+    expect_reject(&s, 1, 15, "duplicate form");
     s = base; s.helpers[0].npc_id = s.forms[1].npc_id;
-    expect_reject(&s, 1, 14, "helper is a form");
+    expect_reject(&s, 1, 15, "helper is a form");
     s = base; s.object_count = RC_ENC_MAX_OBJECTS + 1;
-    expect_reject(&s, 1, 14, "object count");
+    expect_reject(&s, 1, 15, "object count");
     s = base; s.objects[0].loc_type = 23;
-    expect_reject(&s, 1, 14, "object placement type");
+    expect_reject(&s, 1, 15, "object placement type");
     s = base; s.object_count = 2; s.objects[1] = s.objects[0];
-    expect_reject(&s, 1, 14, "duplicate object");
+    expect_reject(&s, 1, 15, "duplicate object");
     s = base; s.objects[0].name[0] = '\0';
-    expect_reject(&s, 1, 14, "unnamed object");
+    expect_reject(&s, 1, 15, "unnamed object");
     s = base; s.forms[0].dormant = true;
-    expect_reject(&s, 1, 14, "dormant transform form");
+    expect_reject(&s, 1, 15, "dormant transform form");
     s = base; s.forms[1].transition_ticks = 3;
-    expect_reject(&s, 1, 14, "transition on a final form");
+    expect_reject(&s, 1, 15, "transition on a final form");
     s = base; s.attacks[0].style = COMBAT_NONE;
-    expect_reject(&s, 1, 14, "attack style");
+    expect_reject(&s, 1, 15, "attack style");
     s = base; s.attacks[0].flags |= 1u << 9;
-    expect_reject(&s, 1, 14, "unknown attack flag");
+    expect_reject(&s, 1, 15, "unknown attack flag");
     s = base; s.attacks[0].weight_adjacent = 0;
-    expect_reject(&s, 1, 14, "unselectable attack");
+    expect_reject(&s, 1, 15, "unselectable attack");
     s = base; s.attacks[0].min_hit = 21;
-    expect_reject(&s, 1, 14, "min above max");
+    expect_reject(&s, 1, 15, "min above max");
     s = base; s.attacks[0].flags |= RC_ENC_ATTACK_NO_DAMAGE;
-    expect_reject(&s, 1, 14, "no-damage attack with a max hit");
+    expect_reject(&s, 1, 15, "no-damage attack with a max hit");
     s = base; s.attacks[1].effect_chance = 1001;
-    expect_reject(&s, 1, 14, "effect chance");
+    expect_reject(&s, 1, 15, "effect chance");
     s = base; s.attacks[1].effect_id = RC_ENC_ATTACK_EFFECT_COUNT;
-    expect_reject(&s, 1, 14, "effect id");
+    expect_reject(&s, 1, 15, "effect id");
     s = base; s.attacks[1].npc_id = 1;
-    expect_reject(&s, 1, 14, "attack owner is not a form");
+    expect_reject(&s, 1, 15, "attack owner is not a form");
     s = base; s.attacks[1].flags |= RC_ENC_ATTACK_ALWAYS_ACCURATE;
-    expect_reject(&s, 1, 14, "breath with forced accuracy");
+    expect_reject(&s, 1, 15, "breath with forced accuracy");
     s = base; s.attacks[0].flags |= RC_ENC_ATTACK_TILE_TARGET;
-    expect_reject(&s, 1, 14, "tile attack without a delay");
+    expect_reject(&s, 1, 15, "tile attack without a delay");
     s = base; s.phases[0].allowed_attack_mask = 1u << 5;
-    expect_reject(&s, 1, 14, "phase mask names a missing attack");
+    expect_reject(&s, 1, 15, "phase mask names a missing attack");
     s = base; s.phases[0].enter_at_hp_pct = 101;
-    expect_reject(&s, 1, 14, "phase threshold");
+    expect_reject(&s, 1, 15, "phase threshold");
     s = base; s.mechanics[1].primitive_id = RC_PRIM_TELEGRAPHED_AOE_TILE;
-    expect_reject(&s, 1, 14, "unverified primitive");
+    expect_reject(&s, 1, 15, "unverified primitive");
     s = base; s.mechanics[1].trigger_type = RC_ENC_TRIGGER_AFTER_ATTACK;
-    expect_reject(&s, 1, 14, "undispatched trigger");
+    expect_reject(&s, 1, 15, "undispatched trigger");
     s = base; s.mechanics[1].trigger_type = RC_ENC_TRIGGER_PERIODIC;
-    expect_reject(&s, 1, 14, "period-0 periodic");
+    expect_reject(&s, 1, 15, "period-0 periodic");
     s = base; s.mechanics[1].trigger_type = RC_ENC_TRIGGER_PHASE_ENTER;
     s.mechanics[1].period_ticks = 5;
-    expect_reject(&s, 1, 14, "period on a phase-enter trigger");
+    expect_reject(&s, 1, 15, "period on a phase-enter trigger");
     s = base; s.mechanics[1].phase_mask = 1u << 3;
-    expect_reject(&s, 1, 14, "mechanic phase out of range");
+    expect_reject(&s, 1, 15, "mechanic phase out of range");
     s = base;
     ((RcPrimParamsAttackCounterAlternateSpecial *)s.mechanics[0].param_block)
         ->special_mechanics[1] = 0;
-    expect_reject(&s, 1, 14, "rotation lists itself");
+    expect_reject(&s, 1, 15, "rotation lists itself");
     s = base;
     ((RcPrimParamsAttackCounterAlternateSpecial *)s.mechanics[0].param_block)
         ->special_count = 1;
-    expect_reject(&s, 1, 14, "attack-count mechanic outside the rotation");
+    expect_reject(&s, 1, 15, "attack-count mechanic outside the rotation");
     s = base;
     ((RcPrimParamsAcidField *)s.mechanics[1].param_block)->strike_count = 0;
-    expect_reject(&s, 1, 14, "acid field without strikes");
+    expect_reject(&s, 1, 15, "acid field without strikes");
     s = base;
     ((RcPrimParamsAcidField *)s.mechanics[1].param_block)->pool_count = 17;
-    expect_reject(&s, 1, 14, "acid pools above the run quota");
+    expect_reject(&s, 1, 15, "acid pools above the run quota");
     s = base;
     ((RcPrimParamsAcidField *)s.mechanics[1].param_block)->pool_object = 1;
-    expect_reject(&s, 1, 14, "acid pool object index");
+    expect_reject(&s, 1, 15, "acid pool object index");
+    s = base;
+    ((RcPrimParamsAcidField *)s.mechanics[1].param_block)->pool_radius =
+        RC_ENC_POOL_RADIUS_MAX + 1;
+    expect_reject(&s, 1, 15, "acid pools past the placement radius");
     s = base;
     ((RcPrimParamsSpawnOwnedHelpers *)s.mechanics[2].param_block)->helper = 1;
-    expect_reject(&s, 1, 14, "owned helper index");
+    expect_reject(&s, 1, 15, "owned helper index");
+    s = base;
+    ((RcPrimParamsSpawnOwnedHelpers *)s.mechanics[2].param_block)
+        ->spawn_distance = RC_ENC_SPAWN_DISTANCE_MAX + 1;
+    expect_reject(&s, 1, 15, "owned helpers past the landing search");
     s = base;
     memset(((RcPrimParamsSpawnOwnedHelpers *)s.mechanics[2].param_block)
            ->instakill_spell, 'x', 24);
-    expect_reject(&s, 1, 14, "unterminated spell name");
+    expect_reject(&s, 1, 15, "unterminated spell name");
     s = base; s.protections[0].attack_idx = 2;
-    expect_reject(&s, 1, 14, "protection attack index");
+    expect_reject(&s, 1, 15, "protection attack index");
     s = base; snprintf(s.attacks[0].name, sizeof(s.attacks[0].name), "Bite:hard");
-    expect_reject(&s, 1, 14, "':' in an attack name");
+    expect_reject(&s, 1, 15, "':' in an attack name");
     s = base; snprintf(s.mechanics[1].name, sizeof(s.mechanics[1].name), "Acid:pool");
-    expect_reject(&s, 1, 14, "':' in a mechanic name");
+    expect_reject(&s, 1, 15, "':' in a mechanic name");
     s = base; snprintf(s.mechanics[2].name, sizeof(s.mechanics[2].name), "form");
-    expect_reject(&s, 1, 14, "a mechanic named like the form-change keys");
+    expect_reject(&s, 1, 15, "a mechanic named like the form-change keys");
     s = base; s.damage_mods[0].condition = RC_ENC_DMG_CAP_RANGE;
-    expect_reject(&s, 1, 14, "unsupported damage condition");
+    expect_reject(&s, 1, 15, "unsupported damage condition");
 
     s = base;
     s.support = RC_ENC_SUPPORT_ATTACKS_ONLY;
-    expect_reject(&s, 1, 14, "attacks-only spec with forms and mechanics");
+    expect_reject(&s, 1, 15, "attacks-only spec with forms and mechanics");
     {
         // An attacks-only spec may not spawn objects either.
         RcEncounterSpec plain = base;
@@ -554,50 +579,50 @@ static void test_rejections(void) {
         plain.attacks[1].npc_id = 0;
         plain.helper_count = 0;
         plain.mechanic_count = 0;
-        expect_reject(&plain, 1, 14, "attacks-only spec with an object");
+        expect_reject(&plain, 1, 15, "attacks-only spec with an object");
         plain.object_count = 0;
-        expect_reject(&plain, 1, 14, "attacks-only spec with guards");
+        expect_reject(&plain, 1, 15, "attacks-only spec with guards");
         plain.guard_count = 0;
-        expect_reject(&plain, 1, 14, "attacks-only spec with an arena");
+        expect_reject(&plain, 1, 15, "attacks-only spec with an arena");
         plain.has_arena = false;
         plain.arena_min_x = plain.arena_min_y = 0;
         plain.arena_max_x = plain.arena_max_y = 0;
         plain.arena_plane = 0;
-        encode_file(&b, &plain, 1, 14);
+        encode_file(&b, &plain, 1, 15);
         assert(load_buf(&b) == 1);
     }
 
     // Arena and guards.
     s = base; s.arena_min_x = s.arena_max_x + 1;
-    expect_reject(&s, 1, 14, "arena min above max");
+    expect_reject(&s, 1, 15, "arena min above max");
     s = base; s.arena_plane = 4;
-    expect_reject(&s, 1, 14, "arena plane");
+    expect_reject(&s, 1, 15, "arena plane");
     s = base; s.has_arena = false; s.guard_count = 0;
-    expect_reject(&s, 1, 14, "arena bounds without an arena");
+    expect_reject(&s, 1, 15, "arena bounds without an arena");
     s = base; s.has_arena = false;
     s.arena_min_x = s.arena_min_y = s.arena_max_x = s.arena_max_y = 0;
     s.arena_plane = 0;
-    expect_reject(&s, 1, 14, "guards without an arena");
+    expect_reject(&s, 1, 15, "guards without an arena");
     s = base; s.guards[0].npc_id = s.forms[1].npc_id;
-    expect_reject(&s, 1, 14, "guard is a form");
+    expect_reject(&s, 1, 15, "guard is a form");
     s = base; s.guards[0].npc_id = s.helpers[0].npc_id;
-    expect_reject(&s, 1, 14, "guard is a helper");
+    expect_reject(&s, 1, 15, "guard is a helper");
     s = base; s.guard_count = 2; s.guards[1] = s.guards[0];
-    expect_reject(&s, 1, 14, "duplicate guard");
+    expect_reject(&s, 1, 15, "duplicate guard");
     s = base; s.guards[0].npc_id = 0;
-    expect_reject(&s, 1, 14, "guard id 0");
+    expect_reject(&s, 1, 15, "guard id 0");
     s = base; s.guard_count = RC_ENC_MAX_GUARDS + 1;
-    expect_reject(&s, 1, 14, "guard count");
+    expect_reject(&s, 1, 15, "guard count");
     {
         RcEncounterSpec two[2] = {valid_spec("a", 60000), valid_spec("b", 60010)};
         two[1].guards[0].npc_id = 60000;
-        expect_reject(two, 2, 14, "guard is another spec's form");
+        expect_reject(two, 2, 15, "guard is another spec's form");
         two[1].guards[0].npc_id = 60014;
         two[0].guards[0].npc_id = 60010;
-        expect_reject(two, 2, 14, "a later spec's form guards an earlier room");
+        expect_reject(two, 2, 15, "a later spec's form guards an earlier room");
         two[0].guards[0].npc_id = 60004;
         two[1].guards[0].npc_id = 60004;
-        encode_file(&b, two, 2, 14);
+        encode_file(&b, two, 2, 15);
         assert(load_buf(&b) == 2 && "one guard type may guard two rooms");
     }
 
@@ -607,36 +632,36 @@ static void test_rejections(void) {
             (RcPrimParamsHatchHelpersOnHit *)s.mechanics[3].param_block;
         s = base; s.mechanics[3].trigger_type = RC_ENC_TRIGGER_PERIODIC;
         s.mechanics[3].period_ticks = 5;
-        expect_reject(&s, 1, 14, "hatching on a period");
+        expect_reject(&s, 1, 15, "hatching on a period");
         s = base;   // the rotation keeps only Acid; Spawn moves to boss hits
         ((RcPrimParamsAttackCounterAlternateSpecial *)s.mechanics[0].param_block)
             ->special_count = 1;
         s.mechanics[2].trigger_type = RC_ENC_TRIGGER_BOSS_HIT;
-        expect_reject(&s, 1, 14, "boss_hit on another primitive");
+        expect_reject(&s, 1, 15, "boss_hit on another primitive");
         s = base; hp->chance_denominator = 0;
-        expect_reject(&s, 1, 14, "hatch chance 0");
+        expect_reject(&s, 1, 15, "hatch chance 0");
         s = base; hp->near_loc = 0;
-        expect_reject(&s, 1, 14, "hatch without a loc");
+        expect_reject(&s, 1, 15, "hatch without a loc");
         s = base; hp->near_distance = 33;
-        expect_reject(&s, 1, 14, "hatch distance");
+        expect_reject(&s, 1, 15, "hatch distance");
         s = base; hp->despawn_ticks = 0;
-        expect_reject(&s, 1, 14, "hatch lifetime");
+        expect_reject(&s, 1, 15, "hatch lifetime");
         s = base; hp->helper = 1;
-        expect_reject(&s, 1, 14, "hatch helper index");
+        expect_reject(&s, 1, 15, "hatch helper index");
     }
 
     RcEncounterSpec pair[2] = {valid_spec("dup", 60000), valid_spec("dup", 60010)};
-    expect_reject(pair, 2, 14, "duplicate slug");
+    expect_reject(pair, 2, 15, "duplicate slug");
     pair[1] = valid_spec("other", 60001);
-    expect_reject(pair, 2, 14, "form claimed by two specs");
+    expect_reject(pair, 2, 15, "form claimed by two specs");
     pair[1] = valid_spec("other", 60002);
-    expect_reject(pair, 2, 14, "helper of one spec is a form of another");
+    expect_reject(pair, 2, 15, "helper of one spec is a form of another");
 
     // Strings: empty required names and embedded NULs.
-    encode_file(&b, &base, 1, 14);
+    encode_file(&b, &base, 1, 15);
     b.data[12] = 0;   // slug length 0
     assert(load_buf(&b) == -1 && out_zeroed());
-    encode_file(&b, &base, 1, 14);
+    encode_file(&b, &base, 1, 15);
     b.data[14] = 0;   // NUL inside the slug "base"
     assert(load_buf(&b) == -1 && out_zeroed());
     assert(rc_encounter_load_specs("/nonexistent/encounters.bin", g_out, 4) == -1);
@@ -692,7 +717,7 @@ static void test_roles(void) {
 static void test_game_data_rejects_mislabelled_roles(void) {
     RcEncounterSpec s = valid_spec("mislabelled", 963);
     Buf b;
-    encode_file(&b, &s, 1, 14);
+    encode_file(&b, &s, 1, 15);
     FILE *f = fopen(g_path, "wb");
     assert(f && fwrite(b.data, 1, b.len, f) == b.len);
     fclose(f);
@@ -732,7 +757,7 @@ static void test_game_data_rejects_mislabelled_objects(void) {
         snprintf(vork->objects[0].name, sizeof(vork->objects[0].name), "%s",
                  cases[c].name);
         Buf b;
-        encode_file(&b, specs, count, 14);
+        encode_file(&b, specs, count, 15);
         FILE *f = fopen(g_path, "wb");
         assert(f && fwrite(b.data, 1, b.len, f) == b.len);
         fclose(f);

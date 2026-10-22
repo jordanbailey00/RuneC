@@ -9,6 +9,12 @@
 # delay; deadly dragonfire's flight time; acid pool count, radius and
 # lifetime; the acid and spawn flight times; rapid-fire strike flight time;
 # that Vorkath does not attack while the spawn lives.
+#
+# Vorkath never leaves its spot (user direction 2026-10-22; OSRS moverestrict
+# nomove), so both forms are anchored and its distant attacks reach the whole
+# arena. The arena is 23x23 around it and its farthest tile is 8 away
+# (B237 collision; Vorkath/Strategies r15364644: from the perimeter row a
+# range-7 crossbow is out of range, range 8 or more always reaches).
 
 name = "Vorkath"
 slug = "vorkath"
@@ -25,6 +31,7 @@ npc_id = 8059
 name = "Vorkath"
 binds = true
 dormant = true
+anchored = true
 next = "awake"
 next_hp = "full"
 transition_ticks = 5
@@ -33,6 +40,7 @@ transition_ticks = 5
 id = "awake"
 npc_id = 8061
 name = "Vorkath"
+anchored = true
 
 [[helpers]]
 id = "spawn"
@@ -61,6 +69,7 @@ style = "magic"
 max_hit = 30
 weight_adjacent = 4
 weight_distant = 3
+range = 8
 
 [[attacks]]
 name = "Ranged"
@@ -68,6 +77,7 @@ style = "ranged"
 max_hit = 32
 weight_adjacent = 3
 weight_distant = 4
+range = 8
 
 [[attacks]]
 name = "Dragonfire"
@@ -75,6 +85,7 @@ style = "magic"
 max_hit = 80
 weight_adjacent = 1
 weight_distant = 1
+range = 8
 breath = "vorkath"
 
 # Dragonfire protection reduces the damage, never the venom.
@@ -84,6 +95,7 @@ style = "magic"
 max_hit = 75
 weight_adjacent = 1
 weight_distant = 1
+range = 8
 breath = "vorkath_coloured"
 effect = { kind = "venom", when = "always", damage = 6 }
 
@@ -94,6 +106,7 @@ style = "magic"
 max_hit = 75
 weight_adjacent = 1
 weight_distant = 1
+range = 8
 breath = "vorkath_coloured"
 effect = { kind = "deactivate_prayers", when = "always" }
 
@@ -104,6 +117,7 @@ style = "magic"
 max_hit = 121
 weight_adjacent = 1
 weight_distant = 1
+range = 8
 hit_delay = 4
 adjacent_pct = 50
 flags = ["tile_target", "ignores_protection"]

@@ -111,7 +111,11 @@ static void change_object_collision(RcWorld *world,
                                     int add) {
     if (!world || !object || object->obj_id >= RC_MAX_OBJECT_ID) return;
     const RcObjectDef *def = rc_object_def_get((int)object->obj_id);
-    if (!def || !(def->flags & RC_OBJECT_FLAG_SOLID)) return;
+    // Interact type 0 (cache opcode 17) never clips, though the solid flag
+    // stays set: the static collision export skips such locs too, as
+    // rsmod's toggleLoc skips blockWalk 0. Vorkath's acid pool is one.
+    if (!def || !(def->flags & RC_OBJECT_FLAG_SOLID) || def->interact_type == 0)
+        return;
     int projectile = (def->flags & RC_OBJECT_FLAG_IMPENETRABLE) != 0
                   || (def->clip_flags & RC_OBJECT_CLIP_BLOCKS_PROJECTILE) != 0;
     if (object->type >= 0 && object->type <= 3) {

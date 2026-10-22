@@ -733,11 +733,12 @@ int rc_load_npc_spawns_near(RcWorld *world, const char *path,
 
 // A spawn faces its spawn direction at once, as the NPC add block's
 // orientation does.
-static void npc_face_spawn_direction(RcNpc *npc) {
+void rc_npc_face_spawn_direction(RcNpc *npc) {
     static const int8_t dx[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
     static const int8_t dy[8] = { 1, 1, 1,  0, 0, -1,-1,-1};
-    if (!npc || npc->spawn_direction >= 8) return;
+    if (!npc) return;
     npc->facing_entity = -1;
+    if (npc->spawn_direction >= 8) return;
     npc->face_angle = (int16_t)rc_direction_face_angle(rc_direction_from_delta(
         dx[npc->spawn_direction], dy[npc->spawn_direction]));
     npc->face_angle_seq++;
@@ -772,6 +773,9 @@ void rc_npc_reset_life(RcWorld *world, RcNpc *npc) {
     int spawn_plane = npc->spawn_plane;
     int spawn_wander_range = npc->spawn_wander_range;
     uint8_t spawn_direction = npc->spawn_direction;
+    // The sequence keeps counting, so a reset's face angle always reads
+    // as new.
+    uint32_t face_angle_seq = npc->face_angle_seq;
     bool respawns = npc->respawns;
     bool disable_wander = npc->disable_wander;
     bool force_player_max_hit = npc->force_player_max_hit;
@@ -787,6 +791,7 @@ void rc_npc_reset_life(RcWorld *world, RcNpc *npc) {
     npc->spawn_plane = spawn_plane;
     npc->spawn_wander_range = spawn_wander_range;
     npc->spawn_direction = spawn_direction;
+    npc->face_angle_seq = face_angle_seq;
     npc->respawns = respawns;
     npc->disable_wander = disable_wander;
     npc->force_player_max_hit = force_player_max_hit;
@@ -807,7 +812,7 @@ void rc_npc_reset_life(RcWorld *world, RcNpc *npc) {
     npc->spawn_hp = def && def->hitpoints > 0 ? def->hitpoints : 1;
     npc->current_hp = npc->spawn_hp;
     for (int i = 0; i < 6; i++) npc->stats[i] = def ? def->stats[i] : 1;
-    npc_face_spawn_direction(npc);
+    rc_npc_face_spawn_direction(npc);
     rc_combat_init_npc_state(npc);
 }
 
@@ -1097,6 +1102,61 @@ static void npc_arrive(RcNpc *npc) {
         npc->wander_timer = 0;
 }
 
+// The heading of a direct step toward a target the NPC does not overlap.
+static void npc_direct_heading(int x, int y, int size,
+                               const RcRouteTarget *target, int *dx, int *dy) {
+    if (target->allow_inside) {
+        *dx = (target->x > x) - (target->x < x);
+        *dy = (target->y > y) - (target->y < y);
+        return;
+    }
+    *dx = x + size <= target->x ? 1 : x >= target->x + target->width ? -1 : 0;
+    *dy = y + size <= target->y ? 1 : y >= target->y + target->height ? -1 : 0;
+}
+
+// Ordinary travel tries both axes, then X, then Y. It never searches a
+// detour. Returns 0 when every step is blocked. Inline: it is every moving
+// NPC's step, and a call costs about a sixth of it.
+static inline int npc_try_direct_step(const RcWorldMap *map, int plane, int x,
+                                      int y, int size,
+                                      const RcRouteTarget *target, int dx,
+                                      int dy, int overlap, int *step_x,
+                                      int *step_y) {
+    for (int i = 0; i < 3; i++) {
+        int sx = i == 2 ? 0 : dx, sy = i == 1 ? 0 : dy;
+        if ((!sx && !sy) || (i > 0 && (!dx || !dy))) continue;
+        if (!overlap && !target->allow_inside
+                && npc_overlaps_target(x + sx, y + sy, size, target))
+            continue;
+        if (!rc_can_move_rect(map, x, y, size, size, sx, sy, plane)) continue;
+        *step_x = sx;
+        *step_y = sy;
+        return 1;
+    }
+    return 0;
+}
+
+bool rc_npc_direct_walk_reaches(const RcWorldMap *map, int plane, int x,
+                                int y, int size, const RcRouteTarget *target,
+                                int max_steps) {
+    if (!map || !target || size < 1) return false;
+    for (int step = 0; step <= max_steps; step++) {
+        if (rc_route_target_reached(map, plane, x, y, size, size, target))
+            return true;
+        // Stepping out of an overlapped target is a random cardinal.
+        if (!target->allow_inside && npc_overlaps_target(x, y, size, target))
+            return false;
+        int dx, dy, sx, sy;
+        npc_direct_heading(x, y, size, target, &dx, &dy);
+        if (!npc_try_direct_step(map, plane, x, y, size, target, dx, dy, 0,
+                                 &sx, &sy))
+            return false;
+        x += sx;
+        y += sy;
+    }
+    return false;
+}
+
 static void npc_direct_step(RcWorld *world, RcNpc *npc, int size) {
     const RcRouteTarget *target = &npc->route_target;
     if (rc_route_target_reached(&world->map, npc->plane,
@@ -1104,8 +1164,7 @@ static void npc_direct_step(RcWorld *world, RcNpc *npc, int size) {
         npc_arrive(npc);
         return;
     }
-    int dx = (target->x > npc->x) - (target->x < npc->x);
-    int dy = (target->y > npc->y) - (target->y < npc->y);
+    int dx, dy;
     int overlap = !target->allow_inside
         && npc_overlaps_target(npc->x, npc->y, size, target);
     if (overlap) {
@@ -1114,22 +1173,12 @@ static void npc_direct_step(RcWorld *world, RcNpc *npc, int size) {
         int direction = rc_rng_range(&world->rng_state, 3);
         dx = directions[direction][0];
         dy = directions[direction][1];
-    } else if (!target->allow_inside) {
-        dx = npc->x + size <= target->x ? 1
-           : npc->x >= target->x + target->width ? -1 : 0;
-        dy = npc->y + size <= target->y ? 1
-           : npc->y >= target->y + target->height ? -1 : 0;
+    } else {
+        npc_direct_heading(npc->x, npc->y, size, target, &dx, &dy);
     }
-    // Ordinary travel tries both axes, then X, then Y. It never searches a detour.
-    const int steps[3][2] = {{dx, dy}, {dx, 0}, {0, dy}};
-    for (int i = 0; i < 3; i++) {
-        int sx = steps[i][0], sy = steps[i][1];
-        if ((!sx && !sy) || (i > 0 && (!dx || !dy))) continue;
-        if (!overlap && !target->allow_inside
-                && npc_overlaps_target(npc->x + sx, npc->y + sy, size, target))
-            continue;
-        if (!rc_can_move_rect(&world->map, npc->x, npc->y, size, size,
-                              sx, sy, npc->plane)) continue;
+    int sx, sy;
+    if (npc_try_direct_step(&world->map, npc->plane, npc->x, npc->y, size,
+                            target, dx, dy, overlap, &sx, &sy)) {
         npc->x += sx;
         npc->y += sy;
         npc->movement_result = RC_MOVEMENT_MOVED;
@@ -1151,6 +1200,13 @@ void rc_npc_movement_tick(RcWorld *world, RcNpc *npc) {
     if (npc->route_idx >= npc->route_len && !continue_npc_route(world, npc))
         return;
     const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
+    // An anchored boss form never walks: whoever asked for the route (chase,
+    // wander, return), it is dropped, as rsmod drops a NoMove NPC's.
+    if (def && rc_encounter_def_anchored(&world->encounter,
+                                         (uint32_t)def->id)) {
+        rc_npc_route_clear(npc, RC_MOVEMENT_BLOCKED);
+        return;
+    }
     int size = def && def->size > 0 ? def->size : 1;
     if (npc->route_mode != RC_NPC_ROUTE_SCRIPTED) {
         npc_direct_step(world, npc, size);

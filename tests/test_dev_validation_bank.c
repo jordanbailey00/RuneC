@@ -1,5 +1,6 @@
 #include "../rc-core/encounter.h"
 #include <assert.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "../rc-core/storage.h"
@@ -64,6 +65,44 @@ static void test_god_mode(RcWorld *world) {
     assert(runec_dev_validation_set_god_mode(world, false));
 }
 
+static int vorkaths_near(const RcWorld *world, const RuneCDevTransport *d) {
+    int count = 0;
+    for (int i = 0; i < world->npc_count; i++) {
+        const RcNpc *npc = &world->npcs[i];
+        const RcNpcDef *base = rc_npc_base_def_for_npc(npc);
+        count += npc->active && base && base->id == 8059
+              && abs(npc->x - d->target_x) <= 3 && abs(npc->y - d->target_y) <= 3;
+    }
+    return count;
+}
+
+// Asleep, Vorkath ignores the transport's combat start. Woken, a second
+// teleport puts the same Vorkath back to sleep rather than spawning a
+// sleeping copy beside the awake one.
+static void check_vorkath_transport(RcWorld *world, const RuneCDevTransport *d,
+                                    int idx) {
+    RcNpc *vork = &world->npcs[idx];
+    int16_t asleep_angle = vork->face_angle;
+    assert(vork->target_uid == -1 && vork->facing_entity == -1);
+    world->player.x = d->target_x + 3;
+    world->player.y = d->target_y - 3;
+    world->player.plane = d->plane;
+    world->player.max_hp = world->player.current_hp = 99000;
+    assert(rc_encounter_wake(world, (RcNpcId)vork->uid));
+    for (int t = 0; t < 10 && rc_npc_def_for_npc(world, vork)->id != 8061; t++)
+        rc_world_tick(world);
+    assert(rc_npc_def_for_npc(world, vork)->id == 8061 && vork->target_uid == 0);
+    assert(rc_world_find_npc_near(world, 8059, d->target_x, d->target_y,
+                                  d->plane, 0) == idx);
+    assert(runec_dev_validation_prepare_encounter(world, d) == 1);
+    assert(vorkaths_near(world, d) == 1);
+    int run = rc_encounter_run_for_npc(world, (RcNpcId)vork->uid);
+    assert(run >= 0 && world->encounter.active[run].form == 0);
+    assert(rc_npc_def_for_npc(world, vork)->id == 8059);
+    assert(vork->target_uid == -1 && vork->facing_entity == -1
+           && vork->face_angle == asleep_angle);
+}
+
 // Every boss teleport lands on a fight bound to the intended encounter.
 static void check_transport_encounters(void) {
     RcWorldConfig cfg = rc_preset_combat_only();
@@ -98,6 +137,8 @@ static void check_transport_encounters(void) {
         assert(runec_dev_validation_prepare_encounter(world, d) >= 1);
         run = rc_encounter_run_for_npc(world, (RcNpcId)world->npcs[idx].uid);
         assert(run >= 0 && world->encounter.active[run].attack_count == 0);
+        if (strcmp(expect[i].key, "vorkath") == 0)
+            check_vorkath_transport(world, d, idx);
     }
     assert(rc_world_find_npc_near(world, 8058, 2269, 4062, 0, 3) < 0);
     printf("dev transports: boss teleports bind the intended encounters\n");

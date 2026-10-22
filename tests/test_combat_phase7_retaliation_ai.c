@@ -140,7 +140,7 @@ static void test_aggressive_npc_acquires_target_and_respects_leash(void) {
     RcNpc *passive = &world->npcs[passive_idx];
 
     rc_world_tick(world);
-    assert(aggro->target_uid == 0);
+    assert(aggro->target_uid == 0 && aggro->facing_entity == 0);
     assert(passive->target_uid == -1);
     assert(aggro->combat.aggro_state == 1);
 
@@ -150,6 +150,7 @@ static void test_aggressive_npc_acquires_target_and_respects_leash(void) {
                            world->player.plane);
     rc_world_tick(world);
     assert(aggro->target_uid == -1);
+    assert(aggro->facing_entity == -1 && "leaving combat resets the face entity");
     assert(aggro->combat.leash_state == 1);
 
     rc_world_destroy(world);

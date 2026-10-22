@@ -7,6 +7,7 @@
 #include "config.h"
 #include "object_runtime.h"
 #include "objects.h"
+#include "pathfinding.h"
 
 #define ODEF_PATH RC_TEST_SOURCE_DIR "/data/defs/object_defs.bin"
 #define OPLI_PATH \
@@ -267,7 +268,7 @@ static void test_collision_mutation(RcWorld *world) {
     int footprint_id = -1;
     for (int id = 0; id < RC_MAX_OBJECT_ID; id++) {
         const RcObjectDef *def = rc_object_def_get(id);
-        if (def && (def->flags & TEST_OBJECT_SOLID)
+        if (def && (def->flags & TEST_OBJECT_SOLID) && def->interact_type
                 && def->width == 2 && def->length == 3) {
             footprint_id = id;
             break;
@@ -288,7 +289,7 @@ static void test_collision_mutation(RcWorld *world) {
     int ground_id = -1;
     for (int id = 0; id < RC_MAX_OBJECT_ID; id++) {
         const RcObjectDef *def = rc_object_def_get(id);
-        if (def && (def->flags & TEST_OBJECT_SOLID)
+        if (def && (def->flags & TEST_OBJECT_SOLID) && def->interact_type
                 && (def->flags & TEST_OBJECT_HAS_ACTIONS)) {
             ground_id = id;
             break;
@@ -303,6 +304,27 @@ static void test_collision_mutation(RcWorld *world) {
            == RC_OBJECT_MUTATION_OK);
     assert(flags_at(world, 110, 110) & COL_BLOCK_WALK);
     assert(rc_world_object_revert(world, key) == RC_OBJECT_MUTATION_OK);
+
+    // Interact type 0 never clips, though its solid flag is set: Vorkath's
+    // acid pool is walked over. Removing one leaves the tile's own flags.
+    const RcObjectDef *acid = rc_object_def_get(32000);
+    assert(acid && (acid->flags & TEST_OBJECT_SOLID) && !acid->interact_type);
+    world->map.regions[0].tiles[0][112 % RC_REGION_SIZE][112 % RC_REGION_SIZE]
+        .collision_flags = COL_BLOCK_WALK;
+    RcObjectPlacement pools[2] = {
+        {.obj_id = 32000, .x = 111, .y = 111, .plane = 0, .type = 10},
+        {.obj_id = 32000, .x = 112, .y = 112, .plane = 0, .type = 10},
+    };
+    uint64_t pool_keys[2] = {0};
+    for (int i = 0; i < 2; i++)
+        assert(rc_world_object_add(world, &pools[i], 0, &pool_keys[i])
+               == RC_OBJECT_MUTATION_OK);
+    assert(flags_at(world, 111, 111) == 0);
+    assert(rc_can_move(&world->map, 110, 111, 1, 0, 0) && "walked onto");
+    for (int i = 0; i < 2; i++)
+        assert(rc_world_object_revert(world, pool_keys[i])
+               == RC_OBJECT_MUTATION_OK);
+    assert(flags_at(world, 112, 112) == COL_BLOCK_WALK);
 }
 
 int main(void) {

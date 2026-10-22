@@ -1745,6 +1745,16 @@ static bool open_tile(const RcWorld *world, int x, int y, int plane) {
         && !rc_tile_blocked(&world->map, x, y, plane);
 }
 
+static bool open_footprint(const RcWorld *world, int x, int y, int size,
+                           int plane) {
+    for (int dx = 0; dx < size; dx++) {
+        for (int dy = 0; dy < size; dy++) {
+            if (!open_tile(world, x + dx, y + dy, plane)) return false;
+        }
+    }
+    return true;
+}
+
 static bool effect_on_tile(const RcWorld *world, uint8_t kind,
                            int x, int y, int plane) {
     for (int i = 0; i < world->encounter_effect_count; i++) {
@@ -1765,10 +1775,40 @@ static int npc_footprint_distance(const RcWorld *world, const RcNpc *npc,
     return dx > dy ? dx : dy;
 }
 
+// The tiles within `radius` of the player that the player can walk to,
+// as a (2 * radius + 1)-wide square of flags. A pool on a tile past a wall
+// is one the player never meets.
+static void player_walkable_square(const RcWorld *world, const RcPlayer *pl,
+                                   int radius, uint8_t *walkable) {
+    int side = radius * 2 + 1;
+    uint16_t queue[(RC_ENC_POOL_RADIUS_MAX * 2 + 1)
+                   * (RC_ENC_POOL_RADIUS_MAX * 2 + 1)];
+    int head = 0, tail = 0;
+    memset(walkable, 0, (size_t)(side * side));
+    walkable[radius * side + radius] = 1;
+    queue[tail++] = (uint16_t)(radius * side + radius);
+    while (head < tail) {
+        int cell = queue[head++];
+        int cx = cell % side, cy = cell / side;
+        for (int dy = -1; dy <= 1; dy++) {
+            for (int dx = -1; dx <= 1; dx++) {
+                int nx = cx + dx, ny = cy + dy;
+                if ((!dx && !dy) || nx < 0 || ny < 0 || nx >= side
+                        || ny >= side || walkable[ny * side + nx]) continue;
+                if (!rc_can_move_rect(&world->map, pl->x - radius + cx,
+                                      pl->y - radius + cy, 1, 1, dx, dy,
+                                      pl->plane)) continue;
+                walkable[ny * side + nx] = 1;
+                queue[tail++] = (uint16_t)(ny * side + nx);
+            }
+        }
+    }
+}
+
 // acid_field: pools spat around the player (the first on the player's
-// tile) land after pool_delay, then a window fires one warned strike per
-// tick at the player's tile. The boss idles and takes scaled damage while
-// the window is open.
+// tile) land after pool_delay on tiles the player can walk to, then a
+// window fires one warned strike per tick at the player's tile. The boss
+// idles and takes scaled damage while the window is open.
 static void prim_acid_field(RcWorld *world, int enc_idx, const void *params) {
     const RcPrimParamsAcidField *p = params;
     RcActiveEncounter *a = prim_run(world, enc_idx);
@@ -1780,15 +1820,20 @@ static void prim_acid_field(RcWorld *world, int enc_idx, const void *params) {
     const RcPlayer *pl = &world->player;
     record_part(world, enc_idx, mech, PART_LAUNCH, true, pl->x, pl->y,
                 COMBAT_NONE, 0);
+    int r = p->pool_radius, side = r * 2 + 1;
+    uint8_t walkable[(RC_ENC_POOL_RADIUS_MAX * 2 + 1)
+                     * (RC_ENC_POOL_RADIUS_MAX * 2 + 1)];
+    player_walkable_square(world, pl, r, walkable);
     int placed = 0;
     for (int tries = 0; placed < p->pool_count && tries < p->pool_count * 8;
             tries++) {
-        int x = pl->x, y = pl->y;
+        int ox = 0, oy = 0;
         if (placed > 0) {
-            x += rc_rng_range(&world->rng_state, p->pool_radius * 2) - p->pool_radius;
-            y += rc_rng_range(&world->rng_state, p->pool_radius * 2) - p->pool_radius;
+            ox = rc_rng_range(&world->rng_state, r * 2) - r;
+            oy = rc_rng_range(&world->rng_state, r * 2) - r;
         }
-        if (!open_tile(world, x, y, pl->plane)
+        int x = pl->x + ox, y = pl->y + oy;
+        if (!walkable[(oy + r) * side + ox + r]
                 || effect_on_tile(world, RC_ENC_EFFECT_ACID_POOL, x, y, pl->plane))
             continue;
         if (rc_encounter_add_pool(world, enc_idx, x, y, pl->plane,
@@ -1817,9 +1862,40 @@ static void window_acid_field(RcWorld *world, int enc_idx,
                     p->strike_style, p->strike_delay);
 }
 
-// spawn_owned_helpers: helpers launched at tiles `spawn_distance` from the
-// player land after spawn_delay and belong to the run. The window holds the
-// run flags while any lives or is in flight.
+static RcRouteTarget player_chase_target(const RcPlayer *pl) {
+    return rc_route_target_rectangle(pl->x, pl->y, 1, 1, 1, 1, false, false);
+}
+
+// The tiles `d` from the player (the Chebyshev ring) where a helper of
+// `size` fits and whose direct walk reaches the player. A helper landing
+// past a wall or behind the boss would never arrive, and its window, with
+// the player frozen, would never close.
+static int helper_landings(const RcWorld *world, const RcPlayer *pl, int d,
+                           int size, int16_t landings[][2]) {
+    RcRouteTarget target = player_chase_target(pl);
+    int count = 0;
+    for (int i = 0; i < 8 * d; i++) {
+        int side = i / (2 * d), t = i % (2 * d);
+        int x = pl->x + (side == 0 ? t - d : side == 1 ? d
+                         : side == 2 ? d - t : -d);
+        int y = pl->y + (side == 0 ? -d : side == 1 ? t - d
+                         : side == 2 ? d : d - t);
+        // A straight walk shortens a gap at most d wide on each axis.
+        if (!open_footprint(world, x, y, size, pl->plane)
+                || !rc_npc_direct_walk_reaches(&world->map, pl->plane, x, y,
+                                               size, &target, 2 * d))
+            continue;
+        landings[count][0] = (int16_t)x;
+        landings[count][1] = (int16_t)y;
+        count++;
+    }
+    return count;
+}
+
+// spawn_owned_helpers: helpers launched at random tiles `spawn_distance`
+// from the player (nearer when none qualifies) land after spawn_delay and
+// belong to the run. The window holds the run flags while any lives or is
+// in flight.
 static void prim_spawn_owned_helpers(RcWorld *world, int enc_idx,
                                      const void *params) {
     const RcPrimParamsSpawnOwnedHelpers *p = params;
@@ -1827,22 +1903,32 @@ static void prim_spawn_owned_helpers(RcWorld *world, int enc_idx,
     if (!a || a->invoking_mechanic_idx == 0xFFu) return;
     uint8_t mechanic = a->invoking_mechanic_idx;
     const RcEncounterMechanic *mech = invoking_mechanic(world, a);
+    const RcEncounterSpec *spec = rc_encounter_spec(world, a->spec_idx);
+    const RcNpcDef *hdef = spec && p->helper < spec->helper_count
+        ? rc_npc_def_get(rc_npc_def_find((int)spec->helpers[p->helper].npc_id))
+        : NULL;
+    int size = hdef && hdef->size > 0 ? hdef->size : 1;
     const RcPlayer *pl = &world->player;
     record_part(world, enc_idx, mech, PART_LAUNCH, true, pl->x, pl->y,
                 COMBAT_NONE, 0);
-    int d = p->spawn_distance, spawned = 0;
-    for (int tries = 0; spawned < p->count && tries < p->count * 16; tries++) {
-        int side = (int)rc_rng_bounded(&world->rng_state, 4);
-        int along = rc_rng_range(&world->rng_state, d * 2) - d;
-        int x = pl->x + (side == 0 ? -d : side == 1 ? d : along);
-        int y = pl->y + (side == 2 ? -d : side == 3 ? d : along);
-        if (open_tile(world, x, y, pl->plane)
-                && rc_encounter_add_helper_drop(world, enc_idx, p->helper, x, y,
-                                                pl->plane, p->spawn_delay)) {
-            record_part(world, enc_idx, mech, PART_HELPER, false, x, y,
-                        COMBAT_NONE, p->spawn_delay);
-            spawned++;
+    int16_t landings[8 * RC_ENC_SPAWN_DISTANCE_MAX][2];
+    int count = 0;
+    for (int d = p->spawn_distance; d > 0 && !count; d--)
+        count = helper_landings(world, pl, d, size, landings);
+    int spawned = 0;
+    while (spawned < p->count && count > 0) {
+        int pick = (int)rc_rng_bounded(&world->rng_state, (uint32_t)count);
+        int x = landings[pick][0], y = landings[pick][1];
+        landings[pick][0] = landings[--count][0];
+        landings[pick][1] = landings[count][1];
+        if (!rc_encounter_add_helper_drop(world, enc_idx, p->helper, x, y,
+                                          pl->plane, p->spawn_delay)) {
+            if (!a->active) return;
+            break;
         }
+        record_part(world, enc_idx, mech, PART_HELPER, false, x, y,
+                    COMBAT_NONE, p->spawn_delay);
+        spawned++;
         if (!a->active) return;
     }
     if (!spawned) return;
@@ -1853,9 +1939,7 @@ static void prim_spawn_owned_helpers(RcWorld *world, int enc_idx,
 }
 
 static void chase_player(RcWorld *world, RcNpc *npc) {
-    const RcPlayer *pl = &world->player;
-    RcRouteTarget target = rc_route_target_rectangle(pl->x, pl->y, 1, 1, 1, 1,
-                                                     false, false);
+    RcRouteTarget target = player_chase_target(&world->player);
     if (npc->route_mode == RC_NPC_ROUTE_CHASE && npc->route_target.x == target.x
             && npc->route_target.y == target.y) return;
     (void)rc_npc_route_request(world, npc, &target, RC_NPC_ROUTE_CHASE, false);
@@ -1908,16 +1992,6 @@ static int rect_distance(int ax, int ay, int aw, int ah,
     int dy = ay > by + bh - 1 ? ay - (by + bh - 1)
            : by > ay + ah - 1 ? by - (ay + ah - 1) : 0;
     return dx > dy ? dx : dy;
-}
-
-static bool open_footprint(const RcWorld *world, int x, int y, int size,
-                           int plane) {
-    for (int dx = 0; dx < size; dx++) {
-        for (int dy = 0; dy < size; dy++) {
-            if (!open_tile(world, x + dx, y + dy, plane)) return false;
-        }
-    }
-    return true;
 }
 
 static void prim_hatch_helpers_on_hit(RcWorld *world, int enc_idx,

@@ -99,10 +99,12 @@ subsystems**.
 - **slayer** — task metadata, assignment, unlock/block/prefer filters,
   task progress
 - **encounter** — admitted boss runs: forms (with per-form defence
-  bonuses), engagement, phases, attack selection, owned helpers and hazards
-  (pools that land after their spit and show their loc, helpers that land
-  after their launch), a boss's room (arena) and the world-spawned guards
-  that return with it, and the verified primitives
+  bonuses; anchored forms never walk; dormant forms neither fight nor face
+  anyone), engagement, phases, attack selection, owned helpers and hazards
+  (pools that land after their spit, on tiles the player can walk to, and
+  show their loc; helpers that land after their launch where their direct
+  walk arrives at the player), a boss's room (arena) and the world-spawned
+  guards that return with it, and the verified primitives
 - **objects** — object definitions, placed-object lookup, typed object
   behavior tags, complete varbit/varp transforms, exact layer-aware dynamic
   loc mutation, altar restore, doors, and gathering-node depletion/respawn
@@ -304,7 +306,9 @@ that do not have placement identity.
 `rc-core/object_runtime.c` owns dynamic loc identity and lifecycle. Static
 placements use their immutable key and loc layer; spawned locs receive a
 world-local key. Add, delete, replace, timed revert, and collision replay all
-use this owner. Transient overrides are reclaimed when they revert, and
+use this owner. Their collision follows the static export's rule: a loc of
+interact type 0 never clips, whatever its solid flag. Transient overrides are
+reclaimed when they revert, and
 capacity or identity conflicts are reported explicitly. The viewer reads the
 resolved active placement but never mutates object state.
 
@@ -735,7 +739,7 @@ Each subsystem owns its binary(s):
 | regions | `world.collision-tiles.indexed.bin`, `area_flags.bin` |
 | skills | `recipes.bin`, `skill_drops.bin`, `gathering_nodes.bin` |
 | combat / slayer / encounter | `regular_npc_mechanics.bin` |
-| encounter | `encounters.bin` (ENCT v14, admitted specs only), `activity_schemas.bin`, `activity_spawns.bin`, `activity_mechanics.bin`, `activity_states.bin` |
+| encounter | `encounters.bin` (ENCT v15, admitted specs only), `activity_schemas.bin`, `activity_spawns.bin`, `activity_mechanics.bin`, `activity_states.bin` |
 | slayer | `slayer.bin` |
 | active area | mapsquare-indexed collision, world NPC/static ground-item spawns, and object placements via `rc_world_activate_area`; lower-level NPC rect/near loaders remain available for tools/tests |
 | (audio → rc-viewer) | `music.bin` |

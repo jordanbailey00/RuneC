@@ -21,7 +21,7 @@
 #include <string.h>
 
 #define ENCT_MAGIC 0x54434E45u     // 'ENCT'
-#define ENCT_VERSION 14u
+#define ENCT_VERSION 15u
 // Engine policy, not OSRS constants: an engaged fight ends after this many
 // consecutive ticks in which neither side targets the other, or when the
 // player is further than the leash from the boss footprint.
@@ -599,6 +599,7 @@ static void enter_form(RcWorld *world, int slot, uint8_t form,
     if (spec->forms[form].dormant) {
         a->engaged = false;
         stop_boss_combat(world, npc);
+        rc_npc_face_spawn_direction(npc);
     }
     if (def != old_def) record_form(world, npc, RC_ENC_FORM_ENTER_KEY, 0);
 }
@@ -894,8 +895,12 @@ int rc_encounter_use_specs(RcWorld *world, const RcEncounterSpec *specs,
     s->spec_count = (uint8_t)count;
     s->refused_specs = 0;
     s->arena_specs = 0;
+    s->anchored_count = 0;
     for (int i = 0; i < count; i++) {
         if (specs[i].has_arena) s->arena_specs |= 1ull << i;
+        for (int f = 0; f < specs[i].form_count; f++)
+            if (specs[i].forms[f].anchored)
+                s->anchored_ids[s->anchored_count++] = specs[i].forms[f].npc_id;
     }
     if (!(world->enabled & RC_SUB_ENCOUNTER)) return 0;
     for (int i = 0; i < world->npc_count; i++) try_bind(world, i);
@@ -1151,6 +1156,14 @@ bool rc_encounter_player_can_target_npc(const RcWorld *world,
     const RcEncounterSpec *spec = run_spec(world, a);
     if (!spec || a->transition_until || form_dormant(spec, a)) return false;
     return spec->phases[a->current_phase].player_targetable;
+}
+
+bool rc_encounter_npc_dormant(const RcWorld *world, RcNpcId npc_uid) {
+    int slot = world ? rc_encounter_run_for_npc(world, npc_uid) : -1;
+    if (slot < 0) return false;
+    const RcActiveEncounter *a = &world->encounter.active[slot];
+    const RcEncounterSpec *spec = run_spec(world, a);
+    return spec && form_dormant(spec, a);
 }
 
 int rc_encounter_intercept_lethal(RcWorld *world, RcNpcId npc_uid) {
@@ -1485,12 +1498,15 @@ static void read_form(RcEnctReader *r, RcEncounterForm *f) {
     f->revert_form = take_u8(r);
     f->revert_hp = take_u8(r);
     for (int i = 0; i < 5; i++) f->defence_bonus[i] = (int16_t)take_u16(r);
-    if (binds > 1 || dormant > 1 || f->on_lethal > RC_ENC_LETHAL_TRANSFORM
+    uint8_t anchored = take_u8(r);
+    if (binds > 1 || dormant > 1 || anchored > 1
+            || f->on_lethal > RC_ENC_LETHAL_TRANSFORM
             || f->next_hp > RC_ENC_FORM_HP_KEEP
             || f->revert_hp > RC_ENC_FORM_HP_KEEP)
         fail(r, "form field");
     f->binds_on_spawn = binds;
     f->dormant = dormant;
+    f->anchored = anchored;
 }
 
 static void read_attack(RcEnctReader *r, RcEncounterAttack *a) {
@@ -1633,6 +1649,7 @@ static const char *check_params(const RcEncounterSpec *s) {
                     || (p->pool_count && (!p->pool_ticks
                                           || !p->pool_damage_max))
                     || p->strike_count == 0 || p->strike_min > p->strike_max
+                    || p->pool_radius > RC_ENC_POOL_RADIUS_MAX
                     || p->pool_leech_pct > 100 || p->damage_taken_pct > 100
                     || p->strike_style == COMBAT_NONE
                     || p->strike_style > COMBAT_MAGIC
@@ -1654,6 +1671,7 @@ static const char *check_params(const RcEncounterSpec *s) {
                     || p->count > RC_ENC_MAX_RUN_HELPERS
                     || p->boss_immune > 1 || p->freeze_player > 1
                     || p->boss_idle > 1 || p->spawn_distance == 0
+                    || p->spawn_distance > RC_ENC_SPAWN_DISTANCE_MAX
                     || !cstr_in(p->instakill_spell, sizeof(p->instakill_spell)))
                 return "owned helpers";
         }

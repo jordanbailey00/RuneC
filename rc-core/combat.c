@@ -1231,7 +1231,8 @@ int rc_combat_start_npc_vs_player(struct RcWorld *world, int npc_uid,
             !rc_npc_def_for_npc(world, npc)) {
         return 0;
     }
-    if (!npc_can_retaliate(world, npc)) return 0;
+    if (!npc_can_retaliate(world, npc)
+            || rc_encounter_npc_dormant(world, (RcNpcId)npc->uid)) return 0;
     RcCombatActorRef npc_actor = {
         .kind = RC_COMBAT_ACTOR_NPC,
         .uid = npc->uid,
@@ -1261,6 +1262,8 @@ void rc_combat_stop_actor(struct RcWorld *world, RcCombatActorRef actor,
         if (!npc) return;
         npc->target_uid = -1;
         npc->combat.attack_prepared = false;
+        // Leaving combat resets the face entity, as rsmod's resetMode does.
+        if (npc->facing_entity == 0) npc->facing_entity = -1;
         if (npc->route_mode == RC_NPC_ROUTE_CHASE)
             rc_npc_route_clear(npc, RC_MOVEMENT_NONE);
         sync_npc_combat_state_from_legacy(world, npc);

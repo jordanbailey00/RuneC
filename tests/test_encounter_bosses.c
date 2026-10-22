@@ -9,7 +9,10 @@
 //   Vorkath: dormant binding, the Poke handler, waking, the 6+1 special
 //     rotation (acid pools landing as loc 32000, the spawn landing after its
 //     flight), deadly dragonfire as a warned strike, the named attack and
-//     mechanic-part events presentation reads, death returning it to sleep.
+//     mechanic-part events presentation reads, death returning it to sleep;
+//     anchored, it never moves and reaches the arena's farthest tile; in a
+//     walled arena the spawn lands where it reaches the frozen player and
+//     acid where the player walks; asleep it keeps its spawn facing.
 //   Chaos Elemental: Madness (weapon first, space-limited, never with a full
 //     inventory) and Confusion (2-5 tiles from the footprint).
 //   General Graardor: approach and 2:1 adjacent odds; his room (he and his
@@ -34,6 +37,7 @@
 #include "../rc-core/interaction.h"
 #include "../rc-core/npc.h"
 #include "../rc-core/object_runtime.h"
+#include "../rc-core/pathfinding.h"
 #include "../rc-core/prayer.h"
 #include "world_test_fixture.h"
 
@@ -632,6 +636,247 @@ static void test_vorkath(void) {
     assert(rc_encounter_wake(w, vork->uid));
 }
 
+// Vorkath never leaves its tiles: not asleep with a route asked of it, and
+// not awake wherever the player stands; from the arena's farthest tile (8
+// from its footprint) its distant attacks still land.
+static void test_vorkath_anchored(void) {
+    RcWorld *w = setup();
+    RcNpc *vork = spawn_boss(w, 8059, BX, BY);
+    const RcEncounterState *enc = &w->encounter;
+    assert(rc_encounter_def_anchored(enc, 8059)
+           && rc_encounter_def_anchored(enc, 8061));
+    assert(!rc_encounter_def_anchored(enc, 8063) && "the spawn walks");
+    assert(!rc_encounter_def_anchored(enc, 2215)
+           && !rc_encounter_def_anchored(enc, 239));
+    RcRouteTarget away = rc_route_target_point(BX + 12, BY);
+    assert(rc_npc_route_request(w, vork, &away, RC_NPC_ROUTE_WANDER, false));
+    ticks(w, 3);
+    assert(vork->x == BX && vork->y == BY && vork->route_len == 0);
+
+    RcActiveEncounter *a = run_of(w, vork);
+    assert(a && rc_encounter_wake(w, vork->uid));
+    for (int i = 0; i < 10 && !(a->form == 1 && a->engaged); i++) ticks(w, 1);
+    assert(a->form == 1 && a->engaged && vork->target_uid == 0);
+    const RcEncounterSpec *spec = spec_of(w, a);
+    // The arena's farthest row, beside it, diagonally out of melee, and
+    // beyond its reach (no arena tile is), where it would otherwise chase.
+    const int spots[4][2] = {{BX + 3, BY - 8}, {BX - 1, BY + 3},
+                             {BX + 10, BY + 10}, {BX + 3, BY - 12}};
+    for (int s = 0; s < 4; s++) {
+        w->player.x = spots[s][0];
+        w->player.y = spots[s][1];
+        int named = 0;
+        for (int t = 0; t < 120; t++) {
+            ticks(w, 1);
+            assert(vork->x == BX && vork->y == BY && "Vorkath never moves");
+            named += check_named_events(w, vork, spec);
+            w->player.current_hp = w->player.max_hp;
+        }
+        assert((named > 0) == (s < 3) && "it attacks what it reaches");
+    }
+}
+
+static uint32_t *collision_at(RcWorld *w, int x, int y) {
+    return &w->map.regions[0].tiles[0][x % RC_MAPSQUARE_SIZE]
+                                      [y % RC_MAPSQUARE_SIZE].collision_flags;
+}
+
+// Vorkath's arena as the real map has it: walls ring the 23x23 floor 8
+// tiles out from its blocked 7x7 footprint, and the void past the walls
+// stays open, so an open tile there is not one anything inside reaches.
+static void wall_vorkath_arena(RcWorld *w) {
+    int x0 = BX - 8, y0 = BY - 8, x1 = BX + 14, y1 = BY + 14;
+    for (int i = 0; i <= x1 - x0; i++) {
+        *collision_at(w, x0 + i, y0) |= COL_WALL_S;
+        *collision_at(w, x0 + i, y0 - 1) |= COL_WALL_N;
+        *collision_at(w, x0 + i, y1) |= COL_WALL_N;
+        *collision_at(w, x0 + i, y1 + 1) |= COL_WALL_S;
+        *collision_at(w, x0, y0 + i) |= COL_WALL_W;
+        *collision_at(w, x0 - 1, y0 + i) |= COL_WALL_E;
+        *collision_at(w, x1, y0 + i) |= COL_WALL_E;
+        *collision_at(w, x1 + 1, y0 + i) |= COL_WALL_W;
+    }
+    for (int dx = 0; dx < 7; dx++)
+        for (int dy = 0; dy < 7; dy++)
+            *collision_at(w, BX + dx, BY + dy) |= COL_BLOCK_WALK;
+}
+
+// The tiles the player walks to from its tile, the void around the arena
+// included in the search.
+#define WALK_SPAN 40
+static unsigned char g_walk[WALK_SPAN][WALK_SPAN];
+
+static void flood_walkable(RcWorld *w) {
+    int ox = BX - 16, oy = BY - 16;
+    static int queue[WALK_SPAN * WALK_SPAN][2];
+    int head = 0, tail = 0;
+    memset(g_walk, 0, sizeof(g_walk));
+    g_walk[w->player.x - ox][w->player.y - oy] = 1;
+    queue[tail][0] = w->player.x;
+    queue[tail++][1] = w->player.y;
+    while (head < tail) {
+        int x = queue[head][0], y = queue[head++][1];
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                int nx = x + dx - ox, ny = y + dy - oy;
+                if ((!dx && !dy) || nx < 0 || ny < 0 || nx >= WALK_SPAN
+                        || ny >= WALK_SPAN || g_walk[nx][ny]
+                        || !rc_can_move(&w->map, x, y, dx, dy, 0)) continue;
+                g_walk[nx][ny] = 1;
+                queue[tail][0] = x + dx;
+                queue[tail++][1] = y + dy;
+            }
+        }
+    }
+}
+
+static bool walkable(int x, int y) {
+    int ix = x - (BX - 16), iy = y - (BY - 16);
+    return ix >= 0 && iy >= 0 && ix < WALK_SPAN && iy < WALK_SPAN
+        && g_walk[ix][iy];
+}
+
+// Runs the run's mechanic of primitive `prim` the way a special does.
+static void invoke_prim(RcWorld *w, RcActiveEncounter *a, uint8_t prim) {
+    const RcEncounterSpec *spec = spec_of(w, a);
+    for (int m = 0; m < spec->mechanic_count; m++) {
+        const RcEncounterMechanic *mech = &spec->mechanics[m];
+        if (mech->primitive_id != prim) continue;
+        a->invoking_mechanic_idx = (uint8_t)m;
+        mech->prim(w, (int)(a - w->encounter.active), mech->param_block);
+        a->invoking_mechanic_idx = 0xFF;
+        return;
+    }
+    assert(0 && "the spec has the mechanic");
+}
+
+// The Zombified Spawn lands where its direct walk reaches the frozen player,
+// so every freeze ends; acid lands only where the player can walk. Landings
+// past the walls or behind Vorkath used to freeze the player for good.
+static void test_vorkath_arena_landings(void) {
+    // Beside it, in the arena's corners, behind it and on the far rows.
+    const int spots[8][2] = {{BX + 3, BY - 1}, {BX - 8, BY - 8},
+                             {BX + 14, BY - 8}, {BX - 8, BY + 14},
+                             {BX + 14, BY + 14}, {BX + 3, BY + 7},
+                             {BX - 1, BY + 3}, {BX + 3, BY - 8}};
+    int spawns = 0, pools = 0;
+    for (int s = 0; s < 8; s++) {
+        for (int seed = 1; seed <= 8; seed++) {
+            RcWorld *w = setup();
+            RcNpc *vork = spawn_boss(w, 8059, BX, BY);
+            wall_vorkath_arena(w);
+            RcActiveEncounter *a = run_of(w, vork);
+            assert(a && rc_encounter_wake(w, vork->uid));
+            for (int i = 0; i < 10 && !(a->form == 1 && a->engaged); i++)
+                ticks(w, 1);
+            assert(a->form == 1 && a->engaged);
+            w->player.x = spots[s][0];
+            w->player.y = spots[s][1];
+            w->rng_state = (uint32_t)seed * 7919u;
+            flood_walkable(w);
+            if (seed & 1) {
+                invoke_prim(w, a, RC_PRIM_ACID_FIELD);
+                int n = 0;
+                for (int i = 0; i < RC_ENC_MAX_EFFECTS; i++) {
+                    const RcEncounterEffect *e = &w->encounter_effects[i];
+                    if (!e->active || e->kind != RC_ENC_EFFECT_ACID_POOL) continue;
+                    assert(walkable(e->x, e->y) && "acid lands where the player walks");
+                    n++;
+                }
+                assert(n > 1);
+                pools += n;
+                // Landed, each shows its loc and is still walked over.
+                ticks(w, 3);
+                w->player.current_hp = w->player.max_hp;
+                assert(count_pools(w, true) == n && count_locs(w, 32000, true) == n);
+                for (int i = 0; i < RC_ENC_MAX_EFFECTS; i++) {
+                    const RcEncounterEffect *e = &w->encounter_effects[i];
+                    if (e->active && e->kind == RC_ENC_EFFECT_ACID_POOL)
+                        assert(!rc_tile_blocked(&w->map, e->x, e->y, 0)
+                               && "acid is walked over, not around");
+                }
+                continue;
+            }
+            invoke_prim(w, a, RC_PRIM_SPAWN_OWNED_HELPERS);
+            assert(count_drops(w) == 1 && rc_player_is_frozen(w));
+            for (int i = 0; i < RC_ENC_MAX_EFFECTS; i++) {
+                const RcEncounterEffect *e = &w->encounter_effects[i];
+                if (e->active && e->kind == RC_ENC_EFFECT_HELPER_DROP)
+                    assert(walkable(e->x, e->y) && "the spawn lands in the arena");
+            }
+            // A 3-tick flight, then at most twice its 10-tile distance.
+            for (int t = 0; t < 3 + 20 + 2 && rc_player_is_frozen(w); t++) {
+                ticks(w, 1);
+                w->player.current_hp = w->player.max_hp;
+                assert(vork->x == BX && vork->y == BY);
+            }
+            assert(!rc_player_is_frozen(w) && a->helper_count == 0
+                   && !(a->run_flags & RC_ENC_RUN_PLAYER_FROZEN)
+                   && "the spawn arrives and the freeze ends");
+            spawns++;
+        }
+    }
+    assert(spawns == 32 && pools > 32);
+
+    // With the run's effect quota spent, no spawn launches and no freeze.
+    RcWorld *w = setup();
+    RcNpc *vork = spawn_boss(w, 8059, BX, BY);
+    RcActiveEncounter *a = run_of(w, vork);
+    assert(a && rc_encounter_wake(w, vork->uid));
+    for (int i = 0; i < 10 && !(a->form == 1 && a->engaged); i++) ticks(w, 1);
+    int slot = (int)(a - w->encounter.active);
+    while (rc_encounter_add_effect(w, slot, RC_ENC_EFFECT_ROOM_ATTACK, BX + 3,
+                                   BY - 4, 0, BX + 3, BY - 4, 50, COMBAT_MAGIC,
+                                   0, "quota", "") >= 0) {}
+    invoke_prim(w, a, RC_PRIM_SPAWN_OWNED_HELPERS);
+    assert(!count_drops(w) && !rc_player_is_frozen(w)
+           && a->active_mechanic_idx == 0xFF);
+}
+
+// Asleep, Vorkath keeps its spawn facing: neither aggression, retaliation
+// nor a dev transport's combat start turns it to the player. Awake it faces
+// the player; a reset puts it back to sleep facing its spawn direction.
+static void test_vorkath_dormant_facing(void) {
+    RcWorld *w = setup();
+    RcNpc *vork = spawn_boss(w, 8059, BX, BY);
+    int16_t spawn_angle = vork->face_angle;
+    uint32_t seq = vork->face_angle_seq;
+    assert(seq > 0 && vork->facing_entity == -1);
+    assert(rc_encounter_npc_dormant(w, vork->uid));
+    assert(!rc_encounter_npc_dormant(w, RC_NPC_NONE)
+           && !rc_encounter_npc_dormant(NULL, vork->uid));
+    assert(!rc_combat_start_npc_vs_player(w, vork->uid, 0));
+    assert(vork->target_uid == -1 && vork->facing_entity == -1);
+    w->player.x = BX + 3;
+    w->player.y = BY - 2;
+    ticks(w, 20);
+    assert(vork->target_uid == -1 && vork->facing_entity == -1
+           && vork->face_angle == spawn_angle && vork->face_angle_seq == seq);
+
+    // The dev transport's restore: a fresh life and run, the angle resent.
+    rc_npc_reset_life(w, vork);
+    assert(rc_encounter_restart(w, vork->uid));
+    assert(!rc_combat_start_npc_vs_player(w, vork->uid, 0));
+    assert(vork->face_angle_seq == seq + 1 && vork->facing_entity == -1);
+
+    RcActiveEncounter *a = run_of(w, vork);
+    assert(a && rc_encounter_wake(w, vork->uid) && a->transition_until);
+    assert(rc_encounter_npc_dormant(w, vork->uid) && vork->facing_entity == -1
+           && "waking up is still asleep");
+    for (int i = 0; i < 10 && !(a->form == 1 && a->engaged); i++) ticks(w, 1);
+    assert(a->form == 1 && a->engaged && !rc_encounter_npc_dormant(w, vork->uid));
+    assert(vork->target_uid == 0 && vork->facing_entity == 0
+           && "awake, it turns on the player");
+
+    // The player leaving resets it: asleep again, facing its spawn direction.
+    seq = vork->face_angle_seq;
+    w->player.y = BY - 40;
+    ticks(w, 2);
+    assert(a->form == 0 && !a->engaged && rc_encounter_npc_dormant(w, vork->uid));
+    assert(vork->target_uid == -1 && vork->facing_entity == -1);
+    assert(vork->face_angle == spawn_angle && vork->face_angle_seq > seq);
+}
+
 static void test_chaos_elemental(void) {
     RcWorld *w = setup();
     RcNpc *ce = spawn_boss(w, 2054, BX, BY);
@@ -769,6 +1014,9 @@ int main(void) {
     test_dragonfire_table();
     test_king_black_dragon();
     test_vorkath();
+    test_vorkath_anchored();
+    test_vorkath_arena_landings();
+    test_vorkath_dormant_facing();
     test_chaos_elemental();
     test_graardor();
     test_graardor_room();

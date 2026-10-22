@@ -179,12 +179,21 @@ int rc_npc_remove(RcWorld *world, RcNpcId uid);
 void rc_npc_clear_references(RcWorld *world, RcNpcId uid);
 RcNpcLifePhase rc_npc_life_phase(const RcNpc *npc);
 void rc_npc_reset_life(RcWorld *world, RcNpc *npc);
+// Drops any face entity and turns the NPC to its spawn direction.
+void rc_npc_face_spawn_direction(RcNpc *npc);
 
 // Ordinary movement uses direct steps; only explicit scripted routes use BFS.
 bool rc_npc_route_request(RcWorld *world, RcNpc *npc,
                           const RcRouteTarget *target, RcNpcRouteMode mode,
                           bool allow_alternative);
 void rc_npc_route_clear(RcNpc *npc, RcMovementResult result);
+// Whether an NPC of `size` at (x, y) walking straight at `target` (the
+// direct steps NPCs take: never a detour) arrives, as its own steps would,
+// in at most `max_steps` steps. A melee target is arrived at only from a
+// side with no wall between.
+bool rc_npc_direct_walk_reaches(const RcWorldMap *map, int plane, int x,
+                                int y, int size, const RcRouteTarget *target,
+                                int max_steps);
 void rc_npc_movement_tick(RcWorld *world, RcNpc *npc);
 bool rc_npc_apply_poison(RcWorld *world, RcNpc *npc, int damage);
 void rc_npc_status_tick(RcWorld *world, RcNpc *npc);

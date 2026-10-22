@@ -322,6 +322,76 @@ static void test_direct_step_directions_and_footprints(void) {
     rc_world_destroy(world);
 }
 
+// The landing check helper drops use: an NPC's direct steps, run ahead
+// without moving it, stop exactly where the NPC's own steps stop.
+static void test_direct_walk_reach_matches_steps(void) {
+    seed_defs();
+    RcWorld *world = make_world(0);
+    const RcWorldMap *map = &world->map;
+    RcRouteTarget beside = rc_route_target_rectangle(3210, 3210, 1, 1, 1, 1,
+                                                     false, false);
+    assert(rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 1, &beside, 9)
+           && "seven diagonals, then two steps east");
+    assert(!rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 1, &beside, 8));
+    assert(!rc_npc_direct_walk_reaches(map, 0, 3209, 3209, 1, &beside, 0)
+           && rc_npc_direct_walk_reaches(map, 0, 3209, 3209, 1, &beside, 1)
+           && "a diagonal neighbour steps to a side");
+    assert(!rc_npc_direct_walk_reaches(map, 0, 3210, 3210, 1, &beside, 9)
+           && "a walker on its target never steps out");
+    assert(!rc_npc_direct_walk_reaches(NULL, 0, 3200, 3203, 1, &beside, 9)
+           && !rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 1, NULL, 9)
+           && !rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 0, &beside, 9));
+    RcRouteTarget point = rc_route_target_point(3203, 3200);
+    assert(rc_npc_direct_walk_reaches(map, 0, 3200, 3200, 1, &point, 3)
+           && !rc_npc_direct_walk_reaches(map, 0, 3200, 3200, 1, &point, 2));
+
+    // A wall the walk slides along, around its end, takes 11 steps.
+    for (int y = 3200; y <= 3208; y++) *flags_at(world, 3205, y) = COL_BLOCK_WALK;
+    assert(rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 1, &beside, 11)
+           && !rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 1, &beside, 10));
+    int slot = rc_npc_spawn(world, 0, 3200, 3203, 0);
+    RcNpc *npc = &world->npcs[slot];
+    assert(rc_npc_route_request(world, npc, &beside, RC_NPC_ROUTE_CHASE, false));
+    for (int i = 0; i < 10; i++) rc_npc_movement_tick(world, npc);
+    assert(npc->movement_result == RC_MOVEMENT_MOVED && "not there after 10");
+    rc_npc_movement_tick(world, npc);
+    assert(npc->x == 3209 && npc->y == 3210
+           && npc->movement_result == RC_MOVEMENT_ARRIVED);
+    // A wall on the target's side: beside it is not arrived at.
+    *flags_at(world, 3210, 3210) = COL_WALL_W;
+    assert(!rc_npc_direct_walk_reaches(map, 0, 3209, 3210, 1, &beside, 0));
+    *flags_at(world, 3210, 3210) = 0;
+    // Closed, it stalls against the wall: a landing there never arrives.
+    *flags_at(world, 3205, 3209) = COL_BLOCK_WALK;
+    *flags_at(world, 3205, 3210) = COL_BLOCK_WALK;
+    assert(!rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 1, &beside, 40));
+    g_npc_defs[0].size = 2;
+    assert(!rc_npc_direct_walk_reaches(map, 0, 3200, 3203, 2, &beside, 40));
+    assert(rc_npc_direct_walk_reaches(map, 0, 3206, 3203, 2, &beside, 40)
+           && "a large walker's leading edge reaches");
+    g_npc_defs[0].size = 1;
+
+    // A reset life sends its face angle again: the sequence keeps counting.
+    RcNpcSpawnConfig facing = {.wander_range = 0, .direction = 6};
+    RcNpcSpawnResult r = rc_npc_spawn_ex(world, 1, 3220, 3220, 0, &facing);
+    assert(r.status == RC_NPC_SPAWN_CREATED);
+    RcNpc *turned = rc_npc_resolve(world, r.uid);
+    uint32_t seq = turned->face_angle_seq;
+    assert(turned->face_angle == 0 && turned->facing_entity == -1 && seq > 0);
+    turned->facing_entity = 0;
+    turned->face_angle = 512;
+    rc_npc_reset_life(world, turned);
+    assert(turned->face_angle == 0 && turned->facing_entity == -1
+           && turned->face_angle_seq == seq + 1);
+    turned->facing_entity = 0;
+    turned->spawn_direction = 8;
+    rc_npc_face_spawn_direction(turned);
+    assert(turned->facing_entity == -1 && turned->face_angle_seq == seq + 1
+           && "no spawn direction: the face entity still drops");
+    rc_npc_face_spawn_direction(NULL);
+    rc_world_destroy(world);
+}
+
 static void test_direct_route_and_status_clocks(void) {
     seed_defs();
     g_npc_defs[1].regen_ticks = 0;
@@ -474,6 +544,7 @@ int main(void) {
     test_death_hide_respawn_and_full_reset();
     test_transforms_use_world_var_state();
     test_direct_step_directions_and_footprints();
+    test_direct_walk_reach_matches_steps();
     test_direct_route_and_status_clocks();
     test_hunt_policy_checks_visibility_rate_and_strength();
     test_hunt_line_of_walk_busy_and_keep_policy();

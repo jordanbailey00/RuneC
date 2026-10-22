@@ -19,7 +19,7 @@ BINARY_SCHEMAS: dict[str, tuple[str, int, tuple[int, ...]]] = {
     "collision_tiles": ("CTPI", 1, (1,)),
     "dialogue": ("DLGX", 1, (1,)),
     "drops": ("DROP", 2, (2,)),
-    "encounters": ("ENCT", 13, (13,)),
+    "encounters": ("ENCT", 15, (15,)),
     "gathering_nodes": ("GNOD", 2, (2,)),
     "gdt": ("GDT_", 1, (1,)),
     "items": ("IDEF", 3, (1, 2, 3)),

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile admitted encounter TOMLs into `data/defs/encounters.bin` (ENCT v13).
+"""Compile admitted encounter TOMLs into `data/defs/encounters.bin` (ENCT v15).
 
 Only documents that declare `support = "full"` or `support = "attacks_only"`
 are exported. Every other document is listed as unsupported in the report and
@@ -28,7 +28,7 @@ ODEF = ROOT / "data/defs/object_defs.bin"
 REPORT = ROOT / "tools/reports/encounters.txt"
 
 ENCT_MAGIC = 0x54434E45   # 'ENCT'
-ENCT_VERSION = 14
+ENCT_VERSION = 15
 PARAM_BLOCK_SIZE = 64
 
 # Capacities and enums mirror rc-core/encounter.h.
@@ -46,6 +46,8 @@ MAX_PROTECTIONS = 16
 MAX_DAMAGE_MODS = 16
 MAX_RUN_HELPERS = 8
 RUN_EFFECT_QUOTA = 32
+POOL_RADIUS_MAX = 16
+SPAWN_DISTANCE_MAX = 32
 
 SUPPORT = {"full": 1, "attacks_only": 2}
 DISENGAGE = {"keep": 0, "reset": 1}
@@ -96,7 +98,7 @@ DOC_KEYS = {"name", "slug", "support", "disengage", "respawn_ticks",
 ARENA_KEYS = {"min_x", "min_y", "max_x", "max_y", "plane"}
 FORM_KEYS = {"id", "npc_id", "name", "binds", "dormant", "on_lethal", "next",
              "next_hp", "transition_ticks", "revert_after_ticks", "revert_to",
-             "revert_hp", "defence", "notes"}
+             "revert_hp", "defence", "anchored", "notes"}
 # Defence bonus order matches RcCombatStyle - 1 (rc-core/types.h).
 DEFENCE_KEYS = ("stab", "slash", "crush", "ranged", "magic")
 HELPER_KEYS = {"id", "npc_id", "name", "notes"}
@@ -239,6 +241,7 @@ def encode_form(where: str, form: dict, labels: list[str]) -> bytes:
                     lookup(f"{where}.revert_hp", FORM_HP,
                            form.get("revert_hp", "full"))),
         struct.pack("<5h", *bonuses),
+        struct.pack("<B", flag(f"{where}.anchored", form.get("anchored", False))),
     ])
 
 
@@ -339,7 +342,7 @@ def encode_params(where: str, primitive: int, params: dict,
         if "pool_object" in params:
             pool_object = index_of(f"{where}.params.pool_object", object_labels,
                                    params["pool_object"])
-        body = struct.pack("<7B2H4B", pool_count, p("pool_radius", 0, 255),
+        body = struct.pack("<7B2H4B", pool_count, p("pool_radius", 0, POOL_RADIUS_MAX),
                            p("pool_damage_max", 1, 255),
                            p("pool_leech_pct", 0, 100), p("pool_ticks", 1, 255),
                            p("strike_count", 1, 255), strike_delay,
@@ -356,7 +359,7 @@ def encode_params(where: str, primitive: int, params: dict,
     else:
         helper = index_of(f"{where}.params.helper", helper_labels, params["helper"])
         body = struct.pack("<7B", helper, p("count", 1, MAX_RUN_HELPERS),
-                           p("spawn_distance", 1, 255), p("explode_max", 0, 255),
+                           p("spawn_distance", 1, SPAWN_DISTANCE_MAX), p("explode_max", 0, 255),
                            b("boss_immune"), b("freeze_player"), b("boss_idle"))
         body += cstr(f"{where}.params.instakill_spell",
                      params.get("instakill_spell", ""), 24)

@@ -372,6 +372,10 @@ typedef struct __attribute__((packed)) {
 
 #define RC_ENC_MAX_EFFECTS 64
 #define RC_ENC_RUN_EFFECT_QUOTA 32
+// Placement searches: acid pools within this radius of the player, owned
+// helpers at most this far from the player.
+#define RC_ENC_POOL_RADIUS_MAX 16
+#define RC_ENC_SPAWN_DISTANCE_MAX 32
 
 enum {
     RC_ENC_EFFECT_NONE = 0,
@@ -450,7 +454,8 @@ typedef struct __attribute__((packed)) {
 // impact. The boss idles and takes scaled damage for the window.
 typedef struct __attribute__((packed)) {
     uint8_t pool_count;
-    uint8_t pool_radius;            // random pools within this many tiles
+    uint8_t pool_radius;            // pools within this many tiles, on
+                                    // tiles the player can walk to
     uint8_t pool_damage_max;        // per tick while standing on a pool
     uint8_t pool_leech_pct;         // % of pool damage healed to the boss
     uint8_t pool_ticks;             // pool lifetime
@@ -463,8 +468,9 @@ typedef struct __attribute__((packed)) {
     uint8_t pool_delay;             // ticks from the spit to the pools landing
 } RcPrimParamsAcidField;
 
-// Owned helpers placed a fixed distance from the player. While any
-// lives, the run can hold the boss immune/idle and the player frozen.
+// Owned helpers placed a fixed distance from the player, on tiles whose
+// direct walk reaches the player. While any lives, the run can hold the
+// boss immune/idle and the player frozen.
 typedef struct __attribute__((packed)) {
     uint8_t helper;                 // spec helper index
     uint8_t count;                  // 1..RC_ENC_MAX_RUN_HELPERS
@@ -848,6 +854,9 @@ typedef struct {
     // Defence bonuses while this form is current, by RcCombatStyle - 1
     // (stab, slash, crush, ranged, magic); all 0 = none.
     int16_t defence_bonus[5];
+    // Never walks, as OSRS's moverestrict nomove: its routes are dropped,
+    // so it attacks only what its attack ranges reach.
+    bool anchored;
 } RcEncounterForm;
 
 // Helper definition owned by the run that spawns it. Helpers never bind
@@ -973,6 +982,9 @@ typedef struct {
     uint32_t next_generation;
     uint64_t refused_specs;         // specs refused at bind, diagnosed once
     uint64_t arena_specs;           // specs with an arena (engagement rule)
+    // Definitions of the loaded specs' anchored forms (never walk).
+    uint32_t anchored_ids[RC_ENC_REGISTRY_CAP * RC_ENC_MAX_FORMS];
+    uint16_t anchored_count;
 
     RcActiveEncounter active[RC_ENC_MAX_ACTIVE];
     uint16_t active_mask;           // bit i set while active[i] is in use
@@ -994,6 +1006,15 @@ typedef struct {
     uint32_t refused_count;
     uint32_t triggered_mechanics;
 } RcEncounterState;
+
+// True when definition `def_id` is an anchored form of a loaded spec: the
+// NPC never walks. Inline: NPC movement asks for every step.
+static inline bool rc_encounter_def_anchored(const RcEncounterState *s,
+                                             uint32_t def_id) {
+    for (int i = 0; i < s->anchored_count; i++)
+        if (s->anchored_ids[i] == def_id) return true;
+    return false;
+}
 
 // Lifecycle
 int rc_encounter_init(struct RcWorld *world);
@@ -1111,6 +1132,9 @@ bool rc_encounter_player_can_target_npc(const struct RcWorld *world,
 // is outside the arena: it neither aggroes nor keeps fighting.
 bool rc_encounter_npc_may_engage(const struct RcWorld *world, uint32_t def_id,
                                  int spawn_x, int spawn_y, int spawn_plane);
+// True while the NPC is a boss in a dormant form (asleep until woken, its
+// wake transition included): it neither fights nor faces anyone.
+bool rc_encounter_npc_dormant(const struct RcWorld *world, RcNpcId npc_uid);
 // Called before an NPC dies. Returns 1 when the encounter takes the
 // lethal hit as a nonterminal form change (no death, loot or event).
 int rc_encounter_intercept_lethal(struct RcWorld *world, RcNpcId npc_uid);

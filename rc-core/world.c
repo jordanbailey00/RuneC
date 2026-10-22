@@ -762,9 +762,12 @@ int rc_world_find_npc_near(const RcWorld *world, int npc_id, int x, int y,
     for (int i = 0; i < world->npc_count; i++) {
         const RcNpc *npc = &world->npcs[i];
         const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
+        const RcNpcDef *base = rc_npc_base_def_for_npc(npc);
         if (!npc->active || !def)
             continue;
-        if (npc->plane != plane || def->id != npc_id)
+        // A boss in another form (Vorkath awake) is still that spawn.
+        if (npc->plane != plane
+                || (def->id != npc_id && (!base || base->id != npc_id)))
             continue;
         if (rc_tile_rect_contains(&search, npc->x, npc->y))
             return i;
