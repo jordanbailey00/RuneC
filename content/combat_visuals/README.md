@@ -20,8 +20,9 @@ records the action and by `attack_key`: the attack name, a mechanic part
 explicit row with primitive `none` documents an action that has no visual.
 `tests/test_encounter_visuals.c` fails when an admitted encounter can record
 a key without a row, names a missing spotanim, or uses a sequence outside
-`all.anims` or another skeleton. Rows whose note says `profile=provisional`
-carry projectile heights/timing without a source and await sign-off (TODO).
+`all.anims` or another skeleton. Notes marked `accepted` (`timing=`, `arc=`,
+`profile=`) carry values without a source that the user signed off on
+2026-10-21; replace them when a source turns up.
 
 Projectile origins use the client's parameters: an NPC projectile starts at
 the NPC's centre, `proj_progress` fine units toward the target (128 per tile)

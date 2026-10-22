@@ -48,7 +48,7 @@ builds do not require a separate Raylib install.
 ```bash
 git clone --branch dev https://github.com/jordanbailey00/RuneC-Testing.git
 cd RuneC-Testing
-RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.03-b237/manifest.json ./scripts/setup-data.sh
+RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.21-b237/manifest.json ./scripts/setup-data.sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cmake --build build --parallel
 ./build/rc-viewer
@@ -69,9 +69,12 @@ ignored `data/` directory. Plain setup intentionally refuses automatic download
 while the official release gate is blocked.
 Maintainer/dev checkouts can still generate `dist-data/` locally and install
 from it with `--offline dist-data`.
-The pinned `data-v2026.10.03-b237` release includes the complete four-plane
-world, updated loot definitions and per-item ground models. Unverified loot
-tables remain explicitly rejected; this release is not full gameplay parity.
+The pinned `data-v2026.10.21-b237` release includes the complete four-plane
+world, updated loot definitions, per-item ground models and the encounter
+foundation data (ENCT v13 encounters, boss combat visuals and the runtime
+spawned-loc templates). Code from `28f37c8` onwards needs it; earlier commits
+pair with `data-v2026.10.03-b237`. Unverified loot tables remain explicitly
+rejected; this release is not full gameplay parity.
 The official release gate still flags unfinished loot, unavailable prayer
 effects, and an outdated gathering-count report. Runtime tests passing does not
 resolve those content/reporting gaps. No installer or gameplay logic changed.
@@ -164,7 +167,7 @@ data/          Local runtime data install populated by scripts/setup-data.sh.
 RuneC does not track generated runtime data in Git. Run this once after cloning:
 
 ```bash
-RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.03-b237/manifest.json ./scripts/setup-data.sh
+RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.21-b237/manifest.json ./scripts/setup-data.sh
 ```
 
 This installs:
