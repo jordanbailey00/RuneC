@@ -12,7 +12,11 @@
 //     mechanic-part events presentation reads, death returning it to sleep.
 //   Chaos Elemental: Madness (weapon first, space-limited, never with a full
 //     inventory) and Confusion (2-5 tiles from the footprint).
-//   General Graardor: attacks-only table, approach and 2:1 adjacent odds.
+//   General Graardor: approach and 2:1 adjacent odds; his room (he and his
+//     bodyguards fight only a player inside it) and bodyguards that return
+//     only when he respawns.
+//   Kalphite Queen: per-form defence bonuses; workers hatching from a nearby
+//     bulging cocoon (real map placements) and despawning.
 
 #include <assert.h>
 #include <stdio.h>
@@ -23,6 +27,7 @@
 #include "../rc-core/api.h"
 #include "../rc-core/combat.h"
 #include "../rc-core/combat_hit.h"
+#include "../rc-core/combat_formula.h"
 #include "../rc-core/config.h"
 #include "../rc-core/encounter.h"
 #include "../rc-core/events.h"
@@ -77,14 +82,18 @@ static RcWorld *setup(void) {
     return w;
 }
 
-static RcNpc *spawn_boss(RcWorld *w, int npc_id, int x, int y) {
+static RcNpc *spawn_on(RcWorld *w, int npc_id, int x, int y, int plane) {
     int def_idx = rc_npc_def_find(npc_id);
     assert(def_idx >= 0);
     RcNpcSpawnConfig config = {.spawn_key = 0, .wander_range = 0,
                                .flags = RC_NPC_SPAWN_RESPAWNS};
-    RcNpcSpawnResult r = rc_npc_spawn_ex(w, def_idx, x, y, 0, &config);
+    RcNpcSpawnResult r = rc_npc_spawn_ex(w, def_idx, x, y, plane, &config);
     assert(r.status == RC_NPC_SPAWN_CREATED);
     return &w->npcs[r.slot];
+}
+
+static RcNpc *spawn_boss(RcWorld *w, int npc_id, int x, int y) {
+    return spawn_on(w, npc_id, x, y, 0);
 }
 
 static RcActiveEncounter *run_of(RcWorld *w, const RcNpc *npc) {
@@ -226,6 +235,13 @@ static void test_kalphite_queen(void) {
     RcNpc *kq = spawn_boss(w, 963, BX, BY);
     RcActiveEncounter *a = run_of(w, kq);
     assert(a && a->form == 0 && !strcmp(spec_of(w, a)->slug, "kalphite_queen"));
+    // Her protections are defence: the crawling form resists magic and
+    // ranged (+100), the airborne form melee.
+    const int16_t crawling[5] = {50, 50, 10, 100, 100};
+    const int16_t airborne[5] = {100, 100, 100, 10, 10};
+    assert(!memcmp(kq->defence_bonus, crawling, sizeof(crawling)));
+    assert(rc_npc_defensive_roll(kq, COMBAT_MAGIC) == (kq->stats[5] + 9) * 164);
+    assert(rc_npc_defensive_roll(kq, COMBAT_MELEE_CRUSH) == (kq->stats[1] + 9) * 74);
     assert(!run_of(w, spawn_boss(w, 4303, BX + 20, BY + 20))
            && "quest copies of the Queen are not bosses");
 
@@ -274,6 +290,8 @@ static void test_kalphite_queen(void) {
     ticks(w, 1);
     const RcNpcDef *def = rc_npc_def_for_npc(w, kq);
     assert(a->form == 1 && def->id == 965 && kq->current_hp == 255);
+    assert(!memcmp(kq->defence_bonus, airborne, sizeof(airborne)));
+    assert(rc_npc_defensive_roll(kq, COMBAT_MELEE_SLASH) == (kq->stats[1] + 9) * 164);
     assert(count_form_events(w, RC_ENC_FORM_ENTER_KEY, 965, 0) == 1);
     assert(kq->stats[1] == def->stats[1] - 20 && "defence drains carry over");
     kq->current_hp = 1;
@@ -284,6 +302,88 @@ static void test_kalphite_queen(void) {
     a = run_of(w, kq);
     assert(!kq->is_dead && a && a->form == 0);
     assert(rc_npc_def_for_npc(w, kq)->id == 963 && kq->current_hp == 255);
+    assert(!memcmp(kq->defence_bonus, crawling, sizeof(crawling))
+           && "the respawned Queen crawls again");
+}
+
+// The real lair: placements for the bulging cocoons (loc 23611). Game data
+// with placements is a different data set, so the shared world goes first.
+static void test_kq_worker_hatching(void) {
+    rc_world_destroy(g_world);
+    g_world = NULL;
+    RcWorldConfig cfg = rc_preset_combat_only();
+    RcWorldConfig full = rc_preset_full_game();
+    cfg.seed = 777;
+    cfg.spawns_path = NULL;
+    cfg.ground_item_spawns_path = NULL;
+    cfg.subsystems |= RC_SUB_OBJECTS;
+    cfg.object_defs_path = full.object_defs_path;
+    cfg.object_behaviors_path = full.object_behaviors_path;
+    cfg.object_placements_path = full.object_placements_path;
+    RcWorld *w = rc_world_create_config(&cfg);
+    assert(w && "placement world");
+    assert(rc_world_install_content(w, rc_content_register_all));
+    rc_test_open_mapsquare(w, 3474, 9496, 0);
+    w->player.x = 3476;
+    w->player.y = 9506;
+    w->player.max_hp = w->player.current_hp = 99000;
+    w->player.skills.base_level[SKILL_HITPOINTS] = 99;
+    w->player.auto_retaliate = false;
+    rc_combat_set_multi_combat(w, true);   // the Queen's chamber is multi-combat
+
+    // At her spawn the nearest cocoon (3482,9502) is 4 tiles away: no hatch.
+    RcNpc *kq = spawn_boss(w, 963, 3474, 9496);
+    RcActiveEncounter *a = run_of(w, kq);
+    assert(a && rc_combat_start_npc_vs_player(w, kq->uid, 0));
+    ticks(w, 1);
+    assert(a->engaged);
+    int npcs_before = w->npc_count;
+    for (int i = 0; i < 200; i++) {
+        hit_boss(w, kq, 0);
+        ticks(w, 1);
+        kq->current_hp = kq->spawn_hp;
+    }
+    assert(w->npc_count == npcs_before && "no cocoon within 3 tiles");
+
+    // Against the cocoon: hits (even of 0) hatch workers 1/20 of the time.
+    kq->x = 3477;
+    kq->y = 9500;
+    int worker_def = rc_npc_def_find(961);
+    int seen[64], hatched = 0;
+    for (int i = 0; i < 400; i++) {
+        hit_boss(w, kq, 0);
+        ticks(w, 1);
+        kq->current_hp = kq->spawn_hp;
+        kq->x = 3477;
+        kq->y = 9500;
+        w->player.current_hp = w->player.max_hp;
+        for (int n = 0; n < w->npc_count; n++) {
+            const RcNpc *worker = &w->npcs[n];
+            if (!worker->active || worker->def_id != worker_def
+                    || !worker->despawn_tick) continue;
+            bool counted = false;
+            for (int k = 0; k < hatched && k < 64; k++) counted |= seen[k] == worker->uid;
+            if (counted) continue;
+            if (hatched < 64) seen[hatched] = worker->uid;
+            hatched++;
+            // Hatched last tick, aggressive, temporary, beside the cocoon
+            // at (3482,9502) 2x2.
+            assert(!worker->respawns && worker->despawn_tick == w->tick - 1 + 100);
+            assert(worker->target_uid == 0 && "it attacks the player");
+            int dx = worker->x + 1 < 3482 ? 3482 - (worker->x + 1)
+                   : worker->x > 3483 ? worker->x - 3483 : 0;
+            int dy = worker->y + 1 < 9502 ? 9502 - (worker->y + 1)
+                   : worker->y > 9503 ? worker->y - 9503 : 0;
+            assert((dx > dy ? dx : dy) <= 2 && "hatched beside the cocoon");
+        }
+    }
+    assert(hatched >= 8 && hatched <= 40 && "about 1 in 20 of 400 hits");
+    // Each despawns 100 ticks after hatching, fight or not.
+    ticks(w, 101);
+    for (int n = 0; n < w->npc_count; n++)
+        assert(!(w->npcs[n].active && w->npcs[n].def_id == worker_def
+                 && w->npcs[n].despawn_tick) && "hatched workers despawn");
+    rc_world_destroy(w);
 }
 
 static void test_dragonfire_table(void) {
@@ -581,7 +681,9 @@ static void test_graardor(void) {
     RcNpc *gg = spawn_boss(w, 2215, BX, BY);
     RcActiveEncounter *a = run_of(w, gg);
     const RcEncounterSpec *spec = spec_of(w, a);
-    assert(spec->support == RC_ENC_SUPPORT_ATTACKS_ONLY);
+    assert(spec->support == RC_ENC_SUPPORT_FULL && spec->guard_count == 3);
+    assert(rc_encounter_npc_may_engage(w, 2215, BX, BY, 0)
+           && "outside his room the room rule does not apply");
     const RcEncounterAttack *atk = NULL;
     uint32_t generation = 0;
     assert(rc_encounter_select_npc_attack(w, (RcNpcId)gg->uid, 6, false, &atk,
@@ -603,6 +705,65 @@ static void test_graardor(void) {
     }
 }
 
+// The Bandos room: Graardor and his sergeants at their world spawns.
+static void test_graardor_room(void) {
+    RcWorld *w = setup();
+    rc_test_open_mapsquare(w, 2872, 5358, 2);
+    RcPlayer *p = &w->player;
+    p->plane = 2;
+    p->x = 2862;   // two tiles west of the room
+    p->y = 5358;
+    RcNpc *gg = spawn_on(w, 2215, 2872, 5358, 2);
+    const int sgt_ids[3] = {2216, 2217, 2218};
+    const int sgt_xy[3][2] = {{2866, 5358}, {2872, 5352}, {2868, 5362}};
+    RcNpc *sgt[3];
+    for (int i = 0; i < 3; i++)
+        sgt[i] = spawn_on(w, sgt_ids[i], sgt_xy[i][0], sgt_xy[i][1], 2);
+    RcActiveEncounter *a = run_of(w, gg);
+    assert(a && !run_of(w, sgt[0]) && "bodyguards are not bosses");
+    rc_combat_set_multi_combat(w, true);   // the boss rooms are multi-combat
+
+    // Outside the room nobody engages, even when started.
+    assert(!rc_encounter_npc_may_engage(w, 2216, 2866, 5358, 2));
+    ticks(w, 20);
+    assert(gg->target_uid < 0);
+    for (int i = 0; i < 3; i++) assert(sgt[i]->target_uid < 0);
+    // Inside, the room fights the player; leaving drops it again.
+    p->x = 2865;
+    p->y = 5360;
+    assert(rc_encounter_npc_may_engage(w, 2216, 2866, 5358, 2));
+    ticks(w, 20);
+    int engaged = gg->target_uid == 0;
+    for (int i = 0; i < 3; i++) engaged += sgt[i]->target_uid == 0;
+    assert(engaged == 4 && "the aggressive room turns on the player");
+    p->x = 2862;
+    p->y = 5358;
+    ticks(w, 3);
+    assert(gg->target_uid < 0);
+    for (int i = 0; i < 3; i++) assert(sgt[i]->target_uid < 0);
+
+    // A bodyguard killed while Graardor lives stays dead.
+    RcNpc *strongstack = sgt[0];
+    int strongstack_uid = strongstack->uid;
+    strongstack->current_hp = 1;
+    hit_boss(w, strongstack, 5);
+    ticks(w, 1);
+    assert(strongstack->is_dead && strongstack->respawn_timer > 100000);
+    ticks(w, 300);
+    assert(strongstack->active && strongstack->is_dead
+           && strongstack->uid == strongstack_uid && "held until Graardor returns");
+    // Graardor dies and respawns; the held bodyguard returns with him.
+    gg->current_hp = 1;
+    hit_boss(w, gg, 60);
+    ticks(w, 1);
+    assert(gg->is_dead && gg->respawn_timer == 150 && "the wiki's 150 ticks");
+    int t = 0;
+    while (gg->is_dead && t++ < 2000) ticks(w, 1);
+    assert(!gg->is_dead && run_of(w, gg) && "Graardor respawned and bound");
+    ticks(w, 2);
+    assert(!strongstack->is_dead && strongstack->x == 2866 && strongstack->y == 5358);
+}
+
 int main(void) {
     test_kalphite_queen();
     test_dragonfire_table();
@@ -610,6 +771,8 @@ int main(void) {
     test_vorkath();
     test_chaos_elemental();
     test_graardor();
+    test_graardor_room();
+    test_kq_worker_hatching();
     rc_world_destroy(g_world);
     printf("test_encounter_bosses: ok\n");
     return 0;

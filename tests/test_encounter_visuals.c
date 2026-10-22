@@ -119,6 +119,17 @@ static void check_spec(const RcEncounterSpec *s) {
             }
         }
     }
+    // Parts a mechanic's helpers record from themselves.
+    for (int m = 0; m < s->mechanic_count; m++) {
+        const RcEncounterMechanic *mech = &s->mechanics[m];
+        const char *const *parts = rc_encounter_prim_helper_parts(mech->primitive_id);
+        for (int p = 0; parts && parts[p]; p++) {
+            char key[64];
+            snprintf(key, sizeof(key), "%s:%s", mech->name, parts[p]);
+            for (int h = 0; h < s->helper_count; h++)
+                check_action((int)s->helpers[h].npc_id, key);
+        }
+    }
 }
 
 // ---- Model poses (npcs.models / projectiles.models, MDL2/MDL3) ----------
@@ -192,12 +203,15 @@ static int sequence_cycles(int seq_id) {
     return total;
 }
 
-// Distance from the start point to the nearest posed vertex. Models face -z
+// Distance from the start point to the nearest posed vertex, after the NPC's
+// resize (applied after posing, as the client and viewer do). Models face -z
 // and y points down, so the point is (0, -height, -forward).
-static double gap_to_body(const int16_t *v, int count, int forward, int height) {
-    double best = 1e18;
+static double gap_to_body(const int16_t *v, int count, int forward, int height,
+                          int resize_h, int resize_v) {
+    double best = 1e18, sh = resize_h / 128.0, sv = resize_v / 128.0;
     for (int i = 0; i < count; i++) {
-        double dx = v[i * 3], dy = v[i * 3 + 1] + height, dz = v[i * 3 + 2] + forward;
+        double dx = v[i * 3] * sh, dy = v[i * 3 + 1] * sv + height,
+               dz = v[i * 3 + 2] * sh + forward;
         double d = dx * dx + dy * dy + dz * dz;
         if (d < best) best = d;
     }
@@ -249,10 +263,13 @@ static double origin_gap(int npc_id, const char *key, const RcCombatVisualDef *r
     assert(state);
     int height = row->projectile_start_height + model_lift(row->travel_spotanim_id);
     int forward = row->projectile_progress;
+    int resize_h = 128, resize_v = 128;
+    runec_npc_render_scale(&g_render, npc_id, &resize_h, &resize_v);
     double best = 1e18;
     int end = sampled ? sequence_cycles(seq_id) : row->projectile_delay;
     for (int t = sampled ? 0 : row->projectile_delay; t <= end; t += 10) {
-        double gap = gap_to_body(pose(state, &m, seq_id, t), m.count, forward, height);
+        double gap = gap_to_body(pose(state, &m, seq_id, t), m.count, forward, height,
+                                 resize_h, resize_v);
         if (gap < best) best = gap;
         if (!sampled) break;
     }
@@ -306,6 +323,9 @@ static void check_spawn_templates(const RcEncounterSpec *specs, int count) {
                 if (u32_at(row, 4) != obj->loc_id || row[21] != obj->loc_type)
                     continue;
                 assert(row[23] & (1u << 2) && "template rows are flagged");
+                // B237 marks the acid pool contoured (loc opcode 21).
+                if (obj->loc_id == 32000)
+                    assert(row[23] & (1u << 3) && "the acid pool follows the ground");
                 rotations |= 1 << (row[22] & 3);
                 bool modelled = false;
                 for (uint32_t i = 0; i < model_count && !modelled; i++)
@@ -328,6 +348,10 @@ int main(void) {
     assert(rc_load_combat_visuals(DATA "defs/combat_visuals.tsv") > 0);
     runec_npc_render_defs_init(&g_render);
     assert(runec_npc_render_defs_load(&g_render, DATA "defs/npc_defs.bin") > 0);
+    assert(runec_npc_render_defs_apply_scales(&g_render, DATA "models/npcs.scales") > 0);
+    int vork_h = 0, vork_v = 0;
+    runec_npc_render_scale(&g_render, 8061, &vork_h, &vork_v);
+    assert(vork_h == 104 && vork_v == 104 && "B237 Vorkath is scaled 104/128");
     g_anims = anim_cache_load(DATA "anims/all.anims");
     g_spots = spotanims_load(DATA "defs/spotanims.bin");
     assert(g_anims && g_spots);
@@ -363,6 +387,7 @@ int main(void) {
     g_failures = before;
 
     anim_cache_free(g_anims);
+    runec_npc_render_defs_free(&g_render);
     spotanims_free(g_spots);
     if (g_failures) {
         fprintf(stderr, "test_encounter_visuals: %d gap(s)\n", g_failures);

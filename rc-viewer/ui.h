@@ -82,7 +82,8 @@ typedef enum RuneCUiIntentKind {
     RUNEC_UI_INTENT_BANK_EXAMINE,
     RUNEC_UI_INTENT_SCENE_PLANE,
     RUNEC_UI_INTENT_DEV_TRANSPORT,
-    RUNEC_UI_INTENT_DEV_SPELLBOOK
+    RUNEC_UI_INTENT_DEV_SPELLBOOK,
+    RUNEC_UI_INTENT_DEV_NPC_TILES
 } RuneCUiIntentKind;
 
 typedef struct RuneCUiIntent {
@@ -311,6 +312,7 @@ typedef struct RuneCUiState {
     int scene_plane;
     int player_plane;
     int scene_plane_override_active;
+    int npc_tiles_overlay;          // Validation tab: NPC tile highlight on
     RuneCUiOpenInterface open_interfaces[RUNEC_UI_OPEN_INTERFACES];
     int open_interface_count;
     RuneCUiComponentOverride component_overrides[RUNEC_UI_COMPONENT_OVERRIDES];
@@ -339,6 +341,7 @@ void runec_ui_set_dev_transport_options(RuneCUiState *ui,
                                         int count);
 void runec_ui_set_scene_plane_state(RuneCUiState *ui, int scene_plane,
                                     int player_plane, int override_active);
+void runec_ui_set_npc_tiles_overlay(RuneCUiState *ui, int enabled);
 int runec_ui_set_spellbook(RuneCUiState *ui, int book);
 struct RcWorld;
 int runec_ui_sync_spellbook(RuneCUiState *ui, const struct RcWorld *world);

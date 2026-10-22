@@ -1438,6 +1438,10 @@ void runec_ui_set_scene_plane_state(RuneCUiState *ui, int scene_plane,
     ui->scene_plane_override_active = override_active ? 1 : 0;
 }
 
+void runec_ui_set_npc_tiles_overlay(RuneCUiState *ui, int enabled) {
+    if (ui) ui->npc_tiles_overlay = enabled ? 1 : 0;
+}
+
 int runec_ui_move_interface(RuneCUiState *ui, RuneCUiOpenMount from_mount,
                             RuneCUiTab from_tab, RuneCUiOpenMount to_mount,
                             RuneCUiTab to_tab, uint32_t target_component_id) {
@@ -2811,6 +2815,16 @@ static Rectangle side_clan_plane_button_rect(const RuneCUiLayout *layout,
     };
 }
 
+// Beside the View/Player line: toggles the NPC occupied-tile highlight.
+static Rectangle side_clan_npc_tiles_rect(const RuneCUiLayout *layout) {
+    return (Rectangle){
+        layout->side_content.x + 112.0f,
+        layout->side_content.y + 62.0f,
+        70.0f,
+        20.0f,
+    };
+}
+
 static Rectangle side_clan_dev_transport_rect(const RuneCUiLayout *layout,
                                               int idx) {
     int col = idx % 2;
@@ -2971,6 +2985,12 @@ static int handle_side_clan_input(RuneCUiState *ui,
                      "Plane %d", plane);
             return 1;
         }
+    }
+    if (CheckCollisionPointRec(mouse, side_clan_npc_tiles_rect(layout))) {
+        ui->last_intent.kind = RUNEC_UI_INTENT_DEV_NPC_TILES;
+        ui->last_intent.primary = !ui->npc_tiles_overlay;
+        ui->last_intent.position = mouse;
+        return 1;
     }
     for (int i = 0; i < ui->dev_transport_count; i++) {
         if (CheckCollisionPointRec(mouse,
@@ -4125,10 +4145,21 @@ static void draw_clan_validation_tab(const RuneCUiState *ui,
     snprintf(plane_label, sizeof(plane_label), "View %d  Player %d",
              ui->scene_plane, ui->player_plane);
     draw_centered_text(ui, plane_label,
-                       (Rectangle){layout->side_content.x + 8.0f,
+                       (Rectangle){layout->side_content.x + 4.0f,
                                    layout->side_content.y + 64.0f,
-                                   174.0f, 18.0f},
+                                   106.0f, 18.0f},
                        12, OSRS_ORANGE);
+
+    Rectangle tiles = side_clan_npc_tiles_rect(layout);
+    Color tiles_fill = ui->npc_tiles_overlay
+        ? (Color){92, 70, 38, 245}
+        : (CheckCollisionPointRec(mouse, tiles)
+           ? (Color){72, 62, 47, 240}
+           : (Color){42, 34, 25, 230});
+    DrawRectangleRec(tiles, tiles_fill);
+    DrawRectangleLinesEx(tiles, 1.0f, (Color){155, 122, 66, 255});
+    draw_centered_text(ui, "NPC tiles", tiles, 12,
+                       ui->npc_tiles_overlay ? OSRS_YELLOW : OSRS_ORANGE);
 
     draw_text_shadow(ui, "Teleports", layout->side_content.x + 8.0f,
                      layout->side_content.y + 86.0f, 12, OSRS_ORANGE);

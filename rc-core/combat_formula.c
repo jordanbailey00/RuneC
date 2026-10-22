@@ -667,7 +667,9 @@ int rc_npc_offensive_roll(const RcNpc *npc, RcCombatStyle style) {
 
 int rc_npc_defensive_roll(const RcNpc *npc, RcCombatStyle style) {
     if (!npc) return 0;
-    return npc_eff(npc->stats[style == COMBAT_MAGIC ? 5 : 1]) * 64;
+    int bonus = style > COMBAT_NONE && style <= COMBAT_MAGIC
+              ? npc->defence_bonus[style - 1] : 0;
+    return npc_eff(npc->stats[style == COMBAT_MAGIC ? 5 : 1]) * (bonus + 64);
 }
 
 // ---- Player vs NPC calc ------------------------------------------------

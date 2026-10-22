@@ -23,6 +23,10 @@
 #define OANM_VERSION 1
 #define OANM_FLAG_DYNAMIC_BASE (1u << 0)
 #define OANM_FLAG_DYNAMIC_REPLACEMENT (1u << 1)
+#define OANM_FLAG_SPAWN_TEMPLATE (1u << 2)
+// The template's model follows the terrain where it is placed (contoured
+// locs and ground decoration), per vertex as the map exporter contours.
+#define OANM_FLAG_CONTOURED (1u << 3)
 #define RUNEC_DEFAULT_OBJECT_VERTEX_LIMIT 0
 
 typedef struct {

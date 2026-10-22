@@ -252,8 +252,24 @@ static void test_owned_helpers_explode(void) {
     int start = chebyshev(helper->x, helper->y, PX, PY);
     helper->current_hp = 20;    // half health: at most 15 damage
     int hp = w->player.current_hp;
-    for (int t = 0; t < 20 && a->helper_count; t++) rc_world_tick(w);
+    int helper_uid = helper->uid, explosions = 0;
+    for (int t = 0; t < 20 && a->helper_count; t++) {
+        rc_world_tick(w);
+        // The explosion is the helper's own part, recorded as it goes.
+        int count = 0;
+        const RcCombatAttackEvent *events = rc_combat_attack_events(w, &count);
+        for (int i = 0; i < count; i++) {
+            const RcCombatAttackEvent *e = &events[i];
+            if (strcmp(e->action_key_name, "Mechanic:explode") != 0) continue;
+            assert(e->action_kind == RC_COMBAT_ACTION_ENCOUNTER);
+            assert(e->source_kind == RC_COMBAT_ACTOR_NPC && e->source_uid == helper_uid);
+            assert(e->target_kind == RC_COMBAT_ACTOR_PLAYER && e->hit_delay == 0);
+            assert(a->helper_count == 0 && "recorded in the tick it explodes");
+            explosions++;
+        }
+    }
     assert(start > 1 && a->helper_count == 0 && "it reached the player and exploded");
+    assert(explosions == 1);
     int lost = hp - w->player.current_hp;
     assert(lost >= 0 && lost <= 150);
     assert(a->active_mechanic_idx == 0xFF && a->run_flags == 0);

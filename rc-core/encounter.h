@@ -8,7 +8,7 @@
 // Encounter subsystem: generic dispatch for boss forms, attacks, phases
 // and mechanic primitives. Specs come from `content/encounters/*.toml`
 // through `tools/export_encounters.py` into `data/defs/encounters.bin`
-// (ENCT v13). Only encounters that declare a support level are exported;
+// (ENCT v14). Only encounters that declare a support level are exported;
 // the loader rejects malformed, over-capacity or unsupported content.
 // Specs are immutable and shared through RcGameData; all fight state
 // lives in a world-owned run. rc-content registers scripts by name.
@@ -125,6 +125,7 @@ enum {
     RC_ENC_TRIGGER_DURING_MECH  = 5,     // not dispatched; loader rejects
     RC_ENC_TRIGGER_ATTACK_COUNT = 6,     // run by a special rotation
     RC_ENC_TRIGGER_EVENT        = 7,     // not dispatched; loader rejects
+    RC_ENC_TRIGGER_BOSS_HIT     = 8,     // each hit the boss takes, even 0
     RC_ENC_TRIGGER_NONE         = 255,
 };
 
@@ -223,6 +224,7 @@ enum {
     RC_PRIM_HEAL_ALTARS_PLAYER_MUST_DISABLE = 81,
     RC_PRIM_ACID_FIELD                     = 82,
     RC_PRIM_SPAWN_OWNED_HELPERS            = 83,
+    RC_PRIM_HATCH_HELPERS_ON_HIT           = 84,
     RC_PRIM_MAX                            = 92,
 };
 
@@ -474,6 +476,18 @@ typedef struct __attribute__((packed)) {
     char instakill_spell[24];       // spell name that kills a helper outright
     uint8_t spawn_delay;            // ticks from launch to the helper landing
 } RcPrimParamsSpawnOwnedHelpers;
+
+// On a boss_hit trigger: a 1/chance_denominator roll hatches one helper
+// beside the nearest map loc `near_loc` within `near_distance` tiles of the
+// boss. Hatched helpers are ordinary aggressive NPCs that outlive the run
+// and despawn after `despawn_ticks`.
+typedef struct __attribute__((packed)) {
+    uint8_t helper;                 // spec helper index
+    uint8_t chance_denominator;     // 1..255
+    uint32_t near_loc;              // B237 loc id (map placement)
+    uint8_t near_distance;          // tiles between the footprints
+    uint16_t despawn_ticks;         // lifetime of a hatched helper
+} RcPrimParamsHatchHelpersOnHit;
 
 typedef struct __attribute__((packed)) {
     uint16_t duration_ticks;
@@ -796,6 +810,7 @@ typedef struct __attribute__((packed)) {
 #define RC_ENC_MAX_FORMS          4
 #define RC_ENC_MAX_HELPERS        4
 #define RC_ENC_MAX_OBJECTS        4
+#define RC_ENC_MAX_GUARDS         4
 #define RC_ENC_NO_OBJECT          0xFFu
 #define RC_ENC_MAX_PROTECTIONS    16
 #define RC_ENC_MAX_DAMAGE_MODS    16
@@ -830,6 +845,9 @@ typedef struct {
     uint16_t revert_after_ticks;    // 0 = never
     uint8_t revert_form;            // form entered when the timer expires
     uint8_t revert_hp;              // RC_ENC_FORM_HP_* entering revert_form
+    // Defence bonuses while this form is current, by RcCombatStyle - 1
+    // (stab, slash, crush, ranged, magic); all 0 = none.
+    int16_t defence_bonus[5];
 } RcEncounterForm;
 
 // Helper definition owned by the run that spawns it. Helpers never bind
@@ -838,6 +856,14 @@ typedef struct {
     uint32_t npc_id;
     char name[64];                  // expected definition name
 } RcEncounterHelper;
+
+// World-spawned NPC that belongs to the boss's room: a guard whose spawn
+// lies in the spec's arena never respawns on its own; it returns when the
+// boss next binds (respawns).
+typedef struct {
+    uint32_t npc_id;
+    char name[64];                  // expected definition name
+} RcEncounterGuard;
 
 // Loc a mechanic spawns into the world (B237 object id, checked against
 // its expected definition name like NPC roles).
@@ -853,6 +879,11 @@ typedef struct {
     uint8_t support;                // RC_ENC_SUPPORT_*
     uint8_t disengage;              // RC_ENC_DISENGAGE_*
     uint16_t respawn_ticks;         // 0 = definition policy
+    // Room the boss and its guards fight in: they only engage a player
+    // inside it (inclusive bounds) and drop one who leaves.
+    bool has_arena;
+    uint16_t arena_min_x, arena_min_y, arena_max_x, arena_max_y;
+    uint8_t arena_plane;
 
     RcEncounterForm forms[RC_ENC_MAX_FORMS];
     uint8_t form_count;
@@ -862,6 +893,9 @@ typedef struct {
 
     RcEncounterObject objects[RC_ENC_MAX_OBJECTS];
     uint8_t object_count;
+
+    RcEncounterGuard guards[RC_ENC_MAX_GUARDS];
+    uint8_t guard_count;
 
     RcEncounterAttack attacks[RC_ENC_MAX_ATTACKS];
     uint8_t attack_count;
@@ -921,6 +955,7 @@ typedef struct {
     RcTick next_due[RC_ENC_MAX_MECHANICS];
     RcNpcId helpers[RC_ENC_MAX_RUN_HELPERS];
     uint8_t helper_count;
+    uint8_t boss_hits;             // hits taken since the last encounter tick
 } RcActiveEncounter;
 
 #define RC_ENC_MAX_ACTIVE 16
@@ -937,6 +972,7 @@ typedef struct {
     uint8_t spec_count;
     uint32_t next_generation;
     uint64_t refused_specs;         // specs refused at bind, diagnosed once
+    uint64_t arena_specs;           // specs with an arena (engagement rule)
 
     RcActiveEncounter active[RC_ENC_MAX_ACTIVE];
     uint16_t active_mask;           // bit i set while active[i] is in use
@@ -982,6 +1018,8 @@ void rc_encounter_on_player_damaged(struct RcWorld *world, int evt,
                                     const void *payload, void *ctx);
 void rc_encounter_on_npc_attack(struct RcWorld *world, int evt,
                                 const void *payload, void *ctx);
+void rc_encounter_on_npc_damaged(struct RcWorld *world, int evt,
+                                 const void *payload, void *ctx);
 void rc_encounter_on_player_died(struct RcWorld *world, int evt,
                                  const void *payload, void *ctx);
 
@@ -991,7 +1029,7 @@ int rc_encounter_register_script(struct RcWorld *world,
 RcEncounterScriptFn rc_encounter_script_lookup(const struct RcWorld *world,
                                                const char *name);
 
-// Load all-or-fail from `data/defs/encounters.bin` (ENCT v13). Returns
+// Load all-or-fail from `data/defs/encounters.bin` (ENCT v14). Returns
 // the spec count, or -1 on any malformed, over-capacity or unsupported
 // content (nothing is partially published).
 int rc_encounter_load_specs(const char *path, RcEncounterSpec *out, int max);
@@ -1014,6 +1052,9 @@ RcEncounterPrimFn rc_encounter_prim_lookup(uint8_t primitive_id);
 // mechanic name for part "" and "<mechanic>:<part>" otherwise.
 // NULL-terminated; NULL when the primitive records nothing itself.
 const char *const *rc_encounter_prim_parts(uint8_t primitive_id);
+// Parts the mechanic's helpers record from themselves (source = the helper,
+// e.g. spawn_owned_helpers' "explode"), NULL-terminated; NULL when none.
+const char *const *rc_encounter_prim_helper_parts(uint8_t primitive_id);
 // Presentation keys for form changes, recorded by the form they belong to:
 // the leaving form when its transition starts (hit_delay = the transition's
 // ticks, 0 when immediate) and the form that takes over. Attack and mechanic
@@ -1065,6 +1106,11 @@ bool rc_encounter_player_instakill(const struct RcWorld *world,
                                    RcNpcId npc_uid, int spell_key);
 bool rc_encounter_player_can_target_npc(const struct RcWorld *world,
                                         RcNpcId npc_uid);
+// False when an NPC of definition `def_id` spawned at the given tile is a
+// boss form or guard of a spec whose arena holds that spawn, and the player
+// is outside the arena: it neither aggroes nor keeps fighting.
+bool rc_encounter_npc_may_engage(const struct RcWorld *world, uint32_t def_id,
+                                 int spawn_x, int spawn_y, int spawn_plane);
 // Called before an NPC dies. Returns 1 when the encounter takes the
 // lethal hit as a nonterminal form change (no death, loot or event).
 int rc_encounter_intercept_lethal(struct RcWorld *world, RcNpcId npc_uid);

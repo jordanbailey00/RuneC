@@ -28,7 +28,7 @@ ODEF = ROOT / "data/defs/object_defs.bin"
 REPORT = ROOT / "tools/reports/encounters.txt"
 
 ENCT_MAGIC = 0x54434E45   # 'ENCT'
-ENCT_VERSION = 13
+ENCT_VERSION = 14
 PARAM_BLOCK_SIZE = 64
 
 # Capacities and enums mirror rc-core/encounter.h.
@@ -36,6 +36,7 @@ MAX_SPECS = 64
 MAX_FORMS = 4
 MAX_HELPERS = 4
 MAX_OBJECTS = 4
+MAX_GUARDS = 4
 NO_OBJECT = 0xFF
 MAX_LOC_TYPE = 22
 MAX_ATTACKS = 16
@@ -80,20 +81,26 @@ EFFECT_WHEN = {"damaged": 0, "always": 1, "rolled": 2}
 BREATH = {"kbd_fiery": 1, "kbd_special": 2, "vorkath": 3, "vorkath_coloured": 4}
 DAMAGE_CONDITION = {"style_not": 1, "style_is": 5}
 TRIGGER = {"periodic": 0, "phase_enter": 1, "phase_exit": 2, "phase_in": 3,
-           "attack_count": 6}
+           "attack_count": 6, "boss_hit": 8}
 PRIMITIVE = {
     "attack_counter_alternate_special": 24,
     "acid_field": 82,
     "spawn_owned_helpers": 83,
+    "hatch_helpers_on_hit": 84,
 }
 
 DOC_KEYS = {"name", "slug", "support", "disengage", "respawn_ticks",
-            "source_pages", "notes", "forms", "helpers", "objects", "attacks",
-            "phases", "mechanics", "protections", "damage_modifiers"}
+            "source_pages", "notes", "arena", "forms", "helpers", "guards",
+            "objects", "attacks", "phases", "mechanics", "protections",
+            "damage_modifiers"}
+ARENA_KEYS = {"min_x", "min_y", "max_x", "max_y", "plane"}
 FORM_KEYS = {"id", "npc_id", "name", "binds", "dormant", "on_lethal", "next",
              "next_hp", "transition_ticks", "revert_after_ticks", "revert_to",
-             "revert_hp", "notes"}
+             "revert_hp", "defence", "notes"}
+# Defence bonus order matches RcCombatStyle - 1 (rc-core/types.h).
+DEFENCE_KEYS = ("stab", "slash", "crush", "ranged", "magic")
 HELPER_KEYS = {"id", "npc_id", "name", "notes"}
+GUARD_KEYS = {"id", "npc_id", "name", "notes"}
 OBJECT_KEYS = {"id", "object_id", "name", "type", "notes"}
 ATTACK_KEYS = {"name", "form", "style", "min_hit", "max_hit", "weight_adjacent",
                "weight_distant", "range", "hit_delay", "breath", "adjacent_pct",
@@ -113,6 +120,8 @@ PARAM_KEYS = {
          "pool_delay"},
     83: {"helper", "count", "spawn_distance", "explode_max", "boss_immune",
          "freeze_player", "boss_idle", "instakill_spell", "spawn_delay"},
+    84: {"helper", "chance_denominator", "near_loc", "near_distance",
+         "despawn_ticks"},
 }
 OPTIONAL_PARAMS = {"random_first", "boss_immune", "freeze_player", "boss_idle",
                    "instakill_spell", "explode_max", "pool_leech_pct",
@@ -210,6 +219,12 @@ def encode_form(where: str, form: dict, labels: list[str]) -> bytes:
                           form.get("revert_after_ticks", 0), 0, 0xFFFF)
     revert_to = index_of(f"{where}.revert_to", labels,
                          need(where, form, "revert_to")) if revert_after else 0
+    defence = form.get("defence", {})
+    if not isinstance(defence, dict):
+        raise EncodeError(f"{where}.defence: expected a table")
+    check_keys(f"{where}.defence", defence, set(DEFENCE_KEYS))
+    bonuses = [int_in(f"{where}.defence.{k}", defence.get(k, 0), -32768, 32767)
+               for k in DEFENCE_KEYS]
     return b"".join([
         struct.pack("<I", int_in(f"{where}.npc_id", need(where, form, "npc_id"),
                                  1, 0xFFFFFFFF)),
@@ -223,6 +238,7 @@ def encode_form(where: str, form: dict, labels: list[str]) -> bytes:
                     revert_after, revert_to,
                     lookup(f"{where}.revert_hp", FORM_HP,
                            form.get("revert_hp", "full"))),
+        struct.pack("<5h", *bonuses),
     ])
 
 
@@ -332,6 +348,11 @@ def encode_params(where: str, primitive: int, params: dict,
                            lookup(f"{where}.params.strike_style", STYLE,
                                   params["strike_style"]),
                            pool_object, p("pool_delay", 0, 255))
+    elif primitive == 84:
+        helper = index_of(f"{where}.params.helper", helper_labels, params["helper"])
+        body = struct.pack("<BBIBH", helper, p("chance_denominator", 1, 255),
+                           p("near_loc", 1, 0xFFFF), p("near_distance", 0, 32),
+                           p("despawn_ticks", 1, 0xFFFF))
     else:
         helper = index_of(f"{where}.params.helper", helper_labels, params["helper"])
         body = struct.pack("<7B", helper, p("count", 1, MAX_RUN_HELPERS),
@@ -349,6 +370,7 @@ def encode_encounter(doc: dict, ndef: dict[int, str] | None,
     support = lookup("support", SUPPORT, doc["support"])
     forms = rows(doc, "forms", MAX_FORMS, True)
     helpers = rows(doc, "helpers", MAX_HELPERS, False)
+    guards = rows(doc, "guards", MAX_GUARDS, False)
     objects = rows(doc, "objects", MAX_OBJECTS, False)
     attacks = rows(doc, "attacks", MAX_ATTACKS, True)
     phases = rows(doc, "phases", MAX_PHASES, True)
@@ -364,6 +386,7 @@ def encode_encounter(doc: dict, ndef: dict[int, str] | None,
 
     form_labels = labels(forms, "id", "forms")
     helper_labels = labels(helpers, "id", "helpers")
+    labels(guards, "id", "guards")
     object_labels = labels(objects, "id", "objects")
     attack_labels = labels(attacks, "name", "attacks")
     phase_labels = labels(phases, "id", "phases")
@@ -375,13 +398,16 @@ def encode_encounter(doc: dict, ndef: dict[int, str] | None,
                               "presentation part keys")
     if "form" in mechanic_labels:
         raise EncodeError("mechanics: 'form' is reserved for form-change keys")
-    role_ids = [r["npc_id"] for r in forms + helpers]
+    role_ids = [r["npc_id"] for r in forms + helpers + guards]
     if len(set(role_ids)) != len(role_ids):
         raise EncodeError("an NPC id appears in two roles")
     if not any(f.get("binds", False) for f in forms):
         raise EncodeError("forms: no form binds on spawn")
+    arena = doc.get("arena")
+    if guards and arena is None:
+        raise EncodeError("guards: need an arena (their room)")
     if ndef is not None:
-        for role in forms + helpers:
+        for role in forms + helpers + guards:
             have = ndef.get(role["npc_id"])
             if have != role["name"]:
                 raise EncodeError(f"NPC {role['npc_id']} is {have!r} in installed "
@@ -398,6 +424,7 @@ def encode_encounter(doc: dict, ndef: dict[int, str] | None,
                                   f"{o.get('name')!r}")
     if support == SUPPORT["attacks_only"] and (
             len(forms) != 1 or len(phases) != 1 or helpers or objects or mechanics
+            or guards or arena is not None
             or phases[0].get("script")
             or forms[0].get("on_lethal", "die") != "die"
             or forms[0].get("dormant", False)
@@ -410,6 +437,18 @@ def encode_encounter(doc: dict, ndef: dict[int, str] | None,
            struct.pack("<BBH", support,
                        lookup("disengage", DISENGAGE, doc.get("disengage", "keep")),
                        int_in("respawn_ticks", doc.get("respawn_ticks", 0), 0, 0xFFFF))]
+    if arena is None:
+        out.append(struct.pack("<B4HB", 0, 0, 0, 0, 0, 0))
+    else:
+        if not isinstance(arena, dict):
+            raise EncodeError("arena: expected a table")
+        check_keys("arena", arena, ARENA_KEYS)
+        box = [int_in(f"arena.{k}", need("arena", arena, k), 0, 0x3FFF)
+               for k in ("min_x", "min_y", "max_x", "max_y")]
+        if box[0] > box[2] or box[1] > box[3]:
+            raise EncodeError("arena: min exceeds max")
+        out.append(struct.pack("<B4HB", 1, *box,
+                               int_in("arena.plane", need("arena", arena, "plane"), 0, 3)))
     out.append(struct.pack("<B", len(forms)))
     out += [encode_form(f"forms[{i}]", f, form_labels) for i, f in enumerate(forms)]
     out.append(struct.pack("<B", len(helpers)))
@@ -427,6 +466,12 @@ def encode_encounter(doc: dict, ndef: dict[int, str] | None,
         out.append(pstr(f"{where}.name", need(where, o, "name"), 64))
         out.append(struct.pack("<B", int_in(f"{where}.type", need(where, o, "type"),
                                             0, MAX_LOC_TYPE)))
+    out.append(struct.pack("<B", len(guards)))
+    for i, g in enumerate(guards):
+        check_keys(f"guards[{i}]", g, GUARD_KEYS)
+        out.append(struct.pack("<I", int_in(f"guards[{i}].npc_id", g["npc_id"],
+                                            1, 0xFFFFFFFF)))
+        out.append(pstr(f"guards[{i}].name", need(f"guards[{i}]", g, "name"), 64))
     out.append(struct.pack("<B", len(attacks)))
     out += [encode_attack(f"attacks[{i}]", a, forms, form_labels)
             for i, a in enumerate(attacks)]
@@ -462,6 +507,10 @@ def encode_encounter(doc: dict, ndef: dict[int, str] | None,
                 and trigger != TRIGGER["attack_count"]:
             raise EncodeError(f"{where}: the special rotation uses "
                               "trigger = \"attack_count\"")
+        if (primitive == PRIMITIVE["hatch_helpers_on_hit"]) \
+                != (trigger == TRIGGER["boss_hit"]):
+            raise EncodeError(f"{where}: hatch_helpers_on_hit and "
+                              "trigger = \"boss_hit\" go together")
         mask = 0
         for name in m.get("phases", []):
             mask |= 1 << index_of(f"{where}.phases", phase_labels, name)

@@ -5,6 +5,7 @@
 #include "../../rc-core/drops.h"
 #include "../world_test_fixture.h"
 #include <assert.h>
+#include <unistd.h>
 
 static void test_installed_reward_delivery(RcWorld *world) {
     const int ids[] = {3010, 3011, 239, 2642};
@@ -585,6 +586,172 @@ static void test_projectiles_follow_moving_player(RcWorld *world) {
     free(v);
 }
 
+// A helper the core removes as it records its last action (the Zombified
+// Spawn exploding) leaves a copy that plays the row's sequence once where it
+// stood; an NPC still present plays it on itself instead.
+static void test_exploding_helper_lingers(RcWorld *world) {
+    assert(rc_load_combat_visuals("data/defs/combat_visuals.tsv") > 0);
+    const RcCombatVisualDef *row =
+        rc_combat_visual_for_npc_action(8063, "Zombified spawn:explode");
+    assert(row && row->attack_anim_id == 7890);
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    v->anims = anim_cache_load("data/anims/all.anims");
+    assert(v->anims);
+    RcCombatAttackEvent event = {
+        .active = true, .source_kind = RC_COMBAT_ACTOR_NPC,
+        .target_kind = RC_COMBAT_ACTOR_PLAYER, .style = COMBAT_MAGIC,
+        .action_kind = RC_COMBAT_ACTION_ENCOUNTER, .source_uid = 987654,
+        .target_uid = 0, .source_definition_id = 8063, .target_definition_id = -1,
+        .source_x = 2270, .source_y = 4061, .target_x = 2271, .target_y = 4061,
+        .plane = 0, .world_tick = (uint32_t)world->tick,
+    };
+    snprintf(event.action_key_name, sizeof(event.action_key_name), "%s",
+             "Zombified spawn:explode");
+    assert(viewer_find_npc_index_by_uid(v, event.source_uid) < 0);
+    viewer_handle_npc_attack_event(v, &event);
+    const ViewerNpcGhost *g = &v->npc_ghosts[0];
+    assert(g->active && g->npc_id == 8063 && g->anim_id == 7890 && g->plane == 0);
+    assert(g->x == 2270.5f && g->y == 4061.5f);
+    int duration = projectile_sequence_duration(v->anims, 7890);
+    assert(g->duration == duration && duration > 30 && "a multi-tick sequence");
+    RcTick start = world->tick;
+    world->tick = start + (RcTick)((duration - 1) / 30);   // still playing
+    viewer_expire_npc_ghosts(v);
+    assert(g->active);
+    world->tick = start + (RcTick)((duration + 29) / 30);
+    viewer_expire_npc_ghosts(v);
+    assert(!g->active && "gone once the sequence ends");
+    world->tick = start;
+    // A present NPC animates itself; no copy is made.
+    int idx = rc_npc_spawn(world, rc_npc_def_find(8063), 2270, 4061, 0);
+    assert(idx >= 0);
+    event.source_uid = world->npcs[idx].uid;
+    viewer_handle_npc_attack_event(v, &event);
+    for (int i = 0; i < VIEWER_MAX_NPC_GHOSTS; i++)
+        assert(!v->npc_ghosts[i].active);
+    assert(v->npc_render[idx].attack_anim_id == 7890);
+    rc_npc_remove(world, world->npcs[idx].uid);
+    anim_cache_free(v->anims);
+    free(v);
+}
+
+// NPC resizes come from npcs.scales and apply after posing: the draw scale
+// is the definition's resize, 1.0 without one. A bad table is refused.
+static void test_npc_model_scales(void) {
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    runec_npc_render_defs_init(&v->npc_render_defs);
+    assert(runec_npc_render_defs_apply_scales(&v->npc_render_defs,
+                                              "data/models/npcs.scales") > 1000);
+    Vector3 vork = viewer_npc_model_scale(v, 8061);
+    assert(fabsf(vork.x - 104.0f / 128.0f) < 1e-6f && vork.x == vork.z
+           && fabsf(vork.y - 104.0f / 128.0f) < 1e-6f);
+    Vector3 jad = viewer_npc_model_scale(v, 3127);
+    assert(jad.x == 1.0f && jad.y == 1.0f && "Jad has no resize");
+    runec_npc_render_defs_free(&v->npc_render_defs);
+    assert(runec_npc_render_defs_apply_scales(&v->npc_render_defs,
+                                              "/nonexistent/npcs.scales") == -1);
+    char path[64];
+    snprintf(path, sizeof(path), "/tmp/runec_scales_%d.tsv", (int)getpid());
+    FILE *f = fopen(path, "w");
+    assert(f);
+    fputs("# npc_id resize_h resize_v\n8061 104 104\n8062 0 104\n", f);
+    fclose(f);
+    assert(runec_npc_render_defs_apply_scales(&v->npc_render_defs, path) == -1
+           && "a zero resize is malformed");
+    remove(path);
+    free(v);
+}
+
+// The Validation tab's NPC tiles toggle (and F4) switch the highlight and
+// the button state together.
+static void test_npc_tiles_toggle(void) {
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    viewer_set_npc_tiles(v, 1);
+    assert(v->show_npc_footprints == 1 && v->ui.npc_tiles_overlay == 1);
+    viewer_set_npc_tiles(v, !v->show_npc_footprints);
+    assert(v->show_npc_footprints == 0 && v->ui.npc_tiles_overlay == 0);
+    viewer_set_npc_tiles(NULL, 1);
+    free(v);
+}
+
+// With every copy slot taken, a new one replaces the oldest.
+static void test_npc_ghost_slots(RcWorld *world) {
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    RcCombatAttackEvent event = {
+        .active = true, .source_kind = RC_COMBAT_ACTOR_NPC,
+        .target_kind = RC_COMBAT_ACTOR_PLAYER, .source_definition_id = 8063,
+        .source_x = 2270, .source_y = 4061, .target_x = 2271, .target_y = 4061,
+    };
+    RcTick start = world->tick;
+    for (int i = 0; i < VIEWER_MAX_NPC_GHOSTS; i++) {
+        world->tick = start + (RcTick)i;
+        viewer_add_npc_ghost(v, &event, 7890);
+    }
+    world->tick = start + VIEWER_MAX_NPC_GHOSTS;
+    event.source_x = 2280;
+    viewer_add_npc_ghost(v, &event, 7890);
+    assert(v->npc_ghosts[0].x == 2280.5f && "the oldest slot is reused");
+    for (int i = 1; i < VIEWER_MAX_NPC_GHOSTS; i++)
+        assert(v->npc_ghosts[i].active && v->npc_ghosts[i].x == 2270.5f);
+    world->tick = start;
+    free(v);
+}
+
+// A contoured spawned loc follows the slope under it: each vertex moves by
+// the ground height under it minus the height at the loc's position.
+static void test_spawned_loc_contour(RcWorld *world) {
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    v->mapsquare_streaming_active = 1;
+    const int rx = 35, ry = 63;   // Vorkath's island
+    TerrainMesh *terrain = terrain_load_cpu("data/regions/35_63.p0.terrain");
+    assert(terrain);
+    assert(viewer_world_transform_set(&g_world_transform, rx * 64 - 64, ry * 64 - 64));
+    terrain_offset(terrain, g_world_origin_x, g_world_origin_y);
+    terrain->loaded = 1;
+    v->mapsquare_chunk_count = 1;
+    v->mapsquare_chunks[0] = (ViewerMapsquareChunk){.region_x = rx, .region_y = ry,
+        .plane = 0, .terrain = terrain};
+    int tx = -1, ty = -1;
+    float best = 0.0f;
+    for (int x = rx * 64 + 1; x < rx * 64 + 63; x++) {
+        for (int y = ry * 64 + 1; y < ry * 64 + 63; y++) {
+            float slope = fabsf(ground_yf_plane(v, 0, (float)x + 1.0f, (float)y + 1.0f)
+                                - ground_yf_plane(v, 0, (float)x, (float)y));
+            if (slope > best) { best = slope; tx = x; ty = y; }
+        }
+    }
+    assert(tx >= 0 && best > 0.05f && "the region has a slope to test on");
+    Vector3 pos = {(float)tx + 0.5f - (float)g_world_origin_x, 0.0f,
+                   -((float)ty + 0.5f - (float)g_world_origin_y)};
+    float verts[4 * 3] = {-0.5f, 0.1f, 0.5f,  0.5f, 0.1f, 0.5f,
+                          0.5f, 0.1f, -0.5f,  -0.5f, 0.1f, -0.5f};
+    float before[4 * 3];
+    memcpy(before, verts, sizeof(verts));
+    contour_vertices_to_ground(v, 0, verts, 4, pos);
+    float centre = ground_yf_plane(v, 0, (float)tx + 0.5f, (float)ty + 0.5f);
+    float moved = 0.0f;
+    for (int i = 0; i < 4; i++) {
+        float wx = pos.x + before[i * 3] + (float)g_world_origin_x;
+        float wy = (float)g_world_origin_y - (pos.z + before[i * 3 + 2]);
+        float want = before[i * 3 + 1] + ground_yf_plane(v, 0, wx, wy) - centre;
+        assert(fabsf(verts[i * 3 + 1] - want) < 0.0001f);
+        assert(verts[i * 3] == before[i * 3] && verts[i * 3 + 2] == before[i * 3 + 2]);
+        moved = fmaxf(moved, fabsf(verts[i * 3 + 1] - before[i * 3 + 1]));
+    }
+    assert(moved > 0.01f && "vertices follow the slope");
+    terrain->loaded = 0;
+    terrain_free(terrain);
+    free(v);
+}
+
 static void test_ground_item_appearances(void) {
     ViewerState *v = calloc(1, sizeof(*v));
     assert(v);
@@ -724,6 +891,11 @@ int main(void) {
     test_boss_landing_heights(world);
     test_boss_projectile_origins(world);
     test_projectiles_follow_moving_player(world);
+    test_spawned_loc_contour(world);
+    test_exploding_helper_lingers(world);
+    test_npc_model_scales();
+    test_npc_tiles_toggle();
+    test_npc_ghost_slots(world);
     test_ground_item_appearances();
     rc_world_destroy(world);
     puts("viewer scene: installed loot, target selection and dispatch passed");

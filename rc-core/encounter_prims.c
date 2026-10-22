@@ -6,6 +6,7 @@
 #include "events.h"
 #include "items.h"
 #include "npc.h"
+#include "objects.h"
 #include "pathfinding.h"
 #include "prayer.h"
 #include "rng.h"
@@ -1712,11 +1713,16 @@ static const RcEncounterMechanic *invoking_mechanic(const RcWorld *world,
 #define PART_POOL "pool"
 #define PART_STRIKE "strike"
 #define PART_HELPER "helper"
+#define PART_EXPLODE "explode"
 static const char *const ACID_FIELD_PARTS[] = {
     PART_LAUNCH, PART_POOL, PART_STRIKE, NULL,
 };
 static const char *const OWNED_HELPER_PARTS[] = {
     PART_LAUNCH, PART_HELPER, NULL,
+};
+// Parts a mechanic's helpers record themselves (rc_encounter_prim_helper_parts).
+static const char *const OWNED_HELPER_SELF_PARTS[] = {
+    PART_EXPLODE, NULL,
 };
 
 // Records a mechanic part from the boss, aimed at the player or at a tile,
@@ -1858,6 +1864,7 @@ static void chase_player(RcWorld *world, RcNpc *npc) {
 // Helpers walk to the player and explode on contact for damage scaled by
 // their remaining hitpoints.
 static void window_owned_helpers(RcWorld *world, int enc_idx,
+                                 const RcEncounterMechanic *mech,
                                  const RcPrimParamsSpawnOwnedHelpers *p) {
     RcActiveEncounter *a = &world->encounter.active[enc_idx];
     RcPlayer *pl = &world->player;
@@ -1879,8 +1886,108 @@ static void window_owned_helpers(RcWorld *world, int enc_idx,
                                     damage, 0, COMBAT_MAGIC, (int)a->boss_id, 0,
                                     world->tick,
                                     RC_HIT_SUPPRESS_ENCOUNTER_EFFECTS, max);
+        // The explosion is the helper's own part, recorded before it goes.
+        if (mech) {
+            char key[sizeof(mech->name) + 16];
+            snprintf(key, sizeof(key), "%s:%s", mech->name, PART_EXPLODE);
+            rc_combat_record_encounter_action(world, npc, true, pl->x, pl->y,
+                                              COMBAT_MAGIC, 0, key);
+        }
         rc_npc_remove(world, uid);
     }
+}
+
+// hatch_helpers_on_hit: each hit the boss takes rolls 1/chance_denominator;
+// a success near a `near_loc` map loc hatches one helper beside the nearest
+// such loc. Hatched helpers are ordinary aggressive NPCs: they outlive the
+// run and despawn after despawn_ticks.
+static int rect_distance(int ax, int ay, int aw, int ah,
+                         int bx, int by, int bw, int bh) {
+    int dx = ax > bx + bw - 1 ? ax - (bx + bw - 1)
+           : bx > ax + aw - 1 ? bx - (ax + aw - 1) : 0;
+    int dy = ay > by + bh - 1 ? ay - (by + bh - 1)
+           : by > ay + ah - 1 ? by - (ay + ah - 1) : 0;
+    return dx > dy ? dx : dy;
+}
+
+static bool open_footprint(const RcWorld *world, int x, int y, int size,
+                           int plane) {
+    for (int dx = 0; dx < size; dx++) {
+        for (int dy = 0; dy < size; dy++) {
+            if (!open_tile(world, x + dx, y + dy, plane)) return false;
+        }
+    }
+    return true;
+}
+
+static void prim_hatch_helpers_on_hit(RcWorld *world, int enc_idx,
+                                      const void *params) {
+    const RcPrimParamsHatchHelpersOnHit *p = params;
+    RcActiveEncounter *a = prim_run(world, enc_idx);
+    if (!a || rc_rng_bounded(&world->rng_state, p->chance_denominator) != 0)
+        return;
+    const RcEncounterSpec *spec = rc_encounter_spec(world, a->spec_idx);
+    RcNpc *boss = find_boss(world, a->boss_id);
+    if (!spec || !boss || p->helper >= spec->helper_count) return;
+    int bsize = npc_size_or_one(world, boss);
+    // The nearest near_loc placement within reach of the boss footprint.
+    int best = -1;
+    RcObjectPlacement loc = {0};
+    int lw = 1, ll = 1;
+    for (int dx = -1; dx <= 1; dx++) {
+        for (int dy = -1; dy <= 1; dy++) {
+            uint16_t mapsquare;
+            if (!rc_world_to_mapsquare(boss->x + dx * 64, boss->y + dy * 64,
+                                       &mapsquare, NULL, NULL)) continue;
+            int count = 0;
+            const RcObjectPlacement *rows =
+                rc_object_region_placements(mapsquare, &count);
+            for (int i = 0; rows && i < count; i++) {
+                if (rows[i].obj_id != p->near_loc || rows[i].plane != boss->plane)
+                    continue;
+                const RcObjectDef *def = rc_object_def_get((int)rows[i].obj_id);
+                int w = def && def->width ? def->width : 1;
+                int l = def && def->length ? def->length : 1;
+                if (rows[i].rotation & 1) { int t = w; w = l; l = t; }
+                int d = rect_distance(boss->x, boss->y, bsize, bsize,
+                                      rows[i].x, rows[i].y, w, l);
+                if (d <= p->near_distance && (best < 0 || d < best)) {
+                    best = d;
+                    loc = rows[i];
+                    lw = w;
+                    ll = l;
+                }
+            }
+        }
+    }
+    if (best < 0) return;
+    int def_idx = rc_npc_def_find((int)spec->helpers[p->helper].npc_id);
+    const RcNpcDef *hdef = rc_npc_def_get(def_idx);
+    if (!hdef) return;
+    int hs = hdef->size > 0 ? hdef->size : 1;
+    // Beside the loc, on the side nearest the boss.
+    int sx = 0, sy = 0, near = -1;
+    for (int x = loc.x - hs; x <= loc.x + lw; x++) {
+        for (int y = loc.y - hs; y <= loc.y + ll; y++) {
+            if (rect_distance(x, y, hs, hs, loc.x, loc.y, lw, ll) != 1
+                    || !open_footprint(world, x, y, hs, loc.plane)) continue;
+            int d = rect_distance(x, y, hs, hs, boss->x, boss->y, bsize, bsize);
+            if (d >= 1 && (near < 0 || d < near)) {
+                near = d;
+                sx = x;
+                sy = y;
+            }
+        }
+    }
+    if (near < 0) return;
+    RcNpcSpawnConfig config = {.spawn_key = 0, .wander_range = 0};
+    RcNpcSpawnResult r = rc_npc_spawn_ex(world, def_idx, sx, sy, loc.plane,
+                                         &config);
+    if (r.status != RC_NPC_SPAWN_CREATED) return;
+    RcNpc *worker = &world->npcs[r.slot];
+    worker->respawns = false;
+    worker->despawn_tick = world->tick + p->despawn_ticks;
+    rc_combat_start_npc_vs_player(world, worker->uid, 0);
 }
 
 // ---- Registry ----------------------------------------------------------
@@ -1972,12 +2079,14 @@ static const RcEncounterPrimFn PRIM_TABLE[RC_PRIM_MAX] = {
         prim_heal_altars_player_must_disable,
     [RC_PRIM_ACID_FIELD] = prim_acid_field,
     [RC_PRIM_SPAWN_OWNED_HELPERS] = prim_spawn_owned_helpers,
+    [RC_PRIM_HATCH_HELPERS_ON_HIT] = prim_hatch_helpers_on_hit,
 };
 
 static bool prim_supported(uint8_t primitive_id) {
     return primitive_id == RC_PRIM_ATTACK_COUNTER_ALTERNATE_SPECIAL
         || primitive_id == RC_PRIM_ACID_FIELD
-        || primitive_id == RC_PRIM_SPAWN_OWNED_HELPERS;
+        || primitive_id == RC_PRIM_SPAWN_OWNED_HELPERS
+        || primitive_id == RC_PRIM_HATCH_HELPERS_ON_HIT;
 }
 
 RcEncounterPrimFn rc_encounter_prim_lookup(uint8_t primitive_id) {
@@ -1992,6 +2101,11 @@ const char *const *rc_encounter_prim_parts(uint8_t primitive_id) {
     return NULL;
 }
 
+const char *const *rc_encounter_prim_helper_parts(uint8_t primitive_id) {
+    if (primitive_id == RC_PRIM_SPAWN_OWNED_HELPERS) return OWNED_HELPER_SELF_PARTS;
+    return NULL;
+}
+
 void rc_encounter_prim_window_tick(RcWorld *world, int enc_idx,
                                    const RcEncounterMechanic *mech) {
     if (!world || !mech || !prim_run(world, enc_idx)) return;
@@ -1999,5 +2113,6 @@ void rc_encounter_prim_window_tick(RcWorld *world, int enc_idx,
         window_acid_field(world, enc_idx, mech,
                           (const void *)mech->param_block);
     else if (mech->primitive_id == RC_PRIM_SPAWN_OWNED_HELPERS)
-        window_owned_helpers(world, enc_idx, (const void *)mech->param_block);
+        window_owned_helpers(world, enc_idx, mech,
+                             (const void *)mech->param_block);
 }

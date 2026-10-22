@@ -12,7 +12,10 @@ animated map objects and writes:
                                     is textured, MDL2 otherwise
   data/models/spawn_objects.oanim   OANM rows flagged SPAWN_TEMPLATE whose
                                     positions are relative to the placement
-                                    tile's south-west corner (plus ground)
+                                    tile's south-west corner (plus ground);
+                                    CONTOURED when the model follows the
+                                    terrain (contoured locs and type 22), as
+                                    the map exporter contours placed locs
 
 The viewer draws a spawned loc state from the row matching its loc id,
 type and rotation; the animation export scans the rows for sequence ids.
@@ -30,6 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from content_paths import content_read_path
 from export_objects import (
+    OANM_FLAG_CONTOURED,
     OANM_FLAG_SPAWN_TEMPLATE,
     AnimatedObjectPlacement,
     _clone_model_data,
@@ -122,6 +126,9 @@ def main() -> int:
         if base is None:
             failures.append(f"loc {loc_id} type {obj_type}: no model decodes")
             continue
+        flags = OANM_FLAG_SPAWN_TEMPLATE
+        if loc.contoured_ground or obj_type == 22:
+            flags |= OANM_FLAG_CONTOURED
         for rotation in range(4):
             md = _clone_model_data(base)
             if loc.rotated:
@@ -135,10 +142,11 @@ def main() -> int:
                 model_id=md.model_id, obj_id=loc_id,
                 animation_id=loc.animation_id, world_x=0, world_y=0, plane=0,
                 obj_type=obj_type, rotation=rotation,
-                flags=OANM_FLAG_SPAWN_TEMPLATE, pos_x=pos_x, pos_y=pos_y,
+                flags=flags, pos_x=pos_x, pos_y=pos_y,
                 pos_z=pos_z, phase_ticks=0.0))
         print(f"  loc {loc_id} {name!r} type {obj_type}: models "
-              f"{list(model_ids)}, sequence {loc.animation_id}")
+              f"{list(model_ids)}, sequence {loc.animation_id}, "
+              f"contoured {bool(flags & OANM_FLAG_CONTOURED)}")
     if failures:
         for failure in failures:
             print(f"error: {failure}", file=sys.stderr)

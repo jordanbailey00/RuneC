@@ -1,12 +1,36 @@
-# General Graardor (oracle WB-017), attack table only. Evidence: OSRS Wiki
-# General Graardor/Strategies r15353024; identity from B237 NDEF (2215).
-# Bodyguards, room ownership and the minion respawn rules are not modelled;
-# they keep ordinary NPC behaviour.
+# General Graardor (oracle WB-017). Evidence: OSRS Wiki General
+# Graardor/Strategies r15353024 and General Graardor r15337045; identities
+# from B237 NDEF (2215, bodyguards 2216-2218).
+# Room: Graardor and his three bodyguards fight only players inside the
+# Bandos boss room (2009scape GodwarsBossNPC chamber 2864,5351 - 2876,5369,
+# plane 2, which holds every world spawn of the four). Bodyguards killed
+# while he lives stay dead until he respawns, then return with him
+# (2009scape syncs dead minions to the general's respawn; the wiki gives the
+# sergeants no respawn time of their own). One player means no tank
+# selection: they all fight that player. He respawns 150 ticks after death
+# (infobox respawn, r15337045); the definition default is 25.
 
 name = "General Graardor"
 slug = "general_graardor"
-support = "attacks_only"
+support = "full"
+respawn_ticks = 150
 source_pages = ["General Graardor", "General Graardor/Strategies"]
+arena = { min_x = 2864, min_y = 5351, max_x = 2876, max_y = 5369, plane = 2 }
+
+[[guards]]
+id = "strongstack"
+npc_id = 2216
+name = "Sergeant Strongstack"
+
+[[guards]]
+id = "steelwill"
+npc_id = 2217
+name = "Sergeant Steelwill"
+
+[[guards]]
+id = "grimspike"
+npc_id = 2218
+name = "Sergeant Grimspike"
 
 [[forms]]
 id = "general"

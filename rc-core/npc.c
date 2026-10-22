@@ -1254,6 +1254,10 @@ void rc_npc_tick(RcWorld *world, RcNpc *npc) {
     const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
     if (!def) def = rc_npc_base_def_for_npc(npc);
     if (!def) return;
+    if (npc->despawn_tick && world->tick >= npc->despawn_tick && !npc->is_dead) {
+        rc_npc_remove(world, (RcNpcId)npc->uid);
+        return;
+    }
     if (npc->is_dead) {
         if (npc->death_timer > 0) {
             npc->death_timer--;

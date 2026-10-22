@@ -1000,6 +1000,10 @@ typedef enum {
 typedef struct {
     int def_id;             // index into definitions table
     int form_def;           // encounter form override: def index + 1; 0 = base
+    // Encounter form defence bonuses by RcCombatStyle - 1 (stab, slash,
+    // crush, ranged, magic); 0 without one.
+    int16_t defence_bonus[5];
+    RcTick despawn_tick;    // removed at this tick when set (temporary NPCs)
     int uid;
     uint64_t spawn_key;     // stable indexed-spawn identity; 0 = dynamic
     int x, y, plane;

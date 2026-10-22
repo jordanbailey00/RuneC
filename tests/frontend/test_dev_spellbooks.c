@@ -495,6 +495,30 @@ int main(void) {
     assert(ui->spell_scroll == 0);
     scroll_spell_grid(ui, -100);
     assert(ui->spell_scroll == 0);
+    // The NPC tiles toggle sits clear of every other Validation control and
+    // asks for the opposite of the current state.
+    Rectangle tiles = side_clan_npc_tiles_rect(&layout);
+    assert(tiles.x >= layout.side_content.x && tiles.y >= layout.side_content.y
+           && tiles.x + tiles.width <= layout.side_content.x + layout.side_content.width
+           && tiles.y + tiles.height <= layout.side_content.y + layout.side_content.height);
+    assert(!CheckCollisionRecs(tiles, side_clan_plane_follow_rect(&layout)));
+    for (int plane = 0; plane < RUNEC_UI_SCENE_PLANE_COUNT; plane++)
+        assert(!CheckCollisionRecs(tiles, side_clan_plane_button_rect(&layout, plane)));
+    for (int i = 0; i < RUNEC_UI_DEV_TRANSPORT_MAX; i++)
+        assert(!CheckCollisionRecs(tiles, side_clan_dev_transport_rect(&layout, i)));
+    for (int book = 0; book < 4; book++)
+        assert(!CheckCollisionRecs(tiles, dev_spellbook_button(&layout, book)));
+    RuneCUiTab tab = ui->active_tab;
+    ui->active_tab = RUNEC_UI_TAB_CLAN;
+    runec_ui_set_npc_tiles_overlay(ui, 0);
+    assert(handle_side_clan_input(ui, &layout, (Vector2){tiles.x + 5, tiles.y + 5}));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_DEV_NPC_TILES && ui->last_intent.primary == 1);
+    runec_ui_set_npc_tiles_overlay(ui, 7);
+    assert(ui->npc_tiles_overlay == 1);
+    assert(handle_side_clan_input(ui, &layout, (Vector2){tiles.x + 5, tiles.y + 5}));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_DEV_NPC_TILES && ui->last_intent.primary == 0);
+    runec_ui_set_npc_tiles_overlay(NULL, 1);
+    ui->active_tab = tab;
     ui->dev_spellbooks_enabled = 0;
     assert(spell_grid_visible(ui));
     ui->active_tab = RUNEC_UI_TAB_CLAN;

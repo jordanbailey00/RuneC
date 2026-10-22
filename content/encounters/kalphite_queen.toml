@@ -3,9 +3,17 @@
 # (963 = crawling form at 3474,9496,0; 965 = KALPHITE_FLYINGQUEEN). 4303/4304
 # are quest actors, 6500/6501 Clan Cup and 15616/15617 Leagues copies.
 #
-# Not modelled (evidence gaps): worker hatching from cocoons, and her
-# overhead protections, which only raise defence and need per-form NPC
-# defence bonuses (DSA-027).
+# Her overhead protections only raise defence (Strategies: "only add
+# increased Defence to those styles rather than full immunity"), so each form
+# carries the wiki infobox defence bonuses (Kalphite Queen r15372004).
+# Worker hatching (Strategies r15369627, citing Mod Ash 2015 and 2021): every
+# hit she takes, including 0, has a 1/20 chance to hatch an aggressive
+# Kalphite Worker from a nearby bulging cocoon; the workers stay a while and
+# then despawn. B237 identities: bulging cocoon loc 23611 "Cocoon"
+# (KALPHITE_CHAMBER_EGG_UPDATE, the pulsing one), worker 961
+# (KALPHITE_WORKER_CHAMBER).
+# Placeholders awaiting sign-off (no source gives them): "near" is within 3
+# tiles of a cocoon, and a hatched worker despawns after 100 ticks.
 
 name = "Kalphite Queen"
 slug = "kalphite_queen"
@@ -27,6 +35,8 @@ on_lethal = "transform"
 next = "airborne"
 next_hp = "full"
 transition_ticks = 20
+# Protect from Magic and Missiles: high magic and ranged defence.
+defence = { stab = 50, slash = 50, crush = 10, ranged = 100, magic = 100 }
 
 [[forms]]
 id = "airborne"
@@ -35,6 +45,14 @@ name = "Kalphite Queen"
 revert_after_ticks = 2000
 revert_to = "crawling"
 revert_hp = "keep"
+# Protect from Melee: high melee defence.
+defence = { stab = 100, slash = 100, crush = 100, ranged = 10, magic = 10 }
+
+# Hatched from the bulging cocoons (mechanic "Worker hatching").
+[[helpers]]
+id = "worker"
+npc_id = 961
+name = "Kalphite Worker"
 
 # Adjacent: 1/2 melee, 1/4 ranged, 1/4 magic. Otherwise 1/2 ranged, 1/2 magic.
 # Ranged and magic always hit (they can still roll 0); protection prayers work.
@@ -64,3 +82,9 @@ flags = ["always_accurate"]
 
 [[phases]]
 id = "fight"
+
+[[mechanics]]
+name = "Worker hatching"
+primitive = "hatch_helpers_on_hit"
+trigger = "boss_hit"
+params = { helper = "worker", chance_denominator = 20, near_loc = 23611, near_distance = 3, despawn_ticks = 100 }

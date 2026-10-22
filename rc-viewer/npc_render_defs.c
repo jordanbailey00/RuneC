@@ -20,6 +20,13 @@ static int read_exact(FILE *f, void *out, size_t size, size_t count) {
     return fread(out, size, count, f) == count;
 }
 
+void runec_npc_render_defs_free(RuneCNpcRenderDefs *defs) {
+    if (!defs) return;
+    free(defs->scales);
+    defs->scales = NULL;
+    defs->scale_count = 0;
+}
+
 void runec_npc_render_defs_init(RuneCNpcRenderDefs *defs) {
     if (!defs) return;
     memset(defs, 0, sizeof(*defs));
@@ -164,6 +171,74 @@ int runec_npc_render_defs_load(RuneCNpcRenderDefs *defs, const char *path) {
     defs->loaded = 1;
     fprintf(stderr, "npc_render_defs: loaded %d defs from %s\n", loaded, path);
     return loaded;
+}
+
+static int compare_scale(const void *a, const void *b) {
+    const RuneCNpcScale *x = a, *y = b;
+    return (x->npc_id > y->npc_id) - (x->npc_id < y->npc_id);
+}
+
+int runec_npc_render_defs_apply_scales(RuneCNpcRenderDefs *defs,
+                                       const char *path) {
+    if (!defs || !path) return -1;
+    FILE *f = rc_asset_fopen(path, "r");
+    if (!f) {
+        fprintf(stderr, "npc_render_defs: can't open NPC scales %s\n", path);
+        return -1;
+    }
+    RuneCNpcScale *rows = NULL;
+    int count = 0, cap = 0, line_number = 0;
+    char line[128];
+    while (fgets(line, sizeof(line), f)) {
+        line_number++;
+        if (line[0] == '#' || line[0] == '\n' || line[0] == '\r') continue;
+        int id = 0, h = 0, v = 0;
+        char extra = 0;
+        if (sscanf(line, "%d %d %d %c", &id, &h, &v, &extra) != 3
+                || id < 0 || h <= 0 || v <= 0 || h > 0xFFFF || v > 0xFFFF) {
+            fprintf(stderr, "npc_render_defs: malformed NPC scale at %s:%d\n",
+                    path, line_number);
+            free(rows);
+            rc_asset_close(f);
+            return -1;
+        }
+        if (count == cap) {
+            cap = cap ? cap * 2 : 64;
+            RuneCNpcScale *grown = realloc(rows, (size_t)cap * sizeof(*rows));
+            if (!grown) {
+                free(rows);
+                rc_asset_close(f);
+                return -1;
+            }
+            rows = grown;
+        }
+        rows[count++] = (RuneCNpcScale){id, (uint16_t)h, (uint16_t)v};
+    }
+    rc_asset_close(f);
+    qsort(rows, (size_t)count, sizeof(*rows), compare_scale);
+    free(defs->scales);
+    defs->scales = rows;
+    defs->scale_count = count;
+    fprintf(stderr, "npc_render_defs: loaded %d NPC scales from %s\n",
+            count, path);
+    return count;
+}
+
+void runec_npc_render_scale(const RuneCNpcRenderDefs *defs, int npc_id,
+                            int *resize_h, int *resize_v) {
+    int h = 128, v = 128;
+    if (defs && defs->scales && defs->scale_count > 0) {
+        RuneCNpcScale key = {npc_id, 0, 0};
+        const RuneCNpcScale *hit = bsearch(&key, defs->scales,
+                                           (size_t)defs->scale_count,
+                                           sizeof(key), compare_scale);
+        if (hit) {
+            h = hit->resize_h;
+            v = hit->resize_v;
+        }
+    }
+    if (resize_h) *resize_h = h;
+    if (resize_v) *resize_v = v;
 }
 
 int runec_npc_render_defs_apply_attack_anims(RuneCNpcRenderDefs *defs,

@@ -987,6 +987,9 @@ OANM_FLAG_DYNAMIC_BASE = 1 << 0
 OANM_FLAG_DYNAMIC_REPLACEMENT = 1 << 1
 # Spawn templates (export_spawn_objects.py): position relative to the tile.
 OANM_FLAG_SPAWN_TEMPLATE = 1 << 2
+# Template whose model follows the terrain under it (contoured loc or ground
+# decoration), applied by the viewer per vertex where it is placed.
+OANM_FLAG_CONTOURED = 1 << 3
 OBHV_DOOR = 1 << 0
 OBHV_RESOURCE = 1 << 5
 OBHV_PAIR_LEFT = 1 << 8

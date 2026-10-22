@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Export renderable NPC meshes for the broad NDEF v3 corpus."""
+"""Export renderable NPC meshes for the broad NDEF v3 corpus.
+
+Meshes are written unscaled. The client animates an NPC's model and then
+scales it by the definition's resize, so scaling before animation would also
+scale every sequence translation. The non-default resizes go to a sibling
+table (`npcs.scales`: npc_id, resize_h, resize_v; 128 = 1.0) that the viewer
+applies after posing.
+"""
 
 from __future__ import annotations
 
@@ -139,8 +146,6 @@ def export_model(store: RcCacheStore, npc_id: int, model_ids: list[int], visual:
     loaded_parts = 0
     recolors = visual.get("recolors") or []
     retextures = visual.get("retextures") or []
-    resize_h = int(visual.get("resize_h") or 128)
-    resize_v = int(visual.get("resize_v") or 128)
     parts: list[ModelData] = []
 
     for model_id in model_ids:
@@ -158,11 +163,6 @@ def export_model(store: RcCacheStore, npc_id: int, model_ids: list[int], visual:
                 for i, texture in enumerate(md.face_textures):
                     if texture == src:
                         md.face_textures[i] = dst
-        if resize_h != 128 or resize_v != 128:
-            for i in range(md.vertex_count):
-                md.vertices_x[i] = int(md.vertices_x[i] * resize_h / 128)
-                md.vertices_y[i] = int(md.vertices_y[i] * resize_v / 128)
-                md.vertices_z[i] = int(md.vertices_z[i] * resize_h / 128)
         if len(md.vertex_skins) != md.vertex_count:
             md.vertex_skins = [0] * md.vertex_count
         parts.append(md)
@@ -183,6 +183,12 @@ def export_model(store: RcCacheStore, npc_id: int, model_ids: list[int], visual:
             or any(i < 0 or i > 65535 for i in merged.face_c)):
         return "oversized", loaded_parts
     return merged, loaded_parts
+
+
+def write_scales(path: Path, scales: list[tuple[int, int, int]]) -> None:
+    lines = ["# npc_id\tresize_h\tresize_v (128 = 1.0; applied after animation)"]
+    lines += [f"{npc_id}\t{h}\t{v}" for npc_id, h, v in scales]
+    path.write_text("\n".join(lines) + "\n")
 
 
 def write_models(path: Path, models: list[dict[str, Any]]):
@@ -244,12 +250,13 @@ def main() -> int:
     tex_colors = load_texture_average_colors(store)
     atlas = build_atlas(load_texture_sprites(store))
     models = []
+    scales: list[tuple[int, int, int]] = []
     missing_parts = []
     empty = []
     oversized = []
     for idx, (npc_id, rec) in enumerate(linked, 1):
-        model, loaded_parts = export_model(store, npc_id, rec["models"],
-                                           visuals.get(npc_id, {}))
+        visual = visuals.get(npc_id, {})
+        model, loaded_parts = export_model(store, npc_id, rec["models"], visual)
         if loaded_parts < len(rec["models"]):
             missing_parts.append((npc_id, rec["name"], len(rec["models"]), loaded_parts))
         if model is None:
@@ -259,6 +266,10 @@ def main() -> int:
             oversized.append((npc_id, rec["name"]))
             continue
         models.append(model)
+        resize_h = int(visual.get("resize_h") or 128)
+        resize_v = int(visual.get("resize_v") or 128)
+        if resize_h != 128 or resize_v != 128:
+            scales.append((npc_id, resize_h, resize_v))
         if idx % 500 == 0:
             print(f"exported {len(models)}/{idx} linked NPC meshes", file=sys.stderr)
 
@@ -270,6 +281,8 @@ def main() -> int:
         bake_priority_offsets=False,
         model_lighting=args.model_lighting,
     )
+    scales_path = args.out.with_suffix(".scales")
+    write_scales(scales_path, scales)
     lines = [
         "Full NPC model export",
         "",
@@ -279,6 +292,7 @@ def main() -> int:
         f"empty after model load/decode: {len(empty)}",
         f"oversized for MDL3 u16 shape: {len(oversized)}",
         f"defs with at least one missing model part: {len(missing_parts)}",
+        f"scaled defs (npcs.scales): {len(scales)}",
         "",
         "Sample empty:",
     ]
@@ -292,7 +306,8 @@ def main() -> int:
     ] or ["  none"]
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text("\n".join(lines) + "\n")
-    print(f"wrote {len(models)} models to {args.out}")
+    print(f"wrote {len(models)} models to {args.out} and {len(scales)} "
+          f"scales to {scales_path}")
     print(f"wrote report to {args.report}")
     return 0
 

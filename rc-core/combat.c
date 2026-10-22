@@ -808,6 +808,9 @@ static int npc_should_auto_attack_player(const RcWorld *world,
     if (world->player.current_hp <= 0 || world->player.plane != npc->plane) {
         return 0;
     }
+    if (!rc_encounter_npc_may_engage(world, (uint32_t)def->id, npc->spawn_x,
+                                     npc->spawn_y, npc->spawn_plane))
+        return 0;
     int range = def->hunt.range;
     if (range <= 0
             || distance_player_to_npc(world, &world->player, npc) > range) {
@@ -840,6 +843,9 @@ static int npc_should_drop_target(const RcWorld *world, const RcNpc *npc,
     if (world->player.current_hp <= 0 || world->player.plane != npc->plane) {
         return 1;
     }
+    if (!rc_encounter_npc_may_engage(world, (uint32_t)def->id, npc->spawn_x,
+                                     npc->spawn_y, npc->spawn_plane))
+        return 1;
     if (def->hunt.target == RC_NPC_HUNT_NONE
             && npc->combat.aggro_state == NPC_HUNT_READY) return 0;
     int leash = npc_leash_range(def);

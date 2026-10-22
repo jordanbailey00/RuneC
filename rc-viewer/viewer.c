@@ -290,6 +290,22 @@ typedef struct {
     float flight_time;
 } ViewerCombatProjectile;
 
+// An NPC the core removed in the tick it recorded an action with a sequence
+// (a Zombified Spawn exploding on contact): a copy of its model plays that
+// sequence once where it stood.
+typedef struct {
+    bool active;
+    int npc_id;
+    int anim_id;
+    int plane;
+    float x, y;            // model centre, world tiles
+    float face_angle;
+    float start_time;      // client cycles
+    int duration;          // client cycles
+} ViewerNpcGhost;
+
+#define VIEWER_MAX_NPC_GHOSTS 8
+
 typedef struct {
     const char *key;
     int center_x;
@@ -451,6 +467,7 @@ typedef struct {
     RcCombatViewState combat_view;
     const char *reported_combat_failure;
     ViewerCombatProjectile combat_projectiles[VIEWER_MAX_COMBAT_PROJECTILES];
+    ViewerNpcGhost npc_ghosts[VIEWER_MAX_NPC_GHOSTS];
     int combat_projectile_count;
     uint32_t projectile_model_request_ids[VIEWER_PROJECTILE_MODEL_FILTER_MAX];
     int projectile_model_request_id_count;
@@ -1948,15 +1965,29 @@ static void emit_route_tile_edges(ViewerState *v, int plane,
     }
 }
 
+// The NPC tile highlight (Validation tab "NPC tiles", or F4).
+static void viewer_set_npc_tiles(ViewerState *v, int enabled) {
+    if (!v) return;
+    v->show_npc_footprints = enabled ? 1 : 0;
+    runec_ui_set_npc_tiles_overlay(&v->ui, v->show_npc_footprints);
+}
+
 // The tiles each NPC occupies in the core (its tile plus its size east and
 // north): what pathing, melee reach and line of sight are measured against.
+// Every tile is filled on the ground and outlined, so a large NPC shows its
+// whole grid with the lines between tiles; the outlines draw over models so
+// the tiles under a big body can still be counted.
 static void draw_npc_footprints(ViewerState *v, int plane,
                                 const RcNpc *npcs, int npc_count) {
     for (int pass = 0; pass < 2; pass++) {
         rlSetTexture(0);
+        if (pass == 1) {
+            rlDrawRenderBatchActive();
+            rlDisableDepthTest();
+        }
         rlBegin(pass == 0 ? RL_TRIANGLES : RL_LINES);
-        if (pass == 0) rlColor4ub(0, 200, 255, 56);
-        else rlColor4ub(0, 220, 255, 200);
+        if (pass == 0) rlColor4ub(0, 200, 255, 64);
+        else rlColor4ub(0, 230, 255, 220);
         for (int i = 0; i < npc_count; i++) {
             const RcNpc *n = &npcs[i];
             RcNpcLifePhase life = rc_npc_life_phase(n);
@@ -1977,6 +2008,10 @@ static void draw_npc_footprints(ViewerState *v, int plane,
             }
         }
         rlEnd();
+        if (pass == 1) {
+            rlDrawRenderBatchActive();
+            rlEnableDepthTest();
+        }
     }
 }
 
@@ -5364,6 +5399,22 @@ static void report_missing_spawn_object(ViewerState *v, int obj_id) {
             "(tools/cache_pipeline/export_spawn_objects.py)\n", obj_id);
 }
 
+// Contours posed model vertices (scene units, relative to `pos`) to the
+// terrain: each vertex rises or falls by the ground height under it minus the
+// ground height at `pos`, so a contoured loc lies on a slope as the map
+// exporter's placed locs do.
+static void contour_vertices_to_ground(ViewerState *v, int plane,
+                                       float *verts, int count, Vector3 pos) {
+    if (!v || !verts) return;
+    float base = ground_yf_plane(v, plane, pos.x + (float)g_world_origin_x,
+                                 (float)g_world_origin_y - pos.z);
+    for (int i = 0; i < count; i++) {
+        float wx = pos.x + verts[i * 3] + (float)g_world_origin_x;
+        float wy = (float)g_world_origin_y - (pos.z + verts[i * 3 + 2]);
+        verts[i * 3 + 1] += ground_yf_plane(v, plane, wx, wy) - base;
+    }
+}
+
 // Locs the core spawned at runtime have no map-square model; each is drawn
 // from its template at the state's tile, standing on the ground there.
 static void draw_spawned_objects(ViewerState *v, int scene_plane) {
@@ -5389,14 +5440,18 @@ static void draw_spawned_objects(ViewerState *v, int scene_plane) {
         }
         AnimModelState *state = t < v->spawn_object_state_count
                               ? v->spawn_object_states[t] : NULL;
+        bool contoured = row->pad & OANM_FLAG_CONTOURED;
+        bool posed = false;
         if (state && row->animation_id >= 0) {
             float phase = (float)((s->active_x * 13 + s->active_y * 17
                                    + s->active_obj_id * 3) % 97);
-            if (!animate_model_entry_sequence(entry, state, cache,
-                                              row->animation_id,
-                                              client_ticks + phase))
-                reset_model_entry_to_base_pose(entry);
+            posed = animate_model_entry_sequence(entry, state, cache,
+                                                 row->animation_id,
+                                                 client_ticks + phase);
         }
+        // Instances share the mesh, so a contoured one starts from its pose.
+        if (!posed && (contoured || (state && row->animation_id >= 0)))
+            reset_model_entry_to_base_pose(entry);
         float wx = (float)s->active_x + row->pos_x;
         float wy = (float)s->active_y - row->pos_z;
         Vector3 pos = {
@@ -5404,6 +5459,13 @@ static void draw_spawned_objects(ViewerState *v, int scene_plane) {
             ground_yf_plane(v, scene_plane, wx, wy) + row->pos_y,
             row->pos_z - (float)(s->active_y - g_world_origin_y),
         };
+        if (contoured) {
+            Mesh *mesh = &entry->model.meshes[0];
+            contour_vertices_to_ground(v, scene_plane, mesh->vertices,
+                                       mesh->vertexCount, pos);
+            UpdateMeshBuffer(*mesh, 0, mesh->vertices,
+                             mesh->vertexCount * 3 * (int)sizeof(float), 0);
+        }
         DrawModel(entry->model, pos, 1.0f, WHITE);
     }
 }
@@ -7461,6 +7523,52 @@ static void viewer_start_player_attack_anim(
 // The attack sequence plays for its full length (at least the default
 // hold, or `hold_ticks` when longer), so long sequences such as a whole
 // mechanic's are not cut short and a form change can hold its last frame.
+static float viewer_client_time(const ViewerState *v) {
+    return v && v->world
+         ? ((float)v->world->tick + v->tick_frac) * 30.0f : 0.0f;
+}
+
+static int projectile_sequence_duration(AnimCache *cache, int anim_id);
+static float face_angle_between_tiles(int from_x, int from_y,
+                                      int to_x, int to_y, float fallback);
+
+static void viewer_add_npc_ghost(ViewerState *v,
+                                 const RcCombatAttackEvent *event,
+                                 int anim_id) {
+    if (!v || !event || anim_id < 0) return;
+    int slot = 0;
+    for (int i = 0; i < VIEWER_MAX_NPC_GHOSTS; i++) {
+        if (!v->npc_ghosts[i].active) { slot = i; break; }
+        if (v->npc_ghosts[i].start_time < v->npc_ghosts[slot].start_time)
+            slot = i;
+    }
+    int def_idx = rc_npc_def_find(event->source_definition_id);
+    const RcNpcDef *def = rc_npc_def_get(def_idx);
+    float half = 0.5f * (float)(def && def->size > 0 ? def->size : 1);
+    v->npc_ghosts[slot] = (ViewerNpcGhost){
+        .active = true,
+        .npc_id = event->source_definition_id,
+        .anim_id = anim_id,
+        .plane = event->plane,
+        .x = (float)event->source_x + half,
+        .y = (float)event->source_y + half,
+        .face_angle = face_angle_between_tiles(event->source_x, event->source_y,
+                                               event->target_x, event->target_y,
+                                               0.0f),
+        .start_time = viewer_client_time(v),
+        .duration = projectile_sequence_duration(v->anims, anim_id),
+    };
+}
+
+static void viewer_expire_npc_ghosts(ViewerState *v) {
+    float now = viewer_client_time(v);
+    for (int i = 0; v && i < VIEWER_MAX_NPC_GHOSTS; i++) {
+        ViewerNpcGhost *g = &v->npc_ghosts[i];
+        if (g->active && now - g->start_time >= (float)g->duration)
+            g->active = false;
+    }
+}
+
 static void viewer_start_npc_attack_anim(
     ViewerState *v,
     const RcCombatAttackEvent *event,
@@ -7468,7 +7576,12 @@ static void viewer_start_npc_attack_anim(
     int hold_ticks
 ) {
     int idx = viewer_find_npc_index_by_uid(v, event ? event->source_uid : -1);
-    if (idx < 0) return;
+    if (idx < 0) {
+        // Gone this tick: its last sequence plays on a lingering copy.
+        if (event && event->action_kind == RC_COMBAT_ACTION_ENCOUNTER && visual)
+            viewer_add_npc_ghost(v, event, visual->attack_anim_id);
+        return;
+    }
     int anim_id = visual && visual->attack_anim_id >= 0
                 ? visual->attack_anim_id : -1;
     int ticks = viewer_npc_attack_anim_ticks(event);
@@ -8963,7 +9076,7 @@ static void handle_input(ViewerState *v, int ui_capture) {
         }
         if (IsKeyPressed(KEY_F3)) v->show_grid = !v->show_grid;
         if (IsKeyPressed(KEY_F4))
-            v->show_npc_footprints = !v->show_npc_footprints;
+            viewer_set_npc_tiles(v, !v->show_npc_footprints);
         if (IsKeyPressed(KEY_C)) v->show_collision = !v->show_collision;
         if (IsKeyPressed(KEY_SPACE)) v->paused = !v->paused;
         if (IsKeyPressed(KEY_R))
@@ -9343,6 +9456,39 @@ static void draw_hitsplat_state(ViewerState *v,
     }
 }
 
+static Vector3 viewer_npc_model_scale(const ViewerState *v, int npc_id);
+
+static void draw_npc_ghosts(ViewerState *v, int scene_plane) {
+    viewer_expire_npc_ghosts(v);
+    if (!v->npc_models || !v->npc_models->loaded || !v->anims) return;
+    float now = viewer_client_time(v);
+    for (int i = 0; i < VIEWER_MAX_NPC_GHOSTS; i++) {
+        const ViewerNpcGhost *g = &v->npc_ghosts[i];
+        if (!g->active || g->plane != scene_plane) continue;
+        ModelEntry *entry = model_find(v->npc_models, (uint32_t)g->npc_id);
+        int def_idx = rc_npc_def_find(g->npc_id);
+        AnimModelState *state = def_idx >= 0 ? v->npc_anim_state[def_idx] : NULL;
+        if (!entry || !entry->loaded || !state) continue;
+        if (!animate_model_entry_sequence(entry, state, v->anims, g->anim_id,
+                                          now - g->start_time))
+            continue;
+        Vector3 pos = {g->x - (float)g_world_origin_x,
+                       ground_yf_plane(v, scene_plane, g->x, g->y),
+                       -(g->y - (float)g_world_origin_y)};
+        DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, g->face_angle,
+                    viewer_npc_model_scale(v, g->npc_id), WHITE);
+    }
+}
+
+// An NPC model's draw scale: its definition resize, which the client applies
+// after posing (models are exported unscaled).
+static Vector3 viewer_npc_model_scale(const ViewerState *v, int npc_id) {
+    int h = 128, vert = 128;
+    runec_npc_render_scale(&v->npc_render_defs, npc_id, &h, &vert);
+    float xz = NPC_MODEL_SCALE * (float)h / 128.0f;
+    return (Vector3){xz, NPC_MODEL_SCALE * (float)vert / 128.0f, xz};
+}
+
 static int viewer_model_vertical_bounds(const ModelEntry *entry,
                                         float *min_y, float *max_y) {
     if (!entry || !entry->loaded || !entry->rest_verts)
@@ -9524,10 +9670,10 @@ static void draw_scene(ViewerState *v, int ui_capture) {
             update_npc_anim(v, i, ne);
             DrawModelEx(ne->model, (Vector3){nx_r, ny_r, nz_r},
                         (Vector3){0, 1, 0}, face_angle,
-                        (Vector3){NPC_MODEL_SCALE, NPC_MODEL_SCALE, NPC_MODEL_SCALE},
-                        WHITE);
+                        viewer_npc_model_scale(v, def->id), WHITE);
         }
     }
+    draw_npc_ghosts(v, scene_plane);
 
     for (int i = 0; i < v->world->ground_item_count; i++) {
         const RcGroundItem *g = &v->world->ground_items[i];
@@ -9625,6 +9771,9 @@ static void draw_scene(ViewerState *v, int ui_capture) {
         ModelEntry *model = v->npc_models && v->npc_models->loaded
                           ? model_find(v->npc_models, (uint32_t)def->id) : NULL;
         if (viewer_model_vertical_bounds(model, &model_min_y, &model_max_y)) {
+            float resize_y = viewer_npc_model_scale(v, def->id).y;
+            model_min_y *= resize_y;
+            model_max_y *= resize_y;
             model_mid_y = runec_actor_model_midpoint(
                 model_min_y, model_max_y, NPC_MODEL_SCALE);
         }
@@ -9892,7 +10041,10 @@ int main(int argc, char **argv) {
     }
     if (runec_npc_render_defs_load(&v.npc_render_defs, cfg.npc_defs_path) <= 0
             || runec_npc_render_defs_apply_attack_anims(
-                &v.npc_render_defs, npc_attack_anims_path) <= 0) {
+                &v.npc_render_defs, npc_attack_anims_path) <= 0
+            || runec_npc_render_defs_apply_scales(
+                &v.npc_render_defs,
+                env_path("RUNEC_NPC_SCALES", "data/models/npcs.scales")) < 0) {
         fprintf(stderr,
                 "viewer: required NPC render definitions are unavailable\n");
         free(v.npc_overlays);
@@ -10254,6 +10406,8 @@ int main(int argc, char **argv) {
                 runec_dev_validation_transports(&count);
             if (transports && idx >= 0 && idx < count)
                 viewer_dev_transport_to(&v, &transports[idx]);
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_DEV_NPC_TILES) {
+            viewer_set_npc_tiles(&v, v.ui.last_intent.primary);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_DEV_SPELLBOOK) {
             if (runec_dev_validation_set_spellbook(v.world, v.ui.last_intent.primary))
                 runec_ui_set_active_tab(&v.ui, RUNEC_UI_TAB_SPELLBOOK);
@@ -10502,6 +10656,7 @@ cleanup:
     models_free(v.npc_models);
     models_free(v.item_models);
     models_free(v.projectile_models);
+    runec_npc_render_defs_free(&v.npc_render_defs);
     spotanims_free(v.spotanims);
     runec_item_render_map_free(&v.item_render_map);
     runec_item_def_render_map_free(&v.item_def_render_map);

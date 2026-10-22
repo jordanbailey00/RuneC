@@ -183,17 +183,34 @@ death diagnostic; enabling loot is not a claim that every table is verified.
   is Vorkath's deadly dragonfire, acid spit, rapid fire and spawn launch,
   which are dodgeable in OSRS. Jad's falling rock is a `target_impact` on the
   player.
-- F4 toggles a development overlay of every NPC's occupied tiles: its core
-  tile plus its size, drawn at the core position, not the interpolated model.
-  Use it to check footprints and melee spacing. F3 toggles the grid and C the
-  collision overlay.
+- The Validation tab's "NPC tiles" button (or F4) toggles a development
+  overlay of every NPC's occupied tiles: its core tile plus its size, drawn
+  at the core position, not the interpolated model. Each tile is filled and
+  outlined, so a multi-tile NPC shows its whole grid with the lines between
+  tiles, and the outlines draw over models so a large body does not hide
+  them. Use it to check footprints and melee spacing. F3 toggles the grid and
+  C the collision overlay.
 - Locs the core spawns at runtime (`RC_OBJECT_STATE_SPAWNED`, e.g. Vorkath's
   acid pools) are drawn from `data/models/spawn_objects.models` and its
   `.oanim` templates (loc id, type, rotation; positions relative to the tile)
   written by `tools/cache_pipeline/export_spawn_objects.py`, on the terrain at
   the footprint centre, animated with `object.anims` when the loc has a
-  sequence. A loc without a template is logged once. Encounter hazards have
-  no debug tile overlay; their projectiles and locs are the presentation.
+  sequence. Templates flagged `OANM_FLAG_CONTOURED` (contoured locs and
+  ground decoration, such as the acid pool) follow the slope under them: each
+  vertex moves by the ground height under it minus the height at the loc, as
+  the map exporter contours placed locs. A loc without a template is logged
+  once. Encounter hazards have no debug tile overlay; their projectiles and
+  locs are the presentation.
+- NPC models are exported unscaled. `data/models/npcs.scales` (npc id,
+  resize_h, resize_v; written beside `npcs.models` by
+  `tools/export_npc_models_full.py`) supplies each definition's resize, which
+  the viewer applies after posing, as the client does, so sequence
+  translations are not scaled with the mesh. It also scales the health-bar
+  and hitsplat anchors. The file is required at startup.
+- An NPC the core removes in the tick it records an encounter action with a
+  sequence (the Zombified Spawn exploding: `Zombified spawn:explode`, its
+  own attack sequence 7890) leaves a copy of its model that plays the
+  sequence once at the event's source tile.
 - Inventory, bank and equipment icons use native 36x32 cache-rendered PNGs,
   without auto-fit scaling, reference overlays or invented 3D/model icons.
   The exporter owns camera angles, perspective, face ordering, lighting,

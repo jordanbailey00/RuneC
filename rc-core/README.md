@@ -98,10 +98,11 @@ subsystems**.
   `rc_bank_add_item[_tab]` is privileged fixture setup, not player access.
 - **slayer** — task metadata, assignment, unlock/block/prefer filters,
   task progress
-- **encounter** — admitted boss runs: forms, engagement, phases, attack
-  selection, owned helpers and hazards (pools that land after their spit and
-  show their loc, helpers that land after their launch), and the verified
-  primitives
+- **encounter** — admitted boss runs: forms (with per-form defence
+  bonuses), engagement, phases, attack selection, owned helpers and hazards
+  (pools that land after their spit and show their loc, helpers that land
+  after their launch), a boss's room (arena) and the world-spawned guards
+  that return with it, and the verified primitives
 - **objects** — object definitions, placed-object lookup, typed object
   behavior tags, complete varbit/varp transforms, exact layer-aware dynamic
   loc mutation, altar restore, doors, and gathering-node depletion/respawn
@@ -442,8 +443,20 @@ carries `RC_COMBAT_ACTION_ENCOUNTER` and the attack name (tile attacks aim at
 the launch tile, `target_kind = RC_COMBAT_ACTOR_NONE`), and mechanic parts and
 form changes record presentation-only events through
 `rc_combat_record_encounter_action` ("<mechanic>[:<part>]", `form:leave`,
-`form:enter`; `docs/encounter_primitives.md`). Those records leave 16 event
-slots free for launches. Presentation maps names to visuals from data.
+`form:enter`; `docs/encounter_primitives.md`). A helper records its own
+parts (the Zombified Spawn's `<mechanic>:explode`) before the core removes
+it. Those records leave 16 event slots free for launches. Presentation maps
+names to visuals from data.
+
+A form's defence bonuses (`RcNpc.defence_bonus`, by style) enter the NPC
+defence roll, `(level + 9) * (bonus + 64)`, while that form is current; the
+Kalphite Queen's protections are modelled this way. A spec with an arena
+gates its forms and guards (by definition, when their spawn lies in the
+arena): they neither aggro a player outside it nor keep fighting one who
+leaves (`rc_encounter_npc_may_engage`, checked by NPC aggression and target
+dropping). A guard that dies waits on a held respawn timer until its boss
+next binds, then returns. `RcNpc.despawn_tick` removes temporary NPCs, such
+as hatched Kalphite Workers, at that tick.
 
 Spell selection/autocast/book APIs return `RcSpellResult`; queued admission is
 not execution. `rc_spell_available` checks the bound world's definitions,
@@ -654,6 +667,8 @@ Current encounter events:
 - `RC_EVT_PLAYER_DAMAGED` applies the landed attack's effect, identified by
   the hit's encounter attack and run generation.
 - `RC_EVT_NPC_ATTACK` counts launched attacks for the special rotation.
+- `RC_EVT_NPC_DAMAGED` counts hits the boss takes (even 0); the next
+  encounter tick runs `boss_hit` mechanics once per hit.
 - `RC_EVT_PLAYER_DIED` disengages runs.
 - `RC_EVT_PHASE_TRANSITION` is a notification only; `enter_phase` owns
   phase changes and runs their mechanics and scripts directly.
@@ -705,7 +720,7 @@ Each subsystem owns its binary(s):
 | regions | `world.collision-tiles.indexed.bin`, `area_flags.bin` |
 | skills | `recipes.bin`, `skill_drops.bin`, `gathering_nodes.bin` |
 | combat / slayer / encounter | `regular_npc_mechanics.bin` |
-| encounter | `encounters.bin` (ENCT v13, admitted specs only), `activity_schemas.bin`, `activity_spawns.bin`, `activity_mechanics.bin`, `activity_states.bin` |
+| encounter | `encounters.bin` (ENCT v14, admitted specs only), `activity_schemas.bin`, `activity_spawns.bin`, `activity_mechanics.bin`, `activity_states.bin` |
 | slayer | `slayer.bin` |
 | active area | mapsquare-indexed collision, world NPC/static ground-item spawns, and object placements via `rc_world_activate_area`; lower-level NPC rect/near loaders remain available for tools/tests |
 | (audio → rc-viewer) | `music.bin` |
