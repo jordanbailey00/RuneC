@@ -182,8 +182,6 @@ static void test_magic_attack_queues_delayed_hit_and_npc_retaliates(void) {
     assert(events.npc_damaged > 0);
     assert(events.last_player_max_hp == world->player.max_hp);
     assert(world->npcs[npc_idx].facing_entity == 0);
-    assert(world->npcs[npc_idx].facing_x == world->player.x);
-    assert(world->npcs[npc_idx].facing_y == world->player.y);
 
     rc_world_destroy(world);
 }

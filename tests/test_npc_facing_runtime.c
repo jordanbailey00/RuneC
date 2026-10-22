@@ -48,9 +48,10 @@ static void test_spawn_uses_explicit_direction(void) {
     int idx = rc_npc_spawn(world, 0, 3200, 3200, 0);
     assert(idx >= 0);
     RcNpc *npc = &world->npcs[idx];
+    // The spawn direction (south by default) goes out once as a face angle.
     assert(npc->facing_entity == -1);
-    assert(npc->facing_x == 3200);
-    assert(npc->facing_y == 3199);
+    assert(npc->face_angle == 0);
+    assert(npc->face_angle_seq == 1);
     rc_world_destroy(world);
 }
 
@@ -66,9 +67,9 @@ static void test_wander_keeps_last_move_direction(void) {
 
     assert(npc->x == 3201);
     assert(npc->y == 3200);
+    // Steps send no face angle: the client faces along the step.
     assert(npc->facing_entity == -1);
-    assert(npc->facing_x == 3202);
-    assert(npc->facing_y == 3200);
+    assert(npc->face_angle_seq == 1);
     rc_world_destroy(world);
 }
 
@@ -90,8 +91,7 @@ static void test_repeated_wander_moves_from_current_tile(void) {
         if (dx || dy) {
             moved++;
             assert(npc->facing_entity == -1);
-            assert(npc->facing_x == npc->x + dx);
-            assert(npc->facing_y == npc->y + dy);
+            assert(npc->face_angle_seq == 1);
         }
     }
     assert(moved > 0);
@@ -120,8 +120,7 @@ static void test_idle_return_walks_instead_of_snapping(void) {
     assert(npc->x == 3202);
     assert(npc->y == 3200);
     assert(npc->facing_entity == -1);
-    assert(npc->facing_x == 3201);
-    assert(npc->facing_y == 3200);
+    assert(npc->face_angle_seq == 1);
     rc_world_destroy(world);
 }
 
@@ -130,6 +129,6 @@ int main(void) {
     test_wander_keeps_last_move_direction();
     test_repeated_wander_moves_from_current_tile();
     test_idle_return_walks_instead_of_snapping();
-    printf("test_npc_facing_runtime: NPC facing state follows runtime movement.\n");
+    printf("test_npc_facing_runtime: spawns send their face angle; steps leave facing to the client.\n");
     return 0;
 }

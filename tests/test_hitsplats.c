@@ -158,15 +158,6 @@ static void test_event_identity_and_sync(void) {
 }
 
 static void test_actor_projection(void) {
-    float x = 0, y = 0, distance = 1.25f;
-    assert(runec_actor_advance_tile(&x, &y, 1, 1, &distance));
-    assert(x == 1 && y == 1 && distance == 0.25f);
-    assert(!runec_actor_advance_tile(&x, &y, 1, 2, &distance));
-    assert(x == 1 && y == 1.25f && distance == 0
-           && "remaining frame time must follow the next segment, not cut the corner");
-    distance = 2;
-    assert(runec_actor_advance_tile(&x, &y, 1, 1.25f, &distance));
-    assert(distance == 2 && "duplicate waypoints must not consume time");
     assert(runec_actor_model_midpoint(0.0f, 2.0f, 1.0f) == 1.0f);
     assert(runec_actor_model_midpoint(2.0f, 0.0f, 0.5f) == 0.5f);
 
@@ -180,13 +171,6 @@ static void test_actor_projection(void) {
     assert(runec_actor_model_vertical_bounds(
         vertices, 3, &min_y, &max_y));
     assert(min_y == -0.50f && max_y == 2.50f);
-
-    float direct_north = runec_npc_target_angle(
-        3200, 3200, 5, 3202, 3197, 123.0f);
-    assert(fabsf(direct_north) < 0.001f);
-    float direct_east = runec_npc_target_angle(
-        3200, 3200, 5, 3205, 3202, 123.0f);
-    assert(fabsf(direct_east - 90.0f) < 0.001f);
 }
 
 int main(void) {

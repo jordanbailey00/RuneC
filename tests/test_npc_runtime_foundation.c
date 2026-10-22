@@ -127,7 +127,7 @@ static void test_spawn_identity_policy_and_slot_reuse(void) {
     assert(npc->spawn_key == config.spawn_key);
     assert(npc->spawn_wander_range == 0);
     assert(npc->spawn_direction == 6);
-    assert(npc->facing_x == 3200 && npc->facing_y == 3199);
+    assert(npc->face_angle == 0 && npc->face_angle_seq == 1);
     assert(log.spawned == 1 && log.last.spawn_key == config.spawn_key);
 
     RcNpcSpawnResult duplicate = rc_npc_spawn_ex(

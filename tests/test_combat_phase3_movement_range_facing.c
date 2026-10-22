@@ -55,9 +55,9 @@ static void test_player_in_range_flag_and_facing_for_large_npc(void) {
     assert(rc_combat_start_player_vs_npc(world, 0, npc->uid));
     rc_combat_tick_player(world);
 
+    // The player faces the NPC itself; the client turns toward its centre.
     assert(world->player.facing_entity == npc->uid);
-    assert(world->player.facing_x == npc->x);
-    assert(world->player.facing_y == world->player.y);
+    assert(world->player.facing_x == -1 && world->player.facing_y == -1);
     assert(world->player.combat.flags & RC_COMBAT_STATE_IN_RANGE);
     assert(world->player.combat.attack_range == 1);
     assert(world->player.combat.distance_to_target == 1);
@@ -121,8 +121,6 @@ static void test_npc_chases_faces_and_sets_range_state(void) {
 
     assert(npc->x < start_x);
     assert(npc->facing_entity == 0);
-    assert(npc->facing_x == world->player.x);
-    assert(npc->facing_y == world->player.y);
     assert(!(npc->combat.flags & RC_COMBAT_STATE_IN_RANGE));
     assert(npc->combat.attack_range == 1);
     assert(npc->combat.distance_to_target > 1);

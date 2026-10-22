@@ -109,22 +109,13 @@ static int npc_projectile_source_tile(const RcWorld *world, const RcNpc *npc,
                                      sx, sy);
 }
 
-static void face_player_to_npc(const RcWorld *world, RcPlayer *p,
-                               const RcNpc *npc) {
-    int tx, ty;
-    if (!p || !nearest_npc_tile_to_point(world, npc, p->x, p->y, &tx, &ty)) {
-        if (p) p->facing_entity = -1;
-        return;
-    }
+// The client turns each actor toward its face entity's centre every frame.
+static void face_player_to_npc(RcPlayer *p, const RcNpc *npc) {
     p->facing_entity = npc->uid;
-    p->facing_x = tx;
-    p->facing_y = ty;
 }
 
-static void face_npc_to_player(RcNpc *npc, const RcPlayer *p) {
+static void face_npc_to_player(RcNpc *npc) {
     npc->facing_entity = 0;
-    npc->facing_x = p->x;
-    npc->facing_y = p->y;
 }
 
 static int style_needs_los(RcCombatStyle style) {
@@ -1225,7 +1216,7 @@ int rc_combat_start_player_vs_npc(struct RcWorld *world, int player_uid,
     player->attack_target = npc->uid;
     player->attack_target_def_id = def->id;
     rc_refresh_player_combat_style(player);
-    face_player_to_npc(world, player, npc);
+    face_player_to_npc(player, npc);
     sync_player_combat_state_from_legacy(world, player);
     sync_npc_combat_state_from_legacy(world, npc);
     rc_player_action_refresh(world);
@@ -1251,7 +1242,7 @@ int rc_combat_start_npc_vs_player(struct RcWorld *world, int npc_uid,
     };
     if (!combat_can_attack_target(world, npc_actor, player_actor)) return 0;
     npc->target_uid = 0;
-    face_npc_to_player(npc, &world->player);
+    face_npc_to_player(npc);
     sync_npc_combat_state_from_legacy(world, npc);
     sync_player_combat_state_from_legacy(world, &world->player);
     return 1;
@@ -1463,7 +1454,7 @@ static void combat_tick_player_attack(RcWorld *world) {
         reject_launch(world, player_actor, "weapon attack mode is unavailable");
         return;
     }
-    face_player_to_npc(world, p, target);
+    face_player_to_npc(p, target);
     int range = rc_player_attack_range(p);
     if (!player_can_attack_npc_now(world, p, target, range,
                                    p->combat_style, NULL, NULL)) {
@@ -1747,7 +1738,7 @@ static void combat_tick_npc_attack(RcWorld *world, RcNpc *npc) {
     if (style == COMBAT_NONE) style = rc_combat_npc_preferred_style(d->attack_types);
     const RcEncounterAttack *enc = prepared_encounter_attack(world, npc);
     int range = npc_attack_range_for(world, npc, d, style);
-    face_npc_to_player(npc, p);
+    face_npc_to_player(npc);
     if (npc->attack_timer > 0) {
         if (!npc_attack_in_reach(world, npc, p, enc, range, style))
             route_npc_to_player(world, npc, range, encounter_reach_style(enc, style));

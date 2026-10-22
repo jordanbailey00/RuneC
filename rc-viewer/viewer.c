@@ -35,6 +35,7 @@
 #include "minimap.h"
 #include "hitsplats.h"
 #include "health_bars.h"
+#include "actor_motion.h"
 #include "actor_projection.h"
 #include "input_feedback.h"
 #include "route_overlay.h"
@@ -63,7 +64,6 @@
 #define WINDOW_W 1280
 #define WINDOW_H 720
 #define TPS 1.667f
-#define NPC_RENDER_QUEUE_MAX 8
 #define NPC_MODEL_SCALE 1.0f
 #define VIEWER_MAX_COMBAT_PROJECTILES 64
 #define VIEWER_PROJECTILE_MODEL_FILTER_MAX 256
@@ -409,22 +409,23 @@ typedef struct {
     // cross-instance clobber is fine.
     AnimModelState *npc_anim_state[RC_MAX_NPC_DEFS];
 
-    // Per-NPC-instance animation progress (parallel to world->npcs[]).
+    // Per-NPC-instance presentation (parallel to world->npcs[]): client
+    // movement, the pose sequence it picks (cur_anim_id), and a primary
+    // (attack or death) sequence over it.
     struct {
         int cur_anim_id;       // 0 = none, otherwise the seq id currently playing
         int frame_idx;
         float frame_timer;
+        int primary_anim_id;   // -1 = none
+        int primary_frame_idx;
+        float primary_frame_timer;
+        int primary_finished;
         int initialized;
         int uid;
         int server_x, server_y, server_plane;
-        RcTick last_seen_tick;
-        float render_x, render_y;
-        float waypoint_x[NPC_RENDER_QUEUE_MAX];
-        float waypoint_y[NPC_RENDER_QUEUE_MAX];
-        int waypoint_count;
-        int moving;
-        float move_anim_timer;
-        int last_dx, last_dy;
+        uint32_t face_angle_seq;
+        RuneCActorMotion motion;
+        float render_x, render_y;  // south-west tile between client cycles
         int attack_anim_timer;
         int attack_anim_id;
     } npc_render[RC_MAX_NPCS];
@@ -438,20 +439,28 @@ typedef struct {
     RcViewerTickPacing tick_pacing;
     float tick_frac;
     int paused;
-    float prev_player_x, prev_player_y;
+    // Client cycles (20 ms) move and turn every actor; the frame draws
+    // between the last two (motion_cycle_frac of the next one elapsed).
+    float motion_cycle_time;
+    float motion_cycle_frac;
+    RuneCActorMotion player_motion;
+    uint32_t player_face_angle_seq;
 
-    // Animation
+    // Animation: the movement pose sequence (cur_anim_id) and a primary
+    // action or attack sequence over it.
     int cur_anim_id;
     int anim_frame_idx;
     float anim_frame_timer;
+    int primary_anim_id;   // -1 = none
+    int primary_kind;      // PLAYER_ONE_SHOT_*
+    int primary_frame_idx;
+    float primary_frame_timer;
     int player_one_shot_finished;
     int player_attack_anim_suppressed;
     int player_attack_anim_timer;
     int player_attack_anim_id;
     int player_action_anim_timer;
     int player_action_anim_id;
-    int player_moving;
-    float player_facing_angle;   // viewer-side; rc-core doesn't store
 
     int show_grid;
     int show_collision;
@@ -3544,14 +3553,16 @@ static void viewer_finish_dev_transport(ViewerState *v,
         reload_scene_around_player(v, p->x, p->y);
         return;
     }
+    // Face the destination NPC's footprint once the player stands.
     p->facing_entity = -1;
     p->facing_x = d->target_x;
     p->facing_y = d->target_y;
-    v->prev_player_x = (float)player_x;
-    v->prev_player_y = (float)player_y;
+    p->facing_width = p->facing_length =
+        (uint8_t)(d->npc_size > 0 ? d->npc_size : 1);
+    runec_actor_motion_place(&v->player_motion, player_x, player_y, 1,
+                             v->player_motion.yaw);
     rc_viewer_tick_pacing_reset(&v->tick_pacing);
     v->tick_frac = 0.0f;
-    v->player_moving = 0;
     v->scene_plane_override = -1;
     runec_input_feedback_reset(&v->input_feedback);
     v->route_preview_active = 0;
@@ -3585,14 +3596,16 @@ static int route_player_to(ViewerState *v, int tx, int ty) {
         : rc_player_walk_to(v->world, tx, ty);
     v->route_preview_active = 0;
     if (accepted) {
-        runec_input_feedback_start_destination(
-            &v->input_feedback, tx, ty, player->plane,
-            v->world->tick);
+        // The walk ends on the clicked tile or the nearest reachable one;
+        // the destination marks where it ends, as the minimap flag does.
         RcRouteTarget target = rc_route_target_point(tx, ty);
         RcRoute preview = rc_find_route(
             &v->world->map, player->x, player->y,
-            1, 1, player->plane, &target, false);
+            1, 1, player->plane, &target, true);
         if (rc_route_status_has_path(preview.status)) {
+            runec_input_feedback_start_destination(
+                &v->input_feedback, preview.reached_x, preview.reached_y,
+                player->plane, v->world->tick);
             v->route_preview = preview;
             v->route_preview_active = 1;
             v->route_preview_start_x = player->x;
@@ -3665,10 +3678,9 @@ static void viewer_commit_player_scene_transition(ViewerState *v) {
         return;
     }
     RcPlayer *p = &v->world->player;
-    v->prev_player_x = (float)p->x;
-    v->prev_player_y = (float)p->y;
+    runec_actor_motion_place(&v->player_motion, p->x, p->y, 1,
+                             v->player_motion.yaw);
     v->tick_frac = 0.0f;
-    v->player_moving = 0;
     fprintf(stderr,
             "viewer scene: committed visual transition %d,%d,%d "
             "(player now %d,%d,%d)\n",
@@ -3685,13 +3697,8 @@ static void handle_player_scene_transition(ViewerState *v, int old_x,
     }
     RcPlayer *p = &v->world->player;
     int large_step = abs(p->x - old_x) > 2 || abs(p->y - old_y) > 2;
-    if (old_plane != p->plane || large_step) {
+    if (old_plane != p->plane || large_step)
         v->scene_plane_override = -1;
-        v->prev_player_x = (float)p->x;
-        v->prev_player_y = (float)p->y;
-        v->tick_frac = 0.0f;
-        v->player_moving = 0;
-    }
 
     if (old_plane != p->plane && !v->mapsquare_streaming_active
             && viewer_tile_in_loaded_scene(p->x, p->y)) {
@@ -4305,7 +4312,10 @@ static void viewer_start_player_action_anim(ViewerState *v, int anim_id,
         return;
     v->player_action_anim_id = anim_id;
     v->player_action_anim_timer = ticks;
+    v->primary_frame_idx = 0;
+    v->primary_frame_timer = 0.0f;
     v->player_one_shot_finished = 0;
+    runec_actor_motion_begin_primary(&v->player_motion);
 }
 
 static void viewer_sync_consumption(ViewerState *v) {
@@ -5172,21 +5182,16 @@ static void update_model_entry_colors_from_anim(ModelEntry *entry,
     UpdateMeshBuffer(*mesh, 3, mesh->colors, mesh->vertexCount * 4, 0);
 }
 
+static int apply_player_frames(ViewerState *v, AnimModelState *state,
+                               const int16_t *base_verts);
+
 static void animate_model_entry_to_player_frame(ViewerState *v,
                                                 ModelEntry *entry,
                                                 AnimModelState *state) {
     if (!v->anims || !entry || !entry->loaded)
         return;
-    if (!state)
+    if (!state || !apply_player_frames(v, state, entry->base_verts))
         return;
-    AnimSequence *seq = anim_get_sequence(v->anims, (uint16_t)v->cur_anim_id);
-    if (!seq || seq->frame_count == 0)
-        return;
-    AnimSequenceFrame *sf = &seq->frames[v->anim_frame_idx % seq->frame_count];
-    AnimFrameBase *fb = anim_get_framebase(v->anims, sf->frame.framebase_id);
-    if (!fb)
-        return;
-    anim_apply_frame(state, entry->base_verts, &sf->frame, fb);
     anim_update_mesh(entry->model.meshes[0].vertices, state,
                      entry->face_indices, entry->face_priorities,
                      entry->face_count);
@@ -7515,9 +7520,10 @@ static void viewer_start_player_attack_anim(
         ? anim_get_sequence(v->anims, (uint16_t)v->player_attack_anim_id) : NULL;
     if (seq) v->player_attack_anim_timer = anim_sequence_game_ticks(seq);
     v->player_attack_anim_suppressed = 0;
+    v->primary_frame_idx = 0;
+    v->primary_frame_timer = 0.0f;
     v->player_one_shot_finished = 0;
-    v->anim_frame_idx = 0;
-    v->anim_frame_timer = 0;
+    runec_actor_motion_begin_primary(&v->player_motion);
 }
 
 // The attack sequence plays for its full length (at least the default
@@ -7591,11 +7597,22 @@ static void viewer_start_npc_attack_anim(
     int seq_ticks = anim_sequence_game_ticks(seq);
     v->npc_render[idx].attack_anim_timer = seq_ticks > ticks ? seq_ticks : ticks;
     v->npc_render[idx].attack_anim_id = anim_id;
+    v->npc_render[idx].primary_frame_idx = 0;
+    v->npc_render[idx].primary_frame_timer = 0.0f;
+    v->npc_render[idx].primary_finished = 0;
+    runec_actor_motion_begin_primary(&v->npc_render[idx].motion);
 }
 
 static int viewer_npc_size(const ViewerState *v, const RcNpc *npc) {
     const RcNpcDef *def = rc_npc_def_for_npc(v ? v->world : NULL, npc);
     return def && def->size > 0 ? def->size : 1;
+}
+
+// The player's drawn south-west tile between client cycles.
+static void viewer_player_render_tile(const ViewerState *v, float *x,
+                                      float *y) {
+    runec_actor_motion_render_tile(&v->player_motion, v->motion_cycle_frac,
+                                   x, y);
 }
 
 static int viewer_distance_event_target(
@@ -8330,13 +8347,10 @@ static int projectile_target_point(ViewerState *v,
             return 0;
         }
         target_plane = player_plane;
-        int held = v->mapsquare_load.player_transition.active;
-        wx = held ? (float)player_x
-            : v->prev_player_x
-                + ((float)player_x - v->prev_player_x) * v->tick_frac;
-        wy = held ? (float)player_y
-            : v->prev_player_y
-                + ((float)player_y - v->prev_player_y) * v->tick_frac;
+        wx = (float)player_x;
+        wy = (float)player_y;
+        if (!v->mapsquare_load.player_transition.active)
+            viewer_player_render_tile(v, &wx, &wy);
         tile_x = player_x;
         tile_y = player_y;
     }
@@ -8674,44 +8688,60 @@ static float face_angle_between_tiles(int from_x, int from_y,
     return atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
 }
 
-static float player_core_facing_angle(const RcPlayer *p, float fallback) {
-    if (!p) return fallback;
-    if (p->facing_entity >= 0 || p->facing_x >= 0 || p->facing_y >= 0) {
-        return face_angle_between_tiles(p->x, p->y, p->facing_x,
-                                        p->facing_y, fallback);
-    }
-    return fallback;
+// ---- Client actor motion -------------------------------------------------
+
+static int viewer_sequence_skeleton(AnimCache *cache, int seq_id);
+
+// The player's base animation set: the weapon's ready, walk and run
+// sequences over the human ones. Poses without a sequence fall back to walk
+// (runec_actor_pose_seq).
+static void player_pose_set(ViewerState *v, RuneCActorPoseSet *poses) {
+    for (int i = 0; i < RUNEC_ACTOR_POSE_COUNT; i++) poses->seq[i] = -1;
+    const RuneCItemRenderRecord *weapon =
+        equipped_weapon_render_record(v, &v->world->player);
+    poses->seq[RUNEC_ACTOR_POSE_IDLE] = weapon
+        ? player_anim_or_fallback(v, weapon->ready_anim_id, ANIM_IDLE)
+        : ANIM_IDLE;
+    poses->seq[RUNEC_ACTOR_POSE_WALK] = weapon
+        ? player_anim_or_fallback(v, weapon->walk_anim_id, ANIM_WALK)
+        : ANIM_WALK;
+    poses->seq[RUNEC_ACTOR_POSE_RUN] = weapon
+        ? player_anim_or_fallback(v, weapon->run_anim_id, ANIM_RUN)
+        : ANIM_RUN;
 }
 
-static float npc_core_facing_angle(const RcNpc *n, int size, float fallback) {
-    if (!n) return fallback;
-    if (n->facing_entity >= 0) {
-        return runec_npc_target_angle(n->x, n->y, size, n->facing_x,
-                                      n->facing_y, fallback);
-    }
-    if (n->facing_x >= 0 || n->facing_y >= 0) {
-        return face_angle_between_tiles(n->x, n->y, n->facing_x,
-                                        n->facing_y, fallback);
-    }
-    return fallback;
+static const RuneCNpcRenderDef *viewer_npc_render_def(const ViewerState *v,
+                                                      const RcNpc *npc) {
+    const RcNpcDef *def = rc_npc_def_for_npc(v->world, npc);
+    return def ? runec_npc_render_find(&v->npc_render_defs, def->id) : NULL;
 }
 
-static int player_base_anim_id(ViewerState *v) {
-    const RcPlayer *p = &v->world->player;
-    const RuneCItemRenderRecord *weapon = equipped_weapon_render_record(v, p);
-    if (v->player_moving) {
-        if (p->running) {
-            return weapon
-                 ? player_anim_or_fallback(v, weapon->run_anim_id, ANIM_RUN)
-                 : ANIM_RUN;
-        }
-        return weapon
-             ? player_anim_or_fallback(v, weapon->walk_anim_id, ANIM_WALK)
-             : ANIM_WALK;
-    }
-    return weapon
-         ? player_anim_or_fallback(v, weapon->ready_anim_id, ANIM_IDLE)
-         : ANIM_IDLE;
+static void npc_pose_set(const ViewerState *v, const RcNpc *npc,
+                         RuneCActorPoseSet *poses) {
+    for (int i = 0; i < RUNEC_ACTOR_POSE_COUNT; i++) poses->seq[i] = -1;
+    const RuneCNpcRenderDef *render_def = viewer_npc_render_def(v, npc);
+    if (!render_def) return;
+    poses->seq[RUNEC_ACTOR_POSE_IDLE] = render_def->stand_anim;
+    poses->seq[RUNEC_ACTOR_POSE_WALK] = render_def->walk_anim;
+    poses->seq[RUNEC_ACTOR_POSE_RUN] = render_def->run_anim;
+}
+
+// How a primary sequence shares its actor with movement. Opcode 9 is not
+// exported and takes its default; opcode 10 is `walk_flag`.
+static RuneCActorPrimary viewer_primary_motion(AnimCache *cache, int seq_id,
+                                               int finished) {
+    RuneCActorPrimary primary = {0};
+    AnimSequence *seq = cache && !finished && seq_id >= 0 && seq_id <= 0xFFFF
+        ? anim_get_sequence(cache, (uint16_t)seq_id) : NULL;
+    if (!seq || seq->frame_count == 0) return primary;
+    RuneCAnimMoveMode fallback = seq->interleave_count > 0
+        ? RUNEC_ANIM_MOVE_MERGE : RUNEC_ANIM_MOVE_DELAY_MOVE;
+    primary.active = true;
+    primary.before_move = fallback;
+    primary.after_move = seq->walk_flag >= 0
+            && seq->walk_flag <= RUNEC_ANIM_MOVE_MERGE
+        ? (RuneCAnimMoveMode)seq->walk_flag : fallback;
+    return primary;
 }
 
 enum {
@@ -8720,14 +8750,16 @@ enum {
     PLAYER_ONE_SHOT_ATTACK = 2
 };
 
-static int player_target_anim_id(ViewerState *v, int *one_shot_kind) {
+// The player's primary sequence: an action's, else an attack's not yet
+// played out; -1 when neither.
+static int player_primary_anim_id(ViewerState *v, int *one_shot_kind) {
     const RcPlayer *p = &v->world->player;
     if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_NONE;
     if (v->player_action_anim_timer > 0 && v->player_action_anim_id > 0)
     {
         if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_ACTION;
         return player_anim_or_fallback(v, (uint32_t)v->player_action_anim_id,
-                                       ANIM_IDLE);
+                                       -1);
     }
     if (v->player_attack_anim_timer > 0 && !v->player_attack_anim_suppressed) {
         int weapon_id = p->equipment[EQUIP_WEAPON].item_id;
@@ -8743,158 +8775,216 @@ static int player_target_anim_id(ViewerState *v, int *one_shot_kind) {
         else if (weapon_id == 1381)
             attack_anim = ANIM_ATTACK_STAFF;
         if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_ATTACK;
-        int fallback = player_anim_or_fallback(v, attack_anim, ANIM_IDLE);
+        int fallback = player_anim_or_fallback(v, attack_anim, -1);
         return v->player_attack_anim_id > 0
              ? player_anim_or_fallback(v, (uint32_t)v->player_attack_anim_id,
                                        fallback)
              : fallback;
     }
-    return player_base_anim_id(v);
+    return -1;
+}
+
+// Ends the player's primary sequence; an attack's stays ended until the
+// next attack starts.
+static void end_player_primary(ViewerState *v) {
+    if (v->primary_kind == PLAYER_ONE_SHOT_ATTACK)
+        v->player_attack_anim_suppressed = 1;
+    v->player_one_shot_finished = 1;
+}
+
+// An NPC's primary sequence: its death, else its attack; -1 when neither.
+static int npc_primary_anim_id(ViewerState *v, int npc_idx,
+                               const RuneCNpcRenderDef *render_def) {
+    const RcNpc *n = &v->world->npcs[npc_idx];
+    if (!render_def) return -1;
+    if (n->is_dead) return render_def->death_anim;
+    if (v->npc_render[npc_idx].attack_anim_timer <= 0) return -1;
+    int attack = v->npc_render[npc_idx].attack_anim_id > 0
+               ? v->npc_render[npc_idx].attack_anim_id
+               : render_def->attack_anim;
+    int bone = viewer_sequence_skeleton(v->anims, attack);
+    int body = viewer_sequence_skeleton(v->anims, render_def->stand_anim);
+    // A sequence made for another skeleton (a previous form's) never
+    // deforms this definition's model.
+    if (attack > 0 && bone >= 0 && body >= 0 && bone != body) return -1;
+    return attack;
 }
 
 static void snap_npc_render_state(ViewerState *v, int idx, const RcNpc *npc) {
+    // A new NPC takes its spawn orientation; a teleported one keeps its own.
+    int yaw = v->npc_render[idx].initialized
+                && v->npc_render[idx].uid == npc->uid
+            ? v->npc_render[idx].motion.yaw : npc->face_angle;
     v->npc_render[idx].initialized = 1;
     v->npc_render[idx].uid = npc->uid;
     v->npc_render[idx].server_x = npc->x;
     v->npc_render[idx].server_y = npc->y;
     v->npc_render[idx].server_plane = npc->plane;
-    v->npc_render[idx].last_seen_tick = v->world ? v->world->tick : 0;
+    v->npc_render[idx].face_angle_seq = npc->face_angle_seq;
+    RuneCActorMotion *motion = &v->npc_render[idx].motion;
+    motion->turn_speed = RUNEC_ACTOR_TURN_SPEED;
+    motion->rotation_flag = true;
+    runec_actor_motion_place(motion, npc->x, npc->y,
+                             viewer_npc_size(v, npc), yaw);
     v->npc_render[idx].render_x = (float)npc->x;
     v->npc_render[idx].render_y = (float)npc->y;
-    v->npc_render[idx].waypoint_count = 0;
-    v->npc_render[idx].moving = 0;
-    v->npc_render[idx].move_anim_timer = 0.0f;
-    v->npc_render[idx].last_dx = 0;
-    v->npc_render[idx].last_dy = 0;
 }
 
-static int sign_i(int value) {
-    return (value > 0) - (value < 0);
-}
-
-static int npc_render_push_waypoint(ViewerState *v, int idx, float x, float y) {
-    int count = v->npc_render[idx].waypoint_count;
-    if (count > 0
-            && fabsf(v->npc_render[idx].waypoint_x[count - 1] - x) < 0.001f
-            && fabsf(v->npc_render[idx].waypoint_y[count - 1] - y) < 0.001f) {
-        return 1;
-    }
-    if (count >= NPC_RENDER_QUEUE_MAX) {
-        fprintf(stderr, "npc movement: presentation queue full for uid=%d\n",
-                v->npc_render[idx].uid);
-        return 0;
-    }
-    v->npc_render[idx].waypoint_x[count] = x;
-    v->npc_render[idx].waypoint_y[count] = y;
-    v->npc_render[idx].waypoint_count = count + 1;
-    return 1;
-}
-
-static void npc_render_pop_waypoint(ViewerState *v, int idx) {
-    int count = v->npc_render[idx].waypoint_count;
-    if (count <= 0) return;
-    for (int i = 1; i < count; i++) {
-        v->npc_render[idx].waypoint_x[i - 1] = v->npc_render[idx].waypoint_x[i];
-        v->npc_render[idx].waypoint_y[i - 1] = v->npc_render[idx].waypoint_y[i];
-    }
-    v->npc_render[idx].waypoint_count = count - 1;
-}
-
-static int enqueue_npc_server_step(ViewerState *v, int idx, const RcNpc *npc) {
-    int dx = npc->x - v->npc_render[idx].server_x;
-    int dy = npc->y - v->npc_render[idx].server_y;
-    if (!dx && !dy) return 1;
-    if (abs(dx) > 2 || abs(dy) > 2) {
-        snap_npc_render_state(v, idx, npc);
-        return 0;
-    }
-
-    int sx = sign_i(dx);
-    int sy = sign_i(dy);
-    int from_x = v->npc_render[idx].server_x;
-    int from_y = v->npc_render[idx].server_y;
-    while (from_x != npc->x || from_y != npc->y) {
-        if (from_x != npc->x) from_x += sx;
-        if (from_y != npc->y) from_y += sy;
-        if (!npc_render_push_waypoint(v, idx, (float)from_x, (float)from_y)) {
-            snap_npc_render_state(v, idx, npc);
-            return 0;
-        }
-    }
-
-    v->npc_render[idx].move_anim_timer = 1.0f / TPS;
-    return 1;
-}
-
-static void update_npc_render_motion(ViewerState *v, float dt) {
+// Feeds each NPC's server tick to its client motion: its step (two steps
+// as run steps), a teleport, or a face angle.
+static void viewer_sync_npc_motion(ViewerState *v) {
     if (!v || !v->world) return;
-    float step = dt;
-    if (step < 0.0f) step = 0.0f;
-    float max_axis_delta = step * TPS;
     for (int i = 0; i < v->world->npc_count; i++) {
         const RcNpc *npc = &v->world->npcs[i];
         RcNpcLifePhase life = rc_npc_life_phase(npc);
         if (life == RC_NPC_LIFE_REMOVED || life == RC_NPC_LIFE_HIDDEN) {
             v->npc_render[i].initialized = 0;
-            v->npc_render[i].moving = 0;
-            v->npc_render[i].move_anim_timer = 0.0f;
             memset(&v->npc_overlays[i], 0, sizeof(v->npc_overlays[i]));
             continue;
         }
-
         if (!v->npc_render[i].initialized
                 || v->npc_render[i].uid != npc->uid) {
             memset(&v->npc_overlays[i], 0, sizeof(v->npc_overlays[i]));
             snap_npc_render_state(v, i, npc);
             continue;
         }
-
-        if (npc->plane != v->npc_render[i].server_plane) {
+        RuneCActorMotion *motion = &v->npc_render[i].motion;
+        int dx = npc->x - v->npc_render[i].server_x;
+        int dy = npc->y - v->npc_render[i].server_y;
+        if (npc->plane != v->npc_render[i].server_plane
+                || abs(dx) > 2 || abs(dy) > 2
+                || viewer_npc_size(v, npc) != motion->size) {
             snap_npc_render_state(v, i, npc);
             continue;
         }
-
-        if (v->npc_render[i].last_seen_tick != v->world->tick) {
-            v->npc_render[i].last_seen_tick = v->world->tick;
-            if (!enqueue_npc_server_step(v, i, npc)) {
-                continue;
+        if (dx || dy) {
+            int two = abs(dx) == 2 || abs(dy) == 2;
+            RuneCActorStepSpeed speed = two ? RUNEC_ACTOR_STEP_RUN
+                                            : RUNEC_ACTOR_STEP_WALK;
+            if (two) {
+                runec_actor_motion_step(
+                    motion, v->npc_render[i].server_x + (dx > 0) - (dx < 0),
+                    v->npc_render[i].server_y + (dy > 0) - (dy < 0), speed);
             }
+            runec_actor_motion_step(motion, npc->x, npc->y, speed);
             v->npc_render[i].server_x = npc->x;
             v->npc_render[i].server_y = npc->y;
-            v->npc_render[i].server_plane = npc->plane;
-        }
-
-        if (v->npc_render[i].move_anim_timer > 0.0f) {
-            v->npc_render[i].move_anim_timer -= dt;
-            if (v->npc_render[i].move_anim_timer < 0.0f)
-                v->npc_render[i].move_anim_timer = 0.0f;
-        }
-
-        int moved_this_frame = 0;
-        v->npc_render[i].moving = v->npc_render[i].waypoint_count > 0;
-        float remaining = max_axis_delta;
-        while (v->npc_render[i].waypoint_count > 0 && remaining > 0.0f) {
-            float target_x = v->npc_render[i].waypoint_x[0];
-            float target_y = v->npc_render[i].waypoint_y[0];
-            float dx = target_x - v->npc_render[i].render_x;
-            float dy = target_y - v->npc_render[i].render_y;
-            if (fabsf(dx) > 0.001f || fabsf(dy) > 0.001f) {
-                v->npc_render[i].last_dx = (dx > 0.001f) - (dx < -0.001f);
-                v->npc_render[i].last_dy = (dy > 0.001f) - (dy < -0.001f);
-            }
-            if (runec_actor_advance_tile(&v->npc_render[i].render_x,
-                    &v->npc_render[i].render_y, target_x, target_y, &remaining)) {
-                npc_render_pop_waypoint(v, i);
-                v->npc_render[i].moving =
-                    v->npc_render[i].waypoint_count > 0;
-                moved_this_frame = 1;
-            } else {
-                v->npc_render[i].moving = 1;
-                moved_this_frame = 1;
+            const RuneCNpcRenderDef *render_def =
+                viewer_npc_render_def(v, npc);
+            RuneCActorPrimary primary = viewer_primary_motion(
+                v->anims, npc_primary_anim_id(v, i, render_def),
+                v->npc_render[i].primary_finished);
+            if (primary.active
+                    && primary.after_move == RUNEC_ANIM_MOVE_ABORT_ANIM) {
+                v->npc_render[i].attack_anim_timer = 0;
+                v->npc_render[i].attack_anim_id = -1;
             }
         }
-        if (moved_this_frame && v->npc_render[i].move_anim_timer < 0.05f)
-            v->npc_render[i].move_anim_timer = 0.05f;
+        if (npc->face_angle_seq != v->npc_render[i].face_angle_seq) {
+            v->npc_render[i].face_angle_seq = npc->face_angle_seq;
+            runec_actor_motion_face_angle(motion, npc->face_angle);
+        }
+    }
+}
+
+// Feeds the player's server tick to its client motion: the tick's steps
+// (two are run steps; a single one walks, as rsmod sends it), a teleport,
+// or a face angle.
+static void viewer_sync_player_motion(ViewerState *v, int old_x, int old_y,
+                                      int old_plane) {
+    if (!v || !v->world) return;
+    const RcPlayer *p = &v->world->player;
+    RuneCActorMotion *motion = &v->player_motion;
+    int steps = p->movement_step_count;
+    int stepped = steps > 0 && steps <= 2
+        && p->movement_step_x[steps - 1] == p->x
+        && p->movement_step_y[steps - 1] == p->y;
+    int dx = p->x - old_x;
+    int dy = p->y - old_y;
+    if (p->plane != old_plane) {
+        runec_actor_motion_place(motion, p->x, p->y, 1, motion->yaw);
+    } else if (stepped) {
+        for (int i = 0; i < steps; i++) {
+            runec_actor_motion_step(
+                motion, p->movement_step_x[i], p->movement_step_y[i],
+                steps == 2 ? RUNEC_ACTOR_STEP_RUN : RUNEC_ACTOR_STEP_WALK);
+        }
+        RuneCActorPrimary primary = viewer_primary_motion(
+            v->anims, v->primary_anim_id, v->player_one_shot_finished);
+        if (primary.active
+                && primary.after_move == RUNEC_ANIM_MOVE_ABORT_ANIM)
+            end_player_primary(v);
+    } else if (dx || dy) {
+        // Moved without stepping: a hop within reach is walked, as the
+        // client queues a nearby position; farther is a teleport.
+        if (abs(dx) <= 2 && abs(dy) <= 2)
+            runec_actor_motion_step(motion, p->x, p->y,
+                                    RUNEC_ACTOR_STEP_WALK);
+        else
+            runec_actor_motion_place(motion, p->x, p->y, 1, motion->yaw);
+    }
+    if (p->face_angle_seq != v->player_face_angle_seq) {
+        v->player_face_angle_seq = p->face_angle_seq;
+        runec_actor_motion_face_angle(motion, p->face_angle);
+    }
+}
+
+// One 20 ms client cycle: the player, then each NPC, as the client updates
+// them. A face entity is followed at its current fine centre.
+static void viewer_run_motion_cycle(ViewerState *v) {
+    const RcPlayer *p = &v->world->player;
+    int target[2];
+    const int *face = NULL;
+    int slot = p->facing_entity >= 0
+             ? viewer_find_npc_index_by_uid(v, p->facing_entity) : -1;
+    if (slot >= 0 && v->npc_render[slot].initialized) {
+        target[0] = v->npc_render[slot].motion.x;
+        target[1] = v->npc_render[slot].motion.z;
+        face = target;
+    }
+    RuneCActorPoseSet poses;
+    player_pose_set(v, &poses);
+    RuneCActorPrimary primary = viewer_primary_motion(
+        v->anims, v->primary_anim_id, v->player_one_shot_finished);
+    runec_actor_motion_cycle(&v->player_motion, face, &primary, &poses);
+
+    int player_at[2] = {v->player_motion.x, v->player_motion.z};
+    for (int i = 0; i < v->world->npc_count; i++) {
+        const RcNpc *npc = &v->world->npcs[i];
+        RcNpcLifePhase life = rc_npc_life_phase(npc);
+        if (!v->npc_render[i].initialized
+                || (life != RC_NPC_LIFE_ALIVE && life != RC_NPC_LIFE_DYING))
+            continue;
+        npc_pose_set(v, npc, &poses);
+        primary = viewer_primary_motion(
+            v->anims, npc_primary_anim_id(v, i, viewer_npc_render_def(v, npc)),
+            v->npc_render[i].primary_finished);
+        runec_actor_motion_cycle(&v->npc_render[i].motion,
+                                 npc->facing_entity == 0 ? player_at : NULL,
+                                 &primary, &poses);
+    }
+}
+
+// Runs the client cycles due this frame (at most a second's after a stall)
+// and sets where actors draw between the last two.
+static void viewer_update_actor_motion(ViewerState *v, float dt) {
+    if (!v || !v->world) return;
+    v->motion_cycle_time += dt > 0.0f ? dt : 0.0f;
+    int cycles = (int)(v->motion_cycle_time / RUNEC_ACTOR_CYCLE_SECONDS);
+    if (cycles > 50) {
+        cycles = 50;
+        v->motion_cycle_time = 0.0f;
+    } else {
+        v->motion_cycle_time -= (float)cycles * RUNEC_ACTOR_CYCLE_SECONDS;
+    }
+    for (int c = 0; c < cycles; c++) viewer_run_motion_cycle(v);
+    v->motion_cycle_frac = v->motion_cycle_time / RUNEC_ACTOR_CYCLE_SECONDS;
+    for (int i = 0; i < v->world->npc_count; i++) {
+        if (!v->npc_render[i].initialized) continue;
+        const RuneCActorMotion *motion = &v->npc_render[i].motion;
+        runec_actor_motion_render_tile(motion, v->motion_cycle_frac,
+                                       &v->npc_render[i].render_x,
+                                       &v->npc_render[i].render_y);
     }
 }
 
@@ -8910,12 +9000,11 @@ static void sync_ui_minimap(ViewerState *v) {
     int held = viewer_streaming_player_transition_source(
         &v->mapsquare_load.player_transition,
         &presented_x, &presented_y, &presented_plane);
-    float player_x = (held ? (float)presented_x
-        : v->prev_player_x
-            + ((float)p->x - v->prev_player_x) * v->tick_frac) + 0.5f;
-    float player_y = (held ? (float)presented_y
-        : v->prev_player_y
-            + ((float)p->y - v->prev_player_y) * v->tick_frac) + 0.5f;
+    float player_x = (float)presented_x;
+    float player_y = (float)presented_y;
+    if (!held) viewer_player_render_tile(v, &player_x, &player_y);
+    player_x += 0.5f;
+    player_y += 0.5f;
     float sine = sinf(v->cam_yaw);
     float cosine = cosf(v->cam_yaw);
 
@@ -9217,63 +9306,140 @@ static void handle_input(ViewerState *v, int ui_capture) {
 }
 
 // Apply animation frame to player model
-static void update_player_anim(ViewerState *v) {
-    if (!v->anims) return;
-
-    int attack_timer = v->player_attack_anim_timer;
-    if (attack_timer <= 0) {
-        v->player_attack_anim_suppressed = 0;
-    }
-
-    // Pick animation based on movement plus weapon BAS metadata when present.
-    int one_shot_kind = PLAYER_ONE_SHOT_NONE;
-    int target_anim = player_target_anim_id(v, &one_shot_kind);
-    if (one_shot_kind != PLAYER_ONE_SHOT_NONE && v->player_one_shot_finished &&
-            target_anim == v->cur_anim_id) {
-        if (one_shot_kind == PLAYER_ONE_SHOT_ATTACK)
-            v->player_attack_anim_suppressed = 1;
-        target_anim = player_base_anim_id(v);
-        one_shot_kind = PLAYER_ONE_SHOT_NONE;
-    }
-
-    // Switch animation
-    if (target_anim != v->cur_anim_id) {
-        v->cur_anim_id = target_anim;
-        v->anim_frame_idx = 0;
-        v->anim_frame_timer = 0;
-        v->player_one_shot_finished = 0;
-    }
-
-    AnimSequence *seq = anim_get_sequence(v->anims, (uint16_t)v->cur_anim_id);
-    if (!seq || seq->frame_count == 0) return;
-
-    // Advance frame timer
-    v->anim_frame_timer += GetFrameTime() * 50.0f; // ~20ms per client tick
-    AnimSequenceFrame *sf = &seq->frames[v->anim_frame_idx % seq->frame_count];
+// Advances a looping sequence by `cycles` client cycles (20 ms each).
+static void advance_loop_frames(const AnimSequence *seq, int *frame,
+                                float *timer, float cycles) {
+    if (*frame < 0 || *frame >= seq->frame_count) *frame = 0;
+    *timer += cycles;
+    const AnimSequenceFrame *sf = &seq->frames[*frame];
     float delay = (float)(sf->delay > 0 ? sf->delay : 1);
-    while (v->anim_frame_timer >= delay) {
-        v->anim_frame_timer -= delay;
-        if (one_shot_kind != PLAYER_ONE_SHOT_NONE &&
-                v->anim_frame_idx + 1 >= seq->frame_count) {
-            v->anim_frame_idx = seq->frame_count - 1;
-            v->anim_frame_timer = 0.0f;
-            v->player_one_shot_finished = 1;
-            if (one_shot_kind == PLAYER_ONE_SHOT_ATTACK)
-                v->player_attack_anim_suppressed = 1;
-            break;
-        }
-        v->anim_frame_idx = (v->anim_frame_idx + 1) % seq->frame_count;
-        sf = &seq->frames[v->anim_frame_idx];
+    while (*timer >= delay) {
+        *timer -= delay;
+        *frame = (*frame + 1) % seq->frame_count;
+        sf = &seq->frames[*frame];
         delay = (float)(sf->delay > 0 ? sf->delay : 1);
     }
+}
 
-    // Apply frame transforms
-    AnimFrameBase *fb = anim_get_framebase(v->anims, sf->frame.framebase_id);
+// Advances a one-shot sequence, holding its last frame; 1 once played out.
+static int advance_once_frames(const AnimSequence *seq, int *frame,
+                               float *timer, float cycles) {
+    if (*frame < 0 || *frame >= seq->frame_count) *frame = 0;
+    *timer += cycles;
+    const AnimSequenceFrame *sf = &seq->frames[*frame];
+    float delay = (float)(sf->delay > 0 ? sf->delay : 1);
+    while (*timer >= delay) {
+        *timer -= delay;
+        if (*frame + 1 >= seq->frame_count) {
+            *frame = seq->frame_count - 1;
+            *timer = 0.0f;
+            return 1;
+        }
+        (*frame)++;
+        sf = &seq->frames[*frame];
+        delay = (float)(sf->delay > 0 ? sf->delay : 1);
+    }
+    return 0;
+}
+
+static AnimSequence *viewer_sequence(AnimCache *cache, int seq_id) {
+    AnimSequence *seq = cache && seq_id >= 0 && seq_id <= 0xFFFF
+        ? anim_get_sequence(cache, (uint16_t)seq_id) : NULL;
+    return seq && seq->frame_count > 0 ? seq : NULL;
+}
+
+// Poses `state` with a primary sequence's frame over a pose frame (either
+// may be -1). While the actor moves (`merge`), the primary's walkmerge
+// labels leave the legs to the pose, as the client does; otherwise the
+// primary alone. 0 when neither has a frame.
+static int apply_actor_frames(AnimCache *cache, AnimModelState *state,
+                              const int16_t *base_verts, int pose_seq,
+                              int pose_frame, int primary_seq,
+                              int primary_frame, int merge) {
+    AnimSequence *pose = viewer_sequence(cache, pose_seq);
+    AnimSequence *primary = viewer_sequence(cache, primary_seq);
+    AnimSequenceFrame *sf = pose
+        ? &pose->frames[(pose_frame < 0 ? 0 : pose_frame) % pose->frame_count]
+        : NULL;
+    AnimSequenceFrame *pf = primary
+        ? &primary->frames[(primary_frame < 0 ? 0 : primary_frame)
+                           % primary->frame_count]
+        : NULL;
+    AnimFrameBase *sfb = sf
+        ? anim_get_framebase(cache, sf->frame.framebase_id) : NULL;
+    AnimFrameBase *pfb = pf
+        ? anim_get_framebase(cache, pf->frame.framebase_id) : NULL;
+    if (pf && pfb) {
+        if (merge && sf && sfb && primary->interleave_count > 0) {
+            anim_apply_frame_interleaved(state, base_verts, &sf->frame, sfb,
+                                         &pf->frame, pfb,
+                                         primary->interleave_order,
+                                         primary->interleave_count);
+        } else {
+            anim_apply_frame(state, base_verts, &pf->frame, pfb);
+        }
+        return 1;
+    }
+    if (sf && sfb) {
+        anim_apply_frame(state, base_verts, &sf->frame, sfb);
+        return 1;
+    }
+    return 0;
+}
+
+static int apply_player_frames(ViewerState *v, AnimModelState *state,
+                               const int16_t *base_verts) {
+    return apply_actor_frames(
+        v->anims, state, base_verts, v->cur_anim_id, v->anim_frame_idx,
+        v->player_one_shot_finished ? -1 : v->primary_anim_id,
+        v->primary_frame_idx,
+        v->player_motion.pose != RUNEC_ACTOR_POSE_IDLE);
+}
+
+static void update_player_anim(ViewerState *v) {
+    if (!v->anims) return;
+    if (v->player_attack_anim_timer <= 0)
+        v->player_attack_anim_suppressed = 0;
+    float cycles = GetFrameTime() * 50.0f; // 20 ms client cycles
+
+    // The primary action or attack sequence; a delayanim one waits for the
+    // steps queued before it.
+    int kind = PLAYER_ONE_SHOT_NONE;
+    int primary = player_primary_anim_id(v, &kind);
+    if (primary != v->primary_anim_id) {
+        v->primary_anim_id = primary;
+        v->primary_kind = kind;
+        v->primary_frame_idx = 0;
+        v->primary_frame_timer = 0.0f;
+        v->player_one_shot_finished = 0;
+    }
+    AnimSequence *primary_seq = viewer_sequence(v->anims, primary);
+    if (primary_seq && !v->player_one_shot_finished) {
+        RuneCActorPrimary motion = viewer_primary_motion(v->anims, primary, 0);
+        if (!runec_actor_motion_primary_waits(&v->player_motion, &motion)
+                && advance_once_frames(primary_seq, &v->primary_frame_idx,
+                                       &v->primary_frame_timer, cycles))
+            end_player_primary(v);
+    }
+
+    // The movement pose's sequence; a new one keeps the frame index and
+    // restarts its timer, as the client switches poses.
+    RuneCActorPoseSet poses;
+    player_pose_set(v, &poses);
+    int pose = runec_actor_pose_seq(&poses, v->player_motion.pose);
+    if (pose != v->cur_anim_id) {
+        v->cur_anim_id = pose;
+        v->anim_frame_timer = 0.0f;
+    }
+    AnimSequence *pose_seq = viewer_sequence(v->anims, pose);
+    if (pose_seq)
+        advance_loop_frames(pose_seq, &v->anim_frame_idx,
+                            &v->anim_frame_timer, cycles);
+
     if (!v->anim_state || !v->player_model || !v->player_model->loaded)
         return;
     ModelEntry *pe = &v->player_model->entries[0];
-    if (fb && pe->loaded) {
-        anim_apply_frame(v->anim_state, pe->base_verts, &sf->frame, fb);
+    if (pe->loaded && apply_player_frames(v, v->anim_state, pe->base_verts)) {
         anim_update_mesh(pe->model.meshes[0].vertices, v->anim_state,
                          pe->face_indices, pe->face_priorities,
                          pe->face_count);
@@ -9320,75 +9486,54 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
                           ? v->npc_anim_state[active_def_idx] : NULL;
     if (!state) return 0;
 
-    // Pick target anim from NPC state. stand/walk are always present; run,
-    // attack, death are -1 on most non-combat NPCs, so fall back to walk/stand.
-    int moved_last_tick = v->npc_render[npc_idx].moving
-                        || v->npc_render[npc_idx].move_anim_timer > 0.0f;
-    int target = render_def->stand_anim;
-    int attack_anim_active = 0;
-    if (n->is_dead && render_def->death_anim >= 0) {
-        target = render_def->death_anim;
+    // The primary attack or death sequence over the movement pose. A death
+    // holds its last frame; a played-out attack gives way to the pose.
+    float cycles = GetFrameTime() * 50.0f; // 20 ms client cycles
+    int primary = npc_primary_anim_id(v, npc_idx, render_def);
+    if (primary != v->npc_render[npc_idx].primary_anim_id) {
+        v->npc_render[npc_idx].primary_anim_id = primary;
+        v->npc_render[npc_idx].primary_frame_idx = 0;
+        v->npc_render[npc_idx].primary_frame_timer = 0.0f;
+        v->npc_render[npc_idx].primary_finished = 0;
     }
-    else if (v->npc_render[npc_idx].attack_anim_timer > 0
-            && !v->npc_render[npc_idx].moving) {
-        attack_anim_active = 1;
-        int attack = v->npc_render[npc_idx].attack_anim_id;
-        int bone = viewer_sequence_skeleton(v->anims, attack);
-        int body = viewer_sequence_skeleton(v->anims, render_def->stand_anim);
-        if (attack > 0 && bone >= 0 && body >= 0 && bone != body) {
-            // A sequence made for another skeleton (a previous form's)
-            // never deforms this definition's model.
-            attack_anim_active = 0;
-        } else if (attack > 0) {
-            target = attack;
-        } else {
-            target = render_def->attack_anim >= 0
-                ? render_def->attack_anim : target;
-        }
+    AnimSequence *primary_seq = viewer_sequence(v->anims, primary);
+    if (primary_seq && !v->npc_render[npc_idx].primary_finished) {
+        RuneCActorPrimary motion = viewer_primary_motion(v->anims, primary, 0);
+        if (!runec_actor_motion_primary_waits(&v->npc_render[npc_idx].motion,
+                                              &motion)
+                && advance_once_frames(primary_seq,
+                                       &v->npc_render[npc_idx].primary_frame_idx,
+                                       &v->npc_render[npc_idx].primary_frame_timer,
+                                       cycles)
+                && !n->is_dead)
+            v->npc_render[npc_idx].primary_finished = 1;
     }
-    else if (moved_last_tick && render_def->walk_anim >= 0) {
-        target = render_def->walk_anim;
-    }
-    if (target < 0) return 0;
 
-    // Detect anim change → reset frame / timer.
-    if (v->npc_render[npc_idx].cur_anim_id != target) {
-        v->npc_render[npc_idx].cur_anim_id = target;
-        v->npc_render[npc_idx].frame_idx   = 0;
+    RuneCActorPoseSet poses;
+    npc_pose_set(v, n, &poses);
+    RuneCActorPose pose_kind = v->npc_render[npc_idx].motion.pose;
+    int pose = runec_actor_pose_seq(&poses, pose_kind);
+    if (pose != v->npc_render[npc_idx].cur_anim_id) {
+        v->npc_render[npc_idx].cur_anim_id = pose;
         v->npc_render[npc_idx].frame_timer = 0.0f;
     }
+    AnimSequence *pose_seq = viewer_sequence(v->anims, pose);
+    if (pose_seq)
+        advance_loop_frames(pose_seq, &v->npc_render[npc_idx].frame_idx,
+                            &v->npc_render[npc_idx].frame_timer, cycles);
 
     AnimCache *cache = v->anims;
-    AnimSequence *seq = anim_get_sequence(cache, (uint16_t)target);
-    if (!seq || seq->frame_count == 0) return 0;
+    if (!apply_actor_frames(cache, state, me->base_verts, pose,
+                            v->npc_render[npc_idx].frame_idx,
+                            v->npc_render[npc_idx].primary_finished
+                                ? -1 : primary,
+                            v->npc_render[npc_idx].primary_frame_idx,
+                            pose_kind != RUNEC_ACTOR_POSE_IDLE))
+        return 0;
 
-    // Advance frame timer (20ms per client tick = GetFrameTime() * 50).
-    v->npc_render[npc_idx].frame_timer += GetFrameTime() * 50.0f;
-    if (v->npc_render[npc_idx].frame_idx >= seq->frame_count)
-        v->npc_render[npc_idx].frame_idx = seq->frame_count - 1;
-    AnimSequenceFrame *sf = &seq->frames[v->npc_render[npc_idx].frame_idx];
-    float delay = (float)(sf->delay > 0 ? sf->delay : 1);
-    while (v->npc_render[npc_idx].frame_timer >= delay) {
-        v->npc_render[npc_idx].frame_timer -= delay;
-        if (attack_anim_active &&
-                v->npc_render[npc_idx].frame_idx + 1 >= seq->frame_count) {
-            v->npc_render[npc_idx].frame_idx = seq->frame_count - 1;
-            v->npc_render[npc_idx].frame_timer = 0.0f;
-            break;
-        }
-        v->npc_render[npc_idx].frame_idx =
-            (v->npc_render[npc_idx].frame_idx + 1) % seq->frame_count;
-        sf = &seq->frames[v->npc_render[npc_idx].frame_idx];
-        delay = (float)(sf->delay > 0 ? sf->delay : 1);
-    }
-
-    AnimFrameBase *fb = anim_get_framebase(cache, sf->frame.framebase_id);
-    if (!fb) return 0;
-
-    // Apply frame transforms to the shared per-def AnimModelState → base-pose
-    // verts in OSRS int16 units. Then expand to face-unrolled float mesh verts
+    // The frames sit in the shared per-def AnimModelState as base-pose verts
+    // in OSRS int16 units. Expand to face-unrolled float mesh verts
     // (applying raylib Y-flip), scale OSRS→tile units, re-upload.
-    anim_apply_frame(state, me->base_verts, &sf->frame, fb);
     anim_update_mesh(me->model.meshes[0].vertices, state,
                      me->face_indices, me->face_priorities,
                      me->face_count);
@@ -9518,19 +9663,18 @@ static void draw_health_bar(const RuneCHealthBarState *state,
 static void draw_scene(ViewerState *v, int ui_capture) {
     RcPlayer *p = &v->world->player;
     int scene_plane = viewer_scene_plane(v);
-    float t = v->tick_frac;
     int presented_x = p->x;
     int presented_y = p->y;
     int presented_plane = p->plane;
     int held = viewer_streaming_player_transition_source(
         &v->mapsquare_load.player_transition,
         &presented_x, &presented_y, &presented_plane);
-    // Interpolate ordinary movement; distant scene activation holds a visual
-    // source snapshot without changing authoritative player coordinates.
-    float wx = held ? (float)presented_x
-        : v->prev_player_x + ((float)p->x - v->prev_player_x) * t;
-    float wy = held ? (float)presented_y
-        : v->prev_player_y + ((float)p->y - v->prev_player_y) * t;
+    // Draw where the client motion has the player; distant scene activation
+    // holds a visual source snapshot without changing authoritative player
+    // coordinates.
+    float wx = (float)presented_x;
+    float wy = (float)presented_y;
+    if (!held) viewer_player_render_tile(v, &wx, &wy);
     float px = (wx - g_world_origin_x) + 0.5f;
     float pz = -((wy - g_world_origin_y) + 0.5f);
     float py = ground_yf_plane(v, scene_plane, wx, wy);
@@ -9580,10 +9724,8 @@ static void draw_scene(ViewerState *v, int ui_capture) {
     if (presented_plane == scene_plane) {
         ModelEntry *pe = (v->player_model && v->player_model->loaded)
                        ? &v->player_model->entries[0] : NULL;
-        float player_draw_angle = v->player_moving
-                                ? v->player_facing_angle
-                                : player_core_facing_angle(
-                                      p, v->player_facing_angle);
+        float player_draw_angle = runec_actor_motion_render_degrees(
+            &v->player_motion, v->motion_cycle_frac);
         if (draw_composed_player_model(v, p, (Vector3){px, py, pz},
                                        player_draw_angle)) {
             // Client-style composed body/equipment appearance was drawn.
@@ -9645,25 +9787,12 @@ static void draw_scene(ViewerState *v, int ui_capture) {
         }
 
         if (ne && ne->loaded) {
-            // Forward walking follows the displayed step; stopped actors face
-            // their interaction target. Do not use a later queued step's angle.
-            float face_angle = 0.0f;
-            int dx = n->x - n->prev_x;
-            int dy = n->y - n->prev_y;
-            if (v->npc_render[i].moving
-                    && (v->npc_render[i].last_dx || v->npc_render[i].last_dy)) {
-                face_angle = face_angle_between_tiles(0, 0,
-                                                      v->npc_render[i].last_dx,
-                                                      v->npc_render[i].last_dy,
-                                                      face_angle);
-            } else if (n->facing_entity >= 0) {
-                face_angle = npc_core_facing_angle(n, size, face_angle);
-            } else if (dx || dy) {
-                face_angle = face_angle_between_tiles(n->prev_x, n->prev_y,
-                                                      n->x, n->y, face_angle);
-            } else {
-                face_angle = npc_core_facing_angle(n, size, face_angle);
-            }
+            // The client motion turns NPCs toward their step, face entity
+            // or face angle.
+            float face_angle = v->npc_render[i].initialized
+                ? runec_actor_motion_render_degrees(&v->npc_render[i].motion,
+                                                    v->motion_cycle_frac)
+                : -(float)n->face_angle * (360.0f / 2048.0f);
             // Animate into the shared mesh buffer just before drawing this
             // instance — two NPCs with the same model can play different anims
             // or frames because each draw re-applies from base_verts.
@@ -9929,7 +10058,9 @@ static RcWorldConfig viewer_world_config(
 int main(int argc, char **argv) {
     (void)argc;
     double startup_started_ms = viewer_streaming_now_ms();
-    ViewerState v = {0};
+    // Static, not on the stack: per-NPC presentation state for
+    // RC_MAX_NPCS slots puts it past the default 8 MB stack.
+    static ViewerState v;
     int exit_status = 0;
     v.streaming = viewer_streaming_config_default();
     v.streaming.scene_radius_regions = env_int_compat(
@@ -10060,8 +10191,12 @@ int main(int argc, char **argv) {
 
     (void)rc_world_relocate_player(v.world, g_player_start_x,
                                    g_player_start_y, g_player_start_plane);
-    v.prev_player_x = (float)g_player_start_x;
-    v.prev_player_y = (float)g_player_start_y;
+    v.player_motion.turn_speed = RUNEC_ACTOR_TURN_SPEED;
+    v.player_motion.rotation_flag = true;
+    runec_actor_motion_place(&v.player_motion, g_player_start_x,
+                             g_player_start_y, 1, v.world->player.face_angle);
+    v.player_face_angle_seq = v.world->player.face_angle_seq;
+    v.primary_anim_id = -1;
     set_viewer_demo_stats(&v.world->player);
     if (!runec_dev_validation_seed_prayers(v.world)
             || !runec_prayer_ui_sync(&v.ui.prayers, v.world)) {
@@ -10562,15 +10697,14 @@ int main(int argc, char **argv) {
             int ticks_due = rc_viewer_tick_pacing_advance(
                 &v.tick_pacing, GetFrameTime(), 1.0 / TPS);
             for (int tick_idx = 0; tick_idx < ticks_due; tick_idx++) {
-                v.prev_player_x = (float)v.world->player.x;
-                v.prev_player_y = (float)v.world->player.y;
-
                 int old_x = v.world->player.x;
                 int old_y = v.world->player.y;
                 int old_plane = v.world->player.plane;
                 rc_world_tick(v.world);
-                // Capture every authoritative step, including catch-up ticks.
-                update_npc_render_motion(&v, 0.0f);
+                // Feed every authoritative tick, including catch-up ticks,
+                // to the client motion before its attack sequences start.
+                viewer_sync_player_motion(&v, old_x, old_y, old_plane);
+                viewer_sync_npc_motion(&v);
                 viewer_sync_traversal_event(&v);
                 viewer_sync_traversal_outcome(&v);
                 runec_input_feedback_reconcile_tick(
@@ -10579,14 +10713,6 @@ int main(int argc, char **argv) {
                 viewer_tick_attack_anims(&v);
                 viewer_capture_combat_attack_events(&v);
                 debug_log_combat_attack_events(&v);
-                v.player_moving = old_x != v.world->player.x ||
-                                  old_y != v.world->player.y;
-                if (v.player_moving) {
-                    int dx = v.world->player.x - old_x;
-                    int dy = v.world->player.y - old_y;
-                    v.player_facing_angle =
-                        atan2f((float)dx, -(float)dy) * (180.0f / 3.14159f);
-                }
                 handle_player_scene_transition(&v, old_x, old_y, old_plane);
                 v.tick_frac = 0.0f;
             }
@@ -10598,7 +10724,7 @@ int main(int argc, char **argv) {
         viewer_sync_traversal_event(&v);
         viewer_sync_traversal_outcome(&v);
         float presentation_dt = v.paused ? 0.0f : GetFrameTime();
-        update_npc_render_motion(&v, presentation_dt);
+        viewer_update_actor_motion(&v, presentation_dt);
         viewer_update_combat_overlays(&v, presentation_dt);
 
         BeginDrawing();

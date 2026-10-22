@@ -290,6 +290,9 @@ static void test_exact_motion_timing_and_facing(void) {
     rc_world_tick(world);
     assert(world->player.traversal.phase == RC_TRAVERSAL_PHASE_TAKEOFF);
     assert(world->player.x == source_x && world->player.y == source_y);
+    // Standing still, the pending face square goes out as an east angle.
+    assert(world->player.facing_x == -1 && world->player.facing_y == -1);
+    assert(world->player.face_angle == 1536);
     rc_world_tick(world);
     assert(world->player.traversal.phase == RC_TRAVERSAL_PHASE_TRANSIT);
     const RcTraversalEvent *event =

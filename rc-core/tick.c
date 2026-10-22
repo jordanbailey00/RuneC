@@ -199,23 +199,6 @@ static void process_player_movement(RcWorld *world) {
     }
 }
 
-static int nearest_npc_tile_to_player(const RcWorld *world, const RcNpc *npc,
-                                      const RcPlayer *p,
-                                      int *tx, int *ty) {
-    const RcNpcDef *def = npc_def_for(world, npc);
-    int size = def && def->size > 0 ? def->size : 1;
-    RcTileBounds bounds;
-    if (!npc || !p || !tx || !ty
-            || !rc_tile_bounds_from_origin_size(npc->x, npc->y,
-                                                size, size, npc->plane,
-                                                &bounds)
-            || !rc_tile_rect_closest_point(&bounds.rect, p->x, p->y,
-                                           tx, ty)) {
-        return 0;
-    }
-    return 1;
-}
-
 static int player_distance_to_npc(const RcWorld *world, const RcPlayer *p,
                                   const RcNpc *npc) {
     const RcNpcDef *def = npc_def_for(world, npc);
@@ -232,18 +215,6 @@ static int player_distance_to_npc(const RcWorld *world, const RcPlayer *p,
         return INT_MAX;
     }
     return distance;
-}
-
-static void face_player_to_npc(const RcWorld *world, RcPlayer *p,
-                               const RcNpc *npc) {
-    int tx, ty;
-    if (!nearest_npc_tile_to_player(world, npc, p, &tx, &ty)) {
-        if (p) p->facing_entity = -1;
-        return;
-    }
-    p->facing_entity = npc->uid;
-    p->facing_x = tx;
-    p->facing_y = ty;
 }
 
 static int npc_interaction_has_los(const RcWorld *world, const RcPlayer *p,
@@ -265,22 +236,6 @@ static int route_player_toward_interaction_npc(RcWorld *world, RcPlayer *p,
         npc->x, npc->y, size, size, 1, range, false, range > 1);
     if (!api_route_player(world, &target, 1, 1, false)) return 0;
     p->interaction.flags |= RC_INTERACTION_MOVED;
-    return 1;
-}
-
-static int nearest_target_tile_to_player(const RcInteractionTarget *target,
-                                         const RcPlayer *p, int *tx,
-                                         int *ty) {
-    RcTileBounds bounds;
-    if (!target || !p || !tx || !ty
-            || !rc_tile_bounds_from_origin_size(
-                target->tile_x, target->tile_y,
-                target->footprint_width, target->footprint_height,
-                target->plane, &bounds)
-            || !rc_tile_rect_closest_point(&bounds.rect, p->x, p->y,
-                                           tx, ty)) {
-        return 0;
-    }
     return 1;
 }
 
@@ -317,18 +272,6 @@ static int tile_distance_to_target_rect(int x, int y, int min_x, int min_y,
 
 static int player_has_active_route(const RcPlayer *p) {
     return p && p->route_idx < p->route_len;
-}
-
-static void face_player_to_target(RcPlayer *p,
-                                  const RcInteractionTarget *target) {
-    int tx, ty;
-    if (!nearest_target_tile_to_player(target, p, &tx, &ty)) {
-        if (p) p->facing_entity = -1;
-        return;
-    }
-    p->facing_entity = -1;
-    p->facing_x = tx;
-    p->facing_y = ty;
 }
 
 static const RcTraversalState *planned_object_traversal(
@@ -679,7 +622,6 @@ static void process_player_interaction(RcWorld *world, int dispatch_ready) {
                 rc_interaction_cancel(p, RC_INTERACTION_FAIL_LOS_BLOCKED);
                 return;
             }
-            face_player_to_npc(world, p, npc);
         }
     } else if (p->interaction.target.kind == RC_INTERACTION_OBJECT) {
         if (!validate_pending_object_interaction(world, &p->interaction)) {
@@ -717,7 +659,6 @@ static void process_player_interaction(RcWorld *world, int dispatch_ready) {
                 }
                 return;
             }
-            face_player_to_target(p, &p->interaction.target);
         }
     } else if (p->interaction.target.kind == RC_INTERACTION_GROUND_ITEM) {
         if (!validate_pending_ground_item_interaction(world,
@@ -741,7 +682,6 @@ static void process_player_interaction(RcWorld *world, int dispatch_ready) {
                 }
                 return;
             }
-            face_player_to_target(p, &p->interaction.target);
             if (dispatch_ready && p->interaction.op == RC_INTERACTION_OP1
                     && (p->x != p->interaction.target.tile_x
                         || p->y != p->interaction.target.tile_y)) {
@@ -782,6 +722,30 @@ static int api_prepare_spatial_interaction(RcWorld *world) {
 
 static void process_player_combat(RcWorld *world) {
     rc_combat_tick_player(world);
+}
+
+// The face entity lasts only while an interaction or attack does (rsmod
+// PlayerMainProcess.refreshFaceEntity); the client keeps its last angle.
+static void refresh_player_face_entity(RcPlayer *p) {
+    if (p->facing_entity >= 0 && !p->interaction.active
+            && p->attack_target < 0)
+        p->facing_entity = -1;
+}
+
+// A pending face square goes out once, as an angle from the player toward
+// its centre, when the player ends a tick without moving (rsmod
+// PlayerFaceSquareProcessor). Walking away does not cancel it.
+static void send_player_face_square(RcPlayer *p) {
+    if (p->facing_x < 0 || p->facing_y < 0 || p->movement_step_count)
+        return;
+    int angle = rc_face_angle(p->x, p->y, 1, 1, p->facing_x, p->facing_y,
+                              p->facing_width ? p->facing_width : 1,
+                              p->facing_length ? p->facing_length : 1);
+    if (angle >= 0) {
+        p->face_angle = (int16_t)angle;
+        p->face_angle_seq++;
+    }
+    p->facing_x = p->facing_y = -1;
 }
 
 static void process_player_skilling(RcWorld *world) {
@@ -985,6 +949,7 @@ void rc_world_tick(RcWorld *world) {
     if (on & RC_SUB_ENCOUNTER) rc_encounter_tick_effects(world);
 
     // Phase 4 — player action resolution (gated per subsystem).
+    refresh_player_face_entity(&world->player);
     process_player_action_timers(world);
     if (!(on & RC_SUB_COMBAT) || rc_combat_player_approach(world)) {
         process_player_movement(world);
@@ -997,6 +962,7 @@ void rc_world_tick(RcWorld *world) {
     process_player_action_timers(world);
     if (on & RC_SUB_COMBAT)   process_player_combat(world);
     if (on & RC_SUB_SKILLS)   process_player_skilling(world);
+    send_player_face_square(&world->player);
 
     // Phase 5 — pending-hit resolution (combat subsystem).
     if (on & RC_SUB_COMBAT) {
@@ -1446,26 +1412,36 @@ static void start_player_action_lock(RcWorld *world, int lock_ticks) {
     }
 }
 
+// A walk click: it drops the current action and face target, then routes to
+// the clicked tile or, when that is unreachable, the nearest tile that is
+// (rsmod MoveGameClickHandler, moveNear). The new route always replaces the
+// old one, so a click with no route stops the player where they stand.
+static int api_move_click(RcWorld *world, int x, int y, int action_id,
+                          bool run) {
+    if (!world || !rc_world_coord_valid(x) || !rc_world_coord_valid(y)
+            || !rc_world_tile_valid(world->player.x, world->player.y,
+                                    world->player.plane)
+            || !action_allowed_if_loaded(world, action_id)) {
+        return 0;
+    }
+    RcPlayer *p = &world->player;
+    rc_player_replace_action_with_movement(
+        world, RC_ACTION_CANCEL_REPLACED);
+    p->facing_entity = -1;
+    RcRouteTarget target = rc_route_target_point(x, y);
+    if (!api_route_player(world, &target, 1, 1, true))
+        rc_player_route_clear(p, RC_MOVEMENT_NO_ROUTE);
+    p->running = run && p->run_energy > 0;
+    return 1;
+}
+
 int rc_player_walk_to(RcWorld *world, int x, int y) {
     if (rc_player_command_should_queue(world)) {
         return queue_player_command(world, RC_PLAYER_COMMAND_WALK_TO,
                                     RC_ACTION_CATEGORY_NORMAL,
                                     x, y, 0, 0, 0, 0);
     }
-    if (!world || !rc_world_coord_valid(x) || !rc_world_coord_valid(y)
-            || !rc_world_tile_valid(world->player.x, world->player.y,
-                                    world->player.plane)
-            || !action_allowed_if_loaded(world,
-                                         RC_PLAYER_ACTION_WALK_TO)) {
-        return 0;
-    }
-    RcPlayer *p = &world->player;
-    RcRouteTarget target = rc_route_target_point(x, y);
-    if (!api_route_player(world, &target, 1, 1, false)) return 0;
-    rc_player_replace_action_with_movement(
-        world, RC_ACTION_CANCEL_REPLACED);
-    p->running = false;
-    return 1;
+    return api_move_click(world, x, y, RC_PLAYER_ACTION_WALK_TO, false);
 }
 
 int rc_player_run_to(RcWorld *world, int x, int y) {
@@ -1474,20 +1450,7 @@ int rc_player_run_to(RcWorld *world, int x, int y) {
                                     RC_ACTION_CATEGORY_NORMAL,
                                     x, y, 0, 0, 0, 0);
     }
-    if (!world || !rc_world_coord_valid(x) || !rc_world_coord_valid(y)
-            || !rc_world_tile_valid(world->player.x, world->player.y,
-                                    world->player.plane)
-            || !action_allowed_if_loaded(world,
-                                         RC_PLAYER_ACTION_RUN_TO)) {
-        return 0;
-    }
-    RcPlayer *p = &world->player;
-    RcRouteTarget target = rc_route_target_point(x, y);
-    if (!api_route_player(world, &target, 1, 1, false)) return 0;
-    rc_player_replace_action_with_movement(
-        world, RC_ACTION_CANCEL_REPLACED);
-    p->running = p->run_energy > 0;
-    return 1;
+    return api_move_click(world, x, y, RC_PLAYER_ACTION_RUN_TO, true);
 }
 
 int rc_player_step(RcWorld *world, int dx, int dy) {

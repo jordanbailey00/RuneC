@@ -76,9 +76,19 @@ static void test_object_routes_faces_and_dispatches_custom_handler(void) {
     assert(state.seen_def == obj_id);
     assert(state.seen_op == RC_INTERACTION_OP1);
     assert(world->player.facing_entity == -1);
-    assert(world->player.facing_x == obj_x);
-    assert(world->player.facing_y == obj_y);
     assert(world->player.interaction.flags & RC_INTERACTION_COMPLETED);
+    // The object's footprint was the pending face square from the click; it
+    // goes out once, as an angle toward its centre, when the player stands.
+    const RcInteractionTarget *object = &world->player.interaction.target;
+    uint32_t sends = world->player.face_angle_seq;
+    if (world->player.facing_x >= 0) rc_world_tick(world);
+    assert(world->player.facing_x == -1 && world->player.facing_y == -1);
+    assert(world->player.face_angle_seq == sends + (sends == 0));
+    assert(world->player.face_angle == rc_face_angle(
+        world->player.x, world->player.y, 1, 1, obj_x, obj_y,
+        object->footprint_width, object->footprint_height));
+    rc_world_tick(world);
+    assert(world->player.face_angle_seq == (sends ? sends : 1));
 
     rc_world_destroy(world);
 }
@@ -139,8 +149,13 @@ static void test_ground_item_routes_faces_and_takes(void) {
     assert(!world->ground_items[0].active);
     assert(rc_inv_find(world->player.inventory, 995) >= 0);
     assert(world->player.facing_entity == -1);
-    assert(world->player.facing_x == item_x);
-    assert(world->player.facing_y == item_y);
+    // The take fires from the side-adjacent tile (rsmod obj op range:
+    // touching); the pending face square turns the player toward the item.
+    if (world->player.facing_x >= 0) rc_world_tick(world);
+    assert(world->player.facing_x == -1 && world->player.facing_y == -1);
+    assert(world->player.x == item_x - 1 && world->player.y == item_y);
+    assert(world->player.face_angle_seq == 1);
+    assert(world->player.face_angle == 1536);
 
     rc_world_destroy(world);
 }

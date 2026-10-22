@@ -52,6 +52,8 @@ static void test_route_face_and_dispatch_noncombat_npc(void) {
     rc_world_tick(world);
     assert(world->player.x != start_x);
     assert(rc_interaction_is_active(&world->player));
+    // The player faces the NPC from the click, while walking to it.
+    assert(world->player.facing_entity == uid);
 
     tick_until_inactive(world, 16);
     assert(!rc_interaction_is_active(&world->player));
@@ -59,9 +61,10 @@ static void test_route_face_and_dispatch_noncombat_npc(void) {
     assert(world->player.interact_target == uid);
     assert(world->player.interact_option == 0);
     assert(world->player.facing_entity == uid);
-    assert(world->player.facing_x == world->npcs[npc_idx].x);
-    assert(world->player.facing_y == world->npcs[npc_idx].y);
     assert(world->player.interaction.flags & RC_INTERACTION_COMPLETED);
+    // With the interaction over, the face entity resets on the next tick.
+    rc_world_tick(world);
+    assert(world->player.facing_entity == -1);
 
     rc_world_destroy(world);
 }

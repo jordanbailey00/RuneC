@@ -188,4 +188,12 @@ static inline int rc_tile_bounds_distance(const RcTileBounds *a,
 RcDirection rc_direction_from_delta(int dx, int dy);
 int rc_direction_delta(RcDirection direction, int *dx, int *dy);
 
+// OSRS face angle (0 = south, 512 west, 1024 north, 1536 east; 2048 per
+// turn) from one footprint's centre toward another's, or -1 when the centres
+// coincide.
+int rc_face_angle(int from_x, int from_y, int from_width, int from_length,
+                  int to_x, int to_y, int to_width, int to_length);
+// The face angle of a step direction, or -1 for RC_DIRECTION_NONE.
+int rc_direction_face_angle(RcDirection direction);
+
 #endif

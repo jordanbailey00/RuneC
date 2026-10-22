@@ -47,6 +47,10 @@ static int valid_tile_target(const RcInteractionTarget *target) {
     return valid_footprint(target);
 }
 
+static int clamp_face_size(int size) {
+    return size < 1 ? 1 : size > UINT8_MAX ? UINT8_MAX : size;
+}
+
 int rc_interaction_target_valid(const RcInteractionTarget *target) {
     if (!target || !rc_interaction_kind_valid(target->kind)) return 0;
     switch (target->kind) {
@@ -275,6 +279,19 @@ int rc_interaction_begin_with_source(
     next.flags = RC_INTERACTION_STARTED;
     next.last_failure = RC_INTERACTION_FAIL_NONE;
     player->interaction = next;
+    // Facing starts with the click (rsmod OpNpc/OpLoc/OpObj handlers): an
+    // NPC becomes the face entity; a loc or obj resets it and pends its
+    // footprint as the face square.
+    if (target->kind == RC_INTERACTION_NPC) {
+        player->facing_entity = target->entity_uid;
+    } else if (target->kind == RC_INTERACTION_OBJECT
+            || target->kind == RC_INTERACTION_GROUND_ITEM) {
+        player->facing_entity = -1;
+        player->facing_x = target->tile_x;
+        player->facing_y = target->tile_y;
+        player->facing_width = (uint8_t)clamp_face_size(target->footprint_width);
+        player->facing_length = (uint8_t)clamp_face_size(target->footprint_height);
+    }
     return 1;
 }
 

@@ -334,6 +334,13 @@ if(TARGET rc-viewer)
     set_tests_properties(test_dev_spellbooks PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 endif()
 
+add_executable(test_actor_motion tests/frontend/test_actor_motion.c rc-viewer/actor_motion.c)
+target_link_libraries(test_actor_motion m)
+if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(test_actor_motion PRIVATE -UNDEBUG)
+endif()
+add_test(NAME test_actor_motion COMMAND test_actor_motion)
+
 add_executable(test_prayer_ui tests/frontend/test_prayer_ui.c rc-viewer/prayer_ui.c)
 target_link_libraries(test_prayer_ui rc-core m)
 if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")

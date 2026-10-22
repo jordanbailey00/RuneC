@@ -51,7 +51,11 @@ static uint32_t *flags_at(RcWorld *world, int x, int y) {
     return NULL;
 }
 
-static void test_failed_admission_preserves_route_and_mode(void) {
+// A walk click replaces the route like the OSRS game click: a blocked tile
+// routes to the nearest reachable tile, and a click with no route stops the
+// player (rsmod MoveGameClickHandler, moveNear; PlayerMovementProcessor
+// consumeRoute).
+static void test_walk_click_replaces_route(void) {
     RcWorld *world = make_world();
     assert(rc_player_walk_to(world, 15, 10));
     rc_world_tick(world);
@@ -59,15 +63,33 @@ static void test_failed_admission_preserves_route_and_mode(void) {
     assert(world->player.route_target.x == 15);
     assert(!world->player.running);
 
+    // The nearest reachable tile to the blocked one is a single step north.
     *flags_at(world, 11, 12) = COL_BLOCK_WALK;
     assert(rc_player_run_to(world, 11, 12));
     rc_world_tick(world);
-    assert(world->player.x == 12 && world->player.y == 10);
-    assert(world->player.route_target.x == 15);
-    assert(world->player.route_target.y == 10);
+    assert(world->player.x == 11 && world->player.y == 11);
+    assert(world->player.route_target.x == 11);
+    assert(world->player.route_target.y == 12);
+    assert(world->player.route_idx >= world->player.route_len);
+    assert(world->player.running);
+    assert(rc_player_last_command_result(world, NULL)
+           == RC_COMMAND_RESULT_EXECUTED);
+
+    // Nothing within the alternative search of the target is reachable:
+    // the click still replaces the walk, so the player stops.
+    assert(rc_player_walk_to(world, 20, 11));
+    rc_world_tick(world);
+    assert(world->player.x == 12 && world->player.y == 11);
+    for (int x = 30; x <= 50; x++)
+        for (int y = 30; y <= 50; y++)
+            *flags_at(world, x, y) = COL_BLOCK_WALK;
+    assert(rc_player_walk_to(world, 40, 40));
+    rc_world_tick(world);
+    assert(world->player.x == 12 && world->player.y == 11);
+    assert(world->player.route_idx >= world->player.route_len);
     assert(!world->player.running);
     assert(rc_player_last_command_result(world, NULL)
-           == RC_COMMAND_RESULT_REJECTED_INVALID);
+           == RC_COMMAND_RESULT_EXECUTED);
 
     rc_world_destroy(world);
 }
@@ -199,7 +221,7 @@ static void test_partial_route_continues_to_original_target(void) {
 }
 
 int main(void) {
-    test_failed_admission_preserves_route_and_mode();
+    test_walk_click_replaces_route();
     test_core_directional_step();
     test_run_substeps_drain_recovery_and_zero_fallback();
     test_partial_route_continues_to_original_target();

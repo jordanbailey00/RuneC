@@ -112,11 +112,32 @@ static void test_directions(void) {
     assert(!rc_direction_delta((RcDirection)99, NULL, NULL));
 }
 
+// Face angles: 0 south, 512 west, 1024 north, 1536 east, between footprint
+// centres; steps take the client's exact yaws.
+static void test_face_angles(void) {
+    assert(rc_face_angle(10, 10, 1, 1, 10, 9, 1, 1) == 0);
+    assert(rc_face_angle(10, 10, 1, 1, 9, 10, 1, 1) == 512);
+    assert(rc_face_angle(10, 10, 1, 1, 10, 11, 1, 1) == 1024);
+    assert(rc_face_angle(10, 10, 1, 1, 11, 10, 1, 1) == 1536);
+    assert(rc_face_angle(10, 10, 1, 1, 11, 11, 1, 1) == 1280);
+    // A 3x3 footprint beside the player is faced at its centre.
+    assert(rc_face_angle(10, 10, 1, 1, 11, 10, 3, 3) == rc_face_angle(
+        10, 10, 1, 1, 12, 11, 1, 1));
+    assert(rc_face_angle(10, 10, 1, 1, 10, 10, 1, 1) == -1);
+    assert(rc_face_angle(11, 11, 1, 1, 10, 10, 3, 3) == -1);
+    static const int16_t yaws[9] = {-1, 1024, 1280, 1536, 1792, 0, 256, 512,
+                                    768};
+    for (int d = RC_DIRECTION_NONE; d <= RC_DIRECTION_NORTH_WEST; d++)
+        assert(rc_direction_face_angle((RcDirection)d) == yaws[d]);
+    assert(rc_direction_face_angle((RcDirection)99) == -1);
+}
+
 int main(void) {
     test_world_and_spatial_keys();
     test_checked_rectangles();
     test_footprint_geometry();
     test_directions();
+    test_face_angles();
     printf("test_coordinates_world_primitives: coordinate contract verified.\n");
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "coordinates.h"
 
 #include <limits.h>
+#include <math.h>
 
 const int8_t rc_direction_dx[9] = {0, 0, 1, 1, 1, 0, -1, -1, -1};
 const int8_t rc_direction_dy[9] = {0, 1, 1, 0, -1, -1, -1, 0, 1};
@@ -95,4 +96,26 @@ int rc_direction_delta(RcDirection direction, int *dx, int *dy) {
     *dx = rc_direction_dx[direction];
     *dy = rc_direction_dy[direction];
     return 1;
+}
+
+int rc_face_angle(int from_x, int from_y, int from_width, int from_length,
+                  int to_x, int to_y, int to_width, int to_length) {
+    // Centres in half tiles (2x + width), as rsmod Direction.angleTo. The
+    // client truncates atan2 * 325.949, leaving due east at 1537; rounding
+    // 1024/pi per radian keeps the exact step yaws.
+    int dx = (2 * from_x + from_width) - (2 * to_x + to_width);
+    int dy = (2 * from_y + from_length) - (2 * to_y + to_length);
+    if (!dx && !dy) return -1;
+    return (int)lround(atan2((double)dx, (double)dy) * (1024.0 / M_PI))
+         & 2047;
+}
+
+int rc_direction_face_angle(RcDirection direction) {
+    // The client's step yaws (Client3 updateMovement), not atan2's.
+    static const int16_t angles[9] = {
+        -1, 1024, 1280, 1536, 1792, 0, 256, 512, 768,
+    };
+    if (direction < RC_DIRECTION_NONE || direction > RC_DIRECTION_NORTH_WEST)
+        return -1;
+    return angles[direction];
 }

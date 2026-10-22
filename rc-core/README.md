@@ -355,10 +355,25 @@ deterministic continuation.
 Route search and execution share the same cardinal/diagonal validator for
 size-one and rectangular footprints. Projectile LOS likewise evaluates both
 footprints, directional projectile walls, full blockers, and endpoints.
-Dynamic doors mutate movement and projectile clipping together. Player walk,
-run, directional step, interaction approach, and combat approach all install
-routes through the same atomic admission path; a failed request does not erase
-a valid route or unrelated action.
+Dynamic doors mutate movement and projectile clipping together. A walk or run
+click works like the OSRS game click (rsmod `MoveGameClickHandler`): it cancels
+the current action and face target, then routes to the clicked tile or, when
+that is unreachable, the nearest reachable tile. The new route always replaces
+the old one, so a click with no route stops the player. Directional steps,
+interaction approach, and combat approach install routes through the same
+atomic admission path; a failed request does not erase a valid route or
+unrelated action.
+
+Facing follows OSRS (rsmod; LostCity commit e31a8719). `facing_entity` names
+an actor's face entity: for the player, the NPC it clicked, from the click
+and for as long as the interaction or attack lasts; for an NPC, the player
+(0). The client turns toward that entity's footprint centre every frame. A loc
+or obj interaction pends its footprint as the player's face square
+(`facing_x/y`, `facing_width/length`). When the player ends a tick without
+moving, the core sends it once as `face_angle` (0-2047; 0 is south,
+clockwise) and bumps `face_angle_seq`; walking away does not cancel it. An NPC
+spawn sends its spawn direction the same way. Steps pend nothing: the client
+faces along them. The core never reads facing for gameplay.
 
 Running is core-owned. Each run tile is a separately validated ordered substep,
 the second substep requires positive energy, energy drains only when it occurs,

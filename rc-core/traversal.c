@@ -538,6 +538,8 @@ int rc_traversal_start(RcWorld *world, uint64_t interaction_generation) {
         world->player.facing_entity = -1;
         world->player.facing_x = state->facing_x;
         world->player.facing_y = state->facing_y;
+        world->player.facing_width = 1;
+        world->player.facing_length = 1;
     }
     world->player_action = (RcPlayerActionState){
         .active = true,

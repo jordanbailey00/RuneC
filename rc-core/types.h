@@ -825,8 +825,16 @@ typedef struct {
     RcInvSlot rune_pouch[4];
     int last_hit;
     int last_hit_timer;
+    // Facing, as OSRS face_pathingentity/face_square/face_angle: the client
+    // turns toward facing_entity (an NPC uid, -1: none) every frame.
+    // facing_x/y is a pending face square (south-west tile, -1: none) sent
+    // once, as face_angle, when the player ends a tick without moving;
+    // face_angle_seq counts the sends.
     int facing_entity;
     int facing_x, facing_y;
+    uint8_t facing_width, facing_length;
+    int16_t face_angle;
+    uint32_t face_angle_seq;
     RcPendingHit pending_hits[RC_MAX_PENDING_HITS];
     int num_pending_hits;
 
@@ -1018,8 +1026,11 @@ typedef struct {
     RcCombatActorState combat;
     RcPendingHit pending_hits[RC_MAX_PENDING_HITS];
     int num_pending_hits;
+    // Facing as the player's (facing_entity 0 is the player). NPCs pend no
+    // face squares: steps set their direction, a spawn its face angle.
     int facing_entity;
-    int facing_x, facing_y;
+    int16_t face_angle;
+    uint32_t face_angle_seq;
     int last_hit;
     int last_hit_timer;
     bool is_dead;

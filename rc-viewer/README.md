@@ -284,16 +284,32 @@ death diagnostic; enabling loot is not a claim that every table is verified.
 Ordinary viewer input calls the same queued player APIs used by headless
 consumers. Gameplay mutations become authoritative during the next core input
 phase, not during the render frame that observed the click or key. The viewer
-may interpolate presentation between ticks, but it does not own action
-replacement, cancellation, delayed effects, death, or cooldown progression.
-After a long frame it advances at most five core ticks, records any discarded
-overload ticks, and resumes from the remaining fractional accumulator.
+presents movement between ticks, but it does not own action replacement,
+cancellation, delayed effects, death, or cooldown progression. After a long
+frame it advances at most five core ticks, records any discarded overload
+ticks, and resumes from the remaining fractional accumulator.
+
+Actors move as the OSRS client moves them (`actor_motion.c`, checked against
+Client3, the 317 client and the B235 client). Each core tick queues the
+player's steps (two are run steps; a single one walks) and each NPC's step.
+Every 20 ms client cycle then walks the oldest queued step at 4 fine units
+(32 cycles a tile), catching up at 6 or 8 as the queue grows and doubling for
+run steps. It turns the actor 32 of 2048 units toward its target orientation,
+and picks the pose: walk, run, turn on the spot, or the back and side steps
+measured against where the actor faces. A face entity (the player's attack or
+interaction target; an NPC's player) is faced at its footprint centre every
+cycle, even while walking; a core face angle turns a standing actor. Frames
+draw between the last two cycles. A primary attack or action sequence merges
+with walking through its walkmerge labels, or holds movement until it ends
+and then catches up (sequence opcode 10; opcode 9 keeps its default until it
+is exported). Poses without data fall back to walk, as the client does.
 
 Scene clicks provide immediate client-only feedback while the queued command
 waits for that input phase. Movement uses B237's four yellow click-cross frames;
 NPC, object, ground-item, and selected-target interactions use the four red
 frames. Every frame lasts 100 ms. An accepted movement submission also places a
-temporary minimap destination immediately. That temporary marker is reconciled
+temporary minimap destination immediately, on the clicked tile or the nearest
+reachable one the walk will end on. That temporary marker is reconciled
 on the next core tick and is then replaced by the authoritative route endpoint
 or removed when no route exists. This presentation path never computes routes,
 predicts character tiles, or advances gameplay early.
@@ -476,9 +492,9 @@ Today `rc-viewer` is primarily:
 - a renderer for core-owned dynamic object state, linked-below scenes,
   bounded mapsquare scenes, compatibility region slices, viewer-owned combat
   projectiles, spot animations, combat attack animations, and equipment visuals
-- model-centered player/NPC hitsplats and footprint-centered NPC facing;
-  health bars remain anchored above model bounds, while multi-tile actors face
-  the target from their rendered center rather than their southwest tile
+- model-centered player/NPC hitsplats and client-cycle facing; health bars
+  remain anchored above model bounds, while actors turn toward their face
+  entity's footprint centre from their own
 - isolated combat-validation helpers for local manual testing, kept out of
   `rc-core` so they can be disabled or removed without changing simulation
   rules

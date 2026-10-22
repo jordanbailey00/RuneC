@@ -364,8 +364,8 @@ static void test_boss_projectile_origins(RcWorld *world) {
         world->player.x = spots[s][0];
         world->player.y = spots[s][1];
         world->player.plane = 0;
-        v->prev_player_x = (float)world->player.x;
-        v->prev_player_y = (float)world->player.y;
+        runec_actor_motion_place(&v->player_motion, world->player.x,
+                                 world->player.y, 1, 0);
         v->combat_projectile_count = 0;
         RcCombatAttackEvent event = {
             .active = true, .source_kind = RC_COMBAT_ACTOR_NPC,
@@ -406,9 +406,8 @@ static void test_boss_projectile_origins(RcWorld *world) {
 
 // Where the player is drawn this frame (scene coordinates).
 static Vector3 presented_player(ViewerState *v) {
-    const RcPlayer *p = &v->world->player;
-    float wx = v->prev_player_x + ((float)p->x - v->prev_player_x) * v->tick_frac;
-    float wy = v->prev_player_y + ((float)p->y - v->prev_player_y) * v->tick_frac;
+    float wx, wy;
+    viewer_player_render_tile(v, &wx, &wy);
     return (Vector3){wx - (float)g_world_origin_x + 0.5f, ground_yf_plane(v, 0, wx, wy),
                      -(wy - (float)g_world_origin_y + 0.5f)};
 }
@@ -422,15 +421,23 @@ static Vector3 fly_while_player_runs(ViewerState *v, ViewerCombatProjectile *pro
     RcPlayer *p = &v->world->player;
     float land = (float)proj->projectile_end_time + 1.0f;
     float angle, pitch, path = 0.0f, worst = 0.0f;
-    int visible = 0, seen = 0, steps = 0, tick = -1;
+    int visible = 0, seen = 0, steps = 0, tick = -1, cycle = 0;
     Vector3 at = {0}, last = {0}, last_step = {0};
     for (float time = 0.0f;; time = fminf(time + 3.0f, land)) {
         while (tick < (int)(time / 30.0f)) {
             tick++;
-            v->prev_player_x = (float)p->x;
-            v->prev_player_y = (float)p->y;
-            if (tick == 1 || tick == 2) p->x += 2;
+            if (tick == 1 || tick == 2) {
+                p->x += 2;
+                runec_actor_motion_step(&v->player_motion, p->x - 1, p->y,
+                                        RUNEC_ACTOR_STEP_RUN);
+                runec_actor_motion_step(&v->player_motion, p->x, p->y,
+                                        RUNEC_ACTOR_STEP_RUN);
+            }
         }
+        // The client walks the player a cycle at a time.
+        for (; cycle < (int)time; cycle++)
+            runec_actor_motion_cycle(&v->player_motion, NULL, NULL, NULL);
+        v->motion_cycle_frac = 0.0f;
         proj->age_ticks = tick;
         v->tick_frac = (time - 30.0f * (float)tick) / 30.0f;
         at = combat_projectile_position(v, proj, 0, &angle, &pitch, &visible);
@@ -456,8 +463,7 @@ static Vector3 fly_while_player_runs(ViewerState *v, ViewerCombatProjectile *pro
 static ViewerCombatProjectile *launch_at_player(ViewerState *v, const RcNpc *npc,
                                                 const char *action, bool on_tile) {
     const RcPlayer *p = &v->world->player;
-    v->prev_player_x = (float)p->x;
-    v->prev_player_y = (float)p->y;
+    runec_actor_motion_place(&v->player_motion, p->x, p->y, 1, 0);
     v->combat_projectile_count = 0;
     RcCombatAttackEvent event = {
         .active = true, .source_kind = RC_COMBAT_ACTOR_NPC,
@@ -530,7 +536,8 @@ static void test_projectiles_follow_moving_player(RcWorld *world) {
     Vector3 before = projectile_at(v, proj, 54.0f);
     Vector3 now = projectile_at(v, proj, 60.0f);
     world->player.x += 3;
-    v->prev_player_x = (float)world->player.x;
+    runec_actor_motion_place(&v->player_motion, world->player.x,
+                             world->player.y, 1, 0);
     Vector3 after = projectile_at(v, proj, 66.0f);
     assert(hypotf(after.x - now.x, after.z - now.z)
            < hypotf(now.x - before.x, now.z - before.z) + 0.6f && "no jump");
@@ -557,8 +564,8 @@ static void test_projectiles_follow_moving_player(RcWorld *world) {
     int jad_uid = world->npcs[idx].uid;
     world->player.x = bx + 2;
     world->player.y = by - 6;
-    v->prev_player_x = (float)world->player.x;
-    v->prev_player_y = (float)world->player.y;
+    runec_actor_motion_place(&v->player_motion, world->player.x,
+                             world->player.y, 1, 0);
     v->tick_frac = 0.0f;
     v->combat_projectile_count = 0;
     RcCombatAttackEvent rock = {
@@ -576,8 +583,8 @@ static void test_projectiles_follow_moving_player(RcWorld *world) {
            && proj->launch_spotanim_id < 0);
     world->player.x += 3;
     world->player.y -= 1;
-    v->prev_player_x = (float)world->player.x;
-    v->prev_player_y = (float)world->player.y;
+    runec_actor_motion_place(&v->player_motion, world->player.x,
+                             world->player.y, 1, 0);
     Vector3 hit;
     assert(combat_projectile_impact_position(v, proj, 0, &hit));
     goal = presented_player(v);
@@ -873,6 +880,243 @@ static void test_consumable_projection(RcWorld *world) {
     free(v);
 }
 
+// The first attackable definition of `size` tiles.
+static int attackable_def_of_size(int size) {
+    for (int i = 0; i < g_npc_def_count; i++) {
+        const RcNpcDef *def = rc_npc_def_get(i);
+        if (!def || def->size != size || def->hitpoints <= 0) continue;
+        for (int opt = 0; opt < RC_NPC_OPTION_COUNT; opt++)
+            if (rc_npc_def_option_is_attack(def, opt)) return i;
+    }
+    return -1;
+}
+
+// One server tick as the viewer runs it: the core tick, the client motion
+// fed its steps, then a tick's worth of client cycles.
+static void viewer_motion_tick(ViewerState *v) {
+    RcPlayer *p = &v->world->player;
+    int old_x = p->x, old_y = p->y, old_plane = p->plane;
+    rc_world_tick(v->world);
+    viewer_sync_player_motion(v, old_x, old_y, old_plane);
+    viewer_sync_npc_motion(v);
+    viewer_update_actor_motion(v, 30 * RUNEC_ACTOR_CYCLE_SECONDS + 0.001f);
+}
+
+// The client motion turns the player toward the centre of the NPC it
+// attacks, from the click and while walking up to it; a walk click away
+// drops the face entity and the player faces along its steps.
+static void test_client_motion_faces_target(RcWorld *world) {
+    int def_idx = attackable_def_of_size(2);
+    assert(def_idx >= 0);
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    v->npc_overlays = calloc(RC_MAX_NPCS, sizeof(*v->npc_overlays));
+    assert(v->npc_overlays);
+    world->player.x = 3208;
+    world->player.y = 3208;
+    world->player.plane = 0;
+    rc_test_open_mapsquare(world, 3208, 3208, 0);
+    v->player_motion.turn_speed = RUNEC_ACTOR_TURN_SPEED;
+    v->player_motion.rotation_flag = true;
+    runec_actor_motion_place(&v->player_motion, 3208, 3208, 1, 0);
+    v->player_face_angle_seq = world->player.face_angle_seq;
+    v->primary_anim_id = -1;
+    int idx = rc_npc_spawn(world, def_idx, 3211, 3214, 0);
+    assert(idx >= 0);
+    world->npcs[idx].wander_timer = 999999;
+    int uid = world->npcs[idx].uid;
+    viewer_sync_npc_motion(v);
+    assert(v->npc_render[idx].initialized);
+
+    assert(rc_player_attack_npc(world, uid));
+    int tracked_walking = 0, attacked = 0;
+    for (int t = 0; t < 20 && !attacked; t++) {
+        viewer_motion_tick(v);
+        assert(world->player.facing_entity == uid);
+        const RuneCActorMotion *pm = &v->player_motion;
+        const RuneCActorMotion *nm = &v->npc_render[idx].motion;
+        // The last cycle aimed from both actors' positions before it.
+        int expected = runec_actor_angle_to(pm->prev_x, pm->prev_z,
+                                            nm->prev_x, nm->prev_z);
+        assert(pm->target_yaw == expected);
+        if (pm->path_length > 0) tracked_walking = 1;
+        attacked = world->player.attack_target == uid
+                && pm->path_length == 0;
+    }
+    assert(tracked_walking && attacked);
+    for (int t = 0; t < 2; t++) viewer_motion_tick(v);
+    // Standing beside the 2x2 footprint, the player has turned to its
+    // centre: (3211.5 + 0.5, 3214 + 1) from the player's tile centre.
+    const RuneCActorMotion *pm = &v->player_motion;
+    const RuneCActorMotion *nm = &v->npc_render[idx].motion;
+    assert(pm->yaw == pm->target_yaw);
+    assert(pm->yaw == runec_actor_angle_to(pm->x, pm->z, nm->x, nm->z));
+
+    // Walking away ends the face entity; the player faces its steps.
+    assert(rc_player_walk_to(world, world->player.x - 6, world->player.y));
+    viewer_motion_tick(v);
+    assert(world->player.facing_entity == -1);
+    assert(v->player_motion.target_yaw == 512 && "facing west, its step");
+    rc_npc_remove(world, uid);
+    free(v->npc_overlays);
+    free(v);
+}
+
+// Core ticks reach the client motion as steps (one walks, two run), hops,
+// teleports and face angles.
+static void test_client_motion_sync(RcWorld *world) {
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    v->npc_overlays = calloc(RC_MAX_NPCS, sizeof(*v->npc_overlays));
+    assert(v->npc_overlays);
+    rc_test_open_mapsquare(world, 3208, 3208, 0);
+    int idx = rc_npc_spawn(world, attackable_def_of_size(1), 3210, 3210, 0);
+    assert(idx >= 0);
+    RcNpc *npc = &world->npcs[idx];
+    viewer_sync_npc_motion(v);
+    RuneCActorMotion *m = &v->npc_render[idx].motion;
+    assert(m->yaw == npc->face_angle && m->path_length == 0);
+    npc->x += 1;
+    viewer_sync_npc_motion(v);
+    assert(m->path_length == 1 && m->path_speed[0] == RUNEC_ACTOR_STEP_WALK);
+    npc->x += 2;
+    npc->y += 1;
+    viewer_sync_npc_motion(v);
+    assert(m->path_length == 3 && m->path_speed[0] == RUNEC_ACTOR_STEP_RUN);
+    assert(m->path_x[1] == 3212 && m->path_z[1] == 3211);
+    assert(m->path_x[0] == 3213 && m->path_z[0] == 3211);
+    m->yaw = 1024;
+    npc->x += 5;
+    viewer_sync_npc_motion(v);
+    assert(m->path_length == 0 && m->x == 3218 * 128 + 64);
+    assert(m->yaw == 1024 && "a teleport keeps the orientation");
+    npc->face_angle = 512;
+    npc->face_angle_seq++;
+    viewer_sync_npc_motion(v);
+    assert(m->face_angle_pending && m->face_angle == 512);
+    rc_npc_remove(world, npc->uid);
+
+    RcPlayer *p = &world->player;
+    p->x = p->y = 3208;
+    p->plane = 0;
+    m = &v->player_motion;
+    m->turn_speed = RUNEC_ACTOR_TURN_SPEED;
+    m->rotation_flag = true;
+    runec_actor_motion_place(m, p->x, p->y, 1, 0);
+    p->x += 2;
+    p->movement_step_count = 2;
+    p->movement_step_x[0] = 3209;
+    p->movement_step_y[0] = 3208;
+    p->movement_step_x[1] = 3210;
+    p->movement_step_y[1] = 3208;
+    viewer_sync_player_motion(v, 3208, 3208, 0);
+    assert(m->path_length == 2 && m->path_speed[1] == RUNEC_ACTOR_STEP_RUN);
+    p->movement_step_count = 0;
+    p->x += 1;
+    viewer_sync_player_motion(v, 3210, 3208, 0);
+    assert(m->path_length == 3 && m->path_x[0] == 3211
+           && m->path_speed[0] == RUNEC_ACTOR_STEP_WALK && "a hop walks");
+    p->x += 9;
+    viewer_sync_player_motion(v, 3211, 3208, 0);
+    assert(m->path_length == 0 && m->x == 3220 * 128 + 64);
+    viewer_sync_player_motion(v, 3220, 3208, 1);
+    assert(m->path_length == 0 && "a plane change places");
+    p->face_angle = 1536;
+    p->face_angle_seq++;
+    viewer_sync_player_motion(v, 3220, 3208, 0);
+    assert(m->face_angle_pending && m->face_angle == 1536);
+    assert(v->player_face_angle_seq == p->face_angle_seq);
+    // A stalled frame runs at most a second of cycles.
+    v->motion_cycle_time = 0.0f;
+    viewer_update_actor_motion(v, 5.0f);
+    assert(v->motion_cycle_time == 0.0f && m->yaw == 1536);
+    p->x = p->y = 3208;
+    free(v->npc_overlays);
+    free(v);
+}
+
+// The player's pose follows its motion through the human sequences; an
+// attack starts a primary sequence that records the steps queued, the
+// frame helpers loop a pose and play a primary once; NPCs take their
+// attack and death sequences from the render definitions.
+static void test_actor_animation_tracks(RcWorld *world) {
+    ViewerState *v = calloc(1, sizeof(*v));
+    assert(v);
+    v->world = world;
+    v->anims = anim_cache_load("data/anims/all.anims");
+    assert(v->anims);
+    RcWorldConfig cfg = viewer_world_config(
+        rc_world_streaming_config_default(), "data/defs/combat_visuals.tsv");
+    assert(runec_npc_render_defs_load(&v->npc_render_defs,
+                                      cfg.npc_defs_path) > 0);
+    RcPlayer *p = &world->player;
+    RcInvSlot weapon = p->equipment[EQUIP_WEAPON];
+    p->equipment[EQUIP_WEAPON] = (RcInvSlot){.item_id = -1};
+    RuneCActorPoseSet poses;
+    player_pose_set(v, &poses);
+    assert(poses.seq[RUNEC_ACTOR_POSE_IDLE] == ANIM_IDLE);
+    assert(poses.seq[RUNEC_ACTOR_POSE_WALK] == ANIM_WALK);
+    assert(poses.seq[RUNEC_ACTOR_POSE_RUN] == ANIM_RUN);
+    p->equipment[EQUIP_WEAPON] = weapon;
+
+    v->primary_anim_id = -1;
+    runec_actor_motion_place(&v->player_motion, p->x, p->y, 1, 0);
+    runec_actor_motion_step(&v->player_motion, p->x + 1, p->y,
+                            RUNEC_ACTOR_STEP_WALK);
+    v->player_motion.pose = RUNEC_ACTOR_POSE_WALK;
+    viewer_start_player_attack_anim(v, NULL);
+    assert(v->player_motion.steps_at_primary == 1);
+    update_player_anim(v);
+    assert(v->primary_anim_id > 0 && v->primary_kind == PLAYER_ONE_SHOT_ATTACK);
+    assert(v->cur_anim_id == runec_actor_pose_seq(&poses, RUNEC_ACTOR_POSE_WALK));
+    RuneCActorPrimary primary = viewer_primary_motion(
+        v->anims, v->primary_anim_id, v->player_one_shot_finished);
+    assert(primary.active);
+    end_player_primary(v);
+    assert(v->player_attack_anim_suppressed && v->player_one_shot_finished);
+    update_player_anim(v);
+    assert(v->primary_anim_id == -1 && "a played-out attack gives way");
+    assert(!viewer_primary_motion(v->anims, -1, 0).active);
+
+    // A looping pose wraps; a primary holds its last frame.
+    AnimSequence *walk = viewer_sequence(v->anims, ANIM_WALK);
+    assert(walk && walk->frame_count > 1);
+    int frame = walk->frame_count - 1;
+    float timer = 0.0f;
+    advance_loop_frames(walk, &frame, &timer,
+                        (float)(walk->frames[frame].delay
+                                ? walk->frames[frame].delay : 1));
+    assert(frame == 0);
+    frame = 0;
+    timer = 0.0f;
+    assert(advance_once_frames(walk, &frame, &timer, 100000.0f));
+    assert(frame == walk->frame_count - 1);
+    assert(!viewer_sequence(v->anims, -1));
+
+    int idx = rc_npc_spawn(world, attackable_def_of_size(1), 3214, 3214, 0);
+    assert(idx >= 0);
+    const RuneCNpcRenderDef *render_def =
+        viewer_npc_render_def(v, &world->npcs[idx]);
+    assert(render_def);
+    npc_pose_set(v, &world->npcs[idx], &poses);
+    assert(poses.seq[RUNEC_ACTOR_POSE_IDLE] == render_def->stand_anim);
+    assert(npc_primary_anim_id(v, idx, render_def) == -1);
+    v->npc_render[idx].attack_anim_timer = 2;
+    v->npc_render[idx].attack_anim_id = -1;
+    assert(npc_primary_anim_id(v, idx, render_def)
+           == render_def->attack_anim);
+    world->npcs[idx].is_dead = true;
+    assert(npc_primary_anim_id(v, idx, render_def)
+           == render_def->death_anim);
+    world->npcs[idx].is_dead = false;
+    rc_npc_remove(world, world->npcs[idx].uid);
+    runec_npc_render_defs_free(&v->npc_render_defs);
+    anim_cache_free(v->anims);
+    free(v);
+}
+
 int main(void) {
     RcWorldConfig cfg = viewer_world_config(rc_world_streaming_config_default(),
         "data/defs/combat_visuals.tsv");
@@ -891,6 +1135,9 @@ int main(void) {
     test_boss_landing_heights(world);
     test_boss_projectile_origins(world);
     test_projectiles_follow_moving_player(world);
+    test_client_motion_faces_target(world);
+    test_client_motion_sync(world);
+    test_actor_animation_tracks(world);
     test_spawned_loc_contour(world);
     test_exploding_helper_lingers(world);
     test_npc_model_scales();

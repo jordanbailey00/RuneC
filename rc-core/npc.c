@@ -555,14 +555,6 @@ static uint8_t spawn_read_u8(const unsigned char **p) {
     return *(*p)++;
 }
 
-static void npc_face_move_delta(RcNpc *npc, int dx, int dy) {
-    if (!npc || (!dx && !dy)) return;
-    if (npc->facing_entity >= 0) return;
-    npc->facing_entity = -1;
-    npc->facing_x = npc->x + dx;
-    npc->facing_y = npc->y + dy;
-}
-
 static int load_npc_spawns_filtered(RcWorld *world, const char *path,
                                     int use_filter, int min_x, int min_y,
                                     int max_x, int max_y,
@@ -739,13 +731,16 @@ int rc_load_npc_spawns_near(RcWorld *world, const char *path,
                                    rect.max_x, rect.max_y, plane, plane);
 }
 
+// A spawn faces its spawn direction at once, as the NPC add block's
+// orientation does.
 static void npc_face_spawn_direction(RcNpc *npc) {
     static const int8_t dx[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
     static const int8_t dy[8] = { 1, 1, 1,  0, 0, -1,-1,-1};
     if (!npc || npc->spawn_direction >= 8) return;
     npc->facing_entity = -1;
-    npc->facing_x = npc->spawn_x + dx[npc->spawn_direction];
-    npc->facing_y = npc->spawn_y + dy[npc->spawn_direction];
+    npc->face_angle = (int16_t)rc_direction_face_angle(rc_direction_from_delta(
+        dx[npc->spawn_direction], dy[npc->spawn_direction]));
+    npc->face_angle_seq++;
 }
 
 RcNpcLifePhase rc_npc_life_phase(const RcNpc *npc) {
@@ -1137,7 +1132,6 @@ static void npc_direct_step(RcWorld *world, RcNpc *npc, int size) {
                               sx, sy, npc->plane)) continue;
         npc->x += sx;
         npc->y += sy;
-        npc_face_move_delta(npc, sx, sy);
         npc->movement_result = RC_MOVEMENT_MOVED;
         if (rc_route_target_reached(&world->map, npc->plane,
                                     npc->x, npc->y, size, size, target))
@@ -1181,7 +1175,6 @@ void rc_npc_movement_tick(RcWorld *world, RcNpc *npc) {
     }
     npc->x += dx;
     npc->y += dy;
-    npc_face_move_delta(npc, dx, dy);
     npc->movement_result = RC_MOVEMENT_MOVED;
     if (npc->x == next_x && npc->y == next_y) npc->route_idx++;
     if (npc->route_idx >= npc->route_len && !npc->route_continue) {
