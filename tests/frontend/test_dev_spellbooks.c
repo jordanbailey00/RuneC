@@ -506,6 +506,16 @@ int main(void) {
         assert(!CheckCollisionRecs(tiles, side_clan_plane_button_rect(&layout, plane)));
     for (int i = 0; i < RUNEC_UI_DEV_TRANSPORT_MAX; i++)
         assert(!CheckCollisionRecs(tiles, side_clan_dev_transport_rect(&layout, i)));
+    // Every teleport button fits the panel above the Spellbook row.
+    for (int i = 0; i < RUNEC_UI_DEV_TRANSPORT_MAX; i++) {
+        Rectangle r = side_clan_dev_transport_rect(&layout, i);
+        assert(r.x >= layout.side_content.x
+               && r.x + r.width <= layout.side_content.x + layout.side_content.width);
+        for (int book = 0; book < 4; book++)
+            assert(!CheckCollisionRecs(r, dev_spellbook_button(&layout, book)));
+        for (int j = 0; j < i; j++)
+            assert(!CheckCollisionRecs(r, side_clan_dev_transport_rect(&layout, j)));
+    }
     for (int book = 0; book < 4; book++)
         assert(!CheckCollisionRecs(tiles, dev_spellbook_button(&layout, book)));
     RuneCUiTab tab = ui->active_tab;

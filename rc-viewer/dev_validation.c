@@ -91,6 +91,12 @@ static const RuneCDevTransport g_dev_transports[] = {
     {"chaos",    "Chaos Ele", 3261, 3927, 0, 2054, 3},
     {"vorkath",  "Vorkath",   2269, 4062, 0, 8059, 7},
     {"jad",      "Jad",       2400, 5088, 0, 3127, 5},
+    // Raid entrances: the player lands beside the object that starts the raid.
+    {"cox",      "CoX",       1233, 3571, 0,   -1, 1}, /* Chambers of Xeric steps 29777 */
+    {"tob",      "ToB",       3676, 3219, 0,   -1, 1}, /* Theatre of Blood entrance 32653 */
+    {"toa",      "ToA",       3359, 9114, 0,   -1, 1}, /* Tombs of Amascut lobby Entry 46089 */
+    // The Fractured Archive lobby (Archive Door 62768) exists only in b241 data.
+    {"archive",  "Archive",   4127, 5560, 0,   -1, 1},
 };
 
 static const RuneCDevEncounterNpc g_graardor_encounter[] = {

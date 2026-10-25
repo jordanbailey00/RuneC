@@ -2825,14 +2825,16 @@ static Rectangle side_clan_npc_tiles_rect(const RuneCUiLayout *layout) {
     };
 }
 
+// Three columns keep all RUNEC_UI_DEV_TRANSPORT_MAX buttons above the
+// Spellbook row.
 static Rectangle side_clan_dev_transport_rect(const RuneCUiLayout *layout,
                                               int idx) {
-    int col = idx % 2;
-    int row = idx / 2;
+    int col = idx % 3;
+    int row = idx / 3;
     return (Rectangle){
-        layout->side_content.x + 8.0f + (float)col * 88.0f,
+        layout->side_content.x + 8.0f + (float)col * 59.0f,
         layout->side_content.y + 100.0f + (float)row * 23.0f,
-        82.0f,
+        56.0f,
         20.0f,
     };
 }

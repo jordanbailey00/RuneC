@@ -287,6 +287,12 @@ static void test_boss_landing_heights(RcWorld *world) {
     for (int i = 0; i < count; i++) {
         const RuneCDevTransport *d = &destinations[i];
         int x, y;
+        char target_path[128];
+        snprintf(target_path, sizeof(target_path), "data/regions/%d_%d.p%d.terrain",
+                 d->target_x / 64, d->target_y / 64, d->plane);
+        // The Fractured Archive lobby exists only once b241 data is installed.
+        if (strcmp(d->key, "archive") == 0 && !rc_asset_exists(target_path))
+            continue;
         assert(viewer_dev_player_tile(v, d, &x, &y));
         assert(!rc_tile_blocked(&world->map, x, y, d->plane));
         assert(rc_can_move(&world->map, x, y, 1, 0, d->plane)
@@ -315,16 +321,20 @@ static void test_boss_landing_heights(RcWorld *world) {
         terrain_free(terrain);
     }
     // An entirely blocked destination must not fall back to the desired coordinate.
+    // Activate the boss area first so the blocked tiles are the ones it uses.
+    const RuneCDevTransport *last = runec_dev_validation_find_transport("jad");
+    assert(last && last->npc_id >= 0);
+    int x = -123, y = -456;
+    assert(viewer_dev_player_tile(v, last, &x, &y));
     for (int r = 0; r < world->map.region_count; r++) {
-        for (int x = 0; x < RC_REGION_SIZE; x++) {
-            for (int y = 0; y < RC_REGION_SIZE; y++)
-                world->map.regions[r].tiles[0][x][y].collision_flags = COL_BLOCK_WALK;
+        for (int tx = 0; tx < RC_REGION_SIZE; tx++) {
+            for (int ty = 0; ty < RC_REGION_SIZE; ty++)
+                world->map.regions[r].tiles[0][tx][ty].collision_flags = COL_BLOCK_WALK;
         }
     }
-    int x = -123, y = -456;
-    assert(!viewer_dev_player_tile(v, &destinations[count - 1], &x, &y));
+    x = -123, y = -456;
+    assert(!viewer_dev_player_tile(v, last, &x, &y));
     assert(x == -123 && y == -456);
-    const RuneCDevTransport *last = &destinations[count - 1];
     int pocket_x = last->target_x;
     int pocket_y = last->target_y - last->npc_size - 4;
     for (int r = 0; r < world->map.region_count; r++) {

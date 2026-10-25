@@ -3521,6 +3521,8 @@ static void viewer_dev_transport_to(ViewerState *v,
                 "dev transport: blocked %s because destination visuals for "
                 "%d,%d,%d are unavailable\n",
                 d->label, d->target_x, d->target_y, d->plane);
+        runec_ui_add_chat_message(&v->ui,
+            "Teleport blocked: the installed data has no map there.");
         return;
     }
     if (reload_status == 2) {

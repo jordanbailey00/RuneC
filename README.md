@@ -95,6 +95,11 @@ Open the Clan Chat side tab to use the validation panel:
 - `Varrock`, `Graardor`, `KBD`, `KQ` (Kalphite Queen), `Chaos Ele` (Chaos
   Elemental), `Vorkath`, and `Jad` move the player to common validation locations. Vorkath
   arrives asleep; Poke it to start the fight. Teleporting there again puts it back to sleep.
+- `CoX`, `ToB`, `ToA` and `Archive` move the player beside the raid entrance
+  of Chambers of Xeric, Theatre of Blood, Tombs of Amascut and The Fractured
+  Archive. Raid instances are not implemented, so entering does not start a
+  raid. The Fractured Archive lobby exists only in b241 data; until that data
+  is installed, its teleport is blocked with a chat message.
 
 These helpers are for development and testing. To run without them:
 
