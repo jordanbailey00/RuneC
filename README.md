@@ -9,6 +9,22 @@ deterministic headless simulation.
 The goal is simple: make an OSRS-like game that can be played locally, tested
 quickly, and reused for fast simulation workloads without needing a live server.
 
+## Cache Revision
+
+This is the **v5.0** branch. It targets OSRS cache revision **b241** (OpenRS2
+cache #2746, 2026-10-20). The previous version, **v4.0**, uses cache revision
+**b237** (OpenRS2 cache #2528, 2026-04-29). The two are not interchangeable.
+
+The b237 → b241 migration is in progress on this branch:
+
+- Map and loc data are b241: terrain, objects, minimaps, collision, object
+  placements and definitions, and the 2,950-mapsquare catalog. b241 adds new
+  areas such as The Fractured Archive.
+- Items, NPCs, spawns, animations outside objects, and the reviewed data
+  snapshots are still b237 data.
+- No b241 runtime-data release is published yet. Install the b237 release as
+  the base, then export the b241 map data locally (see Quick Start).
+
 ## Features
 
 RuneC currently includes:
@@ -46,11 +62,37 @@ builds do not require a separate Raylib install.
 ## Quick Start
 
 ```bash
-git clone --branch dev https://github.com/jordanbailey00/RuneC-Testing.git
+git clone --branch v5.0 https://github.com/jordanbailey00/RuneC-Testing.git
 cd RuneC-Testing
 RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cmake --build build --parallel
+```
+
+That installs the b237 data release as the base. Then download the b241 cache
+(OpenRS2 cache #2746, from https://archive.openrs2.org/), unzip it, and export
+the b241 map data over the base install. Point `B241` at the directory that
+holds `main_file_cache.dat2`; the pipeline still calls its cache variable
+`RUNEC_B237_CACHE`, but it accepts any cache directory. The region export
+takes about 20 minutes on 12 workers.
+
+```bash
+export B241=/path/to/b241/cache
+python3 tools/export_object_defs.py --cache "$B241"
+python3 tools/export_object_placements.py --cache "$B241"
+python3 tools/export_collision_tiles.py --cache "$B241"
+RUNEC_B237_CACHE="$B241" python3 tools/data_pipeline.py export-regions --full
+python3 tools/cache_pipeline/export_animations.py --modern-cache "$B241" \
+  --object-anims data/regions data/models/spawn_objects.oanim \
+  --output data/anims/object.anims
+python3 tools/cache_pipeline/export_animations.py --modern-cache "$B241" \
+  --spotanims data/defs/spotanims.bin \
+  --object-anims data/regions data/models/spawn_objects.oanim \
+  --item-render-map data/models/item_render.map \
+  --combat-visuals data/defs/combat_visuals.tsv \
+  --npc-defs data/defs/npc_defs.bin \
+  --npc-attack-anims data/defs/npc_attack_anims.tsv \
+  --output data/anims/all.anims
 ./build/rc-viewer
 ```
 
@@ -69,8 +111,9 @@ ignored `data/` directory. Plain setup intentionally refuses automatic download
 while the official release gate is blocked.
 Maintainer/dev checkouts can still generate `dist-data/` locally and install
 from it with `--offline dist-data`.
-The pinned `data-v2026.10.22-b237` release includes the complete four-plane
-world, updated loot definitions, per-item ground models and the encounter
+The pinned `data-v2026.10.22-b237` release is b237 data; on v5.0 it is only the
+base install, and the steps above replace its maps with b241 data. It includes
+the complete four-plane world, updated loot definitions, per-item ground models and the encounter
 data (ENCT v15 encounters with Vorkath anchored, boss combat visuals, the
 runtime spawned-loc templates and unscaled NPC models with their scale
 table). Commits `7e323b6` onwards need it; `28f37c8` to `2113bf8` pair with
