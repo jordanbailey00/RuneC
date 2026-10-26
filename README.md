@@ -9,6 +9,13 @@ deterministic headless simulation.
 The goal is simple: make an OSRS-like game that can be played locally, tested
 quickly, and reused for fast simulation workloads without needing a live server.
 
+## Cache Revision
+
+This is the **v4.0** branch. All of its game data comes from OSRS cache
+revision **b237** (OpenRS2 cache #2528, 2026-04-29), and its runtime-data
+releases are named `data-…-b237`. The next version, **v5.0**, moves to cache
+revision **b241**; the two are not interchangeable.
+
 ## Features
 
 RuneC currently includes:
@@ -46,7 +53,7 @@ builds do not require a separate Raylib install.
 ## Quick Start
 
 ```bash
-git clone --branch dev https://github.com/jordanbailey00/RuneC-Testing.git
+git clone --branch v4.0 https://github.com/jordanbailey00/RuneC-Testing.git
 cd RuneC-Testing
 RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
