@@ -57,8 +57,8 @@ int rc_content_raids_register(struct RcWorld *world);
 // Future entries land here as new boss modules are authored.
 
 // Regions — region-specific NPC tick logic, object interactions, etc.
-// (No region modules yet — Varrock data is loaded generically by
-// rc-core/npc.c from region binaries.)
+// Raid entrances and exits move the player between each raid and its lobby.
+int rc_content_raid_transports_register(struct RcWorld *world);
 
 // Quests — per-quest varbit state machines.
 // (No quest modules yet — pending quest subsystem maturity.)

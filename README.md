@@ -97,9 +97,11 @@ Open the Clan Chat side tab to use the validation panel:
   arrives asleep; Poke it to start the fight. Teleporting there again puts it back to sleep.
 - `CoX`, `ToB`, `ToA` and `Archive` move the player beside the raid entrance
   of Chambers of Xeric, Theatre of Blood, Tombs of Amascut and The Fractured
-  Archive. Raid instances are not implemented, so entering does not start a
-  raid. The Fractured Archive lobby exists only in b241 data; until that data
-  is installed, its teleport is blocked with a chat message.
+  Archive. Entering moves the player into the raid's map (the cache's static
+  template of it); each raid also has one exit back to its lobby or hub. Raid
+  bosses, puzzles and rewards are not implemented yet, so the rooms are empty.
+  The Fractured Archive exists only in b241 data; without b241 map data its
+  teleport is blocked with a chat message.
 
 These helpers are for development and testing. To run without them:
 

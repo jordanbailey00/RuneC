@@ -1864,6 +1864,15 @@ static const RcTraversalEdge *object_traversal_edge(
     return nearest;
 }
 
+static int object_option_has_content_handler(const RcWorld *world,
+                                             int obj_id, int opt) {
+    RcInteractionDispatchKey key = rc_interaction_dispatch_key_any();
+    key.kind = RC_INTERACTION_OBJECT;
+    key.op = rc_interaction_op_from_option(opt);
+    key.definition_id = obj_id;
+    return rc_interaction_has_specific_world_handler(world, &key);
+}
+
 static int object_option_available(const RcWorld *world, int obj_id,
                                    int x, int y, int plane,
                                    uint64_t placement_key,
@@ -1875,11 +1884,7 @@ static int object_option_available(const RcWorld *world, int obj_id,
     if (opt < 0 || opt >= RC_OBJECT_ACTIONS)
         return 0;
     if (edge) return edge->flags == 0;
-    RcInteractionDispatchKey key = rc_interaction_dispatch_key_any();
-    key.kind = RC_INTERACTION_OBJECT;
-    key.op = rc_interaction_op_from_option(opt);
-    key.definition_id = obj_id;
-    if (rc_interaction_has_specific_world_handler(world, &key)) return 1;
+    if (object_option_has_content_handler(world, obj_id, opt)) return 1;
     if (!behavior || !(behavior->action_mask & (1u << opt))) return 0;
     if (behavior->flags & RC_OBJ_BEHAVIOR_DOOR) return 1;
     if ((behavior->flags & (RC_OBJ_BEHAVIOR_BANK |
@@ -1937,7 +1942,11 @@ int rc_world_object_option_supported(const RcWorld *world, int obj_id,
     const RcTraversalEdge *edge = object_traversal_edge(
         world, obj_id, x, y, plane, option, placement_key,
         &has_traversal_candidate);
-    if (!edge && has_traversal_candidate) return 0;
+    // Unusable traversal rows (instance or ambiguous destinations) hide the
+    // option unless content registered a handler for this exact option.
+    if (!edge && has_traversal_candidate
+            && !object_option_has_content_handler(world, obj_id, option))
+        return 0;
     return object_option_available(world, obj_id, x, y, plane, placement_key,
                                    def, behavior, edge, option);
 }

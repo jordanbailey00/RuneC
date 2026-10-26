@@ -36,7 +36,7 @@ int rc_content_register_all(struct RcWorld *world) {
     ok &= rc_content_raids_register(world);
 
     // ---- Regions ----------------------------------------------------
-    // (none yet)
+    ok &= rc_content_raid_transports_register(world);
 
     // ---- Quests -----------------------------------------------------
     // (none yet)

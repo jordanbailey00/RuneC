@@ -36,7 +36,7 @@ int main(void) {
     uint32_t expected_plane_counts[4];
     for (int plane = 0; plane < 4; plane++)
         expected_plane_counts[plane] = read_u32(f);
-    if (row_count != 6310663u || occupied_pages != 2331u) abort();
+    if (row_count != 6505324u || occupied_pages != 2407u) abort();
 
     static uint32_t page_counts[MAPSQUARE_COUNT];
     uint32_t expected_first = 0;
@@ -85,10 +85,10 @@ int main(void) {
     rc_asset_close(f);
     for (int plane = 0; plane < 4; plane++)
         if (plane_counts[plane] != expected_plane_counts[plane]) abort();
-    if (expected_plane_counts[0] != 3748754u
-            || expected_plane_counts[1] != 1410824u
-            || expected_plane_counts[2] != 767805u
-            || expected_plane_counts[3] != 383280u
+    if (expected_plane_counts[0] != 3905925u
+            || expected_plane_counts[1] != 1427173u
+            || expected_plane_counts[2] != 778099u
+            || expected_plane_counts[3] != 394127u
             || known_blocked != 1u || known_bridge_wall != 1u) {
         abort();
     }

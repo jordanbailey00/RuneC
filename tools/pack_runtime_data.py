@@ -52,7 +52,8 @@ MAPSQUARE_CATALOG_MAGIC = 0x3151534D
 MAPSQUARE_OANIM_HEADER = struct.Struct("<III")
 MAPSQUARE_OANIM_MAGIC = 0x4D4E414F
 MAPSQUARE_OANIM_VERSION = 1
-EXPECTED_B237_MAPSQUARE_REGIONS = 2870
+# b241 map index; b237 had 2870.
+EXPECTED_MAPSQUARE_REGIONS = 2950
 MAPSQUARE_PLANES = range(4)
 MAPSQUARE_SHARED_FILES = (
     "mapsquare.catalog",
@@ -369,7 +370,7 @@ def validate_mapsquare_runtime_assets(
     )
     if not catalog_complete and not allow_partial:
         raise SystemExit(
-            "incomplete b237 mapsquare catalog: "
+            "incomplete mapsquare catalog: "
             f"found {len(regions)}, expected {expected_catalog_regions}"
         )
     catalog_set = set(regions)
@@ -380,7 +381,7 @@ def validate_mapsquare_runtime_assets(
         coordinate = (int(match.group("x")), int(match.group("y")))
         if coordinate not in catalog_set:
             raise SystemExit(
-                f"mapsquare asset is absent from the b237 catalog: {path}"
+                f"mapsquare asset is absent from the catalog: {path}"
             )
 
     missing_count = 0
@@ -1063,7 +1064,7 @@ def main() -> int:
     mapsquare_visuals = validate_mapsquare_runtime_assets(
         data_root,
         allow_partial=args.allow_partial_mapsquares,
-        expected_catalog_regions=EXPECTED_B237_MAPSQUARE_REGIONS,
+        expected_catalog_regions=EXPECTED_MAPSQUARE_REGIONS,
     )
     spawn_index = validate_spawn_runtime_assets(data_root)
     object_placement_index = validate_object_placement_runtime_asset(data_root)

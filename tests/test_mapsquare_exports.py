@@ -941,12 +941,12 @@ class RuntimePackMapsquareTests(unittest.TestCase):
             self.assertEqual(partial["complete_region_planes"], 3)
 
             with self.assertRaisesRegex(
-                SystemExit, "incomplete b237 mapsquare catalog"
+                SystemExit, "incomplete mapsquare catalog"
             ):
                 pack_runtime_data.validate_mapsquare_runtime_assets(
                     root,
                     allow_partial=False,
-                    expected_catalog_regions=2870,
+                    expected_catalog_regions=2950,
                 )
 
     def test_spawn_pack_includes_npcs_and_static_ground_items(self) -> None:
@@ -1059,7 +1059,7 @@ class RuntimePackMapsquareTests(unittest.TestCase):
             root = Path(tmp)
             regions = self.write_fixture(root)
             (regions / "51_53.p0.terrain").write_bytes(b"terrain")
-            with self.assertRaisesRegex(SystemExit, "absent from the b237 catalog"):
+            with self.assertRaisesRegex(SystemExit, "absent from the catalog"):
                 pack_runtime_data.validate_mapsquare_runtime_assets(
                     root, allow_partial=True)
 

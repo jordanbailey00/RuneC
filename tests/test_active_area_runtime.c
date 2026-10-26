@@ -182,8 +182,8 @@ int main(void) {
     assert(rc_world_activate_area(world, &req, &stats) == 1);
     assert(stats.collision_regions > 0);
     assert(stats.collision_regions <= RC_MAX_REGIONS);
-    assert(stats.collision_stats.total_rows == 6310663);
-    assert(stats.collision_stats.occupied_pages == 2331);
+    assert(stats.collision_stats.total_rows == 6505324);
+    assert(stats.collision_stats.occupied_pages == 2407);
     assert(stats.collision_stats.pages_requested
            == (uint32_t)stats.collision_regions);
     assert(stats.collision_stats.pages_loaded

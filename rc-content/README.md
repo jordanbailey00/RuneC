@@ -132,6 +132,9 @@ rc-content/
     backed by a per-boss implementation
 - `regions/`
   - region-scoped overrides that do not belong in generic engine code
+  - `raid_transports.c` handles raid entrances and exits (CoX, ToB, ToA,
+    The Fractured Archive): it moves the player between each lobby and the
+    raid's static map template, which serves as the single-player instance
 - `quests/`
   - quest-specific state machines and handlers
 
