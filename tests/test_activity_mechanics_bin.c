@@ -99,8 +99,8 @@ int main(void) {
     int loaded = rc_load_activity_mechanics(RC_TEST_ACTIVITY_MECH_BIN);
     assert(loaded == 96);
     assert(g_rc_activity_mechanic_count == 96);
-    assert(count_status(RC_ACTIVITY_MECH_STATUS_ENCOUNTER_BACKED) == 64);
-    assert(count_status(RC_ACTIVITY_MECH_STATUS_OWNER_EXECUTABLE) == 32);
+    assert(count_status(RC_ACTIVITY_MECH_STATUS_ENCOUNTER_BACKED) == 65);
+    assert(count_status(RC_ACTIVITY_MECH_STATUS_OWNER_EXECUTABLE) == 31);
     assert(count_status(RC_ACTIVITY_MECH_STATUS_OWNER_MAPPED) == 0);
     assert(count_status(RC_ACTIVITY_MECH_STATUS_ACTIVITY_INDEXED) == 0);
     assert(count_flag(RC_ACTIVITY_MECH_MISSING_NPC_IDS) == 0);

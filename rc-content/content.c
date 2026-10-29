@@ -35,6 +35,9 @@ int rc_content_register_all(struct RcWorld *world) {
     ok &= rc_content_nex_register(world);
     ok &= rc_content_raids_register(world);
 
+    // ---- Raids ------------------------------------------------------
+    ok &= rc_content_chambers_of_xeric_register(world);
+
     // ---- Regions ----------------------------------------------------
     ok &= rc_content_raid_transports_register(world);
 

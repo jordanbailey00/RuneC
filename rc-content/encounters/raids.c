@@ -27,18 +27,6 @@ static void raid_enter_phase(struct RcWorld *world, int enc_idx,
                             5, style, 0, name, "");
 }
 
-static void olm_phase_1(struct RcWorld *world, int enc_idx) {
-    raid_enter_phase(world, enc_idx, "Olm Acid Phase", COMBAT_RANGED);
-}
-
-static void olm_phase_2(struct RcWorld *world, int enc_idx) {
-    raid_enter_phase(world, enc_idx, "Olm Crystal Phase", COMBAT_MAGIC);
-}
-
-static void olm_phase_3(struct RcWorld *world, int enc_idx) {
-    raid_enter_phase(world, enc_idx, "Olm Final Phase", COMBAT_NONE);
-}
-
 static void verzik_phase_1(struct RcWorld *world, int enc_idx) {
     raid_enter_phase(world, enc_idx, "Verzik Phase 1", COMBAT_MAGIC);
 }
@@ -65,9 +53,6 @@ static void wardens_phase_3(struct RcWorld *world, int enc_idx) {
 
 int rc_content_raids_register(struct RcWorld *world) {
     int ok = 1;
-    ok &= rc_encounter_register_script(world, "olm_phase_1", olm_phase_1) >= 0;
-    ok &= rc_encounter_register_script(world, "olm_phase_2", olm_phase_2) >= 0;
-    ok &= rc_encounter_register_script(world, "olm_phase_3", olm_phase_3) >= 0;
     ok &= rc_encounter_register_script(world, "verzik_phase_1", verzik_phase_1) >= 0;
     ok &= rc_encounter_register_script(world, "verzik_phase_2", verzik_phase_2) >= 0;
     ok &= rc_encounter_register_script(world, "verzik_phase_3", verzik_phase_3) >= 0;

@@ -74,7 +74,9 @@ That installs the b237 data release as the base. Then download the b241 cache
 the b241 map data over the base install. Point `B241` at the directory that
 holds `main_file_cache.dat2`; the pipeline still calls its cache variable
 `RUNEC_B237_CACHE`, but it accepts any cache directory. The region export
-takes about 20 minutes on 12 workers.
+takes about 20 minutes on 12 workers. The spawn-object and content exports
+add the Chambers of Xeric room objects and attack visuals that the b237
+release predates.
 
 ```bash
 export B241=/path/to/b241/cache
@@ -82,6 +84,8 @@ python3 tools/export_object_defs.py --cache "$B241"
 python3 tools/export_object_placements.py --cache "$B241"
 python3 tools/export_collision_tiles.py --cache "$B241"
 RUNEC_B237_CACHE="$B241" python3 tools/data_pipeline.py export-regions --full
+python3 tools/cache_pipeline/export_spawn_objects.py --cache "$B241"
+python3 tools/data_pipeline.py export-content
 python3 tools/cache_pipeline/export_animations.py --modern-cache "$B241" \
   --object-anims data/regions data/models/spawn_objects.oanim \
   --output data/anims/object.anims
@@ -140,11 +144,13 @@ Open the Clan Chat side tab to use the validation panel:
   arrives asleep; Poke it to start the fight. Teleporting there again puts it back to sleep.
 - `CoX`, `ToB`, `ToA` and `Archive` move the player beside the raid entrance
   of Chambers of Xeric, Theatre of Blood, Tombs of Amascut and The Fractured
-  Archive. Entering moves the player into the raid's map (the cache's static
-  template of it); each raid also has one exit back to its lobby or hub. Raid
-  bosses, puzzles and rewards are not implemented yet, so the rooms are empty.
-  The Fractured Archive exists only in b241 data; without b241 map data its
-  teleport is blocked with a chat message.
+  Archive. Chambers of Xeric plays solo without loot: enter the steps, pick
+  a normal raid (small, large or full layout) or Challenge Mode, and go
+  through the first passage to start the raid. The other three
+  only move the player into the raid's map (the cache's static template of
+  it), with one exit back to its lobby or hub; their bosses, puzzles and
+  rewards are not implemented yet. The Fractured Archive exists only in b241
+  data; without b241 map data its teleport is blocked with a chat message.
 
 These helpers are for development and testing. To run without them:
 

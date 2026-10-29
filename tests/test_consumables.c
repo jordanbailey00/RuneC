@@ -67,7 +67,8 @@ static void doses_and_catalog(void) {
     w = make_world();
     for (int i = 0; i < count; i++) {
         rc_consumables_reset(&w->player);
-        w->player.current_hp = 500;
+        // Overloads need more Hitpoints than their minimum.
+        w->player.current_hp = defs[i].min_hp ? (defs[i].min_hp + 1) * 10 : 500;
         for (int s = 0; s < RC_INVENTORY_SIZE; s++)
             w->player.inventory[s] = (RcInvSlot){.item_id=-1};
         slot = add(w, defs[i].item_id);
@@ -141,6 +142,15 @@ static void effects_and_expiry(void) {
     assert(consume(w,add(w,2434),1) == RC_CONSUME_OK && p->current_prayer_points == 330);
     p->equipment[EQUIP_RING] = (RcInvSlot){.item_id=13202,.quantity=1};
     assert(w->consumable_prayer_bonus(p) == 2 && "wrench bonuses do not stack");
+
+    // An overload at 50 Hitpoints is refused and keeps its dose.
+    w->tick = p->potion_ready_tick;
+    int overload = add(w,20996);
+    p->current_hp = 500;
+    assert(consume(w,overload,1) == RC_CONSUME_HP_REQUIREMENT);
+    assert(p->inventory[overload].item_id == 20996);
+    assert(strstr(rc_consume_result_message(RC_CONSUME_HP_REQUIREMENT),
+                  "survive the power"));
 
     w->tick = p->potion_ready_tick;
     int divine = add(w,23685);

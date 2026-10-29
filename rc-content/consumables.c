@@ -1,6 +1,7 @@
 #include "content.h"
 #include "consumables.h"
 #include "items.h"
+#include "raids/cox.h"
 
 // Reviewed B237 identities; no name parsing or arithmetic between dose IDs.
 // Evidence, supported families and exclusions: docs/consumables.md.
@@ -13,6 +14,30 @@
 #define DRAIN(s,p,f) [s]={RC_STAT_DRAIN,p,f}
 #define SUPER_MELEE BOOST(SKILL_ATTACK,15,5), BOOST(SKILL_STRENGTH,15,5), BOOST(SKILL_DEFENCE,15,5)
 #define RESTORE_COMBAT(p,f) RESTORE(SKILL_ATTACK,p,f), RESTORE(SKILL_STRENGTH,p,f), RESTORE(SKILL_DEFENCE,p,f), RESTORE(SKILL_RANGED,p,f), RESTORE(SKILL_MAGIC,p,f)
+// Chambers of Xeric gourd potions: doses (1)..(4) are consecutive ids and the
+// last dose breaks the gourd. Tier boosts are (-) 4 + 10%, regular 5 + 13% and
+// (+) 6 + 16% (OSRS Wiki potion pages, RuneLite item stats).
+#define GOURD(d1, ...) POT((d1)+3,(d1)+2,__VA_ARGS__), POT((d1)+2,(d1)+1,__VA_ARGS__), \
+    POT((d1)+1,(d1),__VA_ARGS__), POT((d1),-1,__VA_ARGS__)
+#define TIER_BOOST(s,t) BOOST(s,(t)==0?10:(t)==1?13:16,(t)+4)
+#define RESTORE_EVERY(p,f) RESTORE_COMBAT(p,f), RESTORE(SKILL_COOKING,p,f), RESTORE(SKILL_WOODCUTTING,p,f), RESTORE(SKILL_FLETCHING,p,f), RESTORE(SKILL_FISHING,p,f), RESTORE(SKILL_FIREMAKING,p,f), RESTORE(SKILL_CRAFTING,p,f), RESTORE(SKILL_SMITHING,p,f), RESTORE(SKILL_MINING,p,f), RESTORE(SKILL_HERBLORE,p,f), RESTORE(SKILL_AGILITY,p,f), RESTORE(SKILL_THIEVING,p,f), RESTORE(SKILL_SLAYER,p,f), RESTORE(SKILL_FARMING,p,f), RESTORE(SKILL_RUNECRAFT,p,f), RESTORE(SKILL_HUNTER,p,f), RESTORE(SKILL_CONSTRUCTION,p,f)
+#define XERICS_AID(hp,hpp,dp,df,rp,rf) .heal=hp, .heal_percent=hpp, .overheal=1, \
+    .stats={BOOST(SKILL_DEFENCE,dp,df), DRAIN(SKILL_ATTACK,rp,rf), \
+        DRAIN(SKILL_STRENGTH,rp,rf), DRAIN(SKILL_RANGED,rp,rf), DRAIN(SKILL_MAGIC,rp,rf)}
+#define COX_TIERS(line, macro) macro(line, 0), macro(line, 1), macro(line, 2)
+#define COX_ID(line, tier) (20913 + (line) * 12 + (tier) * 4)
+#define ELDER(line, t) GOURD(COX_ID(line, t), .stats={TIER_BOOST(SKILL_ATTACK,t), \
+    TIER_BOOST(SKILL_STRENGTH,t), TIER_BOOST(SKILL_DEFENCE,t)})
+#define TWISTED(line, t) GOURD(COX_ID(line, t), .stats={TIER_BOOST(SKILL_RANGED,t)})
+#define KODAI(line, t) GOURD(COX_ID(line, t), .stats={TIER_BOOST(SKILL_MAGIC,t)})
+// Revitalisation (+) restores 11 + 30% (wiki); the lower tiers are
+// unpublished (taken as 9 + 20% and 10 + 25%).
+#define REVITALISATION(line, t) GOURD(COX_ID(line, t), .prayer_flat=9+(t), \
+    .prayer_percent=20+5*(t), .stats={RESTORE_EVERY(20+5*(t), 9+(t))})
+#define PRAYER_ENHANCE(line, t) GOURD(COX_ID(line, t), \
+    .effect=COX_EFFECT_PRAYER_ENHANCE+(t))
+#define OVERLOAD(line, t) GOURD(COX_ID(line, t), .effect=COX_EFFECT_OVERLOAD+(t), \
+    .min_hp=50)
 #define RESTORE_ALL RESTORE_COMBAT(25,8), RESTORE(SKILL_COOKING,25,8), RESTORE(SKILL_WOODCUTTING,25,8), RESTORE(SKILL_FLETCHING,25,8), RESTORE(SKILL_FISHING,25,8), RESTORE(SKILL_FIREMAKING,25,8), RESTORE(SKILL_CRAFTING,25,8), RESTORE(SKILL_SMITHING,25,8), RESTORE(SKILL_MINING,25,8), RESTORE(SKILL_HERBLORE,25,8), RESTORE(SKILL_AGILITY,25,8), RESTORE(SKILL_THIEVING,25,8), RESTORE(SKILL_SLAYER,25,8), RESTORE(SKILL_FARMING,25,8), RESTORE(SKILL_RUNECRAFT,25,8), RESTORE(SKILL_HUNTER,25,8), RESTORE(SKILL_CONSTRUCTION,25,8)
 
 static const RcConsumableDef definitions[] = {
@@ -92,6 +117,20 @@ static const RcConsumableDef definitions[] = {
         .stats={BOOST(SKILL_MAGIC,0,4), BOOST(SKILL_DEFENCE,15,5)}),
     P4(24635,24638,24641,24644, .divine_ticks=500,
         .stats={BOOST(SKILL_RANGED,10,4), BOOST(SKILL_DEFENCE,15,5)}),
+    // Chambers of Xeric raid food: cooked tiers 0..6 heal 5 + 3 per tier.
+    FOOD(20856,5), FOOD(20858,8), FOOD(20860,11), FOOD(20862,14),
+    FOOD(20864,17), FOOD(20866,20), FOOD(20868,23),
+    FOOD(20871,5), FOOD(20873,8), FOOD(20875,11), FOOD(20877,14),
+    FOOD(20879,17), FOOD(20881,20), FOOD(20883,23),
+    COX_TIERS(0, ELDER), COX_TIERS(1, TWISTED), COX_TIERS(2, KODAI),
+    COX_TIERS(3, REVITALISATION), COX_TIERS(4, PRAYER_ENHANCE),
+    GOURD(COX_ID(5, 0), XERICS_AID(1, 7, 14, 1, 7, 1)),
+    GOURD(COX_ID(5, 1), XERICS_AID(2, 12, 18, 2, 9, 2)),
+    GOURD(COX_ID(5, 2), XERICS_AID(5, 15, 20, 5, 10, 4)),
+    COX_TIERS(6, OVERLOAD),
+    GOURD(25754, .cure=1, .poison_immunity=150),
+    GOURD(25758, .cure=1, .poison_immunity=600),
+    GOURD(25762, .cure=1, .poison_immunity=900),
 };
 
 static int prayer_cape(int id) {

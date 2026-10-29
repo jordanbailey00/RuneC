@@ -8,7 +8,8 @@
 // Raid entrances and exits. Entering moves the player into the raid's static
 // map template, which serves as the single player's instance. The scraped
 // traversal rows for these objects point at live instance coordinates, so
-// rc-core rejects them and these handlers take over.
+// rc-core rejects them and these handlers take over. Chambers of Xeric owns
+// its own entry and exit (raids/cox_raid.c).
 typedef struct {
     int obj_id;
     int option;     // 0-based object option; the first option on all of these
@@ -17,12 +18,10 @@ typedef struct {
 
 static const RaidTransport g_raid_transports[] = {
     // Entrances.
-    {29777, 0, 3278, 5190, 0}, /* Chambers of Xeric steps -> start room */
     {32653, 0, 3220, 4458, 0}, /* Theatre of Blood -> entrance corridor */
     {46089, 0, 3551, 5153, 0}, /* Tombs of Amascut lobby Entry -> Nexus */
     {62768, 0, 4127, 5573, 0}, /* Fractured Archive door (b241) -> arrival room */
     // Exits back to the lobby or hub.
-    {29778, 0, 1233, 3571, 0}, /* CoX Steps (Climb) -> Mount Quidamortem */
     {32996, 0, 3676, 3219, 0}, /* ToB treasure-room crystal -> Ver Sinhaza */
     {45128, 0, 3359, 9114, 0}, /* ToA Exit (Leave) -> lobby */
     {62765, 0, 4127, 5590, 0}, /* Archive boss-room Passageway -> central hall */

@@ -86,6 +86,7 @@ rc-content/
 │   ├── README.md
 │   ├── vorkath.c          Poke wakes the sleeping form
 │   └── ...                scripts for unadmitted bosses (inactive)
+├── raids/                Chambers of Xeric (see 2.2)
 ├── regions/              region-specific NPC / object behavior
 └── quests/               per-quest varbit state machines
 ```
@@ -132,11 +133,211 @@ rc-content/
     backed by a per-boss implementation
 - `regions/`
   - region-scoped overrides that do not belong in generic engine code
-  - `raid_transports.c` handles raid entrances and exits (CoX, ToB, ToA,
+  - `raid_transports.c` handles raid entrances and exits (ToB, ToA,
     The Fractured Archive): it moves the player between each lobby and the
-    raid's static map template, which serves as the single-player instance
+    raid's static map template, which serves as the single-player instance.
+    Chambers of Xeric owns its own entry and exit (`raids/cox_raid.c`)
 - `quests/`
   - quest-specific state machines and handlers
+
+## 2.2 Chambers of Xeric (`raids/`)
+
+The whole raid except loot: party and difficulty, layout generation, room
+chaining, every room's mechanics, resources and potions, and the Great Olm.
+Solo only (RuneC worlds hold one player), so every party-size rule is
+evaluated at one player.
+
+| File | Owns |
+| --- | --- |
+| `cox.h` | shared types (`CoxRaid`, `CoxRoom`, room state, hazards, stats) and helpers |
+| `cox_raid.c` | entry and difficulty, lobby, layout, room chain, floors, holes and ropes, timer, points, overlay variables, death, leaving |
+| `cox_combat_rooms.c` | Tekton, Vanguards, Vasa Nistirio, Guardians, Lizardman shamans, Skeletal mystics, Muttadiles, Vespula; `cox_modify_player_hit` |
+| `cox_puzzle_rooms.c` | Ice demon, Thieving, Tightrope, Jewelled crabs |
+| `cox_resources.c` | scavengers and their shortcut, farming rooms, weeds, fishing, bats, cooking, herblore, potion effects, tools, storage units |
+| `cox_olm.c` | the Great Olm |
+
+### How it is built
+
+- **No instances.** Rooms are the cache's static 32x32 room templates, used
+  in place. Each template exists in three exit variants (x 3264 / 3296 /
+  3328: exit west, north, east; entry always at the south edge). A raid
+  picks one variant per room and chains them by moving the player, so a
+  room's tiles, objects and collision are the cache's own. Floor starts,
+  ends and the Olm chamber are templates too.
+- **Per-world state.** `rc_content_chambers_of_xeric_register` allocates the
+  raid state through `rc_world_add_content_tick` (released on reset and
+  destroy). Hooks and handlers reach it with `rc_world_content_ctx`.
+- **NPCs.** Bosses are `owner_controlled` NPCs the room module drives with
+  `rc_combat_npc_scripted_attack`; simple NPCs (scavenger beasts, soldiers,
+  crabs, guards) use the core combat AI with per-life stat overrides
+  (`rc_npc_apply_combat_override`). Room NPCs spawn when the room is
+  entered and are re-resolved by uid every tick. The active area drops
+  NPCs far from the player; a revisited room restores each one as it was
+  last seen (form, HP, stats, targetability).
+- **Locs.** Room changes use runtime loc states (add, replace, delete,
+  revert; timed ones through `rc_world_object_expire`). Walkability checks
+  read the live map where it is loaded, so gates, crystals and spawned
+  rocks block like the cache's own locs. Every state the viewer must draw is listed in
+  `content/world/runtime_locs.toml`: `[[dynamic]]` rows become dynamic loc
+  sidecar rows in region exports, `[[spawn]]` rows become spawn templates
+  (`tools/cache_pipeline/export_objects.py`,
+  `tools/cache_pipeline/export_spawn_objects.py`). Leaving reverts every
+  loc state inside the raid area.
+- **Combat hooks.** The module wraps `on_player_hit_npc` (points, room
+  reactions), `on_npc_hit_player` (raid NPCs follow their room's rules, not
+  the regular poisonous-monster tags) and sets `modify_player_hit` (style
+  and weapon rules: Tekton, Vasa's crystals, Guardians' pickaxes, the Ice
+  demon, crabs, Olm, Vespula). Generic drops are suppressed for raid NPCs.
+- **Presentation.** Attack keys (`"Spark"`, `"Boulder"`, `"Sphere melee"`
+  ...) map to curated rows in `content/combat_visuals/visuals.tsv`. The
+  points overlay reads the raid's client variables, as in game: party
+  score (varbit 5431), personal score (varp 4609), timer in ticks (varbit
+  6386) and progress (varbit 5425, 5 stops the timer); the viewer formats
+  them. Choices use the chatbox choice prompt; messages use the game
+  message ring.
+
+### Raid flow
+
+- **Entry and lobby.** RuneC raids are solo, so there is no party and the
+  recruiting board does nothing. Entering the steps asks which raid to
+  start: a normal raid with the Small (half small, half medium patterns),
+  Large or Full (three fixed floors) layout, or Challenge Mode (always
+  Full). Captain Rimor's Set-difficulty disables level scaling. The
+  lobby's steps also offer Reload (new layout, before the start only). The
+  first room passage asks "Start the raid?"; starting begins the timer and
+  points.
+- **Layout.** RuneLite's 26 known room patterns per floor (small 8, medium
+  16, large 2). Combat rooms are a contiguous run of one of the two
+  rotations, in either direction; puzzles come from the cycle Ice demon,
+  Tightrope, Crabs, Thieving. A room's variant follows the turn its path
+  takes; a template already in use takes the other free variant.
+- **Moving between rooms.** Combat and puzzle exits are passages (cross 4
+  tiles); open rooms switch on the exit edge. Walking back off a room's
+  entry row returns to the previous room. Exits stay blocked (crystals,
+  tendrils, invisible barriers) until the room is complete. Once a fight
+  has raised its entry gate (fire or tendrils), a raider coming back
+  arrives in front of it and must Cross or Pass it, taking its damage.
+- **Floors.** A hole at each floor's end drops to the next floor's start; a
+  rope climbs back to the previous floor's end. The last hole leads to the
+  Olm antechamber.
+- **Scaling** (OSRS DPS calculator): C = combat level clamped to 60..126,
+  H = 55 + 44·HP/99 clamped to 55..99. Solo offence and defence are
+  ⌊base·H/99⌋, HP ⌊base·C/126⌋; Challenge Mode adds 50% (Tekton defence
+  +20%, Vasa crystals magic only, Olm HP unscaled). Clamps follow the
+  calculator.
+- **Points.** Damage dealt (5 per HP at combat 126), plus room and
+  skilling points; death costs 40% of personal points.
+- **Death** drops raid items where the player died and respawns them after
+  5 ticks at the end of the previous floor (the lobby on the first floor).
+  **Leaving** (steps, teleport, walking out) removes every raid item (lore
+  books stay), resets the raid and reverts its locs.
+
+### Rooms
+
+- **Tekton** wakes when approached, walks to the raider and swings every 3
+  ticks (stab, slash, crush; Protect from Melee lets half through) for a
+  27-tick first session and 47-tick later ones, then repairs at the anvil
+  (healing, sparks on each raider's 3x3); enraged after repair with higher
+  defences. Ranged does nothing, magic a fifth, and it cannot be hurt at
+  the anvil.
+- **Vanguards** burst from their holes when approached; melee hits three
+  times, ranged and magic hit the raider plus two tile strikes. A 40% HP
+  gap heals and shuffles the living ones.
+- **Vasa Nistirio** wakes from its crystal, throws boulders and siphons a
+  crystal while teleporting the raider beside it (prayers off, freeze,
+  delayed blast); destroying a crystal discards its stored heal.
+- **Guardians** take damage only from pickaxes (scaled by Mining level);
+  melee when adjacent, rockfall otherwise; statues remain after death.
+- **Lizardman shamans** spit, splash acid (poison), jump onto the raider and
+  release exploding spawn.
+- **Skeletal mystics** cast fire blast and a defence-draining vulnerability
+  or melee up close.
+- **Muttadiles**: the small one first; it eats from the meat tree to heal
+  (chop it to stop that); the large one emerges after the small dies.
+- **Vespula** stings lux grubs (they turn infected and offer Feed) into
+  soldiers; blossoms picked from the flowered roots heal a grub by 35. She
+  lands when low and enrages when her portal is hit; killing the portal
+  ends the room. Her ranged attacks poison from 20, soldiers from 15.
+- **Ice demon**: light the braziers with kindling to thaw it; fire spells
+  deal 2.5x, demonbane 1.15x, anything else a third.
+- **Thieving**: picklock chests for grubs (or bats, or gas), feed the
+  corrupted scavenger, which then lets the raid through.
+- **Tightrope**: cross under fire from the deathly guards, take the
+  keystone, dispel the barrier (which kills the guards).
+- **Jewelled crabs**: an orb leaves the carving every time the last one
+  ends; attack styles colour the crabs (Smash with a hammer roots one and
+  turns it red), a crab turns the orb right and colours a white one, a
+  clashing colour or a wall ends it, and a raider in its path takes 22.
+  Each crystal needs its colour; four lit crystals open the room.
+- **Scavengers** drop supplies; the large room's shortcut (stump or rubble)
+  needs a skill level. **Farming rooms** have seeds, patches, the gourd
+  tree, the geyser, fishing and bats. Cooking, herblore (overloads, Xeric's
+  aid, revitalisation, prayer enhance, elder/twisted/kodai potions) and
+  storage units (building only) work as in game.
+
+### The Great Olm
+
+Rises in an east or west wall with both claws; claw phases (three solo)
+each rise with one power (acid, flame or crystal; no repeat until all
+three are used), the penultimate phase allows all powers and four
+specials, and the final stand is the head alone on the penultimate wall.
+The head acts on a 4-step clock (basic, null, basic, special), turns to
+the raider's view and skips a basic when it must turn; spheres sap
+prayers; the left claw casts crystal burst, lightning, teleport portals
+and (penultimate) heal, and clenches when hit hard after a null step. Claw
+deaths sink the head under a crystal shower, then it rises on the other
+wall. The head's death opens the exit; the reward chest is empty (no loot).
+
+### Sources
+
+OSRS Wiki pages for the raid, every room NPC and room object, and the
+strategy and Challenge Mode pages; Jagex posts and Mod Ash replies; the
+OSRS DPS calculator's CoX scaling (weirdgloop/osrs-dps-calc); RuneLite's
+raids plugin (layout patterns, rotations) and `gameval` constants; the
+b241 cache for ids, room templates and collision; and a third-party
+analysis of public RSProx recordings of live OSRS (MRobertEvers
+oldschool-clientc, `docs/rsprox-analysis/cox`) for tick timings, tiles
+and spawn positions. The recordings were mostly Grid Master worlds, so
+their damage numbers read low; only their timings and tiles are used.
+
+### Values chosen where sources conflict
+
+- Level scaling: the DPS calculator's linear scaling to 126, not the
+  "115 combat" wording of the 2021 post.
+- Respawn: the end of the previous floor (strategy page), not its start.
+- Tekton: 3-tick swings; sessions of 27 then 47 ticks (capture and the
+  OpenOSRS helper agree); anvil 15-21 ticks.
+- Olm: one power per claw phase, all powers in the penultimate phase
+  (current wiki); transition crystals 16-25 / 10-16 and power crystals
+  15-20 (wiki); crystal bombs 60 falling to 15 (wiki), kept in the final
+  phase; teleport damage 1 + ⌊4.3·distance⌋ (capture); deep burn 6 hits
+  (wiki); clench 45 ticks (capture); power attack 1 in 3, 1 in 2 in the
+  final stand (Mod Ash, read as the head phase).
+- Guardian HP: 151 + average Mining (both formulas agree solo).
+
+### Estimates (no published value)
+
+- Puzzle cycle order (Ice demon, Tightrope, Crabs, Thieving) and the Full
+  layout's grid path.
+- The large scavenger room's shortcut tiles.
+- Cooking burn rates (half at the requirement, none 30 levels above).
+- Revitalisation (−) and regular amounts (9 + 20%, 10 + 25%); prayer
+  enhance (−) and regular (8 fewer pulses per tier).
+- Ice demon thaw rate (10 heat per kindling, 540 to thaw solo) and max hit.
+- Crab points per lit crystal (500) and crab max hit.
+- Vespula and soldier poison chance (1 in 4 damaging hits).
+- Medivaemia roots flower again 30 ticks after a blossom is picked.
+- Olm sphere rate (1 in 6), acid pool and drip lifetimes, lightning damage
+  (10-20).
+
+### Not implemented
+
+- Loot, the score board and unclaimed loot. Raids are solo by design.
+- Item storage in storage units (building works; Private and Shared say so).
+- The Olm head cannot be attacked during claw phases (melee on the head is
+  unverified in sources); the snake in farming rooms is not spawned.
+- The tightrope walk has no crossing animation; the raider moves to the far
+  end after the crossing time.
 
 ---
 

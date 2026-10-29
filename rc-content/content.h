@@ -56,6 +56,9 @@ int rc_content_nex_register(struct RcWorld *world);
 int rc_content_raids_register(struct RcWorld *world);
 // Future entries land here as new boss modules are authored.
 
+// Raids — Chambers of Xeric: party setup, layout, rooms, Olm (raids/cox_*.c).
+int rc_content_chambers_of_xeric_register(struct RcWorld *world);
+
 // Regions — region-specific NPC tick logic, object interactions, etc.
 // Raid entrances and exits move the player between each raid and its lobby.
 int rc_content_raid_transports_register(struct RcWorld *world);

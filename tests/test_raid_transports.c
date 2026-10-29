@@ -27,11 +27,9 @@ typedef struct {
 } RaidTransportCase;
 
 static const RaidTransportCase g_cases[] = {
-    {"CoX entrance", 29777, "Enter", 1232, 3573, 1233, 3572, 3278, 5190},
     {"ToB entrance", 32653, "Enter", 3678, 3216, 3677, 3219, 3220, 4458},
     {"ToA entrance", 46089, "Enter", 3357, 9112, 3359, 9113, 3551, 5153},
     {"Archive entrance", 62768, "Enter", 4123, 5562, 4127, 5561, 4127, 5573},
-    {"CoX exit", 29778, "Climb", 3231, 5755, 3231, 5754, 1233, 3571},
     {"ToB exit", 32996, "Use", 3246, 4315, 3246, 4314, 3676, 3219},
     {"ToA exit", 45128, "Leave", 3549, 5163, 3551, 5162, 3359, 9114},
     {"Archive exit", 62765, "Exit", 4085, 5533, 4087, 5535, 4127, 5590},
@@ -95,7 +93,7 @@ int main(void) {
         assert(world->player.plane == 0);
         checked++;
     }
-    assert(checked >= 6);
+    assert(checked >= 4);
     rc_world_destroy(world);
     return 0;
 }

@@ -21,7 +21,7 @@ Use this file for:
 - Boss-specific phase scripts and option handlers — e.g. Vorkath's Poke,
   which wakes the sleeping form through `rc_encounter_wake`.
 - Boss-specific attack rotations that don't generalize — e.g. Zulrah's
-  tick-indexed phase rotation, Olm's hand-vs-head coordination.
+  tick-indexed phase rotation.
 - Boss-specific environmental setup (if not expressible in TOML).
 
 **Out of scope (goes elsewhere):**
@@ -83,11 +83,6 @@ Inferno with per-wave logic), use a subdirectory:
 
 ```
 encounters/
-├── chambers_of_xeric/
-│   ├── chambers_of_xeric.c       (entry + register)
-│   ├── olm.c                     (final boss)
-│   ├── tekton.c                  (room mini-bosses)
-│   └── ...
 ├── inferno/
 │   ├── inferno.c                 (wave progression)
 │   ├── zuk.c                     (final boss)
@@ -95,7 +90,11 @@ encounters/
 ```
 
 The register fn always lives in the entry file and is named for the
-encounter slug: `rc_content_chambers_of_xeric_register`.
+encounter slug: `rc_content_inferno_register`.
+
+Raids that need their own layout, room chaining and party state run as
+content modules outside the encounter runtime: Chambers of Xeric lives in
+`rc-content/raids/` (see `rc-content/README.md`).
 
 ---
 
