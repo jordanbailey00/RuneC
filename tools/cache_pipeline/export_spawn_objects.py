@@ -3,7 +3,8 @@
 Map squares only carry the locs placed in the cache map data. Mechanics can
 place others (Vorkath's acid pools, ...): the admitted encounter documents
 name each such loc in an `[[objects]]` row (B237 object id, expected name,
-placement type). This exporter renders every (loc, type) at the four
+placement type), and content scripts list theirs as `[[spawn]]` rows in
+content/world/runtime_locs.toml (raid gates, hazards and blockers). This exporter renders every (loc, type) at the four
 rotations through the same recolor/retexture/scale/mirror/rotate path as the
 animated map objects and writes:
 
@@ -78,6 +79,22 @@ def encounter_spawn_locs(encounters_dir: Path) -> dict[tuple[int, int], str]:
     return out
 
 
+def runtime_spawn_locs(path: Path) -> dict[tuple[int, int], str]:
+    """(loc id, type) -> expected name for content-spawned locs
+    (content/world/runtime_locs.toml [[spawn]] rows)."""
+    if not path.exists():
+        return {}
+    with path.open("rb") as f:
+        doc = tomllib.load(f)
+    out: dict[tuple[int, int], str] = {}
+    for row in doc.get("spawn", []):
+        key = (int(row["loc"]), int(row["type"]))
+        if key in out:
+            raise SystemExit(f"{path.name}: loc {key[0]} type {key[1]} listed twice")
+        out[key] = str(row["name"])
+    return out
+
+
 def template_position(loc, rotation: int) -> tuple[float, float, float]:
     """Model origin relative to the tile's south-west corner (OANM axes)."""
     scale = 1.0 / 128.0
@@ -96,10 +113,16 @@ def main() -> int:
     parser.add_argument("--encounters", type=Path,
                         default=content_read_path("encounters"),
                         help="encounter documents naming spawned locs")
+    parser.add_argument("--runtime-locs", type=Path,
+                        default=content_read_path("world", "runtime_locs.toml"),
+                        help="content-spawned locs ([[spawn]] rows)")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
 
     wanted = encounter_spawn_locs(args.encounters)
+    for key, name in runtime_spawn_locs(args.runtime_locs).items():
+        if wanted.setdefault(key, name) != name:
+            raise SystemExit(f"loc {key[0]} named {name!r}, elsewhere {wanted[key]!r}")
     reader = RcCacheStore(args.cache)
     loc_defs = load_modern_object_definitions(reader)
     tex_colors, atlas, _texture_defs = load_modern_object_materials(reader)

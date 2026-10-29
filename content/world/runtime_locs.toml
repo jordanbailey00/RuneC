@@ -1,0 +1,180 @@
+# Locs that content scripts change at runtime, so the region export can draw
+# them as the core object state says.
+#
+# [[dynamic]]: a map loc whose placements content replaces or removes. Its
+# placements export as dynamic bases, and every listed replacement exports
+# at the same tile, type and rotation (tools/cache_pipeline/export_objects.py).
+#
+# [[spawn]]: a loc content adds where the map has none; it exports as a spawn
+# template for each rotation (tools/cache_pipeline/export_spawn_objects.py).
+# `name` must match the b241 definition name.
+
+# Chambers of Xeric (rc-content/raids/cox_*.c).
+[[dynamic]]
+loc = 47420            # lobby bank chest -> closed at raid start
+replacements = [47419]
+[[dynamic]]
+loc = 29747            # Ice demon brazier -> lit
+replacements = [29748]
+[[dynamic]]
+loc = 29763            # sapling -> stump
+replacements = [29764]
+[[dynamic]]
+loc = 29742            # thieving chest -> open, cocoons, hatched
+replacements = [29743, 29744, 29745]
+[[dynamic]]
+loc = 29746            # trough -> full
+replacements = [29874]
+[[dynamic]]
+loc = 29765            # herb patch -> seed, growth 1-3, grown (noxifer, golpar, buchu)
+replacements = [29997, 29998, 29999, 30000, 30001, 30002, 30003, 30004, 30005,
+                30006, 30007, 30008, 30009, 30010, 30011]
+[[dynamic]]
+loc = 29769            # tiny storage unit -> small, medium, large, massive
+replacements = [29770, 29779, 29780, 37978]
+[[dynamic]]
+loc = 29758            # crab crystals -> white
+replacements = [29762]
+[[dynamic]]
+loc = 29759
+replacements = [29762]
+[[dynamic]]
+loc = 29760
+replacements = [29762]
+[[dynamic]]
+loc = 29761
+replacements = [29762]
+[[dynamic]]
+loc = 30069            # medivaemia root -> flowered
+replacements = [30068]
+[[dynamic]]
+loc = 30027            # reward crystal -> ancient chest
+replacements = [30028]
+[[dynamic]]
+loc = 30018            # Olm chamber exit crystal, removed when Olm dies
+replacements = []
+
+[[spawn]]
+loc = 30016
+name = "Crystal"
+type = 10
+[[spawn]]
+loc = 30017
+name = "Crystal"
+type = 10
+[[spawn]]
+loc = 30018
+name = "Crystal"
+type = 10
+[[spawn]]
+loc = 29741
+name = "Mark of Power"
+type = 10
+[[spawn]]
+loc = 30070
+name = "Boil"
+type = 10
+[[spawn]]
+loc = 30021
+name = "Fire"
+type = 10
+[[spawn]]
+loc = 30019
+name = "Magical fire"
+type = 10
+[[spawn]]
+loc = 29767
+name = "Noxious tendrils"
+type = 10
+[[spawn]]
+loc = 29768
+name = "Spirit tendrils"
+type = 10
+[[spawn]]
+loc = 30024
+name = "Septic tendrils"
+type = 10
+[[spawn]]
+loc = 29775
+name = ""
+type = 10
+[[spawn]]
+loc = 29774
+name = ""
+type = 10
+[[spawn]]
+loc = 30012
+name = "Rocks"
+type = 10
+[[spawn]]
+loc = 30013
+name = "Meat tree"
+type = 10
+[[spawn]]
+loc = 29876
+name = "Ice storm"
+type = 10
+[[spawn]]
+loc = 29749
+name = "Shimmering barrier"
+type = 10
+[[spawn]]
+loc = 29753
+name = "Dark crystal"
+type = 10
+[[spawn]]
+loc = 29754
+name = "Fairly dark crystal"
+type = 10
+[[spawn]]
+loc = 29755
+name = "Slightly dark crystal"
+type = 10
+[[spawn]]
+loc = 29756
+name = "Dim crystal"
+type = 10
+[[spawn]]
+loc = 29757
+name = "Glowing crystal"
+type = 10
+[[spawn]]
+loc = 29736
+name = "Rotten sapling"
+type = 10
+[[spawn]]
+loc = 29737
+name = "Rotten stump"
+type = 10
+[[spawn]]
+loc = 29738
+name = "Rocks"
+type = 10
+[[spawn]]
+loc = 29739
+name = "Rubble"
+type = 10
+[[spawn]]
+loc = 29740
+name = "Boulder"
+type = 10
+[[spawn]]
+loc = 30032
+name = "Acid pool"
+type = 22
+[[spawn]]
+loc = 29766
+name = "Crystal bomb"
+type = 10
+[[spawn]]
+loc = 30033
+name = "Small crystals"
+type = 10
+[[spawn]]
+loc = 30034
+name = "Large crystals"
+type = 10
+[[spawn]]
+loc = 26185
+name = "Fire"
+type = 10

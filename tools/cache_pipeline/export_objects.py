@@ -23,12 +23,15 @@ import io
 import math
 import struct
 import sys
+import tomllib
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from content_paths import content_read_path  # noqa: E402
 from export_collision_map import (
     CONFIG_INDEX,
     MAP_INDEX,
@@ -1100,6 +1103,10 @@ class AnimatedObjectPlacement:
 class DynamicObjectBehavior:
     next_stage: int
     flags: int
+    # Content-declared states (content/world/runtime_locs.toml): every
+    # replacement drawn on the base's own tile, type and rotation.
+    replacements: tuple[int, ...] = ()
+    runtime: bool = False
 
 
 def write_object_anim_binary(
@@ -1130,10 +1137,29 @@ def write_object_anim_binary(
 # --- main pipeline ---
 
 
+def load_runtime_loc_variants(
+    path: Path | None = None,
+) -> dict[int, tuple[int, ...]]:
+    """Map locs content changes at runtime -> their replacement locs."""
+    path = path or content_read_path("world", "runtime_locs.toml")
+    if not path.exists():
+        return {}
+    with path.open("rb") as f:
+        doc = tomllib.load(f)
+    out: dict[int, tuple[int, ...]] = {}
+    for row in doc.get("dynamic", []):
+        loc = int(row["loc"])
+        if loc in out:
+            raise ValueError(f"{path}: loc {loc} listed twice")
+        out[loc] = tuple(int(r) for r in row.get("replacements", []))
+    return out
+
+
 def load_dynamic_behaviors(
     path: Path = OBJECT_BEHAVIORS,
 ) -> dict[int, DynamicObjectBehavior]:
-    """Read object behavior v2 next-stage pairs for dynamic loc sidecars."""
+    """Read object behavior v2 next-stage pairs for dynamic loc sidecars,
+    plus the content-declared runtime loc states."""
     data = path.read_bytes()
     if len(data) < 12:
         raise ValueError(f"{path}: object-behavior header is truncated")
@@ -1156,6 +1182,11 @@ def load_dynamic_behaviors(
         if next_stage >= 0 or (flags & (OBHV_DOOR | OBHV_RESOURCE)):
             out[int(obj_id)] = DynamicObjectBehavior(int(next_stage),
                                                      int(flags))
+    for loc, replacements in load_runtime_loc_variants().items():
+        base = out.get(loc)
+        out[loc] = DynamicObjectBehavior(
+            base.next_stage if base else -1, base.flags if base else 0,
+            replacements, True)
     return out
 
 
@@ -1529,7 +1560,7 @@ def process_placements(
         is_dynamic = dynamic_behavior is not None and (
             is_gathering_placement
             if is_resource
-            else po.obj_type <= 3 or next_stage >= 0
+            else po.obj_type <= 3 or next_stage >= 0 or dynamic_behavior.runtime
         )
         is_animated = loc.animation_id >= 0
         for half_idx, eff_rot in enumerate(rotations_to_emit):
@@ -1587,6 +1618,21 @@ def process_placements(
                     emit_sidecar(active_loc, active_po, eff_rot, half_idx,
                                  OANM_FLAG_DYNAMIC_REPLACEMENT,
                                  active_loc.animation_id)
+            for replacement_id in dynamic_behavior.replacements:
+                source = loc_defs.get(replacement_id)
+                replacement = resolve_visual_loc(source, loc_defs, po.obj_type) \
+                    if source else None
+                if replacement is None:
+                    raise ValueError(f"runtime loc {po.obj_id}: replacement "
+                                     f"{replacement_id} has no definition")
+                state_po = PlacedObject(obj_id=replacement_id,
+                                        world_x=po.world_x, world_y=po.world_y,
+                                        height=po.height, obj_type=po.obj_type,
+                                        rotation=po.rotation)
+                for half_idx, eff_rot in enumerate(rotations_to_emit):
+                    emit_sidecar(replacement, state_po, eff_rot, half_idx,
+                                 OANM_FLAG_DYNAMIC_REPLACEMENT,
+                                 replacement.animation_id)
             continue
 
         if is_animated:
