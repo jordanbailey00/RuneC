@@ -83,7 +83,8 @@ typedef enum RuneCUiIntentKind {
     RUNEC_UI_INTENT_SCENE_PLANE,
     RUNEC_UI_INTENT_DEV_TRANSPORT,
     RUNEC_UI_INTENT_DEV_SPELLBOOK,
-    RUNEC_UI_INTENT_DEV_NPC_TILES
+    RUNEC_UI_INTENT_DEV_NPC_TILES,
+    RUNEC_UI_INTENT_CHOICE_OPTION
 } RuneCUiIntentKind;
 
 typedef struct RuneCUiIntent {
@@ -254,6 +255,13 @@ typedef struct RuneCUiState {
     uint32_t tick;
     int running;
     int paused;
+
+    // Core-owned chatbox choice ("Select an Option"), mirrored each frame.
+    int choice_active;
+    uint32_t choice_generation;
+    char choice_title[64];
+    char choice_options[5][64];
+    int choice_count;
 
     int chat_focused;
     int active_chat_tab;

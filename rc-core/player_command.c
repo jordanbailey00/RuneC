@@ -99,6 +99,7 @@ void rc_player_cancel_action(RcWorld *world,
 void rc_player_replace_action_with_movement(
     RcWorld *world, RcPlayerActionCancelReason reason) {
     cancel_player_activity(world, reason, 0);
+    world->choice.active = false;
 }
 
 static void set_action(RcWorld *world, RcPlayerActionOwner owner,

@@ -30,6 +30,7 @@ const char *rc_consume_result_message(int result) {
     case RC_CONSUME_COOLDOWN: return "You must wait before consuming that again.";
     case RC_CONSUME_LOW_HP: return "You need more than 10 Hitpoints to drink a divine potion.";
     case RC_CONSUME_ITEM_FAILURE: return "The consumption item transaction failed; nothing was consumed.";
+    case RC_CONSUME_HP_REQUIREMENT: return "You need more Hitpoints to survive the power of that potion.";
     case RC_CONSUME_BAD_DATA: return "The consumable or player state is invalid; nothing was consumed.";
     case RC_CONSUME_MEMBERS: return "You need a members world to consume that item.";
     default: return "That item cannot be consumed with this action.";
@@ -155,6 +156,8 @@ RcConsumeResult rc_player_consume_expected(RcWorld *w, int slot,
     if (w->tick < ready) return result(w, id, RC_CONSUME_COOLDOWN);
     if (d->divine_ticks && p->current_hp <= 100)
         return result(w, id, RC_CONSUME_LOW_HP);
+    if (d->min_hp && p->current_hp <= d->min_hp * 10)
+        return result(w, id, RC_CONSUME_HP_REQUIREMENT);
     for (int s = 0; s < SKILL_COUNT; s++) {
         if (p->skills.base_level[s] < 0 || p->skills.base_level[s] > 255
                 || (d->stats[s].op && (p->skills.boosted_level[s] < 0
@@ -220,6 +223,7 @@ RcConsumeResult rc_player_consume_expected(RcWorld *w, int slot,
         p->delayed_food_energy = d->delayed_energy;
         p->delayed_food_cure = d->delayed_cure;
     }
+    if (d->effect && w->consumable_effect) w->consumable_effect(w, d);
     p->food_ready_tick = w->tick + d->eat_delay;
     if (d->kind != RC_CONSUME_FOOD) p->potion_ready_tick = w->tick + d->eat_delay;
     if (d->kind == RC_CONSUME_COMBO) p->combo_ready_tick = w->tick + d->eat_delay;

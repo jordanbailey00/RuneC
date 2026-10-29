@@ -5,6 +5,7 @@
 #include "../rc-core/combat.h"
 #include "../rc-core/config.h"
 #include "../rc-core/consumables.h"
+#include "../rc-core/dialogue.h"
 #include "../rc-core/encounter.h"
 #include "../rc-core/items.h"
 #include "../rc-core/objects.h"
@@ -14,6 +15,7 @@
 #include "../rc-core/spawn_index.h"
 #include "../rc-core/spells.h"
 #include "../rc-core/storage.h"
+#include "../rc-core/varbits.h"
 #include "../rc-content/content.h"
 #include "raylib.h"
 #include "raymath.h"
@@ -493,7 +495,11 @@ typedef struct {
     int context_plane;
     int context_tile_x;
     int context_tile_y;
-    uint64_t interaction_outcome_seen;
+    uint64_t game_message_seen;
+    // NPC definitions whose missing model already triggered a scene model
+    // reload (content spawns NPCs after a scene's models were chosen).
+    uint8_t npc_model_requested[RC_MAX_NPC_ID];
+    int npc_models_reload_pending;
     uint64_t consume_outcome_seen;
     uint64_t bank_outcome_seen;
     uint64_t consume_sequence_seen;
@@ -3929,8 +3935,75 @@ static void sync_ui_items(ViewerState *v) {
     }
 }
 
+// Chambers of Xeric points overlay (interface 513), drawn at the top left of
+// the game view while the raid's in-dungeon varbit is set: party points,
+// the player's points ("Lots!" from 2,000,000,000) and the raid timer.
+enum {
+    RAIDS_VARBIT_PARTYSCORE = 5431,
+    RAIDS_VARBIT_INDUNGEON = 5432,
+    RAIDS_VARBIT_TIMER = 6386,
+    RAIDS_VARP_PLAYERSCORE = 4609,
+};
+
+static void format_raid_points(char *dst, size_t cap, long long points) {
+    if (points >= 2000000000LL) {
+        snprintf(dst, cap, "Lots!");
+        return;
+    }
+    char digits[24];
+    snprintf(digits, sizeof(digits), "%lld", points < 0 ? 0 : points);
+    int len = (int)strlen(digits), out = 0;
+    for (int i = 0; i < len && out + 2 < (int)cap; i++) {
+        if (i > 0 && (len - i) % 3 == 0) dst[out++] = ',';
+        dst[out++] = digits[i];
+    }
+    dst[out] = '\0';
+}
+
+static void draw_raid_overlay(ViewerState *v) {
+    const RcWorld *w = v->world;
+    if (!rc_varbit_get(w, RAIDS_VARBIT_INDUNGEON)) return;
+    char total[24], mine[24], lines[3][48];
+    format_raid_points(total, sizeof(total), rc_varbit_get(w, RAIDS_VARBIT_PARTYSCORE));
+    format_raid_points(mine, sizeof(mine), rc_varp_get(w, RAIDS_VARP_PLAYERSCORE));
+    // A tick is 0.6 seconds.
+    unsigned secs = rc_varbit_get(w, RAIDS_VARBIT_TIMER) * 6u / 10u;
+    snprintf(lines[0], sizeof(lines[0]), "Total: %s", total);
+    snprintf(lines[1], sizeof(lines[1]), "You: %s", mine);
+    if (secs >= 3600)
+        snprintf(lines[2], sizeof(lines[2]), "Time: %u:%02u:%02u", secs / 3600,
+                 secs / 60 % 60, secs % 60);
+    else
+        snprintf(lines[2], sizeof(lines[2]), "Time: %u:%02u", secs / 60, secs % 60);
+    Rectangle box = {8, 8, 176, 8.0f + 17.0f * 3.0f};
+    DrawRectangleRec(box, (Color){62, 53, 41, 200});
+    DrawRectangleLinesEx(box, 1, (Color){30, 25, 18, 255});
+    for (int i = 0; i < 3; i++)
+        runec_ui_draw_text_shadow(&v->ui.assets, lines[i], box.x + 6,
+                                  box.y + 4 + 17.0f * (float)i, 14, WHITE);
+}
+
+static void sync_ui_choice(ViewerState *v) {
+    const RcChoicePrompt *c = &v->world->choice;
+    RuneCUiState *ui = &v->ui;
+    if (!c->active) {
+        ui->choice_active = 0;
+        return;
+    }
+    // Same prompt: still shown, or picked and hidden until core closes it.
+    if (ui->choice_generation == c->generation) return;
+    ui->choice_generation = c->generation;
+    ui->choice_active = 1;
+    ui->choice_count = c->option_count;
+    snprintf(ui->choice_title, sizeof(ui->choice_title), "%s", c->title);
+    for (int i = 0; i < c->option_count && i < 5; i++)
+        snprintf(ui->choice_options[i], sizeof(ui->choice_options[i]), "%s",
+                 c->options[i]);
+}
+
 static void sync_ui_player_status(ViewerState *v) {
     const RcPlayer *p = &v->world->player;
+    sync_ui_choice(v);
     if (v->bank_outcome_seen != p->bank_result.sequence) {
         v->bank_outcome_seen = p->bank_result.sequence;
         const char *message = rc_bank_result_message(&p->bank_result);
@@ -4007,15 +4080,15 @@ static void sync_ui_player_status(ViewerState *v) {
 static void viewer_sync_interaction_outcome(ViewerState *v) {
     if (!v || !v->world)
         return;
-    const RcInteractionOutcome *outcome =
-        rc_interaction_last_outcome(&v->world->player);
-    if (!outcome || outcome->sequence == 0
-            || outcome->sequence == v->interaction_outcome_seen) {
-        return;
+    // A reset world restarts its message sequence.
+    if (v->game_message_seen > v->world->player.messages.next_sequence)
+        v->game_message_seen = 0;
+    const RcGameMessage *message;
+    while ((message = rc_player_next_game_message(
+                &v->world->player, v->game_message_seen))) {
+        v->game_message_seen = message->sequence;
+        runec_ui_add_chat_message(&v->ui, message->text);
     }
-    v->interaction_outcome_seen = outcome->sequence;
-    if (outcome->message[0])
-        runec_ui_add_chat_message(&v->ui, outcome->message);
 }
 
 static void viewer_sync_traversal_outcome(ViewerState *v) {
@@ -9788,6 +9861,11 @@ static void draw_scene(ViewerState *v, int ui_capture) {
             ne = model_find(v->npc_models, (uint32_t)def->id);
         }
 
+        if (!ne && v->npc_models && def->id >= 0 && def->id < RC_MAX_NPC_ID
+                && !v->npc_model_requested[def->id]) {
+            v->npc_model_requested[def->id] = 1;
+            v->npc_models_reload_pending = 1;
+        }
         if (ne && ne->loaded) {
             // The client motion turns NPCs toward their step, face entity
             // or face angle.
@@ -10545,6 +10623,9 @@ int main(int argc, char **argv) {
                 viewer_dev_transport_to(&v, &transports[idx]);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_DEV_NPC_TILES) {
             viewer_set_npc_tiles(&v, v.ui.last_intent.primary);
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_CHOICE_OPTION) {
+            rc_player_widget_action(v.world, RC_CHOICE_WIDGET,
+                                    v.ui.last_intent.primary, 0);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_DEV_SPELLBOOK) {
             if (runec_dev_validation_set_spellbook(v.world, v.ui.last_intent.primary))
                 runec_ui_set_active_tab(&v.ui, RUNEC_UI_TAB_SPELLBOOK);
@@ -10722,6 +10803,10 @@ int main(int argc, char **argv) {
                 &v.tick_pacing, 1.0 / TPS);
         }
         viewer_sync_interaction_outcome(&v);
+        if (v.npc_models_reload_pending) {
+            v.npc_models_reload_pending = 0;
+            reload_npc_models_for_scene(&v);
+        }
         viewer_sync_consumption(&v);
         viewer_sync_traversal_event(&v);
         viewer_sync_traversal_outcome(&v);
@@ -10740,6 +10825,7 @@ int main(int argc, char **argv) {
         viewer_sync_scene_plane_ui(&v);
         sync_ui_minimap(&v);
         runec_ui_draw(&v.ui, GetScreenWidth(), GetScreenHeight());
+        draw_raid_overlay(&v);
         viewer_draw_click_feedback(&v);
         draw_hover_action_label(&v, ui_capture);
         draw_streaming_telemetry_overlay(&v);

@@ -22,6 +22,8 @@
 #include <stdio.h>
 
 static int npc_can_retaliate(const RcWorld *world, const RcNpc *npc);
+static void combat_register_attacker(RcCombatActorState *target,
+                                     RcCombatActorRef attacker);
 static int combat_can_attack_target(RcWorld *world, RcCombatActorRef attacker,
                                     RcCombatActorRef target);
 
@@ -509,6 +511,61 @@ void rc_combat_record_encounter_action(RcWorld *world, const RcNpc *npc,
                       target_x, target_y, style, hit_delay, key);
 }
 
+int rc_combat_npc_scripted_attack(RcWorld *world, RcNpc *npc,
+                                  const RcNpcScriptedAttack *attack) {
+    if (!world || !npc || !attack || !npc->active || npc->is_dead)
+        return -1;
+    RcPlayer *p = &world->player;
+    const RcNpcDef *d = rc_npc_def_for_npc(world, npc);
+    if (!d || p->is_dead || p->num_pending_hits >= RC_MAX_PENDING_HITS
+            || world->combat_attack_event_count >= RC_MAX_COMBAT_ATTACK_EVENTS)
+        return -1;
+    int max_hit = attack->max_hit > attack->min_hit ? attack->max_hit
+                                                    : attack->min_hit;
+    RcCombatRoll roll;
+    if (attack->flags & RC_NPC_ATTACK_ALWAYS_ACCURATE) {
+        roll.accurate = true;
+        roll.damage = attack->min_hit
+                    + rc_rng_range(&world->rng_state, max_hit - attack->min_hit);
+    } else {
+        RcCombatCalc calc = rc_calc_npc_attack_style(npc, d, p, attack->style);
+        calc.max_hit = max_hit;
+        roll = rc_roll_attack(&calc, &world->rng_state, false);
+        if (roll.accurate && roll.damage < attack->min_hit)
+            roll.damage = attack->min_hit;
+    }
+    if (rc_combat_apply_protection(1, attack->style, p->active_prayers, true) == 0)
+        roll.damage = roll.damage * attack->protected_pct / 100;
+    int index = p->num_pending_hits;
+    if (!rc_queue_hit_meta(p->pending_hits, &p->num_pending_hits, roll.damage,
+                           attack->delay, attack->style, npc->uid, 0,
+                           world->tick, 0, max_hit))
+        return -1;
+    p->pending_hits[index].accurate = roll.accurate;
+    RcCombatActorRef npc_actor = {RC_COMBAT_ACTOR_NPC, npc->uid};
+    combat_register_attacker(&p->combat, npc_actor);
+    bool at_tile = attack->flags & RC_NPC_ATTACK_AT_TILE;
+    if (!at_tile) face_npc_to_player(npc);
+    record_npc_action(world, npc, d,
+                      at_tile ? RC_COMBAT_ACTOR_NONE : RC_COMBAT_ACTOR_PLAYER,
+                      at_tile ? attack->target_x : p->x,
+                      at_tile ? attack->target_y : p->y,
+                      attack->style, attack->delay, attack->key);
+    RcPayloadNpcAttack payload = {.npc_id = (uint32_t)npc->uid,
+                                  .style = (uint8_t)attack->style};
+    rc_event_fire(world, RC_EVT_NPC_ATTACK, &payload);
+    return roll.damage;
+}
+
+int rc_combat_damage_player(RcWorld *world, int damage, int delay,
+                            RcCombatStyle style, int source_uid) {
+    if (!world || damage < 0 || world->player.is_dead) return 0;
+    RcPlayer *p = &world->player;
+    return rc_queue_hit_meta(p->pending_hits, &p->num_pending_hits, damage,
+                             delay, style, source_uid, 0, world->tick, 0,
+                             damage) != 0;
+}
+
 static RcPlayerAttackProfiles select_player_attack_profiles(
     const RcPlayer *p,
     const RcSpellDef *spell,
@@ -939,7 +996,7 @@ static int npc_can_retaliate(const RcWorld *world, const RcNpc *npc) {
     if (!npc || npc->is_dead || npc->player_untargetable || !def) {
         return 0;
     }
-    return def->attack_speed > 0 && def->max_hit > 0;
+    return rc_npc_attack_speed(npc, def) > 0 && rc_npc_max_hit(npc, def) > 0;
 }
 
 static void combat_register_attacker(RcCombatActorState *target,
@@ -1154,7 +1211,7 @@ static void sync_npc_combat_state_from_legacy(RcWorld *world, RcNpc *npc) {
     npc->combat.line_of_sight = 0;
     npc->combat.hp_current = npc->current_hp;
     const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-    npc->combat.hp_max = def ? def->hitpoints : 0;
+    npc->combat.hp_max = def ? npc->spawn_hp : 0;
     npc->combat.retaliates = npc_can_retaliate(world, npc);
     npc->combat.in_multi_combat = rc_combat_is_multi_combat(world);
     npc->combat.last_hit_timer = npc->last_hit_timer;
@@ -1587,6 +1644,10 @@ static void combat_tick_player_attack(RcWorld *world) {
         RcPendingHit *hit = &prepared[i];
         hit->damage = rc_combat_apply_regular_npc_player_damage_rules(world, target, hit->damage);
         hit->damage = rc_encounter_scale_player_damage(world, target->uid, style, hit->damage);
+        if (world->combat_hooks.modify_player_hit)
+            hit->damage = world->combat_hooks.modify_player_hit(
+                world, target, style, spell ? spell_idx : -1, weapon_id,
+                hit->damage);
         if (spell && rc_encounter_player_instakill(world, (RcNpcId)target->uid,
                                                    spell_idx + 1)) {
             hit->damage = target->current_hp;
@@ -1687,13 +1748,21 @@ static void finish_npc_launch(RcWorld *world, RcNpc *npc, const RcNpcDef *d,
     record_npc_action(world, npc, d,
                       tile ? RC_COMBAT_ACTOR_NONE : RC_COMBAT_ACTOR_PLAYER,
                       p->x, p->y, style, delay, enc ? enc->name : NULL);
-    npc->attack_timer = encounter ? d->attack_speed
-                      : content_modify_npc_attack_speed(world, npc, d->attack_speed);
+    int speed = rc_npc_attack_speed(npc, d);
+    npc->attack_timer = encounter ? speed
+                      : content_modify_npc_attack_speed(world, npc, speed);
     npc->attack_count++;
     npc->combat.attack_prepared = false;
     if (!encounter) content_after_npc_swing(world, npc, style);
     RcPayloadNpcAttack payload = {.npc_id = (uint32_t)npc->uid, .style = (uint8_t)style};
     rc_event_fire(world, RC_EVT_NPC_ATTACK, &payload);
+}
+
+// A content style override (raid scaling), else the definition's.
+static RcCombatStyle npc_preferred_style(const RcNpc *npc, const RcNpcDef *d) {
+    return npc->attack_style_override
+        ? (RcCombatStyle)npc->attack_style_override
+        : rc_combat_npc_preferred_style(d->attack_types);
 }
 
 static void combat_tick_npc_attack(RcWorld *world, RcNpc *npc) {
@@ -1732,13 +1801,13 @@ static void combat_tick_npc_attack(RcWorld *world, RcNpc *npc) {
         route_npc_to_spawn(world, npc);
         return;
     }
-    if (d->attack_speed <= 0 || d->max_hit <= 0) return;
+    if (rc_npc_attack_speed(npc, d) <= 0 || rc_npc_max_hit(npc, d) <= 0) return;
 
     // Bosses with an encounter run use only their encounter attack table;
     // regular-NPC content rules never apply to them.
     bool encounter = rc_encounter_run_for_npc(world, (RcNpcId)npc->uid) >= 0;
     RcCombatStyle style = npc->combat.selected_npc_style;
-    if (style == COMBAT_NONE) style = rc_combat_npc_preferred_style(d->attack_types);
+    if (style == COMBAT_NONE) style = npc_preferred_style(npc, d);
     const RcEncounterAttack *enc = prepared_encounter_attack(world, npc);
     int range = npc_attack_range_for(world, npc, d, style);
     face_npc_to_player(npc);
@@ -1757,9 +1826,9 @@ static void combat_tick_npc_attack(RcWorld *world, RcNpc *npc) {
     }
 
     if (!npc->combat.attack_prepared) {
-        style = encounter ? rc_combat_npc_preferred_style(d->attack_types)
-              : content_select_npc_style(world, npc, p,
-                                         rc_combat_npc_preferred_style(d->attack_types));
+        RcCombatStyle preferred = npc_preferred_style(npc, d);
+        style = encounter ? preferred
+              : content_select_npc_style(world, npc, p, preferred);
         npc->combat.prepared_min_hit = npc->combat.prepared_max_hit = 0;
         npc->combat.prepared_attack_flags = 0;
         npc->combat.prepared_enc_attack = 0;
@@ -1776,7 +1845,7 @@ static void combat_tick_npc_attack(RcWorld *world, RcNpc *npc) {
             return;
         }
         if (selected == RC_ENC_SELECT_SPECIAL) {
-            npc->attack_timer = d->attack_speed;
+            npc->attack_timer = rc_npc_attack_speed(npc, d);
             npc->attack_count++;
             npc->combat.failure_reason = NULL;
             return;

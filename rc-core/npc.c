@@ -816,6 +816,26 @@ void rc_npc_reset_life(RcWorld *world, RcNpc *npc) {
     rc_combat_init_npc_state(npc);
 }
 
+void rc_npc_apply_combat_override(RcNpc *npc, const RcNpcCombatOverride *o) {
+    if (!npc || !o) return;
+    if (o->hitpoints > 0) {
+        npc->spawn_hp = o->hitpoints;
+        npc->current_hp = o->hitpoints;
+    }
+    for (int i = 0; i < 6; i++) {
+        if (o->stats[i] <= 0) continue;
+        npc->stats[i] = o->stats[i];
+        npc->base_stats[i] = (int16_t)o->stats[i];
+    }
+    npc->max_hit_override = o->max_hit > 0 ? (uint16_t)o->max_hit : 0;
+    npc->attack_speed_override = o->attack_speed > 0
+                               ? (uint8_t)o->attack_speed : 0;
+    npc->attack_style_override = o->attack_style > 0
+                               ? (uint8_t)o->attack_style : 0;
+    memcpy(npc->attack_bonus, o->attack_bonus, sizeof(npc->attack_bonus));
+    memcpy(npc->defence_bonus, o->defence_bonus, sizeof(npc->defence_bonus));
+}
+
 static int npc_slot_for_spawn_key(const RcWorld *world, uint64_t spawn_key) {
     if (!world || spawn_key == 0) return -1;
     for (int i = 0; i < world->npc_count; i++) {
@@ -1261,8 +1281,10 @@ void rc_npc_status_tick(RcWorld *world, RcNpc *npc) {
         } else {
             npc->regen_timer = def->regen_ticks;
             for (int i = 0; i < 6; i++) {
-                if (npc->stats[i] < def->stats[i]) npc->stats[i]++;
-                else if (npc->stats[i] > def->stats[i]) npc->stats[i]--;
+                int base = npc->base_stats[i] > 0 ? npc->base_stats[i]
+                                                  : def->stats[i];
+                if (npc->stats[i] < base) npc->stats[i]++;
+                else if (npc->stats[i] > base) npc->stats[i]--;
             }
             if (npc->current_hp < npc->spawn_hp) npc->current_hp++;
         }

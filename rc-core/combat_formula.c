@@ -662,7 +662,9 @@ int rc_npc_offensive_roll(const RcNpc *npc, RcCombatStyle style) {
         case COMBAT_MAGIC:  stat = npc->stats[5]; break;
         default:            stat = npc->stats[0]; break;
     }
-    return npc_eff(stat) * 64;
+    int bonus = style > COMBAT_NONE && style <= COMBAT_MAGIC
+              ? npc->attack_bonus[style - 1] : 0;
+    return npc_eff(stat) * (bonus + 64);
 }
 
 int rc_npc_defensive_roll(const RcNpc *npc, RcCombatStyle style) {
@@ -740,7 +742,7 @@ RcCombatCalc rc_calc_npc_attack_style(const RcNpc *npc, const RcNpcDef *d,
     c.attack_roll = rc_npc_offensive_roll(npc, style);
     c.defence_roll = rc_player_defensive_roll(def, style);
     c.hit_chance = rc_hit_chance(c.attack_roll, c.defence_roll);
-    c.max_hit = d->max_hit;
+    c.max_hit = rc_npc_max_hit(npc, d);
     return c;
 }
 

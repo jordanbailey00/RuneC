@@ -8,7 +8,8 @@ typedef enum {
     RC_CONSUME_OK, RC_CONSUME_QUEUED, RC_CONSUME_INVALID,
     RC_CONSUME_DISABLED, RC_CONSUME_UNSUPPORTED, RC_CONSUME_BUSY,
     RC_CONSUME_STALE, RC_CONSUME_COOLDOWN, RC_CONSUME_LOW_HP,
-    RC_CONSUME_ITEM_FAILURE, RC_CONSUME_BAD_DATA, RC_CONSUME_MEMBERS
+    RC_CONSUME_ITEM_FAILURE, RC_CONSUME_BAD_DATA, RC_CONSUME_MEMBERS,
+    RC_CONSUME_HP_REQUIREMENT
 } RcConsumeResult;
 typedef enum { RC_STAT_NONE, RC_STAT_BOOST, RC_STAT_RESTORE, RC_STAT_DRAIN } RcConsumeStatOp;
 typedef struct {
@@ -25,6 +26,8 @@ typedef struct RcConsumableDef {
     uint8_t cure; // 1: poison cure / venom downgrade; 2: both
     uint16_t poison_immunity, venom_immunity, stamina_ticks, divine_ticks;
     uint16_t antifire_ticks, super_antifire_ticks;
+    uint8_t effect;   // content effect id; nonzero runs world->consumable_effect
+    uint8_t min_hp;   // refuse unless current HP is above this
     RcConsumeStat stats[SKILL_COUNT];
 } RcConsumableDef;
 

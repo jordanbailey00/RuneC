@@ -217,6 +217,26 @@ static void publish_outcome(RcPlayer *player, uint64_t generation,
         outcome.message[sizeof(outcome.message) - 1] = '\0';
     }
     player->interaction_outcome = outcome;
+    if (outcome.message[0]) {
+        uint64_t seq = ++player->messages.next_sequence;
+        RcGameMessage *slot =
+            &player->messages.slots[seq % RC_GAME_MESSAGE_CAPACITY];
+        slot->sequence = seq;
+        memcpy(slot->text, outcome.message, sizeof(slot->text));
+    }
+}
+
+const RcGameMessage *rc_player_next_game_message(const RcPlayer *player,
+                                                 uint64_t sequence) {
+    if (!player || sequence >= player->messages.next_sequence) return NULL;
+    uint64_t newest = player->messages.next_sequence;
+    uint64_t next = sequence + 1;
+    if (newest >= RC_GAME_MESSAGE_CAPACITY
+            && next <= newest - RC_GAME_MESSAGE_CAPACITY)
+        next = newest - RC_GAME_MESSAGE_CAPACITY + 1;
+    const RcGameMessage *slot =
+        &player->messages.slots[next % RC_GAME_MESSAGE_CAPACITY];
+    return slot->sequence == next ? slot : NULL;
 }
 
 void rc_interaction_reject(RcPlayer *player, RcInteractionFailure reason,

@@ -65,6 +65,16 @@ int      rc_world_reset(RcWorld *world);
 typedef int (*RcWorldContentInstaller)(RcWorld *world);
 int      rc_world_install_content(RcWorld *world,
                                   RcWorldContentInstaller install);
+// Content work run once per tick, after the encounter phase and before the
+// player acts. `release` (optional) frees `ctx` when the world is reset or
+// destroyed, so installers allocate per-world content state here. Returns 1
+// on success, 0 when the table is full.
+int      rc_world_add_content_tick(RcWorld *world, RcContentTickFn fn,
+                                   void *ctx, void (*release)(void *ctx));
+void     rc_world_run_content_ticks(RcWorld *world);
+// The state registered with content tick `fn`, or NULL: lets a module's hooks
+// and handlers reach its per-world state.
+void    *rc_world_content_ctx(const RcWorld *world, RcContentTickFn fn);
 void     rc_world_destroy(RcWorld *world);
 const RcGameData *rc_world_get_game_data(const RcWorld *world);
 

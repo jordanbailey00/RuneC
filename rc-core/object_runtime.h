@@ -43,6 +43,9 @@ RcObjectMutationResult rc_world_object_replace(
     const RcObjectPlacement *replacement, RcTick duration,
     uint8_t state_flags);
 RcObjectMutationResult rc_world_object_revert(RcWorld *world, uint64_t key);
+// Reverts the changed loc `key` at tick `at` (0 keeps it until reverted).
+RcObjectMutationResult rc_world_object_expire(RcWorld *world, uint64_t key,
+                                              RcTick at);
 void rc_world_objects_tick(RcWorld *world);
 int rc_world_objects_replay_collision(RcWorld *world);
 

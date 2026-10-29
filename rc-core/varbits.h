@@ -44,5 +44,9 @@ int rc_varbit_find(const char *name);
 int rc_varp_find(const char *name);
 uint32_t rc_varbit_get(const RcWorld *world, int varbit_id);
 int rc_varbit_set(RcWorld *world, int varbit_id, uint32_t value);
+// Whole player variables (varps). Get returns 0 and set -1 for ids out of
+// range; neither needs the varp's definition.
+int32_t rc_varp_get(const RcWorld *world, int varp_id);
+int rc_varp_set(RcWorld *world, int varp_id, int32_t value);
 
 #endif

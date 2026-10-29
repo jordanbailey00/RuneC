@@ -85,6 +85,16 @@ const char *rc_dialogue_string(uint32_t offset);
 const char *rc_dialogue_transcript_npc(const RcDialogueTranscriptDef *row,
                                        int idx);
 
+// Content opens one option prompt at a time. The player's pick arrives as a
+// widget action on RC_CHOICE_WIDGET (component = option index): it closes the
+// prompt, then runs `fn`. Moving closes an open prompt without a pick.
+#define RC_CHOICE_WIDGET 219
+int rc_world_open_choice(RcWorld *world, const char *title,
+                         const char *const *options, int count,
+                         RcChoiceFn fn, void *ctx);
+void rc_world_close_choice(RcWorld *world);
+int rc_dialogue_install_choice_handler(RcWorld *world);
+
 void rc_dialogue_start(RcWorld *world, int npc_uid, const RcDialogueNode *nodes, int count);
 void rc_dialogue_continue(RcWorld *world);
 void rc_dialogue_choose(RcWorld *world, int option);

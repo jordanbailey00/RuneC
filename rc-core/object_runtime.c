@@ -543,6 +543,18 @@ RcObjectMutationResult rc_world_object_revert(RcWorld *world, uint64_t key) {
     return RC_OBJECT_MUTATION_OK;
 }
 
+RcObjectMutationResult rc_world_object_expire(RcWorld *world, uint64_t key,
+                                              RcTick at) {
+    if (!world || !key) return RC_OBJECT_MUTATION_INVALID;
+    for (int i = 0; i < world->object_state_count; i++) {
+        if (world->object_states[i].placement_key != key) continue;
+        world->object_states[i].revert_tick = at;
+        schedule_next_change(world);
+        return RC_OBJECT_MUTATION_OK;
+    }
+    return RC_OBJECT_MUTATION_NOT_FOUND;
+}
+
 void rc_world_objects_tick(RcWorld *world) {
     if (!world || !world->next_object_change_tick
             || world->tick < world->next_object_change_tick) {

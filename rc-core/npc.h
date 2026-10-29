@@ -142,6 +142,31 @@ int rc_load_npc_spawns_near(RcWorld *world, const char *path,
                             int center_x, int center_y, int radius,
                             int plane);
 
+// Content-scaled combat values for an NPC's current life (raids, scaled
+// minigames). Zero fields keep the definition's value; `hitpoints` sets both
+// spawn and current HP. A new life (respawn, reset) returns to the definition.
+typedef struct {
+    int hitpoints;
+    int stats[6];               // att, def, str, hp, rng, mag
+    int max_hit;
+    int attack_speed;
+    int attack_style;           // RcCombatStyle
+    int16_t attack_bonus[5];    // by RcCombatStyle - 1
+    int16_t defence_bonus[5];
+} RcNpcCombatOverride;
+void rc_npc_apply_combat_override(RcNpc *npc, const RcNpcCombatOverride *o);
+// This life's max hit and attack speed: the content override, else the
+// (form) definition's.
+static inline int rc_npc_max_hit(const RcNpc *npc, const RcNpcDef *def) {
+    if (npc && npc->max_hit_override > 0) return npc->max_hit_override;
+    return def ? def->max_hit : 0;
+}
+
+static inline int rc_npc_attack_speed(const RcNpc *npc, const RcNpcDef *def) {
+    if (npc && npc->attack_speed_override > 0) return npc->attack_speed_override;
+    return def ? def->attack_speed : 0;
+}
+
 // Spawn a single NPC. Returns NPC array index or -1.
 int rc_npc_spawn(RcWorld *world, int def_idx, int world_x, int world_y, int plane);
 

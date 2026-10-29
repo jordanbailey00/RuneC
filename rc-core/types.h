@@ -313,6 +313,25 @@ typedef struct {
     char message[RC_INTERACTION_RESULT_MESSAGE_LEN];
 } RcInteractionOutcome;
 
+// Game messages, kept in a ring by sequence so several published in one tick
+// all reach a reader (rc_player_next_game_message).
+#define RC_GAME_MESSAGE_CAPACITY 16
+typedef struct {
+    uint64_t sequence;
+    char text[RC_INTERACTION_RESULT_MESSAGE_LEN];
+} RcGameMessage;
+#define RC_GAME_MESSAGE_RING_USED \
+    (RC_GAME_MESSAGE_CAPACITY * sizeof(RcGameMessage) + sizeof(uint64_t))
+typedef struct {
+    RcGameMessage slots[RC_GAME_MESSAGE_CAPACITY];
+    uint64_t next_sequence;
+    // Whole cache lines: growing the player by part of a line moves every
+    // later world field off its line offset, which cost 2-5% SPS.
+    uint8_t pad[64 - RC_GAME_MESSAGE_RING_USED % 64];
+} RcGameMessageRing;
+_Static_assert(sizeof(RcGameMessageRing) % 64 == 0,
+               "the message ring must fill whole cache lines");
+
 typedef enum {
     RC_TRAVERSAL_POLICY_EXACT = 1,
     RC_TRAVERSAL_POLICY_RELATIVE,
@@ -937,6 +956,8 @@ typedef struct {
     uint8_t slayer_block_count;
     uint8_t slayer_prefer_count;
     uint8_t slayer_combat_achievement_tier;
+    // Kept last: rarely touched, and large.
+    RcGameMessageRing messages;
 } RcPlayer;
 
 struct RcWorld;
@@ -1060,6 +1081,13 @@ typedef struct {
     bool player_loot_credit;
     bool loot_prepared;
     bool active;
+    // Content combat values for this life (raid scaling); zero keeps the
+    // definition's. Base stats are the levels regeneration returns to.
+    int16_t base_stats[6];
+    int16_t attack_bonus[5];        // offensive bonus by RcCombatStyle - 1
+    uint16_t max_hit_override;
+    uint8_t attack_speed_override;
+    uint8_t attack_style_override;  // RcCombatStyle
 } RcNpc;
 
 // Ground item
@@ -1235,6 +1263,12 @@ typedef struct {
                               const struct RcSpellDef *spell);
     void (*on_player_hit_npc)(struct RcWorld *world, RcNpc *target,
                               const RcPendingHit *hit, int damage);
+    // Launch-time rule for each player hit on `target`, by attack style,
+    // spell (index, or -1) and weapon (item id, or -1): style immunities and
+    // damage rules of content-scripted NPCs (raids).
+    int (*modify_player_hit)(struct RcWorld *world, const RcNpc *target,
+                             RcCombatStyle style, int spell_idx,
+                             int weapon_id, int damage);
     int (*modify_player_special_damage)(struct RcWorld *world,
                                         const RcPlayer *player,
                                         const RcNpc *target, int weapon_id,
@@ -1249,6 +1283,29 @@ typedef struct {
                                       RcPlayer *player,
                                       const struct RcSpellDef *spell);
 } RcCombatContentHooks;
+
+// The pending option prompt content opened (rc_world_open_choice): its title,
+// options and the content callback a pick runs.
+#define RC_CHOICE_MAX_OPTIONS 5
+#define RC_CHOICE_TEXT_LEN 64
+typedef void (*RcChoiceFn)(struct RcWorld *world, int option, void *ctx);
+typedef struct {
+    bool active;
+    uint32_t generation;
+    char title[RC_CHOICE_TEXT_LEN];
+    char options[RC_CHOICE_MAX_OPTIONS][RC_CHOICE_TEXT_LEN];
+    int option_count;
+    RcChoiceFn fn;
+    void *ctx;
+} RcChoicePrompt;
+
+#define RC_MAX_CONTENT_TICKS 8
+typedef void (*RcContentTickFn)(struct RcWorld *world, void *ctx);
+typedef struct {
+    RcContentTickFn fn;
+    void *ctx;
+    void (*release)(void *ctx);   // frees ctx; NULL when ctx is not owned
+} RcContentTick;
 
 // World (top-level game state). Named struct tag so other subsystem
 // headers can forward-declare it without pulling in this file.
@@ -1292,9 +1349,18 @@ typedef struct RcWorld {
     RcCombatContentHooks combat_hooks;
     // Content installer re-run by rc_world_reset (see rc_world_install_content).
     int (*content_installer)(struct RcWorld *world);
+    // Content work run every tick, with the state it owns (released when
+    // the world is reset or destroyed; see rc_world_add_content_tick).
+    RcContentTick content_ticks[RC_MAX_CONTENT_TICKS];
+    int content_tick_count;
+    RcChoicePrompt choice;
     const struct RcConsumableDef *consumables;
     int consumable_count;
     int (*consumable_prayer_bonus)(const RcPlayer *player);
+    // Content effects consumables carry beyond the table (raid overloads):
+    // runs after the standard effects of a def whose `effect` is nonzero.
+    void (*consumable_effect)(struct RcWorld *world,
+                              const struct RcConsumableDef *def);
     const struct RcStoragePolicy *storage_policy;
     RcItemEquipRequirementHook item_equip_requirement_hook;
     void *item_equip_requirement_ctx;

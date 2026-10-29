@@ -232,8 +232,38 @@ RcWorld *rc_world_create(uint32_t seed) {
     return rc_world_create_config(&cfg);
 }
 
+static void release_content_ticks(RcWorld *world) {
+    for (int i = 0; i < world->content_tick_count; i++) {
+        RcContentTick *entry = &world->content_ticks[i];
+        if (entry->release) entry->release(entry->ctx);
+    }
+    memset(world->content_ticks, 0, sizeof(world->content_ticks));
+    world->content_tick_count = 0;
+}
+
+int rc_world_add_content_tick(RcWorld *world, RcContentTickFn fn, void *ctx,
+                              void (*release)(void *ctx)) {
+    if (!world || !fn || world->content_tick_count >= RC_MAX_CONTENT_TICKS)
+        return 0;
+    world->content_ticks[world->content_tick_count++] =
+        (RcContentTick){.fn = fn, .ctx = ctx, .release = release};
+    return 1;
+}
+
+void *rc_world_content_ctx(const RcWorld *world, RcContentTickFn fn) {
+    for (int i = 0; world && i < world->content_tick_count; i++)
+        if (world->content_ticks[i].fn == fn) return world->content_ticks[i].ctx;
+    return NULL;
+}
+
+void rc_world_run_content_ticks(RcWorld *world) {
+    for (int i = 0; i < world->content_tick_count; i++)
+        world->content_ticks[i].fn(world, world->content_ticks[i].ctx);
+}
+
 void rc_world_destroy(RcWorld *world) {
     if (!world) return;
+    release_content_ticks(world);
     rc_world_state_destroy(world);
     rc_game_data_release(world->game_data);
     free(world->npcs);
@@ -264,6 +294,7 @@ int rc_world_reset(RcWorld *world) {
     memcpy(ground_spawns_path, world->ground_item_spawns_path,
            sizeof(ground_spawns_path));
 
+    release_content_ticks(world);
     rc_world_state_destroy(world);
     memset(npcs, 0, (size_t)npc_capacity * sizeof(*npcs));
     memset(world, 0, sizeof(*world));

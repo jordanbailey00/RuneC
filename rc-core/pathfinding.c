@@ -60,6 +60,11 @@ uint32_t rc_get_flags(const RcWorldMap *map, int x, int y, int plane) {
         ? 0u : COL_BLOCK_WALK | COL_PROJ_BLOCK_FULL;
 }
 
+bool rc_map_tile_loaded(const RcWorldMap *map, int x, int y, int plane) {
+    return rc_world_tile_valid(x, y, plane)
+        && map_region_at(map, x / RC_REGION_SIZE, y / RC_REGION_SIZE) != NULL;
+}
+
 bool rc_tile_blocked(const RcWorldMap *map, int x, int y, int plane) {
     return (rc_get_flags(map, x, y, plane)
             & (COL_LOC | COL_BLOCK_WALK | COL_GROUND_DECOR)) != 0;

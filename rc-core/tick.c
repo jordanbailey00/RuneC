@@ -8,6 +8,7 @@
 #include "npc.h"
 #include "combat.h"
 #include "consumables.h"
+#include "dialogue.h"
 #include "combat_hit.h"
 #include "prayer.h"
 #include "skills.h"
@@ -863,14 +864,14 @@ static void resolve_npc_hits(RcWorld *world, RcNpc *npc) {
                            ? (uint32_t)h->source_idx : UINT32_MAX,
             .damage = (uint16_t)(damage & 0xFFFF),
             .current_hp = (uint16_t)(npc->current_hp & 0xFFFF),
-            .max_hp = def ? (uint16_t)(def->hitpoints & 0xFFFF) : 0,
+            .max_hp = def ? (uint16_t)(npc->spawn_hp & 0xFFFF) : 0,
             .style = (uint8_t)h->attack_style,
         };
         rc_event_fire(world, RC_EVT_NPC_DAMAGED, &damaged);
     }
     npc->num_pending_hits = w;
     npc->combat.hp_current = npc->current_hp;
-    npc->combat.hp_max = def ? def->hitpoints : 0;
+    npc->combat.hp_max = def ? npc->spawn_hp : 0;
     // Fire death event once on the transition alive → dead.
     if (was_alive && npc->is_dead) {
         rc_npc_prepare_loot(world, npc);
@@ -947,6 +948,10 @@ void rc_world_tick(RcWorld *world) {
     // Phase 3.6 — encounter mechanic dispatcher.
     if (on & RC_SUB_ENCOUNTER) rc_encounter_tick(world);
     if (on & RC_SUB_ENCOUNTER) rc_encounter_tick_effects(world);
+
+    // Phase 3.7 — content ticks (raid controllers and other scripted
+    // activities registered by rc-content); most worlds have none.
+    if (world->content_tick_count) rc_world_run_content_ticks(world);
 
     // Phase 4 — player action resolution (gated per subsystem).
     refresh_player_face_entity(&world->player);
@@ -2395,7 +2400,8 @@ static int api_register_default_ground_item_handlers(RcWorld *world) {
 int rc_interaction_install_world_defaults(RcWorld *world) {
     if (!api_register_default_npc_handlers(world)
             || !api_register_default_object_handlers(world)
-            || !api_register_default_ground_item_handlers(world)) {
+            || !api_register_default_ground_item_handlers(world)
+            || !rc_dialogue_install_choice_handler(world)) {
         return 0;
     }
     return 1;

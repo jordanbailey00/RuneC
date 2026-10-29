@@ -264,3 +264,14 @@ int rc_varbit_set(RcWorld *world, int varbit_id, uint32_t value) {
     world->varps[def->base_varp] = (int32_t)cur;
     return 0;
 }
+
+int32_t rc_varp_get(const RcWorld *world, int varp_id) {
+    if (!world || varp_id < 0 || varp_id >= RC_MAX_VARPS) return 0;
+    return world->varps[varp_id];
+}
+
+int rc_varp_set(RcWorld *world, int varp_id, int32_t value) {
+    if (!world || varp_id < 0 || varp_id >= RC_MAX_VARPS) return -1;
+    world->varps[varp_id] = value;
+    return 0;
+}

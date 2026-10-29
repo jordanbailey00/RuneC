@@ -40,5 +40,8 @@ bool rc_has_line_of_walk_rect(
 
 // Get collision flags for a world tile
 uint32_t rc_get_flags(const RcWorldMap *map, int x, int y, int plane);
+// Whether the map holds the tile's region, so its flags include runtime
+// loc changes; elsewhere only the static collision data is known.
+bool rc_map_tile_loaded(const RcWorldMap *map, int x, int y, int plane);
 
 #endif

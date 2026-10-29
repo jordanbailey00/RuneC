@@ -327,11 +327,33 @@ static void test_collision_mutation(RcWorld *world) {
     assert(flags_at(world, 112, 112) == COL_BLOCK_WALK);
 }
 
+// A loc added without an expiry gets one later and reverts on that tick.
+static void test_expiry_set_later(RcWorld *world) {
+    RcObjectPlacement object = {
+        .obj_id = 11780, .x = 700, .y = 3, .plane = 0, .type = 10, .rotation = 0,
+    };
+    uint64_t key = 0;
+    assert(rc_world_object_add(world, &object, 0, &key) == RC_OBJECT_MUTATION_OK);
+    RcTick at = world->tick + 3;
+    assert(rc_world_object_expire(world, key, at) == RC_OBJECT_MUTATION_OK);
+    assert(rc_world_object_expire(world, key + 1000, at) == RC_OBJECT_MUTATION_NOT_FOUND);
+    assert(rc_world_object_expire(world, 0, at) == RC_OBJECT_MUTATION_INVALID);
+    while (world->tick < at - 1) {
+        world->tick++;
+        rc_world_objects_tick(world);
+        assert(world->object_state_count == 1);
+    }
+    world->tick++;
+    rc_world_objects_tick(world);
+    assert(world->object_state_count == 0);
+}
+
 int main(void) {
     RcWorld *world = create_world();
     test_complete_transform_resolution(world);
     test_exact_static_placement_identity();
     test_layer_identity_and_reclamation(world);
+    test_expiry_set_later(world);
     test_collision_mutation(world);
     assert(!rc_world_object_option_supported(world, 1276, -1, -1, -1, 0, 0));
     rc_world_destroy(world);

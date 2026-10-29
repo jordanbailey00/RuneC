@@ -33,6 +33,10 @@ void rc_interaction_clear(RcPlayer *player);
 void rc_interaction_reject(RcPlayer *player, RcInteractionFailure reason,
                            const char *message);
 void rc_interaction_publish_message(RcPlayer *player, const char *message);
+// The oldest kept game message after `sequence` (0: from the start), or NULL
+// when none is newer. Messages older than the ring's capacity are dropped.
+const RcGameMessage *rc_player_next_game_message(const RcPlayer *player,
+                                                 uint64_t sequence);
 int  rc_interaction_apply_result(RcPlayer *player, uint64_t generation,
                                  RcInteractionHandlerResult result);
 int  rc_interaction_is_active(const RcPlayer *player);

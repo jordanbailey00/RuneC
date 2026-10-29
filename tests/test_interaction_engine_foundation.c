@@ -7,7 +7,7 @@
 #include <string.h>
 
 enum {
-    DEFAULT_HANDLER_COUNT = 19,
+    DEFAULT_HANDLER_COUNT = 20,
     EXAMINE_ITEM_ID = 995,
 };
 

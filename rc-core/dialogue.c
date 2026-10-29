@@ -1,4 +1,5 @@
 #include "dialogue.h"
+#include "interaction.h"
 #include "io.h"
 
 #include <stdio.h>
@@ -553,6 +554,56 @@ const char *rc_dialogue_transcript_npc(const RcDialogueTranscriptDef *row,
     }
     return rc_dialogue_string(
         g_active_dialogue_npc_name_offsets[row->first_npc + (uint32_t)idx]);
+}
+
+int rc_world_open_choice(RcWorld *world, const char *title,
+                         const char *const *options, int count,
+                         RcChoiceFn fn, void *ctx) {
+    if (!world || !options || !fn || count < 1 || count > RC_CHOICE_MAX_OPTIONS)
+        return 0;
+    RcChoicePrompt *c = &world->choice;
+    uint32_t generation = c->generation + 1;
+    memset(c, 0, sizeof(*c));
+    c->generation = generation;
+    snprintf(c->title, sizeof(c->title), "%s",
+             title && title[0] ? title : "Select an Option");
+    for (int i = 0; i < count; i++)
+        snprintf(c->options[i], sizeof(c->options[i]), "%s",
+                 options[i] ? options[i] : "");
+    c->option_count = count;
+    c->fn = fn;
+    c->ctx = ctx;
+    c->active = true;
+    return 1;
+}
+
+void rc_world_close_choice(RcWorld *world) {
+    if (world) world->choice.active = false;
+}
+
+static RcInteractionHandlerResult choose_option(
+    RcWorld *world, RcPlayer *player, const RcPendingInteraction *pending,
+    void *ctx) {
+    (void)player;
+    (void)ctx;
+    RcChoicePrompt *c = &world->choice;
+    int option = pending->target.component_id;
+    if (!c->active || option < 0 || option >= c->option_count)
+        return rc_interaction_result_cancel(RC_INTERACTION_FAIL_TARGET_MISSING);
+    RcChoiceFn fn = c->fn;
+    void *fn_ctx = c->ctx;
+    c->active = false;
+    fn(world, option, fn_ctx);
+    return rc_interaction_result_complete();
+}
+
+int rc_dialogue_install_choice_handler(RcWorld *world) {
+    RcInteractionDispatchKey key = rc_interaction_dispatch_key_any();
+    key.kind = RC_INTERACTION_WIDGET;
+    key.op = RC_INTERACTION_WIDGET_ACTION;
+    key.widget_id = RC_CHOICE_WIDGET;
+    return rc_interaction_register_world_handler(world, &key, choose_option,
+                                                 NULL) != 0;
 }
 
 void rc_dialogue_start(RcWorld *world, int npc_uid,

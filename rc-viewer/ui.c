@@ -68,6 +68,9 @@ typedef struct RuneCUiLayout {
     Rectangle tab[RUNEC_UI_TAB_COUNT];
 } RuneCUiLayout;
 
+static int handle_choice_input(RuneCUiState *ui, const RuneCUiLayout *layout,
+                               Vector2 mouse);
+
 typedef struct RuneCUiListenerEvent {
     RuneCUiListenerKind kind;
     uint32_t component_id;
@@ -106,6 +109,7 @@ static const char *g_tab_icon[RUNEC_UI_TAB_COUNT] = {
 static const RuneCUiSpellRef g_spell_icons[] = {
 #define SPELL_ICON(book, name, sprite) {book, name, #sprite},
 #include "spell_icons.inc"
+
 #undef SPELL_ICON
 };
 
@@ -3055,6 +3059,7 @@ int runec_ui_handle_input(RuneCUiState *ui, int screen_w, int screen_h) {
     }
 
     if (handle_bank_amount_input(ui)) return 1;
+    if (handle_choice_input(ui, &layout, mouse)) return 1;
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && handle_context_click(ui, mouse))
         return 1;
     if (ui->context_open) {
@@ -3632,6 +3637,35 @@ static void draw_minimap(const RuneCUiState *ui, const RuneCUiLayout *layout) {
         draw_centered_text(ui, "?", layout->worldmap_button, 14, OSRS_YELLOW);
 }
 
+// Choice rows share the message area: the title (-1) and up to five
+// options spread over it, as the OSRS chatbox option dialog lays them out.
+static Rectangle choice_row_rect(const RuneCUiLayout *layout, int row,
+                                 int count) {
+    float height = layout->chat_messages.height / (float)(count + 1);
+    return (Rectangle){layout->chat_messages.x,
+                       layout->chat_messages.y + (float)(row + 1) * height,
+                       layout->chat_messages.width, height};
+}
+
+static int handle_choice_input(RuneCUiState *ui, const RuneCUiLayout *layout,
+                               Vector2 mouse) {
+    if (!ui->choice_active) return 0;
+    int picked = -1;
+    for (int i = 0; i < ui->choice_count && i < 5; i++)
+        if (!ui->chat_focused && IsKeyPressed(KEY_ONE + i)) picked = i;
+    if (picked < 0 && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        for (int i = 0; i < ui->choice_count; i++)
+            if (CheckCollisionPointRec(
+                    mouse, choice_row_rect(layout, i, ui->choice_count)))
+                picked = i;
+    }
+    if (picked < 0) return 0;
+    ui->last_intent.kind = RUNEC_UI_INTENT_CHOICE_OPTION;
+    ui->last_intent.primary = picked;
+    ui->choice_active = 0;
+    return 1;
+}
+
 static void draw_chat(RuneCUiState *ui, const RuneCUiLayout *layout) {
     int decoded_chat = 0;
     const char *decoded_chat_env = getenv("RUNEC_UI_DECODED_CHAT");
@@ -3651,7 +3685,17 @@ static void draw_chat(RuneCUiState *ui, const RuneCUiLayout *layout) {
         DrawRectangleRec(layout->chat, (Color){0, 0, 0, 115});
     DrawRectangleRec(layout->chat_messages, (Color){0, 0, 0, 84});
 
-    for (int i = ui->chat_line_count - 1; i >= 0; i--) {
+    if (ui->choice_active) {
+        Rectangle row = choice_row_rect(layout, -1, ui->choice_count);
+        draw_centered_text(ui, ui->choice_title, row, 14, (Color){128, 0, 0, 255});
+        Vector2 mouse = GetMousePosition();
+        for (int i = 0; i < ui->choice_count; i++) {
+            row = choice_row_rect(layout, i, ui->choice_count);
+            Color color = CheckCollisionPointRec(mouse, row) ? WHITE : BLACK;
+            draw_centered_text(ui, ui->choice_options[i], row, 14, color);
+        }
+    }
+    for (int i = ui->choice_active ? -1 : ui->chat_line_count - 1; i >= 0; i--) {
         int row = ui->chat_line_count - 1 - i;
         draw_text_shadow(ui, ui->chat_lines[i],
                          layout->chat_messages.x + 3,

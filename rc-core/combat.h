@@ -153,6 +153,33 @@ void rc_player_apply_freeze(struct RcWorld *world, int ticks);
 // the player walking a stale route (or under the NPC). Returns false when
 // the player should not step this tick.
 bool rc_combat_player_approach(struct RcWorld *world);
+// Content-scripted NPC attack on the player (raid bosses and other actors
+// content drives itself, typically owner_controlled NPCs). The roll uses the
+// NPC's live stats and offensive bonuses unless always accurate; a matching
+// protection prayer active at launch scales the damage to `protected_pct`
+// percent (0 blocks it). `key` names the presentation row (NULL: the NPC's
+// ordinary attack); RC_NPC_ATTACK_AT_TILE aims it at target_x/y.
+enum {
+    RC_NPC_ATTACK_ALWAYS_ACCURATE = 1u << 0,
+    RC_NPC_ATTACK_AT_TILE = 1u << 1,
+};
+typedef struct {
+    RcCombatStyle style;
+    int min_hit, max_hit;
+    int delay;                   // ticks from launch to impact
+    int protected_pct;
+    uint32_t flags;              // RC_NPC_ATTACK_*
+    const char *key;
+    int target_x, target_y;
+} RcNpcScriptedAttack;
+// Returns the rolled damage queued on the player (>= 0), or -1 when the
+// attack could not launch (dead actors or full queues).
+int rc_combat_npc_scripted_attack(struct RcWorld *world, RcNpc *npc,
+                                  const RcNpcScriptedAttack *attack);
+// Queues mechanic damage on the player `delay` ticks out: no accuracy roll
+// and no prayer. `source_uid` is the NPC credited, or RC_HIT_SOURCE_STATUS.
+int rc_combat_damage_player(struct RcWorld *world, int damage, int delay,
+                            RcCombatStyle style, int source_uid);
 // Records an encounter attack or mechanic part for presentation (no hit).
 // `key` is the attack or mechanic name, optionally with a ":part" suffix;
 // `target_player` false aims at the target tile.
