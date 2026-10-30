@@ -1956,9 +1956,9 @@ def _compute_normals(
         length = int(math.sqrt(nx * nx + ny * ny + nz * nz))
         if length <= 0:
             length = 1
-        nx = nx * 256 // length
-        ny = ny * 256 // length
-        nz = nz * 256 // length
+        nx = _trunc_div(nx * 256, length)
+        ny = _trunc_div(ny * 256, length)
+        nz = _trunc_div(nz * 256, length)
 
         if _face_render_type(model, fi) == 1:
             face_normals[fi] = (nx, ny, nz)
@@ -2077,6 +2077,26 @@ def _unlit_face_vertex_colors(
     else:
         rgb = hsl15_to_rgb(hsl)
     return [(rgb[0], rgb[1], rgb[2], alpha)] * 3
+
+
+# The client lights player models (identity kits plus worn equipment) with
+# light(64, 850, -30, -50, -30) and NPC models with light(64 + ambient,
+# 850 + 5 * contrast, -30, -50, -30): from above. Locs and items use the
+# write_models_binary defaults, light(64 + ambient, 768 + contrast, -50, -10,
+# -50), from the side, which leaves a character's far side dark.
+ACTOR_AMBIENT = 64
+ACTOR_CONTRAST = 850
+ACTOR_LIGHT_VECTOR = (-30, -50, -30)
+
+
+def light_as_actor(model: ModelData, ambient: int = 0,
+                   contrast: int = 0) -> ModelData:
+    """Have write_models_binary bake the client's player/NPC lighting."""
+    model._export_model_lighting = "client"
+    model._export_ambient = ACTOR_AMBIENT + ambient
+    model._export_contrast = ACTOR_CONTRAST + contrast
+    model._export_light_vector = ACTOR_LIGHT_VECTOR
+    return model
 
 
 # The client paints faces in priority order, so a detail face can lie exactly

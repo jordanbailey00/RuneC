@@ -5,7 +5,9 @@ Meshes are written unscaled. The client animates an NPC's model and then
 scales it by the definition's resize, so scaling before animation would also
 scale every sequence translation. The non-default resizes go to a sibling
 table (`npcs.scales`: npc_id, resize_h, resize_v; 128 = 1.0) that the viewer
-applies after posing.
+applies after posing. Vertex colors carry the client's NPC lighting
+(`light_as_actor` with the definition's ambient and contrast), baked at the
+rest pose: the client lights a model once and animates the lit model.
 """
 
 from __future__ import annotations
@@ -34,6 +36,7 @@ from rc_cache import (  # noqa: E402
     CONFIG_NPC,
     RcCacheStore,
     decode_npc_definition,
+    light_as_actor,
     load_texture_average_colors,
     load_texture_sprites,
     load_model,
@@ -138,8 +141,17 @@ def cache_visuals(cache_path: Path) -> dict[int, dict[str, Any]]:
             "retextures": list(zip(d.retexture_from, d.retexture_to)),
             "resize_h": d.width_scale,
             "resize_v": d.height_scale,
+            "ambient": d.ambient,
+            "contrast": d.contrast,
         }
     return out
+
+
+def light_npc(model: ModelData, visual: dict[str, Any]) -> ModelData:
+    """The client's NPC lighting: light(64 + ambient, 850 + 5 * contrast,
+    -30, -50, -30)."""
+    return light_as_actor(model, int(visual.get("ambient") or 0),
+                          5 * int(visual.get("contrast") or 0))
 
 
 def export_model(store: RcCacheStore, npc_id: int, model_ids: list[int], visual: dict[str, Any]):
@@ -232,10 +244,10 @@ def main() -> int:
     ap.add_argument("--limit", type=int, default=0,
                     help="debug limit; 0 exports all linked NPCs")
     ap.add_argument("--model-lighting", choices=("client", "unlit"),
-                    default="unlit",
+                    default="client",
                     help=("vertex color lighting mode for exported NPC models; "
-                          "default stays unlit until client-lit broad exports "
-                          "are visually approved"))
+                          "client bakes the client's NPC lighting, unlit keeps "
+                          "flat material colors"))
     args = ap.parse_args()
 
     defs = read_ndef_models(args.defs)
@@ -265,6 +277,8 @@ def main() -> int:
         if model == "oversized":
             oversized.append((npc_id, rec["name"]))
             continue
+        if args.model_lighting == "client":
+            light_npc(model, visual)
         models.append(model)
         resize_h = int(visual.get("resize_h") or 128)
         resize_v = int(visual.get("resize_v") or 128)

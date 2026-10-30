@@ -25,6 +25,7 @@ import export_minimap
 import export_objects
 import export_scene_slice
 import export_terrain
+import export_npc_models_full
 import pack_runtime_data
 import spawn_index
 import stack_model_overlays
@@ -1437,6 +1438,87 @@ class StackedFaceModelTests(unittest.TestCase):
             self.assertIn("changed 2/2 bundles: 6/6 models", out.getvalue())
             self.assertEqual(path.read_bytes(), expected)
             self.assertEqual(other.read_bytes(), expected)
+
+
+def client_vertex_light(verts, ambient, contrast, light):
+    """The client's ModelData.toModel light for a lone gouraud face (each
+    vertex normal is the face normal), with Java's truncating division, as
+    RuneLite's ItemSpriteFactory.light ports it."""
+    def jdiv(a, b):
+        return -(abs(a) // abs(b)) if (a < 0) ^ (b < 0) else abs(a) // abs(b)
+    (ax, ay, az), (bx, by, bz), (cx, cy, cz) = verts
+    x1, y1, z1 = bx - ax, by - ay, bz - az
+    x2, y2, z2 = cx - ax, cy - ay, cz - az
+    n = [y1 * z2 - y2 * z1, z1 * x2 - z2 * x1, x1 * y2 - x2 * y1]
+    while any(c > 8192 or c < -8192 for c in n):
+        n = [c >> 1 for c in n]
+    length = int(math.sqrt(sum(c * c for c in n))) or 1
+    nx, ny, nz = (jdiv(c * 256, length) for c in n)
+    lx, ly, lz = light
+    var7 = int(math.sqrt(lx * lx + ly * ly + lz * lz)) * contrast >> 8
+    return jdiv(ly * ny + lz * nz + lx * nx, var7) + ambient
+
+
+def bound_light(value):
+    return 2 if value < 2 else 126 if value > 126 else value
+
+
+class ActorLightingTests(unittest.TestCase):
+    """Players, worn equipment and NPCs carry the client's actor lighting."""
+
+    VERTS = [(0, 0, 0), (100, -37, 13), (-21, -60, 90)]
+
+    def model(self, textured=False):
+        model = tri_model(3, self.VERTS, [(0, 1, 2)])
+        model.face_colors = [0x2B5A]
+        if textured:
+            model.face_textures = [5]
+        return model
+
+    def test_actor_lighting_matches_the_client(self) -> None:
+        light = export_models.ACTOR_LIGHT_VECTOR
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "actor.models"
+            model = export_models.light_as_actor(self.model(), 10, 15)
+            export_models.write_models_binary(path, [model])
+            record = bundle_records(path.read_bytes())[0]
+        lit = client_vertex_light(self.VERTS, 74, 865, light)
+        hsl = (0x2B5A & 0xFF80) + bound_light(((0x2B5A & 127) * lit) >> 7)
+        want = (*export_models.hsl15_to_rgb(hsl), 255)
+        colors = struct.unpack_from("<12B", record, 10 + 9 * 4)
+        for k in range(3):
+            self.assertEqual(colors[k * 4:k * 4 + 4], want)
+
+        # A textured face takes the client's shade, scaled to a grey that
+        # multiplies the texel.
+        atlas = TextureAtlas(width=1, height=1, pixels=b"\xff" * 4,
+                             uv_map={5: (0.0, 0.0, 1.0, 1.0)},
+                             white_u=0.5, white_v=0.5)
+        _verts, textured, _uvs = export_models.expand_model(
+            self.model(textured=True), atlas=atlas, ambient=64, contrast=850,
+            light_vector=light)
+        shade = 2 * bound_light(client_vertex_light(self.VERTS, 64, 850, light))
+        self.assertEqual(textured, [(shade, shade, shade, 255)] * 3)
+
+        # Locs and items keep the side light, which is darker here.
+        _verts, side, _uvs = export_models.expand_model(self.model())
+        self.assertNotEqual(side[0], want)
+
+    def test_exporters_light_npcs_players_and_worn_items_as_actors(self) -> None:
+        npc = export_npc_models_full.light_npc(self.model(),
+                                               {"ambient": 10, "contrast": 3})
+        self.assertEqual(
+            (npc._export_model_lighting, npc._export_ambient,
+             npc._export_contrast, npc._export_light_vector),
+            ("client", 74, 865, (-30, -50, -30)))
+        worn = self.model()
+        export_item_render_models.light_worn(worn, "client")
+        self.assertEqual((worn._export_ambient, worn._export_contrast),
+                         (64, 850))
+        flat = self.model()
+        export_item_render_models.light_worn(flat, "unlit")
+        self.assertEqual(flat._export_model_lighting, "unlit")
+        self.assertFalse(hasattr(flat, "_export_ambient"))
 
 
 if __name__ == "__main__":

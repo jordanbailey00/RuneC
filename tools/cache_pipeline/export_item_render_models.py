@@ -37,6 +37,7 @@ from rc_cache import (
     load_texture_definitions,
     load_texture_sprites,
     load_model as rc_load_model,
+    light_as_actor,
     merge_models,
     write_models_binary,
 )
@@ -887,6 +888,15 @@ def parse_item_ids(
     return sorted(ids)
 
 
+def light_worn(model: ModelData, lighting: str) -> None:
+    """Light an identity kit or worn model as the client lights the player:
+    it merges them into one player model and lights that once."""
+    if lighting == "client":
+        light_as_actor(model)
+    else:
+        model._export_model_lighting = "unlit"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="export RuneC item ground/equipment render models"
@@ -916,8 +926,10 @@ def main() -> None:
                         help="tracked RuneC player weapon pose table")
     parser.add_argument("--model-lighting", choices=("client", "unlit"),
                         default="client",
-                        help=("vertex color lighting mode for exported item "
-                              "models; default uses client-style lighting"))
+                        help=("vertex color lighting mode: client gives body "
+                              "kits and worn models the client's player "
+                              "lighting and ground models item lighting; "
+                              "unlit keeps flat material colors"))
     args = parser.parse_args()
 
     items = parse_items_bin(args.items)
@@ -981,7 +993,7 @@ def main() -> None:
             kit.retexture_dst,
         )
         merged.model_id = BODY_MODEL_BASE + body_part_id
-        merged._export_model_lighting = "unlit"
+        light_worn(merged, args.model_lighting)
         body_model_ids[body_part_id] = merged.model_id
         exported_models.append(merged)
         print(
@@ -1020,7 +1032,7 @@ def main() -> None:
             apply_appearance_overrides(male_model, recolor_src, recolor_dst, retexture_src, retexture_dst)
             translate_model_y(male_model, appearance.male_offset)
             male_model.model_id = synth_equip_model_id(item_id)
-            male_model._export_model_lighting = "unlit"
+            light_worn(male_model, args.model_lighting)
             male_synth = male_model.model_id
             exported_models.append(male_model)
 
@@ -1032,7 +1044,7 @@ def main() -> None:
             apply_appearance_overrides(female_model, recolor_src, recolor_dst, retexture_src, retexture_dst)
             translate_model_y(female_model, appearance.female_offset)
             female_model.model_id = synth_equip_model_id(item_id) + 0x800000
-            female_model._export_model_lighting = "unlit"
+            light_worn(female_model, args.model_lighting)
             female_synth = female_model.model_id
             exported_models.append(female_model)
 

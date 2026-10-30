@@ -32,6 +32,7 @@ from export_models import (  # noqa: E402
     decode_model as _decode_model,
     expand_model,
     hsl15_to_rgb,
+    light_as_actor,
     write_models_binary,
 )
 
