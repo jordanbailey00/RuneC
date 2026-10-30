@@ -154,7 +154,7 @@ COX_STATE_FITS(IceState);
 
 static const CoxStats g_ice_demon = {
     .hp = 140, .att = 1, .str = 1, .def = 160, .mag = 390, .rng = 390,
-    .defence_bonus = {70, 70, 110, 140, 40}, .max_hit = 25, .cm_max_hit = 37,
+    .defence_bonus = {70, 70, 110, 140, 40}, .max_hit = 25,
     .attack_speed = 3, .style = COMBAT_MAGIC,
 };
 static const int8_t g_ice_demon_pos[3][2] = {{7, 21}, {14, 24}, {21, 18}};
@@ -582,36 +582,61 @@ static RcInteractionHandlerResult search_keeper(RcWorld *world, RcPlayer *player
 }
 
 // ---------------------------------------------------------------------------
-// Tightrope: cross under fire from the deathly guards, fetch the keystone
-// and dispel the barrier.
+// Tightrope: the deathly guards stand on their platforms beside the rope and
+// fight a raider who attacks them or walks the rope. Cross under fire, take
+// the keystone on the far side, cross back and dispel the barrier in front of
+// the exit. Tiles, timings and attacks follow the RSProx recordings (RT rows;
+// README Sources).
 
 enum { NPC_DEATHLY_RANGER = 7559, NPC_DEATHLY_MAGE = 7560 };
 #define GUARDS 4
-#define CROSS_TICKS 10
+#define GUARD_ATTACK_TICKS 4
+#define GUARD_RANGE 10
+#define CROSS_FACING_TICKS 2
 
 typedef struct {
     int16_t rope_x[2], rope_y[2];
-    bool spawned_guards;
     bool barrier_placed, dispelled;
     int16_t barrier_x, barrier_y;
+    // A guard fights once it is hit or a raider walks the rope.
+    bool engaged[GUARDS];
     RcTick next_guard_shot[GUARDS];
-    int16_t cross_to_x, cross_to_y;
+    // The crossing in progress: the end it started from, and its direction.
+    int8_t cross_from, cross_dx, cross_dy;
 } RopeState;
 COX_STATE_FITS(RopeState);
 
 static const CoxStats g_deathly[2] = {
     {.hp = 120, .att = 1, .str = 1, .def = 155, .mag = 155, .rng = 210,
-     .attack_bonus = {0, 0, 0, 120, 0}, .max_hit = 34, .cm_max_hit = 50,
+     .attack_bonus = {0, 0, 0, 120, 0}, .max_hit = 34,
      .attack_speed = 4, .style = COMBAT_RANGED, .flags = COX_STATS_MAGIC_DEFENSIVE},
     {.hp = 120, .att = 1, .str = 1, .def = 155, .mag = 210, .rng = 1,
-     .attack_bonus = {0, 0, 0, 0, 120}, .max_hit = 16, .cm_max_hit = 24,
+     .attack_bonus = {0, 0, 0, 0, 120}, .max_hit = 16,
      .attack_speed = 4, .style = COMBAT_MAGIC},
 };
-static const int8_t g_barrier_pos[3][2] = {{6, 16}, {13, 24}, {27, 16}};
+// Template tiles per exit variant (west, north, east): the two rangers share
+// one platform beside the rope and the two mages the other (the solo count;
+// NR spawn tiles, RT-S1), and the barrier's south-west tile and rotation one
+// tile inside the exit passage.
+static const int8_t g_guard_post[3][GUARDS][2] = {
+    {{20, 26}, {22, 26}, {21, 19}, {23, 19}},
+    {{20, 26}, {22, 26}, {21, 19}, {23, 19}},
+    {{5, 20}, {5, 22}, {12, 21}, {12, 23}},
+};
+static const int8_t g_barrier_pos[3][3] = {{6, 16, 0}, {13, 24, 1}, {27, 15, 2}};
+
+static int sign_of(int v) { return v > 0 ? 1 : v < 0 ? -1 : 0; }
+
+static int rope_length(const RopeState *s) {
+    int dx = abs(s->rope_x[1] - s->rope_x[0]), dy = abs(s->rope_y[1] - s->rope_y[0]);
+    return dx > dy ? dx : dy;
+}
 
 static void rope_enter(RcWorld *w, CoxRaid *raid, CoxRoom *room) {
     RopeState *s = COX_ROOM_STATE(RopeState, room);
     if (room->flags & COX_ROOM_COMPLETE) return;
+    // A raider coming back finds the guards idle again.
+    memset(s->engaged, 0, sizeof(s->engaged));
     if (!(room->flags & COX_ROOM_SPAWNED)) {
         room->flags |= COX_ROOM_SPAWNED;
         int xs[2], ys[2];
@@ -621,53 +646,71 @@ static void rope_enter(RcWorld *w, CoxRaid *raid, CoxRoom *room) {
                 s->rope_y[i] = (int16_t)ys[i];
             }
         }
-        // Two rangers and two mages beside the rope's middle.
-        int mx = (s->rope_x[0] + s->rope_x[1]) / 2 - room->x;
-        int my = (s->rope_y[0] + s->rope_y[1]) / 2 - room->y;
-        bool along_x = s->rope_y[0] == s->rope_y[1];
-        static const int8_t off[GUARDS] = {-5, 5, -4, 4};
         for (int g = 0; g < GUARDS; g++) {
-            int lx = mx + (along_x ? (g < 2 ? -2 : 2) : off[g]);
-            int ly = my + (along_x ? off[g] : (g < 2 ? -2 : 2));
-            int x, y;
-            if (free_tile(w, room, lx, ly, 1, &x, &y))
-                cox_spawn(w, raid, room, g < 2 ? NPC_DEATHLY_RANGER : NPC_DEATHLY_MAGE,
-                          x, y, g + 1, &g_deathly[g < 2 ? 0 : 1], true);
+            const int8_t *post = g_guard_post[room->variant][g];
+            cox_spawn(w, raid, room, g < 2 ? NPC_DEATHLY_RANGER : NPC_DEATHLY_MAGE,
+                      room->x + post[0], room->y + post[1], g + 1,
+                      &g_deathly[g < 2 ? 0 : 1], true);
         }
     }
     if (!s->barrier_placed && !s->dispelled) {
+        const int8_t *pos = g_barrier_pos[room->variant];
         s->barrier_placed = true;
-        s->barrier_x = (int16_t)(room->x + g_barrier_pos[room->variant][0]);
-        s->barrier_y = (int16_t)(room->y + g_barrier_pos[room->variant][1]);
-        cox_add_loc(w, LOC_BARRIER, 10, room->variant == COX_EXIT_NORTH ? 1 : 0,
-                    s->barrier_x, s->barrier_y, room->plane, NULL);
+        s->barrier_x = (int16_t)(room->x + pos[0]);
+        s->barrier_y = (int16_t)(room->y + pos[1]);
+        cox_add_loc(w, LOC_BARRIER, 10, pos[2], s->barrier_x, s->barrier_y,
+                    room->plane, NULL);
     }
+}
+
+// One guard's attack: an arrow or a fire blast whose hit lands with the
+// projectile, 46 + 5 (arrow) or 10 (fire blast) client cycles per tile of the
+// gap after the swing (RT-A1..A3).
+static void guard_attack(RcWorld *w, RcNpc *guard, bool ranger, int gap) {
+    RcNpcScriptedAttack shot = {
+        .style = ranger ? COMBAT_RANGED : COMBAT_MAGIC,
+        .max_hit = rc_npc_max_hit(guard, rc_npc_def_for_npc(w, guard)),
+        .delay = (46 + (ranger ? 5 : 10) * gap) / 30,
+        .protected_pct = 50, .key = ranger ? "Ranged" : "Magic"};
+    rc_combat_npc_scripted_attack(w, guard, &shot);
 }
 
 static void rope_tick(RcWorld *w, CoxRaid *raid, CoxRoom *room) {
     (void)raid;
     RopeState *s = COX_ROOM_STATE(RopeState, room);
     if (room->flags & COX_ROOM_COMPLETE) return;
-    // Guards only fire at a raider on the rope.
-    if (raid->action.kind != COX_ACT_CROSS_ROPE) return;
+    // An engaged guard attacks every 4 ticks while the raider is in reach
+    // (RT-A5), on the rope or off it.
     RcTick now = w->tick;
-    RcTick end = raid->action.next_tick;
     for (int g = 0; g < GUARDS; g++) {
         RcNpc *guard = cox_room_npc(w, room, g + 1);
-        if (!guard || now < s->next_guard_shot[g]) continue;
-        s->next_guard_shot[g] = now + 4;
-        // Every hit of the crossing lands together at its end.
-        int delay = end > now ? (int)(end - now) : 0;
-        RcNpcScriptedAttack shot = {
-            .style = g < 2 ? COMBAT_RANGED : COMBAT_MAGIC,
-            .max_hit = rc_npc_max_hit(guard, rc_npc_def_for_npc(w, guard)),
-            .delay = delay, .protected_pct = 50, .key = g < 2 ? "Ranged" : "Magic"};
-        rc_combat_npc_scripted_attack(w, guard, &shot);
+        if (!guard || !s->engaged[g] || now < s->next_guard_shot[g]) continue;
+        int gap = cox_player_distance(w, guard);
+        if (w->player.is_dead || gap > GUARD_RANGE) continue;
+        guard_attack(w, guard, g < 2, gap);
+        s->next_guard_shot[g] = now + GUARD_ATTACK_TICKS;
     }
 }
 
-const CoxRoomOps cox_tightrope_ops = {.enter = rope_enter, .tick = rope_tick};
+// A guard that is hit turns on the raider and attacks 2 ticks later (RT-W1).
+static void rope_npc_hit(RcWorld *w, CoxRaid *raid, CoxRoom *room, RcNpc *npc,
+                         int role, int damage) {
+    (void)raid;
+    (void)npc;
+    (void)damage;
+    RopeState *s = COX_ROOM_STATE(RopeState, room);
+    int g = role - 1;
+    if (g < 0 || g >= GUARDS || s->engaged[g]) return;
+    s->engaged[g] = true;
+    s->next_guard_shot[g] = w->tick + 2;
+}
 
+const CoxRoomOps cox_tightrope_ops = {
+    .enter = rope_enter, .tick = rope_tick, .npc_hit = rope_npc_hit};
+
+// Cross: the raider faces along the rope for two ticks, then walks it to the
+// tile past the far end, two tiles on the first tick and one a tick after,
+// unable to act until off it (RT-X1).
 static RcInteractionHandlerResult cross_rope(RcWorld *world, RcPlayer *player,
                                              const RcPendingInteraction *pending,
                                              void *ctx) {
@@ -678,29 +721,45 @@ static RcInteractionHandlerResult cross_rope(RcWorld *world, RcPlayer *player,
     int from = s->rope_x[0] == pending->target.tile_x
             && s->rope_y[0] == pending->target.tile_y ? 0 : 1;
     int to = 1 - from;
-    // Land one tile past the far end, along the rope.
-    int dx = s->rope_x[to] > s->rope_x[from] ? 1 : s->rope_x[to] < s->rope_x[from] ? -1 : 0;
-    int dy = s->rope_y[to] > s->rope_y[from] ? 1 : s->rope_y[to] < s->rope_y[from] ? -1 : 0;
-    int x = s->rope_x[to] + dx, y = s->rope_y[to] + dy;
-    if (!cox_tile_walkable(world, x, y, room->plane)) {
-        x = s->rope_x[to];
-        y = s->rope_y[to];
-    }
-    s->cross_to_x = (int16_t)x;
-    s->cross_to_y = (int16_t)y;
+    s->cross_from = (int8_t)from;
+    s->cross_dx = (int8_t)sign_of(s->rope_x[to] - s->rope_x[from]);
+    s->cross_dy = (int8_t)sign_of(s->rope_y[to] - s->rope_y[from]);
+    player->facing_entity = -1;
+    player->facing_x = s->rope_x[to];
+    player->facing_y = s->rope_y[to];
+    player->facing_width = 1;
+    player->facing_length = 1;
+    rc_world_delay_player(world, CROSS_FACING_TICKS + rope_length(s) + 1);
     cox_start_action(world, cox_raid(world), COX_ACT_CROSS_ROPE, pending,
-                     CROSS_TICKS, 0);
+                     CROSS_FACING_TICKS, 0);
     cox_add_xp(world, SKILL_AGILITY, 2000);
-    (void)player;
     return rc_interaction_result_complete();
 }
 
-static bool rope_arrive(RcWorld *w, CoxRaid *raid, CoxAction *a) {
+// One tick of the walk: step k puts the raider k + 1 tiles past the near end,
+// and the last lands one past the far end. Idle guards open on the raider the
+// tick after they step on (RT-X3).
+static bool rope_step(RcWorld *w, CoxRaid *raid, CoxAction *a) {
     CoxRoom *room = cox_room_at(raid, a->target_x, a->target_y, a->plane);
     if (!room) return false;
     RopeState *s = COX_ROOM_STATE(RopeState, room);
-    cox_relocate(w, raid, s->cross_to_x, s->cross_to_y, room->plane);
-    return false;
+    int k = a->param;
+    int x = s->rope_x[s->cross_from] + s->cross_dx * (k + 1);
+    int y = s->rope_y[s->cross_from] + s->cross_dy * (k + 1);
+    if (!rc_world_force_move_player(w, x, y)) return false;
+    a->player_x = x;
+    a->player_y = y;
+    if (k == 0) {
+        for (int g = 0; g < GUARDS; g++) {
+            if (s->engaged[g]) continue;
+            s->engaged[g] = true;
+            s->next_guard_shot[g] = w->tick + 1;
+        }
+    }
+    if (k >= rope_length(s)) return false;
+    a->param = k + 1;
+    a->next_tick = w->tick + 1;
+    return true;
 }
 
 static RcInteractionHandlerResult take_keystone(RcWorld *world, RcPlayer *player,
@@ -715,6 +774,8 @@ static RcInteractionHandlerResult take_keystone(RcWorld *world, RcPlayer *player
     return rc_interaction_result_complete();
 }
 
+// Dispel, or the keystone used on the barrier: the keystone goes, the barrier
+// disperses and every surviving guard dies with it (RT-K2, RT-K3).
 static RcInteractionHandlerResult dispel(RcWorld *world, RcPlayer *player,
                                          const RcPendingInteraction *pending,
                                          void *ctx) {
@@ -726,7 +787,6 @@ static RcInteractionHandlerResult dispel(RcWorld *world, RcPlayer *player,
         return say("The barrier needs a keystone crystal to dispel it.");
     s->dispelled = true;
     cox_remove_loc(world, LOC_BARRIER, s->barrier_x, s->barrier_y, room->plane);
-    // Every surviving guard dies with the barrier.
     for (int g = 0; g < GUARDS; g++) {
         RcNpc *guard = cox_room_npc(world, room, g + 1);
         if (guard) rc_npc_remove(world, guard->uid);
@@ -735,7 +795,7 @@ static RcInteractionHandlerResult dispel(RcWorld *world, RcPlayer *player,
     cox_add_points(raid, 2000);
     cox_complete_room(world, raid, room);
     (void)player;
-    return say("The keystone dispels the shimmering barrier.");
+    return say("Your keystone glows as it is absorbed into the barrier, which disperses.");
 }
 
 // ---------------------------------------------------------------------------
@@ -791,9 +851,15 @@ static void crabs_enter(RcWorld *w, CoxRaid *raid, CoxRoom *room) {
                 s->crystal_x[i] = (int16_t)x;
                 s->crystal_y[i] = (int16_t)y;
             }
-        static const int8_t at[CRABS][2] = {{10, 12}, {20, 12}, {15, 18}};
+        // The first three of the variant's four crab slots (solo; NR's tiles).
+        static const int8_t at[3][CRABS][2] = {
+            {{22, 10}, {16, 14}, {17, 21}},
+            {{10, 14}, {15, 9}, {17, 17}},
+            {{9, 12}, {7, 18}, {13, 22}},
+        };
         for (int c = 0; c < CRABS; c++)
-            if (free_tile(w, room, at[c][0], at[c][1], 1, &x, &y))
+            if (free_tile(w, room, at[room->variant][c][0], at[room->variant][c][1],
+                          1, &x, &y))
                 cox_spawn(w, raid, room, NPC_CRAB_DIM, x, y, ROLE_CRAB + c, &g_crab,
                           true);
         s->next_orb = w->tick + 5;
@@ -1020,7 +1086,7 @@ bool cox_puzzle_action(RcWorld *world, CoxRaid *raid, CoxAction *a) {
     switch (a->kind) {
     case COX_ACT_LIGHT_BRAZIER: return light_attempt(world, raid, a);
     case COX_ACT_OPEN_CHEST: return chest_attempt(world, raid, a);
-    case COX_ACT_CROSS_ROPE: return rope_arrive(world, raid, a);
+    case COX_ACT_CROSS_ROPE: return rope_step(world, raid, a);
     default: return false;
     }
 }
@@ -1037,6 +1103,7 @@ int cox_puzzle_rooms_register(RcWorld *world) {
     ok &= cox_register_object(world, LOC_TIGHTROPE, 0, cross_rope);
     ok &= cox_register_object(world, LOC_KEYSTONE, 0, take_keystone);
     ok &= cox_register_object(world, LOC_BARRIER, 0, dispel);
+    ok &= cox_register_item_on_object(world, ITEM_KEYSTONE, LOC_BARRIER, dispel);
     // Crabs: Attack (second option) fights them; Smash is the third.
     for (int c = 0; c < 4; c++)
         ok &= cox_register_npc(world, NPC_CRAB_DIM + c, 2, smash_crab);

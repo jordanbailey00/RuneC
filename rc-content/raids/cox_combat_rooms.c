@@ -320,7 +320,7 @@ static const CoxStats g_tekton = {
     .hp = 300, .att = 390, .str = 390, .def = 205, .mag = 205, .rng = 1,
     .attack_bonus = {64, 64, 64, 0, 0}, .defence_bonus = {155, 165, 105, 0, 0},
     .max_hit = 52, .max_bonus = 20, .attack_speed = 3, .style = COMBAT_MELEE_CRUSH,
-    .flags = COX_STATS_MAGIC_DEFENSIVE | COX_STATS_TEKTON_DEF | COX_STATS_MAX_FORMULA,
+    .flags = COX_STATS_MAGIC_DEFENSIVE | COX_STATS_MAX_FORMULA,
 };
 static const int8_t g_tekton_work[3][2] = {{15, 18}, {11, 14}, {13, 18}};
 
@@ -692,7 +692,6 @@ static const CoxStats g_vasa = {
 static const CoxStats g_vasa_crystal = {
     .hp = 120, .att = 1, .str = 1, .def = 100, .mag = 100, .rng = 1,
     .defence_bonus = {-5, 180, 180, 0, 0}, .style = COMBAT_NONE,
-    .flags = COX_STATS_NO_CM_HP | COX_STATS_CM_MAGIC_ONLY,
 };
 static const int8_t g_vasa_crystals[4][2] = {{6, 5}, {6, 23}, {23, 23}, {23, 5}};
 
@@ -1420,7 +1419,9 @@ static const CoxStats g_mutt_large = {
 };
 static const int8_t g_tree_pos[3][2] = {{5, 8}, {5, 8}, {22, 5}};
 static const int8_t g_mutt_large_pos[3][2] = {{18, 20}, {18, 18}, {8, 18}};
-static const int8_t g_mutt_small_pos[3][2] = {{12, 16}, {11, 13}, {16, 11}};
+// The small one's spawn: the north- and east-exit rooms' are the recorded
+// tiles (RSProx), the west's NR's.
+static const int8_t g_mutt_small_pos[3][2] = {{12, 16}, {15, 5}, {15, 6}};
 
 static void mutt_enter(RcWorld *w, CoxRaid *raid, CoxRoom *room) {
     MuttState *s = COX_ROOM_STATE(MuttState, room);
@@ -1681,7 +1682,7 @@ static const CoxStats g_grub = {.hp = 125, .att = 1, .str = 1, .def = 1, .mag = 
                                 .flags = COX_STATS_SINGLES};
 static const CoxStats g_soldier = {
     .hp = 100, .att = 150, .str = 150, .def = 40, .mag = 40, .rng = 1,
-    .defence_bonus = {0, 0, 0, 0, 30}, .max_hit = 14, .cm_max_hit = 20,
+    .defence_bonus = {0, 0, 0, 0, 30}, .max_hit = 14,
     .attack_speed = 4, .style = COMBAT_MELEE_CRUSH,
     .flags = COX_STATS_SINGLES | COX_STATS_MAGIC_DEFENSIVE,
 };
@@ -1784,8 +1785,13 @@ static void vespula_grubs(RcWorld *w, CoxRaid *raid, VespState *s, CoxRoom *room
     } else {
         RcRouteTarget target = rc_route_target_rectangle(grub->x, grub->y, 3, 3, 1,
                                                          1, false, false);
-        if (vesp->route_mode != RC_NPC_ROUTE_SCRIPTED || vesp->route_len == 0)
-            rc_npc_route_request(w, vesp, &target, RC_NPC_ROUTE_SCRIPTED, true);
+        // No way closer (her five tiles do not fit, or the route ends short
+        // of the grub): she tries another one.
+        if ((vesp->route_mode != RC_NPC_ROUTE_SCRIPTED || vesp->route_len == 0)
+                && (!rc_npc_route_request(w, vesp, &target, RC_NPC_ROUTE_SCRIPTED,
+                                          true)
+                    || vesp->route_len == 0))
+            s->target_grub = -1;
     }
 }
 

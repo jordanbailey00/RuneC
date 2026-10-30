@@ -103,8 +103,6 @@ static void start_fight(uint32_t seed) {
     assert(rc_world_relocate_player(g_w, 1233, 3572, 0));
     assert(rc_player_interact_object_at(g_w, 29777, 1232, 3573, 0, 0));
     tick(8);
-    assert(rc_player_widget_action(g_w, RC_CHOICE_WIDGET, 0, 0));   // normal raid
-    tick(2);
     assert(g_raid->in_raid);
     g_raid->started = true;
     g_raid->start_tick = g_w->tick;

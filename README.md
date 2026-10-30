@@ -18,8 +18,10 @@ cache #2746, 2026-10-20). The previous version, **v4.0**, uses cache revision
 The b237 → b241 migration is in progress on this branch:
 
 - Map and loc data are b241: terrain, objects, minimaps, collision, object
-  placements and definitions, and the 2,950-mapsquare catalog. b241 adds new
-  areas such as The Fractured Archive.
+  placements and definitions, and the mapsquare catalog (b241's 2,950 plus
+  4 RuneC composes for the Chambers of Xeric layout,
+  `content/world/composed_maps.toml`). b241 adds new areas such as The
+  Fractured Archive.
 - Items, NPCs, spawns, animations outside objects, and the reviewed data
   snapshots are still b237 data.
 - No b241 runtime-data release is published yet. Install the b237 release as
@@ -144,9 +146,11 @@ Open the Clan Chat side tab to use the validation panel:
   arrives asleep; Poke it to start the fight. Teleporting there again puts it back to sleep.
 - `CoX`, `ToB`, `ToA` and `Archive` move the player beside the raid entrance
   of Chambers of Xeric, Theatre of Blood, Tombs of Amascut and The Fractured
-  Archive. Chambers of Xeric plays solo without loot: enter the steps, pick
-  a normal raid (small, large or full layout) or Challenge Mode, and go
-  through the first passage to start the raid. The other three
+  Archive. Chambers of Xeric plays solo without loot or Challenge Mode:
+  enter the steps, and go through the first passage to start the raid.
+  Every raid is the same layout, rooms easiest to hardest:
+  Tightrope, Jewelled crabs, Lizardman shamans, Muttadiles, Tekton, then the
+  Great Olm. The other three
   only move the player into the raid's map (the cache's static template of
   it), with one exit back to its lobby or hub; their bosses, puzzles and
   rewards are not implemented yet. The Fractured Archive exists only in b241

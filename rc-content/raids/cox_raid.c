@@ -24,21 +24,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Raid controller: entry and difficulty on Mount Quidamortem, layout, the
-// room chain, floors, timer and points, death and leaving. Room behaviour
-// lives in the room modules (cox_combat_rooms.c, cox_puzzle_rooms.c,
-// cox_resources.c, cox_olm.c).
+// Raid controller: entry and difficulty on Mount Quidamortem, the layout,
+// the way down to Great Olm, timer and points, death and leaving. Room
+// behaviour lives in the room modules (cox_combat_rooms.c,
+// cox_puzzle_rooms.c, cox_resources.c, cox_olm.c).
 
 enum {
     LOC_ENTRANCE = 29777,           // Mount Quidamortem "Chambers of Xeric"
     LOC_EXIT_STEPS = 29778,         // lobby (non-leader) and Olm chamber
-    LOC_LOBBY_STEPS_LEADER = 50000, // lobby steps for the leader: Climb, Reload
+    LOC_LOBBY_STEPS_LEADER = 50000, // lobby steps for the leader (one layout: no Reload)
     LOC_PASSAGE = 29789,
-    LOC_HOLE_FLOOR = 29734,         // raids_descentto2
-    LOC_HOLE_FLOOR_CM = 32542,      // raids_descentto1
     LOC_HOLE_OLM = 29735,           // raids_bossentrance
-    LOC_ROPE_FLOOR = 29995,         // raids_ascentto3
-    LOC_ROPE_FLOOR_CM = 32543,      // raids_ascentto2
     LOC_ROPE_OLM = 29996,           // raids_bossexit
     LOC_ENERGY_WELL = 30066,
     LOC_BANK_CHEST = 47420,
@@ -54,91 +50,41 @@ enum {
     VARBIT_PROGRESS = 5425,
     VARBIT_PARTYSCORE = 5431,
     VARBIT_INDUNGEON = 5432,
-    VARBIT_CHALLENGE_MODE = 6385,
     VARBIT_TIMER = 6386,            // ticks, 16 bits
     VARP_PLAYERSCORE = 4609,
+    PROGRESS_STARTED = 1,
+    PROGRESS_OLM = 2,
     PROGRESS_DONE = 5,
 };
 
 // Mount Quidamortem tile the raid exits to, beside the entrance.
 #define COX_LOBBY_EXIT_X 1233
 #define COX_LOBBY_EXIT_Y 3571
-// Template area every raid room lies in.
-#define COX_AREA_MIN_X 3200
-#define COX_AREA_MAX_X 3391
-#define COX_AREA_MIN_Y 5120
-#define COX_AREA_MAX_Y 5759
+// The layout's south-west corner (content/world/composed_maps.toml), and
+// Great Olm's chamber, which is its own template.
+#define COX_LAYOUT_X 3472
+#define COX_LAYOUT_Y 5440
 #define COX_OLM_X 3200
 #define COX_OLM_Y 5696
+// The end room's hole lands in the chamber's antechamber; the chamber's
+// rope climbs back to the end room beside the hole.
+#define COX_OLM_ARRIVAL_X 3232
+#define COX_OLM_ARRIVAL_Y 5721
+#define COX_END_RETURN_LX 12
+#define COX_END_RETURN_LY 21
 #define COX_TICKS_PER_SECOND_X10 6   // 0.6 s per tick
 
 // ---------------------------------------------------------------------------
-// Layout data: RuneLite's raid layout solver patterns (floor 1 rooms . floor
-// 2 rooms - #floor 1 moves#floor 2 moves) and the combat rotation cycles.
+// The layout: one chain, the same every raid, rooms easiest to hardest. Each
+// room is the north-exit variant of its template, copied by the map
+// pipeline into a column north of the start room so every room's exit opens
+// into the next room's entry.
 
-typedef struct {
-    const char *code;
-    uint8_t pool;     // 0 small, 1 medium, 2 large
-} CoxPattern;
-
-static const CoxPattern g_patterns[] = {
-    {"FSCCS.PCPSF - #WSEEEN#WSWNWS", 0}, {"SCCFC.PSCSF - #EEENWW#WSEEEN", 0},
-    {"SCFCP.CSCFS - #ENEESW#ENWWSW", 0}, {"SCPFC.CSPSF - #WWSEEE#NWSWWN", 0},
-    {"SCSPF.CCSPF - #ESWWNW#ESENES", 0}, {"SFCCS.PCPSF - #ENWWSW#ENESEN", 0},
-    {"SPSFP.CCCSF - #NWSWWN#ESEENW", 0}, {"SCPFC.CCSSF - #NEESEN#WSWWNE", 0},
-    {"FSCCP.PCSCF - #WNWSWN#ESEENW", 1}, {"FSCCP.PCSCF - #ENWWWS#NEESEN", 1},
-    {"FSCPC.CSCPF - #WNWWSE#EENWWW", 1}, {"FSPCC.PSCCF - #WWWSEE#ENWWSW", 1},
-    {"SCCFP.CCSPF - #NESEEN#WSWNWS", 1}, {"SCFCP.CCSPF - #ESEENW#ESWWNW", 1},
-    {"SCFCP.CSCPF - #ENESEN#WWWSEE", 1}, {"SCFPC.CSPCF - #WSWWNE#WSEENE", 1},
-    {"SCFPC.PCCSF - #WSEENE#WWWSEE", 1}, {"SCFPC.SCPCF - #NESENE#WSWWNE", 1},
-    {"SCPFC.CCPSF - #NWWWSE#WNEESE", 1}, {"SCPFC.CSPCF - #NEEESW#WWNEEE", 1},
-    {"SCPFC.PCSCF - #WNEEES#NWSWNW", 1}, {"SFCCP.CSCPF - #WNEESE#NWSWWN", 1},
-    {"SPCFC.CSPCF - #WWNEEE#WSWNWS", 1}, {"SPCFC.SCCPF - #ESENES#WWWNEE", 1},
-    {"SCFCPC.CSPCSF - #ESWWNWS#NESENES", 2},
-    {"SFCCPC.PCSCPF - #WSEENES#WWWNEEE", 2},
+static const uint8_t g_layout[] = {
+    COX_ROOM_START, COX_ROOM_TIGHTROPE, COX_ROOM_CRABS, COX_ROOM_SHAMANS,
+    COX_ROOM_MUTTADILES, COX_ROOM_TEKTON, COX_ROOM_END,
 };
-
-static const uint8_t g_cycle_a[8] = {
-    COX_ROOM_TEKTON, COX_ROOM_VASA, COX_ROOM_GUARDIANS, COX_ROOM_MYSTICS,
-    COX_ROOM_SHAMANS, COX_ROOM_MUTTADILES, COX_ROOM_VANGUARDS, COX_ROOM_VESPULA,
-};
-static const uint8_t g_cycle_b[8] = {
-    COX_ROOM_TEKTON, COX_ROOM_MUTTADILES, COX_ROOM_GUARDIANS, COX_ROOM_VESPULA,
-    COX_ROOM_SHAMANS, COX_ROOM_VASA, COX_ROOM_VANGUARDS, COX_ROOM_MYSTICS,
-};
-// Unpublished: a cycle that keeps Ice demon beside Tightrope and Crabs beside
-// Thieving, as the wiki says they tend to pair.
-static const uint8_t g_puzzle_cycle[4] = {
-    COX_ROOM_ICE_DEMON, COX_ROOM_TIGHTROPE, COX_ROOM_CRABS, COX_ROOM_THIEVING,
-};
-
-// Challenge Mode (and the Full map pool): the fixed room order.
-static const uint8_t g_full_layout[3][6] = {
-    {COX_ROOM_TEKTON, COX_ROOM_CRABS, COX_ROOM_SCAVENGERS, COX_ROOM_ICE_DEMON,
-     COX_ROOM_SHAMANS, COX_ROOM_FARMING_FISH},
-    {COX_ROOM_VANGUARDS, COX_ROOM_THIEVING, COX_ROOM_SCAVENGERS,
-     COX_ROOM_VESPULA, COX_ROOM_FARMING_FISH, COX_ROOM_TIGHTROPE},
-    {COX_ROOM_GUARDIANS, COX_ROOM_VASA, COX_ROOM_SCAVENGERS, COX_ROOM_MYSTICS,
-     COX_ROOM_MUTTADILES, COX_ROOM_FARMING_FISH},
-};
-// Its grid path is unpublished; a snake through the full 4x2 floor.
-static const char *const g_full_moves[3] = {"EEENWWW", "EEESWWW", "EEENWWW"};
-
-// Template rows (south-west y, plane) for each room type; the three
-// variants sit at x 3264 (exit west), 3296 (north) and 3328 (east).
-static const struct { int16_t y; uint8_t plane; } g_rows[COX_ROOM_TYPE_COUNT] = {
-    [COX_ROOM_SCAVENGERS] = {5216, 0}, [COX_ROOM_SCAVENGERS_LARGE] = {5216, 1},
-    [COX_ROOM_FARMING_FISH] = {5440, 0}, [COX_ROOM_FARMING_BATS] = {5440, 1},
-    [COX_ROOM_TEKTON] = {5280, 1}, [COX_ROOM_MUTTADILES] = {5312, 1},
-    [COX_ROOM_GUARDIANS] = {5248, 2}, [COX_ROOM_VESPULA] = {5280, 2},
-    [COX_ROOM_SHAMANS] = {5248, 0}, [COX_ROOM_VASA] = {5280, 0},
-    [COX_ROOM_VANGUARDS] = {5312, 0}, [COX_ROOM_MYSTICS] = {5248, 1},
-    [COX_ROOM_ICE_DEMON] = {5344, 0}, [COX_ROOM_THIEVING] = {5376, 0},
-    [COX_ROOM_TIGHTROPE] = {5344, 1}, [COX_ROOM_CRABS] = {5344, 2},
-};
-
-static const char *const g_floor_names[COX_MAX_FLOORS + 1] = {
-    "Upper", "Middle", "Lower", "Olm"};
+_Static_assert(sizeof(g_layout) < COX_MAX_ROOMS, "the layout and Olm fit the raid");
 
 // ---------------------------------------------------------------------------
 // State and small helpers.
@@ -273,14 +219,12 @@ int cox_scale(const CoxRaid *raid, const CoxStats *base,
     const int n = 1;
     int c = raid->scale_combat, h = raid->scale_hp;
     bool singles = base->flags & COX_STATS_SINGLES;
-    bool cm = raid->cm;
     int hp = base->hp * c / 126;
     if (singles) {
         if (hp < 5) hp = 5;
     } else {
         hp += hp * (n / 2);
     }
-    if (cm && !(base->flags & COX_STATS_NO_CM_HP)) hp += hp / 2;
     int off_mul = 100 + 7 * isqrt_int(n - 1) + (n - 1);
     int def_mul = 100 + isqrt_int(n - 1) + 7 * (n - 1) / 10;
     int16_t levels[6] = {base->att, base->def, base->str, base->hp, base->rng,
@@ -295,27 +239,17 @@ int cox_scale(const CoxRaid *raid, const CoxStats *base,
         bool defensive = i == 1 || (i == 5 && (base->flags & COX_STATS_MAGIC_DEFENSIVE));
         if (singles) {
             v = v * clamp_int(h, 55, 99) / 99;
-            if (cm) v += v / 2;
             out->stats[i] = v > 1 ? v : 1;
             continue;
         }
         v = v * h / 99;
         v = v * (defensive ? def_mul : off_mul) / 100;
-        if (cm && defensive && (base->flags & COX_STATS_CM_MAGIC_ONLY)) {
-            // Vasa's crystals: Magic only.
-            if (i == 5) v += v / 2;
-        } else if (cm && defensive && (base->flags & COX_STATS_TEKTON_DEF)
-                   && i == 1) {
-            v += v * 20 / 100;
-        } else if (cm) {
-            v += v / 2;
-        }
         out->stats[i] = clamp_int(v, 50, defensive ? 20000 : 5000);
     }
     out->stats[3] = clamp_int(hp, singles ? 5 : 50, 30000);
     out->hitpoints = out->stats[3];
-    out->max_hit = cm && base->cm_max_hit ? base->cm_max_hit : base->max_hit;
-    if ((base->flags & COX_STATS_MAX_FORMULA) && !(cm && base->cm_max_hit)) {
+    out->max_hit = base->max_hit;
+    if (base->flags & COX_STATS_MAX_FORMULA) {
         int level = base->style == COMBAT_RANGED ? out->stats[4]
                   : base->style == COMBAT_MAGIC ? out->stats[5] : out->stats[2];
         out->max_hit = cox_npc_max_hit(level, base->max_bonus);
@@ -604,10 +538,7 @@ static void tick_hazards(RcWorld *world, CoxRaid *raid) {
 }
 
 static void set_current_room(RcWorld *world, CoxRaid *raid, CoxRoom *room) {
-    int idx = cox_room_index(raid, room);
-    raid->current_room = (uint8_t)idx;
-    if (room->floor > raid->furthest_floor && room->type != COX_ROOM_OLM)
-        raid->furthest_floor = room->floor;
+    raid->current_room = (uint8_t)cox_room_index(raid, room);
     // Restore room NPCs the active area dropped while the player was away.
     for (int i = 0; i < room->npc_count; i++) {
         CoxRoomNpc *rn = &room->npcs[i];
@@ -702,271 +633,31 @@ int cox_register_item_on_item(RcWorld *world, int item_id, int target_id,
 }
 
 // ---------------------------------------------------------------------------
-// Layout generation.
+// Layout and the way down.
 
-typedef struct {
-    uint8_t types[COX_MAX_FLOORS][8];
-    uint8_t count[COX_MAX_FLOORS];
-    char moves[COX_MAX_FLOORS][9];
-    uint8_t floors;
-} CoxPlan;
-
-static int move_dir(char m) {
-    return m == 'N' ? 0 : m == 'E' ? 1 : m == 'S' ? 2 : 3;
-}
-
-static int variant_for_turn(int in_dir, int out_dir) {
-    int turn = (out_dir - in_dir + 4) % 4;
-    return turn == 1 ? COX_EXIT_EAST : turn == 3 ? COX_EXIT_WEST : COX_EXIT_NORTH;
-}
-
-static int variant_for_first_move(char m) {
-    return m == 'W' ? COX_EXIT_WEST : m == 'E' ? COX_EXIT_EAST : COX_EXIT_NORTH;
-}
-
-static bool parse_pattern(const char *code, CoxPlan *plan) {
-    memset(plan, 0, sizeof(*plan));
-    const char *dash = strstr(code, " - #");
-    if (!dash) return false;
-    int floor = 0, n = 0;
-    for (const char *c = code; c < dash; c++) {
-        if (*c == '.') {
-            plan->count[floor++] = (uint8_t)n;
-            n = 0;
-            continue;
-        }
-        if (floor >= COX_MAX_FLOORS || n >= 8) return false;
-        plan->types[floor][n++] = (uint8_t)*c;   // letters until resolved
-    }
-    plan->count[floor] = (uint8_t)n;
-    plan->floors = (uint8_t)(floor + 1);
-    const char *m = dash + 4;
-    for (int f = 0; f < plan->floors; f++) {
-        int k = 0;
-        while (*m && *m != '#' && k < 8) plan->moves[f][k++] = *m++;
-        if (*m == '#') m++;
-        if (k != plan->count[f] + 1) return false;
-    }
-    return true;
-}
-
-static void resolve_letters(RcWorld *world, CoxPlan *plan) {
-    // Combat rooms: a contiguous run of one rotation cycle, either way.
-    const uint8_t *cycle = cox_rand(world, 2) ? g_cycle_b : g_cycle_a;
-    int dir = cox_rand(world, 2) ? 1 : 7;
-    int at = cox_rand(world, 8);
-    int pdir = cox_rand(world, 2) ? 1 : 3;
-    int pat = cox_rand(world, 4);
-    for (int f = 0; f < plan->floors; f++) {
-        int scavs = 0, scav_seen = 0;
-        for (int i = 0; i < plan->count[f]; i++)
-            scavs += plan->types[f][i] == 'S';
-        int large_slot = scavs >= 2 ? cox_rand(world, scavs) : -1;
-        for (int i = 0; i < plan->count[f]; i++) {
-            uint8_t *t = &plan->types[f][i];
-            switch (*t) {
-            case 'C':
-                *t = cycle[at];
-                at = (at + dir) % 8;
-                break;
-            case 'P':
-                *t = g_puzzle_cycle[pat];
-                pat = (pat + pdir) % 4;
-                break;
-            case 'S': {
-                bool large = scavs >= 2 ? scav_seen == large_slot
-                                        : cox_rand(world, 2) == 1;
-                scav_seen++;
-                *t = large ? COX_ROOM_SCAVENGERS_LARGE : COX_ROOM_SCAVENGERS;
-                break;
-            }
-            case 'F':
-                *t = cox_rand(world, 2) ? COX_ROOM_FARMING_BATS
-                                        : COX_ROOM_FARMING_FISH;
-                break;
-            default:
-                *t = COX_ROOM_NONE;
-                break;
-            }
-        }
-    }
-}
-
-static void plan_full_layout(RcWorld *world, CoxPlan *plan) {
-    memset(plan, 0, sizeof(*plan));
-    plan->floors = 3;
-    for (int f = 0; f < 3; f++) {
-        plan->count[f] = 6;
-        for (int i = 0; i < 6; i++) {
-            uint8_t t = g_full_layout[f][i];
-            if (t == COX_ROOM_FARMING_FISH && cox_rand(world, 2))
-                t = COX_ROOM_FARMING_BATS;
-            if (t == COX_ROOM_SCAVENGERS && cox_rand(world, 2))
-                t = COX_ROOM_SCAVENGERS_LARGE;
-            plan->types[f][i] = t;
-        }
-        memcpy(plan->moves[f], g_full_moves[f], 7);
-    }
-}
-
-static void add_room(CoxRaid *raid, int type, int floor, int variant, int x,
-                     int y, int plane) {
+static void add_room(CoxRaid *raid, int type, int x, int y) {
     CoxRoom *room = &raid->rooms[raid->room_count++];
     memset(room, 0, sizeof(*room));
     room->type = (uint8_t)type;
-    room->floor = (uint8_t)floor;
-    room->variant = (uint8_t)variant;
+    room->variant = COX_EXIT_NORTH;
     room->x = (int16_t)x;
     room->y = (int16_t)y;
-    room->plane = (int16_t)plane;
 }
 
-// A template block used twice in one raid would share its locs and NPCs:
-// such a room takes another variant of its type (orientation is cosmetic
-// here because rooms are joined by moves, not geometry).
-static int free_variant(const CoxRaid *raid, int type, int wanted) {
-    for (int k = 0; k < 3; k++) {
-        int v = (wanted + k) % 3;
-        bool used = false;
-        for (int i = 0; i < raid->room_count; i++)
-            used |= raid->rooms[i].type == type && raid->rooms[i].variant == v;
-        if (!used) return v;
-    }
-    return wanted;
-}
-
-static void build_layout(RcWorld *world, CoxRaid *raid) {
-    CoxPlan plan;
-    if (raid->cm || raid->map_pool == COX_POOL_FULL) {
-        plan_full_layout(world, &plan);
-    } else {
-        int pick;
-        if (raid->map_pool == COX_POOL_LARGE) {
-            pick = 24 + cox_rand(world, 2);
-        } else {
-            // Equal chance of a small or a medium map.
-            pick = cox_rand(world, 2) ? cox_rand(world, 8) : 8 + cox_rand(world, 16);
-        }
-        if (!parse_pattern(g_patterns[pick].code, &plan))
-            parse_pattern(g_patterns[0].code, &plan);
-        resolve_letters(world, &plan);
-    }
+static void build_layout(CoxRaid *raid) {
     raid->room_count = 0;
-    raid->floor_count = plan.floors;
-    for (int f = 0; f < plan.floors; f++) {
-        bool last = f == plan.floors - 1;
-        raid->floor_start[f] = raid->room_count;
-        int start_y = f == 0 ? 5184 : f == 1 ? 5696 : 5728;
-        int sv = variant_for_first_move(plan.moves[f][0]);
-        add_room(raid, COX_ROOM_START, f, sv, 3264 + 32 * sv, start_y, 0);
-        for (int i = 0; i < plan.count[f]; i++) {
-            int type = plan.types[f][i];
-            int v = variant_for_turn(move_dir(plan.moves[f][i]),
-                                     move_dir(plan.moves[f][i + 1]));
-            v = free_variant(raid, type, v);
-            add_room(raid, type, f, v, 3264 + 32 * v, g_rows[type].y,
-                     g_rows[type].plane);
-        }
-        raid->floor_end[f] = raid->room_count;
-        if (last)
-            add_room(raid, COX_ROOM_END, f, COX_EXIT_NORTH, 3296, 5152, 0);
-        else if (f == 1)
-            add_room(raid, COX_ROOM_END, f, COX_EXIT_WEST, 3264, 5120, 0);
-        else
-            add_room(raid, COX_ROOM_END, f, COX_EXIT_WEST, 3264, 5152, 0);
-    }
+    for (int i = 0; i < (int)sizeof(g_layout); i++)
+        add_room(raid, g_layout[i], COX_LAYOUT_X, COX_LAYOUT_Y + COX_ROOM_SIZE * i);
     raid->olm_room = raid->room_count;
-    add_room(raid, COX_ROOM_OLM, plan.floors, COX_EXIT_NORTH, COX_OLM_X,
-             COX_OLM_Y, 0);
+    add_room(raid, COX_ROOM_OLM, COX_OLM_X, COX_OLM_Y);
 }
 
-// ---------------------------------------------------------------------------
-// Room chain: entries, exits, floors.
-
-// The entry column nearest the middle of the room's south edge, by the
-// template's own collision (the room may not be loaded yet).
-static bool find_entry_arrival(const CoxRoom *room, int *out_x, int *out_y) {
-    for (int k = 0; k < 12; k++) {
-        int lx = 15 + (k % 2 ? (k + 1) / 2 : -(k / 2));
-        int x = room->x + lx;
-        if (static_walkable(x, room->y, room->plane)
-                && static_walkable(x, room->y + 1, room->plane)) {
-            *out_x = x;
-            *out_y = room->y + 1;
-            return true;
-        }
-    }
-    return false;
-}
-
-static bool on_exit_edge(const CoxRoom *room, int lx, int ly) {
-    switch (room->variant) {
-    case COX_EXIT_WEST: return lx == 0;
-    case COX_EXIT_NORTH: return ly == COX_ROOM_SIZE - 1;
-    default: return lx == COX_ROOM_SIZE - 1;
-    }
-}
-
-static bool find_exit_arrival(const RcWorld *world, const CoxRoom *room,
-                              int *out_x, int *out_y) {
-    for (int k = 0; k < 32; k++) {
-        int a = 15 + (k % 2 ? (k + 1) / 2 : -(k / 2));
-        if (a < 0 || a >= COX_ROOM_SIZE) continue;
-        int lx = room->variant == COX_EXIT_WEST ? 0
-               : room->variant == COX_EXIT_EAST ? COX_ROOM_SIZE - 1 : a;
-        int ly = room->variant == COX_EXIT_NORTH ? COX_ROOM_SIZE - 1 : a;
-        if (cox_tile_walkable(world, room->x + lx, room->y + ly, room->plane)) {
-            *out_x = room->x + lx;
-            *out_y = room->y + ly;
-            return true;
-        }
-    }
-    return false;
-}
-
-static void move_to_room_entry(RcWorld *world, CoxRaid *raid, int idx) {
-    int x, y;
-    CoxRoom *room = &raid->rooms[idx];
-    if (!find_entry_arrival(room, &x, &y)) return;
-    // Land on the entry row (loading the room), then step in unless a
-    // raised gate (fire or tendrils) blocks the way: in front of one the
-    // raider is held on the row so it can be crossed.
-    cox_relocate(world, raid, x, y - 1, room->plane);
-    if (cox_tile_walkable(world, x, y, room->plane)) {
-        cox_relocate(world, raid, x, y, room->plane);
-        return;
-    }
-    raid->hold_x = x;
-    raid->hold_y = y - 1;
-    raid->hold_plane = room->plane;
-}
-
-static void check_room_edges(RcWorld *world, CoxRaid *raid) {
-    RcPlayer *p = &world->player;
-    if (p->is_dead || raid->current_room >= raid->room_count) return;
-    if (p->x == raid->hold_x && p->y == raid->hold_y
-            && p->plane == raid->hold_plane)
-        return;
-    raid->hold_x = raid->hold_y = -1;
-    CoxRoom *room = &raid->rooms[raid->current_room];
-    if (room->type == COX_ROOM_OLM || !cox_player_in_room(world, room)) return;
-    int lx = p->x - room->x, ly = p->y - room->y;
-    int idx = raid->current_room;
-    if (room->type != COX_ROOM_END && on_exit_edge(room, lx, ly)
-            && idx + 1 < raid->room_count) {
-        move_to_room_entry(world, raid, idx + 1);
-        return;
-    }
-    if (ly == 0 && room->type != COX_ROOM_START && idx > 0
-            && raid->rooms[idx - 1].floor == room->floor) {
-        int x, y;
-        CoxRoom *prev = &raid->rooms[idx - 1];
-        if (!find_exit_arrival(world, prev, &x, &y)) return;
-        cox_relocate(world, raid, x, y, prev->plane);
-        raid->hold_x = x;
-        raid->hold_y = y;
-        raid->hold_plane = prev->plane;
-    }
+// The end room, last before Great Olm, and the tile beside its hole.
+static void end_return(const CoxRaid *raid, int *x, int *y, int *plane) {
+    const CoxRoom *end = &raid->rooms[raid->olm_room - 1];
+    *x = end->x + COX_END_RETURN_LX;
+    *y = end->y + COX_END_RETURN_LY;
+    *plane = end->plane;
 }
 
 static void format_duration(char *dst, size_t cap, RcTick ticks) {
@@ -977,19 +668,15 @@ static void format_duration(char *dst, size_t cap, RcTick ticks) {
         snprintf(dst, cap, "%llu:%02llu", s / 60, s % 60);
 }
 
-static void enter_floor(RcWorld *world, CoxRaid *raid, int floor) {
-    if (floor > raid->furthest_floor) {
-        char duration[24];
-        format_duration(duration, sizeof(duration), world->tick - raid->start_tick);
-        int done = floor - 1;
-        // Normal raids name their two floors upper and lower.
-        const char *name = raid->floor_count == 2 && done == 1 ? "Lower"
-                         : g_floor_names[done];
-        cox_message(world, "%s level complete! Duration: %s", name, duration);
-        raid->floor_tick[done] = world->tick;
-        raid->furthest_floor = (uint8_t)floor;
-        rc_varbit_set(world, VARBIT_PROGRESS, (uint32_t)(floor + 1));
-    }
+// Dropping into Great Olm's chamber completes the level above it, which
+// OSRS always names the lower level.
+static void enter_olm_level(RcWorld *world, CoxRaid *raid) {
+    if (raid->reached_olm) return;
+    char duration[24];
+    format_duration(duration, sizeof(duration), world->tick - raid->start_tick);
+    cox_message(world, "Lower level complete! Duration: %s", duration);
+    raid->reached_olm = true;
+    rc_varbit_set(world, VARBIT_PROGRESS, PROGRESS_OLM);
 }
 
 void cox_complete_room(RcWorld *world, CoxRaid *raid, CoxRoom *room) {
@@ -1005,45 +692,39 @@ void cox_complete_room(RcWorld *world, CoxRaid *raid, CoxRoom *room) {
 static void reset_raid(RcWorld *world, CoxRaid *raid) {
     for (int i = 0; i < raid->room_count; i++)
         cox_remove_room_npcs(world, &raid->rooms[i]);
-    // Revert every loc the raid changed inside the template area.
+    // Revert every loc the raid changed in its rooms.
     for (int i = world->object_state_count - 1; i >= 0; i--) {
         const RcObjectState *s = &world->object_states[i];
-        if (s->x >= COX_AREA_MIN_X && s->x <= COX_AREA_MAX_X
-                && s->y >= COX_AREA_MIN_Y && s->y <= COX_AREA_MAX_Y)
+        if (cox_room_at(raid, s->x, s->y, s->plane))
             rc_world_object_revert(world, s->placement_key);
     }
     CoxOlm *olm = raid->olm;
-    bool cm = raid->challenge_mode, full = raid->full_difficulty;
-    uint8_t pool = raid->map_pool;
+    bool full = raid->full_difficulty;
     void (*prev_hit)(RcWorld *, RcNpc *, const RcPendingHit *, int) =
         raid->prev_on_player_hit_npc;
     void (*prev_hit_player)(RcWorld *, const RcPendingHit *, int) =
         raid->prev_on_npc_hit_player;
     memset(raid, 0, sizeof(*raid));
     raid->olm = olm;
-    raid->challenge_mode = cm;
     raid->full_difficulty = full;
-    raid->map_pool = pool;
     raid->prev_on_player_hit_npc = prev_hit;
     raid->prev_on_npc_hit_player = prev_hit_player;
-    raid->hold_x = raid->hold_y = -1;
     raid->current_room = COX_NO_ROOM;
     rc_varbit_set(world, VARBIT_PARTYSCORE, 0);
     rc_varbit_set(world, VARBIT_TIMER, 0);
     rc_varp_set(world, VARP_PLAYERSCORE, 0);
 }
 
+// Inside the lobby, up from its steps.
 static void lobby_arrival(const CoxRoom *lobby, int *x, int *y) {
-    *x = lobby->x + (lobby->variant == COX_EXIT_WEST ? 14 : 2);
-    *y = lobby->y + (lobby->variant == COX_EXIT_WEST ? 3 : 4);
+    *x = lobby->x + 2;
+    *y = lobby->y + 4;
 }
 
 static void enter_raid(RcWorld *world, CoxRaid *raid) {
     reset_raid(world, raid);
     raid->in_raid = true;
-    raid->cm = raid->challenge_mode;
-    raid->layout_seed = world->rng_state;
-    build_layout(world, raid);
+    build_layout(raid);
     const RcPlayer *p = &world->player;
     int combat = rc_combat_level(&p->skills);
     int hp = p->skills.base_level[SKILL_HITPOINTS];
@@ -1054,7 +735,6 @@ static void enter_raid(RcWorld *world, CoxRaid *raid) {
     rc_varbit_set(world, VARBIT_INDUNGEON, 1);
     rc_varbit_set(world, VARBIT_PARTYSIZE, 1);
     rc_varbit_set(world, VARBIT_PROGRESS, 0);
-    rc_varbit_set(world, VARBIT_CHALLENGE_MODE, raid->cm ? 1 : 0);
     int x, y;
     lobby_arrival(&raid->rooms[0], &x, &y);
     cox_relocate(world, raid, x, y, 0);
@@ -1081,13 +761,18 @@ static void purge_raid_items(RcWorld *world, bool drop, int x, int y, int plane)
         rc_item_tx_commit(&tx);
 }
 
-static void leave_raid(RcWorld *world, CoxRaid *raid) {
+// Ends the raid: its items go, its state and locs reset, the overlay hides.
+static void end_raid(RcWorld *world, CoxRaid *raid) {
     purge_raid_items(world, false, 0, 0, 0);
     reset_raid(world, raid);
     rc_varbit_set(world, VARBIT_ISLEADER, 0);
     rc_varbit_set(world, VARBIT_INDUNGEON, 0);
     rc_varbit_set(world, VARBIT_PROGRESS, 0);
     rc_world_close_choice(world);
+}
+
+static void leave_raid(RcWorld *world, CoxRaid *raid) {
+    end_raid(world, raid);
     rc_world_relocate_player(world, COX_LOBBY_EXIT_X, COX_LOBBY_EXIT_Y, 0);
     world->player.run_energy = 10000;
 }
@@ -1096,7 +781,7 @@ static void start_raid(RcWorld *world, CoxRaid *raid) {
     if (raid->started) return;
     raid->started = true;
     raid->start_tick = world->tick;
-    rc_varbit_set(world, VARBIT_PROGRESS, 1);
+    rc_varbit_set(world, VARBIT_PROGRESS, PROGRESS_STARTED);
     CoxRoom *lobby = &raid->rooms[0];
     int x[2], y[2];
     if (cox_find_loc(world, lobby, LOC_BANK_CHEST, x, y, NULL, 1) > 0)
@@ -1107,22 +792,8 @@ static void start_raid(RcWorld *world, CoxRaid *raid) {
 
 // ---------------------------------------------------------------------------
 // Entry and difficulty (Mount Quidamortem). RuneC raids are solo, so there is
-// no party to form at a recruiting board: the entrance asks which raid to
-// start.
-
-static const char *const g_entry_options[5] = {
-    "Normal raid: small layout", "Normal raid: large layout",
-    "Normal raid: full layout", "Challenge Mode raid", "Cancel"};
-
-static void entry_choice(RcWorld *world, int option, void *ctx) {
-    (void)ctx;
-    CoxRaid *raid = cox_raid(world);
-    if (!raid || raid->in_raid || option < 0 || option > 3) return;
-    // Challenge Mode always plays the full layout.
-    raid->challenge_mode = option == 3;
-    raid->map_pool = (uint8_t)(option == 3 ? COX_POOL_FULL : option);
-    enter_raid(world, raid);
-}
+// no party to form at a recruiting board: the steps start a normal raid.
+// Challenge Mode is not implemented.
 
 static RcInteractionHandlerResult rimor(RcWorld *world, RcPlayer *player,
                                         const RcPendingInteraction *pending,
@@ -1139,11 +810,10 @@ static RcInteractionHandlerResult rimor(RcWorld *world, RcPlayer *player,
             ? "Captain Rimor: Your raids will no longer scale to your combat level."
             : "Captain Rimor: Your raids will scale to your combat level again.");
     case RC_INTERACTION_OP3:
-        return rc_interaction_result_message(
-            "Captain Rimor: Complete some Challenge Mode raids and I'll have a cape for you.");
+        return rc_interaction_result_message("Captain Rimor: I have no cape for you.");
     default:
         return rc_interaction_result_message(
-            "Captain Rimor: The chambers lie through the steps. Choose your raid as you enter.");
+            "Captain Rimor: The chambers lie through the steps.");
     }
 }
 
@@ -1155,8 +825,7 @@ static RcInteractionHandlerResult enter_chambers(RcWorld *world, RcPlayer *playe
     (void)ctx;
     CoxRaid *raid = cox_raid(world);
     if (!raid) return rc_interaction_result_cancel(RC_INTERACTION_FAIL_NO_HANDLER);
-    rc_world_open_choice(world, "Chambers of Xeric", g_entry_options, 5,
-                         entry_choice, NULL);
+    if (!raid->in_raid) enter_raid(world, raid);
     return rc_interaction_result_complete();
 }
 
@@ -1216,15 +885,8 @@ static RcInteractionHandlerResult hole(RcWorld *world, RcPlayer *player,
     if (!room || room->type != COX_ROOM_END)
         return rc_interaction_result_failure(RC_INTERACTION_FAIL_INVALID_TARGET,
                                              "Nothing interesting happens.");
-    int next_floor = room->floor + 1;
-    if (next_floor >= raid->floor_count) {
-        enter_floor(world, raid, raid->floor_count);
-        cox_relocate(world, raid, 3232, 5721, 0);
-        return rc_interaction_result_complete();
-    }
-    CoxRoom *start = &raid->rooms[raid->floor_start[next_floor]];
-    enter_floor(world, raid, next_floor);
-    cox_relocate(world, raid, start->x + 15, start->y + 15, start->plane);
+    enter_olm_level(world, raid);
+    cox_relocate(world, raid, COX_OLM_ARRIVAL_X, COX_OLM_ARRIVAL_Y, 0);
     return rc_interaction_result_complete();
 }
 
@@ -1239,42 +901,25 @@ static RcInteractionHandlerResult rope(RcWorld *world, RcPlayer *player,
                                              "Nothing interesting happens.");
     CoxRoom *room = cox_room_at(raid, pending->target.tile_x,
                                 pending->target.tile_y, pending->target.plane);
-    if (!room || room->floor == 0)
+    if (!room || room->type != COX_ROOM_OLM)
         return rc_interaction_result_failure(RC_INTERACTION_FAIL_INVALID_TARGET,
                                              "Nothing interesting happens.");
-    CoxRoom *end = &raid->rooms[raid->floor_end[room->floor - 1]];
-    bool last = room->type == COX_ROOM_OLM;
-    cox_relocate(world, raid, end->x + (last ? 12 : 14), end->y + (last ? 21 : 16),
-                 end->plane);
+    int x, y, plane;
+    end_return(raid, &x, &y, &plane);
+    cox_relocate(world, raid, x, y, plane);
     return rc_interaction_result_complete();
-}
-
-static void reload_choice(RcWorld *world, int option, void *ctx) {
-    (void)ctx;
-    CoxRaid *raid = cox_raid(world);
-    if (!raid || !raid->in_raid || raid->started || option != 0) return;
-    enter_raid(world, raid);
-    cox_message(world, "The raid has been reloaded with a new layout.");
 }
 
 static RcInteractionHandlerResult exit_steps(RcWorld *world, RcPlayer *player,
                                              const RcPendingInteraction *pending,
                                              void *ctx) {
     (void)player;
+    (void)pending;
     (void)ctx;
     CoxRaid *raid = cox_raid(world);
     if (!raid || !raid->in_raid)
         return rc_interaction_result_failure(RC_INTERACTION_FAIL_INVALID_TARGET,
                                              "Nothing interesting happens.");
-    if (pending->op == RC_INTERACTION_OP2) {
-        if (raid->started)
-            return rc_interaction_result_message(
-                "You can't reload the raid once it has begun.");
-        const char *options[2] = {"Yes, reload the layout.", "No."};
-        rc_world_open_choice(world, "Reload the raid?", options, 2,
-                             reload_choice, NULL);
-        return rc_interaction_result_complete();
-    }
     leave_raid(world, raid);
     return rc_interaction_result_complete();
 }
@@ -1308,18 +953,15 @@ static void on_player_died(RcWorld *world, int evt, const void *payload,
     raid->action.kind = 0;
 }
 
+// A raider who dies respawns in the lobby, or past the level beside the
+// end room's hole.
 static void respawn(RcWorld *world, CoxRaid *raid) {
     raid->respawn_tick = 0;
-    int x, y, plane = 0;
-    if (raid->furthest_floor == 0) {
+    int x, y, plane = raid->rooms[0].plane;
+    if (raid->reached_olm)
+        end_return(raid, &x, &y, &plane);
+    else
         lobby_arrival(&raid->rooms[0], &x, &y);
-    } else {
-        int f = raid->furthest_floor - 1;
-        const CoxRoom *end = &raid->rooms[raid->floor_end[f]];
-        x = end->x + (f == raid->floor_count - 1 ? 12 : 14);
-        y = end->y + (f == raid->floor_count - 1 ? 21 : 16);
-        plane = end->plane;
-    }
     if (!rc_world_respawn_player(world, x, y, plane)) return;
     CoxRoom *room = cox_room_at(raid, x, y, plane);
     if (room) raid->current_room = (uint8_t)cox_room_index(raid, room);
@@ -1430,18 +1072,15 @@ static void cox_tick(RcWorld *world, void *ctx) {
     RcPlayer *p = &world->player;
     if (raid->respawn_tick && world->tick >= raid->respawn_tick && p->is_dead)
         respawn(world, raid);
-    // Leaving the template area by any other means ends the raid.
-    if (!p->is_dead && (p->x < COX_AREA_MIN_X || p->x > COX_AREA_MAX_X
-            || p->y < COX_AREA_MIN_Y || p->y > COX_AREA_MAX_Y)) {
-        purge_raid_items(world, false, 0, 0, 0);
-        reset_raid(world, raid);
+    // Leaving the raid's rooms by any other means ends the raid.
+    CoxRoom *here = cox_room_at(raid, p->x, p->y, p->plane);
+    if (!p->is_dead && !here) {
+        end_raid(world, raid);
         return;
     }
-    // Any other move into a room block (respawn, dev teleports) enters it.
-    CoxRoom *here = cox_room_at(raid, p->x, p->y, p->plane);
+    // Walking into a room (or any move into one) enters it.
     if (here && cox_room_index(raid, here) != raid->current_room)
         set_current_room(world, raid, here);
-    check_room_edges(world, raid);
     if (raid->current_room < raid->room_count) {
         CoxRoom *room = &raid->rooms[raid->current_room];
         const CoxRoomOps *ops = cox_room_ops(room->type);
@@ -1465,7 +1104,6 @@ int rc_content_chambers_of_xeric_register(RcWorld *world) {
     if (!world) return 0;
     CoxRaid *raid = calloc(1, sizeof(*raid));
     if (!raid) return 0;
-    raid->hold_x = raid->hold_y = -1;
     raid->current_room = COX_NO_ROOM;
     if (!rc_world_add_content_tick(world, cox_tick, raid, release_raid)) {
         free(raid);
@@ -1485,13 +1123,8 @@ int rc_content_chambers_of_xeric_register(RcWorld *world) {
     ok &= cox_register_object(world, LOC_ENTRANCE, 0, enter_chambers);
     ok &= cox_register_object(world, LOC_EXIT_STEPS, 0, exit_steps);
     ok &= cox_register_object(world, LOC_LOBBY_STEPS_LEADER, 0, exit_steps);
-    ok &= cox_register_object(world, LOC_LOBBY_STEPS_LEADER, 1, exit_steps);
     ok &= cox_register_object(world, LOC_PASSAGE, 0, passage);
-    ok &= cox_register_object(world, LOC_HOLE_FLOOR, 0, hole);
-    ok &= cox_register_object(world, LOC_HOLE_FLOOR_CM, 0, hole);
     ok &= cox_register_object(world, LOC_HOLE_OLM, 0, hole);
-    ok &= cox_register_object(world, LOC_ROPE_FLOOR, 0, rope);
-    ok &= cox_register_object(world, LOC_ROPE_FLOOR_CM, 0, rope);
     ok &= cox_register_object(world, LOC_ROPE_OLM, 0, rope);
     ok &= cox_register_object(world, LOC_ENERGY_WELL, 0, energy_well);
     static const int rimor_ops[3] = {0, 2, 3};

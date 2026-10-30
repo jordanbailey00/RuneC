@@ -276,7 +276,7 @@ COX_STATE_FITS(ScavState);
 
 static const CoxStats g_scavenger = {
     .hp = 30, .att = 120, .str = 120, .def = 45, .mag = 1, .rng = 1,
-    .max_hit = 13, .cm_max_hit = 27, .attack_speed = 4,
+    .max_hit = 13, .attack_speed = 4,
     .style = COMBAT_MELEE_CRUSH, .flags = COX_STATS_SINGLES,
 };
 

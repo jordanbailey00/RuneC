@@ -1,10 +1,9 @@
 // test_cox_raid — Chambers of Xeric controller on installed data: entering
-// through the steps with no party (the entrance's raid choice, a core
-// chatbox prompt), generated layouts (normal pools and the fixed Challenge
-// Mode order), starting at the lobby passage, crossing passages, the room
-// chain's forward and backward edge moves, floor holes and ropes, death and
-// respawn, Captain Rimor, reloading, and leaving with raid-only items
-// removed.
+// through the steps with no party (straight into a normal raid), the one
+// fixed layout (composed map rooms joined exit to
+// entry), starting at the lobby passage, crossing passages, walking between
+// rooms both ways, the hole down to Great Olm and the rope back, death and
+// respawn, Captain Rimor, and leaving with raid-only items removed.
 
 #include <assert.h>
 #include <stdio.h>
@@ -64,87 +63,52 @@ static void interact_until(RcWorld *w, int obj_id, int x, int y, int plane,
     tick(w, ticks > 2 ? 2 : ticks);
 }
 
-// The entrance asks which raid to start: 0-2 normal (small, large, full
-// layout), 3 Challenge Mode, 4 Cancel.
-static void open_entry(RcWorld *w) {
+// The entrance's steps start a normal raid at once: no party, no prompt.
+static void enter_chambers(RcWorld *w) {
     assert(rc_world_relocate_player(w, 1233, 3572, 0));
     interact_until(w, 29777, 1232, 3573, 0, 0, 6);
-    assert(w->choice.active && strcmp(w->choice.title, "Chambers of Xeric") == 0);
-    assert(w->choice.option_count == 5);
-}
-
-static void enter_chambers(RcWorld *w, int option) {
-    open_entry(w);
-    choose(w, option);
+    assert(!w->choice.active);
     CoxRaid *raid = cox_raid(w);
     assert(raid->in_raid);
     assert(raid->current_room == 0);
     assert(cox_player_in_room(w, &raid->rooms[0]));
 }
 
-static void check_layout(const CoxRaid *raid, int floors) {
-    assert(raid->floor_count == floors);
-    assert(raid->rooms[raid->olm_room].type == COX_ROOM_OLM);
-    assert(raid->olm_room == raid->room_count - 1);
-    int combat_seen[COX_ROOM_TYPE_COUNT] = {0};
-    for (int f = 0; f < floors; f++) {
-        const CoxRoom *start = &raid->rooms[raid->floor_start[f]];
-        const CoxRoom *end = &raid->rooms[raid->floor_end[f]];
-        assert(start->type == COX_ROOM_START && start->floor == f);
-        assert(end->type == COX_ROOM_END && end->floor == f);
-        bool scav = false, farm = false;
-        for (int i = raid->floor_start[f] + 1; i < raid->floor_end[f]; i++) {
-            const CoxRoom *room = &raid->rooms[i];
-            assert(room->floor == f && room->type > COX_ROOM_END
-                   && room->type < COX_ROOM_OLM);
-            assert(room->variant <= COX_EXIT_EAST);
-            assert(room->x == 3264 + 32 * room->variant);
-            scav |= room->type == COX_ROOM_SCAVENGERS
-                 || room->type == COX_ROOM_SCAVENGERS_LARGE;
-            farm |= room->type == COX_ROOM_FARMING_FISH
-                 || room->type == COX_ROOM_FARMING_BATS;
-            if (room->type >= COX_ROOM_TEKTON && room->type <= COX_ROOM_MYSTICS)
-                assert(combat_seen[room->type]++ == 0 && "combat rooms never repeat");
-        }
-        assert(scav && farm);
+// The one layout: the start room, the rooms easiest to hardest and the end
+// room stacked north from (3472, 5440), then Great Olm's own chamber.
+static void check_layout(const CoxRaid *raid) {
+    static const uint8_t types[7] = {
+        COX_ROOM_START, COX_ROOM_TIGHTROPE, COX_ROOM_CRABS, COX_ROOM_SHAMANS,
+        COX_ROOM_MUTTADILES, COX_ROOM_TEKTON, COX_ROOM_END};
+    assert(raid->room_count == 8 && raid->olm_room == 7);
+    for (int i = 0; i < 7; i++) {
+        const CoxRoom *room = &raid->rooms[i];
+        assert(room->type == types[i] && room->variant == COX_EXIT_NORTH);
+        assert(room->x == 3472 && room->y == 5440 + 32 * i && room->plane == 0);
     }
-    // No template block serves two rooms.
-    for (int i = 0; i < raid->room_count; i++)
-        for (int j = i + 1; j < raid->room_count; j++)
-            assert(raid->rooms[i].x != raid->rooms[j].x
-                   || raid->rooms[i].y != raid->rooms[j].y
-                   || raid->rooms[i].plane != raid->rooms[j].plane);
+    const CoxRoom *olm = &raid->rooms[7];
+    assert(olm->type == COX_ROOM_OLM && olm->x == 3200 && olm->y == 5696);
 }
 
-// The walkable tile on a room's exit edge nearest its middle.
-static void exit_edge_tile(const RcWorld *w, const CoxRoom *room, int *x, int *y) {
-    for (int k = 0; k < 32; k++) {
-        int a = 15 + (k % 2 ? (k + 1) / 2 : -(k / 2));
-        int lx = room->variant == COX_EXIT_WEST ? 0
-               : room->variant == COX_EXIT_EAST ? 31 : a;
-        int ly = room->variant == COX_EXIT_NORTH ? 31 : a;
-        if (cox_tile_walkable(w, room->x + lx, room->y + ly, room->plane)) {
-            *x = room->x + lx;
-            *y = room->y + ly;
-            return;
-        }
-    }
-    assert(!"room has no exit edge tile");
+// Walks to a tile and waits to arrive.
+static void walk(RcWorld *w, int x, int y) {
+    assert(rc_player_walk_to(w, x, y));
+    for (int i = 0; i < 20 && (w->player.x != x || w->player.y != y); i++)
+        tick(w, 1);
+    tick(w, 1);
+    if (w->player.x != x || w->player.y != y)
+        fprintf(stderr, "walk to %d,%d stopped at %d,%d\n", x, y, w->player.x,
+                w->player.y);
+    assert(w->player.x == x && w->player.y == y);
 }
 
 static void test_enter_and_chain(void) {
     RcWorld *w = create_world(77);
     CoxRaid *raid = cox_raid(w);
     assert(raid && !raid->in_raid);
-    // No party is needed: the steps ask which raid to start, and Cancel
-    // stays outside.
-    open_entry(w);
-    choose(w, 4);
-    assert(!raid->in_raid && !w->choice.active);
-
-    enter_chambers(w, 0);
-    assert(raid->map_pool == COX_POOL_SMALL && !raid->cm);
-    check_layout(raid, 2);
+    // No party is needed: the steps start the raid.
+    enter_chambers(w);
+    check_layout(raid);
     assert(!raid->started && rc_varbit_get(w, 5432) == 1);
     assert(rc_varbit_get(w, 5431) == 0 && rc_varbit_get(w, 6386) == 0);
 
@@ -176,56 +140,51 @@ static void test_enter_and_chain(void) {
     assert(rc_varbit_get(w, 5431) == (uint32_t)raid->total_points);
     assert(rc_varp_get(w, 4609) == raid->personal_points);
 
-    // Walking onto the lobby's exit edge enters room 1 at its south entry.
-    int ex, ey;
-    exit_edge_tile(w, lobby, &ex, &ey);
-    assert(rc_world_relocate_player(w, ex, ey, 0));
-    tick(w, 2);
-    assert(raid->current_room == 1);
-    CoxRoom *first = &raid->rooms[1];
-    assert(cox_player_in_room(w, first));
-    assert(w->player.y == first->y + 1);
+    // The rooms join: from each room's exit, walking north crosses into the
+    // next room's entry, and walking back returns. Every room's opening is
+    // local x 15-16; x 15 stays open a tile further in.
+    for (int i = 0; i + 1 < raid->olm_room; i++) {
+        const CoxRoom *room = &raid->rooms[i], *next = &raid->rooms[i + 1];
+        assert(rc_world_relocate_player(w, room->x + 16, room->y + 31, 0));
+        tick(w, 1);
+        assert(raid->current_room == i);
+        walk(w, next->x + 15, next->y + 1);
+        assert(raid->current_room == i + 1);
+        walk(w, room->x + 15, room->y + 31);
+        assert(raid->current_room == i);
+    }
 
-    // Stepping onto room 1's south edge goes back to the lobby's exit edge,
-    // and standing there does not bounce the player forward again.
-    assert(rc_world_relocate_player(w, w->player.x, first->y, first->plane));
-    tick(w, 2);
-    assert(raid->current_room == 0);
-    tick(w, 3);
-    assert(raid->current_room == 0);
-
-    // Floor end hole: down to floor 2's start, rope back up to the hole.
-    CoxRoom *end = &raid->rooms[raid->floor_end[0]];
+    // The end room's hole leads to the Olm chamber's antechamber and
+    // completes the level; the chamber's rope climbs back beside the hole.
+    CoxRoom *end = &raid->rooms[raid->olm_room - 1];
     int hx[1], hy[1];
-    assert(cox_find_loc(w, end, 29734, hx, hy, NULL, 1) == 1);
-    assert(rc_world_relocate_player(w, end->x + 14, end->y + 16, end->plane));
-    tick(w, 1);
-    interact_until(w, 29734, hx[0], hy[0], 0, 0, 6);
-    CoxRoom *start2 = &raid->rooms[raid->floor_start[1]];
-    assert(cox_player_in_room(w, start2) && raid->furthest_floor == 1);
-    int rx[1], ry[1];
-    assert(cox_find_loc(w, start2, 29995, rx, ry, NULL, 1) == 1);
-    interact_until(w, 29995, rx[0], ry[0], 0, 0, 6);
-    assert(cox_player_in_room(w, end));
-
-    // The last floor's hole leads to the Olm chamber's antechamber.
-    CoxRoom *end2 = &raid->rooms[raid->floor_end[1]];
-    assert(cox_find_loc(w, end2, 29735, hx, hy, NULL, 1) == 1);
-    assert(rc_world_relocate_player(w, end2->x + 12, end2->y + 21, end2->plane));
+    assert(cox_find_loc(w, end, 29735, hx, hy, NULL, 1) == 1);
+    assert(rc_world_relocate_player(w, end->x + 12, end->y + 21, end->plane));
     tick(w, 1);
     interact_until(w, 29735, hx[0], hy[0], 0, 0, 8);
-    assert(raid->current_room == raid->olm_room);
+    assert(raid->current_room == raid->olm_room && raid->reached_olm);
     assert(w->player.x == 3232 && w->player.y == 5721);
+    assert(has_message(w, "Lower level complete! Duration:"));
+    assert(rc_varbit_get(w, 5425) == 2);
+    CoxRoom *olm = &raid->rooms[raid->olm_room];
+    int rx[1], ry[1];
+    assert(cox_find_loc(w, olm, 29996, rx, ry, NULL, 1) == 1);
+    interact_until(w, 29996, rx[0], ry[0], 0, 0, 12);
+    assert(raid->current_room == raid->olm_room - 1);
+    assert(w->player.x == end->x + 12 && w->player.y == end->y + 21);
+    interact_until(w, 29735, hx[0], hy[0], 0, 0, 8);
+    assert(raid->current_room == raid->olm_room);
 
-    // Dying past the last floor respawns at the end of the floor before.
+    // Dying past the level respawns beside the end room's hole.
     assert(rc_combat_damage_player(w, 200, 0, COMBAT_NONE, RC_HIT_SOURCE_STATUS));
     for (int i = 0; i < 4 && !w->player.is_dead; i++) tick(w, 1);
     assert(w->player.is_dead);
     tick(w, 7);
-    assert(!w->player.is_dead && cox_player_in_room(w, end2));
-    assert(w->player.x == end2->x + 12 && w->player.y == end2->y + 21);
+    assert(!w->player.is_dead && cox_player_in_room(w, end));
+    assert(w->player.x == end->x + 12 && w->player.y == end->y + 21);
 
     // Leaving through the Olm chamber steps removes raid-only items.
+    interact_until(w, 29735, hx[0], hy[0], 0, 0, 8);
     assert(rc_player_inventory_add(w, 20801, 1, 0).code == RC_ITEM_RESULT_OK);
     assert(rc_player_inventory_add(w, 20886, 1, 0).code == RC_ITEM_RESULT_OK);
     assert(rc_world_relocate_player(w, 3232, 5754, 0));
@@ -236,26 +195,6 @@ static void test_enter_and_chain(void) {
     assert(rc_varbit_get(w, 5432) == 0 && rc_varbit_get(w, 5431) == 0);
     assert(rc_varp_get(w, 4609) == 0 && rc_varbit_get(w, 6386) == 0);
     rc_world_destroy(w);
-}
-
-static void test_layout_pools(void) {
-    for (uint32_t seed = 1; seed <= 40; seed++) {
-        RcWorld *w = create_world(seed);
-        CoxRaid *raid = cox_raid(w);
-        int pool = (int)(seed % 3);
-        enter_chambers(w, pool == COX_POOL_FULL && (seed & 1) ? 3 : pool);
-        assert(raid->map_pool == pool);
-        assert(raid->challenge_mode == (pool == COX_POOL_FULL && (seed & 1)));
-        check_layout(raid, raid->map_pool == COX_POOL_FULL ? 3 : 2);
-        if (raid->map_pool == COX_POOL_FULL) {
-            static const uint8_t first[3] = {COX_ROOM_TEKTON, COX_ROOM_VANGUARDS,
-                                             COX_ROOM_GUARDIANS};
-            for (int f = 0; f < 3; f++)
-                assert(raid->rooms[raid->floor_start[f] + 1].type == first[f]);
-            assert(raid->cm == raid->challenge_mode);
-        }
-        rc_world_destroy(w);
-    }
 }
 
 // Climbs the lobby's steps (the leader's multiloc) back out.
@@ -287,15 +226,22 @@ static void test_lobby_options_and_death(void) {
     RcPlayer *p = &w->player;
     // The recruiting board no longer does anything: there is no party.
     assert(!rc_world_object_option_supported(w, 29776, 1224, 3562, 0, 0, 0));
-    // Challenge Mode from the entrance plays the fixed three-floor layout;
-    // leaving and re-entering can pick again.
-    enter_chambers(w, 3);
-    assert(raid->cm && raid->map_pool == COX_POOL_FULL);
-    check_layout(raid, 3);
+    // Outside a raid the end room's hole and Olm's rope do nothing.
+    assert(rc_world_relocate_player(w, 3472 + 12, 5632 + 21, 0));
+    interact_until(w, 29735, 3472 + 11, 5632 + 22, 0, 0, 6);
+    assert(strstr(last_outcome(w), "Nothing interesting happens"));
+    CoxRoom chamber = {.type = COX_ROOM_OLM, .x = 3200, .y = 5696};
+    int rx, ry;
+    assert(cox_find_loc(w, &chamber, 29996, &rx, &ry, NULL, 1) == 1);
+    assert(rc_world_relocate_player(w, rx, ry - 1, 0));
+    interact_until(w, 29996, rx, ry, 0, 0, 6);
+    assert(strstr(last_outcome(w), "Nothing interesting happens"));
+    // Leaving and entering again plays the same layout.
+    enter_chambers(w);
+    check_layout(raid);
     leave_by_lobby_steps(w);
-    enter_chambers(w, 1);
-    assert(!raid->cm && raid->map_pool == COX_POOL_LARGE);
-    check_layout(raid, 2);
+    enter_chambers(w);
+    check_layout(raid);
     leave_by_lobby_steps(w);
 
     // Captain Rimor turns level scaling off and on.
@@ -313,30 +259,20 @@ static void test_lobby_options_and_death(void) {
     for (int i = 0; i < 30 && rc_interaction_is_active(p); i++) tick(w, 1);
     assert(raid->full_difficulty && strstr(last_outcome(w), "no longer scale"));
 
-    // In: the leader's steps reload the layout until the raid starts.
-    enter_chambers(w, 0);
+    // In: with one layout, the leader's steps have nothing to reload.
+    enter_chambers(w);
     assert(raid->scale_combat == 126 && raid->scale_hp == 99);
     CoxRoom *lobby = &raid->rooms[0];
     int sx, sy;
     assert(cox_find_loc(w, lobby, 49999, &sx, &sy, NULL, 1) == 1);
-    uint32_t seed = raid->layout_seed;
-    interact_until(w, 50000, sx, sy, 0, 1, 4);
-    assert(w->choice.active && strcmp(w->choice.title, "Reload the raid?") == 0);
-    choose(w, 0);
-    assert(has_message(w, "reloaded with a new layout") && raid->layout_seed != seed);
-    check_layout(raid, 2);
+    assert(!rc_world_object_option_supported(w, 50000, sx, sy, 0, 0, 1));
 
-    // Start; an energy well tops up run energy. The new layout may use
-    // another lobby variant.
-    lobby = &raid->rooms[0];
-    assert(cox_find_loc(w, lobby, 49999, &sx, &sy, NULL, 1) == 1);
+    // Start; an energy well tops up run energy.
     int px[1], py[1];
     assert(cox_find_loc(w, lobby, 29789, px, py, NULL, 1) == 1);
     interact_until(w, 29789, px[0], py[0], 0, 0, 12);
     choose(w, 0);
     assert(raid->started);
-    interact_until(w, 50000, sx, sy, 0, 1, 4);
-    assert(strstr(last_outcome(w), "can't reload"));
     bool well = false;
     for (int i = 0; i < raid->room_count && !well; i++) {
         int wx, wy;
@@ -356,7 +292,7 @@ static void test_lobby_options_and_death(void) {
     assert(well);
 
     // Death: raid items drop where the raider fell, 40% of points go, and
-    // the raider respawns in the lobby (the end of the floor before, later).
+    // the raider respawns in the lobby (beside the end room's hole, past it).
     assert(rc_player_inventory_add(w, 20801, 1, 0).code == RC_ITEM_RESULT_OK);
     assert(rc_player_inventory_add(w, 20886, 1, 0).code == RC_ITEM_RESULT_OK);
     raid->personal_points = raid->total_points = 1000;
@@ -372,44 +308,40 @@ static void test_lobby_options_and_death(void) {
     tick(w, 7);
     assert(!p->is_dead && raid->current_room == 0 && cox_player_in_room(w, lobby));
     assert(has_message(w, "Oh dear, you are dead!"));
+
+    // Teleporting out of the raid's rooms ends it, as the steps do.
+    assert(rc_player_inventory_add(w, 20801, 1, 0).code == RC_ITEM_RESULT_OK);
+    assert(rc_world_relocate_player(w, 1233, 3572, 0));
+    tick(w, 1);
+    assert(!raid->in_raid && !cox_has_item(p, 20801));
+    assert(rc_varbit_get(w, 5432) == 0 && rc_varbit_get(w, 5425) == 0);
     rc_world_destroy(w);
 }
 
-// Challenge Mode: +50% to everything but Olm's HP, Vasa's crystals' Magic
-// alone, Tekton's Defence +20%; level scaling cuts HP below 126 combat.
-static void test_cm_scaling(void) {
+// Solo scaling at 126 combat and 99 HP keeps the wiki's values; level
+// scaling cuts HP below 126 combat.
+static void test_scaling(void) {
     CoxRaid raid;
     memset(&raid, 0, sizeof(raid));
     raid.scale_combat = 126;
     raid.scale_hp = 99;
     RcNpcCombatOverride o;
     const CoxStats head = {.hp = 800, .att = 250, .str = 250, .def = 150, .mag = 250,
-                           .rng = 250, .flags = COX_STATS_NO_CM_HP};
+                           .rng = 250};
     cox_scale(&raid, &head, &o);
     assert(o.hitpoints == 800 && o.stats[0] == 250 && o.stats[1] == 150);
-    raid.cm = true;
-    cox_scale(&raid, &head, &o);
-    assert(o.hitpoints == 800 && o.stats[0] == 375 && o.stats[1] == 225);
-    const CoxStats crystal = {.hp = 120, .att = 1, .str = 1, .def = 100, .mag = 100,
-                              .rng = 1,
-                              .flags = COX_STATS_NO_CM_HP | COX_STATS_CM_MAGIC_ONLY};
-    cox_scale(&raid, &crystal, &o);
-    assert(o.hitpoints == 120 && o.stats[1] == 100 && o.stats[5] == 150 && o.stats[0] == 1);
     const CoxStats tekton = {.hp = 300, .att = 390, .str = 390, .def = 205, .mag = 205,
-                             .rng = 1,
-                             .flags = COX_STATS_MAGIC_DEFENSIVE | COX_STATS_TEKTON_DEF};
+                             .rng = 1, .flags = COX_STATS_MAGIC_DEFENSIVE};
     cox_scale(&raid, &tekton, &o);
-    assert(o.hitpoints == 450 && o.stats[0] == 585 && o.stats[1] == 246 && o.stats[5] == 307);
-    raid.cm = false;
+    assert(o.hitpoints == 300 && o.stats[0] == 390 && o.stats[1] == 205 && o.stats[5] == 205);
     raid.scale_combat = 90;
     cox_scale(&raid, &tekton, &o);
     assert(o.hitpoints == 300 * 90 / 126);
 }
 
 int main(void) {
-    test_cm_scaling();
+    test_scaling();
     test_enter_and_chain();
-    test_layout_pools();
     test_lobby_options_and_death();
     printf("test_cox_raid: ok\n");
     return 0;

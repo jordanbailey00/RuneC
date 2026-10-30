@@ -98,18 +98,17 @@ COX_STATE_FITS(OlmState);
 static const CoxStats g_head = {
     .hp = 800, .att = 250, .str = 250, .def = 150, .mag = 250, .rng = 250,
     .attack_bonus = {0, 0, 0, 60, 60}, .defence_bonus = {200, 200, 200, 50, 200},
-    .max_hit = 27, .cm_max_hit = 38, .attack_speed = 4, .style = COMBAT_MAGIC,
-    .flags = COX_STATS_NO_CM_HP,
+    .max_hit = 27, .attack_speed = 4, .style = COMBAT_MAGIC,
 };
 static const CoxStats g_melee_claw = {
     .hp = 600, .att = 250, .str = 250, .def = 175, .mag = 175, .rng = 250,
     .defence_bonus = {50, 50, 50, 200, 200}, .style = COMBAT_NONE,
-    .flags = COX_STATS_MAGIC_DEFENSIVE | COX_STATS_NO_CM_HP,
+    .flags = COX_STATS_MAGIC_DEFENSIVE,
 };
 static const CoxStats g_mage_claw = {
     .hp = 600, .att = 250, .str = 250, .def = 175, .mag = 87, .rng = 250,
     .defence_bonus = {200, 200, 200, 200, 50}, .style = COMBAT_NONE,
-    .flags = COX_STATS_MAGIC_DEFENSIVE | COX_STATS_NO_CM_HP,
+    .flags = COX_STATS_MAGIC_DEFENSIVE,
 };
 
 static int clamp(int v, int lo, int hi) { return v < lo ? lo : v > hi ? hi : v; }
@@ -181,7 +180,7 @@ static void rise(RcWorld *w, CoxRaid *raid, CoxRoom *room, OlmState *s) {
         set_form(head, NPC_HEAD_SPAWNING);
         head->player_untargetable = true;
         // The head's max hit rises in the penultimate and final phases.
-        int base = raid->cm ? g_head.cm_max_hit : g_head.max_hit;
+        int base = g_head.max_hit;
         head->max_hit_override = (uint16_t)(base + (penultimate(s) ? 1 : 0)
                                             + (final_phase(s) ? 2 : 0));
     }

@@ -27,7 +27,8 @@ static RcWorld *g_w;
 static CoxRaid *g_raid;
 
 static const struct { int16_t y; uint8_t plane; } g_rows[] = {
-    [COX_ROOM_SCAVENGERS_LARGE] = {5216, 1}, [COX_ROOM_FARMING_FISH] = {5440, 0},
+    [COX_ROOM_SCAVENGERS] = {5216, 0}, [COX_ROOM_SCAVENGERS_LARGE] = {5216, 1},
+    [COX_ROOM_FARMING_FISH] = {5440, 0},
     [COX_ROOM_FARMING_BATS] = {5440, 1}, [COX_ROOM_ICE_DEMON] = {5344, 0},
 };
 
@@ -179,17 +180,13 @@ static void setup(uint32_t seed) {
     g_raid = raid;
     assert(rc_world_relocate_player(g_w, 1233, 3572, 0));
     interact(29777, 1232, 3573, 0, 0);
-    assert(rc_player_widget_action(g_w, RC_CHOICE_WIDGET, 0, 0));   // normal raid
-    tick(2);
     assert(raid->in_raid);
     raid->started = true;
     raid->start_tick = g_w->tick;
 }
 
 static void test_farming_and_herblore(void) {
-    CoxRaid *raid = cox_raid(g_w);
-    CoxRoom *farm = find_room(raid, COX_ROOM_FARMING_FISH, COX_ROOM_FARMING_BATS);
-    assert(farm);
+    CoxRoom *farm = force_room(COX_ROOM_FARMING_FISH, 1);
     goto_room(farm, 16, 2);
     clear_inventory();
     int x, y;
@@ -281,9 +278,8 @@ static void test_overload_and_enhance(void) {
 }
 
 static void test_fire_cooking_and_catching(void) {
-    CoxRaid *raid = cox_raid(g_w);
     RcPlayer *p = &g_w->player;
-    CoxRoom *farm = find_room(raid, COX_ROOM_FARMING_FISH, COX_ROOM_FARMING_BATS);
+    CoxRoom *farm = force_room(COX_ROOM_FARMING_FISH, 2);
     clear_inventory();
     goto_room(farm, 16, 2);
     int raw = -1;
@@ -340,9 +336,8 @@ static void test_fire_cooking_and_catching(void) {
 static void test_scavengers_weeds_storage(void) {
     CoxRaid *raid = cox_raid(g_w);
     RcPlayer *p = &g_w->player;
-    CoxRoom *scav = find_room(raid, COX_ROOM_SCAVENGERS, COX_ROOM_SCAVENGERS_LARGE);
-    assert(scav);
-    goto_room(scav, 16, 1);
+    CoxRoom *scav = force_room(COX_ROOM_SCAVENGERS, 1);
+    goto_room(scav, 8, 17);     // open floor: the beast spawns 3-7 tiles away
     tick(6);
     RcNpc *beast = cox_room_npc(g_w, scav, 1);
     assert(beast && beast->spawn_hp == 30);
@@ -357,10 +352,10 @@ static void test_scavengers_weeds_storage(void) {
               && g_w->ground_items[i].x == bx && g_w->ground_items[i].y == by;
     assert(bones);
 
-    // Weeds in the floor end: 1-3 seeds per rake.
+    // Weeds in the end room: 1-3 seeds per rake.
     clear_inventory();
     give(5341, 1);
-    CoxRoom *end = &raid->rooms[raid->floor_end[0]];
+    CoxRoom *end = &raid->rooms[raid->olm_room - 1];
     int x, y;
     near_loc(end, 29773, &x, &y);
     interact(29773, x, y, end->plane, 0);
@@ -369,7 +364,7 @@ static void test_scavengers_weeds_storage(void) {
               + cox_inventory_count(p, 20909);
     assert(seeds >= 2);
 
-    // Building the floor end's storage unit upgrades every hotspot.
+    // Building the end room's storage unit upgrades every hotspot.
     give(2347, 1);
     give(21036, 2);
     near_loc(end, 29769, &x, &y);
@@ -429,9 +424,11 @@ static void test_fishing_and_snake(void) {
     int sx[3], sy[3];
     int spots = cox_find_loc(g_w, farm, 29889, sx, sy, NULL, 3);
     assert(spots == 3);
-    // One of the spots hides the cave snake.
+    // One of the spots hides the cave snake. The chatbox ring keeps only the
+    // latest messages, so the bite is noted as it arrives.
     int fish = 0;
-    for (int k = 0; k < spots && !has_message("A cave snake bites you!"); k++) {
+    bool bitten = false;
+    for (int k = 0; k < spots && !bitten; k++) {
         static const int d[8][2] = {{0, -1}, {-1, 0}, {1, 0}, {0, 1},
                                     {-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
         for (int n = 0; n < 8; n++)
@@ -444,10 +441,11 @@ static void test_fishing_and_snake(void) {
         for (int t = 0; t < 120; t++) {
             tick(1);
             p->current_hp = p->max_hp;
+            bitten |= has_message("A cave snake bites you!");
         }
         for (int t = 0; t < 7; t++) fish += cox_inventory_count(p, 20855 + 2 * t);
     }
-    assert(fish > 0 && has_message("A cave snake bites you!"));
+    assert(fish > 0 && bitten);
 }
 
 static void test_bats(void) {

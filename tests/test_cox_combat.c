@@ -1,5 +1,7 @@
-// test_cox_combat — Chambers of Xeric combat rooms on installed data. Each
-// room type is forced into a raid slot, then: solo-scaled stats, waking,
+// test_cox_combat — Chambers of Xeric combat rooms on installed data. The
+// layout's combat rooms (Shamans, Muttadiles, Tekton) are entered where the
+// raid has them; the others are forced into a raid slot at their templates.
+// Then: solo-scaled stats, waking,
 // the attacks a raider takes, the room's mechanic (Tekton's anvil, the
 // Vanguards' shuffle, Vasa's teleport, siphons and crystals, the Guardians'
 // pickaxe rule, shaman spawns and jumps, the mystics' spells, the meat tree
@@ -49,8 +51,6 @@ static void setup(uint32_t seed) {
     assert(rc_world_relocate_player(g_w, 1233, 3572, 0));
     assert(rc_player_interact_object_at(g_w, 29777, 1232, 3573, 0, 0));
     tick(8);
-    assert(rc_player_widget_action(g_w, RC_CHOICE_WIDGET, 0, 0));   // normal raid
-    tick(2);
     assert(g_raid->in_raid);
     g_raid->started = true;
     g_raid->start_tick = g_w->tick;
@@ -73,6 +73,19 @@ static CoxRoom *force_room(int type, int v) {
     assert(rc_world_relocate_player(g_w, room->x + 15, room->y + 1, room->plane));
     tick(2);
     assert(g_raid->current_room == 1);
+    return room;
+}
+
+// The layout's room of `type`, entered at its south entry.
+static CoxRoom *enter_layout_room(int type) {
+    CoxRoom *room = NULL;
+    for (int i = 0; i < g_raid->room_count && !room; i++)
+        if (g_raid->rooms[i].type == type) room = &g_raid->rooms[i];
+    assert(room && "the room is in the layout");
+    g_w->player.current_hp = g_w->player.max_hp;
+    assert(rc_world_relocate_player(g_w, room->x + 15, room->y + 1, room->plane));
+    tick(2);
+    assert(g_raid->current_room == cox_room_index(g_raid, room));
     return room;
 }
 
@@ -187,33 +200,17 @@ static void give(int item, int qty) {
     assert(rc_player_inventory_add(g_w, item, qty, 0).code == RC_ITEM_RESULT_OK);
 }
 
-// From the room before: with the entry gate up, the raider arrives in front
-// of it, on the entry row.
+// Walks in from the room before: with the entry gate up, the raider stops
+// in front of it, on the entry row.
 static void arrive_from_previous(CoxRoom *room) {
-    const CoxRoom *prev = &g_raid->rooms[0];
-    for (int a = 0; a < 32; a++) {
-        int lx = prev->variant == COX_EXIT_WEST ? 0 : prev->variant == COX_EXIT_EAST ? 31 : a;
-        int ly = prev->variant == COX_EXIT_NORTH ? 31 : a;
-        if (!cox_tile_walkable(g_w, prev->x + lx, prev->y + ly, prev->plane)) continue;
-        // Step off a held edge tile first, as a player walking back would.
-        assert(rc_world_relocate_player(g_w, prev->x + 15, prev->y + 15, prev->plane));
-        tick(1);
-        assert(rc_world_relocate_player(g_w, prev->x + lx, prev->y + ly, prev->plane));
-        tick(2);
-        if (!cox_player_in_room(g_w, room) || g_w->player.y != room->y)
-            fprintf(stderr, "arrive: player %d,%d p%d room %d,%d p%d cur %d prev %d,%d v%d"
-                    " entry15=%d,%d row1=%d,%d\n",
-                    g_w->player.x, g_w->player.y, g_w->player.plane, room->x, room->y,
-                    room->plane, g_raid->current_room, prev->x + lx, prev->y + ly,
-                    prev->variant,
-                    cox_tile_walkable(g_w, room->x + 15, room->y, room->plane),
-                    cox_tile_walkable(g_w, room->x + 16, room->y, room->plane),
-                    cox_tile_walkable(g_w, room->x + 15, room->y + 1, room->plane),
-                    cox_tile_walkable(g_w, room->x + 16, room->y + 1, room->plane));
-        assert(cox_player_in_room(g_w, room) && g_w->player.y == room->y);
-        return;
-    }
-    assert(!"no exit edge tile");
+    const CoxRoom *prev = room - 1;
+    assert(cox_room_index(g_raid, room) > 0);
+    assert(rc_world_relocate_player(g_w, prev->x + 16, prev->y + 31, prev->plane));
+    tick(1);
+    assert(rc_player_walk_to(g_w, room->x + 15, room->y));
+    for (int i = 0; i < 10 && g_w->player.y != room->y; i++) tick(1);
+    tick(1);
+    assert(cox_player_in_room(g_w, room) && g_w->player.y == room->y);
 }
 
 static bool has_message(const char *text) {
@@ -225,7 +222,7 @@ static bool has_message(const char *text) {
 }
 
 static void test_tekton(void) {
-    CoxRoom *room = force_room(COX_ROOM_TEKTON, 1);
+    CoxRoom *room = enter_layout_room(COX_ROOM_TEKTON);
     RcNpc *tek = cox_room_npc(g_w, room, 1);
     assert(tek && tek->spawn_hp == 300 && tek->stats[0] == 390 && tek->stats[1] == 205);
     assert(tek->owner_controlled && exit_blocker(room, 30017));
@@ -245,7 +242,9 @@ static void test_tekton(void) {
     }
     assert(rc_npc_def_for_npc(g_w, tek)->id == 7545);
     assert(cox_modify_player_hit(g_w, tek, COMBAT_MELEE_CRUSH, -1, -1, 40) == 0);
-    tick(30);
+    // Off the anvil he takes no ranged damage and a fifth of magic.
+    for (int i = 0; i < 40 && rc_npc_def_for_npc(g_w, tek)->id == 7545; i++) tick(1);
+    assert(rc_npc_def_for_npc(g_w, tek)->id != 7545);
     assert(cox_modify_player_hit(g_w, tek, COMBAT_RANGED, -1, -1, 40) == 0);
     assert(cox_modify_player_hit(g_w, tek, COMBAT_MAGIC, -1, -1, 40) == 8);
     // Coming back in, the raider must cross the fire: 15% of base Hitpoints.
@@ -385,7 +384,7 @@ static void test_guardians(void) {
 }
 
 static void test_shamans_and_mystics(void) {
-    CoxRoom *room = force_room(COX_ROOM_SHAMANS, 1);
+    CoxRoom *room = enter_layout_room(COX_ROOM_SHAMANS);
     RcNpc *s1 = cox_room_npc(g_w, room, 1), *s2 = cox_room_npc(g_w, room, 2);
     assert(s1 && s2 && s1->spawn_hp == 190);
     stand(room, 15, 8);
@@ -400,12 +399,12 @@ static void test_shamans_and_mystics(void) {
                                         room->plane, 0));
     settle();
     assert(g_w->player.y == room->y + 2 && player_hp() == hp);
-    // Passing back out leads to the room before.
+    // Passing back out leaves the raider on the entry row, a step from the
+    // room before.
     assert(rc_player_interact_object_at(g_w, 29768, room->x + 15, room->y + 1,
                                         room->plane, 0));
     settle();
-    tick(1);
-    assert(!cox_player_in_room(g_w, room));
+    assert(cox_player_in_room(g_w, room) && g_w->player.y == room->y);
     arrive_from_previous(room);
     assert(rc_player_interact_object_at(g_w, 29768, room->x + 15, room->y + 1,
                                         room->plane, 0));
@@ -463,7 +462,7 @@ static void test_mystics(void) {
 }
 
 static void test_muttadiles(void) {
-    CoxRoom *room = force_room(COX_ROOM_MUTTADILES, 2);
+    CoxRoom *room = enter_layout_room(COX_ROOM_MUTTADILES);
     RcNpc *small = cox_room_npc(g_w, room, 1), *large = cox_room_npc(g_w, room, 2);
     assert(small && large && large->player_untargetable);
     stand(room, 16, 6);
@@ -480,7 +479,7 @@ static void test_muttadiles(void) {
     g_w->player.auto_retaliate = false;
     g_w->player.attack_target = -1;
     give(1351, 1);
-    beside(room, tree->x, tree->y);
+    beside_npc(room, tree);
     rc_player_interact_npc(g_w, tree->uid, 0);
     for (int i = 0; i < 200 && cox_room_npc(g_w, room, 3); i++) {
         tick(1);

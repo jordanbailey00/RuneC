@@ -142,15 +142,15 @@ rc-content/
 
 ## 2.2 Chambers of Xeric (`raids/`)
 
-The whole raid except loot: party and difficulty, layout generation, room
-chaining, every room's mechanics, resources and potions, and the Great Olm.
-Solo only (RuneC worlds hold one player), so every party-size rule is
+The whole raid except loot and Challenge Mode: entry and difficulty, one
+fixed layout, every room's mechanics, resources and potions, and the Great
+Olm. Solo only (RuneC worlds hold one player), so every party-size rule is
 evaluated at one player.
 
 | File | Owns |
 | --- | --- |
 | `cox.h` | shared types (`CoxRaid`, `CoxRoom`, room state, hazards, stats) and helpers |
-| `cox_raid.c` | entry and difficulty, lobby, layout, room chain, floors, holes and ropes, timer, points, overlay variables, death, leaving |
+| `cox_raid.c` | entry and difficulty, lobby, the layout, the hole to the Great Olm and the rope back, timer, points, overlay variables, death, leaving |
 | `cox_combat_rooms.c` | Tekton, Vanguards, Vasa Nistirio, Guardians, Lizardman shamans, Skeletal mystics, Muttadiles, Vespula; `cox_modify_player_hit` |
 | `cox_puzzle_rooms.c` | Ice demon, Thieving, Tightrope, Jewelled crabs |
 | `cox_resources.c` | scavengers and their shortcut, farming rooms, weeds, fishing, bats, cooking, herblore, potion effects, tools, storage units |
@@ -158,12 +158,20 @@ evaluated at one player.
 
 ### How it is built
 
-- **No instances.** Rooms are the cache's static 32x32 room templates, used
-  in place. Each template exists in three exit variants (x 3264 / 3296 /
-  3328: exit west, north, east; entry always at the south edge). A raid
-  picks one variant per room and chains them by moving the player, so a
-  room's tiles, objects and collision are the cache's own. Floor starts,
-  ends and the Olm chamber are templates too.
+- **One fixed layout, no instances.** RuneC has no dynamic instances, so
+  every raid plays the same rooms, composed into the map once. Each room
+  template exists in three exit variants (x 3264 / 3296 / 3328: exit west,
+  north, east; entry always at the south edge). The map pipeline copies
+  the north-exit variant of each layout room, tiles and locs, into empty
+  mapsquares 54,85-88, stacked south to north from (3472, 5440)
+  (`content/world/composed_maps.toml`,
+  `tools/cache_pipeline/rc_cache/compose.py`): each room's north exit
+  (local x 15-16) opens into the next room's south entry, so the raid is
+  walked like the real one and the scene shows the rooms joined. Heights
+  are offset so the joins meet. The Great Olm keeps its own chamber
+  template (3200, 5696). The modules for rooms outside the layout remain
+  (their tests place them at their templates), so changing the layout
+  means editing the composition and `g_layout` in `cox_raid.c`.
 - **Per-world state.** `rc_content_chambers_of_xeric_register` allocates the
   raid state through `rc_world_add_content_tick` (released on reset and
   destroy). Hooks and handlers reach it with `rc_world_content_ctx`.
@@ -182,53 +190,51 @@ evaluated at one player.
   sidecar rows in region exports, `[[spawn]]` rows become spawn templates
   (`tools/cache_pipeline/export_objects.py`,
   `tools/cache_pipeline/export_spawn_objects.py`). Leaving reverts every
-  loc state inside the raid area.
+  loc state inside the raid's rooms.
 - **Combat hooks.** The module wraps `on_player_hit_npc` (points, room
   reactions), `on_npc_hit_player` (raid NPCs follow their room's rules, not
   the regular poisonous-monster tags) and sets `modify_player_hit` (style
   and weapon rules: Tekton, Vasa's crystals, Guardians' pickaxes, the Ice
   demon, crabs, Olm, Vespula). Generic drops are suppressed for raid NPCs.
 - **Presentation.** Attack keys (`"Spark"`, `"Boulder"`, `"Sphere melee"`
-  ...) map to curated rows in `content/combat_visuals/visuals.tsv`. The
-  points overlay reads the raid's client variables, as in game: party
-  score (varbit 5431), personal score (varp 4609), timer in ticks (varbit
-  6386) and progress (varbit 5425, 5 stops the timer); the viewer formats
-  them. Choices use the chatbox choice prompt; messages use the game
-  message ring.
+  ...) map to curated rows in `content/combat_visuals/visuals.tsv`; the
+  tightrope guards', crabs', shamans' and Muttadiles' rows carry the
+  recorded sequences, graphics and projectile flights. The points overlay
+  reads the raid's client variables, as in game: party score (varbit 5431),
+  personal score (varp 4609), timer in ticks (varbit 6386) and progress
+  (varbit 5425, 5 stops the timer); the viewer formats them. Choices use
+  the chatbox choice prompt; messages use the game message ring. The viewer
+  draws a player on a tightrope piece with the balance walk (762/763), loads
+  a room NPC's model when it spawns, and offers spawned locs (barriers,
+  tendrils, crystals) to clicks like map locs. Chasm floors use OSRS's
+  hidden overlay (0xFF00FF), which the terrain export leaves undrawn.
 
 ### Raid flow
 
 - **Entry and lobby.** RuneC raids are solo, so there is no party and the
-  recruiting board does nothing. Entering the steps asks which raid to
-  start: a normal raid with the Small (half small, half medium patterns),
-  Large or Full (three fixed floors) layout, or Challenge Mode (always
-  Full). Captain Rimor's Set-difficulty disables level scaling. The
-  lobby's steps also offer Reload (new layout, before the start only). The
-  first room passage asks "Start the raid?"; starting begins the timer and
-  points.
-- **Layout.** RuneLite's 26 known room patterns per floor (small 8, medium
-  16, large 2). Combat rooms are a contiguous run of one of the two
-  rotations, in either direction; puzzles come from the cycle Ice demon,
-  Tightrope, Crabs, Thieving. A room's variant follows the turn its path
-  takes; a template already in use takes the other free variant.
-- **Moving between rooms.** Combat and puzzle exits are passages (cross 4
-  tiles); open rooms switch on the exit edge. Walking back off a room's
-  entry row returns to the previous room. Exits stay blocked (crystals,
-  tendrils, invisible barriers) until the room is complete. Once a fight
-  has raised its entry gate (fire or tendrils), a raider coming back
-  arrives in front of it and must Cross or Pass it, taking its damage.
-- **Floors.** A hole at each floor's end drops to the next floor's start; a
-  rope climbs back to the previous floor's end. The last hole leads to the
-  Olm antechamber.
+  recruiting board does nothing. Entering the steps starts a normal raid.
+  Captain Rimor's Set-difficulty disables level scaling. The first room
+  passage asks "Start the raid?"; starting begins the timer and points.
+- **Layout.** Start room, Tightrope, Jewelled crabs, Lizardman shamans,
+  Muttadiles, Tekton, end room, then the Great Olm: two puzzle and three
+  combat rooms, easiest to hardest, the same every raid.
+- **Moving between rooms.** Exits are passages (cross 4 tiles); past one,
+  the raider walks over the room's north edge into the next room, and back
+  the same way. Exits stay blocked (crystals, the tightrope barrier,
+  invisible barriers) until the room is complete. Once a fight has raised
+  its entry gate (fire or tendrils), a raider coming back stands in front
+  of it on the entry row and must Cross or Pass it, taking its damage.
+- **The way down.** The end room's hole drops into the Olm antechamber
+  ("Lower level complete!" with the raid time); the chamber's rope climbs
+  back beside the hole.
 - **Scaling** (OSRS DPS calculator): C = combat level clamped to 60..126,
   H = 55 + 44·HP/99 clamped to 55..99. Solo offence and defence are
-  ⌊base·H/99⌋, HP ⌊base·C/126⌋; Challenge Mode adds 50% (Tekton defence
-  +20%, Vasa crystals magic only, Olm HP unscaled). Clamps follow the
-  calculator.
+  ⌊base·H/99⌋, HP ⌊base·C/126⌋. Clamps follow the calculator.
 - **Points.** Damage dealt (5 per HP at combat 126), plus room and
   skilling points; death costs 40% of personal points.
 - **Death** drops raid items where the player died and respawns them after
-  5 ticks at the end of the previous floor (the lobby on the first floor).
+  5 ticks in the lobby, or beside the end room's hole once they have been
+  down to the Great Olm.
   **Leaving** (steps, teleport, walking out) removes every raid item (lore
   books stay), resets the raid and reverts its locs.
 
@@ -252,8 +258,9 @@ evaluated at one player.
   release exploding spawn.
 - **Skeletal mystics** cast fire blast and a defence-draining vulnerability
   or melee up close.
-- **Muttadiles**: the small one first; it eats from the meat tree to heal
-  (chop it to stop that); the large one emerges after the small dies.
+- **Muttadiles**: the small one first (spawning by the entry, as
+  recorded); it eats from the meat tree to heal (chop it to stop that); the
+  large one emerges after the small dies.
 - **Vespula** stings lux grubs (they turn infected and offer Feed) into
   soldiers; blossoms picked from the flowered roots heal a grub by 35. She
   lands when low and enrages when her portal is hit; killing the portal
@@ -262,13 +269,23 @@ evaluated at one player.
   deal 2.5x, demonbane 1.15x, anything else a third.
 - **Thieving**: picklock chests for grubs (or bats, or gas), feed the
   corrupted scavenger, which then lets the raid through.
-- **Tightrope**: cross under fire from the deathly guards, take the
-  keystone, dispel the barrier (which kills the guards).
+- **Tightrope**: two deathly rangers share the platform on one side of the
+  rope and two deathly mages the other (left and right of a raider walking
+  it from the entry side). They stay idle until hit (they answer 2 ticks
+  later) or until a raider steps on the rope (they open the tick after),
+  then attack every 4 ticks within 10 tiles: rune arrows and fire blasts
+  whose hits land with the projectile. Cross faces along the rope for two
+  ticks, then walks it to the tile past the far end, two tiles on the first
+  tick and one a tick after, with no other action until off it. Take the
+  keystone on the far side, cross back, and Dispel the barrier in front of
+  the exit passage (or use the keystone on it); the barrier disperses and
+  the surviving guards die.
 - **Jewelled crabs**: an orb leaves the carving every time the last one
   ends; attack styles colour the crabs (Smash with a hammer roots one and
   turns it red), a crab turns the orb right and colours a white one, a
   clashing colour or a wall ends it, and a raider in its path takes 22.
-  Each crystal needs its colour; four lit crystals open the room.
+  Each crystal needs its colour; four lit crystals open the room. Three
+  crabs spawn on the first three of the variant's four crab tiles.
 - **Scavengers** drop supplies; the large room's shortcut (stump or rubble)
   needs a skill level. **Farming rooms** have seeds, patches, the gourd
   tree, the geyser, fishing and bats. Cooking, herblore (overloads, Xeric's
@@ -291,20 +308,22 @@ wall. The head's death opens the exit; the reward chest is empty (no loot).
 ### Sources
 
 OSRS Wiki pages for the raid, every room NPC and room object, and the
-strategy and Challenge Mode pages; Jagex posts and Mod Ash replies; the
+strategy pages; Jagex posts and Mod Ash replies; the
 OSRS DPS calculator's CoX scaling (weirdgloop/osrs-dps-calc); RuneLite's
-raids plugin (layout patterns, rotations) and `gameval` constants; the
+raids plugin and `gameval` constants; the
 b241 cache for ids, room templates and collision; and a third-party
 analysis of public RSProx recordings of live OSRS (MRobertEvers
-oldschool-clientc, `docs/rsprox-analysis/cox`) for tick timings, tiles
-and spawn positions. The recordings were mostly Grid Master worlds, so
+oldschool-clientc, `docs/rsprox-analysis/cox` and the room specs in
+`docs/minigames/cox/rooms`) for tick timings, tiles, spawn positions,
+sequences, graphics and projectile flights. The recordings were mostly Grid Master worlds, so
 their damage numbers read low; only their timings and tiles are used.
 
 ### Values chosen where sources conflict
 
 - Level scaling: the DPS calculator's linear scaling to 126, not the
   "115 combat" wording of the 2021 post.
-- Respawn: the end of the previous floor (strategy page), not its start.
+- Respawn past the level: beside the end room's hole, the strategy page's
+  end of the previous floor, not its start.
 - Tekton: 3-tick swings; sessions of 27 then 47 ticks (capture and the
   OpenOSRS helper agree); anvil 15-21 ticks.
 - Olm: one power per claw phase, all powers in the penultimate phase
@@ -314,11 +333,13 @@ their damage numbers read low; only their timings and tiles are used.
   (wiki); clench 45 ticks (capture); power attack 1 in 3, 1 in 2 in the
   final stand (Mod Ash, read as the head phase).
 - Guardian HP: 151 + average Mining (both formulas agree solo).
+- Tightrope: the guards' hits land when their projectiles do, while the
+  raider walks the rope (the user's choice: the walk shows the hits). Live
+  OSRS holds every hit landing during the walk until the tick after it
+  ends (RT-X2).
 
 ### Estimates (no published value)
 
-- Puzzle cycle order (Ice demon, Tightrope, Crabs, Thieving) and the Full
-  layout's grid path.
 - The large scavenger room's shortcut tiles.
 - Cooking burn rates (half at the requirement, none 30 levels above).
 - Revitalisation (−) and regular amounts (9 + 20%, 10 + 25%); prayer
@@ -333,11 +354,17 @@ their damage numbers read low; only their timings and tiles are used.
 ### Not implemented
 
 - Loot, the score board and unclaimed loot. Raids are solo by design.
+- Challenge Mode (entry, scaling, the cape).
+- Random layouts, more floors, Reload, and the scavenger and farming rooms
+  (their modules work, but no layout room uses them): every raid plays the
+  one fixed layout.
 - Item storage in storage units (building works; Private and Shared say so).
 - The Olm head cannot be attacked during claw phases (melee on the head is
   unverified in sources); the snake in farming rooms is not spawned.
-- The tightrope walk has no crossing animation; the raider moves to the far
-  end after the crossing time.
+- Tightrope details: the Agility requirement (80-100% of the raider's
+  level), the guards' shouts and idle wandering, their bones, block and
+  death sequences, the keystone's take delay and animation, and a mage's
+  splash (a miss shows a 0 instead of the splash graphic).
 
 ---
 

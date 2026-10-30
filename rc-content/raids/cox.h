@@ -1,10 +1,12 @@
 #ifndef RC_CONTENT_COX_H
 #define RC_CONTENT_COX_H
 
-// Chambers of Xeric. Rooms are the cache's static 32x32 room templates,
-// used in place: one variant per raid room, chained by moving the player
-// between templates (RuneC has no dynamic instances). Mechanics, sources
-// and the values chosen where sources conflict: rc-content/README.md.
+// Chambers of Xeric. RuneC has no dynamic instances, so every raid plays one
+// fixed layout: copies of the cache's 32x32 room templates composed into a
+// column of the map (content/world/composed_maps.toml), each room's exit
+// opening into the next room's entry, then Great Olm's own chamber.
+// Mechanics, sources and the values chosen where sources conflict:
+// rc-content/README.md.
 
 #include "../../rc-core/npc.h"
 #include "../../rc-core/types.h"
@@ -15,8 +17,7 @@
 struct RcWorld;
 
 #define COX_ROOM_SIZE 32
-#define COX_MAX_FLOORS 3
-#define COX_MAX_ROOMS (COX_MAX_FLOORS * 8 + 1)   // floors + Olm
+#define COX_MAX_ROOMS 8         // the layout's rooms and Great Olm
 #define COX_ROOM_NPCS 16
 #define COX_MAX_HAZARDS 48
 #define COX_NO_ROOM 0xFF
@@ -55,8 +56,6 @@ enum {
     COX_ROOM_STARTED = 1u << 3,    // its encounter has begun
 };
 
-enum { COX_POOL_SMALL = 0, COX_POOL_LARGE = 1, COX_POOL_FULL = 2 };
-
 // One room NPC remembered across visits: the active area drops dynamic NPCs
 // far from the player, so a revisited room restores what it lost.
 typedef struct CoxStats CoxStats;
@@ -84,7 +83,6 @@ typedef struct {
 
 typedef struct {
     uint8_t type;           // CoxRoomType
-    uint8_t floor;
     uint8_t variant;        // COX_EXIT_*
     uint8_t flags;          // COX_ROOM_*
     int16_t x, y, plane;    // template block south-west corner
@@ -168,26 +166,19 @@ typedef struct {
 } CoxAction;
 
 typedef struct {
-    // Entry settings, chosen at the entrance (raids are solo: no party).
-    bool challenge_mode;
-    uint8_t map_pool;              // COX_POOL_*
+    // Entry setting (raids are solo: no party; Challenge Mode is not
+    // implemented).
     bool full_difficulty;          // Captain Rimor: no level scaling
 
     // Raid state.
     bool in_raid;                  // inside the chambers (lobby included)
     bool started;                  // "The raid has begun!"
-    bool cm;                       // this raid's challenge mode
-    uint8_t floor_count;
     uint8_t room_count;
     uint8_t current_room;
-    uint8_t furthest_floor;        // deepest floor entered; Olm = floor_count
     uint8_t olm_room;
+    bool reached_olm;              // dropped into Great Olm's chamber
     CoxRoom rooms[COX_MAX_ROOMS];
-    uint8_t floor_start[COX_MAX_FLOORS];
-    uint8_t floor_end[COX_MAX_FLOORS];
-    uint32_t layout_seed;
     RcTick start_tick;
-    RcTick floor_tick[COX_MAX_FLOORS + 1];
     RcTick finish_tick;
     bool olm_dead;
 
@@ -198,10 +189,6 @@ typedef struct {
     // Points.
     int32_t personal_points;
     int32_t total_points;
-
-    // Edge trigger hysteresis: no room switch while the player stands on
-    // the tile a backward move left them on.
-    int hold_x, hold_y, hold_plane;
 
     // Death handling.
     RcTick respawn_tick;
@@ -248,7 +235,6 @@ struct CoxStats {
     int16_t attack_bonus[5];       // stab, slash, crush, ranged, magic
     int16_t defence_bonus[5];
     int16_t max_hit;               // solo value; COX_STATS_MAX_FORMULA rescales it
-    int16_t cm_max_hit;            // Challenge Mode value when the wiki lists one
     int16_t max_bonus;             // strength/ranged strength/magic damage bonus
     uint8_t attack_speed;
     uint8_t style;                 // RcCombatStyle of its ordinary attack
@@ -258,12 +244,9 @@ struct CoxStats {
 enum {
     COX_STATS_MAGIC_DEFENSIVE = 1u << 0,  // magic scales as a defence stat
     COX_STATS_SINGLES = 1u << 1,          // no party term (scavengers, soldiers)
-    COX_STATS_NO_CM_HP = 1u << 2,         // CM leaves HP alone (Olm, crystals)
-    COX_STATS_TEKTON_DEF = 1u << 3,       // CM defence +20% (+35% at 4+)
     // Max hit from the scaled attacking level and max_bonus with the OSRS
     // NPC formula floor(((level + 9) * (bonus + 64) + 320) / 640).
-    COX_STATS_MAX_FORMULA = 1u << 4,
-    COX_STATS_CM_MAGIC_ONLY = 1u << 5,    // CM raises Magic alone (Vasa's crystals)
+    COX_STATS_MAX_FORMULA = 1u << 2,
 };
 
 // cox_raid.c

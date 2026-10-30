@@ -53,8 +53,6 @@ static void setup(void) {
     g_raid = cox_raid(g_w);
     assert(rc_world_relocate_player(g_w, 1233, 3572, 0));
     interact(29777, 1232, 3573, 0, 0);
-    assert(rc_player_widget_action(g_w, RC_CHOICE_WIDGET, 0, 0));   // normal raid
-    tick(2);
     assert(g_raid->in_raid);
     g_raid->started = true;
 }
@@ -172,36 +170,79 @@ static void test_thieving(void) {
     assert(scav && rc_npc_def_for_npc(g_w, scav)->id == 7603);
 }
 
+// The barrier is a spawned loc.
+static bool find_barrier(int *x, int *y) {
+    for (int i = 0; i < g_w->object_state_count; i++)
+        if (g_w->object_states[i].active_obj_id == 29749) {
+            *x = g_w->object_states[i].active_x;
+            *y = g_w->object_states[i].active_y;
+            return true;
+        }
+    return false;
+}
+
 static void test_tightrope(void) {
     CoxRoom *room = force_room(COX_ROOM_TIGHTROPE, 0);
-    int guards = 0;
-    for (int g = 0; g < 4; g++) guards += cox_room_npc(g_w, room, g + 1) != NULL;
-    assert(guards == 4);
+    // The rangers share one platform beside the rope, the mages the other.
+    static const int posts[4][2] = {{20, 26}, {22, 26}, {21, 19}, {23, 19}};
+    for (int g = 0; g < 4; g++) {
+        RcNpc *guard = cox_room_npc(g_w, room, g + 1);
+        assert(guard && guard->x == room->x + posts[g][0]
+               && guard->y == room->y + posts[g][1]);
+        assert(rc_npc_def_for_npc(g_w, guard)->id == (g < 2 ? 7559 : 7560));
+    }
     int rx[2], ry[2];
-    assert(cox_find_loc(g_w, room, 29750, rx, ry, NULL, 2) == 2);
-    beside(room, rx[0], ry[0]);
+    assert(cox_find_loc(g_w, room, 29750, rx, ry, NULL, 2) == 2 && ry[0] == ry[1]);
+    int near = rx[0] < rx[1] ? 0 : 1, far = 1 - near;
+    int length = rx[far] - rx[near];
+    // Idle guards leave a raider alone.
+    assert(rc_world_relocate_player(g_w, rx[near] - 1, ry[near], room->plane));
     int hp = g_w->player.current_hp;
-    assert(rc_player_interact_object_at(g_w, 29750, rx[0], ry[0], room->plane, 0));
-    tick(14);
-    assert(cox_chebyshev(g_w->player.x, g_w->player.y, 1, rx[1], ry[1], 1) <= 1);
-    assert(g_w->player.current_hp < hp && "the guards fire during the crossing");
+    tick(8);
+    assert(g_w->player.current_hp == hp && g_w->player.num_pending_hits == 0);
+
+    // Cross: two ticks facing along the rope, two tiles on, then a tile a
+    // tick to one past the far end, with no other action allowed; the guards
+    // open fire and their hits land on the rope.
+    assert(rc_player_interact_object_at(g_w, 29750, rx[near], ry[near], room->plane, 0));
+    tick(2);
+    assert(g_w->player.x == rx[near] - 1);
+    tick(1);
+    assert(g_w->player.x == rx[near] + 1 && g_w->player.y == ry[near]);
+    assert(!rc_player_walk_to(g_w, room->x + 15, room->y + 10));
+    bool hit_on_rope = false;
+    for (int k = 1; k <= length; k++) {
+        tick(1);
+        assert(g_w->player.x == rx[near] + k + 1 && g_w->player.y == ry[near]);
+        if (k < length && g_w->player.current_hp < hp) hit_on_rope = true;
+    }
+    assert(g_w->player.x == rx[far] + 1 && hit_on_rope);
+    tick(1);
+    assert(rc_player_walk_to(g_w, rx[far] + 1, ry[far]));
+
     int kx, ky;
     assert(cox_find_loc(g_w, room, 29751, &kx, &ky, NULL, 1) == 1);
     beside(room, kx, ky);
     interact(29751, kx, ky, room->plane, 0);
     assert(cox_has_item(&g_w->player, 20884));
-    // The barrier is a spawned loc.
+    // Back over; the keystone used on the barrier dispels it.
+    assert(rc_world_relocate_player(g_w, rx[far] + 1, ry[far], room->plane));
+    interact(29750, rx[far], ry[far], room->plane, 0);
+    tick(length + 4);
+    assert(g_w->player.x == rx[near] - 1 && g_w->player.y == ry[near]);
     int bx = -1, by = -1;
-    for (int i = 0; i < g_w->object_state_count; i++)
-        if (g_w->object_states[i].active_obj_id == 29749) {
-            bx = g_w->object_states[i].active_x;
-            by = g_w->object_states[i].active_y;
-        }
-    assert(bx >= 0);
+    assert(find_barrier(&bx, &by));
     beside(room, bx, by);
-    interact(29749, bx, by, room->plane, 0);
+    int slot = -1;
+    for (int i = 0; i < RC_INVENTORY_SIZE && slot < 0; i++)
+        if (g_w->player.inventory[i].item_id == 20884) slot = i;
+    assert(rc_player_use_inventory_item_on_object(g_w, slot, 29749, bx, by, room->plane));
+    tick(1);
+    for (int i = 0; i < 60 && rc_interaction_is_active(&g_w->player); i++) tick(1);
     assert(room->flags & COX_ROOM_COMPLETE);
+    assert(has_message("absorbed into the barrier, which disperses"));
     assert(!cox_room_npc(g_w, room, 1) && "the guards die with the barrier");
+    assert(!find_barrier(&bx, &by));
 }
 
 static void test_crabs(void) {
@@ -296,12 +337,9 @@ static void test_chests_and_keeper(void) {
 static void test_tightrope_refusals(void) {
     CoxRoom *room = force_room(COX_ROOM_TIGHTROPE, 1);
     int bx = -1, by = -1;
-    for (int i = 0; i < g_w->object_state_count; i++)
-        if (g_w->object_states[i].active_obj_id == 29749) {
-            bx = g_w->object_states[i].active_x;
-            by = g_w->object_states[i].active_y;
-        }
-    assert(bx >= 0);
+    assert(find_barrier(&bx, &by));
+    // The north-exit room's barrier stands one tile inside the passage.
+    assert(bx == room->x + 13 && by == room->y + 24);
     beside(room, bx, by);
     interact(29749, bx, by, room->plane, 0);
     assert(strstr(last_outcome(), "needs a keystone"));
@@ -312,6 +350,17 @@ static void test_tightrope_refusals(void) {
     interact(29751, kx, ky, room->plane, 0);
     interact(29751, kx, ky, room->plane, 0);
     assert(strstr(last_outcome(), "already have a keystone"));
+    // A guard that is hit fights back: it attacks 2 ticks after the hit.
+    RcNpc *mage = cox_room_npc(g_w, room, 3);
+    assert(rc_world_relocate_player(g_w, mage->x, mage->y + 6, room->plane)
+           || rc_world_relocate_player(g_w, kx, ky - 1, room->plane));
+    tick(4);
+    int hits = g_w->player.num_pending_hits, hp = g_w->player.current_hp;
+    assert(hits == 0);
+    rc_queue_hit_meta(mage->pending_hits, &mage->num_pending_hits, 1, 0,
+                      COMBAT_RANGED, RC_HIT_SOURCE_PLAYER, 0, g_w->tick, 0, 1);
+    tick(4);
+    assert(g_w->player.num_pending_hits > 0 || g_w->player.current_hp < hp);
     // A guard can be killed without ending anything.
     kill(cox_room_npc(g_w, room, 1));
     assert(!cox_room_npc(g_w, room, 1) && !(room->flags & COX_ROOM_COMPLETE));
