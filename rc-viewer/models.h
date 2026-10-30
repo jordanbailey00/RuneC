@@ -6,6 +6,7 @@
 
 #include "../rc-core/io.h"
 #include "raylib.h"
+#include "atlas_mips.h"
 #include "streaming.h"
 #include "viewer_logging.h"
 #include <math.h>
@@ -69,6 +70,7 @@ typedef struct {
     Texture2D atlas_texture;
     unsigned char *atlas_base_pixels;
     unsigned char *atlas_pixels;
+    unsigned char *atlas_mips;  // base atlas mip levels 1+ (atlas_mips.h)
     ModelTextureAnimRow *texture_anims;
     int atlas_width;
     int atlas_height;
@@ -103,7 +105,7 @@ static size_t models_upload_bytes(const ModelSet *set) {
     if (set->has_textures && set->atlas_texture.id <= 0
             && set->atlas_base_pixels && set->atlas_width > 0
             && set->atlas_height > 0) {
-        total = (size_t)set->atlas_width * (size_t)set->atlas_height * 4u;
+        total = atlas_texture_bytes(set->atlas_width, set->atlas_height);
     }
     for (int i = 0; i < set->count; i++) {
         size_t bytes = model_entry_upload_bytes(&set->entries[i]);
@@ -130,24 +132,20 @@ static int models_upload_budgeted(ModelSet *set, Texture2D shared_atlas,
     } else if (set->has_textures && set->atlas_texture.id <= 0
             && set->atlas_base_pixels && set->atlas_width > 0
             && set->atlas_height > 0) {
-        size_t bytes = (size_t)set->atlas_width
-                     * (size_t)set->atlas_height * 4u;
+        size_t bytes = atlas_texture_bytes(set->atlas_width,
+                                           set->atlas_height);
         if (!viewer_streaming_upload_budget_admit(
                 used_bytes, bytes, budget_bytes)) {
             return 1;
         }
-        Image image = {
-            .data = set->atlas_base_pixels,
-            .width = set->atlas_width,
-            .height = set->atlas_height,
-            .mipmaps = 1,
-            .format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
-        };
-        set->atlas_texture = LoadTextureFromImage(image);
+        free(set->atlas_mips);
+        set->atlas_mips = NULL;
+        set->atlas_texture = atlas_load_texture(
+            set->atlas_base_pixels, set->atlas_width, set->atlas_height,
+            &set->atlas_mips);
         if (set->atlas_texture.id <= 0)
             return 0;
         set->owns_atlas_texture = 1;
-        SetTextureFilter(set->atlas_texture, TEXTURE_FILTER_POINT);
         used_bytes += bytes;
         if (uploaded_bytes)
             *uploaded_bytes += bytes;
@@ -250,9 +248,9 @@ static void models_update_texture_anims(ModelSet *set, float dt) {
         return;
 
     set->texture_anim_ticks += dt * 50.0f;
-    size_t total = (size_t)set->atlas_width * set->atlas_height * 4;
-    memcpy(set->atlas_pixels, set->atlas_base_pixels, total);
-
+    // Each frame rewrites and uploads only the animated cells; the rest of
+    // atlas_pixels stays equal to the base atlas.
+    int uploaded = 1;
     for (int r = 0; r < set->texture_anim_count; r++) {
         ModelTextureAnimRow *row = &set->texture_anims[r];
         if (row->w == 0 || row->h == 0
@@ -262,44 +260,34 @@ static void models_update_texture_anims(ModelSet *set, float dt) {
             continue;
 
         int shift = (int)(set->texture_anim_ticks * (float)row->speed);
-        if (row->direction == 1 || row->direction == 3) {
-            int pad = row->pad;
+        int pad = 0, center_h = row->h;
+        int vertical = row->direction == 1 || row->direction == 3;
+        if (vertical) {
+            pad = row->pad;
             if (pad * 2 >= row->h) pad = 0;
-            int center_h = row->h - pad * 2;
+            center_h = row->h - pad * 2;
             if (center_h <= 0) center_h = row->h;
             shift %= center_h;
             if (row->direction == 1) shift = -shift;
-            for (int y = 0; y < row->h; y++) {
-                int sy = (y - pad + shift) % center_h;
-                if (sy < 0) sy += center_h;
-                sy += pad;
-                for (int x = 0; x < row->w; x++) {
-                    size_t di = ((size_t)(row->y + y) * set->atlas_width
-                               + (row->x + x)) * 4;
-                    size_t si = ((size_t)(row->y + sy) * set->atlas_width
-                               + (row->x + x)) * 4;
-                    memcpy(&set->atlas_pixels[di],
-                           &set->atlas_base_pixels[si], 4);
-                }
-            }
         } else if (row->direction == 2 || row->direction == 4) {
             shift %= row->w;
             if (row->direction == 2) shift = -shift;
-            for (int y = 0; y < row->h; y++) {
-                for (int x = 0; x < row->w; x++) {
-                    int sx = (x + shift) % row->w;
-                    if (sx < 0) sx += row->w;
-                    size_t di = ((size_t)(row->y + y) * set->atlas_width
-                               + (row->x + x)) * 4;
-                    size_t si = ((size_t)(row->y + y) * set->atlas_width
-                               + (row->x + sx)) * 4;
-                    memcpy(&set->atlas_pixels[di],
-                           &set->atlas_base_pixels[si], 4);
-                }
-            }
+        } else {
+            continue;
         }
+        size_t at = ((size_t)row->y * set->atlas_width + row->x) * 4;
+        atlas_scroll_rect(set->atlas_pixels + at, set->atlas_width,
+                          set->atlas_base_pixels + at, set->atlas_width,
+                          row->w, row->h, pad, center_h, vertical, shift);
+        uploaded &= atlas_upload_rect(set->atlas_texture, set->atlas_pixels,
+                                      set->atlas_width, row->x, row->y,
+                                      row->w, row->h);
+        atlas_scroll_mips(set->atlas_texture, set->atlas_mips,
+                          set->atlas_width, set->atlas_height, row->x, row->y,
+                          row->w, row->h, pad, center_h, vertical, shift);
     }
-    UpdateTexture(set->atlas_texture, set->atlas_pixels);
+    if (!uploaded)
+        UpdateTexture(set->atlas_texture, set->atlas_pixels);
 }
 
 static int model_id_filter_contains(const uint32_t *ids, int id_count, uint32_t id) {
@@ -901,6 +889,7 @@ static void models_free(ModelSet *set) {
         UnloadTexture(set->atlas_texture);
     free(set->atlas_base_pixels);
     free(set->atlas_pixels);
+    free(set->atlas_mips);
     free(set->texture_anims);
     free(set->entries);
     free(set->index_by_id);

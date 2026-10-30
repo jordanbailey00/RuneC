@@ -905,6 +905,7 @@ typedef struct {
     const char *profile_name;
     int color_lift_enabled;
     int msaa_enabled;
+    int texture_mipmaps;
     float camera_pitch;
     float camera_dist;
     float camera_fovy;
@@ -984,6 +985,7 @@ static RuneCRenderSettings render_settings_from_env(void) {
         .profile_name = profile_name,
         .color_lift_enabled = profile == RUNEC_RENDER_PROFILE_OSRS ? 0 : 1,
         .msaa_enabled = 0,
+        .texture_mipmaps = 1,
         .camera_pitch = 0.6f,
         .camera_dist = 50.0f,
         .camera_fovy = 45.0f,
@@ -992,6 +994,8 @@ static RuneCRenderSettings render_settings_from_env(void) {
     settings.color_lift_enabled =
         env_bool("RUNEC_COLOR_LIFT", settings.color_lift_enabled);
     settings.msaa_enabled = env_bool("RUNEC_MSAA", settings.msaa_enabled);
+    settings.texture_mipmaps =
+        env_bool("RUNEC_TEXTURE_MIPMAPS", settings.texture_mipmaps);
     settings.camera_pitch =
         env_float("RUNEC_CAMERA_PITCH", settings.camera_pitch);
     settings.camera_dist =
@@ -10376,6 +10380,8 @@ int main(int argc, char **argv) {
     SetTargetFPS(60);
     // One projection for drawing, picking and screen projection.
     rlSetClipPlanes(render_settings.camera_near, RUNEC_CAMERA_FAR);
+    // Before any atlas upload (atlas_mips.h).
+    g_atlas_mipmaps = render_settings.texture_mipmaps;
     runec_ui_init(&v.ui);
     if (!viewer_load_hitsplat_textures(&v, hitsplat_sprite_directory)) {
         fprintf(stderr, "viewer: failed to load required hitsplat textures\n");
@@ -10385,11 +10391,13 @@ int main(int argc, char **argv) {
     viewer_sync_dev_transport_labels(&v.ui);
     rc_load_combat_visuals(combat_visuals_path);
     fprintf(stderr,
-            "render profile: %s color_lift=%s msaa=%s camera_pitch=%.3f "
-            "camera_dist=%.1f camera_fov=%.1f camera_near=%.2f\n",
+            "render profile: %s color_lift=%s msaa=%s mipmaps=%s "
+            "camera_pitch=%.3f camera_dist=%.1f camera_fov=%.1f "
+            "camera_near=%.2f\n",
             render_settings.profile_name,
             render_settings.color_lift_enabled ? "on" : "off",
             render_settings.msaa_enabled ? "on" : "off",
+            render_settings.texture_mipmaps ? "on" : "off",
             render_settings.camera_pitch, render_settings.camera_dist,
             render_settings.camera_fovy, render_settings.camera_near);
 

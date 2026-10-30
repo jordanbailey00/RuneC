@@ -9,6 +9,7 @@
 #include "streaming.h"
 #include "raylib.h"
 #include "rlgl.h"
+#include "atlas_mips.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -59,6 +60,7 @@ typedef struct {
     Texture2D atlas_texture;
     unsigned char *atlas_base_pixels;
     unsigned char *atlas_pixels;
+    unsigned char *atlas_mips;  // base atlas mip levels 1+ (atlas_mips.h)
     int atlas_width;
     int atlas_height;
     TextureAnimRow *texture_anims;
@@ -272,10 +274,12 @@ static Texture2D objects_load_atlas(ObjectMesh *om, const char *atlas_path) {
     }
     rc_asset_close(f);
 
-    Image img = { .data = pixels, .width = (int)width, .height = (int)height,
-                  .mipmaps = 1, .format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8 };
-    tex = LoadTextureFromImage(img);
-    SetTextureFilter(tex, TEXTURE_FILTER_POINT);
+    if (om) {
+        free(om->atlas_mips);
+        om->atlas_mips = NULL;
+    }
+    tex = atlas_load_texture(pixels, (int)width, (int)height,
+                             om ? &om->atlas_mips : NULL);
     if (om && tex.id > 0) {
         size_t sz = (size_t)width * height * 4;
         om->atlas_width = (int)width;
@@ -368,17 +372,14 @@ static int objects_upload_material_page(ObjectMesh *materials) {
     if (!materials->atlas_pixels || materials->atlas_width <= 0
             || materials->atlas_height <= 0)
         return 0;
-    Image image = {
-        .data = materials->atlas_pixels,
-        .width = materials->atlas_width,
-        .height = materials->atlas_height,
-        .mipmaps = 1,
-        .format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
-    };
     double started_ms = viewer_streaming_now_ms();
-    materials->atlas_texture = LoadTextureFromImage(image);
-    if (materials->atlas_texture.id > 0)
-        SetTextureFilter(materials->atlas_texture, TEXTURE_FILTER_POINT);
+    free(materials->atlas_mips);
+    materials->atlas_mips = NULL;
+    materials->atlas_texture = atlas_load_texture(
+        materials->atlas_base_pixels ? materials->atlas_base_pixels
+                                     : materials->atlas_pixels,
+        materials->atlas_width, materials->atlas_height,
+        &materials->atlas_mips);
     materials->gpu_upload_ms += viewer_streaming_now_ms() - started_ms;
     materials->owns_atlas_texture = materials->atlas_texture.id > 0;
     if (materials->owns_atlas_texture) {
@@ -393,51 +394,43 @@ static void objects_update_texture_anims(ObjectMesh *om, float dt) {
             || om->atlas_texture.id <= 0 || om->texture_anim_count <= 0)
         return;
     om->texture_anim_ticks += dt * 50.0f;
-    size_t total = (size_t)om->atlas_width * om->atlas_height * 4;
-    memcpy(om->atlas_pixels, om->atlas_base_pixels, total);
-
+    // Each frame rewrites and uploads only the animated cells; the rest of
+    // atlas_pixels stays equal to the base atlas.
+    int uploaded = 1;
     for (int r = 0; r < om->texture_anim_count; r++) {
         TextureAnimRow *row = &om->texture_anims[r];
         if (row->w == 0 || row->h == 0 || row->x + row->w > om->atlas_width
                 || row->y + row->h > om->atlas_height || row->speed == 0)
             continue;
         int shift = (int)(om->texture_anim_ticks * (float)row->speed);
-        if (row->direction == 1 || row->direction == 3) {
-            int pad = row->pad;
+        int pad = 0, center_h = row->h;
+        int vertical = row->direction == 1 || row->direction == 3;
+        if (vertical) {
+            pad = row->pad;
             if (pad * 2 >= row->h) pad = 0;
-            int center_h = row->h - pad * 2;
+            center_h = row->h - pad * 2;
             if (center_h <= 0) center_h = row->h;
             shift %= center_h;
             if (row->direction == 1) shift = -shift;
-            for (int y = 0; y < row->h; y++) {
-                int sy = (y - pad + shift) % center_h;
-                if (sy < 0) sy += center_h;
-                sy += pad;
-                for (int x = 0; x < row->w; x++) {
-                    size_t di = ((size_t)(row->y + y) * om->atlas_width
-                               + (row->x + x)) * 4;
-                    size_t si = ((size_t)(row->y + sy) * om->atlas_width
-                               + (row->x + x)) * 4;
-                    memcpy(&om->atlas_pixels[di], &om->atlas_base_pixels[si], 4);
-                }
-            }
         } else if (row->direction == 2 || row->direction == 4) {
             shift %= row->w;
             if (row->direction == 2) shift = -shift;
-            for (int y = 0; y < row->h; y++) {
-                for (int x = 0; x < row->w; x++) {
-                    int sx = (x + shift) % row->w;
-                    if (sx < 0) sx += row->w;
-                    size_t di = ((size_t)(row->y + y) * om->atlas_width
-                               + (row->x + x)) * 4;
-                    size_t si = ((size_t)(row->y + y) * om->atlas_width
-                               + (row->x + sx)) * 4;
-                    memcpy(&om->atlas_pixels[di], &om->atlas_base_pixels[si], 4);
-                }
-            }
+        } else {
+            continue;
         }
+        size_t at = ((size_t)row->y * om->atlas_width + row->x) * 4;
+        atlas_scroll_rect(om->atlas_pixels + at, om->atlas_width,
+                          om->atlas_base_pixels + at, om->atlas_width,
+                          row->w, row->h, pad, center_h, vertical, shift);
+        uploaded &= atlas_upload_rect(om->atlas_texture, om->atlas_pixels,
+                                      om->atlas_width, row->x, row->y,
+                                      row->w, row->h);
+        atlas_scroll_mips(om->atlas_texture, om->atlas_mips, om->atlas_width,
+                          om->atlas_height, row->x, row->y, row->w, row->h,
+                          pad, center_h, vertical, shift);
     }
-    UpdateTexture(om->atlas_texture, om->atlas_pixels);
+    if (!uploaded)
+        UpdateTexture(om->atlas_texture, om->atlas_pixels);
 }
 
 static int objects_upload_with_shared_atlas(ObjectMesh *om,
@@ -690,6 +683,7 @@ static void objects_free(ObjectMesh *om) {
     }
     free(om->atlas_base_pixels);
     free(om->atlas_pixels);
+    free(om->atlas_mips);
     free(om->texture_anims);
     free(om->object_anims);
     free(om);
