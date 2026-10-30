@@ -53,6 +53,7 @@ from export_models import (
     MODEL_INDEX,
     expand_model,
     load_texture_average_colors as load_legacy_texture_average_colors,
+    overlay_face_offsets,
     write_models_binary,
 )
 from export_textures import (
@@ -875,10 +876,86 @@ def scale_model(model: ModelData, size_x: int, size_h: int, size_y: int) -> None
     """
     if size_x == 128 and size_h == 128 and size_y == 128:
         return
+    # Java integer division truncates toward zero.
     for i in range(model.vertex_count):
-        model.vertices_x[i] = model.vertices_x[i] * size_x // 128
-        model.vertices_y[i] = model.vertices_y[i] * size_h // 128
-        model.vertices_z[i] = model.vertices_z[i] * size_y // 128
+        model.vertices_x[i] = int(model.vertices_x[i] * size_x / 128)
+        model.vertices_y[i] = int(model.vertices_y[i] * size_h / 128)
+        model.vertices_z[i] = int(model.vertices_z[i] * size_y / 128)
+
+
+def rotate_model_diagonal(model: ModelData) -> None:
+    """Client turn for wall decor orientations 4-7: 45 degrees (sine table
+    entry 256, in the rotate_model_90 direction), then shift (45, 0, -45)."""
+    sin = cos = 46340
+    for i in range(model.vertex_count):
+        x = model.vertices_x[i]
+        z = model.vertices_z[i]
+        model.vertices_x[i] = ((z * sin + x * cos) >> 16) + 45
+        model.vertices_z[i] = ((z * cos - x * sin) >> 16) - 45
+
+
+def orient_loc_model(model: ModelData, loc: LocDef, obj_type: int,
+                     orientation: int) -> None:
+    """Per-placement model transforms in the client's getModelData order:
+    mirror, the diagonal wall-decor turn, 90-degree steps, then resize."""
+    if loc.rotated ^ (orientation > 3):
+        mirror_model(model)
+    if 4 <= obj_type <= 8 and orientation > 3:
+        rotate_model_diagonal(model)
+    for _ in range(orientation & 3):
+        rotate_model_90(model)
+    scale_model(model, loc.model_size_x, loc.model_size_h, loc.model_size_y)
+
+
+# Wall decor push-out per rotation in OSRS world x/y (y north), from the
+# client's addLoc.
+WALL_DECOR_FORWARD_X = (1, 0, -1, 0)
+WALL_DECOR_FORWARD_Y = (0, -1, 0, 1)
+WALL_DECOR_DIAGONAL_X = (1, -1, -1, 1)
+WALL_DECOR_DIAGONAL_Y = (-1, -1, 1, 1)
+DEFAULT_DECOR_DISPLACEMENT = 16
+# The client paints wall decor after its wall and ground decor after its
+# tile. Under a depth buffer they sit slightly in front instead: wall decor
+# WALL_DECOR_FRONT OSRS units along its facing, ground decor GROUND_DECOR_LIFT
+# tiles above the terrain.
+WALL_DECOR_FRONT = 1.0
+GROUND_DECOR_LIFT = 0.01
+
+
+def placement_parts(obj_type: int, rotation: int,
+                    wall_displacement: int | None
+                    ) -> list[tuple[int, float, float]]:
+    """The client's renderables for one placement: (model orientation, world
+    x offset, world y offset) in OSRS units, including the wall-decor front
+    nudge. Types 5, 6 and 8 push out by the wall's decor displacement on the
+    same tile (16, or 8 for diagonals, without a wall); type 8's second half
+    is not pushed."""
+    r = rotation & 3
+    if obj_type == 2:
+        return [(4 + r, 0.0, 0.0), ((r + 1) & 3, 0.0, 0.0)]
+    if obj_type in (4, 5):
+        push = 0
+        if obj_type == 5:
+            push = (DEFAULT_DECOR_DISPLACEMENT if wall_displacement is None
+                    else wall_displacement)
+        fx, fy = WALL_DECOR_FORWARD_X[r], WALL_DECOR_FORWARD_Y[r]
+        return [(r, fx * (push + WALL_DECOR_FRONT),
+                 fy * (push + WALL_DECOR_FRONT))]
+    if 6 <= obj_type <= 8:
+        push = (DEFAULT_DECOR_DISPLACEMENT // 2 if wall_displacement is None
+                else wall_displacement // 2)
+        front = WALL_DECOR_FRONT / math.sqrt(2.0)
+        inside = (r + 2) & 3
+        parts = []
+        if obj_type != 7:
+            dx, dy = WALL_DECOR_DIAGONAL_X[r], WALL_DECOR_DIAGONAL_Y[r]
+            parts.append((4 + r, dx * (push + front), dy * (push + front)))
+        if obj_type != 6:
+            dx, dy = (WALL_DECOR_DIAGONAL_X[inside],
+                      WALL_DECOR_DIAGONAL_Y[inside])
+            parts.append((4 + inside, dx * front, dy * front))
+        return parts
+    return [(r, 0.0, 0.0)]
 
 
 def placement_type_to_model_type(obj_type: int) -> int:
@@ -1234,6 +1311,45 @@ def sample_heightmap(
     return 0.0
 
 
+def placement_base_height(
+    hm: tuple[int, int, int, int, list[float]],
+    world_x: int,
+    world_y: int,
+    size_x: int,
+    size_y: int,
+) -> float:
+    """Client loc height: mean of the four corners around the footprint centre
+    (sizes already swapped for rotations 1 and 3)."""
+    x0, x1 = world_x + (size_x >> 1), world_x + ((size_x + 1) >> 1)
+    y0, y1 = world_y + (size_y >> 1), world_y + ((size_y + 1) >> 1)
+    return (sample_heightmap(hm, x0, y0) + sample_heightmap(hm, x1, y0)
+            + sample_heightmap(hm, x0, y1) + sample_heightmap(hm, x1, y1)) / 4.0
+
+
+def ground_decor_lift(
+    hm: tuple[int, int, int, int, list[float]],
+    world_x: float,
+    world_y: float,
+) -> float:
+    """Lift that keeps a bilinear-contoured ground decor vertex above the
+    triangulated terrain: GROUND_DECOR_LIFT plus a quarter of the largest
+    corner twist (SW + NE - SE - NW) among the tiles touching the vertex,
+    the most bilinear height can sit below either tile triangulation."""
+    xs = {math.floor(world_x)}
+    ys = {math.floor(world_y)}
+    if abs(world_x - round(world_x)) < 1e-6:
+        xs.add(round(world_x) - 1)
+    if abs(world_y - round(world_y)) < 1e-6:
+        ys.add(round(world_y) - 1)
+    twist = 0.0
+    for tx in xs:
+        for ty in ys:
+            twist = max(twist, abs(
+                sample_heightmap(hm, tx, ty) + sample_heightmap(hm, tx + 1, ty + 1)
+                - sample_heightmap(hm, tx + 1, ty) - sample_heightmap(hm, tx, ty + 1)))
+    return GROUND_DECOR_LIFT + twist / 4.0
+
+
 def sample_height_bilinear(
     hm: tuple[int, int, int, int, list[float]],
     world_x: float,
@@ -1311,10 +1427,10 @@ def prepare_loc_model_set(
     model_loader: "Callable[[int], ModelData | None]",
     model_cache: dict[int, ModelData],
 ) -> ModelData | None:
-    """One loc's render model: merged parts, recolored, retextured, scaled.
+    """One loc's render model: merged parts, recolored and retextured.
 
-    Returns None when a part fails to decode. Rotation and mirroring are
-    per placement and left to the caller.
+    Returns None when a part fails to decode. Mirroring, rotation and resize
+    are per placement (orient_loc_model).
     """
     parts: list[ModelData] = []
     for model_id in model_ids:
@@ -1330,7 +1446,6 @@ def prepare_loc_model_set(
     md.model_id = model_ids[0]
     apply_recolors(md, loc)
     apply_retextures(md, loc)
-    scale_model(md, loc.model_size_x, loc.model_size_h, loc.model_size_y)
     return md
 
 
@@ -1372,22 +1487,33 @@ def process_placements(
             return model_ids, None
         return model_ids, prepare_model_set(loc, model_ids)
 
-    def placement_position(loc: LocDef, po: PlacedObject) -> tuple[float, float, float]:
+    # The client pushes wall decor out by the decor displacement of the wall
+    # on the same tile and level, whichever of the two loads first.
+    wall_displacement: dict[tuple[int, int, int], int] = {}
+    for po in placements:
+        wall = loc_defs.get(po.obj_id) if po.obj_type <= 3 else None
+        if wall is not None:
+            wall_displacement[(po.height, po.world_x, po.world_y)] = wall.decor_offset
+    face_offsets: dict[tuple[int, ...], list[float]] = {}
+
+    def parts_for(po: PlacedObject) -> list[tuple[int, float, float]]:
+        return placement_parts(po.obj_type, po.rotation, wall_displacement.get(
+            (po.height, po.world_x, po.world_y)))
+
+    def placement_position(loc: LocDef, po: PlacedObject, push_x: float = 0.0,
+                           push_y: float = 0.0) -> tuple[float, float, float]:
         model_scale = 1.0 / 128.0
         w = loc.width
         l = loc.length
         if po.rotation == 1 or po.rotation == 3:
             w, l = l, w
-        wx = float(po.world_x) + w / 2.0
-        wz = -(float(po.world_y) + l / 2.0)
-        if po.obj_type == 5:
-            deco_dir_x = (1, 0, -1, 0)
-            deco_dir_y = (0, -1, 0, 1)
-            deco_off = loc.decor_offset * model_scale
-            wx += deco_dir_x[po.rotation] * deco_off
-            wz -= deco_dir_y[po.rotation] * deco_off
+        wx = float(po.world_x) + w / 2.0 + push_x * model_scale
+        wz = -(float(po.world_y) + l / 2.0) - push_y * model_scale
         heightmap = heightmaps.get(po.height) if heightmaps else None
-        ground_y = sample_heightmap(heightmap, po.world_x, po.world_y) if heightmap else 0.0
+        ground_y = (placement_base_height(heightmap, po.world_x, po.world_y, w, l)
+                    if heightmap else 0.0)
+        if po.obj_type == 22:
+            ground_y += GROUND_DECOR_LIFT
         ox = float(loc.offset_x) * model_scale
         oh = float(loc.offset_h) * model_scale
         oy = float(loc.offset_y) * model_scale
@@ -1449,16 +1575,14 @@ def process_placements(
         x, y = door_open_tile(po)
         return x, y, (po.rotation + 1) & 3
 
-    def emit_sidecar(loc: LocDef, po: PlacedObject, eff_rot: int,
-                     half_idx: int, flags: int,
-                     animation_id: int) -> int:
+    def emit_sidecar(loc: LocDef, po: PlacedObject,
+                     part: tuple[int, float, float], half_idx: int,
+                     flags: int, animation_id: int) -> int:
+        eff_rot, push_x, push_y = part
         model_ids, md = sidecar_model_for_type(loc, po.obj_type)
         if md is None:
             return 0
-        if loc.rotated ^ (eff_rot > 3):
-            mirror_model(md)
-        for _ in range(eff_rot % 4):
-            rotate_model_90(md)
+        orient_loc_model(md, loc, po.obj_type, eff_rot)
         key = (loc.obj_id, model_ids, po.obj_type, eff_rot)
         anim_model_id = animated_model_ids.get(key)
         if anim_model_id is None:
@@ -1466,7 +1590,7 @@ def process_placements(
             md.model_id = anim_model_id
             animated_model_ids[key] = anim_model_id
             animated_models.append(md)
-        pos_x, pos_y, pos_z = placement_position(loc, po)
+        pos_x, pos_y, pos_z = placement_position(loc, po, push_x, push_y)
         phase = float((po.world_x * 13 + po.world_y * 17
                        + loc.obj_id * 3 + half_idx * 19) % 97)
         animated_rows.append(
@@ -1507,42 +1631,21 @@ def process_placements(
         md = prepare_model_set(loc, model_ids)
         if md is None:
             continue
+        offsets = face_offsets.get(model_ids)
+        if offsets is None:
+            offsets = face_offsets[model_ids] = overlay_face_offsets(md)
 
-        # for type 2 (diagonal walls), OSRS renders two model halves:
-        #   half 1: rotation = 4 + r (mirrored + r rotations)
-        #   half 2: rotation = (r + 1) & 3 (next rotation, no mirror)
-        # for all other types: single model with rotation r
-        if po.obj_type == 2:
-            rotations_to_emit = [4 + po.rotation, (po.rotation + 1) & 3]
-        else:
-            rotations_to_emit = [po.rotation]
-
+        parts = parts_for(po)
         all_verts: list[float] = []
         all_colors: list[tuple[int, int, int, int]] = []
         all_uvs: list[float] = []
 
-        # Shared placement position. Static placements bake this into vertices;
-        # animated placements keep it as a draw transform so ANM2 can deform the
-        # cache model every frame.
+        # Static placements bake the position into vertices; animated ones
+        # keep it as a draw transform so ANM2 can deform the model every frame.
         model_scale = 1.0 / 128.0
-        w = loc.width
-        l = loc.length
-        if po.rotation == 1 or po.rotation == 3:
-            w, l = l, w
-        wx = float(po.world_x) + w / 2.0
-        wz = -(float(po.world_y) + l / 2.0)
-        if po.obj_type == 5:
-            _deco_dir_x = (1, 0, -1, 0)
-            _deco_dir_y = (0, -1, 0, 1)
-            deco_off = loc.decor_offset * model_scale
-            wx += _deco_dir_x[po.rotation] * deco_off
-            wz -= _deco_dir_y[po.rotation] * deco_off
-
+        pos_x, pos_y, pos_z = placement_position(loc, po)
         heightmap = heightmaps.get(po.height) if heightmaps else None
-        ground_y = sample_heightmap(heightmap, po.world_x, po.world_y) if heightmap else 0.0
-        ox = float(loc.offset_x) * model_scale
         oh = float(loc.offset_h) * model_scale
-        oy = float(loc.offset_y) * model_scale
 
         dynamic_behavior = dynamic_behaviors.get(po.obj_id)
         next_stage = dynamic_behavior.next_stage if dynamic_behavior else -1
@@ -1563,32 +1666,29 @@ def process_placements(
             else po.obj_type <= 3 or next_stage >= 0 or dynamic_behavior.runtime
         )
         is_animated = loc.animation_id >= 0
-        for half_idx, eff_rot in enumerate(rotations_to_emit):
-            # deep copy per rotation variant
-            md_copy = _clone_model_data(md)
-
-            # mirror if rotation > 3 (XOR with definition's rotated flag)
-            if loc.rotated ^ (eff_rot > 3):
-                mirror_model(md_copy)
-
-            # apply N * 90-degree rotations
-            for _ in range(eff_rot % 4):
-                rotate_model_90(md_copy)
-
+        for half_idx, part in enumerate(parts):
             if is_animated or is_dynamic:
                 flags = OANM_FLAG_DYNAMIC_BASE if is_dynamic else 0
-                emit_sidecar(loc, po, eff_rot, half_idx, flags,
+                emit_sidecar(loc, po, part, half_idx, flags,
                              loc.animation_id)
                 continue
 
+            eff_rot, push_x, push_y = part
+            md_copy = _clone_model_data(md)
+            orient_loc_model(md_copy, loc, po.obj_type, eff_rot)
             v, c, uv = expand_model(
                 md_copy,
                 tex_colors,
                 atlas,
+                face_offsets=offsets,
                 skip_fully_transparent=True,
                 ambient=loc.ambient + 64,
                 contrast=loc.contrast + 768,
             )
+            # Model z points north, like the world y the push is given in.
+            for i in range(0, len(v), 3):
+                v[i] += push_x
+                v[i + 2] += push_y
             all_verts.extend(v)
             all_colors.extend(c)
             all_uvs.extend(uv)
@@ -1609,13 +1709,8 @@ def process_placements(
                     obj_type=po.obj_type,
                     rotation=active_rotation,
                 )
-                if active_po.obj_type == 2:
-                    active_rots = [4 + active_po.rotation,
-                                   (active_po.rotation + 1) & 3]
-                else:
-                    active_rots = [active_po.rotation]
-                for half_idx, eff_rot in enumerate(active_rots):
-                    emit_sidecar(active_loc, active_po, eff_rot, half_idx,
+                for half_idx, part in enumerate(parts_for(active_po)):
+                    emit_sidecar(active_loc, active_po, part, half_idx,
                                  OANM_FLAG_DYNAMIC_REPLACEMENT,
                                  active_loc.animation_id)
             for replacement_id in dynamic_behavior.replacements:
@@ -1629,8 +1724,8 @@ def process_placements(
                                         world_x=po.world_x, world_y=po.world_y,
                                         height=po.height, obj_type=po.obj_type,
                                         rotation=po.rotation)
-                for half_idx, eff_rot in enumerate(rotations_to_emit):
-                    emit_sidecar(replacement, state_po, eff_rot, half_idx,
+                for half_idx, part in enumerate(parts):
+                    emit_sidecar(replacement, state_po, part, half_idx,
                                  OANM_FLAG_DYNAMIC_REPLACEMENT,
                                  replacement.animation_id)
             continue
@@ -1649,9 +1744,10 @@ def process_placements(
         # matches OSRS Model.hillskew() — bilinear interpolation at each vertex
         use_contouring = heightmap and (loc.contoured_ground or po.obj_type == 22)
 
-        # transform vertices to world space
-        # negate model Z to match our world coords (OSRS +Z → our -Z)
-        # and swap triangle winding to preserve face normals after Z flip
+        # Transform to world space, negating model Z (OSRS +Z -> our -Z).
+        # Static soups keep their published winding: front faces clockwise,
+        # which the viewer culls as GL front faces. (Model sets keep the
+        # client winding and cull GL back faces.)
         for i in range(0, len(verts), 9):
             # swap vertex 0 and vertex 2 within each triangle (reverses winding)
             for c in range(3):
@@ -1663,8 +1759,8 @@ def process_placements(
             face_uvs[uv_base + 1], face_uvs[uv_base + 5] = face_uvs[uv_base + 5], face_uvs[uv_base + 1]
 
         for i in range(0, len(verts), 3):
-            vx = verts[i] * model_scale + wx + ox
-            vz = -verts[i + 2] * model_scale + wz - oy
+            vx = verts[i] * model_scale + pos_x
+            vz = -verts[i + 2] * model_scale + pos_z
             verts[i] = vx
             verts[i + 2] = vz
 
@@ -1673,13 +1769,11 @@ def process_placements(
                 # our world X maps directly to OSRS tile X
                 # our world -Z maps to OSRS tile Y (north)
                 vy_ground = sample_height_bilinear(heightmap, vx, -vz)
-                # ground decorations (type 22) get a small Y offset to prevent
-                # z-fighting with coplanar terrain — baked into vertex data since
-                # glPolygonOffset isn't reliable through raylib's draw pipeline
-                decal_offset = 0.01 if po.obj_type == 22 else 0.0
-                verts[i + 1] = verts[i + 1] * model_scale + vy_ground + oh + decal_offset
+                lift = (ground_decor_lift(heightmap, vx, -vz)
+                        if po.obj_type == 22 else 0.0)
+                verts[i + 1] = verts[i + 1] * model_scale + vy_ground + oh + lift
             else:
-                verts[i + 1] = verts[i + 1] * model_scale + ground_y + oh
+                verts[i + 1] = verts[i + 1] * model_scale + pos_y
 
         results.append(
             ExpandedPlacement(

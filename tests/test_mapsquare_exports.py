@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import io
+import math
 import struct
 import sys
 import unittest
@@ -1086,6 +1087,207 @@ class RuntimePackMapsquareTests(unittest.TestCase):
                 SystemExit, "cannot read mapsquare animation sidecar"
             ):
                 pack_runtime_data.mapsquare_oanim_count(oanim)
+
+
+def tri_model(model_id, verts, faces, priorities=None, render_types=None):
+    xs, ys, zs = zip(*verts)
+    return export_models.ModelData(
+        model_id=model_id,
+        vertex_count=len(verts),
+        face_count=len(faces),
+        vertices_x=list(xs),
+        vertices_y=list(ys),
+        vertices_z=list(zs),
+        face_a=[f[0] for f in faces],
+        face_b=[f[1] for f in faces],
+        face_c=[f[2] for f in faces],
+        face_colors=[0] * len(faces),
+        face_priorities=list(priorities or [0] * len(faces)),
+        face_render_types=list(render_types or []),
+    )
+
+
+class SceneryPlacementTests(unittest.TestCase):
+    """Client placement rules and depth-buffer ordering for scenery exports."""
+
+    def assertPartsEqual(self, actual, expected) -> None:
+        self.assertEqual(len(actual), len(expected))
+        for (rot, x, y), (e_rot, e_x, e_y) in zip(actual, expected):
+            self.assertEqual(rot, e_rot)
+            self.assertAlmostEqual(x, e_x, places=6)
+            self.assertAlmostEqual(y, e_y, places=6)
+
+    def test_wall_decor_parts_match_client_renderables(self) -> None:
+        parts = export_objects.placement_parts
+        front = export_objects.WALL_DECOR_FRONT
+        diag = front / math.sqrt(2.0)
+        self.assertPartsEqual(parts(4, 1, 99), [(1, 0.0, -front)])
+        self.assertPartsEqual(parts(5, 2, None), [(2, -(16 + front), 0.0)])
+        self.assertPartsEqual(parts(5, 0, 32), [(0, 32 + front, 0.0)])
+        self.assertPartsEqual(parts(6, 0, None), [(4, 8 + diag, -(8 + diag))])
+        self.assertPartsEqual(parts(7, 0, 32), [(6, -diag, diag)])
+        self.assertPartsEqual(
+            parts(8, 1, 32),
+            [(5, -(16 + diag), -(16 + diag)), (7, diag, diag)],
+        )
+        self.assertPartsEqual(parts(2, 3, None), [(7, 0.0, 0.0), (0, 0.0, 0.0)])
+        self.assertPartsEqual(parts(10, 2, 32), [(2, 0.0, 0.0)])
+
+    def test_diagonal_orientation_turns_45_degrees_after_mirroring(self) -> None:
+        model = tri_model(1, [(64, 0, 0), (-64, 0, 0), (0, 0, 64)], [(0, 1, 2)])
+        export_objects.orient_loc_model(
+            model, export_objects.LocDef(obj_id=1), 6, 4)
+        # Mirrored (orientation > 3), then sine-table 256 turn and (45, -45).
+        self.assertEqual(model.vertices_x, [90, -1, -1])
+        self.assertEqual(model.vertices_z, [-91, 0, -91])
+        self.assertEqual((model.face_a, model.face_c), ([2], [0]))
+
+    def test_resize_follows_rotation_and_truncates_like_java(self) -> None:
+        model = tri_model(1, [(10, 0, 0), (0, 0, 0), (-5, -1, 0)], [(0, 1, 2)])
+        loc = export_objects.LocDef(obj_id=1, model_size_x=256)
+        export_objects.orient_loc_model(model, loc, 10, 1)
+        # Rotation first: x 10 -> z -10, untouched by the x resize.
+        self.assertEqual((model.vertices_x[0], model.vertices_z[0]), (0, -10))
+        model = tri_model(1, [(-5, 0, 0), (0, 0, 0), (0, -1, 0)], [(0, 1, 2)])
+        export_objects.scale_model(model, 100, 128, 128)
+        self.assertEqual(model.vertices_x[0], -3)
+
+    def test_base_height_averages_corners_around_footprint_centre(self) -> None:
+        hm = (3200, 3200, 4, 4, [float(i) for i in range(16)])
+        height = export_objects.placement_base_height
+        self.assertAlmostEqual(height(hm, 3200, 3200, 1, 1), 2.5)
+        self.assertAlmostEqual(height(hm, 3200, 3200, 2, 2), 5.0)
+        self.assertAlmostEqual(height(hm, 3200, 3200, 3, 1), 3.5)
+
+    def test_ground_decor_lift_covers_twist_of_touching_tiles(self) -> None:
+        heights = [0.0] * 9
+        heights[0] = 0.4  # SW corner of tile (0, 0) only
+        hm = (0, 0, 3, 3, heights)
+        lift = export_objects.ground_decor_lift
+        base = export_objects.GROUND_DECOR_LIFT
+        self.assertAlmostEqual(lift(hm, 0.5, 0.5), base + 0.1)
+        self.assertAlmostEqual(lift(hm, 1.0, 0.5), base + 0.1)
+        self.assertAlmostEqual(lift(hm, 1.5, 0.5), base)
+
+    def test_overlay_offsets_move_only_stacked_faces(self) -> None:
+        model = tri_model(
+            1,
+            [(0, 0, 0), (100, 0, 0), (0, 0, 100),        # base, priority 0
+             (10, 0, 10), (40, 0, 10), (10, 0, 40),     # detail on base
+             (12, 0, 12), (30, 0, 12), (12, 0, 30),     # detail on detail
+             (100, 0, 0), (100, 0, 100), (0, 0, 100),   # shares an edge only
+             (10, -2, 10), (40, -2, 10), (10, -2, 40)], # 2 units clear
+            [(0, 1, 2), (3, 4, 5), (6, 7, 8), (9, 10, 11), (12, 13, 14)],
+            priorities=[0, 1, 2, 1, 1],
+        )
+        sep = export_models.OVERLAY_SEPARATION
+        offsets = export_models.overlay_face_offsets(model)
+        self.assertEqual(offsets, [0.0, sep, 2 * sep, 0.0, 0.0])
+
+        verts, _colors, _uvs = export_models.expand_model(model)
+        self.assertEqual(verts[1], 0.0)
+        self.assertAlmostEqual(verts[10], sep)
+        self.assertAlmostEqual(verts[19], 2 * sep)
+        flat, _colors, _uvs = export_models.expand_model(
+            model, bake_priority_offsets=False)
+        self.assertEqual(flat[10], 0.0)
+
+        model.face_render_types = [2, 0, 0, 0, 0]
+        self.assertEqual(export_models.overlay_face_offsets(model),
+                         [0.0, 0.0, sep, 0.0, 0.0])
+
+        # Out-of-range indices and zero-area faces never stack.
+        model.face_render_types = []
+        model.face_a[1], model.face_b[2], model.face_c[2] = 99, 6, 6
+        self.assertEqual(export_models.overlay_face_offsets(model),
+                         [0.0, 0.0, 0.0, 0.0, 0.0])
+
+    def test_placements_push_wall_decor_by_the_walls_displacement(self) -> None:
+        decor_model = tri_model(
+            20, [(-64, 0, 0), (-64, -10, 0), (-64, 0, 10)], [(0, 1, 2)])
+        wall_model = tri_model(
+            21, [(-64, 0, -64), (-64, -100, -64), (-64, 0, 64)], [(0, 1, 2)])
+        models = {20: decor_model, 21: wall_model}
+        decor = export_objects.LocDef(
+            obj_id=2, model_ids=[20], model_types=[4], has_typed_models=True,
+            decor_offset=64)
+        wall = export_objects.LocDef(
+            obj_id=1, model_ids=[21], model_types=[0], has_typed_models=True,
+            decor_offset=32)
+        po_decor = export_objects.PlacedObject(
+            obj_id=2, world_x=3200, world_y=3200, obj_type=5)
+        po_wall = export_objects.PlacedObject(
+            obj_id=1, world_x=3200, world_y=3200, obj_type=0)
+        front = export_objects.WALL_DECOR_FRONT
+        edge = 3200 + 0.5 - 64 / 128
+
+        def decor_x(placements, defs) -> float:
+            expanded, _rows, _models = export_objects.process_placements(
+                placements, defs, models.get, {}, report_gaps=False)
+            return [p for p in expanded if p.obj_type == 5][0].vertices[0]
+
+        # The wall's displacement wins whichever loads first; the
+        # decoration's own value is never used.
+        for order in ([po_decor, po_wall], [po_wall, po_decor]):
+            self.assertAlmostEqual(decor_x(order, {1: wall, 2: decor}),
+                                   edge + (32 + front) / 128, places=5)
+        self.assertAlmostEqual(decor_x([po_decor], {2: decor}),
+                               edge + (16 + front) / 128, places=5)
+
+        animated = export_objects.LocDef(
+            obj_id=3, model_ids=[20], model_types=[4], has_typed_models=True,
+            animation_id=7)
+        po_animated = export_objects.PlacedObject(
+            obj_id=3, world_x=3200, world_y=3200, obj_type=5)
+        _expanded, rows, _models = export_objects.process_placements(
+            [po_animated, po_wall], {1: wall, 3: animated}, models.get, {},
+            report_gaps=False)
+        self.assertAlmostEqual(rows[0].pos_x, 3200.5 + (32 + front) / 128,
+                               places=5)
+
+        # Content-declared replacement states share the base's pushed parts.
+        _expanded, rows, _models = export_objects.process_placements(
+            [po_decor, po_wall], {1: wall, 2: decor, 3: animated},
+            models.get, {},
+            dynamic_behaviors={2: export_objects.DynamicObjectBehavior(
+                -1, 0, replacements=(3,), runtime=True)},
+            report_gaps=False)
+        self.assertEqual([row.obj_id for row in rows], [2, 3])
+        self.assertEqual(rows[0].pos_x, rows[1].pos_x)
+        self.assertAlmostEqual(rows[1].pos_x, 3200.5 + (32 + front) / 128,
+                               places=5)
+
+    def test_spawn_templates_lift_ground_decor(self) -> None:
+        import export_spawn_objects
+        loc = export_objects.LocDef(obj_id=1, width=2, length=1, offset_h=64)
+        self.assertEqual(export_spawn_objects.template_position(loc, 10, 1),
+                         (0.5, 0.5, -1.0))
+        x, y, z = export_spawn_objects.template_position(loc, 22, 0)
+        self.assertEqual((x, z), (1.0, -0.5))
+        self.assertAlmostEqual(y, 0.5 + export_objects.GROUND_DECOR_LIFT)
+
+    def test_ground_decor_sits_above_terrain(self) -> None:
+        model = tri_model(30, [(-64, 0, -64), (64, 0, -64), (-64, 0, 64)],
+                          [(0, 1, 2)])
+        loc = export_objects.LocDef(
+            obj_id=4, model_ids=[30], model_types=[22], has_typed_models=True)
+        placement = export_objects.PlacedObject(
+            obj_id=4, world_x=3200, world_y=3200, obj_type=22)
+        expanded, _rows, _models = export_objects.process_placements(
+            [placement], {4: loc}, {30: model}.get, {},
+            heightmaps={0: (3200, 3200, 3, 3, [0.0] * 9)}, report_gaps=False)
+        self.assertEqual(
+            expanded[0].vertices[1::3],
+            [export_objects.GROUND_DECOR_LIFT] * 3)
+
+        animated = export_objects.LocDef(
+            obj_id=5, model_ids=[30], model_types=[22], has_typed_models=True,
+            animation_id=7)
+        _expanded, rows, _models = export_objects.process_placements(
+            [export_objects.PlacedObject(
+                obj_id=5, world_x=3200, world_y=3200, obj_type=22)],
+            {5: animated}, {30: model}.get, {}, report_gaps=False)
+        self.assertAlmostEqual(rows[0].pos_y, export_objects.GROUND_DECOR_LIFT)
 
 
 if __name__ == "__main__":

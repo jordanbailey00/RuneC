@@ -34,17 +34,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from content_paths import content_read_path
 from export_objects import (
+    GROUND_DECOR_LIFT,
     OANM_FLAG_CONTOURED,
     OANM_FLAG_SPAWN_TEMPLATE,
     AnimatedObjectPlacement,
     _clone_model_data,
     load_modern_object_definitions,
     load_modern_object_materials,
-    mirror_model,
     model_key_for_type,
+    orient_loc_model,
     prepare_loc_model_set,
     resolve_visual_loc,
-    rotate_model_90,
     write_object_anim_binary,
 )
 from export_models import write_models_binary
@@ -95,14 +95,17 @@ def runtime_spawn_locs(path: Path) -> dict[tuple[int, int], str]:
     return out
 
 
-def template_position(loc, rotation: int) -> tuple[float, float, float]:
-    """Model origin relative to the tile's south-west corner (OANM axes)."""
+def template_position(loc, obj_type: int,
+                      rotation: int) -> tuple[float, float, float]:
+    """Model origin relative to the tile's south-west corner (OANM axes).
+    Ground decor gets the map exporter's lift above the terrain."""
     scale = 1.0 / 128.0
     w, l = loc.width, loc.length
     if rotation in (1, 3):
         w, l = l, w
+    lift = GROUND_DECOR_LIFT if obj_type == 22 else 0.0
     return (w / 2.0 + loc.offset_x * scale,
-            loc.offset_h * scale,
+            loc.offset_h * scale + lift,
             -(l / 2.0) - loc.offset_y * scale)
 
 
@@ -154,13 +157,10 @@ def main() -> int:
             flags |= OANM_FLAG_CONTOURED
         for rotation in range(4):
             md = _clone_model_data(base)
-            if loc.rotated:
-                mirror_model(md)
-            for _ in range(rotation):
-                rotate_model_90(md)
+            orient_loc_model(md, loc, obj_type, rotation)
             md.model_id = SPAWN_OBJECT_MODEL_BASE + len(models)
             models.append(md)
-            pos_x, pos_y, pos_z = template_position(loc, rotation)
+            pos_x, pos_y, pos_z = template_position(loc, obj_type, rotation)
             rows.append(AnimatedObjectPlacement(
                 model_id=md.model_id, obj_id=loc_id,
                 animation_id=loc.animation_id, world_x=0, world_y=0, plane=0,

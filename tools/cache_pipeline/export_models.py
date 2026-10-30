@@ -2078,11 +2078,100 @@ def _unlit_face_vertex_colors(
     return [(rgb[0], rgb[1], rgb[2], alpha)] * 3
 
 
+# The client paints faces in priority order, so a detail face can lie exactly
+# on the face it decorates. Under a depth buffer the later face must sit in
+# front instead: OVERLAY_SEPARATION OSRS units (several depth steps at normal
+# camera range). Faces closer than OVERLAY_COPLANAR count as stacked.
+OVERLAY_SEPARATION = 0.5
+OVERLAY_COPLANAR = 1.0
+
+
+def _triangles_overlap_2d(p: list[tuple[float, float]],
+                          q: list[tuple[float, float]]) -> bool:
+    """Separating-axis test that ignores contact along a shared edge. The
+    triangles have area, so no projected edge is degenerate."""
+    for tri in (p, q):
+        for i in range(3):
+            ax = tri[(i + 1) % 3][1] - tri[i][1]
+            ay = tri[i][0] - tri[(i + 1) % 3][0]
+            length = math.hypot(ax, ay)
+            p_proj = [(x * ax + y * ay) / length for x, y in p]
+            q_proj = [(x * ax + y * ay) / length for x, y in q]
+            if min(max(p_proj), max(q_proj)) - max(min(p_proj), min(q_proj)) <= 0.25:
+                return False
+    return True
+
+
+def overlay_face_offsets(model: ModelData) -> list[float]:
+    """Front-normal offsets (OSRS units) for stacked coplanar faces.
+
+    Faces are ordered as the client draws them: priority, then distance in
+    front, then face index. A face overlapping an earlier stacked face moves
+    to OVERLAY_SEPARATION in front of it; faces that overlap nothing stay put,
+    so shared edges do not open seams. Hidden faces are ignored. The offsets
+    survive mirroring, rotation and scaling, so one model set can share them.
+    """
+    offsets = [0.0] * model.face_count
+    faces = []
+    for fi in range(model.face_count):
+        face_alpha = (_signed_byte(model.face_alphas[fi])
+                      if fi < len(model.face_alphas) else 0)
+        if _face_render_type(model, fi) == 2 or face_alpha == -1:
+            continue
+        idx = (model.face_a[fi], model.face_b[fi], model.face_c[fi])
+        if any(i < 0 or i >= model.vertex_count for i in idx):
+            continue
+        pts = [(float(model.vertices_x[i]), float(-model.vertices_y[i]),
+                float(model.vertices_z[i])) for i in idx]
+        e1 = [pts[1][k] - pts[0][k] for k in range(3)]
+        e2 = [pts[2][k] - pts[0][k] for k in range(3)]
+        cross = (e1[1] * e2[2] - e1[2] * e2[1],
+                 e1[2] * e2[0] - e1[0] * e2[2],
+                 e1[0] * e2[1] - e1[1] * e2[0])
+        length = math.sqrt(sum(c * c for c in cross))
+        if length < 1e-3:
+            continue
+        # Expanded faces wind so the cross product points away from the
+        # visible side.
+        front = tuple(-c / length for c in cross)
+        dist = sum(front[k] * pts[0][k] for k in range(3))
+        drop = max(range(3), key=lambda k: abs(front[k]))
+        flat = [tuple(pt[k] for k in range(3) if k != drop) for pt in pts]
+        pri = model.face_priorities[fi] if fi < len(model.face_priorities) else 0
+        faces.append((pri, round(dist, 2), fi, front, dist, flat))
+
+    faces.sort(key=lambda face: face[:3])
+    buckets: dict[tuple[int, int, int, int], list[int]] = {}
+    target = [0.0] * len(faces)
+    for order, (_pri, _key, fi, front, dist, flat) in enumerate(faces):
+        nk = tuple(round(c * 64) for c in front)
+        dk = math.floor(dist / OVERLAY_COPLANAR)
+        target[order] = dist
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                for dz in (-1, 0, 1):
+                    for dd in (-1, 0, 1):
+                        for other in buckets.get(
+                                (nk[0] + dx, nk[1] + dy, nk[2] + dz, dk + dd), ()):
+                            o_front, o_dist, o_flat = faces[other][3:6]
+                            if (abs(dist - o_dist) > OVERLAY_COPLANAR
+                                    or sum(front[k] * o_front[k]
+                                           for k in range(3)) < 0.9994
+                                    or not _triangles_overlap_2d(flat, o_flat)):
+                                continue
+                            target[order] = max(
+                                target[order], target[other] + OVERLAY_SEPARATION)
+        buckets.setdefault((*nk, dk), []).append(order)
+        offsets[fi] = target[order] - dist
+    return offsets
+
+
 def expand_model(
     model: ModelData,
     tex_colors: dict[int, int] | None = None,
     atlas: "TextureAtlas | None" = None,
     bake_priority_offsets: bool = True,
+    face_offsets: list[float] | None = None,
     skip_fully_transparent: bool = False,
     ambient: int = 64,
     contrast: int = 768,
@@ -2108,9 +2197,8 @@ def expand_model(
     colors: list[tuple[int, int, int, int]] = []
     uvs: list[float] = []
 
-    # compute minimum priority so we only offset faces that differ from baseline.
-    # a model with all faces at priority 10 needs zero offset (no coplanar conflict).
-    min_pri = min(model.face_priorities) if model.face_priorities else 0
+    if bake_priority_offsets and face_offsets is None:
+        face_offsets = overlay_face_offsets(model)
     if model_lighting == "client":
         vertex_normals, face_normals = _compute_normals(model)
     else:
@@ -2157,14 +2245,10 @@ def expand_model(
         bx, by, bz = float(model.vertices_x[b]), float(-model.vertices_y[b]), float(model.vertices_z[b])
         cx, cy, cz = float(model.vertices_x[c]), float(-model.vertices_y[c]), float(model.vertices_z[c])
 
-        # priority-based normal offset to prevent z-fighting on coplanar faces.
-        # OSRS uses a painter's algorithm with per-face priorities (0-9 drawn in
-        # strict ascending order). we only offset faces above the model's minimum
-        # priority — if all faces share the same priority, no offset is needed.
-        pri = model.face_priorities[fi] if fi < len(model.face_priorities) else 0
-        pri_delta = pri - min_pri
-        if bake_priority_offsets and pri_delta > 0:
-            # face normal via cross product of edges
+        # Stacked coplanar faces keep the client's draw order (see
+        # overlay_face_offsets); the cross product points away from the front.
+        offset = face_offsets[fi] if face_offsets else 0.0
+        if offset > 0.0:
             e1x, e1y, e1z = bx - ax, by - ay, bz - az
             e2x, e2y, e2z = cx - ax, cy - ay, cz - az
             nx = e1y * e2z - e1z * e2y
@@ -2172,9 +2256,7 @@ def expand_model(
             nz = e1x * e2y - e1y * e2x
             length = math.sqrt(nx * nx + ny * ny + nz * nz)
             if length > 0.001:
-                # 0.15 OSRS units per priority level — small enough to be invisible,
-                # large enough to resolve depth buffer ambiguity at 1/128 scale
-                bias = pri_delta * 0.15 / length
+                bias = offset / length
                 nx *= bias
                 ny *= bias
                 nz *= bias

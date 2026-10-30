@@ -908,7 +908,14 @@ typedef struct {
     float camera_pitch;
     float camera_dist;
     float camera_fovy;
+    float camera_near;
 } RuneCRenderSettings;
+
+// Depth precision falls with the square of distance over the near plane.
+// raylib's default 0.01-tile near plane leaves a ~2 OSRS-unit depth step at
+// the default camera distance, so stacked surfaces (wall and ground decor,
+// detail faces) fight. The client clips at 50 units (~0.4 tiles).
+#define RUNEC_CAMERA_FAR 1000.0
 
 typedef struct GLFWwindow GLFWwindow;
 typedef void (*GLFWerrorfun)(int, const char *);
@@ -980,6 +987,7 @@ static RuneCRenderSettings render_settings_from_env(void) {
         .camera_pitch = 0.6f,
         .camera_dist = 50.0f,
         .camera_fovy = 45.0f,
+        .camera_near = 0.5f,
     };
     settings.color_lift_enabled =
         env_bool("RUNEC_COLOR_LIFT", settings.color_lift_enabled);
@@ -990,9 +998,12 @@ static RuneCRenderSettings render_settings_from_env(void) {
         env_float("RUNEC_CAMERA_DIST", settings.camera_dist);
     settings.camera_fovy =
         env_float("RUNEC_CAMERA_FOV", settings.camera_fovy);
+    settings.camera_near =
+        env_float("RUNEC_CAMERA_NEAR", settings.camera_near);
     settings.camera_pitch = clamp_float(settings.camera_pitch, 0.1f, 1.4f);
     settings.camera_dist = clamp_float(settings.camera_dist, 5.0f, 300.0f);
     settings.camera_fovy = clamp_float(settings.camera_fovy, 10.0f, 120.0f);
+    settings.camera_near = clamp_float(settings.camera_near, 0.05f, 4.0f);
     return settings;
 }
 
@@ -1585,6 +1596,26 @@ static void load_object_chunk_mesh(ViewerState *v, int plane,
     viewer_finish_streaming_load(v, load_started_ms, "object-chunk", 0);
 }
 
+// The client draws every face one-sided; models that look two-sided carry
+// both windings. Terrain and model sets keep the client winding, so GL back
+// faces cull. Static object soups are published front-clockwise
+// (export_objects.py), so their GL front faces cull.
+static void begin_one_sided_model_draw(int cull_face) {
+    rlSetCullFace(cull_face);
+    rlEnableBackfaceCulling();
+}
+
+static void end_one_sided_model_draw(void) {
+    rlDisableBackfaceCulling();
+    rlSetCullFace(RL_CULL_FACE_BACK);
+}
+
+static void draw_static_scenery(Model model, int cull_face) {
+    begin_one_sided_model_draw(cull_face);
+    DrawModel(model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+    end_one_sided_model_draw();
+}
+
 static void draw_object_chunks(ViewerState *v, int plane) {
     if (!v) return;
     plane = clamp_plane(plane);
@@ -1594,7 +1625,7 @@ static void draw_object_chunks(ViewerState *v, int plane) {
             continue;
         load_object_chunk_mesh(v, plane, chunk);
         if (chunk->mesh && chunk->mesh->loaded)
-            DrawModel(chunk->mesh->model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+            draw_static_scenery(chunk->mesh->model, RL_CULL_FACE_FRONT);
     }
 }
 
@@ -5019,15 +5050,6 @@ static int item_display_id_for_quantity(const ViewerState *v, int item_id, int q
     return item_id;
 }
 
-static void begin_one_sided_model_draw(void) {
-    rlSetCullFace(RL_CULL_FACE_BACK);
-    rlEnableBackfaceCulling();
-}
-
-static void end_one_sided_model_draw(void) {
-    rlDisableBackfaceCulling();
-}
-
 static void draw_model_entry_one_sided(ModelEntry *entry, Vector3 pos,
                                        float facing_angle, float scale,
                                        Color tint, Shader shader,
@@ -5042,7 +5064,7 @@ static void draw_model_entry_one_sided(ModelEntry *entry, Vector3 pos,
             entry->model.materials[i].shader = shader;
         restore_shader = 1;
     }
-    begin_one_sided_model_draw();
+    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
     DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, facing_angle,
                 (Vector3){scale, scale, scale}, tint);
     end_one_sided_model_draw();
@@ -5413,7 +5435,9 @@ static void draw_animated_object_resources(ViewerState *v, int scene_plane,
             row->pos_y,
             row->pos_z + (float)g_world_origin_y,
         };
+        begin_one_sided_model_draw(RL_CULL_FACE_BACK);
         DrawModel(entry->model, pos, 1.0f, WHITE);
+        end_one_sided_model_draw();
     }
 }
 
@@ -5546,7 +5570,9 @@ static void draw_spawned_objects(ViewerState *v, int scene_plane) {
             UpdateMeshBuffer(*mesh, 0, mesh->vertices,
                              mesh->vertexCount * 3 * (int)sizeof(float), 0);
         }
+        begin_one_sided_model_draw(RL_CULL_FACE_BACK);
         DrawModel(entry->model, pos, 1.0f, WHITE);
+        end_one_sided_model_draw();
     }
 }
 
@@ -5571,14 +5597,10 @@ static void draw_mapsquare_chunks(ViewerState *v, int plane, float frame_dt) {
         ViewerMapsquareChunk *chunk = &v->mapsquare_chunks[i];
         if (chunk->plane != plane || !mapsquare_chunk_in_active_scene(chunk))
             continue;
-        if (chunk->terrain && chunk->terrain->loaded) {
-            DrawModel(chunk->terrain->model, (Vector3){0, 0, 0}, 1.0f,
-                      WHITE);
-        }
-        if (chunk->objects && chunk->objects->loaded) {
-            DrawModel(chunk->objects->model, (Vector3){0, 0, 0}, 1.0f,
-                      WHITE);
-        }
+        if (chunk->terrain && chunk->terrain->loaded)
+            draw_static_scenery(chunk->terrain->model, RL_CULL_FACE_BACK);
+        if (chunk->objects && chunk->objects->loaded)
+            draw_static_scenery(chunk->objects->model, RL_CULL_FACE_FRONT);
         draw_animated_object_resources(
             v, plane, chunk->objects, chunk->object_anim_models,
             chunk->object_anim_states, chunk->object_anim_state_count);
@@ -7174,7 +7196,7 @@ static int draw_animated_item_model(ViewerState *v, uint32_t model_id,
     if (!entry || !entry->loaded)
         return 0;
     animate_item_entry_to_player_frame(v, entry);
-    begin_one_sided_model_draw();
+    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
     DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, facing_angle,
                 (Vector3){scale, scale, scale}, tint);
     end_one_sided_model_draw();
@@ -7248,7 +7270,7 @@ static int draw_static_item_model(ViewerState *v, uint32_t model_id,
     if (!entry || !entry->loaded)
         return 0;
     reset_model_entry_to_base_pose(entry);
-    begin_one_sided_model_draw();
+    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
     DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, facing_angle,
                 (Vector3){scale, scale, scale}, tint);
     end_one_sided_model_draw();
@@ -7311,7 +7333,7 @@ static int draw_composed_player_model(ViewerState *v, const RcPlayer *p,
         reset_model_entry_to_base_pose(&v->composed_player_model);
     }
 
-    begin_one_sided_model_draw();
+    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
     DrawModelEx(v->composed_player_model.model, player_pos,
                 (Vector3){0, 1, 0}, facing_angle, (Vector3){1, 1, 1}, WHITE);
     end_one_sided_model_draw();
@@ -9778,10 +9800,10 @@ static void draw_scene(ViewerState *v, int ui_capture) {
     TerrainMesh *scene_terrain = viewer_terrain_for_plane(v, scene_plane);
     ObjectMesh *scene_objects = viewer_objects_for_plane(v, scene_plane);
     if (scene_terrain && scene_terrain->loaded)
-        DrawModel(scene_terrain->model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+        draw_static_scenery(scene_terrain->model, RL_CULL_FACE_BACK);
     if (scene_objects && scene_objects->loaded) {
         objects_update_texture_anims(scene_objects, frame_dt);
-        DrawModel(scene_objects->model, (Vector3){0, 0, 0}, 1.0f, WHITE);
+        draw_static_scenery(scene_objects->model, RL_CULL_FACE_FRONT);
     }
     draw_mapsquare_chunks(v, scene_plane, frame_dt);
     draw_object_chunks(v, scene_plane);
@@ -9877,9 +9899,11 @@ static void draw_scene(ViewerState *v, int ui_capture) {
             // instance — two NPCs with the same model can play different anims
             // or frames because each draw re-applies from base_verts.
             update_npc_anim(v, i, ne);
+            begin_one_sided_model_draw(RL_CULL_FACE_BACK);
             DrawModelEx(ne->model, (Vector3){nx_r, ny_r, nz_r},
                         (Vector3){0, 1, 0}, face_angle,
                         viewer_npc_model_scale(v, def->id), WHITE);
+            end_one_sided_model_draw();
         }
     }
     draw_npc_ghosts(v, scene_plane);
@@ -10338,6 +10362,8 @@ int main(int argc, char **argv) {
         return 1;
     }
     SetTargetFPS(60);
+    // One projection for drawing, picking and screen projection.
+    rlSetClipPlanes(render_settings.camera_near, RUNEC_CAMERA_FAR);
     runec_ui_init(&v.ui);
     if (!viewer_load_hitsplat_textures(&v, hitsplat_sprite_directory)) {
         fprintf(stderr, "viewer: failed to load required hitsplat textures\n");
@@ -10348,12 +10374,12 @@ int main(int argc, char **argv) {
     rc_load_combat_visuals(combat_visuals_path);
     fprintf(stderr,
             "render profile: %s color_lift=%s msaa=%s camera_pitch=%.3f "
-            "camera_dist=%.1f camera_fov=%.1f\n",
+            "camera_dist=%.1f camera_fov=%.1f camera_near=%.2f\n",
             render_settings.profile_name,
             render_settings.color_lift_enabled ? "on" : "off",
             render_settings.msaa_enabled ? "on" : "off",
             render_settings.camera_pitch, render_settings.camera_dist,
-            render_settings.camera_fovy);
+            render_settings.camera_fovy, render_settings.camera_near);
 
     int dynamic_model_shader_enabled =
         env_bool("RUNEC_DYNAMIC_MODEL_SHADER", 1);
