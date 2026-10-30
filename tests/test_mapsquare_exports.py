@@ -9,7 +9,7 @@ import math
 import struct
 import sys
 import unittest
-from contextlib import redirect_stderr
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
@@ -27,6 +27,7 @@ import export_scene_slice
 import export_terrain
 import pack_runtime_data
 import spawn_index
+import stack_model_overlays
 from rc_cache import decode_location_definition, decode_sprite_group
 from export_textures import TextureAtlas
 
@@ -1288,6 +1289,154 @@ class SceneryPlacementTests(unittest.TestCase):
                 obj_id=5, world_x=3200, world_y=3200, obj_type=22)],
             {5: animated}, {30: model}.get, {}, report_gaps=False)
         self.assertAlmostEqual(rows[0].pos_y, export_objects.GROUND_DECOR_LIFT)
+
+
+def stacked_models() -> list[export_models.ModelData]:
+    """A base face with a detail stacked on it, and a face beside them."""
+    models = []
+    for model_id in (7, 8, 9):
+        model = tri_model(
+            model_id,
+            [(0, 0, 0), (100, 0, 0), (0, 0, 100),
+             (10, 0, 10), (40, 0, 10), (10, 0, 40),
+             (100, 0, 0), (100, 0, 100), (0, 0, 100)],
+            [(0, 1, 2), (3, 4, 5), (6, 7, 8)],
+            priorities=[0, 1, 1],
+        )
+        model.vertex_skins = [0] * model.vertex_count
+        model.face_skins = [1, 2, 3]
+        model.face_alphas = [0, 0, 0]
+        models.append(model)
+    return models
+
+
+def mof1_entries(record: bytes) -> list[tuple[int, float]]:
+    at = record.rfind(struct.pack("<I", export_models.MOF1_MAGIC))
+    if at < 0:
+        return []
+    count = struct.unpack_from("<I", record, at + 4)[0]
+    return [struct.unpack_from("<HxxF".replace("F", "f"), record, at + 8 + i * 8)
+            for i in range(count)]
+
+
+def bundle_records(data: bytes) -> list[bytes]:
+    _magic, count = struct.unpack_from("<II", data, 0)
+    offsets = list(struct.unpack_from(f"<{count}I", data, 8)) + [len(data)]
+    return [data[offsets[i]:offsets[i + 1]] for i in range(count)]
+
+
+class StackedFaceModelTests(unittest.TestCase):
+    """Stacked-face offsets in .models bundles (MOF1) for posed models."""
+
+    def write(self, path: Path, models, bake: bool = True, atlas=None) -> bytes:
+        export_models.write_models_binary(
+            path, models, atlas=atlas, write_atlas_companion=False,
+            bake_priority_offsets=bake)
+        return path.read_bytes()
+
+    def test_writer_bakes_and_records_stacked_face_offsets(self) -> None:
+        sep = export_models.OVERLAY_SEPARATION
+        with TemporaryDirectory() as tmp:
+            data = self.write(Path(tmp) / "set.models", stacked_models()[:1])
+            record = bundle_records(data)[0]
+            self.assertEqual(mof1_entries(record), [(1, sep)])
+            verts = struct.unpack_from("<27f", record, 10)
+            self.assertEqual(verts[1], 0.0)
+            self.assertAlmostEqual(verts[10], sep)
+            self.assertEqual(verts[19], 0.0)
+
+            plain = self.write(Path(tmp) / "plain.models", stacked_models()[:1],
+                               bake=False)
+            self.assertEqual(mof1_entries(bundle_records(plain)[0]), [])
+
+    def test_tool_rewrites_old_bundles_like_the_writer(self) -> None:
+        atlas = SharedMaterialTests.atlas()
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for name, set_atlas in (("mdl2", None), ("mdl3", atlas)):
+                models = stacked_models()
+                models[2].face_render_types = [2, 0, 0]  # hidden base
+                expected = self.write(root / f"{name}.expected.models", models,
+                                      atlas=set_atlas)
+                old = root / f"{name}.models"
+                self.write(old, stacked_models()[:2] + [models[2]], bake=False,
+                           atlas=set_atlas)
+
+                stats = stack_model_overlays.stack_bundle(old)
+                self.assertEqual(old.read_bytes(), expected)
+                self.assertEqual(stats.changed_models, [7, 8])
+                self.assertEqual((stats.stacked, stats.moved, stats.unbiased),
+                                 (2, 2, 0))
+                again = stack_model_overlays.stack_bundle(old)
+                self.assertEqual(again.changed_models, [])
+                self.assertEqual(old.read_bytes(), expected)
+
+    def test_tool_drops_older_uniform_priority_bias(self) -> None:
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "biased.models"
+            expected = self.write(path, stacked_models())
+            data = bytearray(expected)
+            first = struct.unpack_from("<I", data, 8)[0]
+            face2_y = first + 10 + (2 * 9 + 1) * 4
+            struct.pack_into("<f", data, face2_y, 0.15)
+            for jobs in (1, 2):
+                path.write_bytes(bytes(data))
+                stats = stack_model_overlays.stack_bundle(path, jobs=jobs)
+                self.assertEqual(path.read_bytes(), expected)
+                self.assertEqual((stats.moved, stats.unbiased), (1, 1))
+
+            path.write_bytes(struct.pack("<II", 0x4D4F444C, 0))
+            with self.assertRaisesRegex(ValueError, "not an MDL2/MDL3"):
+                stack_model_overlays.stack_bundle(path)
+
+    def test_tool_keeps_zero_triangles_and_rejects_malformed_records(self) -> None:
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "odd.models"
+            models = stacked_models()[:2]
+            models[0].face_c[2] = 99  # out of range
+            models[1].face_a[2] = -1  # stored as vertex 0
+            expected = self.write(path, models)
+            stats = stack_model_overlays.stack_bundle(path)
+            self.assertEqual((stats.changed_models, stats.degenerate), ([], 1))
+            self.assertEqual(path.read_bytes(), expected)
+
+            record = bundle_records(expected)[0]
+            bad = bytearray(record)
+            struct.pack_into("<H", bad, 4, 8)  # expanded vertex count
+            with self.assertRaisesRegex(ValueError, "expanded vertices"):
+                stack_model_overlays.stack_model_record(bytes(bad), False)
+            with self.assertRaisesRegex(ValueError, "stray bytes"):
+                stack_model_overlays.stack_model_record(record + b"\0\0\0", False)
+
+            path.write_bytes(expected + struct.pack("<II", 0x58585858, 0))
+            with self.assertRaisesRegex(ValueError, "unknown block"):
+                stack_model_overlays.stack_bundle(path)
+
+    def test_tool_cli_checks_directories_without_writing(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "sub").mkdir()
+            path = root / "sub" / "set.models"
+            old = self.write(path, stacked_models(), bake=False)
+            out = io.StringIO()
+            with redirect_stdout(out):
+                stack_model_overlays.main([str(root), "--check"])
+            self.assertEqual(path.read_bytes(), old)
+            self.assertIn("would change 1/1 bundles: 3/3 models", out.getvalue())
+            with redirect_stdout(io.StringIO()):
+                stack_model_overlays.main([str(path)])
+            expected = self.write(root / "x.models", stacked_models())
+            self.assertEqual(path.read_bytes(), expected)
+
+            other = root / "sub" / "other.models"
+            self.write(other, stacked_models(), bake=False)
+            path.write_bytes(old)
+            out = io.StringIO()
+            with redirect_stdout(out):
+                stack_model_overlays.main([str(root / "sub"), "--jobs", "2"])
+            self.assertIn("changed 2/2 bundles: 6/6 models", out.getvalue())
+            self.assertEqual(path.read_bytes(), expected)
+            self.assertEqual(other.read_bytes(), expected)
 
 
 if __name__ == "__main__":

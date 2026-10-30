@@ -60,8 +60,7 @@ def main():
         if model is None:
             continue
         write_models_binary(args.output / f"{item_id}.models", [model],
-                            tex_colors=colors, atlas=atlas, write_atlas_companion=False,
-                            bake_priority_offsets=False)
+                            tex_colors=colors, atlas=atlas, write_atlas_companion=False)
         count += 1
     print(f"ground items: exported {count} cache appearances to {args.output}")
 

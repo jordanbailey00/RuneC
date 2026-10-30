@@ -25,6 +25,7 @@
 #endif
 #define MUV1_MAGIC 0x3156554D
 #define MFA1_MAGIC 0x3141464D
+#define MOF1_MAGIC 0x31464F4D
 #define MODEL_ID_INDEX_MAX 20000
 
 typedef struct {
@@ -56,6 +57,7 @@ typedef struct {
     uint8_t *face_priorities;
     uint8_t *face_alphas;
     uint8_t *face_skins;
+    float *face_offsets;  // stacked-face offsets (MOF1), NULL when none
     ModelFaceUvInfo *face_uvs;
     int base_vert_count;
     int face_count;
@@ -661,6 +663,7 @@ static ModelSet *models_load_filtered_with_shared_atlas(
         ModelFaceUvInfo *face_uvs = NULL;
         uint8_t *face_alphas = NULL;
         uint8_t *face_skins = NULL;
+        float *face_offsets = NULL;
         long next_off = (m + 1 < count) ? (long)offsets[m + 1] : model_file_end;
         while (1) {
             long opt_pos = ftell(f);
@@ -754,6 +757,40 @@ static ModelSet *models_load_filtered_with_shared_atlas(
                     }
                 }
                 continue;
+            } else if (opt_magic == MOF1_MAGIC && opt_count <= (uint32_t)tc
+                    && !face_offsets) {
+                face_offsets = calloc(tc > 0 ? tc : 1, sizeof(*face_offsets));
+                if (!face_offsets) {
+                    free(face_alphas);
+                    free(face_skins);
+                    free(face_uvs);
+                    free(offsets);
+                    rc_asset_close(f);
+                    models_free(set);
+                    return NULL;
+                }
+                for (uint32_t i = 0; i < opt_count; i++) {
+                    uint16_t face = 0, pad = 0;
+                    float offset = 0.0f;
+                    if (!rc_read_exact(f, &face, sizeof(face), 1, path,
+                                       "model stacked face")
+                            || !rc_read_exact(f, &pad, sizeof(pad), 1, path,
+                                              "model stacked face pad")
+                            || !rc_read_exact(f, &offset, sizeof(offset), 1,
+                                              path, "model stacked offset")) {
+                        free(face_offsets);
+                        free(face_alphas);
+                        free(face_skins);
+                        free(face_uvs);
+                        free(offsets);
+                        rc_asset_close(f);
+                        models_free(set);
+                        return NULL;
+                    }
+                    if (face < tc && offset > 0.0f)
+                        face_offsets[face] = offset;
+                }
+                continue;
             } else {
                 fseek(f, opt_pos, SEEK_SET);
                 break;
@@ -768,7 +805,8 @@ static ModelSet *models_load_filtered_with_shared_atlas(
             .rest_colors = rest_colors,
             .base_verts = bv, .vertex_skins = skins, .face_indices = fi,
             .face_priorities = pri, .face_alphas = face_alphas,
-            .face_skins = face_skins, .face_uvs = face_uvs,
+            .face_skins = face_skins, .face_offsets = face_offsets,
+            .face_uvs = face_uvs,
             .base_vert_count = (int)bvc, .face_count = tc,
         };
         if (texcoords && set->entries[m].rest_texcoords)
@@ -855,6 +893,7 @@ static void models_free(ModelSet *set) {
             free(set->entries[i].face_priorities);
             free(set->entries[i].face_alphas);
             free(set->entries[i].face_skins);
+            free(set->entries[i].face_offsets);
             free(set->entries[i].face_uvs);
         }
     }

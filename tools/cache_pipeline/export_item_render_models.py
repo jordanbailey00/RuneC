@@ -1065,15 +1065,11 @@ def main() -> None:
     tex_colors = load_texture_average_colors(store)
     texture_defs = load_texture_definitions(store)
     atlas = build_atlas(load_texture_sprites(store), repeat_v_padding=128)
-    # Face priorities are client draw-order metadata. The world/object exporters
-    # may choose to bake a small geometric offset for coplanar map details, but
-    # doing that to small wearable models visibly separates hat/shield faces.
     write_models_binary(
         args.output,
         exported_models,
         tex_colors=tex_colors,
         atlas=atlas,
-        bake_priority_offsets=False,
         model_lighting=args.model_lighting,
     )
     write_texture_anim_binary(args.output.with_suffix(".tanim"), atlas,

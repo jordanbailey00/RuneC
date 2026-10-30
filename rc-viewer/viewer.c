@@ -5290,7 +5290,7 @@ static void animate_model_entry_to_player_frame(ViewerState *v,
     if (!state || !apply_player_frames(v, state, entry->base_verts))
         return;
     anim_update_mesh(entry->model.meshes[0].vertices, state,
-                     entry->face_indices, entry->face_priorities,
+                     entry->face_indices, entry->face_offsets,
                      entry->face_count);
     float *mv = entry->model.meshes[0].vertices;
     int vc = entry->model.meshes[0].vertexCount;
@@ -5340,7 +5340,7 @@ static int animate_model_entry_sequence(ModelEntry *entry,
 
     anim_apply_frame(state, entry->base_verts, &sf->frame, fb);
     anim_update_mesh(entry->model.meshes[0].vertices, state,
-                     entry->face_indices, entry->face_priorities,
+                     entry->face_indices, entry->face_offsets,
                      entry->face_count);
     float *mv = entry->model.meshes[0].vertices;
     int vc = entry->model.meshes[0].vertexCount;
@@ -6947,6 +6947,7 @@ static void free_generated_model_entry(ModelEntry *entry) {
     free(entry->face_priorities);
     free(entry->face_alphas);
     free(entry->face_skins);
+    free(entry->face_offsets);
     free(entry->face_uvs);
     memset(entry, 0, sizeof(*entry));
 }
@@ -7069,11 +7070,13 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
     int total_vc = 0;
     int total_fc = 0;
     int total_bvc = 0;
+    int any_face_offsets = 0;
     for (int i = 0; i < source_count; i++) {
         Mesh *mesh = &sources[i]->model.meshes[0];
         total_vc += mesh->vertexCount;
         total_fc += sources[i]->face_count;
         total_bvc += sources[i]->base_vert_count;
+        any_face_offsets |= sources[i]->face_offsets != NULL;
     }
 
     float *verts = calloc((size_t)total_vc * 3, sizeof(float));
@@ -7088,14 +7091,19 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
     uint8_t *skins = calloc((size_t)total_bvc, sizeof(uint8_t));
     uint16_t *faces = calloc((size_t)total_fc * 3, sizeof(uint16_t));
     uint8_t *priorities = calloc((size_t)total_fc, sizeof(uint8_t));
+    float *face_offsets = any_face_offsets
+        ? calloc((size_t)total_fc, sizeof(float))
+        : NULL;
     ModelFaceUvInfo *face_uvs = v->item_models->has_textures
         ? calloc((size_t)total_fc, sizeof(ModelFaceUvInfo))
         : NULL;
     if (!verts || !rest || !normals || !colors || !rest_colors || !base || !skins
-            || !faces || !priorities || (v->item_models->has_textures && (!texcoords || !face_uvs))) {
+            || !faces || !priorities || (any_face_offsets && !face_offsets)
+            || (v->item_models->has_textures && (!texcoords || !face_uvs))) {
         free(verts); free(rest); free(normals); free(colors);
         free(rest_colors);
         free(texcoords); free(base); free(skins); free(faces); free(priorities);
+        free(face_offsets);
         free(face_uvs);
         return 0;
     }
@@ -7127,6 +7135,9 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
         for (int f = 0; f < fc * 3; f++)
             faces[fc_off * 3 + f] = (uint16_t)(src->face_indices[f] + bvc_off);
         memcpy(&priorities[fc_off], src->face_priorities, (size_t)fc);
+        if (face_offsets && src->face_offsets)
+            memcpy(&face_offsets[fc_off], src->face_offsets,
+                   (size_t)fc * sizeof(float));
         if (face_uvs && src->face_uvs) {
             for (int f = 0; f < fc; f++) {
                 ModelFaceUvInfo info = src->face_uvs[f];
@@ -7173,6 +7184,7 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
         .vertex_skins = skins,
         .face_indices = faces,
         .face_priorities = priorities,
+        .face_offsets = face_offsets,
         .face_uvs = face_uvs,
         .base_vert_count = total_bvc,
         .face_count = total_fc,
@@ -9538,7 +9550,7 @@ static void update_player_anim(ViewerState *v) {
     ModelEntry *pe = &v->player_model->entries[0];
     if (pe->loaded && apply_player_frames(v, v->anim_state, pe->base_verts)) {
         anim_update_mesh(pe->model.meshes[0].vertices, v->anim_state,
-                         pe->face_indices, pe->face_priorities,
+                         pe->face_indices, pe->face_offsets,
                          pe->face_count);
         // anim_update_mesh writes raw OSRS int16 units — scale to tile units
         float *mv = pe->model.meshes[0].vertices;
@@ -9632,7 +9644,7 @@ static int update_npc_anim(ViewerState *v, int npc_idx, ModelEntry *me) {
     // in OSRS int16 units. Expand to face-unrolled float mesh verts
     // (applying raylib Y-flip), scale OSRS→tile units, re-upload.
     anim_update_mesh(me->model.meshes[0].vertices, state,
-                     me->face_indices, me->face_priorities,
+                     me->face_indices, me->face_offsets,
                      me->face_count);
     float *mv = me->model.meshes[0].vertices;
     int vc   = me->model.meshes[0].vertexCount;

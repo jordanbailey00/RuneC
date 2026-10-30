@@ -278,7 +278,6 @@ def main() -> int:
         models,
         tex_colors=tex_colors,
         atlas=atlas,
-        bake_priority_offsets=False,
         model_lighting=args.model_lighting,
     )
     scales_path = args.out.with_suffix(".scales")

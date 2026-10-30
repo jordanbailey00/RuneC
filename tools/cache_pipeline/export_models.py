@@ -1673,6 +1673,7 @@ MDL2_MAGIC = 0x4D444C32  # "MDL2" (v2, adds animation data)
 MDL3_MAGIC = 0x4D444C33  # "MDL3" (v3, MDL2 + expanded texcoords)
 MUV1_MAGIC = 0x3156554D  # "MUV1" optional dynamic texture projection block
 MFA1_MAGIC = 0x3141464D  # "MFA1" optional face-alpha animation block
+MOF1_MAGIC = 0x31464F4D  # "MOF1" optional stacked-face offset block
 
 
 def _merge_models(models: list[ModelData]) -> ModelData:
@@ -2349,6 +2350,14 @@ def write_models_binary(
       optional blocks:
         "MUV1" texture projection metadata (MDL3)
         "MFA1" face alpha + face skin metadata for transform type 5
+        "MOF1" stacked-face offsets (overlay_face_offsets), always last:
+               uint32 count, then count x (uint16 face, uint16 pad,
+               float offset). They are baked into expanded_verts; the
+               viewer re-applies them after posing base_verts.
+
+    bake_priority_offsets stacks overlapping coplanar faces in client draw
+    order; without it, faces keep their cache positions and no MOF1 is
+    written.
     """
     output_path.parent.mkdir(parents=True, exist_ok=True)
     has_textures = atlas is not None
@@ -2375,11 +2384,14 @@ def write_models_binary(
             model_light_vector = getattr(model, "_export_light_vector", light_vector)
             model_lighting_mode = getattr(
                 model, "_export_model_lighting", model_lighting)
+            face_offsets = (overlay_face_offsets(model)
+                            if bake_priority_offsets else None)
             verts, colors, uvs = expand_model(
                 model,
                 tex_colors=tex_colors,
                 atlas=atlas,
                 bake_priority_offsets=bake_priority_offsets,
+                face_offsets=face_offsets,
                 ambient=model_ambient,
                 contrast=model_contrast,
                 light_vector=model_light_vector,
@@ -2494,6 +2506,13 @@ def write_models_binary(
                         if i < len(model.face_skins) else 0
                     )
                     f.write(struct.pack("<BBH", alpha & 0xFF, skin & 0xFF, 0))
+
+            stacked = [(fi, offset) for fi, offset in enumerate(face_offsets or ())
+                       if offset > 0.0]
+            if stacked:
+                f.write(struct.pack("<II", MOF1_MAGIC, len(stacked)))
+                for fi, offset in stacked:
+                    f.write(struct.pack("<HHf", fi, 0, offset))
 
         # go back and write offsets
         f.seek(offsets_pos)

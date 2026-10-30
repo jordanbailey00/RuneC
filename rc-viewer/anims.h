@@ -877,10 +877,31 @@ static void anim_apply_frame_interleaved(
 /* mesh re-expansion (apply animated base verts → expanded rendering verts)   */
 /* ======================================================================== */
 
+/* Move one expanded face `offset` OSRS units in front of the face it is
+ * stacked on. The cross product of its edges points away from the visible
+ * side, as in the exporter's expand_model. */
+static void anim_push_face_forward(float* v, float offset) {
+    float e1x = v[3] - v[0], e1y = v[4] - v[1], e1z = v[5] - v[2];
+    float e2x = v[6] - v[0], e2y = v[7] - v[1], e2z = v[8] - v[2];
+    float nx = e1y * e2z - e1z * e2y;
+    float ny = e1z * e2x - e1x * e2z;
+    float nz = e1x * e2y - e1y * e2x;
+    float length = sqrtf(nx * nx + ny * ny + nz * nz);
+    if (length <= 0.001f)
+        return;
+    float bias = offset / length;
+    for (int k = 0; k < 9; k += 3) {
+        v[k]     -= nx * bias;
+        v[k + 1] -= ny * bias;
+        v[k + 2] -= nz * bias;
+    }
+}
+
 /**
- * Re-expand animated base vertices into the raylib mesh's expanded vertex buffer.
- * This mirrors the NPC exporter expansion without priority displacement.
- * Face priorities are draw-order metadata; moving faces creates visible seams.
+ * Re-expand animated base vertices into the raylib mesh's expanded vertex buffer,
+ * as the exporter expands them. Faces stacked on coplanar faces (MOF1) move
+ * face_offsets[i] units in front along their posed normal, so they keep the
+ * client's draw order in the depth buffer; face_offsets may be NULL.
  *
  * The mesh has face_count*3 expanded vertices. Each triplet (i*3, i*3+1, i*3+2)
  * corresponds to face_indices[i*3], face_indices[i*3+1], face_indices[i*3+2]
@@ -892,11 +913,9 @@ static void anim_update_mesh(
     float* mesh_vertices,
     const AnimModelState* state,
     const uint16_t* face_indices,
-    const uint8_t* face_priorities,
+    const float* face_offsets,
     int face_count
 ) {
-    (void)face_priorities;
-
     for (int fi = 0; fi < face_count; fi++) {
         int a = face_indices[fi * 3];
         int b = face_indices[fi * 3 + 1];
@@ -914,6 +933,9 @@ static void anim_update_mesh(
         mesh_vertices[vi + 6] = (float)state->verts[c * 3];
         mesh_vertices[vi + 7] = (float)(-state->verts[c * 3 + 1]);
         mesh_vertices[vi + 8] = (float)state->verts[c * 3 + 2];
+
+        if (face_offsets && face_offsets[fi] > 0.0f)
+            anim_push_face_forward(&mesh_vertices[vi], face_offsets[fi]);
     }
 }
 
