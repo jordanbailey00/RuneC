@@ -2247,6 +2247,13 @@ static void reload_npc_models_for_scene(ViewerState *v) {
     v->npc_models = models_load_filtered(
         env_path("RUNEC_NPC_MODELS", "data/models/npcs.models"),
         model_filter, npc_model_id_count);
+    // The set now holds only these ids: an NPC spawned later asks for its
+    // model again (a raid room's NPCs after a scene reload), while an id this
+    // load tried and the file lacks is not reloaded every frame.
+    memset(v->npc_model_requested, 0, sizeof(v->npc_model_requested));
+    for (int i = 0; i < npc_model_id_count; i++)
+        if (npc_model_ids[i] < RC_MAX_NPC_ID)
+            v->npc_model_requested[npc_model_ids[i]] = 1;
     free(npc_model_ids);
     create_npc_anim_states(v);
 }
@@ -4561,12 +4568,13 @@ static float object_pick_height(const RcObjectPlacement *placement,
     return 2.4f + 0.35f * (float)(max_dim - 1);
 }
 
+// An object with an option takes clicks a little past its footprint, where
+// its model reaches; a decoration keeps to its tiles.
 static float object_pick_padding(int obj_id, int option,
                                  const RcObjectBehavior *behavior) {
     (void)obj_id;
-    (void)option;
     (void)behavior;
-    return 0.05f;
+    return option >= 0 ? 0.2f : 0.05f;
 }
 
 static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
@@ -4597,7 +4605,35 @@ static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
         ? object_footprint_contains(&pick_row, obj_id, tile_x, tile_y, &w, &l)
         : object_footprint_contains(&pick_row, obj_id, pick_row.x, pick_row.y,
                                     &w, &l);
+    int near = has_tile
+        && abs((int)pick_row.x - tile_x) <= OBJECT_PICK_TILE_RADIUS
+        && abs((int)pick_row.y - tile_y) <= OBJECT_PICK_TILE_RADIUS;
     const RcObjectDef *def = rc_object_def_get(obj_id);
+    if (!def)
+        return 0;
+
+    // The box stands on the lowest corner of the footprint and reaches the
+    // object's height above the highest. The ray test runs first: most
+    // objects along the ray miss, and the option lookup costs more.
+    float base_y = ground_yf_plane(v, scene_plane, (float)pick_row.x,
+                                   (float)pick_row.y);
+    float top_y = base_y;
+    const int corners[3][2] = {{w, 0}, {0, l}, {w, l}};
+    for (int c = 0; c < 3; c++) {
+        float y = ground_yf_plane(v, scene_plane,
+                                  (float)(pick_row.x + corners[c][0]),
+                                  (float)(pick_row.y + corners[c][1]));
+        if (y < base_y) base_y = y;
+        if (y > top_y) top_y = y;
+    }
+    float height = top_y - base_y + object_pick_height(&pick_row, def, w, l);
+    float pad = object_pick_padding(obj_id, 0, NULL);
+    RayCollision hit = GetRayCollisionBox(ray, viewer_tile_box(
+        (float)pick_row.x - pad, (float)pick_row.y - pad, (float)w + pad * 2.0f,
+        (float)l + pad * 2.0f, base_y, height));
+    if (!contains && !hit.hit)
+        return 0;
+
     ViewerPickedObject candidate = {
         .obj_id = obj_id,
         .x = pick_row.x,
@@ -4608,21 +4644,21 @@ static int object_pick_candidate(ViewerState *v, const RcObjectPlacement *row,
         .placement_key = placement_key,
     };
     int option = object_first_pick_option(v, candidate);
-    if (!def || (option < 0 && !def->name[0]))
+    if (option < 0 && !def->name[0])
+        return 0;
+    // Away from the ground under the mouse only an object with an option
+    // takes the click; a named decoration there must not steal "Walk here".
+    if (option < 0 && !contains && !near)
         return 0;
     const RcObjectBehavior *behavior = rc_object_behavior_get(obj_id);
-    float pad = object_pick_padding(obj_id, option, behavior);
-
-    float base_y = ground_yf_plane(v, scene_plane, (float)pick_row.x,
-                                   (float)pick_row.y);
-    BoundingBox box = viewer_tile_box((float)pick_row.x - pad,
-                                      (float)pick_row.y - pad,
-                                      (float)w + pad * 2.0f,
-                                      (float)l + pad * 2.0f, base_y,
-                                      object_pick_height(&pick_row, def, w, l));
-    RayCollision hit = GetRayCollisionBox(ray, box);
-    if (!contains && !hit.hit)
-        return 0;
+    if (option < 0) {
+        pad = object_pick_padding(obj_id, option, behavior);
+        hit = GetRayCollisionBox(ray, viewer_tile_box(
+            (float)pick_row.x - pad, (float)pick_row.y - pad,
+            (float)w + pad * 2.0f, (float)l + pad * 2.0f, base_y, height));
+        if (!contains && !hit.hit)
+            return 0;
+    }
 
     float score = hit.hit ? hit.distance : 100000.0f;
     if (contains)
@@ -4679,6 +4715,37 @@ static int pick_object_from_regions(ViewerState *v, ViewerPickedObject *out,
             }
         }
     }
+    // Locs the core spawned (a raid's barriers, tendrils and crystals) have
+    // no map-square row.
+    const RcWorld *world = v->world;
+    for (int i = 0; world && i < world->object_state_count; i++) {
+        const RcObjectState *s = &world->object_states[i];
+        if (!(s->flags & RC_OBJECT_STATE_SPAWNED) || s->active_obj_id < 0
+                || s->active_x < anchor_min_x || s->active_x > anchor_max_x
+                || s->active_y < anchor_min_y || s->active_y > anchor_max_y)
+            continue;
+        RcObjectPlacement row = {
+            .obj_id = (uint32_t)s->active_obj_id,
+            .key = s->placement_key,
+            .x = (uint16_t)s->active_x,
+            .y = (uint16_t)s->active_y,
+            .plane = (uint8_t)s->active_plane,
+            .type = s->active_type,
+            .rotation = s->active_rotation,
+        };
+        uint16_t ms;
+        if (!rc_world_to_mapsquare(row.x, row.y, &ms, NULL, NULL))
+            continue;
+        row.mapsquare = ms;
+        ViewerPickedObject candidate;
+        float score = 0.0f;
+        if (object_pick_candidate(v, &row, tile_x, tile_y, has_tile, ray,
+                                  &candidate, &score)
+                && score < best_score) {
+            best_score = score;
+            best = candidate;
+        }
+    }
 
     if (best_score >= 1000000000.0f)
         return 0;
@@ -4688,22 +4755,44 @@ static int pick_object_from_regions(ViewerState *v, ViewerPickedObject *out,
     return 1;
 }
 
-static int pick_object_near_tile(ViewerState *v, ViewerPickedObject *out,
-                                 float *out_score,
-                                 int tile_x, int tile_y) {
-    RcTileRect bounds;
-    if (!rc_tile_rect_around(tile_x, tile_y, OBJECT_PICK_TILE_RADIUS,
-                             &bounds)) {
+// The anchors whose pick box the mouse ray can cross: where the ray runs from
+// OBJECT_PICK_MAX_HEIGHT tiles above the ground it meets down to that ground,
+// widened by the largest footprint (anchors are south-west corners). A tall
+// object is picked over its whole height, not only near its base.
+#define OBJECT_PICK_MAX_HEIGHT 6.0f
+#define OBJECT_PICK_MAX_FOOTPRINT 5
+#define OBJECT_PICK_MAX_SPAN 64
+
+static int object_pick_ray_bounds(ViewerState *v, int tile_x, int tile_y,
+                                  RcTileRect *out) {
+    Ray ray = GetScreenToWorldRay(GetMousePosition(), v->camera);
+    if (ray.direction.y > -0.001f)
         return 0;
+    float ground = ground_yf(v, (float)tile_x, (float)tile_y);
+    float t_hit = (ground - ray.position.y) / ray.direction.y;
+    float t_top = (ground + OBJECT_PICK_MAX_HEIGHT - ray.position.y)
+                / ray.direction.y;
+    if (t_hit < 0.0f)
+        return 0;
+    if (t_top < 0.0f)
+        t_top = 0.0f;
+    int ax = tile_x, ay = tile_y, bx = tile_x, by = tile_y;
+    tile_from_ray_sample(&ray, t_top, NULL, NULL, &ax, &ay);
+    tile_from_ray_sample(&ray, t_hit, NULL, NULL, &bx, &by);
+    int min_x = tile_x, min_y = tile_y, max_x = tile_x, max_y = tile_y;
+    const int xs[2] = {ax, bx}, ys[2] = {ay, by};
+    for (int i = 0; i < 2; i++) {
+        if (abs(xs[i] - tile_x) > OBJECT_PICK_MAX_SPAN
+                || abs(ys[i] - tile_y) > OBJECT_PICK_MAX_SPAN)
+            continue;
+        if (xs[i] < min_x) min_x = xs[i];
+        if (xs[i] > max_x) max_x = xs[i];
+        if (ys[i] < min_y) min_y = ys[i];
+        if (ys[i] > max_y) max_y = ys[i];
     }
-    int min_rx = bounds.min_x / RC_MAPSQUARE_SIZE;
-    int min_ry = bounds.min_y / RC_MAPSQUARE_SIZE;
-    int max_rx = bounds.max_x / RC_MAPSQUARE_SIZE;
-    int max_ry = bounds.max_y / RC_MAPSQUARE_SIZE;
-    return pick_object_from_regions(v, out, out_score, 1, tile_x, tile_y,
-                                    min_rx, min_ry, max_rx, max_ry,
-                                    bounds.min_x, bounds.min_y,
-                                    bounds.max_x, bounds.max_y);
+    return rc_tile_rect_intersect_world(min_x - OBJECT_PICK_MAX_FOOTPRINT,
+                                        min_y - OBJECT_PICK_MAX_FOOTPRINT,
+                                        max_x + 1, max_y + 1, out);
 }
 
 static int pick_object_at_mouse_score(ViewerState *v, ViewerPickedObject *out,
@@ -4712,9 +4801,14 @@ static int pick_object_at_mouse_score(ViewerState *v, ViewerPickedObject *out,
         return 0;
     int tile_x = -1, tile_y = -1;
     int has_tile = raycast_tile(v, &tile_x, &tile_y);
-    if (has_tile)
-        return pick_object_near_tile(v, out, out_score, tile_x, tile_y);
     RcTileRect bounds;
+    if (has_tile && object_pick_ray_bounds(v, tile_x, tile_y, &bounds)) {
+        return pick_object_from_regions(
+            v, out, out_score, 1, tile_x, tile_y,
+            bounds.min_x / RC_MAPSQUARE_SIZE, bounds.min_y / RC_MAPSQUARE_SIZE,
+            bounds.max_x / RC_MAPSQUARE_SIZE, bounds.max_y / RC_MAPSQUARE_SIZE,
+            bounds.min_x, bounds.min_y, bounds.max_x, bounds.max_y);
+    }
     if (!rc_tile_rect_from_origin_size(g_world_origin_x, g_world_origin_y,
                                        g_world_w, g_world_h, &bounds)) {
         return 0;
@@ -8805,11 +8899,40 @@ static float face_angle_between_tiles(int from_x, int from_y,
 
 static int viewer_sequence_skeleton(AnimCache *cache, int seq_id);
 
+// Balance obstacles: a player on one of these locs walks the rope, as the
+// client's base animations change for the crossing (the Chambers of Xeric
+// tightrope's end and middle pieces, raids_tightrope_*).
+#define ANIM_BALANCE_WALK 762     // human_walk_logbalance
+#define ANIM_BALANCE_READY 763    // human_walk_logbalance_ready
+static const int g_balance_locs[] = {29750, 29834, 29835};
+
+// Whether the player's model stands on a balance loc's tile now (its drawn
+// tile, so the balance lasts until it has stepped off the rope).
+static int player_on_balance_loc(const ViewerState *v) {
+    const RcPlayer *p = &v->world->player;
+    int x = v->player_motion.x / RUNEC_ACTOR_FINE_TILE;
+    int y = v->player_motion.z / RUNEC_ACTOR_FINE_TILE;
+    RcObjectPlacement rows[8];
+    int n = rc_object_placements_at(x, y, p->plane, rows, 8);
+    for (int i = 0; i < n; i++)
+        for (size_t b = 0; b < sizeof(g_balance_locs) / sizeof(g_balance_locs[0]); b++)
+            if ((int)rows[i].obj_id == g_balance_locs[b]) return 1;
+    return 0;
+}
+
 // The player's base animation set: the weapon's ready, walk and run
-// sequences over the human ones. Poses without a sequence fall back to walk
-// (runec_actor_pose_seq).
+// sequences over the human ones, or the balance set on a rope. Poses without
+// a sequence fall back to walk (runec_actor_pose_seq).
 static void player_pose_set(ViewerState *v, RuneCActorPoseSet *poses) {
     for (int i = 0; i < RUNEC_ACTOR_POSE_COUNT; i++) poses->seq[i] = -1;
+    if (player_on_balance_loc(v)) {
+        int walk = player_anim_or_fallback(v, ANIM_BALANCE_WALK, ANIM_WALK);
+        poses->seq[RUNEC_ACTOR_POSE_IDLE] =
+            player_anim_or_fallback(v, ANIM_BALANCE_READY, ANIM_IDLE);
+        poses->seq[RUNEC_ACTOR_POSE_WALK] = walk;
+        poses->seq[RUNEC_ACTOR_POSE_RUN] = walk;
+        return;
+    }
     const RuneCItemRenderRecord *weapon =
         equipped_weapon_render_record(v, &v->world->player);
     poses->seq[RUNEC_ACTOR_POSE_IDLE] = weapon
@@ -10861,7 +10984,9 @@ int main(int argc, char **argv) {
         viewer_update_combat_overlays(&v, presentation_dt);
 
         BeginDrawing();
-        ClearBackground((Color){40, 45, 55, 255});
+        // Black like the client: undrawn tiles (a chasm's hidden floor)
+        // show as empty void.
+        ClearBackground(BLACK);
         draw_scene(&v, ui_capture);
         runec_ui_sync_status(&v.ui, p->x, p->y, LOCAL_X(p->x), LOCAL_Y(p->y),
                              (uint32_t)v.world->tick, p->running, v.paused);

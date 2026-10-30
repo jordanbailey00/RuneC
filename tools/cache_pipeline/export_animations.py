@@ -709,6 +709,9 @@ NEEDED_ANIMATIONS = {
     5462,  # GFX 1040 trident projectile
     6622,  # GFX 1122 dragon dart projectile
     876,   # GFX 1043 blowpipe special attack
+    # player balance set on a rope (the viewer's tightrope crossing)
+    762,   # human_walk_logbalance
+    763,   # human_walk_logbalance_ready
 }
 
 
