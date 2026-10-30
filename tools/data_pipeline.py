@@ -745,13 +745,13 @@ STAGE_SPECS: dict[str, StageSpec] = {
     ),
     "export-regions": StageSpec(
         name="export-regions",
-        inputs=("data-sources/sources.lock", "RUNEC_B237_CACHE", "tools/region_sets.py"),
+        inputs=("data-sources/sources.lock", "RUNEC_B237_CACHE", "tools/region_sets.py", "content/world/composed_maps.toml"),
         outputs=("data/regions/", "generated/pipeline/stages/export-regions.json"),
         description="Export per-mapsquare, per-plane visual assets for one reusable region set.",
     ),
     "export-defs": StageSpec(
         name="export-defs",
-        inputs=("data-sources/sources.lock", "schema/defs/", "RUNEC_B237_CACHE", "RUNEC_OSRSREBOXED_DB"),
+        inputs=("data-sources/sources.lock", "schema/defs/", "RUNEC_B237_CACHE", "RUNEC_OSRSREBOXED_DB", "content/world/composed_maps.toml"),
         outputs=("data/defs/", "generated/pipeline/stages/export-defs.json"),
         description="Regenerate non-content definition outputs or record required rebuild gaps.",
     ),

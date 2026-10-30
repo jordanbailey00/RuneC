@@ -1,0 +1,56 @@
+# Composed mapsquares (tools/cache_pipeline/rc_cache/compose.py): copies of
+# map areas into mapsquares the cache leaves empty, served to every exporter
+# as ordinary map files.
+
+# Chambers of Xeric's fixed layout. Each room is the north-exit variant of
+# its 32x32 template (x 3296); stacked south to north at x 3472, every room's
+# north exit (local x 15-16) opens into the next room's south entry. Rooms
+# run easiest to hardest, then the end room with the way down to Great Olm.
+
+[[copy]]
+name = "cox_start"
+source = [3296, 5184, 0]
+size = [32, 32]
+dest = [3472, 5440, 0]
+
+[[copy]]
+name = "cox_tightrope"
+source = [3296, 5344, 1]
+size = [32, 32]
+dest = [3472, 5472, 0]
+join = [15, 16]
+
+[[copy]]
+name = "cox_crabs"
+source = [3296, 5344, 2]
+size = [32, 32]
+dest = [3472, 5504, 0]
+join = [15, 16]
+
+[[copy]]
+name = "cox_shamans"
+source = [3296, 5248, 0]
+size = [32, 32]
+dest = [3472, 5536, 0]
+join = [15, 16]
+
+[[copy]]
+name = "cox_muttadiles"
+source = [3296, 5312, 1]
+size = [32, 32]
+dest = [3472, 5568, 0]
+join = [15, 16]
+
+[[copy]]
+name = "cox_tekton"
+source = [3296, 5280, 1]
+size = [32, 32]
+dest = [3472, 5600, 0]
+join = [15, 16]
+
+[[copy]]
+name = "cox_end"
+source = [3296, 5152, 0]
+size = [32, 32]
+dest = [3472, 5632, 0]
+join = [15, 16]

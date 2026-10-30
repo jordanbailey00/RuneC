@@ -182,8 +182,8 @@ int main(void) {
     assert(rc_world_activate_area(world, &req, &stats) == 1);
     assert(stats.collision_regions > 0);
     assert(stats.collision_regions <= RC_MAX_REGIONS);
-    assert(stats.collision_stats.total_rows == 6505324);
-    assert(stats.collision_stats.occupied_pages == 2407);
+    assert(stats.collision_stats.total_rows == 6510902);
+    assert(stats.collision_stats.occupied_pages == 2411);
     assert(stats.collision_stats.pages_requested
            == (uint32_t)stats.collision_regions);
     assert(stats.collision_stats.pages_loaded
@@ -407,6 +407,22 @@ int main(void) {
     assert(world->active_area.origin_x == 3008);
     assert(world->active_area.origin_y == 3264);
 
+    // Script movement and delays (an agility obstacle's walk): a move of up
+    // to two tiles keeps the delay, a farther or invalid one is refused, and
+    // the delayed player's queue refuses walks until the delay ends.
+    assert(!rc_world_delay_player(world, 0));
+    assert(rc_world_delay_player(world, 3));
+    assert(rc_world_force_move_player(world, 3186, 3441));
+    assert(world->player.x == 3186 && world->player.y == 3441);
+    assert(world->player.prev_x == 3184 && world->player.prev_y == 3440);
+    assert(!rc_world_force_move_player(world, 3189, 3441));
+    assert(!rc_world_force_move_player(world, 3186, -1));
+    assert(world->player.x == 3186 && world->player.y == 3441);
+    assert(!rc_player_walk_to(world, 3180, 3441));
+    for (int i = 0; i < 3; i++) rc_world_tick(world);
+    assert(world->player.x == 3186 && world->player.y == 3441);
+    assert(rc_player_walk_to(world, 3185, 3441));
+
     rc_world_destroy(world);
 
     cfg.npc_capacity = RC_WORLD_NPC_CAPACITY_BASE;
@@ -434,6 +450,9 @@ int main(void) {
     assert(capacity_limited->player.y == 3428);
     assert(capacity_limited->player.route_len == 0);
     assert(capacity_limited->player.route_idx == 0);
+    // A script move into a mapsquare that cannot load is refused too.
+    assert(!rc_world_force_move_player(capacity_limited, 3200, 3428));
+    assert(capacity_limited->player.x == 3199);
     rc_world_destroy(capacity_limited);
     assert(remove(STATIC_GROUND_ITEM_TEST_PATH) == 0);
     printf("test_active_area_runtime: core-owned active area loaded.\n");

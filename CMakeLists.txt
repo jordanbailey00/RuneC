@@ -50,6 +50,22 @@ set_tests_properties(test_region_sets PROPERTIES
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 )
 add_test(
+    NAME test_composed_maps
+    COMMAND ${Python3_EXECUTABLE}
+            ${CMAKE_SOURCE_DIR}/tests/test_composed_maps.py
+)
+set_tests_properties(test_composed_maps PROPERTIES
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
+add_test(
+    NAME test_terrain_mesh
+    COMMAND ${Python3_EXECUTABLE}
+            ${CMAKE_SOURCE_DIR}/tests/test_terrain_mesh.py
+)
+set_tests_properties(test_terrain_mesh PROPERTIES
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
+add_test(
     NAME test_mapsquare_exports
     COMMAND ${Python3_EXECUTABLE}
             ${CMAKE_SOURCE_DIR}/tests/test_mapsquare_exports.py

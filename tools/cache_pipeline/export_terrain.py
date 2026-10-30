@@ -38,68 +38,10 @@ from export_collision_map import (
 )
 from modern_cache_reader import ModernCacheReader
 from rc_cache import RcCacheStore, find_all_map_region_files, read_map_region_file
+from rc_cache.terrain import calculate_height
 from source_inputs import B237_CACHE, require_path
 
 # --- OSRS noise functions (from MapRegion.java) ---
-
-JAGEX_CIRCULAR_ANGLE = 2048
-JAGEX_RADIAN = 2.0 * math.pi / JAGEX_CIRCULAR_ANGLE
-COS_TABLE = [int(65536.0 * math.cos(i * JAGEX_RADIAN)) for i in range(JAGEX_CIRCULAR_ANGLE)]
-
-
-def noise(x: int, y: int) -> int:
-    """OSRS procedural noise (MapRegion.noise)."""
-    n = x + y * 57
-    n ^= (n << 13) & 0xFFFFFFFF
-    n &= 0xFFFFFFFF
-    val = (n * (n * n * 15731 + 789221) + 1376312589) & 0x7FFFFFFF
-    return (val >> 19) & 0xFF
-
-
-def smoothed_noise(x: int, y: int) -> int:
-    """Smoothed noise with corner/side/center weighting."""
-    corners = noise(x - 1, y - 1) + noise(x + 1, y - 1) + noise(x - 1, y + 1) + noise(x + 1, y + 1)
-    sides = noise(x - 1, y) + noise(x + 1, y) + noise(x, y - 1) + noise(x, y + 1)
-    center = noise(x, y)
-    return center // 4 + sides // 8 + corners // 16
-
-
-def interpolate(a: int, b: int, x: int, y: int) -> int:
-    """Cosine interpolation using Jagex COS table."""
-    f = (0x10000 - COS_TABLE[(1024 * x // y) % JAGEX_CIRCULAR_ANGLE]) >> 1
-    return (f * b >> 16) + (a * (0x10000 - f) >> 16)
-
-
-def interpolate_noise(x: int, y: int, frequency: int) -> int:
-    """Multi-octave interpolated noise."""
-    int_x = x // frequency
-    frac_x = x % frequency
-    int_y = y // frequency
-    frac_y = y % frequency
-    v1 = smoothed_noise(int_x, int_y)
-    v2 = smoothed_noise(int_x + 1, int_y)
-    v3 = smoothed_noise(int_x, int_y + 1)
-    v4 = smoothed_noise(int_x + 1, int_y + 1)
-    i1 = interpolate(v1, v2, frac_x, frequency)
-    i2 = interpolate(v3, v4, frac_x, frequency)
-    return interpolate(i1, i2, frac_y, frequency)
-
-
-def calculate_height(x: int, y: int) -> int:
-    """Procedural height for tiles without explicit height (MapRegion.calculate)."""
-    n = (
-        interpolate_noise(x + 45365, y + 91923, 4)
-        - 128
-        + ((interpolate_noise(10294 + x, y + 37821, 2) - 128) >> 1)
-        + ((interpolate_noise(x, y, 1) - 128) >> 2)
-    )
-    n = 35 + int(n * 0.3)
-    if n < 10:
-        n = 10
-    elif n > 60:
-        n = 60
-    return n
-
 
 # --- floor definition decoder ---
 
@@ -789,7 +731,7 @@ def _emit_shaped_terrain_tile(
     shape: int,
     rotation: int,
     base_rgb: tuple[int, int, int] | None,
-    overlay_rgb: tuple[int, int, int],
+    overlay_rgb: tuple[int, int, int] | None,
 ) -> int:
     if shape < 0 or shape >= len(TILE_SHAPE_POINTS):
         return 0
@@ -874,6 +816,12 @@ def _lit_underlay_rgb(
     avg_lum = blend_l // blend_c
     return hsl16_to_rgb(apply_light(hsl_encode(avg_hue, avg_sat, avg_lum),
                                     avg_light))
+
+
+def overlay_hidden(oflo: FloorDef | None) -> bool:
+    """An untextured overlay coloured 0xFF00FF: the client gives it colour
+    12345678 and never draws it (OSRS's invisible floor)."""
+    return oflo is not None and oflo.texture < 0 and oflo.rgb == 0xFF00FF
 
 
 def _lit_overlay_rgb(
@@ -986,6 +934,16 @@ def build_terrain_mesh(
 
                 wx = float(base_wx + tx)
                 wz = float(base_wy + ty)
+
+                if overlay_hidden(oflo):
+                    # The client never draws this overlay: a full tile is a
+                    # hole (a chasm's black void), a shaped one keeps only
+                    # its underlay part.
+                    if shape > 0 and base_rgb:
+                        _emit_shaped_terrain_tile(verts, colors, wx, wz,
+                                                  heights, shape + 1,
+                                                  rotation, base_rgb, None)
+                    continue
 
                 if oid <= 0 or not overlay_rgb:
                     _emit_terrain_quad(verts, colors, wx, wz, heights,

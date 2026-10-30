@@ -36,7 +36,8 @@ int main(void) {
     uint32_t expected_plane_counts[4];
     for (int plane = 0; plane < 4; plane++)
         expected_plane_counts[plane] = read_u32(f);
-    if (row_count != 6505324u || occupied_pages != 2407u) abort();
+    // b241's map plus the squares composed for the CoX layout.
+    if (row_count != 6510902u || occupied_pages != 2411u) abort();
 
     static uint32_t page_counts[MAPSQUARE_COUNT];
     uint32_t expected_first = 0;
@@ -85,7 +86,7 @@ int main(void) {
     rc_asset_close(f);
     for (int plane = 0; plane < 4; plane++)
         if (plane_counts[plane] != expected_plane_counts[plane]) abort();
-    if (expected_plane_counts[0] != 3905925u
+    if (expected_plane_counts[0] != 3911503u
             || expected_plane_counts[1] != 1427173u
             || expected_plane_counts[2] != 778099u
             || expected_plane_counts[3] != 394127u
