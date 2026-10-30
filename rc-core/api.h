@@ -108,6 +108,13 @@ RcTick rc_world_get_tick(const RcWorld *world);
 // therefore apply immediately without entering the command queue.
 int rc_world_relocate_player(RcWorld *world, int x, int y, int plane);
 int rc_world_respawn_player(RcWorld *world, int x, int y, int plane);
+// Script movement (an agility obstacle's walk): the player moves to a tile at
+// most two away on its plane, whatever the collision there, and keeps the
+// action or delay in progress, unlike a relocation.
+int rc_world_force_move_player(RcWorld *world, int x, int y);
+// A script delay: for `ticks` ticks the player takes no steps and the queue
+// refuses walks, interactions and attacks (soft commands still run).
+int rc_world_delay_player(RcWorld *world, int ticks);
 
 RcPlayerCommandResult rc_player_last_command_result(const RcWorld *world,
                                                      uint64_t *sequence);

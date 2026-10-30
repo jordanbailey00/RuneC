@@ -22,6 +22,7 @@
 #include "normalization.h"
 #include "objects.h"
 #include "object_runtime.h"
+#include "pathfinding.h"
 #include "player_actions.h"
 #include "player_command.h"
 #include "prayer.h"
@@ -351,6 +352,29 @@ int rc_world_relocate_player(RcWorld *world, int x, int y, int plane) {
     player->x = x;
     player->y = y;
     player->plane = plane;
+    return 1;
+}
+
+int rc_world_force_move_player(RcWorld *world, int x, int y) {
+    if (!world) return 0;
+    RcPlayer *player = &world->player;
+    if (!rc_world_tile_valid(x, y, player->plane)
+            || abs(x - player->x) > 2 || abs(y - player->y) > 2) {
+        return 0;
+    }
+    // Into another mapsquare: its collision and NPCs load, as for a step.
+    if ((!world->active_area.active
+            || x / RC_MAPSQUARE_SIZE != player->x / RC_MAPSQUARE_SIZE
+            || y / RC_MAPSQUARE_SIZE != player->y / RC_MAPSQUARE_SIZE)
+            && rc_world_activate_area_around(world, x, y, player->plane,
+                                             NULL) < 0) {
+        return 0;
+    }
+    rc_player_route_clear(player, RC_MOVEMENT_NONE);
+    player->prev_x = player->x;
+    player->prev_y = player->y;
+    player->x = x;
+    player->y = y;
     return 1;
 }
 

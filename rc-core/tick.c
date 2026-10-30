@@ -1417,6 +1417,13 @@ static void start_player_action_lock(RcWorld *world, int lock_ticks) {
     }
 }
 
+int rc_world_delay_player(RcWorld *world, int ticks) {
+    if (!world || ticks <= 0 || world->player.is_dead) return 0;
+    rc_player_route_clear(&world->player, RC_MOVEMENT_NONE);
+    start_player_action_lock(world, ticks - 1);
+    return 1;
+}
+
 // A walk click: it drops the current action and face target, then routes to
 // the clicked tile or, when that is unreachable, the nearest tile that is
 // (rsmod MoveGameClickHandler, moveNear). The new route always replaces the
