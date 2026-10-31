@@ -308,6 +308,18 @@ typedef struct {
 
 #define VIEWER_MAX_NPC_GHOSTS 8
 
+// A worn-model draw whose see-through faces wait for
+// draw_actor_translucent_pass.
+typedef struct {
+    Model model;
+    Vector3 pos;
+    float facing_angle;
+    Vector3 scale;
+    Color tint;
+} ViewerActorDraw;
+
+#define VIEWER_MAX_ACTOR_TRANSLUCENT_DRAWS 32
+
 typedef struct {
     const char *key;
     int center_x;
@@ -485,9 +497,14 @@ typedef struct {
     Shader alpha_cutout_shader_static;
     Shader alpha_cutout_shader_dynamic;
     Shader projectile_effect_shader;
+    Shader actor_opaque_shader;
+    Shader actor_translucent_shader;
     int alpha_cutout_shader_static_loaded;
     int alpha_cutout_shader_dynamic_loaded;
     int projectile_effect_shader_loaded;
+    int actor_shaders_loaded;
+    ViewerActorDraw actor_translucent_draws[VIEWER_MAX_ACTOR_TRANSLUCENT_DRAWS];
+    int actor_translucent_draw_count;
     ViewerContextEntry context_entries[RUNEC_UI_CONTEXT_ACTIONS];
     ViewerPickedObject context_object;
     Ray context_ray;
@@ -1811,7 +1828,10 @@ static void load_item_stack_variants(ViewerState *v, const char *path) {
             loaded, path);
 }
 
-static Shader load_alpha_cutout_shader(float brightness, float lift) {
+// Draws only fragments with min_alpha <= alpha < max_alpha. Discarded
+// fragments write no depth.
+static Shader load_alpha_band_shader(float brightness, float lift,
+                                     float min_alpha, float max_alpha) {
     const char *vs =
         "#version 330\n"
         "in vec3 vertexPosition;\n"
@@ -1836,11 +1856,11 @@ static Shader load_alpha_cutout_shader(float brightness, float lift) {
         "void main() {\n"
         "    vec4 texel = texture(texture0, fragTexCoord);\n"
         "    vec4 color = texel*fragColor*colDiffuse;\n"
-        "    if (color.a < 0.5) discard;\n"
+        "    if (color.a < %.4ff || color.a >= %.4ff) discard;\n"
         "    color.rgb = min(color.rgb * %.3ff + vec3(%.3ff), vec3(1.0));\n"
         "    finalColor = color;\n"
         "}\n",
-        brightness, lift);
+        min_alpha, max_alpha, brightness, lift);
 
     Shader shader = LoadShaderFromMemory(vs, fs);
     if (shader.id <= 0)
@@ -1856,6 +1876,10 @@ static Shader load_alpha_cutout_shader(float brightness, float lift) {
         GetShaderLocation(shader, "colDiffuse");
     shader.locs[SHADER_LOC_MAP_DIFFUSE] = GetShaderLocation(shader, "texture0");
     return shader;
+}
+
+static Shader load_alpha_cutout_shader(float brightness, float lift) {
+    return load_alpha_band_shader(brightness, lift, 0.5f, 2.0f);
 }
 
 static Shader load_projectile_effect_shader(float brightness, float lift) {
@@ -5172,6 +5196,64 @@ static void draw_model_entry_one_sided(ModelEntry *entry, Vector3 pos,
     }
 }
 
+// Actor fragments at or above ACTOR_OPAQUE_ALPHA are opaque; those below
+// ACTOR_MIN_ALPHA (faces the client never draws, empty texels) are dropped.
+#define ACTOR_OPAQUE_ALPHA (1.0f - 0.5f / 255.0f)
+#define ACTOR_MIN_ALPHA (0.5f / 255.0f)
+
+static void draw_model_one_sided_with_shader(Model model, Shader shader,
+                                             Vector3 pos, float facing_angle,
+                                             Vector3 scale, Color tint) {
+    Shader previous_shader = model.materials[0].shader;
+    for (int i = 0; i < model.materialCount; i++)
+        model.materials[i].shader = shader;
+    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
+    DrawModelEx(model, pos, (Vector3){0, 1, 0}, facing_angle, scale, tint);
+    end_one_sided_model_draw();
+    for (int i = 0; i < model.materialCount; i++)
+        model.materials[i].shader = previous_shader;
+}
+
+// Worn gear mixes opaque faces with see-through ones (spirit shields, crystal
+// armour) and faces the client hides (the fire cape's shoulder triangle,
+// exported fully transparent). Under a depth buffer those would still hide
+// the gear drawn after them, so this draws only the opaque fragments and
+// queues the see-through ones for draw_actor_translucent_pass.
+static void draw_actor_model(ViewerState *v, Model model, Vector3 pos,
+                             float facing_angle, Vector3 scale, Color tint) {
+    if (!v->actor_shaders_loaded || model.materialCount <= 0) {
+        begin_one_sided_model_draw(RL_CULL_FACE_BACK);
+        DrawModelEx(model, pos, (Vector3){0, 1, 0}, facing_angle, scale, tint);
+        end_one_sided_model_draw();
+        return;
+    }
+    draw_model_one_sided_with_shader(model, v->actor_opaque_shader, pos,
+                                     facing_angle, scale, tint);
+    if (v->actor_translucent_draw_count < VIEWER_MAX_ACTOR_TRANSLUCENT_DRAWS) {
+        v->actor_translucent_draws[v->actor_translucent_draw_count++] =
+            (ViewerActorDraw){model, pos, facing_angle, scale, tint};
+    }
+}
+
+// Blends the queued see-through actor faces over everything opaque, without
+// writing depth.
+static void draw_actor_translucent_pass(ViewerState *v) {
+    if (v->actor_translucent_draw_count <= 0)
+        return;
+    rlDrawRenderBatchActive();
+    BeginBlendMode(BLEND_ALPHA);
+    rlDisableDepthMask();
+    for (int i = 0; i < v->actor_translucent_draw_count; i++) {
+        const ViewerActorDraw *d = &v->actor_translucent_draws[i];
+        draw_model_one_sided_with_shader(d->model, v->actor_translucent_shader,
+                                         d->pos, d->facing_angle, d->scale,
+                                         d->tint);
+    }
+    rlEnableDepthMask();
+    EndBlendMode();
+    v->actor_translucent_draw_count = 0;
+}
+
 static int draw_item_model(ViewerState *v, uint32_t model_id, Vector3 pos,
                            float facing_angle, float scale, Color tint) {
     if (!v->item_models || !v->item_models->loaded
@@ -5180,9 +5262,8 @@ static int draw_item_model(ViewerState *v, uint32_t model_id, Vector3 pos,
     ModelEntry *entry = model_find(v->item_models, model_id);
     if (!entry || !entry->loaded)
         return 0;
-    draw_model_entry_one_sided(
-        entry, pos, facing_angle, scale, tint,
-        v->alpha_cutout_shader_dynamic, 0);
+    draw_actor_model(v, entry->model, pos, facing_angle,
+                     (Vector3){scale, scale, scale}, tint);
     return 1;
 }
 
@@ -7306,10 +7387,8 @@ static int draw_animated_item_model(ViewerState *v, uint32_t model_id,
     if (!entry || !entry->loaded)
         return 0;
     animate_item_entry_to_player_frame(v, entry);
-    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
-    DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, facing_angle,
-                (Vector3){scale, scale, scale}, tint);
-    end_one_sided_model_draw();
+    draw_actor_model(v, entry->model, pos, facing_angle,
+                     (Vector3){scale, scale, scale}, tint);
     return 1;
 }
 
@@ -7380,10 +7459,8 @@ static int draw_static_item_model(ViewerState *v, uint32_t model_id,
     if (!entry || !entry->loaded)
         return 0;
     reset_model_entry_to_base_pose(entry);
-    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
-    DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, facing_angle,
-                (Vector3){scale, scale, scale}, tint);
-    end_one_sided_model_draw();
+    draw_actor_model(v, entry->model, pos, facing_angle,
+                     (Vector3){scale, scale, scale}, tint);
     return 1;
 }
 
@@ -7443,10 +7520,8 @@ static int draw_composed_player_model(ViewerState *v, const RcPlayer *p,
         reset_model_entry_to_base_pose(&v->composed_player_model);
     }
 
-    begin_one_sided_model_draw(RL_CULL_FACE_BACK);
-    DrawModelEx(v->composed_player_model.model, player_pos,
-                (Vector3){0, 1, 0}, facing_angle, (Vector3){1, 1, 1}, WHITE);
-    end_one_sided_model_draw();
+    draw_actor_model(v, v->composed_player_model.model, player_pos,
+                     facing_angle, (Vector3){1, 1, 1}, WHITE);
     return 1;
 }
 
@@ -9930,6 +10005,7 @@ static void draw_scene(ViewerState *v, int ui_capture) {
 
     BeginMode3D(v->camera);
     rlDisableBackfaceCulling();
+    v->actor_translucent_draw_count = 0;
 
     float frame_dt = GetFrameTime();
     models_update_texture_anims(v->item_models, frame_dt);
@@ -10063,6 +10139,7 @@ static void draw_scene(ViewerState *v, int ui_capture) {
         draw_ground_item_model(v, g, (Vector3){gx, gy, gz});
     }
 
+    draw_actor_translucent_pass(v);
     draw_combat_projectiles(v);
 
     if (!held && v->input_feedback.pending_destination_active
@@ -10537,6 +10614,13 @@ int main(int argc, char **argv) {
     v.projectile_effect_shader =
         load_projectile_effect_shader(static_brightness, static_lift);
     v.projectile_effect_shader_loaded = v.projectile_effect_shader.id > 0;
+    // The player keeps the default shader's colours.
+    v.actor_opaque_shader = load_alpha_band_shader(
+        1.0f, 0.0f, ACTOR_OPAQUE_ALPHA, 2.0f);
+    v.actor_translucent_shader = load_alpha_band_shader(
+        1.0f, 0.0f, ACTOR_MIN_ALPHA, ACTOR_OPAQUE_ALPHA);
+    v.actor_shaders_loaded = v.actor_opaque_shader.id > 0
+                          && v.actor_translucent_shader.id > 0;
     if (dynamic_model_shader_enabled) {
         v.alpha_cutout_shader_dynamic =
             load_alpha_cutout_shader(dynamic_brightness, dynamic_lift);
@@ -11061,6 +11145,10 @@ cleanup:
         UnloadShader(v.alpha_cutout_shader_dynamic);
     if (v.projectile_effect_shader_loaded)
         UnloadShader(v.projectile_effect_shader);
+    if (v.actor_opaque_shader.id > 0)
+        UnloadShader(v.actor_opaque_shader);
+    if (v.actor_translucent_shader.id > 0)
+        UnloadShader(v.actor_translucent_shader);
     CloseWindow();
     return exit_status;
 }

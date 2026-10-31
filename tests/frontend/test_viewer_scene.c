@@ -1127,6 +1127,23 @@ static void test_actor_animation_tracks(RcWorld *world) {
     free(v);
 }
 
+// Worn models draw opaque fragments with depth writes, then blend the
+// see-through ones without. Each visible fragment lands in exactly one pass
+// and fully transparent ones (faces the client hides, empty texels) in
+// neither, so they never hide the gear drawn after them.
+static void test_actor_alpha_passes(void) {
+    for (int texel = 0; texel <= 255; texel += 255) {
+        for (int vertex = 0; vertex <= 255; vertex++) {
+            float alpha = (vertex / 255.0f) * (texel / 255.0f);
+            int opaque = alpha >= ACTOR_OPAQUE_ALPHA;
+            int translucent = alpha >= ACTOR_MIN_ALPHA
+                           && alpha < ACTOR_OPAQUE_ALPHA;
+            assert(opaque + translucent == (alpha > 0.0f));
+            assert(opaque == (vertex == 255 && texel == 255));
+        }
+    }
+}
+
 int main(void) {
     RcWorldConfig cfg = viewer_world_config(rc_world_streaming_config_default(),
         "data/defs/combat_visuals.tsv");
@@ -1154,6 +1171,7 @@ int main(void) {
     test_npc_tiles_toggle();
     test_npc_ghost_slots(world);
     test_ground_item_appearances();
+    test_actor_alpha_passes();
     rc_world_destroy(world);
     puts("viewer scene: installed loot, target selection and dispatch passed");
     return 0;
