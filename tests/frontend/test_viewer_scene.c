@@ -1144,6 +1144,26 @@ static void test_actor_alpha_passes(void) {
     }
 }
 
+// The player's faces draw in client order: priorities 0-9 in turn, far to
+// near with face order on ties, so a cape's back (5) lands after the nearer
+// armour (3-4) it covers. Priority 10 then 11 faces slot in while deeper
+// than the average depth of priorities 1-2, 3-4 or 6 and 8; hidden faces
+// drop out.
+static void test_client_face_order(void) {
+    const int depths[] = {100, 100, 150, 200, 10, 20, 300, 120, 500, 100, 130};
+    const uint8_t priorities[] = {3, 4, 10, 1, 10, 6, 5, 11, 0, 3, 3};
+    const uint8_t visible[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1};
+    const int expected[] = {3, 2, 10, 0, 9, 1, 6, 5, 4, 7};
+    int order[11];
+    int scratch[11];
+    uint64_t keys[11];
+    int n = client_face_order(depths, priorities, visible, 11, order, scratch,
+                              keys);
+    assert(n == 10);
+    for (int i = 0; i < n; i++)
+        assert(order[i] == expected[i]);
+}
+
 int main(void) {
     RcWorldConfig cfg = viewer_world_config(rc_world_streaming_config_default(),
         "data/defs/combat_visuals.tsv");
@@ -1172,6 +1192,7 @@ int main(void) {
     test_npc_ghost_slots(world);
     test_ground_item_appearances();
     test_actor_alpha_passes();
+    test_client_face_order();
     rc_world_destroy(world);
     puts("viewer scene: installed loot, target selection and dispatch passed");
     return 0;

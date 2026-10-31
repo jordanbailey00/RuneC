@@ -309,16 +309,30 @@ typedef struct {
 #define VIEWER_MAX_NPC_GHOSTS 8
 
 // A worn-model draw whose see-through faces wait for
-// draw_actor_translucent_pass.
+// draw_actor_translucent_pass. With indices, only those faces are drawn, in
+// that order.
 typedef struct {
     Model model;
     Vector3 pos;
     float facing_angle;
     Vector3 scale;
     Color tint;
+    const unsigned short *indices;
+    int triangle_count;
 } ViewerActorDraw;
 
 #define VIEWER_MAX_ACTOR_TRANSLUCENT_DRAWS 32
+
+// Per-face buffers for drawing the composed player in client face order.
+typedef struct {
+    int capacity;
+    int *depths;
+    uint8_t *visible;
+    int *order;
+    int *scratch;
+    uint64_t *keys;
+    unsigned short *translucent_indices;
+} ViewerFaceOrder;
 
 typedef struct {
     const char *key;
@@ -497,6 +511,7 @@ typedef struct {
     Shader alpha_cutout_shader_static;
     Shader alpha_cutout_shader_dynamic;
     Shader projectile_effect_shader;
+    Shader actor_visible_shader;
     Shader actor_opaque_shader;
     Shader actor_translucent_shader;
     int alpha_cutout_shader_static_loaded;
@@ -505,6 +520,7 @@ typedef struct {
     int actor_shaders_loaded;
     ViewerActorDraw actor_translucent_draws[VIEWER_MAX_ACTOR_TRANSLUCENT_DRAWS];
     int actor_translucent_draw_count;
+    ViewerFaceOrder composed_face_order;
     ViewerContextEntry context_entries[RUNEC_UI_CONTEXT_ACTIONS];
     ViewerPickedObject context_object;
     Ray context_ray;
@@ -5245,13 +5261,98 @@ static void draw_actor_translucent_pass(ViewerState *v) {
     rlDisableDepthMask();
     for (int i = 0; i < v->actor_translucent_draw_count; i++) {
         const ViewerActorDraw *d = &v->actor_translucent_draws[i];
+        Mesh *mesh = &d->model.meshes[0];
+        int triangle_count = mesh->triangleCount;
+        if (d->indices) {
+            UpdateMeshBuffer(*mesh, RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES,
+                             d->indices, d->triangle_count * 3
+                                 * (int)sizeof(unsigned short), 0);
+            mesh->triangleCount = d->triangle_count;
+        }
         draw_model_one_sided_with_shader(d->model, v->actor_translucent_shader,
                                          d->pos, d->facing_angle, d->scale,
                                          d->tint);
+        mesh->triangleCount = triangle_count;
     }
     rlEnableDepthMask();
     EndBlendMode();
     v->actor_translucent_draw_count = 0;
+}
+
+static int compare_u64(const void *a, const void *b) {
+    uint64_t x = *(const uint64_t *)a;
+    uint64_t y = *(const uint64_t *)b;
+    return (x > y) - (x < y);
+}
+
+#define CLIENT_FACE_PRIORITIES 12
+
+// Orders a model's faces as the client draws them (Model.draw0, mirrored by
+// RuneLite's FacePrioritySorter): by depth far to near, face order breaking
+// ties, then priorities 0-9 in turn, with the priority 10 and then 11 faces
+// (arms, hands, held items) slotted in while they lie deeper than the
+// average depth of priorities 1-2, 3-4 or 6 and 8. A higher priority covers
+// a lower one wherever they overlap, which is how a cape's back (5) hides the
+// armour (2-4) poking through it. depths[f] >= 0 grows with distance; faces
+// with visible[f] == 0 are left out. Writes the face indices to order and
+// returns how many; scratch and keys hold face_count entries.
+static int client_face_order(const int *depths, const uint8_t *priorities,
+                             const uint8_t *visible, int face_count,
+                             int *order, int *scratch, uint64_t *keys) {
+    int n = 0;
+    for (int f = 0; f < face_count; f++) {
+        if (visible[f])
+            keys[n++] = (uint64_t)(UINT32_MAX - (uint32_t)depths[f]) << 32
+                      | (uint32_t)f;
+    }
+    qsort(keys, (size_t)n, sizeof(keys[0]), compare_u64);
+
+    int count[CLIENT_FACE_PRIORITIES] = {0};
+    int start[CLIENT_FACE_PRIORITIES];
+    long long depth_sum[CLIENT_FACE_PRIORITIES] = {0};
+    for (int i = 0; i < n; i++) {
+        int f = (int)(uint32_t)keys[i];
+        int p = priorities[f] < CLIENT_FACE_PRIORITIES
+              ? priorities[f] : CLIENT_FACE_PRIORITIES - 1;
+        count[p]++;
+        depth_sum[p] += depths[f];
+    }
+    for (int p = 0, at = 0; p < CLIENT_FACE_PRIORITIES; p++) {
+        start[p] = at;
+        at += count[p];
+    }
+    int filled[CLIENT_FACE_PRIORITIES];
+    memcpy(filled, start, sizeof(filled));
+    for (int i = 0; i < n; i++) {
+        int f = (int)(uint32_t)keys[i];
+        int p = priorities[f] < CLIENT_FACE_PRIORITIES
+              ? priorities[f] : CLIENT_FACE_PRIORITIES - 1;
+        scratch[filled[p]++] = f;
+    }
+
+    int avg12 = count[1] + count[2] > 0
+        ? (int)((depth_sum[1] + depth_sum[2]) / (count[1] + count[2])) : 0;
+    int avg34 = count[3] + count[4] > 0
+        ? (int)((depth_sum[3] + depth_sum[4]) / (count[3] + count[4])) : 0;
+    int avg68 = count[6] + count[8] > 0
+        ? (int)((depth_sum[6] + depth_sum[8]) / (count[6] + count[8])) : 0;
+    // The priority 10 faces then the priority 11 faces, each far to near.
+    const int *dynamic = &scratch[start[10]];
+    int dynamic_count = count[10] + count[11];
+    int next = 0;
+    int out = 0;
+    for (int p = 0; p < 10; p++) {
+        if (p == 0 || p == 3 || p == 5) {
+            int threshold = p == 0 ? avg12 : p == 3 ? avg34 : avg68;
+            while (next < dynamic_count && depths[dynamic[next]] > threshold)
+                order[out++] = dynamic[next++];
+        }
+        for (int i = 0; i < count[p]; i++)
+            order[out++] = scratch[start[p] + i];
+    }
+    while (next < dynamic_count)
+        order[out++] = dynamic[next++];
+    return out;
 }
 
 static int draw_item_model(ViewerState *v, uint32_t model_id, Vector3 pos,
@@ -7131,8 +7232,37 @@ static void free_generated_model_entry(ModelEntry *entry) {
     memset(entry, 0, sizeof(*entry));
 }
 
+static void free_face_order(ViewerFaceOrder *fo) {
+    free(fo->depths);
+    free(fo->visible);
+    free(fo->order);
+    free(fo->scratch);
+    free(fo->keys);
+    free(fo->translucent_indices);
+    memset(fo, 0, sizeof(*fo));
+}
+
+static int alloc_face_order(ViewerFaceOrder *fo, int face_count) {
+    free_face_order(fo);
+    fo->depths = malloc((size_t)face_count * sizeof(int));
+    fo->visible = malloc((size_t)face_count);
+    fo->order = malloc((size_t)face_count * sizeof(int));
+    fo->scratch = malloc((size_t)face_count * sizeof(int));
+    fo->keys = malloc((size_t)face_count * sizeof(uint64_t));
+    fo->translucent_indices =
+        malloc((size_t)face_count * 3 * sizeof(unsigned short));
+    if (!fo->depths || !fo->visible || !fo->order || !fo->scratch
+            || !fo->keys || !fo->translucent_indices) {
+        free_face_order(fo);
+        return 0;
+    }
+    fo->capacity = face_count;
+    return 1;
+}
+
 static void clear_composed_player_model(ViewerState *v) {
     free_generated_model_entry(&v->composed_player_model);
+    free_face_order(&v->composed_face_order);
     anim_model_state_free(v->composed_anim_state);
     v->composed_anim_state = NULL;
     v->composed_player_loaded = 0;
@@ -7338,6 +7468,20 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
 
     clear_composed_player_model(v);
 
+    // draw_composed_player_sorted refills the index buffer in client face
+    // order every frame.
+    unsigned short *indices = NULL;
+    if (v->actor_shaders_loaded && total_vc <= 0xFFFF
+            && alloc_face_order(&v->composed_face_order, total_fc)) {
+        indices = malloc((size_t)total_fc * 3 * sizeof(unsigned short));
+        if (indices) {
+            for (int i = 0; i < total_fc * 3; i++)
+                indices[i] = (unsigned short)i;
+        } else {
+            free_face_order(&v->composed_face_order);
+        }
+    }
+
     Mesh mesh = {0};
     mesh.vertexCount = total_vc;
     mesh.triangleCount = total_fc;
@@ -7345,6 +7489,7 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
     mesh.colors = colors;
     mesh.texcoords = texcoords;
     mesh.normals = normals;
+    mesh.indices = indices;
     UploadMesh(&mesh, false);
 
     Model composed_model = LoadModelFromMesh(mesh);
@@ -7502,6 +7647,98 @@ static uint32_t composed_player_hide_mask(ViewerState *v, const RcPlayer *p) {
     return hide;
 }
 
+// Offsets client face depths so they stay positive, as the client's do.
+#define CLIENT_DEPTH_ORIGIN (1 << 16)
+
+// The composed player's faces as the client sorts them for this camera:
+// depth in OSRS units along the view axis from the model origin, truncated
+// per vertex as the client does, and visible when the face is front-facing
+// and not one the client hides (alpha 0).
+static void composed_player_face_depths(ViewerState *v, Vector3 pos,
+                                        float facing_angle) {
+    const ModelEntry *entry = &v->composed_player_model;
+    const Mesh *mesh = &entry->model.meshes[0];
+    ViewerFaceOrder *fo = &v->composed_face_order;
+    Matrix to_model = MatrixInvert(MatrixMultiply(
+        MatrixRotate((Vector3){0, 1, 0}, facing_angle * DEG2RAD),
+        MatrixTranslate(pos.x, pos.y, pos.z)));
+    Vector3 eye = Vector3Transform(v->camera.position, to_model);
+    Vector3 ahead = Vector3Normalize(Vector3Subtract(
+        Vector3Transform(v->camera.target, to_model), eye));
+    int zero = (int)(-Vector3DotProduct(eye, ahead) * 128.0f);
+    for (int f = 0; f < entry->face_count; f++) {
+        const float *t = &mesh->vertices[f * 9];
+        Vector3 a = {t[0], t[1], t[2]};
+        Vector3 b = {t[3], t[4], t[5]};
+        Vector3 c = {t[6], t[7], t[8]};
+        Vector3 normal = Vector3CrossProduct(Vector3Subtract(b, a),
+                                             Vector3Subtract(c, a));
+        fo->visible[f] = mesh->colors[f * 12 + 3] > 0
+            && Vector3DotProduct(normal, Vector3Subtract(eye, a)) > 0.0f;
+        int da = (int)(Vector3DotProduct(Vector3Subtract(a, eye), ahead)
+                       * 128.0f) - zero;
+        int db = (int)(Vector3DotProduct(Vector3Subtract(b, eye), ahead)
+                       * 128.0f) - zero;
+        int dc = (int)(Vector3DotProduct(Vector3Subtract(c, eye), ahead)
+                       * 128.0f) - zero;
+        fo->depths[f] = CLIENT_DEPTH_ORIGIN + (da + db + dc) / 3;
+    }
+}
+
+// Draws the composed player as the client does, and as RuneLite's GPU
+// plugin renders players ("sorted, no depth"): its opaque faces in client
+// order without depth writes, so priority rather than depth decides which
+// of its own faces show, then once more without colour to write depth for
+// what is drawn later. The see-through faces wait, in the same order, for
+// draw_actor_translucent_pass.
+static void draw_composed_player_sorted(ViewerState *v, Vector3 pos,
+                                        float facing_angle) {
+    ModelEntry *entry = &v->composed_player_model;
+    Mesh *mesh = &entry->model.meshes[0];
+    ViewerFaceOrder *fo = &v->composed_face_order;
+    composed_player_face_depths(v, pos, facing_angle);
+    int ordered = client_face_order(fo->depths, entry->face_priorities,
+                                    fo->visible, entry->face_count,
+                                    fo->order, fo->scratch, fo->keys);
+    int opaque = 0;
+    int translucent = 0;
+    for (int i = 0; i < ordered; i++) {
+        int f = fo->order[i];
+        unsigned short *tri = mesh->colors[f * 12 + 3] == 255
+            ? &mesh->indices[opaque++ * 3]
+            : &fo->translucent_indices[translucent++ * 3];
+        tri[0] = (unsigned short)(f * 3);
+        tri[1] = (unsigned short)(f * 3 + 1);
+        tri[2] = (unsigned short)(f * 3 + 2);
+    }
+
+    Vector3 scale = {1, 1, 1};
+    int triangle_count = mesh->triangleCount;
+    if (opaque > 0) {
+        UpdateMeshBuffer(*mesh, RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES,
+                         mesh->indices,
+                         opaque * 3 * (int)sizeof(unsigned short), 0);
+        mesh->triangleCount = opaque;
+        rlDrawRenderBatchActive();
+        rlDisableDepthMask();
+        draw_model_one_sided_with_shader(entry->model, v->actor_visible_shader,
+                                         pos, facing_angle, scale, WHITE);
+        rlEnableDepthMask();
+        rlColorMask(false, false, false, false);
+        draw_model_one_sided_with_shader(entry->model, v->actor_opaque_shader,
+                                         pos, facing_angle, scale, WHITE);
+        rlColorMask(true, true, true, true);
+        mesh->triangleCount = triangle_count;
+    }
+    if (translucent > 0
+            && v->actor_translucent_draw_count
+                < VIEWER_MAX_ACTOR_TRANSLUCENT_DRAWS) {
+        v->actor_translucent_draws[v->actor_translucent_draw_count++] =
+            (ViewerActorDraw){entry->model, pos, facing_angle, scale, WHITE,
+                              fo->translucent_indices, translucent};
+    }
+}
+
 static int draw_composed_player_model(ViewerState *v, const RcPlayer *p,
                                       Vector3 player_pos, float facing_angle) {
     if (!v->item_render_map.loaded || !v->item_models || !v->item_models->loaded)
@@ -7520,8 +7757,11 @@ static int draw_composed_player_model(ViewerState *v, const RcPlayer *p,
         reset_model_entry_to_base_pose(&v->composed_player_model);
     }
 
-    draw_actor_model(v, v->composed_player_model.model, player_pos,
-                     facing_angle, (Vector3){1, 1, 1}, WHITE);
+    if (v->composed_face_order.capacity > 0)
+        draw_composed_player_sorted(v, player_pos, facing_angle);
+    else
+        draw_actor_model(v, v->composed_player_model.model, player_pos,
+                         facing_angle, (Vector3){1, 1, 1}, WHITE);
     return 1;
 }
 
@@ -10615,11 +10855,14 @@ int main(int argc, char **argv) {
         load_projectile_effect_shader(static_brightness, static_lift);
     v.projectile_effect_shader_loaded = v.projectile_effect_shader.id > 0;
     // The player keeps the default shader's colours.
+    v.actor_visible_shader = load_alpha_band_shader(
+        1.0f, 0.0f, ACTOR_MIN_ALPHA, 2.0f);
     v.actor_opaque_shader = load_alpha_band_shader(
         1.0f, 0.0f, ACTOR_OPAQUE_ALPHA, 2.0f);
     v.actor_translucent_shader = load_alpha_band_shader(
         1.0f, 0.0f, ACTOR_MIN_ALPHA, ACTOR_OPAQUE_ALPHA);
-    v.actor_shaders_loaded = v.actor_opaque_shader.id > 0
+    v.actor_shaders_loaded = v.actor_visible_shader.id > 0
+                          && v.actor_opaque_shader.id > 0
                           && v.actor_translucent_shader.id > 0;
     if (dynamic_model_shader_enabled) {
         v.alpha_cutout_shader_dynamic =
@@ -11145,6 +11388,8 @@ cleanup:
         UnloadShader(v.alpha_cutout_shader_dynamic);
     if (v.projectile_effect_shader_loaded)
         UnloadShader(v.projectile_effect_shader);
+    if (v.actor_visible_shader.id > 0)
+        UnloadShader(v.actor_visible_shader);
     if (v.actor_opaque_shader.id > 0)
         UnloadShader(v.actor_opaque_shader);
     if (v.actor_translucent_shader.id > 0)
