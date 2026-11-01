@@ -824,6 +824,106 @@ def overlay_hidden(oflo: FloorDef | None) -> bool:
     return oflo is not None and oflo.texture < 0 and oflo.rgb == 0xFF00FF
 
 
+# OSRS units a bridge tile must clear the ground by for both to be drawn.
+BRIDGE_MIN_CLEARANCE = 8
+# A blocked tile under a floor this far up (OSRS units) is a wall, not ground.
+WALL_MIN_HEIGHT = 120
+TILE_BLOCKED = 0x1
+TILE_ROOFED = 0x4
+
+
+def tile_painted(
+    rt: RegionTerrain,
+    overlays: dict[int, FloorDef],
+    z: int,
+    tx: int,
+    ty: int,
+) -> bool:
+    """Whether the client paints any of this tile."""
+    oid = rt.overlay_ids[z][tx][ty] & 0xFFFF
+    oflo = overlays.get(oid - 1) if oid > 0 else None
+    underlay = rt.underlay_ids[z][tx][ty] > 0
+    if overlay_hidden(oflo):
+        return underlay and rt.shapes[z][tx][ty] > 0
+    return underlay or oflo is not None
+
+
+def _tile_heights(
+    context: dict[tuple[int, int], RegionTerrain],
+    rt: RegionTerrain,
+    rx: int,
+    ry: int,
+    z: int,
+    tx: int,
+    ty: int,
+) -> tuple[int, int, int, int]:
+    return (
+        _context_height(context, rt, rx, ry, z, tx, ty),
+        _context_height(context, rt, rx, ry, z, tx + 1, ty),
+        _context_height(context, rt, rx, ry, z, tx + 1, ty + 1),
+        _context_height(context, rt, rx, ry, z, tx, ty + 1),
+    )
+
+
+def painted_planes(
+    context: dict[tuple[int, int], RegionTerrain],
+    rt: RegionTerrain,
+    rx: int,
+    ry: int,
+    overlays: dict[int, FloorDef],
+    target_plane: int,
+    tx: int,
+    ty: int,
+) -> tuple[int, ...]:
+    """The planes painted on one tile of target_plane's mesh, in draw order.
+
+    A bridge keeps the ground below it, drawn first (the client's
+    setLinkBelow); that ground is all that shows under a hidden bridge tile
+    such as the Grand Exchange floor. A painted bridge tile lying on the ground
+    replaces it, or the two would fight in the depth buffer. The viewer hides
+    the planes above its own, so a wall built on an empty tile takes its top
+    from the walkway above it, and so does an unroofed blocked tile under a
+    floor (the palace walls are solid blocks with a black core the walkway
+    normally covers) and the partial floor beside one. Hidden tiles stay
+    holes: a chasm is meant to be void.
+    """
+    source = visual_source_plane(rt, tx, ty, target_plane)
+    if source != target_plane:
+        ground = _tile_heights(context, rt, rx, ry, target_plane, tx, ty)
+        bridge = _tile_heights(context, rt, rx, ry, source, tx, ty)
+        if tile_painted(rt, overlays, source, tx, ty) and any(
+            g - b < BRIDGE_MIN_CLEARANCE for g, b in zip(ground, bridge)
+        ):
+            return (source,)
+        return (target_plane, source)
+    if target_plane == 3:
+        return (target_plane,)
+    above = target_plane + 1
+    if (rt.underlay_ids[target_plane][tx][ty] == 0
+            and rt.overlay_ids[target_plane][tx][ty] & 0xFFFF == 0):
+        return (above,)
+    if not tile_painted(rt, overlays, above, tx, ty):
+        return (target_plane,)
+    ground = _tile_heights(context, rt, rx, ry, target_plane, tx, ty)
+    floor = _tile_heights(context, rt, rx, ry, above, tx, ty)
+    if any(g - f < WALL_MIN_HEIGHT for g, f in zip(ground, floor)):
+        return (target_plane,)
+    flags = rt.settings[target_plane][tx][ty]
+    if flags & TILE_ROOFED:
+        return (target_plane,)
+    if flags & TILE_BLOCKED:
+        return (target_plane, above)
+    # A wall's diagonal corners are not blocked: only their floor is partial.
+    if rt.shapes[above][tx][ty] > 0 and rt.underlay_ids[above][tx][ty] == 0:
+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            near = _context_tile(context, rx, ry, tx + dx, ty + dy)
+            if near and (near[0].settings[target_plane][near[1]][near[2]]
+                         & (TILE_BLOCKED | TILE_ROOFED)) == TILE_BLOCKED \
+                    and tile_painted(near[0], overlays, above, near[1], near[2]):
+                return (target_plane, above)
+    return (target_plane,)
+
+
 def _lit_overlay_rgb(
     oflo: FloorDef | None,
     tex_colors: dict[int, int] | None,
@@ -901,63 +1001,74 @@ def build_terrain_mesh(
         # for simplicity, compute per-tile center color
         for ty in range(64):
             for tx in range(64):
-                z = visual_source_plane(rt, tx, ty, target_plane)
-                oid = rt.overlay_ids[z][tx][ty] & 0xFFFF
-                shape = rt.shapes[z][tx][ty]
-                rotation = rt.rotations[z][tx][ty]
+                for z in painted_planes(context, rt, rx, ry, overlays,
+                                        target_plane, tx, ty):
+                    oid = rt.overlay_ids[z][tx][ty] & 0xFFFF
+                    shape = rt.shapes[z][tx][ty]
+                    rotation = rt.rotations[z][tx][ty]
 
-                # get 4 corner heights
-                h_sw = _context_height(context, rt, rx, ry, z, tx, ty)
-                h_se = _context_height(context, rt, rx, ry, z, tx + 1, ty)
-                h_ne = _context_height(
-                    context, rt, rx, ry, z, tx + 1, ty + 1)
-                h_nw = _context_height(context, rt, rx, ry, z, tx, ty + 1)
-                heights = (h_sw, h_se, h_ne, h_nw)
+                    heights = _tile_heights(context, rt, rx, ry, z, tx, ty)
 
-                # corner lighting
-                intensity = intensities[z]
-                l_sw = intensity[tx][ty]
-                l_se = intensity[min(tx + 1, 64)][ty]
-                l_ne = intensity[min(tx + 1, 64)][min(ty + 1, 64)]
-                l_nw = intensity[tx][min(ty + 1, 64)]
-                avg_light = (l_sw + l_se + l_ne + l_nw) // 4
+                    # corner lighting
+                    intensity = intensities[z]
+                    l_sw = intensity[tx][ty]
+                    l_se = intensity[min(tx + 1, 64)][ty]
+                    l_ne = intensity[min(tx + 1, 64)][min(ty + 1, 64)]
+                    l_nw = intensity[tx][min(ty + 1, 64)]
+                    avg_light = (l_sw + l_se + l_ne + l_nw) // 4
 
-                underlay_rgb = _lit_underlay_rgb(
-                    context, rx, ry, z, tx, ty, underlays, avg_light)
-                oflo = overlays.get(oid - 1) if oid > 0 else None
-                overlay_rgb = _lit_overlay_rgb(oflo, tex_colors, avg_light)
+                    underlay_rgb = _lit_underlay_rgb(
+                        context, rx, ry, z, tx, ty, underlays, avg_light)
+                    oflo = overlays.get(oid - 1) if oid > 0 else None
+                    overlay_rgb = _lit_overlay_rgb(oflo, tex_colors, avg_light)
 
-                base_rgb = underlay_rgb
-                tile_rgb = overlay_rgb or base_rgb
-                if tile_rgb is None:
-                    continue
+                    base_rgb = underlay_rgb
+                    tile_rgb = overlay_rgb or base_rgb
+                    if tile_rgb is None:
+                        continue
 
-                wx = float(base_wx + tx)
-                wz = float(base_wy + ty)
+                    wx = float(base_wx + tx)
+                    wz = float(base_wy + ty)
 
-                if overlay_hidden(oflo):
-                    # The client never draws this overlay: a full tile is a
-                    # hole (a chasm's black void), a shaped one keeps only
-                    # its underlay part.
-                    if shape > 0 and base_rgb:
-                        _emit_shaped_terrain_tile(verts, colors, wx, wz,
-                                                  heights, shape + 1,
-                                                  rotation, base_rgb, None)
-                    continue
+                    if overlay_hidden(oflo):
+                        # The client never draws this overlay: a full tile is a
+                        # hole (a chasm's black void), a shaped one keeps only
+                        # its underlay part.
+                        if shape > 0 and base_rgb:
+                            _emit_shaped_terrain_tile(verts, colors, wx, wz,
+                                                      heights, shape + 1,
+                                                      rotation, base_rgb, None)
+                        continue
 
-                if oid <= 0 or not overlay_rgb:
-                    _emit_terrain_quad(verts, colors, wx, wz, heights,
-                                       tile_rgb)
-                    continue
+                    if oid <= 0 or not overlay_rgb:
+                        _emit_terrain_quad(verts, colors, wx, wz, heights,
+                                           tile_rgb)
+                        continue
 
-                scene_shape = shape + 1
-                if scene_shape == 1:
-                    _emit_terrain_quad(verts, colors, wx, wz, heights,
-                                       tile_rgb)
-                    continue
+                    scene_shape = shape + 1
+                    if scene_shape == 1:
+                        _emit_terrain_quad(verts, colors, wx, wz, heights,
+                                           tile_rgb)
+                        continue
 
-                if base_rgb:
-                    if _emit_shaped_terrain_tile(
+                    if base_rgb:
+                        if _emit_shaped_terrain_tile(
+                            verts,
+                            colors,
+                            wx,
+                            wz,
+                            heights,
+                            scene_shape,
+                            rotation,
+                            base_rgb,
+                            overlay_rgb,
+                        ):
+                            continue
+                        _emit_terrain_quad(verts, colors, wx, wz, heights,
+                                           tile_rgb)
+                        continue
+
+                    if not _emit_shaped_terrain_tile(
                         verts,
                         colors,
                         wx,
@@ -965,27 +1076,11 @@ def build_terrain_mesh(
                         heights,
                         scene_shape,
                         rotation,
-                        base_rgb,
+                        None,
                         overlay_rgb,
                     ):
-                        continue
-                    _emit_terrain_quad(verts, colors, wx, wz, heights,
-                                       tile_rgb)
-                    continue
-
-                if not _emit_shaped_terrain_tile(
-                    verts,
-                    colors,
-                    wx,
-                    wz,
-                    heights,
-                    scene_shape,
-                    rotation,
-                    None,
-                    overlay_rgb,
-                ):
-                    _emit_terrain_quad(verts, colors, wx, wz, heights,
-                                       overlay_rgb)
+                        _emit_terrain_quad(verts, colors, wx, wz, heights,
+                                           overlay_rgb)
 
     return verts, colors
 
