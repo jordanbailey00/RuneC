@@ -181,6 +181,15 @@ CACHE_DERIVED_REBUILD_SPECS = (
         authority="b237 cache plus decoded graphic symbols",
     ),
     RuntimeOutputSpec(
+        dataset="ui_fonts",
+        logical_paths=("fonts/",),
+        rebuild_inputs=B237_CACHE_INPUT,
+        commands=(
+            py_cmd("tools/cache_pipeline/export_fonts.py", "--cache", "{b237_cache}", "--output", "data/fonts/osrs_fonts.bin"),
+        ),
+        authority="b237 cache bitmap fonts",
+    ),
+    RuntimeOutputSpec(
         dataset="item_sprites",
         logical_paths=("sprites/items/",),
         rebuild_inputs=B237_CACHE_INPUT,
@@ -220,7 +229,7 @@ CACHE_DERIVED_REBUILD_SPECS = (
 POST_DEF_RENDER_REBUILD_SPECS = (
     RuntimeOutputSpec(
         dataset="item_render_models",
-        logical_paths=("models/items.models", "models/items.tanim", "models/item_render.map", "models/ground/"),
+        logical_paths=("models/items.models", "models/items.tanim", "models/item_render.map", "models/worn/", "models/ground/"),
         rebuild_inputs=B237_CACHE_INPUT,
         commands=(
             py_cmd(
@@ -230,7 +239,7 @@ POST_DEF_RENDER_REBUILD_SPECS = (
                 "--player-pose-source",
                 "content/items/player_pose_sets.toml",
                 "--item-ids",
-                "combat-validation,static-ground-items",
+                "all-equippable",
                 "--model-lighting",
                 "client",
             ),
@@ -253,6 +262,8 @@ POST_DEF_RENDER_REBUILD_SPECS = (
                 "data/models/item_render.map",
                 "--combat-visuals",
                 "data/defs/combat_visuals.tsv",
+                "--block-anims",
+                "content/items/block_anims.tsv",
                 "--output",
                 "data/anims/player.anims",
             ),
@@ -292,6 +303,8 @@ POST_DEF_RENDER_REBUILD_SPECS = (
                 "data/models/item_render.map",
                 "--combat-visuals",
                 "data/defs/combat_visuals.tsv",
+                "--block-anims",
+                "content/items/block_anims.tsv",
                 "--npc-defs",
                 "data/defs/npc_defs.bin",
                 "--npc-attack-anims",

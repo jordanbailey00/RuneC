@@ -15,7 +15,7 @@
 static int command_args_valid(RcPlayerCommandKind kind,
                               RcActionCategory category) {
     return kind > RC_PLAYER_COMMAND_NONE
-        && kind <= RC_PLAYER_COMMAND_CONSUME
+        && kind <= RC_PLAYER_COMMAND_SHIELD_SPECIAL
         && category >= RC_ACTION_CATEGORY_SOFT
         && category <= RC_ACTION_CATEGORY_STRONG;
 }
@@ -241,6 +241,8 @@ static int execute_command(RcWorld *world, const RcPlayerCommand *command) {
         return rc_combat_set_auto_retaliate(world, a[0] != 0);
     case RC_PLAYER_COMMAND_TOGGLE_SPECIAL:
         rc_combat_toggle_special(world); return 1;
+    case RC_PLAYER_COMMAND_SHIELD_SPECIAL:
+        rc_combat_shield_special(world); return 1;
     case RC_PLAYER_COMMAND_SET_PRAYER:
         return rc_prayer_result_accepted(rc_player_set_prayer(world, a[0]));
     case RC_PLAYER_COMMAND_SELECT_QUICK_PRAYER:

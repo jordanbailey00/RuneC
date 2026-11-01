@@ -93,17 +93,23 @@ rc-content/
 
 ## 2.1 Key files
 
+- `combat/gear.c`, `combat/specials.c`
+  - own worn gear, set effects and special attacks by item ID, read from the
+    generated `gear_rows.inc` (see `content/items/gear.tsv` and
+    `special_attacks.tsv`; run `tools/export_gear_tables.py` after editing)
+  - gear state that survives between attacks lives in `RcPlayer.content_gear`,
+    indexed by `RC_GEAR_STATE_*`
 - `combat/magic.c`
   - owns spell/staff compatibility, elemental scaling, native powered attacks,
     charge capacities/depletion and basic landed magic effects
-  - charged magic weapons use remaining charges in the existing item-state
-    scalar; the validation bank seeds charged/empty versions, while recharge
-    interfaces and several weapon passives/specials remain DSA-031
+  - charged weapons use remaining charges in the existing item-state scalar;
+    the validation bank seeds charged/empty versions, while recharge interfaces
+    remain DSA-031
   - `content/combat/spell_effects.tsv` supplies reviewed combat values to both
     spell export and snapshot-based rebuilds without changing spell indices,
     rune costs or unrelated definitions
   - restricted targets use the reviewed subset in
-    `content/combat/npc_spell_targets.inc`; unknown eligibility rejects
+    `content/combat/npc_attributes.inc`; unknown eligibility rejects
   - owns supported spell/weapon gameplay arrival delays; attack events carry
     per-hit timing, never projectile assets
 - `combat/runes.c`

@@ -35,7 +35,7 @@ int main(void) {
     const RcItemDef *armadyl_godsword = rc_item_def_get(11802);
     const RcItemDef *combat_requirement_item = rc_item_def_get(11781);
     const RcItemDef *high_id = rc_item_def_get(30388);
-    const RcItemDef *cache_fallback_equipment = rc_item_def_get(30390);
+    const RcItemDef *cache_fallback_equipment = rc_item_def_get(286);
     const RcItemDef *wiki_only = rc_item_def_get(33368);
     assert(coins && whip && adamant_javelin && agility_cape && spotted_cape);
     assert(armadyl_godsword && combat_requirement_item);
@@ -60,14 +60,14 @@ int main(void) {
     assert(whip->examine[0] != '\0');
     assert(whip->linked_id_noted == 4152);
     assert(whip->linked_id_placeholder == 14032);
-    assert(adamant_javelin->ranged_strength == 107);
+    assert(adamant_javelin->ranged_strength == 102);
     assert(agility_cape->prayer_bonus == 0);
     assert(spotted_cape->weight_grams == -2267);
     assert((armadyl_godsword->equip_conflicts
             & (1u << EQUIP_SHIELD)) != 0);
     assert(combat_requirement_item->required_combat_level == 40);
     assert(cache_fallback_equipment->equippable);
-    assert(cache_fallback_equipment->equip_slot == EQUIP_WEAPON);
+    assert(cache_fallback_equipment->equip_slot == EQUIP_BODY);
     assert(cache_fallback_equipment->equipable_by_player);
     assert((cache_fallback_equipment->metadata_flags & RC_ITEM_META_CACHE) != 0);
     assert((cache_fallback_equipment->metadata_flags & RC_ITEM_META_EQUIP) != 0);
@@ -78,7 +78,6 @@ int main(void) {
     assert(cache_fallback_equipment->attack_ranged == 0);
     assert(cache_fallback_equipment->ranged_strength == 0);
     assert(cache_fallback_equipment->attack_speed == 0);
-    assert(cache_fallback_equipment->attack_range == -1);
     assert(strcmp(wiki_only->name, "Demonic pacts demon butler scroll") == 0);
     assert(wiki_only->members);
     assert(wiki_only->value == 25000);

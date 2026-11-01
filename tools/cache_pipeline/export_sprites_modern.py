@@ -82,6 +82,14 @@ def build_sprite_map(graphic_symbols: Path | None = None) -> dict[int, list[str]
         _add(sprites, sprite_id, str(sprite_id))
 
     _add(sprites, 897, "tradebacking_dark")
+    # Interface pieces client scripts place by id: stone buttons, skill tiles,
+    # the chatbox tabs and scrollbar, orbs and the combat tab.
+    for sprite_id in (*range(170, 174), *range(185, 192), *range(197, 218), 220, 221,
+                      228, 675, 760, 773, 780, *range(788, 793), *range(912, 929),
+                      *range(1059, 1073), 1090, 1092, *range(1141, 1159), 1343,
+                      1438, 1439, 1607, 1608, 1610, *range(1748, 1750),
+                      *range(3051, 3059), 3575, 8603, 8605):
+        _add(sprites, sprite_id)
     _add(sprites, 1017, "chatbox_bg")
     _add(sprites, 1018, "main_stones_bottom")
     _add(sprites, 1031, "side_background")

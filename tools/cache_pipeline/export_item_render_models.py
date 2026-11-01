@@ -7,9 +7,9 @@ recolors/retextures applied before rendering. This script consumes RuneC's
 `items.bin` for gameplay-facing item/equip metadata, reads cache item/kit/model
 definitions for appearance details, and writes:
 
-* `items.models`: MDL3 models with synthetic IDs for default body parts,
-  recolored/retextured equipped item models, and recolored/retextured ground
-  item models.
+* `items.models`: MDL3 models with synthetic IDs for default body parts.
+* `worn/<item_id>.models`: each recolored/retextured equipped item model, loaded
+  when the player equips it.
 * `item_render.map`: a compact viewer-only item -> synthetic render model map.
 """
 
@@ -340,12 +340,12 @@ def parse_cache_item(item_id: int, data: bytes) -> CacheItemAppearance:
             _desc, pos = _read_string(data, pos)
         elif opcode in (4, 5, 6, 7, 8, 10, 21, 22, 66, 67, 68, 71, 73, 74, 75, 76, 77,
                         80, 81, 82, 83, 84, 85, 86, 87, 94, 95, 97, 98, 110, 111,
-                        112, 139, 140, 148, 149, 156, 161, 202):
+                        112, 139, 140, 148, 149, 156, 161):
             pos += 2
         elif opcode == 9:
             _unknown, pos = _read_string(data, pos)
-        elif opcode in (11, 15, 16, 64, 65):
-            pass
+        elif opcode in (11, 15, 16, 64, 65, 160, 251):
+            pass  # 160 carried a u16 list before b241
         elif opcode in (12,):
             pos += 4
         elif opcode == 13:
@@ -354,7 +354,7 @@ def parse_cache_item(item_id: int, data: bytes) -> CacheItemAppearance:
             wearpos2, pos = _u8(data, pos)
         elif opcode == 27:
             wearpos3, pos = _u8(data, pos)
-        elif opcode in (17, 18, 19, 20, 28, 29, 42, 62, 69, 113, 114,
+        elif opcode in (17, 18, 19, 20, 28, 29, 42, 59, 62, 69, 113, 114,
                         115, 119, 120, 121, 122, 155, 157, 158, 159, 162, 163,
                         165):
             pos += 1
@@ -424,11 +424,14 @@ def parse_cache_item(item_id: int, data: bytes) -> CacheItemAppearance:
             pos += 4
         elif opcode in (116, 117, 118):
             pos += 2
-        elif opcode == 160:
-            count = data[pos]
-            pos += 1 + count * 2
         elif opcode == 164:
             _unknown, pos = _read_string(data, pos)
+        elif opcode == 200:  # entity subop: op, subop, text
+            pos += 2
+            _subop, pos = _read_string(data, pos)
+        elif opcode in (201, 202):  # conditional op or subop, then text
+            pos += 13 if opcode == 201 else 15
+            _op, pos = _read_string(data, pos)
         elif opcode == 211:
             count = data[pos]
             pos += 1 + count * 2
@@ -911,6 +914,8 @@ def main() -> None:
     parser.add_argument("--render-map", type=Path,
                         default=Path("data/models/item_render.map"),
                         help="output viewer item render mapping file")
+    parser.add_argument("--worn-dir", type=Path, default=Path("data/models/worn"),
+                        help="output directory for per-item worn models")
     parser.add_argument("--item-ids", type=str, default="default",
                         help="comma-separated item IDs, 'default', "
                              "'combat-validation', 'static-ground-items', "
@@ -1002,6 +1007,7 @@ def main() -> None:
         )
 
     records: list[tuple[int, int, int, int, int, int, int, int, int, int, int, int, int]] = []
+    worn_models: list[tuple[int, ModelData]] = []
     for item_id in item_ids:
         item = items.get(item_id)
         if item is None:
@@ -1015,15 +1021,6 @@ def main() -> None:
         retexture_dst = appearance.retexture_dst
 
         ground_synth = -1
-        if item.ground_model_id >= 0:
-            ground = load_model(item.ground_model_id)
-            if ground:
-                apply_appearance_overrides(ground, recolor_src, recolor_dst, retexture_src, retexture_dst)
-                ground.model_id = synth_ground_model_id(item_id)
-                ground._export_model_lighting = args.model_lighting
-                ground_synth = ground.model_id
-                exported_models.append(ground)
-
         male_synth = -1
         male_parts = [model for mid in item.male_model_ids if mid >= 0
                       if (model := load_model(mid)) is not None]
@@ -1034,19 +1031,9 @@ def main() -> None:
             male_model.model_id = synth_equip_model_id(item_id)
             light_worn(male_model, args.model_lighting)
             male_synth = male_model.model_id
-            exported_models.append(male_model)
+            worn_models.append((item_id, male_model))
 
-        female_synth = -1
-        female_parts = [model for mid in item.female_model_ids if mid >= 0
-                        if (model := load_model(mid)) is not None]
-        if female_parts:
-            female_model = female_parts[0] if len(female_parts) == 1 else merge_models(female_parts)
-            apply_appearance_overrides(female_model, recolor_src, recolor_dst, retexture_src, retexture_dst)
-            translate_model_y(female_model, appearance.female_offset)
-            female_model.model_id = synth_equip_model_id(item_id) + 0x800000
-            light_worn(female_model, args.model_lighting)
-            female_synth = female_model.model_id
-            exported_models.append(female_model)
+        female_synth = -1  # the player is male; no female body exists yet
 
         hide_mask = render_hide_mask(item, appearance)
         flags = render_flags(item, appearance)
@@ -1086,7 +1073,16 @@ def main() -> None:
     )
     write_texture_anim_binary(args.output.with_suffix(".tanim"), atlas,
                               texture_defs)
+    args.worn_dir.mkdir(parents=True, exist_ok=True)
+    for stale in args.worn_dir.glob("*.models"):
+        stale.unlink()
+    for item_id, model in worn_models:
+        write_models_binary(args.worn_dir / f"{item_id}.models", [model],
+                            tex_colors=tex_colors, atlas=atlas,
+                            model_lighting=args.model_lighting,
+                            write_atlas_companion=False)
     write_item_render_map(args.render_map, body_model_ids, records)
+    print(f"wrote {len(worn_models)} worn models to {args.worn_dir}")
     print(f"wrote {len(exported_models)} render models to {args.output}")
     print(f"wrote {len(records)} item render records to {args.render_map}")
 

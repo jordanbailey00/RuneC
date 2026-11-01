@@ -518,6 +518,11 @@ def build_specs(data_root: Path) -> tuple[PackSpec, ...]:
         numbered=True,
     )
     add_spec(
+        "runec-models-worn",
+        (p for p in iter_files(models_root / "worn") if p.suffix == ".models"),
+        numbered=True,
+    )
+    add_spec(
         "runec-models-npcs",
         (
             p for p in model_files
@@ -559,7 +564,7 @@ def build_specs(data_root: Path) -> tuple[PackSpec, ...]:
         + list((data_root / "sprites" / "items").glob("item_stack_variants.tsv")),
         numbered=True,
     )
-    add_spec("runec-fonts", (data_root / "fonts").glob("*.ttf"))
+    add_spec("runec-fonts", (data_root / "fonts").glob("*.bin"))
     add_spec(
         "runec-ui",
         (

@@ -79,7 +79,7 @@ static void fake_weapon(int id, const char *name, int weapon_type,
     def->attack_magic = magic;
     def->strength_bonus = slash;
     def->ranged_strength = ranged;
-    def->magic_damage = magic > 0 ? 10 : 0;
+    def->magic_damage = magic > 0 ? 100 : 0;
 }
 
 static void equip_weapon(RcWorld *world, int item_id) {

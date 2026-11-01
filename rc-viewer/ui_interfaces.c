@@ -644,7 +644,8 @@ static void format_stack_quantity(int quantity, char *dst, size_t cap) {
 
 static void draw_small_text(const RuneCUiAssets *assets, const char *text,
                             Rectangle rect, float size, Color color) {
-    runec_ui_draw_text_shadow(assets, text, rect.x, rect.y, size, color);
+    (void)size;
+    runec_ui_draw_text_box(assets, RUNEC_FONT_P11, text, rect, 0, 0, color, 1);
 }
 
 static int draw_item_icon(RuneCUiInterfaceStore *store,
@@ -726,29 +727,16 @@ static void draw_text_component(const RuneCUiAssets *assets,
     clean_interface_text(component->text, text, sizeof(text));
     if (!text[0])
         return;
-    float size = component->font_id == 0 ? 11.0f : 12.0f;
-    if (component->line_height > 0)
-        size = (float)(component->line_height + 9);
-    if (size < 12.0f)
-        size = 12.0f;
-    Font font = runec_ui_font_for_size(assets, size);
-    Color color = color_from_rgb(component->text_color, component->opacity);
-    Vector2 measure = MeasureTextEx(font, text, size, 0);
-    float x = rect.x;
-    float y = rect.y;
-    if (component->x_text_alignment == 1)
-        x = rect.x + (rect.width - measure.x) * 0.5f;
-    else if (component->x_text_alignment == 2)
-        x = rect.x + rect.width - measure.x;
-    if (component->y_text_alignment == 1)
-        y = rect.y + (rect.height - measure.y) * 0.5f;
-    else if (component->y_text_alignment == 2)
-        y = rect.y + rect.height - measure.y;
-    x = (float)((int)(x + 0.5f));
-    y = (float)((int)(y + 0.5f));
-    if (component->text_shadowed)
-        DrawTextEx(font, text, (Vector2){x + 1, y + 1}, size, 0, BLACK);
-    DrawTextEx(font, text, (Vector2){x, y}, size, 0, color);
+    RuneCUiFontId font = component->font_id == 495 ? RUNEC_FONT_P12
+                       : component->font_id == 496 ? RUNEC_FONT_B12
+                       : component->font_id == 497 ? RUNEC_FONT_Q8
+                       : RUNEC_FONT_P11;
+    runec_ui_draw_text_box(assets, font, text, rect,
+                           component->x_text_alignment,
+                           component->y_text_alignment,
+                           color_from_rgb(component->text_color,
+                                          component->opacity),
+                           component->text_shadowed);
 }
 
 static void draw_sprite_component(RuneCUiInterfaceStore *store,
@@ -831,9 +819,9 @@ static int draw_model_component(RuneCUiInterfaceStore *store,
     DrawRectangleLinesEx(rect, 1, (Color){112, 92, 58, 175});
     char label[32];
     snprintf(label, sizeof(label), "M%d", component->model_id);
-    Font font = runec_ui_font_for_size(assets, 10);
-    DrawTextEx(font, label, (Vector2){rect.x + 3, rect.y + 3}, 10, 1,
-               (Color){220, 190, 110, 190});
+    runec_ui_draw_text_box(assets, RUNEC_FONT_P11, label,
+                           (Rectangle){rect.x + 3, rect.y + 3, rect.width, 12},
+                           0, 0, (Color){220, 190, 110, 190}, 0);
     return 0;
 }
 

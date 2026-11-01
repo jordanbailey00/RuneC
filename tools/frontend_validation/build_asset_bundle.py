@@ -56,8 +56,7 @@ BASE_ASSETS = {
     "anims/all.anims": ROOT / "data/anims/all.anims",
     "anims/object.anims": ROOT / "data/anims/object.anims",
     "sprites/items/item_stack_variants.tsv": ROOT / "data/sprites/items/item_stack_variants.tsv",
-    "fonts/runescape.ttf": ROOT / "data/fonts/runescape.ttf",
-    "fonts/runescape_small.ttf": ROOT / "data/fonts/runescape_small.ttf",
+    "fonts/osrs_fonts.bin": ROOT / "data/fonts/osrs_fonts.bin",
     "ui/interfaces.bin": ROOT / "data/ui/interfaces.bin",
     "ui/interface_manifest.json": ROOT / "data/ui/interface_manifest.json",
 }

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Export B237 item definitions and supplemental combat metadata to IDEF.
+"""Export B241 item definitions and combat metadata to IDEF.
 
 Sources:
-  - RuneC's b237 cache (revision authority) — item identity, models, links,
-    weight, wear positions, actions, and examine text.
-  - osrsreboxed-db (supplemental) — equipment bonuses, requirements, weapon
-    attack speed, range, and stances when a matching record exists.
+  - RuneC's b241 cache (revision authority) — item identity, models, links,
+    weight, wear positions, actions, examine text, equipment bonuses, attack
+    speed, attack range and the requirements it lists.
+  - content/items/weapons.tsv — weapon category of every wieldable item.
+  - osrsreboxed-db (supplemental) — bonuses of the few items the cache has no
+    params for, and requirements beyond the two the cache stores.
 
 Excluded per ignore.md:
   - No GE price field (single-player, no live market).
@@ -20,7 +22,6 @@ import os
 import re
 import struct
 import sys
-import tomllib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -30,13 +31,20 @@ from source_paths import CACHE_DIR, require_cache_dir
 from wiki_item_bonuses import load_wiki_bonus_overrides
 from content_paths import content_read_path
 
-WEAPON_METADATA_PATH = content_read_path("items/weapon_metadata.toml")
-with WEAPON_METADATA_PATH.open("rb") as source:
-    WEAPON_METADATA = {
-        item_id: dict(row, name=name)
-        for row in tomllib.load(source)["weapon"]
-        for item_id, name in zip(row["ids"], row["names"], strict=True)
-    }
+WEAPON_TABLE_PATH = content_read_path("items/weapons.tsv")
+
+
+def load_weapon_table(path: Path = WEAPON_TABLE_PATH) -> dict[int, dict]:
+    rows: dict[int, dict] = {}
+    for line in path.read_text().splitlines():
+        if not line or line.startswith(("#", "item_id|")):
+            continue
+        item_id, name, weapon_type, _source = line.split("|")
+        rows[int(item_id)] = {"name": name, "weapon_type": weapon_type}
+    return rows
+
+
+WEAPON_TABLE = load_weapon_table()
 
 IDEF_MAGIC = 0x49444546  # "IDEF"
 IDEF_VERSION = 3
@@ -47,6 +55,7 @@ SLOT_NAMES = {
     "shield": 5, "legs": 6, "hands": 7, "feet": 8, "ring": 9,
     "ammo": 10, "2h": 3,
 }
+EQUIP_SLOT_KEYS = {"2h": "weapon"}
 
 # Skill IDs for level requirements — must match rc-core/skills.c
 SKILL_IDS = {
@@ -67,8 +76,43 @@ WEAPON_TYPES = {
     "spear": 19, "spiked": 20, "stab_sword": 21, "staff": 22, "thrown": 23,
     "two-handed_sword": 24, "bow": 25, "salamander": 26,
     "multi-style": 27, "powered_wand": 28, "bladed_staff": 29,
-    "partisan": 30, "atlatl": 31,
+    "partisan": 30, "atlatl": 31, "slash_flail": 32, "multi_melee": 33,
+    "chainmace": 34, "powered_book": 35,
 }
+
+# Style rows of the b241 combat_interface_* DB table: (name, attack_style).
+_MELEE3 = (("accurate", "accurate"), ("aggressive", "aggressive"), ("defensive", "defensive"))
+_MELEE4 = _MELEE3[:2] + (("controlled", "controlled"),) + _MELEE3[2:]
+_RANGED = (("accurate", "accurate"), ("rapid", "rapid"), ("longrange", "longrange"))
+_POWERED = (("accurate", "accurate"), ("accurate", "accurate"), ("longrange", "longrange"))
+WEAPON_STANCES = {
+    "unarmed": _MELEE3, "blunt": _MELEE3, "staff": _MELEE3, "polestaff": _MELEE3,
+    "whip": (("flick", "accurate"), ("lash", "controlled"), ("deflect", "defensive")),
+    "polearm": (("jab", "controlled"), ("swipe", "aggressive"), ("fend", "defensive")),
+    "bulwark": (("pummel", "accurate"), ("block", "defensive")),
+    "bow": _RANGED, "crossbow": _RANGED, "thrown": _RANGED, "chinchompas": _RANGED,
+    "powered_staff": _POWERED, "powered_wand": _POWERED, "powered_book": _POWERED,
+    "salamander": (("scorch", "aggressive"), ("flare", "accurate"), ("blaze", "defensive")),
+    "slash_flail": _MELEE3,
+    "chainmace": (("thrust", "accurate"), ("thrust", "aggressive"), ("smash", "aggressive")),
+    "bladed_staff": (("jab", "accurate"), ("swipe", "aggressive"), ("fend", "defensive")),
+    "bludgeon": (("pound", "aggressive"), ("pummel", "aggressive"), ("smash", "aggressive")),
+}
+
+# Bonus params; missing params read 0 once an item carries any of them.
+BONUS_PARAMS = {
+    0: "attack_stab", 1: "attack_slash", 2: "attack_crush", 3: "attack_magic",
+    4: "attack_ranged", 5: "defence_stab", 6: "defence_slash", 7: "defence_crush",
+    8: "defence_magic", 9: "defence_ranged", 10: "melee_strength", 11: "prayer",
+}
+RANGED_STRENGTH_PARAMS = (12, 189)
+MAGIC_DAMAGE_PARAM = 299  # tenths of a percent, as IDEF stores it
+ATTACK_RANGE_PARAM = 13
+ATTACK_SPEED_PARAM = 14
+REQUIREMENT_PARAMS = ((434, 436), (435, 437))  # (skill, level)
+# The same params record the level to make a few items; those are not wear rules.
+CREATION_REQUIREMENT_SKILLS = {"cooking", "fletching", "firemaking", "crafting",
+                               "smithing", "mining", "herblore", "construction"}
 
 STANCE_BITS = {  # bitfield
     "accurate": 1 << 0, "aggressive": 1 << 1, "controlled": 1 << 2,
@@ -264,7 +308,7 @@ def cache_item_has_wear_action(cache: dict | None) -> bool:
     if not cache:
         return False
     for action in cache.get("interface_ops") or []:
-        if str(action or "").strip().lower() in {"wear", "wield"}:
+        if str(action or "").strip().lower() in {"wear", "wield", "equip", "hold"}:
             return True
     return False
 
@@ -346,6 +390,87 @@ def apply_cache_equipment_fallback(rec: dict, cache: dict | None) -> dict:
     return out
 
 
+SKILL_NAMES = {skill_id: name for name, skill_id in SKILL_IDS.items()
+               if name != "runecrafting"}
+COMBAT_SKILLS = {"attack", "defence", "strength", "hitpoints", "ranged", "prayer", "magic"}
+
+
+def cache_bonuses(params: dict) -> dict | None:
+    if not any(key in params for key in
+               (*BONUS_PARAMS, *RANGED_STRENGTH_PARAMS, MAGIC_DAMAGE_PARAM)):
+        return None
+    out = {field: int(params.get(key, 0)) for key, field in BONUS_PARAMS.items()}
+    out["ranged_strength"] = next((int(params[key]) for key in RANGED_STRENGTH_PARAMS
+                                   if params.get(key)), 0)
+    out["magic_damage"] = int(params.get(MAGIC_DAMAGE_PARAM, 0))
+    return out
+
+
+def merged_requirements(params: dict, known: dict) -> dict:
+    """The cache lists at most two requirements. Keep a longer known set that
+    agrees with them; otherwise the cache wins for combat skills."""
+    listed: dict[str, int] = {}
+    for skill_key, level_key in REQUIREMENT_PARAMS:
+        name = SKILL_NAMES.get(params.get(skill_key, -1))
+        level = int(params.get(level_key, 0) or 0)
+        if name and level and name not in CREATION_REQUIREMENT_SKILLS:
+            listed[name] = level
+    if not listed or all(known.get(skill) == level for skill, level in listed.items()):
+        return known
+    extra = {skill: level for skill, level in known.items()
+             if skill not in COMBAT_SKILLS and skill not in listed}
+    return listed | extra
+
+
+def apply_cache_combat(rec: dict, cache: dict | None) -> dict:
+    """Overlay cache bonuses, requirements, speed, range and weapon category."""
+    item_id = int(rec["id"])
+    if not cache or rec.get("noted") or rec.get("placeholder"):
+        return rec
+    params = cache.get("params") or {}
+    out = dict(rec)
+    weapon_row = WEAPON_TABLE.get(item_id)
+    if weapon_row and not out.get("equipment"):
+        out["equipment"] = empty_equipment("weapon")
+        out["equipable_by_player"] = True
+        out["equipable_weapon"] = True
+        out["_cache_equipment_fallback"] = True
+    equipment = out.get("equipment")
+    slot = infer_cache_equip_slot(cache)
+    if equipment and slot and EQUIP_SLOT_KEYS.get(equipment.get("slot"), equipment.get("slot")) != slot:
+        # The record describes some other item; only the cache's slot is known.
+        equipment = empty_equipment(slot)
+        out.pop("weapon", None)
+        out["equipable_weapon"] = slot == "weapon"
+        out["_cache_equipment_fallback"] = True
+    if equipment:
+        equipment = dict(equipment)
+        bonuses = cache_bonuses(params)
+        if bonuses is not None:
+            equipment.update(bonuses)
+            out.pop("_cache_equipment_fallback", None)
+        elif not out.get("_cache_equipment_fallback"):
+            # osrsreboxed stores whole percents; IDEF stores tenths.
+            equipment["magic_damage"] = 10 * int_or(equipment.get("magic_damage"), 0)
+        equipment["requirements"] = merged_requirements(
+            params, equipment.get("requirements") or {})
+        out["equipment"] = equipment
+    if weapon_row:
+        if cache.get("name") != weapon_row["name"]:
+            raise ValueError(f"item {item_id}: weapons.tsv says {weapon_row['name']!r}, "
+                             f"cache says {cache.get('name')!r}")
+        known = out.get("weapon") or {}
+        weapon_type = weapon_row["weapon_type"]
+        out["weapon"] = {
+            "attack_speed": int(params.get(ATTACK_SPEED_PARAM) or known.get("attack_speed") or 4),
+            "attack_range": int(params.get(ATTACK_RANGE_PARAM) or -1),
+            "weapon_type": weapon_type,
+            "stances": [{"combat_style": name, "attack_style": style} for name, style in
+                        WEAPON_STANCES.get(weapon_type, _MELEE4)],
+        }
+    return out
+
+
 class OptionalItemDB:
     """Small no-op adapter used when optional osrsreboxed item JSON is absent."""
 
@@ -378,8 +503,8 @@ def cache_item_record(cache: dict) -> dict:
         "stackable": bool(cache.get("stackable")),
         "cost": int_or(cache.get("cost"), 0),
         "weight_grams": int_or(cache.get("weight"), 0),
-        "highalch": 0,
-        "lowalch": 0,
+        "highalch": int_or(cache.get("cost"), 0) * 3 // 5,
+        "lowalch": int_or(cache.get("cost"), 0) * 2 // 5,
         "noted": cache.get("note_template_id") is not None,
         "noteable": False,
         "placeholder": cache.get("placeholder_template_id") is not None,
@@ -398,13 +523,14 @@ def overlay_cache(rec: dict, cache: dict | None,
                   cache_items: dict[int, dict]) -> dict:
     out = dict(rec)
     item_id = int(out["id"])
-    fill_identity = bool(out.get("_wiki_supplemental") or out.get("_cache_fill"))
-    if fill_identity and cache_real_item(cache):
+    if cache_real_item(cache):
         out["name"] = cache["name"]
         out["members"] = bool(cache.get("members"))
-        out["tradeable"] = bool(cache.get("tradeable"))
         out["stackable"] = bool(cache.get("stackable"))
         out["cost"] = int_or(cache.get("cost"), out.get("cost") or 0)
+        # The cache flag means Grand Exchange tradeable, so coins read false.
+        if out.get("_wiki_supplemental") or out.get("_cache_fill"):
+            out["tradeable"] = bool(cache.get("tradeable"))
     if cache:
         out["weight_grams"] = int_or(cache.get("weight"), 0)
         out["examine"] = cache.get("examine") or ""
@@ -584,8 +710,10 @@ def reviewed_attack_range(name: str, weapon_type: int, current: int) -> int:
         return 1
     if weapon_type == WEAPON_TYPES["polearm"]:
         return 2
-    if weapon_type not in {7, 9, 11, 12, 16, 23, 25, 28}:
+    if weapon_type not in {7, 9, 11, 12, 16, 23, 25, 28, 35}:
         return 1
+    if current > 0:
+        return current  # cache param
     if "twisted bow" in name or "dark bow" in name:
         return 10
     if "shortbow" in name:
@@ -617,72 +745,12 @@ def reviewed_attack_range(name: str, weapon_type: int, current: int) -> int:
     return current
 
 
-def update_installed_weapon_ranges(path: Path) -> int:
-    """Patch only the range byte of supported IDEF v3 weapon records."""
-    data = bytearray(path.read_bytes())
-    if len(data) < 12 or struct.unpack_from("<II", data) != (IDEF_MAGIC, IDEF_VERSION):
-        raise ValueError("weapon ranges require IDEF v3")
-    count, = struct.unpack_from("<I", data, 8)
-    offset, changed = 12, 0
-    for _ in range(count):
-        if offset + 4 > len(data):
-            raise ValueError("truncated item record size")
-        size, = struct.unpack_from("<I", data, offset)
-        offset += 4
-        end = offset + size
-        if size < 8 or end > len(data):
-            raise ValueError("truncated item record")
-        record = memoryview(data)[offset:end]
-        flags, = struct.unpack_from("<H", record, 4)
-        name_len = record[7]
-        name = bytes(record[8:8 + name_len]).decode("latin-1")
-        pos = 8 + name_len + 60 + 7
-        for _ in range(11):
-            if pos >= size:
-                raise ValueError(f"truncated item fields for {name}")
-            pos += 1 + record[pos]
-        if flags & F_HAS_EQUIPMENT:
-            if pos + 3 > size:
-                raise ValueError(f"truncated equipment fields for {name}")
-            pos += 3 + 2 * record[pos + 1] + 28
-        if flags & F_HAS_WEAPON:
-            if pos + 5 > size:
-                raise ValueError(f"truncated weapon fields for {name}")
-            old, = struct.unpack_from("<b", record, pos + 4)
-            new = reviewed_attack_range(name, record[pos + 1], old)
-            if new != old:
-                struct.pack_into("<b", data, offset + pos + 4, new)
-                changed += 1
-            stance_count = record[pos + 3]
-            pos += 5
-            for _ in range(stance_count):
-                if pos >= size:
-                    raise ValueError(f"truncated weapon stances for {name}")
-                pos += 1 + record[pos]
-        if pos != size:
-            raise ValueError(f"invalid item record length for {name}")
-        offset = end
-    if offset != len(data):
-        raise ValueError("trailing item data")
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_bytes(data)
-    temporary.replace(path)
-    return changed
-
-
 def build_record(rec: dict, model_links: dict[int, list[int]]) -> bytes | None:
     """One IDEF record. Returns bytes or None if record should be skipped."""
     if rec.get("incomplete"):
         return None
 
     item_id = int(rec["id"])
-    if item_id in WEAPON_METADATA:
-        reviewed = WEAPON_METADATA[item_id]
-        if rec.get("name") != reviewed["name"] or rec.get("noted") or rec.get("placeholder"):
-            raise ValueError(f"item {item_id}: reviewed weapon identity does not match B237")
-        rec = dict(rec, equipment=reviewed["equipment"], weapon=reviewed,
-                   equipable_by_player=True, equipable_weapon=True)
-        rec.pop("_cache_equipment_fallback", None)
     models = model_links.get(item_id, [0xFFFFFFFF] * 7)
     has_wear_model = any(m != 0xFFFFFFFF for m in models[1:])
     eq = rec.get("equipment")
@@ -775,48 +843,8 @@ def build_record(rec: dict, model_links: dict[int, list[int]]) -> bytes | None:
     return bytes(buf)
 
 
-def update_installed_weapon_metadata(path: Path, cache_dir: Path) -> None:
-    data = path.read_bytes()
-    magic, version, count = struct.unpack_from("<III", data)
-    if (magic, version) != (IDEF_MAGIC, IDEF_VERSION):
-        raise ValueError("weapon metadata update requires installed IDEF v3")
-    cache_items = load_cache_item_defs(require_cache_dir(cache_dir))
-    models = cache_model_links(cache_items)
-    notes, placeholders = cache_form_links(cache_items)
-    output = bytearray(data[:12])
-    seen = set()
-    offset = 12
-    for _ in range(count):
-        size, = struct.unpack_from("<I", data, offset)
-        offset += 4
-        record = data[offset:offset + size]
-        if len(record) != size or size < 8:
-            raise ValueError("truncated installed item record")
-        item_id, = struct.unpack_from("<I", record)
-        if item_id in WEAPON_METADATA:
-            if item_id in seen:
-                raise ValueError(f"duplicate reviewed item {item_id}")
-            cache = cache_items[item_id]
-            rec = overlay_cache(cache_item_record(cache), cache, notes,
-                                placeholders, cache_items)
-            record = build_record(rec, models)
-            seen.add(item_id)
-        output += struct.pack("<I", len(record)) + record
-        offset += size
-    if offset != len(data) or seen != WEAPON_METADATA.keys():
-        raise ValueError("installed item file has trailing data or lacks reviewed weapons")
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_bytes(output)
-    temporary.replace(path)
-    print(f"Updated {len(seen)} reviewed weapons; all other item records unchanged: {path}")
-
-
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--update-weapon-ranges", type=Path,
-                   help="repair only supported weapon range bytes in an IDEF v3 install")
-    p.add_argument("--update-weapon-metadata", type=Path,
-                   help="update only reviewed weapon rows in an existing IDEF v3 install")
     p.add_argument("--output", type=Path)
     p.add_argument("--report", type=Path, default=Path("tools/reports/items_full.txt"))
     p.add_argument("--triage-report", type=Path,
@@ -833,14 +861,8 @@ def main():
                    help="fail instead of emitting cache-only non-equipment item defs")
     p.add_argument("--limit", type=int, default=0, help="debug: cap records")
     args = p.parse_args()
-    if args.update_weapon_ranges:
-        print(f"Updated {update_installed_weapon_ranges(args.update_weapon_ranges)} weapon ranges")
-        return
-    if args.update_weapon_metadata:
-        update_installed_weapon_metadata(args.update_weapon_metadata, args.cache_dir)
-        return
     if args.output is None:
-        p.error("--output is required for a full item export")
+        p.error("--output is required")
 
     db = open_optional_item_db(args.osrsreboxed_root)
     if args.require_osrsreboxed and not getattr(db, "available", False):
@@ -912,6 +934,7 @@ def main():
         exported_cache_equipment_fallbacks += int(
             not had_equipment and bool(rec.get("equipment"))
         )
+        rec = apply_cache_combat(rec, cache)
         packed = build_record(rec, model_links)
         if packed is None:
             continue
@@ -942,6 +965,7 @@ def main():
         exported_cache_equipment_fallbacks += int(
             not had_equipment and bool(rec.get("equipment"))
         )
+        rec = apply_cache_combat(rec, cache)
         packed = build_record(rec, model_links)
         if packed is None:
             continue
@@ -980,6 +1004,7 @@ def main():
             exported_cache_equipment_fallbacks += int(
                 not had_equipment and bool(rec.get("equipment"))
             )
+            rec = apply_cache_combat(rec, cache_items.get(item_id))
             packed = build_record(rec, model_links)
             if packed is None:
                 continue

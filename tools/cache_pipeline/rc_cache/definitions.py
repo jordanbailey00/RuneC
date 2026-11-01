@@ -443,7 +443,9 @@ def decode_item_definition(item_id: int, data: bytes) -> ItemDef:
             d.female_model_ids[2] = read_i32(buf)
         elif op in (51, 52, 53, 54):
             read_i32(buf)
-        elif op == 64:
+        elif op == 59:  # b241; may repeat
+            read_u8(buf)
+        elif op in (64, 160, 251):  # 160 carried a u16 list before b241
             pass
         elif op == 65:
             d.tradeable = True
@@ -454,8 +456,6 @@ def decode_item_definition(item_id: int, data: bytes) -> ItemDef:
             read_u16(buf)
         elif op in (113, 114, 115, 158, 159):
             read_u8(buf)
-        elif op == 160:
-            _read_u16_list(buf, read_u8(buf))
         elif op == 164:
             read_string(buf)
         elif op == 200:
@@ -835,6 +835,8 @@ def decode_spotanim_definition(spotanim_id: int, data: bytes) -> SpotanimDef:
             d.shadow = read_u8(buf)
         elif op == 9:
             read_string(buf)
+        elif op == 10:  # b241 flag
+            pass
         elif op == 40:
             for _ in range(read_u8(buf)):
                 d.recolor_from.append(read_u16(buf))

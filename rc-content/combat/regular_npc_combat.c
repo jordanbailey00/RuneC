@@ -3,6 +3,8 @@
 #include "ralos.h"
 #include "magic.h"
 #include "dragonfire.h"
+#include "gear.h"
+#include "specials.h"
 
 #include "activity_mechanics.h"
 #include "combat.h"
@@ -309,6 +311,7 @@ static int regular_npc_attack_damage(RcWorld *world, RcNpc *attacker,
 static void regular_on_npc_hit_player(RcWorld *world,
                                       const RcPendingHit *hit, int damage) {
     if (!world || !hit || damage <= 0 || hit->source_idx < 0) return;
+    rc_content_gear_after_hit_taken(world, hit, damage);
     RcNpc *source = find_npc_by_uid(world, hit->source_idx);
     if (!source) return;
     uint64_t tags = monster_tags_for_def(source->def_id);
@@ -573,7 +576,8 @@ static int regular_modify_npc_attack_speed(RcWorld *world, RcNpc *npc,
 static int regular_modify_incoming_after_protection(RcWorld *world,
                                                     const RcPendingHit *hit,
                                                     int damage) {
-    if (!world || !hit || hit->source_idx < 0 || damage != 0) return damage;
+    if (!world || !hit || hit->source_idx < 0) return damage;
+    if (damage != 0) return rc_content_gear_incoming(world, hit, damage);
     RcNpc *source = find_npc_by_uid(world, hit->source_idx);
     if (!source) return damage;
     uint64_t activity = activity_behavior_for_def(source->def_id);
@@ -597,107 +601,12 @@ static int regular_modify_incoming_after_protection(RcWorld *world,
     return damage;
 }
 
-enum {
-    RC_SPEC_FLAG_MIN_HIT = 1u << 0,
-    RC_SPEC_FLAG_CAP = 1u << 1,
-    RC_SPEC_FLAG_CONSUME_EXTRA_AMMO = 1u << 2,
-    RC_SPEC_FLAG_SGS_RESTORE = 1u << 3,
-    RC_SPEC_FLAG_VOIDWAKER_ROLL = 1u << 4,
-};
-
-typedef struct {
-    int item_id;
-    int cost;
-    int damage_pct;
-    int min_hit;
-    int max_cap;
-    uint8_t flags;
-} RcPlayerSpecialDef;
-
-static const RcPlayerSpecialDef g_player_specials[] = {
-    {28919, 5000, 100, 0, 0, 0},    // Tonalztics of ralos
-    {28922, 5000, 100, 0, 0, 0},
-    {1215, 2500, 115, 0, 0, 0},      // Dragon dagger
-    {1231, 2500, 115, 0, 0, 0},
-    {5680, 2500, 115, 0, 0, 0},
-    {5698, 2500, 115, 0, 0, 0},
-    {1305, 2500, 125, 0, 0, 0},      // Dragon longsword
-    {4153, 6000, 100, 0, 0, 0},      // Granite maul
-    {12848, 6000, 100, 0, 0, 0},
-    {24225, 5000, 100, 0, 0, 0},
-    {24227, 5000, 100, 0, 0, 0},
-    {11235, 5500, 130, 5, 0,
-     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
-    {12765, 5500, 130, 5, 0,
-     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
-    {12766, 5500, 130, 5, 0,
-     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
-    {12767, 5500, 130, 5, 0,
-     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
-    {12768, 5500, 130, 5, 0,
-     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
-    {20408, 5500, 130, 5, 0,
-     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
-    {27853, 5500, 130, 7, 0,
-     RC_SPEC_FLAG_MIN_HIT | RC_SPEC_FLAG_CONSUME_EXTRA_AMMO},
-    {11802, 5000, 137, 0, 0, 0},     // Armadyl godsword
-    {11804, 5000, 121, 0, 0, 0},     // Bandos godsword
-    {11806, 5000, 110, 0, 0, RC_SPEC_FLAG_SGS_RESTORE},
-    {11808, 5000, 110, 0, 0, 0},     // Zamorak godsword
-    {20368, 5000, 137, 0, 0, 0},
-    {20370, 5000, 121, 0, 0, 0},
-    {20372, 5000, 110, 0, 0, RC_SPEC_FLAG_SGS_RESTORE},
-    {20374, 5000, 110, 0, 0, 0},
-    {26233, 5000, 110, 0, 0, 0},     // Ancient godsword
-    {12926, 5000, 150, 0, 0, 0},     // Toxic blowpipe
-    {28688, 5000, 150, 0, 0, 0},
-    {13265, 2500, 85, 0, 0, 0},      // Abyssal dagger
-    {13267, 2500, 85, 0, 0, 0},
-    {13269, 2500, 85, 0, 0, 0},
-    {13271, 2500, 85, 0, 0, 0},
-    {13652, 5000, 150, 0, 0, 0},     // Dragon claws, first-pass
-    {20784, 5000, 150, 0, 0, 0},
-    {28039, 5000, 150, 0, 0, 0},
-    {28534, 5000, 150, 0, 0, 0},
-    {13576, 5000, 150, 0, 0, 0},     // Dragon warhammer
-    {26710, 5000, 150, 0, 0, 0},
-    {19478, 6500, 125, 0, 0, 0},     // Light ballista
-    {19481, 6500, 125, 0, 0, 0},     // Heavy ballista
-    {26712, 6500, 125, 0, 0, 0},
-    {21902, 6000, 120, 0, 0, 0},     // Dragon crossbow
-    {11785, 5000, 100, 0, 0, 0},     // Armadyl crossbow
-    {26374, 7500, 100, 0, 0, 0},     // Zaryte crossbow
-    {27690, 5000, 100, 0, 0, RC_SPEC_FLAG_VOIDWAKER_ROLL},
-    {27869, 5000, 100, 0, 0, RC_SPEC_FLAG_VOIDWAKER_ROLL},
-};
-
-static const RcPlayerSpecialDef *player_special_def(int item_id) {
-    for (unsigned i = 0;
-            i < sizeof(g_player_specials) / sizeof(g_player_specials[0]);
-            i++) {
-        if (g_player_specials[i].item_id == item_id)
-            return &g_player_specials[i];
-    }
-    return NULL;
-}
-
-static bool is_dragon_arrow_id(int item_id) {
-    return item_id == 11212;
-}
-
 static int regular_player_special_energy_cost(const RcWorld *world,
                                               const RcPlayer *player,
                                               const RcNpc *target,
-                                              int weapon_id) {
-    (void)world;
-    (void)target;
-    const RcPlayerSpecialDef *def = player_special_def(weapon_id);
-    if (!def) return 0;
-    if ((def->flags & RC_SPEC_FLAG_CONSUME_EXTRA_AMMO) != 0) {
-        int qty = player ? player->equipment[EQUIP_AMMO].quantity : 0;
-        if (qty < 2) return 0;
-    }
-    return def->cost;
+                                              int weapon_id,
+                                              const char **failure) {
+    return rc_content_special_cost(world, player, target, weapon_id, failure);
 }
 
 static int regular_player_resource_slot(const RcPlayer *player, const char **failure) {
@@ -709,103 +618,72 @@ static int regular_player_resource_slot(const RcPlayer *player, const char **fai
 }
 
 static int regular_player_ranged_resource_cost(const RcPlayer *player, bool special) {
-    int weapon_id = player->equipment[EQUIP_WEAPON].item_id;
-    const RcItemDef *weapon = rc_item_def_get(weapon_id);
-    if (weapon && strstr(weapon->name, "Dark bow"))
+    const RcGearRow *row = rc_content_gear_row(player->equipment[EQUIP_WEAPON].item_id);
+    if (row->family == GEAR_DARK_BOW)
         return player->equipment[EQUIP_AMMO].quantity > 1 ? 2 : 1;
-    const RcPlayerSpecialDef *def = special ? player_special_def(weapon_id) : NULL;
-    return def && (def->flags & RC_SPEC_FLAG_CONSUME_EXTRA_AMMO) != 0 ? 2 : 1;
+    return special && (row->special == SPECIAL_SNAPSHOT || row->special == SPECIAL_DUALITY) ? 2 : 1;
 }
 
 static int regular_prepare_player_hits(RcWorld *world, const RcNpc *target,
                                        RcCombatCalc *base, bool special,
                                        RcPendingHit *hits, int capacity,
                                        const char **failure) {
-    if (world->player.combat_style != COMBAT_RANGED) return 0;
-    const RcItemDef *weapon = rc_item_def_get(world->player.equipment[EQUIP_WEAPON].item_id);
-    rc_content_ranged_calc(world, target, base);
-    if (!weapon || !strstr(weapon->name, "Dark bow"))
-        return rc_content_ralos_hits(world, target, base, special, hits, capacity, failure);
-    int count = regular_player_ranged_resource_cost(&world->player, special);
-    if (capacity < count) { *failure = "Insufficient hit slots for this bow."; return -1; }
-    int ammo = world->player.equipment[EQUIP_AMMO].item_id;
-    bool dragon = ammo == 11212 || (ammo >= 11227 && ammo <= 11229);
-    RcCombatCalc calc = *base;
-    if (special) calc.max_hit = calc.max_hit * (dragon ? 150 : 130) / 100;
-    for (int i = 0; i < count; i++) {
-        RcCombatRoll roll = rc_roll_attack(&calc, &world->rng_state, true);
-        if (target->force_player_max_hit) roll = (RcCombatRoll){true, calc.max_hit};
-        if (special) {
-            int minimum = dragon ? 8 : 5;
-            if (roll.damage < minimum) roll.damage = minimum;
-            if (roll.damage > 48) roll.damage = 48;
-        }
-        hits[i] = (RcPendingHit){.damage = roll.damage, .max_hit = calc.max_hit,
-                               .accurate = roll.accurate};
+    RcPlayer *p = &world->player;
+    RcCombatStyle style = p->combat_style;
+    int spell_idx = p->manual_spell_cast >= 0 ? p->manual_spell_cast : p->autocast_spell;
+    const RcSpellDef *spell = style == COMBAT_MAGIC && spell_idx >= 0
+        ? rc_spell_def_get(spell_idx) : NULL;
+    RcGearAttack attack;
+    rc_content_gear_attack(&attack, world, target, spell, special);
+    if (style == COMBAT_RANGED) {
+        rc_content_ranged_calc(world, target, base);
+        rc_content_gear_ranged(&attack, base);
+    } else if (style == COMBAT_MAGIC) {
+        rc_content_gear_spell_floor(&attack, base);
+    } else {
+        rc_content_gear_melee(&attack, base);
     }
+    if (rc_content_gear_blocked(&attack)) {
+        base->max_hit = 0;
+        hits[0] = (RcPendingHit){.damage = 0, .accurate = false};
+        return 1;
+    }
+    int count = rc_content_ralos_hits(world, target, base, special, hits, capacity, failure);
+    if (count == 0 && special) count = rc_content_special_hits(&attack, base, hits, capacity, failure);
+    if (count == 0) count = rc_content_gear_weapon_hits(&attack, base, hits, capacity);
+    if (count == 0) {
+        RcCombatRoll roll = rc_content_gear_roll(&attack, base);
+        hits[0] = (RcPendingHit){.damage = roll.damage, .max_hit = base->max_hit,
+                                 .accurate = roll.accurate};
+        count = 1;
+    }
+    if (count > 0) rc_content_gear_after_hits(&attack, base, hits, count);
     return count;
 }
 
-static void restore_saradomin_godsword(RcWorld *world, int damage) {
-    if (!world || damage <= 0) return;
-    RcPlayer *p = &world->player;
-    int hp = (damage + 1) / 2;
-    if (hp < 10) hp = 10;
-    p->current_hp += hp;
-    if (p->current_hp > p->max_hp) p->current_hp = p->max_hp;
-    int prayer = (damage + 3) / 4;
-    if (prayer < 5) prayer = 5;
-    rc_prayer_restore_points(p, prayer);
+static void regular_on_player_hit_npc(RcWorld *world, RcNpc *target,
+                                      const RcPendingHit *hit, int damage) {
+    rc_content_magic_hit(world, target, hit, damage);
+    rc_content_gear_landed(world, target, hit, damage);
+    if (hit->flags & RC_HIT_FLAG_SPECIAL)
+        rc_content_special_landed(world, target, hit, damage);
 }
 
-static int regular_modify_player_special_damage(RcWorld *world,
-                                                const RcPlayer *player,
-                                                const RcNpc *target,
-                                                int weapon_id,
-                                                RcCombatStyle style,
-                                                int damage,
-                                                int max_hit) {
-    (void)target;
-    (void)style;
-    const RcPlayerSpecialDef *def = player_special_def(weapon_id);
-    if (!def) return damage;
-    int out = damage;
-    if ((def->flags & RC_SPEC_FLAG_VOIDWAKER_ROLL) != 0) {
-        int low = (max_hit + 1) / 2;
-        int high = (max_hit * 3) / 2;
-        if (target && target->force_player_max_hit) {
-            out = high;
-        } else if (high > low && world) {
-            out = low + rc_rng_range(&world->rng_state, high - low);
-        } else {
-            out = low;
-        }
-    } else if (out > 0 && def->damage_pct != 100) {
-        out = (out * def->damage_pct) / 100;
-    }
-    if ((def->flags & RC_SPEC_FLAG_MIN_HIT) != 0 && out > 0) {
-        int min_hit = def->min_hit;
-        if (player && is_dragon_arrow_id(player->equipment[EQUIP_AMMO].item_id)) {
-            min_hit = min_hit < 8 ? 8 : min_hit;
-            if (def->item_id != 27853) out = (damage * 150) / 100;
-            if (out > 48) out = 48;
-        }
-        if (out < min_hit) out = min_hit;
-    }
-    if ((def->flags & RC_SPEC_FLAG_CAP) != 0 && def->max_cap > 0 &&
-            out > def->max_cap) {
-        out = def->max_cap;
-    }
-    return out;
+static int regular_special_recover_ticks(const RcPlayer *player) {
+    return rc_content_wearing(player, GEAR_LIGHTBEARER) ? RC_SPECIAL_RECOVER_TICKS / 2
+        : RC_SPECIAL_RECOVER_TICKS;
 }
 
-static void regular_after_player_special_launch(RcWorld *world,
-                                                 int weapon_id, int damage) {
-    const RcPlayerSpecialDef *def = player_special_def(weapon_id);
-    if (def && (def->flags & RC_SPEC_FLAG_SGS_RESTORE) != 0)
-        restore_saradomin_godsword(world, damage);
+static bool regular_weapon_has_special(int weapon_id) {
+    int special = rc_content_gear_row(weapon_id)->special;
+    return special != SPECIAL_NONE && special != SPECIAL_DRAGONFIRE_BLAST;
 }
 
+static int regular_adjust_attack_speed(RcWorld *world, int weapon_id, bool special, int speed) {
+    int cut = world->player.content_gear[RC_GEAR_STATE_ATTACK_SPEED_CUT];
+    world->player.content_gear[RC_GEAR_STATE_ATTACK_SPEED_CUT] = 0;
+    return (special ? rc_content_special_attack_speed(world, weapon_id, speed) : speed) - cut;
+}
 
 int rc_content_combat_register(struct RcWorld *world) {
     if (!world) return 0;
@@ -831,12 +709,17 @@ int rc_content_combat_register(struct RcWorld *world) {
         .consume_weapon_charge = rc_content_magic_consume_charge,
         .prepare_player_magic = rc_content_prepare_magic,
         .can_autocast_spell = rc_content_can_autocast,
-        .on_player_hit_npc = rc_content_magic_hit,
-        .modify_player_special_damage = regular_modify_player_special_damage,
-        .after_player_special_launch = regular_after_player_special_launch,
+        .on_player_hit_npc = regular_on_player_hit_npc,
+        .activate_player_special = rc_content_special_activate,
+        .weapon_has_special = regular_weapon_has_special,
+        .activate_shield_special = rc_content_shield_slam,
+        .shield_special_charges = rc_content_rondache_charges,
+        .special_recover_ticks = regular_special_recover_ticks,
+        .adjust_player_attack_speed = regular_adjust_attack_speed,
         .player_has_spell_runes = rc_content_has_spell_runes,
         .player_consume_spell_runes = rc_content_consume_spell_runes,
     };
     rc_combat_register_content_hooks(world, &hooks);
-    return rc_content_ralos_register(world) && rc_content_runes_register(world);
+    return rc_content_ralos_register(world) && rc_content_runes_register(world)
+        && rc_content_weapon_charges_register(world);
 }

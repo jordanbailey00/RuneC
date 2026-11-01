@@ -13,9 +13,11 @@
 #define RUNEC_UI_BANK_SLOT_COUNT 800
 #define RUNEC_UI_BANK_TAB_COUNT 5
 #define RUNEC_UI_BANK_TAB_LABEL_LEN 16
-#define RUNEC_UI_CHAT_LINES 7
+#define RUNEC_UI_CHAT_LINES 128
+#define RUNEC_UI_CHAT_LINE_MAX 360
 #define RUNEC_UI_CHAT_TAB_COUNT 7
-#define RUNEC_UI_CHAT_INPUT_MAX 128
+#define RUNEC_UI_CHAT_INPUT_MAX 328   // 80 typed characters, escaped
+#define RUNEC_UI_COMPASS_SIZE 35
 #define RUNEC_UI_CONTEXT_ACTIONS 16
 #define RUNEC_UI_CONTEXT_TEXT_MAX 80
 #define RUNEC_UI_MINIMAP_DOTS 256
@@ -34,12 +36,10 @@ typedef enum RuneCUiTab {
     RUNEC_UI_TAB_NONE = -1,
     RUNEC_UI_TAB_COMBAT = 0,
     RUNEC_UI_TAB_SKILLS,
-    RUNEC_UI_TAB_QUESTS,
     RUNEC_UI_TAB_INVENTORY,
     RUNEC_UI_TAB_EQUIPMENT,
     RUNEC_UI_TAB_PRAYER,
     RUNEC_UI_TAB_SPELLBOOK,
-    RUNEC_UI_TAB_SETTINGS,
     RUNEC_UI_TAB_CLAN,
     RUNEC_UI_TAB_COUNT
 } RuneCUiTab;
@@ -59,9 +59,11 @@ typedef enum RuneCUiIntentKind {
     RUNEC_UI_INTENT_CHAT_SEND,
     RUNEC_UI_INTENT_MINIMAP_CLICK,
     RUNEC_UI_INTENT_RUN_TOGGLE,
+    RUNEC_UI_INTENT_COMPASS,
     RUNEC_UI_INTENT_COMBAT_STYLE,
     RUNEC_UI_INTENT_AUTO_RETALIATE,
     RUNEC_UI_INTENT_SPECIAL_ATTACK,
+    RUNEC_UI_INTENT_SHIELD_SPECIAL,
     RUNEC_UI_INTENT_CONTEXT_ACTION,
     RUNEC_UI_INTENT_INVENTORY_ACTION,
     RUNEC_UI_INTENT_EQUIPMENT_ACTION,
@@ -158,8 +160,15 @@ typedef enum RuneCUiContextSourceKind {
     RUNEC_UI_CONTEXT_SPELL,
     RUNEC_UI_CONTEXT_COMPONENT,
     RUNEC_UI_CONTEXT_BANK,
-    RUNEC_UI_CONTEXT_BANK_INVENTORY
+    RUNEC_UI_CONTEXT_BANK_INVENTORY,
+    RUNEC_UI_CONTEXT_CHAT_TAB,
+    RUNEC_UI_CONTEXT_WIDGET
 } RuneCUiContextSourceKind;
+
+typedef enum RuneCUiChatKind {
+    RUNEC_UI_CHAT_GAME = 0,
+    RUNEC_UI_CHAT_PUBLIC
+} RuneCUiChatKind;
 
 typedef enum RuneCUiSelectedTargetKind {
     RUNEC_UI_SELECTED_NONE = 0,
@@ -210,7 +219,6 @@ typedef struct RuneCUiComponentEventMask {
 typedef struct RuneCUiState {
     RuneCUiTab active_tab;
     RuneCUiIntent last_intent;
-    float tab_press_timer[RUNEC_UI_TAB_COUNT];
 
     RuneCUiSlot inventory[RUNEC_UI_INV_SLOT_COUNT];
     RuneCUiSlot equipment[RUNEC_UI_EQUIP_SLOT_COUNT];
@@ -231,7 +239,11 @@ typedef struct RuneCUiState {
     int selected_combat_style;
     int auto_retaliate;
     int special_attack_enabled;
+    int special_attack_available;  // the wielded weapon has a special
     int special_attack_energy;
+    int special_attack_cost;       // percent; 0 when it has no fixed cost
+    int shield_special_available;  // the worn shield has a special
+    int shield_special_charges;
     int combat_weapon_category;
     char combat_weapon_name[64];
     RuneCUiCombatStyleOption combat_styles[RUNEC_UI_COMBAT_STYLE_COUNT];
@@ -246,7 +258,10 @@ typedef struct RuneCUiState {
     int combat_level;
     int skill_current[RUNEC_UI_SKILL_COUNT];
     int skill_base[RUNEC_UI_SKILL_COUNT];
+    int skill_xp[RUNEC_UI_SKILL_COUNT];
+    int skill_next_xp[RUNEC_UI_SKILL_COUNT];    // 0 at the top level
     int skill_total;
+    int64_t skill_total_xp;
 
     int world_x;
     int world_y;
@@ -264,9 +279,15 @@ typedef struct RuneCUiState {
     int choice_count;
 
     int chat_focused;
+    int chat_collapsed;
     int active_chat_tab;
+    int chat_filters[RUNEC_UI_CHAT_TAB_COUNT];
+    float chat_tab_flash[RUNEC_UI_CHAT_TAB_COUNT];
+    int chat_scroll;        // pixels scrolled up from the newest line
+    int chat_scroll_dragging;
     char chat_input[RUNEC_UI_CHAT_INPUT_MAX];
-    char chat_lines[RUNEC_UI_CHAT_LINES][96];
+    char chat_lines[RUNEC_UI_CHAT_LINES][RUNEC_UI_CHAT_LINE_MAX];   // newest first
+    unsigned char chat_line_kinds[RUNEC_UI_CHAT_LINES];
     int chat_line_count;
     int magic_filter_open;
     int dev_spellbooks_enabled;
@@ -308,6 +329,12 @@ typedef struct RuneCUiState {
     float minimap_rotation;
     Texture2D minimap_texture;
     int minimap_texture_ready;
+    Texture2D compass_texture;
+    Color *compass_source;
+    int compass_row_start[RUNEC_UI_COMPASS_SIZE];
+    int compass_row_width[RUNEC_UI_COMPASS_SIZE];
+    int compass_angle;
+    int compass_ready;
     RuneCUiItemIcon item_icons[RUNEC_UI_ITEM_ICON_CACHE];
     int item_icon_count;
 

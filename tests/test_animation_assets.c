@@ -37,6 +37,44 @@ static void test_posed_mesh_keeps_stacked_face_offsets(void) {
     assert(near(mesh[10], 0.0f) && near(mesh[11], 0.0f));
 }
 
+// Every attack the visuals table names has to ship in both runtime caches.
+static void test_visual_attack_sequences_ship(AnimCache *all) {
+    AnimCache *player = anim_cache_load(RC_TEST_SOURCE_DIR "/data/anims/player.anims");
+    FILE *table = fopen(RC_TEST_SOURCE_DIR "/content/combat_visuals/visuals.tsv", "r");
+    assert(player && table);
+    static char line[2048];
+    int checked = 0;
+    while (fgets(line, sizeof(line), table)) {
+        int seq = -1;
+        if (strncmp(line, "item|", 5) && strncmp(line, "special|", 8)) continue;
+        if (sscanf(line, "%*[^|]|%*[^|]|%*[^|]|%d", &seq) != 1) continue;
+        AnimSequence *shared = anim_get_sequence(all, (uint16_t)seq);
+        AnimSequence *own = anim_get_sequence(player, (uint16_t)seq);
+        if (!shared || !own) fprintf(stderr, "missing attack sequence %d: %s", seq, line);
+        assert(shared && own);
+        for (int f = 0; f < own->frame_count; f++)
+            assert(own->frames[f].frame.framebase_id == 0xFFFF
+                   || anim_get_framebase(player, own->frames[f].frame.framebase_id));
+        checked++;
+    }
+    assert(checked > 3000);
+    fclose(table);
+    table = fopen(RC_TEST_SOURCE_DIR "/content/items/block_anims.tsv", "r");
+    assert(table);
+    checked = 0;
+    while (fgets(line, sizeof(line), table)) {
+        int item = 0, seq = -1;
+        if (sscanf(line, "%d|%*[^|]|%d", &item, &seq) != 2) continue;
+        if (!anim_get_sequence(all, (uint16_t)seq) || !anim_get_sequence(player, (uint16_t)seq))
+            fprintf(stderr, "missing block sequence %d: %s", seq, line);
+        assert(anim_get_sequence(all, (uint16_t)seq) && anim_get_sequence(player, (uint16_t)seq));
+        checked++;
+    }
+    assert(checked > 1000);
+    fclose(table);
+    anim_cache_free(player);
+}
+
 int main(void) {
     test_posed_mesh_keeps_stacked_face_offsets();
     AnimSequenceFrame frames[] = {{.delay = 30}, {.delay = 0}, {.delay = 35}};
@@ -74,6 +112,7 @@ int main(void) {
         assert(i == 0 || cache->bases[i - 1].base_id < b->base_id);
         assert(anim_get_framebase(cache, b->base_id) == b);
     }
+    test_visual_attack_sequences_ship(cache);
     assert(anim_get_sequence(cache, 10501) && "warped sceptre cast missing");
     assert(anim_get_sequence(cache, 12397) && "Eye of Ayak cast missing");
     int casts[] = {1162, 1167, 1978, 1979, 7855, 8972, 8977};

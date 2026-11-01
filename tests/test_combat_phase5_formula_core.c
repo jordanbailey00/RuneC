@@ -112,7 +112,7 @@ static void test_magic_formula_uses_magic_prayer_damage_and_defence_blend(void) 
     p.attack_stance = RC_ATTACK_STANCE_CAST;
     p.active_prayers = PRAYER_AUGURY;
     p.equipment_bonuses[EQ_MAGIC_ATK] = 70;
-    p.equipment_bonuses[EQ_MAGIC_DMG] = 10;
+    p.equipment_bonuses[EQ_MAGIC_DMG] = 100;
     p.equipment_bonuses[EQ_MAGIC_DEF] = 30;
     RcNpc npc = add_formula_npc();
 

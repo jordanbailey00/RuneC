@@ -220,7 +220,8 @@ bool rc_npc_direct_walk_reaches(const RcWorldMap *map, int plane, int x,
                                 int y, int size, const RcRouteTarget *target,
                                 int max_steps);
 void rc_npc_movement_tick(RcWorld *world, RcNpc *npc);
-bool rc_npc_apply_poison(RcWorld *world, RcNpc *npc, int damage);
+bool rc_npc_apply_poison(RcWorld *world, RcNpc *npc, int severity);
+bool rc_npc_apply_venom(RcWorld *world, RcNpc *npc);
 void rc_npc_status_tick(RcWorld *world, RcNpc *npc);
 
 // Per-tick NPC processing (wander AI, respawn, movement)

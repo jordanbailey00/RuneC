@@ -1260,13 +1260,27 @@ void rc_npc_movement_tick(RcWorld *world, RcNpc *npc) {
     }
 }
 
-bool rc_npc_apply_poison(RcWorld *world, RcNpc *npc, int damage) {
-    if (!world || !npc || npc->is_dead || damage <= 0) return false;
+bool rc_npc_apply_poison(RcWorld *world, RcNpc *npc, int severity) {
+    if (!world || !npc || npc->is_dead || severity <= 0) return false;
     const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
-    if (!def || def->poison_immune)
+    // Poison no longer downgrades venom on NPCs.
+    if (!def || def->poison_immune || npc->toxin_venom)
         return false;
-    if (damage > npc->poison_damage) npc->poison_damage = damage;
-    npc->poison_tick_counter = 30;
+    if (npc->toxin_severity == 0) npc->toxin_tick_counter = 30;
+    if (severity > npc->toxin_severity) npc->toxin_severity = severity;
+    return true;
+}
+
+bool rc_npc_apply_venom(RcWorld *world, RcNpc *npc) {
+    if (!world || !npc || npc->is_dead) return false;
+    const RcNpcDef *def = rc_npc_def_for_npc(world, npc);
+    if (!def) return false;
+    // Venom-immune NPCs take regular poison from venomous sources instead.
+    if (def->venom_immune) return rc_npc_apply_poison(world, npc, 30);
+    if (npc->toxin_venom) return true;
+    if (npc->toxin_severity == 0) npc->toxin_tick_counter = 30;
+    npc->toxin_venom = true;
+    npc->toxin_severity = 6;
     return true;
 }
 
@@ -1289,17 +1303,29 @@ void rc_npc_status_tick(RcWorld *world, RcNpc *npc) {
             if (npc->current_hp < npc->spawn_hp) npc->current_hp++;
         }
     }
-    if (npc->poison_damage > 0) {
-        if (npc->poison_tick_counter > 0) {
-            npc->poison_tick_counter--;
+    if (npc->toxin_severity > 0) {
+        if (npc->toxin_tick_counter > 0) {
+            npc->toxin_tick_counter--;
         } else {
+            int damage = npc->toxin_venom ? npc->toxin_severity
+                                          : (npc->toxin_severity + 4) / 5;
             if (!rc_queue_hit_meta(npc->pending_hits, &npc->num_pending_hits,
-                              npc->poison_damage, 0, COMBAT_NONE,
-                              RC_HIT_SOURCE_STATUS, 0,
-                              world->tick, 0, npc->poison_damage)) return;
-            npc->poison_damage--;
-            npc->poison_tick_counter = npc->poison_damage > 0 ? 30 : 0;
+                              damage, 0, COMBAT_NONE, RC_HIT_SOURCE_STATUS, 0,
+                              world->tick, 0, damage)) return;
+            if (npc->toxin_venom) {
+                npc->toxin_severity = damage < 20 ? damage + 2 : 20;
+            } else {
+                npc->toxin_severity--;
+            }
+            npc->toxin_tick_counter = npc->toxin_severity > 0 ? 30 : 0;
         }
+    }
+    if (npc->burn_remaining > 0 && world->tick >= npc->burn_next_tick
+            && rc_queue_hit_meta(npc->pending_hits, &npc->num_pending_hits, 1, 0,
+                                 COMBAT_NONE, RC_HIT_SOURCE_STATUS, 0,
+                                 world->tick, 0, 1)) {
+        npc->burn_remaining--;
+        npc->burn_next_tick = world->tick + 4;
     }
 }
 

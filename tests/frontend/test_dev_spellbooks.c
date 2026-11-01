@@ -18,8 +18,10 @@ static bool test_no_button(int button) { (void)button; return false; }
 static int hover_draw_count;
 static char hover_draw_text[6][180];
 static Color hover_draw_colors[6];
-static void test_draw_text(Font font, const char *text, Vector2 pos, float size, float spacing, Color color) {
-    (void)font; (void)pos; (void)size; (void)spacing;
+static void test_draw_text(const RuneCUiAssets *assets, RuneCUiFontId font,
+                           const char *text, int x, int baseline, Color color,
+                           int shadow) {
+    (void)assets; (void)font; (void)x; (void)baseline; (void)shadow;
     if (hover_draw_count < 6) {
         snprintf(hover_draw_text[hover_draw_count], 180, "%s", text);
         hover_draw_colors[hover_draw_count++] = color;
@@ -32,14 +34,12 @@ static void test_draw_texture(Texture2D texture, int x, int y, Color tint) {
 }
 static void test_unload_texture(Texture2D texture) { unloaded_icon = texture.id; }
 static int missing_icon_drawn;
-static void test_text_shadow(const RuneCUiAssets *assets, const char *text,
-                              float x, float y, float size, Color color) {
-    (void)assets; (void)x; (void)y; (void)size; (void)color;
+static void test_text_box(const RuneCUiAssets *assets, RuneCUiFontId font,
+                          const char *text, Rectangle box, int x_align,
+                          int y_align, Color color, int shadow) {
+    (void)assets; (void)font; (void)box; (void)x_align; (void)y_align;
+    (void)color; (void)shadow;
     missing_icon_drawn = strcmp(text, "?") == 0;
-}
-static Vector2 test_measure_text(Font font, const char *text, float size, float spacing) {
-    (void)font; (void)spacing;
-    return (Vector2){strlen(text) * size / 2, size};
 }
 #define GetScreenWidth test_screen_width
 #define GetScreenHeight test_screen_height
@@ -52,11 +52,10 @@ static Vector2 test_measure_text(Font font, const char *text, float size, float 
 #define GetCharPressed test_character
 #define GetMouseWheelMove test_zero
 #define GetFrameTime test_zero
-#define DrawTextEx test_draw_text
-#define MeasureTextEx test_measure_text
+#define runec_ui_draw_text test_draw_text
+#define runec_ui_draw_text_box test_text_box
 #define DrawTexture test_draw_texture
 #define UnloadTexture test_unload_texture
-#define runec_ui_draw_text_shadow test_text_shadow
 #include "../../rc-viewer/ui.c"
 #include "../../rc-viewer/dev_validation.h"
 #include "api.h"
@@ -73,6 +72,7 @@ static Vector2 test_measure_text(Font font, const char *text, float size, float 
 static void test_bank_ui(RcWorld *world) {
     RuneCUiState *ui = calloc(1, sizeof(*ui));
     assert(ui);
+    memset(ui->assets.fonts[RUNEC_FONT_B12].advance, 6, 256);
     ui->active_tab = RUNEC_UI_TAB_INVENTORY;
     ui->bank_open = 1;
     ui->bank[4] = (RuneCUiSlot){.item_id=23685,.quantity=10000,.enabled=1,.generation=7};
@@ -93,11 +93,11 @@ static void test_bank_ui(RcWorld *world) {
     assert(!strcmp(hover.action,"Withdraw-All"));
     input_mouse = bank_mouse;
     draw_item_hover(ui,&layout,1280,720);
-    assert(hover_draw_count == 6 && !strcmp(hover_draw_text[1],"Withdraw-1"));
-    assert(!strcmp(hover_draw_text[3]," Divine super combat potion(4)"));
-    assert(!strcmp(hover_draw_text[5]," / 6 more options"));
-    assert(hover_draw_colors[3].r == 255 && hover_draw_colors[3].g == 144 && hover_draw_colors[3].b == 64);
-    assert(hover_draw_colors[1].g == 255 && hover_draw_colors[5].g == 255);
+    assert(hover_draw_count == 3 && !strcmp(hover_draw_text[0],"Withdraw-1"));
+    assert(!strcmp(hover_draw_text[1]," Divine super combat potion(4)"));
+    assert(!strcmp(hover_draw_text[2]," / 6 more options"));
+    assert(hover_draw_colors[1].r == 255 && hover_draw_colors[1].g == 144 && hover_draw_colors[1].b == 64);
+    assert(hover_draw_colors[0].g == 255 && hover_draw_colors[2].g == 255);
     assert(!item_hover_text(ui,&layout,1280,720,(Vector2){panel.x+2,panel.y+2},0,&hover));
     assert(!bank_source_slot(ui,RUNEC_UI_CONTEXT_BANK,-1));
     assert(!bank_source_slot(ui,RUNEC_UI_CONTEXT_NONE,0));
@@ -205,7 +205,7 @@ static void test_bank_ui(RcWorld *world) {
     assert(!strcmp(hover.action,"Use") && !strcmp(hover.target,"Shark -> Shark") && !hover.more_options);
     hover_draw_count = 0;
     draw_item_hover(ui,&layout,1280,720);
-    assert(hover_draw_count == 6 && !hover_draw_text[5][0]);
+    assert(hover_draw_count == 3 && !hover_draw_text[2][0]);
     runec_ui_clear_selected_target(ui);
     ui->inventory[0].action_count = 0;
     assert(!item_hover_text(ui,&layout,1280,720,input_mouse,0,&hover));
@@ -291,6 +291,187 @@ static void test_bank_ui(RcWorld *world) {
     for (int i = 0; i < RC_INVENTORY_SIZE; i++) world->player.inventory[i] = (RcInvSlot){.item_id=-1};
 }
 
+static void test_chat_wrap(void) {
+    RuneCUiAssets *assets = calloc(1, sizeof(*assets));
+    assert(assets);
+    memset(assets->fonts[RUNEC_FONT_P12].advance, 6, 256);
+    const RuneCUiFontId f = RUNEC_FONT_P12;
+    assert(runec_ui_text_rows(assets, f, "aaa bbb", 42) == 1);
+    assert(runec_ui_text_rows(assets, f, "aaa bbb", 30) == 2);
+    // Tags take no width, a hyphen is a break, and a lone long word stays whole.
+    assert(runec_ui_text_rows(assets, f, "<col=0000ff>aaa bbb</col>", 42) == 1);
+    assert(runec_ui_text_rows(assets, f, "long-word", 30) == 2);
+    assert(runec_ui_text_rows(assets, f, "unbreakable", 30) == 1);
+    assert(runec_ui_text_rows(assets, f, "aaa bbb ccc ddd", 42) == 2);
+    assert(runec_ui_text_rows(assets, f, "aaa bbb ccc ddd", 20) == 4);
+    free(assets);
+}
+
+static void test_chat_ui(void) {
+    RuneCUiState *ui = calloc(1, sizeof(*ui));
+    assert(ui);
+    RuneCUiLayout layout;
+    frame_layout(ui, 1280, 720, &layout);
+    assert(layout.chat_messages.x == 7 && layout.chat_messages.y == 720 - 165 + 6);
+    assert(layout.chat_messages.width == 489 && layout.chat_messages.height == 114);
+    assert(layout.chat_input.y == layout.chat_messages.y + 114 && layout.chat_input.width == 505);
+
+    // Lines newest first; scrolling keeps the reader's place as lines arrive.
+    for (int i = 0; i < 20; i++) ui_add_chat(ui, "line");
+    assert(ui->chat_line_count == 20 && chat_scroll_max(ui) == 20 * 14 + 2 - 114);
+    Rectangle bar = layout.chat_scrollbar;
+    Rectangle thumb = chat_thumb_rect(ui, &layout);
+    assert(thumb.height == 82 * 114 / (114 + 168));
+    assert(thumb.y + thumb.height == bar.y + bar.height - 16);
+    ui->chat_scroll = 168;
+    assert(chat_thumb_rect(ui, &layout).y == bar.y + 16);
+    ui->chat_scroll = 14;
+    ui_add_chat(ui, "new");
+    assert(ui->chat_scroll == 28 && !strcmp(ui->chat_lines[0], "new"));
+    set_chat_scroll(ui, 100000);
+    assert(ui->chat_scroll == chat_scroll_max(ui));
+    set_chat_scroll(ui, -5);
+    assert(ui->chat_scroll == 0);
+    for (int i = 0; i < RUNEC_UI_CHAT_LINES * 2; i++) ui_add_chat(ui, "line");
+    assert(ui->chat_line_count == RUNEC_UI_CHAT_LINES);
+
+    // Enter opens the input, typing stops at the client's limit, Enter sends.
+    ui->chat_line_count = 0;
+    input_key = KEY_ENTER;
+    runec_ui_handle_input(ui, 1280, 720);
+    assert(ui->chat_focused && ui->last_intent.kind == RUNEC_UI_INTENT_CHAT_FOCUS);
+    input_key = -1;
+    input_text = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                 "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+    runec_ui_handle_input(ui, 1280, 720);
+    assert(strlen(ui->chat_input) == RUNEC_UI_CHAT_INPUT_LIMIT);
+    ui->chat_input[0] = '\0';
+    input_text = "a<b>";
+    input_key = KEY_ENTER;
+    runec_ui_handle_input(ui, 1280, 720);
+    assert(!ui->chat_focused && !ui->chat_input[0]);
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_CHAT_SEND);
+    assert(!strcmp(ui->last_intent.text, "a<lt>b<gt>"));
+    assert(!strcmp(ui->chat_lines[0], "Player: <col=0000ff>a<lt>b<gt></col>"));
+    assert(ui->chat_line_kinds[0] == RUNEC_UI_CHAT_PUBLIC);
+    input_key = -1;
+    input_text = "";
+
+    // Tab menus set filters; Hide drops public chat from All, not from Public.
+    Rectangle tab = chat_tab_rect(&layout, 2);
+    input_mouse = (Vector2){tab.x + 4, tab.y + 4};
+    input_button = MOUSE_BUTTON_RIGHT;
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->context_open && ui->context_action_count == 8);
+    assert(ui->context_source_kind == RUNEC_UI_CONTEXT_CHAT_TAB);
+    assert(strstr(ui->context_actions[5], "Hide"));
+    input_button = -1;
+    chat_tab_action(ui, 2, ui->context_action_op[5]);
+    close_context(ui);
+    assert(ui->chat_filters[2] == RUNEC_UI_CHAT_FILTER_HIDE);
+    assert(!chat_line_visible(ui, 0));
+    ui_add_chat_kind(ui, RUNEC_UI_CHAT_PUBLIC, "unseen");
+    assert(ui->chat_tab_flash[2] == RUNEC_UI_CHAT_FLASH_SECONDS);
+    ui->active_chat_tab = 2;
+    assert(chat_line_visible(ui, 0));
+    ui_add_chat(ui, "game");
+    assert(ui->chat_tab_flash[1] == RUNEC_UI_CHAT_FLASH_SECONDS);
+    chat_tab_action(ui, 2, CHAT_OP_CLEAR);
+    assert(ui->chat_line_count == 1 && ui->chat_line_kinds[0] == RUNEC_UI_CHAT_GAME);
+
+    // Clicking the open tab collapses the chat and lets clicks reach the world.
+    input_mouse = (Vector2){tab.x + 4, tab.y + 4};
+    input_button = MOUSE_BUTTON_LEFT;
+    assert(runec_ui_handle_input(ui, 1280, 720) && ui->chat_collapsed);
+    frame_layout(ui, 1280, 720, &layout);
+    assert(layout.chat.height == 23);
+    assert(!mouse_over_ui(&layout, (Vector2){100, 620}));
+    tab = chat_tab_rect(&layout, 1);
+    input_mouse = (Vector2){tab.x + 4, tab.y + 4};
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(!ui->chat_collapsed && ui->active_chat_tab == 1 && !ui->chat_tab_flash[1]);
+    ui->chat_collapsed = 1;
+    ui->choice_active = 1;
+    assert(chat_expanded(ui));
+    ui->choice_active = 0;
+
+    // Run, special and the compass; the spec orb is dead without a special.
+    ui->chat_collapsed = 0;
+    frame_layout(ui, 1280, 720, &layout);
+    input_mouse = (Vector2){layout.run_orb.x + 10, layout.run_orb.y + 10};
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_RUN_TOGGLE && ui->last_intent.primary == 1);
+    input_mouse = (Vector2){layout.spec_orb.x + 10, layout.spec_orb.y + 10};
+    runec_ui_handle_input(ui, 1280, 720);
+    assert(ui->last_intent.kind != RUNEC_UI_INTENT_SPECIAL_ATTACK && !ui->special_attack_enabled);
+    ui->special_attack_available = 1;
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_SPECIAL_ATTACK && ui->special_attack_enabled);
+    input_mouse = (Vector2){layout.compass.x + 10, layout.compass.y + 10};
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    // The bar halves with a shield special; alone, the shield takes the whole bar.
+    ui->active_tab = RUNEC_UI_TAB_COMBAT;
+    ui->shield_special_available = 1;
+    Rectangle half = side_ref_rect(&layout, RUNEC_OSRS_COMBAT_SPECIAL_HALVES[1].rect);
+    input_mouse = (Vector2){half.x + 40, half.y + 10};
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_SHIELD_SPECIAL);
+    half = side_ref_rect(&layout, RUNEC_OSRS_COMBAT_SPECIAL_HALVES[0].rect);
+    input_mouse = (Vector2){half.x + 40, half.y + 10};
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_SPECIAL_ATTACK && !ui->special_attack_enabled);
+    ui->special_attack_available = 0;
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_SHIELD_SPECIAL);
+    input_mouse = (Vector2){layout.spec_orb.x + 10, layout.spec_orb.y + 10};
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_SHIELD_SPECIAL);
+    ui->shield_special_available = 0;
+    input_mouse = (Vector2){half.x + 40, half.y + 10};
+    runec_ui_handle_input(ui, 1280, 720);
+    assert(ui->last_intent.kind != RUNEC_UI_INTENT_SHIELD_SPECIAL
+           && ui->last_intent.kind != RUNEC_UI_INTENT_SPECIAL_ATTACK);
+    ui->special_attack_available = 1;
+    input_mouse = (Vector2){layout.compass.x + 10, layout.compass.y + 10};
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->last_intent.kind == RUNEC_UI_INTENT_COMPASS && ui->last_intent.primary == 0);
+    input_button = MOUSE_BUTTON_RIGHT;
+    assert(runec_ui_handle_input(ui, 1280, 720));
+    assert(ui->context_action_count == 5 && ui->context_action_op[3] == 3);
+    close_context(ui);
+
+    // A blank tab stone selects nothing.
+    input_button = MOUSE_BUTTON_LEFT;
+    ui->active_tab = RUNEC_UI_TAB_SKILLS;
+    input_mouse = (Vector2){layout.side.x + 80, layout.side.y + 10};
+    runec_ui_handle_input(ui, 1280, 720);
+    assert(ui->active_tab == RUNEC_UI_TAB_SKILLS);
+    input_mouse = (Vector2){layout.side.x + 80, layout.side.y + 310};
+    runec_ui_handle_input(ui, 1280, 720);
+    assert(ui->active_tab == RUNEC_UI_TAB_SKILLS);
+    input_button = -1;
+
+    Color color = orb_text_color(100, 100);
+    assert(color.r == 0 && color.g == 255);
+    color = orb_text_color(50, 100);
+    assert(color.r == 255 && color.g == 255);
+    color = orb_text_color(0, 100);
+    assert(color.r == 255 && color.g == 0);
+    color = orb_text_color(120, 99);
+    assert(color.r == 0 && color.g == 255);
+
+    char text[32];
+    format_thousands(1154, text, sizeof(text));
+    assert(!strcmp(text, "1,154"));
+    format_thousands(200000000, text, sizeof(text));
+    assert(!strcmp(text, "200,000,000"));
+    format_thousands(999, text, sizeof(text));
+    assert(!strcmp(text, "999"));
+    assert(!strcmp(combat_category_name(18), "Slash Sword"));
+    assert(!strcmp(combat_category_name(99), "Unarmed"));
+    free(ui);
+}
+
 static void equip(RcWorld *w, int id) {
     w->player.equipment[EQUIP_WEAPON] = (RcInvSlot){.item_id = -1};
     w->player.equipment[EQUIP_SHIELD] = (RcInvSlot){.item_id = -1};
@@ -302,6 +483,8 @@ static void equip(RcWorld *w, int id) {
 }
 
 int main(void) {
+    test_chat_wrap();
+    test_chat_ui();
     RuneCUiState *ui = calloc(1, sizeof(*ui));
     assert(ui);
     Texture2D icon = {.id = 9001, .width = 36, .height = 32};
@@ -310,8 +493,8 @@ int main(void) {
     assert(ui->item_icon_count == 0);
     runec_ui_set_item_icon(ui, 555, icon);
     RuneCUiSlot item = {.item_id = 555, .icon_item_id = 555};
-    draw_inventory_item(ui, &item, (Rectangle){100.5f, 200.5f, 32, 32});
-    assert(drawn_icon == 9001 && drawn_x == 98 && drawn_y == 200);
+    draw_inventory_item(ui, &item, (Rectangle){100.5f, 200.5f, 36, 32});
+    assert(drawn_icon == 9001 && drawn_x == 100 && drawn_y == 200);
     runec_ui_set_item_icon(ui, 555, (Texture2D){0});
     assert(unloaded_icon == 9001 && ui->item_icon_count == 1);
     assert(ui_item_icon_texture(ui, 555)->id == 0 && ui->item_icons[0].ready);

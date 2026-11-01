@@ -140,6 +140,7 @@ int rc_slayer_start_task(struct RcWorld *world, const char *master_name,
 int rc_slayer_assign_task(struct RcWorld *world, const char *master_name,
                           uint32_t roll, int amount);
 const char *rc_slayer_current_task_name(const struct RcWorld *world);
+int rc_slayer_npc_on_task(const struct RcWorld *world, int def_idx);
 const char *rc_slayer_current_boss_name(const struct RcWorld *world);
 const char *rc_slayer_current_location(const struct RcWorld *world);
 int rc_slayer_init(struct RcWorld *world);

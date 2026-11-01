@@ -117,12 +117,12 @@ int main(void) {
     n->stats[1] = n->stats[5] = 100;
     launch(w, n, true, 2);
     assert(p->special_energy == 5000 && p->equipment[EQUIP_WEAPON].state_id == 1);
-    assert(n->pending_hits[0].defence_drain == 10 && n->pending_hits[1].defence_drain == 10);
+    assert(n->pending_hits[0].defence_drain == 12 && n->pending_hits[1].defence_drain == 12);
     assert(n->stats[1] == 100 && "drains are applied on impact, not selection");
     RcTick deadline = n->pending_hits[0].apply_tick;
     p->attack_target = -1;
     while (w->tick <= deadline) rc_world_tick(w);
-    assert(n->stats[1] == 80);
+    assert(n->stats[1] == 76);
     launch(w, n, false, 2);
     assert(p->equipment[EQUIP_WEAPON].item_id == 28919);
     assert(p->equipment[EQUIP_WEAPON].state_id == 0);

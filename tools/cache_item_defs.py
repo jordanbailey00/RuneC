@@ -48,6 +48,8 @@ def item_def_to_dict(defn: ItemDef) -> dict[str, Any]:
         "placeholder_template_id": _present(defn.placeholder_template_id),
         "ground_ops": _actions(defn.ground_actions),
         "interface_ops": _actions(defn.inventory_actions),
+        "params": {param.key: (param.string_value if param.is_string else param.int_value)
+                   for param in defn.params},
     }
 
 

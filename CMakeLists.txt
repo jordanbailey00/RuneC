@@ -22,6 +22,8 @@ add_test(NAME test_item_sprite_assets
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/test_item_sprite_assets.py)
 add_test(NAME test_prayer_icon_assets
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/test_prayer_icon_assets.py)
+add_test(NAME test_gear_tables
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/test_gear_tables.py)
 add_test(NAME test_storage_policy
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/test_storage_policy.py)
 

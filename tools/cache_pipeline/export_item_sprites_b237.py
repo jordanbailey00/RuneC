@@ -217,11 +217,11 @@ def decode_item_sprite_def(item_id: int, data: bytes) -> ItemSpriteDef:
             d.stackable = True
         elif opcode == 12:
             _cost, pos = _i32(data, pos)
-        elif opcode in (13, 14, 17, 18, 19, 20, 27, 28, 29, 42, 62, 69, 115,
+        elif opcode in (13, 14, 17, 18, 19, 20, 27, 28, 29, 42, 59, 62, 69, 115,
                         119, 120, 121, 122, 155, 157, 158, 159, 162, 163, 165):
             pos += 1
-        elif opcode in (15, 16, 64, 65):
-            pass
+        elif opcode in (15, 16, 64, 65, 160, 251):
+            pass  # 160 carried a u16 list before b241
         elif opcode == 23:
             pos += 3
         elif opcode in (24, 26, 78, 79):
@@ -297,9 +297,6 @@ def decode_item_sprite_def(item_id: int, data: bytes) -> ItemSpriteDef:
         elif opcode == 149:
             value, pos = _u16(data, pos)
             d.placeholder_template_id = _id(value)
-        elif opcode == 160:
-            count, pos = _u8(data, pos)
-            pos += count * 2
         elif opcode == 164:
             _unknown, pos = _read_string(data, pos)
         elif opcode == 200:

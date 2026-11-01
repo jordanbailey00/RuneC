@@ -25,15 +25,15 @@ int rc_content_ralos_hits(RcWorld *world, const RcNpc *target,
         return -1;
     }
     RcCombatCalc calc = *base;
-    calc.max_hit = calc.max_hit * 3 / 4;
+    if (special) calc.attack_roll = calc.attack_roll * 3 / 2;
     int defence = target->stats[1];
+    int bonus = base->defence_roll / (defence + 9);
     for (int i = 0; i < count; i++) {
-        // B237-era Division: 10% of Magic; the 2026 buff is a later rule.
-        calc.defence_roll = (defence + 9) * 64;
+        calc.defence_roll = (defence + 9) * bonus;
         calc.hit_chance = rc_hit_chance(calc.attack_roll, calc.defence_roll);
         RcCombatRoll roll = rc_roll_attack(&calc, &world->rng_state, true);
         if (target->force_player_max_hit) roll = (RcCombatRoll){true, calc.max_hit};
-        int drain = special && roll.accurate ? target->stats[5] / 10 : 0;
+        int drain = special && roll.accurate ? target->stats[5] / 8 : 0;
         if (drain > defence) drain = defence;
         hits[i] = (RcPendingHit){.damage = roll.damage, .max_hit = calc.max_hit,
             .accurate = roll.accurate, .defence_drain = drain};

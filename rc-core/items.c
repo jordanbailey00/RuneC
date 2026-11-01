@@ -165,7 +165,7 @@ static int parse_weapon(RcItemDef *def, const unsigned char **p,
             || !read_u8(p, end, &stance_count)) {
         return 0;
     }
-    if (attack_speed == 0 || weapon_type > 31) return 0;
+    if (attack_speed == 0 || weapon_type >= RC_WEAPON_TYPE_LIMIT) return 0;
     def->attack_speed = attack_speed;
     def->attack_range = -1;
     def->weapon_type = weapon_type;

@@ -18,6 +18,10 @@ class SpriteData:
     width: int = 0
     height: int = 0
     pixels: bytes = b""
+    x_offset: int = 0
+    y_offset: int = 0
+    sub_width: int = 0
+    sub_height: int = 0
 
 
 def decode_sprite_group(data: bytes) -> list[SpriteData]:
@@ -88,6 +92,8 @@ def decode_sprite_group(data: bytes) -> list[SpriteData]:
                     width=canvas_width,
                     height=canvas_height,
                     pixels=bytes(canvas_width * canvas_height * 4),
+                    x_offset=x_offsets[i],
+                    y_offset=y_offsets[i],
                 )
             )
             continue
@@ -150,6 +156,10 @@ def decode_sprite_group(data: bytes) -> list[SpriteData]:
                 width=canvas_width,
                 height=canvas_height,
                 pixels=bytes(rgba),
+                x_offset=x_off,
+                y_offset=y_off,
+                sub_width=width,
+                sub_height=height,
             )
         )
 

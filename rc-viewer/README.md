@@ -64,17 +64,23 @@ death diagnostic; enabling loot is not a claim that every table is verified.
   - deterministic center-first mapsquare planning and asset path contracts
 - `ui.c` / `ui.h`
   - cache-sprite-backed OSRS viewer UI shell
-  - clickable chatbox, minimap/orbs, tabs, inventory/equipment panels,
-    prayer/spellbook surfaces, and context menus
+  - the client's chatbox (tabs and filters, scrollback, word wrap, collapse;
+    Enter opens the input because typing would fight the dev hotkeys),
+    minimap with its masked compass and orbs, tabs, combat, skills,
+    inventory and equipment panels, prayer/spellbook surfaces, and context
+    menus. Tabs the viewer does not use are blank and take no clicks.
   - viewer-owned minimap texture state for the circular moving map
     surface and hookable map dots
   - hook-ready UI state and intents for future gameplay systems
 - `ui_assets.c` / `ui_assets.h`
-  - small Raylib texture/font loader for viewer UI sprites
+  - small Raylib loader for viewer UI sprites and the client's bitmap fonts
   - loads `data/sprites/ui/*.png` generated from the current OpenRS2
     oldschool live cache through
-    `tools/cache_pipeline/export_sprites_modern.py` and the local
-    RuneLite OSRS font when present
+    `tools/cache_pipeline/export_sprites_modern.py`, and
+    `data/fonts/osrs_fonts.bin` (p11, p12, b12, q8) from
+    `tools/cache_pipeline/export_fonts.py`
+  - draws text as the client's AbstractFont: `<col>` tags, shadow, widget
+    alignment and word wrap
 - `ui_spellbook.c` / `spell_icons.inc`
   - project the active book and backend-owned weapon/autocast compatibility
   - 195 B237 spell buttons across Standard, Ancient, Lunar and Arceuus; the
@@ -356,7 +362,7 @@ quantity prompts and bank menus. A valid unnoteable item withdraws ordinarily
 with an explicit notice. Full bank UI parity, search and placeholders remain out
 of scope.
 Inventory and bank hover labels show the default action, full orange item name,
-and white additional-option count at top left, using the existing crisp bold font.
+and white additional-option count at top left, in the client's bold font.
 Examine, selected item/spell actions, distant ground-item Take, and Walk here
 remain submissions to core. Selection clears only after accepted input, and
 sequenced core interaction messages/failures are appended to chat. The viewer

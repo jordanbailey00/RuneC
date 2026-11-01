@@ -472,7 +472,7 @@ static void prim_spawn_leech_npc(RcWorld *world, int enc_idx,
     if (dx <= 1 && dy <= 1) {
         int amount = p->leech_per_tick;
         if (amount <= 0) return;
-        if (p->poison_weak && leech->poison_damage > 0 &&
+        if (p->poison_weak && leech->toxin_severity > 0 &&
                 p->poisoned_leech_period_ticks > 1 &&
                 (world->tick % p->poisoned_leech_period_ticks) != 0) {
             return;

@@ -43,6 +43,7 @@ enum {
     RC_WEAPON_TYPE_UNARMED = 0,
     RC_WEAPON_TYPE_2H_SWORD = 1,
     RC_WEAPON_TYPE_AXE = 2,
+    RC_WEAPON_TYPE_BANNER = 3,
     RC_WEAPON_TYPE_BLUNT = 4,
     RC_WEAPON_TYPE_BLUDGEON = 5,
     RC_WEAPON_TYPE_BULWARK = 6,
@@ -70,6 +71,11 @@ enum {
     RC_WEAPON_TYPE_POWERED_WAND = 28,
     RC_WEAPON_TYPE_BLADED_STAFF = 29,
     RC_WEAPON_TYPE_PARTISAN = 30,
+    RC_WEAPON_TYPE_ATLATL = 31,
+    RC_WEAPON_TYPE_SLASH_FLAIL = 32,
+    RC_WEAPON_TYPE_MULTI_MELEE = 33,
+    RC_WEAPON_TYPE_CHAINMACE = 34,
+    RC_WEAPON_TYPE_POWERED_BOOK = 35,
 };
 
 static int weapon_type_for_style(const RcItemDef *weapon) {
@@ -84,6 +90,7 @@ static int weapon_type_is_ranged(int weapon_type) {
         case RC_WEAPON_TYPE_GUN:
         case RC_WEAPON_TYPE_THROWN:
         case RC_WEAPON_TYPE_BOW:
+        case RC_WEAPON_TYPE_ATLATL:
             return 1;
         default:
             return 0;
@@ -93,7 +100,8 @@ static int weapon_type_is_ranged(int weapon_type) {
 static int weapon_type_is_magic(int weapon_type) {
     return weapon_type == RC_WEAPON_TYPE_FIXED_DEVICE ||
            weapon_type == RC_WEAPON_TYPE_POWERED_STAFF ||
-           weapon_type == RC_WEAPON_TYPE_POWERED_WAND;
+           weapon_type == RC_WEAPON_TYPE_POWERED_WAND ||
+           weapon_type == RC_WEAPON_TYPE_POWERED_BOOK;
 }
 
 static int weapon_type_can_autocast(int weapon_type) {
@@ -319,11 +327,8 @@ static void set_slash_sword_style(RcPlayer *p, int weapon_type) {
 static void set_stab_sword_style(RcPlayer *p, int weapon_type) {
     if (p->attack_style_idx == 2) {
         set_player_style_state(p, COMBAT_MELEE_SLASH,
-                               RC_ATTACK_STANCE_CONTROLLED,
-                               RC_COMBAT_XP_ATTACK |
-                               RC_COMBAT_XP_STRENGTH |
-                               RC_COMBAT_XP_DEFENCE,
-                               weapon_type);
+                               RC_ATTACK_STANCE_AGGRESSIVE,
+                               RC_COMBAT_XP_STRENGTH, weapon_type);
         return;
     }
     set_basic_melee_style(p, weapon_type, COMBAT_MELEE_STAB);
@@ -331,14 +336,43 @@ static void set_stab_sword_style(RcPlayer *p, int weapon_type) {
 
 static void set_salamander_style(RcPlayer *p, int weapon_type) {
     if (p->attack_style_idx == 1) {
-        set_player_style_state(p, COMBAT_RANGED, RC_ATTACK_STANCE_RAPID,
+        set_player_style_state(p, COMBAT_RANGED, RC_ATTACK_STANCE_ACCURATE,
                                RC_COMBAT_XP_RANGED, weapon_type);
     } else if (p->attack_style_idx >= 2) {
-        set_magic_style(p, weapon_type);
+        set_player_style_state(p, COMBAT_MAGIC,
+                               RC_ATTACK_STANCE_DEFENSIVE_CAST,
+                               RC_COMBAT_XP_MAGIC, weapon_type);
     } else {
         set_player_style_state(p, COMBAT_MELEE_SLASH,
-                               RC_ATTACK_STANCE_ACCURATE,
-                               RC_COMBAT_XP_ATTACK, weapon_type);
+                               RC_ATTACK_STANCE_AGGRESSIVE,
+                               RC_COMBAT_XP_STRENGTH, weapon_type);
+    }
+}
+
+static void set_banner_style(RcPlayer *p, int weapon_type) {
+    if (p->attack_style_idx == 1) {
+        set_player_style_state(p, COMBAT_MELEE_SLASH,
+                               RC_ATTACK_STANCE_AGGRESSIVE,
+                               RC_COMBAT_XP_STRENGTH, weapon_type);
+    } else if (p->attack_style_idx == 2) {
+        set_player_style_state(p, COMBAT_MELEE_CRUSH,
+                               RC_ATTACK_STANCE_CONTROLLED,
+                               RC_COMBAT_XP_ATTACK |
+                               RC_COMBAT_XP_STRENGTH |
+                               RC_COMBAT_XP_DEFENCE, weapon_type);
+    } else {
+        set_basic_melee_style(p, weapon_type, COMBAT_MELEE_STAB);
+    }
+}
+
+static void set_multi_melee_style(RcPlayer *p, int weapon_type) {
+    if (p->attack_style_idx == 2) {
+        set_player_style_state(p, COMBAT_MELEE_CRUSH,
+                               RC_ATTACK_STANCE_AGGRESSIVE,
+                               RC_COMBAT_XP_STRENGTH, weapon_type);
+    } else {
+        set_basic_melee_style(p, weapon_type, p->attack_style_idx == 0
+                              ? COMBAT_MELEE_STAB : COMBAT_MELEE_SLASH);
     }
 }
 
@@ -371,6 +405,23 @@ void rc_refresh_player_combat_style(RcPlayer *p) {
             case RC_WEAPON_TYPE_SCYTHE:
             case RC_WEAPON_TYPE_TWO_HANDED_SWORD:
                 set_axe_or_2h_style(p, weapon_type);
+                break;
+            case RC_WEAPON_TYPE_BANNER:
+                set_banner_style(p, weapon_type);
+                break;
+            case RC_WEAPON_TYPE_MULTI_MELEE:
+                set_multi_melee_style(p, weapon_type);
+                break;
+            case RC_WEAPON_TYPE_SLASH_FLAIL:
+                if (p->attack_style_idx == 2) set_unavailable_style(p, weapon_type);
+                else set_basic_melee_style(p, weapon_type, COMBAT_MELEE_SLASH);
+                break;
+            case RC_WEAPON_TYPE_CHAINMACE:
+                if (p->attack_style_idx == 3) set_unavailable_style(p, weapon_type);
+                else if (p->attack_style_idx == 2)
+                    set_player_style_state(p, COMBAT_MELEE_CRUSH,
+                        RC_ATTACK_STANCE_AGGRESSIVE, RC_COMBAT_XP_STRENGTH, weapon_type);
+                else set_basic_melee_style(p, weapon_type, COMBAT_MELEE_CRUSH);
                 break;
             case RC_WEAPON_TYPE_WHIP:
                 set_whip_style(p, weapon_type);
@@ -465,6 +516,10 @@ int rc_player_attack_speed(const RcPlayer *p) {
     }
     if (p && p->attack_stance == RC_ATTACK_STANCE_RAPID && speed > 1) {
         speed--;
+    }
+    if (p && weapon && weapon->weapon_type == RC_WEAPON_TYPE_CHAINMACE
+            && p->attack_style_idx == 2) {
+        speed = 3;  // Smash swings faster than Thrust
     }
     return speed;
 }
@@ -650,8 +705,8 @@ int rc_player_max_hit_ranged(const RcPlayer *p) {
 int rc_player_max_hit_magic(const RcPlayer *p, int spell_max_hit) {
     if (!p || spell_max_hit <= 0) return 0;
     int bonus = p->equipment_bonuses[EQ_MAGIC_DMG]
-              + rc_prayer_magic_damage_bonus(p->active_prayers);
-    return spell_max_hit + (spell_max_hit * bonus) / 100;
+              + 10 * rc_prayer_magic_damage_bonus(p->active_prayers);
+    return spell_max_hit + (spell_max_hit * bonus) / 1000;
 }
 
 int rc_npc_offensive_roll(const RcNpc *npc, RcCombatStyle style) {
@@ -671,6 +726,9 @@ int rc_npc_defensive_roll(const RcNpc *npc, RcCombatStyle style) {
     if (!npc) return 0;
     int bonus = style > COMBAT_NONE && style <= COMBAT_MAGIC
               ? npc->defence_bonus[style - 1] : 0;
+    // Drained magic defence stops at zero and never lowers a negative bonus.
+    if (style == COMBAT_MAGIC && bonus > 0)
+        bonus = bonus > npc->magic_defence_drain ? bonus - npc->magic_defence_drain : 0;
     return npc_eff(npc->stats[style == COMBAT_MAGIC ? 5 : 1]) * (bonus + 64);
 }
 

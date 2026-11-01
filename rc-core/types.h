@@ -14,6 +14,7 @@
 #define RC_MAX_GROUND_ITEMS 512
 #define RC_MAX_REGIONS      32
 #define RC_MAX_PENDING_HITS 8
+#define RC_CONTENT_GEAR_SLOTS 20
 #define RC_MAX_ROUTE        64
 #define RC_MAX_NPC_DEFS     20000
 #define RC_MAX_NPC_ID       20000
@@ -76,6 +77,7 @@ typedef enum {
     RC_PLAYER_COMMAND_SELECT_QUICK_PRAYER,
     RC_PLAYER_COMMAND_TOGGLE_QUICK_PRAYERS,
     RC_PLAYER_COMMAND_CONSUME,
+    RC_PLAYER_COMMAND_SHIELD_SPECIAL,
 } RcPlayerCommandKind;
 
 typedef enum {
@@ -529,6 +531,13 @@ enum {
     RC_HIT_SOURCE_PLAYER = -1,
 };
 
+enum {
+    RC_HIT_FLAG_CONTENT_0 = 1u << 4,  // content-owned landing effects
+    RC_HIT_FLAG_CONTENT_1 = 1u << 5,
+    RC_HIT_FLAG_SPECIAL = 1u << 6,    // launched by a special attack
+    RC_HIT_FLAG_FOLLOW_UP = 1u << 7,  // a delayed effect of an earlier hit
+};
+
 // Field order keeps the struct at 56 bytes (no padding growth).
 typedef struct {
     int active;
@@ -669,6 +678,8 @@ typedef struct {
     int spell_idx;
     int stance_idx;
     RcTick world_tick;
+    bool ammo_effect;       // the ammunition's effect triggered
+    bool alternate;         // play the weapon's alternate attack row
 } RcCombatAttackEvent;
 
 // Inventory slot
@@ -956,6 +967,9 @@ typedef struct {
     uint8_t slayer_block_count;
     uint8_t slayer_prefer_count;
     uint8_t slayer_combat_achievement_tier;
+    int32_t content_gear[RC_CONTENT_GEAR_SLOTS]; // owned by rc-content/combat
+    bool attack_ammo_effect;    // this attack triggered its ammunition's effect
+    bool attack_alternate;      // the attack plays its alternate animation
     // Kept last: rarely touched, and large.
     RcGameMessageRing messages;
 } RcPlayer;
@@ -1061,8 +1075,10 @@ typedef struct {
     int hunt_timer;
     int attack_count;
     int prev_x, prev_y;
-    int poison_damage;
-    int poison_tick_counter;
+    // One mutually exclusive toxin: poison severity, or venom hit damage.
+    int toxin_severity;
+    int toxin_tick_counter;
+    bool toxin_venom;
     int route_x[RC_MAX_ROUTE], route_y[RC_MAX_ROUTE];
     RcTick immobilized_until;
     RcTick immobilize_immune_until;
@@ -1088,6 +1104,11 @@ typedef struct {
     uint16_t max_hit_override;
     uint8_t attack_speed_override;
     uint8_t attack_style_override;  // RcCombatStyle
+    // Damage over time a player left: burn hits every two ticks.
+    int16_t burn_remaining;
+    RcTick burn_next_tick;
+    // A drained Magic Defence bonus, added to the magic defence roll.
+    int16_t magic_defence_drain;
 } RcNpc;
 
 // Ground item
@@ -1238,9 +1259,21 @@ typedef struct {
     // from Magic coverage. Negative = unknown profile (attack rejected).
     int (*npc_breath_max_hit)(const struct RcWorld *world, const RcNpc *npc,
                               uint8_t breath, bool resisted, bool *shielded);
+    // Hundredths of a percent, or negative when the special cannot be used.
     int (*player_special_energy_cost)(const struct RcWorld *world,
                                       const RcPlayer *player,
-                                      const RcNpc *target, int weapon_id);
+                                      const RcNpc *target, int weapon_id,
+                                      const char **failure_reason);
+    // Spec-bar click: nonzero when an instant effect used the click.
+    int (*activate_player_special)(struct RcWorld *world);
+    bool (*weapon_has_special)(int weapon_id);
+    // Instant shield-slot special, and its charges (negative without one).
+    int (*activate_shield_special)(struct RcWorld *world);
+    int (*shield_special_charges)(const struct RcWorld *world);
+    int (*special_recover_ticks)(const RcPlayer *player);
+    // Attack delay of a launched attack, and extra ticks before its hits.
+    int (*adjust_player_attack_speed)(struct RcWorld *world, int weapon_id,
+                                      bool special, int speed);
     int (*player_ranged_resource_cost)(const RcPlayer *player, bool special);
     int (*player_ranged_resource_slot)(const RcPlayer *player,
                                       const char **failure_reason);
@@ -1269,13 +1302,6 @@ typedef struct {
     int (*modify_player_hit)(struct RcWorld *world, const RcNpc *target,
                              RcCombatStyle style, int spell_idx,
                              int weapon_id, int damage);
-    int (*modify_player_special_damage)(struct RcWorld *world,
-                                        const RcPlayer *player,
-                                        const RcNpc *target, int weapon_id,
-                                        RcCombatStyle style, int damage,
-                                        int max_hit);
-    void (*after_player_special_launch)(struct RcWorld *world,
-                                        int weapon_id, int damage);
     int (*player_has_spell_runes)(const struct RcWorld *world,
                                   const RcPlayer *player,
                                   const struct RcSpellDef *spell);

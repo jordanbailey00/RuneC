@@ -283,8 +283,8 @@ int main(void) {
     npc->death_timer = 0;
     npc->respawn_timer = 0;
     npc->attack_count = 0;
-    npc->poison_damage = 0;
-    npc->poison_tick_counter = 0;
+    npc->toxin_severity = 0;
+    npc->toxin_tick_counter = 0;
     npc->is_dead = false;
     npc->disable_wander = false;
     npc->force_player_max_hit = false;

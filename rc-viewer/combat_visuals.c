@@ -456,7 +456,9 @@ const RcCombatVisualDef *rc_combat_visual_for_item_stance(
     const RcCombatVisualDef *stance_fallback = NULL;
     for (int i = 0; i < g_rc_combat_visual_count; i++) {
         const RcCombatVisualDef *def = &g_rc_combat_visual_defs[i];
-        if (def->kind != RC_COMBAT_VISUAL_ITEM || def->key_id != item_id)
+        if (def->kind != RC_COMBAT_VISUAL_ITEM || def->key_id != item_id
+                || !strcmp(def->attack_key, "alt")
+                || !strcmp(def->attack_key, "proc"))
             continue;
         int exact_style = def->style == (int)style;
         int any_style = def->style == RC_COMBAT_VISUAL_ANY;
@@ -544,11 +546,52 @@ const RcCombatVisualDef *rc_combat_visual_for_special_item(int item_id,
     return fallback;
 }
 
+static const struct { int item_id, seq; } g_block_anims[] = {
+#include "item_block_anims.inc"
+};
+
+static int item_block_anim(int item_id) {
+    int lo = 0, hi = (int)(sizeof(g_block_anims) / sizeof(g_block_anims[0]));
+    while (lo < hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (g_block_anims[mid].item_id == item_id) return g_block_anims[mid].seq;
+        if (g_block_anims[mid].item_id < item_id) lo = mid + 1;
+        else hi = mid;
+    }
+    return -1;
+}
+
+int rc_combat_visual_block_anim(int shield_id, int weapon_id) {
+    int seq = item_block_anim(shield_id);
+    if (seq < 0) seq = item_block_anim(weapon_id);
+    return seq < 0 ? 424 : seq;
+}
+
+const RcCombatVisualDef *rc_combat_visual_for_ammo_effect(int item_id) {
+    for (int i = 0; i < g_rc_combat_visual_count; i++) {
+        const RcCombatVisualDef *def = &g_rc_combat_visual_defs[i];
+        if (def->kind == RC_COMBAT_VISUAL_ITEM && def->key_id == item_id
+                && !strcmp(def->attack_key, "proc"))
+            return def;
+    }
+    return NULL;
+}
+
 RcPlayerAttackVisuals rc_combat_visual_resolve_player(const RcCombatAttackEvent *e) {
     RcPlayerAttackVisuals out = {0};
     if (!e) return out;
     const RcCombatVisualDef *weapon = rc_combat_visual_for_item_stance(
         e->weapon_item_id, e->style, e->stance_idx);
+    if (e->alternate) {
+        for (int i = 0; i < g_rc_combat_visual_count; i++) {
+            const RcCombatVisualDef *row = &g_rc_combat_visual_defs[i];
+            if (row->kind == RC_COMBAT_VISUAL_ITEM && row->key_id == e->weapon_item_id
+                    && row->stance_idx == e->stance_idx && !strcmp(row->attack_key, "alt")) {
+                weapon = row;
+                break;
+            }
+        }
+    }
     const RcCombatVisualDef *special = NULL;
     if (e->action_kind == RC_COMBAT_ACTION_SPECIAL) {
         special = rc_combat_visual_for_special_item(e->weapon_item_id, e->style);

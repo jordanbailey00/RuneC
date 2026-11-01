@@ -19,7 +19,7 @@ int rc_combat_has_spell_runes(const RcWorld *world, const RcPlayer *player,
 #define EQ_RANGED_DEF     9
 #define EQ_STR            10
 #define EQ_RANGED_STR     11
-#define EQ_MAGIC_DMG      12
+#define EQ_MAGIC_DMG      12  // tenths of a percent
 #define EQ_PRAYER         13
 
 // Tick delays per attack style (projectile travel time).
@@ -61,6 +61,8 @@ typedef struct {
     int xp_mask;
     int auto_retaliate;
     int special_pending;
+    int special_available;
+    int shield_special_charges;  // negative without a shield special
     int special_energy;
     int attack_range;
     int attack_speed;
@@ -107,6 +109,9 @@ void rc_combat_stop_actor(struct RcWorld *world, RcCombatActorRef actor,
 void rc_combat_set_player_style(struct RcWorld *world, int style_idx);
 int rc_combat_set_auto_retaliate(struct RcWorld *world, bool enabled);
 void rc_combat_toggle_special(struct RcWorld *world);
+void rc_combat_shield_special(struct RcWorld *world);
+// Presentation event for a special that needs no target (stat boosts).
+void rc_combat_record_player_action(struct RcWorld *world, int weapon_id);
 int  rc_combat_actor_has_target(const RcCombatActorState *state);
 void rc_combat_set_multi_combat(struct RcWorld *world, bool enabled);
 int  rc_combat_is_multi_combat(const struct RcWorld *world);

@@ -7,6 +7,7 @@
 #define RC_ITEM_ACTION_COUNT 5
 #define RC_ITEM_ACTION_LEN 24
 #define RC_ITEM_EXAMINE_LEN 128
+#define RC_WEAPON_TYPE_LIMIT 64
 
 enum {
     RC_ITEM_META_CACHE = 1u << 0,
@@ -56,7 +57,7 @@ typedef struct {
     int defence_magic, defence_ranged;
     int strength_bonus;
     int ranged_strength;
-    int magic_damage;
+    int magic_damage;  // tenths of a percent
     int prayer_bonus;
     int attack_speed;
     int attack_range;

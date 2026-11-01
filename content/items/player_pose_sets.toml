@@ -1,20 +1,46 @@
 schema_version = 1
 
-# RuneC-owned player base-animation data for the weapon models exported by the
-# first-release viewer. Item IDs and names are reconciled against RuneC's B237
-# definitions during export. Pose values were reviewed from the modern OSRS
-# B233 cache-enricher evidence; the reference repository is not an input or a
-# dependency. A value of -1 intentionally retains the normal human animation
-# for that movement state.
+# RuneC-owned player base-animation data for wieldable items. Item IDs and names
+# are reconciled against RuneC's b241 definitions during export. Pose values come
+# from the rsmod b233 object table and b241 cache names; neither is an input or a
+# dependency. A value of -1 keeps the normal human animation for that state.
 
 [[pose]]
-name = "whip"
-ready_anim = -1
-walk_anim = 1660
-run_anim = 1661
+name = "abyssal-bludgeon"
+ready_anim = 1652
+walk_anim = 3293
+run_anim = 2847
 items = [
-  { id = 4151, name = "Abyssal whip" },
-  { id = 12006, name = "Abyssal tentacle" },
+  { id = 13263, name = "Abyssal bludgeon" },
+]
+
+[[pose]]
+name = "abyssal-dagger-ready"
+ready_anim = 3296
+walk_anim = -1
+run_anim = -1
+items = [
+  { id = 13265, name = "Abyssal dagger" },
+  { id = 13267, name = "Abyssal dagger (p)" },
+  { id = 13269, name = "Abyssal dagger (p+)" },
+  { id = 13271, name = "Abyssal dagger (p++)" },
+  { id = 27861, name = "Abyssal dagger (bh)" },
+  { id = 27863, name = "Abyssal dagger (bh)(p)" },
+  { id = 27865, name = "Abyssal dagger (bh)(p+)" },
+  { id = 27867, name = "Abyssal dagger (bh)(p++)" },
+]
+
+[[pose]]
+name = "ballista"
+ready_anim = 7220
+walk_anim = 7223
+run_anim = 7221
+items = [
+  { id = 19478, name = "Light ballista" },
+  { id = 19481, name = "Heavy ballista" },
+  { id = 23630, name = "Heavy ballista" },
+  { id = 26712, name = "Heavy ballista (or)" },
+  { id = 27188, name = "Light ballista" },
 ]
 
 [[pose]]
@@ -23,61 +49,83 @@ ready_anim = 244
 walk_anim = 247
 run_anim = 248
 items = [
+  { id = 22542, name = "Viggora's chainmace (u)" },
   { id = 22545, name = "Viggora's chainmace" },
+  { id = 27657, name = "Ursine chainmace (u)" },
   { id = 27660, name = "Ursine chainmace" },
 ]
 
 [[pose]]
-name = "sword-ready"
-ready_anim = 809
-walk_anim = -1
-run_anim = -1
+name = "chinchompa"
+ready_anim = 3175
+walk_anim = 3177
+run_anim = 3178
 items = [
-  { id = 22324, name = "Ghrazi rapier" },
-  { id = 22613, name = "Vesta's longsword" },
-  { id = 23995, name = "Blade of saeldor" },
-  { id = 24551, name = "Blade of saeldor (c)" },
-  { id = 24617, name = "Vesta's blighted longsword" },
-  { id = 26219, name = "Osmumten's fang" },
+  { id = 7170, name = "Mud pie" },
+  { id = 10033, name = "Chinchompa" },
+  { id = 10034, name = "Red chinchompa" },
+  { id = 11959, name = "Black chinchompa" },
 ]
 
 [[pose]]
-name = "staff-and-polearm"
-ready_anim = 813
-walk_anim = 1205
-run_anim = 1210
+name = "crossbow"
+ready_anim = 4591
+walk_anim = 4226
+run_anim = 4228
 items = [
-  { id = 1249, name = "Dragon spear" },
-  { id = 1379, name = "Staff" },
-  { id = 1381, name = "Staff of air" },
-  { id = 1385, name = "Staff of earth" },
-  { id = 1387, name = "Staff of fire" },
-  { id = 3204, name = "Dragon halberd" },
-  { id = 4675, name = "Ancient staff" },
-  { id = 4710, name = "Ahrim's staff" },
-  { id = 4726, name = "Guthan's warspear" },
-  { id = 5730, name = "Dragon spear(p++)" },
-  { id = 6526, name = "Toktz-mej-tal" },
-  { id = 10010, name = "Butterfly net" },
-  { id = 11791, name = "Staff of the dead" },
-  { id = 11889, name = "Zamorakian hasta" },
-  { id = 11907, name = "Trident of the seas" },
-  { id = 12899, name = "Trident of the swamp" },
-  { id = 12900, name = "Uncharged toxic trident" },
-  { id = 12904, name = "Toxic staff of the dead" },
-  { id = 12926, name = "Toxic blowpipe" },
-  { id = 21006, name = "Kodai wand" },
-  { id = 22296, name = "Staff of light" },
-  { id = 22323, name = "Sanguinesti staff" },
-  { id = 22481, name = "Sanguinesti staff (uncharged)" },
-  { id = 22516, name = "Dawnbringer" },
-  { id = 22555, name = "Thammaron's sceptre" },
-  { id = 23987, name = "Crystal halberd" },
-  { id = 24144, name = "Staff of balance" },
-  { id = 27665, name = "Accursed sceptre" },
-  { id = 27679, name = "Accursed sceptre (a)" },
-  { id = 29000, name = "Eclipse atlatl" },
-  { id = 29796, name = "Noxious halberd" },
+  { id = 767, name = "Phoenix crossbow" },
+  { id = 837, name = "Crossbow" },
+  { id = 8880, name = "Dorgeshuun crossbow" },
+  { id = 9174, name = "Bronze crossbow" },
+  { id = 9176, name = "Blurite crossbow" },
+  { id = 9177, name = "Iron crossbow" },
+  { id = 9179, name = "Steel crossbow" },
+  { id = 9181, name = "Mithril crossbow" },
+  { id = 9183, name = "Adamant crossbow" },
+  { id = 9185, name = "Rune crossbow" },
+  { id = 10156, name = "Hunters' crossbow" },
+  { id = 11165, name = "Phoenix crossbow" },
+  { id = 11167, name = "Phoenix crossbow" },
+  { id = 11785, name = "Armadyl crossbow" },
+  { id = 21012, name = "Dragon hunter crossbow" },
+  { id = 21902, name = "Dragon crossbow" },
+  { id = 23601, name = "Rune crossbow" },
+  { id = 23611, name = "Armadyl crossbow" },
+  { id = 25916, name = "Dragon hunter crossbow (t)" },
+  { id = 25918, name = "Dragon hunter crossbow (b)" },
+  { id = 26374, name = "Zaryte crossbow" },
+  { id = 26486, name = "Rune crossbow (or)" },
+  { id = 27186, name = "Zaryte crossbow" },
+  { id = 28053, name = "Dragon crossbow (cr)" },
+  { id = 33460, name = "Dragon crossbow" },
+]
+
+[[pose]]
+name = "dharok-greataxe"
+ready_anim = 2065
+walk_anim = 2064
+run_anim = -1
+items = [
+  { id = 4718, name = "Dharok's greataxe" },
+  { id = 4886, name = "Dharok's greataxe 100" },
+  { id = 4887, name = "Dharok's greataxe 75" },
+  { id = 4888, name = "Dharok's greataxe 50" },
+  { id = 4889, name = "Dharok's greataxe 25" },
+  { id = 6528, name = "Tzhaar-ket-om" },
+  { id = 7449, name = "Meat tenderiser" },
+  { id = 20756, name = "Hill giant club" },
+  { id = 23235, name = "Tzhaar-ket-om (t)" },
+  { id = 25516, name = "Dharok's greataxe" },
+]
+
+[[pose]]
+name = "dinhs-bulwark"
+ready_anim = 7508
+walk_anim = 7510
+run_anim = 7509
+items = [
+  { id = 21015, name = "Dinh's bulwark" },
+  { id = 25604, name = "Gregg's eastdoor" },
 ]
 
 [[pose]]
@@ -90,96 +138,14 @@ items = [
 ]
 
 [[pose]]
-name = "abyssal-bludgeon"
-ready_anim = 1652
-walk_anim = 3293
-run_anim = 2847
+name = "elder-maul"
+ready_anim = 7518
+walk_anim = 7520
+run_anim = 7519
 items = [
-  { id = 13263, name = "Abyssal bludgeon" },
-]
-
-[[pose]]
-name = "granite-maul"
-ready_anim = 1662
-walk_anim = 1663
-run_anim = 1664
-items = [
-  { id = 4153, name = "Granite maul" },
-  { id = 12848, name = "Granite maul" },
-]
-
-[[pose]]
-name = "spear-high"
-ready_anim = 1713
-walk_anim = 1703
-run_anim = 1707
-items = [
-  { id = 11824, name = "Zamorakian spear" },
-  { id = 28988, name = "Blue moon spear" },
-]
-
-[[pose]]
-name = "verac-flail"
-ready_anim = 2061
-walk_anim = 2060
-run_anim = -1
-items = [
-  { id = 4755, name = "Verac's flail" },
-]
-
-[[pose]]
-name = "dharok-greataxe"
-ready_anim = 2065
-walk_anim = 2064
-run_anim = -1
-items = [
-  { id = 4718, name = "Dharok's greataxe" },
-]
-
-[[pose]]
-name = "chinchompa"
-ready_anim = 3175
-walk_anim = 3177
-run_anim = 3178
-items = [
-  { id = 11959, name = "Black chinchompa" },
-]
-
-[[pose]]
-name = "abyssal-dagger-ready"
-ready_anim = 3296
-walk_anim = -1
-run_anim = -1
-items = [
-  { id = 13265, name = "Abyssal dagger" },
-  { id = 13271, name = "Abyssal dagger (p++)" },
-]
-
-[[pose]]
-name = "nightmare-staff"
-ready_anim = 4504
-walk_anim = 1205
-run_anim = 1210
-items = [
-  { id = 24422, name = "Nightmare staff" },
-  { id = 24423, name = "Harmonised nightmare staff" },
-  { id = 24424, name = "Volatile nightmare staff" },
-  { id = 24425, name = "Eldritch nightmare staff" },
-]
-
-[[pose]]
-name = "crossbow"
-ready_anim = 4591
-walk_anim = 4226
-run_anim = 4228
-items = [
-  { id = 767, name = "Phoenix crossbow" },
-  { id = 837, name = "Crossbow" },
-  { id = 9185, name = "Rune crossbow" },
-  { id = 11785, name = "Armadyl crossbow" },
-  { id = 21012, name = "Dragon hunter crossbow" },
-  { id = 21902, name = "Dragon crossbow" },
-  { id = 26374, name = "Zaryte crossbow" },
+  { id = 21003, name = "Elder maul" },
+  { id = 21205, name = "Elder maul" },
+  { id = 27100, name = "Elder maul (or)" },
 ]
 
 [[pose]]
@@ -192,36 +158,48 @@ items = [
   { id = 11804, name = "Bandos godsword" },
   { id = 11806, name = "Saradomin godsword" },
   { id = 11808, name = "Zamorak godsword" },
+  { id = 11838, name = "Saradomin sword" },
+  { id = 12808, name = "Sara's blessed sword (full)" },
   { id = 12809, name = "Saradomin's blessed sword" },
+  { id = 20368, name = "Armadyl godsword (or)" },
+  { id = 20370, name = "Bandos godsword (or)" },
+  { id = 20372, name = "Saradomin godsword (or)" },
+  { id = 20374, name = "Zamorak godsword (or)" },
+  { id = 20593, name = "Armadyl godsword" },
+  { id = 22665, name = "Armadyl godsword" },
   { id = 26233, name = "Ancient godsword" },
+  { id = 27184, name = "Ancient godsword" },
+  { id = 28537, name = "Corrupted armadyl godsword" },
+  { id = 29605, name = "Armadyl godsword (Deadman)" },
 ]
 
 [[pose]]
-name = "ballista"
-ready_anim = 7220
-walk_anim = 7223
-run_anim = 7221
+name = "granite-maul"
+ready_anim = 1662
+walk_anim = 1663
+run_anim = 1664
 items = [
-  { id = 19478, name = "Light ballista" },
-  { id = 19481, name = "Heavy ballista" },
+  { id = 4153, name = "Granite maul" },
+  { id = 7668, name = "Gadderhammer" },
+  { id = 12848, name = "Granite maul" },
+  { id = 20557, name = "Granite maul" },
+  { id = 24225, name = "Granite maul" },
+  { id = 24227, name = "Granite maul" },
 ]
 
 [[pose]]
-name = "dinhs-bulwark"
-ready_anim = 7508
-walk_anim = 7510
-run_anim = 7509
+name = "nightmare-staff"
+ready_anim = 4504
+walk_anim = 1205
+run_anim = 1210
 items = [
-  { id = 21015, name = "Dinh's bulwark" },
-]
-
-[[pose]]
-name = "elder-maul"
-ready_anim = 7518
-walk_anim = 7520
-run_anim = 7519
-items = [
-  { id = 21003, name = "Elder maul" },
+  { id = 24422, name = "Nightmare staff" },
+  { id = 24423, name = "Harmonised Nightmare staff" },
+  { id = 24424, name = "Volatile Nightmare staff" },
+  { id = 24425, name = "Eldritch Nightmare staff" },
+  { id = 25517, name = "Volatile Nightmare staff" },
+  { id = 29602, name = "Corrupted Volatile Nightmare staff" },
+  { id = 29609, name = "Volatile Nightmare staff (Deadman)" },
 ]
 
 [[pose]]
@@ -230,8 +208,351 @@ ready_anim = 8057
 walk_anim = -1
 run_anim = -1
 items = [
-  { id = 22325, name = "Scythe of vitur" },
-  { id = 22486, name = "Scythe of vitur (uncharged)" },
+  { id = 22325, name = "Scythe of Vitur" },
+  { id = 22486, name = "Scythe of Vitur (uncharged)" },
+  { id = 22664, name = "Scythe of Vitur" },
+  { id = 25736, name = "Holy Scythe of Vitur" },
+  { id = 25738, name = "Holy Scythe of Vitur (uncharged)" },
+  { id = 25739, name = "Sanguine Scythe of Vitur" },
+  { id = 25741, name = "Sanguine Scythe of Vitur (uncharged)" },
+  { id = 28543, name = "Corrupted Scythe of Vitur" },
+  { id = 28545, name = "Corrupted Scythe of Vitur (uncharged)" },
+]
+
+[[pose]]
+name = "spear-high"
+ready_anim = 1713
+walk_anim = 1703
+run_anim = 1707
+items = [
+  { id = 11824, name = "Zamorakian spear" },
+  { id = 28988, name = "Blue Moon spear" },
+  { id = 29849, name = "Blue Moon spear" },
+]
+
+[[pose]]
+name = "staff-and-polearm"
+ready_anim = 813
+walk_anim = 1205
+run_anim = 1210
+items = [
+  { id = 772, name = "Dramen staff" },
+  { id = 1237, name = "Bronze spear" },
+  { id = 1239, name = "Iron spear" },
+  { id = 1241, name = "Steel spear" },
+  { id = 1243, name = "Mithril spear" },
+  { id = 1245, name = "Adamant spear" },
+  { id = 1247, name = "Rune spear" },
+  { id = 1249, name = "Dragon spear" },
+  { id = 1251, name = "Bronze spear(p)" },
+  { id = 1253, name = "Iron spear(p)" },
+  { id = 1255, name = "Steel spear(p)" },
+  { id = 1257, name = "Mithril spear(p)" },
+  { id = 1259, name = "Adamant spear(p)" },
+  { id = 1261, name = "Rune spear(p)" },
+  { id = 1263, name = "Dragon spear(p)" },
+  { id = 1379, name = "Staff" },
+  { id = 1381, name = "Staff of air" },
+  { id = 1383, name = "Staff of water" },
+  { id = 1385, name = "Staff of earth" },
+  { id = 1387, name = "Staff of fire" },
+  { id = 1389, name = "Magic staff" },
+  { id = 1391, name = "Battlestaff" },
+  { id = 1393, name = "Fire battlestaff" },
+  { id = 1395, name = "Water battlestaff" },
+  { id = 1397, name = "Air battlestaff" },
+  { id = 1399, name = "Earth battlestaff" },
+  { id = 1401, name = "Mystic fire staff" },
+  { id = 1403, name = "Mystic water staff" },
+  { id = 1405, name = "Mystic air staff" },
+  { id = 1407, name = "Mystic earth staff" },
+  { id = 1409, name = "Iban's staff" },
+  { id = 3053, name = "Lava battlestaff" },
+  { id = 3054, name = "Mystic lava staff" },
+  { id = 3170, name = "Bronze spear(kp)" },
+  { id = 3171, name = "Iron spear(kp)" },
+  { id = 3172, name = "Steel spear(kp)" },
+  { id = 3173, name = "Mithril spear(kp)" },
+  { id = 3174, name = "Adamant spear(kp)" },
+  { id = 3175, name = "Rune spear(kp)" },
+  { id = 3176, name = "Dragon spear(kp)" },
+  { id = 3190, name = "Bronze halberd" },
+  { id = 3192, name = "Iron halberd" },
+  { id = 3194, name = "Steel halberd" },
+  { id = 3196, name = "Black halberd" },
+  { id = 3198, name = "Mithril halberd" },
+  { id = 3200, name = "Adamant halberd" },
+  { id = 3202, name = "Rune halberd" },
+  { id = 3204, name = "Dragon halberd" },
+  { id = 4158, name = "Leaf-bladed spear" },
+  { id = 4170, name = "Slayer's staff" },
+  { id = 4580, name = "Black spear" },
+  { id = 4582, name = "Black spear(p)" },
+  { id = 4584, name = "Black spear(kp)" },
+  { id = 4675, name = "Ancient staff" },
+  { id = 4710, name = "Ahrim's staff" },
+  { id = 4726, name = "Guthan's warspear" },
+  { id = 4862, name = "Ahrim's staff 100" },
+  { id = 4863, name = "Ahrim's staff 75" },
+  { id = 4864, name = "Ahrim's staff 50" },
+  { id = 4865, name = "Ahrim's staff 25" },
+  { id = 4910, name = "Guthan's warspear 100" },
+  { id = 4911, name = "Guthan's warspear 75" },
+  { id = 4912, name = "Guthan's warspear 50" },
+  { id = 4913, name = "Guthan's warspear 25" },
+  { id = 5016, name = "Bone spear" },
+  { id = 5704, name = "Bronze spear(p+)" },
+  { id = 5706, name = "Iron spear(p+)" },
+  { id = 5708, name = "Steel spear(p+)" },
+  { id = 5710, name = "Mithril spear(p+)" },
+  { id = 5712, name = "Adamant spear(p+)" },
+  { id = 5714, name = "Rune spear(p+)" },
+  { id = 5716, name = "Dragon spear(p+)" },
+  { id = 5718, name = "Bronze spear(p++)" },
+  { id = 5720, name = "Iron spear(p++)" },
+  { id = 5722, name = "Steel spear(p++)" },
+  { id = 5724, name = "Mithril spear(p++)" },
+  { id = 5726, name = "Adamant spear(p++)" },
+  { id = 5728, name = "Rune spear(p++)" },
+  { id = 5730, name = "Dragon spear(p++)" },
+  { id = 5734, name = "Black spear(p+)" },
+  { id = 5736, name = "Black spear(p++)" },
+  { id = 6526, name = "Toktz-mej-tal" },
+  { id = 6562, name = "Mud battlestaff" },
+  { id = 6563, name = "Mystic mud staff" },
+  { id = 6599, name = "White halberd" },
+  { id = 6603, name = "White magic staff" },
+  { id = 6760, name = "Guthix mjolnir" },
+  { id = 6762, name = "Saradomin mjolnir" },
+  { id = 6764, name = "Zamorak mjolnir" },
+  { id = 6908, name = "Beginner wand" },
+  { id = 6910, name = "Apprentice wand" },
+  { id = 6912, name = "Teacher wand" },
+  { id = 6914, name = "Master wand" },
+  { id = 7639, name = "Rod of Ivandis (10)" },
+  { id = 7640, name = "Rod of Ivandis (9)" },
+  { id = 7641, name = "Rod of Ivandis (8)" },
+  { id = 7642, name = "Rod of Ivandis (7)" },
+  { id = 7643, name = "Rod of Ivandis (6)" },
+  { id = 7644, name = "Rod of Ivandis (5)" },
+  { id = 7645, name = "Rod of Ivandis (4)" },
+  { id = 7646, name = "Rod of Ivandis (3)" },
+  { id = 7647, name = "Rod of Ivandis (2)" },
+  { id = 7648, name = "Rod of Ivandis (1)" },
+  { id = 9013, name = "Skull sceptre" },
+  { id = 9084, name = "Lunar staff" },
+  { id = 9091, name = "Lunar staff - pt1" },
+  { id = 9092, name = "Lunar staff - pt2" },
+  { id = 9093, name = "Lunar staff - pt3" },
+  { id = 10010, name = "Butterfly net" },
+  { id = 10280, name = "Willow comp bow" },
+  { id = 10282, name = "Yew comp bow" },
+  { id = 10284, name = "Magic comp bow" },
+  { id = 10440, name = "Saradomin crozier" },
+  { id = 10442, name = "Guthix crozier" },
+  { id = 10444, name = "Zamorak crozier" },
+  { id = 11367, name = "Bronze hasta" },
+  { id = 11369, name = "Iron hasta" },
+  { id = 11371, name = "Steel hasta" },
+  { id = 11373, name = "Mithril hasta" },
+  { id = 11375, name = "Adamant hasta" },
+  { id = 11377, name = "Rune hasta" },
+  { id = 11379, name = "Bronze hasta(p)" },
+  { id = 11381, name = "Bronze hasta(kp)" },
+  { id = 11382, name = "Bronze hasta(p+)" },
+  { id = 11384, name = "Bronze hasta(p++)" },
+  { id = 11386, name = "Iron hasta(p)" },
+  { id = 11388, name = "Iron hasta(kp)" },
+  { id = 11389, name = "Iron hasta(p+)" },
+  { id = 11391, name = "Iron hasta(p++)" },
+  { id = 11393, name = "Steel hasta(p)" },
+  { id = 11395, name = "Steel hasta(kp)" },
+  { id = 11396, name = "Steel hasta(p+)" },
+  { id = 11398, name = "Steel hasta(p++)" },
+  { id = 11400, name = "Mithril hasta(p)" },
+  { id = 11402, name = "Mithril hasta(kp)" },
+  { id = 11403, name = "Mithril hasta(p+)" },
+  { id = 11405, name = "Mithril hasta(p++)" },
+  { id = 11407, name = "Adamant hasta(p)" },
+  { id = 11409, name = "Adamant hasta(kp)" },
+  { id = 11410, name = "Adamant hasta(p+)" },
+  { id = 11412, name = "Adamant hasta(p++)" },
+  { id = 11414, name = "Rune hasta(p)" },
+  { id = 11416, name = "Rune hasta(kp)" },
+  { id = 11417, name = "Rune hasta(p+)" },
+  { id = 11419, name = "Rune hasta(p++)" },
+  { id = 11709, name = "Cursed goblin staff" },
+  { id = 11787, name = "Steam battlestaff" },
+  { id = 11789, name = "Mystic steam staff" },
+  { id = 11791, name = "Staff of the Dead" },
+  { id = 11889, name = "Zamorakian hasta" },
+  { id = 11905, name = "Trident of the Seas (full)" },
+  { id = 11907, name = "Trident of the Seas" },
+  { id = 11908, name = "Uncharged trident" },
+  { id = 11998, name = "Smoke battlestaff" },
+  { id = 12000, name = "Mystic smoke staff" },
+  { id = 12199, name = "Ancient crozier" },
+  { id = 12263, name = "Armadyl crozier" },
+  { id = 12275, name = "Bandos crozier" },
+  { id = 12373, name = "Dragon cane" },
+  { id = 12422, name = "3rd Age wand" },
+  { id = 12439, name = "Royal sceptre" },
+  { id = 12658, name = "Iban's staff (u)" },
+  { id = 12795, name = "Steam battlestaff" },
+  { id = 12796, name = "Mystic steam staff" },
+  { id = 12899, name = "Trident of the Swamp" },
+  { id = 12900, name = "Uncharged toxic trident" },
+  { id = 12902, name = "Toxic staff (uncharged)" },
+  { id = 12904, name = "Toxic Staff of the Dead" },
+  { id = 12926, name = "Toxic blowpipe" },
+  { id = 13080, name = "New crystal halberd full (i)" },
+  { id = 13081, name = "Crystal halberd full (i)" },
+  { id = 13082, name = "Crystal halberd 9/10 (i)" },
+  { id = 13083, name = "Crystal halberd 8/10 (i)" },
+  { id = 13084, name = "Crystal halberd 7/10 (i)" },
+  { id = 13085, name = "Crystal halberd 6/10 (i)" },
+  { id = 13086, name = "Crystal halberd 5/10 (i)" },
+  { id = 13087, name = "Crystal halberd 4/10 (i)" },
+  { id = 13088, name = "Crystal halberd 3/10 (i)" },
+  { id = 13089, name = "Crystal halberd 2/10 (i)" },
+  { id = 13090, name = "Crystal halberd 1/10 (i)" },
+  { id = 13091, name = "New crystal halberd full" },
+  { id = 13092, name = "Crystal halberd full" },
+  { id = 13093, name = "Crystal halberd 9/10" },
+  { id = 13094, name = "Crystal halberd 8/10" },
+  { id = 13095, name = "Crystal halberd 7/10" },
+  { id = 13096, name = "Crystal halberd 6/10" },
+  { id = 13097, name = "Crystal halberd 5/10" },
+  { id = 13098, name = "Crystal halberd 4/10" },
+  { id = 13099, name = "Crystal halberd 3/10" },
+  { id = 13100, name = "Crystal halberd 2/10" },
+  { id = 13101, name = "Crystal halberd 1/10" },
+  { id = 16892, name = "New crystal halberd full (i)" },
+  { id = 16893, name = "New crystal halberd full" },
+  { id = 20158, name = "Gilded spear" },
+  { id = 20161, name = "Gilded hasta" },
+  { id = 20397, name = "Spear" },
+  { id = 20431, name = "Ancient staff" },
+  { id = 20553, name = "Beginner wand" },
+  { id = 20556, name = "Apprentice wand" },
+  { id = 20560, name = "Master wand" },
+  { id = 20730, name = "Mist battlestaff" },
+  { id = 20733, name = "Mystic mist staff" },
+  { id = 20736, name = "Dust battlestaff" },
+  { id = 20739, name = "Mystic dust staff" },
+  { id = 21006, name = "Kodai wand" },
+  { id = 21198, name = "Lava battlestaff" },
+  { id = 21200, name = "Mystic lava staff" },
+  { id = 21255, name = "Slayer's staff (e)" },
+  { id = 21276, name = "Skull sceptre (i)" },
+  { id = 22288, name = "Trident of the Seas (e)" },
+  { id = 22290, name = "Uncharged trident (e)" },
+  { id = 22292, name = "Trident of the Swamp (e)" },
+  { id = 22294, name = "Uncharged toxic trident (e)" },
+  { id = 22296, name = "Staff of Light" },
+  { id = 22323, name = "Sanguinesti staff" },
+  { id = 22335, name = "Starter staff" },
+  { id = 22368, name = "Bryophyta's staff (uncharged)" },
+  { id = 22370, name = "Bryophyta's staff" },
+  { id = 22481, name = "Sanguinesti staff (uncharged)" },
+  { id = 22516, name = "Dawnbringer" },
+  { id = 22552, name = "Thammaron's sceptre (u)" },
+  { id = 22555, name = "Thammaron's sceptre" },
+  { id = 22731, name = "Dragon hasta" },
+  { id = 22734, name = "Dragon hasta(p)" },
+  { id = 22737, name = "Dragon hasta(p+)" },
+  { id = 22740, name = "Dragon hasta(p++)" },
+  { id = 22743, name = "Dragon hasta(kp)" },
+  { id = 23342, name = "3rd Age druidic staff" },
+  { id = 23613, name = "Staff of the Dead" },
+  { id = 23626, name = "Kodai wand" },
+  { id = 23653, name = "Ahrim's staff" },
+  { id = 23849, name = "Corrupted halberd (basic)" },
+  { id = 23850, name = "Corrupted halberd (attuned)" },
+  { id = 23851, name = "Corrupted halberd (perfected)" },
+  { id = 23852, name = "Corrupted staff (basic)" },
+  { id = 23853, name = "Corrupted staff (attuned)" },
+  { id = 23854, name = "Corrupted staff (perfected)" },
+  { id = 23895, name = "Crystal halberd (basic)" },
+  { id = 23896, name = "Crystal halberd (attuned)" },
+  { id = 23897, name = "Crystal halberd (perfected)" },
+  { id = 23898, name = "Crystal staff (basic)" },
+  { id = 23899, name = "Crystal staff (attuned)" },
+  { id = 23900, name = "Crystal staff (perfected)" },
+  { id = 23987, name = "Crystal halberd" },
+  { id = 23989, name = "Crystal halberd (inactive)" },
+  { id = 24125, name = "Crystal halberd" },
+  { id = 24144, name = "Staff of Balance" },
+  { id = 25731, name = "Holy sanguinesti staff" },
+  { id = 25733, name = "Holy sanguinesti staff (uncharged)" },
+  { id = 26945, name = "Pharaoh's sceptre (uncharged)" },
+  { id = 26948, name = "Pharaoh's sceptre" },
+  { id = 26950, name = "Pharaoh's sceptre" },
+  { id = 27662, name = "Accursed sceptre (u)" },
+  { id = 27665, name = "Accursed sceptre" },
+  { id = 27676, name = "Accursed sceptre (au)" },
+  { id = 27679, name = "Accursed sceptre (a)" },
+  { id = 27785, name = "Thammaron's sceptre (au)" },
+  { id = 27788, name = "Thammaron's sceptre (a)" },
+  { id = 28041, name = "Dragon spear (cr)" },
+  { id = 28043, name = "Dragon spear (p)(cr)" },
+  { id = 28045, name = "Dragon spear (p+)(cr)" },
+  { id = 28047, name = "Dragon spear (p++)(cr)" },
+  { id = 28049, name = "Dragon halberd (cr)" },
+  { id = 28557, name = "Starter staff" },
+  { id = 28688, name = "Blazing blowpipe" },
+  { id = 29000, name = "Eclipse atlatl" },
+  { id = 29796, name = "Noxious halberd" },
+  { id = 29851, name = "Eclipse atlatl" },
+  { id = 30568, name = "Echo ahrim's staff" },
+  { id = 30570, name = "Echo ahrim's staff 100" },
+  { id = 30571, name = "Echo ahrim's staff 75" },
+  { id = 30572, name = "Echo ahrim's staff 50" },
+  { id = 30573, name = "Echo ahrim's staff 25" },
+  { id = 33035, name = "Toxic staff (uncharged)" },
+  { id = 33036, name = "Toxic staff (Deadman)" },
+  { id = 33178, name = "Noxious halberd" },
+  { id = 33316, name = "Uncharged toxic trident (o)" },
+  { id = 33320, name = "Uncharged toxic trident (e) (o)" },
+  { id = 33328, name = "Uncharged trident (e) (o)" },
+  { id = 33330, name = "Iban's staff (o)" },
+  { id = 33332, name = "Iban's staff (u) (o)" },
+  { id = 33434, name = "Uncharged trident (o)" },
+]
+
+[[pose]]
+name = "sword-ready"
+ready_anim = 809
+walk_anim = -1
+run_anim = -1
+items = [
+  { id = 667, name = "Blurite sword" },
+  { id = 1305, name = "Dragon longsword" },
+  { id = 22324, name = "Ghrazi rapier" },
+  { id = 22613, name = "Vesta's longsword" },
+  { id = 23528, name = "Sarachnis cudgel" },
+  { id = 23615, name = "Vesta's longsword" },
+  { id = 23628, name = "Ghrazi rapier" },
+  { id = 23995, name = "Blade of Saeldor" },
+  { id = 23997, name = "Blade of Saeldor (inactive)" },
+  { id = 24537, name = "Carrot sword" },
+  { id = 24539, name = "'24-carat' sword" },
+  { id = 24551, name = "Blade of Saeldor (c)" },
+  { id = 24617, name = "Vesta's blighted longsword" },
+  { id = 25734, name = "Holy ghrazi rapier" },
+  { id = 25870, name = "Blade of Saeldor (c)" },
+  { id = 25872, name = "Blade of Saeldor (c)" },
+  { id = 25874, name = "Blade of Saeldor (c)" },
+  { id = 25876, name = "Blade of Saeldor (c)" },
+  { id = 25878, name = "Blade of Saeldor (c)" },
+  { id = 25880, name = "Blade of Saeldor (c)" },
+  { id = 25882, name = "Blade of Saeldor (c)" },
+  { id = 26219, name = "Osmumten's fang" },
+  { id = 27246, name = "Osmumten's fang (or)" },
+  { id = 27859, name = "Dragon longsword (bh)" },
+  { id = 27904, name = "Vesta's longsword (bh)" },
+  { id = 28033, name = "Dragon longsword (cr)" },
+  { id = 33174, name = "Osmumten's fang" },
 ]
 
 [[pose]]
@@ -241,6 +562,8 @@ walk_anim = 1703
 run_anim = 1707
 items = [
   { id = 27275, name = "Tumeken's shadow" },
+  { id = 27277, name = "Tumeken's shadow (uncharged)" },
+  { id = 28549, name = "Corrupted tumeken's shadow (uncharged)" },
 ]
 
 [[pose]]
@@ -250,4 +573,445 @@ walk_anim = 9859
 run_anim = 9860
 items = [
   { id = 27610, name = "Venator bow" },
+  { id = 27612, name = "Venator bow (uncharged)" },
+  { id = 30434, name = "Echo venator bow" },
+  { id = 30436, name = "Echo venator bow (uncharged)" },
+  { id = 31133, name = "Venator bow" },
+]
+
+[[pose]]
+name = "verac-flail"
+ready_anim = 2061
+walk_anim = 2060
+run_anim = -1
+items = [
+  { id = 4755, name = "Verac's flail" },
+  { id = 4982, name = "Verac's flail 100" },
+  { id = 4983, name = "Verac's flail 75" },
+  { id = 4984, name = "Verac's flail 50" },
+  { id = 4985, name = "Verac's flail 25" },
+  { id = 27189, name = "Verac's flail" },
+]
+
+[[pose]]
+name = "whip"
+ready_anim = -1
+walk_anim = 1660
+run_anim = 1661
+items = [
+  { id = 4151, name = "Abyssal whip" },
+  { id = 12006, name = "Abyssal tentacle" },
+  { id = 12773, name = "Volcanic abyssal whip" },
+  { id = 12774, name = "Frozen abyssal whip" },
+  { id = 20405, name = "Abyssal whip" },
+  { id = 26482, name = "Abyssal whip (or)" },
+  { id = 26484, name = "Abyssal tentacle (or)" },
+  { id = 34619, name = "Abyssal tentacle" },
+]
+
+[[pose]]
+name = "pose-813-1146--1"
+ready_anim = 813
+walk_anim = 1146
+run_anim = -1
+items = [
+  { id = 26517, name = "Shattered cane" },
+]
+
+[[pose]]
+name = "pose-847--1--1"
+ready_anim = 847
+walk_anim = -1
+run_anim = -1
+items = [
+  { id = 1419, name = "Scythe" },
+]
+
+[[pose]]
+name = "pose-1421-1422-1427"
+ready_anim = 1421
+walk_anim = 1422
+run_anim = 1427
+items = [
+  { id = 4037, name = "Saradomin banner" },
+  { id = 4039, name = "Zamorak banner" },
+  { id = 6773, name = "Rat pole" },
+  { id = 6774, name = "Rat pole" },
+  { id = 6775, name = "Rat pole" },
+  { id = 6776, name = "Rat pole" },
+  { id = 6777, name = "Rat pole" },
+  { id = 6778, name = "Rat pole" },
+  { id = 6779, name = "Rat pole" },
+  { id = 8650, name = "Banner" },
+  { id = 8652, name = "Banner" },
+  { id = 8654, name = "Banner" },
+  { id = 8656, name = "Banner" },
+  { id = 8658, name = "Banner" },
+  { id = 8660, name = "Banner" },
+  { id = 8662, name = "Banner" },
+  { id = 8664, name = "Banner" },
+  { id = 8666, name = "Banner" },
+  { id = 8668, name = "Banner" },
+  { id = 8670, name = "Banner" },
+  { id = 8672, name = "Banner" },
+  { id = 8674, name = "Banner" },
+  { id = 8676, name = "Banner" },
+  { id = 8678, name = "Banner" },
+  { id = 8680, name = "Banner" },
+  { id = 8966, name = "Cutthroat flag" },
+  { id = 8967, name = "Gilded smile flag" },
+  { id = 8968, name = "Bronze fist flag" },
+  { id = 8969, name = "Lucky shot flag" },
+  { id = 8970, name = "Treasure flag" },
+  { id = 8971, name = "Phasmatys flag" },
+  { id = 11891, name = "Saradomin banner" },
+  { id = 11892, name = "Zamorak banner" },
+  { id = 13141, name = "Western banner 1" },
+  { id = 13142, name = "Western banner 2" },
+  { id = 13143, name = "Western banner 3" },
+  { id = 13144, name = "Western banner 4" },
+  { id = 13328, name = "Green banner" },
+  { id = 20251, name = "Arceuus banner" },
+  { id = 20254, name = "Hosidius banner" },
+  { id = 20257, name = "Lovakengj banner" },
+  { id = 20260, name = "Piscarilius banner" },
+  { id = 20263, name = "Shayzien banner" },
+  { id = 24413, name = "Twisted banner" },
+]
+
+[[pose]]
+name = "pose-1832-1830--1"
+ready_anim = 1832
+walk_anim = 1830
+run_anim = -1
+items = [
+  { id = 4566, name = "Rubber chicken" },
+  { id = 20590, name = "Stale baguette" },
+  { id = 22666, name = "Rubber chicken" },
+]
+
+[[pose]]
+name = "pose-1837-1836-1836"
+ready_anim = 1837
+walk_anim = 1836
+run_anim = 1836
+items = [
+  { id = 4565, name = "Easter basket" },
+]
+
+[[pose]]
+name = "pose-2074-2076-2077"
+ready_anim = 2074
+walk_anim = 2076
+run_anim = 2077
+items = [
+  { id = 4734, name = "Karil's crossbow" },
+  { id = 4934, name = "Karil's crossbow 100" },
+  { id = 4935, name = "Karil's crossbow 75" },
+  { id = 4936, name = "Karil's crossbow 50" },
+  { id = 4937, name = "Karil's crossbow 25" },
+]
+
+[[pose]]
+name = "pose-2316-2317-2322"
+ready_anim = 2316
+walk_anim = 2317
+run_anim = 2322
+items = [
+  { id = 6082, name = "Fixed device" },
+  { id = 12727, name = "Goblin paint cannon" },
+]
+
+[[pose]]
+name = "pose-2561-2562-2563"
+ready_anim = 2561
+walk_anim = 2562
+run_anim = 2563
+items = [
+  { id = 1307, name = "Bronze 2h sword" },
+  { id = 1309, name = "Iron 2h sword" },
+  { id = 1311, name = "Steel 2h sword" },
+  { id = 1313, name = "Black 2h sword" },
+  { id = 1315, name = "Mithril 2h sword" },
+  { id = 1317, name = "Adamant 2h sword" },
+  { id = 1319, name = "Rune 2h sword" },
+  { id = 6609, name = "White 2h sword" },
+  { id = 7158, name = "Dragon 2h sword" },
+  { id = 7439, name = "Spatula" },
+  { id = 10858, name = "Shadow sword" },
+  { id = 20155, name = "Gilded 2h sword" },
+  { id = 20555, name = "Rune 2h sword" },
+  { id = 20559, name = "Dragon 2h sword" },
+  { id = 23282, name = "Gilded spade" },
+  { id = 28051, name = "Dragon 2h sword (cr)" },
+]
+
+[[pose]]
+name = "pose-2911-7327-2322"
+ready_anim = 2911
+walk_anim = 7327
+run_anim = 2322
+items = [
+  { id = 20779, name = "Hunting knife" },
+]
+
+[[pose]]
+name = "pose-3040-3039--1"
+ready_anim = 3040
+walk_anim = 3039
+run_anim = -1
+items = [
+  { id = 20056, name = "Ale of the gods" },
+  { id = 24000, name = "Crystal grail" },
+]
+
+[[pose]]
+name = "pose-3677-3680--1"
+ready_anim = 3677
+walk_anim = 3680
+run_anim = -1
+items = [
+  { id = 11705, name = "Beach boxing gloves" },
+  { id = 11706, name = "Beach boxing gloves" },
+]
+
+[[pose]]
+name = "pose-4193-4194-7274"
+ready_anim = 4193
+walk_anim = 4194
+run_anim = 7274
+items = [
+  { id = 20836, name = "Giant present" },
+  { id = 23446, name = "Giant easter egg" },
+  { id = 24372, name = "Twisted dragon trophy" },
+  { id = 24374, name = "Twisted rune trophy" },
+  { id = 24376, name = "Twisted adamant trophy" },
+  { id = 25042, name = "Trailblazer dragon trophy" },
+  { id = 25044, name = "Trailblazer rune trophy" },
+  { id = 25046, name = "Trailblazer adamant trophy" },
+  { id = 25314, name = "Giant boulder" },
+  { id = 26511, name = "Shattered relics adamant trophy" },
+  { id = 26513, name = "Shattered relics rune trophy" },
+  { id = 26515, name = "Shattered relics dragon trophy" },
+]
+
+[[pose]]
+name = "pose-5160-5164-5168"
+ready_anim = 5160
+walk_anim = 5164
+run_anim = 5168
+items = [
+  { id = 10023, name = "Falconer's glove" },
+  { id = 10024, name = "Falconer's glove" },
+  { id = 22816, name = "Cormorant's glove" },
+  { id = 22817, name = "Cormorant's glove" },
+]
+
+[[pose]]
+name = "pose-5246-5245--1"
+ready_anim = 5246
+walk_anim = 5245
+run_anim = -1
+items = [
+  { id = 10146, name = "Orange salamander" },
+  { id = 10147, name = "Red salamander" },
+  { id = 10148, name = "Black salamander" },
+  { id = 10149, name = "Swamp lizard" },
+  { id = 28834, name = "Tecu salamander" },
+]
+
+[[pose]]
+name = "pose-5254-5250-5253"
+ready_anim = 5254
+walk_anim = 5250
+run_anim = 5253
+items = [
+  { id = 10150, name = "Noose wand" },
+]
+
+[[pose]]
+name = "pose-5363-5364--1"
+ready_anim = 5363
+walk_anim = 5364
+run_anim = -1
+items = [
+  { id = 10487, name = "Undead chicken" },
+]
+
+[[pose]]
+name = "pose-5869-5867-5868"
+ready_anim = 5869
+walk_anim = 5867
+run_anim = 5868
+items = [
+  { id = 10887, name = "Barrelchest anchor" },
+  { id = 27855, name = "Barrelchest anchor (bh)" },
+]
+
+[[pose]]
+name = "pose-6604-6607-6603"
+ready_anim = 6604
+walk_anim = 6607
+run_anim = 6603
+items = [
+  { id = 11259, name = "Magic butterfly net" },
+]
+
+[[pose]]
+name = "pose-6657-6658-6660"
+ready_anim = 6657
+walk_anim = 6658
+run_anim = 6660
+items = [
+  { id = 3695, name = "Pet rock" },
+]
+
+[[pose]]
+name = "pose-7538-7539-7540"
+ready_anim = 7538
+walk_anim = 7539
+run_anim = 7540
+items = [
+  { id = 21209, name = "Birthday balloons" },
+]
+
+[[pose]]
+name = "pose-8009-8011-8016"
+ready_anim = 8009
+walk_anim = 8011
+run_anim = 8016
+items = [
+  { id = 22398, name = "Ivandis flail" },
+  { id = 24699, name = "Blisterwood flail" },
+  { id = 33718, name = "Hallowed flail" },
+]
+
+[[pose]]
+name = "pose-8521-8492-8492"
+ready_anim = 8521
+walk_anim = 8492
+run_anim = 8492
+items = [
+  { id = 24327, name = "Skeleton lantern" },
+]
+
+[[pose]]
+name = "pose-9018-9017-9019"
+ready_anim = 9018
+walk_anim = 9017
+run_anim = 9019
+items = [
+  { id = 25721, name = "Clan vexillum" },
+  { id = 25723, name = "Clan vexillum" },
+  { id = 25724, name = "Clan vexillum" },
+  { id = 25725, name = "Clan vexillum" },
+  { id = 25726, name = "Clan vexillum" },
+  { id = 25727, name = "Clan vexillum" },
+  { id = 25728, name = "Clan vexillum" },
+  { id = 25729, name = "Clan vexillum" },
+]
+
+[[pose]]
+name = "pose-9263-9264-9269"
+ready_anim = 9263
+walk_anim = 9264
+run_anim = 9269
+items = [
+  { id = 26424, name = "Shattered banner" },
+]
+
+[[pose]]
+name = "pose-9341-9342-9346"
+ready_anim = 9341
+walk_anim = 9342
+run_anim = 9346
+items = [
+  { id = 26649, name = "Skis" },
+]
+
+[[pose]]
+name = "pose-10169-10170--1"
+ready_anim = 10169
+walk_anim = 10170
+run_anim = -1
+items = [
+  { id = 25484, name = "Soulreaper axe" },
+  { id = 28338, name = "Soulreaper axe" },
+  { id = 33335, name = "Soulreaper axe (o)" },
+]
+
+[[pose]]
+name = "pose-10598-10599-10600"
+ready_anim = 10598
+walk_anim = 10599
+run_anim = 10600
+items = [
+  { id = 28196, name = "Bronze felling axe" },
+  { id = 28199, name = "Iron felling axe" },
+  { id = 28202, name = "Steel felling axe" },
+  { id = 28205, name = "Black felling axe" },
+  { id = 28208, name = "Mithril felling axe" },
+  { id = 28211, name = "Adamant felling axe" },
+  { id = 28214, name = "Rune felling axe" },
+  { id = 28217, name = "Dragon felling axe" },
+  { id = 28220, name = "Crystal felling axe" },
+  { id = 28223, name = "Crystal felling axe (inactive)" },
+  { id = 28226, name = "3rd Age felling axe" },
+]
+
+[[pose]]
+name = "pose-11935-11936-11937"
+ready_anim = 11935
+walk_anim = 11936
+run_anim = 11937
+items = [
+  { id = 30388, name = "Thunder khopesh" },
+  { id = 33041, name = "Thunder khopesh" },
+]
+
+[[pose]]
+name = "pose-14251-14252-14254"
+ready_anim = 14251
+walk_anim = 14252
+run_anim = 14254
+items = [
+  { id = 33631, name = "Crimson kisten" },
+]
+
+[[pose]]
+name = "pose-14465-14466-14468"
+ready_anim = 14465
+walk_anim = 14466
+run_anim = 14468
+items = [
+  { id = 34027, name = "Hallowfell" },
+]
+
+[[pose]]
+name = "pose-15110-15111-15112"
+ready_anim = 15110
+walk_anim = 15111
+run_anim = 15112
+items = [
+  { id = 34681, name = "Ascension crossbows" },
+]
+
+[[pose]]
+name = "pose-15118-15119-15121"
+ready_anim = 15118
+walk_anim = 15119
+run_anim = 15121
+items = [
+  { id = 34715, name = "Obligator" },
+  { id = 34717, name = "Obligator (uncharged)" },
+]
+
+[[pose]]
+name = "pose-15135-15136-15138"
+ready_anim = 15135
+walk_anim = 15136
+run_anim = 15138
+items = [
+  { id = 34725, name = "Zorya's tome" },
+  { id = 34727, name = "Zorya's tome (uncharged)" },
 ]

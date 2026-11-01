@@ -113,5 +113,9 @@ const RcCombatVisualDef *rc_combat_visual_for_npc_action(int npc_id,
                                                          const char *key);
 const RcCombatVisualDef *rc_combat_visual_for_special_item(int item_id,
                                                            RcCombatStyle style);
+// The worn shield's block sequence, else the weapon's, else the unarmed one.
+int rc_combat_visual_block_anim(int shield_id, int weapon_id);
+// Row of an ammunition's triggered effect, shown on the target.
+const RcCombatVisualDef *rc_combat_visual_for_ammo_effect(int item_id);
 
 #endif

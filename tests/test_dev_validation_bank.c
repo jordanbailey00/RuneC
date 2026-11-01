@@ -355,10 +355,10 @@ int main(void) {
     RcNpc *dragon = &world->npcs[kbd_index];
     dragon->is_dead = true;
     dragon->loot_prepared = dragon->player_loot_credit = true;
-    dragon->poison_damage = 6;
+    dragon->toxin_severity = 6;
     assert(runec_dev_validation_prepare_encounter(world, kbd) == 1);
     assert(!dragon->is_dead && !dragon->loot_prepared && !dragon->player_loot_credit);
-    assert(!dragon->poison_damage && dragon->current_hp == 240);
+    assert(!dragon->toxin_severity && dragon->current_hp == 240);
     assert(rc_world_find_npc_near(world, 2266, kbd->target_x, kbd->target_y, 0, 8) < 0);
 
     const RuneCDevTransport *graardor =

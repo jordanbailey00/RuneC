@@ -102,6 +102,12 @@ static int plan_payment(const RcPlayer *player, const RcSpellDef *spell, RunePay
         if (requirement(spell, spell->runes[i].item_id) != i) return 0;
         remaining[i] = (unlimited & element(spell->runes[i].item_id)) ? 0 : spell->runes[i].qty;
     }
+    // Offensive fire spells burn Sunfire runes first, even with an infinite source.
+    int fire = requirement(spell, FIRE);
+    if (fire >= 0 && spell->max_hit > 0) {
+        int burnt = take(payment, SUNFIRE, spell->runes[fire].qty);
+        remaining[fire] = remaining[fire] > burnt ? remaining[fire] - burnt : 0;
+    }
     for (unsigned i = 0; i < sizeof(combos) / sizeof(combos[0]); i++) {
         int a = requirement(spell, combos[i].first), b = requirement(spell, combos[i].second);
         if (a < 0 || b < 0 || !remaining[a] || !remaining[b]) continue;
@@ -141,6 +147,16 @@ static int plan_payment(const RcPlayer *player, const RcSpellDef *spell, RunePay
         weapon->state_id--;
     }
     return 1;
+}
+
+int rc_content_has_sunfire_runes(const RcPlayer *player, const RcSpellDef *spell) {
+    int fire = requirement(spell, FIRE), have = 0;
+    if (fire < 0) return 0;
+    for (int i = 0; i < RC_INVENTORY_SIZE; i++)
+        if (player->inventory[i].item_id == SUNFIRE) have += player->inventory[i].quantity;
+    for (int i = 0; i < pouch_slots(player->inventory); i++)
+        if (player->rune_pouch[i].item_id == SUNFIRE) have += player->rune_pouch[i].quantity;
+    return have >= (int)spell->runes[fire].qty;
 }
 
 int rc_content_has_spell_runes(const RcWorld *world, const RcPlayer *player, const RcSpellDef *spell) {

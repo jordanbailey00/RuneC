@@ -278,8 +278,9 @@ static void test_smoke_credit_and_recovery_rejection(void) {
     assert(spell >= 0);
     RcPendingHit hit = {.accurate = true, .attack_style = COMBAT_MAGIC,
                         .spell_key = spell + 1};
-    rc_content_magic_hit(w, npc, &hit, 0);
-    assert(npc->poison_damage == 2 && npc->player_loot_credit);
+    for (int i = 0; i < 200 && !npc->toxin_severity; i++)
+        rc_content_magic_hit(w, npc, &hit, 0);
+    assert(npc->toxin_severity == 10 && npc->player_loot_credit);
 
     const char *failure = NULL;
     assert(!rc_content_consume_ammunition(w, -1, 1, 3210, 3208, 0, 3, &failure));

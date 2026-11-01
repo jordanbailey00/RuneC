@@ -8,6 +8,7 @@
 #include "../rc-content/combat/ammunition.h"
 #include "../rc-content/combat/magic.h"
 
+#include "combat/gear.h"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -47,7 +48,7 @@ int main(void) {
     check_pair(p, 861, 11212, RC_RANGED_RESOURCE_INVALID);
     check_pair(p, 20997, 11212, EQUIP_AMMO);
     check_pair(p, 27612, 11212, EQUIP_AMMO);
-    check_pair(p, 27610, 11212, RC_RANGED_RESOURCE_INVALID);
+    check_pair(p, 27610, 11212, EQUIP_AMMO);
     check_pair(p, 9185, 9144, EQUIP_AMMO);
     check_pair(p, 9185, 9243, EQUIP_AMMO);
     check_pair(p, 9185, 892, RC_RANGED_RESOURCE_INVALID);
@@ -175,10 +176,13 @@ int main(void) {
     p->equipment_bonuses[EQ_STR] = 64;
     p->skills.boosted_level[SKILL_STRENGTH] = 1;
     RcCombatCalc low = rc_calc_ranged(p, npc, true);
-    rc_content_ranged_calc(w, npc, &low);
+    RcGearAttack gear;
+    rc_content_gear_attack(&gear, w, npc, NULL, false);
+    rc_content_gear_ranged(&gear, &low);
     p->skills.boosted_level[SKILL_STRENGTH] = 99;
     RcCombatCalc high = rc_calc_ranged(p, npc, true);
-    rc_content_ranged_calc(w, npc, &high);
+    rc_content_gear_attack(&gear, w, npc, NULL, false);
+    rc_content_gear_ranged(&gear, &high);
     assert(low.max_hit == 2 && high.max_hit == 22);
     assert(low.attack_roll == high.attack_roll);
     check_pair(p, 11235, 11212, EQUIP_AMMO);

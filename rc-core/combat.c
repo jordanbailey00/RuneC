@@ -211,25 +211,13 @@ static int content_modify_incoming_after_protection(RcWorld *world,
 static int content_player_special_energy_cost(const RcWorld *world,
                                               const RcPlayer *player,
                                               const RcNpc *target,
-                                              int weapon_id) {
+                                              int weapon_id,
+                                              const char **failure) {
     if (world && world->combat_hooks.player_special_energy_cost) {
         return world->combat_hooks.player_special_energy_cost(
-            world, player, target, weapon_id);
+            world, player, target, weapon_id, failure);
     }
-    return 0;
-}
-
-static int content_modify_player_special_damage(RcWorld *world,
-                                                const RcPlayer *player,
-                                                const RcNpc *target,
-                                                int weapon_id,
-                                                RcCombatStyle style,
-                                                int damage, int max_hit) {
-    if (world && world->combat_hooks.modify_player_special_damage) {
-        return world->combat_hooks.modify_player_special_damage(
-            world, player, target, weapon_id, style, damage, max_hit);
-    }
-    return damage;
+    return -1;
 }
 
 static void content_on_npc_hit_player(RcWorld *world, const RcPendingHit *hit,
@@ -435,6 +423,8 @@ static void emit_player_attack_event(
     }
     event->weapon_item_id = weapon_id;
     event->ammo_item_id = profiles->ammo_id;
+    event->ammo_effect = p->attack_ammo_effect;
+    event->alternate = p->attack_alternate;
     event->spell_idx = spell_idx;
     event->stance_idx = stance_idx;
     event->world_tick = world->tick;
@@ -1356,9 +1346,50 @@ void rc_combat_toggle_special(struct RcWorld *world) {
         return;
     }
     if (!world) return;
-    world->player.combat.special_pending =
-        !world->player.combat.special_pending;
+    bool turning_on = !world->player.combat.special_pending;
+    if (!(turning_on && world->combat_hooks.activate_player_special
+            && world->combat_hooks.activate_player_special(world)))
+        world->player.combat.special_pending = turning_on;
     sync_player_combat_state_from_legacy(world, &world->player);
+}
+
+void rc_combat_shield_special(struct RcWorld *world) {
+    if (rc_player_command_should_queue(world)) {
+        int args[8] = {0};
+        (void)rc_player_command_submit(world,
+                                      RC_PLAYER_COMMAND_SHIELD_SPECIAL,
+                                      RC_ACTION_CATEGORY_SOFT, args, 0);
+        return;
+    }
+    if (world && world->combat_hooks.activate_shield_special)
+        (void)world->combat_hooks.activate_shield_special(world);
+}
+
+void rc_combat_record_player_action(struct RcWorld *world, int weapon_id) {
+    if (!world) return;
+    RcCombatAttackEvent *event = next_attack_event_slot(world);
+    if (!event) return;
+    const RcPlayer *p = &world->player;
+    memset(event, 0, sizeof(*event));
+    event->active = true;
+    event->accurate = true;
+    event->source_kind = RC_COMBAT_ACTOR_PLAYER;
+    event->target_kind = RC_COMBAT_ACTOR_NONE;
+    event->style = (uint8_t)p->combat_style;
+    event->source_definition_id = -1;
+    event->target_definition_id = -1;
+    event->source_x = event->target_x = p->x;
+    event->source_y = event->target_y = p->y;
+    event->plane = p->plane;
+    event->weapon_item_id = weapon_id;
+    event->ammo_item_id = -1;
+    event->spell_idx = -1;
+    event->stance_idx = p->attack_style_idx;
+    event->world_tick = world->tick;
+    event->action_kind = RC_COMBAT_ACTION_SPECIAL;
+    event->action_key_id = weapon_id;
+    const RcItemDef *item = rc_item_def_get(weapon_id);
+    copy_event_name(event->action_key_name, item ? item->name : "");
 }
 
 int rc_combat_actor_has_target(const RcCombatActorState *state) {
@@ -1393,6 +1424,10 @@ int rc_combat_get_player_view(const struct RcWorld *world,
     out->xp_mask = p->combat.xp_mask;
     out->auto_retaliate = p->combat.auto_retaliate ? 1 : 0;
     out->special_pending = p->combat.special_pending ? 1 : 0;
+    out->special_available = world->combat_hooks.weapon_has_special
+        && world->combat_hooks.weapon_has_special(p->equipment[EQUIP_WEAPON].item_id);
+    out->shield_special_charges = world->combat_hooks.shield_special_charges
+        ? world->combat_hooks.shield_special_charges(world) : -1;
     out->special_energy = p->combat.special_energy;
     out->attack_range = p->combat.attack_range;
     out->attack_speed = rc_player_attack_speed(p);
@@ -1589,10 +1624,12 @@ static void combat_tick_player_attack(RcWorld *world) {
         }
     }
     const bool special = p->combat.special_pending;
+    const char *special_failure = NULL;
     int special_cost = special
-        ? content_player_special_energy_cost(world, p, target, weapon_id) : 0;
-    if (special && (special_cost <= 0 || p->special_energy < special_cost)) {
-        reject_launch(world, player_actor, "special attack unsupported or resources insufficient");
+        ? content_player_special_energy_cost(world, p, target, weapon_id, &special_failure) : 0;
+    if (special && (special_cost < 0 || p->special_energy < special_cost)) {
+        reject_launch(world, player_actor, special_failure ? special_failure
+            : "You do not have enough special attack energy.");
         p->combat.special_pending = false;
         return;
     }
@@ -1615,9 +1652,6 @@ static void combat_tick_player_attack(RcWorld *world) {
     if (count == 0) {
         RcCombatRoll roll = rc_roll_attack(&calc, &world->rng_state, true);
         if (target->force_player_max_hit) roll = (RcCombatRoll){true, calc.max_hit};
-        if (special)
-            roll.damage = content_modify_player_special_damage(
-                world, p, target, weapon_id, style, roll.damage, calc.max_hit);
         prepared[0] = (RcPendingHit){.damage = roll.damage,
             .accurate = roll.accurate, .max_hit = calc.max_hit};
         count = 1;
@@ -1660,6 +1694,8 @@ static void combat_tick_player_attack(RcWorld *world) {
         target->pending_hits[hit_index + i].defence_drain = hit->defence_drain;
         target->pending_hits[hit_index + i].spell_key = spell ? spell_idx + 1 : 0;
         target->pending_hits[hit_index + i].weapon_id = weapon_id > 0 ? weapon_id : 0;
+        target->pending_hits[hit_index + i].flags = (uint8_t)((special ? RC_HIT_FLAG_SPECIAL : 0)
+            | (hit->flags & (RC_HIT_FLAG_CONTENT_0 | RC_HIT_FLAG_CONTENT_1)));
         total_damage += hit->damage;
     }
     int ammo_cost = world->combat_hooks.player_ranged_resource_cost
@@ -1671,6 +1707,8 @@ static void combat_tick_player_attack(RcWorld *world) {
                 ammo_cost, target->x, target->y, target->plane, delays[count - 1],
                 &resource_failure)
             : equipment_consume(world, resource_slot, ammo_cost));
+        if (paid && world->combat_hooks.consume_weapon_charge)
+            paid = world->combat_hooks.consume_weapon_charge(world, weapon_id);
     }
     else if (style == COMBAT_MAGIC && spell)
         paid = content_player_consume_spell_runes(world, p, spell);
@@ -1692,8 +1730,6 @@ static void combat_tick_player_attack(RcWorld *world) {
         p->special_energy -= special_cost;
         p->combat.special_pending = false;
         p->combat.special_energy = p->special_energy;
-        if (world->combat_hooks.after_player_special_launch)
-            world->combat_hooks.after_player_special_launch(world, weapon_id, total_damage);
     }
     int xp_damage = total_damage < target->current_hp ? total_damage : target->current_hp;
     rc_award_player_combat_xp(world, xp_damage, xp_mask);
@@ -1704,7 +1740,9 @@ static void combat_tick_player_attack(RcWorld *world) {
         p->attack_target_def_id = -1;
     }
     p->manual_spell_cast = -1;
-    p->attack_timer = speed;
+    p->attack_timer = world->combat_hooks.adjust_player_attack_speed
+        ? world->combat_hooks.adjust_player_attack_speed(world, weapon_id, special, speed)
+        : speed;
     combat_register_attacker(&target->combat, player_actor);
     if (npc_can_retaliate(world, target))
         rc_combat_start_npc_vs_player(world, target->uid, 0);
@@ -2129,7 +2167,9 @@ void rc_combat_tick_player_status(struct RcWorld *world) {
     }
     if (p->special_energy < RC_SPECIAL_ENERGY_MAX) {
         p->special_recover_counter++;
-        if (p->special_recover_counter >= RC_SPECIAL_RECOVER_TICKS) {
+        int recover_ticks = world->combat_hooks.special_recover_ticks
+            ? world->combat_hooks.special_recover_ticks(p) : RC_SPECIAL_RECOVER_TICKS;
+        if (p->special_recover_counter >= recover_ticks) {
             p->special_recover_counter = 0;
             p->special_energy += RC_SPECIAL_RECOVER_AMOUNT;
             if (p->special_energy > RC_SPECIAL_ENERGY_MAX) {

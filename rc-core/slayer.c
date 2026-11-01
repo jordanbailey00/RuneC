@@ -731,6 +731,16 @@ static void on_npc_died(struct RcWorld *world, int evt,
     }
 }
 
+int rc_slayer_npc_on_task(const struct RcWorld *world, int def_idx) {
+    if (!world || def_idx < 0 || world->player.slayer_task_remaining <= 0) return 0;
+    int master = world->player.slayer_master_idx;
+    int task_idx = world->player.slayer_task_idx;
+    if (master < 0 || master >= g_rc_slayer_master_count) return 0;
+    RcSlayerMasterDef *m = &g_rc_slayer_masters[master];
+    if (task_idx < 0 || task_idx >= (int)m->task_count) return 0;
+    return npc_matches_task_def(def_idx, &m->tasks[task_idx], &world->player);
+}
+
 int rc_slayer_init(struct RcWorld *world) {
     if (!world) return -1;
     return rc_event_subscribe(world, RC_EVT_NPC_DIED, on_npc_died, NULL);

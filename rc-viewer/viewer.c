@@ -67,7 +67,10 @@
 #define WINDOW_H 720
 #define TPS 1.667f
 #define NPC_MODEL_SCALE 1.0f
+#define VIEWER_OVERHEAD_CHAT_SECONDS 3.0f   // 150 client cycles
 #define VIEWER_MAX_COMBAT_PROJECTILES 64
+#define RC_WORN_MODEL_CACHE 48
+#define RC_WORN_MODEL_BASE 0xE00000u  // synthetic worn model ID of item 0
 #define VIEWER_PROJECTILE_MODEL_FILTER_MAX 256
 #define VIEWER_NPC_TZTOK_JAD 3127
 #define VIEWER_JAD_MELEE_ANIM_TICKS 3
@@ -390,6 +393,11 @@ typedef struct {
         int item_id;
         uint64_t last_use;
     } ground_models[RC_MAX_GROUND_ITEMS];
+    struct {
+        ModelSet *models;
+        int item_id;
+        uint64_t last_use;
+    } worn_models[RC_WORN_MODEL_CACHE];
     uint64_t ground_model_clock;
     ModelSet *npc_models;
     ModelSet *item_models;
@@ -461,6 +469,8 @@ typedef struct {
     // Camera
     Camera3D camera;
     float cam_yaw, cam_pitch, cam_dist;
+    char overhead_chat[RUNEC_UI_CHAT_INPUT_MAX];
+    float overhead_chat_timer;
     int camera_locked;
 
     // Tick
@@ -489,6 +499,9 @@ typedef struct {
     int player_attack_anim_id;
     int player_action_anim_timer;
     int player_action_anim_id;
+    int player_block_anim_timer;
+    int player_block_anim_id;
+    uint64_t player_block_hit_sequence;
 
     int show_grid;
     int show_collision;
@@ -803,7 +816,7 @@ static int runtime_data_available(const ViewerState *v) {
         "defs/object_defs.bin",
         "models/player.models",
         "sprites/ui/side_icon_inventory.png",
-        "fonts/runescape.ttf",
+        "fonts/osrs_fonts.bin",
     };
     int missing = 0;
     for (size_t i = 0; i < sizeof(required) / sizeof(required[0]); i++) {
@@ -1472,6 +1485,8 @@ static void viewer_refresh_streaming_telemetry(ViewerState *v,
     if (refresh_model_cache) {
         for (int i = 0; i < RC_MAX_GROUND_ITEMS; i++)
             model_bytes += model_set_resident_bytes(v->ground_models[i].models);
+        for (int i = 0; i < RC_WORN_MODEL_CACHE; i++)
+            model_bytes += model_set_resident_bytes(v->worn_models[i].models);
     }
     for (int plane = 0; plane < RC_MAX_PLANES; plane++) {
         ModelSet *set = v->object_anim_model_planes[plane];
@@ -3506,6 +3521,9 @@ static void viewer_clear_player_activity(ViewerState *v) {
     rc_player_cancel_action(world, RC_ACTION_CANCEL_FRONTEND);
     v->player_action_anim_timer = 0;
     v->player_action_anim_id = -1;
+    v->player_block_anim_timer = 0;
+    v->player_block_anim_id = -1;
+    v->player_block_hit_sequence = 0;
     v->player_attack_anim_timer = 0;
     v->player_attack_anim_id = -1;
     v->combat_projectile_count = 0;
@@ -4061,8 +4079,10 @@ static void draw_raid_overlay(ViewerState *v) {
     DrawRectangleRec(box, (Color){62, 53, 41, 200});
     DrawRectangleLinesEx(box, 1, (Color){30, 25, 18, 255});
     for (int i = 0; i < 3; i++)
-        runec_ui_draw_text_shadow(&v->ui.assets, lines[i], box.x + 6,
-                                  box.y + 4 + 17.0f * (float)i, 14, WHITE);
+        runec_ui_draw_text_box(&v->ui.assets, RUNEC_FONT_B12, lines[i],
+                               (Rectangle){box.x + 6, box.y + 4 + 17.0f * (float)i,
+                                           box.width - 12, 17},
+                               0, 1, WHITE, 1);
 }
 
 static void sync_ui_choice(ViewerState *v) {
@@ -4122,10 +4142,18 @@ static void sync_ui_player_status(ViewerState *v) {
     v->ui.selected_combat_style = combat_view.selected_style_idx;
     v->ui.auto_retaliate = combat_view.auto_retaliate;
     v->ui.special_attack_enabled = combat_view.special_pending;
+    v->ui.special_attack_available = combat_view.special_available;
     v->ui.special_attack_energy = combat_view.special_energy / 100;
+    v->ui.shield_special_available = combat_view.shield_special_charges >= 0;
+    v->ui.shield_special_charges = combat_view.shield_special_charges;
     v->ui.combat_level = rc_combat_level(&p->skills);
     const RcInvSlot *weapon_slot = &p->equipment[EQUIP_WEAPON];
     const RcItemDef *weapon_def = rc_item_def_get(weapon_slot->item_id);
+    const char *special_failure = NULL;
+    int special_cost = v->world->combat_hooks.player_special_energy_cost
+        ? v->world->combat_hooks.player_special_energy_cost(
+              v->world, p, NULL, weapon_slot->item_id, &special_failure) : 0;
+    v->ui.special_attack_cost = special_cost > 0 ? special_cost / 100 : 0;
     runec_ui_set_combat_weapon_name(&v->ui,
                                     weapon_def && weapon_def->name[0]
                                         ? weapon_def->name : "Unarmed");
@@ -4140,6 +4168,7 @@ static void sync_ui_player_status(ViewerState *v) {
         SKILL_FIREMAKING, SKILL_WOODCUTTING, SKILL_FARMING, -1,
     };
     int total_level = 0;
+    int64_t total_xp = 0;
     for (int i = 0; i < RUNEC_UI_SKILL_COUNT; i++) {
         int base = 1;
         int current = 1;
@@ -4152,11 +4181,17 @@ static void sync_ui_player_status(ViewerState *v) {
             if (current <= 0)
                 current = base;
         }
+        int xp = core_skill >= 0 && core_skill < SKILL_COUNT
+            ? p->skills.xp[core_skill] : 0;
         v->ui.skill_base[i] = base;
         v->ui.skill_current[i] = current;
+        v->ui.skill_xp[i] = xp;
+        v->ui.skill_next_xp[i] = base < 99 ? RC_XP_TABLE[base + 1] : 0;
         total_level += base;
+        total_xp += xp;
     }
     v->ui.skill_total = total_level;
+    v->ui.skill_total_xp = total_xp;
 }
 
 static void viewer_sync_interaction_outcome(ViewerState *v) {
@@ -4366,14 +4401,20 @@ static const char *viewer_ground_item_name(const ViewerState *v, int idx) {
     return def && def->name[0] ? def->name : "item";
 }
 
+// Hover text carries the client's target colours.
+#define VIEWER_COL_NPC "<col=ffff00>"
+#define VIEWER_COL_OBJECT "<col=00ffff>"
+#define VIEWER_COL_ITEM "<col=ff9040>"
+
 static void viewer_selected_target_text(const ViewerState *v, const char *name,
-                                        char *dst, size_t dst_cap) {
+                                        const char *color, char *dst,
+                                        size_t dst_cap) {
     if (!v || !dst || dst_cap == 0)
         return;
     const RuneCUiSelectedTarget *selected = &v->ui.selected_target;
-    snprintf(dst, dst_cap, "%s %.40s -> %.54s",
-             selected->verb[0] ? selected->verb : "Use",
-             selected->label, name && name[0] ? name : "target");
+    snprintf(dst, dst_cap, "%s " VIEWER_COL_ITEM "%.40s</col> -> %s%.54s</col>",
+             selected->verb[0] ? selected->verb : "Use", selected->label, color,
+             name && name[0] ? name : "target");
 }
 
 static void viewer_default_npc_text(const ViewerState *v, int npc_uid,
@@ -4381,8 +4422,9 @@ static void viewer_default_npc_text(const ViewerState *v, int npc_uid,
     const char *label = viewer_npc_option_label_by_uid(v, npc_uid, option);
     const char *name = viewer_npc_name_by_uid(v, npc_uid);
     if (!label || !label[0])
-        label = "Walk here";
-    snprintf(dst, dst_cap, "%s %.64s", label, name);
+        snprintf(dst, dst_cap, "Walk here");
+    else
+        snprintf(dst, dst_cap, "%s " VIEWER_COL_NPC "%.64s</col>", label, name);
 }
 
 static void viewer_default_object_text(const ViewerState *v,
@@ -4392,8 +4434,9 @@ static void viewer_default_object_text(const ViewerState *v,
     const char *name = def && def->name[0] ? def->name : "object";
     const char *label = object_action_label(v, object, def, option);
     if (!label || !label[0])
-        label = "Walk here";
-    snprintf(dst, dst_cap, "%s %.64s", label, name);
+        snprintf(dst, dst_cap, "Walk here");
+    else
+        snprintf(dst, dst_cap, "%s " VIEWER_COL_OBJECT "%.64s</col>", label, name);
 }
 
 static int pick_npc_candidate(ViewerState *v, ViewerHoverTarget *out) {
@@ -4408,7 +4451,7 @@ static int pick_npc_candidate(ViewerState *v, ViewerHoverTarget *out) {
     out->score = score;
     if (v->ui.selected_target.kind != RUNEC_UI_SELECTED_NONE) {
         viewer_selected_target_text(v, viewer_npc_name_by_uid(v, uid),
-                                    out->action_text,
+                                    VIEWER_COL_NPC, out->action_text,
                                     sizeof(out->action_text));
     } else {
         viewer_default_npc_text(v, uid, out->option, out->action_text,
@@ -4881,7 +4924,7 @@ static int pick_object_candidate(ViewerState *v, ViewerHoverTarget *out) {
     const RcObjectDef *def = rc_object_def_get(object.obj_id);
     const char *name = def && def->name[0] ? def->name : "object";
     if (v->ui.selected_target.kind != RUNEC_UI_SELECTED_NONE) {
-        viewer_selected_target_text(v, name, out->action_text,
+        viewer_selected_target_text(v, name, VIEWER_COL_OBJECT, out->action_text,
                                     sizeof(out->action_text));
     } else {
         viewer_default_object_text(v, &object, out->option, out->action_text,
@@ -4924,10 +4967,11 @@ static int resolve_scene_hover_target(ViewerState *v, ViewerHoverTarget *out) {
         out->tile_y = ty;
         if (v->ui.selected_target.kind != RUNEC_UI_SELECTED_NONE) {
             viewer_selected_target_text(v, viewer_ground_item_name(v, ground_idx),
-                                        out->action_text,
+                                        VIEWER_COL_ITEM, out->action_text,
                                         sizeof(out->action_text));
         } else if (v->world->player.x == tx && v->world->player.y == ty) {
-            snprintf(out->action_text, sizeof(out->action_text), "Take %.64s",
+            snprintf(out->action_text, sizeof(out->action_text),
+                     "Take " VIEWER_COL_ITEM "%.64s</col>",
                      viewer_ground_item_name(v, ground_idx));
         } else {
             snprintf(out->action_text, sizeof(out->action_text), "Walk here");
@@ -5130,16 +5174,20 @@ static void handle_context_intent(ViewerState *v) {
     reset_viewer_context(v);
 }
 
+// The compass menu's directions as camera yaw: yaw 0 looks north.
+static float viewer_look_yaw(int direction) {
+    static const float yaw[4] = {0.0f, -PI / 2.0f, PI, PI / 2.0f};
+    return yaw[direction & 3];
+}
+
 static void draw_hover_action_label(ViewerState *v, int ui_capture) {
     if (!v || ui_capture || v->ui.context_open)
         return;
     ViewerHoverTarget hover;
     if (!resolve_scene_hover_target(v, &hover) || !hover.action_text[0])
         return;
-    Color shadow = (Color){0, 0, 0, 220};
-    Color text = (Color){255, 255, 0, 255};
-    DrawText(hover.action_text, 5, 6, 16, shadow);
-    DrawText(hover.action_text, 4, 5, 16, text);
+    runec_ui_draw_text(&v->ui.assets, RUNEC_FONT_B12, hover.action_text, 4, 15,
+                       WHITE, 1);
 }
 
 static void pickup_current_tile(ViewerState *v) {
@@ -5355,12 +5403,50 @@ static int client_face_order(const int *depths, const uint8_t *priorities,
     return out;
 }
 
+// Worn item models load per item, the first time something is equipped.
+static ModelSet *worn_item_models(ViewerState *v, int item_id) {
+    static uint64_t clock;
+    uint64_t stamp = ++clock;
+    int oldest = 0;
+    for (int i = 0; i < RC_WORN_MODEL_CACHE; i++) {
+        if (v->worn_models[i].last_use && v->worn_models[i].item_id == item_id) {
+            v->worn_models[i].last_use = stamp;
+            return v->worn_models[i].models;
+        }
+        if (v->worn_models[i].last_use < v->worn_models[oldest].last_use)
+            oldest = i;
+    }
+    if (!v->item_models || !v->item_models->atlas_texture.id)
+        return NULL;
+    models_free(v->worn_models[oldest].models);
+    char path[128];
+    snprintf(path, sizeof(path), "data/models/worn/%d.models", item_id);
+    ModelSet *models = rc_asset_exists(path) ? models_load_cpu_with_shared_atlas(path) : NULL;
+    if (models && !models_upload_with_shared_atlas(models, v->item_models->atlas_texture)) {
+        fprintf(stderr, "worn item %d: GPU upload failed\n", item_id);
+        models_free(models);
+        models = NULL;
+    }
+    v->worn_models[oldest].models = models;
+    v->worn_models[oldest].item_id = item_id;
+    v->worn_models[oldest].last_use = stamp;
+    return models;
+}
+
+static ModelEntry *item_model_entry(ViewerState *v, uint32_t model_id) {
+    ModelEntry *entry = v->item_models ? model_find(v->item_models, model_id) : NULL;
+    if (entry) return entry;
+    if (model_id < RC_WORN_MODEL_BASE) return NULL;
+    ModelSet *worn = worn_item_models(v, (int)(model_id - RC_WORN_MODEL_BASE));
+    return worn ? model_find(worn, model_id) : NULL;
+}
+
 static int draw_item_model(ViewerState *v, uint32_t model_id, Vector3 pos,
                            float facing_angle, float scale, Color tint) {
     if (!v->item_models || !v->item_models->loaded
             || model_id == RUNEC_RENDER_MODEL_MISSING)
         return 0;
-    ModelEntry *entry = model_find(v->item_models, model_id);
+    ModelEntry *entry = item_model_entry(v, model_id);
     if (!entry || !entry->loaded)
         return 0;
     draw_actor_model(v, entry->model, pos, facing_angle,
@@ -7369,7 +7455,7 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
             continue;
         source_count = append_composed_source(sources, source_count,
                                              MAX_COMPOSED_PARTS,
-                                             v->item_models,
+                                             worn_item_models(v, eq->item_id),
                                              rec->male_model_id);
     }
 
@@ -7528,7 +7614,7 @@ static int draw_animated_item_model(ViewerState *v, uint32_t model_id,
     if (!v->item_models || !v->item_models->loaded
             || model_id == RUNEC_RENDER_MODEL_MISSING)
         return 0;
-    ModelEntry *entry = model_find(v->item_models, model_id);
+    ModelEntry *entry = item_model_entry(v, model_id);
     if (!entry || !entry->loaded)
         return 0;
     animate_item_entry_to_player_frame(v, entry);
@@ -7600,7 +7686,7 @@ static int draw_static_item_model(ViewerState *v, uint32_t model_id,
     if (!v->item_models || !v->item_models->loaded
             || model_id == RUNEC_RENDER_MODEL_MISSING)
         return 0;
-    ModelEntry *entry = model_find(v->item_models, model_id);
+    ModelEntry *entry = item_model_entry(v, model_id);
     if (!entry || !entry->loaded)
         return 0;
     reset_model_entry_to_base_pose(entry);
@@ -8007,6 +8093,8 @@ static void viewer_tick_attack_anims(ViewerState *v) {
         v->player_action_anim_timer--;
     if (v->player_action_anim_timer <= 0)
         v->player_action_anim_id = -1;
+    if (v->player_block_anim_timer > 0)
+        v->player_block_anim_timer--;
     if (v->player_attack_anim_timer > 0)
         v->player_attack_anim_timer--;
     if (v->player_attack_anim_timer <= 0)
@@ -8028,6 +8116,32 @@ static int viewer_npc_attack_anim_ticks(
     if (event->style == COMBAT_MAGIC || event->style == COMBAT_RANGED)
         return VIEWER_JAD_WARNING_ANIM_TICKS;
     return VIEWER_JAD_MELEE_ANIM_TICKS;
+}
+
+// A hit from an NPC plays the worn block sequence unless the player is busy.
+static void viewer_sync_player_block(ViewerState *v) {
+    const RcPlayer *p = &v->world->player;
+    uint64_t newest = v->player_block_hit_sequence;
+    bool attacked = false;
+    for (int i = 0; i < p->combat.recent_hit_count; i++) {
+        const RcCombatRecentHit *hit = &p->combat.recent_hits[i];
+        if (hit->sequence <= v->player_block_hit_sequence) continue;
+        if (hit->sequence > newest) newest = hit->sequence;
+        attacked = attacked || hit->source_uid >= 0;
+    }
+    v->player_block_hit_sequence = newest;
+    if (!attacked || v->player_attack_anim_timer > 0 || v->player_action_anim_timer > 0)
+        return;
+    int seq_id = rc_combat_visual_block_anim(p->equipment[EQUIP_SHIELD].item_id,
+                                             p->equipment[EQUIP_WEAPON].item_id);
+    AnimSequence *seq = anim_get_sequence(v->anims, (uint16_t)seq_id);
+    if (!seq) return;
+    v->player_block_anim_id = seq_id;
+    v->player_block_anim_timer = anim_sequence_game_ticks(seq);
+    v->primary_frame_idx = 0;
+    v->primary_frame_timer = 0.0f;
+    v->player_one_shot_finished = 0;
+    runec_actor_motion_begin_primary(&v->player_motion);
 }
 
 static void viewer_start_player_attack_anim(
@@ -8479,6 +8593,13 @@ static void viewer_handle_player_attack_event(
     viewer_start_player_attack_anim(v, visuals.animation);
     viewer_spawn_player_attack_projectiles(
         v, event, visuals.projectile, visuals.effect, visuals.timing);
+    const RcCombatVisualDef *proc = event->ammo_effect
+        ? rc_combat_visual_for_ammo_effect(event->ammo_item_id) : NULL;
+    if (proc) {
+        viewer_spawn_projectile_instance(
+            v, event, visuals.effect, visuals.timing, visuals.effect, 0, 1,
+            -1, -1, proc->impact_spotanim_id, -1, -1);
+    }
 }
 
 static uint32_t viewer_npc_action_hash(int npc_id, const char *key) {
@@ -9332,6 +9453,10 @@ static int player_primary_anim_id(ViewerState *v, int *one_shot_kind) {
                                        fallback)
              : fallback;
     }
+    if (v->player_block_anim_timer > 0) {
+        if (one_shot_kind) *one_shot_kind = PLAYER_ONE_SHOT_ACTION;
+        return player_anim_or_fallback(v, (uint32_t)v->player_block_anim_id, -1);
+    }
     return -1;
 }
 
@@ -10104,7 +10229,6 @@ static void draw_hitsplat_state(ViewerState *v,
                                 const RuneCHitsplatState *state,
                                 Vector2 anchor) {
     if (!v || !state) return;
-    Font font = runec_ui_font_for_size(&v->ui.assets, 12.0f);
     for (int slot_idx = 0; slot_idx < RUNEC_HITSPLAT_SLOT_COUNT;
             slot_idx++) {
         const RuneCHitsplatSlot *slot = &state->slots[slot_idx];
@@ -10133,22 +10257,18 @@ static void draw_hitsplat_state(ViewerState *v,
 
         char amount[16];
         snprintf(amount, sizeof(amount), "%d", slot->amount);
-        Vector2 size = MeasureTextEx(font, amount, 12.0f, 0.0f);
-        Vector2 text_position = {
-            center_x - size.x * 0.5f,
-            center_y - size.y * 0.5f + (float)definition->text_offset_y,
-        };
-        DrawTextEx(font, amount,
-                   (Vector2){text_position.x + 1.0f,
-                             text_position.y + 1.0f},
-                   12.0f, 0.0f, (Color){0, 0, 0, alpha});
         Color text_color = {
             (unsigned char)(definition->text_color >> 16),
             (unsigned char)(definition->text_color >> 8),
             (unsigned char)definition->text_color,
             alpha,
         };
-        DrawTextEx(font, amount, text_position, 12.0f, 0.0f, text_color);
+        runec_ui_draw_text_box(&v->ui.assets, RUNEC_FONT_P11, amount,
+                               (Rectangle){center_x - 24.0f,
+                                           center_y - 12.0f
+                                               + (float)definition->text_offset_y,
+                                           48.0f, 24.0f},
+                               1, 1, text_color, 1);
     }
 }
 
@@ -10496,6 +10616,7 @@ static void draw_scene(ViewerState *v, int ui_capture) {
     Vector2 ps = GetWorldToScreen(
         (Vector3){px, py + player_mid_y, pz}, v->camera);
     draw_health_bar(&v->player_overlay.health_bar, player_head);
+    float overhead_top = player_head.y;
     const char *overhead = runec_prayer_overhead_asset(v->world->player.active_prayers);
     if (overhead && !v->world->player.is_dead) {
         const Texture2D *icon = runec_ui_asset(&v->ui.assets, overhead);
@@ -10504,7 +10625,15 @@ static void draw_scene(ViewerState *v, int ui_capture) {
             Vector2 pos = {roundf(player_head.x - icon->width * 0.5f),
                            roundf(player_head.y - icon->height - bar_gap - 4)};
             DrawTextureV(*icon, pos, WHITE);
+            overhead_top = pos.y;
         }
+    }
+    if (v->overhead_chat_timer > 0.0f) {
+        v->overhead_chat_timer -= GetFrameTime();
+        int width = runec_ui_text_width(&v->ui.assets, RUNEC_FONT_B12, v->overhead_chat);
+        runec_ui_draw_text(&v->ui.assets, RUNEC_FONT_B12, v->overhead_chat,
+                           (int)player_head.x - width / 2, (int)overhead_top - 4,
+                           (Color){255, 255, 0, 255}, 1);
     }
     draw_hitsplat_state(v, &v->player_overlay.hitsplats, ps);
 }
@@ -11204,6 +11333,8 @@ int main(int argc, char **argv) {
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_SPECIAL_ATTACK) {
             if ((p->combat.special_pending ? 1 : 0) != v.ui.last_intent.primary)
                 rc_combat_toggle_special(v.world);
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_SHIELD_SPECIAL) {
+            rc_combat_shield_special(v.world);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_PRAYER_SLOT) {
             rc_player_set_prayer(v.world, v.ui.last_intent.primary);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_QUICK_PRAYER_SLOT) {
@@ -11259,7 +11390,11 @@ int main(int argc, char **argv) {
                                     ui_component_child(component_id),
                                     v.ui.last_intent.secondary);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_CHAT_SEND) {
-            fprintf(stderr, "ui chat send hook: %s\n", v.ui.last_intent.text);
+            snprintf(v.overhead_chat, sizeof(v.overhead_chat), "%s",
+                     v.ui.last_intent.text);
+            v.overhead_chat_timer = VIEWER_OVERHEAD_CHAT_SECONDS;
+        } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_COMPASS) {
+            v.cam_yaw = viewer_look_yaw(v.ui.last_intent.primary);
         } else if (v.ui.last_intent.kind == RUNEC_UI_INTENT_CONTEXT_ACTION) {
             handle_context_intent(&v);
         }
@@ -11290,6 +11425,7 @@ int main(int argc, char **argv) {
                     &v.input_feedback, v.world->tick);
                 viewer_tick_combat_projectiles(&v);
                 viewer_tick_attack_anims(&v);
+                viewer_sync_player_block(&v);
                 viewer_capture_combat_attack_events(&v);
                 debug_log_combat_attack_events(&v);
                 handle_player_scene_transition(&v, old_x, old_y, old_plane);
@@ -11365,6 +11501,8 @@ cleanup:
     models_free(v.player_model);
     for (int i = 0; i < RC_MAX_GROUND_ITEMS; i++)
         models_free(v.ground_models[i].models);
+    for (int i = 0; i < RC_WORN_MODEL_CACHE; i++)
+        models_free(v.worn_models[i].models);
     models_free(v.npc_models);
     models_free(v.item_models);
     models_free(v.projectile_models);

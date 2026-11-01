@@ -5,13 +5,20 @@
 runtime TSV under `data/defs/`.
 
 Do not regenerate this table from a cloned RSMod, RuneLite, private-server, or
-wrong-game repository. If a row cannot be backed by b237 cache evidence or
+wrong-game repository. If a row cannot be backed by b241 cache evidence or
 reviewed RuneC-owned content, keep the missing fact as a source-gap row instead
 of adding an external repo checkout as an exporter input.
 
 `combat_visuals` is no longer a release-blocking source gap. NPC rows that use
 the `curated` authority must remain reviewed RuneC-owned rows and carry a
 `curated:b237:` note tag so the table keeps a concrete provenance trail.
+
+Item rows give every weapon's attack sequences per stance and every
+ammunition's travel projectile. Two `attack_key` values mark rows the normal
+item lookup skips: `alt` is a weapon's alternate attack (Ascension crossbows
+fire left and right in turn) and `proc` is the effect shown on the target when
+an ammunition's effect triggers (`ammo_effect` on the attack event). `special`
+rows win over item rows while a special attack plays.
 
 Encounter rows are `npc` rows keyed by the NPC definition of the form that
 records the action and by `attack_key`: the attack name, a mechanic part
@@ -26,7 +33,7 @@ a key without a row, names a missing spotanim, or uses a sequence outside
 
 Projectile origins use the client's parameters: an NPC projectile starts at
 the NPC's centre, `proj_progress` fine units toward the target (128 per tile)
-and `proj_start_height` above the ground. Measure both on the form's B237
+and `proj_start_height` above the ground. Measure both on the form's cache
 model posed with the row's sequence at its `proj_delay` (the emitter's
 forward distance on the centre line and its height); a travel model built
 above its own origin starts that much lower. Each boss row's note records the

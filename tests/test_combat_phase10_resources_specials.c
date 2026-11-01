@@ -303,23 +303,13 @@ static void test_osrs_rune_sources_cover_staff_pouch_and_combos(void) {
 }
 
 static int test_special_cost(const RcWorld *world, const RcPlayer *player,
-                             const RcNpc *target, int weapon_id) {
+                             const RcNpc *target, int weapon_id,
+                             const char **failure) {
     (void)world;
     (void)player;
     (void)target;
-    return weapon_id == TEST_SPECIAL_WEAPON ? 5000 : 0;
-}
-
-static int test_special_damage(RcWorld *world, const RcPlayer *player,
-                               const RcNpc *target, int weapon_id,
-                               RcCombatStyle style, int damage,
-                               int max_hit) {
-    (void)world;
-    (void)player;
-    (void)target;
-    (void)style;
-    (void)damage;
-    return weapon_id == TEST_SPECIAL_WEAPON ? max_hit : damage;
+    (void)failure;
+    return weapon_id == TEST_SPECIAL_WEAPON ? 5000 : -1;
 }
 
 static void test_special_spends_energy_and_recovers(void) {
@@ -328,7 +318,6 @@ static void test_special_spends_energy_and_recovers(void) {
     RcWorld *world = make_world();
     RcCombatContentHooks hooks = {
         .player_special_energy_cost = test_special_cost,
-        .modify_player_special_damage = test_special_damage,
     };
     rc_combat_register_content_hooks(world, &hooks);
     world->player.equipment[EQUIP_WEAPON] =
@@ -343,8 +332,6 @@ static void test_special_spends_energy_and_recovers(void) {
     assert(world->player.special_energy == 5000);
     assert(!world->player.combat.special_pending);
     assert(world->npcs[npc_idx].num_pending_hits == 1);
-    assert(world->npcs[npc_idx].pending_hits[0].damage ==
-           world->npcs[npc_idx].pending_hits[0].max_hit);
 
     for (int i = 0; i < RC_SPECIAL_RECOVER_TICKS - 1; i++) {
         rc_combat_tick_player_status(world);
@@ -375,8 +362,10 @@ static void test_content_specials_spend_energy_and_modify_damage(void) {
     assert(world->player.special_energy == 5000);
     assert(!world->player.combat.special_pending);
     assert(world->npcs[npc_idx].num_pending_hits == 1);
-    assert(world->npcs[npc_idx].pending_hits[0].damage >
+    RcCombatCalc base = rc_calc_melee(&world->player, &world->npcs[npc_idx]);
+    assert(world->npcs[npc_idx].pending_hits[0].damage ==
            world->npcs[npc_idx].pending_hits[0].max_hit);
+    assert(world->npcs[npc_idx].pending_hits[0].max_hit > base.max_hit);
     rc_world_destroy(world);
 
     world = make_world();

@@ -443,7 +443,7 @@ class PlayerWeaponPoseTests(unittest.TestCase):
             equip_slot=export_item_render_models.EQUIP_WEAPON,
         )
 
-    def test_reviewed_pose_source_matches_b237_items(self) -> None:
+    def test_reviewed_pose_source_matches_b241_items(self) -> None:
         items = export_item_render_models.parse_items_bin(
             ROOT / "data/defs/items.bin"
         )
@@ -452,7 +452,7 @@ class PlayerWeaponPoseTests(unittest.TestCase):
             items,
         )
 
-        self.assertEqual(len(poses), 77)
+        self.assertEqual(len(poses), 579)
         self.assertEqual(poses[11804], (7053, 7052, 7043))
         self.assertEqual(poses[4718], (2065, 2064, -1))
         self.assertEqual(poses[12904], (813, 1205, 1210))

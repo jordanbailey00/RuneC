@@ -179,8 +179,8 @@ static void test_death_hide_respawn_and_full_reset(void) {
     npc->attack_count = 9;
     npc->wander_timer = 77;
     npc->facing_entity = 0;
-    npc->poison_damage = 4;
-    npc->poison_tick_counter = 12;
+    npc->toxin_severity = 4;
+    npc->toxin_tick_counter = 12;
     RcRouteTarget target = rc_route_target_point(3204, 3200);
     assert(rc_npc_route_request(world, npc, &target, RC_NPC_ROUTE_CHASE,
                                 false));
@@ -203,7 +203,7 @@ static void test_death_hide_respawn_and_full_reset(void) {
     assert(npc->attack_timer == 0 && npc->attack_count == 0);
     assert(npc->wander_timer == 0 && npc->route_len == 0);
     assert(npc->target_uid == -1 && npc->facing_entity == -1);
-    assert(npc->poison_damage == 0 && npc->num_pending_hits == 0);
+    assert(npc->toxin_severity == 0 && npc->num_pending_hits == 0);
 
     RcNpcSpawnConfig temporary = {
         .wander_range = 0,
@@ -438,7 +438,7 @@ static void test_direct_route_and_status_clocks(void) {
     int poison_slot = rc_npc_spawn(world, 1, 3203, 3202, 0);
     assert(poison_slot >= 0);
     RcNpc *poisoned = &world->npcs[poison_slot];
-    assert(rc_npc_apply_poison(world, poisoned, 3));
+    assert(rc_npc_apply_poison(world, poisoned, 15));
     for (int i = 0; i <= 30; i++) rc_npc_status_tick(world, poisoned);
     int hp_before_poison = poisoned->current_hp;
     rc_world_tick(world);
@@ -448,7 +448,7 @@ static void test_direct_route_and_status_clocks(void) {
     assert(immune_slot >= 0);
     RcNpc *immune = &world->npcs[immune_slot];
     assert(!rc_npc_apply_poison(world, immune, 4));
-    assert(immune->poison_damage == 0);
+    assert(immune->toxin_severity == 0);
     rc_world_destroy(world);
 }
 

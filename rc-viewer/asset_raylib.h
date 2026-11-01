@@ -37,16 +37,4 @@ static Image runec_load_image_asset(const char *path) {
     return img;
 }
 
-static Font runec_load_font_asset(const char *path, int font_size) {
-    Font empty = {0};
-    RcAssetBytes bytes = rc_asset_read_all(path);
-    if (!bytes.data && bytes.size == 0)
-        return empty;
-    Font font = LoadFontFromMemory(runec_asset_ext(path, ".ttf"),
-                                   bytes.data, (int)bytes.size,
-                                   font_size, NULL, 95);
-    rc_asset_bytes_free(&bytes);
-    return font.texture.id != 0 ? font : empty;
-}
-
 #endif

@@ -947,6 +947,15 @@ def read_combat_visual_sequence_ids(path: Path) -> set[int]:
     return out
 
 
+def read_block_sequence_ids(path: Path) -> set[int]:
+    out = {424}  # unarmed block, the default
+    for raw in path.read_text().splitlines():
+        parts = raw.split("|")
+        if len(parts) >= 3 and parts[0].isdigit():
+            out.add(int(parts[2]))
+    return out
+
+
 def read_npc_attack_sequence_ids(path: Path) -> set[int]:
     out: set[int] = set()
     if not path.exists():
@@ -1040,6 +1049,8 @@ def main() -> None:
                         help="include BAS sequence ids referenced by item_render.map")
     parser.add_argument("--combat-visuals", type=Path,
                         help="include attack/projectile sequence ids from combat_visuals.tsv")
+    parser.add_argument("--block-anims", type=Path,
+                        help="include player block sequence ids from block_anims.tsv")
     parser.add_argument("--npc-attack-anims", type=Path,
                         help="include attack sequence ids from npc_attack_anims.tsv")
     parser.add_argument("--npc-defs", type=Path,
@@ -1068,6 +1079,10 @@ def main() -> None:
             combat_visual_ids = read_combat_visual_sequence_ids(args.combat_visuals)
             needed |= combat_visual_ids
             print(f"including {len(combat_visual_ids)} combat visual sequence IDs")
+        if args.block_anims:
+            block_ids = read_block_sequence_ids(args.block_anims)
+            needed |= block_ids
+            print(f"including {len(block_ids)} player block sequence IDs")
         if args.npc_attack_anims:
             npc_attack_ids = read_npc_attack_sequence_ids(args.npc_attack_anims)
             needed |= npc_attack_ids

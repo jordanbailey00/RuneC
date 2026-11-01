@@ -571,15 +571,15 @@ static void test_status_damage_and_poison_capacity(void) {
     rc_combat_tick_player_status(w);
     assert(lost == 60 && "one toxin owns damage and its repeat timer");
     RcNpc *n = &w->npcs[0];
-    n->poison_damage = 3;
+    n->toxin_severity = 15;
     for (int i = 0; i < RC_MAX_PENDING_HITS; i++)
         assert(rc_queue_hit(n->pending_hits, &n->num_pending_hits,
                             1, 100, COMBAT_RANGED, RC_HIT_SOURCE_PLAYER, 0, 0));
     rc_npc_status_tick(w, n);
-    assert(n->poison_damage == 3 && n->poison_tick_counter == 0);
+    assert(n->toxin_severity == 15 && n->toxin_tick_counter == 0);
     n->num_pending_hits--;
     rc_npc_status_tick(w, n);
-    assert(n->poison_damage == 2 && n->num_pending_hits == RC_MAX_PENDING_HITS);
+    assert(n->toxin_severity == 14 && n->num_pending_hits == RC_MAX_PENDING_HITS);
     assert(n->pending_hits[RC_MAX_PENDING_HITS - 1].damage == 3);
     rc_world_destroy(w);
 }
