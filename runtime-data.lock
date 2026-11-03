@@ -1,4 +1,5 @@
-# Runtime data lock for RuneC-Testing; live RuneC releases are independent.
+# Runtime data lock. Data releases are published on RuneC; RuneC-Testing keeps
+# the older ones that earlier commits pin.
 
 format = "runec-runtime-data-lock-v1"
 status = "prerelease"
@@ -18,16 +19,16 @@ local_setup_command = "scripts/setup-data.sh --offline dist-data"
 local_verify_command = "scripts/setup-data.sh --verify"
 
 [release]
-manifest_url = "https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237/manifest.json"
-manifest_sha256 = "66cd3442a4ad666fedfeb0efe2b7e30ae47cdb9c0b707ff6f232987bd75a4f5e"
-packs_base_url = "https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237"
-release_tag = "data-v2026.10.22-b237"
+manifest_url = "https://github.com/jordanbailey00/RuneC/releases/download/data-v2026.11.02-b241/manifest.json"
+manifest_sha256 = "a9b1c5a0011ccbd8e2a9d05c7cbe3ac7d63e4d68a5f03d8f3a211014dbb23e78"
+packs_base_url = "https://github.com/jordanbailey00/RuneC/releases/download/data-v2026.11.02-b241"
+release_tag = "data-v2026.11.02-b241"
 
 [source_gaps]
 datasets = []
 
 [notes]
 phase = "testing-full-world-loot-checkpoint"
-official_release_note = "RuneC-Testing dev runtime-data checkpoint; v1 is the compatibility identifier, not the release date. Live RuneC is unchanged."
+official_release_note = "Testing runtime-data checkpoint, published on RuneC as a prerelease; v1 is the compatibility identifier, not the release date."
 source_gap_note = "No formal source-authority gaps remain; rejected loot tables and incomplete content parity remain documented in content/loot and docs/TODO.md."
 release_gate_note = "Explicit Testing use only. Official release remains blocked by unfinished loot, unavailable prayer effects and an outdated gathering-count report; runtime tests do not certify content parity."

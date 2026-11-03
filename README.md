@@ -18,12 +18,12 @@ content and item behavior are not at full OSRS parity yet.
 
 The same branches are published on
 [RuneC](https://github.com/jordanbailey00/RuneC) and
-[RuneC-Testing](https://github.com/jordanbailey00/RuneC-Testing).
+[RuneC-Testing](https://github.com/jordanbailey00/RuneC-Testing). Data
+releases are published on RuneC.
 
-On v5.0 the map data (terrain, objects, collision, minimaps) is b241. Items,
-NPCs and animations are still b237. There is no b241 data release yet, so
-setup installs the b237 release and then exports the b241 maps from the cache
-on your machine.
+On v5.0 the maps, items, worn gear, NPC models and animations come from b241,
+in one data release. Some NPC data (stats, spawns) still comes from the
+reviewed b237 snapshots.
 
 ## Requirements
 
@@ -34,43 +34,18 @@ sudo apt install git build-essential cmake python3 curl zlib1g-dev libgl1-mesa-d
 ```
 
 You also need a desktop with OpenGL. Raylib is included in `lib/raylib/`.
-The data download is about 3.7 GiB and unpacks to about 29 GiB.
+The data download is about 3.5 GiB and unpacks to about 30 GiB.
 
 ## Quick Start
 
-Clone, install the base data and build:
+Clone, install the data and build:
 
 ```bash
 git clone --branch v5.0 https://github.com/jordanbailey00/RuneC.git
 cd RuneC
-RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
+RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC/releases/download/data-v2026.11.02-b241/manifest.json ./scripts/setup-data.sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cmake --build build --parallel
-```
-
-Then download cache #2746 from [OpenRS2](https://archive.openrs2.org/), unzip
-it, and export the b241 maps over the base install. Point `B241` at the folder
-that holds `main_file_cache.dat2`. The region export takes about 20 minutes.
-
-```bash
-export B241=/path/to/b241/cache
-python3 tools/export_object_defs.py --cache "$B241"
-python3 tools/export_object_placements.py --cache "$B241"
-python3 tools/export_collision_tiles.py --cache "$B241"
-RUNEC_B237_CACHE="$B241" python3 tools/data_pipeline.py export-regions --full
-python3 tools/cache_pipeline/export_spawn_objects.py --cache "$B241"
-python3 tools/data_pipeline.py export-content
-python3 tools/cache_pipeline/export_animations.py --modern-cache "$B241" \
-  --object-anims data/regions data/models/spawn_objects.oanim \
-  --output data/anims/object.anims
-python3 tools/cache_pipeline/export_animations.py --modern-cache "$B241" \
-  --spotanims data/defs/spotanims.bin \
-  --object-anims data/regions data/models/spawn_objects.oanim \
-  --item-render-map data/models/item_render.map \
-  --combat-visuals data/defs/combat_visuals.tsv \
-  --npc-defs data/defs/npc_defs.bin \
-  --npc-attack-anims data/defs/npc_attack_anims.tsv \
-  --output data/anims/all.anims
 ```
 
 Run the game:
