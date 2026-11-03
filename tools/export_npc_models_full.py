@@ -42,6 +42,7 @@ from rc_cache import (  # noqa: E402
     load_model,
     merge_models,
     read_config_group,
+    weld_model,
     write_models_binary,
 )
 from export_textures import build_atlas  # noqa: E402
@@ -181,7 +182,7 @@ def export_model(store: RcCacheStore, npc_id: int, model_ids: list[int], visual:
 
     if not parts:
         return None, loaded_parts
-    merged = parts[0] if len(parts) == 1 else merge_models(parts)
+    merged = parts[0] if len(parts) == 1 else weld_model(merge_models(parts))
     merged.model_id = npc_id
 
     if (merged.face_count * 3 > 65535

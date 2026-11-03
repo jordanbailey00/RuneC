@@ -33,6 +33,7 @@ from export_models import (  # noqa: E402
     expand_model,
     hsl15_to_rgb,
     light_as_actor,
+    weld_model,
     write_models_binary,
 )
 

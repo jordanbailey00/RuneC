@@ -104,6 +104,7 @@ from .models import (
     load_model,
     load_model_bytes,
     merge_models,
+    weld_model,
     write_models_binary,
 )
 from .names import find_file_id, find_group_id, name_hash
@@ -206,6 +207,7 @@ __all__ = [
     "load_texture_sprites",
     "mapsquare_id",
     "merge_models",
+    "weld_model",
     "name_hash",
     "parse_index_manifest",
     "read_big_smart",

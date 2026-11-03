@@ -1737,6 +1737,46 @@ def _merge_models(models: list[ModelData]) -> ModelData:
     return merged
 
 
+def weld_model(model: ModelData) -> ModelData:
+    """Share equal vertices as the client's merged models do.
+
+    The client builds a merged model face by face and reuses any vertex with
+    the same position, so a seam between parts moves as one with the first
+    part's label. Vertices no face or texture triangle uses are dropped.
+    """
+    index: dict[tuple[int, int, int], int] = {}
+    x: list[int] = []
+    y: list[int] = []
+    z: list[int] = []
+    skins: list[int] = []
+
+    def weld(vertex: int) -> int:
+        key = (model.vertices_x[vertex], model.vertices_y[vertex],
+               model.vertices_z[vertex])
+        if key not in index:
+            index[key] = len(x)
+            x.append(key[0])
+            y.append(key[1])
+            z.append(key[2])
+            skins.append(model.vertex_skins[vertex])
+        return index[key]
+
+    face_a, face_b, face_c = [], [], []
+    for a, b, c in zip(model.face_a, model.face_b, model.face_c):
+        face_a.append(weld(a))
+        face_b.append(weld(b))
+        face_c.append(weld(c))
+    tex_u = [weld(v) for v in model.tex_u]
+    tex_v = [weld(v) for v in model.tex_v]
+    tex_w = [weld(v) for v in model.tex_w]
+    model.face_a, model.face_b, model.face_c = face_a, face_b, face_c
+    model.tex_u, model.tex_v, model.tex_w = tex_u, tex_v, tex_w
+    model.vertices_x, model.vertices_y, model.vertices_z = x, y, z
+    model.vertex_skins = skins
+    model.vertex_count = len(x)
+    return model
+
+
 def _default_face_uvs() -> tuple[tuple[float, float, float], tuple[float, float, float]]:
     return (0.0, 1.0, 0.0), (0.0, 0.0, 1.0)
 
