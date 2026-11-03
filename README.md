@@ -48,7 +48,7 @@ builds do not require a separate Raylib install.
 ```bash
 git clone --branch dev https://github.com/jordanbailey00/RuneC-Testing.git
 cd RuneC-Testing
-RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
+RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cmake --build build --parallel
 ./build/rc-viewer
@@ -61,12 +61,11 @@ CMake 3.24+, or configure a new build directory), then rebuild. Do not copy
 another machine's `build/` directory. Source paths are derived at configure/run
 time, and OpenGL is discovered through CMake rather than a distro-specific path.
 
-This Testing branch pins its own data release on `RuneC-Testing` through
-`runtime-data.lock`; it does not change the live `RuneC` repository or releases.
-The command above explicitly opts into this Testing prerelease. Setup verifies
-the locked manifest checksum and every pack, then installs them into the local
-ignored `data/` directory. Plain setup intentionally refuses automatic download
-while the official release gate is blocked.
+This branch pins its data release, published on `RuneC`, through
+`runtime-data.lock`. The command above explicitly opts into that prerelease.
+Setup verifies the locked manifest checksum and every pack, then installs them
+into the local ignored `data/` directory. Plain setup intentionally refuses
+automatic download while the official release gate is blocked.
 Maintainer/dev checkouts can still generate `dist-data/` locally and install
 from it with `--offline dist-data`.
 The pinned `data-v2026.10.22-b237` release includes the complete four-plane
@@ -169,7 +168,7 @@ data/          Local runtime data install populated by scripts/setup-data.sh.
 RuneC does not track generated runtime data in Git. Run this once after cloning:
 
 ```bash
-RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
+RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
 ```
 
 This installs:
