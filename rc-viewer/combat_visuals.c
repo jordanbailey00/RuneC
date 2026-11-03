@@ -610,7 +610,10 @@ RcPlayerAttackVisuals rc_combat_visual_resolve_player(const RcCombatAttackEvent 
         out.animation = out.projectile;
         out.effect = out.projectile;
     } else {
-        out.projectile = e->style == COMBAT_RANGED
+        // A weapon with its own shot fires it whatever is loaded.
+        bool own_shot = weapon && (weapon->travel_spotanim_id >= 0
+                                   || weapon->launch_spotanim_id >= 0);
+        out.projectile = e->style == COMBAT_RANGED && !own_shot
             ? rc_combat_visual_for_item(e->ammo_item_id, e->style) : weapon;
         if (!out.projectile) out.projectile = weapon;
         out.animation = weapon;

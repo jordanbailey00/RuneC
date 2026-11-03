@@ -734,6 +734,8 @@ class SpotanimDef(DecodeSummary):
     shadow: int = 0
     recolor_from: list[int] = field(default_factory=list)
     recolor_to: list[int] = field(default_factory=list)
+    retexture_from: list[int] = field(default_factory=list)
+    retexture_to: list[int] = field(default_factory=list)
 
 
 @dataclass
@@ -843,8 +845,8 @@ def decode_spotanim_definition(spotanim_id: int, data: bytes) -> SpotanimDef:
                 d.recolor_to.append(read_u16(buf))
         elif op == 41:
             for _ in range(read_u8(buf)):
-                read_u16(buf)
-                read_u16(buf)
+                d.retexture_from.append(read_u16(buf))
+                d.retexture_to.append(read_u16(buf))
         else:
             d.unknown_opcode = op
             break

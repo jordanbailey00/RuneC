@@ -16,6 +16,7 @@ from rc_cache import (
     INDEX_CONFIGS,
     RcCacheStore,
     decode_spotanim_definition,
+    light_as_actor,
     load_model,
     load_texture_average_colors,
     load_texture_sprites,
@@ -98,6 +99,10 @@ def apply_spotanim_recolors(model, spotanim) -> None:
         for fi in range(model.face_count):
             if model.face_colors[fi] == src:
                 model.face_colors[fi] = dst
+    for src, dst in zip(spotanim.retexture_from, spotanim.retexture_to):
+        for fi, texture in enumerate(model.face_textures):
+            if texture == src:
+                model.face_textures[fi] = dst
 
 
 def main() -> None:
@@ -154,6 +159,8 @@ def main() -> None:
             model = copy.deepcopy(model)
             model.model_id = SPOTANIM_MODEL_BASE + gfx_id
             apply_spotanim_recolors(model, spot)
+            # The client lights a spot animation by its own ambient and contrast.
+            light_as_actor(model, spot.brightness, spot.shadow)
             models.append(model)
             print(
                 f"spotanim {gfx_id}: model {spot.model_id} -> synthetic "

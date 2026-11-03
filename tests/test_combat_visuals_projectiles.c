@@ -328,6 +328,43 @@ static void test_generated_visuals_still_load_in_viewer_module(void) {
     resolved = rc_combat_visual_resolve_player(&e);
     assert(resolved.effect->aux_travel_spotanim_id == 1099);
     assert(resolved.effect->aux_impact_spotanim_id == 1100);
+
+    // A weapon with its own shot fires it, with or without ammunition.
+    RcCombatAttackEvent own = {.weapon_item_id = 25865, .ammo_item_id = -1,
+        .spell_idx = -1, .style = COMBAT_RANGED, .stance_idx = 0};
+    RcPlayerAttackVisuals own_shot = rc_combat_visual_resolve_player(&own);
+    assert(own_shot.projectile->travel_spotanim_id == 1887);
+    assert(own_shot.projectile->launch_spotanim_id == 1888);
+    own.weapon_item_id = 27610;
+    own.ammo_item_id = 892;
+    own_shot = rc_combat_visual_resolve_player(&own);
+    assert(own_shot.projectile->travel_spotanim_id == 2291);
+    own.weapon_item_id = 861;
+    own_shot = rc_combat_visual_resolve_player(&own);
+    assert(own_shot.projectile->travel_spotanim_id == 15);
+
+    // Ammunition variants keep their own graphics.
+    const struct { int item, launch, travel, impact; } shots[] = {
+        {831, -1, 200, 344},    // poisoned bronze javelin, ballista mark
+        {5653, -1, 205, 344},
+        {19486, -1, 1301, 344},
+        {21320, -1, 1386, 344},
+        {2541, 26, 17, -1},     // lit fire arrow
+        {22230, 1510, 1506, -1},
+        {4773, 243, 242, -1},   // brutal arrow
+        {25849, 1937, 1936, -1},
+        {22804, -1, 28, -1},    // dragon knives stay in hand, no launch
+        {8882, -1, 696, -1},
+        {28991, -1, 2795, 2796},
+        {10142, -1, -1, -1},    // tar: salamanders breathe, nothing flies
+    };
+    for (size_t i = 0; i < sizeof(shots) / sizeof(shots[0]); i++) {
+        const RcCombatVisualDef *row =
+            rc_combat_visual_for_item(shots[i].item, COMBAT_RANGED);
+        assert(row && row->launch_spotanim_id == shots[i].launch);
+        assert(row->travel_spotanim_id == shots[i].travel);
+        assert(row->impact_spotanim_id == shots[i].impact);
+    }
     assert(resolved.effect->impact_spotanim_height == 96);
     assert(resolved.projectile->travel_spotanim_id == 1120);
     e.ammo_item_id = 892;

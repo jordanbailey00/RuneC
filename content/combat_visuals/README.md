@@ -20,6 +20,13 @@ fire left and right in turn) and `proc` is the effect shown on the target when
 an ammunition's effect triggers (`ammo_effect` on the attack event). `special`
 rows win over item rows while a special attack plays.
 
+A weapon whose stance rows carry a travel or launch graphic has its own shot
+(crystal bows, the Bow of Faerdhinen, Venator bows, salamanders) and fires it
+whatever is loaded; every other ranged weapon fires its ammunition's row.
+Blowpipes fire the dart they hold, without a thrower's launch. The names in
+`gameval` (`SpotanimID`) tie most graphics to their items; where nothing does,
+the note says `inferred`.
+
 Encounter rows are `npc` rows keyed by the NPC definition of the form that
 records the action and by `attack_key`: the attack name, a mechanic part
 (`<mechanic>` or `<mechanic>:<part>`) or a form change (`form:leave`,

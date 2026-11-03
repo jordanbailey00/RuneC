@@ -85,11 +85,14 @@ static uint32_t weapon_charges(const RcInvSlot *slot) {
         ? slot->state_id & 0xFFFFu : slot->state_id;
 }
 
-int rc_content_blowpipe_dart_strength(const RcInvSlot *slot) {
-    if (rc_content_gear_row(slot->item_id)->family != GEAR_BLOWPIPE) return 0;
+int rc_content_blowpipe_dart(const RcInvSlot *slot) {
+    if (rc_content_gear_row(slot->item_id)->family != GEAR_BLOWPIPE) return -1;
     unsigned index = slot->state_id >> 16;
-    const RcItemDef *dart = rc_item_def_get(
-        blowpipe_darts[index < sizeof(blowpipe_darts) / sizeof(blowpipe_darts[0]) ? index : 0]);
+    return blowpipe_darts[index < sizeof(blowpipe_darts) / sizeof(blowpipe_darts[0]) ? index : 0];
+}
+
+int rc_content_blowpipe_dart_strength(const RcInvSlot *slot) {
+    const RcItemDef *dart = rc_item_def_get(rc_content_blowpipe_dart(slot));
     return dart ? dart->ranged_strength : 0;
 }
 

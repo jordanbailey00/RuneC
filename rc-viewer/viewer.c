@@ -16,6 +16,7 @@
 #include "../rc-core/spells.h"
 #include "../rc-core/storage.h"
 #include "../rc-core/varbits.h"
+#include "../rc-content/combat/magic.h"
 #include "../rc-content/content.h"
 #include "raylib.h"
 #include "raymath.h"
@@ -271,6 +272,7 @@ typedef struct {
     int start_tick;
     int duration_ticks;
     int impact_duration_ticks;
+    int launch_duration_ticks;
     int age_ticks;
     int hit_delay;
     int client_delay;
@@ -523,13 +525,11 @@ typedef struct {
     int projectile_model_request_id_count;
     Shader alpha_cutout_shader_static;
     Shader alpha_cutout_shader_dynamic;
-    Shader projectile_effect_shader;
     Shader actor_visible_shader;
     Shader actor_opaque_shader;
     Shader actor_translucent_shader;
     int alpha_cutout_shader_static_loaded;
     int alpha_cutout_shader_dynamic_loaded;
-    int projectile_effect_shader_loaded;
     int actor_shaders_loaded;
     ViewerActorDraw actor_translucent_draws[VIEWER_MAX_ACTOR_TRANSLUCENT_DRAWS];
     int actor_translucent_draw_count;
@@ -1911,52 +1911,6 @@ static Shader load_alpha_band_shader(float brightness, float lift,
 
 static Shader load_alpha_cutout_shader(float brightness, float lift) {
     return load_alpha_band_shader(brightness, lift, 0.5f, 2.0f);
-}
-
-static Shader load_projectile_effect_shader(float brightness, float lift) {
-    const char *vs =
-        "#version 330\n"
-        "in vec3 vertexPosition;\n"
-        "in vec2 vertexTexCoord;\n"
-        "in vec4 vertexColor;\n"
-        "uniform mat4 mvp;\n"
-        "out vec2 fragTexCoord;\n"
-        "out vec4 fragColor;\n"
-        "void main() {\n"
-        "    fragTexCoord = vertexTexCoord;\n"
-        "    fragColor = vertexColor;\n"
-        "    gl_Position = mvp*vec4(vertexPosition, 1.0);\n"
-        "}\n";
-    char fs[1024];
-    snprintf(fs, sizeof(fs),
-        "#version 330\n"
-        "in vec2 fragTexCoord;\n"
-        "in vec4 fragColor;\n"
-        "uniform sampler2D texture0;\n"
-        "uniform vec4 colDiffuse;\n"
-        "out vec4 finalColor;\n"
-        "void main() {\n"
-        "    vec4 texel = texture(texture0, fragTexCoord);\n"
-        "    vec4 color = texel*fragColor*colDiffuse;\n"
-        "    color.rgb = min(color.rgb * %.3ff + vec3(%.3ff), vec3(1.0));\n"
-        "    finalColor = color;\n"
-        "}\n",
-        brightness, lift);
-
-    Shader shader = LoadShaderFromMemory(vs, fs);
-    if (shader.id <= 0)
-        return shader;
-    shader.locs[SHADER_LOC_VERTEX_POSITION] =
-        GetShaderLocationAttrib(shader, "vertexPosition");
-    shader.locs[SHADER_LOC_VERTEX_TEXCOORD01] =
-        GetShaderLocationAttrib(shader, "vertexTexCoord");
-    shader.locs[SHADER_LOC_VERTEX_COLOR] =
-        GetShaderLocationAttrib(shader, "vertexColor");
-    shader.locs[SHADER_LOC_MATRIX_MVP] = GetShaderLocation(shader, "mvp");
-    shader.locs[SHADER_LOC_COLOR_DIFFUSE] =
-        GetShaderLocation(shader, "colDiffuse");
-    shader.locs[SHADER_LOC_MAP_DIFFUSE] = GetShaderLocation(shader, "texture0");
-    return shader;
 }
 
 static float ground_y_plane(ViewerState *v, int plane, int world_x,
@@ -8078,8 +8032,8 @@ static void viewer_tick_combat_projectiles(ViewerState *v) {
         if (proj.duration_ticks <= 0) proj.duration_ticks = 1;
         proj.age_ticks++;
         int retain_ticks = proj.duration_ticks + proj.impact_duration_ticks;
-        if (retain_ticks < proj.duration_ticks)
-            retain_ticks = proj.duration_ticks;
+        if (retain_ticks < proj.launch_duration_ticks)
+            retain_ticks = proj.launch_duration_ticks;
         if (proj.age_ticks > retain_ticks)
             continue;
         v->combat_projectiles[w++] = proj;
@@ -8285,6 +8239,14 @@ static int viewer_projectile_impact_height(
     return style == COMBAT_MAGIC ? 124 : 0;
 }
 
+// Ticks a spot animation on an actor plays for: its sequence once through,
+// or nothing without one, as the client drops it at once.
+static int viewer_spotanim_ticks(ViewerState *v, int spotanim_id) {
+    const SpotAnimDef *spot = spotanim_find(v->spotanims, spotanim_id);
+    if (!spot || spot->animation_id < 0) return 0;
+    return 1 + projectile_sequence_duration(v->anims, spot->animation_id) / 30;
+}
+
 static void viewer_apply_projectile_profile(
     ViewerCombatProjectile *proj,
     const RcCombatVisualDef *visual,
@@ -8331,18 +8293,20 @@ static void viewer_apply_projectile_profile_for_index(
     RcCombatVisualDef alt;
     if (sequence_index > 0 &&
             viewer_visual_has_alt_projectile_profile(effect_visual)) {
-        alt = *effect_visual;
-        alt.projectile_start_height =
-            effect_visual->alt_projectile_start_height;
-        alt.projectile_end_height =
-            effect_visual->alt_projectile_end_height;
-        alt.projectile_delay = effect_visual->alt_projectile_delay;
-        alt.projectile_angle = effect_visual->alt_projectile_angle;
-        alt.projectile_length_adjustment =
-            effect_visual->alt_projectile_length_adjustment;
-        alt.projectile_progress = effect_visual->alt_projectile_progress;
-        alt.projectile_step_multiplier =
-            effect_visual->alt_projectile_step_multiplier;
+        const RcCombatVisualDef *first = effect_visual;
+        alt = *first;
+        alt.projectile_start_height = first->alt_projectile_start_height;
+        alt.projectile_end_height = first->alt_projectile_end_height;
+        alt.projectile_delay = first->projectile_delay + sequence_index
+            * (first->alt_projectile_delay - first->projectile_delay);
+        alt.projectile_angle = first->alt_projectile_angle;
+        alt.projectile_length_adjustment = first->projectile_length_adjustment
+            + sequence_index * (first->alt_projectile_length_adjustment
+                                - first->projectile_length_adjustment);
+        alt.projectile_progress = first->alt_projectile_progress;
+        alt.projectile_step_multiplier = first->projectile_step_multiplier
+            + sequence_index * (first->alt_projectile_step_multiplier
+                                - first->projectile_step_multiplier);
         profile = &alt;
     }
     viewer_apply_projectile_profile(proj, profile, distance, hit_delay);
@@ -8445,9 +8409,12 @@ static void viewer_spawn_projectile_instance(
     proj->projectile_anim_id = projectile_anim_id;
     proj->sequence_index = sequence_index;
     proj->sequence_count = sequence_count;
+    bool player_shot = event->source_kind == RC_COMBAT_ACTOR_PLAYER
+                    && sequence_index < 4;
     viewer_apply_projectile_profile_for_index(
         proj, profile_visual ? profile_visual : visual, effect_visual,
-        sequence_index, viewer_distance_event_target(event), event->hit_delay);
+        sequence_index, viewer_distance_event_target(event),
+        player_shot ? event->hit_delays[sequence_index] : event->hit_delay);
     if (viewer_visual_is_fixed_tile_impact(visual)) {
         int impact_time = viewer_visual_projectile_end_time(
             visual, viewer_distance_event_target(event));
@@ -8488,16 +8455,8 @@ static void viewer_spawn_projectile_instance(
     }
     proj->impact_spotanim_height = viewer_projectile_impact_height(
         proj, visual, (RcCombatStyle)event->style);
-    bool accurate = event->accurate;
-    if (event->source_kind == RC_COMBAT_ACTOR_PLAYER && sequence_index < 4) {
-        int delay = event->hit_delays[sequence_index];
-        proj->hit_delay = delay;
-        proj->duration_ticks = proj->client_delay = delay > 0 ? delay : 1;
-        proj->projectile_end_time = proj->duration_ticks * 30;
-        if (proj->projectile_start_time >= proj->projectile_end_time)
-            proj->projectile_start_time = proj->projectile_end_time - 1;
-        accurate = event->hit_accurate[sequence_index];
-    }
+    bool accurate = player_shot ? event->hit_accurate[sequence_index]
+                                : event->accurate;
     if (event->source_kind == RC_COMBAT_ACTOR_PLAYER &&
             event->style == COMBAT_MAGIC && !accurate) {
         proj->impact_spotanim_id = 85;
@@ -8509,6 +8468,9 @@ static void viewer_spawn_projectile_instance(
         visual ? visual->impact_spotanim_rotation : -1;
     proj->start_tick = event->world_tick;
     proj->age_ticks = 0;
+    if (!viewer_visual_is_fixed_tile_impact(visual))
+        proj->impact_duration_ticks = viewer_spotanim_ticks(v, proj->impact_spotanim_id);
+    proj->launch_duration_ticks = viewer_spotanim_ticks(v, proj->launch_spotanim_id);
 }
 
 static void viewer_spawn_player_attack_projectiles(
@@ -8589,7 +8551,17 @@ static void viewer_handle_player_attack_event(
     const RcCombatAttackEvent *event
 ) {
     if (!v || !event) return;
+    RcCombatAttackEvent shot = *event;
+    int dart = rc_content_blowpipe_dart(&v->world->player.equipment[EQUIP_WEAPON]);
+    if (dart >= 0) shot.ammo_item_id = dart;
+    event = &shot;
     RcPlayerAttackVisuals visuals = rc_combat_visual_resolve_player(event);
+    RcCombatVisualDef dart_row;
+    if (dart >= 0 && visuals.projectile) {
+        dart_row = *visuals.projectile;
+        dart_row.launch_spotanim_id = -1;
+        visuals.projectile = &dart_row;
+    }
     viewer_start_player_attack_anim(v, visuals.animation);
     viewer_spawn_player_attack_projectiles(
         v, event, visuals.projectile, visuals.effect, visuals.timing);
@@ -8665,18 +8637,6 @@ static void viewer_capture_combat_attack_events(ViewerState *v) {
         else if (event->source_kind == RC_COMBAT_ACTOR_NPC)
             viewer_handle_npc_attack_event(v, event);
     }
-}
-
-static Color projectile_color(const ViewerCombatProjectile *proj) {
-    if (!proj) return WHITE;
-    if (proj->style == COMBAT_MAGIC) return (Color){255, 104, 36, 235};
-    if (proj->style == COMBAT_RANGED) return (Color){218, 178, 92, 235};
-    return (Color){220, 220, 220, 235};
-}
-
-static float projectile_model_scale(const ViewerCombatProjectile *proj) {
-    (void)proj;
-    return 1.0f;
 }
 
 static ModelEntry *projectile_model_find(ViewerState *v, uint32_t model_id) {
@@ -8847,8 +8807,6 @@ static void ensure_projectile_models_for_active_projectiles(
     v->projectile_models = models_load_filtered(
         env_path("RUNEC_PROJECTILE_MODELS", "data/models/projectiles.models"),
         ids, id_count);
-    if (v->projectile_models && v->projectile_effect_shader_loaded)
-        models_set_shader(v->projectile_models, v->projectile_effect_shader);
     create_projectile_anim_states(v);
     projectile_model_remember_request(v, ids, id_count);
     fprintf(stderr,
@@ -8894,25 +8852,13 @@ static ModelEntry *projectile_effect_model_entry(ViewerState *v,
 
 static int projectile_effect_anim_id(const ViewerCombatProjectile *proj,
                                      const SpotAnimDef *spot) {
-    if (proj && proj->source_kind == RC_COMBAT_ACTOR_NPC &&
-            spot && spot->animation_id >= 0)
-        return spot->animation_id;
-    if (proj && proj->projectile_anim_id >= 0)
-        return proj->projectile_anim_id;
-    if (spot && spot->animation_id >= 0)
-        return spot->animation_id;
-    return -1;
+    if (spot) return spot->animation_id;
+    return proj ? proj->projectile_anim_id : -1;
 }
 
-static Vector3 projectile_spotanim_scale(const ViewerCombatProjectile *proj,
-                                         const SpotAnimDef *spot) {
-    float scale = projectile_model_scale(proj);
-    float xy = scale;
-    float y = scale;
-    if (spot && spot->resize_xy > 0)
-        xy *= (float)spot->resize_xy / 128.0f;
-    if (spot && spot->resize_z > 0)
-        y *= (float)spot->resize_z / 128.0f;
+static Vector3 projectile_spotanim_scale(const SpotAnimDef *spot) {
+    float xy = spot && spot->resize_xy > 0 ? (float)spot->resize_xy / 128.0f : 1.0f;
+    float y = spot && spot->resize_z > 0 ? (float)spot->resize_z / 128.0f : 1.0f;
     return (Vector3){xy, y, xy};
 }
 
@@ -8926,15 +8872,55 @@ static int projectile_has_travel_visual(const ViewerCombatProjectile *proj) {
                     proj->projectile_anim_id >= 0);
 }
 
-static void draw_oriented_projectile_model(Model model, Vector3 pos,
-                                           float yaw, float pitch,
-                                           Vector3 scale, Color tint) {
+// A spot animation's definition turns its model a quarter turn at a time.
+// The client's turns run opposite to raylib's around the up axis.
+static float spotanim_turn_degrees(const SpotAnimDef *spot) {
+    return spot ? -(float)spot->rotation : 0.0f;
+}
+
+// Draws an effect model as the client does: yawed and pitched in the world
+// after the definition's turn and scale, opaque faces in the depth buffer,
+// then the see-through ones blended over them.
+// The client merges an actor's spot animation into the actor's model, where
+// faces of priority 10 and up paint over the rest. Here the actor has already
+// written depth, so such a graphic moves towards the eye past the actor's body
+// (reach, in tiles): scaled about the eye it covers the same pixels.
+static float effect_eye_scale(const ViewerState *v, const ModelEntry *entry,
+                              Vector3 pos, float reach) {
+    int paints_over = 0;
+    for (int f = 0; reach > 0.0f && entry->face_priorities
+                    && f < entry->face_count; f++)
+        paints_over |= entry->face_priorities[f] >= 10;
+    float eye = Vector3Distance(v->camera.position, pos);
+    return paints_over && eye > reach * 2.0f ? (eye - reach) / eye : 1.0f;
+}
+
+static void draw_effect_model(ViewerState *v, const ModelEntry *entry,
+                              Vector3 pos, float yaw, float pitch,
+                              const SpotAnimDef *spot, float reach) {
+    Model model = entry->model;
+    Vector3 scale = projectile_spotanim_scale(spot);
+    Vector3 origin = {0.0f, 0.0f, 0.0f};
+    Vector3 unit = {1.0f, 1.0f, 1.0f};
+    Vector3 eye = v->camera.position;
+    float nearer = effect_eye_scale(v, entry, pos, reach);
     rlPushMatrix();
+    rlTranslatef(eye.x, eye.y, eye.z);
+    rlScalef(nearer, nearer, nearer);
+    rlTranslatef(-eye.x, -eye.y, -eye.z);
     rlTranslatef(pos.x, pos.y, pos.z);
     rlRotatef(yaw, 0.0f, 1.0f, 0.0f);
     rlRotatef(pitch, 1.0f, 0.0f, 0.0f);
+    rlRotatef(spotanim_turn_degrees(spot), 0.0f, 1.0f, 0.0f);
     rlScalef(scale.x, scale.y, scale.z);
-    DrawModel(model, (Vector3){0.0f, 0.0f, 0.0f}, 1.0f, tint);
+    draw_model_one_sided_with_shader(model, v->actor_opaque_shader, origin, 0.0f,
+                                     unit, WHITE);
+    BeginBlendMode(BLEND_ALPHA);
+    rlDisableDepthMask();
+    draw_model_one_sided_with_shader(model, v->actor_translucent_shader, origin,
+                                     0.0f, unit, WHITE);
+    rlEnableDepthMask();
+    EndBlendMode();
     rlPopMatrix();
 }
 
@@ -9005,6 +8991,38 @@ static int projectile_target_point(ViewerState *v,
     *out_y = ground_yf_plane(v, scene_plane, wx, wy);
     if (out_tile_x) *out_tile_x = tile_x;
     if (out_tile_y) *out_tile_y = tile_y;
+    return 1;
+}
+
+// The drawn position (world tiles, actor centre) and facing of the actor a
+// spot animation plays on; the client merges it into the actor's model.
+// Tiles from an actor's middle to the near side of its body.
+static float viewer_actor_reach(ViewerState *v, int kind, int uid) {
+    if (kind == RC_COMBAT_ACTOR_PLAYER) return 0.75f;
+    int idx = kind == RC_COMBAT_ACTOR_NPC ? viewer_find_npc_index_by_uid(v, uid) : -1;
+    return idx >= 0 ? 0.75f * (float)viewer_npc_size(v, &v->world->npcs[idx]) : 0.0f;
+}
+
+static int viewer_actor_anchor(ViewerState *v, int kind, int uid, int scene_plane,
+                               float *x, float *y, float *degrees) {
+    if (kind == RC_COMBAT_ACTOR_PLAYER) {
+        if (v->world->player.plane != scene_plane) return 0;
+        viewer_player_render_tile(v, x, y);
+        *x += 0.5f;
+        *y += 0.5f;
+        *degrees = runec_actor_motion_render_degrees(&v->player_motion,
+                                                     v->motion_cycle_frac);
+        return 1;
+    }
+    int idx = kind == RC_COMBAT_ACTOR_NPC ? viewer_find_npc_index_by_uid(v, uid) : -1;
+    if (idx < 0) return 0;
+    const RcNpc *npc = &v->world->npcs[idx];
+    if (npc->plane != scene_plane || !v->npc_render[idx].initialized) return 0;
+    float half = 0.5f * (float)viewer_npc_size(v, npc);
+    *x = v->npc_render[idx].render_x + half;
+    *y = v->npc_render[idx].render_y + half;
+    *degrees = runec_actor_motion_render_degrees(&v->npc_render[idx].motion,
+                                                 v->motion_cycle_frac);
     return 1;
 }
 
@@ -9147,37 +9165,28 @@ static int draw_projectile_impact(ViewerState *v,
     if (proj->impact_spotanim_id < 0 || client_time < impact_start)
         return 0;
     const SpotAnimDef *spot = projectile_impact_spotanim(v, proj);
-    int anim_id = spot && spot->animation_id >= 0 ? spot->animation_id : -1;
-    int anim_duration = projectile_sequence_duration(v->anims, anim_id);
+    int anim_id = spot ? spot->animation_id : -1;
     float elapsed = client_time - impact_start;
-    float retain = (float)(proj->impact_duration_ticks > 0
-                         ? proj->impact_duration_ticks * 30 : 30);
-    float draw_until = fminf((float)anim_duration, retain);
-    if (elapsed >= draw_until)
+    if (anim_id < 0 || elapsed >= (float)projectile_sequence_duration(v->anims, anim_id))
         return 0;
 
     Vector3 pos;
     if (!combat_projectile_impact_position(v, proj, scene_plane, &pos))
         return 0;
-
     ModelEntry *entry = projectile_spotanim_model_entry(v, spot, -1);
-    if (entry) {
-        float angle = proj->impact_spotanim_rotation >= 0
-                    ? (float)proj->impact_spotanim_rotation
-                    : (spot ? (float)spot->rotation : 0.0f);
-        Vector3 scale = projectile_spotanim_scale(proj, spot);
-        AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
-        if (!animate_model_entry_sequence(entry, anim_state, v->anims,
-                                          anim_id, elapsed)) {
-            reset_model_entry_to_base_pose(entry);
-        }
-        DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, angle,
-                    scale, WHITE);
-        return 1;
-    }
-
-    Color c = projectile_color(proj);
-    DrawSphere(pos, proj->style == COMBAT_MAGIC ? 0.28f : 0.12f, c);
+    if (!entry)
+        return 0;
+    float x, y, facing = 0.0f;
+    if (proj->impact_spotanim_rotation >= 0)
+        facing = (float)proj->impact_spotanim_rotation;
+    else
+        viewer_actor_anchor(v, proj->target_kind, proj->target_uid, scene_plane,
+                            &x, &y, &facing);
+    AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
+    if (!animate_model_entry_sequence(entry, anim_state, v->anims, anim_id, elapsed))
+        reset_model_entry_to_base_pose(entry);
+    draw_effect_model(v, entry, pos, facing, 0.0f, spot,
+                      viewer_actor_reach(v, proj->target_kind, proj->target_uid));
     return 1;
 }
 
@@ -9190,45 +9199,26 @@ static int draw_projectile_launch(ViewerState *v,
         return 0;
     }
     const SpotAnimDef *spot = projectile_launch_spotanim(v, proj);
-    int anim_id = spot && spot->animation_id >= 0 ? spot->animation_id : -1;
-    int anim_duration = projectile_sequence_duration(v->anims, anim_id);
-    float retain = proj->projectile_start_time > 0
-                 ? (float)proj->projectile_start_time : 30.0f;
-    if (retain < 30.0f) retain = 30.0f;
-    if (retain > (float)anim_duration) retain = (float)anim_duration;
-    if (client_time >= retain)
+    int anim_id = spot ? spot->animation_id : -1;
+    if (anim_id < 0 || client_time >= (float)projectile_sequence_duration(v->anims, anim_id))
         return 0;
 
+    float x = proj->source_fx, y = proj->source_fy, facing = 0.0f;
+    viewer_actor_anchor(v, proj->source_kind, proj->source_uid, scene_plane,
+                        &x, &y, &facing);
     float height = proj->launch_spotanim_height >= 0
                  ? (float)proj->launch_spotanim_height / 128.0f : 0.75f;
-    Vector3 pos = {
-        proj->source_fx - (float)g_world_origin_x,
-        ground_yf_plane(v, scene_plane, proj->source_fx, proj->source_fy)
-            + height,
-        -(proj->source_fy - (float)g_world_origin_y),
-    };
+    Vector3 pos = {x - (float)g_world_origin_x,
+                   ground_yf_plane(v, scene_plane, x, y) + height,
+                   -(y - (float)g_world_origin_y)};
     ModelEntry *entry = projectile_spotanim_model_entry(v, spot, -1);
-    if (entry) {
-        float angle = spot ? (float)spot->rotation : 0.0f;
-        float tx = 0.0f;
-        float tz = 0.0f;
-        float target_ground = 0.0f;
-        if (projectile_target_point(v, proj, scene_plane, &tx, &tz,
-                                    &target_ground, NULL, NULL)) {
-            angle += projectile_yaw_degrees(pos.x, pos.z, tx, tz);
-        }
-        Vector3 scale = projectile_spotanim_scale(proj, spot);
-        AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
-        if (!animate_model_entry_sequence(entry, anim_state, v->anims,
-                                          anim_id, client_time)) {
-            reset_model_entry_to_base_pose(entry);
-        }
-        DrawModelEx(entry->model, pos, (Vector3){0, 1, 0}, angle,
-                    scale, WHITE);
-        return 1;
-    }
-    DrawSphere(pos, proj->style == COMBAT_MAGIC ? 0.18f : 0.08f,
-               projectile_color(proj));
+    if (!entry)
+        return 0;
+    AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
+    if (!animate_model_entry_sequence(entry, anim_state, v->anims, anim_id, client_time))
+        reset_model_entry_to_base_pose(entry);
+    draw_effect_model(v, entry, pos, facing, 0.0f, spot,
+                      viewer_actor_reach(v, proj->source_kind, proj->source_uid));
     return 1;
 }
 
@@ -9238,8 +9228,6 @@ static void draw_combat_projectiles(ViewerState *v) {
     if (!projectiles || count <= 0) return;
     int scene_plane = viewer_scene_plane(v);
     ensure_projectile_models_for_active_projectiles(v, scene_plane);
-    BeginBlendMode(BLEND_ALPHA);
-    rlDisableDepthMask();
     for (int i = 0; i < count; i++) {
         ViewerCombatProjectile *proj = &projectiles[i];
         if (!proj->active || proj->plane != scene_plane)
@@ -9251,8 +9239,7 @@ static void draw_combat_projectiles(ViewerState *v) {
         float client_time = ((float)proj->age_ticks + v->tick_frac) * 30.0f;
         draw_projectile_launch(v, proj, scene_plane, client_time);
         if (!projectile_has_travel_visual(proj)) {
-            draw_projectile_impact(v, proj, scene_plane, client_time,
-                                   end_time);
+            draw_projectile_impact(v, proj, scene_plane, client_time, end_time);
             continue;
         }
         float angle = 0.0f;
@@ -9261,44 +9248,22 @@ static void draw_combat_projectiles(ViewerState *v) {
         Vector3 pos = combat_projectile_position(v, proj, scene_plane,
                                                  &angle, &pitch, &visible);
         if (!visible) {
-            draw_projectile_impact(v, proj, scene_plane, client_time,
-                                   end_time);
+            draw_projectile_impact(v, proj, scene_plane, client_time, end_time);
             continue;
         }
-        float sx = proj->source_fx - (float)g_world_origin_x;
-        float sz = -(proj->source_fy - (float)g_world_origin_y);
-        float sy = ground_yf_plane(v, scene_plane, proj->source_fx,
-                                   proj->source_fy) +
-                   (proj->projectile_start_height >= 0
-                    ? (float)proj->projectile_start_height / 128.0f : 1.45f);
-        Vector3 start = {sx, sy, sz};
-        Color c = projectile_color(proj);
         const SpotAnimDef *spot = projectile_travel_spotanim(v, proj);
-        int anim_id = projectile_effect_anim_id(proj, spot);
         ModelEntry *entry = projectile_effect_model_entry(v, proj, spot);
-        if (entry) {
-            Vector3 scale = projectile_spotanim_scale(proj, spot);
-            AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
-            float client_ticks = ((float)proj->age_ticks + v->tick_frac) * 30.0f;
-            if (proj->projectile_start_time > 0)
-                client_ticks -= (float)proj->projectile_start_time;
-            if (client_ticks < 0.0f)
-                client_ticks = 0.0f;
-            if (!animate_model_entry_sequence(entry, anim_state, v->anims,
-                                              anim_id, client_ticks)) {
-                reset_model_entry_to_base_pose(entry);
-            }
-            float model_pitch = spot ? 0.0f : pitch;
-            draw_oriented_projectile_model(entry->model, pos, angle, model_pitch,
-                                           scale, WHITE);
+        if (!entry)
             continue;
-        }
-        float radius = proj->style == COMBAT_MAGIC ? 0.16f : 0.07f;
-        DrawSphere(pos, radius, c);
-        DrawLine3D(start, pos, (Color){c.r, c.g, c.b, 80});
+        // The sequence runs from the first cycle of flight.
+        float flight_cycles = client_time - (float)proj->projectile_start_time;
+        AnimModelState *anim_state = projectile_anim_state_for_entry(v, entry);
+        if (!animate_model_entry_sequence(entry, anim_state, v->anims,
+                                          projectile_effect_anim_id(proj, spot),
+                                          fmaxf(flight_cycles, 0.0f)))
+            reset_model_entry_to_base_pose(entry);
+        draw_effect_model(v, entry, pos, angle, pitch, spot, 0.0f);
     }
-    rlEnableDepthMask();
-    EndBlendMode();
 }
 
 static const RuneCItemRenderRecord *equipped_weapon_render_record(
@@ -10980,9 +10945,6 @@ int main(int argc, char **argv) {
     v.alpha_cutout_shader_static =
         load_alpha_cutout_shader(static_brightness, static_lift);
     v.alpha_cutout_shader_static_loaded = v.alpha_cutout_shader_static.id > 0;
-    v.projectile_effect_shader =
-        load_projectile_effect_shader(static_brightness, static_lift);
-    v.projectile_effect_shader_loaded = v.projectile_effect_shader.id > 0;
     // The player keeps the default shader's colours.
     v.actor_visible_shader = load_alpha_band_shader(
         1.0f, 0.0f, ACTOR_MIN_ALPHA, 2.0f);
@@ -11113,8 +11075,6 @@ int main(int argc, char **argv) {
     if (env_bool("RUNEC_LOAD_PROJECTILE_MODELS", 0)) {
         v.projectile_models = models_load(env_path("RUNEC_PROJECTILE_MODELS",
             "data/models/projectiles.models"));
-        if (v.projectile_models && v.projectile_effect_shader_loaded)
-            models_set_shader(v.projectile_models, v.projectile_effect_shader);
         create_projectile_anim_states(&v);
     } else {
         fprintf(stderr,
@@ -11524,8 +11484,6 @@ cleanup:
         UnloadShader(v.alpha_cutout_shader_static);
     if (v.alpha_cutout_shader_dynamic_loaded)
         UnloadShader(v.alpha_cutout_shader_dynamic);
-    if (v.projectile_effect_shader_loaded)
-        UnloadShader(v.projectile_effect_shader);
     if (v.actor_visible_shader.id > 0)
         UnloadShader(v.actor_visible_shader);
     if (v.actor_opaque_shader.id > 0)
