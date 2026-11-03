@@ -490,9 +490,10 @@ class PlayerWeaponPoseTests(unittest.TestCase):
         )
         player_anims = (ROOT / "data/anims/player.anims").read_bytes()
         self.assertEqual(player_anims[:4], b"ANM2")
-        _version, header_size, framebase_count, sequence_count = (
+        version, header_size, framebase_count, sequence_count = (
             struct.unpack_from("<HHII", player_anims, 4)
         )
+        hand_items_size = 4 if version >= 3 else 0
         pos = header_size
         for _ in range(framebase_count):
             pos += 2
@@ -510,7 +511,7 @@ class PlayerWeaponPoseTests(unittest.TestCase):
             available.add(sequence_id)
             pos += 4
             interleave_count = player_anims[pos]
-            pos += 1 + interleave_count + 1
+            pos += 1 + interleave_count + 1 + hand_items_size
             for _frame in range(frame_count):
                 pos += 4
                 translator_count = player_anims[pos]

@@ -7314,6 +7314,27 @@ static uint64_t mix_composed_signature(uint64_t sig, uint64_t value) {
     return sig;
 }
 
+// What a worn slot shows. The primary sequence can empty a hand or change what
+// it holds, as the client's PlayerComposition does: 0 empties it and 512 up is
+// an item. Thrown weapons leave the hand so the launch graphic can carry them.
+static int composed_slot_item(ViewerState *v, const RcPlayer *p, int slot) {
+    const RcInvSlot *eq = &p->equipment[slot];
+    int worn = eq->item_id >= 0 && eq->quantity > 0 ? eq->item_id : -1;
+    if ((slot != EQUIP_WEAPON && slot != EQUIP_SHIELD) || !v->anims
+            || v->primary_anim_id < 0 || v->player_one_shot_finished)
+        return worn;
+    const AnimSequence *seq = anim_get_sequence(v->anims,
+                                                (uint16_t)v->primary_anim_id);
+    int hand = !seq ? -1 : slot == EQUIP_WEAPON ? seq->right_hand_item
+                                                : seq->left_hand_item;
+    if (hand < 0)
+        return worn;
+    if (hand < 512)
+        return -1;
+    return runec_item_render_find(&v->item_render_map, (uint32_t)(hand - 512))
+         ? hand - 512 : worn;
+}
+
 static uint64_t composed_player_signature(ViewerState *v, const RcPlayer *p) {
     uint64_t sig = 0xcbf29ce484222325ULL;
     uint32_t hide = composed_player_hide_mask(v, p);
@@ -7326,11 +7347,11 @@ static uint64_t composed_player_signature(ViewerState *v, const RcPlayer *p) {
         sig = mix_composed_signature(sig, ((uint64_t)part << 32) | model_id);
     }
     for (int slot = 0; slot < RC_EQUIP_COUNT; slot++) {
-        const RcInvSlot *eq = &p->equipment[slot];
-        if (eq->item_id < 0 || eq->quantity <= 0)
+        int item = composed_slot_item(v, p, slot);
+        if (item < 0)
             continue;
         const RuneCItemRenderRecord *rec = runec_item_render_find(
-            &v->item_render_map, (uint32_t)eq->item_id);
+            &v->item_render_map, (uint32_t)item);
         if (!rec || rec->male_model_id == RUNEC_RENDER_MODEL_MISSING)
             continue;
         sig = mix_composed_signature(sig,
@@ -7400,16 +7421,16 @@ static int rebuild_composed_player_model(ViewerState *v, const RcPlayer *p) {
     }
 
     for (int slot = 0; slot < RC_EQUIP_COUNT; slot++) {
-        const RcInvSlot *eq = &p->equipment[slot];
-        if (eq->item_id < 0 || eq->quantity <= 0)
+        int item = composed_slot_item(v, p, slot);
+        if (item < 0)
             continue;
         const RuneCItemRenderRecord *rec = runec_item_render_find(
-            &v->item_render_map, (uint32_t)eq->item_id);
+            &v->item_render_map, (uint32_t)item);
         if (!rec || rec->male_model_id == RUNEC_RENDER_MODEL_MISSING)
             continue;
         source_count = append_composed_source(sources, source_count,
                                              MAX_COMPOSED_PARTS,
-                                             worn_item_models(v, eq->item_id),
+                                             worn_item_models(v, item),
                                              rec->male_model_id);
     }
 
@@ -7676,11 +7697,11 @@ static uint32_t composed_player_hide_mask(ViewerState *v, const RcPlayer *p) {
     if (!v->item_render_map.loaded)
         return hide;
     for (int slot = 0; slot < RC_EQUIP_COUNT; slot++) {
-        const RcInvSlot *eq = &p->equipment[slot];
-        if (eq->item_id < 0 || eq->quantity <= 0)
+        int item = composed_slot_item(v, p, slot);
+        if (item < 0)
             continue;
         const RuneCItemRenderRecord *rec = runec_item_render_find(
-            &v->item_render_map, (uint32_t)eq->item_id);
+            &v->item_render_map, (uint32_t)item);
         if (rec)
             hide |= rec->hide_body_mask;
     }

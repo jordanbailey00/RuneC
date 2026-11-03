@@ -11,7 +11,7 @@ from pathlib import Path
 
 LEGACY_MAGIC = 0x414E494D
 ANM2_MAGIC = b"ANM2"
-ANM2_VERSION = 2
+ANM2_VERSIONS = (2, 3)
 
 
 @dataclass
@@ -64,7 +64,7 @@ def parse_anims(path: Path) -> AnimSummary:
     if magic_bytes == ANM2_MAGIC:
         version = r.read_u16()
         header_size = r.read_u16()
-        if version != ANM2_VERSION or header_size < 24:
+        if version not in ANM2_VERSIONS or header_size < 24:
             raise ValueError(f"{path}: unsupported ANM2 header version={version} size={header_size}")
         summary = AnimSummary(
             version=version,
@@ -98,14 +98,14 @@ def parse_anims(path: Path) -> AnimSummary:
         frame_count = r.read_u16()
         interleave_count = r.read_u8()
         r.skip(interleave_count)
-        r.skip(1)
+        r.skip(5 if summary.version >= 3 else 1)
         for _ in range(frame_count):
             r.skip(4)
             transform_count = r.read_u8()
             r.skip(transform_count * 7)
             read_sequence_frames += 1
 
-    if summary.version == ANM2_VERSION and read_sequence_frames != summary.sequence_frame_count:
+    if summary.version in ANM2_VERSIONS and read_sequence_frames != summary.sequence_frame_count:
         raise ValueError(
             f"{path}: frame count mismatch header={summary.sequence_frame_count} "
             f"parsed={read_sequence_frames}"

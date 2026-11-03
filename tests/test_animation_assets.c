@@ -75,6 +75,23 @@ static void test_visual_attack_sequences_ship(AnimCache *all) {
     anim_cache_free(player);
 }
 
+// Throws empty the hand so the launch graphic can carry the weapon; 512 up is
+// an item, so dragon knives keep theirs and need no launch graphic.
+static void test_sequences_carry_hand_items(AnimCache *all) {
+    AnimSequence *knife = anim_get_sequence(all, 7617);
+    AnimSequence *dart = anim_get_sequence(all, 7554);
+    AnimSequence *dragon_knife = anim_get_sequence(all, 8194);
+    AnimSequence *blowpipe = anim_get_sequence(all, 5061);
+    AnimSequence *bow = anim_get_sequence(all, 426);
+    assert(knife && dart && dragon_knife && blowpipe && bow);
+    assert(knife->right_hand_item == 0 && knife->left_hand_item == -1);
+    assert(dart->right_hand_item == 0);
+    assert(dragon_knife->right_hand_item == 22804 + 512);
+    assert(blowpipe->right_hand_item == 12926 + 512
+           && blowpipe->left_hand_item == 0);
+    assert(bow->right_hand_item == -1 && bow->left_hand_item == -1);
+}
+
 int main(void) {
     test_posed_mesh_keeps_stacked_face_offsets();
     AnimSequenceFrame frames[] = {{.delay = 30}, {.delay = 0}, {.delay = 35}};
@@ -113,6 +130,7 @@ int main(void) {
         assert(anim_get_framebase(cache, b->base_id) == b);
     }
     test_visual_attack_sequences_ship(cache);
+    test_sequences_carry_hand_items(cache);
     assert(anim_get_sequence(cache, 10501) && "warped sceptre cast missing");
     assert(anim_get_sequence(cache, 12397) && "Eye of Ayak cast missing");
     int casts[] = {1162, 1167, 1978, 1979, 7855, 8972, 8977};

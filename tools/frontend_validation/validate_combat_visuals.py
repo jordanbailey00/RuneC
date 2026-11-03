@@ -31,7 +31,7 @@ MDL2_MAGIC = 0x4D444C32
 MDL3_MAGIC = 0x4D444C33
 ANIM_LEGACY_MAGIC = 0x414E494D
 ANIM2_MAGIC = 0x324D4E41
-ANIM_FORMAT_VERSION = 2
+ANIM_FORMAT_VERSIONS = (2, 3)
 ANIM_HEADER_SIZE_V2 = 24
 MODEL_ID_SPOTANIM_BASE = 0xA2000000
 
@@ -340,11 +340,14 @@ def read_model_ids(path: Path) -> set[int]:
 def read_anim_sequence_ids(path: Path) -> set[int]:
     reader = BinaryReader(path.read_bytes(), path)
     magic = reader.read_u32()
+    hand_items_size = 0
     if magic == ANIM2_MAGIC:
         version = reader.read_u16()
         header_size = reader.read_u16()
-        if version != ANIM_FORMAT_VERSION or header_size < ANIM_HEADER_SIZE_V2:
+        if version not in ANIM_FORMAT_VERSIONS or header_size < ANIM_HEADER_SIZE_V2:
             raise ValueError(f"unsupported ANM2 header in {path}")
+        if version >= 3:
+            hand_items_size = 4
         base_count = reader.read_u32()
         seq_count = reader.read_u32()
         declared_frames = reader.read_u32()
@@ -375,6 +378,7 @@ def read_anim_sequence_ids(path: Path) -> set[int]:
         interleave_count = reader.read_u8()
         reader.skip(interleave_count)
         reader.read_i8()
+        reader.skip(hand_items_size)
         for _frame in range(frame_count):
             reader.read_u16()
             reader.read_u16()

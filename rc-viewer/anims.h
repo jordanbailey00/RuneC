@@ -16,6 +16,7 @@
  *              uint32 framebase_count, uint32 sequence_count,
  *              uint32 sequence_frame_count, uint32 flags
  *   followed by framebases and sequences with inlined normal-frame transforms.
+ *   v3 adds each sequence's left and right hand items.
  * Legacy v1 files with the old little-endian "MINA" magic are still accepted
  * so stale local data fails gracefully during transitions.
  */
@@ -32,7 +33,7 @@
 
 #define ANIM_LEGACY_MAGIC 0x414E494D /* legacy bytes are "MINA" */
 #define ANIM2_MAGIC 0x324D4E41       /* bytes are "ANM2" */
-#define ANIM_FORMAT_VERSION 2
+#define ANIM_FORMAT_VERSION 3
 #define ANIM_HEADER_SIZE_V2 24
 #define ANIM_MAX_SLOTS 256
 #define ANIM_MAX_LABELS 256
@@ -92,6 +93,8 @@ typedef struct {
     uint8_t            interleave_count;
     uint8_t*           interleave_order;
     int8_t             walk_flag;  /* -1=default (no stall), 0=stall movement during anim */
+    int32_t            left_hand_item;  /* -1 keeps the hand, 0 empties it, 512 up is an item */
+    int32_t            right_hand_item;
     AnimSequenceFrame* frames;
 } AnimSequence;
 
@@ -230,7 +233,8 @@ static AnimCache* anim_cache_load(const char* path) {
     if (magic == ANIM2_MAGIC) {
         uint16_t version = anim_read_u16(&r);
         uint16_t header_size = anim_read_u16(&r);
-        if (version != ANIM_FORMAT_VERSION || header_size < ANIM_HEADER_SIZE_V2) {
+        if (version < 2 || version > ANIM_FORMAT_VERSION
+                || header_size < ANIM_HEADER_SIZE_V2) {
             fprintf(stderr,
                     "anim_cache_load: unsupported ANM2 header version=%u size=%u in %s\n",
                     version, header_size, path);
@@ -332,6 +336,14 @@ static AnimCache* anim_cache_load(const char* path) {
         }
 
         seq->walk_flag = anim_read_i8(&r);
+        seq->left_hand_item = -1;
+        seq->right_hand_item = -1;
+        if (format_version >= 3) {
+            uint16_t left = anim_read_u16(&r);
+            uint16_t right = anim_read_u16(&r);
+            if (left != 0xFFFF) seq->left_hand_item = left;
+            if (right != 0xFFFF) seq->right_hand_item = right;
+        }
 
         seq->frames = (AnimSequenceFrame*)calloc(seq->frame_count, sizeof(AnimSequenceFrame));
         if (seq->frame_count > 0 && !seq->frames) {
@@ -364,7 +376,7 @@ static AnimCache* anim_cache_load(const char* path) {
         if (!r.ok) break;
     }
 
-    if (!r.ok || (format_version == ANIM_FORMAT_VERSION
+    if (!r.ok || (format_version >= 2
             && declared_sequence_frames != sequence_frames_read)) {
         if (r.ok) {
             fprintf(stderr,

@@ -167,6 +167,8 @@ class SequenceDef:
     loop_count: int = 99
     walk_flag: int = -1  # opcode 10: 0=stall movement, -1=default (derive from interleave)
     run_flag: int = -1   # opcode 9: 0=stall pre-anim steps, -1=default
+    left_hand_item: int = -1   # opcode 6: 0 empties the hand, 512 up is an item
+    right_hand_item: int = -1  # opcode 7: as above
 
 
 # --- parsing ---
@@ -359,9 +361,9 @@ def _parse_sequence(seq_id: int, data: bytes) -> SequenceDef | None:
         elif opcode == 5:
             seq.priority = read_ubyte(buf)
         elif opcode == 6:
-            read_ushort(buf)  # shield
+            seq.left_hand_item = read_ushort(buf)
         elif opcode == 7:
-            read_ushort(buf)  # weapon
+            seq.right_hand_item = read_ushort(buf)
         elif opcode == 8:
             seq.loop_count = read_ubyte(buf)
         elif opcode == 9:
@@ -411,7 +413,7 @@ def _parse_sequence(seq_id: int, data: bytes) -> SequenceDef | None:
 
 ANIM_MAGIC = 0x414E494D  # legacy v1 wrote this little-endian, producing bytes "MINA"
 ANIM2_MAGIC = b"ANM2"
-ANIM_FORMAT_VERSION = 2
+ANIM_FORMAT_VERSION = 3
 ANIM_HEADER_SIZE = 24
 ANIM_FLAG_NORMAL_FRAMES = 1 << 0
 ANIM_FLAG_PRESENTATION_METADATA_OMITTED = 1 << 1
@@ -443,7 +445,7 @@ def write_animations_binary(
     Binary layout:
       header:
         char[4] magic ("ANM2")
-        uint16  version (=2)
+        uint16  version (=3)
         uint16  header_size
         uint32  framebase_count
         uint32  sequence_count
@@ -550,6 +552,9 @@ def write_animations_binary(
             # walk_flag: signed int8 (-1=default/no stall, 0=stall movement)
             # matches Animation.java walkFlag from opcode 10
             f.write(struct.pack("b", _as_i8(seq.walk_flag)))
+            # What the hands hold while this plays; 0xFFFF leaves them alone.
+            f.write(struct.pack("<HH", seq.left_hand_item & 0xFFFF,
+                                seq.right_hand_item & 0xFFFF))
 
             for i in range(seq.frame_count):
                 delay = seq.frame_delays[i]
