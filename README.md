@@ -18,7 +18,8 @@ content and item behavior are not at full OSRS parity yet.
 
 The same branches are published on
 [RuneC](https://github.com/jordanbailey00/RuneC) and
-[RuneC-Testing](https://github.com/jordanbailey00/RuneC-Testing).
+[RuneC-Testing](https://github.com/jordanbailey00/RuneC-Testing). Data
+releases are published on RuneC.
 
 ## Requirements
 
@@ -38,7 +39,7 @@ Clone, install the data and build:
 ```bash
 git clone --branch v4.0 https://github.com/jordanbailey00/RuneC.git
 cd RuneC
-RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC-Testing/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
+RUNEC_DATA_MANIFEST_URL=https://github.com/jordanbailey00/RuneC/releases/download/data-v2026.10.22-b237/manifest.json ./scripts/setup-data.sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cmake --build build --parallel
 ```
